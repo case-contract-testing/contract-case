@@ -4,7 +4,7 @@ import {
   JSON_NULL_TYPE,
   JSON_NUMBER_TYPE,
   JSON_STRING_TYPE,
-} from 'dsl/Matchers/types';
+} from 'core/types';
 import { JsonExactPrimitive } from './base/JsonExactPrimitive';
 import { JsonNull } from './base/JsonNull';
 import { JsonNumber } from './base/JsonNumber';

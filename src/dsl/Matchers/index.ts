@@ -1,13 +1,15 @@
-import type { JsonPrimitive } from 'dsl/types';
 import {
+  JSON_NUMBER_TYPE,
+  JSON_STRING_TYPE,
+  JSON_NULL_TYPE,
+  JSON_EXACT_PRIMITIVE_TYPE,
+} from 'core/types';
+import type { JsonPrimitive } from 'dsl/types';
+import type {
   JsonExactPrimitiveMatcher,
   JsonNullMatcher,
   JsonNumberMatcher,
   JsonStringMatcher,
-  JSON_EXACT_PRIMITIVE_TYPE,
-  JSON_NULL_TYPE,
-  JSON_NUMBER_TYPE,
-  JSON_STRING_TYPE,
 } from './types';
 
 /**

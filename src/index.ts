@@ -1,6 +1,6 @@
-import type { AnyMatcherType, MatcherFor } from 'dsl/Matchers/types';
+import type { MatcherFor } from 'dsl/Matchers/types';
 import { CaseCoreError, MatcherExecutors } from 'core';
-import type { MatchingError } from 'core/types';
+import type { AnyMatcherType, MatchingError } from 'core/types';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 import type { AnyJson } from 'dsl/types';
 import * as MatcherDsl from 'dsl/Matchers';
