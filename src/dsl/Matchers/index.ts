@@ -1,6 +1,11 @@
+import type { JsonPrimitive } from 'dsl/types';
 import {
+  JsonExactPrimitiveMatcher,
+  JsonNullMatcher,
   JsonNumberMatcher,
   JsonStringMatcher,
+  JSON_EXACT_PRIMITIVE_TYPE,
+  JSON_NULL_TYPE,
   JSON_NUMBER_TYPE,
   JSON_STRING_TYPE,
 } from './types';
@@ -19,4 +24,17 @@ export const number = (example = 1.1): JsonNumberMatcher => ({
 export const string = (example = 'someString'): JsonStringMatcher => ({
   'case:matcher:type': JSON_STRING_TYPE,
   'case:matcher:example': example,
+});
+
+export const matchNull = (example = null): JsonNullMatcher => ({
+  'case:matcher:type': JSON_NULL_TYPE,
+  'case:matcher:example': example,
+});
+
+export const exactMatchPrimitive = (
+  example: JsonPrimitive
+): JsonExactPrimitiveMatcher => ({
+  'case:matcher:type': JSON_EXACT_PRIMITIVE_TYPE,
+  'case:matcher:example': example,
+  'case:matcher:exactlyEqualTo': example,
 });
