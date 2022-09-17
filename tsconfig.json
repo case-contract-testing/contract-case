@@ -1,0 +1,11 @@
+{
+  "extends": "@tsconfig/node16-strictest-esm/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "strict": true,
+    "rootDir": "./src",
+    "baseUrl": "src"
+  },
+  "exclude": ["jest.config.ts", "dist/**/*.js"]
+}
