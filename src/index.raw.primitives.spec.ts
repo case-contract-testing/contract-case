@@ -33,10 +33,26 @@ describe('basic primitives', () => {
 
   describe('string', () => {
     const matcher = 'example string';
-    it('accepts strings that are numbers', () => {
+    it('accepts exactly the string', () => {
       expect(checkMatch(matcher, 'example string')).toStrictEqual([]);
     });
 
+    expectErrorContaining(matcher, '1', 'not exactly equal');
+    expectErrorContaining(matcher, 'some other string', 'not exactly equal');
+    expectErrorContaining(matcher, NaN, 'not exactly equal');
+    expectErrorContaining(matcher, Infinity, 'not exactly equal');
+    expectErrorContaining(matcher, 1, 'not exactly equal');
+    expectErrorContaining(matcher, [], 'not exactly equal');
+    expectErrorContaining(matcher, {}, 'not exactly equal');
+  });
+
+  describe('boolean', () => {
+    const matcher = true;
+    it('accepts exactly true', () => {
+      expect(checkMatch(matcher, true)).toStrictEqual([]);
+    });
+
+    expectErrorContaining(matcher, false, 'not exactly equal');
     expectErrorContaining(matcher, '1', 'not exactly equal');
     expectErrorContaining(matcher, 'some other string', 'not exactly equal');
     expectErrorContaining(matcher, NaN, 'not exactly equal');

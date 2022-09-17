@@ -1,4 +1,4 @@
-import { number, string } from 'dsl/Matchers';
+import { boolean, number, string } from 'dsl/Matchers';
 import type { AnyMatcher } from 'dsl/Matchers/types';
 import { checkMatch } from '.';
 
@@ -43,5 +43,23 @@ describe('basic matchers', () => {
     expectErrorContaining(matcher, 1, 'not a string');
     expectErrorContaining(matcher, [], 'not a string');
     expectErrorContaining(matcher, {}, 'not a string');
+  });
+
+  describe('boolean matcher', () => {
+    const matcher = boolean(true);
+    it('accepts true', () => {
+      expect(checkMatch(matcher, true)).toStrictEqual([]);
+    });
+    it('accepts false', () => {
+      expect(checkMatch(matcher, false)).toStrictEqual([]);
+    });
+
+    expectErrorContaining(matcher, 'true', 'not a boolean');
+    expectErrorContaining(matcher, 'some string', 'not a boolean');
+    expectErrorContaining(matcher, NaN, 'not a boolean');
+    expectErrorContaining(matcher, Infinity, 'not a boolean');
+    expectErrorContaining(matcher, 1, 'not a boolean');
+    expectErrorContaining(matcher, [], 'not a boolean');
+    expectErrorContaining(matcher, {}, 'not a boolean');
   });
 });

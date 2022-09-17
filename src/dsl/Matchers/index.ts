@@ -3,9 +3,11 @@ import {
   JSON_STRING_TYPE,
   JSON_NULL_TYPE,
   JSON_EXACT_PRIMITIVE_TYPE,
+  JSON_BOOLEAN_TYPE,
 } from 'core/types';
 import type { JsonPrimitive } from 'dsl/types';
 import type {
+  JsonBooleanMatcher,
   JsonExactPrimitiveMatcher,
   JsonNullMatcher,
   JsonNumberMatcher,
@@ -25,6 +27,11 @@ export const number = (example = 1.1): JsonNumberMatcher => ({
 
 export const string = (example = 'someString'): JsonStringMatcher => ({
   'case:matcher:type': JSON_STRING_TYPE,
+  'case:matcher:example': example,
+});
+
+export const boolean = (example = true): JsonBooleanMatcher => ({
+  'case:matcher:type': JSON_BOOLEAN_TYPE,
   'case:matcher:example': example,
 });
 

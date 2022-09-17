@@ -4,6 +4,7 @@ import type {
   JSON_STRING_TYPE,
   JSON_EXACT_PRIMITIVE_TYPE,
   JSON_NULL_TYPE,
+  JSON_BOOLEAN_TYPE,
 } from 'core/types';
 import type { JsonPrimitive } from 'dsl/types';
 
@@ -11,6 +12,7 @@ export type AnyMatcher =
   | JsonNumberMatcher
   | JsonStringMatcher
   | JsonNullMatcher
+  | JsonBooleanMatcher
   | JsonExactPrimitiveMatcher;
 
 type IsMatcherForType<T extends AnyMatcherType> = {
@@ -36,6 +38,12 @@ export interface JsonStringMatcher extends CaseMatcher {
   'case:matcher:type': typeof JSON_STRING_TYPE;
   'case:matcher:example': string;
 }
+
+export interface JsonBooleanMatcher extends CaseMatcher {
+  'case:matcher:type': typeof JSON_BOOLEAN_TYPE;
+  'case:matcher:example': boolean;
+}
+
 export interface JsonExactPrimitiveMatcher extends CaseMatcher {
   'case:matcher:type': typeof JSON_EXACT_PRIMITIVE_TYPE;
   'case:matcher:example': JsonPrimitive;

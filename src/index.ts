@@ -18,8 +18,7 @@ const inferMatcher = <T extends AnyMatcherType>(
     return MatcherDsl.exactMatchPrimitive(matcherOrData);
   }
   if (typeof matcherOrData === 'boolean') {
-    // TODO implement this
-    return MatcherDsl.matchNull();
+    return MatcherDsl.exactMatchPrimitive(matcherOrData);
   }
 
   if ('case:matcher:type' in matcherOrData) {
