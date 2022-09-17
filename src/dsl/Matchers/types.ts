@@ -24,7 +24,7 @@ export type MatcherFor<T extends AnyMatcherType> = Extract<
   IsMatcherForType<T>
 >;
 
-export interface CaseMatcher {
+interface CaseMatcher {
   'case:matcher:type': AnyMatcherType;
   'case:matcher:example': unknown;
 }

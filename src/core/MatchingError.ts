@@ -1,4 +1,4 @@
-import type { CaseMatcher } from 'dsl/Matchers/types';
+import type { AnyMatcher } from 'dsl/Matchers/types';
 import type { MatchingError } from './types';
 
 /**
@@ -9,7 +9,7 @@ import type { MatchingError } from './types';
  * @returns
  */
 export const makeMatchingError = (
-  matcher: CaseMatcher,
+  matcher: AnyMatcher,
   message: string,
   actual: unknown
 ): MatchingError => ({
