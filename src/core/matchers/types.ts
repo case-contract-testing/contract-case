@@ -1,10 +1,10 @@
 import type { MatchContextByExact } from 'core/context/types';
 
-export const NUMBER_MATCHER_TYPE = 'JsonSerialisableNumber' as const;
-export const STRING_MATCHER_TYPE = 'JsonSerialisableString' as const;
-export const NULL_MATCHER_TYPE = 'JsonSerialisableNull' as const;
-export const BOOLEAN_MATCHER_TYPE = 'JsonSerialisableBoolean' as const;
-export const CASCADING_EXACT_MATCHER_TYPE = 'JsonExactPrimitive' as const;
+export const NUMBER_MATCHER_TYPE = 'MatchNumber' as const;
+export const STRING_MATCHER_TYPE = 'MatchString' as const;
+export const NULL_MATCHER_TYPE = 'MatchNull' as const;
+export const BOOLEAN_MATCHER_TYPE = 'MatchBoolean' as const;
+export const CASCADING_EXACT_MATCHER_TYPE = 'CascadingExact' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
