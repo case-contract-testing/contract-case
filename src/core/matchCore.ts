@@ -1,4 +1,4 @@
-import { CaseCoreError, MatcherExecutors } from 'core';
+import { MatcherExecutors } from 'core/MatcherExecutors';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 import * as leafMatchers from 'core/matchers';
 import type { MatchContext } from 'core/context/types';
@@ -10,6 +10,7 @@ import {
 } from './matchers/types';
 import type { MatchingError } from './types';
 import { foldIntoContext } from './context';
+import { CaseCoreError } from './CaseCoreError';
 
 const inferMatcher = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyJson

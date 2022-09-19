@@ -1,17 +1,17 @@
-import type { MatchContextByExact } from 'core/context/types';
+import type { MatchContext } from 'core/context/types';
 
 export const NUMBER_MATCHER_TYPE = 'MatchNumber' as const;
 export const STRING_MATCHER_TYPE = 'MatchString' as const;
 export const NULL_MATCHER_TYPE = 'MatchNull' as const;
 export const BOOLEAN_MATCHER_TYPE = 'MatchBoolean' as const;
-export const CASCADING_EXACT_MATCHER_TYPE = 'CascadingExact' as const;
+export const CASCADING_CONTEXT_MATCHER_TYPE = 'CascadingContext' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
   | typeof STRING_MATCHER_TYPE
   | typeof NULL_MATCHER_TYPE
   | typeof BOOLEAN_MATCHER_TYPE
-  | typeof CASCADING_EXACT_MATCHER_TYPE;
+  | typeof CASCADING_CONTEXT_MATCHER_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -33,7 +33,7 @@ export type AnyMatcher =
   | CoreNullMatcher
   | CoreBooleanMatcher;
 
-export type AnyCaseNode = AnyMatcher | CoreCascadingExactMatcher;
+export type AnyCaseNode = AnyMatcher | CoreCascadingMatcher;
 
 export type CaseNodeOrData = AnyCaseNode | AnyJson;
 
@@ -66,8 +66,8 @@ export interface CoreBooleanMatcher extends CaseMatcher {
   'case:matcher:example': boolean;
 }
 
-export interface CoreCascadingExactMatcher extends MatchContextByExact {
-  'case:matcher:type': typeof CASCADING_EXACT_MATCHER_TYPE;
+export interface CoreCascadingMatcher extends Partial<MatchContext> {
+  'case:matcher:type': typeof CASCADING_CONTEXT_MATCHER_TYPE;
   'case:matcher:child': CaseNodeOrData;
 }
 

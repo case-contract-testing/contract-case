@@ -2,6 +2,9 @@ import { isCaseNode, AnyCaseNode, CaseNodeOrData } from 'core/matchers/types';
 import type { MatchContext } from './types';
 
 const DEFAULT_CONTEXT: MatchContext = {
+  handleNext: () => {
+    throw new Error('Context unconfigured');
+  },
   'case:context:matchBy': 'exact',
   'case:context:serialisableTo': 'json',
 };
@@ -20,8 +23,11 @@ export const foldIntoContext = (
 });
 
 export const applyDefaultContext = (
-  caseNodeOrData: CaseNodeOrData
-): MatchContext =>
-  isCaseNode(caseNodeOrData)
+  caseNodeOrData: CaseNodeOrData,
+  handleNext: MatchContext['handleNext']
+): MatchContext => ({
+  ...(isCaseNode(caseNodeOrData)
     ? foldIntoContext(caseNodeOrData, DEFAULT_CONTEXT)
-    : DEFAULT_CONTEXT;
+    : DEFAULT_CONTEXT),
+  handleNext,
+});

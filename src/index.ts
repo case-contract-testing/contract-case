@@ -11,4 +11,8 @@ export const checkMatch = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyJson,
   actual: unknown
 ): Array<MatchingError> =>
-  matchCore(matcherOrData, actual, applyDefaultContext(matcherOrData));
+  matchCore(
+    matcherOrData,
+    actual,
+    applyDefaultContext(matcherOrData, matchCore)
+  );
