@@ -6,10 +6,10 @@ import {
   CASCADING_EXACT_MATCHER_TYPE,
   NULL_MATCHER_TYPE,
 } from 'core/matchers/types';
-import { BooleanMatcher } from './base/BooleanMatcher';
-import { NullMatcher } from './base/NullMatcher';
-import { NumberMatcher } from './base/NumberMatcher';
-import { StringMatcher } from './base/StringMatcher';
+import { BooleanMatcher } from './leaves/BooleanMatcher';
+import { NullMatcher } from './leaves/NullMatcher';
+import { NumberMatcher } from './leaves/NumberMatcher';
+import { StringMatcher } from './leaves/StringMatcher';
 import { ExactCascadingContext } from './contextShift/ExactCascadingContext';
 import type { MatcherExecutor } from './types';
 
