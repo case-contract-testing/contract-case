@@ -1,13 +1,13 @@
 import {
-  AnyMatcherType,
+  type AnyMatcherType,
+  JSON_SERIALISABLE_NUMBER_TYPE,
+  JSON_SERIALISABLE_STRING_TYPE,
   JSON_SERIALISABLE_BOOLEAN_TYPE,
   JSON_EXACT_PRIMITIVE_TYPE,
   JSON_SERIALISABLE_NULL_TYPE,
-  JSON_SERIALISABLE_NUMBER_TYPE,
-  JSON_SERIALISABLE_STRING_TYPE,
-} from 'core/types';
+} from 'core/matchers/types';
 import { JsonSerialiableBoolean } from './base/JsonSerialiableBoolean';
-import { JsonExactPrimitive } from './base/JsonExactPrimitive';
+import { JsonExactPrimitive } from './contextShift/JsonExactPrimitive';
 import { JsonSerialiableNull } from './base/JsonSerialisableNull';
 import { JsonSerialiableNumber } from './base/JsonSerialisableNumber';
 import { JsonSerialisableString } from './base/JsonSerialisableString';

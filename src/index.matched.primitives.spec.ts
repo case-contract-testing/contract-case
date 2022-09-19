@@ -1,5 +1,5 @@
-import { boolean, number, string } from 'dsl/Matchers';
-import type { AnyMatcher } from 'dsl/Matchers/types';
+import type { AnyMatcher } from 'core/matchers/types';
+import { boolean, matchNull, number, string } from 'dsl/Matchers';
 import { checkMatch } from '.';
 
 const expectErrorContaining = (
@@ -61,5 +61,22 @@ describe('basic matchers', () => {
     expectErrorContaining(matcher, 1, 'not a boolean');
     expectErrorContaining(matcher, [], 'not a boolean');
     expectErrorContaining(matcher, {}, 'not a boolean');
+  });
+
+  describe('null matcher', () => {
+    const matcher = matchNull();
+    it('accepts exactly null', () => {
+      expect(checkMatch(matcher, null)).toStrictEqual([]);
+    });
+
+    expectErrorContaining(matcher, true, 'not null');
+    expectErrorContaining(matcher, false, 'not null');
+    expectErrorContaining(matcher, '1', 'not null');
+    expectErrorContaining(matcher, 'some other string', 'not null');
+    expectErrorContaining(matcher, NaN, 'not null');
+    expectErrorContaining(matcher, Infinity, 'not null');
+    expectErrorContaining(matcher, 1, 'not null');
+    expectErrorContaining(matcher, [], 'not null');
+    expectErrorContaining(matcher, {}, 'not null');
   });
 });

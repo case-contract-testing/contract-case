@@ -1,5 +1,4 @@
-import type { AnyMatcher } from 'dsl/Matchers/types';
-import type { AnyJson } from 'dsl/types';
+import type { AnyMatcher, AnyJson } from 'core/matchers/types';
 import { checkMatch } from '.';
 
 const expectErrorContaining = (
@@ -23,7 +22,7 @@ describe('basic primitives', () => {
     it('accepts the exact example', () => {
       expect(checkMatch(matcher, 1)).toStrictEqual([]);
     });
-    expectErrorContaining(matcher, 2, 'not exactly equal');
+    expectErrorContaining(matcher, 2, 'not exactly equal ');
     expectErrorContaining(matcher, NaN, 'not exactly equal');
     expectErrorContaining(matcher, Infinity, 'not exactly equal');
     expectErrorContaining(matcher, '1', 'not exactly equal');
@@ -60,5 +59,22 @@ describe('basic primitives', () => {
     expectErrorContaining(matcher, 1, 'not exactly equal');
     expectErrorContaining(matcher, [], 'not exactly equal');
     expectErrorContaining(matcher, {}, 'not exactly equal');
+  });
+
+  describe('null', () => {
+    const matcher = null;
+    it('accepts exactly null', () => {
+      expect(checkMatch(matcher, null)).toStrictEqual([]);
+    });
+
+    expectErrorContaining(matcher, true, 'not null');
+    expectErrorContaining(matcher, false, 'not null');
+    expectErrorContaining(matcher, '1', 'not null');
+    expectErrorContaining(matcher, 'some other string', 'not null');
+    expectErrorContaining(matcher, NaN, 'not null');
+    expectErrorContaining(matcher, Infinity, 'not null');
+    expectErrorContaining(matcher, 1, 'not null');
+    expectErrorContaining(matcher, [], 'not null');
+    expectErrorContaining(matcher, {}, 'not null');
   });
 });

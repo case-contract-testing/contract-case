@@ -1,13 +1,19 @@
-import { makeMatchingError } from 'core/MatchingError';
+import type {
+  CoreJsonSerialisableNullMatcher,
+  JSON_SERIALISABLE_NULL_TYPE,
+} from 'core/matchers/types';
+import { matchingError } from 'core/MatchingError';
+import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 import type { MatchingError } from 'core/types';
-import type { JsonNullMatcher } from 'dsl/Matchers/types';
 
-export const JsonSerialiableNull = (
-  matcher: JsonNullMatcher,
+export const JsonSerialiableNull: MatcherExecutor<
+  typeof JSON_SERIALISABLE_NULL_TYPE
+> = (
+  matcher: CoreJsonSerialisableNullMatcher,
   actual: unknown
 ): Array<MatchingError> => {
   if (actual !== null) {
-    return [makeMatchingError(matcher, `'${actual}' is not null`, actual)];
+    return [matchingError(matcher, `'${actual}' is not null`, actual)];
   }
   return [];
 };

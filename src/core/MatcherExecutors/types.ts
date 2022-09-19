@@ -1,7 +1,9 @@
-import type { AnyMatcherType, MatchingError } from 'core/types';
-import type { MatcherFor } from 'dsl/Matchers/types';
+import type { MatchContext } from 'core/context/types';
+import type { AnyMatcherType, MatcherFor } from 'core/matchers/types';
+import type { MatchingError } from 'core/types';
 
 export type MatcherExecutor<T extends AnyMatcherType> = (
   matcher: MatcherFor<T>,
-  actual: unknown
+  actual: unknown,
+  matchContext: MatchContext
 ) => Array<MatchingError>;

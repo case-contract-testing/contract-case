@@ -1,17 +1,14 @@
 import {
   JSON_SERIALISABLE_NUMBER_TYPE,
   JSON_SERIALISABLE_STRING_TYPE,
-  JSON_SERIALISABLE_NULL_TYPE,
-  JSON_EXACT_PRIMITIVE_TYPE,
   JSON_SERIALISABLE_BOOLEAN_TYPE,
-} from 'core/types';
-import type { JsonPrimitive } from 'dsl/types';
+  JSON_SERIALISABLE_NULL_TYPE,
+} from 'core/matchers/types';
 import type {
-  JsonBooleanMatcher,
-  JsonExactPrimitiveMatcher,
-  JsonNullMatcher,
-  JsonNumberMatcher,
-  JsonStringMatcher,
+  BooleanMatcher,
+  NullMatcher,
+  NumberMatcher,
+  StringMatcher,
 } from './types';
 
 /**
@@ -20,26 +17,31 @@ import type {
  * @param example Any floating point number, not infinity, not NaN.
  * @returns
  */
-export const number = (example = 1.1): JsonNumberMatcher => ({
+export const number = (example = 1.1): NumberMatcher => ({
   'case:matcher:type': JSON_SERIALISABLE_NUMBER_TYPE,
   'case:matcher:example': example,
+  'case:context:matchBy': 'type',
 });
 
-export const string = (example = 'someString'): JsonStringMatcher => ({
+export const string = (example = 'someString'): StringMatcher => ({
   'case:matcher:type': JSON_SERIALISABLE_STRING_TYPE,
   'case:matcher:example': example,
+  'case:context:matchBy': 'type',
 });
 
-export const boolean = (example = true): JsonBooleanMatcher => ({
+export const boolean = (example = true): BooleanMatcher => ({
   'case:matcher:type': JSON_SERIALISABLE_BOOLEAN_TYPE,
   'case:matcher:example': example,
+  'case:context:matchBy': 'type',
 });
 
-export const matchNull = (example = null): JsonNullMatcher => ({
+export const matchNull = (example = null): NullMatcher => ({
   'case:matcher:type': JSON_SERIALISABLE_NULL_TYPE,
   'case:matcher:example': example,
+  'case:context:matchBy': 'type',
 });
 
+/*
 export const exactMatchPrimitive = (
   example: JsonPrimitive
 ): JsonExactPrimitiveMatcher => ({
@@ -47,3 +49,4 @@ export const exactMatchPrimitive = (
   'case:matcher:example': example,
   'case:matcher:exactlyEqualTo': example,
 });
+*/

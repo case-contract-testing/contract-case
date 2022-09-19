@@ -1,5 +1,10 @@
-import type { AnyMatcher } from 'dsl/Matchers/types';
+import type { AnyMatcher } from './matchers/types';
 import type { MatchingError } from './types';
+
+export const errorWhen = (
+  test: boolean,
+  err: MatchingError | Array<MatchingError>
+): Array<MatchingError> => (test ? [err].flat() : []);
 
 /**
  *
@@ -8,7 +13,7 @@ import type { MatchingError } from './types';
  * @param actual
  * @returns
  */
-export const makeMatchingError = (
+export const matchingError = (
   matcher: AnyMatcher,
   message: string,
   actual: unknown
