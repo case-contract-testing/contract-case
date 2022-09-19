@@ -1,9 +1,9 @@
-import type { AnyMatcher } from 'core/matchers/types';
-import { boolean, matchNull, number, string } from 'dsl/Matchers';
+import type { CaseNodeOrData } from 'core/matchers/types';
+import { anyBoolean, anyNull, anyNumber, anyString } from 'dsl/Matchers';
 import { checkMatch } from '.';
 
 const expectErrorContaining = (
-  matcher: AnyMatcher,
+  matcher: CaseNodeOrData,
   example: unknown,
   expectedContent: string
 ) => {
@@ -12,14 +12,14 @@ const expectErrorContaining = (
       const matchResult = checkMatch(matcher, example);
       expect(matchResult).not.toHaveLength(0);
       expect(
-        matchResult.map((m) => m.message).reduce((acc, m) => `${acc} ${m}`)
+        matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
       ).toContain(expectedContent);
     });
   });
 };
 describe('basic matchers', () => {
   describe('number matcher', () => {
-    const matcher = number(1);
+    const matcher = anyNumber(1);
     it('accepts numbers', () => {
       expect(checkMatch(matcher, 1)).toStrictEqual([]);
     });
@@ -31,7 +31,7 @@ describe('basic matchers', () => {
   });
 
   describe('string matcher', () => {
-    const matcher = string('1');
+    const matcher = anyString('1');
     it('accepts strings that are numbers', () => {
       expect(checkMatch(matcher, '1')).toStrictEqual([]);
     });
@@ -46,7 +46,7 @@ describe('basic matchers', () => {
   });
 
   describe('boolean matcher', () => {
-    const matcher = boolean(true);
+    const matcher = anyBoolean(true);
     it('accepts true', () => {
       expect(checkMatch(matcher, true)).toStrictEqual([]);
     });
@@ -64,7 +64,7 @@ describe('basic matchers', () => {
   });
 
   describe('null matcher', () => {
-    const matcher = matchNull();
+    const matcher = anyNull();
     it('accepts exactly null', () => {
       expect(checkMatch(matcher, null)).toStrictEqual([]);
     });

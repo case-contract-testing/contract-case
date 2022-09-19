@@ -1,4 +1,4 @@
-import { type AnyMatcher, isMatcher, AnyJson } from 'core/matchers/types';
+import { isCaseNode, AnyCaseNode, CaseNodeOrData } from 'core/matchers/types';
 import type { MatchContext } from './types';
 
 const DEFAULT_CONTEXT: MatchContext = {
@@ -6,22 +6,22 @@ const DEFAULT_CONTEXT: MatchContext = {
   'case:context:serialisableTo': 'json',
 };
 
-const contextProperties = (matcher: AnyMatcher): MatchContext =>
-  Object.entries(matcher)
+const contextProperties = (caseNode: AnyCaseNode): MatchContext =>
+  Object.entries(caseNode)
     .filter(([k]) => k.startsWith('case:context'))
     .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {} as MatchContext);
 
 export const foldIntoContext = (
-  matcher: AnyMatcher,
+  caseNode: AnyCaseNode,
   context: MatchContext
 ): MatchContext => ({
   ...context,
-  ...contextProperties(matcher),
+  ...contextProperties(caseNode),
 });
 
 export const applyDefaultContext = (
-  matcher: AnyMatcher | AnyJson
+  caseNodeOrData: CaseNodeOrData
 ): MatchContext =>
-  isMatcher(matcher)
-    ? foldIntoContext(matcher, DEFAULT_CONTEXT)
+  isCaseNode(caseNodeOrData)
+    ? foldIntoContext(caseNodeOrData, DEFAULT_CONTEXT)
     : DEFAULT_CONTEXT;

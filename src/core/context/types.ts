@@ -11,3 +11,7 @@ export interface MatchContext {
 export interface MatchContextByType {
   'case:context:matchBy': 'type';
 }
+
+export interface MatchContextByExact {
+  'case:context:matchBy': 'exact';
+}

@@ -3,16 +3,16 @@ import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 import * as leafMatchers from 'core/matchers';
 import type { MatchContext } from 'core/context/types';
 import {
-  type AnyMatcherType,
-  type MatcherFor,
+  type AnyCaseNodeType,
+  type CaseNodeFor,
   type AnyJson,
-  isMatcher,
+  isCaseNode,
 } from './matchers/types';
 import type { MatchingError } from './types';
 import { foldIntoContext } from './context';
 
-const inferMatcher = <T extends AnyMatcherType>(
-  matcherOrData: MatcherFor<T> | AnyJson
+const inferMatcher = <T extends AnyCaseNodeType>(
+  matcherOrData: CaseNodeFor<T> | AnyJson
 ) => {
   if (matcherOrData == null) {
     return leafMatchers.coreNullMatcher();
@@ -27,19 +27,19 @@ const inferMatcher = <T extends AnyMatcherType>(
     return leafMatchers.coreBooleanMatcher(matcherOrData);
   }
 
-  if (isMatcher(matcherOrData)) {
+  if (isCaseNode(matcherOrData)) {
     return matcherOrData;
   }
   // TODO Object or array
   throw new Error('Not implemented');
 };
 
-export const matchCore = <T extends AnyMatcherType>(
-  matcherOrData: MatcherFor<T> | AnyJson,
+export const matchCore = <T extends AnyCaseNodeType>(
+  matcherOrData: CaseNodeFor<T> | AnyJson,
   actual: unknown,
   parentMatchContext: MatchContext
 ): Array<MatchingError> => {
-  const matcher = inferMatcher<T>(matcherOrData) as MatcherFor<T>;
+  const matcher = inferMatcher<T>(matcherOrData) as CaseNodeFor<T>;
   const matchContext = foldIntoContext(matcher, parentMatchContext);
 
   const executor: MatcherExecutor<T> =
