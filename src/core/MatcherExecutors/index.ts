@@ -10,7 +10,7 @@ import { BooleanMatcher } from './leaves/BooleanMatcher';
 import { NullMatcher } from './leaves/NullMatcher';
 import { NumberMatcher } from './leaves/NumberMatcher';
 import { StringMatcher } from './leaves/StringMatcher';
-import { ExactCascadingContext } from './contextShift/ExactCascadingContext';
+import { ExactCascadingContext } from './contextShift/CascadingContext';
 import type { MatcherExecutor } from './types';
 
 export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
