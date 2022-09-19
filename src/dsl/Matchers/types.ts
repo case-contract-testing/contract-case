@@ -1,10 +1,10 @@
 import type {
   AnyMatcherType,
-  JSON_NUMBER_TYPE,
-  JSON_STRING_TYPE,
+  JSON_SERIALISABLE_NUMBER_TYPE,
+  JSON_SERIALISABLE_STRING_TYPE,
   JSON_EXACT_PRIMITIVE_TYPE,
-  JSON_NULL_TYPE,
-  JSON_BOOLEAN_TYPE,
+  JSON_SERIALISABLE_NULL_TYPE,
+  JSON_SERIALISABLE_BOOLEAN_TYPE,
 } from 'core/types';
 import type { JsonPrimitive } from 'dsl/types';
 
@@ -30,17 +30,17 @@ interface CaseMatcher {
 }
 
 export interface JsonNumberMatcher extends CaseMatcher {
-  'case:matcher:type': typeof JSON_NUMBER_TYPE;
+  'case:matcher:type': typeof JSON_SERIALISABLE_NUMBER_TYPE;
   'case:matcher:example': number;
 }
 
 export interface JsonStringMatcher extends CaseMatcher {
-  'case:matcher:type': typeof JSON_STRING_TYPE;
+  'case:matcher:type': typeof JSON_SERIALISABLE_STRING_TYPE;
   'case:matcher:example': string;
 }
 
 export interface JsonBooleanMatcher extends CaseMatcher {
-  'case:matcher:type': typeof JSON_BOOLEAN_TYPE;
+  'case:matcher:type': typeof JSON_SERIALISABLE_BOOLEAN_TYPE;
   'case:matcher:example': boolean;
 }
 
@@ -51,6 +51,6 @@ export interface JsonExactPrimitiveMatcher extends CaseMatcher {
 }
 
 export interface JsonNullMatcher extends CaseMatcher {
-  'case:matcher:type': typeof JSON_NULL_TYPE;
+  'case:matcher:type': typeof JSON_SERIALISABLE_NULL_TYPE;
   'case:matcher:example': null;
 }

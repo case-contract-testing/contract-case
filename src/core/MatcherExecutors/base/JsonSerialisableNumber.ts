@@ -2,7 +2,7 @@ import type { JsonNumberMatcher } from 'dsl/Matchers/types';
 import { makeMatchingError } from 'core/MatchingError';
 import type { MatchingError } from 'core/types';
 
-export const JsonNumber = (
+export const JsonSerialiableNumber = (
   matcher: JsonNumberMatcher,
   actual: unknown
 ): Array<MatchingError> => {

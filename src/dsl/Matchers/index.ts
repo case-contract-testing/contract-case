@@ -1,9 +1,9 @@
 import {
-  JSON_NUMBER_TYPE,
-  JSON_STRING_TYPE,
-  JSON_NULL_TYPE,
+  JSON_SERIALISABLE_NUMBER_TYPE,
+  JSON_SERIALISABLE_STRING_TYPE,
+  JSON_SERIALISABLE_NULL_TYPE,
   JSON_EXACT_PRIMITIVE_TYPE,
-  JSON_BOOLEAN_TYPE,
+  JSON_SERIALISABLE_BOOLEAN_TYPE,
 } from 'core/types';
 import type { JsonPrimitive } from 'dsl/types';
 import type {
@@ -21,22 +21,22 @@ import type {
  * @returns
  */
 export const number = (example = 1.1): JsonNumberMatcher => ({
-  'case:matcher:type': JSON_NUMBER_TYPE,
+  'case:matcher:type': JSON_SERIALISABLE_NUMBER_TYPE,
   'case:matcher:example': example,
 });
 
 export const string = (example = 'someString'): JsonStringMatcher => ({
-  'case:matcher:type': JSON_STRING_TYPE,
+  'case:matcher:type': JSON_SERIALISABLE_STRING_TYPE,
   'case:matcher:example': example,
 });
 
 export const boolean = (example = true): JsonBooleanMatcher => ({
-  'case:matcher:type': JSON_BOOLEAN_TYPE,
+  'case:matcher:type': JSON_SERIALISABLE_BOOLEAN_TYPE,
   'case:matcher:example': example,
 });
 
 export const matchNull = (example = null): JsonNullMatcher => ({
-  'case:matcher:type': JSON_NULL_TYPE,
+  'case:matcher:type': JSON_SERIALISABLE_NULL_TYPE,
   'case:matcher:example': example,
 });
 

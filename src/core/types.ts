@@ -1,14 +1,15 @@
-export const JSON_NUMBER_TYPE = 'JsonNumber' as const;
-export const JSON_STRING_TYPE = 'JsonString' as const;
-export const JSON_NULL_TYPE = 'JsonNull' as const;
-export const JSON_BOOLEAN_TYPE = 'JsonBoolean' as const;
+export const JSON_SERIALISABLE_NUMBER_TYPE = 'JsonSerialisableNumber' as const;
+export const JSON_SERIALISABLE_STRING_TYPE = 'JsonSerialisableString' as const;
+export const JSON_SERIALISABLE_NULL_TYPE = 'JsonSerialisableNull' as const;
+export const JSON_SERIALISABLE_BOOLEAN_TYPE =
+  'JsonSerialisableBoolean' as const;
 export const JSON_EXACT_PRIMITIVE_TYPE = 'JsonExactPrimitive' as const;
 
 export type AnyMatcherType =
-  | typeof JSON_NUMBER_TYPE
-  | typeof JSON_STRING_TYPE
-  | typeof JSON_NULL_TYPE
-  | typeof JSON_BOOLEAN_TYPE
+  | typeof JSON_SERIALISABLE_NUMBER_TYPE
+  | typeof JSON_SERIALISABLE_STRING_TYPE
+  | typeof JSON_SERIALISABLE_NULL_TYPE
+  | typeof JSON_SERIALISABLE_BOOLEAN_TYPE
   | typeof JSON_EXACT_PRIMITIVE_TYPE;
 
 export interface MatchingError {

@@ -2,7 +2,7 @@ import type { JsonStringMatcher } from 'dsl/Matchers/types';
 import { makeMatchingError } from 'core/MatchingError';
 import type { MatchingError } from 'core/types';
 
-export const JsonString = (
+export const JsonSerialisableString = (
   matcher: JsonStringMatcher,
   actual: unknown
 ): Array<MatchingError> => {
