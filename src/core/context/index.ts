@@ -3,6 +3,7 @@ import type { MatchContext } from './types';
 
 const DEFAULT_CONTEXT: MatchContext = {
   'case:context:matchBy': 'exact',
+  'case:context:serialisableTo': 'json',
 };
 
 const contextProperties = (matcher: AnyMatcher): MatchContext =>

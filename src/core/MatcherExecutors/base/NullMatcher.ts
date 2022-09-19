@@ -1,15 +1,10 @@
-import type {
-  CoreJsonSerialisableNullMatcher,
-  JSON_SERIALISABLE_NULL_TYPE,
-} from 'core/matchers/types';
+import type { CoreNullMatcher, NULL_MATCHER_TYPE } from 'core/matchers/types';
 import { matchingError } from 'core/MatchingError';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 import type { MatchingError } from 'core/types';
 
-export const JsonSerialiableNull: MatcherExecutor<
-  typeof JSON_SERIALISABLE_NULL_TYPE
-> = (
-  matcher: CoreJsonSerialisableNullMatcher,
+export const NullMatcher: MatcherExecutor<typeof NULL_MATCHER_TYPE> = (
+  matcher: CoreNullMatcher,
   actual: unknown
 ): Array<MatchingError> => {
   if (actual !== null) {

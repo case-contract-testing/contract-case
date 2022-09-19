@@ -1,9 +1,9 @@
-import type { JsonExactPrimitiveMatcher } from 'core/matchers/types';
+import type { CoreCascadingExactMatcher } from 'core/matchers/types';
 import { matchingError } from 'core/MatchingError';
 import type { MatchingError } from 'core/types';
 
 export const JsonExact = (
-  matcher: JsonExactPrimitiveMatcher,
+  matcher: CoreCascadingExactMatcher,
   actual: unknown
 ): Array<MatchingError> => {
   if (actual !== null) {

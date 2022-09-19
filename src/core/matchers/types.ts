@@ -1,16 +1,15 @@
-export const JSON_SERIALISABLE_NUMBER_TYPE = 'JsonSerialisableNumber' as const;
-export const JSON_SERIALISABLE_STRING_TYPE = 'JsonSerialisableString' as const;
-export const JSON_SERIALISABLE_NULL_TYPE = 'JsonSerialisableNull' as const;
-export const JSON_SERIALISABLE_BOOLEAN_TYPE =
-  'JsonSerialisableBoolean' as const;
-export const JSON_EXACT_PRIMITIVE_TYPE = 'JsonExactPrimitive' as const;
+export const NUMBER_MATCHER_TYPE = 'JsonSerialisableNumber' as const;
+export const STRING_MATCHER_TYPE = 'JsonSerialisableString' as const;
+export const NULL_MATCHER_TYPE = 'JsonSerialisableNull' as const;
+export const BOOLEAN_MATCHER_TYPE = 'JsonSerialisableBoolean' as const;
+export const CASCADING_EXACT_MATCHER_TYPE = 'JsonExactPrimitive' as const;
 
 export type AnyMatcherType =
-  | typeof JSON_SERIALISABLE_NUMBER_TYPE
-  | typeof JSON_SERIALISABLE_STRING_TYPE
-  | typeof JSON_SERIALISABLE_NULL_TYPE
-  | typeof JSON_SERIALISABLE_BOOLEAN_TYPE
-  | typeof JSON_EXACT_PRIMITIVE_TYPE;
+  | typeof NUMBER_MATCHER_TYPE
+  | typeof STRING_MATCHER_TYPE
+  | typeof NULL_MATCHER_TYPE
+  | typeof BOOLEAN_MATCHER_TYPE
+  | typeof CASCADING_EXACT_MATCHER_TYPE;
 
 export const isMatcher = (maybeMatcher: unknown): maybeMatcher is AnyMatcher =>
   typeof maybeMatcher === 'object' &&
@@ -25,11 +24,11 @@ export interface JsonMap {
 export type JsonArray = Array<AnyJson>;
 
 export type AnyMatcher =
-  | CoreJsonSerialiasbleNumberMatcher
-  | CoreJsonSerialisableStringMatcher
-  | CoreJsonSerialisableNullMatcher
-  | CoreJsonSerialisableBooleanMatcher
-  | JsonExactPrimitiveMatcher;
+  | CoreNumberMatcher
+  | CoreStringMatcher
+  | CoreNullMatcher
+  | CoreBooleanMatcher
+  | CoreCascadingExactMatcher;
 
 type IsMatcherForType<T extends AnyMatcherType> = {
   'case:matcher:type': T;
@@ -45,28 +44,28 @@ interface CaseMatcher {
   'case:matcher:example': unknown;
 }
 
-export interface CoreJsonSerialiasbleNumberMatcher extends CaseMatcher {
-  'case:matcher:type': typeof JSON_SERIALISABLE_NUMBER_TYPE;
+export interface CoreNumberMatcher extends CaseMatcher {
+  'case:matcher:type': typeof NUMBER_MATCHER_TYPE;
   'case:matcher:example': number;
 }
 
-export interface CoreJsonSerialisableStringMatcher extends CaseMatcher {
-  'case:matcher:type': typeof JSON_SERIALISABLE_STRING_TYPE;
+export interface CoreStringMatcher extends CaseMatcher {
+  'case:matcher:type': typeof STRING_MATCHER_TYPE;
   'case:matcher:example': string;
 }
 
-export interface CoreJsonSerialisableBooleanMatcher extends CaseMatcher {
-  'case:matcher:type': typeof JSON_SERIALISABLE_BOOLEAN_TYPE;
+export interface CoreBooleanMatcher extends CaseMatcher {
+  'case:matcher:type': typeof BOOLEAN_MATCHER_TYPE;
   'case:matcher:example': boolean;
 }
 
-export interface JsonExactPrimitiveMatcher extends CaseMatcher {
-  'case:matcher:type': typeof JSON_EXACT_PRIMITIVE_TYPE;
+export interface CoreCascadingExactMatcher extends CaseMatcher {
+  'case:matcher:type': typeof CASCADING_EXACT_MATCHER_TYPE;
   'case:matcher:example': JsonSerialisablePrimitive;
   'case:matcher:exactlyEqualTo': JsonSerialisablePrimitive;
 }
 
-export interface CoreJsonSerialisableNullMatcher extends CaseMatcher {
-  'case:matcher:type': typeof JSON_SERIALISABLE_NULL_TYPE;
+export interface CoreNullMatcher extends CaseMatcher {
+  'case:matcher:type': typeof NULL_MATCHER_TYPE;
   'case:matcher:example': null;
 }

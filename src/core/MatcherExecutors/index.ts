@@ -1,22 +1,22 @@
 import {
   type AnyMatcherType,
-  JSON_SERIALISABLE_NUMBER_TYPE,
-  JSON_SERIALISABLE_STRING_TYPE,
-  JSON_SERIALISABLE_BOOLEAN_TYPE,
-  JSON_EXACT_PRIMITIVE_TYPE,
-  JSON_SERIALISABLE_NULL_TYPE,
+  NUMBER_MATCHER_TYPE,
+  STRING_MATCHER_TYPE,
+  BOOLEAN_MATCHER_TYPE,
+  CASCADING_EXACT_MATCHER_TYPE,
+  NULL_MATCHER_TYPE,
 } from 'core/matchers/types';
-import { JsonSerialiableBoolean } from './base/JsonSerialiableBoolean';
+import { BooleanMatcher } from './base/BooleanMatcher';
 import { JsonExactPrimitive } from './contextShift/JsonExactPrimitive';
-import { JsonSerialiableNull } from './base/JsonSerialisableNull';
-import { JsonSerialiableNumber } from './base/JsonSerialisableNumber';
-import { JsonSerialisableString } from './base/JsonSerialisableString';
+import { NullMatcher } from './base/NullMatcher';
+import { NumberMatcher } from './base/NumberMatcher';
+import { StringMatcher } from './base/StringMatcher';
 import type { MatcherExecutor } from './types';
 
 export const MatcherExecutors: { [T in AnyMatcherType]: MatcherExecutor<T> } = {
-  [JSON_SERIALISABLE_NUMBER_TYPE]: JsonSerialiableNumber,
-  [JSON_SERIALISABLE_STRING_TYPE]: JsonSerialisableString,
-  [JSON_SERIALISABLE_BOOLEAN_TYPE]: JsonSerialiableBoolean,
-  [JSON_EXACT_PRIMITIVE_TYPE]: JsonExactPrimitive,
-  [JSON_SERIALISABLE_NULL_TYPE]: JsonSerialiableNull,
+  [NUMBER_MATCHER_TYPE]: NumberMatcher,
+  [STRING_MATCHER_TYPE]: StringMatcher,
+  [BOOLEAN_MATCHER_TYPE]: BooleanMatcher,
+  [CASCADING_EXACT_MATCHER_TYPE]: JsonExactPrimitive,
+  [NULL_MATCHER_TYPE]: NullMatcher,
 };

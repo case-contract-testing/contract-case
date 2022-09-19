@@ -1,12 +1,12 @@
 import {
-  CoreJsonSerialisableBooleanMatcher,
-  CoreJsonSerialisableNullMatcher,
-  CoreJsonSerialiasbleNumberMatcher,
-  CoreJsonSerialisableStringMatcher,
-  JSON_SERIALISABLE_BOOLEAN_TYPE,
-  JSON_SERIALISABLE_NULL_TYPE,
-  JSON_SERIALISABLE_NUMBER_TYPE,
-  JSON_SERIALISABLE_STRING_TYPE,
+  CoreBooleanMatcher,
+  CoreNullMatcher,
+  CoreNumberMatcher,
+  CoreStringMatcher,
+  BOOLEAN_MATCHER_TYPE,
+  NULL_MATCHER_TYPE,
+  NUMBER_MATCHER_TYPE,
+  STRING_MATCHER_TYPE,
 } from './types';
 
 /**
@@ -15,30 +15,22 @@ import {
  * @param example Any floating point number, not infinity, not NaN.
  * @returns
  */
-export const coreNumberMatcher = (
-  example: number
-): CoreJsonSerialiasbleNumberMatcher => ({
-  'case:matcher:type': JSON_SERIALISABLE_NUMBER_TYPE,
+export const coreNumberMatcher = (example: number): CoreNumberMatcher => ({
+  'case:matcher:type': NUMBER_MATCHER_TYPE,
   'case:matcher:example': example,
 });
 
-export const coreStringMatcher = (
-  example: string
-): CoreJsonSerialisableStringMatcher => ({
-  'case:matcher:type': JSON_SERIALISABLE_STRING_TYPE,
+export const coreStringMatcher = (example: string): CoreStringMatcher => ({
+  'case:matcher:type': STRING_MATCHER_TYPE,
   'case:matcher:example': example,
 });
 
-export const coreBooleanMatcher = (
-  example: boolean
-): CoreJsonSerialisableBooleanMatcher => ({
-  'case:matcher:type': JSON_SERIALISABLE_BOOLEAN_TYPE,
+export const coreBooleanMatcher = (example: boolean): CoreBooleanMatcher => ({
+  'case:matcher:type': BOOLEAN_MATCHER_TYPE,
   'case:matcher:example': example,
 });
 
-export const coreNullMatcher = (
-  example = null
-): CoreJsonSerialisableNullMatcher => ({
-  'case:matcher:type': JSON_SERIALISABLE_NULL_TYPE,
+export const coreNullMatcher = (example = null): CoreNullMatcher => ({
+  'case:matcher:type': NULL_MATCHER_TYPE,
   'case:matcher:example': example,
 });

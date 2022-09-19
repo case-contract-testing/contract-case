@@ -1,17 +1,15 @@
 import type {
-  CoreJsonSerialisableBooleanMatcher,
-  JSON_SERIALISABLE_BOOLEAN_TYPE,
+  CoreBooleanMatcher,
+  BOOLEAN_MATCHER_TYPE,
 } from 'core/matchers/types';
 import { matchingError } from 'core/MatchingError';
 import type { MatchingError } from 'core/types';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 import type { MatchContext } from 'core/context/types';
-import { testExactMatch } from './exactMatcher';
+import { testExactMatch } from './testExactMatch';
 
-export const JsonSerialiableBoolean: MatcherExecutor<
-  typeof JSON_SERIALISABLE_BOOLEAN_TYPE
-> = (
-  matcher: CoreJsonSerialisableBooleanMatcher,
+export const BooleanMatcher: MatcherExecutor<typeof BOOLEAN_MATCHER_TYPE> = (
+  matcher: CoreBooleanMatcher,
   actual: unknown,
   matchContext: MatchContext
 ): Array<MatchingError> => [

@@ -1,8 +1,8 @@
 import {
-  JSON_SERIALISABLE_NUMBER_TYPE,
-  JSON_SERIALISABLE_STRING_TYPE,
-  JSON_SERIALISABLE_BOOLEAN_TYPE,
-  JSON_SERIALISABLE_NULL_TYPE,
+  NUMBER_MATCHER_TYPE,
+  STRING_MATCHER_TYPE,
+  BOOLEAN_MATCHER_TYPE,
+  NULL_MATCHER_TYPE,
 } from 'core/matchers/types';
 import type {
   BooleanMatcher,
@@ -18,25 +18,25 @@ import type {
  * @returns
  */
 export const number = (example = 1.1): NumberMatcher => ({
-  'case:matcher:type': JSON_SERIALISABLE_NUMBER_TYPE,
+  'case:matcher:type': NUMBER_MATCHER_TYPE,
   'case:matcher:example': example,
   'case:context:matchBy': 'type',
 });
 
 export const string = (example = 'someString'): StringMatcher => ({
-  'case:matcher:type': JSON_SERIALISABLE_STRING_TYPE,
+  'case:matcher:type': STRING_MATCHER_TYPE,
   'case:matcher:example': example,
   'case:context:matchBy': 'type',
 });
 
 export const boolean = (example = true): BooleanMatcher => ({
-  'case:matcher:type': JSON_SERIALISABLE_BOOLEAN_TYPE,
+  'case:matcher:type': BOOLEAN_MATCHER_TYPE,
   'case:matcher:example': example,
   'case:context:matchBy': 'type',
 });
 
 export const matchNull = (example = null): NullMatcher => ({
-  'case:matcher:type': JSON_SERIALISABLE_NULL_TYPE,
+  'case:matcher:type': NULL_MATCHER_TYPE,
   'case:matcher:example': example,
   'case:context:matchBy': 'type',
 });
