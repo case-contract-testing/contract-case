@@ -4,6 +4,7 @@ import {
   anyNull,
   anyNumber,
   anyString,
+  exactlyLike,
   shapedLike,
 } from 'dsl/Matchers';
 import { checkMatch } from '.';
@@ -148,5 +149,110 @@ describe('basic matchers', () => {
       expectErrorContaining(matcher, [], 'not null');
       expectErrorContaining(matcher, {}, 'not null');
     });
+  });
+
+  describe('array matchers', () => {
+    const matcher = shapedLike([
+      1,
+      'string',
+      null,
+      true,
+      {},
+      [],
+      { a: '1' },
+      [1],
+    ]);
+    it('accepts an array of generally matched types', () => {
+      expect(
+        checkMatch(matcher, [
+          2,
+          'other string',
+          null,
+          false,
+          { a: 'example' },
+          [],
+          { a: '2' },
+          [3],
+        ])
+      ).toStrictEqual([]);
+    });
+    describe('with array of generally matched types that has a different property in one of the objects', () => {
+      expectErrorContaining(
+        matcher,
+        [2, 'other string', null, false, { a: 'example' }, [], { b: '2' }, [3]],
+        "missing key 'a'"
+      );
+    });
+    describe('with array of generally matched types that been made explicit again', () => {
+      expectErrorContaining(
+        shapedLike([
+          1,
+          'string',
+          null,
+          true,
+          {},
+          [],
+          exactlyLike({ a: '1' }),
+          [1],
+        ]),
+        [2, 'other string', null, false, { a: 'example' }, [], { a: '2' }, [3]],
+        'not exactly equal'
+      );
+    });
+  });
+
+  describe('object matchers', () => {
+    it('accepts an object of explicitly matched types', () => {
+      expect(
+        checkMatch(
+          {
+            a: anyNumber(2),
+            b: anyString('string'),
+            c: anyNull(),
+            d: anyBoolean(false),
+          },
+          { a: 1, b: 'other string', c: null, d: true }
+        )
+      ).toStrictEqual([]);
+    });
+  });
+
+  it('accepts an object of generally matched types', () => {
+    expect(
+      checkMatch(
+        shapedLike({
+          a: 2,
+          b: 'string',
+          c: null,
+          d: false,
+        }),
+        { a: 1, b: 'other string', c: null, d: true }
+      )
+    ).toStrictEqual([]);
+  });
+
+  describe('with an object of generally matched types that has been made exact', () => {
+    const matcher = shapedLike({
+      a: exactlyLike(2),
+      b: exactlyLike('string'),
+      c: null,
+      d: exactlyLike(false),
+    });
+    const actual = { a: 1, b: 'other string', c: null, d: true };
+    expectErrorContaining(
+      matcher,
+      actual,
+      "'1' (number) is not exactly equal to '2' (number)"
+    );
+    expectErrorContaining(
+      matcher,
+      actual,
+      "'other string' (string) is not exactly equal to 'string' (string)"
+    );
+    expectErrorContaining(
+      matcher,
+      actual,
+      "'true' (boolean) is not exactly equal to 'false' (boolean)"
+    );
   });
 });

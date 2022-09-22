@@ -27,9 +27,9 @@ export const isCaseNode = (
 export type JsonSerialisablePrimitive = boolean | number | string | null;
 export type AnyJson = JsonSerialisablePrimitive | JsonArray | JsonMap;
 export interface JsonMap {
-  [key: string]: AnyJson;
+  [key: string]: AnyCaseNodeOrData;
 }
-export type JsonArray = Array<AnyJson>;
+export type JsonArray = Array<AnyCaseNodeOrData>;
 
 export interface MatcherMap {
   [key: string]: AnyCaseNodeOrData;
@@ -47,11 +47,17 @@ export type AnyCaseNode =
   | CoreShapedArrayMatcher
   | CoreShapedObjectMatcher;
 
-export type AnyCaseNodeOrData = AnyCaseNode | AnyJson;
+type Data = AnyJson | MatcherMap;
+
+export type AnyCaseNodeOrData = AnyCaseNode | Data;
 
 type IsCaseNodeForType<T extends AnyCaseNodeType> = {
   'case:matcher:type': T;
 };
+
+export type DataOrCaseNodeFor<T extends AnyCaseNodeType> =
+  | CaseNodeFor<T>
+  | Data;
 
 export type CaseNodeFor<T extends AnyCaseNodeType> = Extract<
   AnyCaseNode,

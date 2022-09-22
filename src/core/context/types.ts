@@ -1,8 +1,4 @@
-import type {
-  AnyCaseNodeType,
-  AnyJson,
-  CaseNodeFor,
-} from 'core/matchers/types';
+import type { AnyCaseNodeType, DataOrCaseNodeFor } from 'core/matchers/types';
 import type { MatchingError } from 'core/types';
 
 export const MATCH_BY_TYPE = 'type' as const;
@@ -12,7 +8,7 @@ export const SERIALIABLE_TO_JSON = 'json' as const;
 
 export interface MatchContext {
   handleNext: <T extends AnyCaseNodeType>(
-    matcherOrData: CaseNodeFor<T> | AnyJson,
+    matcherOrData: DataOrCaseNodeFor<T>,
     actual: unknown,
     parentMatchContext: MatchContext
   ) => Array<MatchingError>;
