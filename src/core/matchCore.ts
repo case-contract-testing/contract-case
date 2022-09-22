@@ -1,39 +1,11 @@
 import { MatcherExecutors } from 'core/MatcherExecutors';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
-import * as leafMatchers from 'core/matchers';
 import type { MatchContext } from 'core/context/types';
-import {
-  type AnyCaseNodeType,
-  type CaseNodeFor,
-  type AnyJson,
-  isCaseNode,
-} from './matchers/types';
 import type { MatchingError } from './types';
 import { foldIntoContext } from './context';
 import { CaseCoreError } from './CaseCoreError';
-
-const inferMatcher = <T extends AnyCaseNodeType>(
-  matcherOrData: CaseNodeFor<T> | AnyJson
-) => {
-  if (matcherOrData == null) {
-    return leafMatchers.coreNullMatcher();
-  }
-  if (typeof matcherOrData === 'string') {
-    return leafMatchers.coreStringMatcher(matcherOrData);
-  }
-  if (typeof matcherOrData === 'number') {
-    return leafMatchers.coreNumberMatcher(matcherOrData);
-  }
-  if (typeof matcherOrData === 'boolean') {
-    return leafMatchers.coreBooleanMatcher(matcherOrData);
-  }
-
-  if (isCaseNode(matcherOrData)) {
-    return matcherOrData;
-  }
-  // TODO Object or array
-  throw new Error('Not implemented');
-};
+import { inferMatcher } from './inferMatcher';
+import type { AnyCaseNodeType, CaseNodeFor, AnyJson } from './matchers/types';
 
 export const matchCore = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyJson,
