@@ -1,4 +1,4 @@
-import { errorWhen, matchingError } from 'core/MatchingError';
+import { matchingError } from 'core/MatchingError';
 
 import type { MatchContext } from 'core/context/types';
 import type {
@@ -15,25 +15,8 @@ export const ShapedArrayExecutor: MatcherExecutor<
   actual: unknown,
   matchContext: MatchContext
 ): Array<MatchingError> => [
-  ...errorWhen(
-    !Array.isArray(actual),
-    matchingError(matcher, `'${typeof actual}' is not an array`, actual)
-  ),
   ...(Array.isArray(actual)
     ? [
-        ...errorWhen(
-          Array.isArray(actual) &&
-            actual.length !== matcher['case:matcher:example'].length,
-          matchingError(
-            matcher,
-            `Array has different lengths - expected '${
-              matcher['case:matcher:example'].length
-            }', but was '${
-              Array.isArray(actual) ? actual.length : 'not an array'
-            }'`,
-            actual
-          )
-        ),
         ...(actual.length === matcher['case:matcher:example'].length
           ? matcher['case:matcher:example']
               .map((expectedChild, index) =>
@@ -44,7 +27,17 @@ export const ShapedArrayExecutor: MatcherExecutor<
                 )
               )
               .flat()
-          : []),
+          : [
+              matchingError(
+                matcher,
+                `Array has different lengths - expected '${
+                  matcher['case:matcher:example'].length
+                }', but was '${
+                  Array.isArray(actual) ? actual.length : 'not an array'
+                }'`,
+                actual
+              ),
+            ]),
       ]
-    : []),
+    : [matchingError(matcher, `'${typeof actual}' is not an array`, actual)]),
 ];
