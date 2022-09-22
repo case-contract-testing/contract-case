@@ -1,12 +1,22 @@
 import {
   AnyCaseNodeOrData,
   CoreShapedArrayMatcher,
+  CoreShapedObjectMatcher,
+  MatcherMap,
   SHAPED_ARRAY_MATCHER_TYPE,
+  SHAPED_OBJECT_MATCHER_TYPE,
 } from './types';
 
 export const coreShapedArrayMatcher = (
   example: Array<AnyCaseNodeOrData>
 ): CoreShapedArrayMatcher => ({
   'case:matcher:type': SHAPED_ARRAY_MATCHER_TYPE,
+  'case:matcher:example': example,
+});
+
+export const coreShapedObjectMatcher = (
+  example: MatcherMap
+): CoreShapedObjectMatcher => ({
+  'case:matcher:type': SHAPED_OBJECT_MATCHER_TYPE,
   'case:matcher:example': example,
 });

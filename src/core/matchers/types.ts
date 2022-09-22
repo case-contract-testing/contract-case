@@ -6,6 +6,7 @@ export const NULL_MATCHER_TYPE = 'MatchNull' as const;
 export const BOOLEAN_MATCHER_TYPE = 'MatchBoolean' as const;
 export const CASCADING_CONTEXT_MATCHER_TYPE = 'CascadingContext' as const;
 export const SHAPED_ARRAY_MATCHER_TYPE = 'ArrayShape' as const;
+export const SHAPED_OBJECT_MATCHER_TYPE = 'ObjectShape' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
@@ -13,7 +14,8 @@ export type AnyCaseNodeType =
   | typeof NULL_MATCHER_TYPE
   | typeof BOOLEAN_MATCHER_TYPE
   | typeof CASCADING_CONTEXT_MATCHER_TYPE
-  | typeof SHAPED_ARRAY_MATCHER_TYPE;
+  | typeof SHAPED_ARRAY_MATCHER_TYPE
+  | typeof SHAPED_OBJECT_MATCHER_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -29,6 +31,10 @@ export interface JsonMap {
 }
 export type JsonArray = Array<AnyJson>;
 
+export interface MatcherMap {
+  [key: string]: AnyCaseNodeOrData;
+}
+
 export type AnyLeafMatcher =
   | CoreNumberMatcher
   | CoreStringMatcher
@@ -38,7 +44,8 @@ export type AnyLeafMatcher =
 export type AnyCaseNode =
   | AnyLeafMatcher
   | CoreCascadingMatcher
-  | CoreShapedArrayMatcher;
+  | CoreShapedArrayMatcher
+  | CoreShapedObjectMatcher;
 
 export type AnyCaseNodeOrData = AnyCaseNode | AnyJson;
 
@@ -84,4 +91,9 @@ export interface CoreNullMatcher extends CaseMatcherWithExample {
 export interface CoreShapedArrayMatcher extends CaseMatcherWithExample {
   'case:matcher:type': typeof SHAPED_ARRAY_MATCHER_TYPE;
   'case:matcher:example': Array<AnyCaseNodeOrData>;
+}
+
+export interface CoreShapedObjectMatcher extends CaseMatcherWithExample {
+  'case:matcher:type': typeof SHAPED_OBJECT_MATCHER_TYPE;
+  'case:matcher:example': MatcherMap;
 }

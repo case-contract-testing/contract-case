@@ -1,5 +1,8 @@
 import * as leafMatchers from 'core/matchers/leaf';
-import { coreShapedArrayMatcher } from './matchers/structure';
+import {
+  coreShapedArrayMatcher,
+  coreShapedObjectMatcher,
+} from './matchers/structure';
 import {
   type AnyCaseNodeType,
   type CaseNodeFor,
@@ -31,6 +34,6 @@ export const inferMatcher = <T extends AnyCaseNodeType>(
   if (isCaseNode(matcherOrData)) {
     return matcherOrData;
   }
-  // TODO Object or array
-  throw new Error('Not implemented');
+
+  return coreShapedObjectMatcher(matcherOrData);
 };

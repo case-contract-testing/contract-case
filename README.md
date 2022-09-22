@@ -6,7 +6,6 @@ Work in progress, not ready for use yet.
 
 Current tasks
 
-[ ] Object Matchers
 [ ] Consumer driven HTTP matchers
 [ ] Convenience matchers for object keys, arrays of a particular shape
 [ ] And matcher
