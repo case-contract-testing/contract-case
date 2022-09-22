@@ -1,9 +1,9 @@
-import type { AnyMatcher } from 'core/matchers/types';
+import type { AnyLeafMatcher } from 'core/matchers/types';
 import { errorWhen, matchingError } from 'core/MatchingError';
 import type { MatchingError } from 'core/types';
 
 export const testExactMatch = (
-  matcher: AnyMatcher,
+  matcher: AnyLeafMatcher,
   actual: unknown
 ): Array<MatchingError> => [
   ...errorWhen(

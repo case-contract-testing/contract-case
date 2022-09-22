@@ -1,4 +1,4 @@
-import type { AnyMatcher } from './matchers/types';
+import type { CaseMatcherWithExample } from './matchers/types';
 import type { MatchingError } from './types';
 
 export const errorWhen = (
@@ -14,7 +14,7 @@ export const errorWhen = (
  * @returns
  */
 export const matchingError = (
-  matcher: AnyMatcher,
+  matcher: CaseMatcherWithExample,
   message: string,
   actual: unknown
 ): MatchingError => ({

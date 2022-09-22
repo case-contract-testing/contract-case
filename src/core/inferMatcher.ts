@@ -1,4 +1,5 @@
-import * as leafMatchers from 'core/matchers';
+import * as leafMatchers from 'core/matchers/leaf';
+import { coreShapedArrayMatcher } from './matchers/structure';
 import {
   type AnyCaseNodeType,
   type CaseNodeFor,
@@ -21,6 +22,10 @@ export const inferMatcher = <T extends AnyCaseNodeType>(
   }
   if (typeof matcherOrData === 'boolean') {
     return leafMatchers.coreBooleanMatcher(matcherOrData);
+  }
+
+  if (Array.isArray(matcherOrData)) {
+    return coreShapedArrayMatcher(matcherOrData);
   }
 
   if (isCaseNode(matcherOrData)) {

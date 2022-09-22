@@ -5,7 +5,7 @@ import {
   NULL_MATCHER_TYPE,
   CoreCascadingMatcher,
   CASCADING_CONTEXT_MATCHER_TYPE,
-  CaseNodeOrData,
+  AnyCaseNodeOrData,
 } from 'core/matchers/types';
 import type {
   BooleanMatcher,
@@ -69,7 +69,9 @@ export const anyNull = (example = null): NullMatcher => ({
  *
  * @param content What
  */
-export const exactlyLike = (content: CaseNodeOrData): CoreCascadingMatcher => ({
+export const exactlyLike = (
+  content: AnyCaseNodeOrData
+): CoreCascadingMatcher => ({
   'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   'case:matcher:child': content,
   'case:context:matchBy': 'exact',
@@ -82,7 +84,9 @@ export const exactlyLike = (content: CaseNodeOrData): CoreCascadingMatcher => ({
  *
  * @param content What
  */
-export const shapedLike = (content: CaseNodeOrData): CoreCascadingMatcher => ({
+export const shapedLike = (
+  content: AnyCaseNodeOrData
+): CoreCascadingMatcher => ({
   'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   'case:matcher:child': content,
   'case:context:matchBy': 'type',

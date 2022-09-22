@@ -1,4 +1,8 @@
-import { isCaseNode, AnyCaseNode, CaseNodeOrData } from 'core/matchers/types';
+import {
+  isCaseNode,
+  AnyCaseNode,
+  AnyCaseNodeOrData,
+} from 'core/matchers/types';
 import type { MatchContext } from './types';
 
 const DEFAULT_CONTEXT: MatchContext = {
@@ -23,7 +27,7 @@ export const foldIntoContext = (
 });
 
 export const applyDefaultContext = (
-  caseNodeOrData: CaseNodeOrData,
+  caseNodeOrData: AnyCaseNodeOrData,
   handleNext: MatchContext['handleNext']
 ): MatchContext => ({
   ...(isCaseNode(caseNodeOrData)

@@ -1,4 +1,4 @@
-import type { CaseNodeOrData } from 'core/matchers/types';
+import type { AnyCaseNodeOrData } from 'core/matchers/types';
 import {
   anyBoolean,
   anyNull,
@@ -9,7 +9,7 @@ import {
 import { checkMatch } from '.';
 
 const expectErrorContaining = (
-  matcher: CaseNodeOrData,
+  matcher: AnyCaseNodeOrData,
   example: unknown,
   expectedContent: string
 ) => {
