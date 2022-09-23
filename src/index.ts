@@ -3,12 +3,12 @@ import { matchCore } from 'core/matchCore';
 import type {
   AnyCaseNodeType,
   CaseNodeFor,
-  AnyJson,
+  AnyLeafOrStructure,
 } from 'core/matchers/types';
 import type { MatchingError } from 'core/types';
 
 export const checkMatch = <T extends AnyCaseNodeType>(
-  matcherOrData: CaseNodeFor<T> | AnyJson,
+  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
   actual: unknown
 ): Array<MatchingError> =>
   matchCore(

@@ -1,8 +1,8 @@
-import type { AnyLeafMatcher, AnyJson } from 'core/matchers/types';
+import type { AnyLeafMatcher, AnyLeafOrStructure } from 'core/matchers/types';
 import { checkMatch } from '.';
 
 const expectErrorContaining = (
-  matcher: AnyLeafMatcher | AnyJson,
+  matcher: AnyLeafMatcher | AnyLeafOrStructure,
   example: unknown,
   expectedContent: string
 ) => {

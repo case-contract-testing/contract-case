@@ -2,7 +2,7 @@ import {
   AnyCaseNodeOrData,
   CoreShapedArrayMatcher,
   CoreShapedObjectMatcher,
-  MatcherMap,
+  JsonOrMatcherMap,
   SHAPED_ARRAY_MATCHER_TYPE,
   SHAPED_OBJECT_MATCHER_TYPE,
 } from './types';
@@ -15,7 +15,7 @@ export const coreShapedArrayMatcher = (
 });
 
 export const coreShapedObjectMatcher = (
-  example: MatcherMap
+  example: JsonOrMatcherMap
 ): CoreShapedObjectMatcher => ({
   'case:matcher:type': SHAPED_OBJECT_MATCHER_TYPE,
   'case:matcher:example': example,

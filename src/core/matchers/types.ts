@@ -25,15 +25,14 @@ export const isCaseNode = (
   'case:matcher:type' in (maybeMatcher as AnyCaseNode);
 
 export type JsonSerialisablePrimitive = boolean | number | string | null;
-export type AnyJson = JsonSerialisablePrimitive | JsonArray | JsonMap;
-export interface JsonMap {
+export type AnyLeafOrStructure =
+  | JsonSerialisablePrimitive
+  | JsonOrMatcherArray
+  | JsonOrMatcherMap;
+export interface JsonOrMatcherMap {
   [key: string]: AnyCaseNodeOrData;
 }
-export type JsonArray = Array<AnyCaseNodeOrData>;
-
-export interface MatcherMap {
-  [key: string]: AnyCaseNodeOrData;
-}
+export type JsonOrMatcherArray = Array<AnyCaseNodeOrData>;
 
 export type AnyLeafMatcher =
   | CoreNumberMatcher
@@ -47,9 +46,7 @@ export type AnyCaseNode =
   | CoreShapedArrayMatcher
   | CoreShapedObjectMatcher;
 
-type Data = AnyJson | MatcherMap;
-
-export type AnyCaseNodeOrData = AnyCaseNode | Data;
+export type AnyCaseNodeOrData = AnyCaseNode | AnyLeafOrStructure;
 
 type IsCaseNodeForType<T extends AnyCaseNodeType> = {
   'case:matcher:type': T;
@@ -57,7 +54,7 @@ type IsCaseNodeForType<T extends AnyCaseNodeType> = {
 
 export type DataOrCaseNodeFor<T extends AnyCaseNodeType> =
   | CaseNodeFor<T>
-  | Data;
+  | AnyLeafOrStructure;
 
 export type CaseNodeFor<T extends AnyCaseNodeType> = Extract<
   AnyCaseNode,
@@ -101,5 +98,5 @@ export interface CoreShapedArrayMatcher extends CaseMatcherWithExample {
 
 export interface CoreShapedObjectMatcher extends CaseMatcherWithExample {
   'case:matcher:type': typeof SHAPED_OBJECT_MATCHER_TYPE;
-  'case:matcher:example': MatcherMap;
+  'case:matcher:example': JsonOrMatcherMap;
 }

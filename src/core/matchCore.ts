@@ -5,10 +5,14 @@ import type { MatchingError } from './types';
 import { foldIntoContext } from './context';
 import { CaseCoreError } from './CaseCoreError';
 import { inferMatcher } from './inferMatcher';
-import type { AnyCaseNodeType, CaseNodeFor, AnyJson } from './matchers/types';
+import type {
+  AnyCaseNodeType,
+  CaseNodeFor,
+  AnyLeafOrStructure,
+} from './matchers/types';
 
 export const matchCore = <T extends AnyCaseNodeType>(
-  matcherOrData: CaseNodeFor<T> | AnyJson,
+  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
   actual: unknown,
   parentMatchContext: MatchContext
 ): Array<MatchingError> => {

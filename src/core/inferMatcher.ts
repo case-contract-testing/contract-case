@@ -6,13 +6,13 @@ import {
 import {
   type AnyCaseNodeType,
   type CaseNodeFor,
-  type AnyJson,
+  type AnyLeafOrStructure,
   isCaseNode,
   AnyCaseNode,
 } from './matchers/types';
 
 export const inferMatcher = <T extends AnyCaseNodeType>(
-  matcherOrData: CaseNodeFor<T> | AnyJson
+  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure
 ): AnyCaseNode => {
   if (matcherOrData == null) {
     return leafMatchers.coreNullMatcher();
