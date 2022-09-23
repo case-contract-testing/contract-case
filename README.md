@@ -8,18 +8,23 @@ Current tasks
 
 - [ ] Consumer driven HTTP matchers
 - [ ] Convenience matchers for object keys, arrays of a particular shape
-- [ ] And matcher
+- [ ] Write contract file
 - [ ] Provider verification
-- [ ] Path reporting in errors
-- [ ] Print objects properly
+- [ ] Provider state
+- [ ] Resolved values (eg state)
+- [ ] Headers
+- [ ] Strip Matchers
 
 --
 
+- [ ] Warnings
+- [ ] And matcher
+- [ ] Path reporting in errors
+- [ ] Print objects properly
+- [ ] Matcher acceptance
 - [ ] Matcher structure / use verification
 - [ ] Matcher content verification
-- [ ] Warnings
 - [ ] Authentication source
-- [ ] Headers
 
 --
 

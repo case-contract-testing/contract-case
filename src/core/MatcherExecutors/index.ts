@@ -7,6 +7,7 @@ import {
   NULL_MATCHER_TYPE,
   SHAPED_ARRAY_MATCHER_TYPE,
   SHAPED_OBJECT_MATCHER_TYPE,
+  WILL_SEND_HTTP_REQUEST,
 } from 'core/matchers/types';
 import { BooleanMatcher } from './leaf/BooleanMatcher';
 import { NullMatcher } from './leaf/NullMatcher';
@@ -16,6 +17,7 @@ import { ExactCascadingContext } from './contextShift/CascadingContext';
 import type { MatcherExecutor } from './types';
 import { ShapedArrayExecutor } from './structure/ShapedArrayExecutor';
 import { ShapedObjectExecutor } from './structure/ShapedObjectExecutor';
+import { CanSendHttpRequest } from './connectors/http';
 
 export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
   {
@@ -26,4 +28,5 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [NULL_MATCHER_TYPE]: NullMatcher,
     [SHAPED_ARRAY_MATCHER_TYPE]: ShapedArrayExecutor,
     [SHAPED_OBJECT_MATCHER_TYPE]: ShapedObjectExecutor,
+    [WILL_SEND_HTTP_REQUEST]: CanSendHttpRequest,
   };
