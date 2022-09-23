@@ -6,9 +6,21 @@ Work in progress, not ready for use yet.
 
 Current tasks
 
-[ ] Consumer driven HTTP matchers
-[ ] Convenience matchers for object keys, arrays of a particular shape
-[ ] And matcher
-[ ] Provider verification
-[ ] Path reporting in errors
-[ ] Print objects properly
+- [ ] Consumer driven HTTP matchers
+- [ ] Convenience matchers for object keys, arrays of a particular shape
+- [ ] And matcher
+- [ ] Provider verification
+- [ ] Path reporting in errors
+- [ ] Print objects properly
+
+--
+
+- [ ] Matcher structure / use verification
+- [ ] Matcher content verification
+- [ ] Warnings
+- [ ] Authentication source
+- [ ] Headers
+
+--
+
+- [ ] Broker CLI
