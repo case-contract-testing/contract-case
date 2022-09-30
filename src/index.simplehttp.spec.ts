@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { willSendHttpGet } from 'dsl/Matchers/http';
+import { prepareCase } from 'index';
 
 const defaultBaseUrl = 'http://your-api.example.com';
 
@@ -19,15 +20,17 @@ willSend(httpGet({ path: '/health' })).canRecieve({
 
 */
 
-describe.skip('simple get endpoint', () => {
+describe('simple get endpoint', () => {
   beforeEach(() => {
-    willSendHttpGet({
-      path: '/health',
-      response: {
-        status: 200,
-        body: { status: 'up' },
-      },
-    });
+    prepareCase(
+      willSendHttpGet({
+        path: '/health',
+        response: {
+          status: 200,
+          body: { status: 'up' },
+        },
+      })
+    );
   });
   it('returns server health', () => {
     const client = api('http://127.0.0.1:8081');

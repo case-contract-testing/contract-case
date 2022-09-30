@@ -23,3 +23,7 @@ export interface MatchContextByType {
 export interface MatchContextByExact {
   'case:context:matchBy': 'exact';
 }
+
+export interface HttpTestContext {
+  baseUrl: string;
+}

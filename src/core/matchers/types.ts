@@ -19,7 +19,8 @@ export type AnyCaseNodeType =
   | typeof CASCADING_CONTEXT_MATCHER_TYPE
   | typeof SHAPED_ARRAY_MATCHER_TYPE
   | typeof SHAPED_OBJECT_MATCHER_TYPE
-  | typeof WILL_SEND_HTTP_REQUEST;
+  | typeof WILL_SEND_HTTP_REQUEST
+  | typeof CAN_RECEIVE_HTTP_RESPONSE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -48,7 +49,9 @@ export type AnyCaseNode =
   | AnyLeafMatcher
   | CoreCascadingMatcher
   | CoreShapedArrayMatcher
-  | CoreShapedObjectMatcher;
+  | CoreShapedObjectMatcher
+  | CanReceiveHttpResponse
+  | WillSendHttpRequest;
 
 export type AnyCaseNodeOrData = AnyCaseNode | AnyLeafOrStructure;
 
@@ -105,14 +108,16 @@ export interface CoreShapedObjectMatcher extends CaseMatcherWithExample {
   'case:matcher:example': JsonOrMatcherMap;
 }
 
-export interface CanReceiveHttpResponse {
+export interface CanReceiveHttpResponse
+  extends IsCaseNodeForType<typeof CAN_RECEIVE_HTTP_RESPONSE> {
   'case:matcher:type': typeof CAN_RECEIVE_HTTP_RESPONSE;
   'case:context:expectation': 'can';
   status: number;
   body: AnyCaseNodeOrData | undefined;
 }
 
-export interface WillSendHttpRequest {
+export interface WillSendHttpRequest
+  extends IsCaseNodeForType<typeof WILL_SEND_HTTP_REQUEST> {
   'case:matcher:type': typeof WILL_SEND_HTTP_REQUEST;
   'case:context:expectation': 'will';
   method: 'get' | 'post' | 'delete' | 'head' | 'options' | 'put' | 'patch';

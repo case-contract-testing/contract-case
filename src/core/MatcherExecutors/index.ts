@@ -8,7 +8,10 @@ import {
   SHAPED_ARRAY_MATCHER_TYPE,
   SHAPED_OBJECT_MATCHER_TYPE,
   WILL_SEND_HTTP_REQUEST,
+  CAN_RECEIVE_HTTP_RESPONSE,
 } from 'core/matchers/types';
+import { CaseCoreError } from 'core/CaseCoreError';
+
 import { BooleanMatcher } from './leaf/BooleanMatcher';
 import { NullMatcher } from './leaf/NullMatcher';
 import { NumberMatcher } from './leaf/NumberMatcher';
@@ -29,4 +32,7 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [SHAPED_ARRAY_MATCHER_TYPE]: ShapedArrayExecutor,
     [SHAPED_OBJECT_MATCHER_TYPE]: ShapedObjectExecutor,
     [WILL_SEND_HTTP_REQUEST]: CanSendHttpRequest,
+    [CAN_RECEIVE_HTTP_RESPONSE]: () => {
+      throw new CaseCoreError('Should not be called directly');
+    },
   };
