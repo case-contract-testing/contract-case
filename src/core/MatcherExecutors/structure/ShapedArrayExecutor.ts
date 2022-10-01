@@ -5,28 +5,32 @@ import type {
   CoreShapedArrayMatcher,
   SHAPED_ARRAY_MATCHER_TYPE,
 } from 'core/matchers/types';
-import type { MatchingError } from 'core/types';
+import type { MatchResult } from 'core/types';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 
 export const ShapedArrayExecutor: MatcherExecutor<
   typeof SHAPED_ARRAY_MATCHER_TYPE
-> = (
+> = async (
   matcher: CoreShapedArrayMatcher,
   actual: unknown,
   matchContext: MatchContext
-): Array<MatchingError> => [
+): Promise<MatchResult> => [
   ...(Array.isArray(actual)
     ? [
         ...(actual.length === matcher['case:matcher:example'].length
-          ? matcher['case:matcher:example']
-              .map((expectedChild, index) =>
-                matchContext.handleNext(
-                  expectedChild,
-                  actual[index],
-                  matchContext
-                )
+          ? (
+              await Promise.all(
+                matcher['case:matcher:example']
+                  .map((expectedChild, index) =>
+                    matchContext.handleNext(
+                      expectedChild,
+                      actual[index],
+                      matchContext
+                    )
+                  )
+                  .flat()
               )
-              .flat()
+            ).flat()
           : [
               matchingError(
                 matcher,

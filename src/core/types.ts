@@ -4,3 +4,5 @@ export interface MatchingError {
   actual: unknown;
   toString: () => string;
 }
+
+export type MatchResult = Array<MatchingError>;

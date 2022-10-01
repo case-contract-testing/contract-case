@@ -15,8 +15,8 @@ const expectErrorContaining = (
   expectedContent: string
 ) => {
   describe(`when given ${example}`, () => {
-    it(`returns an error containing '${expectedContent}'`, () => {
-      const matchResult = checkMatch(matcher, example);
+    it(`returns an error containing '${expectedContent}'`, async () => {
+      const matchResult = await checkMatch(matcher, example);
       expect(matchResult).not.toHaveLength(0);
       expect(
         matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
@@ -27,8 +27,8 @@ const expectErrorContaining = (
 describe('basic matchers', () => {
   describe('number matcher', () => {
     const matcher = anyNumber(1);
-    it('accepts numbers', () => {
-      expect(checkMatch(matcher, 1)).toStrictEqual([]);
+    it('accepts numbers', async () => {
+      expect(await checkMatch(matcher, 1)).toStrictEqual([]);
     });
     expectErrorContaining(matcher, NaN, 'NaN');
     expectErrorContaining(matcher, Infinity, 'finite');
@@ -39,11 +39,11 @@ describe('basic matchers', () => {
 
   describe('string matcher', () => {
     const matcher = anyString('1');
-    it('accepts strings that are numbers', () => {
-      expect(checkMatch(matcher, '1')).toStrictEqual([]);
+    it('accepts strings that are numbers', async () => {
+      expect(await checkMatch(matcher, '1')).toStrictEqual([]);
     });
-    it('accepts strings that are not numbers', () => {
-      expect(checkMatch(matcher, 'example string')).toStrictEqual([]);
+    it('accepts strings that are not numbers', async () => {
+      expect(await checkMatch(matcher, 'example string')).toStrictEqual([]);
     });
     expectErrorContaining(matcher, NaN, 'not a string');
     expectErrorContaining(matcher, Infinity, 'not a string');
@@ -54,11 +54,11 @@ describe('basic matchers', () => {
 
   describe('boolean matcher', () => {
     const matcher = anyBoolean(true);
-    it('accepts true', () => {
-      expect(checkMatch(matcher, true)).toStrictEqual([]);
+    it('accepts true', async () => {
+      expect(await checkMatch(matcher, true)).toStrictEqual([]);
     });
-    it('accepts false', () => {
-      expect(checkMatch(matcher, false)).toStrictEqual([]);
+    it('accepts false', async () => {
+      expect(await checkMatch(matcher, false)).toStrictEqual([]);
     });
 
     expectErrorContaining(matcher, 'true', 'not a boolean');
@@ -72,8 +72,8 @@ describe('basic matchers', () => {
 
   describe('null matcher', () => {
     const matcher = anyNull();
-    it('accepts exactly null', () => {
-      expect(checkMatch(matcher, null)).toStrictEqual([]);
+    it('accepts exactly null', async () => {
+      expect(await checkMatch(matcher, null)).toStrictEqual([]);
     });
 
     expectErrorContaining(matcher, true, 'not null');
@@ -90,8 +90,8 @@ describe('basic matchers', () => {
   describe('shapedLike matchers', () => {
     describe('number matcher', () => {
       const matcher = shapedLike(1);
-      it('accepts numbers', () => {
-        expect(checkMatch(matcher, 1)).toStrictEqual([]);
+      it('accepts numbers', async () => {
+        expect(await checkMatch(matcher, 1)).toStrictEqual([]);
       });
       expectErrorContaining(matcher, NaN, 'NaN');
       expectErrorContaining(matcher, Infinity, 'finite');
@@ -102,11 +102,11 @@ describe('basic matchers', () => {
 
     describe('string matcher', () => {
       const matcher = shapedLike('1');
-      it('accepts strings that are numbers', () => {
-        expect(checkMatch(matcher, '1')).toStrictEqual([]);
+      it('accepts strings that are numbers', async () => {
+        expect(await checkMatch(matcher, '1')).toStrictEqual([]);
       });
-      it('accepts strings that are not numbers', () => {
-        expect(checkMatch(matcher, 'example string')).toStrictEqual([]);
+      it('accepts strings that are not numbers', async () => {
+        expect(await checkMatch(matcher, 'example string')).toStrictEqual([]);
       });
       expectErrorContaining(matcher, NaN, 'not a string');
       expectErrorContaining(matcher, Infinity, 'not a string');
@@ -117,11 +117,11 @@ describe('basic matchers', () => {
 
     describe('boolean matcher', () => {
       const matcher = shapedLike(true);
-      it('accepts true', () => {
-        expect(checkMatch(matcher, true)).toStrictEqual([]);
+      it('accepts true', async () => {
+        expect(await checkMatch(matcher, true)).toStrictEqual([]);
       });
-      it('accepts false', () => {
-        expect(checkMatch(matcher, false)).toStrictEqual([]);
+      it('accepts false', async () => {
+        expect(await checkMatch(matcher, false)).toStrictEqual([]);
       });
 
       expectErrorContaining(matcher, 'true', 'not a boolean');
@@ -135,8 +135,8 @@ describe('basic matchers', () => {
 
     describe('null matcher', () => {
       const matcher = shapedLike(null);
-      it('accepts exactly null', () => {
-        expect(checkMatch(matcher, null)).toStrictEqual([]);
+      it('accepts exactly null', async () => {
+        expect(await checkMatch(matcher, null)).toStrictEqual([]);
       });
 
       expectErrorContaining(matcher, true, 'not null');
@@ -162,9 +162,9 @@ describe('basic matchers', () => {
       { a: '1' },
       [1],
     ]);
-    it('accepts an array of generally matched types', () => {
+    it('accepts an array of generally matched types', async () => {
       expect(
-        checkMatch(matcher, [
+        await checkMatch(matcher, [
           2,
           'other string',
           null,
@@ -202,9 +202,9 @@ describe('basic matchers', () => {
   });
 
   describe('object matchers', () => {
-    it('accepts an object of explicitly matched types', () => {
+    it('accepts an object of explicitly matched types', async () => {
       expect(
-        checkMatch(
+        await checkMatch(
           {
             a: anyNumber(2),
             b: anyString('string'),
@@ -217,9 +217,9 @@ describe('basic matchers', () => {
     });
   });
 
-  it('accepts an object of generally matched types', () => {
+  it('accepts an object of generally matched types', async () => {
     expect(
-      checkMatch(
+      await checkMatch(
         shapedLike({
           a: 2,
           b: 'string',

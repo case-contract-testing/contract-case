@@ -1,7 +1,7 @@
 import { MatcherExecutors } from 'core/MatcherExecutors';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 import type { MatchContext } from 'core/context/types';
-import type { MatchingError } from './types';
+import type { MatchResult } from './types';
 import { foldIntoContext } from './context';
 import { CaseCoreError } from './CaseCoreError';
 import { inferMatcher } from './inferMatcher';
@@ -15,7 +15,7 @@ export const matchCore = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
   actual: unknown,
   parentMatchContext: MatchContext
-): Array<MatchingError> => {
+): Promise<MatchResult> => {
   const matcher = inferMatcher<T>(matcherOrData) as CaseNodeFor<T>;
   const matchContext = foldIntoContext(matcher, parentMatchContext);
 
@@ -27,5 +27,5 @@ export const matchCore = <T extends AnyCaseNodeType>(
     );
   }
 
-  return executor(matcher, actual, matchContext);
+  return Promise.resolve(executor(matcher, actual, matchContext));
 };

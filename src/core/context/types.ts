@@ -1,5 +1,5 @@
 import type { AnyCaseNodeType, DataOrCaseNodeFor } from 'core/matchers/types';
-import type { MatchingError } from 'core/types';
+import type { MatchResult } from 'core/types';
 
 export const MATCH_BY_TYPE = 'type' as const;
 export const MATCH_BY_EXACT = 'exact' as const;
@@ -11,7 +11,7 @@ export interface MatchContext {
     matcherOrData: DataOrCaseNodeFor<T>,
     actual: unknown,
     parentMatchContext: MatchContext
-  ) => Array<MatchingError>;
+  ) => Promise<MatchResult>;
   'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
   'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
 }
