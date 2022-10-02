@@ -2,6 +2,7 @@ import type { Verifiable } from 'entities/types';
 import axios from 'axios';
 import { httpInteraction } from 'entities/nodes/interactions/http';
 import { setup } from '.';
+import { shapedLike } from 'boundaries/dsl/Matchers';
 
 /*
 
@@ -38,6 +39,35 @@ describe('simple get endpoint', () => {
 
     const health = await client.getHealth();
     expect(health).toEqual('up');
+  });
+
+  afterEach(async () => {
+    const res = await context.verify();
+    if (res.length !== 0) {
+      throw new Error(res.join('\n').toString());
+    }
+  });
+});
+
+describe.skip('arbitrary server response', () => {
+  let context: Verifiable<'SendHttpRequest'>;
+  beforeEach(async () => {
+    context = await setup(
+      httpInteraction({
+        request: {
+          method: 'GET',
+          path: '/health',
+        },
+        response: { status: 200, body: shapedLike({ status: 'down' }) },
+      })
+    );
+  });
+
+  it('calls server health', async () => {
+    const client = api(context.mock.baseUrl);
+
+    const health = await client.getHealth();
+    expect(health).toEqual('down');
   });
 
   afterEach(async () => {

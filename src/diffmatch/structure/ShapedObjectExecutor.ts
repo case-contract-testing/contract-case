@@ -9,6 +9,7 @@ import type { MatchResult } from 'entities/types';
 import type { MatcherExecutor } from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
 import { addLocation } from 'entities/context';
+import { combineResults, makeResults } from 'entities/results/MatchResult';
 
 export const ShapedObjectExecutor: MatcherExecutor<
   typeof SHAPED_OBJECT_MATCHER_TYPE
@@ -21,8 +22,8 @@ export const ShapedObjectExecutor: MatcherExecutor<
   actual === Object(actual) &&
   !Array.isArray(actual) &&
   actual != null
-    ? [
-        ...(
+    ? combineResults(
+        (
           await Promise.all(
             Object.entries<AnyCaseNodeOrData>(
               matcher['case:matcher:example']
@@ -37,24 +38,26 @@ export const ShapedObjectExecutor: MatcherExecutor<
                       (actual as { [k: string]: unknown })[expectedKey],
                       addLocation(expectedKey, matchContext)
                     )
-                  : Promise.resolve([
-                      matchingError(
-                        matcher,
-                        `missing key '${expectedKey}' in object '${actual}'`,
-                        actual,
-                        matchContext
-                      ),
-                    ])
+                  : Promise.resolve(
+                      makeResults(
+                        matchingError(
+                          matcher,
+                          `missing key '${expectedKey}' in object '${actual}'`,
+                          actual,
+                          matchContext
+                        )
+                      )
+                    )
             )
           )
-        ).flat(),
-      ]
-    : [
+        ).flat()
+      )
+    : makeResults(
         matchingError(
           matcher,
           `'${actual}' is not an object`,
           actual,
           matchContext
-        ),
-      ]),
+        )
+      )),
 ];

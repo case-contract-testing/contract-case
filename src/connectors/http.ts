@@ -9,6 +9,7 @@ import {
 } from 'entities/nodes/interactions/types';
 import type { MatchContext } from 'entities/context/types';
 import { addLocation } from 'entities/context';
+import { combineResults, makeResults } from 'entities/results/MatchResult';
 
 export const setupHttp = (
   {
@@ -30,25 +31,25 @@ export const setupHttp = (
   return new Promise<Verifiable<typeof SEND_HTTP_REQUEST>>((resolve) => {
     const app = express();
     app.all('*', async (req, res) => {
-      matchResults = [
-        ...(await matchCore(
+      matchResults = combineResults(
+        await matchCore(
           expectedRequest.method,
           req.method,
           addLocation('method', context)
-        )),
-        ...(await matchCore(
+        ),
+        await matchCore(
           expectedRequest.path,
           req.path,
           addLocation('path', context)
-        )),
-        ...(expectedRequest.body !== undefined
+        ),
+        expectedRequest.body !== undefined
           ? await matchCore(
               expectedRequest.body,
               req.body,
               addLocation('request.body', context)
             )
-          : []),
-      ];
+          : makeResults()
+      );
       res.status(expectedResponse.status).send(expectedResponse.body);
     });
 
@@ -64,22 +65,18 @@ export const setupHttp = (
           server.close((err?: Error) => {
             resolveClose(
               err
-                ? [
-                    {
-                      message:
-                        'The server was not running when it was verified',
-                      expected: 'The server to be running',
-                      actual: err.message,
-                      location: context['case:context:location'],
-                    },
-                  ]
-                : []
+                ? makeResults({
+                    message: 'The server was not running when it was verified',
+                    expected: 'The server to be running',
+                    actual: err.message,
+                    location: context['case:context:location'],
+                  })
+                : makeResults()
             );
           });
-        }).then(async (closeResults) => [
-          ...closeResults,
-          ...(await matchResults),
-        ]),
+        }).then(async (closeResults) =>
+          combineResults(closeResults, await matchResults)
+        ),
     });
   });
 };

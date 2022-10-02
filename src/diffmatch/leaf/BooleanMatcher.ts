@@ -3,6 +3,7 @@ import type {
   BOOLEAN_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
 import { matchingError } from 'entities/results/MatchingError';
+import { combineResults, makeResults } from 'entities/results/MatchResult';
 import type { MatchingError } from 'entities/types';
 import type { MatcherExecutor } from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
@@ -12,18 +13,19 @@ export const BooleanMatcher: MatcherExecutor<typeof BOOLEAN_MATCHER_TYPE> = (
   matcher: CoreBooleanMatcher,
   actual: unknown,
   matchContext: MatchContext
-): Array<MatchingError> => [
-  ...(matchContext['case:context:matchBy'] === 'exact'
-    ? testExactMatch(matcher, actual, matchContext)
-    : []),
-  ...(typeof actual !== 'boolean'
-    ? [
-        matchingError(
-          matcher,
-          `'${actual}' is not a boolean`,
-          actual,
-          matchContext
-        ),
-      ]
-    : []),
-];
+): Array<MatchingError> =>
+  combineResults(
+    matchContext['case:context:matchBy'] === 'exact'
+      ? testExactMatch(matcher, actual, matchContext)
+      : makeResults(),
+    typeof actual !== 'boolean'
+      ? makeResults(
+          matchingError(
+            matcher,
+            `'${actual}' is not a boolean`,
+            actual,
+            matchContext
+          )
+        )
+      : makeResults()
+  );

@@ -7,8 +7,8 @@ export const testExactMatch = (
   matcher: AnyLeafMatcher,
   actual: unknown,
   matchContext: MatchContext
-): Array<MatchingError> => [
-  ...errorWhen(
+): Array<MatchingError> =>
+  errorWhen(
     actual !== matcher['case:matcher:example'],
     matchingError(
       matcher,
@@ -18,5 +18,4 @@ export const testExactMatch = (
       actual,
       matchContext
     )
-  ),
-];
+  );
