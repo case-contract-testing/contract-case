@@ -1,5 +1,5 @@
-import { MatcherExecutors } from 'core/MatcherExecutors';
-import type { MatcherExecutor } from 'core/MatcherExecutors/types';
+import { MatcherExecutors } from 'core/matching';
+import type { MatcherExecutor } from 'core/matching/types';
 import type { MatchContext } from 'core/context/types';
 import { CaseCoreError } from 'core/CaseCoreError';
 import { foldIntoContext } from 'core/context';

@@ -1,5 +1,5 @@
 import { applyDefaultContext } from './context';
-import { matchCore } from './MatcherExecutors/matchCore';
+import { matchCore } from './matching/matchCore';
 import type {
   AnyCaseNodeType,
   DataOrCaseNodeFor,

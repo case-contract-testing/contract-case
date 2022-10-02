@@ -1,4 +1,4 @@
-import type { SetupInfoFor } from './InteractionExecutors/types';
+import type { SetupInfoFor } from './setup/types';
 import type { AnyInteractionType } from './nodes/interactions/types';
 
 export interface MatchingError {
