@@ -6,7 +6,6 @@ Work in progress, not ready for use yet.
 
 Current tasks
 
-- [ ] Consumer driven HTTP matchers
 - [ ] Convenience matchers for object keys, arrays of a particular shape
 - [ ] Write contract file
 - [ ] Provider verification
