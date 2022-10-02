@@ -1,20 +1,16 @@
 import type { MatchContext } from 'entities/context/types';
 import { CaseCoreError } from 'entities/CaseCoreError';
-import {
-  type AnyInteractionType,
-  SEND_HTTP_REQUEST,
-  type CaseInteractionFor,
-} from 'entities/nodes/interactions/types';
 import type { Verifiable } from 'entities/types';
-import type { InteractionSetupFn } from 'entities/setup/types';
-import { setupHttp } from './connectors/http';
+import type {
+  AnyInteractionType,
+  CaseInteractionFor,
+} from 'entities/nodes/interactions/types';
 
-const InteractionSetup: { [T in AnyInteractionType]: InteractionSetupFn<T> } = {
-  [SEND_HTTP_REQUEST]: setupHttp,
-};
+import type { SetupFns } from './types';
 
 export const setupCore = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
+  InteractionSetup: SetupFns,
   context: MatchContext
 ): Promise<Verifiable<T>> => {
   const interactionType: T = interaction['case:interaction:type'];

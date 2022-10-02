@@ -48,7 +48,7 @@
       }
     },
     {
-      "files": ["**/core/**/*.ts"],
+      "files": ["**/connectors/**/*.ts"],
       "rules": {
         "no-restricted-imports": [
           "error",
@@ -57,11 +57,27 @@
       }
     },
     {
+      "files": ["**/core/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          { "patterns": ["**/connectors/*", "**/boundaries/*", "**/../*"] }
+        ]
+      }
+    },
+    {
       "files": ["**/entities/**/*.ts"],
       "rules": {
         "no-restricted-imports": [
           "error",
-          { "patterns": ["**/boundaries/*", "**/core/*", "**/../*"] }
+          {
+            "patterns": [
+              "**/connectors/*",
+              "**/boundaries/*",
+              "**/core/*",
+              "**/../*"
+            ]
+          }
         ]
       }
     },
