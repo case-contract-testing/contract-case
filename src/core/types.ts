@@ -1,3 +1,6 @@
+import type { SetupInfoFor } from './InteractionExecutors/types';
+import type { AnyInteractionType } from './interactions/types';
+
 export interface MatchingError {
   message: string;
   expected: unknown;
@@ -6,3 +9,8 @@ export interface MatchingError {
 }
 
 export type MatchResult = Array<MatchingError>;
+
+export type Verifiable<T extends AnyInteractionType> = {
+  mock: SetupInfoFor<T>;
+  verify: () => Promise<MatchResult>;
+};

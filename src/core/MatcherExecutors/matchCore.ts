@@ -1,15 +1,15 @@
 import { MatcherExecutors } from 'core/MatcherExecutors';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 import type { MatchContext } from 'core/context/types';
-import type { MatchResult } from './types';
-import { foldIntoContext } from './context';
-import { CaseCoreError } from './CaseCoreError';
-import { inferMatcher } from './inferMatcher';
+import { CaseCoreError } from 'core/CaseCoreError';
+import { foldIntoContext } from 'core/context';
+import { inferMatcher } from 'core/inferMatcher';
+import type { MatchResult } from 'core/types';
 import type {
   AnyCaseNodeType,
   CaseNodeFor,
   AnyLeafOrStructure,
-} from './matchers/types';
+} from 'core/matchers/types';
 
 export const matchCore = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,

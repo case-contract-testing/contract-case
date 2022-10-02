@@ -1,5 +1,5 @@
 import type { AnyLeafMatcher, AnyLeafOrStructure } from 'core/matchers/types';
-import { checkMatch } from '.';
+import { checkMatch } from 'core';
 
 const expectErrorContaining = (
   matcher: AnyLeafMatcher | AnyLeafOrStructure,

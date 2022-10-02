@@ -8,9 +8,6 @@ export const CASCADING_CONTEXT_MATCHER_TYPE = 'CascadingContext' as const;
 export const SHAPED_ARRAY_MATCHER_TYPE = 'ArrayShape' as const;
 export const SHAPED_OBJECT_MATCHER_TYPE = 'ObjectShape' as const;
 
-export const WILL_SEND_HTTP_REQUEST = 'WillSendHttpRequest' as const;
-export const CAN_RECEIVE_HTTP_RESPONSE = 'CanReceiveHttpResponse' as const;
-
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
   | typeof STRING_MATCHER_TYPE
@@ -18,9 +15,7 @@ export type AnyCaseNodeType =
   | typeof BOOLEAN_MATCHER_TYPE
   | typeof CASCADING_CONTEXT_MATCHER_TYPE
   | typeof SHAPED_ARRAY_MATCHER_TYPE
-  | typeof SHAPED_OBJECT_MATCHER_TYPE
-  | typeof WILL_SEND_HTTP_REQUEST
-  | typeof CAN_RECEIVE_HTTP_RESPONSE;
+  | typeof SHAPED_OBJECT_MATCHER_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -49,9 +44,7 @@ export type AnyCaseNode =
   | AnyLeafMatcher
   | CoreCascadingMatcher
   | CoreShapedArrayMatcher
-  | CoreShapedObjectMatcher
-  | CanReceiveHttpResponse
-  | WillSendHttpRequest;
+  | CoreShapedObjectMatcher;
 
 export type AnyCaseNodeOrData = AnyCaseNode | AnyLeafOrStructure;
 
@@ -106,22 +99,4 @@ export interface CoreShapedArrayMatcher extends CaseMatcherWithExample {
 export interface CoreShapedObjectMatcher extends CaseMatcherWithExample {
   'case:matcher:type': typeof SHAPED_OBJECT_MATCHER_TYPE;
   'case:matcher:example': JsonOrMatcherMap;
-}
-
-export interface CanReceiveHttpResponse
-  extends IsCaseNodeForType<typeof CAN_RECEIVE_HTTP_RESPONSE> {
-  'case:matcher:type': typeof CAN_RECEIVE_HTTP_RESPONSE;
-  'case:context:expectation': 'can';
-  status: number;
-  body: AnyCaseNodeOrData | undefined;
-}
-
-export interface WillSendHttpRequest
-  extends IsCaseNodeForType<typeof WILL_SEND_HTTP_REQUEST> {
-  'case:matcher:type': typeof WILL_SEND_HTTP_REQUEST;
-  'case:context:expectation': 'will';
-  method: 'get' | 'post' | 'delete' | 'head' | 'options' | 'put' | 'patch';
-  path: string;
-  body?: AnyCaseNodeOrData;
-  responseMatcher: CanReceiveHttpResponse;
 }
