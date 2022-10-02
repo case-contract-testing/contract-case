@@ -1,7 +1,7 @@
 import type { Verifiable } from 'core/types';
 import axios from 'axios';
 import { httpInteraction } from 'core/nodes/interactions/http';
-import { setupCore } from 'core/setup';
+import { setup } from 'core';
 
 /*
 
@@ -22,7 +22,7 @@ const api = (baseUrl: string) => ({
 describe('simple get endpoint', () => {
   let context: Verifiable<'SendHttpRequest'>;
   beforeEach(async () => {
-    context = await setupCore(
+    context = await setup(
       httpInteraction({
         request: {
           method: 'GET',

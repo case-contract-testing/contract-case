@@ -1,10 +1,12 @@
-import type { Verifiable } from '../types';
-import { CaseCoreError } from '../CaseCoreError';
+import type { MatchContext } from 'core/context/types';
+import { CaseCoreError } from 'core/CaseCoreError';
 import {
-  AnyInteractionType,
-  CaseInteractionFor,
+  type AnyInteractionType,
   SEND_HTTP_REQUEST,
-} from '../nodes/interactions/types';
+  type CaseInteractionFor,
+} from 'core/nodes/interactions/types';
+import type { Verifiable } from 'core/types';
+
 import type { InteractionSetupFn } from './types';
 import { setupHttp } from './connectors/http';
 
@@ -13,7 +15,8 @@ const InteractionSetup: { [T in AnyInteractionType]: InteractionSetupFn<T> } = {
 };
 
 export const setupCore = <T extends AnyInteractionType>(
-  interaction: CaseInteractionFor<T>
+  interaction: CaseInteractionFor<T>,
+  context: MatchContext
 ): Promise<Verifiable<T>> => {
   const interactionType: T = interaction['case:interaction:type'];
   if (!interactionType) {
@@ -29,5 +32,5 @@ export const setupCore = <T extends AnyInteractionType>(
     );
   }
 
-  return executor(interaction);
+  return executor(interaction, context);
 };

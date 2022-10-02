@@ -8,6 +8,13 @@ export type HasTypeForInteraction<T extends AnyInteractionType> = {
   'case:interaction:type': T;
 };
 
+export const isCaseInteraction = (
+  maybeInteraction: unknown
+): maybeInteraction is AnyInteraction =>
+  typeof maybeInteraction === 'object' &&
+  maybeInteraction != null &&
+  'case:interaction:type' in (maybeInteraction as AnyInteraction);
+
 export type AnyInteraction = DoesSendHttpRequest;
 
 export type CaseInteractionFor<T extends AnyInteractionType> = Extract<

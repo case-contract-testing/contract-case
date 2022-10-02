@@ -1,4 +1,8 @@
 import {
+  AnyInteraction,
+  isCaseInteraction,
+} from 'core/nodes/interactions/types';
+import {
   isCaseNode,
   AnyCaseNode,
   AnyCaseNodeOrData,
@@ -13,13 +17,15 @@ const DEFAULT_CONTEXT: MatchContext = {
   'case:context:serialisableTo': 'json',
 };
 
-const contextProperties = (caseNode: AnyCaseNode): MatchContext =>
+const contextProperties = (
+  caseNode: AnyCaseNode | AnyInteraction
+): MatchContext =>
   Object.entries(caseNode)
     .filter(([k]) => k.startsWith('case:context'))
     .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {} as MatchContext);
 
 export const foldIntoContext = (
-  caseNode: AnyCaseNode,
+  caseNode: AnyCaseNode | AnyInteraction,
   context: MatchContext
 ): MatchContext => ({
   ...context,
@@ -27,10 +33,10 @@ export const foldIntoContext = (
 });
 
 export const applyDefaultContext = (
-  caseNodeOrData: AnyCaseNodeOrData,
+  caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
   handleNext: MatchContext['handleNext']
 ): MatchContext => ({
-  ...(isCaseNode(caseNodeOrData)
+  ...(isCaseNode(caseNodeOrData) || isCaseInteraction(caseNodeOrData)
     ? foldIntoContext(caseNodeOrData, DEFAULT_CONTEXT)
     : DEFAULT_CONTEXT),
   handleNext,

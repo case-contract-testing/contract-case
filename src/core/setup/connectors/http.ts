@@ -1,19 +1,21 @@
 import type * as http from 'http';
 import express from 'express';
 
-import { checkMatch } from 'core';
+import { matchCore } from 'core/matching';
 import type { MatchResult, Verifiable } from 'core/types';
 import {
   HttpRequestResponseDescription,
   SEND_HTTP_REQUEST,
 } from 'core/nodes/interactions/types';
+import type { MatchContext } from 'core/context/types';
 
-export const setupHttp = ({
-  request: expectedRequest,
-  response: expectedResponse,
-}: HttpRequestResponseDescription): Promise<
-  Verifiable<typeof SEND_HTTP_REQUEST>
-> => {
+export const setupHttp = (
+  {
+    request: expectedRequest,
+    response: expectedResponse,
+  }: HttpRequestResponseDescription,
+  context: MatchContext
+): Promise<Verifiable<typeof SEND_HTTP_REQUEST>> => {
   let matchResults: MatchResult = [
     {
       message:
@@ -27,10 +29,10 @@ export const setupHttp = ({
     const app = express();
     app.all('*', async (req, res) => {
       matchResults = [
-        ...(await checkMatch(expectedRequest.method, req.method)),
-        ...(await checkMatch(expectedRequest.path, req.path)),
+        ...(await matchCore(expectedRequest.method, req.method, context)),
+        ...(await matchCore(expectedRequest.path, req.path, context)),
         ...(expectedRequest.body !== undefined
-          ? await checkMatch(expectedRequest.body, req.body)
+          ? await matchCore(expectedRequest.body, req.body, context)
           : []),
       ];
       res.status(expectedResponse.status).send(expectedResponse.body);

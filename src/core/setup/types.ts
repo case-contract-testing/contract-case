@@ -1,3 +1,4 @@
+import type { MatchContext } from 'core/context/types';
 import type {
   AnyInteractionType,
   CaseInteractionFor,
@@ -7,7 +8,8 @@ import type {
 import type { Verifiable } from 'core/types';
 
 export type InteractionSetupFn<T extends AnyInteractionType> = (
-  matcher: CaseInteractionFor<T>
+  interaction: CaseInteractionFor<T>,
+  context: MatchContext
 ) => Promise<Verifiable<T>>;
 
 export type HttpSetup = HasTypeForInteraction<typeof SEND_HTTP_REQUEST> & {
