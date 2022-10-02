@@ -43,7 +43,7 @@ describe('simple get endpoint', () => {
   afterEach(async () => {
     const res = await context.verify();
     if (res.length !== 0) {
-      throw new Error(JSON.stringify(res));
+      throw new Error(res.join('\n').toString());
     }
   });
 });

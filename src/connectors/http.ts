@@ -8,6 +8,7 @@ import {
   SEND_HTTP_REQUEST,
 } from 'entities/nodes/interactions/types';
 import type { MatchContext } from 'entities/context/types';
+import { addLocation } from 'entities/context';
 
 export const setupHttp = (
   {
@@ -21,6 +22,7 @@ export const setupHttp = (
       message:
         'The server was never called. Please confirm that you are calling the mock server',
       expected: 'The server to be called',
+      location: context['case:context:location'],
       actual: 'The server never recieved any calls',
     },
   ];
@@ -29,10 +31,22 @@ export const setupHttp = (
     const app = express();
     app.all('*', async (req, res) => {
       matchResults = [
-        ...(await matchCore(expectedRequest.method, req.method, context)),
-        ...(await matchCore(expectedRequest.path, req.path, context)),
+        ...(await matchCore(
+          expectedRequest.method,
+          req.method,
+          addLocation('method', context)
+        )),
+        ...(await matchCore(
+          expectedRequest.path,
+          req.path,
+          addLocation('path', context)
+        )),
         ...(expectedRequest.body !== undefined
-          ? await matchCore(expectedRequest.body, req.body, context)
+          ? await matchCore(
+              expectedRequest.body,
+              req.body,
+              addLocation('request.body', context)
+            )
           : []),
       ];
       res.status(expectedResponse.status).send(expectedResponse.body);
@@ -56,6 +70,7 @@ export const setupHttp = (
                         'The server was not running when it was verified',
                       expected: 'The server to be running',
                       actual: err.message,
+                      location: context['case:context:location'],
                     },
                   ]
                 : []

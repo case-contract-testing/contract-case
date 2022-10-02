@@ -11,10 +11,15 @@ export const StringMatcher = (
 ): Array<MatchingError> => [
   ...errorWhen(
     matchContext['case:context:matchBy'] === 'exact',
-    testExactMatch(matcher, actual)
+    testExactMatch(matcher, actual, matchContext)
   ),
   ...errorWhen(
     typeof actual !== 'string',
-    matchingError(matcher, `'${typeof actual}' is not a string`, actual)
+    matchingError(
+      matcher,
+      `'${typeof actual}' is not a string`,
+      actual,
+      matchContext
+    )
   ),
 ];

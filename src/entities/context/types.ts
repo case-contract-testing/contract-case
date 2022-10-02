@@ -17,6 +17,7 @@ export interface MatchContext {
   ) => Promise<MatchResult>;
   'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
   'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
+  'case:context:location': Array<string>;
 }
 
 export interface MatchContextByType {

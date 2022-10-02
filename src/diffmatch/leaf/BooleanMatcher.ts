@@ -14,9 +14,16 @@ export const BooleanMatcher: MatcherExecutor<typeof BOOLEAN_MATCHER_TYPE> = (
   matchContext: MatchContext
 ): Array<MatchingError> => [
   ...(matchContext['case:context:matchBy'] === 'exact'
-    ? testExactMatch(matcher, actual)
+    ? testExactMatch(matcher, actual, matchContext)
     : []),
   ...(typeof actual !== 'boolean'
-    ? [matchingError(matcher, `'${actual}' is not a boolean`, actual)]
+    ? [
+        matchingError(
+          matcher,
+          `'${actual}' is not a boolean`,
+          actual,
+          matchContext
+        ),
+      ]
     : []),
 ];

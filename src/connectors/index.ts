@@ -1,4 +1,4 @@
-import type { SetupFns } from 'core/matching/types';
+import type { SetupFns } from 'core/types';
 import { SEND_HTTP_REQUEST } from 'entities/nodes/interactions/types';
 import { setupHttp } from './http';
 

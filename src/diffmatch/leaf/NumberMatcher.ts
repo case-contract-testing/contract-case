@@ -11,20 +11,30 @@ export const NumberMatcher = (
 ): Array<MatchingError> => [
   ...errorWhen(
     matchContext['case:context:matchBy'] === 'exact',
-    testExactMatch(matcher, actual)
+    testExactMatch(matcher, actual, matchContext)
   ),
   ...errorWhen(
     typeof actual !== 'number',
-    matchingError(matcher, `'${typeof actual}' is not a number`, actual)
+    matchingError(
+      matcher,
+      `'${typeof actual}' is not a number`,
+      actual,
+      matchContext
+    )
   ),
   ...errorWhen(
     matchContext['case:context:serialisableTo'] === 'json' &&
       Number.isNaN(actual),
-    matchingError(matcher, 'NaN is not a valid JSON number', actual)
+    matchingError(
+      matcher,
+      'NaN is not a valid JSON number',
+      actual,
+      matchContext
+    )
   ),
   ...errorWhen(
     matchContext['case:context:serialisableTo'] === 'json' &&
       !Number.isFinite(actual),
-    matchingError(matcher, 'JSON numbers must be finite', actual)
+    matchingError(matcher, 'JSON numbers must be finite', actual, matchContext)
   ),
 ];

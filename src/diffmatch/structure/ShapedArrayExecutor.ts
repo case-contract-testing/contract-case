@@ -7,6 +7,7 @@ import type {
 } from 'entities/nodes/matchers/types';
 import type { MatchResult } from 'entities/types';
 import type { MatcherExecutor } from 'diffmatch/types';
+import { addLocation } from 'entities/context';
 
 export const ShapedArrayExecutor: MatcherExecutor<
   typeof SHAPED_ARRAY_MATCHER_TYPE
@@ -25,7 +26,7 @@ export const ShapedArrayExecutor: MatcherExecutor<
                     matchContext.handleNext(
                       expectedChild,
                       actual[index],
-                      matchContext
+                      addLocation(`[${index}]`, matchContext)
                     )
                   )
                   .flat()
@@ -39,9 +40,17 @@ export const ShapedArrayExecutor: MatcherExecutor<
                 }', but was '${
                   Array.isArray(actual) ? actual.length : 'not an array'
                 }'`,
-                actual
+                actual,
+                matchContext
               ),
             ]),
       ]
-    : [matchingError(matcher, `'${typeof actual}' is not an array`, actual)]),
+    : [
+        matchingError(
+          matcher,
+          `'${typeof actual}' is not an array`,
+          actual,
+          matchContext
+        ),
+      ]),
 ];

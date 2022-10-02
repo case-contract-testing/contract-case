@@ -5,8 +5,9 @@ import type {
   AnyInteractionType,
   CaseInteractionFor,
 } from 'entities/nodes/interactions/types';
+import { addLocation } from 'entities/context';
 
-import type { SetupFns } from './matching/types';
+import type { SetupFns } from './types';
 
 export const setupCore = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
@@ -27,5 +28,5 @@ export const setupCore = <T extends AnyInteractionType>(
     );
   }
 
-  return executor(interaction, context);
+  return executor(interaction, addLocation('http', context));
 };

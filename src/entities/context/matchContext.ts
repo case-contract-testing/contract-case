@@ -13,6 +13,7 @@ const DEFAULT_CONTEXT: MatchContext = {
   handleNext: () => {
     throw new Error('Context unconfigured');
   },
+  'case:context:location': [],
   'case:context:matchBy': 'exact',
   'case:context:serialisableTo': 'json',
 };
@@ -30,6 +31,14 @@ export const foldIntoContext = (
 ): MatchContext => ({
   ...context,
   ...contextProperties(caseNode),
+});
+
+export const addLocation = (
+  location: string,
+  context: MatchContext
+): MatchContext => ({
+  ...context,
+  'case:context:location': context['case:context:location'].concat([location]),
 });
 
 export const applyDefaultContext = (
