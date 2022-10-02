@@ -2,12 +2,12 @@ import type * as http from 'http';
 import express from 'express';
 
 import { matchCore } from 'core/matching';
-import type { MatchResult, Verifiable } from 'core/types';
+import type { MatchResult, Verifiable } from 'entities/types';
 import {
   HttpRequestResponseDescription,
   SEND_HTTP_REQUEST,
-} from 'core/nodes/interactions/types';
-import type { MatchContext } from 'core/context/types';
+} from 'entities/nodes/interactions/types';
+import type { MatchContext } from 'entities/context/types';
 
 export const setupHttp = (
   {

@@ -1,6 +1,6 @@
-import type { AnyLeafMatcher } from 'core/nodes/matchers/types';
-import { errorWhen, matchingError } from 'core/MatchingError';
-import type { MatchingError } from 'core/types';
+import type { AnyLeafMatcher } from 'entities/nodes/matchers/types';
+import { errorWhen, matchingError } from 'entities/results/MatchingError';
+import type { MatchingError } from 'entities/types';
 
 export const testExactMatch = (
   matcher: AnyLeafMatcher,

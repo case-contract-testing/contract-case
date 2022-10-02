@@ -1,4 +1,4 @@
-import type { AnyCaseNodeOrData } from 'core/nodes/matchers/types';
+import type { AnyCaseNodeOrData } from 'entities/nodes/matchers/types';
 import {
   anyBoolean,
   anyNull,
@@ -6,7 +6,7 @@ import {
   anyString,
   exactlyLike,
   shapedLike,
-} from 'dsl/Matchers';
+} from 'boundaries/dsl/Matchers';
 import { checkMatch } from 'core';
 
 const expectErrorContaining = (

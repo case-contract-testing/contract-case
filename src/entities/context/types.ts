@@ -1,8 +1,8 @@
 import type {
   AnyCaseNodeType,
   DataOrCaseNodeFor,
-} from 'core/nodes/matchers/types';
-import type { MatchResult } from 'core/types';
+} from 'entities/nodes/matchers/types';
+import type { MatchResult } from 'entities/types';
 
 export const MATCH_BY_TYPE = 'type' as const;
 export const MATCH_BY_EXACT = 'exact' as const;

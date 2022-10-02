@@ -1,6 +1,6 @@
-import type { MatchContext } from 'core/context/types';
-import type { CoreCascadingMatcher } from 'core/nodes/matchers/types';
-import type { MatchResult } from 'core/types';
+import type { MatchContext } from 'entities/context/types';
+import type { CoreCascadingMatcher } from 'entities/nodes/matchers/types';
+import type { MatchResult } from 'entities/types';
 
 export const ExactCascadingContext = (
   matcher: CoreCascadingMatcher,

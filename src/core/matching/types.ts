@@ -1,6 +1,9 @@
-import type { MatchContext } from 'core/context/types';
-import type { AnyCaseNodeType, CaseNodeFor } from 'core/nodes/matchers/types';
-import type { MatchResult } from 'core/types';
+import type { MatchContext } from 'entities/context/types';
+import type {
+  AnyCaseNodeType,
+  CaseNodeFor,
+} from 'entities/nodes/matchers/types';
+import type { MatchResult } from 'entities/types';
 
 export type MatcherExecutor<T extends AnyCaseNodeType> = (
   matcher: CaseNodeFor<T>,

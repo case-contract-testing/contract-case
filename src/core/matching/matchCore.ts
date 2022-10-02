@@ -1,9 +1,9 @@
 import type { MatcherExecutor } from 'core/matching/types';
-import type { MatchContext } from 'core/context/types';
-import { CaseCoreError } from 'core/CaseCoreError';
-import { foldIntoContext } from 'core/context';
-import { inferMatcher } from 'core/inferMatcher';
-import type { MatchResult } from 'core/types';
+import type { MatchContext } from 'entities/context/types';
+import { CaseCoreError } from 'entities/CaseCoreError';
+import { foldIntoContext } from 'entities/context';
+import { inferMatcher } from 'core/matching/inferMatcher';
+import type { MatchResult } from 'entities/types';
 import {
   AnyCaseNodeType,
   CaseNodeFor,
@@ -15,7 +15,7 @@ import {
   SHAPED_ARRAY_MATCHER_TYPE,
   SHAPED_OBJECT_MATCHER_TYPE,
   STRING_MATCHER_TYPE,
-} from 'core/nodes/matchers/types';
+} from 'entities/nodes/matchers/types';
 import { ExactCascadingContext } from './contextShift/CascadingContext';
 import { BooleanMatcher } from './leaf/BooleanMatcher';
 import { NullMatcher } from './leaf/NullMatcher';

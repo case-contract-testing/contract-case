@@ -1,13 +1,13 @@
-import { matchingError } from 'core/MatchingError';
+import { matchingError } from 'entities/results/MatchingError';
 
 import type {
   AnyCaseNodeOrData,
   CoreShapedObjectMatcher,
   SHAPED_OBJECT_MATCHER_TYPE,
-} from 'core/nodes/matchers/types';
-import type { MatchResult } from 'core/types';
+} from 'entities/nodes/matchers/types';
+import type { MatchResult } from 'entities/types';
 import type { MatcherExecutor } from 'core/matching/types';
-import type { MatchContext } from 'core/context/types';
+import type { MatchContext } from 'entities/context/types';
 
 export const ShapedObjectExecutor: MatcherExecutor<
   typeof SHAPED_OBJECT_MATCHER_TYPE

@@ -1,10 +1,10 @@
-import type { MatchContextByType } from 'core/context/types';
+import type { MatchContextByType } from 'entities/context/types';
 import type {
   CoreNumberMatcher,
   CoreBooleanMatcher,
   CoreNullMatcher,
   CoreStringMatcher,
-} from 'core/nodes/matchers/types';
+} from 'entities/nodes/matchers/types';
 
 export type NumberMatcher = CoreNumberMatcher & MatchContextByType;
 export type StringMatcher = CoreStringMatcher & MatchContextByType;

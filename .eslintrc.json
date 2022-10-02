@@ -46,6 +46,30 @@
         "jest/no-identical-title": "error",
         "jest/prefer-to-have-length": "warn"
       }
+    },
+    {
+      "files": ["**/core/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          { "patterns": ["**/boundaries/*", "**/../*"] }
+        ]
+      }
+    },
+    {
+      "files": ["**/entities/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          { "patterns": ["**/boundaries/*", "**/core/*", "**/../*"] }
+        ]
+      }
+    },
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
     }
   ]
 }

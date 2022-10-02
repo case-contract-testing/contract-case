@@ -1,15 +1,15 @@
-import * as leafMatchers from 'core/nodes/matchers/leaf';
+import * as leafMatchers from 'entities/nodes/matchers/leaf';
 import {
   coreShapedArrayMatcher,
   coreShapedObjectMatcher,
-} from './nodes/matchers/structure';
+} from 'entities/nodes/matchers/structure';
 import {
   type AnyCaseNodeType,
   type CaseNodeFor,
   type AnyLeafOrStructure,
   isCaseNode,
   AnyCaseNode,
-} from './nodes/matchers/types';
+} from 'entities/nodes/matchers/types';
 
 export const inferMatcher = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure

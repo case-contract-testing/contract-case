@@ -1,13 +1,12 @@
-import type { MatchContext } from 'core/context/types';
-import { CaseCoreError } from 'core/CaseCoreError';
+import type { MatchContext } from 'entities/context/types';
+import { CaseCoreError } from 'entities/CaseCoreError';
 import {
   type AnyInteractionType,
   SEND_HTTP_REQUEST,
   type CaseInteractionFor,
-} from 'core/nodes/interactions/types';
-import type { Verifiable } from 'core/types';
-
-import type { InteractionSetupFn } from './types';
+} from 'entities/nodes/interactions/types';
+import type { Verifiable } from 'entities/types';
+import type { InteractionSetupFn } from 'entities/setup/types';
 import { setupHttp } from './connectors/http';
 
 const InteractionSetup: { [T in AnyInteractionType]: InteractionSetupFn<T> } = {

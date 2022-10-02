@@ -6,7 +6,7 @@ import {
   CoreCascadingMatcher,
   CASCADING_CONTEXT_MATCHER_TYPE,
   AnyCaseNodeOrData,
-} from 'core/nodes/matchers/types';
+} from 'entities/nodes/matchers/types';
 import type {
   BooleanMatcher,
   NullMatcher,

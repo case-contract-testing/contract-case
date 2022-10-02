@@ -1,4 +1,4 @@
-import type { MatchContext } from 'core/context/types';
+import type { MatchContext } from 'entities/context/types';
 
 export const NUMBER_MATCHER_TYPE = 'MatchNumber' as const;
 export const STRING_MATCHER_TYPE = 'MatchString' as const;

@@ -1,12 +1,12 @@
 import {
   AnyInteraction,
   isCaseInteraction,
-} from 'core/nodes/interactions/types';
+} from 'entities/nodes/interactions/types';
 import {
   isCaseNode,
   AnyCaseNode,
   AnyCaseNodeOrData,
-} from 'core/nodes/matchers/types';
+} from 'entities/nodes/matchers/types';
 import type { MatchContext } from './types';
 
 const DEFAULT_CONTEXT: MatchContext = {

@@ -1,17 +1,18 @@
-import { applyDefaultContext } from './context';
-import { matchCore } from './matching';
+import { applyDefaultContext } from 'entities/context';
 import type {
   AnyInteractionType,
   CaseInteractionFor,
-} from './nodes/interactions/types';
+} from 'entities/nodes/interactions/types';
 import type {
   AnyCaseNodeType,
   DataOrCaseNodeFor,
-} from './nodes/matchers/types';
-import { setupCore } from './setup';
-import type { MatchResult, Verifiable } from './types';
+} from 'entities/nodes/matchers/types';
+import type { MatchResult, Verifiable } from 'entities/types';
 
-export * from './CaseCoreError';
+import { matchCore } from './matching';
+import { setupCore } from './setup';
+
+export * from 'entities/CaseCoreError';
 
 export const checkMatch = <T extends AnyCaseNodeType>(
   matcherOrData: DataOrCaseNodeFor<T>,

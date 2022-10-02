@@ -1,8 +1,8 @@
-import type { HttpTestContext } from 'core/context/types';
+import type { HttpTestContext } from 'entities/context/types';
 import type {
   AnyCaseNodeType,
   DataOrCaseNodeFor,
-} from 'core/nodes/matchers/types';
+} from 'entities/nodes/matchers/types';
 
 export const prepareCase = <T extends AnyCaseNodeType>(
   testDescription: DataOrCaseNodeFor<T>

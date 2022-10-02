@@ -1,7 +1,7 @@
-import type { MatchContext } from 'core/context/types';
-import type { CoreNumberMatcher } from 'core/nodes/matchers/types';
-import { errorWhen, matchingError } from 'core/MatchingError';
-import type { MatchingError } from 'core/types';
+import type { MatchContext } from 'entities/context/types';
+import type { CoreNumberMatcher } from 'entities/nodes/matchers/types';
+import { errorWhen, matchingError } from 'entities/results/MatchingError';
+import type { MatchingError } from 'entities/types';
 import { testExactMatch } from './testExactMatch';
 
 export const NumberMatcher = (

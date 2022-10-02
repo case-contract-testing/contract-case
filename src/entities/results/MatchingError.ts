@@ -1,4 +1,4 @@
-import type { CaseMatcherWithExample } from './nodes/matchers/types';
+import type { CaseMatcherWithExample } from 'entities/nodes/matchers/types';
 import type { MatchingError } from './types';
 
 export const errorWhen = (
