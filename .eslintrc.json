@@ -66,6 +66,22 @@
       }
     },
     {
+      "files": ["**/diffmatch/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              "**/core/*",
+              "**/connectors/*",
+              "**/boundaries/*",
+              "**/../*"
+            ]
+          }
+        ]
+      }
+    },
+    {
       "files": ["**/entities/**/*.ts"],
       "rules": {
         "no-restricted-imports": [

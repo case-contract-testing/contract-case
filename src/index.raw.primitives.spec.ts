@@ -2,7 +2,7 @@ import type {
   AnyLeafMatcher,
   AnyLeafOrStructure,
 } from 'entities/nodes/matchers/types';
-import { checkMatch } from 'core';
+import { checkMatch } from 'core/checkMatch';
 
 const expectErrorContaining = (
   matcher: AnyLeafMatcher | AnyLeafOrStructure,

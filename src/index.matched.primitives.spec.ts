@@ -7,7 +7,7 @@ import {
   exactlyLike,
   shapedLike,
 } from 'boundaries/dsl/Matchers';
-import { checkMatch } from 'core';
+import { checkMatch } from 'core/checkMatch';
 
 const expectErrorContaining = (
   matcher: AnyCaseNodeOrData,

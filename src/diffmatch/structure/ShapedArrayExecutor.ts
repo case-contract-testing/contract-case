@@ -6,7 +6,7 @@ import type {
   SHAPED_ARRAY_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
 import type { MatchResult } from 'entities/types';
-import type { MatcherExecutor } from 'core/matching/types';
+import type { MatcherExecutor } from 'diffmatch/types';
 
 export const ShapedArrayExecutor: MatcherExecutor<
   typeof SHAPED_ARRAY_MATCHER_TYPE

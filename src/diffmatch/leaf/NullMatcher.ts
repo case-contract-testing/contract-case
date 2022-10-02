@@ -3,7 +3,7 @@ import type {
   NULL_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
 import { errorWhen, matchingError } from 'entities/results/MatchingError';
-import type { MatcherExecutor } from 'core/matching/types';
+import type { MatcherExecutor } from 'diffmatch/types';
 import type { MatchingError } from 'entities/types';
 
 export const NullMatcher: MatcherExecutor<typeof NULL_MATCHER_TYPE> = (

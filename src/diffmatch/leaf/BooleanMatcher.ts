@@ -4,7 +4,7 @@ import type {
 } from 'entities/nodes/matchers/types';
 import { matchingError } from 'entities/results/MatchingError';
 import type { MatchingError } from 'entities/types';
-import type { MatcherExecutor } from 'core/matching/types';
+import type { MatcherExecutor } from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
 import { testExactMatch } from './testExactMatch';
 

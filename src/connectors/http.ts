@@ -1,7 +1,7 @@
 import type * as http from 'http';
 import express from 'express';
 
-import { matchCore } from 'core/matching';
+import { matchCore } from 'diffmatch';
 import type { MatchResult, Verifiable } from 'entities/types';
 import {
   HttpRequestResponseDescription,

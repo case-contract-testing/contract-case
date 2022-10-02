@@ -6,7 +6,7 @@ import type {
   SHAPED_OBJECT_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
 import type { MatchResult } from 'entities/types';
-import type { MatcherExecutor } from 'core/matching/types';
+import type { MatcherExecutor } from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
 
 export const ShapedObjectExecutor: MatcherExecutor<

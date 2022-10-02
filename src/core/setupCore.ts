@@ -6,7 +6,7 @@ import type {
   CaseInteractionFor,
 } from 'entities/nodes/interactions/types';
 
-import type { SetupFns } from './types';
+import type { SetupFns } from './matching/types';
 
 export const setupCore = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,

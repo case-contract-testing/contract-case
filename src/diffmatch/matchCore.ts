@@ -1,8 +1,8 @@
-import type { MatcherExecutor } from 'core/matching/types';
+import type { MatcherExecutor } from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
 import { CaseCoreError } from 'entities/CaseCoreError';
 import { foldIntoContext } from 'entities/context';
-import { inferMatcher } from 'core/matching/inferMatcher';
+import { inferMatcher } from 'diffmatch/inferMatcher';
 import type { MatchResult } from 'entities/types';
 import {
   AnyCaseNodeType,

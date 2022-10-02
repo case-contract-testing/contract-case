@@ -1,1 +1,0 @@
-export { setupCore } from './setupCore';

@@ -1,6 +1,6 @@
 import { SetupFunctions } from 'connectors';
-import { matchCore } from 'core/matching';
-import { setupCore } from 'core/setup';
+import { matchCore } from 'diffmatch';
+import { setupCore } from 'core';
 import { applyDefaultContext } from 'entities/context';
 import type {
   AnyInteractionType,
