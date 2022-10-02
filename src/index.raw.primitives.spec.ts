@@ -1,4 +1,7 @@
-import type { AnyLeafMatcher, AnyLeafOrStructure } from 'core/matchers/types';
+import type {
+  AnyLeafMatcher,
+  AnyLeafOrStructure,
+} from 'core/nodes/matchers/types';
 import { checkMatch } from 'core';
 
 const expectErrorContaining = (

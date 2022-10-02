@@ -1,7 +1,7 @@
 import type { Verifiable } from 'core/types';
 import axios from 'axios';
-import { httpInteraction } from 'core/interactions/http';
-import { setupCore } from 'core/setupCore';
+import { httpInteraction } from 'core/nodes/interactions/http';
+import { setupCore } from 'core/InteractionExecutors';
 
 /*
 

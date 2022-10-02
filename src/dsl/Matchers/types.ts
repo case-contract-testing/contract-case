@@ -4,7 +4,7 @@ import type {
   CoreBooleanMatcher,
   CoreNullMatcher,
   CoreStringMatcher,
-} from 'core/matchers/types';
+} from 'core/nodes/matchers/types';
 
 export type NumberMatcher = CoreNumberMatcher & MatchContextByType;
 export type StringMatcher = CoreStringMatcher & MatchContextByType;

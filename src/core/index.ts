@@ -1,6 +1,9 @@
 import { applyDefaultContext } from './context';
 import { matchCore } from './MatcherExecutors/matchCore';
-import type { AnyCaseNodeType, DataOrCaseNodeFor } from './matchers/types';
+import type {
+  AnyCaseNodeType,
+  DataOrCaseNodeFor,
+} from './nodes/matchers/types';
 import type { MatchResult } from './types';
 
 export * from './CaseCoreError';

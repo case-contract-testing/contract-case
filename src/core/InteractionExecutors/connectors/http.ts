@@ -6,7 +6,7 @@ import type { MatchResult, Verifiable } from 'core/types';
 import {
   HttpRequestResponseDescription,
   SEND_HTTP_REQUEST,
-} from 'core/interactions/types';
+} from 'core/nodes/interactions/types';
 
 export const setupHttp = ({
   request: expectedRequest,

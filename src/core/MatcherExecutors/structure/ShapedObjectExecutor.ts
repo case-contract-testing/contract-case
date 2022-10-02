@@ -4,7 +4,7 @@ import type {
   AnyCaseNodeOrData,
   CoreShapedObjectMatcher,
   SHAPED_OBJECT_MATCHER_TYPE,
-} from 'core/matchers/types';
+} from 'core/nodes/matchers/types';
 import type { MatchResult } from 'core/types';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 import type { MatchContext } from 'core/context/types';

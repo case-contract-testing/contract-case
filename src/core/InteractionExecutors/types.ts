@@ -3,7 +3,7 @@ import type {
   CaseInteractionFor,
   HasTypeForInteraction,
   SEND_HTTP_REQUEST,
-} from 'core/interactions/types';
+} from 'core/nodes/interactions/types';
 import type { Verifiable } from 'core/types';
 
 export type InteractionSetupFn<T extends AnyInteractionType> = (

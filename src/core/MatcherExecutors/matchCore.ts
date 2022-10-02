@@ -9,7 +9,7 @@ import type {
   AnyCaseNodeType,
   CaseNodeFor,
   AnyLeafOrStructure,
-} from 'core/matchers/types';
+} from 'core/nodes/matchers/types';
 
 export const matchCore = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,

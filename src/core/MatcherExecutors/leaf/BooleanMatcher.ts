@@ -1,7 +1,7 @@
 import type {
   CoreBooleanMatcher,
   BOOLEAN_MATCHER_TYPE,
-} from 'core/matchers/types';
+} from 'core/nodes/matchers/types';
 import { matchingError } from 'core/MatchingError';
 import type { MatchingError } from 'core/types';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';

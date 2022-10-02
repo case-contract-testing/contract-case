@@ -1,4 +1,7 @@
-import type { CoreNullMatcher, NULL_MATCHER_TYPE } from 'core/matchers/types';
+import type {
+  CoreNullMatcher,
+  NULL_MATCHER_TYPE,
+} from 'core/nodes/matchers/types';
 import { errorWhen, matchingError } from 'core/MatchingError';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 import type { MatchingError } from 'core/types';

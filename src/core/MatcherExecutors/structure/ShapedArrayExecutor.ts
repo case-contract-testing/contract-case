@@ -4,7 +4,7 @@ import type { MatchContext } from 'core/context/types';
 import type {
   CoreShapedArrayMatcher,
   SHAPED_ARRAY_MATCHER_TYPE,
-} from 'core/matchers/types';
+} from 'core/nodes/matchers/types';
 import type { MatchResult } from 'core/types';
 import type { MatcherExecutor } from 'core/MatcherExecutors/types';
 

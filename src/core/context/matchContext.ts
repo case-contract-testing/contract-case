@@ -2,7 +2,7 @@ import {
   isCaseNode,
   AnyCaseNode,
   AnyCaseNodeOrData,
-} from 'core/matchers/types';
+} from 'core/nodes/matchers/types';
 import type { MatchContext } from './types';
 
 const DEFAULT_CONTEXT: MatchContext = {

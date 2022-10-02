@@ -1,5 +1,5 @@
 import type { MatchContext } from 'core/context/types';
-import type { CoreNumberMatcher } from 'core/matchers/types';
+import type { CoreNumberMatcher } from 'core/nodes/matchers/types';
 import { errorWhen, matchingError } from 'core/MatchingError';
 import type { MatchingError } from 'core/types';
 import { testExactMatch } from './testExactMatch';

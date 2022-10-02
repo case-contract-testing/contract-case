@@ -1,5 +1,5 @@
 import type { MatchContext } from 'core/context/types';
-import type { CoreCascadingMatcher } from 'core/matchers/types';
+import type { CoreCascadingMatcher } from 'core/nodes/matchers/types';
 import type { MatchResult } from 'core/types';
 
 export const ExactCascadingContext = (

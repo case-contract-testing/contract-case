@@ -1,4 +1,4 @@
-import type { AnyLeafMatcher } from 'core/matchers/types';
+import type { AnyLeafMatcher } from 'core/nodes/matchers/types';
 import { errorWhen, matchingError } from 'core/MatchingError';
 import type { MatchingError } from 'core/types';
 

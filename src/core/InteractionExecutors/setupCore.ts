@@ -1,12 +1,12 @@
-import type { Verifiable } from './types';
-import { CaseCoreError } from './CaseCoreError';
+import type { Verifiable } from '../types';
+import { CaseCoreError } from '../CaseCoreError';
 import {
   AnyInteractionType,
   CaseInteractionFor,
   SEND_HTTP_REQUEST,
-} from './interactions/types';
-import type { InteractionSetupFn } from './InteractionExecutors/types';
-import { setupHttp } from './InteractionExecutors/http';
+} from '../nodes/interactions/types';
+import type { InteractionSetupFn } from './types';
+import { setupHttp } from './connectors/http';
 
 const InteractionSetup: { [T in AnyInteractionType]: InteractionSetupFn<T> } = {
   [SEND_HTTP_REQUEST]: setupHttp,

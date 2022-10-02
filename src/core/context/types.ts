@@ -1,4 +1,7 @@
-import type { AnyCaseNodeType, DataOrCaseNodeFor } from 'core/matchers/types';
+import type {
+  AnyCaseNodeType,
+  DataOrCaseNodeFor,
+} from 'core/nodes/matchers/types';
 import type { MatchResult } from 'core/types';
 
 export const MATCH_BY_TYPE = 'type' as const;

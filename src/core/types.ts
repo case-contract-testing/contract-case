@@ -1,5 +1,5 @@
 import type { SetupInfoFor } from './InteractionExecutors/types';
-import type { AnyInteractionType } from './interactions/types';
+import type { AnyInteractionType } from './nodes/interactions/types';
 
 export interface MatchingError {
   message: string;

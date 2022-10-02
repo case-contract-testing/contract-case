@@ -1,4 +1,4 @@
-import type { AnyCaseNodeOrData } from 'core/matchers/types';
+import type { AnyCaseNodeOrData } from 'core/nodes/matchers/types';
 
 export type AnyInteractionType = typeof SEND_HTTP_REQUEST;
 

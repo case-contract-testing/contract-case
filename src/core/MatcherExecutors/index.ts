@@ -7,7 +7,7 @@ import {
   NULL_MATCHER_TYPE,
   SHAPED_ARRAY_MATCHER_TYPE,
   SHAPED_OBJECT_MATCHER_TYPE,
-} from 'core/matchers/types';
+} from 'core/nodes/matchers/types';
 
 import { BooleanMatcher } from './leaf/BooleanMatcher';
 import { NullMatcher } from './leaf/NullMatcher';
