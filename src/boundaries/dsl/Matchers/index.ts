@@ -1,6 +1,8 @@
 import {
-  NUMBER_MATCHER_TYPE,
-  STRING_MATCHER_TYPE,
+  coreNumberMatcher,
+  coreStringMatcher,
+} from 'entities/nodes/matchers/leaf';
+import {
   BOOLEAN_MATCHER_TYPE,
   NULL_MATCHER_TYPE,
   CoreCascadingMatcher,
@@ -22,8 +24,7 @@ import type {
  * @param example An example number
  */
 export const anyNumber = (example = 1.1): NumberMatcher => ({
-  'case:matcher:type': NUMBER_MATCHER_TYPE,
-  'case:matcher:example': example,
+  ...coreNumberMatcher(example),
   'case:context:matchBy': 'type',
 });
 
@@ -33,8 +34,7 @@ export const anyNumber = (example = 1.1): NumberMatcher => ({
  * @param example An example string
  */
 export const anyString = (example = 'someString'): StringMatcher => ({
-  'case:matcher:type': STRING_MATCHER_TYPE,
-  'case:matcher:example': example,
+  ...coreStringMatcher(example),
   'case:context:matchBy': 'type',
 });
 

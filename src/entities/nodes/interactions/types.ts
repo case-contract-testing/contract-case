@@ -1,4 +1,7 @@
-import type { AnyCaseNodeOrData } from 'entities/nodes/matchers/types';
+import type {
+  AnyCaseNodeOrData,
+  AnyStringMatcher,
+} from 'entities/nodes/matchers/types';
 
 export type AnyInteractionType = typeof SEND_HTTP_REQUEST;
 
@@ -28,8 +31,8 @@ export interface HttpInteractionResponse {
 }
 
 export interface HttpInteractionRequest {
-  path: AnyCaseNodeOrData;
-  method: AnyCaseNodeOrData;
+  path: AnyStringMatcher | string;
+  method: AnyStringMatcher | string;
   body?: AnyCaseNodeOrData;
 }
 

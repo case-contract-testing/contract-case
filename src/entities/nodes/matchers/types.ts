@@ -63,12 +63,18 @@ export type DataOrCaseNodeFor<T extends AnyCaseNodeType> =
   | CaseNodeFor<T>
   | AnyLeafOrStructure;
 
+type ResolvesTo<T extends string> = {
+  'case:matcher:resolvesTo': T;
+};
+
+export type AnyStringMatcher = Extract<AnyCaseNode, ResolvesTo<'string'>>;
+
 export type CaseNodeFor<T extends AnyCaseNodeType> = Extract<
   AnyCaseNode,
   IsCaseNodeForType<T>
 >;
 
-export interface CaseMatcherWithExample {
+interface CaseMatcherWithExample {
   'case:matcher:type': AnyCaseNodeType;
   'case:matcher:example': unknown;
 }
@@ -76,11 +82,13 @@ export interface CaseMatcherWithExample {
 export interface CoreNumberMatcher extends CaseMatcherWithExample {
   'case:matcher:type': typeof NUMBER_MATCHER_TYPE;
   'case:matcher:example': number;
+  'case:matcher:resolvesTo': 'number';
 }
 
 export interface CoreStringMatcher extends CaseMatcherWithExample {
   'case:matcher:type': typeof STRING_MATCHER_TYPE;
   'case:matcher:example': string;
+  'case:matcher:resolvesTo': 'string';
 }
 
 export interface CoreBooleanMatcher extends CaseMatcherWithExample {

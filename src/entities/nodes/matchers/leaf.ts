@@ -18,11 +18,13 @@ import {
 export const coreNumberMatcher = (example: number): CoreNumberMatcher => ({
   'case:matcher:type': NUMBER_MATCHER_TYPE,
   'case:matcher:example': example,
+  'case:matcher:resolvesTo': 'number',
 });
 
 export const coreStringMatcher = (example: string): CoreStringMatcher => ({
   'case:matcher:type': STRING_MATCHER_TYPE,
   'case:matcher:example': example,
+  'case:matcher:resolvesTo': 'string',
 });
 
 export const coreBooleanMatcher = (example: boolean): CoreBooleanMatcher => ({

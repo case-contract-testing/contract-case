@@ -17,7 +17,7 @@ Current tasks
 
 - [ ] Warnings
 - [ ] And matcher
-- [ ] Path reporting in errors
+- [ ] Logging
 - [ ] Print objects properly
 - [ ] Matcher acceptance
 - [ ] Matcher structure / use verification
