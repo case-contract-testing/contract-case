@@ -1,2 +1,2 @@
-export * from './checkMatch';
+export * from './traversals';
 export * from './setupCore';

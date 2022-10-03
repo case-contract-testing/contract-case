@@ -2,7 +2,7 @@ import type {
   AnyLeafMatcher,
   AnyLeafOrStructure,
 } from 'entities/nodes/matchers/types';
-import { checkMatch } from 'core/checkMatch';
+import { coreCheckMatch } from 'core/traversals';
 
 const expectErrorContaining = (
   matcher: AnyLeafMatcher | AnyLeafOrStructure,
@@ -11,7 +11,7 @@ const expectErrorContaining = (
 ) => {
   describe(`when given ${example}`, () => {
     it(`returns an error containing '${expectedContent}'`, async () => {
-      const matchResult = await checkMatch(matcher, example);
+      const matchResult = await coreCheckMatch(matcher, example);
       expect(matchResult).not.toHaveLength(0);
       expect(
         matchResult.map((m) => m.message).reduce((acc, m) => `${acc} ${m}`)
@@ -25,7 +25,7 @@ describe('exact matches', () => {
     describe('number', () => {
       const matcher = 1;
       it('accepts the exact example', async () => {
-        expect(await checkMatch(matcher, 1)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, 1)).toStrictEqual([]);
       });
       expectErrorContaining(matcher, 2, 'not exactly equal ');
       expectErrorContaining(matcher, NaN, 'not exactly equal');
@@ -38,7 +38,9 @@ describe('exact matches', () => {
     describe('string', () => {
       const matcher = 'example string';
       it('accepts exactly the string', async () => {
-        expect(await checkMatch(matcher, 'example string')).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, 'example string')).toStrictEqual(
+          []
+        );
       });
 
       expectErrorContaining(matcher, '1', 'not exactly equal');
@@ -53,7 +55,7 @@ describe('exact matches', () => {
     describe('boolean', () => {
       const matcher = true;
       it('accepts exactly true', async () => {
-        expect(await checkMatch(matcher, true)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, true)).toStrictEqual([]);
       });
 
       expectErrorContaining(matcher, false, 'not exactly equal');
@@ -69,7 +71,7 @@ describe('exact matches', () => {
     describe('null', () => {
       const matcher = null;
       it('accepts exactly null', async () => {
-        expect(await checkMatch(matcher, null)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, null)).toStrictEqual([]);
       });
 
       expectErrorContaining(matcher, true, 'not null');
@@ -85,7 +87,7 @@ describe('exact matches', () => {
   });
   describe('array matchers', () => {
     it('accepts an empty array', async () => {
-      expect(await checkMatch([], [])).toStrictEqual([]);
+      expect(await coreCheckMatch([], [])).toStrictEqual([]);
     });
 
     describe.each<any>([
@@ -105,7 +107,7 @@ describe('exact matches', () => {
 
     it('accepts an array of exact types', async () => {
       expect(
-        await checkMatch(
+        await coreCheckMatch(
           [1, 'string', null, true, {}, [], { a: '1' }, [1]],
           [1, 'string', null, true, {}, [], { a: '1' }, [1]]
         )
@@ -177,7 +179,7 @@ describe('exact matches', () => {
 
   describe('object matchers', () => {
     it('accepts an empty object', async () => {
-      expect(await checkMatch({}, {})).toStrictEqual([]);
+      expect(await coreCheckMatch({}, {})).toStrictEqual([]);
     });
 
     describe.each<any>([
@@ -196,7 +198,7 @@ describe('exact matches', () => {
     });
     it('accepts an object of exact types', async () => {
       expect(
-        await checkMatch(
+        await coreCheckMatch(
           { a: 1, b: 'string', c: null, d: true },
           { a: 1, b: 'string', c: null, d: true }
         )
@@ -205,7 +207,7 @@ describe('exact matches', () => {
 
     it('accepts an object that has more keys than expected', async () => {
       expect(
-        await checkMatch(
+        await coreCheckMatch(
           { a: 1, b: 'string', c: null, d: true },
           { a: 1, b: 'string', c: null, d: true, f: 'extra', g: 0, h: 1 }
         )
@@ -265,7 +267,7 @@ describe('exact matches', () => {
       };
 
       it('accepts an equal object', async () => {
-        expect(await checkMatch(deepObject, deepObject)).toStrictEqual([]);
+        expect(await coreCheckMatch(deepObject, deepObject)).toStrictEqual([]);
       });
 
       expectErrorContaining(
