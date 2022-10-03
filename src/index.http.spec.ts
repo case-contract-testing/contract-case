@@ -114,7 +114,12 @@ describe('No body server response', () => {
   afterEach(async () => {
     const res = await context.verify();
     if (res.length !== 0) {
-      throw new Error(res.join('\n').toString());
+      throw new Error(
+        res
+          .map((m) => m.toString())
+          .join('\n')
+          .toString()
+      );
     }
   });
 });
