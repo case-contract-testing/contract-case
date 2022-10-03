@@ -98,12 +98,12 @@ export interface CoreNullMatcher extends CaseMatcherWithExample {
   'case:matcher:example': null;
 }
 
-export interface CoreShapedArrayMatcher extends CaseMatcherWithExample {
+export interface CoreShapedArrayMatcher {
   'case:matcher:type': typeof SHAPED_ARRAY_MATCHER_TYPE;
-  'case:matcher:example': Array<AnyCaseNodeOrData>;
+  'case:matcher:children': Array<AnyCaseNodeOrData>;
 }
 
-export interface CoreShapedObjectMatcher extends CaseMatcherWithExample {
+export interface CoreShapedObjectMatcher {
   'case:matcher:type': typeof SHAPED_OBJECT_MATCHER_TYPE;
-  'case:matcher:example': JsonOrMatcherMap;
+  'case:matcher:children': JsonOrMatcherMap;
 }

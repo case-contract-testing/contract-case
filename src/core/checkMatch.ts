@@ -5,7 +5,7 @@ import type {
 } from 'entities/nodes/matchers/types';
 import type { MatchResult } from 'entities/types';
 
-import { matchCore } from 'diffmatch';
+import { traversals } from 'diffmatch';
 
 export * from 'entities/CaseCoreError';
 
@@ -13,8 +13,10 @@ export const checkMatch = <T extends AnyCaseNodeType>(
   matcherOrData: DataOrCaseNodeFor<T>,
   actual: unknown
 ): Promise<MatchResult> =>
-  matchCore(
-    matcherOrData,
-    applyDefaultContext(matcherOrData, matchCore),
-    actual
+  Promise.resolve(
+    traversals.descendAndCheck(
+      matcherOrData,
+      applyDefaultContext(matcherOrData, traversals),
+      actual
+    )
   );

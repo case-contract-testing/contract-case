@@ -52,4 +52,5 @@ const check = (
 
 export const NumberMatcher: MatcherExecutor<typeof NUMBER_MATCHER_TYPE> = {
   check,
+  strip: (matcher: CoreNumberMatcher) => matcher['case:matcher:example'],
 };

@@ -3,7 +3,6 @@ import type { MatchContext } from 'entities/context/types';
 import { CaseCoreError } from 'entities/CaseCoreError';
 import { foldIntoContext } from 'entities/context';
 import { inferMatcher } from 'diffmatch/inferMatcher';
-import type { MatchResult } from 'entities/types';
 import {
   AnyCaseNodeType,
   CaseNodeFor,
@@ -34,11 +33,10 @@ const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } = {
   [SHAPED_OBJECT_MATCHER_TYPE]: ShapedObjectExecutor,
 };
 
-export const matchCore = <T extends AnyCaseNodeType>(
+const getExecutor = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
-  parentMatchContext: MatchContext,
-  actual: unknown
-): Promise<MatchResult> => {
+  parentMatchContext: MatchContext
+) => {
   const matcher = inferMatcher<T>(matcherOrData) as CaseNodeFor<T>;
   const matchContext = foldIntoContext(matcher, parentMatchContext);
 
@@ -49,6 +47,26 @@ export const matchCore = <T extends AnyCaseNodeType>(
       `Missing executor for matcher type '${matcher['case:matcher:type']}'`
     );
   }
+  return {
+    check: (actual: unknown) => executor.check(matcher, matchContext, actual),
+    strip: () => executor.strip(matcher, matchContext),
+  };
+};
 
-  return Promise.resolve(executor.check(matcher, matchContext, actual));
+const descendAndCheck = <T extends AnyCaseNodeType>(
+  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
+  parentMatchContext: MatchContext,
+  actual: unknown
+): ReturnType<MatcherExecutor<AnyCaseNodeType>['check']> =>
+  getExecutor(matcherOrData, parentMatchContext).check(actual);
+
+const descendAndStrip = <T extends AnyCaseNodeType>(
+  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
+  parentMatchContext: MatchContext
+): ReturnType<MatcherExecutor<AnyCaseNodeType>['strip']> =>
+  getExecutor(matcherOrData, parentMatchContext).strip();
+
+export const traversals = {
+  descendAndCheck,
+  descendAndStrip,
 };

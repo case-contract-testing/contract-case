@@ -1,7 +1,7 @@
 import type * as http from 'http';
 import express from 'express';
 
-import { matchCore } from 'diffmatch';
+import { traversals } from 'diffmatch';
 import type { MatchResult, Verifiable } from 'entities/types';
 import {
   HttpRequestResponseDescription,
@@ -32,25 +32,36 @@ export const setupHttp = (
     const app = express();
     app.all('*', async (req, res) => {
       matchResults = combineResults(
-        await matchCore(
+        await traversals.descendAndCheck(
           expectedRequest.method,
           addLocation('method', context),
           req.method
         ),
-        await matchCore(
+        await traversals.descendAndCheck(
           expectedRequest.path,
           addLocation('path', context),
           req.path
         ),
         expectedRequest.body !== undefined
-          ? await matchCore(
+          ? await traversals.descendAndCheck(
               expectedRequest.body,
               addLocation('request.body', context),
               req.body
             )
           : makeResults()
       );
-      res.status(expectedResponse.status).send(expectedResponse.body);
+      if (expectedResponse.body) {
+        res
+          .status(expectedResponse.status)
+          .send(
+            traversals.descendAndStrip(
+              expectedResponse.body,
+              addLocation('response.body', context)
+            )
+          );
+      } else {
+        res.status(expectedResponse.status).send();
+      }
     });
 
     server = app.listen(8080);

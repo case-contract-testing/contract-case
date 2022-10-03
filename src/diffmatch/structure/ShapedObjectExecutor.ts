@@ -2,15 +2,43 @@ import { matchingError } from 'entities/results/MatchingError';
 
 import type {
   AnyCaseNodeOrData,
+  AnyData,
   CoreShapedObjectMatcher,
   SHAPED_OBJECT_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
 import type { MatchResult } from 'entities/types';
-import type { CheckMatchFn, MatcherExecutor } from 'diffmatch/types';
+import type {
+  CheckMatchFn,
+  MatcherExecutor,
+  StripMatcherFn,
+} from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
 import { addLocation } from 'entities/context';
 import { combineResults, makeResults } from 'entities/results/MatchResult';
 
+const strip: StripMatcherFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = (
+  matcher: CoreShapedObjectMatcher,
+  matchContext: MatchContext
+): AnyData =>
+  Object.entries<AnyCaseNodeOrData>(matcher['case:matcher:children'])
+    .map(
+      ([expectedKey, expectedValueMatcher]: [
+        string,
+        AnyCaseNodeOrData
+      ]): Record<string, AnyData> => ({
+        [expectedKey]: matchContext.descendAndStrip(
+          expectedValueMatcher,
+          addLocation(expectedKey, matchContext)
+        ),
+      })
+    )
+    .reduce(
+      (acc: Record<string, AnyData>, entry: Record<string, AnyData>) => ({
+        ...acc,
+        ...entry,
+      }),
+      {}
+    );
 const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
   matcher: CoreShapedObjectMatcher,
   matchContext: MatchContext,
@@ -24,17 +52,19 @@ const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
         (
           await Promise.all(
             Object.entries<AnyCaseNodeOrData>(
-              matcher['case:matcher:example']
+              matcher['case:matcher:children']
             ).map(
               ([expectedKey, expectedValueMatcher]: [
                 string,
                 AnyCaseNodeOrData
               ]): Promise<MatchResult> =>
                 expectedKey in actual
-                  ? matchContext.handleNext(
-                      expectedValueMatcher,
-                      addLocation(expectedKey, matchContext),
-                      (actual as { [k: string]: unknown })[expectedKey]
+                  ? Promise.resolve(
+                      matchContext.descendAndCheck(
+                        expectedValueMatcher,
+                        addLocation(expectedKey, matchContext),
+                        (actual as { [k: string]: unknown })[expectedKey]
+                      )
                     )
                   : Promise.resolve(
                       makeResults(
@@ -62,4 +92,4 @@ const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
 
 export const ShapedObjectExecutor: MatcherExecutor<
   typeof SHAPED_OBJECT_MATCHER_TYPE
-> = { check };
+> = { check, strip };

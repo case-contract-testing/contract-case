@@ -19,5 +19,5 @@ export type StripMatcherFn<T extends AnyCaseNodeType> = (
 
 export interface MatcherExecutor<T extends AnyCaseNodeType> {
   check: CheckMatchFn<T>;
-  // strip: StripMatcherFn<T>;
+  strip: StripMatcherFn<T>;
 }

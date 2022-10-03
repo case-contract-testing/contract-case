@@ -32,4 +32,5 @@ const check = (
 
 export const StringMatcher: MatcherExecutor<typeof STRING_MATCHER_TYPE> = {
   check,
+  strip: (matcher: CoreStringMatcher) => matcher['case:matcher:example'],
 };

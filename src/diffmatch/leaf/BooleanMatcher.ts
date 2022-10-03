@@ -32,4 +32,5 @@ const check: CheckMatchFn<typeof BOOLEAN_MATCHER_TYPE> = (
 
 export const BooleanMatcher: MatcherExecutor<typeof BOOLEAN_MATCHER_TYPE> = {
   check,
+  strip: (matcher: CoreBooleanMatcher) => matcher['case:matcher:example'],
 };

@@ -49,7 +49,7 @@ describe('simple get endpoint', () => {
   });
 });
 
-describe.skip('arbitrary server response', () => {
+describe('arbitrary server response', () => {
   let context: Verifiable<'SendHttpRequest'>;
   beforeEach(async () => {
     context = await setup(

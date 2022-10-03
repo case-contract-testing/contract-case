@@ -1,5 +1,5 @@
 import { SetupFunctions } from 'connectors';
-import { matchCore } from 'diffmatch';
+import { traversals } from 'diffmatch';
 import { setupCore } from 'core';
 import { applyDefaultContext } from 'entities/context';
 import type {
@@ -14,5 +14,5 @@ export const setup = <T extends AnyInteractionType>(
   setupCore(
     interaction,
     SetupFunctions,
-    applyDefaultContext(interaction, matchCore)
+    applyDefaultContext(interaction, traversals)
   );
