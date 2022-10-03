@@ -322,38 +322,5 @@ describe('exact matches', () => {
         "missing key 'succeed'"
       );
     });
-    /*
-    expectErrorContaining(
-      [1, 'string', null, true],
-      ['1', 'string', null, true],
-      'not exactly equal'
-    );
-
-    expectErrorContaining(
-      [1, 'string', null, true],
-      [1, 'other string', null, true],
-      'not exactly equal'
-    );
-
-    expectErrorContaining(
-      [1, 'string', null, true],
-      [1, 'string', false, true],
-      'not null'
-    );
-
-    expectErrorContaining(
-      [1, 'string', null, true],
-      [1, 'string', false, false],
-      'not exactly equal'
-    );
-
-    expectErrorContaining(
-      [1, 'string', null, true],
-      [1, 'string', true],
-      'different lengths'
-    );
-    expectErrorContaining([1], [], 'different lengths');
-    expectErrorContaining([], [1], 'different lengths');
-    */
   });
 });
