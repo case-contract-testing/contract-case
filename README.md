@@ -12,7 +12,6 @@ Current tasks
 - [ ] Provider state
 - [ ] Resolved values (eg state)
 - [ ] Headers
-- [ ] Strip Matchers
 
 --
 
