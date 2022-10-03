@@ -1,8 +1,8 @@
 import type { Verifiable } from 'entities/types';
 import axios from 'axios';
+import { shapedLike } from 'boundaries/dsl/Matchers';
 import { httpInteraction } from 'entities/nodes/interactions/http';
 import { setup } from '.';
-import { shapedLike } from 'boundaries/dsl/Matchers';
 
 /*
 

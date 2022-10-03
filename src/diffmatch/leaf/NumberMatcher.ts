@@ -1,19 +1,23 @@
+import type { MatcherExecutor } from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
-import type { CoreNumberMatcher } from 'entities/nodes/matchers/types';
+import type {
+  CoreNumberMatcher,
+  NUMBER_MATCHER_TYPE,
+} from 'entities/nodes/matchers/types';
 import { errorWhen, matchingError } from 'entities/results/MatchingError';
 import { combineResults } from 'entities/results/MatchResult';
 import type { MatchingError } from 'entities/types';
-import { testExactMatch } from './testExactMatch';
+import { testExactMatch } from './internal/testExactMatch';
 
-export const NumberMatcher = (
+const check = (
   matcher: CoreNumberMatcher,
-  actual: unknown,
-  matchContext: MatchContext
+  matchContext: MatchContext,
+  actual: unknown
 ): Array<MatchingError> =>
   combineResults(
     errorWhen(
       matchContext['case:context:matchBy'] === 'exact',
-      testExactMatch(matcher, actual, matchContext)
+      testExactMatch(matcher, matchContext, actual)
     ),
     errorWhen(
       typeof actual !== 'number',
@@ -45,3 +49,7 @@ export const NumberMatcher = (
       )
     )
   );
+
+export const NumberMatcher: MatcherExecutor<typeof NUMBER_MATCHER_TYPE> = {
+  check,
+};

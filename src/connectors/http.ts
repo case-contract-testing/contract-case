@@ -34,19 +34,19 @@ export const setupHttp = (
       matchResults = combineResults(
         await matchCore(
           expectedRequest.method,
-          req.method,
-          addLocation('method', context)
+          addLocation('method', context),
+          req.method
         ),
         await matchCore(
           expectedRequest.path,
-          req.path,
-          addLocation('path', context)
+          addLocation('path', context),
+          req.path
         ),
         expectedRequest.body !== undefined
           ? await matchCore(
               expectedRequest.body,
-              req.body,
-              addLocation('request.body', context)
+              addLocation('request.body', context),
+              req.body
             )
           : makeResults()
       );

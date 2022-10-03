@@ -12,8 +12,8 @@ export const SERIALIABLE_TO_JSON = 'json' as const;
 export interface MatchContext {
   handleNext: <T extends AnyCaseNodeType>(
     matcherOrData: DataOrCaseNodeFor<T>,
-    actual: unknown,
-    parentMatchContext: MatchContext
+    parentMatchContext: MatchContext,
+    actual: unknown
   ) => Promise<MatchResult>;
   'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
   'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;

@@ -16,7 +16,7 @@ import {
   SHAPED_OBJECT_MATCHER_TYPE,
   STRING_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
-import { ExactCascadingContext } from './contextShift/CascadingContext';
+import { CascadingContext } from './contextShift/CascadingContext';
 import { BooleanMatcher } from './leaf/BooleanMatcher';
 import { NullMatcher } from './leaf/NullMatcher';
 import { NumberMatcher } from './leaf/NumberMatcher';
@@ -28,7 +28,7 @@ const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } = {
   [NUMBER_MATCHER_TYPE]: NumberMatcher,
   [STRING_MATCHER_TYPE]: StringMatcher,
   [BOOLEAN_MATCHER_TYPE]: BooleanMatcher,
-  [CASCADING_CONTEXT_MATCHER_TYPE]: ExactCascadingContext,
+  [CASCADING_CONTEXT_MATCHER_TYPE]: CascadingContext,
   [NULL_MATCHER_TYPE]: NullMatcher,
   [SHAPED_ARRAY_MATCHER_TYPE]: ShapedArrayExecutor,
   [SHAPED_OBJECT_MATCHER_TYPE]: ShapedObjectExecutor,
@@ -36,8 +36,8 @@ const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } = {
 
 export const matchCore = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
-  actual: unknown,
-  parentMatchContext: MatchContext
+  parentMatchContext: MatchContext,
+  actual: unknown
 ): Promise<MatchResult> => {
   const matcher = inferMatcher<T>(matcherOrData) as CaseNodeFor<T>;
   const matchContext = foldIntoContext(matcher, parentMatchContext);
@@ -50,5 +50,5 @@ export const matchCore = <T extends AnyCaseNodeType>(
     );
   }
 
-  return Promise.resolve(executor(matcher, actual, matchContext));
+  return Promise.resolve(executor.check(matcher, matchContext, actual));
 };

@@ -6,16 +6,14 @@ import type {
   SHAPED_ARRAY_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
 import type { MatchResult } from 'entities/types';
-import type { MatcherExecutor } from 'diffmatch/types';
+import type { CheckMatchFn, MatcherExecutor } from 'diffmatch/types';
 import { addLocation } from 'entities/context';
 import { combineResults, makeResults } from 'entities/results/MatchResult';
 
-export const ShapedArrayExecutor: MatcherExecutor<
-  typeof SHAPED_ARRAY_MATCHER_TYPE
-> = async (
+const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
   matcher: CoreShapedArrayMatcher,
-  actual: unknown,
-  matchContext: MatchContext
+  matchContext: MatchContext,
+  actual: unknown
 ): Promise<MatchResult> =>
   combineResults(
     Array.isArray(actual)
@@ -27,8 +25,8 @@ export const ShapedArrayExecutor: MatcherExecutor<
                     .map((expectedChild, index) =>
                       matchContext.handleNext(
                         expectedChild,
-                        actual[index],
-                        addLocation(`[${index}]`, matchContext)
+                        addLocation(`[${index}]`, matchContext),
+                        actual[index]
                       )
                     )
                     .flat()
@@ -56,3 +54,7 @@ export const ShapedArrayExecutor: MatcherExecutor<
           )
         )
   );
+
+export const ShapedArrayExecutor: MatcherExecutor<
+  typeof SHAPED_ARRAY_MATCHER_TYPE
+> = { check };

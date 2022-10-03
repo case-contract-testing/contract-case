@@ -15,6 +15,6 @@ export const checkMatch = <T extends AnyCaseNodeType>(
 ): Promise<MatchResult> =>
   matchCore(
     matcherOrData,
-    actual,
-    applyDefaultContext(matcherOrData, matchCore)
+    applyDefaultContext(matcherOrData, matchCore),
+    actual
   );

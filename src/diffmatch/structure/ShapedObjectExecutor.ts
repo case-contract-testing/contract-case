@@ -6,17 +6,15 @@ import type {
   SHAPED_OBJECT_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
 import type { MatchResult } from 'entities/types';
-import type { MatcherExecutor } from 'diffmatch/types';
+import type { CheckMatchFn, MatcherExecutor } from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
 import { addLocation } from 'entities/context';
 import { combineResults, makeResults } from 'entities/results/MatchResult';
 
-export const ShapedObjectExecutor: MatcherExecutor<
-  typeof SHAPED_OBJECT_MATCHER_TYPE
-> = async (
+const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
   matcher: CoreShapedObjectMatcher,
-  actual: unknown,
-  matchContext: MatchContext
+  matchContext: MatchContext,
+  actual: unknown
 ): Promise<MatchResult> => [
   ...(typeof actual === 'object' &&
   actual === Object(actual) &&
@@ -35,8 +33,8 @@ export const ShapedObjectExecutor: MatcherExecutor<
                 expectedKey in actual
                   ? matchContext.handleNext(
                       expectedValueMatcher,
-                      (actual as { [k: string]: unknown })[expectedKey],
-                      addLocation(expectedKey, matchContext)
+                      addLocation(expectedKey, matchContext),
+                      (actual as { [k: string]: unknown })[expectedKey]
                     )
                   : Promise.resolve(
                       makeResults(
@@ -61,3 +59,7 @@ export const ShapedObjectExecutor: MatcherExecutor<
         )
       )),
 ];
+
+export const ShapedObjectExecutor: MatcherExecutor<
+  typeof SHAPED_OBJECT_MATCHER_TYPE
+> = { check };

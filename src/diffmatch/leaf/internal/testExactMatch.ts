@@ -5,8 +5,8 @@ import type { MatchingError } from 'entities/types';
 
 export const testExactMatch = (
   matcher: AnyLeafMatcher,
-  actual: unknown,
-  matchContext: MatchContext
+  matchContext: MatchContext,
+  actual: unknown
 ): Array<MatchingError> =>
   errorWhen(
     actual !== matcher['case:matcher:example'],

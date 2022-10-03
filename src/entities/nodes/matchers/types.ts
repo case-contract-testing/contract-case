@@ -34,6 +34,13 @@ export interface JsonOrMatcherMap {
 }
 export type JsonOrMatcherArray = Array<AnyCaseNodeOrData>;
 
+interface JsonMap {
+  [key: string]: AnyData;
+}
+type JsonArray = Array<AnyData>;
+
+export type AnyData = JsonSerialisablePrimitive | JsonMap | JsonArray;
+
 export type AnyLeafMatcher =
   | CoreNumberMatcher
   | CoreStringMatcher
