@@ -3,6 +3,9 @@ import type { MatchResult } from './results/types';
 import type { SetupInfoFor } from './setup/types';
 
 export * from './results/types';
+export * from './nodes/interactions/types';
+export * from './nodes/matchers/types';
+export * from './nodes/matchers/http/types';
 
 export type Verifiable<T extends AnyInteractionType> = {
   mock: SetupInfoFor<T>;

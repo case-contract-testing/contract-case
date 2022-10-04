@@ -1,18 +1,9 @@
 import type { Verifiable } from 'entities/types';
 import axios, { AxiosResponse } from 'axios';
-import { shapedLike } from 'boundaries/dsl/Matchers';
+import { httpStatus, shapedLike } from 'boundaries/dsl/Matchers';
 import { httpInteraction } from 'entities/nodes/interactions/http';
 import { setup } from '.';
 
-/*
-
-willSend(httpGet({ path: '/health' })).canRecieve({
-  contentType: 'application/json',
-  status: 200,
-  body: { status: 'up' },
-});
-
-*/
 const handleErrorResponse = <T>(response: AxiosResponse<T>) => {
   throw new Error(`${response.status}`);
 };
@@ -100,7 +91,7 @@ describe('No body server response', () => {
           method: 'GET',
           path: '/health',
         },
-        response: { status: 400 },
+        response: { status: httpStatus(['4XX', '5XX']) },
       })
     );
   });

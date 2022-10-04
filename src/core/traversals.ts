@@ -8,8 +8,6 @@ import type { MatchResult } from 'entities/types';
 
 import { traversals } from 'diffmatch';
 
-export * from 'entities/CaseCoreError';
-
 export const coreCheckMatch = <T extends AnyCaseNodeType>(
   matcherOrData: DataOrCaseNodeFor<T>,
   actual: unknown

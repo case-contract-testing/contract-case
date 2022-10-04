@@ -14,12 +14,14 @@ import {
   SHAPED_ARRAY_MATCHER_TYPE,
   SHAPED_OBJECT_MATCHER_TYPE,
   STRING_MATCHER_TYPE,
-} from 'entities/nodes/matchers/types';
+  HTTP_STATUS_CODE_MATCHER_TYPE,
+} from 'entities/types';
+import { HttpStatusCodeMatcher } from './leaf/http/HttpStatusCodeMatcher';
 import { CascadingContext } from './contextShift/CascadingContext';
-import { BooleanMatcher } from './leaf/BooleanMatcher';
-import { NullMatcher } from './leaf/NullMatcher';
-import { NumberMatcher } from './leaf/NumberMatcher';
-import { StringMatcher } from './leaf/StringMatcher';
+import { BooleanMatcher } from './leaf/primitives/BooleanMatcher';
+import { NullMatcher } from './leaf/primitives/NullMatcher';
+import { NumberMatcher } from './leaf/primitives/NumberMatcher';
+import { StringMatcher } from './leaf/primitives/StringMatcher';
 import { ShapedArrayExecutor } from './structure/ShapedArrayExecutor';
 import { ShapedObjectExecutor } from './structure/ShapedObjectExecutor';
 
@@ -31,6 +33,7 @@ const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } = {
   [NULL_MATCHER_TYPE]: NullMatcher,
   [SHAPED_ARRAY_MATCHER_TYPE]: ShapedArrayExecutor,
   [SHAPED_OBJECT_MATCHER_TYPE]: ShapedObjectExecutor,
+  [HTTP_STATUS_CODE_MATCHER_TYPE]: HttpStatusCodeMatcher,
 };
 
 const getExecutor = <T extends AnyCaseNodeType>(

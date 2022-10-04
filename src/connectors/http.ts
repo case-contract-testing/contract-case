@@ -10,7 +10,7 @@ import {
 import type { MatchContext } from 'entities/context/types';
 import { addLocation } from 'entities/context';
 import { combineResults, makeResults } from 'entities/results/MatchResult';
-import { CaseCoreError } from 'core';
+import { CaseCoreError } from 'entities';
 
 export const setupHttp = (
   {
@@ -52,17 +52,22 @@ export const setupHttp = (
               )
             : makeResults()
         );
+        res.status(
+          traversals.descendAndStrip(
+            expectedResponse.status,
+            addLocation('response.status', context)
+          ) as number
+        );
+
         if (expectedResponse.body) {
-          res
-            .status(expectedResponse.status)
-            .send(
-              traversals.descendAndStrip(
-                expectedResponse.body,
-                addLocation('response.body', context)
-              )
-            );
+          res.send(
+            traversals.descendAndStrip(
+              expectedResponse.body,
+              addLocation('response.body', context)
+            )
+          );
         } else {
-          res.status(expectedResponse.status).send();
+          res.send();
         }
       });
 

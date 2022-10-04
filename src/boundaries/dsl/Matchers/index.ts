@@ -1,3 +1,4 @@
+import { httpStatusCodeMatcher } from 'entities/nodes/matchers/http';
 import {
   coreNumberMatcher,
   coreStringMatcher,
@@ -9,6 +10,7 @@ import {
   CASCADING_CONTEXT_MATCHER_TYPE,
   AnyCaseNodeOrData,
 } from 'entities/nodes/matchers/types';
+import type { CoreHttpStatusCodeMatcher } from 'entities/types';
 import type {
   BooleanMatcher,
   NullMatcher,
@@ -91,3 +93,16 @@ export const shapedLike = (
   'case:matcher:child': content,
   'case:context:matchBy': 'type',
 });
+
+/**
+ * Matches http status codes. Matches may be provided as a string, eg '4XX' or '401', or a number.
+ * If an array is provided,  status codes will
+ *
+ * @param match
+ * @param example
+ * @returns
+ */
+export const httpStatus = (
+  match: number | string | Array<number | string>,
+  example?: number
+): CoreHttpStatusCodeMatcher => httpStatusCodeMatcher(match, example);

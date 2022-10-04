@@ -2,6 +2,7 @@ import type {
   AnyCaseNodeOrData,
   AnyStringMatcher,
 } from 'entities/nodes/matchers/types';
+import type { CoreHttpStatusCodeMatcher } from 'entities/types';
 
 export type AnyInteractionType = typeof SEND_HTTP_REQUEST;
 
@@ -26,7 +27,7 @@ export type CaseInteractionFor<T extends AnyInteractionType> = Extract<
 >;
 
 export interface HttpInteractionResponse {
-  status: number;
+  status: number | CoreHttpStatusCodeMatcher;
   body?: AnyCaseNodeOrData;
 }
 

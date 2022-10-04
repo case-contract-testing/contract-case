@@ -1,4 +1,8 @@
 import type { MatchContext } from 'entities/context/types';
+import type {
+  CoreHttpStatusCodeMatcher,
+  HTTP_STATUS_CODE_MATCHER_TYPE,
+} from './http/types';
 
 export const NUMBER_MATCHER_TYPE = 'MatchNumber' as const;
 export const STRING_MATCHER_TYPE = 'MatchString' as const;
@@ -15,7 +19,8 @@ export type AnyCaseNodeType =
   | typeof BOOLEAN_MATCHER_TYPE
   | typeof CASCADING_CONTEXT_MATCHER_TYPE
   | typeof SHAPED_ARRAY_MATCHER_TYPE
-  | typeof SHAPED_OBJECT_MATCHER_TYPE;
+  | typeof SHAPED_OBJECT_MATCHER_TYPE
+  | typeof HTTP_STATUS_CODE_MATCHER_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -45,7 +50,8 @@ export type AnyLeafMatcher =
   | CoreNumberMatcher
   | CoreStringMatcher
   | CoreNullMatcher
-  | CoreBooleanMatcher;
+  | CoreBooleanMatcher
+  | CoreHttpStatusCodeMatcher;
 
 export type AnyCaseNode =
   | AnyLeafMatcher
