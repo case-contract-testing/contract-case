@@ -31,6 +31,20 @@
 
   "overrides": [
     {
+      "files": ["example/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          { "patterns": ["src/connectors/*"] }
+        ],
+        "import/no-extraneous-dependencies": [
+          "error",
+          { "devDependencies": true }
+        ],
+        "no-console": "off"
+      }
+    },
+    {
       "extends": "plugin:jest/recommended",
       "files": ["**/*.test.ts", "**/*.spec.ts"],
       "env": {
@@ -48,11 +62,11 @@
       }
     },
     {
-      "files": ["**/connectors/**/*.ts"],
+      "files": ["src/connectors/**/*.ts"],
       "rules": {
         "no-restricted-imports": [
           "error",
-          { "patterns": ["**/boundaries/*", "**/../*"] }
+          { "patterns": ["**/boundaries", "**/boundaries/*", "**/../*"] }
         ]
       }
     },
@@ -61,7 +75,15 @@
       "rules": {
         "no-restricted-imports": [
           "error",
-          { "patterns": ["**/connectors/*", "**/boundaries/*", "**/../*"] }
+          {
+            "patterns": [
+              "**/connectors",
+              "**/connectors/*",
+              "**/boundaries",
+              "**/boundaries/*",
+              "**/../*"
+            ]
+          }
         ]
       }
     },
@@ -72,8 +94,11 @@
           "error",
           {
             "patterns": [
+              "**/core",
               "**/core/*",
+              "**/connectors",
               "**/connectors/*",
+              "**/boundaries",
               "**/boundaries/*",
               "**/../*"
             ]
@@ -88,9 +113,14 @@
           "error",
           {
             "patterns": [
-              "**/connectors/*",
-              "**/boundaries/*",
+              "**/diffmatch",
+              "**/diffmatch/*",
+              "**/core",
               "**/core/*",
+              "**/connectors",
+              "**/connectors/*",
+              "**/boundaries",
+              "**/boundaries/*",
               "**/../*"
             ]
           }

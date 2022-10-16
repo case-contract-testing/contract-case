@@ -1,0 +1,18 @@
+import axios from 'axios';
+import { unmarshallSuccess, unmarshallFailure } from './marshaller';
+
+type HttpConnector = {
+  authedGet: <T>(path: string) => Promise<T>;
+};
+
+// This is the connector for axios.
+// It knows how to turn logical requests into axios calls
+
+export const makeAxiosConnector = (baseurl: string): HttpConnector => ({
+  authedGet: (path) =>
+    axios
+      .get(`${baseurl}${path}`, {
+        //      headers: { Authorization: `Bearer ${authToken}` },
+      })
+      .then(unmarshallSuccess, unmarshallFailure),
+});
