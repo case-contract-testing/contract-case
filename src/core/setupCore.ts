@@ -24,17 +24,23 @@ const inferInteraction = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
   context: MatchContext
 ) => {
-  // eslint-disable-next-line no-console
-  console.log(`Inferring interaction for`, interaction, context);
+  context.logger.trace(
+    'Determining interaction type direction for interaction + context:',
+    interaction,
+    context
+  );
   if (
     interaction['case:run:context:expectation'] !==
     context['case:run:context:expectation']
   ) {
+    const invertedType = invert(interaction['case:interaction:type']);
+    context.logger.trace('Inverting interaction to:', invertedType);
     return {
       ...interaction,
-      'case:interaction:type': invert(interaction['case:interaction:type']),
+      'case:interaction:type': invertedType,
     };
   }
+  context.logger.trace('Interaction type unchanged');
   return interaction;
 };
 

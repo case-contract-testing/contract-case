@@ -9,6 +9,16 @@ import {
 } from 'boundaries/dsl/Matchers';
 import { coreCheckMatch } from 'core/traversals';
 import { stripMatchers } from 'boundaries/dsl/stripMatchers';
+import type { Logger } from 'entities/logger/types';
+
+const logger: Logger = {
+  error(): void {},
+  warn(): void {},
+  info(): void {},
+  debug(): void {},
+  trace(): void {},
+  setLevel(): void {},
+};
 
 const expectErrorContaining = (
   matcher: AnyCaseNodeOrData,
@@ -17,7 +27,7 @@ const expectErrorContaining = (
 ) => {
   describe(`when given ${example}`, () => {
     it(`returns an error containing '${expectedContent}'`, async () => {
-      const matchResult = await coreCheckMatch(matcher, example);
+      const matchResult = await coreCheckMatch(matcher, example, logger);
       expect(matchResult).not.toHaveLength(0);
       expect(
         matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
@@ -29,7 +39,7 @@ describe('basic matchers', () => {
   describe('number matcher', () => {
     const matcher = anyNumber(1);
     it('accepts numbers', async () => {
-      expect(await coreCheckMatch(matcher, 1)).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, 1, logger)).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
       expect(stripMatchers(matcher)).toEqual(1);
@@ -44,13 +54,15 @@ describe('basic matchers', () => {
   describe('string matcher', () => {
     const matcher = anyString('1');
     it('accepts strings that are numbers', async () => {
-      expect(await coreCheckMatch(matcher, '1')).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, '1', logger)).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
       expect(stripMatchers(matcher)).toEqual('1');
     });
     it('accepts strings that are not numbers', async () => {
-      expect(await coreCheckMatch(matcher, 'example string')).toStrictEqual([]);
+      expect(
+        await coreCheckMatch(matcher, 'example string', logger)
+      ).toStrictEqual([]);
     });
     expectErrorContaining(matcher, NaN, 'not a string');
     expectErrorContaining(matcher, Infinity, 'not a string');
@@ -62,10 +74,10 @@ describe('basic matchers', () => {
   describe('boolean matcher', () => {
     const matcher = anyBoolean(true);
     it('accepts true', async () => {
-      expect(await coreCheckMatch(matcher, true)).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, true, logger)).toStrictEqual([]);
     });
     it('accepts false', async () => {
-      expect(await coreCheckMatch(matcher, false)).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, false, logger)).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
       expect(stripMatchers(matcher)).toEqual(true);
@@ -82,7 +94,7 @@ describe('basic matchers', () => {
   describe('null matcher', () => {
     const matcher = anyNull();
     it('accepts exactly null', async () => {
-      expect(await coreCheckMatch(matcher, null)).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, null, logger)).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
       expect(stripMatchers(matcher)).toEqual(null);
@@ -102,7 +114,7 @@ describe('basic matchers', () => {
     describe('number matcher', () => {
       const matcher = shapedLike(1);
       it('accepts numbers', async () => {
-        expect(await coreCheckMatch(matcher, 1)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, 1, logger)).toStrictEqual([]);
       });
 
       it('strips the matcher', () => {
@@ -118,15 +130,15 @@ describe('basic matchers', () => {
     describe('string matcher', () => {
       const matcher = shapedLike('1');
       it('accepts strings that are numbers', async () => {
-        expect(await coreCheckMatch(matcher, '1')).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, '1', logger)).toStrictEqual([]);
       });
       it('strips the matcher', () => {
         expect(stripMatchers(matcher)).toEqual('1');
       });
       it('accepts strings that are not numbers', async () => {
-        expect(await coreCheckMatch(matcher, 'example string')).toStrictEqual(
-          []
-        );
+        expect(
+          await coreCheckMatch(matcher, 'example string', logger)
+        ).toStrictEqual([]);
       });
       expectErrorContaining(matcher, NaN, 'not a string');
       expectErrorContaining(matcher, Infinity, 'not a string');
@@ -138,10 +150,10 @@ describe('basic matchers', () => {
     describe('boolean matcher', () => {
       const matcher = shapedLike(true);
       it('accepts true', async () => {
-        expect(await coreCheckMatch(matcher, true)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, true, logger)).toStrictEqual([]);
       });
       it('accepts false', async () => {
-        expect(await coreCheckMatch(matcher, false)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, false, logger)).toStrictEqual([]);
       });
       it('returns correctly when stripped', () => {
         expect(stripMatchers(matcher)).toEqual(true);
@@ -159,7 +171,7 @@ describe('basic matchers', () => {
     describe('null matcher', () => {
       const matcher = shapedLike(null);
       it('accepts exactly null', async () => {
-        expect(await coreCheckMatch(matcher, null)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, null, logger)).toStrictEqual([]);
       });
       it('returns correctly when stripped', () => {
         expect(stripMatchers(matcher)).toEqual(null);
@@ -190,16 +202,20 @@ describe('basic matchers', () => {
     ]);
     it('accepts an array of generally matched types', async () => {
       expect(
-        await coreCheckMatch(matcher, [
-          2,
-          'other string',
-          null,
-          false,
-          { a: 'example' },
-          [],
-          { a: '2' },
-          [3],
-        ])
+        await coreCheckMatch(
+          matcher,
+          [
+            2,
+            'other string',
+            null,
+            false,
+            { a: 'example' },
+            [],
+            { a: '2' },
+            [3],
+          ],
+          logger
+        )
       ).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
@@ -248,12 +264,16 @@ describe('basic matchers', () => {
     };
     it('accepts a matching object with different values', async () => {
       expect(
-        await coreCheckMatch(matcher, {
-          a: 1,
-          b: 'other string',
-          c: null,
-          d: true,
-        })
+        await coreCheckMatch(
+          matcher,
+          {
+            a: 1,
+            b: 'other string',
+            c: null,
+            d: true,
+          },
+          logger
+        )
       ).toStrictEqual([]);
     });
     it('returns the correct object when stripped', () => {
@@ -275,12 +295,16 @@ describe('basic matchers', () => {
     });
     it('accepts an matching object', async () => {
       expect(
-        await coreCheckMatch(matcher, {
-          a: 1,
-          b: 'other string',
-          c: null,
-          d: true,
-        })
+        await coreCheckMatch(
+          matcher,
+          {
+            a: 1,
+            b: 'other string',
+            c: null,
+            d: true,
+          },
+          logger
+        )
       ).toStrictEqual([]);
     });
     it('returns the correct object when stripped', () => {

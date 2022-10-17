@@ -1,3 +1,4 @@
+import type { Logger } from 'entities/logger/types';
 import {
   AnyInteraction,
   isCaseInteraction,
@@ -47,13 +48,22 @@ export const addLocation = (
 export const applyDefaultContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
   traversals: Traversals,
+  logger: Logger,
   runConfig: Partial<RunContext> = {}
 ): MatchContext => ({
   ...(isCaseNode(caseNodeOrData) || isCaseInteraction(caseNodeOrData)
     ? foldIntoContext(caseNodeOrData, {
+        logger,
+        baseLogger: logger,
         ...traversals,
         ...DEFAULT_CONTEXT,
         ...runConfig,
       })
-    : { ...traversals, ...DEFAULT_CONTEXT, ...runConfig }),
+    : {
+        logger,
+        baseLogger: logger,
+        ...traversals,
+        ...DEFAULT_CONTEXT,
+        ...runConfig,
+      }),
 });

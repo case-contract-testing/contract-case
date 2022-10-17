@@ -8,6 +8,7 @@ import type {
 } from 'entities/nodes/interactions/types';
 import type { Verifiable } from 'entities/types';
 import type { RunContext } from 'entities/context/types';
+import { logger } from 'connectors/logger';
 
 export const setup = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
@@ -16,5 +17,5 @@ export const setup = <T extends AnyInteractionType>(
   setupCore(
     interaction,
     SetupFunctions,
-    applyDefaultContext(interaction, traversals, runConfig)
+    applyDefaultContext(interaction, traversals, logger, runConfig)
   );

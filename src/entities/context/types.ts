@@ -1,4 +1,5 @@
 import type { MatcherExecutor } from 'entities/executors/types';
+import type { Logger } from 'entities/logger/types';
 import type {
   AnyCaseNodeType,
   AnyLeafOrStructure,
@@ -22,8 +23,14 @@ export interface Traversals {
   ) => ReturnType<MatcherExecutor<T>['strip']>;
 }
 
+interface ContextLoggers {
+  logger: Logger;
+  baseLogger: Logger;
+}
+
 export type MatchContext = Traversals &
   SeralisableContext &
+  ContextLoggers &
   Partial<RunContext>;
 
 export interface SeralisableContext {

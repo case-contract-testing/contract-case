@@ -6,6 +6,7 @@
     "example/*",
     "src/__tests__/*",
     "**/*.spec.ts",
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "coverage"
   ]
 }

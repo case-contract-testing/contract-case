@@ -57,26 +57,7 @@
         "no-restricted-imports": "off"
       }
     },
-    {
-      "extends": "plugin:jest/recommended",
-      "files": ["**/*.test.ts", "**/*.spec.ts"],
-      "env": {
-        "jest": true
-      },
-      "plugins": ["jest"],
-      "rules": {
-        "no-unused-expressions": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-        "jest/no-disabled-tests": "warn",
-        "jest/no-focused-tests": "error",
-        "jest/no-identical-title": "error",
-        "jest/prefer-to-have-length": "warn",
-        "jest/expect-expect": [
-          "error",
-          { "assertFunctionNames": ["expect", "expectErrorContaining"] }
-        ]
-      }
-    },
+
     {
       "files": ["src/connectors/**/*.ts"],
       "rules": {
@@ -147,6 +128,27 @@
       "files": ["*.js"],
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "extends": "plugin:jest/recommended",
+      "files": ["**/*.test.ts", "**/*.spec.ts"],
+      "env": {
+        "jest": true
+      },
+      "plugins": ["jest"],
+      "rules": {
+        "no-unused-expressions": "off",
+        "no-restricted-imports": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/expect-expect": [
+          "error",
+          { "assertFunctionNames": ["expect", "expectErrorContaining"] }
+        ]
       }
     }
   ]
