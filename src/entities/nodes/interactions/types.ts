@@ -48,11 +48,11 @@ export interface HttpRequestResponseDescription {
 export type ProduceHttpRequest = HasTypeForInteraction<
   typeof PRODUCE_HTTP_REQUEST
 > & {
-  'case:context:expectation': 'does';
+  'case:run:context:expectation': 'produce';
 } & HttpRequestResponseDescription;
 
 export type ConsumeHttpRequest = HasTypeForInteraction<
   typeof CONSUME_HTTP_REQUEST
 > & {
-  'case:context:expectation': 'does';
+  'case:run:context:expectation': 'consume';
 } & HttpRequestResponseDescription;

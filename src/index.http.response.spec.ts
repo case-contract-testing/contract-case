@@ -1,14 +1,15 @@
 import type * as http from 'http';
 import type { MatchResult, Verifiable } from 'entities/types';
-import { willRecieveHttpInteraction } from 'entities/nodes/interactions/http';
+import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { makeNoErrorResult } from 'entities/results/MatchResult';
+import type { RunContext } from 'entities/context/types';
 import { anyString, httpStatus } from 'boundaries/dsl/Matchers';
 import { CaseConfigurationError } from 'entities';
 import { setup } from '.';
 import start from './__tests__/server/http/index';
 
 const expectErrorContaining = async (
-  context: Verifiable<'ConsumeHttpRequest'>,
+  context: Verifiable<'ProduceHttpRequest'>,
   expectedContent: string
 ) => {
   const matchResult: MatchResult = await context.verify();
@@ -19,7 +20,7 @@ const expectErrorContaining = async (
 };
 
 describe('simple get endpoint', () => {
-  const interaction = willRecieveHttpInteraction({
+  const interaction = willSendHttpInteraction({
     request: {
       method: 'GET',
       path: '/health',
@@ -27,22 +28,24 @@ describe('simple get endpoint', () => {
     response: { status: 200, body: { status: 'up' } },
   });
 
-  let context: Verifiable<'ConsumeHttpRequest'>;
+  let context: Verifiable<'ProduceHttpRequest'>;
   describe('without a URL', () => {
     it('fails to setup', () =>
-      expect(setup(interaction)).rejects.toBeInstanceOf(
-        CaseConfigurationError
-      ));
+      expect(
+        setup(interaction, { 'case:run:context:expectation': 'consume' })
+      ).rejects.toBeInstanceOf(CaseConfigurationError));
   });
 
   describe('with a URL', () => {
-    const config = {
+    const config: RunContext = {
       'case:run:context:baseurl': 'http://localhost:8080',
+      'case:run:context:expectation': 'consume',
     };
     describe('but no running server', () => {
       beforeEach(async () => {
         context = await setup(interaction, {
           'case:run:context:baseurl': 'http://localhost:8081',
+          'case:run:context:expectation': 'consume',
         });
       });
 
@@ -77,7 +80,7 @@ describe('simple get endpoint', () => {
       describe('and a matching interaction that is generic', () => {
         beforeEach(async () => {
           context = await setup(
-            willRecieveHttpInteraction({
+            willSendHttpInteraction({
               request: {
                 method: 'GET',
                 path: '/health',
@@ -97,7 +100,7 @@ describe('simple get endpoint', () => {
       describe('and a non-matching body', () => {
         beforeEach(async () => {
           context = await setup(
-            willRecieveHttpInteraction({
+            willSendHttpInteraction({
               request: {
                 method: 'GET',
                 path: '/health',
@@ -117,7 +120,7 @@ describe('simple get endpoint', () => {
       describe('and a non-matching status', () => {
         beforeEach(async () => {
           context = await setup(
-            willRecieveHttpInteraction({
+            willSendHttpInteraction({
               request: {
                 method: 'GET',
                 path: '/health',
@@ -136,7 +139,7 @@ describe('simple get endpoint', () => {
       describe('and a non-matching method', () => {
         beforeEach(async () => {
           context = await setup(
-            willRecieveHttpInteraction({
+            willSendHttpInteraction({
               request: {
                 method: 'POST',
                 path: '/health',
@@ -153,7 +156,7 @@ describe('simple get endpoint', () => {
       describe('and a non-matching path', () => {
         beforeEach(async () => {
           context = await setup(
-            willRecieveHttpInteraction({
+            willSendHttpInteraction({
               request: {
                 method: 'GET',
                 path: '/healthy',

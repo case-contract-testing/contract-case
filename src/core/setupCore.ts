@@ -9,11 +9,40 @@ import { addLocation } from 'entities/context';
 
 import type { SetupFns } from './types';
 
-export const setupCore = <T extends AnyInteractionType>(
+const invert = (t: AnyInteractionType) => {
+  switch (t) {
+    case 'ConsumeHttpRequest':
+      return 'ProduceHttpRequest';
+    case 'ProduceHttpRequest':
+      return 'ConsumeHttpRequest';
+    default:
+      throw new CaseCoreError(`Unable to invert interaction type '${t}'`);
+  }
+};
+
+const inferInteraction = <T extends AnyInteractionType>(
+  interaction: CaseInteractionFor<T>,
+  context: MatchContext
+) => {
+  // eslint-disable-next-line no-console
+  console.log(`Inferring interaction for`, interaction, context);
+  if (
+    interaction['case:run:context:expectation'] !==
+    context['case:run:context:expectation']
+  ) {
+    return {
+      ...interaction,
+      'case:interaction:type': invert(interaction['case:interaction:type']),
+    };
+  }
+  return interaction;
+};
+
+const executeSetup = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
   InteractionSetup: SetupFns,
   context: MatchContext
-): Promise<Verifiable<T>> => {
+) => {
   const interactionType: T = interaction['case:interaction:type'];
   if (!interactionType) {
     throw new CaseCoreError(
@@ -28,5 +57,16 @@ export const setupCore = <T extends AnyInteractionType>(
     );
   }
 
-  return executor(interaction, addLocation('http', context));
+  return executor(interaction, addLocation(interactionType, context));
 };
+
+export const setupCore = <T extends AnyInteractionType>(
+  interaction: CaseInteractionFor<T>,
+  InteractionSetup: SetupFns,
+  context: MatchContext
+): Promise<Verifiable<T>> =>
+  executeSetup(
+    inferInteraction(interaction, context),
+    InteractionSetup,
+    context
+  );
