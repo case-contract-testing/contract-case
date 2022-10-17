@@ -7,5 +7,5 @@
     "rootDir": "./src",
     "baseUrl": "src"
   },
-  "exclude": ["jest.config.ts", "dist/**/*.js", "example/*"]
+  "exclude": ["jest.config.ts", "dist/**/*.js", "example/*", "coverage"]
 }
