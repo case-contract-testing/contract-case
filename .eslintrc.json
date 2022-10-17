@@ -20,6 +20,7 @@
     "sourceType": "module",
     "project": "tsconfig.json"
   },
+  "ignorePatterns": ["jest.config.ts"],
   "rules": {
     "camelcase": "off",
     "no-console": "error",
@@ -32,6 +33,11 @@
   "overrides": [
     {
       "files": ["example/**/*.ts"],
+      "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "project": "example/tsconfig.json"
+      },
       "rules": {
         "no-restricted-imports": [
           "error",
