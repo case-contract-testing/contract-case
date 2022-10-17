@@ -1,5 +1,8 @@
-import { Response } from 'express';
-import { ErrorResponse, ArbitraryResponseType } from '../../model/responses';
+import type { Response } from 'express';
+import type {
+  ErrorResponse,
+  ArbitraryResponseType,
+} from '__tests__/server/http/model/responses';
 
 interface Responder {
   success: (data: ArbitraryResponseType) => void;

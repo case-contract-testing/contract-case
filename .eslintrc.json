@@ -32,7 +32,7 @@
 
   "overrides": [
     {
-      "files": ["example/**/*.ts"],
+      "files": ["example/**/*.ts", "**/__tests__/**"],
       "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module",
@@ -43,6 +43,7 @@
           "error",
           { "patterns": ["src/connectors/*"] }
         ],
+
         "import/no-extraneous-dependencies": [
           "error",
           { "devDependencies": true }
@@ -64,7 +65,11 @@
         "jest/no-disabled-tests": "warn",
         "jest/no-focused-tests": "error",
         "jest/no-identical-title": "error",
-        "jest/prefer-to-have-length": "warn"
+        "jest/prefer-to-have-length": "warn",
+        "jest/expect-expect": [
+          "error",
+          { "assertFunctionNames": ["expect", "expectErrorContaining"] }
+        ]
       }
     },
     {

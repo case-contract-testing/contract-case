@@ -61,10 +61,8 @@ export const setupHttpRequestProducer = (
             : {}),
         })
         .then(
-          async (response) => {
-            // eslint-disable-next-line no-console
-            console.log(response);
-            return combineResults(
+          async (response) =>
+            combineResults(
               ...(await Promise.all([
                 traversals.descendAndCheck(
                   expectedResponse.status,
@@ -79,8 +77,7 @@ export const setupHttpRequestProducer = (
                     )
                   : makeNoErrorResult(),
               ]))
-            );
-          },
+            ),
           (err) => {
             if (axios.isAxiosError(err)) {
               if (err.request) {

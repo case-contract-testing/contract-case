@@ -3,4 +3,5 @@ import * as handlers from './handlers';
 
 export default (app: Express): void => {
   app.get('/', handlers.base);
+  app.get('/health', handlers.health);
 };
