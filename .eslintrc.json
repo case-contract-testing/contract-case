@@ -32,7 +32,7 @@
 
   "overrides": [
     {
-      "files": ["example/**/*.ts", "**/__tests__/**"],
+      "files": ["example/**/*.ts"],
       "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module",
@@ -52,6 +52,12 @@
       }
     },
     {
+      "files": ["src/__tests__/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    },
+    {
       "extends": "plugin:jest/recommended",
       "files": ["**/*.test.ts", "**/*.spec.ts"],
       "env": {
@@ -59,7 +65,6 @@
       },
       "plugins": ["jest"],
       "rules": {
-        "jest/expect-expect": "error",
         "no-unused-expressions": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "jest/no-disabled-tests": "warn",
@@ -82,7 +87,7 @@
       }
     },
     {
-      "files": ["**/core/**/*.ts"],
+      "files": ["src/core/**/*.ts"],
       "rules": {
         "no-restricted-imports": [
           "error",
@@ -99,7 +104,7 @@
       }
     },
     {
-      "files": ["**/diffmatch/**/*.ts"],
+      "files": ["src/diffmatch/**/*.ts"],
       "rules": {
         "no-restricted-imports": [
           "error",
@@ -118,7 +123,7 @@
       }
     },
     {
-      "files": ["**/entities/**/*.ts"],
+      "files": ["src/entities/**/*.ts"],
       "rules": {
         "no-restricted-imports": [
           "error",

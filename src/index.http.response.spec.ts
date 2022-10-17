@@ -2,10 +2,10 @@ import type * as http from 'http';
 import type { MatchResult, Verifiable } from 'entities/types';
 import { willRecieveHttpInteraction } from 'entities/nodes/interactions/http';
 import { makeNoErrorResult } from 'entities/results/MatchResult';
+import { httpStatus } from 'boundaries/dsl/Matchers';
 import { CaseConfigurationError } from 'entities';
 import { setup } from '.';
 import start from './__tests__/server/http/index';
-import { httpStatus } from 'boundaries/dsl/Matchers';
 
 const expectErrorContaining = async (
   context: Verifiable<'ConsumeHttpRequest'>,
@@ -48,11 +48,6 @@ describe('simple get endpoint', () => {
         expect(context.verify()).rejects.toBeInstanceOf(
           CaseConfigurationError
         ));
-      /*        const res = await context.verify();
-        if (res.length !== 0) {
-          throw new Error(res.join('\n').toString());
-        }
-        expect(res).not.toEqual([]); */
     });
     describe('with a running server', () => {
       let server: http.Server;
