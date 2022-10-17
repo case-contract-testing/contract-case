@@ -5,11 +5,11 @@ import type {
 import type { CoreHttpStatusCodeMatcher } from 'entities/types';
 
 export type AnyInteractionType =
-  | typeof PRODUCE_HTTP_REQUEST
-  | typeof CONSUME_HTTP_REQUEST;
+  | typeof CONSUME_HTTP_RESPONSE
+  | typeof PRODUCE_HTTP_RESPONSE;
 
-export const PRODUCE_HTTP_REQUEST = 'ProduceHttpRequest' as const;
-export const CONSUME_HTTP_REQUEST = 'ConsumeHttpRequest' as const;
+export const CONSUME_HTTP_RESPONSE = 'ConsumeHttpResponse' as const;
+export const PRODUCE_HTTP_RESPONSE = 'ProduceHttpResponse' as const;
 
 export type HasTypeForInteraction<T extends AnyInteractionType> = {
   'case:interaction:type': T;
@@ -22,7 +22,7 @@ export const isCaseInteraction = (
   maybeInteraction != null &&
   'case:interaction:type' in (maybeInteraction as AnyInteraction);
 
-export type AnyInteraction = ProduceHttpRequest | ConsumeHttpRequest;
+export type AnyInteraction = ConsumeHttpResponse | ProduceHttpResponse;
 
 export type CaseInteractionFor<T extends AnyInteractionType> = Extract<
   AnyInteraction,
@@ -45,14 +45,14 @@ export interface HttpRequestResponseDescription {
   response: HttpInteractionResponse;
 }
 
-export type ProduceHttpRequest = HasTypeForInteraction<
-  typeof PRODUCE_HTTP_REQUEST
-> & {
-  'case:run:context:expectation': 'produce';
-} & HttpRequestResponseDescription;
-
-export type ConsumeHttpRequest = HasTypeForInteraction<
-  typeof CONSUME_HTTP_REQUEST
+export type ConsumeHttpResponse = HasTypeForInteraction<
+  typeof CONSUME_HTTP_RESPONSE
 > & {
   'case:run:context:expectation': 'consume';
+} & HttpRequestResponseDescription;
+
+export type ProduceHttpResponse = HasTypeForInteraction<
+  typeof PRODUCE_HTTP_RESPONSE
+> & {
+  'case:run:context:expectation': 'produce';
 } & HttpRequestResponseDescription;

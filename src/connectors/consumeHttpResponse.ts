@@ -3,7 +3,7 @@ import axios from 'axios';
 import { mustResolveToString, traversals } from 'diffmatch';
 import type { Verifiable } from 'entities/types';
 import {
-  CONSUME_HTTP_REQUEST,
+  PRODUCE_HTTP_RESPONSE,
   HttpRequestResponseDescription,
 } from 'entities/nodes/interactions/types';
 import type { MatchContext, RunContext } from 'entities/context/types';
@@ -30,15 +30,15 @@ const validateConfig = (context: MatchContext): Promise<RunContext> => {
   );
 };
 
-export const setupHttpRequestProducer = (
+export const setupHttpResponseConsumer = (
   {
     request: expectedRequest,
     response: expectedResponse,
   }: HttpRequestResponseDescription,
   context: MatchContext
-): Promise<Verifiable<typeof CONSUME_HTTP_REQUEST>> =>
+): Promise<Verifiable<typeof PRODUCE_HTTP_RESPONSE>> =>
   validateConfig(context).then((run: RunContext) => ({
-    mock: { 'case:interaction:type': CONSUME_HTTP_REQUEST },
+    mock: { 'case:interaction:type': PRODUCE_HTTP_RESPONSE },
     verify: () =>
       axios
         .request({

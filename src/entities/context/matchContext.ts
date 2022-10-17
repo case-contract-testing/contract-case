@@ -16,7 +16,7 @@ import type {
 
 const DEFAULT_CONTEXT: SeralisableContext = {
   'case:context:location': [],
-  'case:run:context:expectation': 'produce',
+  'case:run:context:expectation': 'consume',
   'case:context:matchBy': 'exact',
   'case:context:serialisableTo': 'json',
 };

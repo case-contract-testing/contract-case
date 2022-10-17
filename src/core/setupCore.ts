@@ -9,12 +9,12 @@ import { addLocation } from 'entities/context';
 
 import type { SetupFns } from './types';
 
-const invert = (t: AnyInteractionType) => {
+const invert = (t: AnyInteractionType): AnyInteractionType => {
   switch (t) {
-    case 'ConsumeHttpRequest':
-      return 'ProduceHttpRequest';
-    case 'ProduceHttpRequest':
-      return 'ConsumeHttpRequest';
+    case 'ConsumeHttpResponse':
+      return 'ProduceHttpResponse';
+    case 'ProduceHttpResponse':
+      return 'ConsumeHttpResponse';
     default:
       throw new CaseCoreError(`Unable to invert interaction type '${t}'`);
   }

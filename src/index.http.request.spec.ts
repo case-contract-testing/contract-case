@@ -6,7 +6,7 @@ import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { setup } from '.';
 
 describe('simple get endpoint', () => {
-  let context: Verifiable<'ProduceHttpRequest'>;
+  let context: Verifiable<'ConsumeHttpResponse'>;
   beforeEach(async () => {
     context = await setup(
       willSendHttpInteraction({
@@ -35,7 +35,7 @@ describe('simple get endpoint', () => {
 });
 
 describe('arbitrary server response', () => {
-  let context: Verifiable<'ProduceHttpRequest'>;
+  let context: Verifiable<'ConsumeHttpResponse'>;
   beforeEach(async () => {
     context = await setup(
       willSendHttpInteraction({
@@ -64,7 +64,7 @@ describe('arbitrary server response', () => {
 });
 
 describe('No body server response', () => {
-  let context: Verifiable<'ProduceHttpRequest'>;
+  let context: Verifiable<'ConsumeHttpResponse'>;
   beforeEach(async () => {
     context = await setup(
       willSendHttpInteraction({

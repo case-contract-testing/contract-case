@@ -9,7 +9,7 @@ import { setup } from '.';
 import start from './__tests__/server/http/index';
 
 const expectErrorContaining = async (
-  context: Verifiable<'ProduceHttpRequest'>,
+  context: Verifiable<'ConsumeHttpResponse'>,
   expectedContent: string
 ) => {
   const matchResult: MatchResult = await context.verify();
@@ -28,24 +28,24 @@ describe('simple get endpoint', () => {
     response: { status: 200, body: { status: 'up' } },
   });
 
-  let context: Verifiable<'ProduceHttpRequest'>;
+  let context: Verifiable<'ConsumeHttpResponse'>;
   describe('without a URL', () => {
     it('fails to setup', () =>
       expect(
-        setup(interaction, { 'case:run:context:expectation': 'consume' })
+        setup(interaction, { 'case:run:context:expectation': 'produce' })
       ).rejects.toBeInstanceOf(CaseConfigurationError));
   });
 
   describe('with a URL', () => {
     const config: RunContext = {
       'case:run:context:baseurl': 'http://localhost:8080',
-      'case:run:context:expectation': 'consume',
+      'case:run:context:expectation': 'produce',
     };
     describe('but no running server', () => {
       beforeEach(async () => {
         context = await setup(interaction, {
           'case:run:context:baseurl': 'http://localhost:8081',
-          'case:run:context:expectation': 'consume',
+          'case:run:context:expectation': 'produce',
         });
       });
 

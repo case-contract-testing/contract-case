@@ -1,23 +1,23 @@
 import {
-  type ProduceHttpRequest,
-  PRODUCE_HTTP_REQUEST,
+  type ConsumeHttpResponse,
+  CONSUME_HTTP_RESPONSE,
   HttpRequestResponseDescription,
-  CONSUME_HTTP_REQUEST,
-  ConsumeHttpRequest,
+  PRODUCE_HTTP_RESPONSE,
+  ProduceHttpResponse,
 } from './types';
 
 export const willSendHttpInteraction = (
   interactionDescripton: HttpRequestResponseDescription
-): ProduceHttpRequest => ({
+): ConsumeHttpResponse => ({
   ...interactionDescripton,
-  'case:interaction:type': PRODUCE_HTTP_REQUEST,
-  'case:run:context:expectation': 'produce',
+  'case:interaction:type': CONSUME_HTTP_RESPONSE,
+  'case:run:context:expectation': 'consume',
 });
 
 export const willRecieveHttpInteraction = (
   interactionDescripton: HttpRequestResponseDescription
-): ConsumeHttpRequest => ({
+): ProduceHttpResponse => ({
   ...interactionDescripton,
-  'case:interaction:type': CONSUME_HTTP_REQUEST,
-  'case:run:context:expectation': 'consume',
+  'case:interaction:type': PRODUCE_HTTP_RESPONSE,
+  'case:run:context:expectation': 'produce',
 });
