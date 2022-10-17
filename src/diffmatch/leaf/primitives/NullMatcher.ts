@@ -3,9 +3,9 @@ import type {
   NULL_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
 import { errorWhen, matchingError } from 'entities/results/MatchingError';
-import type { CheckMatchFn, MatcherExecutor } from 'diffmatch/types';
 import type { MatchingError } from 'entities/types';
 import type { MatchContext } from 'entities/context/types';
+import type { CheckMatchFn, MatcherExecutor } from 'entities/executors/types';
 
 const check: CheckMatchFn<typeof NULL_MATCHER_TYPE> = (
   matcher: CoreNullMatcher,

@@ -7,12 +7,14 @@ import type {
   CaseInteractionFor,
 } from 'entities/nodes/interactions/types';
 import type { Verifiable } from 'entities/types';
+import type { RunContext } from 'entities/context/types';
 
 export const setup = <T extends AnyInteractionType>(
-  interaction: CaseInteractionFor<T>
+  interaction: CaseInteractionFor<T>,
+  runConfig: Partial<RunContext> = {}
 ): Promise<Verifiable<T>> =>
   setupCore(
     interaction,
     SetupFunctions,
-    applyDefaultContext(interaction, traversals)
+    applyDefaultContext(interaction, traversals, runConfig)
   );

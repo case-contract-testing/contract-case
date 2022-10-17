@@ -4,9 +4,12 @@ import type {
 } from 'entities/nodes/matchers/types';
 import type { CoreHttpStatusCodeMatcher } from 'entities/types';
 
-export type AnyInteractionType = typeof SEND_HTTP_REQUEST;
+export type AnyInteractionType =
+  | typeof PRODUCE_HTTP_REQUEST
+  | typeof CONSUME_HTTP_REQUEST;
 
-export const SEND_HTTP_REQUEST = 'SendHttpRequest' as const;
+export const PRODUCE_HTTP_REQUEST = 'ProduceHttpRequest' as const;
+export const CONSUME_HTTP_REQUEST = 'ConsumeHttpRequest' as const;
 
 export type HasTypeForInteraction<T extends AnyInteractionType> = {
   'case:interaction:type': T;
@@ -19,7 +22,7 @@ export const isCaseInteraction = (
   maybeInteraction != null &&
   'case:interaction:type' in (maybeInteraction as AnyInteraction);
 
-export type AnyInteraction = DoesSendHttpRequest;
+export type AnyInteraction = ProduceHttpRequest | ConsumeHttpRequest;
 
 export type CaseInteractionFor<T extends AnyInteractionType> = Extract<
   AnyInteraction,
@@ -42,8 +45,14 @@ export interface HttpRequestResponseDescription {
   response: HttpInteractionResponse;
 }
 
-export type DoesSendHttpRequest = HasTypeForInteraction<
-  typeof SEND_HTTP_REQUEST
+export type ProduceHttpRequest = HasTypeForInteraction<
+  typeof PRODUCE_HTTP_REQUEST
+> & {
+  'case:context:expectation': 'does';
+} & HttpRequestResponseDescription;
+
+export type ConsumeHttpRequest = HasTypeForInteraction<
+  typeof CONSUME_HTTP_REQUEST
 > & {
   'case:context:expectation': 'does';
 } & HttpRequestResponseDescription;

@@ -1,7 +1,12 @@
 import type { SetupFns } from 'core/types';
-import { SEND_HTTP_REQUEST } from 'entities/nodes/interactions/types';
-import { setupHttp } from './http';
+import {
+  CONSUME_HTTP_REQUEST,
+  PRODUCE_HTTP_REQUEST,
+} from 'entities/nodes/interactions/types';
+import { setupHttpRequestConsumer } from './consumeHttpRequest';
+import { setupHttpRequestProducer } from './produceHttpRequest';
 
 export const SetupFunctions: SetupFns = {
-  [SEND_HTTP_REQUEST]: setupHttp,
+  [CONSUME_HTTP_REQUEST]: setupHttpRequestProducer,
+  [PRODUCE_HTTP_REQUEST]: setupHttpRequestConsumer,
 };

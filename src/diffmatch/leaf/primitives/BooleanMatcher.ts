@@ -3,9 +3,9 @@ import type {
   BOOLEAN_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
 import { matchingError } from 'entities/results/MatchingError';
+import type { CheckMatchFn, MatcherExecutor } from 'entities/executors/types';
 import { combineResults, makeResults } from 'entities/results/MatchResult';
 import type { MatchingError } from 'entities/types';
-import type { CheckMatchFn, MatcherExecutor } from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
 import { testExactMatch } from './internal/testExactMatch';
 

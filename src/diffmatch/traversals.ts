@@ -1,4 +1,3 @@
-import type { MatcherExecutor } from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
 import { CaseCoreError } from 'entities/CaseCoreError';
 import { foldIntoContext } from 'entities/context';
@@ -15,7 +14,9 @@ import {
   SHAPED_OBJECT_MATCHER_TYPE,
   STRING_MATCHER_TYPE,
   HTTP_STATUS_CODE_MATCHER_TYPE,
+  AnyCaseNodeOrData,
 } from 'entities/types';
+import type { MatcherExecutor } from 'entities/executors/types';
 import { HttpStatusCodeMatcher } from './leaf/http/HttpStatusCodeMatcher';
 import { CascadingContext } from './contextShift/CascadingContext';
 import { BooleanMatcher } from './leaf/primitives/BooleanMatcher';
@@ -66,10 +67,24 @@ const descendAndCheck = <T extends AnyCaseNodeType>(
 const descendAndStrip = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
   parentMatchContext: MatchContext
-): ReturnType<MatcherExecutor<AnyCaseNodeType>['strip']> =>
+): ReturnType<MatcherExecutor<T>['strip']> =>
   getExecutor(matcherOrData, parentMatchContext).strip();
 
 export const traversals = {
   descendAndCheck,
   descendAndStrip,
+};
+
+export const mustResolveToString = (
+  matcher: AnyCaseNodeOrData,
+  context: MatchContext
+): string => {
+  const stripped = descendAndStrip(matcher, context);
+  if (typeof stripped !== 'string') {
+    throw new CaseCoreError(
+      'Provided matcher did not resolve to a string',
+      context
+    );
+  }
+  return stripped;
 };

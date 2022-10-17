@@ -1,12 +1,12 @@
-import type { CheckMatchFn, MatcherExecutor } from 'diffmatch/types';
 import { CaseCoreError } from 'entities/CaseCoreError';
 import type { MatchContext } from 'entities/context/types';
+import type { CheckMatchFn, MatcherExecutor } from 'entities/executors/types';
 import type {
   CoreHttpStatusCodeMatcher,
   HTTP_STATUS_CODE_MATCHER_TYPE,
 } from 'entities/nodes/matchers/http/types';
 import { errorWhen, matchingError } from 'entities/results/MatchingError';
-import { makeResults, noErrors } from 'entities/results/MatchResult';
+import { makeResults, hasNoErrors } from 'entities/results/MatchResult';
 import type { MatchingError, MatchResult } from 'entities/types';
 
 const checkExample = (
@@ -65,7 +65,7 @@ const check: CheckMatchFn<typeof HTTP_STATUS_CODE_MATCHER_TYPE> = (
   if (Array.isArray(matcher['case:matcher:rule'])) {
     const result = matcher['case:matcher:rule']
       .map((e) => checkExample(e, actual, makeError))
-      .find(noErrors);
+      .find(hasNoErrors);
 
     return result !== undefined
       ? result

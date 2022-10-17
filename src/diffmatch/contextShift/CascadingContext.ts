@@ -1,5 +1,5 @@
-import type { MatcherExecutor } from 'diffmatch/types';
 import type { MatchContext } from 'entities/context/types';
+import type { MatcherExecutor } from 'entities/executors/types';
 import type {
   AnyData,
   CASCADING_CONTEXT_MATCHER_TYPE,

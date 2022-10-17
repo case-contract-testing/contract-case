@@ -2,8 +2,9 @@ import type { MatchContext } from 'entities/context/types';
 import type {
   AnyInteractionType,
   CaseInteractionFor,
+  CONSUME_HTTP_REQUEST,
   HasTypeForInteraction,
-  SEND_HTTP_REQUEST,
+  PRODUCE_HTTP_REQUEST,
 } from 'entities/nodes/interactions/types';
 import type { Verifiable } from 'entities/types';
 
@@ -12,11 +13,17 @@ export type InteractionSetupFn<T extends AnyInteractionType> = (
   context: MatchContext
 ) => Promise<Verifiable<T>>;
 
-export type HttpSetup = HasTypeForInteraction<typeof SEND_HTTP_REQUEST> & {
+export type HttpRequestConsumerSetup = HasTypeForInteraction<
+  typeof PRODUCE_HTTP_REQUEST
+> & {
   baseUrl: string;
 };
 
-type AnySetupInfo = HttpSetup;
+export type HttpRequestProducerSetup = HasTypeForInteraction<
+  typeof CONSUME_HTTP_REQUEST
+>;
+
+type AnySetupInfo = HttpRequestConsumerSetup | HttpRequestProducerSetup;
 
 export type SetupInfoFor<T extends AnyInteractionType> = Extract<
   AnySetupInfo,

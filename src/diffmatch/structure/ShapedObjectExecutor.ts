@@ -7,14 +7,15 @@ import type {
   SHAPED_OBJECT_MATCHER_TYPE,
 } from 'entities/nodes/matchers/types';
 import type { MatchResult } from 'entities/types';
-import type {
-  CheckMatchFn,
-  MatcherExecutor,
-  StripMatcherFn,
-} from 'diffmatch/types';
+
 import type { MatchContext } from 'entities/context/types';
 import { addLocation } from 'entities/context';
 import { combineResults, makeResults } from 'entities/results/MatchResult';
+import type {
+  StripMatcherFn,
+  CheckMatchFn,
+  MatcherExecutor,
+} from 'entities/executors/types';
 
 const strip: StripMatcherFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = (
   matcher: CoreShapedObjectMatcher,

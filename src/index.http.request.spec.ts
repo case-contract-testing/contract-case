@@ -1,7 +1,7 @@
 import type { Verifiable } from 'entities/types';
 import axios, { AxiosResponse } from 'axios';
 import { httpStatus, shapedLike } from 'boundaries/dsl/Matchers';
-import { httpInteraction } from 'entities/nodes/interactions/http';
+import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { setup } from '.';
 
 const handleErrorResponse = <T>(response: AxiosResponse<T>) => {
@@ -25,10 +25,10 @@ const api = (baseUrl: string) => ({
 });
 
 describe('simple get endpoint', () => {
-  let context: Verifiable<'SendHttpRequest'>;
+  let context: Verifiable<'ProduceHttpRequest'>;
   beforeEach(async () => {
     context = await setup(
-      httpInteraction({
+      willSendHttpInteraction({
         request: {
           method: 'GET',
           path: '/health',
@@ -54,10 +54,10 @@ describe('simple get endpoint', () => {
 });
 
 describe('arbitrary server response', () => {
-  let context: Verifiable<'SendHttpRequest'>;
+  let context: Verifiable<'ProduceHttpRequest'>;
   beforeEach(async () => {
     context = await setup(
-      httpInteraction({
+      willSendHttpInteraction({
         request: {
           method: 'GET',
           path: '/health',
@@ -83,10 +83,10 @@ describe('arbitrary server response', () => {
 });
 
 describe('No body server response', () => {
-  let context: Verifiable<'SendHttpRequest'>;
+  let context: Verifiable<'ProduceHttpRequest'>;
   beforeEach(async () => {
     context = await setup(
-      httpInteraction({
+      willSendHttpInteraction({
         request: {
           method: 'GET',
           path: '/health',

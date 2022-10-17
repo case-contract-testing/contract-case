@@ -7,7 +7,12 @@ import {
   AnyCaseNode,
   AnyCaseNodeOrData,
 } from 'entities/nodes/matchers/types';
-import type { MatchContext, SeralisableContext, Traversals } from './types';
+import type {
+  MatchContext,
+  RunContext,
+  SeralisableContext,
+  Traversals,
+} from './types';
 
 const DEFAULT_CONTEXT: SeralisableContext = {
   'case:context:location': [],
@@ -40,9 +45,14 @@ export const addLocation = (
 
 export const applyDefaultContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
-  traversals: Traversals
+  traversals: Traversals,
+  runConfig: Partial<RunContext> = {}
 ): MatchContext => ({
   ...(isCaseNode(caseNodeOrData) || isCaseInteraction(caseNodeOrData)
-    ? foldIntoContext(caseNodeOrData, { ...traversals, ...DEFAULT_CONTEXT })
-    : { ...traversals, ...DEFAULT_CONTEXT }),
+    ? foldIntoContext(caseNodeOrData, {
+        ...traversals,
+        ...DEFAULT_CONTEXT,
+        ...runConfig,
+      })
+    : { ...traversals, ...DEFAULT_CONTEXT, ...runConfig }),
 });

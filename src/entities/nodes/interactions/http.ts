@@ -1,13 +1,23 @@
 import {
-  type DoesSendHttpRequest,
-  SEND_HTTP_REQUEST,
+  type ProduceHttpRequest,
+  PRODUCE_HTTP_REQUEST,
   HttpRequestResponseDescription,
+  CONSUME_HTTP_REQUEST,
+  ConsumeHttpRequest,
 } from './types';
 
-export const httpInteraction = (
+export const willSendHttpInteraction = (
   interactionDescripton: HttpRequestResponseDescription
-): DoesSendHttpRequest => ({
+): ProduceHttpRequest => ({
   ...interactionDescripton,
-  'case:interaction:type': SEND_HTTP_REQUEST,
+  'case:interaction:type': PRODUCE_HTTP_REQUEST,
+  'case:context:expectation': 'does',
+});
+
+export const willRecieveHttpInteraction = (
+  interactionDescripton: HttpRequestResponseDescription
+): ConsumeHttpRequest => ({
+  ...interactionDescripton,
+  'case:interaction:type': CONSUME_HTTP_REQUEST,
   'case:context:expectation': 'does',
 });

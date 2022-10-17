@@ -5,20 +5,20 @@ import { traversals } from 'diffmatch';
 import type { MatchResult, Verifiable } from 'entities/types';
 import {
   HttpRequestResponseDescription,
-  SEND_HTTP_REQUEST,
+  PRODUCE_HTTP_REQUEST,
 } from 'entities/nodes/interactions/types';
 import type { MatchContext } from 'entities/context/types';
 import { addLocation } from 'entities/context';
 import { combineResults, makeResults } from 'entities/results/MatchResult';
 import { CaseCoreError } from 'entities';
 
-export const setupHttp = (
+export const setupHttpRequestConsumer = (
   {
     request: expectedRequest,
     response: expectedResponse,
   }: HttpRequestResponseDescription,
   context: MatchContext
-): Promise<Verifiable<typeof SEND_HTTP_REQUEST>> => {
+): Promise<Verifiable<typeof PRODUCE_HTTP_REQUEST>> => {
   let matchResults: MatchResult = [
     {
       message:
@@ -29,7 +29,7 @@ export const setupHttp = (
     },
   ];
   let server: http.Server;
-  return new Promise<Verifiable<typeof SEND_HTTP_REQUEST>>(
+  return new Promise<Verifiable<typeof PRODUCE_HTTP_REQUEST>>(
     (resolve, reject) => {
       const app = express();
       app.all('*', async (req, res) => {
@@ -79,7 +79,7 @@ export const setupHttp = (
       } else {
         resolve({
           mock: {
-            'case:interaction:type': SEND_HTTP_REQUEST,
+            'case:interaction:type': PRODUCE_HTTP_REQUEST,
             baseUrl: `http://${
               typeof address === 'string' ? address : `:${address.port}`
             }`,

@@ -1,4 +1,4 @@
-import type { MatcherExecutor } from 'diffmatch/types';
+import type { MatcherExecutor } from 'entities/executors/types';
 import type {
   AnyCaseNodeType,
   AnyLeafOrStructure,
@@ -22,12 +22,18 @@ export interface Traversals {
   ) => ReturnType<MatcherExecutor<T>['strip']>;
 }
 
-export type MatchContext = Traversals & SeralisableContext;
+export type MatchContext = Traversals &
+  SeralisableContext &
+  Partial<RunContext>;
 
 export interface SeralisableContext {
   'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
   'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
   'case:context:location': Array<string>;
+}
+
+export interface RunContext {
+  'case:run:context:baseurl': string;
 }
 
 export interface MatchContextByType {
