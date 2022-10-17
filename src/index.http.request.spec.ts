@@ -1,28 +1,9 @@
+import api from '__tests__/client/http/connector';
+import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
 import type { Verifiable } from 'entities/types';
-import axios, { AxiosResponse } from 'axios';
 import { httpStatus, shapedLike } from 'boundaries/dsl/Matchers';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { setup } from '.';
-
-const handleErrorResponse = <T>(response: AxiosResponse<T>) => {
-  throw new Error(`${response.status}`);
-};
-
-const handleFailure = (error: Error) => {
-  if (axios.isAxiosError(error) && error.response) {
-    return handleErrorResponse(error.response);
-  }
-
-  throw new Error(`[API Failed] ${error.message}`);
-};
-
-const api = (baseUrl: string) => ({
-  getHealth: () =>
-    axios
-      .get(`${baseUrl}/health`)
-      .then((response) => response.data.status, handleFailure),
-  /* other endpoints here */
-});
 
 describe('simple get endpoint', () => {
   let context: Verifiable<'ProduceHttpRequest'>;
@@ -41,7 +22,7 @@ describe('simple get endpoint', () => {
   it('calls server health', async () => {
     const client = api(context.mock.baseUrl);
 
-    const health = await client.getHealth();
+    const health = await client.health();
     expect(health).toEqual('up');
   });
 
@@ -70,7 +51,7 @@ describe('arbitrary server response', () => {
   it('calls server health', async () => {
     const client = api(context.mock.baseUrl);
 
-    const health = await client.getHealth();
+    const health = await client.health();
     expect(health).toEqual('down');
   });
 
@@ -99,7 +80,7 @@ describe('No body server response', () => {
   it('calls server health', () => {
     const client = api(context.mock.baseUrl);
 
-    return expect(client.getHealth()).rejects.toEqual(new Error('400'));
+    return expect(client.health()).rejects.toBeInstanceOf(ApiError);
   });
 
   afterEach(async () => {
