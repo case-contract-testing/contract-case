@@ -2,7 +2,7 @@ import type * as http from 'http';
 import type { MatchResult, Verifiable } from 'entities/types';
 import { willRecieveHttpInteraction } from 'entities/nodes/interactions/http';
 import { makeNoErrorResult } from 'entities/results/MatchResult';
-import { httpStatus } from 'boundaries/dsl/Matchers';
+import { anyString, httpStatus } from 'boundaries/dsl/Matchers';
 import { CaseConfigurationError } from 'entities';
 import { setup } from '.';
 import start from './__tests__/server/http/index';
@@ -41,7 +41,9 @@ describe('simple get endpoint', () => {
     };
     describe('but no running server', () => {
       beforeEach(async () => {
-        context = await setup(interaction, config);
+        context = await setup(interaction, {
+          'case:run:context:baseurl': 'http://localhost:8081',
+        });
       });
 
       it('fails to start', () =>
@@ -67,6 +69,26 @@ describe('simple get endpoint', () => {
       describe('and a matching interaction', () => {
         beforeEach(async () => {
           context = await setup(interaction, config);
+        });
+        it('succeeds', () =>
+          expect(context.verify()).resolves.toEqual(makeNoErrorResult()));
+      });
+
+      describe('and a matching interaction that is generic', () => {
+        beforeEach(async () => {
+          context = await setup(
+            willRecieveHttpInteraction({
+              request: {
+                method: 'GET',
+                path: '/health',
+              },
+              response: {
+                status: httpStatus(200),
+                body: { status: anyString('up') },
+              },
+            }),
+            config
+          );
         });
         it('succeeds', () =>
           expect(context.verify()).resolves.toEqual(makeNoErrorResult()));
@@ -119,7 +141,7 @@ describe('simple get endpoint', () => {
                 method: 'POST',
                 path: '/health',
               },
-              response: { status: httpStatus(200), body: { status: 'up' } },
+              response: { status: httpStatus('200'), body: { status: 'up' } },
             }),
             config
           );
