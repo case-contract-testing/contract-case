@@ -111,6 +111,39 @@ describe('simple get endpoint', () => {
             "The returned http status code '200' did not match"
           ));
       });
+      describe('and a non-matching method', () => {
+        beforeEach(async () => {
+          context = await setup(
+            willRecieveHttpInteraction({
+              request: {
+                method: 'POST',
+                path: '/health',
+              },
+              response: { status: httpStatus(200), body: { status: 'up' } },
+            }),
+            config
+          );
+        });
+        it('fails', () =>
+          expect(context.verify()).resolves.not.toEqual(makeNoErrorResult()));
+      });
+
+      describe('and a non-matching path', () => {
+        beforeEach(async () => {
+          context = await setup(
+            willRecieveHttpInteraction({
+              request: {
+                method: 'GET',
+                path: '/healthy',
+              },
+              response: { status: httpStatus(200), body: { status: 'up' } },
+            }),
+            config
+          );
+        });
+        it('fails', () =>
+          expect(context.verify()).resolves.not.toEqual(makeNoErrorResult()));
+      });
     });
   });
 });
