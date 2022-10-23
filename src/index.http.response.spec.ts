@@ -2,7 +2,7 @@ import type * as http from 'http';
 import type { MatchResult, Verifiable } from 'entities/types';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { makeNoErrorResult } from 'entities/results/MatchResult';
-import type { RunContext } from 'entities/context/types';
+import type { InjectableContext } from 'entities/context/types';
 import { anyString, httpStatus } from 'boundaries/dsl/Matchers';
 import { CaseConfigurationError } from 'entities';
 import { setup } from '.';
@@ -32,13 +32,17 @@ describe('simple get endpoint', () => {
   describe('without a URL', () => {
     it('fails to setup', () =>
       expect(
-        setup(interaction, { 'case:run:context:expectation': 'produce' })
+        setup(interaction, {
+          'case:run:context:expectation': 'produce',
+          'case:run:context:logLevel': 'trace',
+        })
       ).rejects.toBeInstanceOf(CaseConfigurationError));
   });
 
   describe('with a URL', () => {
-    const config: RunContext = {
+    const config: InjectableContext = {
       'case:run:context:baseurl': 'http://localhost:8282',
+      'case:run:context:logLevel': 'trace',
       'case:run:context:expectation': 'produce',
     };
     describe('but no running server', () => {

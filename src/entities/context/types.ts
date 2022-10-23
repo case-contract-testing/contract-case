@@ -1,10 +1,12 @@
 import type { MatcherExecutor } from 'entities/executors/types';
-import type { Logger } from 'entities/logger/types';
+import type { Logger, LogLevel } from 'entities/logger/types';
 import type {
+  AnyCaseNodeOrData,
   AnyCaseNodeType,
   AnyLeafOrStructure,
   CaseNodeFor,
 } from 'entities/nodes/matchers/types';
+import type { AnyInteraction } from 'entities/types';
 
 export const MATCH_BY_TYPE = 'type' as const;
 export const MATCH_BY_EXACT = 'exact' as const;
@@ -29,20 +31,26 @@ interface ContextLoggers {
 }
 
 export type MatchContext = Traversals &
-  SeralisableContext &
+  DefaultContext &
   ContextLoggers &
-  Partial<RunContext>;
+  Partial<InjectableContext> &
+  RunContext;
 
-export interface SeralisableContext {
+export interface DefaultContext {
+  'case:run:context:location': Array<string>;
   'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
   'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
   'case:run:context:expectation': 'produce' | 'consume';
-  'case:run:context:location': Array<string>;
 }
 
-export interface RunContext {
-  'case:run:context:baseurl': string;
+export interface InjectableContext {
+  'case:run:context:baseurl'?: string;
   'case:run:context:expectation': 'produce' | 'consume';
+  'case:run:context:logLevel'?: LogLevel;
+}
+
+export interface RunContext extends Partial<InjectableContext> {
+  'case:run:context:tree': AnyCaseNodeOrData | AnyInteraction;
 }
 
 export interface MatchContextByType {

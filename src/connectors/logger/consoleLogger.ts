@@ -7,27 +7,27 @@ let currentLogLevel: LogLevel = 'info';
 export const logger: Logger = {
   info(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'info')) {
-      console.log(message, ...additional);
+      console.log(`${message}`, ...additional);
     }
   },
   warn(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'warn')) {
-      console.log(message, ...additional);
+      console.log(`[WARN]: ${message}`, ...additional);
     }
   },
   error(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'error')) {
-      console.log(message, ...additional);
+      console.log(`[ERROR]: ${message}`, ...additional);
     }
   },
   debug(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'debug')) {
-      console.log(message, ...additional);
+      console.log(`[DEBUG]: ${message}`, ...additional);
     }
   },
   trace(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'trace')) {
-      console.log(message, ...additional);
+      console.log(`[MAINTAINER-DEBUG]: ${message}`, ...additional);
     }
   },
   setLevel: (newLevel) => {

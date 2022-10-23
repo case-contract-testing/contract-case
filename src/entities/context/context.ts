@@ -11,7 +11,7 @@ import {
 import type {
   MatchContext,
   RunContext,
-  SeralisableContext,
+  DefaultContext,
   Traversals,
 } from './types';
 
@@ -19,7 +19,7 @@ import type {
  * `case:run:context:*` is not clobberable by child matchers
  * `case:context:*` is clobberable by child matchers
  */
-const DEFAULT_CONTEXT: SeralisableContext = {
+const DEFAULT_CONTEXT: DefaultContext = {
   'case:run:context:location': [],
   'case:run:context:expectation': 'consume',
   'case:context:matchBy': 'exact',
@@ -51,6 +51,7 @@ const combineWithRoot = (
 });
 
 const constructContext = (
+  caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
   traversals: Traversals,
   logger: Logger,
   runConfig: Partial<RunContext>
@@ -60,6 +61,7 @@ const constructContext = (
   ...traversals,
   ...DEFAULT_CONTEXT,
   ...runConfig,
+  'case:run:context:tree': caseNodeOrData,
 });
 
 export const applyDefaultContext = (
@@ -67,11 +69,17 @@ export const applyDefaultContext = (
   traversals: Traversals,
   logger: Logger,
   runConfig: Partial<RunContext> = {}
-): MatchContext =>
-  combineWithRoot(
+): MatchContext => {
+  if (runConfig['case:run:context:logLevel']) {
+    logger.setLevel(runConfig['case:run:context:logLevel']);
+  }
+  const context = combineWithRoot(
     caseNodeOrData,
-    constructContext(traversals, logger, runConfig)
+    constructContext(caseNodeOrData, traversals, logger, runConfig)
   );
+  logger.trace('Initial context is:', JSON.stringify(context, null, 2));
+  return context;
+};
 
 export const addLocation = (
   location: string,

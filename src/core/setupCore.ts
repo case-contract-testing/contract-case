@@ -27,7 +27,7 @@ const inferInteraction = <T extends AnyInteractionType>(
   context.logger.trace(
     'Determining interaction type direction for interaction + context:',
     interaction,
-    context
+    JSON.stringify(context, null, 2)
   );
   if (
     interaction['case:run:context:expectation'] !==
