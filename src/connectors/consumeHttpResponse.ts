@@ -85,7 +85,9 @@ export const setupHttpResponseConsumer = (
                   new CaseConfigurationError(
                     `[${
                       err.code ? err.code : 'HTTP_FAIL'
-                    }]\n\nRequest was made, but no response. \n\nConfirm that you have:\n 1) Started the real server\n 2) Provided the correct URL to the running server\n\nUnderlying Error: ${
+                    }]\n\nRequest was made to '${
+                      run['case:run:context:baseurl']
+                    }', but no response. \n\nConfirm that you have:\n 1) Started the real server\n 2) Provided the correct URL to the running server\n\nUnderlying Error: ${
                       err.message
                     }`
                   )
