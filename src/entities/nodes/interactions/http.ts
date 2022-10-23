@@ -11,7 +11,7 @@ export const willSendHttpInteraction = (
 ): ConsumeHttpResponse => ({
   ...interactionDescripton,
   'case:interaction:type': CONSUME_HTTP_RESPONSE,
-  'case:run:context:expectation': 'consume',
+  'case:run:context:asWritten': 'consume',
 });
 
 export const willRecieveHttpInteraction = (
@@ -19,5 +19,5 @@ export const willRecieveHttpInteraction = (
 ): ProduceHttpResponse => ({
   ...interactionDescripton,
   'case:interaction:type': PRODUCE_HTTP_RESPONSE,
-  'case:run:context:expectation': 'produce',
+  'case:run:context:asWritten': 'produce',
 });

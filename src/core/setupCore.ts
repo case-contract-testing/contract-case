@@ -31,8 +31,8 @@ const inferInteraction = <T extends AnyInteractionType>(
   );
 
   if (
-    interaction['case:run:context:expectation'] !==
-    context['case:run:context:expectation']
+    interaction['case:run:context:asWritten'] !==
+    context['case:currentRun:context:expectation']
   ) {
     const invertedType = invert(interaction['case:interaction:type']);
     context.logger.maintainerDebug(
@@ -57,7 +57,8 @@ const executeSetup = <T extends AnyInteractionType>(
   const interactionType: T = interaction['case:interaction:type'];
   if (!interactionType) {
     throw new CaseCoreError(
-      `Missing type on interaction. You must pass an interaction to setup`
+      `Missing type on interaction. You must pass an interaction to setup`,
+      context
     );
   }
 

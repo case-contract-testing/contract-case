@@ -45,13 +45,17 @@ export interface DefaultContext {
   'case:run:context:location': Array<string>;
   'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
   'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
-  'case:run:context:expectation': 'produce' | 'consume';
+  'case:currentRun:context:expectation': 'produce' | 'consume';
 }
 
 export interface InjectableContext {
-  'case:run:context:baseurl'?: string;
-  'case:run:context:expectation': 'produce' | 'consume';
-  'case:run:context:logLevel'?: LogLevel;
+  'case:currentRun:context:baseurl'?: string;
+  'case:currentRun:context:expectation': 'produce' | 'consume';
+  'case:currentRun:context:logLevel'?: LogLevel;
+}
+
+export interface HasBaseUrl {
+  'case:currentRun:context:baseurl': string;
 }
 
 export interface RunContext extends Partial<InjectableContext> {

@@ -75,7 +75,9 @@ export const setupHttpResponseProducer = (
       const address = server.address();
 
       if (address == null) {
-        reject(new CaseCoreError('Server address was null after startup'));
+        reject(
+          new CaseCoreError('Server address was null after startup', context)
+        );
       } else {
         resolve({
           mock: {

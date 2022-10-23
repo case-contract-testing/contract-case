@@ -33,23 +33,23 @@ describe('simple get endpoint', () => {
     it('fails to setup', () =>
       expect(
         setup(interaction, {
-          'case:run:context:expectation': 'produce',
-          'case:run:context:logLevel': 'maintainerDebug',
+          'case:currentRun:context:expectation': 'produce',
+          'case:currentRun:context:logLevel': 'maintainerDebug',
         })
       ).rejects.toBeInstanceOf(CaseConfigurationError));
   });
 
   describe('with a URL', () => {
     const config: InjectableContext = {
-      'case:run:context:baseurl': 'http://localhost:8282',
-      'case:run:context:logLevel': 'maintainerDebug',
-      'case:run:context:expectation': 'produce',
+      'case:currentRun:context:baseurl': 'http://localhost:8282',
+      'case:currentRun:context:logLevel': 'maintainerDebug',
+      'case:currentRun:context:expectation': 'produce',
     };
     describe('but no running server', () => {
       beforeEach(async () => {
         context = await setup(interaction, {
-          'case:run:context:baseurl': 'http://localhost:8081',
-          'case:run:context:expectation': 'produce',
+          'case:currentRun:context:baseurl': 'http://localhost:8081',
+          'case:currentRun:context:expectation': 'produce',
         });
       });
 

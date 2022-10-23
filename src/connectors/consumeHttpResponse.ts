@@ -6,7 +6,11 @@ import {
   PRODUCE_HTTP_RESPONSE,
   HttpRequestResponseDescription,
 } from 'entities/nodes/interactions/types';
-import type { MatchContext, RunContext } from 'entities/context/types';
+import type {
+  HasBaseUrl,
+  LoggableContext,
+  MatchContext,
+} from 'entities/context/types';
 import { addLocation } from 'entities/context';
 import {
   combineResults,
@@ -14,18 +18,23 @@ import {
 } from 'entities/results/MatchResult';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
 
-const isRunContext = (context: Partial<RunContext>): context is RunContext =>
-  'case:run:context:baseurl' in context &&
-  context['case:run:context:baseurl'] !== undefined &&
-  typeof context['case:run:context:baseurl'] === 'string';
+const isRunContext = (
+  context: Partial<LoggableContext>
+): context is LoggableContext & HasBaseUrl =>
+  'case:currentRun:context:baseurl' in context &&
+  context['case:currentRun:context:baseurl'] !== undefined &&
+  typeof context['case:currentRun:context:baseurl'] === 'string';
 
-const validateConfig = (context: MatchContext): Promise<RunContext> => {
+const validateConfig = (
+  context: MatchContext
+): Promise<LoggableContext & HasBaseUrl> => {
   if (isRunContext(context)) {
     return Promise.resolve(context);
   }
   return Promise.reject(
     new CaseConfigurationError(
-      `Must provide a URL in order to validate HTTP request consumers`
+      `Must provide a URL in order to validate HTTP request consumers`,
+      context
     )
   );
 };
@@ -37,7 +46,7 @@ export const setupHttpResponseConsumer = (
   }: HttpRequestResponseDescription,
   context: MatchContext
 ): Promise<Verifiable<typeof PRODUCE_HTTP_RESPONSE>> =>
-  validateConfig(context).then((run: RunContext) => ({
+  validateConfig(context).then((run: LoggableContext & HasBaseUrl) => ({
     mock: { 'case:interaction:type': PRODUCE_HTTP_RESPONSE },
     verify: () =>
       axios
@@ -47,7 +56,7 @@ export const setupHttpResponseConsumer = (
             expectedRequest.method,
             addLocation('method', context)
           ),
-          url: `${run['case:run:context:baseurl']}${mustResolveToString(
+          url: `${run['case:currentRun:context:baseurl']}${mustResolveToString(
             expectedRequest.path,
             addLocation('path', context)
           )}`,
@@ -86,19 +95,22 @@ export const setupHttpResponseConsumer = (
                     `[${
                       err.code ? err.code : 'HTTP_FAIL'
                     }]\n\nRequest was made to '${
-                      run['case:run:context:baseurl']
+                      run['case:currentRun:context:baseurl']
                     }', but no response. \n\nConfirm that you have:\n 1) Started the real server\n 2) Provided the correct URL to the running server\n\nUnderlying Error: ${
                       err.message
-                    }`
+                    }`,
+                    run
                   )
                 );
               }
               throw new CaseConfigurationError(
-                `Unable to send request to http server - did you start the server and provide the URL? (${err.message})`
+                `Unable to send request to http server - did you start the server and provide the URL? (${err.message})`,
+                run
               );
             }
             throw new CaseCoreError(
-              `Something went wrong while creating the http request: ${err.message}`
+              `Something went wrong while creating the http request: ${err.message}`,
+              run
             );
           }
         ),

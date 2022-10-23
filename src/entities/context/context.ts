@@ -22,7 +22,7 @@ import type {
  */
 const DEFAULT_CONTEXT: DefaultContext = {
   'case:run:context:location': [],
-  'case:run:context:expectation': 'consume',
+  'case:currentRun:context:expectation': 'consume',
   'case:context:matchBy': 'exact',
   'case:context:serialisableTo': 'json',
 };
@@ -82,8 +82,8 @@ export const applyDefaultContext = (
     constructContext(caseNodeOrData, traversals, makeLogger, runConfig)
   );
 
-  if (runConfig['case:run:context:logLevel']) {
-    context.logger.setLevel(runConfig['case:run:context:logLevel']);
+  if (runConfig['case:currentRun:context:logLevel']) {
+    context.logger.setLevel(runConfig['case:currentRun:context:logLevel']);
   }
   context.logger.maintainerDebug(
     'Initial context is:',
