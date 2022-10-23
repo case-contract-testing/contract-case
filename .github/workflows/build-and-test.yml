@@ -21,6 +21,7 @@ jobs:
       - run: ci/build-and-test.sh
         env:
           NODE_VERSION: ${{ matrix.node-version }}
+          FORCE_COLOR: true
 
   build-and-test-ubuntu:
     runs-on: ubuntu-latest
@@ -36,6 +37,7 @@ jobs:
       - run: ci/build-and-test.sh
         env:
           NODE_VERSION: ${{ matrix.node-version }}
+          FORCE_COLOR: true
 
   build-and-test-windows:
     runs-on: windows-latest
@@ -52,4 +54,5 @@ jobs:
         shell: bash
         env:
           NODE_VERSION: ${{ matrix.node-version }}
+          FORCE_COLOR: true
 
