@@ -12,7 +12,7 @@ const stdoutLogger = new Console({ stdout: process.stdout });
 const caseVersionString = chalk.green(`case@${caseVersion} `);
 
 const locationString = (matchContext: LoggableContext) =>
-  matchContext['case:run:context:location'].join('.');
+  matchContext['case:currentRun:context:location'].join('.');
 
 export const makeLogger: (context: LoggableContext) => Logger = (
   matchContext: LoggableContext

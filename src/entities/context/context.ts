@@ -21,7 +21,7 @@ import type {
  * `case:context:*` is clobberable by child matchers
  */
 const DEFAULT_CONTEXT: DefaultContext = {
-  'case:run:context:location': [],
+  'case:currentRun:context:location': [],
   'case:currentRun:context:expectation': 'consume',
   'case:context:matchBy': 'exact',
   'case:context:serialisableTo': 'json',
@@ -63,7 +63,7 @@ const constructContext = (
     makeLogger,
     ...traversals,
     ...DEFAULT_CONTEXT,
-    'case:run:context:location': [`test[${interactionId}]`],
+    'case:currentRun:context:location': [`test[${interactionId}]`],
     ...runConfig,
     'case:run:context:tree': caseNodeOrData,
   };
@@ -99,9 +99,9 @@ export const addLocation = (
   const nextContext = {
     ...context,
 
-    'case:run:context:location': context['case:run:context:location'].concat([
-      location,
-    ]),
+    'case:currentRun:context:location': context[
+      'case:currentRun:context:location'
+    ].concat([location]),
   };
   return { ...nextContext, logger: nextContext.makeLogger(nextContext) };
 };

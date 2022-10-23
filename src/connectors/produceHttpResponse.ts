@@ -24,7 +24,7 @@ export const setupHttpResponseProducer = (
       message:
         'The server was never called. Please confirm that you are calling the mock server',
       expected: 'The server to be called',
-      location: context['case:run:context:location'],
+      location: context['case:currentRun:context:location'],
       actual: 'The server never recieved any calls',
     },
   ];
@@ -96,7 +96,7 @@ export const setupHttpResponseProducer = (
                           'The server was not running when it was verified',
                         expected: 'The server to be running',
                         actual: err.message,
-                        location: context['case:run:context:location'],
+                        location: context['case:currentRun:context:location'],
                       })
                     : makeResults()
                 );

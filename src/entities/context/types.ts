@@ -42,7 +42,7 @@ export type LoggableContext = Omit<
 >;
 
 export interface DefaultContext {
-  'case:run:context:location': Array<string>;
+  'case:currentRun:context:location': Array<string>;
   'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
   'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
   'case:currentRun:context:expectation': 'produce' | 'consume';

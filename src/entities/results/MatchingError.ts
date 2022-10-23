@@ -24,9 +24,9 @@ export const matchingError = (
   expected:
     'case:matcher:example' in matcher ? matcher['case:matcher:example'] : null,
   actual,
-  location: context['case:run:context:location'],
+  location: context['case:currentRun:context:location'],
   toString: () =>
-    `[${context['case:run:context:location'].join('.')}] ${message} (${
+    `[${context['case:currentRun:context:location'].join('.')}] ${message} (${
       matcher['case:matcher:type']
     })`,
 });

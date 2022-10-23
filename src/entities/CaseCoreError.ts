@@ -1,7 +1,7 @@
 import type { LoggableContext } from './context/types';
 
 const locationString = (matchContext: LoggableContext) =>
-  `(at ${matchContext['case:run:context:location'].join('.')})`;
+  `(at ${matchContext['case:currentRun:context:location'].join('.')})`;
 
 export class CaseCoreError extends Error {
   constructor(message: string, context?: LoggableContext) {
