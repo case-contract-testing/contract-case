@@ -38,7 +38,7 @@ describe('simple get endpoint', () => {
 
   describe('with a URL', () => {
     const config: RunContext = {
-      'case:run:context:baseurl': 'http://localhost:8080',
+      'case:run:context:baseurl': 'http://localhost:8282',
       'case:run:context:expectation': 'produce',
     };
     describe('but no running server', () => {
