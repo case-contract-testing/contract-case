@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { caseVersion } from 'caseVersion';
 import chalk from 'chalk';
 import { shouldLog } from 'entities/logger/shouldLog';
