@@ -6,6 +6,10 @@
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "lint": "eslint 'src/**/*.ts' --ext .ts --config .eslintrc.json",
+    "lint:fix": "eslint 'src/**/*.ts' --fix --ext .ts --config .eslintrc.json",
+    "format:base": "prettier --parser typescript \"**/*.ts\"",
+    "format:check": "npm run format:base -- --list-different",
+    "format:fix": "npm run format:base -- --write ",
     "test": "jest"
   },
   "author": "Timothy Jones",
