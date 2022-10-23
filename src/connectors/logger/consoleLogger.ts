@@ -9,7 +9,7 @@ let currentLogLevel: LogLevel = 'info';
 
 const stdoutLogger = new Console({ stdout: process.stdout });
 
-const caseVersionString = chalk.green(`[case@${caseVersion}]`);
+const caseVersionString = chalk.green(`case@${caseVersion} `);
 
 const locationString = (matchContext: LoggableContext) =>
   matchContext['case:run:context:location'].join('.');
@@ -20,7 +20,7 @@ export const makeLogger: (context: LoggableContext) => Logger = (
   info(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'info')) {
       stdoutLogger.log(
-        `${caseVersionString}${locationString(matchContext)} ${message}`,
+        `${caseVersionString}${locationString(matchContext)}: ${message}`,
         ...additional
       );
     }
@@ -30,7 +30,7 @@ export const makeLogger: (context: LoggableContext) => Logger = (
       stdoutLogger.log(
         `${chalk.yellow(`[WARN]`)}${caseVersionString}${locationString(
           matchContext
-        )} ${message}`,
+        )}: ${message}`,
         ...additional
       );
     }
@@ -40,7 +40,7 @@ export const makeLogger: (context: LoggableContext) => Logger = (
       stdoutLogger.log(
         `${chalk.red(`[ERROR]`)}${caseVersionString}${locationString(
           matchContext
-        )} ${message}`,
+        )}: ${message}`,
         ...additional
       );
     }
@@ -50,7 +50,7 @@ export const makeLogger: (context: LoggableContext) => Logger = (
       stdoutLogger.log(
         `${chalk.cyan(`[DEBUG]`)}${caseVersionString}${locationString(
           matchContext
-        )} ${message}`,
+        )}: ${message}`,
         ...additional
       );
     }
@@ -60,7 +60,7 @@ export const makeLogger: (context: LoggableContext) => Logger = (
       stdoutLogger.log(
         `${chalk.bgBlue(
           `[MAINTAINER-DEBUG]`
-        )}${caseVersionString}${locationString(matchContext)} ${message}`,
+        )}${caseVersionString}${locationString(matchContext)}: ${message}`,
         ...additional
       );
     }

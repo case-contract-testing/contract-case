@@ -51,6 +51,8 @@ const combineWithRoot = (
     : context),
 });
 
+let interactionId = 0;
+
 const constructContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
   traversals: Traversals,
@@ -61,9 +63,11 @@ const constructContext = (
     makeLogger,
     ...traversals,
     ...DEFAULT_CONTEXT,
+    'case:run:context:location': [`test[${interactionId}]`],
     ...runConfig,
     'case:run:context:tree': caseNodeOrData,
   };
+  interactionId += 1;
   return { ...context, logger: makeLogger(context) };
 };
 

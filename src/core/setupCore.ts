@@ -77,7 +77,7 @@ export const setupCore = <T extends AnyInteractionType>(
   context: MatchContext
 ): Promise<Verifiable<T>> =>
   executeSetup(
-    inferInteraction(interaction, context),
+    inferInteraction(interaction, addLocation('inference', context)),
     InteractionSetup,
     context
   );
