@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { caseVersion } from 'caseVersion';
+import chalk from 'chalk';
 import { shouldLog } from 'entities/logger/shouldLog';
 import type { Logger, LogLevel } from 'entities/logger/types';
 import { Console } from 'node:console';
@@ -8,7 +9,7 @@ let currentLogLevel: LogLevel = 'info';
 
 const stdoutLogger = new Console({ stdout: process.stdout });
 
-const caseVersionString = `[case@${caseVersion}]`;
+const caseVersionString = chalk.green(`[case@${caseVersion}]`);
 
 export const logger: Logger = {
   info(message: string, ...additional: unknown[]): void {
@@ -19,7 +20,7 @@ export const logger: Logger = {
   warn(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'warn')) {
       stdoutLogger.log(
-        `${caseVersionString} [WARN]: ${message}`,
+        `${chalk.yellow(`[WARN]`)}${caseVersionString} ${message}`,
         ...additional
       );
     }
@@ -27,7 +28,7 @@ export const logger: Logger = {
   error(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'error')) {
       stdoutLogger.log(
-        `${caseVersionString} [ERROR]: ${message}`,
+        `${chalk.red(`[ERROR]`)}${caseVersionString} ${message}`,
         ...additional
       );
     }
@@ -35,7 +36,7 @@ export const logger: Logger = {
   debug(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'debug')) {
       stdoutLogger.log(
-        `${caseVersionString} [DEBUG]: ${message}`,
+        `${chalk.cyan(`[DEBUG]`)}${caseVersionString} ${message}`,
         ...additional
       );
     }
@@ -43,7 +44,7 @@ export const logger: Logger = {
   trace(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'trace')) {
       stdoutLogger.log(
-        `${caseVersionString} [MAINTAINER-DEBUG]: ${message}`,
+        `${chalk.bgBlue(`[MAINTAINER-DEBUG]`)}${caseVersionString} ${message}`,
         ...additional
       );
     }
