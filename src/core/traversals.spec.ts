@@ -5,14 +5,14 @@ import type {
 import { coreCheckMatch } from 'core/traversals';
 import type { Logger } from 'entities/logger/types';
 
-const logger: Logger = {
+const logger: () => Logger = () => ({
   error(): void {},
   warn(): void {},
   info(): void {},
   debug(): void {},
-  trace(): void {},
+  maintainerDebug(): void {},
   setLevel(): void {},
-};
+});
 
 const expectErrorContaining = (
   matcher: AnyLeafMatcher | AnyLeafOrStructure,

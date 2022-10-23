@@ -27,7 +27,7 @@ export interface Traversals {
 
 interface ContextLoggers {
   logger: Logger;
-  baseLogger: Logger;
+  makeLogger: (m: LoggableContext) => Logger;
 }
 
 export type MatchContext = Traversals &
@@ -35,6 +35,11 @@ export type MatchContext = Traversals &
   ContextLoggers &
   Partial<InjectableContext> &
   RunContext;
+
+export type LoggableContext = Omit<
+  MatchContext,
+  keyof ContextLoggers | keyof Traversals
+>;
 
 export interface DefaultContext {
   'case:run:context:location': Array<string>;

@@ -20,7 +20,7 @@ export interface Logger {
   /**
    * Information to help maintainers debug what is happening in the test framework
    */
-  trace: (message: string, ...additional: unknown[]) => void;
+  maintainerDebug: (message: string, ...additional: unknown[]) => void;
 
   /**
    * Sets the current log level

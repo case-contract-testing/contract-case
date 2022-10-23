@@ -10,15 +10,15 @@ export const shouldLog = (
       return logFunction === 'error';
     case 'warn':
       return (
-        logFunction !== 'trace' &&
+        logFunction !== 'maintainerDebug' &&
         logFunction !== 'debug' &&
         logFunction !== 'info'
       );
     case 'info':
-      return logFunction !== 'trace' && logFunction !== 'debug';
+      return logFunction !== 'maintainerDebug' && logFunction !== 'debug';
     case 'debug':
-      return logFunction !== 'trace';
-    case 'trace':
+      return logFunction !== 'maintainerDebug';
+    case 'maintainerDebug':
       return true;
     default:
       throw new CaseCoreError(`Unknown log level '${logLevel}'`);

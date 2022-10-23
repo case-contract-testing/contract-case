@@ -24,23 +24,28 @@ const inferInteraction = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
   context: MatchContext
 ) => {
-  context.logger.trace(
-    'Determining interaction type direction for interaction + context:',
-    interaction,
+  context.logger.maintainerDebug('Interaction is', interaction);
+  context.logger.maintainerDebug(
+    'Context is',
     JSON.stringify(context, null, 2)
   );
+
   if (
     interaction['case:run:context:expectation'] !==
     context['case:run:context:expectation']
   ) {
     const invertedType = invert(interaction['case:interaction:type']);
-    context.logger.trace('Inverting interaction to:', invertedType);
+    context.logger.maintainerDebug(
+      `Inverting interaction from '${interaction['case:interaction:type']}' to '${invertedType}'`
+    );
     return {
       ...interaction,
       'case:interaction:type': invertedType,
     };
   }
-  context.logger.trace('Interaction type unchanged');
+  context.logger.maintainerDebug(
+    `Interaction type left at '${interaction['case:interaction:type']}'`
+  );
   return interaction;
 };
 

@@ -9,16 +9,15 @@ import {
 } from 'boundaries/dsl/Matchers';
 import { coreCheckMatch } from 'core/traversals';
 import { stripMatchers } from 'boundaries/dsl/stripMatchers';
-import type { Logger } from 'entities/logger/types';
 
-const logger: Logger = {
+const logger = () => ({
   error(): void {},
   warn(): void {},
   info(): void {},
   debug(): void {},
-  trace(): void {},
+  maintainerDebug(): void {},
   setLevel(): void {},
-};
+});
 
 const expectErrorContaining = (
   matcher: AnyCaseNodeOrData,

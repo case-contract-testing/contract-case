@@ -34,7 +34,7 @@ describe('simple get endpoint', () => {
       expect(
         setup(interaction, {
           'case:run:context:expectation': 'produce',
-          'case:run:context:logLevel': 'trace',
+          'case:run:context:logLevel': 'maintainerDebug',
         })
       ).rejects.toBeInstanceOf(CaseConfigurationError));
   });
@@ -42,7 +42,7 @@ describe('simple get endpoint', () => {
   describe('with a URL', () => {
     const config: InjectableContext = {
       'case:run:context:baseurl': 'http://localhost:8282',
-      'case:run:context:logLevel': 'trace',
+      'case:run:context:logLevel': 'maintainerDebug',
       'case:run:context:expectation': 'produce',
     };
     describe('but no running server', () => {

@@ -13,6 +13,7 @@ import type {
   RunContext,
   DefaultContext,
   Traversals,
+  LoggableContext,
 } from './types';
 
 /**
@@ -53,40 +54,50 @@ const combineWithRoot = (
 const constructContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
   traversals: Traversals,
-  logger: Logger,
+  makeLogger: (c: LoggableContext) => Logger,
   runConfig: Partial<RunContext>
-) => ({
-  logger,
-  baseLogger: logger,
-  ...traversals,
-  ...DEFAULT_CONTEXT,
-  ...runConfig,
-  'case:run:context:tree': caseNodeOrData,
-});
+) => {
+  const context = {
+    makeLogger,
+    ...traversals,
+    ...DEFAULT_CONTEXT,
+    ...runConfig,
+    'case:run:context:tree': caseNodeOrData,
+  };
+  return { ...context, logger: makeLogger(context) };
+};
 
 export const applyDefaultContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
   traversals: Traversals,
-  logger: Logger,
+  makeLogger: (c: LoggableContext) => Logger,
   runConfig: Partial<RunContext> = {}
 ): MatchContext => {
-  if (runConfig['case:run:context:logLevel']) {
-    logger.setLevel(runConfig['case:run:context:logLevel']);
-  }
   const context = combineWithRoot(
     caseNodeOrData,
-    constructContext(caseNodeOrData, traversals, logger, runConfig)
+    constructContext(caseNodeOrData, traversals, makeLogger, runConfig)
   );
-  logger.trace('Initial context is:', JSON.stringify(context, null, 2));
+
+  if (runConfig['case:run:context:logLevel']) {
+    context.logger.setLevel(runConfig['case:run:context:logLevel']);
+  }
+  context.logger.maintainerDebug(
+    'Initial context is:',
+    JSON.stringify(context, null, 2)
+  );
   return context;
 };
 
 export const addLocation = (
   location: string,
   context: MatchContext
-): MatchContext => ({
-  ...context,
-  'case:run:context:location': context['case:run:context:location'].concat([
-    location,
-  ]),
-});
+): MatchContext => {
+  const nextContext = {
+    ...context,
+
+    'case:run:context:location': context['case:run:context:location'].concat([
+      location,
+    ]),
+  };
+  return { ...nextContext, logger: nextContext.makeLogger(nextContext) };
+};

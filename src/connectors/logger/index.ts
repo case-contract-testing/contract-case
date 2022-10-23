@@ -1,1 +1,1 @@
-export { logger } from './consoleLogger';
+export { makeLogger } from './consoleLogger';
