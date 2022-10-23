@@ -37,7 +37,7 @@ export interface SeralisableContext {
   'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
   'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
   'case:run:context:expectation': 'produce' | 'consume';
-  'case:context:location': Array<string>;
+  'case:run:context:location': Array<string>;
 }
 
 export interface RunContext {
