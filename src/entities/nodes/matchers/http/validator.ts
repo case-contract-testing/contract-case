@@ -19,9 +19,7 @@ const validateCode = (code: number | string): number => {
     case 'number':
       return validateCodeNumber(code);
     case 'string':
-      return validateCodeNumber(
-        Number.parseInt(code.replaceAll(/X|x/g, '0'), 10)
-      );
+      return validateCodeNumber(Number.parseInt(code.replace(/X|x/g, '0'), 10));
     default:
       throw new CaseConfigurationError(
         `'${typeof code}' is not a valid type for an HTTP status code`
