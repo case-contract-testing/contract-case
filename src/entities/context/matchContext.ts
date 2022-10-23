@@ -45,25 +45,34 @@ export const addLocation = (
   'case:context:location': context['case:context:location'].concat([location]),
 });
 
+const constructContext = (
+  traversals: Traversals,
+  logger: Logger,
+  runConfig: Partial<RunContext>
+) => ({
+  logger,
+  baseLogger: logger,
+  ...traversals,
+  ...DEFAULT_CONTEXT,
+  ...runConfig,
+});
+
+const combineWithRoot = (
+  caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
+  context: MatchContext
+) => ({
+  ...(isCaseNode(caseNodeOrData) || isCaseInteraction(caseNodeOrData)
+    ? foldIntoContext(caseNodeOrData, context)
+    : context),
+});
+
 export const applyDefaultContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
   traversals: Traversals,
   logger: Logger,
   runConfig: Partial<RunContext> = {}
-): MatchContext => ({
-  ...(isCaseNode(caseNodeOrData) || isCaseInteraction(caseNodeOrData)
-    ? foldIntoContext(caseNodeOrData, {
-        logger,
-        baseLogger: logger,
-        ...traversals,
-        ...DEFAULT_CONTEXT,
-        ...runConfig,
-      })
-    : {
-        logger,
-        baseLogger: logger,
-        ...traversals,
-        ...DEFAULT_CONTEXT,
-        ...runConfig,
-      }),
-});
+): MatchContext =>
+  combineWithRoot(
+    caseNodeOrData,
+    constructContext(traversals, logger, runConfig)
+  );
