@@ -1,1 +1,1 @@
-export const caseVersion = '8ec2a6-main+8ec2a6.SNAPSHOT.Rogue';
+export const caseVersion = '0.0.1-main+79.5ce37c6';
