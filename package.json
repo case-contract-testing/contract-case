@@ -7,7 +7,7 @@
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "lint": "eslint 'src/**/*.ts' --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint 'src/**/*.ts' --fix --ext .ts --config .eslintrc.json",
-    "version:output": "echo \"export const caseVersion = '$(absolute-version-from-git-tag)'\" > src/caseVersion.ts",
+    "version:output": "echo \"export const caseVersion = '$(absolute-version-from-git-tag)';\" > src/caseVersion.ts",
     "format:base": "prettier --parser typescript \"**/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write ",
