@@ -17,8 +17,15 @@ Completed
 - [x] Test context before verification
 - [x] Matcher acceptance
 - [x] Location aware errors
+- [x] Logging
 
-Current tasks
+Contract file access patterns
+
+- [ ] Reference interaction
+- [ ] Enumerate interactions
+- [ ] List states?
+
+Future tasks
 
 - [ ] Convenience matchers for object keys, arrays of a particular shape
 - [ ] Helpers for setting up tests
@@ -27,16 +34,21 @@ Current tasks
 - [ ] Resolved values (eg state)
 - [ ] Headers
 - [ ] Join contract files
+- [ ] Is this interaction the same as that?
+- [ ] Authentication source
+- [ ] Warnings and debug info
+- [ ] And matcher
+- [ ] Print objects properly
 
 --
 
-- [ ] Warnings
-- [ ] And matcher
-- [ ] Logging
-- [ ] Print objects properly
+- [ ] Pact compatibility
+- [ ] Union contract files?
+- [ ] Intersect contract files?
 - [ ] Matcher structure / use verification
+- [ ] Matcher version compatibility
 - [ ] Matcher content verification
-- [ ] Authentication source
+- [ ] Call-out matchers?
 
 --
 
