@@ -45,6 +45,8 @@ Future tasks
 --
 
 - [ ] Pact compatibility
+- [ ] Test harness integration
+- [ ] Provider defined examples
 - [ ] Reference interactions
 - [ ] Union contract files?
 - [ ] Intersect contract files?
