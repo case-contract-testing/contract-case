@@ -3,9 +3,15 @@ import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
 import type { Verifiable } from 'entities/types';
 import { httpStatus, shapedLike } from 'boundaries/dsl/Matchers';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
-import { setup } from '.';
+import { setup, startContract } from '.';
 
 describe('simple get endpoint', () => {
+  beforeAll(() =>
+    startContract({
+      consumerName: 'http response consumer',
+      providerName: 'http response provider',
+    })
+  );
   let context: Verifiable<'ConsumeHttpResponse'>;
   beforeEach(async () => {
     context = await setup(

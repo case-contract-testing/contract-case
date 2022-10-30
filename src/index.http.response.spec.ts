@@ -5,7 +5,7 @@ import { makeNoErrorResult } from 'entities/results/MatchResult';
 import type { InjectableContext } from 'entities/context/types';
 import { anyString, httpStatus } from 'boundaries/dsl/Matchers';
 import { CaseConfigurationError } from 'entities';
-import { setup } from '.';
+import { setup, startContract } from '.';
 import start from './__tests__/server/http/index';
 
 const expectErrorContaining = async (
@@ -20,6 +20,12 @@ const expectErrorContaining = async (
 };
 
 describe('simple get endpoint', () => {
+  beforeAll(() =>
+    startContract({
+      consumerName: 'http request consumer',
+      providerName: 'http request provider',
+    })
+  );
   const interaction = willSendHttpInteraction({
     request: {
       method: 'GET',

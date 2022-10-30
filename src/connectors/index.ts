@@ -6,6 +6,8 @@ import {
 import { setupHttpResponseProducer } from './produceHttpResponse';
 import { setupHttpResponseConsumer } from './consumeHttpResponse';
 
+export * as contractFile from './contract';
+
 export const SetupFunctions: SetupFns = {
   [PRODUCE_HTTP_RESPONSE]: setupHttpResponseConsumer,
   [CONSUME_HTTP_RESPONSE]: setupHttpResponseProducer,

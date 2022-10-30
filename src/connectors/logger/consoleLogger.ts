@@ -69,3 +69,7 @@ export const makeLogger: (context: LoggableContext) => Logger = (
     currentLogLevel = newLevel;
   },
 });
+
+export const loggerWithoutContext = makeLogger({
+  'case:currentRun:context:location': ['initialising contract'],
+});

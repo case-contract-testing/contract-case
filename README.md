@@ -39,17 +39,26 @@ Future tasks
 - [ ] Warnings and debug info
 - [ ] And matcher
 - [ ] Print objects properly
+- [ ] Random port startup
+- [ ] Crash messages
 
 --
 
 - [ ] Pact compatibility
+- [ ] Reference interactions
 - [ ] Union contract files?
 - [ ] Intersect contract files?
 - [ ] Matcher structure / use verification
 - [ ] Matcher version compatibility
 - [ ] Matcher content verification
 - [ ] Call-out matchers?
-
---
-
+- [ ] JVM / Python / Go bindings
+- [ ] Error types marshalled at boundary
 - [ ] Broker CLI
+
+Documentation
+
+- [ ] Differences from Pact
+- [ ] How to use
+- [ ] How states work
+- [ ] Why there's no optional

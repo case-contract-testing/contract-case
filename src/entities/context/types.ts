@@ -36,10 +36,13 @@ export type MatchContext = Traversals &
   Partial<InjectableContext> &
   RunContext;
 
-export type LoggableContext = Omit<
-  MatchContext,
-  keyof ContextLoggers | keyof Traversals
->;
+type InitialisingContext = {
+  'case:currentRun:context:location': ['initialising contract'];
+};
+
+export type LoggableContext =
+  | Omit<MatchContext, keyof ContextLoggers | keyof Traversals>
+  | InitialisingContext;
 
 export interface DefaultContext {
   'case:currentRun:context:location': Array<string>;
@@ -50,7 +53,7 @@ export interface DefaultContext {
 
 export interface InjectableContext {
   'case:currentRun:context:baseurl'?: string;
-  'case:currentRun:context:expectation': 'produce' | 'consume';
+  'case:currentRun:context:expectation'?: 'produce' | 'consume';
   'case:currentRun:context:logLevel'?: LogLevel;
 }
 

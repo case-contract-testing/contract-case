@@ -7,5 +7,6 @@ export const makeResults = (...err: MatchingError[]): MatchResult => [...err];
 
 export const makeNoErrorResult = (): MatchResult => [];
 
-export const hasNoErrors = (result: MatchResult): boolean =>
-  result.length === 0;
+export const hasErrors = (result: MatchResult): boolean => result.length !== 0;
+
+export const hasNoErrors = (result: MatchResult): boolean => !hasErrors(result);
