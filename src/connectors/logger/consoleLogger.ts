@@ -28,9 +28,9 @@ export const makeLogger: (context: LoggableContext) => Logger = (
   warn(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'warn')) {
       stdoutLogger.log(
-        `${chalk.yellow(`[WARN]`)}${caseVersionString}${locationString(
-          matchContext
-        )}: ${message}`,
+        `${chalk.bgYellow.black(
+          `[WARNING]`
+        )}${caseVersionString}${locationString(matchContext)}: ${message}`,
         ...additional
       );
     }
