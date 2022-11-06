@@ -70,23 +70,7 @@ export const setupHttpResponseConsumer = (
             : {}),
         })
         .then(
-          async (response) =>
-            combineResults(
-              ...(await Promise.all([
-                traversals.descendAndCheck(
-                  expectedResponse.status,
-                  addLocation('response.status', context),
-                  response.status
-                ),
-                expectedResponse.body !== undefined
-                  ? traversals.descendAndCheck(
-                      expectedResponse.body,
-                      addLocation('response.body', context),
-                      response.data
-                    )
-                  : makeNoErrorResult(),
-              ]))
-            ),
+          (response) => ({ body: response.data, status: response.status }),
           (err) => {
             if (axios.isAxiosError(err)) {
               if (err.request) {
@@ -113,5 +97,23 @@ export const setupHttpResponseConsumer = (
               run
             );
           }
+        )
+        .then(async (result) =>
+          combineResults(
+            ...(await Promise.all([
+              traversals.descendAndCheck(
+                expectedResponse.status,
+                addLocation('response.status', context),
+                result.status
+              ),
+              expectedResponse.body !== undefined
+                ? traversals.descendAndCheck(
+                    expectedResponse.body,
+                    addLocation('response.body', context),
+                    result.body
+                  )
+                : makeNoErrorResult(),
+            ]))
+          )
         ),
   }));
