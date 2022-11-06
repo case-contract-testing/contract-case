@@ -40,6 +40,8 @@ Future tasks
 - [ ] And matcher
 - [ ] Print objects properly
 - [ ] Random port startup
+- [ ] Introduce error codes for different classes of error
+- [ ] Make sure all errors include context
 - [ ] Crash messages
 
 --
