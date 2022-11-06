@@ -1,6 +1,10 @@
 import type { MatchContext } from 'entities/context/types';
 import type {
+  CoreHttpRequestMatcher,
+  CoreHttpResponseMatcher,
   CoreHttpStatusCodeMatcher,
+  HTTP_REQUEST_MATCHER_TYPE,
+  HTTP_RESPONSE_MATCHER_TYPE,
   HTTP_STATUS_CODE_MATCHER_TYPE,
 } from './http/types';
 
@@ -20,7 +24,9 @@ export type AnyCaseNodeType =
   | typeof CASCADING_CONTEXT_MATCHER_TYPE
   | typeof SHAPED_ARRAY_MATCHER_TYPE
   | typeof SHAPED_OBJECT_MATCHER_TYPE
-  | typeof HTTP_STATUS_CODE_MATCHER_TYPE;
+  | typeof HTTP_STATUS_CODE_MATCHER_TYPE
+  | typeof HTTP_REQUEST_MATCHER_TYPE
+  | typeof HTTP_RESPONSE_MATCHER_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -57,7 +63,9 @@ export type AnyCaseNode =
   | AnyLeafMatcher
   | CoreCascadingMatcher
   | CoreShapedArrayMatcher
-  | CoreShapedObjectMatcher;
+  | CoreShapedObjectMatcher
+  | CoreHttpRequestMatcher
+  | CoreHttpResponseMatcher;
 
 export type AnyCaseNodeOrData = AnyCaseNode | AnyLeafOrStructure;
 

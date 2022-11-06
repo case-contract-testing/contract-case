@@ -1,1 +1,5 @@
-export { httpStatusCodeMatcher } from './matcher';
+export {
+  httpStatusCodeMatcher,
+  httpRequestMatcher,
+  httpResponseMatcher,
+} from './matcher';

@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import { mustResolveToString, traversals } from 'diffmatch';
+import { traversals } from 'diffmatch';
 import type { Verifiable } from 'entities/types';
 import {
   PRODUCE_HTTP_RESPONSE,
-  HttpRequestResponseDescription,
+  CoreHttpRequestResponseMatcherPair,
 } from 'entities/nodes/interactions/types';
 import type {
   HasBaseUrl,
@@ -12,11 +12,8 @@ import type {
   MatchContext,
 } from 'entities/context/types';
 import { addLocation } from 'entities/context';
-import {
-  combineResults,
-  makeNoErrorResult,
-} from 'entities/results/MatchResult';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
+import { mustResolveToString } from 'diffmatch/stripToType';
 
 const isRunContext = (
   context: Partial<LoggableContext>
@@ -43,7 +40,7 @@ export const setupHttpResponseConsumer = (
   {
     request: expectedRequest,
     response: expectedResponse,
-  }: HttpRequestResponseDescription,
+  }: CoreHttpRequestResponseMatcherPair,
   context: MatchContext
 ): Promise<Verifiable<typeof PRODUCE_HTTP_RESPONSE>> =>
   validateConfig(context).then((run: LoggableContext & HasBaseUrl) => ({
@@ -99,21 +96,10 @@ export const setupHttpResponseConsumer = (
           }
         )
         .then(async (result) =>
-          combineResults(
-            ...(await Promise.all([
-              traversals.descendAndCheck(
-                expectedResponse.status,
-                addLocation('response.status', context),
-                result.status
-              ),
-              expectedResponse.body !== undefined
-                ? traversals.descendAndCheck(
-                    expectedResponse.body,
-                    addLocation('response.body', context),
-                    result.body
-                  )
-                : makeNoErrorResult(),
-            ]))
+          context.descendAndCheck(
+            expectedResponse,
+            addLocation('response', context),
+            result
           )
         ),
   }));

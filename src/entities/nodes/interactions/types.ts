@@ -1,8 +1,7 @@
 import type {
-  AnyCaseNodeOrData,
-  AnyStringMatcher,
-} from 'entities/nodes/matchers/types';
-import type { CoreHttpStatusCodeMatcher } from 'entities/types';
+  CoreHttpRequestMatcher,
+  CoreHttpResponseMatcher,
+} from 'entities/types';
 
 export type AnyInteractionType =
   | typeof CONSUME_HTTP_RESPONSE
@@ -31,32 +30,21 @@ export type CaseInteractionFor<T extends AnyInteractionType> = Extract<
   HasTypeForInteraction<T>
 >;
 
-export interface HttpInteractionResponse {
-  status: number | CoreHttpStatusCodeMatcher;
-  body?: AnyCaseNodeOrData;
-}
-
-export interface HttpInteractionRequest {
-  path: AnyStringMatcher | string;
-  method: AnyStringMatcher | string;
-  body?: AnyCaseNodeOrData;
-}
-
-export interface HttpRequestResponseDescription {
-  request: HttpInteractionRequest;
-  response: HttpInteractionResponse;
+export interface CoreHttpRequestResponseMatcherPair {
+  request: CoreHttpRequestMatcher;
+  response: CoreHttpResponseMatcher;
 }
 
 export type ConsumeHttpResponse = HasTypeForInteraction<
   typeof CONSUME_HTTP_RESPONSE
 > & {
   'case:run:context:asWritten': 'consume';
-} & HttpRequestResponseDescription &
+} & CoreHttpRequestResponseMatcherPair &
   BaseInteraction;
 
 export type ProduceHttpResponse = HasTypeForInteraction<
   typeof PRODUCE_HTTP_RESPONSE
 > & {
   'case:run:context:asWritten': 'produce';
-} & HttpRequestResponseDescription &
+} & CoreHttpRequestResponseMatcherPair &
   BaseInteraction;
