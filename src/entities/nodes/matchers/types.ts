@@ -108,6 +108,7 @@ export interface CoreStringMatcher extends CaseMatcherWithExample {
 export interface CoreBooleanMatcher extends CaseMatcherWithExample {
   'case:matcher:type': typeof BOOLEAN_MATCHER_TYPE;
   'case:matcher:example': boolean;
+  'case:matcher:resolvesTo': 'boolean';
 }
 
 export interface CoreCascadingMatcher extends Partial<MatchContext> {
@@ -118,6 +119,7 @@ export interface CoreCascadingMatcher extends Partial<MatchContext> {
 export interface CoreNullMatcher extends CaseMatcherWithExample {
   'case:matcher:type': typeof NULL_MATCHER_TYPE;
   'case:matcher:example': null;
+  'case:matcher:resolvesTo': 'null';
 }
 
 export interface CoreShapedArrayMatcher {

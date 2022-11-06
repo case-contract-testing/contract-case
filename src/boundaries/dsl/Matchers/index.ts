@@ -49,6 +49,7 @@ export const anyBoolean = (example = true): BooleanMatcher => ({
   'case:matcher:type': BOOLEAN_MATCHER_TYPE,
   'case:matcher:example': example,
   'case:context:matchBy': 'type',
+  'case:matcher:resolvesTo': 'boolean',
 });
 
 /**
@@ -62,6 +63,7 @@ export const anyNull = (example = null): NullMatcher => ({
   'case:matcher:type': NULL_MATCHER_TYPE,
   'case:matcher:example': example,
   'case:context:matchBy': 'type',
+  'case:matcher:resolvesTo': 'null',
 });
 
 /**

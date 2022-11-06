@@ -30,9 +30,11 @@ export const coreStringMatcher = (example: string): CoreStringMatcher => ({
 export const coreBooleanMatcher = (example: boolean): CoreBooleanMatcher => ({
   'case:matcher:type': BOOLEAN_MATCHER_TYPE,
   'case:matcher:example': example,
+  'case:matcher:resolvesTo': 'boolean',
 });
 
 export const coreNullMatcher = (example = null): CoreNullMatcher => ({
   'case:matcher:type': NULL_MATCHER_TYPE,
   'case:matcher:example': example,
+  'case:matcher:resolvesTo': 'null',
 });
