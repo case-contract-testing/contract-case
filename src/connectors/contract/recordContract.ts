@@ -22,7 +22,7 @@ export const beginRecord = (
 };
 
 export const recordSuccess = (
-  interactions: Array<AnyInteraction>,
+  interaction: AnyInteraction,
   states: Array<CaseState>,
   logger: Logger
 ): ContractFile => {
@@ -35,12 +35,12 @@ export const recordSuccess = (
     );
   }
 
-  currentContract = addSuccess(currentContract, interactions, states);
+  currentContract = addSuccess(currentContract, interaction, states);
   return currentContract;
 };
 
 export const recordFailure = (
-  interactions: Array<AnyInteraction>,
+  interaction: AnyInteraction,
   states: Array<CaseState>,
   logger: Logger,
   errors: Array<MatchingError>
@@ -53,7 +53,7 @@ export const recordFailure = (
       'Contract was not initialised at the time that recordFailure was called'
     );
   }
-  currentContract = addFailure(currentContract, interactions, states, errors);
+  currentContract = addFailure(currentContract, interaction, states, errors);
   return currentContract;
 };
 

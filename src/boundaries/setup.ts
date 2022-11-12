@@ -25,13 +25,13 @@ export const setup = <T extends AnyInteractionType>(
           verifiable.verify().then((result: MatchResult) => {
             if (hasErrors(result)) {
               contractFile.recordFailure(
-                [interaction],
+                interaction,
                 [],
                 context.logger,
                 result
               );
             } else {
-              contractFile.recordSuccess([interaction], [], context.logger);
+              contractFile.recordSuccess(interaction, [], context.logger);
             }
             return result;
           }),

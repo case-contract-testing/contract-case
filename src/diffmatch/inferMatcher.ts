@@ -8,12 +8,12 @@ import {
   type CaseNodeFor,
   type AnyLeafOrStructure,
   isCaseNode,
-  AnyCaseNode,
+  AnyCaseMatcher,
 } from 'entities/nodes/matchers/types';
 
 export const inferMatcher = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure
-): AnyCaseNode => {
+): AnyCaseMatcher => {
   if (matcherOrData == null) {
     return leafMatchers.coreNullMatcher();
   }

@@ -1,15 +1,27 @@
 import { loggerWithoutContext } from 'connectors/logger/consoleLogger';
 import type { ContractDescription } from 'entities/contract/types';
-import type { AnyInteraction, MatchingError } from 'entities/types';
+import type {
+  AnyCaseMatcher,
+  AnyInteraction,
+  LookupableMatcher,
+  MatchingError,
+} from 'entities/types';
 import type { CaseExample, CaseState, ContractFile } from './types';
 
+const isLookupableMatcher = (
+  maybeMatcher: unknown
+): maybeMatcher is LookupableMatcher =>
+  'case:interaction:uniqueName' in (maybeMatcher as LookupableMatcher);
+
 const addInteractions = (
-  interactionLookup: Record<string, AnyInteraction>,
-  interactions: Array<AnyInteraction>
+  matcherLookup: Record<string, AnyCaseMatcher>,
+  interaction: AnyInteraction
 ) =>
-  interactions.reduce<Record<string, AnyInteraction>>(
-    (acc: Record<string, AnyInteraction>, interaction: AnyInteraction) => {
-      if (acc[interaction['case:interaction:uniqueName']]) {
+  [interaction.request, interaction.response].reduce<
+    Record<string, AnyCaseMatcher>
+  >((acc: Record<string, AnyCaseMatcher>, matcher: AnyCaseMatcher) => {
+    if (isLookupableMatcher(matcher)) {
+      if (acc[matcher['case:matcher:uniqueName']]) {
         // we already have this one
         /* throw new CaseCoreError(
           'NOT YET IMPLMENTED: Multiple interactions with the same name'
@@ -20,55 +32,51 @@ const addInteractions = (
       }
       return {
         ...acc,
-        [interaction['case:interaction:uniqueName']]: interaction,
+        [matcher['case:matcher:uniqueName']]: matcher,
       };
-    },
-    interactionLookup
-  );
+    }
+    return acc;
+  }, matcherLookup);
 
 export const makeContract = (
   description: ContractDescription
 ): ContractFile => ({
   description,
-  interactionLookup: {} as Record<string, AnyInteraction>,
+  matcherLookup: {} as Record<string, AnyCaseMatcher>,
   examples: new Array<CaseExample>(),
 });
 
 export const addSuccess = (
   contract: ContractFile,
-  interactions: Array<AnyInteraction>,
+  interaction: AnyInteraction,
   states: Array<CaseState>
 ): ContractFile => ({
   ...contract,
-  interactionLookup: addInteractions(contract.interactionLookup, interactions),
+  matcherLookup: addInteractions(contract.matcherLookup, interaction),
   examples: [
     ...contract.examples,
     {
       result: 'VERIFIED',
       states,
-      interactionKeys: interactions.map(
-        (interaction) => interaction['case:interaction:uniqueName']
-      ),
+      interaction,
     },
   ],
 });
 
 export const addFailure = (
   contract: ContractFile,
-  interactions: Array<AnyInteraction>,
+  interaction: AnyInteraction,
   states: Array<CaseState>,
   errors: Array<MatchingError>
 ): ContractFile => ({
   ...contract,
-  interactionLookup: addInteractions(contract.interactionLookup, interactions),
+  matcherLookup: addInteractions(contract.matcherLookup, interaction),
   examples: [
     ...contract.examples,
     {
       result: 'FAILED',
       states,
-      interactionKeys: interactions.map(
-        (interaction) => interaction['case:interaction:uniqueName']
-      ),
+      interaction,
       errors,
     },
   ],

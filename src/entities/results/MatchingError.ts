@@ -1,5 +1,5 @@
 import type { MatchContext } from 'entities/context/types';
-import type { AnyCaseNode } from 'entities/nodes/matchers/types';
+import type { AnyCaseMatcher } from 'entities/nodes/matchers/types';
 import type { MatchingError } from './types';
 
 export const errorWhen = (
@@ -15,7 +15,7 @@ export const errorWhen = (
  * @returns
  */
 export const matchingError = (
-  matcher: AnyCaseNode,
+  matcher: AnyCaseMatcher,
   message: string,
   actual: unknown,
   context: MatchContext

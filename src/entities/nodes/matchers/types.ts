@@ -30,10 +30,10 @@ export type AnyCaseNodeType =
 
 export const isCaseNode = (
   maybeMatcher: unknown
-): maybeMatcher is AnyCaseNode =>
+): maybeMatcher is AnyCaseMatcher =>
   typeof maybeMatcher === 'object' &&
   maybeMatcher != null &&
-  'case:matcher:type' in (maybeMatcher as AnyCaseNode);
+  'case:matcher:type' in (maybeMatcher as AnyCaseMatcher);
 
 export type JsonSerialisablePrimitive = boolean | number | string | null;
 export type AnyLeafOrStructure =
@@ -59,15 +59,21 @@ export type AnyLeafMatcher =
   | CoreBooleanMatcher
   | CoreHttpStatusCodeMatcher;
 
-export type AnyCaseNode =
+type WithLookup<T> = T | (T & LookupableMatcher);
+
+export type AnyCaseMatcher = WithLookup<
   | AnyLeafMatcher
   | CoreCascadingMatcher
   | CoreShapedArrayMatcher
   | CoreShapedObjectMatcher
   | CoreHttpRequestMatcher
-  | CoreHttpResponseMatcher;
+  | CoreHttpResponseMatcher
+>;
+export interface LookupableMatcher {
+  'case:matcher:uniqueName': string;
+}
 
-export type AnyCaseNodeOrData = AnyCaseNode | AnyLeafOrStructure;
+export type AnyCaseNodeOrData = AnyCaseMatcher | AnyLeafOrStructure;
 
 type IsCaseNodeForType<T extends AnyCaseNodeType> = {
   'case:matcher:type': T;
@@ -81,10 +87,10 @@ type ResolvesTo<T extends string> = {
   'case:matcher:resolvesTo': T;
 };
 
-export type AnyStringMatcher = Extract<AnyCaseNode, ResolvesTo<'string'>>;
+export type AnyStringMatcher = Extract<AnyCaseMatcher, ResolvesTo<'string'>>;
 
 export type CaseNodeFor<T extends AnyCaseNodeType> = Extract<
-  AnyCaseNode,
+  AnyCaseMatcher,
   IsCaseNodeForType<T>
 >;
 

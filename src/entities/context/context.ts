@@ -5,7 +5,7 @@ import {
 } from 'entities/nodes/interactions/types';
 import {
   isCaseNode,
-  AnyCaseNode,
+  AnyCaseMatcher,
   AnyCaseNodeOrData,
 } from 'entities/nodes/matchers/types';
 import type {
@@ -28,14 +28,14 @@ const DEFAULT_CONTEXT: DefaultContext = {
 };
 
 const contextProperties = (
-  caseNode: AnyCaseNode | AnyInteraction
+  caseNode: AnyCaseMatcher | AnyInteraction
 ): MatchContext =>
   Object.entries(caseNode)
     .filter(([k]) => k.startsWith('case:context'))
     .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {} as MatchContext);
 
 export const foldIntoContext = (
-  caseNode: AnyCaseNode | AnyInteraction,
+  caseNode: AnyCaseMatcher | AnyInteraction,
   context: MatchContext
 ): MatchContext => ({
   ...context,

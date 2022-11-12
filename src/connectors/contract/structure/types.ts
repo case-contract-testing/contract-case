@@ -1,18 +1,23 @@
 import type { ContractDescription } from 'entities/contract/types';
-import type { MatchingError, AnyInteraction } from 'entities/types';
+import type {
+  MatchingError,
+  AnyCaseMatcher,
+  AnyInteraction,
+} from 'entities/types';
 
 export type CaseState = string;
 
-interface SuccessfulCaseExample {
-  result: 'VERIFIED';
+interface BaseCaseExample {
   states: CaseState[];
-  interactionKeys: string[];
+  interaction: AnyInteraction;
 }
 
-interface FailedCaseExample {
+interface SuccessfulCaseExample extends BaseCaseExample {
+  result: 'VERIFIED';
+}
+
+interface FailedCaseExample extends BaseCaseExample {
   result: 'FAILED';
-  states: CaseState[];
-  interactionKeys: string[];
   errors: MatchingError[];
 }
 
@@ -20,6 +25,6 @@ export type CaseExample = SuccessfulCaseExample | FailedCaseExample;
 
 export interface ContractFile {
   description: ContractDescription;
-  interactionLookup: Record<string, AnyInteraction>;
+  matcherLookup: Record<string, AnyCaseMatcher>;
   examples: Array<CaseExample>;
 }
