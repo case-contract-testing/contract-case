@@ -6,7 +6,8 @@ Work in progress, not ready for use yet.
 
 ## Values
 
-- User first: If misconfigurations happen, Case will print helpful errors that assist the user in finding a solution
+- User first: If misconfigurations happens, Case will print helpful errors that assist the user in finding a solution
+- Not magic: Case prefers strict and fail-fast behaviour over "I guess you probably meant this". Note - that is fail-fast _with helpful errors_
 
 ## Design
 
