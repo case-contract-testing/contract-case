@@ -27,10 +27,11 @@ Completed
 - [x] Matcher acceptance
 - [x] Location aware errors
 - [x] Logging
+- [x] Reference (named/lookup) interactions
 
 Contract file access patterns
 
-- [ ] Reference interaction
+- [ ] Save a new matcher directly
 - [ ] Enumerate interactions
 - [ ] List states?
 
@@ -58,7 +59,7 @@ Future tasks
 - [ ] Pact compatibility
 - [ ] Test harness integration
 - [ ] Provider defined examples
-- [ ] Reference interactions
+
 - [ ] Union contract files?
 - [ ] Intersect contract files?
 - [ ] Matcher structure / use verification
@@ -75,3 +76,7 @@ Documentation
 - [ ] How to use
 - [ ] How states work
 - [ ] Why there's no optional
+
+Issues:
+
+- [ ] Double handling of lookup interactions if the same data is traversed (eg, by checkMatch and stripMatch)
