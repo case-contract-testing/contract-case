@@ -49,7 +49,7 @@ export type MatchContext = TraversalFns &
   RunContext;
 
 type InitialisingContext = {
-  'case:currentRun:context:location': ['initialising contract'];
+  'case:currentRun:context:location': [string];
 };
 
 export type LoggableContext =

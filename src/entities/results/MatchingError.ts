@@ -1,3 +1,4 @@
+import { locationString } from 'entities/context';
 import type { MatchContext } from 'entities/context/types';
 import type { AnyCaseMatcher } from 'entities/nodes/matchers/types';
 import type { MatchingError } from './types';
@@ -26,7 +27,5 @@ export const matchingError = (
   actual,
   location: context['case:currentRun:context:location'],
   toString: () =>
-    `[${context['case:currentRun:context:location'].join('.')}] ${message} (${
-      matcher['case:matcher:type']
-    })`,
+    `${locationString(context)}: ${message} (${matcher['case:matcher:type']})`,
 });

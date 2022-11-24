@@ -1,5 +1,6 @@
 import { caseVersion } from 'caseVersion';
 import chalk from 'chalk';
+import { locationString } from 'entities/context';
 import type { LoggableContext } from 'entities/context/types';
 import { shouldLog } from 'entities/logger/shouldLog';
 import type { Logger, LogLevel } from 'entities/logger/types';
@@ -10,9 +11,6 @@ let currentLogLevel: LogLevel = 'info';
 const stdoutLogger = new Console({ stdout: process.stdout });
 
 const caseVersionString = chalk.green(`case@${caseVersion} `);
-
-const locationString = (matchContext: LoggableContext) =>
-  matchContext['case:currentRun:context:location'].join('.');
 
 export const makeLogger: (context: LoggableContext) => Logger = (
   matchContext: LoggableContext

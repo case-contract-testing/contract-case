@@ -124,3 +124,10 @@ export const addLocation = (
   const logger = nextContext.makeLogger(nextContext);
   return { ...nextContext, logger };
 };
+
+export const locationString = (matchContext: LoggableContext): string =>
+  matchContext['case:currentRun:context:location'].reduce<string>(
+    (acc: string, curr: string) =>
+      curr.startsWith('[') || acc === '' ? `${acc}${curr}` : `${acc}.${curr}`,
+    ''
+  );
