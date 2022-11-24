@@ -30,45 +30,71 @@ Completed
 - [x] Reference (named/lookup) interactions
 - [x] Print objects properly
 
-Contract file access patterns
+Pact Parity
 
-- [ ] Save a new matcher directly
-- [ ] Enumerate interactions
-- [ ] List states?
+- [ ] JVM / Python / Go / C# bindings
+- [ ] Convenience matchers for object keys, arrays of a particular shape
+- [ ] Provider state
 - [ ] Write contract file
 - [ ] Read contract file
-
-Future tasks
-
-- [ ] Convenience matchers for object keys, arrays of a particular shape
-- [ ] Helpers for setting up tests
-- [ ] Provider state
-- [ ] Resolved values (eg state)
 - [ ] Headers
-- [ ] Join contract files
-- [ ] Is this interaction the same as that?
-- [ ] Authentication source
-- [ ] Warnings and debug info
-- [ ] And matcher
 - [ ] Random port startup
-- [ ] Introduce error codes for different classes of error
-- [ ] Make sure all errors include context
 - [ ] Crash messages
+- [ ] Helpers for setting up tests
 
---
+Major features
 
-- [ ] Pact compatibility
 - [ ] Test harness integration
 - [ ] Provider defined examples
-- [ ] Union contract files?
-- [ ] Intersect contract files?
+- [ ] Authentication sources (authentication as a first class citizen)
+- [ ] Modify matchers (eg toString)
+- [ ] SNS and SQS support
+
+Later major features
+
+- [ ] Save a new matcher directly to contract
+- [ ] grpc support
+- [ ] graphql support
+- [ ] Kafka support
+
+Cool features
+
+- [ ] And matcher
+- [ ] Pact compatibility
+- [ ] Call-out matchers that call out to another service
 - [ ] Matcher structure / use verification
 - [ ] Matcher version compatibility
 - [ ] Matcher content verification
-- [ ] Call-out matchers?
-- [ ] JVM / Python / Go bindings
+- [ ] Options + config
+- [ ] Run as a server
+
+Internals
+
+- [ ] Resolved values (eg state)
+- [ ] Is this interaction the same as that?
+- [ ] Broker CLI / integration?
+- [ ] Release plan that includes version number
+- [ ] Fix global import issue
+
+Contract file access patterns
+
+- [ ] Enumerate interactions
+- [ ] List states ?
+- [ ] Join contract files ?
+- [ ] Union contract files
+- [ ] Intersect contract files
+
+Errors
+
 - [ ] Error types marshalled at boundary
-- [ ] Broker CLI
+- [ ] Introduce error codes for different classes of error
+- [ ] Make sure all errors include context
+- [ ] Annotate code generally with maintainer debug info
+- [ ] Warn on unused lookup matchers?
+
+Configuration
+
+- [ ] Log levels and silent mode (no logs)
 
 Documentation
 
@@ -76,6 +102,8 @@ Documentation
 - [ ] How to use
 - [ ] How states work
 - [ ] Why there's no optional
+- [ ] How log levels work
+- [ ] Maintainer documentation
 
 Issues:
 
