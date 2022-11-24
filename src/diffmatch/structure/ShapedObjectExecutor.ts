@@ -16,6 +16,7 @@ import type {
   CheckMatchFn,
   MatcherExecutor,
 } from 'entities/executors/types';
+import { actualToString } from 'entities/results/renderActual';
 
 const strip: StripMatcherFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = (
   matcher: CoreShapedObjectMatcher,
@@ -71,7 +72,9 @@ const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
                       makeResults(
                         matchingError(
                           matcher,
-                          `missing key '${expectedKey}' in object '${actual}'`,
+                          `missing key '${expectedKey}' in object: ${actualToString(
+                            actual
+                          )}`,
                           actual,
                           matchContext
                         )
@@ -84,7 +87,7 @@ const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
     : makeResults(
         matchingError(
           matcher,
-          `'${actual}' is not an object`,
+          `${actualToString(actual)} is not an object`,
           actual,
           matchContext
         )

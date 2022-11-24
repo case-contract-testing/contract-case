@@ -28,18 +28,20 @@ Completed
 - [x] Location aware errors
 - [x] Logging
 - [x] Reference (named/lookup) interactions
+- [x] Print objects properly
 
 Contract file access patterns
 
 - [ ] Save a new matcher directly
 - [ ] Enumerate interactions
 - [ ] List states?
+- [ ] Write contract file
+- [ ] Read contract file
 
 Future tasks
 
 - [ ] Convenience matchers for object keys, arrays of a particular shape
 - [ ] Helpers for setting up tests
-- [ ] Write contract file
 - [ ] Provider state
 - [ ] Resolved values (eg state)
 - [ ] Headers
@@ -48,7 +50,6 @@ Future tasks
 - [ ] Authentication source
 - [ ] Warnings and debug info
 - [ ] And matcher
-- [ ] Print objects properly
 - [ ] Random port startup
 - [ ] Introduce error codes for different classes of error
 - [ ] Make sure all errors include context
@@ -59,7 +60,6 @@ Future tasks
 - [ ] Pact compatibility
 - [ ] Test harness integration
 - [ ] Provider defined examples
-
 - [ ] Union contract files?
 - [ ] Intersect contract files?
 - [ ] Matcher structure / use verification

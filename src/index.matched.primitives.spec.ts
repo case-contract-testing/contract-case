@@ -332,17 +332,17 @@ describe('basic matchers', () => {
     expectErrorContaining(
       matcher,
       actual,
-      "'1' (number) is not exactly equal to '2' (number)"
+      '1 (number) is not exactly equal to 2 (number)'
     );
     expectErrorContaining(
       matcher,
       actual,
-      "'other string' (string) is not exactly equal to 'string' (string)"
+      '"other string" (string) is not exactly equal to "string" (string)'
     );
     expectErrorContaining(
       matcher,
       actual,
-      "'true' (boolean) is not exactly equal to 'false' (boolean)"
+      'true (boolean) is not exactly equal to false (boolean)'
     );
     it('returns the correct object when stripped', () => {
       expect(stripMatchers(matcher)).toEqual({

@@ -7,6 +7,8 @@ import type { CheckMatchFn, MatcherExecutor } from 'entities/executors/types';
 import { combineResults, makeResults } from 'entities/results/MatchResult';
 import type { MatchingError } from 'entities/types';
 import type { MatchContext } from 'entities/context/types';
+import { actualToString } from 'entities/results/renderActual';
+
 import { testExactMatch } from './internal/testExactMatch';
 
 const check: CheckMatchFn<typeof BOOLEAN_MATCHER_TYPE> = (
@@ -22,7 +24,7 @@ const check: CheckMatchFn<typeof BOOLEAN_MATCHER_TYPE> = (
       ? makeResults(
           matchingError(
             matcher,
-            `'${actual}' is not a boolean`,
+            `${actualToString(actual)} is not a boolean`,
             actual,
             matchContext
           )

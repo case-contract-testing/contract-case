@@ -7,6 +7,7 @@ import type {
 } from 'entities/nodes/matchers/http/types';
 import { errorWhen, matchingError } from 'entities/results/MatchingError';
 import { makeResults, hasNoErrors } from 'entities/results/MatchResult';
+import { actualToString } from 'entities/results/renderActual';
 import type { MatchingError, MatchResult } from 'entities/types';
 
 const checkExample = (
@@ -24,14 +25,18 @@ const checkExample = (
     case 'number':
       return errorWhen(
         actual !== rule,
-        makeError(`Status code '${actual}' is not equal to '${rule}'`)
+        makeError(
+          `Status code ${actualToString(actual)} is not equal to '${rule}'`
+        )
       );
     case 'string': {
       const actualAsString = `${actual}`;
       if (actualAsString.length !== 3) {
         return makeResults(
           makeError(
-            `Status code '${actual}' does not appear to be the right length`
+            `Status code ${actualToString(
+              actual
+            )} does not appear to be the right length`
           )
         );
       }
@@ -42,7 +47,9 @@ const checkExample = (
           actualAsString.charAt(i) !== rule.charAt(i)
         ) {
           return makeResults(
-            makeError(`Status code '${actual}' does not match '${rule}'`)
+            makeError(
+              `Status code ${actualToString(actual)} does not match '${rule}'`
+            )
           );
         }
       }
@@ -72,9 +79,11 @@ const check: CheckMatchFn<typeof HTTP_STATUS_CODE_MATCHER_TYPE> = (
       : makeResults(
           matchingError(
             matcher,
-            `The returned http status code '${actual}' did not match the following rule: ${JSON.stringify(
-              matcher['case:matcher:rule']
-            )}`,
+            `The returned http status code (${actualToString(
+              actual
+            )}) did not match any of the following status codes: ${matcher[
+              'case:matcher:rule'
+            ].join(', ')}`,
             actual,
             matchContext
           )

@@ -123,7 +123,7 @@ describe('simple get endpoint', () => {
         it('fails', () =>
           expectErrorContaining(
             context,
-            "'up' (string) is not exactly equal to 'down' (string)"
+            '"up" (string) is not exactly equal to "down" (string)'
           ));
       });
 
@@ -143,7 +143,7 @@ describe('simple get endpoint', () => {
         it('fails', () =>
           expectErrorContaining(
             context,
-            "The returned http status code '200' did not match"
+            'The returned http status code (200) did not match'
           ));
       });
       describe('and a non-matching method', () => {
