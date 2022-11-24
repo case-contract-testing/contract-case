@@ -4,6 +4,15 @@
 
 Work in progress, not ready for use yet.
 
+## Values
+
+- User first: If misconfigurations happen, Case will print helpful errors that assist the user in finding a solution
+
+## Design
+
+- All matchers are only data, so they can be saved in the contract and passed around
+- Extensible: To implement a new matcher, you just implement the interface
+
 Completed
 
 - [x] Primitive matchers

@@ -2,7 +2,7 @@ import type {
   AnyLeafMatcher,
   AnyLeafOrStructure,
 } from 'entities/nodes/matchers/types';
-import { coreCheckMatch } from 'core/traversals';
+import { coreCheckMatch } from 'connectors/core/traversals';
 import type { Logger } from 'entities/logger/types';
 
 const logger: () => Logger = () => ({

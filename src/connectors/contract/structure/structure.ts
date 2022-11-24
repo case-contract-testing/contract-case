@@ -1,58 +1,66 @@
-import { loggerWithoutContext } from 'connectors/logger/consoleLogger';
 import type { ContractDescription } from 'entities/contract/types';
-import type {
-  AnyCaseMatcher,
-  AnyInteraction,
+import type { Logger } from 'entities/logger/types';
+import {
+  type AnyInteraction,
+  isLookupableMatcher,
+  type MatchingError,
+  type AnyCaseNodeOrData,
   LookupableMatcher,
-  MatchingError,
 } from 'entities/types';
+
 import type { CaseExample, CaseState, ContractFile } from './types';
 
-const isLookupableMatcher = (
-  maybeMatcher: unknown
-): maybeMatcher is LookupableMatcher =>
-  'case:interaction:uniqueName' in (maybeMatcher as LookupableMatcher);
+const addMatcher = (
+  matcherLookup: Record<string, AnyCaseNodeOrData>,
+  matcher: AnyCaseNodeOrData,
+  logger: Logger
+): Record<string, AnyCaseNodeOrData> => {
+  if (isLookupableMatcher(matcher) && 'case:matcher:child' in matcher) {
+    if (matcherLookup[matcher['case:matcher:uniqueName']]) {
+      // we already have this one
+      logger.warn(
+        `NOT YET IMPLEMENTED: Test that multiple interactions with the same name are the same ('${matcher['case:matcher:uniqueName']}')`
+      );
+    }
+    return {
+      ...matcherLookup,
+      [matcher['case:matcher:uniqueName']]: matcher['case:matcher:child'],
+    };
+  }
+  return matcherLookup;
+};
 
 const addInteractions = (
-  matcherLookup: Record<string, AnyCaseMatcher>,
-  interaction: AnyInteraction
+  matcherLookup: Record<string, AnyCaseNodeOrData>,
+  interaction: AnyInteraction,
+  logger: Logger
 ) =>
-  [interaction.request, interaction.response].reduce<
-    Record<string, AnyCaseMatcher>
-  >((acc: Record<string, AnyCaseMatcher>, matcher: AnyCaseMatcher) => {
-    if (isLookupableMatcher(matcher)) {
-      if (acc[matcher['case:matcher:uniqueName']]) {
-        // we already have this one
-        /* throw new CaseCoreError(
-          'NOT YET IMPLMENTED: Multiple interactions with the same name'
-        ); */
-        loggerWithoutContext.warn(
-          'NOT YET IMPLEMENTED: MULTIPLE interactions with the same name'
-        );
-      }
-      return {
-        ...acc,
-        [matcher['case:matcher:uniqueName']]: matcher,
-      };
-    }
-    return acc;
-  }, matcherLookup);
+  [interaction.request, interaction.response].reduce(
+    (acc, curr) => addMatcher(acc, curr, logger),
+    matcherLookup
+  );
+
+export const findMatcher = (
+  contract: ContractFile,
+  uniqueName: string
+): AnyCaseNodeOrData | undefined => contract.matcherLookup[uniqueName];
 
 export const makeContract = (
   description: ContractDescription
 ): ContractFile => ({
   description,
-  matcherLookup: {} as Record<string, AnyCaseMatcher>,
+  matcherLookup: {} as Record<string, AnyCaseNodeOrData>,
   examples: new Array<CaseExample>(),
 });
 
 export const addSuccess = (
   contract: ContractFile,
   interaction: AnyInteraction,
-  states: Array<CaseState>
+  states: Array<CaseState>,
+  logger: Logger
 ): ContractFile => ({
   ...contract,
-  matcherLookup: addInteractions(contract.matcherLookup, interaction),
+  matcherLookup: addInteractions(contract.matcherLookup, interaction, logger),
   examples: [
     ...contract.examples,
     {
@@ -67,10 +75,11 @@ export const addFailure = (
   contract: ContractFile,
   interaction: AnyInteraction,
   states: Array<CaseState>,
-  errors: Array<MatchingError>
+  errors: Array<MatchingError>,
+  logger: Logger
 ): ContractFile => ({
   ...contract,
-  matcherLookup: addInteractions(contract.matcherLookup, interaction),
+  matcherLookup: addInteractions(contract.matcherLookup, interaction, logger),
   examples: [
     ...contract.examples,
     {
@@ -80,4 +89,14 @@ export const addFailure = (
       errors,
     },
   ],
+});
+
+export const addLookupableMatcher = (
+  contract: ContractFile,
+  matcher: LookupableMatcher,
+  logger: Logger
+): ContractFile => ({
+  ...contract,
+  matcherLookup: addMatcher(contract.matcherLookup, matcher, logger),
+  examples: [...contract.examples],
 });

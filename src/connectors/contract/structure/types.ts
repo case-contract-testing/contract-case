@@ -1,8 +1,8 @@
 import type { ContractDescription } from 'entities/contract/types';
 import type {
   MatchingError,
-  AnyCaseMatcher,
   AnyInteraction,
+  AnyCaseNodeOrData,
 } from 'entities/types';
 
 export type CaseState = string;
@@ -25,6 +25,6 @@ export type CaseExample = SuccessfulCaseExample | FailedCaseExample;
 
 export interface ContractFile {
   description: ContractDescription;
-  matcherLookup: Record<string, AnyCaseMatcher>;
+  matcherLookup: Record<string, AnyCaseNodeOrData>;
   examples: Array<CaseExample>;
 }

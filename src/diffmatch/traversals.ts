@@ -16,6 +16,7 @@ import {
   HTTP_STATUS_CODE_MATCHER_TYPE,
   HTTP_RESPONSE_MATCHER_TYPE,
   HTTP_REQUEST_MATCHER_TYPE,
+  LOOKUP_MATCHER_TYPE,
 } from 'entities/types';
 import type { MatcherExecutor } from 'entities/executors/types';
 import { HttpStatusCodeMatcher } from './leaf/http/HttpStatusCodeMatcher';
@@ -28,6 +29,7 @@ import { ShapedArrayExecutor } from './structure/ShapedArrayExecutor';
 import { ShapedObjectExecutor } from './structure/ShapedObjectExecutor';
 import { HttpResponseMatcher } from './structure/HttpResponseMatcher';
 import { HttpRequestMatcher } from './structure/HttpRequestMatcher';
+import { LookupMatcher } from './structure/LookupMatcher';
 
 const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } = {
   [NUMBER_MATCHER_TYPE]: NumberMatcher,
@@ -40,6 +42,7 @@ const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } = {
   [HTTP_STATUS_CODE_MATCHER_TYPE]: HttpStatusCodeMatcher,
   [HTTP_RESPONSE_MATCHER_TYPE]: HttpResponseMatcher,
   [HTTP_REQUEST_MATCHER_TYPE]: HttpRequestMatcher,
+  [LOOKUP_MATCHER_TYPE]: LookupMatcher,
 };
 
 const getExecutor = <T extends AnyCaseNodeType>(

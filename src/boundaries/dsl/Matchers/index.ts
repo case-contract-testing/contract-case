@@ -1,3 +1,4 @@
+import { coreLookupMatcher, coreLookupMatcherRequest } from 'entities';
 import { httpStatusCodeMatcher } from 'entities/nodes/matchers/http';
 import {
   coreNumberMatcher,
@@ -9,6 +10,7 @@ import {
   CoreCascadingMatcher,
   CASCADING_CONTEXT_MATCHER_TYPE,
   AnyCaseNodeOrData,
+  LookupableMatcher,
 } from 'entities/nodes/matchers/types';
 import type { CoreHttpStatusCodeMatcher } from 'entities/types';
 import type {
@@ -98,7 +100,7 @@ export const shapedLike = (
 
 /**
  * Matches http status codes. Matches may be provided as a string, eg '4XX' or '401', or a number.
- * If an array is provided,  status codes will
+ * If an array is provided, any status codes in the array will be matched.
  *
  * @param match
  * @param example
@@ -108,3 +110,15 @@ export const httpStatus = (
   match: number | string | Array<number | string>,
   example?: number
 ): CoreHttpStatusCodeMatcher => httpStatusCodeMatcher(match, example);
+
+/**
+ * Meta matcher that gives the matcher below it a unique name that can be reused in tests after this one.
+ *
+ */
+export const namedMatch = (
+  uniqueName: string,
+  matcherOrData?: AnyCaseNodeOrData | undefined
+): LookupableMatcher =>
+  matcherOrData === undefined
+    ? coreLookupMatcherRequest(uniqueName)
+    : coreLookupMatcher(uniqueName, matcherOrData);

@@ -40,6 +40,7 @@ const check = (
     ),
     errorWhen(
       matchContext['case:context:serialisableTo'] === 'json' &&
+        typeof actual === 'number' &&
         !Number.isFinite(actual),
       matchingError(
         matcher,

@@ -5,15 +5,17 @@ import {
 } from 'entities/nodes/interactions/types';
 import {
   isCaseNode,
-  AnyCaseMatcher,
   AnyCaseNodeOrData,
+  AnyCaseMatcher,
+  LookupableMatcher,
 } from 'entities/nodes/matchers/types';
 import type {
   MatchContext,
   RunContext,
   DefaultContext,
-  Traversals,
+  TraversalFns,
   LoggableContext,
+  ContractFns,
 } from './types';
 
 /**
@@ -55,9 +57,10 @@ let interactionId = 0;
 
 const constructContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
-  traversals: Traversals,
+  traversals: TraversalFns,
   makeLogger: (c: LoggableContext) => Logger,
-  runConfig: Partial<RunContext>
+  runConfig: Partial<RunContext>,
+  contractFns: ContractFns
 ) => {
   const context = {
     makeLogger,
@@ -68,18 +71,33 @@ const constructContext = (
     'case:run:context:tree': caseNodeOrData,
   };
   interactionId += 1;
-  return { ...context, logger: makeLogger(context) };
+  const logger = makeLogger(context);
+  return {
+    ...context,
+    logger,
+    lookupMatcher: (uniqueName: string) =>
+      contractFns.lookupMatcher(uniqueName, logger),
+    saveLookupableMatcher: (matcher: LookupableMatcher) =>
+      contractFns.saveLookupableMatcher(matcher, logger),
+  };
 };
 
 export const applyDefaultContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
-  traversals: Traversals,
+  traversals: TraversalFns,
   makeLogger: (c: LoggableContext) => Logger,
+  contractFns: ContractFns,
   runConfig: Partial<RunContext> = {}
 ): MatchContext => {
   const context = combineWithRoot(
     caseNodeOrData,
-    constructContext(caseNodeOrData, traversals, makeLogger, runConfig)
+    constructContext(
+      caseNodeOrData,
+      traversals,
+      makeLogger,
+      runConfig,
+      contractFns
+    )
   );
 
   if (runConfig['case:currentRun:context:logLevel']) {
@@ -89,7 +107,7 @@ export const applyDefaultContext = (
     'Initial context is:',
     JSON.stringify(context, null, 2)
   );
-  return context;
+  return { ...context };
 };
 
 export const addLocation = (
@@ -103,5 +121,6 @@ export const addLocation = (
       'case:currentRun:context:location'
     ].concat([location]),
   };
-  return { ...nextContext, logger: nextContext.makeLogger(nextContext) };
+  const logger = nextContext.makeLogger(nextContext);
+  return { ...nextContext, logger };
 };

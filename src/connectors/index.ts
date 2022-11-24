@@ -1,4 +1,4 @@
-import type { SetupFns } from 'core/types';
+import type { SetupFns } from 'connectors/core/types';
 import {
   PRODUCE_HTTP_RESPONSE,
   CONSUME_HTTP_RESPONSE,

@@ -15,6 +15,7 @@ export const BOOLEAN_MATCHER_TYPE = 'MatchBoolean' as const;
 export const CASCADING_CONTEXT_MATCHER_TYPE = 'CascadingContext' as const;
 export const SHAPED_ARRAY_MATCHER_TYPE = 'ArrayShape' as const;
 export const SHAPED_OBJECT_MATCHER_TYPE = 'ObjectShape' as const;
+export const LOOKUP_MATCHER_TYPE = 'Lookup' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
@@ -26,7 +27,8 @@ export type AnyCaseNodeType =
   | typeof SHAPED_OBJECT_MATCHER_TYPE
   | typeof HTTP_STATUS_CODE_MATCHER_TYPE
   | typeof HTTP_REQUEST_MATCHER_TYPE
-  | typeof HTTP_RESPONSE_MATCHER_TYPE;
+  | typeof HTTP_RESPONSE_MATCHER_TYPE
+  | typeof LOOKUP_MATCHER_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -34,6 +36,17 @@ export const isCaseNode = (
   typeof maybeMatcher === 'object' &&
   maybeMatcher != null &&
   'case:matcher:type' in (maybeMatcher as AnyCaseMatcher);
+
+export const isLookupableMatcher = (
+  maybeMatcher: unknown
+): maybeMatcher is LookupableMatcher => {
+  const matcher = maybeMatcher as LookupableMatcher;
+  return (
+    'case:matcher:uniqueName' in matcher &&
+    typeof 'case:matcher:uniqueName' === 'string' &&
+    matcher['case:matcher:type'] === LOOKUP_MATCHER_TYPE
+  );
+};
 
 export type JsonSerialisablePrimitive = boolean | number | string | null;
 export type AnyLeafOrStructure =
@@ -59,18 +72,19 @@ export type AnyLeafMatcher =
   | CoreBooleanMatcher
   | CoreHttpStatusCodeMatcher;
 
-type WithLookup<T> = T | (T & LookupableMatcher);
-
-export type AnyCaseMatcher = WithLookup<
+export type AnyCaseMatcher =
   | AnyLeafMatcher
   | CoreCascadingMatcher
   | CoreShapedArrayMatcher
   | CoreShapedObjectMatcher
   | CoreHttpRequestMatcher
   | CoreHttpResponseMatcher
->;
+  | LookupableMatcher;
+
 export interface LookupableMatcher {
+  'case:matcher:type': typeof LOOKUP_MATCHER_TYPE;
   'case:matcher:uniqueName': string;
+  'case:matcher:child'?: AnyCaseNodeOrData;
 }
 
 export type AnyCaseNodeOrData = AnyCaseMatcher | AnyLeafOrStructure;

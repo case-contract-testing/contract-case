@@ -9,6 +9,7 @@ import type { MatchResult } from 'entities/types';
 import { traversals } from 'diffmatch';
 import type { Logger } from 'entities/logger/types';
 import type { LoggableContext } from 'entities/context/types';
+import { contractFns } from 'connectors/contract';
 
 export const coreCheckMatch = <T extends AnyCaseNodeType>(
   matcherOrData: DataOrCaseNodeFor<T>,
@@ -18,7 +19,7 @@ export const coreCheckMatch = <T extends AnyCaseNodeType>(
   Promise.resolve(
     traversals.descendAndCheck(
       matcherOrData,
-      applyDefaultContext(matcherOrData, traversals, logger),
+      applyDefaultContext(matcherOrData, traversals, logger, contractFns),
       actual
     )
   );
@@ -29,5 +30,5 @@ export const coreStripMatchers = <T extends AnyCaseNodeType>(
 ): AnyData =>
   traversals.descendAndStrip(
     matcherOrData,
-    applyDefaultContext(matcherOrData, traversals, makeLogger)
+    applyDefaultContext(matcherOrData, traversals, makeLogger, contractFns)
   );

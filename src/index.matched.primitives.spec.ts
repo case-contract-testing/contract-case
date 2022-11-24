@@ -7,7 +7,7 @@ import {
   exactlyLike,
   shapedLike,
 } from 'boundaries/dsl/Matchers';
-import { coreCheckMatch } from 'core/traversals';
+import { coreCheckMatch } from 'connectors/core/traversals';
 import { stripMatchers } from 'boundaries/dsl/stripMatchers';
 
 const logger = () => ({
@@ -48,6 +48,11 @@ describe('basic matchers', () => {
     expectErrorContaining(matcher, '1', 'not a number');
     expectErrorContaining(matcher, [], 'not a number');
     expectErrorContaining(matcher, {}, 'not a number');
+    expectErrorContaining(
+      anyNumber(Number.POSITIVE_INFINITY),
+      Number.POSITIVE_INFINITY,
+      'must be finite'
+    );
   });
 
   describe('string matcher', () => {

@@ -3,6 +3,8 @@ import {
   CoreShapedArrayMatcher,
   CoreShapedObjectMatcher,
   JsonOrMatcherMap,
+  LookupableMatcher,
+  LOOKUP_MATCHER_TYPE,
   SHAPED_ARRAY_MATCHER_TYPE,
   SHAPED_OBJECT_MATCHER_TYPE,
 } from './types';
@@ -19,4 +21,20 @@ export const coreShapedObjectMatcher = (
 ): CoreShapedObjectMatcher => ({
   'case:matcher:type': SHAPED_OBJECT_MATCHER_TYPE,
   'case:matcher:children': example,
+});
+
+export const coreLookupMatcher = (
+  uniqueName: string,
+  child: AnyCaseNodeOrData
+): LookupableMatcher => ({
+  'case:matcher:type': LOOKUP_MATCHER_TYPE,
+  'case:matcher:uniqueName': uniqueName,
+  'case:matcher:child': child,
+});
+
+export const coreLookupMatcherRequest = (
+  uniqueName: string
+): LookupableMatcher => ({
+  'case:matcher:type': LOOKUP_MATCHER_TYPE,
+  'case:matcher:uniqueName': uniqueName,
 });
