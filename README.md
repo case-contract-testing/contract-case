@@ -68,6 +68,9 @@ Cool features
 - [ ] Matcher content verification
 - [ ] Options + config
 - [ ] Run as a server
+- [ ] String combination matchers
+- [ ] Manipulation matchers (eg "treat as string")
+- [ ] JS Matchers
 
 Internals
 
@@ -100,6 +103,9 @@ Configuration
 Documentation
 
 - [ ] Differences from Pact
+- [ ] -- Interaction model
+- [ ] -- How to do proxy testing
+- [ ] -- Extensibility
 - [ ] How to use
 - [ ] How states work
 - [ ] Why there's no optional
