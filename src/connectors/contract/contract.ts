@@ -1,4 +1,5 @@
 import { CaseConfigurationError } from 'entities';
+import { CaseFailedError } from 'entities/CaseFailedError';
 import type { ContractFns } from 'entities/context/types';
 import type { ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
@@ -14,8 +15,10 @@ import {
   findMatcher,
   makeContract,
   addLookupableMatcher,
+  hasFailure,
 } from './structure';
 import type { CaseState, ContractFile } from './structure/types';
+import { writeContract } from './writer/fileSystem';
 
 let currentContract: ContractFile;
 
@@ -124,7 +127,10 @@ export const recordFailure = (
 };
 
 export const endRecord = (): void => {
-  // Check for success
+  if (hasFailure(currentContract)) {
+    // TODO: Print all failures
+    throw new CaseFailedError();
+  }
   //  - if success, write contract
-  //  - if fail, print all failures and throw
+  writeContract(currentContract);
 };

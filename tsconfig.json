@@ -5,7 +5,9 @@
     "noImplicitAny": true,
     "strict": true,
     "rootDir": "./src",
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "allowJs": true
   },
+
   "exclude": ["jest.config.ts", "dist/**/*.js", "example/*", "coverage"]
 }

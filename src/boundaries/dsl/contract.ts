@@ -6,3 +6,6 @@ export const startContract = (
   description: ContractDescription
 ): Promise<unknown> =>
   Promise.resolve(contractFile.beginRecord(description, loggerWithoutContext));
+
+export const endContract = (): Promise<unknown> =>
+  Promise.resolve(contractFile.endRecord());

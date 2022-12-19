@@ -1,2 +1,2 @@
 export { setup } from './setup';
-export { startContract } from './dsl/contract';
+export { startContract, endContract } from './dsl/contract';

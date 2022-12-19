@@ -91,6 +91,10 @@ export const addFailure = (
   ],
 });
 
+export const hasFailure = (contract: ContractFile): boolean =>
+  contract.examples.find((example) => example.result === 'FAILED') !==
+  undefined;
+
 export const addLookupableMatcher = (
   contract: ContractFile,
   matcher: LookupableMatcher,
