@@ -36,7 +36,10 @@ Pact Parity
 - [ ] JVM / Python / Go / C# bindings
 - [ ] Convenience matchers for object keys, arrays of a particular shape
 - [ ] Provider state
-- [ ] Write contract file
+- [x] Write contract file
+  - [ ] Print errors nicely
+  - [ ] Config for location
+  - [ ] Combine files for upload (does the broker support multiple contracts between the same two services?)
 - [ ] Read contract file
 - [ ] Headers
 - [ ] Random port startup
