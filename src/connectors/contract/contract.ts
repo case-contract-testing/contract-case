@@ -3,6 +3,7 @@ import { CaseFailedError } from 'entities/CaseFailedError';
 import type { ContractFns } from 'entities/context/types';
 import type { ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
+import type { AnyState } from 'entities/nodes/states/types';
 import type {
   AnyCaseNodeOrData,
   AnyInteraction,
@@ -17,7 +18,7 @@ import {
   addLookupableMatcher,
   hasFailure,
 } from './structure';
-import type { CaseState, ContractFile } from './structure/types';
+import type { ContractFile } from './structure/types';
 import { writeContract } from './writer/fileSystem';
 
 let currentContract: ContractFile;
@@ -86,7 +87,7 @@ export const beginRecord = (
 
 export const recordSuccess = (
   interaction: AnyInteraction,
-  states: Array<CaseState>,
+  states: Array<AnyState>,
   logger: Logger
 ): ContractFile => {
   if (!currentContract) {
@@ -104,7 +105,7 @@ export const recordSuccess = (
 
 export const recordFailure = (
   interaction: AnyInteraction,
-  states: Array<CaseState>,
+  states: Array<AnyState>,
   logger: Logger,
   errors: Array<MatchingError>
 ): ContractFile => {

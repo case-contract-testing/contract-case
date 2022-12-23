@@ -1,14 +1,13 @@
 import type { ContractDescription } from 'entities/contract/types';
+import type { AnyState } from 'entities/nodes/states/types';
 import type {
   MatchingError,
   AnyInteraction,
   AnyCaseNodeOrData,
 } from 'entities/types';
 
-export type CaseState = string;
-
 interface BaseCaseExample {
-  states: CaseState[];
+  states: AnyState[];
   interaction: AnyInteraction;
 }
 

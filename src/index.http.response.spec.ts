@@ -38,7 +38,7 @@ describe('simple get endpoint', () => {
   describe('without a URL', () => {
     it('fails to setup', () =>
       expect(
-        setup(interaction, {
+        setup([], interaction, {
           'case:currentRun:context:expectation': 'produce',
           'case:currentRun:context:logLevel': 'maintainerDebug',
         })
@@ -53,7 +53,7 @@ describe('simple get endpoint', () => {
     };
     describe('but no running server', () => {
       beforeEach(async () => {
-        context = await setup(interaction, {
+        context = await setup([], interaction, {
           'case:currentRun:context:baseurl': 'http://localhost:8081',
           'case:currentRun:context:expectation': 'produce',
         });
@@ -81,7 +81,7 @@ describe('simple get endpoint', () => {
 
       describe('and a matching interaction', () => {
         beforeEach(async () => {
-          context = await setup(interaction, config);
+          context = await setup([], interaction, config);
         });
         it('succeeds', () =>
           expect(context.verify()).resolves.toEqual(makeNoErrorResult()));
@@ -90,6 +90,7 @@ describe('simple get endpoint', () => {
       describe('and a matching interaction that is generic', () => {
         beforeEach(async () => {
           context = await setup(
+            [],
             willSendHttpInteraction({
               request: {
                 method: 'GET',
@@ -110,6 +111,7 @@ describe('simple get endpoint', () => {
       describe('and a non-matching body', () => {
         beforeEach(async () => {
           context = await setup(
+            [],
             willSendHttpInteraction({
               request: {
                 method: 'GET',
@@ -130,6 +132,7 @@ describe('simple get endpoint', () => {
       describe('and a non-matching status', () => {
         beforeEach(async () => {
           context = await setup(
+            [],
             willSendHttpInteraction({
               request: {
                 method: 'GET',
@@ -149,6 +152,7 @@ describe('simple get endpoint', () => {
       describe('and a non-matching method', () => {
         beforeEach(async () => {
           context = await setup(
+            [],
             willSendHttpInteraction({
               request: {
                 method: 'POST',
@@ -166,6 +170,7 @@ describe('simple get endpoint', () => {
       describe('and a non-matching path', () => {
         beforeEach(async () => {
           context = await setup(
+            [],
             willSendHttpInteraction({
               request: {
                 method: 'GET',

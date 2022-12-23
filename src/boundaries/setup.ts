@@ -11,8 +11,10 @@ import type { RunContext } from 'entities/context/types';
 import { makeLogger } from 'connectors/logger';
 import { hasErrors } from 'entities/results/MatchResult';
 import { contractFns } from 'connectors/contract';
+import type { AnyState } from 'entities/nodes/states/types';
 
 export const setup = <T extends AnyInteractionType>(
+  states: Array<AnyState>,
   interaction: CaseInteractionFor<T>,
   runConfig: Partial<RunContext> = {}
 ): Promise<Verifiable<T>> =>
@@ -33,12 +35,12 @@ export const setup = <T extends AnyInteractionType>(
             if (hasErrors(result)) {
               contractFile.recordFailure(
                 interaction,
-                [],
+                states,
                 context.logger,
                 result
               );
             } else {
-              contractFile.recordSuccess(interaction, [], context.logger);
+              contractFile.recordSuccess(interaction, states, context.logger);
             }
             return result;
           }),

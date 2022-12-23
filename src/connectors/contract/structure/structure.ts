@@ -1,5 +1,6 @@
 import type { ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
+import type { AnyState } from 'entities/nodes/states/types';
 import {
   type AnyInteraction,
   isLookupableMatcher,
@@ -8,7 +9,7 @@ import {
   LookupableMatcher,
 } from 'entities/types';
 
-import type { CaseExample, CaseState, ContractFile } from './types';
+import type { CaseExample, ContractFile } from './types';
 
 const addMatcher = (
   matcherLookup: Record<string, AnyCaseNodeOrData>,
@@ -30,7 +31,7 @@ const addMatcher = (
   return matcherLookup;
 };
 
-const addInteractions = (
+const addInteraction = (
   matcherLookup: Record<string, AnyCaseNodeOrData>,
   interaction: AnyInteraction,
   logger: Logger
@@ -56,11 +57,11 @@ export const makeContract = (
 export const addSuccess = (
   contract: ContractFile,
   interaction: AnyInteraction,
-  states: Array<CaseState>,
+  states: Array<AnyState>,
   logger: Logger
 ): ContractFile => ({
   ...contract,
-  matcherLookup: addInteractions(contract.matcherLookup, interaction, logger),
+  matcherLookup: addInteraction(contract.matcherLookup, interaction, logger),
   examples: [
     ...contract.examples,
     {
@@ -74,12 +75,12 @@ export const addSuccess = (
 export const addFailure = (
   contract: ContractFile,
   interaction: AnyInteraction,
-  states: Array<CaseState>,
+  states: Array<AnyState>,
   errors: Array<MatchingError>,
   logger: Logger
 ): ContractFile => ({
   ...contract,
-  matcherLookup: addInteractions(contract.matcherLookup, interaction, logger),
+  matcherLookup: addInteraction(contract.matcherLookup, interaction, logger),
   examples: [
     ...contract.examples,
     {

@@ -22,6 +22,7 @@ describe('example http response consumer contract', () => {
   describe('health get', () => {
     beforeEach(async () => {
       context = await setup(
+        [],
         willSendHttpInteraction({
           request: {
             method: 'GET',
@@ -49,6 +50,7 @@ describe('example http response consumer contract', () => {
   describe('arbitrary server response', () => {
     beforeEach(async () => {
       context = await setup(
+        [],
         willSendHttpInteraction({
           request: {
             method: 'GET',
@@ -77,6 +79,7 @@ describe('example http response consumer contract', () => {
   describe('No body server response', () => {
     beforeEach(async () => {
       context = await setup(
+        [],
         willSendHttpInteraction({
           request: {
             method: 'GET',

@@ -13,9 +13,11 @@ export const PRODUCE_HTTP_RESPONSE = 'ProduceHttpResponse' as const;
 export type HasTypeForInteraction<T extends AnyInteractionType> = {
   'case:interaction:type': T;
 };
+
 type BaseInteraction = {
   'case:interaction:uniqueName': string;
 };
+
 export const isCaseInteraction = (
   maybeInteraction: unknown
 ): maybeInteraction is AnyInteraction =>
