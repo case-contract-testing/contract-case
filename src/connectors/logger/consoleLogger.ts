@@ -74,7 +74,7 @@ export const makeLogger: (context: LoggableContext) => Logger = (
   maintainerDebug(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'maintainerDebug')) {
       stdoutLogger.log(
-        `${timestampString()} ${caseVersionString} ${chalk.bgBlueBright(
+        `${timestampString()} ${caseVersionString} ${chalk.bgBlueBright.black(
           `[MAINTAINER-DEBUG]`
         )} ${locationString(matchContext)}: ${message}`,
         ...additional
