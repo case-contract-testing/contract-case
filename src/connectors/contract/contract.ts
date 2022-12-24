@@ -127,11 +127,13 @@ export const recordFailure = (
   return currentContract;
 };
 
-export const endRecord = (): void => {
+export const endRecord = (logger: Logger): void => {
   if (hasFailure(currentContract)) {
     // TODO: Print all failures
     throw new CaseFailedError();
   }
+
   //  - if success, write contract
-  writeContract(currentContract);
+  const fileName = writeContract(currentContract, logger);
+  logger.debug(`Wrote contract file: ${fileName}`);
 };

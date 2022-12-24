@@ -130,3 +130,4 @@ Here I write notes to myself to make sure I don't miss anything
 
 - Do I need runcontext:tree? Maybe I can remove it.
 - Review the invert contract logic, possibly this can be removed too.
+- Make loggable context explicit instead of calculated

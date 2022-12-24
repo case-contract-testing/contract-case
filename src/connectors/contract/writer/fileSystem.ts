@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { CaseConfigurationError } from 'entities';
 import type { ContractDescription } from 'entities/contract/types';
+import type { Logger } from 'entities/logger/types';
 
 type CaseContractConfig = {
   testRunId: string;
@@ -33,17 +34,20 @@ const makePath = (
 
 export const writeContract = (
   contract: ContractFile,
+  logger: Logger,
   config: CaseContractConfig = {
     testRunId: '12',
     contractDir: 'temp-contracts',
   }
-): void => {
+): string => {
   const pathToFile = makePath(contract.description, config);
+  logger.maintainerDebug(`About to write contract to '${pathToFile}'`);
   if (fs.existsSync(pathToFile)) {
+    logger.error(`Can't write to '${pathToFile}, as it already exists'`);
     throw new CaseConfigurationError(`the file ${pathToFile} already exists`);
   }
-
   fs.writeFileSync(pathToFile, JSON.stringify(contract));
+  return pathToFile;
 };
 
 export const readContract = (pathToContract: string): ContractFile =>
