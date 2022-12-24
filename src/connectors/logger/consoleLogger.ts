@@ -1,6 +1,6 @@
 import { caseVersion } from 'caseVersion';
 import chalk from 'chalk';
-import { locationString } from 'entities/context';
+import { locationString as formatLocationString } from 'entities/context';
 import type { LoggableContext } from 'entities/context/types';
 import { shouldLog } from 'entities/logger/shouldLog';
 import type { Logger, LogLevel } from 'entities/logger/types';
@@ -10,7 +10,23 @@ let currentLogLevel: LogLevel = 'info';
 
 const stdoutLogger = new Console({ stdout: process.stdout });
 
-const caseVersionString = chalk.green(`case@${caseVersion} `);
+const caseVersionString = chalk.whiteBright(`(case@${caseVersion})`);
+
+const locationString = (context: LoggableContext) =>
+  `${chalk.blueBright(formatLocationString(context))}`;
+
+const timestampString = (): string =>
+  new Date().toLocaleString(Intl.DateTimeFormat().resolvedOptions().locale, {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hourCycle: 'h24',
+    timeZoneName: 'shortOffset',
+    fractionalSecondDigits: 3,
+  });
 
 export const makeLogger: (context: LoggableContext) => Logger = (
   matchContext: LoggableContext
@@ -18,7 +34,9 @@ export const makeLogger: (context: LoggableContext) => Logger = (
   info(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'info')) {
       stdoutLogger.log(
-        `${caseVersionString}${locationString(matchContext)}: ${message}`,
+        `${timestampString()} ${caseVersionString} ${locationString(
+          matchContext
+        )}: ${message}`,
         ...additional
       );
     }
@@ -26,9 +44,9 @@ export const makeLogger: (context: LoggableContext) => Logger = (
   warn(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'warn')) {
       stdoutLogger.log(
-        `${chalk.bgYellow.black(
+        `${timestampString()} ${caseVersionString} ${chalk.yellowBright(
           `[WARNING]`
-        )}${caseVersionString}${locationString(matchContext)}: ${message}`,
+        )} ${locationString(matchContext)}: ${chalk.yellowBright(message)}`,
         ...additional
       );
     }
@@ -36,9 +54,9 @@ export const makeLogger: (context: LoggableContext) => Logger = (
   error(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'error')) {
       stdoutLogger.log(
-        `${chalk.red(`[ERROR]`)}${caseVersionString}${locationString(
-          matchContext
-        )}: ${message}`,
+        `${timestampString()} ${caseVersionString} ${chalk.redBright(
+          `[ERROR]`
+        )} ${locationString(matchContext)}: ${chalk.redBright(message)}`,
         ...additional
       );
     }
@@ -46,9 +64,9 @@ export const makeLogger: (context: LoggableContext) => Logger = (
   debug(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'debug')) {
       stdoutLogger.log(
-        `${chalk.cyan(`[DEBUG]`)}${caseVersionString}${locationString(
-          matchContext
-        )}: ${message}`,
+        `${timestampString()} ${caseVersionString} ${chalk.cyan(
+          `[DEBUG]`
+        )} ${locationString(matchContext)}: ${message}`,
         ...additional
       );
     }
@@ -56,9 +74,9 @@ export const makeLogger: (context: LoggableContext) => Logger = (
   maintainerDebug(message: string, ...additional: unknown[]): void {
     if (shouldLog(currentLogLevel, 'maintainerDebug')) {
       stdoutLogger.log(
-        `${chalk.bgBlue(
+        `${timestampString()} ${caseVersionString} ${chalk.bgBlueBright(
           `[MAINTAINER-DEBUG]`
-        )}${caseVersionString}${locationString(matchContext)}: ${message}`,
+        )} ${locationString(matchContext)}: ${message}`,
         ...additional
       );
     }
