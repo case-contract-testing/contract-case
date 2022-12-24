@@ -13,12 +13,14 @@ export interface CoreHttpStatusCodeMatcher {
 
 export interface CoreHttpResponseMatcher {
   'case:matcher:type': typeof HTTP_RESPONSE_MATCHER_TYPE;
+  'case:matcher:uniqueName'?: string;
   status: number | CoreHttpStatusCodeMatcher;
   body?: AnyCaseNodeOrData;
 }
 
 export interface CoreHttpRequestMatcher {
   'case:matcher:type': typeof HTTP_REQUEST_MATCHER_TYPE;
+  'case:matcher:uniqueName'?: string;
   path: AnyStringMatcher | string;
   method: AnyStringMatcher | string;
   body?: AnyCaseNodeOrData;

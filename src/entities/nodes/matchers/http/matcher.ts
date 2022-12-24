@@ -31,8 +31,8 @@ export const httpRequestMatcher = (
 });
 
 export const httpResponseMatcher = (
-  request: HttpInteractionResponse
+  response: HttpInteractionResponse
 ): CoreHttpResponseMatcher => ({
-  ...request,
+  ...response,
   'case:matcher:type': HTTP_RESPONSE_MATCHER_TYPE,
 });

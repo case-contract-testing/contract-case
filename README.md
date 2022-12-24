@@ -41,6 +41,10 @@ Pact Parity
   - [ ] Config for location
   - [ ] Combine files for upload (does the broker support multiple contracts between the same two services?)
 - [ ] Read contract file
+  - [ ] Read all files in a location
+  - [ ] Verify contract file
+  - [ ] Error handling when the files don't exist
+  - [ ] Get files from broker
 - [ ] Headers
 - [ ] Random port startup
 - [ ] Crash messages
@@ -74,6 +78,7 @@ Cool features
 - [ ] String combination matchers
 - [ ] Manipulation matchers (eg "treat as string")
 - [ ] JS Matchers
+- [ ] Automatic names for interactions
 
 Internals
 
@@ -118,3 +123,10 @@ Documentation
 Issues:
 
 - [ ] Double handling of lookup interactions if the same data is traversed (eg, by checkMatch and stripMatch)
+
+### Implementation notebook
+
+Here I write notes to myself to make sure I don't miss anything
+
+- Do I need runcontext:tree? Maybe I can remove it.
+- Review the invert contract logic, possibly this can be removed too.
