@@ -24,7 +24,7 @@ const timestampString = (): string =>
     minute: 'numeric',
     second: 'numeric',
     hourCycle: 'h24',
-    timeZoneName: 'shortOffset',
+    timeZoneName: 'short', // TODO: Use `shortOffset` when all current node versions support it
     fractionalSecondDigits: 3,
   });
 
