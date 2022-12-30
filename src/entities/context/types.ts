@@ -49,7 +49,7 @@ export type MatchContext = TraversalFns &
   RunContext;
 
 type InitialisingContext = {
-  'case:currentRun:context:location': [string];
+  'case:currentRun:context:location': Array<string>;
 };
 
 export type LoggableContext =
@@ -78,6 +78,7 @@ export interface HasBaseUrl {
 
 export interface RunContext extends Partial<InjectableContext> {
   'case:run:context:tree': AnyCaseNodeOrData | AnyInteraction;
+  'case:currentRun:context:location': Array<string>;
 }
 
 export interface MatchContextByType {

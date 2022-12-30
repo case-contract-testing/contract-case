@@ -25,10 +25,6 @@ const inferInteraction = <T extends AnyInteractionType>(
   context: MatchContext
 ) => {
   context.logger.maintainerDebug('Interaction is', interaction);
-  context.logger.maintainerDebug(
-    'Context is',
-    JSON.stringify(context, null, 2)
-  );
 
   if (
     interaction['case:run:context:asWritten'] !==

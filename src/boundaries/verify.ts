@@ -1,9 +1,14 @@
 import type { ContractFile } from 'connectors/contract/structure/types';
 import { CaseConfigurationError } from 'entities';
+import { applyDefaultContext } from 'entities/context';
 import { nameExample } from 'entities/contract/interactions';
 import { hasErrors } from 'entities/results/MatchResult';
+import { traversals } from 'diffmatch';
+import { makeLogger } from 'connectors/logger';
+import { contractFns } from 'connectors/contract';
+import { setupWithContext } from 'connectors/core/setup/setup';
+
 import { isSetupFunction, RunTestCallback, StateFunctions } from './dsl/types';
-import { setup } from './setup';
 
 export const verifyContract = (
   contractFile: ContractFile,
@@ -11,51 +16,98 @@ export const verifyContract = (
   runTestCb: RunTestCallback
 ): void => {
   contractFile.examples.forEach((example, index) => {
-    runTestCb(nameExample(example, index), () =>
-      Promise.all(
+    runTestCb(nameExample(example, index), () => {
+      const context = applyDefaultContext(
+        example.interaction,
+        traversals,
+        makeLogger,
+        contractFns,
+        {
+          'case:currentRun:context:expectation': 'produce',
+          'case:currentRun:context:logLevel': 'maintainerDebug',
+          'case:currentRun:context:location': [
+            'verification',
+            `interaction[${index}]`,
+          ],
+          // TODO: Add configuration types and serialise here
+          'case:currentRun:context:baseurl': 'http://localhost:8084',
+        }
+      );
+      context.logger.debug(
+        `Beginning verification for interaction "${nameExample(
+          example,
+          index
+        )}"`
+      );
+      context.logger.maintainerDebug(
+        'Context is',
+        JSON.stringify(context, null, 2)
+      );
+      return Promise.all(
         example.states.map((state) => {
           const setupState = stateSetups[state.stateName];
           if (setupState === undefined) {
+            context.logger.error(
+              `No state handler for '${state.stateName}' was defined`
+            );
             throw new CaseConfigurationError(
               `Missing state '${state.stateName}'`
             );
           }
 
+          context.logger.debug(`Calling state setup for '${state.stateName}'`);
           return Promise.resolve(
             isSetupFunction(setupState) ? setupState() : setupState.setup()
           );
         })
+        // TODO Gracefully handle error
         // TODO Roll these into the context
       )
-        .then(() =>
-          setup(example.states, example.interaction, {
-            'case:currentRun:context:expectation': 'produce',
-            'case:currentRun:context:baseurl': 'http://localhost:8084',
-          })
-        )
+        .then(() => {
+          context.logger.maintainerDebug(`Calling setupWithContext`);
+          return setupWithContext(
+            example.states,
+            example.interaction,
+            Promise.resolve(context)
+          );
+        })
         .then((verifiable) => verifiable.verify())
         .then((verificationResult) => {
           if (hasErrors(verificationResult)) {
+            context.logger.debug(`Verification errors present`);
+            // TODO Render errors here
             throw new Error(`Verification errors: ${verificationResult}`);
           }
         })
-        .then(() =>
+        .finally(() =>
           Promise.all(
             example.states.map((state) => {
               const stateFn = stateSetups[state.stateName];
               if (stateFn !== undefined && !isSetupFunction(stateFn)) {
+                context.logger.debug(
+                  `Calling state teardown for '${state.stateName}'`
+                );
                 return Promise.resolve(stateFn.teardown());
               }
 
+              context.logger.debug(
+                `No state teardown exists for '${state.stateName}'`
+              );
               return 'No teardown';
             })
           ).catch((e) => {
-            // TODO: Log Failure to teardown here in a loud error message
-            console.log('OH NO');
-            return e;
+            context.logger.error(
+              'Test may have passed, but state teardown failed',
+              e.message
+            );
+            throw new CaseConfigurationError(
+              `State teardown errored: ${e.message}`
+            );
           })
         )
-        .then(() => {})
-    );
+        .then(() => {
+          context.logger.debug(`This interaction passed verification`);
+        });
+    });
   });
 };
