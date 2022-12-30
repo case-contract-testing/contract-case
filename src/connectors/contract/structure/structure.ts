@@ -1,4 +1,4 @@
-import type { ContractDescription } from 'entities/contract/types';
+import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
 import type { AnyState } from 'entities/nodes/states/types';
 import {
@@ -9,7 +9,7 @@ import {
   LookupableMatcher,
 } from 'entities/types';
 
-import type { CaseExample, ContractFile } from './types';
+import type { ContractFile } from './types';
 
 const addMatcher = (
   matcherLookup: Record<string, AnyCaseNodeOrData>,

@@ -3,4 +3,4 @@ export interface ErrorResponse {
 }
 
 // This will need to change when we build out the service
-export type ArbitraryResponseType = Record<string, unknown>;
+export type HelloResponse = { hello: string };

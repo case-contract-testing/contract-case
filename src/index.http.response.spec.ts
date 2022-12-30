@@ -66,18 +66,18 @@ describe('simple get endpoint', () => {
     });
     describe('with a running server', () => {
       let server: http.Server;
-      beforeEach(async () => {
-        server = start();
+      beforeAll(async () => {
+        server = await start();
       });
-      afterEach(
-        () =>
-          new Promise<void>((resolve, reject) => {
-            server.close((err?: Error) => {
-              if (err) reject(err);
-              resolve();
-            });
-          })
-      );
+      afterAll(() => {
+        const closePromise = new Promise<void>((resolve) => {
+          server.on('close', () => {
+            resolve();
+          });
+        });
+        server.close();
+        return closePromise;
+      });
 
       describe('and a matching interaction', () => {
         beforeEach(async () => {

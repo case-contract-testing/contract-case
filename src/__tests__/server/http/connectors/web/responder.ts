@@ -1,19 +1,27 @@
 import type { Response } from 'express';
-import type {
-  ErrorResponse,
-  ArbitraryResponseType,
-} from '__tests__/server/http/model/responses';
+import type { ErrorResponse } from '__tests__/server/http/model/responses';
 
 interface Responder {
-  success: (data: ArbitraryResponseType) => void;
+  success: <T>(data: T) => void;
+  status: <T>(status: number, data: T) => void;
   error: (error: ErrorResponse) => void;
 }
 
 const responder = (res: Response): Responder => ({
-  success: (data: ArbitraryResponseType) => {
+  success: <T>(data: T) => {
     res.format({
       'application/json': () => {
         res.json(data);
+      },
+      default: () => {
+        res.status(406).send('Not Acceptable');
+      },
+    });
+  },
+  status: <T>(status: number, data: T) => {
+    res.format({
+      'application/json': () => {
+        res.status(status).json(data);
       },
       default: () => {
         res.status(406).send('Not Acceptable');

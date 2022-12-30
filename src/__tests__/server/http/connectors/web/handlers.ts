@@ -1,11 +1,26 @@
 import type { RequestHandler, Response, Request } from 'express';
-import baseService from '__tests__/server/http/domain/baseService';
+import type {
+  BaseServiceDependencies,
+  HealthServiceDependencies,
+} from '../../domain/types';
 import responder from './responder';
 
-export const base: RequestHandler = (req: Request, res: Response) => {
-  responder(res).success(baseService(req.ip));
-};
+export const base: (deps: BaseServiceDependencies) => RequestHandler =
+  ({ baseService }: BaseServiceDependencies) =>
+  (req: Request, res: Response) => {
+    responder(res).success(baseService(req.ip));
+  };
 
-export const health: RequestHandler = (_req: Request, res: Response) => {
-  responder(res).success({ status: 'up' });
-};
+type HealthStatus = 'up' | 'down' | 'starting';
+
+type HealthResponse = { status: HealthStatus };
+
+export const health: (deps: HealthServiceDependencies) => RequestHandler =
+  ({ healthService }: HealthServiceDependencies) =>
+  (_req: Request, res: Response) => {
+    if (healthService.ready()) {
+      responder(res).success<HealthResponse>({ status: 'up' });
+    } else {
+      responder(res).status<HealthResponse>(503, { status: 'down' });
+    }
+  };
