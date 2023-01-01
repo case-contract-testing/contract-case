@@ -7,7 +7,7 @@ import type {
   CaseNodeFor,
   LookupableMatcher,
 } from 'entities/nodes/matchers/types';
-import type { AnyInteraction } from 'entities/types';
+import type { AnyInteraction, ResultPrinter } from 'entities/types';
 
 export const MATCH_BY_TYPE = 'type' as const;
 export const MATCH_BY_EXACT = 'exact' as const;
@@ -38,6 +38,7 @@ export interface TraversalFns {
 
 interface ContextLoggers {
   logger: Logger;
+  resultPrinter: ResultPrinter;
   makeLogger: (m: LoggableContext) => Logger;
 }
 
@@ -48,7 +49,7 @@ export type MatchContext = TraversalFns &
   Partial<InjectableContext> &
   RunContext;
 
-type InitialisingContext = {
+export type HasLocation = {
   'case:currentRun:context:location': Array<string>;
 };
 
@@ -57,10 +58,9 @@ export type LoggableContext =
       MatchContext,
       keyof ContextLoggers | keyof TraversalFns | keyof ContractFns
     >
-  | InitialisingContext;
+  | HasLocation;
 
-export interface DefaultContext {
-  'case:currentRun:context:location': Array<string>;
+export interface DefaultContext extends HasLocation {
   'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
   'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
   'case:currentRun:context:expectation': 'produce' | 'consume';
@@ -76,9 +76,8 @@ export interface HasBaseUrl {
   'case:currentRun:context:baseurl': string;
 }
 
-export interface RunContext extends Partial<InjectableContext> {
+export interface RunContext extends Partial<InjectableContext & HasLocation> {
   'case:run:context:tree': AnyCaseNodeOrData | AnyInteraction;
-  'case:currentRun:context:location': Array<string>;
 }
 
 export interface MatchContextByType {

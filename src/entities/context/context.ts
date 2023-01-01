@@ -9,6 +9,7 @@ import {
   AnyCaseMatcher,
   LookupableMatcher,
 } from 'entities/nodes/matchers/types';
+import type { ResultPrinter } from 'entities/types';
 import type {
   MatchContext,
   RunContext,
@@ -16,6 +17,7 @@ import type {
   TraversalFns,
   LoggableContext,
   ContractFns,
+  HasLocation,
 } from './types';
 
 /**
@@ -60,7 +62,8 @@ const constructContext = (
   traversals: TraversalFns,
   makeLogger: (c: LoggableContext) => Logger,
   runConfig: Partial<RunContext>,
-  contractFns: ContractFns
+  contractFns: ContractFns,
+  resultPrinter: ResultPrinter
 ) => {
   const context = {
     makeLogger,
@@ -75,6 +78,7 @@ const constructContext = (
   return {
     ...context,
     logger,
+    resultPrinter,
     lookupMatcher: (uniqueName: string) =>
       contractFns.lookupMatcher(uniqueName, logger),
     saveLookupableMatcher: (matcher: LookupableMatcher) =>
@@ -87,6 +91,7 @@ export const applyDefaultContext = (
   traversals: TraversalFns,
   makeLogger: (c: LoggableContext) => Logger,
   contractFns: ContractFns,
+  resultPrinter: ResultPrinter,
   runConfig: Partial<RunContext> = {}
 ): MatchContext => {
   const context = combineWithRoot(
@@ -96,7 +101,8 @@ export const applyDefaultContext = (
       traversals,
       makeLogger,
       runConfig,
-      contractFns
+      contractFns,
+      resultPrinter
     )
   );
 
@@ -125,7 +131,7 @@ export const addLocation = (
   return { ...nextContext, logger };
 };
 
-export const locationString = (matchContext: LoggableContext): string =>
+export const locationString = (matchContext: HasLocation): string =>
   matchContext['case:currentRun:context:location'].reduce<string>(
     (acc: string, curr: string) =>
       curr.startsWith('[') || acc === '' ? `${acc}${curr}` : `${acc}.${curr}`,

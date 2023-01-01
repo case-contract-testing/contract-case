@@ -10,6 +10,7 @@ import { makeLogger } from 'connectors/logger';
 import { contractFns } from 'connectors/contract';
 import type { AnyState } from 'entities/nodes/states/types';
 import { setupWithContext } from 'connectors/core/setup/setup';
+import { resultPrinter } from 'connectors/resultPrinter';
 
 export const setup = <T extends AnyInteractionType>(
   states: Array<AnyState>,
@@ -25,6 +26,7 @@ export const setup = <T extends AnyInteractionType>(
         traversals,
         makeLogger,
         contractFns,
+        resultPrinter,
         runConfig
       )
     )

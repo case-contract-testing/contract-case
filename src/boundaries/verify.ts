@@ -6,7 +6,8 @@ import { hasErrors } from 'entities/results/MatchResult';
 import { traversals } from 'diffmatch';
 import { makeLogger } from 'connectors/logger';
 import { contractFns } from 'connectors/contract';
-import { setupWithContext } from 'connectors/core/setup/setup';
+import { setupWithContext } from 'connectors/core/setup';
+import { resultPrinter } from 'connectors/resultPrinter';
 
 import { isSetupFunction, RunTestCallback, StateFunctions } from './dsl/types';
 
@@ -22,8 +23,10 @@ export const verifyContract = (
         traversals,
         makeLogger,
         contractFns,
+        resultPrinter,
         {
           'case:currentRun:context:expectation': 'produce',
+          // TODO: This shouldn't be the default
           'case:currentRun:context:logLevel': 'maintainerDebug',
           'case:currentRun:context:location': [
             'verification',
@@ -75,9 +78,13 @@ export const verifyContract = (
         .then((verificationResult) => {
           if (hasErrors(verificationResult)) {
             context.logger.debug(`Verification errors present`);
-            // TODO Render errors here
+            context.resultPrinter.printFailureTitle(example, index);
+            verificationResult.forEach((e) => {
+              context.resultPrinter.printError(e);
+            });
             throw new Error(`Verification errors: ${verificationResult}`);
           }
+          context.resultPrinter.printSuccessTitle(example, index);
         })
         .finally(() =>
           Promise.all(
