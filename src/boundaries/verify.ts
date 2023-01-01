@@ -36,6 +36,10 @@ export const verifyContract = (
           'case:currentRun:context:baseurl': 'http://localhost:8087',
         }
       );
+      context.logger.warn('NOT YET IMPLEMENTED: Verifier configuration');
+      context.logger.warn(
+        'NOT YET IMPLEMENTED: Log level should not be set to maintainer by default in the verification'
+      );
       context.logger.debug(
         `Beginning verification for interaction "${nameExample(
           example,
@@ -67,6 +71,9 @@ export const verifyContract = (
         // TODO Roll these into the context
       )
         .then(() => {
+          context.logger.warn(
+            'NOT YET IMPLEMENTED: Graceful state handler errors'
+          );
           context.logger.maintainerDebug(`Calling setupWithContext`);
           return setupWithContext(
             example.states,
