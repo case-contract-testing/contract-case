@@ -38,7 +38,7 @@ Pact Parity
 - [x] Provider state
   - [ ] Variables from provider state
 - [x] Write contract file
-  - [ ] Print errors nicely
+  - [x] Print errors nicely
   - [ ] Config for location
   - [ ] Combine files for upload (does the broker support multiple contracts between the same two services?)
 - [x] Read contract file

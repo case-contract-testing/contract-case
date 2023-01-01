@@ -33,7 +33,7 @@ export const verifyContract = (
             `interaction[${index}]`,
           ],
           // TODO: Add configuration types and serialise here
-          'case:currentRun:context:baseurl': 'http://localhost:8084',
+          'case:currentRun:context:baseurl': 'http://localhost:8087',
         }
       );
       context.logger.debug(

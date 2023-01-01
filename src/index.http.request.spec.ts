@@ -180,15 +180,19 @@ describe('e2e http consumer driven', () => {
       baseService,
     };
     beforeAll(async () => {
-      server = await start(8084, serverDependencies);
+      server = await start(8087, serverDependencies);
     });
     afterAll(
       () =>
         new Promise<void>((resolve, reject) => {
-          server.close((err?: Error) => {
-            if (err) reject(err);
+          if (server) {
+            server.close((err?: Error) => {
+              if (err) reject(err);
+              resolve();
+            });
+          } else {
             resolve();
-          });
+          }
         })
     );
 
