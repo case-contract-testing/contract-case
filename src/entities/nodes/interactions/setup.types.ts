@@ -6,12 +6,12 @@ import type {
   HasTypeForInteraction,
   CONSUME_HTTP_RESPONSE,
 } from 'entities/nodes/interactions/types';
-import type { Verifiable } from 'entities/types';
+import type { Assertable } from 'entities/types';
 
 export type InteractionSetupFn<T extends AnyInteractionType> = (
   interaction: CaseInteractionFor<T>,
   context: MatchContext
-) => Promise<Verifiable<T>>;
+) => Promise<Assertable<T>>;
 
 export type HttpRequestConsumerSetup = HasTypeForInteraction<
   typeof CONSUME_HTTP_RESPONSE

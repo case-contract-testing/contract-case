@@ -5,7 +5,7 @@ import { hasErrors } from 'entities/results/MatchResult';
 import type {
   AnyInteractionType,
   CaseInteractionFor,
-  Verifiable,
+  Assertable,
   MatchResult,
 } from 'entities/types';
 import { setupCore } from './executor';
@@ -14,13 +14,13 @@ export const setupWithContext = <T extends AnyInteractionType>(
   states: Array<AnyState>,
   interaction: CaseInteractionFor<T>,
   contextPromise: Promise<MatchContext>
-): Promise<Verifiable<T>> =>
+): Promise<Assertable<T>> =>
   contextPromise.then((context) =>
     setupCore(interaction, SetupFunctions, context).then(
-      (verifiable: Verifiable<T>) => ({
-        ...verifiable,
-        verify: () =>
-          verifiable.verify().then((result: MatchResult) => {
+      (assertable: Assertable<T>) => ({
+        ...assertable,
+        assert: () =>
+          assertable.assert().then((result: MatchResult) => {
             if (hasErrors(result)) {
               contractFile.recordFailure(
                 interaction,

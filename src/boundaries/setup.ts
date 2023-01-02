@@ -4,7 +4,7 @@ import type {
   AnyInteractionType,
   CaseInteractionFor,
 } from 'entities/nodes/interactions/types';
-import type { Verifiable } from 'entities/types';
+import type { Assertable } from 'entities/types';
 import type { RunContext } from 'entities/context/types';
 import { makeLogger } from 'connectors/logger';
 import { contractFns } from 'connectors/contract';
@@ -16,7 +16,7 @@ export const setup = <T extends AnyInteractionType>(
   states: Array<AnyState>,
   interaction: CaseInteractionFor<T>,
   runConfig: Partial<RunContext> = {}
-): Promise<Verifiable<T>> =>
+): Promise<Assertable<T>> =>
   setupWithContext(
     states,
     interaction,

@@ -4,7 +4,7 @@ import api from '__tests__/client/http/connector';
 import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
 import type { Dependencies } from '__tests__/server/http/domain/types';
 import { baseService } from '__tests__/server/http/domain/baseService';
-import type { Verifiable } from 'entities/types';
+import type { Assertable } from 'entities/types';
 import { httpStatus, shapedLike } from 'boundaries/dsl/Matchers';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { endContract } from 'boundaries/dsl/contract';
@@ -41,7 +41,7 @@ describe('e2e http consumer driven', () => {
         'case:currentRun:context:logLevel': 'maintainerDebug',
       })
     );
-    let context: Verifiable<'ConsumeHttpResponse'>;
+    let context: Assertable<'ConsumeHttpResponse'>;
     describe('health get', () => {
       describe('When the server is up', () => {
         const state = inState('Server is up');
@@ -67,7 +67,7 @@ describe('e2e http consumer driven', () => {
           });
 
           afterEach(async () => {
-            const res = await context.verify();
+            const res = await context.assert();
             if (res.length !== 0) {
               throw new Error(res.join('\n').toString());
             }
@@ -98,7 +98,7 @@ describe('e2e http consumer driven', () => {
           });
 
           afterEach(async () => {
-            const res = await context.verify();
+            const res = await context.assert();
             if (res.length !== 0) {
               throw new Error(res.join('\n').toString());
             }
@@ -129,7 +129,7 @@ describe('e2e http consumer driven', () => {
         });
 
         afterEach(async () => {
-          const res = await context.verify();
+          const res = await context.assert();
           if (res.length !== 0) {
             throw new Error(
               res
@@ -162,7 +162,7 @@ describe('e2e http consumer driven', () => {
         });
 
         afterEach(async () => {
-          const res = await context.verify();
+          const res = await context.assert();
           if (res.length !== 0) {
             throw new Error(res.join('\n').toString());
           }

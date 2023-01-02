@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { traversals } from 'diffmatch';
-import type { Verifiable } from 'entities/types';
+import type { Assertable } from 'entities/types';
 import {
   PRODUCE_HTTP_RESPONSE,
   CoreHttpRequestResponseMatcherPair,
@@ -42,10 +42,10 @@ export const setupHttpResponseConsumer = (
     response: expectedResponse,
   }: CoreHttpRequestResponseMatcherPair,
   context: MatchContext
-): Promise<Verifiable<typeof PRODUCE_HTTP_RESPONSE>> =>
+): Promise<Assertable<typeof PRODUCE_HTTP_RESPONSE>> =>
   validateConfig(context).then((run: LoggableContext & HasBaseUrl) => ({
     mock: { 'case:interaction:type': PRODUCE_HTTP_RESPONSE },
-    verify: () =>
+    assert: () =>
       axios
         .request({
           validateStatus: () => true, // This means that all status codes resolve the promise

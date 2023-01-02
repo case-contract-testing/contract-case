@@ -1,6 +1,6 @@
 import type { MatchContext } from 'entities/context/types';
 import { CaseCoreError } from 'entities/CaseCoreError';
-import type { Verifiable } from 'entities/types';
+import type { Assertable } from 'entities/types';
 import type {
   AnyInteractionType,
   CaseInteractionFor,
@@ -72,7 +72,7 @@ export const setupCore = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
   InteractionSetup: SetupFns,
   context: MatchContext
-): Promise<Verifiable<T>> =>
+): Promise<Assertable<T>> =>
   executeSetup(
     inferInteraction(interaction, addLocation('inference', context)),
     InteractionSetup,

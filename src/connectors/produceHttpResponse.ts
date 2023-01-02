@@ -2,7 +2,7 @@ import type * as http from 'http';
 import express from 'express';
 
 import { traversals } from 'diffmatch';
-import type { HttpRequestData, Verifiable } from 'entities/types';
+import type { HttpRequestData, Assertable } from 'entities/types';
 import {
   CoreHttpRequestResponseMatcherPair,
   CONSUME_HTTP_RESPONSE,
@@ -17,10 +17,10 @@ export const setupHttpResponseProducer = (
     response: expectedResponse,
   }: CoreHttpRequestResponseMatcherPair,
   context: MatchContext
-): Promise<Verifiable<typeof CONSUME_HTTP_RESPONSE>> => {
+): Promise<Assertable<typeof CONSUME_HTTP_RESPONSE>> => {
   let requestData: HttpRequestData;
   let server: http.Server;
-  return new Promise<Verifiable<typeof CONSUME_HTTP_RESPONSE>>(
+  return new Promise<Assertable<typeof CONSUME_HTTP_RESPONSE>>(
     (resolve, reject) => {
       const app = express();
       app.all('*', (req, res, next) => {
@@ -60,13 +60,13 @@ export const setupHttpResponseProducer = (
               typeof address === 'string' ? address : `:${address.port}`
             }`,
           },
-          verify: () =>
+          assert: () =>
             new Promise<void>((startVerify, closeReject) => {
               server.close((err?: Error) => {
                 if (err) {
                   closeReject(
                     new CaseCoreError(
-                      `The server waas not running when it was verified: ${err}`
+                      `The server waas not running when it was asserted: ${err}`
                     )
                   );
                 } else {

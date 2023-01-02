@@ -7,7 +7,7 @@ export * from './nodes/interactions/types';
 export * from './nodes/matchers/types';
 export * from './nodes/matchers/http/types';
 
-export type Verifiable<T extends AnyInteractionType> = {
+export type Assertable<T extends AnyInteractionType> = {
   mock: SetupInfoFor<T>;
-  verify: () => Promise<MatchResult>;
+  assert: () => Promise<MatchResult>;
 };

@@ -37,7 +37,7 @@ export const executeVerification =
           Promise.resolve(context)
         );
       })
-      .then((verifiable) => verifiable.verify())
+      .then((verifiable) => verifiable.assert())
       .then((result) => handleResult(example, exampleIndex, result, context))
       .finally(() =>
         executeTeardownHandlers(example.states, stateSetups, context)

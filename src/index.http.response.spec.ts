@@ -1,5 +1,5 @@
 import type * as http from 'http';
-import type { MatchResult, Verifiable } from 'entities/types';
+import type { MatchResult, Assertable } from 'entities/types';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { makeNoErrorResult } from 'entities/results/MatchResult';
 import type { InjectableContext } from 'entities/context/types';
@@ -9,10 +9,10 @@ import { setup, startContract } from '.';
 import start from './__tests__/server/http/index';
 
 const expectErrorContaining = async (
-  context: Verifiable<'ConsumeHttpResponse'>,
+  context: Assertable<'ConsumeHttpResponse'>,
   expectedContent: string
 ) => {
-  const matchResult: MatchResult = await context.verify();
+  const matchResult: MatchResult = await context.assert();
   expect(matchResult).not.toHaveLength(0);
   expect(
     matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
@@ -34,7 +34,7 @@ describe('simple get endpoint', () => {
     response: { status: 200, body: { status: 'up' } },
   });
 
-  let context: Verifiable<'ConsumeHttpResponse'>;
+  let context: Assertable<'ConsumeHttpResponse'>;
   describe('without a URL', () => {
     it('fails to setup', () =>
       expect(
@@ -60,7 +60,7 @@ describe('simple get endpoint', () => {
       });
 
       it('fails to start', () =>
-        expect(context.verify()).rejects.toBeInstanceOf(
+        expect(context.assert()).rejects.toBeInstanceOf(
           CaseConfigurationError
         ));
     });
@@ -84,7 +84,7 @@ describe('simple get endpoint', () => {
           context = await setup([], interaction, config);
         });
         it('succeeds', () =>
-          expect(context.verify()).resolves.toEqual(makeNoErrorResult()));
+          expect(context.assert()).resolves.toEqual(makeNoErrorResult()));
       });
 
       describe('and a matching interaction that is generic', () => {
@@ -105,7 +105,7 @@ describe('simple get endpoint', () => {
           );
         });
         it('succeeds', () =>
-          expect(context.verify()).resolves.toEqual(makeNoErrorResult()));
+          expect(context.assert()).resolves.toEqual(makeNoErrorResult()));
       });
 
       describe('and a non-matching body', () => {
@@ -164,7 +164,7 @@ describe('simple get endpoint', () => {
           );
         });
         it('fails', () =>
-          expect(context.verify()).resolves.not.toEqual(makeNoErrorResult()));
+          expect(context.assert()).resolves.not.toEqual(makeNoErrorResult()));
       });
 
       describe('and a non-matching path', () => {
@@ -182,7 +182,7 @@ describe('simple get endpoint', () => {
           );
         });
         it('fails', () =>
-          expect(context.verify()).resolves.not.toEqual(makeNoErrorResult()));
+          expect(context.assert()).resolves.not.toEqual(makeNoErrorResult()));
       });
     });
   });
