@@ -3,8 +3,8 @@ import { CaseCoreError } from 'entities/CaseCoreError';
 import { foldIntoContext } from 'entities/context';
 import { inferMatcher } from 'diffmatch/inferMatcher';
 
-import type { MatcherExecutor } from 'entities/executors/types';
 import type {
+  MatcherExecutor,
   AnyCaseNodeType,
   CaseNodeFor,
   AnyLeafOrStructure,

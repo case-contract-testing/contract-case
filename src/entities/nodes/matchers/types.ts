@@ -8,6 +8,8 @@ import type {
   HTTP_STATUS_CODE_MATCHER_TYPE,
 } from './http/types';
 
+export * from './http/types';
+
 export const NUMBER_MATCHER_TYPE = 'MatchNumber' as const;
 export const STRING_MATCHER_TYPE = 'MatchString' as const;
 export const NULL_MATCHER_TYPE = 'MatchNull' as const;

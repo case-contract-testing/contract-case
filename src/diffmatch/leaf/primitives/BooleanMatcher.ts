@@ -1,13 +1,17 @@
+import {
+  matchingError,
+  combineResults,
+  makeResults,
+  actualToString,
+} from 'entities/results';
 import type {
+  MatchingError,
+  CheckMatchFn,
+  MatcherExecutor,
+  MatchContext,
   CoreBooleanMatcher,
   BOOLEAN_MATCHER_TYPE,
-} from 'entities/nodes/matchers/types';
-import { matchingError } from 'entities/results/MatchingError';
-import type { CheckMatchFn, MatcherExecutor } from 'entities/executors/types';
-import { combineResults, makeResults } from 'entities/results/MatchResult';
-import type { MatchingError } from 'entities/types';
-import type { MatchContext } from 'entities/context/types';
-import { actualToString } from 'entities/results/renderActual';
+} from 'entities/types';
 
 import { testExactMatch } from './internal/testExactMatch';
 

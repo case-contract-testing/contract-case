@@ -1,12 +1,12 @@
-import type { MatchContext } from 'entities/context/types';
-import type { MatcherExecutor } from 'entities/executors/types';
+import { errorWhen, matchingError, combineResults } from 'entities/results';
 import type {
+  MatchingError,
+  MatchContext,
+  MatcherExecutor,
   CoreStringMatcher,
   STRING_MATCHER_TYPE,
-} from 'entities/nodes/matchers/types';
-import { errorWhen, matchingError } from 'entities/results/MatchingError';
-import { combineResults } from 'entities/results/MatchResult';
-import type { MatchingError } from 'entities/types';
+} from 'entities/types';
+
 import { testExactMatch } from './internal/testExactMatch';
 
 const check = (

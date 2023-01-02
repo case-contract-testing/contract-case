@@ -1,11 +1,11 @@
-import type { MatchContext } from 'entities/context/types';
-import type { MatcherExecutor } from 'entities/executors/types';
 import type {
+  MatchResult,
+  MatcherExecutor,
+  MatchContext,
   AnyData,
   CASCADING_CONTEXT_MATCHER_TYPE,
   CoreCascadingMatcher,
-} from 'entities/nodes/matchers/types';
-import type { MatchResult } from 'entities/types';
+} from 'entities/types';
 
 const check = (
   matcher: CoreCascadingMatcher,

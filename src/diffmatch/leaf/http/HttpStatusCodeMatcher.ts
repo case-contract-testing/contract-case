@@ -1,14 +1,20 @@
 import { CaseCoreError } from 'entities/CaseCoreError';
-import type { MatchContext } from 'entities/context/types';
-import type { CheckMatchFn, MatcherExecutor } from 'entities/executors/types';
+import {
+  errorWhen,
+  matchingError,
+  makeResults,
+  hasNoErrors,
+  actualToString,
+} from 'entities/results';
 import type {
+  MatchingError,
+  MatchResult,
+  CheckMatchFn,
+  MatcherExecutor,
+  MatchContext,
   CoreHttpStatusCodeMatcher,
   HTTP_STATUS_CODE_MATCHER_TYPE,
-} from 'entities/nodes/matchers/http/types';
-import { errorWhen, matchingError } from 'entities/results/MatchingError';
-import { makeResults, hasNoErrors } from 'entities/results/MatchResult';
-import { actualToString } from 'entities/results/renderActual';
-import type { MatchingError, MatchResult } from 'entities/types';
+} from 'entities/types';
 
 const checkExample = (
   rule: number | string,

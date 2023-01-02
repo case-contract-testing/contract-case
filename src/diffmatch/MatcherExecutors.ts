@@ -1,4 +1,4 @@
-import type { MatcherExecutor } from 'entities/executors/types';
+import type { MatcherExecutor } from 'entities/types';
 import {
   type AnyCaseNodeType,
   NUMBER_MATCHER_TYPE,

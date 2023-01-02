@@ -1,10 +1,9 @@
 import type { MatchContext } from 'entities/context/types';
-import type {
-  AnyCaseNodeType,
-  CaseNodeFor,
-  MatchResult,
-  AnyData,
-} from 'entities/types';
+import type { MatchResult } from 'entities/results/types';
+import type { AnyCaseNodeType, CaseNodeFor, AnyData } from './matchers/types';
+
+export * from './interactions/types';
+export * from './matchers/types';
 
 export type CheckMatchFn<T extends AnyCaseNodeType> = (
   matcher: CaseNodeFor<T>,

@@ -2,9 +2,9 @@ import { mustResolveToString } from 'diffmatch/stripToType';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
 import { addLocation } from 'entities/context';
 import type { MatchContext } from 'entities/context/types';
-import type { MatcherExecutor } from 'entities/executors/types';
 import { combineResults, makeResults } from 'entities/results/MatchResult';
 import type {
+  MatcherExecutor,
   AnyData,
   CoreHttpRequestMatcher,
   HttpRequestData,

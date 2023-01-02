@@ -1,17 +1,15 @@
 import type { MatchContext } from 'entities/context/types';
+
+import { addLocation } from 'entities/context';
 import type {
   AnyData,
   LookupableMatcher,
   LOOKUP_MATCHER_TYPE,
-} from 'entities/nodes/matchers/types';
-import type { MatchResult } from 'entities/types';
-
-import { addLocation } from 'entities/context';
-import type {
+  MatchResult,
   StripMatcherFn,
   CheckMatchFn,
   MatcherExecutor,
-} from 'entities/executors/types';
+} from 'entities/types';
 
 const getMatcher = (matcher: LookupableMatcher, matchContext: MatchContext) => {
   if ('case:matcher:child' in matcher) {

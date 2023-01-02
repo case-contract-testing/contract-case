@@ -2,12 +2,12 @@ import { mustResolveToNumber } from 'diffmatch/stripToType';
 import { CaseCoreError } from 'entities';
 import { addLocation } from 'entities/context';
 import type { MatchContext } from 'entities/context/types';
-import type { MatcherExecutor } from 'entities/executors/types';
 import {
   combineResults,
   makeNoErrorResult,
 } from 'entities/results/MatchResult';
 import type {
+  MatcherExecutor,
   AnyData,
   CoreHttpResponseMatcher,
   HTTP_RESPONSE_MATCHER_TYPE,

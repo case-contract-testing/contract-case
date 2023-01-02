@@ -1,13 +1,14 @@
-import type { MatcherExecutor } from 'entities/executors/types';
-import type { Logger, LogLevel } from 'entities/logger/types';
 import type {
+  AnyInteraction,
+  MatcherExecutor,
   AnyCaseNodeOrData,
   AnyCaseNodeType,
   AnyLeafOrStructure,
   CaseNodeFor,
   LookupableMatcher,
-} from 'entities/nodes/matchers/types';
-import type { AnyInteraction, ResultPrinter } from 'entities/types';
+} from 'entities/nodes/types';
+import type { Logger, LogLevel } from 'entities/logger/types';
+import type { ResultPrinter } from 'entities/results/types';
 
 export const MATCH_BY_TYPE = 'type' as const;
 export const MATCH_BY_EXACT = 'exact' as const;
