@@ -68,16 +68,17 @@ export interface DefaultContext extends HasLocation {
 }
 
 export interface InjectableContext {
-  'case:currentRun:context:baseurl'?: string;
+  'case:currentRun:context:baseUrlUnderTest'?: string;
   'case:currentRun:context:expectation'?: 'produce' | 'consume';
   'case:currentRun:context:logLevel'?: LogLevel;
 }
 
-export interface HasBaseUrl {
-  'case:currentRun:context:baseurl': string;
+export interface HasBaseUrlUnderTest {
+  'case:currentRun:context:baseUrlUnderTest': string;
 }
 
-export interface RunContext extends Partial<InjectableContext & HasLocation> {
+export interface RunContext
+  extends Partial<InjectableContext & HasLocation & HasBaseUrlUnderTest> {
   'case:run:context:tree': AnyCaseNodeOrData | AnyInteraction;
 }
 

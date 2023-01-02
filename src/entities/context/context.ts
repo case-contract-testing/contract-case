@@ -92,7 +92,7 @@ export const applyDefaultContext = (
   makeLogger: (c: LoggableContext) => Logger,
   contractFns: ContractFns,
   resultPrinter: ResultPrinter,
-  runConfig: Partial<RunContext> = {}
+  runConfig: Partial<RunContext>
 ): MatchContext => {
   const context = combineWithRoot(
     caseNodeOrData,

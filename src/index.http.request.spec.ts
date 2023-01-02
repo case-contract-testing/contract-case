@@ -173,6 +173,7 @@ describe('e2e http consumer driven', () => {
   describe('Server verification', () => {
     let server: http.Server;
     let mockHealthStatus = true;
+    const port = 8087;
     const serverDependencies: Dependencies = {
       healthService: {
         ready: () => mockHealthStatus,
@@ -180,7 +181,7 @@ describe('e2e http consumer driven', () => {
       baseService,
     };
     beforeAll(async () => {
-      server = await start(8087, serverDependencies);
+      server = await start(port, serverDependencies);
     });
     afterAll(
       () =>
@@ -222,7 +223,8 @@ describe('e2e http consumer driven', () => {
             'temp-contracts/http-response-consumer-http-response-provider-12.case.json'
           ),
           stateSetups,
-          runJestTest
+          runJestTest,
+          { baseUrlUnderTest: `http://localhost:${port}` }
         );
       });
     });

@@ -29,7 +29,8 @@ const coreCheckMatch = <T extends AnyCaseNodeType>(
         traversals,
         logger,
         contractFns,
-        resultPrinter
+        resultPrinter,
+        {}
       ),
       actual
     )

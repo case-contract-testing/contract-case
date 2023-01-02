@@ -5,17 +5,19 @@ import type {
   CaseInteractionFor,
 } from 'entities/nodes/interactions/types';
 import type { Assertable } from 'entities/types';
-import type { RunContext } from 'entities/context/types';
 import { makeLogger } from 'connectors/logger';
 import { contractFns } from 'connectors/contract';
 import type { AnyState } from 'entities/states/types';
 import { setupWithContext } from 'connectors/core/setup/setup';
 import { resultPrinter } from 'connectors/resultPrinter';
+import type { CaseConfig } from 'connectors/core/setup/types';
+import { DEFAULT_CONFIG } from 'connectors/core/setup/defaultConfig';
+import { configToRunContext } from 'connectors/core/setup/config';
 
 export const setup = <T extends AnyInteractionType>(
   states: Array<AnyState>,
   interaction: CaseInteractionFor<T>,
-  runConfig: Partial<RunContext> = {}
+  runConfig: CaseConfig = DEFAULT_CONFIG
 ): Promise<Assertable<T>> =>
   setupWithContext(
     states,
@@ -27,7 +29,7 @@ export const setup = <T extends AnyInteractionType>(
         makeLogger,
         contractFns,
         resultPrinter,
-        runConfig
+        configToRunContext(runConfig)
       )
     )
   );

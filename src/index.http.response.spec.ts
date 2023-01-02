@@ -1,11 +1,12 @@
 import type * as http from 'http';
-import type { MatchResult, Assertable } from 'entities/types';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
-import { makeNoErrorResult } from 'entities/results/MatchResult';
-import type { InjectableContext } from 'entities/context/types';
+import type { MatchResult, Assertable } from 'entities/types';
+import { makeNoErrorResult } from 'entities/results';
 import { anyString, httpStatus } from 'boundaries/dsl/Matchers';
+import type { CaseConfig } from 'connectors/core/types';
 import { CaseConfigurationError } from 'entities';
 import { setup, startContract } from '.';
+
 import start from './__tests__/server/http/index';
 
 const expectErrorContaining = async (
@@ -39,23 +40,23 @@ describe('simple get endpoint', () => {
     it('fails to setup', () =>
       expect(
         setup([], interaction, {
-          'case:currentRun:context:expectation': 'produce',
-          'case:currentRun:context:logLevel': 'maintainerDebug',
-        })
+          expectation: 'produce',
+          logLevel: 'maintainerDebug',
+        } as CaseConfig)
       ).rejects.toBeInstanceOf(CaseConfigurationError));
   });
 
   describe('with a URL', () => {
-    const config: InjectableContext = {
-      'case:currentRun:context:baseurl': 'http://localhost:8282',
-      'case:currentRun:context:logLevel': 'maintainerDebug',
-      'case:currentRun:context:expectation': 'produce',
+    const config: CaseConfig & { expectation: 'produce' } = {
+      baseUrlUnderTest: 'http://localhost:8282',
+      logLevel: 'maintainerDebug',
+      expectation: 'produce',
     };
     describe('but no running server', () => {
       beforeEach(async () => {
         context = await setup([], interaction, {
-          'case:currentRun:context:baseurl': 'http://localhost:8081',
-          'case:currentRun:context:expectation': 'produce',
+          ...config,
+          baseUrlUnderTest: 'http://localhost:8081',
         });
       });
 

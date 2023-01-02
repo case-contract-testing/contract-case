@@ -1,4 +1,4 @@
-export type LogLevel = keyof Logger;
+export type LogLevel = 'error' | 'warn' | 'info' | 'debug' | 'maintainerDebug';
 
 export interface Logger {
   /**
