@@ -14,10 +14,6 @@ export const executeVerification =
     context: MatchContext
   ): (() => Promise<void>) =>
   () => {
-    context.logger.warn('NOT YET IMPLEMENTED: Verifier configuration');
-    context.logger.warn(
-      'NOT YET IMPLEMENTED: Log level should not be set to maintainer by default in the verification'
-    );
     context.logger.debug(
       `Beginning verification for interaction "${nameExample(
         example,

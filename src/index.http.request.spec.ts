@@ -30,17 +30,9 @@ describe('e2e http consumer driven', () => {
     fs.mkdirSync('temp-contracts');
   });
   describe('test and write contract', () => {
-    beforeAll(() =>
-      startContract(contractDetails, {
-        'case:currentRun:context:logLevel': 'maintainerDebug',
-      })
-    );
+    beforeAll(() => startContract(contractDetails, {}));
 
-    afterAll(() =>
-      endContract({
-        'case:currentRun:context:logLevel': 'maintainerDebug',
-      })
-    );
+    afterAll(() => endContract({}));
     let context: Assertable<'ConsumeHttpResponse'>;
     describe('health get', () => {
       describe('When the server is up', () => {

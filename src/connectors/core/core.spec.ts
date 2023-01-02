@@ -11,6 +11,7 @@ import { traversals } from 'diffmatch';
 import { applyDefaultContext } from 'entities/context';
 import type { LoggableContext } from 'entities/context/types';
 import type { MatchResult } from 'entities/types';
+import { configToRunContext } from './setup';
 
 const coreCheckMatch = <T extends AnyCaseNodeType>(
   matcherOrData: DataOrCaseNodeFor<T>,
@@ -26,7 +27,7 @@ const coreCheckMatch = <T extends AnyCaseNodeType>(
         logger,
         contractFns,
         resultPrinter,
-        {}
+        configToRunContext({ logLevel: 'info' })
       ),
       actual
     )

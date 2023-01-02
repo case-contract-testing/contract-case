@@ -41,7 +41,6 @@ describe('simple get endpoint', () => {
       expect(
         setup([], interaction, {
           expectation: 'produce',
-          logLevel: 'maintainerDebug',
         } as CaseConfig)
       ).rejects.toBeInstanceOf(CaseConfigurationError));
   });
@@ -49,7 +48,6 @@ describe('simple get endpoint', () => {
   describe('with a URL', () => {
     const config: CaseConfig & { expectation: 'produce' } = {
       baseUrlUnderTest: 'http://localhost:8282',
-      logLevel: 'maintainerDebug',
       expectation: 'produce',
     };
     describe('but no running server', () => {
