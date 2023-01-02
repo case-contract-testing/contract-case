@@ -21,9 +21,4 @@ export interface Logger {
    * Information to help maintainers debug what is happening in the test framework
    */
   maintainerDebug: (message: string, ...additional: unknown[]) => void;
-
-  /**
-   * Sets the current log level
-   */
-  setLevel: (newLevel: LogLevel) => void;
 }

@@ -60,6 +60,7 @@ Major features
 
 - [ ] Add context to start and end contract
 - [x] Test harness integration
+  - [ ] Review this and separate into a dedicated module
 - [ ] Provider defined examples
 - [ ] Authentication sources (authentication as a first class citizen)
 - [ ] Modify matchers (eg toString)
@@ -68,6 +69,8 @@ Major features
 Later major features
 
 - [ ] Save a new matcher directly to contract
+- [ ] Text bodies
+- [ ] Ma
 - [ ] grpc support
 - [ ] graphql support
 - [ ] Kafka support
@@ -86,6 +89,7 @@ Cool features
 - [ ] Manipulation matchers (eg "treat as string")
 - [ ] JS Matchers
 - [ ] Automatic names for interactions
+- [ ] Logging matchers
 
 Internals
 
@@ -135,7 +139,7 @@ Issues:
 
 Here I write notes to myself to make sure I don't miss anything
 
-- Do I need runcontext:tree? Maybe I can remove it.
-- Review the invert contract logic, possibly this can be removed too.
-- Make loggable context explicit instead of calculated
-- Remove logLevel setting and do it with context instead, allowing localised logging
+- [ ] Do I need runcontext:tree? Maybe I can remove it.
+- [ ] Review the invert contract logic, possibly this can be removed too.
+- [ ] Make loggable context explicit instead of calculated
+- [x] Remove logLevel setting and do it with context instead, allowing localised logging

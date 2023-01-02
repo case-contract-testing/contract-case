@@ -9,14 +9,13 @@ import { contractFns } from 'connectors/contract';
 import { resultPrinter } from 'connectors/resultPrinter';
 import { traversals } from 'diffmatch';
 import { applyDefaultContext } from 'entities/context';
-import type { LoggableContext } from 'entities/context/types';
-import type { MatchResult } from 'entities/types';
+import type { LogLevelContext, MatchResult } from 'entities/types';
 import { configToRunContext } from './setup';
 
 const coreCheckMatch = <T extends AnyCaseNodeType>(
   matcherOrData: DataOrCaseNodeFor<T>,
   actual: unknown,
-  logger: (c: LoggableContext) => Logger
+  logger: (c: LogLevelContext) => Logger
 ): Promise<MatchResult> =>
   Promise.resolve(
     traversals.descendAndCheck(

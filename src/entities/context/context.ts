@@ -15,9 +15,9 @@ import type {
   RunContext,
   DefaultContext,
   TraversalFns,
-  LoggableContext,
   ContractFns,
   HasLocation,
+  LogLevelContext,
 } from './types';
 
 /**
@@ -27,6 +27,7 @@ import type {
 const DEFAULT_CONTEXT: DefaultContext = {
   'case:currentRun:context:location': [],
   'case:currentRun:context:expectation': 'consume',
+  'case:currentRun:context:logLevel': 'info',
   'case:context:matchBy': 'exact',
   'case:context:serialisableTo': 'json',
 };
@@ -60,7 +61,7 @@ let interactionId = 0;
 const constructContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
   traversals: TraversalFns,
-  makeLogger: (c: LoggableContext) => Logger,
+  makeLogger: (c: LogLevelContext) => Logger,
   runConfig: Partial<RunContext>,
   contractFns: ContractFns,
   resultPrinter: ResultPrinter
@@ -89,7 +90,7 @@ const constructContext = (
 export const applyDefaultContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
   traversals: TraversalFns,
-  makeLogger: (c: LoggableContext) => Logger,
+  makeLogger: (c: LogLevelContext) => Logger,
   contractFns: ContractFns,
   resultPrinter: ResultPrinter,
   runConfig: Partial<RunContext>
@@ -106,9 +107,6 @@ export const applyDefaultContext = (
     )
   );
 
-  if (runConfig['case:currentRun:context:logLevel']) {
-    context.logger.setLevel(runConfig['case:currentRun:context:logLevel']);
-  }
   context.logger.maintainerDebug(
     'Initial context is:',
     JSON.stringify(context, null, 2)

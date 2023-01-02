@@ -6,19 +6,15 @@ import type { ContractDescription } from 'entities/contract/types';
 const makeNoContextLogger = (
   runConfig: Partial<RunContext>,
   location: string
-) => {
-  const logger = makeLogger({
+) =>
+  makeLogger({
     'case:currentRun:context:location': [location],
-    'case:context:matchBy': 'type',
-    ...runConfig,
-  });
-  logger.setLevel(
-    runConfig['case:currentRun:context:logLevel']
+    'case:currentRun:context:logLevel': runConfig[
+      'case:currentRun:context:logLevel'
+    ]
       ? runConfig['case:currentRun:context:logLevel']
-      : 'info'
-  );
-  return logger;
-};
+      : 'info',
+  });
 
 export const startContract = (
   description: ContractDescription,

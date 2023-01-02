@@ -7,7 +7,6 @@ import { traversals } from 'diffmatch';
 
 import { CaseConfigurationError } from 'entities';
 import { applyDefaultContext } from 'entities/context';
-import type { LoggableContext } from 'entities/context/types';
 import type { Logger } from 'entities/logger/types';
 import type {
   AnyCaseNodeOrData,
@@ -16,10 +15,17 @@ import type {
   MatchResult,
 } from 'entities/types';
 
+const makeMockLogger: () => Logger = () => ({
+  error(): void {},
+  warn(): void {},
+  info(): void {},
+  debug(): void {},
+  maintainerDebug(): void {},
+});
+
 const coreCheckMatch = <T extends AnyCaseNodeType>(
   matcherOrData: DataOrCaseNodeFor<T>,
-  actual: unknown,
-  logger: (c: LoggableContext) => Logger
+  actual: unknown
 ): Promise<MatchResult> =>
   Promise.resolve(
     traversals.descendAndCheck(
@@ -27,7 +33,7 @@ const coreCheckMatch = <T extends AnyCaseNodeType>(
       applyDefaultContext(
         matcherOrData,
         traversals,
-        logger,
+        makeMockLogger,
         contractFns,
         resultPrinter,
         {}
@@ -36,15 +42,6 @@ const coreCheckMatch = <T extends AnyCaseNodeType>(
     )
   );
 
-const makeMockLogger = () => ({
-  error(): void {},
-  warn(): void {},
-  info(): void {},
-  debug(): void {},
-  maintainerDebug(): void {},
-  setLevel(): void {},
-});
-
 const expectErrorContaining = (
   matcher: AnyCaseNodeOrData,
   example: unknown,
@@ -52,11 +49,7 @@ const expectErrorContaining = (
 ) => {
   describe(`when given ${example}`, () => {
     it(`returns an error containing '${expectedContent}'`, async () => {
-      const matchResult = await coreCheckMatch(
-        matcher,
-        example,
-        makeMockLogger
-      );
+      const matchResult = await coreCheckMatch(matcher, example);
       expect(matchResult).not.toHaveLength(0);
       expect(
         matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
@@ -76,13 +69,9 @@ describe('named matches', () => {
     };
     it('fails', async () => {
       await expect(
-        coreCheckMatch(
-          matcher,
-          {
-            a: 'other string',
-          },
-          makeMockLogger
-        )
+        coreCheckMatch(matcher, {
+          a: 'other string',
+        })
       ).rejects.toBeInstanceOf(CaseConfigurationError);
     });
   });
@@ -92,13 +81,9 @@ describe('named matches', () => {
     };
     it('accepts a matching object with different values', async () => {
       expect(
-        await coreCheckMatch(
-          matcher,
-          {
-            a: 'other string',
-          },
-          makeMockLogger
-        )
+        await coreCheckMatch(matcher, {
+          a: 'other string',
+        })
       ).toStrictEqual([]);
     });
     it('strips to the expected example', () => {
@@ -113,14 +98,10 @@ describe('named matches', () => {
     };
     it('accepts a matching object with different values', async () => {
       expect(
-        await coreCheckMatch(
-          matcher,
-          {
-            a: 34,
-            b: 2,
-          },
-          makeMockLogger
-        )
+        await coreCheckMatch(matcher, {
+          a: 34,
+          b: 2,
+        })
       ).toStrictEqual([]);
     });
     expectErrorContaining(
@@ -142,14 +123,10 @@ describe('named matches', () => {
     const repeatTests = (matcher: AnyCaseNodeOrData) => {
       it('accepts a matching object with different values', async () => {
         expect(
-          await coreCheckMatch(
-            matcher,
-            {
-              a: '1',
-              b: 2,
-            },
-            makeMockLogger
-          )
+          await coreCheckMatch(matcher, {
+            a: '1',
+            b: 2,
+          })
         ).toStrictEqual([]);
       });
       expectErrorContaining(

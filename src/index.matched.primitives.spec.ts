@@ -16,14 +16,20 @@ import { contractFns } from 'connectors/contract';
 import { resultPrinter } from 'connectors/resultPrinter';
 import { traversals } from 'diffmatch';
 import { applyDefaultContext } from 'entities/context';
-import type { LoggableContext } from 'entities/context/types';
-import type { Logger } from 'entities/logger/types';
 import type { MatchResult } from 'entities/types';
+import type { Logger } from 'entities/logger/types';
+
+const logger: () => Logger = () => ({
+  error(): void {},
+  warn(): void {},
+  info(): void {},
+  debug(): void {},
+  maintainerDebug(): void {},
+});
 
 const coreCheckMatch = <T extends AnyCaseNodeType>(
   matcherOrData: DataOrCaseNodeFor<T>,
-  actual: unknown,
-  logger: (c: LoggableContext) => Logger
+  actual: unknown
 ): Promise<MatchResult> =>
   Promise.resolve(
     traversals.descendAndCheck(
@@ -40,15 +46,6 @@ const coreCheckMatch = <T extends AnyCaseNodeType>(
     )
   );
 
-const logger = () => ({
-  error(): void {},
-  warn(): void {},
-  info(): void {},
-  debug(): void {},
-  maintainerDebug(): void {},
-  setLevel(): void {},
-});
-
 const expectErrorContaining = (
   matcher: AnyCaseNodeOrData,
   example: unknown,
@@ -56,7 +53,7 @@ const expectErrorContaining = (
 ) => {
   describe(`when given ${example}`, () => {
     it(`returns an error containing '${expectedContent}'`, async () => {
-      const matchResult = await coreCheckMatch(matcher, example, logger);
+      const matchResult = await coreCheckMatch(matcher, example);
       expect(matchResult).not.toHaveLength(0);
       expect(
         matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
@@ -68,7 +65,7 @@ describe('basic matchers', () => {
   describe('number matcher', () => {
     const matcher = anyNumber(1);
     it('accepts numbers', async () => {
-      expect(await coreCheckMatch(matcher, 1, logger)).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, 1)).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
       expect(stripMatchers(matcher)).toEqual(1);
@@ -88,15 +85,13 @@ describe('basic matchers', () => {
   describe('string matcher', () => {
     const matcher = anyString('1');
     it('accepts strings that are numbers', async () => {
-      expect(await coreCheckMatch(matcher, '1', logger)).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, '1')).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
       expect(stripMatchers(matcher)).toEqual('1');
     });
     it('accepts strings that are not numbers', async () => {
-      expect(
-        await coreCheckMatch(matcher, 'example string', logger)
-      ).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, 'example string')).toStrictEqual([]);
     });
     expectErrorContaining(matcher, NaN, 'not a string');
     expectErrorContaining(matcher, Infinity, 'not a string');
@@ -108,10 +103,10 @@ describe('basic matchers', () => {
   describe('boolean matcher', () => {
     const matcher = anyBoolean(true);
     it('accepts true', async () => {
-      expect(await coreCheckMatch(matcher, true, logger)).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, true)).toStrictEqual([]);
     });
     it('accepts false', async () => {
-      expect(await coreCheckMatch(matcher, false, logger)).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, false)).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
       expect(stripMatchers(matcher)).toEqual(true);
@@ -128,7 +123,7 @@ describe('basic matchers', () => {
   describe('null matcher', () => {
     const matcher = anyNull();
     it('accepts exactly null', async () => {
-      expect(await coreCheckMatch(matcher, null, logger)).toStrictEqual([]);
+      expect(await coreCheckMatch(matcher, null)).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
       expect(stripMatchers(matcher)).toEqual(null);
@@ -148,7 +143,7 @@ describe('basic matchers', () => {
     describe('number matcher', () => {
       const matcher = shapedLike(1);
       it('accepts numbers', async () => {
-        expect(await coreCheckMatch(matcher, 1, logger)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, 1)).toStrictEqual([]);
       });
 
       it('strips the matcher', () => {
@@ -164,15 +159,15 @@ describe('basic matchers', () => {
     describe('string matcher', () => {
       const matcher = shapedLike('1');
       it('accepts strings that are numbers', async () => {
-        expect(await coreCheckMatch(matcher, '1', logger)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, '1')).toStrictEqual([]);
       });
       it('strips the matcher', () => {
         expect(stripMatchers(matcher)).toEqual('1');
       });
       it('accepts strings that are not numbers', async () => {
-        expect(
-          await coreCheckMatch(matcher, 'example string', logger)
-        ).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, 'example string')).toStrictEqual(
+          []
+        );
       });
       expectErrorContaining(matcher, NaN, 'not a string');
       expectErrorContaining(matcher, Infinity, 'not a string');
@@ -184,10 +179,10 @@ describe('basic matchers', () => {
     describe('boolean matcher', () => {
       const matcher = shapedLike(true);
       it('accepts true', async () => {
-        expect(await coreCheckMatch(matcher, true, logger)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, true)).toStrictEqual([]);
       });
       it('accepts false', async () => {
-        expect(await coreCheckMatch(matcher, false, logger)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, false)).toStrictEqual([]);
       });
       it('returns correctly when stripped', () => {
         expect(stripMatchers(matcher)).toEqual(true);
@@ -205,7 +200,7 @@ describe('basic matchers', () => {
     describe('null matcher', () => {
       const matcher = shapedLike(null);
       it('accepts exactly null', async () => {
-        expect(await coreCheckMatch(matcher, null, logger)).toStrictEqual([]);
+        expect(await coreCheckMatch(matcher, null)).toStrictEqual([]);
       });
       it('returns correctly when stripped', () => {
         expect(stripMatchers(matcher)).toEqual(null);
@@ -236,20 +231,16 @@ describe('basic matchers', () => {
     ]);
     it('accepts an array of generally matched types', async () => {
       expect(
-        await coreCheckMatch(
-          matcher,
-          [
-            2,
-            'other string',
-            null,
-            false,
-            { a: 'example' },
-            [],
-            { a: '2' },
-            [3],
-          ],
-          logger
-        )
+        await coreCheckMatch(matcher, [
+          2,
+          'other string',
+          null,
+          false,
+          { a: 'example' },
+          [],
+          { a: '2' },
+          [3],
+        ])
       ).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
@@ -298,16 +289,12 @@ describe('basic matchers', () => {
     };
     it('accepts a matching object with different values', async () => {
       expect(
-        await coreCheckMatch(
-          matcher,
-          {
-            a: 1,
-            b: 'other string',
-            c: null,
-            d: true,
-          },
-          logger
-        )
+        await coreCheckMatch(matcher, {
+          a: 1,
+          b: 'other string',
+          c: null,
+          d: true,
+        })
       ).toStrictEqual([]);
     });
     it('returns the correct object when stripped', () => {
@@ -329,16 +316,12 @@ describe('basic matchers', () => {
     });
     it('accepts an matching object', async () => {
       expect(
-        await coreCheckMatch(
-          matcher,
-          {
-            a: 1,
-            b: 'other string',
-            c: null,
-            d: true,
-          },
-          logger
-        )
+        await coreCheckMatch(matcher, {
+          a: 1,
+          b: 'other string',
+          c: null,
+          d: true,
+        })
       ).toStrictEqual([]);
     });
     it('returns the correct object when stripped', () => {

@@ -1,11 +1,13 @@
+import { CaseConfigurationError } from 'entities/CaseConfigurationError';
 import { CaseCoreError } from 'entities/CaseCoreError';
+import type { LogLevelContext } from 'entities/types';
 import type { LogLevel } from './types';
 
 export const shouldLog = (
-  logLevel: LogLevel,
+  context: LogLevelContext,
   logFunction: LogLevel
 ): boolean => {
-  switch (logLevel) {
+  switch (context['case:currentRun:context:logLevel']) {
     case 'error':
       return logFunction === 'error';
     case 'warn':
@@ -20,7 +22,13 @@ export const shouldLog = (
       return logFunction !== 'maintainerDebug';
     case 'maintainerDebug':
       return true;
+    case undefined:
+      throw new CaseCoreError(
+        `The run context had no log level, but this should never happen. (context[case:currentRun:context:logLevel] is ${context['case:currentRun:context:logLevel']})`
+      );
     default:
-      throw new CaseCoreError(`Unknown log level '${logLevel}'`);
+      throw new CaseConfigurationError(
+        `Unknown log level '${context['case:currentRun:context:logLevel']}'`
+      );
   }
 };
