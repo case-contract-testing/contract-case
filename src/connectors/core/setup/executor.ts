@@ -68,7 +68,7 @@ const executeSetup = <T extends AnyInteractionType>(
   return executor(interaction, addLocation(interactionType, context));
 };
 
-export const setupCore = <T extends AnyInteractionType>(
+export const setupExecutor = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
   InteractionSetup: SetupFns,
   context: MatchContext

@@ -1,4 +1,4 @@
-import { SetupFunctions, contractFile } from 'connectors';
+import { contractFile } from 'connectors';
 import type { MatchContext } from 'entities/context/types';
 import type { AnyState } from 'entities/states/types';
 import { hasErrors } from 'entities/results/MatchResult';
@@ -8,7 +8,8 @@ import type {
   Assertable,
   MatchResult,
 } from 'entities/types';
-import { setupCore } from './executor';
+import { setupExecutor } from './executor';
+import { SetupExecutors } from './SetupExecutors';
 
 export const setupWithContext = <T extends AnyInteractionType>(
   states: Array<AnyState>,
@@ -16,7 +17,7 @@ export const setupWithContext = <T extends AnyInteractionType>(
   contextPromise: Promise<MatchContext>
 ): Promise<Assertable<T>> =>
   contextPromise.then((context) =>
-    setupCore(interaction, SetupFunctions, context).then(
+    setupExecutor(interaction, SetupExecutors, context).then(
       (assertable: Assertable<T>) => ({
         ...assertable,
         assert: () =>
