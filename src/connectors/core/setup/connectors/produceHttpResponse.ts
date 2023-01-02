@@ -2,12 +2,13 @@ import type * as http from 'http';
 import express from 'express';
 
 import { traversals } from 'diffmatch';
-import type { HttpRequestData, Assertable } from 'entities/types';
 import {
+  HttpRequestData,
+  Assertable,
   CoreHttpRequestResponseMatcherPair,
+  MatchContext,
   CONSUME_HTTP_RESPONSE,
-} from 'entities/nodes/interactions/types';
-import type { MatchContext } from 'entities/context/types';
+} from 'entities/types';
 import { addLocation } from 'entities/context';
 import { CaseCoreError } from 'entities';
 

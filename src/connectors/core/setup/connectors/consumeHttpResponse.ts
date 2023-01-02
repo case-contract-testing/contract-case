@@ -1,31 +1,29 @@
 import axios from 'axios';
 
 import { traversals } from 'diffmatch';
-import type { Assertable } from 'entities/types';
-import {
-  PRODUCE_HTTP_RESPONSE,
-  CoreHttpRequestResponseMatcherPair,
-} from 'entities/nodes/interactions/types';
+import { PRODUCE_HTTP_RESPONSE } from 'entities/nodes/interactions/types';
 import type {
   HasBaseUrl,
   LoggableContext,
   MatchContext,
-} from 'entities/context/types';
+  Assertable,
+  CoreHttpRequestResponseMatcherPair,
+} from 'entities/types';
 import { addLocation } from 'entities/context';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
 import { mustResolveToString } from 'diffmatch/stripToType';
 
-const isRunContext = (
+const isHasBaseUrl = (
   context: Partial<LoggableContext>
-): context is LoggableContext & HasBaseUrl =>
+): context is HasBaseUrl =>
   'case:currentRun:context:baseurl' in context &&
   context['case:currentRun:context:baseurl'] !== undefined &&
   typeof context['case:currentRun:context:baseurl'] === 'string';
 
 const validateConfig = (
   context: MatchContext
-): Promise<LoggableContext & HasBaseUrl> => {
-  if (isRunContext(context)) {
+): Promise<MatchContext & HasBaseUrl> => {
+  if (isHasBaseUrl(context)) {
     return Promise.resolve(context);
   }
   return Promise.reject(
