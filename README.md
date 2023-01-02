@@ -70,7 +70,8 @@ Later major features
 
 - [ ] Save a new matcher directly to contract
 - [ ] Text bodies
-- [ ] Ma
+- [ ] XML Matchers
+- [ ] Http forms matchers
 - [ ] grpc support
 - [ ] graphql support
 - [ ] Kafka support
