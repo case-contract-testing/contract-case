@@ -8,6 +8,8 @@ import type {
   Assertable,
   MatchResult,
 } from 'entities/types';
+import { handleResult } from 'entities/results';
+
 import { setupExecutor } from './executor';
 import { SetupExecutors } from './SetupExecutors';
 
@@ -22,15 +24,26 @@ export const setupWithContext = <T extends AnyInteractionType>(
         ...assertable,
         assert: () =>
           assertable.assert().then((result: MatchResult) => {
+            context.logger.warn('NOT YET IMPLEMENTED: Index of interaction');
             if (hasErrors(result)) {
-              contractFile.recordFailure(
-                interaction,
-                states,
-                context.logger,
-                result
+              handleResult(
+                contractFile.recordFailure(
+                  interaction,
+                  states,
+                  context.logger,
+                  result
+                ),
+                0,
+                result,
+                context
               );
             } else {
-              contractFile.recordSuccess(interaction, states, context.logger);
+              handleResult(
+                contractFile.recordSuccess(interaction, states, context.logger),
+                0,
+                result,
+                context
+              );
             }
             return result;
           }),

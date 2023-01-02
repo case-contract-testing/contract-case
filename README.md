@@ -30,6 +30,7 @@ Completed
 - [x] Logging
 - [x] Reference (named/lookup) interactions
 - [x] Print objects properly
+- [x] Random port startup
 
 Pact Parity
 
@@ -47,14 +48,18 @@ Pact Parity
   - [ ] Error handling when the files don't exist
   - [ ] Get files from broker
 - [ ] Headers
-- [ ] Random port startup
 - [ ] Crash messages
 - [ ] Helpers for setting up tests
 - [ ] Timeouts
 
+General Todo
+
+- [ ] Errors that don't have associated matchers
+
 Major features
 
-- [ ] Test harness integration
+- [ ] Add context to start and end contract
+- [x] Test harness integration
 - [ ] Provider defined examples
 - [ ] Authentication sources (authentication as a first class citizen)
 - [ ] Modify matchers (eg toString)

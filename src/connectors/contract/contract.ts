@@ -1,8 +1,9 @@
-import { CaseConfigurationError } from 'entities';
+import { CaseConfigurationError, coreNullMatcher } from 'entities';
 import { CaseFailedError } from 'entities/CaseFailedError';
 import type { ContractFns } from 'entities/context/types';
-import type { ContractDescription } from 'entities/contract/types';
+import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
+import { makeResults } from 'entities/results';
 import type { AnyState } from 'entities/states/types';
 import type {
   AnyCaseNodeOrData,
@@ -11,12 +12,11 @@ import type {
   MatchingError,
 } from 'entities/types';
 import {
-  addFailure,
-  addSuccess,
   findMatcher,
   makeContract,
   addLookupableMatcher,
   hasFailure,
+  addExample,
 } from './structure';
 import type { ContractFile } from './structure/types';
 import { writeContract } from './writer/fileSystem';
@@ -89,7 +89,7 @@ export const recordSuccess = (
   interaction: AnyInteraction,
   states: Array<AnyState>,
   logger: Logger
-): ContractFile => {
+): CaseExample => {
   if (!currentContract) {
     logger.error(
       'recordSuccess was called without initialising the contract file. Did you forget to call `startContract`?'
@@ -98,9 +98,13 @@ export const recordSuccess = (
       'You must call `startContract` before running tests (Contract was not initialised at the time that recordSuccess was called)'
     );
   }
-
-  currentContract = addSuccess(currentContract, interaction, states, logger);
-  return currentContract;
+  const example: CaseExample = {
+    result: 'VERIFIED',
+    states,
+    interaction,
+  };
+  currentContract = addExample(currentContract, example, logger);
+  return example;
 };
 
 export const recordFailure = (
@@ -108,7 +112,7 @@ export const recordFailure = (
   states: Array<AnyState>,
   logger: Logger,
   errors: Array<MatchingError>
-): ContractFile => {
+): CaseExample => {
   if (!currentContract) {
     logger.error(
       'recordFailure was called without initialising the contract file. Did you forget to call `startContract`?'
@@ -117,20 +121,29 @@ export const recordFailure = (
       'You must call `startContract` before running tests (Contract was not initialised at the time that recordFailure was called)'
     );
   }
-  currentContract = addFailure(
-    currentContract,
-    interaction,
+  const example: CaseExample = {
+    result: 'FAILED',
     states,
+    interaction,
     errors,
-    logger
-  );
-  return currentContract;
+  };
+  currentContract = addExample(currentContract, example, logger);
+  return example;
 };
 
 export const endRecord = (logger: Logger): void => {
   if (hasFailure(currentContract)) {
     // TODO: Print all failures
-    throw new CaseFailedError();
+    throw new CaseFailedError(
+      makeResults({
+        message: 'There were contract failures',
+        expected: 'No failures',
+        matcher: coreNullMatcher(),
+        actual: 'Some failures',
+        location: ['Writing Contract'],
+        toString: () => 'There were contract failures',
+      })
+    );
   }
 
   //  - if success, write contract

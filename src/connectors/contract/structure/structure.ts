@@ -1,10 +1,8 @@
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
-import type { AnyState } from 'entities/states/types';
 import {
   type AnyInteraction,
   isLookupableMatcher,
-  type MatchingError,
   type AnyCaseNodeOrData,
   LookupableMatcher,
 } from 'entities/types';
@@ -54,42 +52,18 @@ export const makeContract = (
   examples: new Array<CaseExample>(),
 });
 
-export const addSuccess = (
+export const addExample = (
   contract: ContractFile,
-  interaction: AnyInteraction,
-  states: Array<AnyState>,
+  example: CaseExample,
   logger: Logger
 ): ContractFile => ({
   ...contract,
-  matcherLookup: addInteraction(contract.matcherLookup, interaction, logger),
-  examples: [
-    ...contract.examples,
-    {
-      result: 'VERIFIED',
-      states,
-      interaction,
-    },
-  ],
-});
-
-export const addFailure = (
-  contract: ContractFile,
-  interaction: AnyInteraction,
-  states: Array<AnyState>,
-  errors: Array<MatchingError>,
-  logger: Logger
-): ContractFile => ({
-  ...contract,
-  matcherLookup: addInteraction(contract.matcherLookup, interaction, logger),
-  examples: [
-    ...contract.examples,
-    {
-      result: 'FAILED',
-      states,
-      interaction,
-      errors,
-    },
-  ],
+  matcherLookup: addInteraction(
+    contract.matcherLookup,
+    example.interaction,
+    logger
+  ),
+  examples: [...contract.examples, example],
 });
 
 export const hasFailure = (contract: ContractFile): boolean =>

@@ -1,10 +1,11 @@
 import type * as http from 'http';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
-import type { MatchResult, Assertable } from 'entities/types';
+import type { Assertable, MatchResult } from 'entities/types';
 import { makeNoErrorResult } from 'entities/results';
 import { anyString, httpStatus } from 'boundaries/dsl/Matchers';
 import type { CaseConfig } from 'connectors/core/types';
 import { CaseConfigurationError } from 'entities';
+import { CaseFailedError } from 'entities/CaseFailedError';
 import { setup, startContract } from '.';
 
 import start from './__tests__/server/http/index';
@@ -13,11 +14,22 @@ const expectErrorContaining = async (
   context: Assertable<'ConsumeHttpResponse'>,
   expectedContent: string
 ) => {
-  const matchResult: MatchResult = await context.assert();
-  expect(matchResult).not.toHaveLength(0);
-  expect(
-    matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
-  ).toContain(expectedContent);
+  await context.assert().then(
+    () => {
+      throw new Error(
+        "This unit test expected a failure, but there wasn't one"
+      );
+    },
+    (e) => {
+      expect(e).toBeInstanceOf(CaseFailedError);
+      expect(e.matchResult).not.toHaveLength(0);
+      expect(
+        (e.matchResult as MatchResult)
+          .map((m) => m.toString())
+          .reduce((acc, m) => `${acc} ${m}`)
+      ).toContain(expectedContent);
+    }
+  );
 };
 
 describe('simple get endpoint', () => {
@@ -163,7 +175,7 @@ describe('simple get endpoint', () => {
           );
         });
         it('fails', () =>
-          expect(context.assert()).resolves.not.toEqual(makeNoErrorResult()));
+          expect(context.assert()).rejects.not.toEqual(makeNoErrorResult()));
       });
 
       describe('and a non-matching path', () => {
@@ -181,7 +193,7 @@ describe('simple get endpoint', () => {
           );
         });
         it('fails', () =>
-          expect(context.assert()).resolves.not.toEqual(makeNoErrorResult()));
+          expect(context.assert()).rejects.not.toEqual(makeNoErrorResult()));
       });
     });
   });

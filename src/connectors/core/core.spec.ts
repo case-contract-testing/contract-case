@@ -180,7 +180,7 @@ describe('exact matches', () => {
     expectErrorContaining(
       [1, 'string', null, true, {}, [], { a: '1' }, [1]],
       [1, 'string', null, true, [], [], { a: '1' }, [1]],
-      'not an object'
+      'Expected an object'
     );
 
     expectErrorContaining(
@@ -233,7 +233,7 @@ describe('exact matches', () => {
       Date(),
       () => {},
     ])("when given '%s'", (example) => {
-      expectErrorContaining({}, example, 'not an object');
+      expectErrorContaining({}, example, 'Expected an object');
     });
     it('accepts an object of exact types', async () => {
       expect(

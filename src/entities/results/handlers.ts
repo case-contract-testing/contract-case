@@ -1,3 +1,4 @@
+import { CaseFailedError } from 'entities/CaseFailedError';
 import type { MatchContext } from 'entities/context/types';
 import type { CaseExample } from 'entities/contract/types';
 import { hasErrors } from './MatchResult';
@@ -15,7 +16,7 @@ export const handleResult = (
     matchResult.forEach((e) => {
       context.resultPrinter.printError(e);
     });
-    throw new Error(`Matching errors: ${matchResult}`);
+    throw new CaseFailedError(matchResult);
   }
   context.resultPrinter.printSuccessTitle(example, exampleIndex);
 };

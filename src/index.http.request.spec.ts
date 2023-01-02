@@ -1,18 +1,22 @@
-import * as fs from 'fs';
-import type * as http from 'http';
+import * as fs from 'node:fs';
+import type * as http from 'node:http';
+
 import api from '__tests__/client/http/connector';
 import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
-import type { Dependencies } from '__tests__/server/http/domain/types';
-import { baseService } from '__tests__/server/http/domain/baseService';
 import type { Assertable } from 'entities/types';
 import { httpStatus, shapedLike } from 'boundaries/dsl/Matchers';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { endContract } from 'boundaries/dsl/contract';
-import { readContract } from 'connectors/contract/writer/fileSystem';
-import start from '__tests__/server/http/connectors/web';
+import type { CaseConfig } from 'connectors/core/types';
 
-import type { RunTestCallback, StateFunctions } from 'boundaries/dsl/types';
+import type { RunTestCallback } from 'boundaries/dsl/types';
 import { verifyContract } from 'boundaries/verify';
+import { readContract } from 'connectors/contract/writer/fileSystem';
+import type { StateFunctions } from 'entities/states/types';
+import start from '__tests__/server/http/connectors/web';
+import { baseService } from '__tests__/server/http/domain/baseService';
+import type { Dependencies } from '__tests__/server/http/domain/types';
+
 import { inState, setup, startContract } from '.';
 
 const contractDetails = {
@@ -24,12 +28,15 @@ describe('e2e http consumer driven', () => {
   beforeAll(() => {
     try {
       fs.rmSync('temp-contracts', { recursive: true });
+      fs.mkdirSync('temp-contracts');
     } catch (e) {
       // We don't care if this fails
     }
-    fs.mkdirSync('temp-contracts');
   });
   describe('test and write contract', () => {
+    const config: CaseConfig = {
+      logLevel: 'maintainerDebug',
+    };
     beforeAll(() => startContract(contractDetails, {}));
 
     afterAll(() => endContract({}));
@@ -47,7 +54,8 @@ describe('e2e http consumer driven', () => {
                   path: '/health',
                 },
                 response: { status: 200, body: { status: 'up' } },
-              })
+              }),
+              config
             );
           });
 
@@ -78,7 +86,8 @@ describe('e2e http consumer driven', () => {
                   status: 200,
                   body: shapedLike({ status: 'whatever' }),
                 },
-              })
+              }),
+              config
             );
           });
 
@@ -110,7 +119,8 @@ describe('e2e http consumer driven', () => {
                 path: '/health',
               },
               response: { status: httpStatus(['4XX', '5XX']) },
-            })
+            }),
+            config
           );
         });
 
@@ -143,7 +153,8 @@ describe('e2e http consumer driven', () => {
                 path: '/health',
               },
               response: { status: 503, body: { status: 'down' } },
-            })
+            }),
+            config
           );
         });
 
@@ -162,6 +173,7 @@ describe('e2e http consumer driven', () => {
       });
     });
   });
+
   describe('Server verification', () => {
     let server: http.Server;
     let mockHealthStatus = true;

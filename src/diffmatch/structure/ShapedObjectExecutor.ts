@@ -38,6 +38,28 @@ const strip: StripMatcherFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = (
       }),
       {}
     );
+
+const whyNotAnObject = (actual: unknown) => {
+  if (typeof actual !== 'object') {
+    return `Expected an object, but the type was '${typeof actual}' instead`;
+  }
+  if (Array.isArray(actual)) {
+    return 'Expected an object, but it was an array';
+  }
+  if (actual != null) {
+    return 'Expected an object, but it was null or undefined';
+  }
+  if (actual !== Object(actual)) {
+    return `Expected an object, but '${actualToString(
+      actual
+    )}' is not an object because the Object constructor doesn't return a reference to it`;
+  }
+
+  return `If you are seeing this message, there is a bug in whyNotAnObject, where it can't see a reason that '${actualToString(
+    actual
+  )} is not an Object.`;
+};
+
 const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
   matcher: CoreShapedObjectMatcher,
   matchContext: MatchContext,
@@ -82,12 +104,7 @@ const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
         ).flat()
       )
     : makeResults(
-        matchingError(
-          matcher,
-          `${actualToString(actual)} is not an object`,
-          actual,
-          matchContext
-        )
+        matchingError(matcher, whyNotAnObject(actual), actual, matchContext)
       )),
 ];
 
