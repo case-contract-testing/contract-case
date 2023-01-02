@@ -41,10 +41,17 @@ export const writeContract = (
   }
 ): string => {
   const pathToFile = makePath(contract.description, config);
+  logger.warn(
+    'NOT YET IMPLEMENTED: Need to remove the default index of 12 for the contract file'
+  );
+  logger.warn(
+    'NOT YET IMPLEMENTED: Add configuration for the directory to write the contracts to'
+  );
+
   logger.maintainerDebug(`About to write contract to '${pathToFile}'`);
   if (fs.existsSync(pathToFile)) {
     logger.error(`Can't write to '${pathToFile}, as it already exists'`);
-    throw new CaseConfigurationError(`the file ${pathToFile} already exists`);
+    throw new CaseConfigurationError(`The file ${pathToFile} already exists`);
   }
   fs.writeFileSync(pathToFile, JSON.stringify(contract));
   return pathToFile;
