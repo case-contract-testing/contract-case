@@ -1,4 +1,8 @@
-import type { AnyCaseNodeOrData } from 'entities/nodes/matchers/types';
+import type {
+  AnyCaseNodeOrData,
+  AnyCaseNodeType,
+  DataOrCaseNodeFor,
+} from 'entities/nodes/matchers/types';
 import {
   anyBoolean,
   anyNull,
@@ -7,8 +11,33 @@ import {
   exactlyLike,
   shapedLike,
 } from 'boundaries/dsl/Matchers';
-import { coreCheckMatch } from 'connectors/core/traversals';
 import { stripMatchers } from 'boundaries/dsl/stripMatchers';
+import { contractFns } from 'connectors/contract';
+import { resultPrinter } from 'connectors/resultPrinter';
+import { traversals } from 'diffmatch';
+import { applyDefaultContext } from 'entities/context';
+import type { LoggableContext } from 'entities/context/types';
+import type { Logger } from 'entities/logger/types';
+import type { MatchResult } from 'entities/types';
+
+const coreCheckMatch = <T extends AnyCaseNodeType>(
+  matcherOrData: DataOrCaseNodeFor<T>,
+  actual: unknown,
+  logger: (c: LoggableContext) => Logger
+): Promise<MatchResult> =>
+  Promise.resolve(
+    traversals.descendAndCheck(
+      matcherOrData,
+      applyDefaultContext(
+        matcherOrData,
+        traversals,
+        logger,
+        contractFns,
+        resultPrinter
+      ),
+      actual
+    )
+  );
 
 const logger = () => ({
   error(): void {},

@@ -1,10 +1,39 @@
 import { startContract } from 'boundaries';
 import { anyNumber, anyString, namedMatch } from 'boundaries/dsl/Matchers';
 import { stripMatchers } from 'boundaries/dsl/stripMatchers';
+import { contractFns } from 'connectors/contract';
+import { resultPrinter } from 'connectors/resultPrinter';
+import { traversals } from 'diffmatch';
 
-import { coreCheckMatch } from 'connectors/core';
 import { CaseConfigurationError } from 'entities';
-import type { AnyCaseNodeOrData } from 'entities/types';
+import { applyDefaultContext } from 'entities/context';
+import type { LoggableContext } from 'entities/context/types';
+import type { Logger } from 'entities/logger/types';
+import type {
+  AnyCaseNodeOrData,
+  AnyCaseNodeType,
+  DataOrCaseNodeFor,
+  MatchResult,
+} from 'entities/types';
+
+const coreCheckMatch = <T extends AnyCaseNodeType>(
+  matcherOrData: DataOrCaseNodeFor<T>,
+  actual: unknown,
+  logger: (c: LoggableContext) => Logger
+): Promise<MatchResult> =>
+  Promise.resolve(
+    traversals.descendAndCheck(
+      matcherOrData,
+      applyDefaultContext(
+        matcherOrData,
+        traversals,
+        logger,
+        contractFns,
+        resultPrinter
+      ),
+      actual
+    )
+  );
 
 const makeMockLogger = () => ({
   error(): void {},

@@ -4,32 +4,12 @@ import type {
   AnyData,
   DataOrCaseNodeFor,
 } from 'entities/nodes/matchers/types';
-import type { MatchResult } from 'entities/types';
 
 import { traversals } from 'diffmatch';
 import type { Logger } from 'entities/logger/types';
 import type { LoggableContext } from 'entities/context/types';
 import { contractFns } from 'connectors/contract';
 import { resultPrinter } from 'connectors/resultPrinter';
-
-export const coreCheckMatch = <T extends AnyCaseNodeType>(
-  matcherOrData: DataOrCaseNodeFor<T>,
-  actual: unknown,
-  logger: (c: LoggableContext) => Logger
-): Promise<MatchResult> =>
-  Promise.resolve(
-    traversals.descendAndCheck(
-      matcherOrData,
-      applyDefaultContext(
-        matcherOrData,
-        traversals,
-        logger,
-        contractFns,
-        resultPrinter
-      ),
-      actual
-    )
-  );
 
 export const coreStripMatchers = <T extends AnyCaseNodeType>(
   matcherOrData: DataOrCaseNodeFor<T>,
