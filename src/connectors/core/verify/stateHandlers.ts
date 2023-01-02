@@ -5,7 +5,7 @@ import {
   type AnyState,
   type PromiseOrRaw,
   isSetupFunction,
-} from 'entities/nodes/states/types';
+} from 'entities/states/types';
 
 const stateSetupHandler =
   (

@@ -6,7 +6,7 @@ import { makeLogger } from 'connectors/logger';
 import { contractFns } from 'connectors/contract';
 import { resultPrinter } from 'connectors/resultPrinter';
 import { executeVerification } from 'connectors/core';
-import type { StateFunctions } from 'entities/nodes/states/types';
+import type { StateFunctions } from 'entities/states/types';
 import type { RunTestCallback } from './dsl/types';
 
 export const verifyContract = (

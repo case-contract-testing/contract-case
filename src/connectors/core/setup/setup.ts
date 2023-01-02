@@ -1,6 +1,6 @@
 import { SetupFunctions, contractFile } from 'connectors';
 import type { MatchContext } from 'entities/context/types';
-import type { AnyState } from 'entities/nodes/states/types';
+import type { AnyState } from 'entities/states/types';
 import { hasErrors } from 'entities/results/MatchResult';
 import type {
   AnyInteractionType,

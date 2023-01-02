@@ -3,7 +3,7 @@ import { CaseFailedError } from 'entities/CaseFailedError';
 import type { ContractFns } from 'entities/context/types';
 import type { ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
-import type { AnyState } from 'entities/nodes/states/types';
+import type { AnyState } from 'entities/states/types';
 import type {
   AnyCaseNodeOrData,
   AnyInteraction,

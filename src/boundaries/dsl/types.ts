@@ -1,4 +1,4 @@
-export { StateFunctions } from 'entities/nodes/states/types';
+export { StateFunctions } from 'entities/states/types';
 
 export type RunTestCallback = (
   testName: string,

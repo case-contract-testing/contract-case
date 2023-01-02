@@ -3,7 +3,7 @@ import { nameExample } from 'entities/contract/interactions';
 import type { CaseExample } from 'entities/contract/types';
 import { setupWithContext } from 'connectors/core/setup';
 import { handleResult } from 'entities/results/handlers';
-import type { StateFunctions } from 'entities/nodes/states/types';
+import type { StateFunctions } from 'entities/states/types';
 import { executeSetupHandlers, executeTeardownHandlers } from './stateHandlers';
 
 export const executeVerification =

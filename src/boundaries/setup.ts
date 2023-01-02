@@ -8,7 +8,7 @@ import type { Verifiable } from 'entities/types';
 import type { RunContext } from 'entities/context/types';
 import { makeLogger } from 'connectors/logger';
 import { contractFns } from 'connectors/contract';
-import type { AnyState } from 'entities/nodes/states/types';
+import type { AnyState } from 'entities/states/types';
 import { setupWithContext } from 'connectors/core/setup/setup';
 import { resultPrinter } from 'connectors/resultPrinter';
 

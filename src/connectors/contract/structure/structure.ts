@@ -1,6 +1,6 @@
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
-import type { AnyState } from 'entities/nodes/states/types';
+import type { AnyState } from 'entities/states/types';
 import {
   type AnyInteraction,
   isLookupableMatcher,
