@@ -1,2 +1,3 @@
 export * from './traversals';
-export * from './setup/executor';
+export * from './setup';
+export * from './verify';
