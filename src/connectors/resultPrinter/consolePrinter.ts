@@ -56,9 +56,9 @@ const printFailureTitle = (example: CaseExample, index: number): void => {
 const printSuccessTitle = (example: CaseExample, index: number): void => {
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
-    `${spaces(3)}  ${chalk.greenBright(`✅`)} ${chalk.whiteBright(
+    `\n${spaces(3)}  ${chalk.greenBright(`✅`)} ${chalk.whiteBright(
       nameExample(example, index)
-    )}`
+    )}\n`
   );
 };
 
