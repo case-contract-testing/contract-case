@@ -48,6 +48,8 @@ export type MatchContext = TraversalFns &
   ContextLoggers &
   ContractContextFns &
   Partial<InjectableContext> &
+  HasLocation &
+  LogLevelContext &
   RunContext;
 
 export type HasLocation = {
@@ -81,7 +83,7 @@ export interface HasBaseUrlUnderTest {
 
 export interface RunContext
   extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest> {
-  'case:run:context:tree': AnyCaseNodeOrData | AnyInteraction;
+  'case:run:context:tree'?: AnyCaseNodeOrData | AnyInteraction;
 }
 
 export interface MatchContextByType {

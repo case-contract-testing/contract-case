@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { CaseConfigurationError } from 'entities';
 import type { ContractDescription } from 'entities/contract/types';
-import type { Logger } from 'entities/logger/types';
+import type { MatchContext } from 'entities/types';
 
 type CaseContractConfig = {
   testRunId: string;
@@ -34,23 +34,25 @@ const makePath = (
 
 export const writeContract = (
   contract: ContractFile,
-  logger: Logger,
+  context: MatchContext,
   config: CaseContractConfig = {
     testRunId: '12',
     contractDir: 'temp-contracts',
   }
 ): string => {
   const pathToFile = makePath(contract.description, config);
-  logger.warn(
+  context.logger.warn(
     'NOT YET IMPLEMENTED: Need to remove the default index of 12 for the contract file'
   );
-  logger.warn(
+  context.logger.warn(
     'NOT YET IMPLEMENTED: Add configuration for the directory to write the contracts to'
   );
 
-  logger.maintainerDebug(`About to write contract to '${pathToFile}'`);
+  context.logger.maintainerDebug(`About to write contract to '${pathToFile}'`);
   if (fs.existsSync(pathToFile)) {
-    logger.error(`Can't write to '${pathToFile}, as it already exists'`);
+    context.logger.error(
+      `Can't write to '${pathToFile}, as it already exists'`
+    );
     throw new CaseConfigurationError(`The file ${pathToFile} already exists`);
   }
   fs.writeFileSync(pathToFile, JSON.stringify(contract));

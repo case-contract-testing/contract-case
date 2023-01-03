@@ -1,19 +1,10 @@
-import { startContract } from 'boundaries';
 import { anyNumber, anyString, namedMatch } from 'boundaries/dsl/Matchers';
-import { stripMatchers } from 'boundaries/dsl/stripMatchers';
-import { contractFns } from 'connectors/contract';
-import { resultPrinter } from 'connectors/resultPrinter';
-import { traversals } from 'diffmatch';
+import { CaseContract } from 'connectors/contract';
+import { DEFAULT_CONFIG } from 'connectors/contract/core';
 
 import { CaseConfigurationError } from 'entities';
-import { applyDefaultContext } from 'entities/context';
 import type { Logger } from 'entities/logger/types';
-import type {
-  AnyCaseNodeOrData,
-  AnyCaseNodeType,
-  DataOrCaseNodeFor,
-  MatchResult,
-} from 'entities/types';
+import type { AnyCaseNodeOrData } from 'entities/types';
 
 const makeMockLogger: () => Logger = () => ({
   error(): void {},
@@ -23,45 +14,31 @@ const makeMockLogger: () => Logger = () => ({
   maintainerDebug(): void {},
 });
 
-const coreCheckMatch = <T extends AnyCaseNodeType>(
-  matcherOrData: DataOrCaseNodeFor<T>,
-  actual: unknown
-): Promise<MatchResult> =>
-  Promise.resolve(
-    traversals.descendAndCheck(
-      matcherOrData,
-      applyDefaultContext(
-        matcherOrData,
-        traversals,
-        makeMockLogger,
-        contractFns,
-        resultPrinter,
-        {}
-      ),
-      actual
-    )
+describe('named matches', () => {
+  const contract = new CaseContract(
+    {
+      consumerName: 'test lookup consumer',
+      providerName: 'test lookup provider',
+    },
+    DEFAULT_CONFIG,
+    makeMockLogger
   );
 
-const expectErrorContaining = (
-  matcher: AnyCaseNodeOrData,
-  example: unknown,
-  expectedContent: string
-) => {
-  describe(`when given ${example}`, () => {
-    it(`returns an error containing '${expectedContent}'`, async () => {
-      const matchResult = await coreCheckMatch(matcher, example);
-      expect(matchResult).not.toHaveLength(0);
-      expect(
-        matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
-      ).toContain(expectedContent);
+  const expectErrorContaining = (
+    matcher: AnyCaseNodeOrData,
+    example: unknown,
+    expectedContent: string
+  ) => {
+    describe(`when given ${example}`, () => {
+      it(`returns an error containing '${expectedContent}'`, async () => {
+        const matchResult = await contract.checkMatch(matcher, example);
+        expect(matchResult).not.toHaveLength(0);
+        expect(
+          matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
+        ).toContain(expectedContent);
+      });
     });
-  });
-};
-
-describe('named matches', () => {
-  beforeAll(() => {
-    startContract({ consumerName: 'consumer', providerName: 'provider' });
-  });
+  };
 
   describe("named matcher that isn't defined yet", () => {
     const matcher = {
@@ -69,7 +46,7 @@ describe('named matches', () => {
     };
     it('fails', async () => {
       await expect(
-        coreCheckMatch(matcher, {
+        contract.checkMatch(matcher, {
           a: 'other string',
         })
       ).rejects.toBeInstanceOf(CaseConfigurationError);
@@ -81,13 +58,13 @@ describe('named matches', () => {
     };
     it('accepts a matching object with different values', async () => {
       expect(
-        await coreCheckMatch(matcher, {
+        await contract.checkMatch(matcher, {
           a: 'other string',
         })
       ).toStrictEqual([]);
     });
     it('strips to the expected example', () => {
-      expect(stripMatchers(matcher)).toEqual({ a: 'string' });
+      expect(contract.stripMatchers(matcher)).toEqual({ a: 'string' });
     });
     expectErrorContaining(matcher, { a: 2 }, 'string');
   });
@@ -98,7 +75,7 @@ describe('named matches', () => {
     };
     it('accepts a matching object with different values', async () => {
       expect(
-        await coreCheckMatch(matcher, {
+        await contract.checkMatch(matcher, {
           a: 34,
           b: 2,
         })
@@ -115,7 +92,7 @@ describe('named matches', () => {
       'is not a number'
     );
     it('strips to the expected example', () => {
-      expect(stripMatchers(matcher)).toEqual({ a: 1, b: 1 });
+      expect(contract.stripMatchers(matcher)).toEqual({ a: 1, b: 1 });
     });
   });
 
@@ -123,7 +100,7 @@ describe('named matches', () => {
     const repeatTests = (matcher: AnyCaseNodeOrData) => {
       it('accepts a matching object with different values', async () => {
         expect(
-          await coreCheckMatch(matcher, {
+          await contract.checkMatch(matcher, {
             a: '1',
             b: 2,
           })
@@ -150,7 +127,7 @@ describe('named matches', () => {
         'is not a number'
       );
       it('strips to the expected example', () => {
-        expect(stripMatchers(matcher)).toEqual({ a: 'string', b: 1 });
+        expect(contract.stripMatchers(matcher)).toEqual({ a: 'string', b: 1 });
       });
     };
     describe('when raw', () => {

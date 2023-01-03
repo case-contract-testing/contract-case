@@ -1,1 +1,2 @@
-export * from './contract';
+export * from './CaseContract';
+export * from './CaseVerifier';

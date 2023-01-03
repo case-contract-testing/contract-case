@@ -47,34 +47,45 @@ export const foldIntoContext = (
   ...contextProperties(caseNode),
 });
 
-const combineWithRoot = (
-  caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
-  context: MatchContext
-) => ({
-  ...(isCaseNode(caseNodeOrData) || isCaseInteraction(caseNodeOrData)
-    ? foldIntoContext(caseNodeOrData, context)
-    : context),
-});
-
 let interactionId = 0;
 
-const constructContext = (
+const combineWithRoot = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
+  context: MatchContext,
+  runConfig: Partial<RunContext>
+) => {
+  const newContext = {
+    ...(isCaseNode(caseNodeOrData) || isCaseInteraction(caseNodeOrData)
+      ? foldIntoContext(caseNodeOrData, context)
+      : context),
+    ...runConfig,
+    ...(context['case:run:context:tree'] // Only put the tree in if it isn't there already
+      ? {}
+      : { 'case:run:context:tree': caseNodeOrData }),
+    'case:currentRun:context:location': [
+      ...context['case:currentRun:context:location'],
+      `Test[${interactionId}]`,
+    ],
+  };
+  interactionId += 1;
+  return newContext;
+};
+
+export const constructInitialContext = (
   traversals: TraversalFns,
   makeLogger: (c: LogLevelContext) => Logger,
-  runConfig: Partial<RunContext>,
   contractFns: ContractFns,
-  resultPrinter: ResultPrinter
-) => {
+  resultPrinter: ResultPrinter,
+  runConfig: Partial<RunContext>
+): MatchContext => {
   const context = {
     makeLogger,
     ...traversals,
     ...DEFAULT_CONTEXT,
-    'case:currentRun:context:location': [`test[${interactionId}]`],
+    'case:currentRun:context:location': [],
     ...runConfig,
-    'case:run:context:tree': caseNodeOrData,
   };
-  interactionId += 1;
+
   const logger = makeLogger(context);
   return {
     ...context,
@@ -87,32 +98,11 @@ const constructContext = (
   };
 };
 
-export const applyDefaultContext = (
+export const applyNodeToContext = (
   caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
-  traversals: TraversalFns,
-  makeLogger: (c: LogLevelContext) => Logger,
-  contractFns: ContractFns,
-  resultPrinter: ResultPrinter,
-  runConfig: Partial<RunContext>
-): MatchContext => {
-  const context = combineWithRoot(
-    caseNodeOrData,
-    constructContext(
-      caseNodeOrData,
-      traversals,
-      makeLogger,
-      runConfig,
-      contractFns,
-      resultPrinter
-    )
-  );
-
-  context.logger.maintainerDebug(
-    'Initial context is:',
-    JSON.stringify(context, null, 2)
-  );
-  return { ...context };
-};
+  context: MatchContext,
+  runConfig: Partial<RunContext> = {}
+): MatchContext => combineWithRoot(caseNodeOrData, context, runConfig);
 
 export const addLocation = (
   location: string,

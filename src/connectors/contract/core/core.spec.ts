@@ -1,14 +1,15 @@
 import type {
+  AnyCaseNodeOrData,
   AnyCaseNodeType,
   AnyLeafMatcher,
   AnyLeafOrStructure,
   DataOrCaseNodeFor,
+  LookupableMatcher,
 } from 'entities/nodes/matchers/types';
 import type { Logger } from 'entities/logger/types';
-import { contractFns } from 'connectors/contract';
 import { resultPrinter } from 'connectors/resultPrinter';
 import { traversals } from 'diffmatch';
-import { applyDefaultContext } from 'entities/context';
+import { applyNodeToContext, constructInitialContext } from 'entities/context';
 import type { LogLevelContext, MatchResult } from 'entities/types';
 import { configToRunContext } from './setup';
 
@@ -20,13 +21,34 @@ const coreCheckMatch = <T extends AnyCaseNodeType>(
   Promise.resolve(
     traversals.descendAndCheck(
       matcherOrData,
-      applyDefaultContext(
+      applyNodeToContext(
         matcherOrData,
-        traversals,
-        logger,
-        contractFns,
-        resultPrinter,
-        configToRunContext({ logLevel: 'info' })
+        constructInitialContext(
+          traversals,
+          logger,
+          {
+            lookupMatcher(
+              uniqueName: string,
+              matchLogger: Logger
+            ): AnyCaseNodeOrData {
+              matchLogger.error(
+                `Tried to lookup '${uniqueName}' without a contract`
+              );
+              throw new Error("Can't use lookup matchers without a contract");
+            },
+            saveLookupableMatcher(
+              matcher: LookupableMatcher,
+              matchLogger: Logger
+            ): void {
+              matchLogger.error(
+                `Tried to save '${matcher['case:matcher:uniqueName']}' without a contract`
+              );
+              throw new Error("Can't use lookup matchers without a contract");
+            },
+          },
+          resultPrinter,
+          configToRunContext({ logLevel: 'info' })
+        )
       ),
       actual
     )

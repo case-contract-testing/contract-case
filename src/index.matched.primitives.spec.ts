@@ -1,8 +1,4 @@
-import type {
-  AnyCaseNodeOrData,
-  AnyCaseNodeType,
-  DataOrCaseNodeFor,
-} from 'entities/nodes/matchers/types';
+import type { AnyCaseNodeOrData } from 'entities/nodes/matchers/types';
 import {
   anyBoolean,
   anyNull,
@@ -11,15 +7,12 @@ import {
   exactlyLike,
   shapedLike,
 } from 'boundaries/dsl/Matchers';
-import { stripMatchers } from 'boundaries/dsl/stripMatchers';
-import { contractFns } from 'connectors/contract';
-import { resultPrinter } from 'connectors/resultPrinter';
-import { traversals } from 'diffmatch';
-import { applyDefaultContext } from 'entities/context';
-import type { MatchResult } from 'entities/types';
-import type { Logger } from 'entities/logger/types';
+import { CaseContract } from 'connectors/contract';
 
-const logger: () => Logger = () => ({
+import type { Logger } from 'entities/logger/types';
+import { DEFAULT_CONFIG } from 'connectors/contract/core';
+
+const makeMockLogger: () => Logger = () => ({
   error(): void {},
   warn(): void {},
   info(): void {},
@@ -27,48 +20,42 @@ const logger: () => Logger = () => ({
   maintainerDebug(): void {},
 });
 
-const coreCheckMatch = <T extends AnyCaseNodeType>(
-  matcherOrData: DataOrCaseNodeFor<T>,
-  actual: unknown
-): Promise<MatchResult> =>
-  Promise.resolve(
-    traversals.descendAndCheck(
-      matcherOrData,
-      applyDefaultContext(
-        matcherOrData,
-        traversals,
-        logger,
-        contractFns,
-        resultPrinter,
-        {}
-      ),
-      actual
-    )
-  );
-
-const expectErrorContaining = (
-  matcher: AnyCaseNodeOrData,
-  example: unknown,
-  expectedContent: string
-) => {
-  describe(`when given ${example}`, () => {
-    it(`returns an error containing '${expectedContent}'`, async () => {
-      const matchResult = await coreCheckMatch(matcher, example);
-      expect(matchResult).not.toHaveLength(0);
-      expect(
-        matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
-      ).toContain(expectedContent);
-    });
-  });
-};
 describe('basic matchers', () => {
+  let contract: CaseContract;
+  beforeAll(() => {
+    contract = new CaseContract(
+      {
+        consumerName: 'test lookup consumer',
+        providerName: 'test lookup provider',
+      },
+      DEFAULT_CONFIG,
+      makeMockLogger
+    );
+  });
+
+  const expectErrorContaining = (
+    matcher: AnyCaseNodeOrData,
+    example: unknown,
+    expectedContent: string
+  ) => {
+    describe(`when given ${example}`, () => {
+      it(`returns an error containing '${expectedContent}'`, async () => {
+        const matchResult = await contract.checkMatch(matcher, example);
+        expect(matchResult).not.toHaveLength(0);
+        expect(
+          matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
+        ).toContain(expectedContent);
+      });
+    });
+  };
+
   describe('number matcher', () => {
     const matcher = anyNumber(1);
     it('accepts numbers', async () => {
-      expect(await coreCheckMatch(matcher, 1)).toStrictEqual([]);
+      expect(await contract.checkMatch(matcher, 1)).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
-      expect(stripMatchers(matcher)).toEqual(1);
+      expect(contract.stripMatchers(matcher)).toEqual(1);
     });
     expectErrorContaining(matcher, NaN, 'NaN');
     expectErrorContaining(matcher, Infinity, 'finite');
@@ -85,13 +72,15 @@ describe('basic matchers', () => {
   describe('string matcher', () => {
     const matcher = anyString('1');
     it('accepts strings that are numbers', async () => {
-      expect(await coreCheckMatch(matcher, '1')).toStrictEqual([]);
+      expect(await contract.checkMatch(matcher, '1')).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
-      expect(stripMatchers(matcher)).toEqual('1');
+      expect(contract.stripMatchers(matcher)).toEqual('1');
     });
     it('accepts strings that are not numbers', async () => {
-      expect(await coreCheckMatch(matcher, 'example string')).toStrictEqual([]);
+      expect(
+        await contract.checkMatch(matcher, 'example string')
+      ).toStrictEqual([]);
     });
     expectErrorContaining(matcher, NaN, 'not a string');
     expectErrorContaining(matcher, Infinity, 'not a string');
@@ -103,13 +92,13 @@ describe('basic matchers', () => {
   describe('boolean matcher', () => {
     const matcher = anyBoolean(true);
     it('accepts true', async () => {
-      expect(await coreCheckMatch(matcher, true)).toStrictEqual([]);
+      expect(await contract.checkMatch(matcher, true)).toStrictEqual([]);
     });
     it('accepts false', async () => {
-      expect(await coreCheckMatch(matcher, false)).toStrictEqual([]);
+      expect(await contract.checkMatch(matcher, false)).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
-      expect(stripMatchers(matcher)).toEqual(true);
+      expect(contract.stripMatchers(matcher)).toEqual(true);
     });
     expectErrorContaining(matcher, 'true', 'not a boolean');
     expectErrorContaining(matcher, 'some string', 'not a boolean');
@@ -123,10 +112,10 @@ describe('basic matchers', () => {
   describe('null matcher', () => {
     const matcher = anyNull();
     it('accepts exactly null', async () => {
-      expect(await coreCheckMatch(matcher, null)).toStrictEqual([]);
+      expect(await contract.checkMatch(matcher, null)).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
-      expect(stripMatchers(matcher)).toEqual(null);
+      expect(contract.stripMatchers(matcher)).toEqual(null);
     });
     expectErrorContaining(matcher, true, 'not null');
     expectErrorContaining(matcher, false, 'not null');
@@ -143,11 +132,11 @@ describe('basic matchers', () => {
     describe('number matcher', () => {
       const matcher = shapedLike(1);
       it('accepts numbers', async () => {
-        expect(await coreCheckMatch(matcher, 1)).toStrictEqual([]);
+        expect(await contract.checkMatch(matcher, 1)).toStrictEqual([]);
       });
 
       it('strips the matcher', () => {
-        expect(stripMatchers(matcher)).toEqual(1);
+        expect(contract.stripMatchers(matcher)).toEqual(1);
       });
       expectErrorContaining(matcher, NaN, 'NaN');
       expectErrorContaining(matcher, Infinity, 'finite');
@@ -159,15 +148,15 @@ describe('basic matchers', () => {
     describe('string matcher', () => {
       const matcher = shapedLike('1');
       it('accepts strings that are numbers', async () => {
-        expect(await coreCheckMatch(matcher, '1')).toStrictEqual([]);
+        expect(await contract.checkMatch(matcher, '1')).toStrictEqual([]);
       });
       it('strips the matcher', () => {
-        expect(stripMatchers(matcher)).toEqual('1');
+        expect(contract.stripMatchers(matcher)).toEqual('1');
       });
       it('accepts strings that are not numbers', async () => {
-        expect(await coreCheckMatch(matcher, 'example string')).toStrictEqual(
-          []
-        );
+        expect(
+          await contract.checkMatch(matcher, 'example string')
+        ).toStrictEqual([]);
       });
       expectErrorContaining(matcher, NaN, 'not a string');
       expectErrorContaining(matcher, Infinity, 'not a string');
@@ -179,13 +168,13 @@ describe('basic matchers', () => {
     describe('boolean matcher', () => {
       const matcher = shapedLike(true);
       it('accepts true', async () => {
-        expect(await coreCheckMatch(matcher, true)).toStrictEqual([]);
+        expect(await contract.checkMatch(matcher, true)).toStrictEqual([]);
       });
       it('accepts false', async () => {
-        expect(await coreCheckMatch(matcher, false)).toStrictEqual([]);
+        expect(await contract.checkMatch(matcher, false)).toStrictEqual([]);
       });
       it('returns correctly when stripped', () => {
-        expect(stripMatchers(matcher)).toEqual(true);
+        expect(contract.stripMatchers(matcher)).toEqual(true);
       });
 
       expectErrorContaining(matcher, 'true', 'not a boolean');
@@ -200,10 +189,10 @@ describe('basic matchers', () => {
     describe('null matcher', () => {
       const matcher = shapedLike(null);
       it('accepts exactly null', async () => {
-        expect(await coreCheckMatch(matcher, null)).toStrictEqual([]);
+        expect(await contract.checkMatch(matcher, null)).toStrictEqual([]);
       });
       it('returns correctly when stripped', () => {
-        expect(stripMatchers(matcher)).toEqual(null);
+        expect(contract.stripMatchers(matcher)).toEqual(null);
       });
 
       expectErrorContaining(matcher, true, 'not null');
@@ -231,7 +220,7 @@ describe('basic matchers', () => {
     ]);
     it('accepts an array of generally matched types', async () => {
       expect(
-        await coreCheckMatch(matcher, [
+        await contract.checkMatch(matcher, [
           2,
           'other string',
           null,
@@ -244,7 +233,7 @@ describe('basic matchers', () => {
       ).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
-      expect(stripMatchers(matcher)).toEqual([
+      expect(contract.stripMatchers(matcher)).toEqual([
         1,
         'string',
         null,
@@ -289,7 +278,7 @@ describe('basic matchers', () => {
     };
     it('accepts a matching object with different values', async () => {
       expect(
-        await coreCheckMatch(matcher, {
+        await contract.checkMatch(matcher, {
           a: 1,
           b: 'other string',
           c: null,
@@ -298,7 +287,7 @@ describe('basic matchers', () => {
       ).toStrictEqual([]);
     });
     it('returns the correct object when stripped', () => {
-      expect(stripMatchers(matcher)).toEqual({
+      expect(contract.stripMatchers(matcher)).toEqual({
         a: 2,
         b: 'string',
         c: null,
@@ -316,7 +305,7 @@ describe('basic matchers', () => {
     });
     it('accepts an matching object', async () => {
       expect(
-        await coreCheckMatch(matcher, {
+        await contract.checkMatch(matcher, {
           a: 1,
           b: 'other string',
           c: null,
@@ -325,7 +314,7 @@ describe('basic matchers', () => {
       ).toStrictEqual([]);
     });
     it('returns the correct object when stripped', () => {
-      expect(stripMatchers(matcher)).toEqual({
+      expect(contract.stripMatchers(matcher)).toEqual({
         a: 2,
         b: 'string',
         c: null,
@@ -358,7 +347,7 @@ describe('basic matchers', () => {
       'true (boolean) is not exactly equal to false (boolean)'
     );
     it('returns the correct object when stripped', () => {
-      expect(stripMatchers(matcher)).toEqual({
+      expect(contract.stripMatchers(matcher)).toEqual({
         a: 2,
         b: 'string',
         c: null,

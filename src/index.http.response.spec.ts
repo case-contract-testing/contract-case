@@ -3,10 +3,10 @@ import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import type { Assertable, MatchResult } from 'entities/types';
 import { makeNoErrorResult } from 'entities/results';
 import { anyString, httpStatus } from 'boundaries/dsl/Matchers';
-import type { CaseConfig } from 'connectors/core/types';
+import type { CaseConfig } from 'connectors/contract/core/types';
 import { CaseConfigurationError } from 'entities';
 import { CaseFailedError } from 'entities/CaseFailedError';
-import { setup, startContract } from '.';
+import { CaseContract } from 'boundaries';
 
 import start from './__tests__/server/http/index';
 
@@ -33,12 +33,14 @@ const expectErrorContaining = async (
 };
 
 describe('simple get endpoint', () => {
-  beforeAll(() =>
-    startContract({
+  const contract = new CaseContract(
+    {
       consumerName: 'http request consumer',
       providerName: 'http request provider',
-    })
+    },
+    {}
   );
+
   const interaction = willSendHttpInteraction({
     request: {
       method: 'GET',
@@ -51,7 +53,7 @@ describe('simple get endpoint', () => {
   describe('without a URL', () => {
     it('fails to setup', () =>
       expect(
-        setup([], interaction, {
+        contract.setup([], interaction, {
           expectation: 'produce',
         } as CaseConfig)
       ).rejects.toBeInstanceOf(CaseConfigurationError));
@@ -64,7 +66,7 @@ describe('simple get endpoint', () => {
     };
     describe('but no running server', () => {
       beforeEach(async () => {
-        context = await setup([], interaction, {
+        context = await contract.setup([], interaction, {
           ...config,
           baseUrlUnderTest: 'http://localhost:8081',
         });
@@ -92,7 +94,7 @@ describe('simple get endpoint', () => {
 
       describe('and a matching interaction', () => {
         beforeEach(async () => {
-          context = await setup([], interaction, config);
+          context = await contract.setup([], interaction, config);
         });
         it('succeeds', () =>
           expect(context.assert()).resolves.toEqual(makeNoErrorResult()));
@@ -100,7 +102,7 @@ describe('simple get endpoint', () => {
 
       describe('and a matching interaction that is generic', () => {
         beforeEach(async () => {
-          context = await setup(
+          context = await contract.setup(
             [],
             willSendHttpInteraction({
               request: {
@@ -121,7 +123,7 @@ describe('simple get endpoint', () => {
 
       describe('and a non-matching body', () => {
         beforeEach(async () => {
-          context = await setup(
+          context = await contract.setup(
             [],
             willSendHttpInteraction({
               request: {
@@ -142,7 +144,7 @@ describe('simple get endpoint', () => {
 
       describe('and a non-matching status', () => {
         beforeEach(async () => {
-          context = await setup(
+          context = await contract.setup(
             [],
             willSendHttpInteraction({
               request: {
@@ -162,7 +164,7 @@ describe('simple get endpoint', () => {
       });
       describe('and a non-matching method', () => {
         beforeEach(async () => {
-          context = await setup(
+          context = await contract.setup(
             [],
             willSendHttpInteraction({
               request: {
@@ -180,7 +182,7 @@ describe('simple get endpoint', () => {
 
       describe('and a non-matching path', () => {
         beforeEach(async () => {
-          context = await setup(
+          context = await contract.setup(
             [],
             willSendHttpInteraction({
               request: {

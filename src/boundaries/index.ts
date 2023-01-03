@@ -1,3 +1,2 @@
-export { setup } from './setup';
-export { startContract, endContract } from './dsl/contract';
+export { CaseContract, CaseVerifier } from 'connectors/contract';
 export * from './dsl/states';

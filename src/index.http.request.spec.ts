@@ -6,18 +6,16 @@ import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
 import type { Assertable } from 'entities/types';
 import { httpStatus, shapedLike } from 'boundaries/dsl/Matchers';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
-import { endContract } from 'boundaries/dsl/contract';
-import type { CaseConfig } from 'connectors/core/types';
-
-import type { RunTestCallback } from 'boundaries/dsl/types';
-import { verifyContract } from 'boundaries/verify';
+import type { CaseConfig } from 'connectors/contract/core/types';
 import { readContract } from 'connectors/contract/writer/fileSystem';
+import type { RunTestCallback } from 'connectors/contract/types';
 import type { StateFunctions } from 'entities/states/types';
+
 import start from '__tests__/server/http/connectors/web';
 import { baseService } from '__tests__/server/http/domain/baseService';
 import type { Dependencies } from '__tests__/server/http/domain/types';
 
-import { inState, setup, startContract } from '.';
+import { inState, CaseContract, CaseVerifier } from '.';
 
 const contractDetails = {
   consumerName: 'http response consumer',
@@ -37,16 +35,16 @@ describe('e2e http consumer driven', () => {
     const config: CaseConfig = {
       logLevel: 'maintainerDebug',
     };
-    beforeAll(() => startContract(contractDetails, {}));
+    const contract = new CaseContract(contractDetails, {});
 
-    afterAll(() => endContract({}));
+    afterAll(() => contract.endRecord());
     let context: Assertable<'ConsumeHttpResponse'>;
     describe('health get', () => {
       describe('When the server is up', () => {
         const state = inState('Server is up');
         describe('specific server response', () => {
           beforeEach(async () => {
-            context = await setup(
+            context = await contract.setup(
               [state],
               willSendHttpInteraction({
                 request: {
@@ -75,7 +73,7 @@ describe('e2e http consumer driven', () => {
         });
         describe('arbitrary status response string', () => {
           beforeEach(async () => {
-            context = await setup(
+            context = await contract.setup(
               [state],
               willSendHttpInteraction({
                 request: {
@@ -111,7 +109,7 @@ describe('e2e http consumer driven', () => {
       const state = inState('Server is down');
       describe('No body server response', () => {
         beforeEach(async () => {
-          context = await setup(
+          context = await contract.setup(
             [state],
             willSendHttpInteraction({
               request: {
@@ -145,7 +143,7 @@ describe('e2e http consumer driven', () => {
 
       describe('specific server response', () => {
         beforeEach(async () => {
-          context = await setup(
+          context = await contract.setup(
             [state],
             willSendHttpInteraction({
               request: {
@@ -184,6 +182,12 @@ describe('e2e http consumer driven', () => {
       },
       baseService,
     };
+    const verifier = new CaseVerifier(
+      readContract(
+        'temp-contracts/http-response-consumer-http-response-provider-12.case.json'
+      ),
+      { baseUrlUnderTest: `http://localhost:${port}` }
+    );
     beforeAll(async () => {
       server = await start(port, serverDependencies);
     });
@@ -222,14 +226,7 @@ describe('e2e http consumer driven', () => {
       // END JEST BOILERPLATE
 
       describe('contract verification', () => {
-        verifyContract(
-          readContract(
-            'temp-contracts/http-response-consumer-http-response-provider-12.case.json'
-          ),
-          stateSetups,
-          runJestTest,
-          { baseUrlUnderTest: `http://localhost:${port}` }
-        );
+        verifier.verifyContract(stateSetups, runJestTest);
       });
     });
   });
