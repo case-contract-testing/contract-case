@@ -1,7 +1,11 @@
 import { matchingError } from 'entities/results/MatchingError';
 
 import { addLocation } from 'entities/context';
-import { combineResults, makeResults } from 'entities/results/MatchResult';
+import {
+  combineResults,
+  makeNoErrorResult,
+  makeResults,
+} from 'entities/results/MatchResult';
 import type {
   AnyData,
   CoreShapedArrayMatcher,
@@ -32,7 +36,7 @@ const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
   combineResults(
     Array.isArray(actual)
       ? combineResults(
-          actual.length === matcher['case:matcher:children'].length
+          actual.length >= matcher['case:matcher:children'].length
             ? (
                 await Promise.all(
                   matcher['case:matcher:children']
@@ -49,15 +53,21 @@ const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
             : makeResults(
                 matchingError(
                   matcher,
-                  `Array has different lengths - expected '${
-                    matcher['case:matcher:children'].length
-                  }', but was '${
-                    Array.isArray(actual) ? actual.length : 'not an array'
-                  }'`,
+                  `Array has different lengths - expected at least '${matcher['case:matcher:children'].length}' elements, but found only '${actual.length} elements`,
+                  actual,
+                  matchContext
+                )
+              ),
+          matcher['case:matcher:children'].length === 0 && actual.length !== 0
+            ? makeResults(
+                matchingError(
+                  matcher,
+                  `Expected an empty array, but instead found ${actual.length} elements`,
                   actual,
                   matchContext
                 )
               )
+            : makeNoErrorResult()
         )
       : makeResults(
           matchingError(

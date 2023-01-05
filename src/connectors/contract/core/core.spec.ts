@@ -174,6 +174,16 @@ describe('exact matches', () => {
       ).toStrictEqual([]);
     });
 
+    it('accepts an array with extra values types', async () => {
+      expect(
+        await coreCheckMatch(
+          [1, 'string', null],
+          [1, 'string', null, true],
+          logger
+        )
+      ).toStrictEqual([]);
+    });
+
     expectErrorContaining(
       [1, 'string', null, true],
       ['1', 'string', null, true],
@@ -229,12 +239,12 @@ describe('exact matches', () => {
     );
 
     expectErrorContaining(
-      [1, 'string', null, true],
+      [1, 'string', true, true],
       [1, 'string', true],
       'different lengths'
     );
     expectErrorContaining([1], [], 'different lengths');
-    expectErrorContaining([], [1], 'different lengths');
+    expectErrorContaining([], [1], 'empty array');
   });
 
   describe('object matchers', () => {

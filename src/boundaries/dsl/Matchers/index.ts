@@ -20,6 +20,8 @@ import type {
   StringMatcher,
 } from './types';
 
+export * from './auxillary';
+
 /**
  * Matches a number.
  *

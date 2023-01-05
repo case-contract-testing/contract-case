@@ -19,14 +19,16 @@ export const matchingError = (
   matcher: AnyCaseMatcher,
   message: string,
   actual: unknown,
-  context: MatchContext
+  context: MatchContext,
+  expected?: unknown
 ): MatchingError => ({
   matcher,
   message,
   expected:
-    'case:matcher:example' in matcher
+    expected ||
+    ('case:matcher:example' in matcher
       ? matcher['case:matcher:example']
-      : context.descendAndStrip(matcher, context),
+      : context.descendAndStrip(matcher, context)),
   actual,
   location: context['case:currentRun:context:location'],
   toString: () =>

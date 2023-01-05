@@ -1,6 +1,7 @@
-import type { MatcherExecutor } from 'entities/types';
 import {
   type AnyCaseNodeType,
+  type MatcherExecutor,
+  ARRAY_LENGTH_MATCHER_TYPE,
   NUMBER_MATCHER_TYPE,
   STRING_MATCHER_TYPE,
   BOOLEAN_MATCHER_TYPE,
@@ -14,6 +15,7 @@ import {
   LOOKUP_MATCHER_TYPE,
 } from 'entities/types';
 import { CascadingContext } from './contextShift/CascadingContext';
+import { ArrayLengthExecutor } from './leaf/ArrayLengthExecutor';
 import { HttpStatusCodeMatcher } from './leaf/http/HttpStatusCodeMatcher';
 import { BooleanMatcher } from './leaf/primitives/BooleanMatcher';
 import { NullMatcher } from './leaf/primitives/NullMatcher';
@@ -38,4 +40,5 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [HTTP_RESPONSE_MATCHER_TYPE]: HttpResponseMatcher,
     [HTTP_REQUEST_MATCHER_TYPE]: HttpRequestMatcher,
     [LOOKUP_MATCHER_TYPE]: LookupMatcher,
+    [ARRAY_LENGTH_MATCHER_TYPE]: ArrayLengthExecutor,
   };
