@@ -3,6 +3,9 @@ import {
   ARRAY_LENGTH_PARAMETER_INFINITE,
   ARRAY_LENGTH_MATCHER_TYPE,
   CoreArrayLengthMatcher,
+  AnyCaseNodeOrData,
+  CoreAndCombinationMatcher,
+  AND_COMBINATION_MATCHER,
 } from 'entities/types';
 
 type ArrayLengthOptions = { minLength?: number; maxLength?: number };
@@ -30,3 +33,10 @@ export const arrayLength = ({
   }
   return matcher;
 };
+
+export const and = (
+  ...matchers: AnyCaseNodeOrData[]
+): CoreAndCombinationMatcher => ({
+  'case:matcher:type': AND_COMBINATION_MATCHER,
+  'case:matcher:children': [...matchers],
+});

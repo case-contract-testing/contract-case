@@ -13,19 +13,24 @@ import {
   HTTP_RESPONSE_MATCHER_TYPE,
   HTTP_REQUEST_MATCHER_TYPE,
   LOOKUP_MATCHER_TYPE,
+  AND_COMBINATION_MATCHER,
 } from 'entities/types';
-import { CascadingContext } from './contextShift/CascadingContext';
-import { ArrayLengthExecutor } from './leaf/ArrayLengthExecutor';
-import { HttpStatusCodeMatcher } from './leaf/http/HttpStatusCodeMatcher';
-import { BooleanMatcher } from './leaf/primitives/BooleanMatcher';
-import { NullMatcher } from './leaf/primitives/NullMatcher';
-import { NumberMatcher } from './leaf/primitives/NumberMatcher';
-import { StringMatcher } from './leaf/primitives/StringMatcher';
-import { HttpRequestMatcher } from './structure/HttpRequestMatcher';
-import { HttpResponseMatcher } from './structure/HttpResponseMatcher';
-import { LookupMatcher } from './structure/LookupMatcher';
-import { ShapedArrayExecutor } from './structure/ShapedArrayExecutor';
-import { ShapedObjectExecutor } from './structure/ShapedObjectExecutor';
+import {
+  NumberMatcher,
+  StringMatcher,
+  BooleanMatcher,
+  NullMatcher,
+  HttpStatusCodeMatcher,
+  ArrayLengthExecutor,
+} from './leaf';
+import { AndCombinationMatcher, CascadingContext } from './auxillary';
+import {
+  ShapedArrayExecutor,
+  ShapedObjectExecutor,
+  HttpResponseMatcher,
+  HttpRequestMatcher,
+  LookupMatcher,
+} from './structure';
 
 export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
   {
@@ -41,4 +46,5 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [HTTP_REQUEST_MATCHER_TYPE]: HttpRequestMatcher,
     [LOOKUP_MATCHER_TYPE]: LookupMatcher,
     [ARRAY_LENGTH_MATCHER_TYPE]: ArrayLengthExecutor,
+    [AND_COMBINATION_MATCHER]: AndCombinationMatcher,
   };

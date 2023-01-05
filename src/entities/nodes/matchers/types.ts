@@ -19,6 +19,7 @@ export const SHAPED_ARRAY_MATCHER_TYPE = 'ArrayShape' as const;
 export const SHAPED_OBJECT_MATCHER_TYPE = 'ObjectShape' as const;
 export const LOOKUP_MATCHER_TYPE = 'Lookup' as const;
 export const ARRAY_LENGTH_MATCHER_TYPE = 'ArrayLength' as const;
+export const AND_COMBINATION_MATCHER = 'And' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
@@ -32,7 +33,8 @@ export type AnyCaseNodeType =
   | typeof HTTP_REQUEST_MATCHER_TYPE
   | typeof HTTP_RESPONSE_MATCHER_TYPE
   | typeof LOOKUP_MATCHER_TYPE
-  | typeof ARRAY_LENGTH_MATCHER_TYPE;
+  | typeof ARRAY_LENGTH_MATCHER_TYPE
+  | typeof AND_COMBINATION_MATCHER;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -84,7 +86,8 @@ export type AnyCaseMatcher =
   | CoreHttpRequestMatcher
   | CoreHttpResponseMatcher
   | LookupableMatcher
-  | CoreArrayLengthMatcher;
+  | CoreArrayLengthMatcher
+  | CoreAndCombinationMatcher;
 
 export interface LookupableMatcher {
   'case:matcher:type': typeof LOOKUP_MATCHER_TYPE;
@@ -163,4 +166,9 @@ export interface CoreArrayLengthMatcher {
   'case:matcher:type': typeof ARRAY_LENGTH_MATCHER_TYPE;
   'case:matcher:minLength': number;
   'case:matcher:maxLength': number | typeof ARRAY_LENGTH_PARAMETER_INFINITE;
+}
+
+export interface CoreAndCombinationMatcher {
+  'case:matcher:type': typeof AND_COMBINATION_MATCHER;
+  'case:matcher:children': Array<AnyCaseNodeOrData>;
 }

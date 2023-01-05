@@ -78,7 +78,7 @@ Later major features
 
 Cool features
 
-- [ ] And matcher
+- [x] And matcher
 - [ ] Pact compatibility
 - [ ] Call-out matchers that call out to another service
 - [ ] Matcher structure / use verification
