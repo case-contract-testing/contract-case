@@ -1,11 +1,10 @@
 import type {
   AnyCaseNodeOrData,
   AnyCaseNodeType,
-  AnyLeafMatcher,
-  AnyLeafOrStructure,
   DataOrCaseNodeFor,
   LookupableMatcher,
 } from 'entities/nodes/matchers/types';
+import { arrayStartsWith } from 'boundaries/dsl/Matchers';
 import type { Logger } from 'entities/logger/types';
 import { resultPrinter } from 'connectors/resultPrinter';
 import { traversals } from 'diffmatch';
@@ -64,7 +63,7 @@ const logger: () => Logger = () => ({
 });
 
 const expectErrorContaining = (
-  matcher: AnyLeafMatcher | AnyLeafOrStructure,
+  matcher: AnyCaseNodeOrData,
   example: unknown,
   expectedContent: string
 ) => {
@@ -174,15 +173,17 @@ describe('exact matches', () => {
       ).toStrictEqual([]);
     });
 
-    it('accepts an array with extra values types', async () => {
-      expect(
-        await coreCheckMatch(
-          [1, 'string', null],
-          [1, 'string', null, true],
-          logger
-        )
-      ).toStrictEqual([]);
-    });
+    expectErrorContaining(
+      [1, 'string', null],
+      [1, 'string', null, true],
+      'over the maximum length'
+    );
+
+    expectErrorContaining(
+      [1, 'string', null, true],
+      [1, 'string', null],
+      'under the minimum length'
+    );
 
     expectErrorContaining(
       [1, 'string', null, true],
@@ -396,5 +397,22 @@ describe('exact matches', () => {
         "missing key 'succeed'"
       );
     });
+  });
+  describe('array starts with', () => {
+    it('accepts an array with extra values', async () => {
+      expect(
+        await coreCheckMatch(
+          arrayStartsWith([1, 'string', null]),
+          [1, 'string', null, true],
+          logger
+        )
+      ).toStrictEqual([]);
+    });
+
+    expectErrorContaining(
+      arrayStartsWith([1, 'string', null]),
+      [1, 'other string'],
+      'Array has different lengths'
+    );
   });
 });

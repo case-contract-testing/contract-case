@@ -1,11 +1,13 @@
-import { CaseConfigurationError } from 'entities';
+import { CaseConfigurationError, coreShapedArrayMatcher } from 'entities';
 import {
-  ARRAY_LENGTH_PARAMETER_INFINITE,
-  ARRAY_LENGTH_MATCHER_TYPE,
+  coreAndMatcher,
+  coreArrayLengthMatcher,
+} from 'entities/nodes/matchers/auxillary';
+import type {
   CoreArrayLengthMatcher,
   AnyCaseNodeOrData,
   CoreAndCombinationMatcher,
-  AND_COMBINATION_MATCHER,
+  CoreShapedArrayMatcher,
 } from 'entities/types';
 
 type ArrayLengthOptions = { minLength?: number; maxLength?: number };
@@ -13,30 +15,33 @@ type ArrayLengthOptions = { minLength?: number; maxLength?: number };
 /**
  * Matches an Array whose length is within a certain range.
  *
- * @param options
+ * @param options `ArrayLengthOptions { minLength?: number; maxLength?: number }`
  */
-export const arrayLength = ({
-  minLength,
-  maxLength,
-}: ArrayLengthOptions): CoreArrayLengthMatcher => {
-  const matcher = {
-    'case:matcher:type': ARRAY_LENGTH_MATCHER_TYPE,
-    'case:matcher:minLength': minLength !== undefined ? minLength : 1,
-    'case:matcher:maxLength':
-      maxLength !== undefined ? maxLength : ARRAY_LENGTH_PARAMETER_INFINITE,
-  };
-  if (matcher['case:matcher:minLength'] === 0) {
+export const arrayLength = (
+  options: ArrayLengthOptions
+): CoreArrayLengthMatcher => {
+  const matcher = coreArrayLengthMatcher(options);
+  if (
+    matcher['case:matcher:minLength'] === 0 &&
+    matcher['case:matcher:maxLength'] !== 0
+  ) {
     throw new CaseConfigurationError(
-      "Can't create an arrayLength matcher with minimum size 0. Use a raw empty array instead. See the documentation for details."
+      "Can't create an arrayLength matcher with minimum size 0 and maximum size not 0. Use a raw empty array instead. See the documentation for details."
     );
     // TODO write documentation for this
   }
   return matcher;
 };
 
+/**
+ * Matches an Array whose length is within a certain range.
+ *
+ * @param options
+ */
 export const and = (
   ...matchers: AnyCaseNodeOrData[]
-): CoreAndCombinationMatcher => ({
-  'case:matcher:type': AND_COMBINATION_MATCHER,
-  'case:matcher:children': [...matchers],
-});
+): CoreAndCombinationMatcher => coreAndMatcher(...matchers);
+
+export const arrayStartsWith = (
+  matchers: AnyCaseNodeOrData[]
+): CoreShapedArrayMatcher => coreShapedArrayMatcher(matchers);

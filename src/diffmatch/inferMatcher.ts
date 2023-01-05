@@ -1,3 +1,7 @@
+import {
+  coreAndMatcher,
+  coreArrayLengthMatcher,
+} from 'entities/nodes/matchers/auxillary';
 import * as leafMatchers from 'entities/nodes/matchers/leaf';
 import {
   coreShapedArrayMatcher,
@@ -28,7 +32,13 @@ export const inferMatcher = <T extends AnyCaseNodeType>(
   }
 
   if (Array.isArray(matcherOrData)) {
-    return coreShapedArrayMatcher(matcherOrData);
+    return coreAndMatcher(
+      coreShapedArrayMatcher(matcherOrData),
+      coreArrayLengthMatcher({
+        minLength: matcherOrData.length,
+        maxLength: matcherOrData.length,
+      })
+    );
   }
 
   if (isCaseNode(matcherOrData)) {
