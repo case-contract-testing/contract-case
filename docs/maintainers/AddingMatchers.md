@@ -1,4 +1,4 @@
-## How to add a new matcher
+## Case Maintainer Documentation: How to add a new matcher
 
 This describes the process to add in a new matcher for maintainers.
 Adding a new matcher as a plugin will be a subset of these steps.
