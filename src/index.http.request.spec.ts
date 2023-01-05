@@ -6,7 +6,6 @@ import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
 import type { Assertable } from 'entities/types';
 import { httpStatus, shapedLike } from 'boundaries/dsl/Matchers';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
-import type { CaseConfig } from 'connectors/contract/core/types';
 import { readContract } from 'connectors/contract/writer/fileSystem';
 import type { RunTestCallback } from 'connectors/contract/types';
 import type { StateFunctions } from 'entities/states/types';
@@ -32,13 +31,9 @@ describe('e2e http consumer driven', () => {
     }
   });
   describe('test and write contract', () => {
-    const config: CaseConfig = {
-      logLevel: 'maintainerDebug',
-    };
     const contract = new CaseContract(contractDetails, {
       testRunId: '12',
-      logLevel: 'maintainerDebug',
-    } as CaseConfig);
+    });
 
     afterAll(() => contract.endRecord());
     let context: Assertable<'ConsumeHttpResponse'>;
@@ -55,8 +50,7 @@ describe('e2e http consumer driven', () => {
                   path: '/health',
                 },
                 response: { status: 200, body: { status: 'up' } },
-              }),
-              config
+              })
             );
           });
 
@@ -87,8 +81,7 @@ describe('e2e http consumer driven', () => {
                   status: 200,
                   body: shapedLike({ status: 'whatever' }),
                 },
-              }),
-              config
+              })
             );
           });
 
@@ -120,8 +113,7 @@ describe('e2e http consumer driven', () => {
                 path: '/health',
               },
               response: { status: httpStatus(['4XX', '5XX']) },
-            }),
-            config
+            })
           );
         });
 
@@ -154,8 +146,7 @@ describe('e2e http consumer driven', () => {
                 path: '/health',
               },
               response: { status: 503, body: { status: 'down' } },
-            }),
-            config
+            })
           );
         });
 
