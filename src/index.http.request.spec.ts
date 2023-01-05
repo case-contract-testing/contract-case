@@ -25,8 +25,8 @@ const contractDetails = {
 describe('e2e http consumer driven', () => {
   beforeAll(() => {
     try {
-      fs.rmSync('temp-contracts', { recursive: true });
-      fs.mkdirSync('temp-contracts');
+      fs.rmSync('case-contracts', { recursive: true });
+      fs.mkdirSync('case-contracts');
     } catch (e) {
       // We don't care if this fails
     }
@@ -35,7 +35,10 @@ describe('e2e http consumer driven', () => {
     const config: CaseConfig = {
       logLevel: 'maintainerDebug',
     };
-    const contract = new CaseContract(contractDetails, {});
+    const contract = new CaseContract(contractDetails, {
+      testRunId: '12',
+      logLevel: 'maintainerDebug',
+    } as CaseConfig);
 
     afterAll(() => contract.endRecord());
     let context: Assertable<'ConsumeHttpResponse'>;
@@ -184,7 +187,7 @@ describe('e2e http consumer driven', () => {
     };
     const verifier = new CaseVerifier(
       readContract(
-        'temp-contracts/http-response-consumer-http-response-provider-12.case.json'
+        'case-contracts/http-response-consumer-http-response-provider-12.case.json'
       ),
       { baseUrlUnderTest: `http://localhost:${port}` }
     );

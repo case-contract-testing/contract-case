@@ -42,7 +42,7 @@ export class CaseContract extends BaseCaseContract {
   setup<T extends AnyInteractionType>(
     states: Array<AnyState>,
     interaction: CaseInteractionFor<T>,
-    runConfig: CaseConfig = DEFAULT_CONFIG
+    runConfig?: CaseConfig
   ): Promise<Assertable<T>> {
     return setupAssert(
       states,
@@ -50,7 +50,7 @@ export class CaseContract extends BaseCaseContract {
       applyNodeToContext(
         interaction,
         this.initialContext,
-        configToRunContext(runConfig)
+        runConfig ? configToRunContext(runConfig) : {}
       ),
       this
     );

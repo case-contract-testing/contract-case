@@ -3,7 +3,11 @@ import { makeLogger as defaultMakeLogger } from 'connectors/logger';
 import type { Logger } from 'entities/logger/types';
 import { traversals } from 'diffmatch/traversals';
 import { resultPrinter } from 'connectors/resultPrinter';
-import { configToRunContext } from 'connectors/contract/core/setup';
+import {
+  configToRunContext,
+  DEFAULT_CONFIG,
+  DEFAULT_TEST_ID,
+} from 'connectors/contract/core/setup';
 import { applyNodeToContext, constructInitialContext } from 'entities/context';
 import type {
   AnyCaseNodeOrData,
@@ -43,8 +47,18 @@ export class BaseCaseContract {
       makeLogger,
       contractFns,
       resultPrinter,
-      configToRunContext(config)
+      { ...configToRunContext(DEFAULT_CONFIG), ...configToRunContext(config) }
     );
+
+    if (
+      this.initialContext['case:currentRun:context:testRunId'] ===
+      DEFAULT_TEST_ID
+    ) {
+      this.initialContext.logger.warn(
+        "The 'testRunId' config property has not been set for this run. It is recommended to set it for each CaseContract() or CaseVerifier() invocation."
+        // TODO: put in a URL to the documentation here
+      );
+    }
   }
 
   saveLookupableMatcher(

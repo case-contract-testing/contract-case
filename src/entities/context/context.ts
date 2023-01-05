@@ -21,7 +21,7 @@ import type {
 } from './types';
 
 /**
- * `case:run:context:*` is not clobberable by child matchers
+ * `case:currentRun:context:*` is not clobberable by child matchers
  * `case:context:*` is clobberable by child matchers
  */
 const DEFAULT_CONTEXT: DefaultContext = {

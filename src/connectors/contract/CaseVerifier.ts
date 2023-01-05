@@ -18,7 +18,11 @@ export class CaseVerifier extends BaseCaseContract {
     config: CaseConfig = DEFAULT_CONFIG,
     makeLogger: (context: LogLevelContext) => Logger = defaultMakeLogger
   ) {
-    super(contractFile.description, config, makeLogger);
+    super(
+      contractFile.description,
+      { testRunId: 'VERIFIER', ...config },
+      makeLogger
+    );
     this.currentContract = contractFile;
   }
 

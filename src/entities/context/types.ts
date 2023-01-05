@@ -48,6 +48,7 @@ export type MatchContext = TraversalFns &
   ContextLoggers &
   ContractContextFns &
   Partial<InjectableContext> &
+  Partial<ContractFileConfig> &
   HasLocation &
   LogLevelContext &
   RunContext;
@@ -64,6 +65,14 @@ export type LoggableContext = Omit<
 export type LogLevelContext = HasLocation & {
   'case:currentRun:context:logLevel': LogLevel;
 };
+
+export interface ContractFileConfig {
+  'case:currentRun:context:testRunId': string;
+  'case:currentRun:context:contractDir': string;
+}
+
+export type MatchContextWithContractFileConfig = MatchContext &
+  ContractFileConfig;
 
 export type DefaultContext = HasLocation &
   LogLevelContext & {

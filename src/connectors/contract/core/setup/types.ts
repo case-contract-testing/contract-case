@@ -5,6 +5,10 @@ import type { HttpResponseProviderConfig } from './connectors/types';
 
 export type SetupFns = { [T in AnyInteractionType]: InteractionSetupFn<T> };
 
-export type CaseConfig = Partial<HttpResponseProviderConfig> & {
-  logLevel?: LogLevel;
+export type BaseCaseConfig = {
+  logLevel: LogLevel;
+  contractDir: string;
+  testRunId: string;
 };
+export type CaseConfig = Partial<HttpResponseProviderConfig> &
+  Partial<BaseCaseConfig>;
