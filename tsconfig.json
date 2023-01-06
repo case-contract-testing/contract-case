@@ -6,8 +6,10 @@
     "strict": true,
     "rootDir": "./src",
     "baseUrl": "src",
+    "declaration": true,
+    "declarationMap": true,
     "allowJs": true
   },
 
-  "exclude": ["jest.config.ts", "dist/**/*.js", "example/*", "coverage"]
+  "exclude": ["jest.config.ts", "dist/**/*", "example/*", "coverage"]
 }
