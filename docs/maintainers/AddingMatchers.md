@@ -89,6 +89,27 @@ Next, we will add the behaviour of the matcher, both for matching, and for strip
 
 Create a DSL function that creates your matcher type, for example:
 
+```
+/**
+ * Everything inside this matcher will be matched exactly, unless overridden with an `any*` matcher
+ *
+ * Use this to switch out of `shapedLike` and back to the default exact matching.
+ *
+ * @param content What
+ */
+export const exactlyLike = (
+  content: AnyCaseNodeOrData
+): CoreCascadingMatcher => ({
+  'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+  'case:matcher:child': content,
+  'case:context:matchBy': 'exact',
+});
+```
+
+If your matcher needs some double checking or additional processing (eg invoking
+other matchers to make a composite matcher), do it in the DSL layer. The matcher
+functions in the entities layer are intended to be data only.
+
 ### Test it
 
 Add or create additional tests at the top level (see `index.*.spec.ts` for examples)
