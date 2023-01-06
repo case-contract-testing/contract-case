@@ -49,6 +49,7 @@ Pact Parity
   - [x] Primitive matchers
   - [x] Cascading array and object matchers
   - [x] shapedLike matchers
+  - [x] Array each like
   - [ ] Object keys
   - [ ] Object values only
   - [ ] String includes
@@ -175,3 +176,4 @@ Here I write notes to myself to make sure I don't miss anything
 - [ ] Make loggable context explicit instead of calculated - or, calculate it better.
 - [x] Remove logLevel setting and do it with context instead, allowing localised logging
 - [ ] Do we need to give the `and` matcher an optional example?
+- [ ] Examples might have matchers in them, need to strip those too

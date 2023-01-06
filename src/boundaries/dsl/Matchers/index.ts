@@ -12,7 +12,11 @@ import {
   AnyCaseNodeOrData,
   LookupableMatcher,
 } from 'entities/nodes/matchers/types';
-import type { CoreHttpStatusCodeMatcher } from 'entities/types';
+import {
+  ARRAY_EACH_ENTRY_MATCHES,
+  CoreArrayEachEntryMatches,
+  CoreHttpStatusCodeMatcher,
+} from 'entities/types';
 import type {
   BooleanMatcher,
   NullMatcher,
@@ -90,7 +94,7 @@ export const exactlyLike = (
  *
  * Use this to switch out of the default `exactlyLike` matching.
  *
- * @param content What
+ * @param content The example object, array, primitive or matcher to match against
  */
 export const shapedLike = (
   content: AnyCaseNodeOrData
@@ -98,6 +102,20 @@ export const shapedLike = (
   'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   'case:matcher:child': content,
   'case:context:matchBy': 'type',
+});
+
+/**
+ * Matches an array where each element matches the provided matcher.
+ *
+ * @param matcher The example object, array, primitive or matcher to match against
+ */
+export const arrayEachEntryMatches = (
+  matcher: AnyCaseNodeOrData,
+  example?: Array<AnyCaseNodeOrData>
+): CoreArrayEachEntryMatches => ({
+  'case:matcher:type': ARRAY_EACH_ENTRY_MATCHES,
+  'case:matcher:matcher': matcher,
+  ...(example !== undefined ? { 'case:matcher:example': example } : {}),
 });
 
 /**

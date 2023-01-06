@@ -1,8 +1,15 @@
 import type { AnyCaseNodeOrData } from 'entities/nodes/matchers/types';
-import { arrayStartsWith } from 'boundaries/dsl/Matchers';
+import {
+  arrayStartsWith,
+  arrayEachEntryMatches,
+  shapedLike,
+  anyString,
+  anyNumber,
+} from 'boundaries/dsl/Matchers';
 import type {} from 'entities//types';
 import { CaseContract } from 'boundaries';
 import { DEFAULT_CONFIG } from 'connectors/contract/core';
+import { makeNoErrorResult } from 'entities/results';
 
 describe('basic types and structure checks', () => {
   const contract = new CaseContract(
@@ -373,6 +380,87 @@ describe('basic types and structure checks', () => {
         [1, 'other string'],
         'Array has different lengths'
       );
+    });
+  });
+
+  describe('array each like with', () => {
+    describe('with a single primitive matcher', () => {
+      const matcher = arrayEachEntryMatches(1);
+      it('accepts an array with extra values', async () => {
+        expect(await contract.checkMatch(matcher, [1, 1, 1, 1])).toStrictEqual(
+          makeNoErrorResult()
+        );
+      });
+
+      it('accepts an array with one value', async () => {
+        expect(await contract.checkMatch(matcher, [1, 1, 1, 1])).toStrictEqual(
+          makeNoErrorResult()
+        );
+      });
+      expectErrorContaining(matcher, [], 'Expected a non-empty array');
+      expectErrorContaining(matcher, [2], 'not exactly equal');
+      expectErrorContaining(matcher, [1, 1, true], 'not exactly equal');
+
+      it('strips matchers with one example', () => {
+        expect(contract.stripMatchers(matcher)).toEqual([1]);
+      });
+    });
+
+    describe('with a single primitive matcher and an example', () => {
+      const matcher = arrayEachEntryMatches(1, [1, 1, 1]);
+      it('accepts an array with extra values', async () => {
+        expect(await contract.checkMatch(matcher, [1, 1, 1, 1])).toStrictEqual(
+          makeNoErrorResult()
+        );
+      });
+
+      it('accepts an array with one value', async () => {
+        expect(await contract.checkMatch(matcher, [1, 1, 1, 1])).toStrictEqual(
+          makeNoErrorResult()
+        );
+      });
+      expectErrorContaining(matcher, [], 'Expected a non-empty array');
+      expectErrorContaining(matcher, [2], 'not exactly equal');
+      expectErrorContaining(matcher, [1, 1, true], 'not exactly equal');
+
+      it('strips matchers with the provided example', () => {
+        expect(contract.stripMatchers(matcher)).toEqual([1, 1, 1]);
+      });
+    });
+    describe('with a complex matcher and an example', () => {
+      const matcher = arrayEachEntryMatches(
+        shapedLike({ someString: anyString(), someNumber: anyNumber() })
+      );
+      it('accepts an array with extra values', async () => {
+        expect(
+          await contract.checkMatch(matcher, [
+            { someString: 'a', someNumber: 1 },
+            { someString: 'b', someNumber: 3 },
+            { someString: 'b', someNumber: 3, someOtherProperty: 'foo' },
+          ])
+        ).toStrictEqual(makeNoErrorResult());
+      });
+
+      it('accepts an array with one value', async () => {
+        expect(
+          await contract.checkMatch(matcher, [
+            { someString: 'a', someNumber: 1 },
+          ])
+        ).toStrictEqual(makeNoErrorResult());
+      });
+      expectErrorContaining(matcher, [], 'Expected a non-empty array');
+      expectErrorContaining(matcher, [2], 'Expected an object');
+      expectErrorContaining(
+        matcher,
+        [{ someString: 'a', someNumber: '1' }],
+        'not a number'
+      );
+
+      it('strips matchers with the provided example', () => {
+        expect(contract.stripMatchers(matcher)).toEqual([
+          { someString: 'someString', someNumber: 1.1 },
+        ]);
+      });
     });
   });
 });

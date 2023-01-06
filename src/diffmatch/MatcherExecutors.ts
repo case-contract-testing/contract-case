@@ -14,6 +14,7 @@ import {
   HTTP_REQUEST_MATCHER_TYPE,
   LOOKUP_MATCHER_TYPE,
   AND_COMBINATION_MATCHER,
+  ARRAY_EACH_ENTRY_MATCHES,
 } from 'entities/types';
 import {
   NumberMatcher,
@@ -30,6 +31,7 @@ import {
   HttpResponseMatcher,
   HttpRequestMatcher,
   LookupMatcher,
+  EachArrayEntryMatches,
 } from './structure';
 
 export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
@@ -47,4 +49,5 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [LOOKUP_MATCHER_TYPE]: LookupMatcher,
     [ARRAY_LENGTH_MATCHER_TYPE]: ArrayLengthExecutor,
     [AND_COMBINATION_MATCHER]: AndCombinationMatcher,
+    [ARRAY_EACH_ENTRY_MATCHES]: EachArrayEntryMatches,
   };
