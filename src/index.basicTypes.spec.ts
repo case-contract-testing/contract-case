@@ -5,6 +5,7 @@ import {
   shapedLike,
   anyString,
   anyNumber,
+  objectEachValueMatches,
 } from 'boundaries/dsl/Matchers';
 import type {} from 'entities//types';
 import { CaseContract } from 'boundaries';
@@ -383,7 +384,7 @@ describe('basic types and structure checks', () => {
     });
   });
 
-  describe('array each like with', () => {
+  describe('array each like', () => {
     describe('with a single primitive matcher', () => {
       const matcher = arrayEachEntryMatches(1);
       it('accepts an array with extra values', async () => {
@@ -462,5 +463,25 @@ describe('basic types and structure checks', () => {
         ]);
       });
     });
+  });
+  describe('object each value', () => {
+    const matcher = objectEachValueMatches('exact string');
+    it('accepts an object with one value', async () => {
+      expect(
+        await contract.checkMatch(matcher, { someKey: 'exact string' })
+      ).toStrictEqual(makeNoErrorResult());
+    });
+
+    it('accepts an object with multiple values', async () => {
+      expect(
+        await contract.checkMatch(matcher, {
+          someKey: 'exact string',
+          someOtherKey: 'exact string',
+        })
+      ).toStrictEqual(makeNoErrorResult());
+    });
+
+    expectErrorContaining(matcher, {}, 'at least one key property');
+    expectErrorContaining(matcher, { someKey: 1 }, 'not a string');
   });
 });

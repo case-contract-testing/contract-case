@@ -51,7 +51,7 @@ Pact Parity
   - [x] shapedLike matchers
   - [x] Array each like
   - [ ] Object keys
-  - [ ] Object values only
+  - [x] Object values only
   - [ ] String includes
   - [ ] Array contains
   - [ ] Integer
@@ -135,6 +135,7 @@ Internals
 - [ ] Review test harness and separate into a dedicated module
 - [ ] Warn on unused lookup matchers?
 - [ ] Indentation on test output
+- [ ] Better system for stripping matchers with `and()` - maybe `{ items, keys, structure }`?
 
 Errors
 
@@ -177,3 +178,4 @@ Here I write notes to myself to make sure I don't miss anything
 - [x] Remove logLevel setting and do it with context instead, allowing localised logging
 - [ ] Do we need to give the `and` matcher an optional example?
 - [ ] Examples might have matchers in them, need to strip those too
+- [ ] Can / should we give every matcher an optional example?

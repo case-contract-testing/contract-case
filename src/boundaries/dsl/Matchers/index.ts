@@ -16,6 +16,8 @@ import {
   ARRAY_EACH_ENTRY_MATCHES,
   CoreArrayEachEntryMatches,
   CoreHttpStatusCodeMatcher,
+  CoreObjectValuesMatch,
+  OBJECT_VALUES_MATCH,
 } from 'entities/types';
 import type {
   BooleanMatcher,
@@ -114,6 +116,20 @@ export const arrayEachEntryMatches = (
   example?: Array<AnyCaseNodeOrData>
 ): CoreArrayEachEntryMatches => ({
   'case:matcher:type': ARRAY_EACH_ENTRY_MATCHES,
+  'case:matcher:matcher': matcher,
+  ...(example !== undefined ? { 'case:matcher:example': example } : {}),
+});
+
+/**
+ * Matches an object where each value matches the provided matcher.
+ *
+ * @param matcher The example object, array, primitive or matcher to match against
+ */
+export const objectEachValueMatches = (
+  matcher: AnyCaseNodeOrData,
+  example?: Record<string, AnyCaseNodeOrData>
+): CoreObjectValuesMatch => ({
+  'case:matcher:type': OBJECT_VALUES_MATCH,
   'case:matcher:matcher': matcher,
   ...(example !== undefined ? { 'case:matcher:example': example } : {}),
 });
