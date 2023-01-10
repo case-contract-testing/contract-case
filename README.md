@@ -43,7 +43,7 @@ Pact Parity
 
 - [ ] JVM / Python / Go / C# bindings
 - [x] Strip matchers
-- [x] Logging
+- [x] Loggingq
 - [x] Random port startup
 - [ ] Convenience matchers
   - [x] Primitive matchers
@@ -129,6 +129,7 @@ Internals
 - [ ] Errors that don't have associated matchers
 - [ ] Error collapsers, so if the same spot produces the same errors for different reasons it will only be reported once.
 - [ ] "Is this interaction the same as that"?
+- [ ] Do state handlers in order they're defined instead of all at once
 - [ ] Broker CLI / integration?
 - [ ] Release plan that includes version number - can we just import this like we did in pact? It would be nice if it was accurate.
 - [ ] Fix global import issue - probably post process the dist directory. Or rewrite all the imports :/
