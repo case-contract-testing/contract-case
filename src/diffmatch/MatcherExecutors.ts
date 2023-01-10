@@ -30,13 +30,12 @@ import {
   ArrayLengthExecutor,
   IntegerMatcher,
 } from './leaf';
-import { AndCombinationMatcher, CascadingContext } from './meta';
+import { AndCombinationMatcher, CascadingContext, LookupMatcher } from './meta';
 import {
   ShapedArrayExecutor,
   ShapedObjectExecutor,
   HttpResponseMatcher,
   HttpRequestMatcher,
-  LookupMatcher,
   EachArrayEntryMatches,
   ObjectEachValueMatches,
   ArrayContains,
