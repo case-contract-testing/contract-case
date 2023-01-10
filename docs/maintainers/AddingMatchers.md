@@ -76,6 +76,10 @@ Next, we will add the behaviour of the matcher, both for matching, and for strip
    If your matcher doesn't have enough context to strip matchers (eg, for
    auxillery matchers designed to be used with `and()`), then throw a `new StripUnsupportedError(matcher, matchContext)` inside your implementation of `strip()`.
 
+   Note that matcher executors are not allowed to call other matcher executors -
+   only `descendAndCheck()`. If you need to combine matchers, do it at the DSL
+   layer with `and()`
+
 2. Add the matcher executor to `MatcherExecutors.ts`:
    ```
    export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
