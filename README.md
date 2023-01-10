@@ -177,6 +177,6 @@ Here I write notes to myself to make sure I don't miss anything
 - [ ] Review the invert contract logic, possibly this can be removed too.
 - [ ] Make loggable context explicit instead of calculated - or, calculate it better.
 - [x] Remove logLevel setting and do it with context instead, allowing localised logging
-- [ ] Do we need to give the `and` matcher an optional example?
-- [ ] Examples might have matchers in them, need to strip those too
-- [ ] Can / should we give every matcher an optional example?
+- [x] Do we need to give the `and` matcher an optional example?
+- [x] Examples might have matchers in them, need to strip those too
+- [x] Can / should we give every matcher an optional example?
