@@ -9,7 +9,7 @@ import { executeSetupHandlers, executeTeardownHandlers } from './stateHandlers';
 export const executeVerification =
   (
     example: CaseExample,
-    exampleIndex: number,
+    exampleIndex: string,
     stateSetups: StateFunctions,
     context: MatchContext
   ): (() => Promise<void>) =>

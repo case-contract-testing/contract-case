@@ -44,7 +44,7 @@ const printError = (error: MatchingError): void => {
   );
 };
 
-const printFailureTitle = (example: CaseExample, index: number): void => {
+const printFailureTitle = (example: CaseExample, index: string): void => {
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
     `\n${spaces(3)}  ${chalk.red(`✘`)} ${chalk.whiteBright(
@@ -53,7 +53,7 @@ const printFailureTitle = (example: CaseExample, index: number): void => {
   );
 };
 
-const printSuccessTitle = (example: CaseExample, index: number): void => {
+const printSuccessTitle = (example: CaseExample, index: string): void => {
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
     `\n${spaces(3)}  ${chalk.greenBright(`✅`)} ${chalk.whiteBright(

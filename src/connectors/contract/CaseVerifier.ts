@@ -32,10 +32,10 @@ export class CaseVerifier extends BaseCaseContract {
   ): void {
     this.currentContract.examples.forEach((example, index) => {
       runTestCb(
-        nameExample(example, index),
+        nameExample(example, `${index}`),
         executeVerification(
           example,
-          index,
+          `${index}`,
           stateSetups,
           applyNodeToContext(example.interaction, this.initialContext, {
             'case:currentRun:context:expectation': 'produce',

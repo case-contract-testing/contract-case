@@ -53,18 +53,17 @@ export const setupHandledAssert = <T extends AnyInteractionType>(
       ...assertable,
       assert: () =>
         assertable.assert().then((result: MatchResult) => {
-          context.logger.warn('NOT YET IMPLEMENTED: Index of interaction');
           if (hasErrors(result)) {
             handleResult(
               contract.recordFailure(interaction, states, context, result),
-              0,
+              context['case:currentRun:context:testName'],
               result,
               context
             );
           } else {
             handleResult(
               contract.recordSuccess(interaction, states, context),
-              0,
+              context['case:currentRun:context:testName'],
               result,
               context
             );

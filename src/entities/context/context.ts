@@ -83,6 +83,7 @@ export const constructInitialContext = (
     ...traversals,
     ...DEFAULT_CONTEXT,
     'case:currentRun:context:location': [],
+    'case:currentRun:context:testName': 'OUTSIDE_TESTS' as const,
     ...runConfig,
   };
 

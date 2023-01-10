@@ -2,7 +2,7 @@ import type { CaseExample } from './types';
 
 export const nameExample = (
   { states, interaction }: CaseExample,
-  index: number
+  index: string
 ): string => {
   if (interaction['case:interaction:uniqueName']) {
     return interaction['case:interaction:uniqueName'];

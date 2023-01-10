@@ -31,6 +31,8 @@ import { addExample, hasFailure } from './structure';
 import { writeContract } from './writer/fileSystem';
 
 export class CaseContract extends BaseCaseContract {
+  testIndex = 0;
+
   constructor(
     description: ContractDescription,
     config: CaseConfig = DEFAULT_CONFIG,
@@ -44,14 +46,16 @@ export class CaseContract extends BaseCaseContract {
     interaction: CaseInteractionFor<T>,
     runConfig?: CaseConfig
   ): Promise<Assertable<T>> {
+    const thisIndex = this.testIndex;
+    this.testIndex += 1;
+
     return setupHandledAssert(
       states,
       interaction,
-      applyNodeToContext(
-        interaction,
-        this.initialContext,
-        runConfig ? configToRunContext(runConfig) : {}
-      ),
+      applyNodeToContext(interaction, this.initialContext, {
+        ...(runConfig ? configToRunContext(runConfig) : {}),
+        'case:currentRun:context:testName': `${thisIndex}`,
+      }),
       this
     );
   }

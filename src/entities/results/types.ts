@@ -14,6 +14,6 @@ export type MatchResult = Array<MatchingError>;
 
 export type ResultPrinter = {
   printError: (e: MatchingError) => void;
-  printSuccessTitle: (example: CaseExample, index: number) => void;
-  printFailureTitle: (example: CaseExample, index: number) => void;
+  printSuccessTitle: (example: CaseExample, index: string) => void;
+  printFailureTitle: (example: CaseExample, index: string) => void;
 };

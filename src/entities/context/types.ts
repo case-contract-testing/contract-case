@@ -97,6 +97,7 @@ export interface HasBaseUrlUnderTest {
 export interface RunContext
   extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest> {
   'case:run:context:tree'?: AnyCaseNodeOrData | AnyInteraction;
+  'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
 }
 
 export interface MatchContextByType {

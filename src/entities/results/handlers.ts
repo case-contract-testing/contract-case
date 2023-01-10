@@ -6,7 +6,7 @@ import type { MatchResult } from './types';
 
 export const handleResult = (
   example: CaseExample,
-  exampleIndex: number,
+  exampleIndex: string,
   matchResult: MatchResult,
   context: MatchContext
 ): void => {
