@@ -3,11 +3,13 @@ import {
   coreAndMatcher,
   coreArrayLengthMatcher,
 } from 'entities/nodes/matchers/auxillary';
-import type {
+import {
   CoreArrayLengthMatcher,
   AnyCaseNodeOrData,
   CoreAndCombinationMatcher,
   CoreShapedArrayMatcher,
+  CoreArrayContainsMatch,
+  ARRAY_CONTAINS_MATCH,
 } from 'entities/types';
 
 type ArrayLengthOptions = { minLength?: number; maxLength?: number };
@@ -32,6 +34,18 @@ export const arrayLength = (
   }
   return matcher;
 };
+
+/**
+ * Matches an Array which contains elements that match the given matchers
+ *
+ * @param matchers
+ */
+export const arrayContains = (
+  ...matchers: AnyCaseNodeOrData[]
+): CoreArrayContainsMatch => ({
+  'case:matcher:type': ARRAY_CONTAINS_MATCH,
+  'case:matcher:matchers': matchers,
+});
 
 /**
  * Matches an Array whose length is within a certain range.

@@ -16,6 +16,7 @@ import {
   AND_COMBINATION_MATCHER,
   ARRAY_EACH_ENTRY_MATCHES,
   OBJECT_VALUES_MATCH,
+  ARRAY_CONTAINS_MATCH,
 } from 'entities/types';
 import {
   NumberMatcher,
@@ -34,6 +35,7 @@ import {
   LookupMatcher,
   EachArrayEntryMatches,
   ObjectEachValueMatches,
+  ArrayContains,
 } from './structure';
 
 export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
@@ -52,5 +54,6 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [ARRAY_LENGTH_MATCHER_TYPE]: ArrayLengthExecutor,
     [AND_COMBINATION_MATCHER]: AndCombinationMatcher,
     [ARRAY_EACH_ENTRY_MATCHES]: EachArrayEntryMatches,
+    [ARRAY_CONTAINS_MATCH]: ArrayContains,
     [OBJECT_VALUES_MATCH]: ObjectEachValueMatches,
   };

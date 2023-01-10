@@ -20,6 +20,7 @@ export const SHAPED_OBJECT_MATCHER_TYPE = 'ObjectShape' as const;
 export const LOOKUP_MATCHER_TYPE = 'Lookup' as const;
 export const ARRAY_LENGTH_MATCHER_TYPE = 'ArrayLength' as const;
 export const ARRAY_EACH_ENTRY_MATCHES = 'ArrayEachEntryLike' as const;
+export const ARRAY_CONTAINS_MATCH = 'ArrayContains' as const;
 export const AND_COMBINATION_MATCHER = 'And' as const;
 export const OBJECT_VALUES_MATCH = 'ObjectValuesMatch' as const;
 
@@ -38,6 +39,7 @@ export type AnyCaseNodeType =
   | typeof ARRAY_LENGTH_MATCHER_TYPE
   | typeof AND_COMBINATION_MATCHER
   | typeof ARRAY_EACH_ENTRY_MATCHES
+  | typeof ARRAY_CONTAINS_MATCH
   | typeof OBJECT_VALUES_MATCH;
 
 export const isCaseNode = (
@@ -81,19 +83,6 @@ export type AnyLeafMatcher =
   | CoreNullMatcher
   | CoreBooleanMatcher
   | CoreHttpStatusCodeMatcher;
-
-export type AnyCaseMatcher =
-  | AnyLeafMatcher
-  | CoreCascadingMatcher
-  | CoreShapedArrayMatcher
-  | CoreShapedObjectMatcher
-  | CoreHttpRequestMatcher
-  | CoreHttpResponseMatcher
-  | LookupableMatcher
-  | CoreArrayLengthMatcher
-  | CoreAndCombinationMatcher
-  | CoreArrayEachEntryMatches
-  | CoreObjectValuesMatch;
 
 export interface LookupableMatcher {
   'case:matcher:type': typeof LOOKUP_MATCHER_TYPE;
@@ -190,3 +179,22 @@ export interface CoreObjectValuesMatch {
   'case:matcher:matcher': AnyCaseNodeOrData;
   'case:matcher:example'?: Record<string, AnyCaseNodeOrData>;
 }
+
+export interface CoreArrayContainsMatch {
+  'case:matcher:type': typeof ARRAY_CONTAINS_MATCH;
+  'case:matcher:matchers': AnyCaseNodeOrData[];
+}
+
+export type AnyCaseMatcher =
+  | AnyLeafMatcher
+  | CoreCascadingMatcher
+  | CoreShapedArrayMatcher
+  | CoreShapedObjectMatcher
+  | CoreHttpRequestMatcher
+  | CoreHttpResponseMatcher
+  | LookupableMatcher
+  | CoreArrayLengthMatcher
+  | CoreAndCombinationMatcher
+  | CoreArrayEachEntryMatches
+  | CoreObjectValuesMatch
+  | CoreArrayContainsMatch;
