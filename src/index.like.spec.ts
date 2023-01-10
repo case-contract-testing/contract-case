@@ -9,16 +9,7 @@ import {
 } from 'boundaries/dsl/Matchers';
 import { CaseContract } from 'connectors/contract';
 
-import type { Logger } from 'entities/logger/types';
 import { DEFAULT_CONFIG } from 'connectors/contract/core';
-
-const makeMockLogger: () => Logger = () => ({
-  error(): void {},
-  warn(): void {},
-  info(): void {},
-  debug(): void {},
-  maintainerDebug(): void {},
-});
 
 describe('basic matchers', () => {
   let contract: CaseContract;
@@ -28,8 +19,7 @@ describe('basic matchers', () => {
         consumerName: 'test lookup consumer',
         providerName: 'test lookup provider',
       },
-      DEFAULT_CONFIG,
-      makeMockLogger
+      DEFAULT_CONFIG
     );
   });
 

@@ -3,16 +3,7 @@ import { CaseContract } from 'connectors/contract';
 import { DEFAULT_CONFIG } from 'connectors/contract/core';
 
 import { CaseConfigurationError } from 'entities';
-import type { Logger } from 'entities/logger/types';
 import type { AnyCaseNodeOrData } from 'entities/types';
-
-const makeMockLogger: () => Logger = () => ({
-  error(): void {},
-  warn(): void {},
-  info(): void {},
-  debug(): void {},
-  maintainerDebug(): void {},
-});
 
 describe('named matches', () => {
   const contract = new CaseContract(
@@ -20,8 +11,7 @@ describe('named matches', () => {
       consumerName: 'test lookup consumer',
       providerName: 'test lookup provider',
     },
-    DEFAULT_CONFIG,
-    makeMockLogger
+    DEFAULT_CONFIG
   );
 
   const expectErrorContaining = (
