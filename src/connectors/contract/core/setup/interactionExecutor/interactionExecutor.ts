@@ -6,8 +6,7 @@ import type {
 } from 'entities/nodes/interactions/types';
 import type { InteractionData } from 'entities/nodes/interactions/setup.types';
 import { addLocation } from 'entities/context';
-
-import type { SetupFns } from './types';
+import type { InteractionSetupFns } from './types';
 
 const invert = (t: AnyInteractionType): AnyInteractionType => {
   switch (t) {
@@ -45,9 +44,9 @@ const inferInteraction = <T extends AnyInteractionType>(
   return interaction;
 };
 
-const executeSetup = <T extends AnyInteractionType>(
+const executeInteraction = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
-  InteractionSetup: SetupFns,
+  InteractionSetup: InteractionSetupFns,
   context: MatchContext
 ) => {
   const interactionType: T = interaction['case:interaction:type'];
@@ -68,12 +67,12 @@ const executeSetup = <T extends AnyInteractionType>(
   return executor(interaction, addLocation(interactionType, context));
 };
 
-export const setupExecutor = <T extends AnyInteractionType>(
+export const interactionExecutor = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
-  InteractionSetup: SetupFns,
+  InteractionSetup: InteractionSetupFns,
   context: MatchContext
 ): Promise<InteractionData<T>> =>
-  executeSetup(
+  executeInteraction(
     inferInteraction(interaction, addLocation('inference', context)),
     InteractionSetup,
     context
