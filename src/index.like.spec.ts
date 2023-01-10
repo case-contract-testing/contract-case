@@ -10,6 +10,7 @@ import {
 import { CaseContract } from 'connectors/contract';
 
 import { DEFAULT_CONFIG } from 'connectors/contract/core';
+import { CaseConfigurationError } from 'entities';
 import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
 
 describe('basic matchers', () => {
@@ -36,11 +37,15 @@ describe('basic matchers', () => {
     expectErrorContaining(matcher, '1', 'not a number');
     expectErrorContaining(matcher, [], 'not a number');
     expectErrorContaining(matcher, {}, 'not a number');
-    expectErrorContaining(
-      anyNumber(Number.POSITIVE_INFINITY),
-      Number.POSITIVE_INFINITY,
-      'must be finite'
-    );
+
+    it("fails when it won't actually match", async () => {
+      await expect(
+        contract.checkMatch(
+          anyNumber(Number.POSITIVE_INFINITY),
+          Number.POSITIVE_INFINITY
+        )
+      ).rejects.toBeInstanceOf(CaseConfigurationError);
+    });
   });
 
   describe('integer matcher', () => {
@@ -60,11 +65,14 @@ describe('basic matchers', () => {
     expectErrorContaining(matcher, [], 'not a number');
     expectErrorContaining(matcher, 2.1, 'Expected an integer');
     expectErrorContaining(matcher, {}, 'not a number');
-    expectErrorContaining(
-      anyNumber(Number.POSITIVE_INFINITY),
-      Number.POSITIVE_INFINITY,
-      'must be finite'
-    );
+    it("fails when it won't actually match", async () => {
+      await expect(
+        contract.checkMatch(
+          anyNumber(Number.POSITIVE_INFINITY),
+          Number.POSITIVE_INFINITY
+        )
+      ).rejects.toBeInstanceOf(CaseConfigurationError);
+    });
   });
 
   describe('string matcher', () => {

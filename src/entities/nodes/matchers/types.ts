@@ -226,3 +226,7 @@ export type AnyCaseMatcher =
   | CoreObjectValuesMatch
   | CoreObjectKeysMatcher
   | CoreArrayContainsMatch;
+
+export type HasExample<T extends AnyCaseMatcher> = T & {
+  'case:matcher:example': unknown;
+};

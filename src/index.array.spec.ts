@@ -8,8 +8,10 @@ import {
   arrayStartsWith,
   objectEachValueMatches,
   shapedLike,
+  withExample,
 } from 'boundaries/dsl/Matchers';
 import { DEFAULT_CONFIG } from 'connectors/contract/core';
+import { CaseConfigurationError } from 'entities';
 import { makeNoErrorResult } from 'entities/results';
 import { StripUnsupportedError } from 'entities/StripUnsupportedError';
 import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
@@ -219,7 +221,7 @@ describe('basic types and structure checks', () => {
 
   describe('array length', () => {
     describe('with no parameters', () => {
-      const matcher = arrayLength({});
+      const matcher = withExample(arrayLength({}), ["I don't care about this"]);
 
       it('matches an array of length 1', async () => {
         await expect(contract.checkMatch(matcher, [1])).resolves.toEqual(
@@ -231,8 +233,41 @@ describe('basic types and structure checks', () => {
         expectErrorContaining(matcher, [], 'under the minimum length');
       });
     });
+
+    describe('Refused examples', () => {
+      it('refuses with an empty array example', async () => {
+        await expect(
+          contract.checkMatch(withExample(arrayLength({ maxLength: 2 }), []), [
+            1,
+          ])
+        ).rejects.toBeInstanceOf(CaseConfigurationError);
+      });
+
+      it('refuses with an too long array example', async () => {
+        await expect(
+          contract.checkMatch(
+            withExample(arrayLength({ maxLength: 2 }), [1, 2, 3]),
+            [1]
+          )
+        ).rejects.toBeInstanceOf(CaseConfigurationError);
+      });
+
+      it('refuses with an too short array example', async () => {
+        await expect(
+          contract.checkMatch(withExample(arrayLength({ minLength: 2 }), [1]), [
+            1,
+          ])
+        ).rejects.toBeInstanceOf(CaseConfigurationError);
+      });
+
+      it("can't strip matchers without an example", () => {
+        expect(() => {
+          contract.stripMatchers(arrayLength({ maxLength: 2 }));
+        }).toThrow(StripUnsupportedError);
+      });
+    });
     describe('with a maximum length', () => {
-      const matcher = arrayLength({ maxLength: 2 });
+      const matcher = withExample(arrayLength({ maxLength: 2 }), [1]);
 
       it('matches an array of length 1', async () => {
         await expect(contract.checkMatch(matcher, [1])).resolves.toEqual(
@@ -256,7 +291,10 @@ describe('basic types and structure checks', () => {
     });
 
     describe('with a maximum and a minimum length', () => {
-      const matcher = arrayLength({ maxLength: 3, minLength: 2 });
+      const matcher = withExample(arrayLength({ maxLength: 3, minLength: 2 }), [
+        '3',
+        '5',
+      ]);
 
       it('matches an array of length 3', async () => {
         await expect(contract.checkMatch(matcher, [1, 2, 3])).resolves.toEqual(
@@ -280,12 +318,6 @@ describe('basic types and structure checks', () => {
 
       describe('on an array of length 3', () => {
         expectErrorContaining(matcher, [1, 2, 3, 4], 'over the maximum length');
-      });
-
-      it("can't strip matchers", () => {
-        expect(() => {
-          contract.stripMatchers(matcher);
-        }).toThrow(StripUnsupportedError);
       });
     });
   });

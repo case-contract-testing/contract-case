@@ -6,6 +6,9 @@ import {
   LookupableMatcher,
   CASCADING_CONTEXT_MATCHER_TYPE,
   CoreCascadingMatcher,
+  AnyData,
+  AnyCaseMatcher,
+  HasExample,
 } from 'entities/types';
 
 /**
@@ -16,6 +19,16 @@ import {
 export const and = (
   ...matchers: AnyCaseNodeOrData[]
 ): CoreAndCombinationMatcher => coreAndMatcher(...matchers);
+
+/**
+ * Adds an example to the provided matcher
+ *
+ * @param options
+ */
+export const withExample = <T extends AnyCaseMatcher>(
+  matcher: T,
+  example: AnyData
+): HasExample<T> => ({ ...matcher, 'case:matcher:example': example });
 
 /**
  * Meta matcher that gives the matcher below it a unique name that can be reused in tests after this one.

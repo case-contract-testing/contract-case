@@ -27,7 +27,6 @@ import {
   BooleanMatcher,
   NullMatcher,
   HttpStatusCodeMatcher,
-  ArrayLengthExecutor,
   IntegerMatcher,
 } from './leaf';
 import { AndCombinationMatcher, CascadingContext, LookupMatcher } from './meta';
@@ -39,6 +38,7 @@ import {
   EachArrayEntryMatches,
   ObjectEachValueMatches,
   ArrayContains,
+  ArrayLengthExecutor,
 } from './structure';
 import { StringContainsMatcher } from './leaf/primitives/StringContainsMatcher';
 import { ObjectEachKeyMatches } from './structure/ObjectEachKeyMatches';

@@ -1,6 +1,6 @@
 import { CaseConfigurationError, CaseCoreError } from 'entities';
 import { makeLogger as defaultMakeLogger } from 'connectors/logger';
-import type { Logger } from 'entities/logger/types';
+
 import { traversals } from 'diffmatch/traversals';
 import { resultPrinter } from 'connectors/resultPrinter';
 import {
@@ -8,6 +8,7 @@ import {
   DEFAULT_CONFIG,
   DEFAULT_TEST_ID,
 } from 'connectors/contract/core/setup';
+import type { CaseConfig } from 'connectors/contract/core/types';
 import { applyNodeToContext, constructInitialContext } from 'entities/context';
 import type {
   AnyCaseNodeOrData,
@@ -19,9 +20,10 @@ import type {
   AnyData,
   DataOrCaseNodeFor,
   MatchResult,
+  ContractDescription,
+  Logger,
 } from 'entities/types';
-import type { ContractDescription } from 'entities/contract/types';
-import type { CaseConfig } from 'connectors/contract/core/types';
+import { hasErrors } from 'entities/results';
 
 import { findMatcher, makeContract, addLookupableMatcher } from './structure';
 import type { ContractFile } from './structure/types';
@@ -74,7 +76,6 @@ export class BaseCaseContract {
       );
     }
 
-    // Have to pull this out, because typescript is dumb and can't see that it's not undefined
     this.currentContract = addLookupableMatcher(
       this.currentContract,
       namedMatcher,
@@ -93,7 +94,7 @@ export class BaseCaseContract {
       );
     }
 
-    // Have to pull this out, because typescript is dumb and can't see that it's not undefined
+    // Have to pull this out, because typescript can't see that it's the same result even if we call twice
     const possibleMatch = findMatcher(this.currentContract, uniqueName);
     if (possibleMatch !== undefined) {
       return possibleMatch;
@@ -116,12 +117,27 @@ export class BaseCaseContract {
     matcherOrData: DataOrCaseNodeFor<T>,
     actual: unknown
   ): Promise<MatchResult> {
-    return Promise.resolve(
-      traversals.descendAndCheck(
-        matcherOrData,
-        applyNodeToContext(matcherOrData, this.initialContext),
-        actual
+    return Promise.resolve()
+      .then(() =>
+        traversals.selfVerify(
+          matcherOrData,
+          applyNodeToContext(matcherOrData, this.initialContext)
+        )
       )
-    );
+      .then((selfVerification) => {
+        if (hasErrors(selfVerification)) {
+          throw new CaseConfigurationError(
+            // TODO document this extensively.
+            `The matchers used have been given an example that doesn't pass the matcher: ${selfVerification[0]?.message} (at ${selfVerification[0]?.location})`
+          );
+        }
+      })
+      .then(() =>
+        traversals.descendAndCheck(
+          matcherOrData,
+          applyNodeToContext(matcherOrData, this.initialContext),
+          actual
+        )
+      );
   }
 }

@@ -41,10 +41,30 @@ const descendAndCheck = <T extends AnyCaseNodeType>(
 const descendAndStrip = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
   parentMatchContext: MatchContext
-): ReturnType<MatcherExecutor<T>['strip']> =>
-  getExecutor(matcherOrData, parentMatchContext).strip();
+): ReturnType<MatcherExecutor<T>['strip']> => {
+  if (
+    typeof matcherOrData === 'object' &&
+    matcherOrData !== null &&
+    'case:matcher:example' in matcherOrData
+  ) {
+    return getExecutor(
+      matcherOrData['case:matcher:example'],
+      parentMatchContext
+    ).strip();
+  }
+  return getExecutor(matcherOrData, parentMatchContext).strip();
+};
+
+const selfVerify = <T extends AnyCaseNodeType>(
+  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
+  parentMatchContext: MatchContext
+): ReturnType<MatcherExecutor<AnyCaseNodeType>['check']> =>
+  getExecutor(matcherOrData, parentMatchContext).check(
+    descendAndStrip(matcherOrData, parentMatchContext)
+  );
 
 export const traversals = {
   descendAndCheck,
   descendAndStrip,
+  selfVerify,
 };
