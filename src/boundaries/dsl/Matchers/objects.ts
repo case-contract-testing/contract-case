@@ -1,7 +1,7 @@
 import {
   AnyCaseNodeOrData,
   CoreObjectValuesMatch,
-  OBJECT_VALUES_MATCH,
+  OBJECT_VALUES_MATCH_TYPE,
 } from 'entities/types';
 
 /**
@@ -13,7 +13,7 @@ export const objectEachValueMatches = (
   matcher: AnyCaseNodeOrData,
   example?: Record<string, AnyCaseNodeOrData>
 ): CoreObjectValuesMatch => ({
-  'case:matcher:type': OBJECT_VALUES_MATCH,
+  'case:matcher:type': OBJECT_VALUES_MATCH_TYPE,
   'case:matcher:matcher': matcher,
   ...(example !== undefined ? { 'case:matcher:example': example } : {}),
 });

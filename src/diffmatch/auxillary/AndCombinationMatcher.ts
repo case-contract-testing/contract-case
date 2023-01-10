@@ -2,7 +2,7 @@ import { addLocation } from 'entities/context';
 import { StripUnsupportedError } from 'entities/StripUnsupportedError';
 import {
   StripMatcherFn,
-  AND_COMBINATION_MATCHER,
+  COMBINE_MATCHERS_TYPE,
   CoreAndCombinationMatcher,
   MatchContext,
   AnyData,
@@ -12,7 +12,7 @@ import {
   isCaseNode,
 } from 'entities/types';
 
-const strip: StripMatcherFn<typeof AND_COMBINATION_MATCHER> = (
+const strip: StripMatcherFn<typeof COMBINE_MATCHERS_TYPE> = (
   matcher: CoreAndCombinationMatcher,
   matchContext: MatchContext
 ): AnyData => {
@@ -51,7 +51,7 @@ const strip: StripMatcherFn<typeof AND_COMBINATION_MATCHER> = (
   return firstStrippedResult;
 };
 
-const check: CheckMatchFn<typeof AND_COMBINATION_MATCHER> = async (
+const check: CheckMatchFn<typeof COMBINE_MATCHERS_TYPE> = async (
   matcher: CoreAndCombinationMatcher,
   matchContext: MatchContext,
   actual: unknown
@@ -71,5 +71,5 @@ const check: CheckMatchFn<typeof AND_COMBINATION_MATCHER> = async (
   ).flat();
 
 export const AndCombinationMatcher: MatcherExecutor<
-  typeof AND_COMBINATION_MATCHER
+  typeof COMBINE_MATCHERS_TYPE
 > = { check, strip };

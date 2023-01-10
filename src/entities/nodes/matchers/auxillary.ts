@@ -2,7 +2,7 @@ import {
   type AnyCaseNodeOrData,
   type CoreAndCombinationMatcher,
   type CoreArrayLengthMatcher,
-  AND_COMBINATION_MATCHER,
+  COMBINE_MATCHERS_TYPE,
   ARRAY_LENGTH_MATCHER_TYPE,
   ARRAY_LENGTH_PARAMETER_INFINITE,
 } from './types';
@@ -22,6 +22,6 @@ export const coreArrayLengthMatcher = ({
 export const coreAndMatcher = (
   ...matchers: AnyCaseNodeOrData[]
 ): CoreAndCombinationMatcher => ({
-  'case:matcher:type': AND_COMBINATION_MATCHER,
+  'case:matcher:type': COMBINE_MATCHERS_TYPE,
   'case:matcher:children': [...matchers],
 });

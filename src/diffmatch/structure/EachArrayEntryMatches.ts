@@ -9,11 +9,11 @@ import type {
   StripMatcherFn,
   CheckMatchFn,
   MatcherExecutor,
-  ARRAY_EACH_ENTRY_MATCHES,
+  ARRAY_EACH_ENTRY_MATCHES_TYPE,
   CoreArrayEachEntryMatches,
 } from 'entities/types';
 
-const strip: StripMatcherFn<typeof ARRAY_EACH_ENTRY_MATCHES> = (
+const strip: StripMatcherFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = (
   matcher: CoreArrayEachEntryMatches,
   matchContext: MatchContext
 ): AnyData =>
@@ -29,7 +29,7 @@ const strip: StripMatcherFn<typeof ARRAY_EACH_ENTRY_MATCHES> = (
         ),
       ];
 
-const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES> = async (
+const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = async (
   matcher: CoreArrayEachEntryMatches,
   matchContext: MatchContext,
   actual: unknown
@@ -71,5 +71,5 @@ const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES> = async (
   );
 
 export const EachArrayEntryMatches: MatcherExecutor<
-  typeof ARRAY_EACH_ENTRY_MATCHES
+  typeof ARRAY_EACH_ENTRY_MATCHES_TYPE
 > = { check, strip };

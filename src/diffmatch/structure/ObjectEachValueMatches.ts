@@ -9,12 +9,12 @@ import type {
   StripMatcherFn,
   CheckMatchFn,
   MatcherExecutor,
-  OBJECT_VALUES_MATCH,
+  OBJECT_VALUES_MATCH_TYPE,
   CoreObjectValuesMatch,
 } from 'entities/types';
 import { isObject, whyNotAnObject } from './internals/objectTests';
 
-const strip: StripMatcherFn<typeof OBJECT_VALUES_MATCH> = (
+const strip: StripMatcherFn<typeof OBJECT_VALUES_MATCH_TYPE> = (
   matcher: CoreObjectValuesMatch,
   matchContext: MatchContext
 ): AnyData =>
@@ -30,7 +30,7 @@ const strip: StripMatcherFn<typeof OBJECT_VALUES_MATCH> = (
         ),
       };
 
-const check: CheckMatchFn<typeof OBJECT_VALUES_MATCH> = async (
+const check: CheckMatchFn<typeof OBJECT_VALUES_MATCH_TYPE> = async (
   matcher: CoreObjectValuesMatch,
   matchContext: MatchContext,
   actual: unknown
@@ -67,5 +67,5 @@ const check: CheckMatchFn<typeof OBJECT_VALUES_MATCH> = async (
 ];
 
 export const ObjectEachValueMatches: MatcherExecutor<
-  typeof OBJECT_VALUES_MATCH
+  typeof OBJECT_VALUES_MATCH_TYPE
 > = { check, strip };

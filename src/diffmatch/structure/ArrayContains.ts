@@ -13,14 +13,14 @@ import {
   StripMatcherFn,
   CheckMatchFn,
   MatcherExecutor,
-  ARRAY_CONTAINS_MATCH,
+  ARRAY_CONTAINS_TYPE,
   CoreArrayContainsMatch,
   isCaseNode,
   AnyCaseNodeOrData,
 } from 'entities/types';
 import { matcherToString } from 'entities/results';
 
-const strip: StripMatcherFn<typeof ARRAY_CONTAINS_MATCH> = (
+const strip: StripMatcherFn<typeof ARRAY_CONTAINS_TYPE> = (
   matcher: CoreArrayContainsMatch,
   matchContext: MatchContext
 ): AnyData =>
@@ -80,7 +80,7 @@ const checkMatch = async (
         )
       );
 
-const check: CheckMatchFn<typeof ARRAY_CONTAINS_MATCH> = async (
+const check: CheckMatchFn<typeof ARRAY_CONTAINS_TYPE> = async (
   matcher: CoreArrayContainsMatch,
   matchContext: MatchContext,
   actual: unknown
@@ -109,7 +109,7 @@ const check: CheckMatchFn<typeof ARRAY_CONTAINS_MATCH> = async (
         )
   );
 
-export const ArrayContains: MatcherExecutor<typeof ARRAY_CONTAINS_MATCH> = {
+export const ArrayContains: MatcherExecutor<typeof ARRAY_CONTAINS_TYPE> = {
   check,
   strip,
 };

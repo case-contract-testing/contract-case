@@ -7,7 +7,7 @@ import {
   NULL_MATCHER_TYPE,
   NUMBER_MATCHER_TYPE,
   STRING_MATCHER_TYPE,
-  INTEGER_MATCH,
+  INTEGER_MATCH_TYPE,
   CoreIntegerMatch,
 } from './types';
 
@@ -24,7 +24,7 @@ export const coreNumberMatcher = (example: number): CoreNumberMatcher => ({
 });
 
 export const coreIntegerMatcher = (example: number): CoreIntegerMatch => ({
-  'case:matcher:type': INTEGER_MATCH,
+  'case:matcher:type': INTEGER_MATCH_TYPE,
   'case:matcher:example': example,
   'case:matcher:resolvesTo': 'number',
 });

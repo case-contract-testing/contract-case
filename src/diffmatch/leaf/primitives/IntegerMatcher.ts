@@ -4,7 +4,7 @@ import type {
   MatcherExecutor,
   MatchContext,
   CoreIntegerMatch,
-  INTEGER_MATCH,
+  INTEGER_MATCH_TYPE,
 } from 'entities/types';
 
 const check = (
@@ -19,7 +19,7 @@ const check = (
     )
   );
 
-export const IntegerMatcher: MatcherExecutor<typeof INTEGER_MATCH> = {
+export const IntegerMatcher: MatcherExecutor<typeof INTEGER_MATCH_TYPE> = {
   check,
   strip: (matcher: CoreIntegerMatch) => matcher['case:matcher:example'],
 };

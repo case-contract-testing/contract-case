@@ -2,8 +2,8 @@ import { CaseConfigurationError, coreShapedArrayMatcher } from 'entities';
 import { coreArrayLengthMatcher } from 'entities/nodes/matchers/auxillary';
 import {
   AnyCaseNodeOrData,
-  ARRAY_CONTAINS_MATCH,
-  ARRAY_EACH_ENTRY_MATCHES,
+  ARRAY_CONTAINS_TYPE,
+  ARRAY_EACH_ENTRY_MATCHES_TYPE,
   CoreArrayContainsMatch,
   CoreArrayEachEntryMatches,
   CoreArrayLengthMatcher,
@@ -21,7 +21,7 @@ export const arrayEachEntryMatches = (
   matcher: AnyCaseNodeOrData,
   example?: Array<AnyCaseNodeOrData>
 ): CoreArrayEachEntryMatches => ({
-  'case:matcher:type': ARRAY_EACH_ENTRY_MATCHES,
+  'case:matcher:type': ARRAY_EACH_ENTRY_MATCHES_TYPE,
   'case:matcher:matcher': matcher,
   ...(example !== undefined ? { 'case:matcher:example': example } : {}),
 });
@@ -55,7 +55,7 @@ export const arrayLength = (
 export const arrayContains = (
   ...matchers: AnyCaseNodeOrData[]
 ): CoreArrayContainsMatch => ({
-  'case:matcher:type': ARRAY_CONTAINS_MATCH,
+  'case:matcher:type': ARRAY_CONTAINS_TYPE,
   'case:matcher:matchers': matchers,
 });
 

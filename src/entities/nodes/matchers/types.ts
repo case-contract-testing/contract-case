@@ -19,11 +19,11 @@ export const SHAPED_ARRAY_MATCHER_TYPE = 'ArrayShape' as const;
 export const SHAPED_OBJECT_MATCHER_TYPE = 'ObjectShape' as const;
 export const LOOKUP_MATCHER_TYPE = 'Lookup' as const;
 export const ARRAY_LENGTH_MATCHER_TYPE = 'ArrayLength' as const;
-export const ARRAY_EACH_ENTRY_MATCHES = 'ArrayEachEntryLike' as const;
-export const ARRAY_CONTAINS_MATCH = 'ArrayContains' as const;
-export const AND_COMBINATION_MATCHER = 'And' as const;
-export const OBJECT_VALUES_MATCH = 'ObjectValuesMatch' as const;
-export const INTEGER_MATCH = 'Integer' as const;
+export const ARRAY_EACH_ENTRY_MATCHES_TYPE = 'ArrayEachEntryLike' as const;
+export const ARRAY_CONTAINS_TYPE = 'ArrayContains' as const;
+export const COMBINE_MATCHERS_TYPE = 'And' as const;
+export const OBJECT_VALUES_MATCH_TYPE = 'ObjectValuesMatch' as const;
+export const INTEGER_MATCH_TYPE = 'Integer' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
@@ -38,11 +38,11 @@ export type AnyCaseNodeType =
   | typeof HTTP_RESPONSE_MATCHER_TYPE
   | typeof LOOKUP_MATCHER_TYPE
   | typeof ARRAY_LENGTH_MATCHER_TYPE
-  | typeof AND_COMBINATION_MATCHER
-  | typeof ARRAY_EACH_ENTRY_MATCHES
-  | typeof ARRAY_CONTAINS_MATCH
-  | typeof OBJECT_VALUES_MATCH
-  | typeof INTEGER_MATCH;
+  | typeof COMBINE_MATCHERS_TYPE
+  | typeof ARRAY_EACH_ENTRY_MATCHES_TYPE
+  | typeof ARRAY_CONTAINS_TYPE
+  | typeof OBJECT_VALUES_MATCH_TYPE
+  | typeof INTEGER_MATCH_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -167,29 +167,29 @@ export interface CoreArrayLengthMatcher {
 }
 
 export interface CoreAndCombinationMatcher {
-  'case:matcher:type': typeof AND_COMBINATION_MATCHER;
+  'case:matcher:type': typeof COMBINE_MATCHERS_TYPE;
   'case:matcher:children': Array<AnyCaseNodeOrData>;
 }
 
 export interface CoreArrayEachEntryMatches {
-  'case:matcher:type': typeof ARRAY_EACH_ENTRY_MATCHES;
+  'case:matcher:type': typeof ARRAY_EACH_ENTRY_MATCHES_TYPE;
   'case:matcher:matcher': AnyCaseNodeOrData;
   'case:matcher:example'?: AnyCaseNodeOrData[];
 }
 
 export interface CoreObjectValuesMatch {
-  'case:matcher:type': typeof OBJECT_VALUES_MATCH;
+  'case:matcher:type': typeof OBJECT_VALUES_MATCH_TYPE;
   'case:matcher:matcher': AnyCaseNodeOrData;
   'case:matcher:example'?: Record<string, AnyCaseNodeOrData>;
 }
 
 export interface CoreArrayContainsMatch {
-  'case:matcher:type': typeof ARRAY_CONTAINS_MATCH;
+  'case:matcher:type': typeof ARRAY_CONTAINS_TYPE;
   'case:matcher:matchers': AnyCaseNodeOrData[];
 }
 
 export interface CoreIntegerMatch {
-  'case:matcher:type': typeof INTEGER_MATCH;
+  'case:matcher:type': typeof INTEGER_MATCH_TYPE;
   'case:matcher:example': number;
   'case:matcher:resolvesTo': 'number';
 }
