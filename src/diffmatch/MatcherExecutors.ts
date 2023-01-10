@@ -30,7 +30,7 @@ import {
   ArrayLengthExecutor,
   IntegerMatcher,
 } from './leaf';
-import { AndCombinationMatcher, CascadingContext } from './auxillary';
+import { AndCombinationMatcher, CascadingContext } from './meta';
 import {
   ShapedArrayExecutor,
   ShapedObjectExecutor,
