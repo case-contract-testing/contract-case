@@ -12,7 +12,7 @@ import {
 import { DEFAULT_CONFIG } from 'connectors/contract/core';
 import { makeNoErrorResult } from 'entities/results';
 import { StripUnsupportedError } from 'entities/StripUnsupportedError';
-import type { AnyCaseNodeOrData } from 'entities/types';
+import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
 
 describe('basic types and structure checks', () => {
   const contract = new CaseContract(
@@ -23,23 +23,7 @@ describe('basic types and structure checks', () => {
     DEFAULT_CONFIG
   );
 
-  const expectErrorContaining = (
-    matcher: AnyCaseNodeOrData,
-    example: unknown,
-    expectedContent: string
-  ) => {
-    describe(`when given ${example}`, () => {
-      it(`returns an error containing '${expectedContent}'`, async () => {
-        const matchResult = await contract.checkMatch(matcher, example);
-        expect(matchResult).not.toHaveLength(0);
-        expect(
-          matchResult
-            .map((m) => m.toString())
-            .reduce((acc, m) => `${acc} ${m}`, '')
-        ).toContain(expectedContent);
-      });
-    });
-  };
+  const expectErrorContaining = makeExpectErrorContaining(contract);
 
   describe('array each like', () => {
     describe('with a single primitive matcher', () => {

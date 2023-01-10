@@ -1,4 +1,3 @@
-import type { AnyCaseNodeOrData } from 'entities/nodes/matchers/types';
 import {
   anyBoolean,
   anyNull,
@@ -10,34 +9,18 @@ import {
 import { CaseContract } from 'connectors/contract';
 
 import { DEFAULT_CONFIG } from 'connectors/contract/core';
+import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
 
 describe('basic matchers', () => {
-  let contract: CaseContract;
-  beforeAll(() => {
-    contract = new CaseContract(
-      {
-        consumerName: 'test lookup consumer',
-        providerName: 'test lookup provider',
-      },
-      DEFAULT_CONFIG
-    );
-  });
+  const contract = new CaseContract(
+    {
+      consumerName: 'test like consumer',
+      providerName: 'test like provider',
+    },
+    DEFAULT_CONFIG
+  );
 
-  const expectErrorContaining = (
-    matcher: AnyCaseNodeOrData,
-    example: unknown,
-    expectedContent: string
-  ) => {
-    describe(`when given ${example}`, () => {
-      it(`returns an error containing '${expectedContent}'`, async () => {
-        const matchResult = await contract.checkMatch(matcher, example);
-        expect(matchResult).not.toHaveLength(0);
-        expect(
-          matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
-        ).toContain(expectedContent);
-      });
-    });
-  };
+  const expectErrorContaining = makeExpectErrorContaining(contract);
 
   describe('number matcher', () => {
     const matcher = anyNumber(1);

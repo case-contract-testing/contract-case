@@ -4,6 +4,7 @@ import { DEFAULT_CONFIG } from 'connectors/contract/core';
 
 import { CaseConfigurationError } from 'entities';
 import type { AnyCaseNodeOrData } from 'entities/types';
+import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
 
 describe('named matches', () => {
   const contract = new CaseContract(
@@ -14,21 +15,7 @@ describe('named matches', () => {
     DEFAULT_CONFIG
   );
 
-  const expectErrorContaining = (
-    matcher: AnyCaseNodeOrData,
-    example: unknown,
-    expectedContent: string
-  ) => {
-    describe(`when given ${example}`, () => {
-      it(`returns an error containing '${expectedContent}'`, async () => {
-        const matchResult = await contract.checkMatch(matcher, example);
-        expect(matchResult).not.toHaveLength(0);
-        expect(
-          matchResult.map((m) => m.toString()).reduce((acc, m) => `${acc} ${m}`)
-        ).toContain(expectedContent);
-      });
-    });
-  };
+  const expectErrorContaining = makeExpectErrorContaining(contract);
 
   describe("named matcher that isn't defined yet", () => {
     const matcher = {

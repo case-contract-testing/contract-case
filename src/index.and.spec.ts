@@ -3,34 +3,18 @@ import { CaseContract } from 'connectors/contract';
 import { DEFAULT_CONFIG } from 'connectors/contract/core';
 
 import { makeNoErrorResult } from 'entities/results';
-import type { AnyCaseNodeOrData } from 'entities/types';
+import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
 
-describe('named matches', () => {
+describe('and matchers', () => {
   const contract = new CaseContract(
     {
-      consumerName: 'test aux consumer',
-      providerName: 'test aux provider',
+      consumerName: 'test and consumer',
+      providerName: 'test and provider',
     },
     DEFAULT_CONFIG
   );
 
-  const expectErrorContaining = (
-    matcher: AnyCaseNodeOrData,
-    example: unknown,
-    expectedContent: string
-  ) => {
-    describe(`when given ${example}`, () => {
-      it(`returns an error containing '${expectedContent}'`, async () => {
-        const matchResult = await contract.checkMatch(matcher, example);
-
-        expect(
-          matchResult
-            .map((m) => m.toString())
-            .reduce((acc, m) => `${acc} ${m}`, '')
-        ).toContain(expectedContent);
-      });
-    });
-  };
+  const expectErrorContaining = makeExpectErrorContaining(contract);
 
   describe('And matcher', () => {
     const matcher = and(arrayLength({ maxLength: 2 }), shapedLike([1]));
