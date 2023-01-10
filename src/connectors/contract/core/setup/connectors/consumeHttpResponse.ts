@@ -11,7 +11,7 @@ import type {
 } from 'entities/types';
 import { addLocation } from 'entities/context';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
-import { mustResolveToString } from 'diffmatch/stripToType';
+import { mustResolveToString } from 'entities/nodes/matchers/resolve';
 
 const isHasBaseUrl = (
   context: Partial<LoggableContext>

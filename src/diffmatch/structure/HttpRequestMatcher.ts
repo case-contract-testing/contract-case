@@ -1,4 +1,4 @@
-import { mustResolveToString } from 'diffmatch/stripToType';
+import { mustResolveToString } from 'entities/nodes/matchers/resolve';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
 import { addLocation } from 'entities/context';
 import type { MatchContext } from 'entities/context/types';

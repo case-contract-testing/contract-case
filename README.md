@@ -52,7 +52,7 @@ Pact Parity
   - [x] Array each like
   - [ ] Object keys
   - [x] Object values only
-  - [ ] String includes
+  - [x] String includes
   - [x] Array contains
   - [x] Integer
   - [ ] Timestamp with format (covers time, date and timestamp)

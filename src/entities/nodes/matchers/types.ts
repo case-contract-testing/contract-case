@@ -24,6 +24,7 @@ export const ARRAY_CONTAINS_TYPE = 'ArrayContains' as const;
 export const COMBINE_MATCHERS_TYPE = 'And' as const;
 export const OBJECT_VALUES_MATCH_TYPE = 'ObjectValuesMatch' as const;
 export const INTEGER_MATCH_TYPE = 'Integer' as const;
+export const STRING_CONTAINS_TYPE = 'StringContains' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
@@ -42,7 +43,8 @@ export type AnyCaseNodeType =
   | typeof ARRAY_EACH_ENTRY_MATCHES_TYPE
   | typeof ARRAY_CONTAINS_TYPE
   | typeof OBJECT_VALUES_MATCH_TYPE
-  | typeof INTEGER_MATCH_TYPE;
+  | typeof INTEGER_MATCH_TYPE
+  | typeof STRING_CONTAINS_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -78,14 +80,6 @@ interface JsonMap {
 type JsonArray = Array<AnyData>;
 
 export type AnyData = JsonSerialisablePrimitive | JsonMap | JsonArray;
-
-export type AnyLeafMatcher =
-  | CoreNumberMatcher
-  | CoreStringMatcher
-  | CoreNullMatcher
-  | CoreBooleanMatcher
-  | CoreHttpStatusCodeMatcher
-  | CoreIntegerMatch;
 
 export interface LookupableMatcher {
   'case:matcher:type': typeof LOOKUP_MATCHER_TYPE;
@@ -193,6 +187,22 @@ export interface CoreIntegerMatch {
   'case:matcher:example': number;
   'case:matcher:resolvesTo': 'number';
 }
+
+export interface CoreStringContainsMatcher {
+  'case:matcher:type': typeof STRING_CONTAINS_TYPE;
+  'case:matcher:contains': string | AnyCaseMatcher;
+  'case:matcher:resolvesTo': 'string';
+  'case:matcher:example'?: string;
+}
+
+export type AnyLeafMatcher =
+  | CoreNumberMatcher
+  | CoreStringMatcher
+  | CoreNullMatcher
+  | CoreBooleanMatcher
+  | CoreHttpStatusCodeMatcher
+  | CoreIntegerMatch
+  | CoreStringContainsMatcher;
 
 export type AnyCaseMatcher =
   | AnyLeafMatcher

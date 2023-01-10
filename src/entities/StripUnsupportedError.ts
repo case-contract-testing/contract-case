@@ -9,7 +9,7 @@ export class StripUnsupportedError extends Error {
     super(
       `Matchers of type '${
         matcher['case:matcher:type']
-      }' do not support stripMatchers(). This is an auxillery matcher designed to be used with \`and()\`, and must be combined with a matcher that can be stripped. At: ${locationString(
+      }' do not support stripMatchers() without an example. This is an auxillery matcher designed to be used with \`and()\`, and must be combined with a matcher that can be stripped. At: ${locationString(
         context
       )}`
     );
