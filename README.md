@@ -50,7 +50,7 @@ Pact Parity
   - [x] Cascading array and object matchers
   - [x] shapedLike matchers
   - [x] Array each like
-  - [ ] Object keys
+  - [x] Object keys
   - [x] Object values only
   - [x] String includes
   - [x] Array contains

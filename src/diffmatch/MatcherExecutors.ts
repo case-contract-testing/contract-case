@@ -19,6 +19,7 @@ import {
   ARRAY_CONTAINS_TYPE,
   INTEGER_MATCH_TYPE,
   STRING_CONTAINS_TYPE,
+  OBJECT_KEYS_MATCH_TYPE,
 } from 'entities/types';
 import {
   NumberMatcher,
@@ -41,6 +42,7 @@ import {
   ArrayContains,
 } from './structure';
 import { StringContainsMatcher } from './leaf/primitives/StringContainsMatcher';
+import { ObjectEachKeyMatches } from './structure/ObjectEachKeyMatches';
 
 export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
   {
@@ -62,4 +64,5 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [ARRAY_CONTAINS_TYPE]: ArrayContains,
     [OBJECT_VALUES_MATCH_TYPE]: ObjectEachValueMatches,
     [INTEGER_MATCH_TYPE]: IntegerMatcher,
+    [OBJECT_KEYS_MATCH_TYPE]: ObjectEachKeyMatches,
   };

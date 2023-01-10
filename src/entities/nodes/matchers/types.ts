@@ -23,6 +23,7 @@ export const ARRAY_EACH_ENTRY_MATCHES_TYPE = 'ArrayEachEntryLike' as const;
 export const ARRAY_CONTAINS_TYPE = 'ArrayContains' as const;
 export const COMBINE_MATCHERS_TYPE = 'And' as const;
 export const OBJECT_VALUES_MATCH_TYPE = 'ObjectValuesMatch' as const;
+export const OBJECT_KEYS_MATCH_TYPE = 'ObjectKeysMatch' as const;
 export const INTEGER_MATCH_TYPE = 'Integer' as const;
 export const STRING_CONTAINS_TYPE = 'StringContains' as const;
 
@@ -44,7 +45,8 @@ export type AnyCaseNodeType =
   | typeof ARRAY_CONTAINS_TYPE
   | typeof OBJECT_VALUES_MATCH_TYPE
   | typeof INTEGER_MATCH_TYPE
-  | typeof STRING_CONTAINS_TYPE;
+  | typeof STRING_CONTAINS_TYPE
+  | typeof OBJECT_KEYS_MATCH_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -177,6 +179,12 @@ export interface CoreObjectValuesMatch {
   'case:matcher:example'?: Record<string, AnyCaseNodeOrData>;
 }
 
+export interface CoreObjectKeysMatcher {
+  'case:matcher:type': typeof OBJECT_KEYS_MATCH_TYPE;
+  'case:matcher:matcher': AnyCaseNodeOrData;
+  'case:matcher:exampleKey'?: string;
+}
+
 export interface CoreArrayContainsMatch {
   'case:matcher:type': typeof ARRAY_CONTAINS_TYPE;
   'case:matcher:matchers': AnyCaseNodeOrData[];
@@ -216,4 +224,5 @@ export type AnyCaseMatcher =
   | CoreAndCombinationMatcher
   | CoreArrayEachEntryMatches
   | CoreObjectValuesMatch
+  | CoreObjectKeysMatcher
   | CoreArrayContainsMatch;
