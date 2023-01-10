@@ -1,10 +1,10 @@
 import type { MatchContext } from 'entities/context/types';
 import { CaseCoreError } from 'entities/CaseCoreError';
-import type { Assertable } from 'entities/types';
 import type {
   AnyInteractionType,
   CaseInteractionFor,
 } from 'entities/nodes/interactions/types';
+import type { InteractionData } from 'entities/nodes/interactions/setup.types';
 import { addLocation } from 'entities/context';
 
 import type { SetupFns } from './types';
@@ -72,7 +72,7 @@ export const setupExecutor = <T extends AnyInteractionType>(
   interaction: CaseInteractionFor<T>,
   InteractionSetup: SetupFns,
   context: MatchContext
-): Promise<Assertable<T>> =>
+): Promise<InteractionData<T>> =>
   executeSetup(
     inferInteraction(interaction, addLocation('inference', context)),
     InteractionSetup,

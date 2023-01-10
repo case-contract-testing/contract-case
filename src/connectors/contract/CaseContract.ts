@@ -1,7 +1,7 @@
 import {
   configToRunContext,
   DEFAULT_CONFIG,
-  setupAssert,
+  setupHandledAssert,
 } from 'connectors/contract/core';
 import type { CaseConfig } from 'connectors/contract/core/types';
 import { makeLogger as defaultMakeLogger } from 'connectors/logger';
@@ -44,7 +44,7 @@ export class CaseContract extends BaseCaseContract {
     interaction: CaseInteractionFor<T>,
     runConfig?: CaseConfig
   ): Promise<Assertable<T>> {
-    return setupAssert(
+    return setupHandledAssert(
       states,
       interaction,
       applyNodeToContext(

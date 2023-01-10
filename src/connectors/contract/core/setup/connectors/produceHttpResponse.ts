@@ -5,13 +5,13 @@ import type * as net from 'node:net';
 import { traversals } from 'diffmatch';
 import {
   HttpRequestData,
-  Assertable,
   CoreHttpRequestResponseMatcherPair,
   MatchContext,
   CONSUME_HTTP_RESPONSE,
 } from 'entities/types';
 import { addLocation } from 'entities/context';
 import { CaseCoreError } from 'entities';
+import type { InteractionData } from 'entities/nodes/interactions/setup.types';
 
 const addressToString = (address: string | net.AddressInfo | null) => {
   if (typeof address === 'string') return address;
@@ -32,10 +32,10 @@ export const setupHttpResponseProducer = (
     response: expectedResponse,
   }: CoreHttpRequestResponseMatcherPair,
   context: MatchContext
-): Promise<Assertable<typeof CONSUME_HTTP_RESPONSE>> => {
+): Promise<InteractionData<typeof CONSUME_HTTP_RESPONSE>> => {
   let requestData: HttpRequestData;
   let server: http.Server;
-  return new Promise<Assertable<typeof CONSUME_HTTP_RESPONSE>>(
+  return new Promise<InteractionData<typeof CONSUME_HTTP_RESPONSE>>(
     (resolve, reject) => {
       const app = express();
       app.all('*', (req, res, next) => {
@@ -94,7 +94,7 @@ export const setupHttpResponseProducer = (
       );
       resolve({
         mock,
-        assert: () =>
+        assertableData: () =>
           new Promise<void>((startVerify, closeReject) => {
             server.close((err?: Error) => {
               context.logger.maintainerDebug(
@@ -118,11 +118,12 @@ export const setupHttpResponseProducer = (
             context.logger.maintainerDebug(
               `Asserting that the expected request for the mock at ${mock.baseUrl} happened correctly`
             );
-            return context.descendAndCheck(
-              expectedRequest,
-              addLocation('request', context),
-              requestData
-            );
+
+            return {
+              actual: requestData,
+              context: addLocation('request', context),
+              expected: expectedRequest,
+            };
           }),
       });
     }

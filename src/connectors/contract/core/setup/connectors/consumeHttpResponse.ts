@@ -6,12 +6,12 @@ import type {
   HasBaseUrlUnderTest,
   LoggableContext,
   MatchContext,
-  Assertable,
   CoreHttpRequestResponseMatcherPair,
 } from 'entities/types';
 import { addLocation } from 'entities/context';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
 import { mustResolveToString } from 'entities/nodes/matchers/resolve';
+import type { InteractionData } from 'entities/nodes/interactions/setup.types';
 
 const isHasBaseUrl = (
   context: Partial<LoggableContext>
@@ -40,11 +40,11 @@ export const setupHttpResponseConsumer = (
     response: expectedResponse,
   }: CoreHttpRequestResponseMatcherPair,
   context: MatchContext
-): Promise<Assertable<typeof PRODUCE_HTTP_RESPONSE>> =>
+): Promise<InteractionData<typeof PRODUCE_HTTP_RESPONSE>> =>
   validateConfig(context).then(
     (run: LoggableContext & HasBaseUrlUnderTest) => ({
       mock: { 'case:interaction:type': PRODUCE_HTTP_RESPONSE },
-      assert: () =>
+      assertableData: () =>
         axios
           .request({
             validateStatus: () => true, // This means that all status codes resolve the promise
@@ -96,12 +96,10 @@ export const setupHttpResponseConsumer = (
               );
             }
           )
-          .then(async (result) =>
-            context.descendAndCheck(
-              expectedResponse,
-              addLocation('response', context),
-              result
-            )
-          ),
+          .then(async (result) => ({
+            actual: result,
+            context: addLocation('response', context),
+            expected: expectedResponse,
+          })),
     })
   );

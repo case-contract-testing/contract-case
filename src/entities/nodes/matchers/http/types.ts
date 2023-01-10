@@ -1,4 +1,8 @@
-import type { AnyCaseNodeOrData, AnyStringMatcher } from 'entities/types';
+import type {
+  AnyCaseNodeOrData,
+  AnyData,
+  AnyStringMatcher,
+} from 'entities/types';
 
 export const HTTP_STATUS_CODE_MATCHER_TYPE = 'HttpStatusCode' as const;
 export const HTTP_RESPONSE_MATCHER_TYPE = 'HttpResponseMatcher' as const;
@@ -11,23 +15,23 @@ export interface CoreHttpStatusCodeMatcher {
   'case:matcher:resolvesTo': 'HttpStatusCode';
 }
 
-export interface CoreHttpResponseMatcher {
+export type CoreHttpResponseMatcher = {
   'case:matcher:type': typeof HTTP_RESPONSE_MATCHER_TYPE;
   'case:matcher:uniqueName'?: string;
   status: number | CoreHttpStatusCodeMatcher;
   body?: AnyCaseNodeOrData;
-}
+};
 
-export interface CoreHttpRequestMatcher {
+export type CoreHttpRequestMatcher = {
   'case:matcher:type': typeof HTTP_REQUEST_MATCHER_TYPE;
   'case:matcher:uniqueName'?: string;
   path: AnyStringMatcher | string;
   method: AnyStringMatcher | string;
   body?: AnyCaseNodeOrData;
-}
+};
 
 export type HttpRequestData = {
-  body: AnyCaseNodeOrData;
+  body: AnyData;
   method: string;
   path: string;
 };

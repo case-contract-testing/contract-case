@@ -1,7 +1,7 @@
 import type { MatchContext } from 'entities/context/types';
 import { nameExample } from 'entities/contract/interactions';
 import type { CaseExample } from 'entities/contract/types';
-import { setupVerify } from 'connectors/contract/core/setup';
+import { setupUnhandledAssert } from 'connectors/contract/core/setup';
 import { handleResult } from 'entities/results/handlers';
 import type { StateFunctions } from 'entities/states/types';
 import { executeSetupHandlers, executeTeardownHandlers } from './stateHandlers';
@@ -27,7 +27,7 @@ export const executeVerification =
     return executeSetupHandlers(example.states, stateSetups, context)
       .then(() => {
         context.logger.maintainerDebug(`Calling setupVerify`);
-        return setupVerify(example.interaction, context);
+        return setupUnhandledAssert(example.interaction, context);
       })
       .then((verifiable) => verifiable.assert())
       .then((result) => handleResult(example, exampleIndex, result, context))
