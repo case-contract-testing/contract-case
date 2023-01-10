@@ -1,18 +1,30 @@
 import { CaseConfigurationError, coreShapedArrayMatcher } from 'entities';
+import { coreArrayLengthMatcher } from 'entities/nodes/matchers/auxillary';
 import {
-  coreAndMatcher,
-  coreArrayLengthMatcher,
-} from 'entities/nodes/matchers/auxillary';
-import {
-  CoreArrayLengthMatcher,
   AnyCaseNodeOrData,
-  CoreAndCombinationMatcher,
-  CoreShapedArrayMatcher,
-  CoreArrayContainsMatch,
   ARRAY_CONTAINS_MATCH,
+  ARRAY_EACH_ENTRY_MATCHES,
+  CoreArrayContainsMatch,
+  CoreArrayEachEntryMatches,
+  CoreArrayLengthMatcher,
+  CoreShapedArrayMatcher,
 } from 'entities/types';
 
 type ArrayLengthOptions = { minLength?: number; maxLength?: number };
+
+/**
+ * Matches an array where each element matches the provided matcher.
+ *
+ * @param matcher The example object, array, primitive or matcher to match against
+ */
+export const arrayEachEntryMatches = (
+  matcher: AnyCaseNodeOrData,
+  example?: Array<AnyCaseNodeOrData>
+): CoreArrayEachEntryMatches => ({
+  'case:matcher:type': ARRAY_EACH_ENTRY_MATCHES,
+  'case:matcher:matcher': matcher,
+  ...(example !== undefined ? { 'case:matcher:example': example } : {}),
+});
 
 /**
  * Matches an Array whose length is within a certain range.
@@ -48,14 +60,10 @@ export const arrayContains = (
 });
 
 /**
- * Matches an Array whose length is within a certain range.
+ * Matches an Array which starts with the provided array
  *
- * @param options
+ * @param matchers
  */
-export const and = (
-  ...matchers: AnyCaseNodeOrData[]
-): CoreAndCombinationMatcher => coreAndMatcher(...matchers);
-
 export const arrayStartsWith = (
   matchers: AnyCaseNodeOrData[]
 ): CoreShapedArrayMatcher => coreShapedArrayMatcher(matchers);
