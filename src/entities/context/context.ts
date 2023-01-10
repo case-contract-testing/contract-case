@@ -122,6 +122,8 @@ export const addLocation = (
 export const locationString = (matchContext: HasLocation): string =>
   matchContext['case:currentRun:context:location'].reduce<string>(
     (acc: string, curr: string) =>
-      curr.startsWith('[') || acc === '' ? `${acc}${curr}` : `${acc}.${curr}`,
+      curr.startsWith('[') || curr.startsWith(':') || acc === ''
+        ? `${acc}${curr}`
+        : `${acc}.${curr}`,
     ''
   );
