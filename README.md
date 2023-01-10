@@ -54,7 +54,7 @@ Pact Parity
   - [x] Object values only
   - [ ] String includes
   - [x] Array contains
-  - [ ] Integer
+  - [x] Integer
   - [ ] Timestamp with format (covers time, date and timestamp)
 - Matchers we don't need, but will need to build if we want to read pact files
   - [ ] "Treat this as a string"

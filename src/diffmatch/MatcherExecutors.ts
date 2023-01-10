@@ -17,6 +17,7 @@ import {
   ARRAY_EACH_ENTRY_MATCHES,
   OBJECT_VALUES_MATCH,
   ARRAY_CONTAINS_MATCH,
+  INTEGER_MATCH,
 } from 'entities/types';
 import {
   NumberMatcher,
@@ -25,6 +26,7 @@ import {
   NullMatcher,
   HttpStatusCodeMatcher,
   ArrayLengthExecutor,
+  IntegerMatcher,
 } from './leaf';
 import { AndCombinationMatcher, CascadingContext } from './auxillary';
 import {
@@ -56,4 +58,5 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [ARRAY_EACH_ENTRY_MATCHES]: EachArrayEntryMatches,
     [ARRAY_CONTAINS_MATCH]: ArrayContains,
     [OBJECT_VALUES_MATCH]: ObjectEachValueMatches,
+    [INTEGER_MATCH]: IntegerMatcher,
   };

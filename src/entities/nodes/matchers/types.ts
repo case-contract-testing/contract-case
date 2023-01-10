@@ -23,6 +23,7 @@ export const ARRAY_EACH_ENTRY_MATCHES = 'ArrayEachEntryLike' as const;
 export const ARRAY_CONTAINS_MATCH = 'ArrayContains' as const;
 export const AND_COMBINATION_MATCHER = 'And' as const;
 export const OBJECT_VALUES_MATCH = 'ObjectValuesMatch' as const;
+export const INTEGER_MATCH = 'Integer' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
@@ -40,7 +41,8 @@ export type AnyCaseNodeType =
   | typeof AND_COMBINATION_MATCHER
   | typeof ARRAY_EACH_ENTRY_MATCHES
   | typeof ARRAY_CONTAINS_MATCH
-  | typeof OBJECT_VALUES_MATCH;
+  | typeof OBJECT_VALUES_MATCH
+  | typeof INTEGER_MATCH;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -82,7 +84,8 @@ export type AnyLeafMatcher =
   | CoreStringMatcher
   | CoreNullMatcher
   | CoreBooleanMatcher
-  | CoreHttpStatusCodeMatcher;
+  | CoreHttpStatusCodeMatcher
+  | CoreIntegerMatch;
 
 export interface LookupableMatcher {
   'case:matcher:type': typeof LOOKUP_MATCHER_TYPE;
@@ -183,6 +186,12 @@ export interface CoreObjectValuesMatch {
 export interface CoreArrayContainsMatch {
   'case:matcher:type': typeof ARRAY_CONTAINS_MATCH;
   'case:matcher:matchers': AnyCaseNodeOrData[];
+}
+
+export interface CoreIntegerMatch {
+  'case:matcher:type': typeof INTEGER_MATCH;
+  'case:matcher:example': number;
+  'case:matcher:resolvesTo': 'number';
 }
 
 export type AnyCaseMatcher =

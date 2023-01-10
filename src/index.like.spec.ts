@@ -1,5 +1,6 @@
 import {
   anyBoolean,
+  anyInteger,
   anyNull,
   anyNumber,
   anyString,
@@ -34,6 +35,30 @@ describe('basic matchers', () => {
     expectErrorContaining(matcher, Infinity, 'finite');
     expectErrorContaining(matcher, '1', 'not a number');
     expectErrorContaining(matcher, [], 'not a number');
+    expectErrorContaining(matcher, {}, 'not a number');
+    expectErrorContaining(
+      anyNumber(Number.POSITIVE_INFINITY),
+      Number.POSITIVE_INFINITY,
+      'must be finite'
+    );
+  });
+
+  describe('integer matcher', () => {
+    const matcher = anyInteger(2);
+    it('accepts integers', async () => {
+      expect(await contract.checkMatch(matcher, 1)).toStrictEqual([]);
+    });
+    it('accepts integers written as doubles', async () => {
+      expect(await contract.checkMatch(matcher, 2.0)).toStrictEqual([]);
+    });
+    it('returns correctly when stripped', () => {
+      expect(contract.stripMatchers(matcher)).toEqual(2);
+    });
+    expectErrorContaining(matcher, NaN, 'NaN');
+    expectErrorContaining(matcher, Infinity, 'finite');
+    expectErrorContaining(matcher, '1', 'not a number');
+    expectErrorContaining(matcher, [], 'not a number');
+    expectErrorContaining(matcher, 2.1, 'Expected an integer');
     expectErrorContaining(matcher, {}, 'not a number');
     expectErrorContaining(
       anyNumber(Number.POSITIVE_INFINITY),

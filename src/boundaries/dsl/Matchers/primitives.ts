@@ -1,8 +1,14 @@
 import {
+  coreIntegerMatcher,
   coreNumberMatcher,
   coreStringMatcher,
 } from 'entities/nodes/matchers/leaf';
-import { BOOLEAN_MATCHER_TYPE, NULL_MATCHER_TYPE } from 'entities/types';
+import {
+  BOOLEAN_MATCHER_TYPE,
+  CoreAndCombinationMatcher,
+  NULL_MATCHER_TYPE,
+} from 'entities/types';
+import { and } from './meta';
 import type {
   BooleanMatcher,
   NullMatcher,
@@ -20,6 +26,14 @@ export const anyNumber = (example = 1.1): NumberMatcher => ({
   ...coreNumberMatcher(example),
   'case:context:matchBy': 'type',
 });
+
+/**
+ * Matches an integer.
+ *
+ * @param example An example number
+ */
+export const anyInteger = (example = 1): CoreAndCombinationMatcher =>
+  and(coreIntegerMatcher(example), anyNumber(example));
 
 /**
  * Matches any string.
