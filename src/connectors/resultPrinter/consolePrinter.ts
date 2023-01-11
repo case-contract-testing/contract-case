@@ -14,7 +14,7 @@ const locationString = (context: HasLocation) =>
 
 const spaces = (size: number, str: string) => {
   const space = new Array(size).fill(' ').join('');
-  return `${space}${str.replaceAll('\n', `\n${space}`)}`;
+  return `${space}${str.replace(/\n/g, `\n${space}`)}`;
 };
 
 const firstLine = (error: MatchingError) =>
