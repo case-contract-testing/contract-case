@@ -1,3 +1,4 @@
+import { CaseConfigurationError } from 'entities';
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
 import {
@@ -6,6 +7,7 @@ import {
   type AnyCaseNodeOrData,
   LookupableMatcher,
 } from 'entities/types';
+import { rawEquality } from './rawEquals';
 
 import type { ContractFile } from './types';
 
@@ -15,12 +17,33 @@ const addMatcher = (
   logger: Logger
 ): Record<string, AnyCaseNodeOrData> => {
   if (isLookupableMatcher(matcher) && 'case:matcher:child' in matcher) {
+    logger.maintainerDebug(`Saving lookup matcher:`, matcher);
     if (matcherLookup[matcher['case:matcher:uniqueName']]) {
-      // we already have this one
-      logger.warn(
-        `NOT YET IMPLEMENTED: Test that multiple interactions with the same name are the same ('${matcher['case:matcher:uniqueName']}')`
-      );
+      if (
+        !rawEquality(
+          matcher['case:matcher:child'],
+          matcherLookup[matcher['case:matcher:uniqueName']]
+        )
+      ) {
+        logger.error(
+          `The matcher with the name '${matcher['case:matcher:uniqueName']}' has more than one definition, and they are not the same`
+        );
+        logger.error('New matcher is', matcher['case:matcher:child']);
+        logger.error(
+          'Existing matcher is',
+          matcherLookup[matcher['case:matcher:uniqueName']]
+        );
+
+        throw new CaseConfigurationError(
+          `The matcher with the name '${matcher['case:matcher:uniqueName']}' has more than one definition, and they are not the same`
+        );
+      } else {
+        logger.maintainerDebug(
+          `The matcher with the name '${matcher['case:matcher:uniqueName']}' is already stored exactly as given`
+        );
+      }
     }
+
     return {
       ...matcherLookup,
       [matcher['case:matcher:uniqueName']]: matcher['case:matcher:child'],
