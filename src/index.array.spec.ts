@@ -10,11 +10,13 @@ import {
   shapedLike,
   withExample,
 } from 'boundaries/dsl/Matchers';
-import { DEFAULT_CONFIG } from 'connectors/contract/core';
 import { CaseConfigurationError } from 'entities';
 import { makeNoErrorResult } from 'entities/results';
 import { StripUnsupportedError } from 'entities/StripUnsupportedError';
-import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
+import {
+  MAINTAINER_TEST_CONTEXT,
+  makeExpectErrorContaining,
+} from '__tests__/expectErrorContaining';
 
 describe('basic types and structure checks', () => {
   const contract = new CaseContract(
@@ -22,7 +24,7 @@ describe('basic types and structure checks', () => {
       consumerName: 'test array consumer',
       providerName: 'test array provider',
     },
-    DEFAULT_CONFIG
+    MAINTAINER_TEST_CONTEXT
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);

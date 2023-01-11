@@ -1,10 +1,12 @@
 import { anyNumber, anyString, namedMatch } from 'boundaries/dsl/Matchers';
 import { CaseContract } from 'connectors/contract';
-import { DEFAULT_CONFIG } from 'connectors/contract/core';
 
 import { CaseConfigurationError } from 'entities';
 import type { AnyCaseNodeOrData } from 'entities/types';
-import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
+import {
+  MAINTAINER_TEST_CONTEXT,
+  makeExpectErrorContaining,
+} from '__tests__/expectErrorContaining';
 
 describe('named matches', () => {
   const contract = new CaseContract(
@@ -12,7 +14,7 @@ describe('named matches', () => {
       consumerName: 'test lookup consumer',
       providerName: 'test lookup provider',
     },
-    DEFAULT_CONFIG
+    MAINTAINER_TEST_CONTEXT
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);

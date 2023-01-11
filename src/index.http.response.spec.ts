@@ -38,7 +38,9 @@ describe('simple get endpoint', () => {
       consumerName: 'http request consumer',
       providerName: 'http request provider',
     },
-    {}
+    {
+      testRunId: 'REQUEST',
+    }
   );
 
   const interaction = willSendHttpInteraction({

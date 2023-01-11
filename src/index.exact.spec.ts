@@ -1,6 +1,8 @@
 import { CaseContract } from 'boundaries';
-import { DEFAULT_CONFIG } from 'connectors/contract/core';
-import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
+import {
+  MAINTAINER_TEST_CONTEXT,
+  makeExpectErrorContaining,
+} from '__tests__/expectErrorContaining';
 
 describe('basic types and structure checks', () => {
   const contract = new CaseContract(
@@ -8,7 +10,7 @@ describe('basic types and structure checks', () => {
       consumerName: 'test exact consumer',
       providerName: 'test exact provider',
     },
-    DEFAULT_CONFIG
+    MAINTAINER_TEST_CONTEXT
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);

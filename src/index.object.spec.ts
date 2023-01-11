@@ -4,9 +4,11 @@ import {
   objectEachValueMatches,
   stringContaining,
 } from 'boundaries/dsl/Matchers';
-import { DEFAULT_CONFIG } from 'connectors/contract/core';
 import { makeNoErrorResult } from 'entities/results';
-import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
+import {
+  MAINTAINER_TEST_CONTEXT,
+  makeExpectErrorContaining,
+} from '__tests__/expectErrorContaining';
 
 describe('basic types and structure checks', () => {
   const contract = new CaseContract(
@@ -14,7 +16,7 @@ describe('basic types and structure checks', () => {
       consumerName: 'test object consumer',
       providerName: 'test object provider',
     },
-    DEFAULT_CONFIG
+    MAINTAINER_TEST_CONTEXT
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);

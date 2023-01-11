@@ -9,9 +9,11 @@ import {
 } from 'boundaries/dsl/Matchers';
 import { CaseContract } from 'connectors/contract';
 
-import { DEFAULT_CONFIG } from 'connectors/contract/core';
 import { CaseConfigurationError } from 'entities';
-import { makeExpectErrorContaining } from '__tests__/expectErrorContaining';
+import {
+  MAINTAINER_TEST_CONTEXT,
+  makeExpectErrorContaining,
+} from '__tests__/expectErrorContaining';
 
 describe('basic matchers', () => {
   const contract = new CaseContract(
@@ -19,7 +21,7 @@ describe('basic matchers', () => {
       consumerName: 'test like consumer',
       providerName: 'test like provider',
     },
-    DEFAULT_CONFIG
+    MAINTAINER_TEST_CONTEXT
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);
