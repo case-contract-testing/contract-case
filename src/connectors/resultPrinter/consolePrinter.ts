@@ -66,7 +66,7 @@ const printFailureTitle = (example: CaseExample, index: string): void => {
       3,
       `\n${chalk.red(`✘`)} ${chalk.whiteBright(
         nameExample(example, index)
-      )}\n\n`
+      )}\n   Error details follow:\n`
     )
   );
 };
@@ -76,7 +76,7 @@ const printSuccessTitle = (example: CaseExample, index: string): void => {
   stdout.log(
     spaces(
       3,
-      `\n  ${chalk.greenBright(`✅`)} ${chalk.whiteBright(
+      `\n${chalk.greenBright(`✅`)} ${chalk.whiteBright(
         nameExample(example, index)
       )}\n`
     )
