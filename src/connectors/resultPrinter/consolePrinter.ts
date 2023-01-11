@@ -12,28 +12,43 @@ const stdout = new Console({ stdout: process.stdout });
 const locationString = (context: HasLocation) =>
   `${formatLocationString(context)}`;
 
-const spaces = (size: number) => new Array(size).fill(' ').join('');
+const spaces = (size: number, str: string) => {
+  const space = new Array(size).fill(' ').join('');
+  return `${space}${str.replaceAll('\n', `\n${space}`)}`;
+};
 
 const firstLine = (error: MatchingError) =>
-  `${spaces(6)}${chalk.bgRed.white(' MATCHING ERROR ')}: ${chalk.whiteBright(
-    error.message
-  )}`;
+  spaces(
+    6,
+    `${chalk.bgRed.white(' MATCHING ERROR ')}: ${chalk.whiteBright(
+      error.message
+    )}`
+  );
 
 const secondLine = (error: MatchingError) =>
-  `${spaces(9)}Expected something like:\n${spaces(10)} ${chalk.green(
-    actualToString(error.expected, 10)
-  )}`;
+  spaces(
+    9,
+    `Expected something like:\n${spaces(
+      3,
+      chalk.green(actualToString(error.expected, 10))
+    )}`
+  );
 
 const thirdLine = (error: MatchingError) =>
-  `${spaces(9)}Actual:\n${spaces(10)} ${chalk.red(
-    actualToString(error.actual, 10)
-  )}`;
+  spaces(
+    9,
+    `Actual:\n${spaces(3, chalk.red(actualToString(error.actual, 10)))}`
+  );
+
 const finalLine = (error: MatchingError) =>
-  `${spaces(12)} ${chalk.gray(
-    ` - ${locationString({
-      'case:currentRun:context:location': error.location,
-    })} [${error.matcher['case:matcher:type']}]`
-  )}`;
+  spaces(
+    12,
+    `${chalk.gray(
+      ` - ${locationString({
+        'case:currentRun:context:location': error.location,
+      })} [${error.matcher['case:matcher:type']}]`
+    )}`
+  );
 
 const printError = (error: MatchingError): void => {
   // This is done as one line to prevent it splitting when multiple tests are running
@@ -47,18 +62,24 @@ const printError = (error: MatchingError): void => {
 const printFailureTitle = (example: CaseExample, index: string): void => {
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
-    `\n${spaces(3)}  ${chalk.red(`✘`)} ${chalk.whiteBright(
-      nameExample(example, index)
-    )}\n\n`
+    spaces(
+      3,
+      `\n${chalk.red(`✘`)} ${chalk.whiteBright(
+        nameExample(example, index)
+      )}\n\n`
+    )
   );
 };
 
 const printSuccessTitle = (example: CaseExample, index: string): void => {
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
-    `\n${spaces(3)}  ${chalk.greenBright(`✅`)} ${chalk.whiteBright(
-      nameExample(example, index)
-    )}\n`
+    spaces(
+      3,
+      `\n  ${chalk.greenBright(`✅`)} ${chalk.whiteBright(
+        nameExample(example, index)
+      )}\n`
+    )
   );
 };
 
