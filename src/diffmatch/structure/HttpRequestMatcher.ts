@@ -70,7 +70,7 @@ const check = async (
     matcher.body !== undefined
       ? await matchContext.descendAndCheck(
           matcher.body,
-          addLocation('request.body', matchContext),
+          addLocation('body', matchContext),
           actual.body
         )
       : makeResults()

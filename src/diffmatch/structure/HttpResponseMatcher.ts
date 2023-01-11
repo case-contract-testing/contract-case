@@ -57,13 +57,13 @@ const check = async (
     ...(await Promise.all([
       matchContext.descendAndCheck(
         matcher.status,
-        addLocation('response.status', matchContext),
+        addLocation('status', matchContext),
         actual.status
       ),
       matcher.body !== undefined
         ? matchContext.descendAndCheck(
             matcher.body,
-            addLocation('response.body', matchContext),
+            addLocation('body', matchContext),
             actual.body
           )
         : makeNoErrorResult(),
