@@ -1,1 +1,158 @@
-{"description":{"consumerName":"http response consumer","providerName":"http response provider"},"matcherLookup":{},"examples":[{"result":"VERIFIED","states":[{"case:state:type":"NamedState","stateName":"Server is up"}],"interaction":{"request":{"method":"GET","path":"/health","case:matcher:type":"HttpRequestMatcher"},"response":{"status":200,"body":{"status":"up"},"case:matcher:type":"HttpResponseMatcher"},"case:interaction:uniqueName":"","case:interaction:type":"ConsumeHttpResponse","case:run:context:asWritten":"consume"}},{"result":"VERIFIED","states":[{"case:state:type":"NamedState","stateName":"Server is up"}],"interaction":{"request":{"method":"GET","path":"/health","case:matcher:type":"HttpRequestMatcher"},"response":{"status":200,"body":{"case:matcher:type":"CascadingContext","case:matcher:child":{"status":"whatever"},"case:context:matchBy":"type"},"case:matcher:type":"HttpResponseMatcher"},"case:interaction:uniqueName":"","case:interaction:type":"ConsumeHttpResponse","case:run:context:asWritten":"consume"}},{"result":"VERIFIED","states":[{"case:state:type":"NamedState","stateName":"Server is down"}],"interaction":{"request":{"method":"GET","path":"/health","case:matcher:type":"HttpRequestMatcher"},"response":{"status":{"case:matcher:type":"HttpStatusCode","case:matcher:example":400,"case:matcher:rule":["4XX","5XX"],"case:matcher:resolvesTo":"HttpStatusCode"},"case:matcher:type":"HttpResponseMatcher"},"case:interaction:uniqueName":"","case:interaction:type":"ConsumeHttpResponse","case:run:context:asWritten":"consume"}},{"result":"VERIFIED","states":[{"case:state:type":"NamedState","stateName":"Server is down"}],"interaction":{"request":{"method":"GET","path":"/health","case:matcher:type":"HttpRequestMatcher"},"response":{"status":503,"body":{"status":"down"},"case:matcher:type":"HttpResponseMatcher"},"case:interaction:uniqueName":"","case:interaction:type":"ConsumeHttpResponse","case:run:context:asWritten":"consume"}},{"result":"VERIFIED","states":[{"case:state:type":"StateWithVariables","stateName":"A user exists","variables":{"userId":{"case:matcher:type":"CascadingContext","case:matcher:child":"123","case:context:matchBy":"type"}}}],"interaction":{"request":{"method":"GET","path":"/users","case:matcher:type":"HttpRequestMatcher"},"response":{"status":200,"body":{"userId":{"case:matcher:type":"ContextVariable","case:matcher:variableName":"userId"}},"case:matcher:type":"HttpResponseMatcher"},"case:interaction:uniqueName":"","case:interaction:type":"ConsumeHttpResponse","case:run:context:asWritten":"consume"}}]}
+{
+  "description": {
+    "consumerName": "http response consumer",
+    "providerName": "http response provider"
+  },
+  "matcherLookup": {},
+  "examples": [
+    {
+      "result": "VERIFIED",
+      "states": [
+        {
+          "case:state:type": "NamedState",
+          "stateName": "Server is up"
+        }
+      ],
+      "interaction": {
+        "request": {
+          "method": "GET",
+          "path": "/health",
+          "case:matcher:type": "HttpRequestMatcher"
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "status": "up"
+          },
+          "case:matcher:type": "HttpResponseMatcher"
+        },
+        "case:interaction:uniqueName": "",
+        "case:interaction:type": "ConsumeHttpResponse",
+        "case:run:context:asWritten": "consume"
+      }
+    },
+    {
+      "result": "VERIFIED",
+      "states": [
+        {
+          "case:state:type": "NamedState",
+          "stateName": "Server is up"
+        }
+      ],
+      "interaction": {
+        "request": {
+          "method": "GET",
+          "path": "/health",
+          "case:matcher:type": "HttpRequestMatcher"
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "case:matcher:type": "CascadingContext",
+            "case:matcher:child": {
+              "status": "whatever"
+            },
+            "case:context:matchBy": "type"
+          },
+          "case:matcher:type": "HttpResponseMatcher"
+        },
+        "case:interaction:uniqueName": "",
+        "case:interaction:type": "ConsumeHttpResponse",
+        "case:run:context:asWritten": "consume"
+      }
+    },
+    {
+      "result": "VERIFIED",
+      "states": [
+        {
+          "case:state:type": "NamedState",
+          "stateName": "Server is down"
+        }
+      ],
+      "interaction": {
+        "request": {
+          "method": "GET",
+          "path": "/health",
+          "case:matcher:type": "HttpRequestMatcher"
+        },
+        "response": {
+          "status": {
+            "case:matcher:type": "HttpStatusCode",
+            "case:matcher:example": 400,
+            "case:matcher:rule": [
+              "4XX",
+              "5XX"
+            ],
+            "case:matcher:resolvesTo": "HttpStatusCode"
+          },
+          "case:matcher:type": "HttpResponseMatcher"
+        },
+        "case:interaction:uniqueName": "",
+        "case:interaction:type": "ConsumeHttpResponse",
+        "case:run:context:asWritten": "consume"
+      }
+    },
+    {
+      "result": "VERIFIED",
+      "states": [
+        {
+          "case:state:type": "NamedState",
+          "stateName": "Server is down"
+        }
+      ],
+      "interaction": {
+        "request": {
+          "method": "GET",
+          "path": "/health",
+          "case:matcher:type": "HttpRequestMatcher"
+        },
+        "response": {
+          "status": 503,
+          "body": {
+            "status": "down"
+          },
+          "case:matcher:type": "HttpResponseMatcher"
+        },
+        "case:interaction:uniqueName": "",
+        "case:interaction:type": "ConsumeHttpResponse",
+        "case:run:context:asWritten": "consume"
+      }
+    },
+    {
+      "result": "VERIFIED",
+      "states": [
+        {
+          "case:state:type": "StateWithVariables",
+          "stateName": "A user exists",
+          "variables": {
+            "userId": {
+              "case:matcher:type": "CascadingContext",
+              "case:matcher:child": "123",
+              "case:context:matchBy": "type"
+            }
+          }
+        }
+      ],
+      "interaction": {
+        "request": {
+          "method": "GET",
+          "path": "/users",
+          "case:matcher:type": "HttpRequestMatcher"
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "userId": {
+              "case:matcher:type": "ContextVariable",
+              "case:matcher:variableName": "userId"
+            }
+          },
+          "case:matcher:type": "HttpResponseMatcher"
+        },
+        "case:interaction:uniqueName": "",
+        "case:interaction:type": "ConsumeHttpResponse",
+        "case:run:context:asWritten": "consume"
+      }
+    }
+  ]
+}

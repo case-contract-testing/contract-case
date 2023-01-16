@@ -90,7 +90,7 @@ export const writeContract = (
     );
     throw new CaseConfigurationError(`The file ${pathToFile} already exists`);
   }
-  fs.writeFileSync(pathToFile, JSON.stringify(contract));
+  fs.writeFileSync(pathToFile, JSON.stringify(contract, undefined, 2));
   return pathToFile;
 };
 
