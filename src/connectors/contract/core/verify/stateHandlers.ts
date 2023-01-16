@@ -75,7 +75,7 @@ export const executeSetupHandlers = (
         `Failed to execute state setup before test, not running test`,
         e.message
       );
-      throw new CaseConfigurationError(`State teardown errored: ${e.message}`);
+      throw new CaseConfigurationError(`State setup errored: ${e.message}`);
     });
 
 const stateTeardownHandler = (
