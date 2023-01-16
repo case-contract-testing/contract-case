@@ -1,3 +1,5 @@
+import { UserNotFoundConsumerError } from './errors';
+import { API_NOT_FOUND } from './internals/apiErrors';
 import { makeAxiosConnector } from './internals/axiosConnector';
 import type { ServerHealth } from './types';
 
@@ -27,7 +29,13 @@ const api = (baseurl: string): Api => {
   return {
     getAllProducts: () => server.authedGet<string[]>('/products'),
     getProduct: (id) => server.authedGet(`/products/${id}`),
-    getUser: () => server.authedGet(`/users`),
+    getUser: (id: string) =>
+      server.authedGet<User>(`/users`).catch((e) => {
+        if (e.code === API_NOT_FOUND) {
+          throw new UserNotFoundConsumerError(`Unable to find user '${id}'`);
+        }
+        throw e;
+      }),
     health: () =>
       server.get<WireServerHealth>('/health').then(({ status }) => status),
   };

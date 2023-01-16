@@ -6,6 +6,7 @@ import {
   ApiError,
   API_ERROR,
   API_NOT_AUTHORISED,
+  API_NOT_FOUND,
   API_NO_RESPONSE,
 } from './apiErrors';
 
@@ -29,6 +30,10 @@ export const unmarshallFailure = (error: Error): never => {
           "The server says that you're not authorised.",
           API_NOT_AUTHORISED
         );
+      }
+
+      if (error.response.status === 404) {
+        throw new ApiError(`Not found: ${error.response.data}`, API_NOT_FOUND);
       }
 
       throw new ApiError(

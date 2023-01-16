@@ -13,9 +13,11 @@ import type { StateFunctions } from 'entities/states/types';
 import start from '__tests__/server/http/connectors/web';
 import { baseService } from '__tests__/server/http/domain/baseService';
 import type { User } from '__tests__/server/http/model/responses';
+import { UserNotFoundConsumerError } from '__tests__/client/http/connector/errors';
 import type { Dependencies } from '__tests__/server/http/domain/types';
 
 import { inState, CaseContract, CaseVerifier } from '.';
+// import { UserNotFound } from '__tests__/client/http/connector/errors';
 
 const contractDetails = {
   consumerName: 'http response consumer',
@@ -168,11 +170,14 @@ describe('e2e http consumer driven', () => {
     });
 
     describe('User', () => {
-      describe('specific server response', () => {
+      describe('when the user exists', () => {
         const responseBody = { userId: stateVariable('userId') };
         beforeEach(async () => {
           context = await contract.setup(
-            [inState('A user exists', { userId: '123' })],
+            [
+              inState('Server is up'),
+              inState('A user exists', { userId: '123' }),
+            ],
             willSendHttpInteraction({
               request: {
                 method: 'GET',
@@ -194,6 +199,37 @@ describe('e2e http consumer driven', () => {
 
           return expect(client.getUser('123')).resolves.toEqual(
             context.stripMatchers(responseBody)
+          );
+        });
+
+        afterEach(async () => {
+          const res = await context.assert();
+          if (res.length !== 0) {
+            throw new Error(res.join('\n').toString());
+          }
+        });
+      });
+      describe("when the user doesn't exist", () => {
+        beforeEach(async () => {
+          context = await contract.setup(
+            [inState('Server is up'), inState('No users exist')],
+            willSendHttpInteraction({
+              request: {
+                method: 'GET',
+                path: '/users', // TODO update this
+              },
+              response: {
+                status: 404,
+              },
+            })
+          );
+        });
+
+        it('calls server health', async () => {
+          const client = api(context.mock.baseUrl);
+
+          return expect(client.getUser('123')).rejects.toBeInstanceOf(
+            UserNotFoundConsumerError
           );
         });
 
@@ -251,17 +287,25 @@ describe('e2e http consumer driven', () => {
       'Server is down': () => {
         mockHealthStatus = false;
       },
-      'A user exists': () => {
-        const userId = '42';
-        mockGetUser = (id) => {
-          if (id === userId)
-            return {
-              userId,
-              name: 'John',
-            };
-          return undefined;
-        };
-        return { userId };
+      'A user exists': {
+        setup: () => {
+          const userId = '42';
+          mockGetUser = (id) => {
+            if (id === userId)
+              return {
+                userId,
+                name: 'John',
+              };
+            return undefined;
+          };
+          return { userId };
+        },
+        teardown: () => {
+          mockGetUser = () => undefined;
+        },
+      },
+      'No users exist': () => {
+        mockGetUser = () => undefined;
       },
     };
     describe('with a file contract', () => {

@@ -122,6 +122,10 @@
       "result": "VERIFIED",
       "states": [
         {
+          "case:state:type": "NamedState",
+          "stateName": "Server is up"
+        },
+        {
           "case:state:type": "StateWithVariables",
           "stateName": "A user exists",
           "variables": {
@@ -147,6 +151,33 @@
               "case:matcher:variableName": "userId"
             }
           },
+          "case:matcher:type": "HttpResponseMatcher"
+        },
+        "case:interaction:uniqueName": "",
+        "case:interaction:type": "ConsumeHttpResponse",
+        "case:run:context:asWritten": "consume"
+      }
+    },
+    {
+      "result": "VERIFIED",
+      "states": [
+        {
+          "case:state:type": "NamedState",
+          "stateName": "Server is up"
+        },
+        {
+          "case:state:type": "NamedState",
+          "stateName": "No users exist"
+        }
+      ],
+      "interaction": {
+        "request": {
+          "method": "GET",
+          "path": "/users",
+          "case:matcher:type": "HttpRequestMatcher"
+        },
+        "response": {
+          "status": 404,
           "case:matcher:type": "HttpResponseMatcher"
         },
         "case:interaction:uniqueName": "",
