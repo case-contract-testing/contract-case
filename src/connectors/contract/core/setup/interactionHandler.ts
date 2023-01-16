@@ -7,9 +7,12 @@ import type {
   CaseInteractionFor,
   Assertable,
   MatchResult,
+  AnyCaseNodeType,
+  AnyData,
+  DataOrCaseNodeFor,
 } from 'entities/types';
 import { handleResult } from 'entities/results';
-import { addLocation } from 'entities/context';
+import { addLocation, applyNodeToContext } from 'entities/context';
 import { CaseConfigurationError } from 'entities';
 
 import { interactionExecutor } from './interactionExecutor';
@@ -39,6 +42,13 @@ export const setupUnhandledAssert = <T extends AnyInteractionType>(
             }
           })
           .then(() => context.descendAndCheck(expected, context, actual))
+      ),
+    stripMatchers: <M extends AnyCaseNodeType>(
+      matcherOrData: DataOrCaseNodeFor<M>
+    ): AnyData =>
+      parentMatchContext.descendAndStrip(
+        matcherOrData,
+        applyNodeToContext(matcherOrData, parentMatchContext)
       ),
   }));
 

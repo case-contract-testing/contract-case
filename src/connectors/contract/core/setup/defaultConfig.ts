@@ -1,4 +1,4 @@
-import type { BaseCaseConfig } from 'connectors/contract/core/setup/types';
+import type { BaseCaseConfig } from './types';
 
 export const DEFAULT_TEST_ID = 'GLOBAL_TEST_ID' as const;
 

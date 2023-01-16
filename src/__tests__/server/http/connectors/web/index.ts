@@ -5,11 +5,16 @@ import { baseService } from '../../domain/baseService';
 import routes from './routes';
 import { healthService } from '../../domain/healthService';
 import type { Dependencies } from '../../domain/types';
+import { userRepo } from '../users/defaultUserRepository';
 
 const app = express();
 const PORT = 8282; // default port to listen
 
-const defaultDependencies: Dependencies = { baseService, healthService };
+const defaultDependencies: Dependencies = {
+  baseService,
+  healthService,
+  userRepository: userRepo,
+};
 
 const start = (
   port = PORT,

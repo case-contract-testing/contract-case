@@ -2,7 +2,10 @@ import type { RequestHandler, Response, Request } from 'express';
 import type {
   BaseServiceDependencies,
   HealthServiceDependencies,
+  UserServiceDependencies,
 } from '../../domain/types';
+import { makeUserService } from '../../domain/userService';
+import type { User } from '../../model/responses';
 import responder from './responder';
 
 export const base: (deps: BaseServiceDependencies) => RequestHandler =
@@ -23,4 +26,12 @@ export const health: (deps: HealthServiceDependencies) => RequestHandler =
     } else {
       responder(res).status<HealthResponse>(503, { status: 'down' });
     }
+  };
+
+export const users: (deps: UserServiceDependencies) => RequestHandler =
+  ({ userRepository }: UserServiceDependencies) =>
+  (_req: Request, res: Response) => {
+    responder(res).success<User>(
+      makeUserService({ userRepository }).getUser('42')
+    );
   };

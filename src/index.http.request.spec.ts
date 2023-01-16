@@ -4,7 +4,7 @@ import type * as http from 'node:http';
 import api from '__tests__/client/http/connector';
 import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
 import type { Assertable } from 'entities/types';
-import { httpStatus, shapedLike } from 'boundaries/dsl/Matchers';
+import { httpStatus, shapedLike, stateVariable } from 'boundaries/dsl/Matchers';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { readContract } from 'connectors/contract/writer/fileSystem';
 import type { RunTestCallback } from 'connectors/contract/types';
@@ -12,6 +12,7 @@ import type { StateFunctions } from 'entities/states/types';
 
 import start from '__tests__/server/http/connectors/web';
 import { baseService } from '__tests__/server/http/domain/baseService';
+import type { User } from '__tests__/server/http/model/responses';
 import type { Dependencies } from '__tests__/server/http/domain/types';
 
 import { inState, CaseContract, CaseVerifier } from '.';
@@ -101,6 +102,7 @@ describe('e2e http consumer driven', () => {
         });
       });
     });
+
     describe('When the server is down', () => {
       const state = inState('Server is down');
       describe('No body server response', () => {
@@ -164,23 +166,66 @@ describe('e2e http consumer driven', () => {
         });
       });
     });
+
+    describe('User', () => {
+      describe('specific server response', () => {
+        const responseBody = { userId: stateVariable('userId') };
+        beforeEach(async () => {
+          context = await contract.setup(
+            [inState('A user exists', { userId: '123' })],
+            willSendHttpInteraction({
+              request: {
+                method: 'GET',
+                path: '/users', // TODO update this
+              },
+              response: {
+                status: 200,
+                body: responseBody,
+              },
+            })
+          );
+        });
+
+        it('calls server health', async () => {
+          const client = api(context.mock.baseUrl);
+          expect(context.stripMatchers(responseBody)).toEqual({
+            userId: '123',
+          });
+
+          return expect(client.getUser('123')).resolves.toEqual(
+            context.stripMatchers(responseBody)
+          );
+        });
+
+        afterEach(async () => {
+          const res = await context.assert();
+          if (res.length !== 0) {
+            throw new Error(res.join('\n').toString());
+          }
+        });
+      });
+    });
   });
 
   describe('Server verification', () => {
     let server: http.Server;
     let mockHealthStatus = true;
+    let mockGetUser: (id: string) => User | undefined = () => undefined;
     const port = 8087;
     const serverDependencies: Dependencies = {
       healthService: {
         ready: () => mockHealthStatus,
       },
       baseService,
+      userRepository: { get: (id) => mockGetUser(id) },
     };
     const verifier = new CaseVerifier(
       readContract(
         'case-contracts/http-response-consumer-http-response-provider-12.case.json'
       ),
-      { baseUrlUnderTest: `http://localhost:${port}` }
+      {
+        baseUrlUnderTest: `http://localhost:${port}`,
+      }
     );
     beforeAll(async () => {
       server = await start(port, serverDependencies);
@@ -205,6 +250,18 @@ describe('e2e http consumer driven', () => {
       },
       'Server is down': () => {
         mockHealthStatus = false;
+      },
+      'A user exists': () => {
+        const userId = '42';
+        mockGetUser = (id) => {
+          if (id === userId)
+            return {
+              userId,
+              name: 'John',
+            };
+          return undefined;
+        };
+        return { userId };
       },
     };
     describe('with a file contract', () => {

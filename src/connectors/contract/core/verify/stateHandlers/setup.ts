@@ -1,18 +1,18 @@
 import { CaseConfigurationError } from 'entities';
-import type { MatchContext } from 'entities/context/types';
+import { addLocation, addStateSetupVariable } from 'entities/context';
 import {
   type StateFunctions,
   type AnyState,
-  type PromiseOrRaw,
   isSetupFunction,
-  SetupNamedState,
 } from 'entities/states/types';
+import type { MatchContext, AnyCaseNodeOrData } from 'entities/types';
+import { validateVariables } from './variables';
 
 const stateSetupHandler =
   (
     stateSetups: StateFunctions,
     context: MatchContext
-  ): ((state: AnyState) => PromiseOrRaw<void | Record<string, unknown>>) =>
+  ): ((state: AnyState) => Promise<void | Record<string, AnyCaseNodeOrData>>) =>
   (state: AnyState) => {
     const setupState = stateSetups[state.stateName];
     if (setupState === undefined) {
@@ -44,14 +44,14 @@ const stateSetupHandler =
 
 type StateSetupResult = {
   stateName: string;
-  variables: Record<string, unknown>;
+  variables: Record<string, AnyCaseNodeOrData>;
 };
 
-export const executeSetupHandlers = (
+export const getContextFromStateHandlers = (
   states: Array<AnyState>,
   stateSetups: StateFunctions,
   context: MatchContext
-): Promise<StateSetupResult[]> =>
+): Promise<MatchContext> =>
   Promise.resolve()
     .then(async () => {
       const result: StateSetupResult[] = [];
@@ -60,8 +60,13 @@ export const executeSetupHandlers = (
       // So we turn off the usual lint rules on purpose.
       // eslint-disable-next-line no-restricted-syntax
       for (const state of states) {
+        const stateContext = addLocation(`:setup[${state.stateName}]`, context);
         // eslint-disable-next-line no-await-in-loop
-        const variables = await stateSetupHandler(stateSetups, context)(state);
+        const variables = await validateVariables(
+          state,
+          stateContext,
+          stateSetupHandler(stateSetups, stateContext)
+        );
 
         result.push({
           stateName: state.stateName,
@@ -70,61 +75,21 @@ export const executeSetupHandlers = (
       }
       return result;
     })
+    .then((stateSetupResults) =>
+      stateSetupResults.reduce(
+        (currentContext, state) =>
+          Object.entries(state.variables).reduce(
+            (acc, [key, value]) =>
+              addStateSetupVariable(key, state.stateName, value, acc),
+            currentContext
+          ),
+        context
+      )
+    )
     .catch((e) => {
       context.logger.error(
         `Failed to execute state setup before test, not running test`,
         e.message
       );
       throw new CaseConfigurationError(`State setup errored: ${e.message}`);
-    });
-
-const stateTeardownHandler = (
-  stateSetups: StateFunctions,
-  state: SetupNamedState,
-  context: MatchContext
-) =>
-  Promise.resolve()
-    .then(async () => {
-      const stateFn = stateSetups[state.stateName];
-      if (stateFn !== undefined && !isSetupFunction(stateFn)) {
-        context.logger.debug(`Calling state teardown for '${state.stateName}'`);
-        await stateFn.teardown();
-      } else {
-        context.logger.debug(
-          `No state teardown exists for '${state.stateName}'`
-        );
-      }
-    })
-    .catch((e) => {
-      context.logger.error(
-        `Test may have passed, but state teardown for '${state.stateName}' failed with: ${e.message}`,
-        e
-      );
-      throw new CaseConfigurationError(
-        `State teardown '${state.stateName}}' failed: ${e.message}. Please check the implementation of your state teardown handler`
-      );
-    });
-
-export const executeTeardownHandlers = (
-  states: Array<AnyState>,
-  stateSetups: StateFunctions,
-  context: MatchContext
-): Promise<unknown> =>
-  Promise.resolve()
-    .then(async () => {
-      // Usually the following code is a mistake,
-      // but here we want to execute each handler in order
-      // So we turn off the usual lint rules on purpose.
-      // eslint-disable-next-line no-restricted-syntax
-      for (const state of states) {
-        // eslint-disable-next-line no-await-in-loop
-        await stateTeardownHandler(stateSetups, state, context);
-      }
-    })
-    .catch((e) => {
-      context.logger.error(
-        `Test may have passed, but at least one state teardown failed`,
-        e.message
-      );
-      throw new CaseConfigurationError(`State teardown errored: ${e.message}`);
     });

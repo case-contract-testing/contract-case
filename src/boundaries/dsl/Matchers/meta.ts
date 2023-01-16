@@ -9,6 +9,8 @@ import {
   AnyData,
   AnyCaseMatcher,
   HasExample,
+  CONTEXT_VARIABLE_TYPE,
+  CoreContextVariableMatcher,
 } from 'entities/types';
 
 /**
@@ -70,4 +72,14 @@ export const shapedLike = (
   'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   'case:matcher:child': content,
   'case:context:matchBy': 'type',
+});
+
+/**
+ * Matches the content of a variable from a provider state.
+ *
+ * @param name The name of the variable
+ */
+export const stateVariable = (name: string): CoreContextVariableMatcher => ({
+  'case:matcher:type': CONTEXT_VARIABLE_TYPE,
+  'case:matcher:variableName': name,
 });

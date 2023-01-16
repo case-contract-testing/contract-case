@@ -26,6 +26,7 @@ export const OBJECT_VALUES_MATCH_TYPE = 'ObjectValuesMatch' as const;
 export const OBJECT_KEYS_MATCH_TYPE = 'ObjectKeysMatch' as const;
 export const INTEGER_MATCH_TYPE = 'Integer' as const;
 export const STRING_CONTAINS_TYPE = 'StringContains' as const;
+export const CONTEXT_VARIABLE_TYPE = 'ContextVariable' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
@@ -46,7 +47,8 @@ export type AnyCaseNodeType =
   | typeof OBJECT_VALUES_MATCH_TYPE
   | typeof INTEGER_MATCH_TYPE
   | typeof STRING_CONTAINS_TYPE
-  | typeof OBJECT_KEYS_MATCH_TYPE;
+  | typeof OBJECT_KEYS_MATCH_TYPE
+  | typeof CONTEXT_VARIABLE_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -203,6 +205,12 @@ export interface CoreStringContainsMatcher {
   'case:matcher:example'?: string;
 }
 
+export interface CoreContextVariableMatcher {
+  'case:matcher:type': typeof CONTEXT_VARIABLE_TYPE;
+  'case:matcher:variableName': string;
+}
+
+/** Leaf matchers are any type where === would match in an exact context */
 export type AnyLeafMatcher =
   | CoreNumberMatcher
   | CoreStringMatcher
@@ -225,7 +233,8 @@ export type AnyCaseMatcher =
   | CoreArrayEachEntryMatches
   | CoreObjectValuesMatch
   | CoreObjectKeysMatcher
-  | CoreArrayContainsMatch;
+  | CoreArrayContainsMatch
+  | CoreContextVariableMatcher;
 
 export type HasExample<T extends AnyCaseMatcher> = T & {
   'case:matcher:example': unknown;

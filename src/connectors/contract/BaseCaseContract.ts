@@ -107,6 +107,9 @@ export class BaseCaseContract {
   stripMatchers<T extends AnyCaseNodeType>(
     matcherOrData: DataOrCaseNodeFor<T>
   ): AnyData {
+    this.initialContext.logger.warn(
+      'DEPRECATED: This function should be removed and a new Interaction concept brought in'
+    );
     return traversals.descendAndStrip(
       matcherOrData,
       applyNodeToContext(matcherOrData, this.initialContext)

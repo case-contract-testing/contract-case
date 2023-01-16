@@ -20,6 +20,7 @@ import {
   INTEGER_MATCH_TYPE,
   STRING_CONTAINS_TYPE,
   OBJECT_KEYS_MATCH_TYPE,
+  CONTEXT_VARIABLE_TYPE,
 } from 'entities/types';
 import {
   NumberMatcher,
@@ -29,7 +30,12 @@ import {
   HttpStatusCodeMatcher,
   IntegerMatcher,
 } from './leaf';
-import { AndCombinationMatcher, CascadingContext, LookupMatcher } from './meta';
+import {
+  AndCombinationMatcher,
+  CascadingContext,
+  ContextVariableMatcher,
+  LookupMatcher,
+} from './meta';
 import {
   ShapedArrayExecutor,
   ShapedObjectExecutor,
@@ -64,4 +70,5 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [OBJECT_VALUES_MATCH_TYPE]: ObjectEachValueMatches,
     [INTEGER_MATCH_TYPE]: IntegerMatcher,
     [OBJECT_KEYS_MATCH_TYPE]: ObjectEachKeyMatches,
+    [CONTEXT_VARIABLE_TYPE]: ContextVariableMatcher,
   };

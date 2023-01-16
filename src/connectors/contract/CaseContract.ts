@@ -11,11 +11,15 @@ import {
   coreNullMatcher,
 } from 'entities';
 import { CaseFailedError } from 'entities/CaseFailedError';
-import { addLocation, applyNodeToContext } from 'entities/context';
+import {
+  addDefaultVariable,
+  addLocation,
+  applyNodeToContext,
+} from 'entities/context';
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
 import { makeResults } from 'entities/results';
-import type { AnyState } from 'entities/states/types';
+import { AnyState, SETUP_VARIABLE_STATE } from 'entities/states/types';
 import type {
   LogLevelContext,
   AnyInteractionType,
@@ -49,15 +53,22 @@ export class CaseContract extends BaseCaseContract {
     const thisIndex = this.testIndex;
     this.testIndex += 1;
 
-    return setupHandledAssert(
-      states,
-      interaction,
+    const thisRunContext = states.reduce(
+      (intermediateContext, state) =>
+        state['case:state:type'] !== SETUP_VARIABLE_STATE
+          ? intermediateContext
+          : Object.entries(state.variables).reduce(
+              (acc, [key, value]) =>
+                addDefaultVariable(key, state.stateName, value, acc),
+              intermediateContext
+            ),
       applyNodeToContext(interaction, this.initialContext, {
         ...(runConfig ? configToRunContext(runConfig) : {}),
         'case:currentRun:context:testName': `${thisIndex}`,
-      }),
-      this
+      })
     );
+
+    return setupHandledAssert(states, interaction, thisRunContext, this);
   }
 
   recordSuccess(

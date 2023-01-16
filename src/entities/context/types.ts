@@ -94,10 +94,26 @@ export interface HasBaseUrlUnderTest {
   'case:currentRun:context:baseUrlUnderTest': string;
 }
 
+type ContextStateVariable = {
+  source: 'state';
+  stateName: string;
+  value: AnyCaseNodeOrData;
+};
+
+type ExampleVariable = {
+  source: 'default';
+  stateName: string;
+  value: AnyCaseNodeOrData;
+};
+
 export interface RunContext
   extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest> {
   'case:run:context:tree'?: AnyCaseNodeOrData | AnyInteraction;
   'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
+  'case:currentRun:context:runVariables': Record<
+    string,
+    ContextStateVariable | ExampleVariable
+  >;
 }
 
 export interface MatchContextByType {

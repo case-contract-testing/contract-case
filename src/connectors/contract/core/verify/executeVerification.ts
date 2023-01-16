@@ -4,37 +4,43 @@ import type { CaseExample } from 'entities/contract/types';
 import { setupUnhandledAssert } from 'connectors/contract/core/setup';
 import { handleResult } from 'entities/results/handlers';
 import type { StateFunctions } from 'entities/states/types';
-import { executeSetupHandlers, executeTeardownHandlers } from './stateHandlers';
+import {
+  getContextFromStateHandlers,
+  executeTeardownHandlers,
+} from './stateHandlers';
 
 export const executeVerification =
   (
     example: CaseExample,
     exampleIndex: string,
     stateSetups: StateFunctions,
-    context: MatchContext
+    initialContext: MatchContext
   ): (() => Promise<void>) =>
   () => {
-    context.logger.debug(
+    initialContext.logger.debug(
       `Beginning verification for interaction "${nameExample(
         example,
         exampleIndex
       )}"`
     );
-    context.logger.maintainerDebug(
+    initialContext.logger.maintainerDebug(
       'Context is',
-      JSON.stringify(context, null, 2)
+      JSON.stringify(initialContext, null, 2)
     );
-    return executeSetupHandlers(example.states, stateSetups, context)
-      .then(() => {
-        context.logger.maintainerDebug(`Calling setupVerify`);
-        return setupUnhandledAssert(example.interaction, context);
-      })
-      .then((verifiable) => verifiable.assert())
-      .then((result) => handleResult(example, exampleIndex, result, context))
-      .finally(() =>
-        executeTeardownHandlers(example.states, stateSetups, context)
-      )
-      .then(() => {
-        context.logger.debug(`This interaction passed verification`);
-      });
+    return getContextFromStateHandlers(
+      example.states,
+      stateSetups,
+      initialContext
+    ).then((context) => {
+      context.logger.maintainerDebug(`Calling setupVerify`);
+      return setupUnhandledAssert(example.interaction, context)
+        .then((verifiable) => verifiable.assert())
+        .then((result) => handleResult(example, exampleIndex, result, context))
+        .finally(() =>
+          executeTeardownHandlers(example.states, stateSetups, context)
+        )
+        .then(() => {
+          context.logger.debug(`This interaction passed verification`);
+        });
+    });
   };

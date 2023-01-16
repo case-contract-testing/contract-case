@@ -64,7 +64,7 @@ Pact Parity
   - [ ] Regex - dangerous as it allows optionals. Maybe a subset?
   - [ ] Probably out of scope: Binary content type with magic file check
 - [x] Provider state
-  - [ ] Variables from provider state (Implementation detail: via resolved matchers)
+  - [x] Variables from provider state (Implementation detail: via resolved matchers)
 - [x] Write contract file
   - [x] Print errors nicely
   - [x] Config for location
@@ -99,7 +99,7 @@ Later major features
 Cool features
 
 - [x] And matcher
-- [ ] Resolved values (eg state)
+- [x] Resolved values (eg state)
 - [ ] Ignore matcher ("pretend this isn't in the response for the following matcher")
 - [ ] Pact compatibility
 - [ ] Call-out matchers that call out to another service
