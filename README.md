@@ -115,7 +115,6 @@ Cool features
   - [ ] Options and config from environment variables
   - [ ] Options and config from .rc files
 - [ ] Run as a server so that arbitrary frameworks can use it
-- [ ] String combination matchers - how would this work?
 - [ ] JS Matchers - Loading plugins from a JS module
 - [x] Automatic names for interactions
   - [ ] Better automatic names eg "a GET request to /health"
