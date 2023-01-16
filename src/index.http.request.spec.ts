@@ -17,7 +17,6 @@ import { UserNotFoundConsumerError } from '__tests__/client/http/connector/error
 import type { Dependencies } from '__tests__/server/http/domain/types';
 
 import { inState, CaseContract, CaseVerifier } from '.';
-// import { UserNotFound } from '__tests__/client/http/connector/errors';
 
 const contractDetails = {
   consumerName: 'http response consumer',

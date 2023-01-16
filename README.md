@@ -100,10 +100,15 @@ Cool features
 
 - [x] And matcher
 - [x] Resolved values (eg state)
+- [ ] String matcher helpers
+  - [ ] Prefix
+  - [ ] Suffic
+  - [ ] Pivot
+  - [ ] Split
 - [ ] Ignore matcher ("pretend this isn't in the response for the following matcher")
 - [ ] Pact compatibility
 - [ ] Call-out matchers that call out to another service
-- [ ] Matcher structure / use verification
+- [x] Matcher structure / use verification
 - [ ] Matcher version compatibility
 - [ ] Matcher content verification
 - [x] Options + config
@@ -127,6 +132,8 @@ Contract file access patterns
 Internals
 
 - [ ] Errors that don't have associated matchers
+- [ ] Fail tests if there are configuration errors inside the handler
+- [ ] Tidy up strip matcher stuff
 - [ ] Error collapsers, so if the same spot produces the same errors for different reasons it will only be reported once.
 - [ ] "Is this interaction the same as that"?
 - [x] Do state handlers in order they're defined instead of all at once
