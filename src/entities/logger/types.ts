@@ -1,4 +1,10 @@
-export type LogLevel = 'error' | 'warn' | 'info' | 'debug' | 'maintainerDebug';
+export type LogLevel =
+  | 'none'
+  | 'error'
+  | 'warn'
+  | 'info'
+  | 'debug'
+  | 'maintainerDebug';
 
 export interface Logger {
   /**

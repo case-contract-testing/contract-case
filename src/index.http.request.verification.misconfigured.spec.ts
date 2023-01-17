@@ -32,6 +32,7 @@ describe('Server verification', () => {
 
   const verifier = new CaseVerifier(contract, {
     baseUrlUnderTest: `http://localhost:${port}`,
+    logLevel: 'none',
   });
   beforeAll(async () => {
     server = await start(port, serverDependencies);

@@ -8,6 +8,8 @@ export const shouldLog = (
   logFunction: LogLevel
 ): boolean => {
   switch (context['case:currentRun:context:logLevel']) {
+    case 'none':
+      return false;
     case 'error':
       return logFunction === 'error';
     case 'warn':
