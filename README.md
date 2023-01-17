@@ -43,7 +43,7 @@ Pact Parity
 
 - [ ] JVM / Python / Go / C# bindings
 - [x] Strip matchers
-- [x] Loggingq
+- [x] Logging
 - [x] Random port startup
 - [ ] Convenience matchers
   - [x] Primitive matchers
@@ -100,25 +100,25 @@ Cool features
 
 - [x] And matcher
 - [x] Resolved values (eg state)
+- [x] Automatic names for interactions
+- [ ] Better automatic names eg "a GET request to /health"
 - [ ] String matcher helpers
   - [x] Prefix
   - [x] Suffic
   - [ ] Pivot
   - [ ] Split
-- [ ] Ignore matcher ("pretend this isn't in the response for the following matcher")
-- [ ] Pact compatibility
-- [ ] Call-out matchers that call out to another service
-- [x] Matcher structure / use verification
-- [ ] Matcher version compatibility
-- [ ] Matcher content verification
+- [x] Matcher content verification
+- [ ] Matcher argument verification
 - [x] Options + config
   - [ ] Options and config from environment variables
   - [ ] Options and config from .rc files
-- [ ] Run as a server so that arbitrary frameworks can use it
-- [ ] JS Matchers - Loading plugins from a JS module
-- [x] Automatic names for interactions
-  - [ ] Better automatic names eg "a GET request to /health"
 - [ ] Logging matchers
+- [ ] JS Matchers - Loading plugins from a JS module
+- [ ] Matcher version compatibility
+- [ ] Pact compatibility (ability to read Pact files)
+- [ ] Call-out matchers that call out to another service
+- [ ] Ignore matcher ("pretend this isn't in the response for the following matcher")
+- [ ] Run as a server so that arbitrary frameworks can use it
 
 Contract file access patterns
 
