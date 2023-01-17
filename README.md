@@ -90,7 +90,7 @@ Later major features
 
 - [ ] Save a new matcher directly to contract, without a test (so that it can be used in tests)
 - [ ] Text bodies
-- [ ] XML Matchers`
+- [ ] XML Matchers
 - [ ] Http forms matchers
 - [ ] grpc support
 - [ ] graphql support
@@ -112,7 +112,7 @@ Cool features
 - [x] Options + config
   - [ ] Options and config from environment variables
   - [ ] Options and config from .rc files
-- [ ] Logging matchers
+- [x] Logging matchers
 - [ ] JS Matchers - Loading plugins from a JS module
 - [ ] Matcher version compatibility
 - [ ] Pact compatibility (ability to read Pact files)
@@ -135,6 +135,7 @@ Internals
 - [ ] Tidy up strip matcher stuff
 - [ ] Error collapsers, so if the same spot produces the same errors for different reasons it will only be reported once.
 - [ ] "Is this interaction the same as that"?
+- [x] Make sure all errors include context
 - [x] Do state handlers in order they're defined instead of all at once
 - [ ] Broker CLI / integration?
 - [ ] Release plan that includes version number - can we just import this like we did in pact? It would be nice if it was accurate.
@@ -145,19 +146,16 @@ Internals
 - [ ] Indentation on test output
 - [ ] Better system for stripping matchers with `and()` - maybe `{ items, keys, structure }`?
 
-Errors
-
-- [ ] Error types marshalled at boundary
-- [ ] Introduce error codes for different classes of error
-  - [ ] Write documentation for every single CaseConfigurationError
-- [x] Make sure all errors include context
-- [ ] Annotate code generally with maintainer debug info
-
-Configuration
+Configuration and ergonomics
 
 - [x] Log levels
 - [x] File locations
 - [x] Silent mode (no logs or test output)
+- [ ] Warn when a logLevel matcher is written to contract
+- [ ] Error types marshalled at boundary
+- [ ] Introduce error codes for different classes of error
+  - [ ] Write documentation for every single CaseConfigurationError
+- [ ] Annotate code generally with maintainer debug info
 
 Documentation
 

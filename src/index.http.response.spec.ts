@@ -2,7 +2,7 @@ import type * as http from 'http';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import type { Assertable, MatchResult } from 'entities/types';
 import { makeNoErrorResult } from 'entities/results';
-import { anyString, httpStatus } from 'boundaries/dsl/Matchers';
+import { anyString, httpStatus, logLevel } from 'boundaries/dsl/Matchers';
 import type { CaseConfig } from 'connectors/contract/core/types';
 import { CaseConfigurationError } from 'entities';
 import { CaseFailedError } from 'entities/CaseFailedError';
@@ -114,7 +114,7 @@ describe('simple get endpoint', () => {
               },
               response: {
                 status: httpStatus(200),
-                body: { status: anyString('up') },
+                body: logLevel('maintainerDebug', { status: anyString('up') }),
               },
             }),
             config

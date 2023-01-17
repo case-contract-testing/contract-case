@@ -2,7 +2,6 @@ import type * as http from 'http';
 import express from 'express';
 import type * as net from 'node:net';
 
-import { traversals } from 'diffmatch';
 import {
   HttpRequestData,
   CoreHttpRequestResponseMatcherPair,
@@ -47,7 +46,7 @@ export const setupHttpResponseProducer = (
         );
 
         res.status(
-          traversals.descendAndStrip(
+          context.descendAndStrip(
             expectedResponse.status,
             addLocation('response.status', context)
           ) as number
@@ -55,7 +54,7 @@ export const setupHttpResponseProducer = (
 
         if (expectedResponse.body) {
           res.send(
-            traversals.descendAndStrip(
+            context.descendAndStrip(
               expectedResponse.body,
               addLocation('response.body', context)
             )

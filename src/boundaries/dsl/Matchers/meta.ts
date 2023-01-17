@@ -11,6 +11,7 @@ import {
   HasExample,
   CONTEXT_VARIABLE_TYPE,
   CoreContextVariableMatcher,
+  LogLevel,
 } from 'entities/types';
 
 /**
@@ -82,4 +83,23 @@ export const shapedLike = (
 export const stateVariable = (name: string): CoreContextVariableMatcher => ({
   'case:matcher:type': CONTEXT_VARIABLE_TYPE,
   'case:matcher:variableName': name,
+});
+
+/**
+ * Alters the case log level below this matcher. Useful for debugging.
+ *
+ * This has no effect on matching.
+ *
+ * Note that this log level change is saved into the contract, which may not be what you want.
+ *
+ * @param logLevel The new {@link LogLevel}
+ * @param child The next matcher in the tree.
+ */
+export const logLevel = (
+  level: LogLevel,
+  child: AnyCaseNodeOrData
+): CoreCascadingMatcher => ({
+  'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+  'case:matcher:child': child,
+  'case:currentRun:context:logLevel': level,
 });

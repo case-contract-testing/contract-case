@@ -22,6 +22,7 @@ import type {
 
 /**
  * `case:currentRun:context:*` is not clobberable by child matchers
+ *  (with the exception of case:currentRun:context:logLevel).
  * `case:context:*` is clobberable by child matchers
  */
 const DEFAULT_CONTEXT: DefaultContext = {
@@ -37,7 +38,10 @@ const contextProperties = (
   caseNode: AnyCaseMatcher | AnyInteraction
 ): MatchContext =>
   Object.entries(caseNode)
-    .filter(([k]) => k.startsWith('case:context'))
+    .filter(
+      ([k]) =>
+        k.startsWith('case:context') || k === 'case:currentRun:context:logLevel'
+    )
     .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {} as MatchContext);
 
 export const foldIntoContext = (

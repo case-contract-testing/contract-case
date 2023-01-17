@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import { traversals } from 'diffmatch';
 import { PRODUCE_HTTP_RESPONSE } from 'entities/nodes/interactions/types';
 import type {
   HasBaseUrlUnderTest,
@@ -60,7 +59,7 @@ export const setupHttpResponseConsumer = (
             )}`,
             ...(expectedRequest.body
               ? {
-                  body: traversals.descendAndStrip(
+                  body: context.descendAndStrip(
                     expectedRequest.body,
                     addLocation('body', context)
                   ),

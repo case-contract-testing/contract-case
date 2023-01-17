@@ -25,8 +25,19 @@ const getExecutor = <T extends AnyCaseNodeType>(
       `Missing executor for matcher type '${matcher['case:matcher:type']}'`
     );
   }
+
   return {
-    check: (actual: unknown) => executor.check(matcher, matchContext, actual),
+    check: async (actual: unknown) => {
+      parentMatchContext.logger.maintainerDebug(
+        `Entering ${matcher['case:matcher:type']}, actual is:`,
+        actual
+      );
+      const result = await executor.check(matcher, matchContext, actual);
+      parentMatchContext.logger.maintainerDebug(
+        `Exiting ${matcher['case:matcher:type']}, with ${result.length} errors`
+      );
+      return result;
+    },
     strip: () => executor.strip(matcher, matchContext),
   };
 };
