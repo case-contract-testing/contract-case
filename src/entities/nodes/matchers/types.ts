@@ -26,6 +26,8 @@ export const OBJECT_VALUES_MATCH_TYPE = 'ObjectValuesMatch' as const;
 export const OBJECT_KEYS_MATCH_TYPE = 'ObjectKeysMatch' as const;
 export const INTEGER_MATCH_TYPE = 'Integer' as const;
 export const STRING_CONTAINS_TYPE = 'StringContains' as const;
+export const STRING_PREFIX_TYPE = 'StringPrefix' as const;
+export const STRING_SUFFIX_TYPE = 'StringSuffix' as const;
 export const CONTEXT_VARIABLE_TYPE = 'ContextVariable' as const;
 
 export type AnyCaseNodeType =
@@ -47,6 +49,8 @@ export type AnyCaseNodeType =
   | typeof OBJECT_VALUES_MATCH_TYPE
   | typeof INTEGER_MATCH_TYPE
   | typeof STRING_CONTAINS_TYPE
+  | typeof STRING_PREFIX_TYPE
+  | typeof STRING_SUFFIX_TYPE
   | typeof OBJECT_KEYS_MATCH_TYPE
   | typeof CONTEXT_VARIABLE_TYPE;
 
@@ -205,6 +209,20 @@ export interface CoreStringContainsMatcher {
   'case:matcher:example'?: string;
 }
 
+export interface CoreStringPrefixMatcher {
+  'case:matcher:type': typeof STRING_PREFIX_TYPE;
+  'case:matcher:prefix': string;
+  'case:matcher:suffix': string | AnyCaseMatcher;
+  'case:matcher:resolvesTo': 'string';
+}
+
+export interface CoreStringSuffixMatcher {
+  'case:matcher:type': typeof STRING_SUFFIX_TYPE;
+  'case:matcher:prefix': string | AnyCaseMatcher;
+  'case:matcher:suffix': string;
+  'case:matcher:resolvesTo': 'string';
+}
+
 export interface CoreContextVariableMatcher {
   'case:matcher:type': typeof CONTEXT_VARIABLE_TYPE;
   'case:matcher:variableName': string;
@@ -234,6 +252,8 @@ export type AnyCaseMatcher =
   | CoreObjectValuesMatch
   | CoreObjectKeysMatcher
   | CoreArrayContainsMatch
+  | CoreStringSuffixMatcher
+  | CoreStringPrefixMatcher
   | CoreContextVariableMatcher;
 
 export type HasExample<T extends AnyCaseMatcher> = T & {

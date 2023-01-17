@@ -21,6 +21,8 @@ import {
   STRING_CONTAINS_TYPE,
   OBJECT_KEYS_MATCH_TYPE,
   CONTEXT_VARIABLE_TYPE,
+  STRING_PREFIX_TYPE,
+  STRING_SUFFIX_TYPE,
 } from 'entities/types';
 import {
   NumberMatcher,
@@ -43,17 +45,23 @@ import {
   HttpRequestMatcher,
   EachArrayEntryMatches,
   ObjectEachValueMatches,
+  ObjectEachKeyMatches,
   ArrayContains,
   ArrayLengthExecutor,
 } from './structure';
-import { StringContainsMatcher } from './leaf/primitives/StringContainsMatcher';
-import { ObjectEachKeyMatches } from './structure/ObjectEachKeyMatches';
+import {
+  StringContainsMatcher,
+  StringPrefixMatcher,
+  StringSuffixMatcher,
+} from './combinators';
 
 export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
   {
     [NUMBER_MATCHER_TYPE]: NumberMatcher,
     [STRING_MATCHER_TYPE]: StringMatcher,
     [STRING_CONTAINS_TYPE]: StringContainsMatcher,
+    [STRING_PREFIX_TYPE]: StringPrefixMatcher,
+    [STRING_SUFFIX_TYPE]: StringSuffixMatcher,
     [BOOLEAN_MATCHER_TYPE]: BooleanMatcher,
     [CASCADING_CONTEXT_MATCHER_TYPE]: CascadingContext,
     [NULL_MATCHER_TYPE]: NullMatcher,

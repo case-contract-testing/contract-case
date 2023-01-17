@@ -90,7 +90,7 @@ Later major features
 
 - [ ] Save a new matcher directly to contract, without a test (so that it can be used in tests)
 - [ ] Text bodies
-- [ ] XML Matchers
+- [ ] XML Matchers`
 - [ ] Http forms matchers
 - [ ] grpc support
 - [ ] graphql support
@@ -101,8 +101,8 @@ Cool features
 - [x] And matcher
 - [x] Resolved values (eg state)
 - [ ] String matcher helpers
-  - [ ] Prefix
-  - [ ] Suffic
+  - [x] Prefix
+  - [x] Suffic
   - [ ] Pivot
   - [ ] Split
 - [ ] Ignore matcher ("pretend this isn't in the response for the following matcher")
