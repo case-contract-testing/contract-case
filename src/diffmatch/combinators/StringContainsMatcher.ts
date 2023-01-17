@@ -52,7 +52,7 @@ export const StringContainsMatcher: MatcherExecutor<
     `a string containing "${mustResolveToString(
       matcher['case:matcher:contains'],
       matchContext
-    )}`,
+    ).replace(/^"+|"+$/g, '')}"`,
   check,
   strip: (matcher: CoreStringContainsMatcher, matchContext) => {
     if ('case:matcher:example' in matcher) {

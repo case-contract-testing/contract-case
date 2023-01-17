@@ -77,15 +77,15 @@ const name = (
 ): string =>
   response.uniqueName
     ? response.uniqueName
-    : `a http response with ${context.descendAndDescribe(
+    : `a (${context.descendAndDescribe(
         response.status,
         addLocation('status', context)
-      )} response ${
+      )}) response ${
         response.body
-          ? context.descendAndDescribe(
+          ? `with body ${context.descendAndDescribe(
               response.body,
               addLocation('body', context)
-            )
+            )}`
           : 'without a body'
       }`;
 

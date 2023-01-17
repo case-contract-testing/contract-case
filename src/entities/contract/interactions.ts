@@ -19,5 +19,5 @@ export const nameExample = (
 
   return `${
     stateNames !== '' ? `When ${stateNames}, then ` : ''
-  }${requestName} responds with ${responseName}`;
+  }${requestName} -> ${responseName}`;
 };

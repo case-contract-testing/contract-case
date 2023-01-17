@@ -80,7 +80,7 @@ const check = async (
 const name = (request: CoreHttpRequestMatcher, context: MatchContext): string =>
   request.uniqueName
     ? request.uniqueName
-    : `a http ${context.descendAndDescribe(
+    : `an http ${context.descendAndDescribe(
         request.method,
         addLocation('method', context)
       )} request to ${context.descendAndDescribe(
