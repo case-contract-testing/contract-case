@@ -4,10 +4,10 @@ export const nameExample = (
   { states, interaction }: CaseExample,
   index: string
 ): string => {
+  const stateNames = states.map((state) => state.stateName).join(' and ');
   if (interaction['case:interaction:uniqueName']) {
     return interaction['case:interaction:uniqueName'];
   }
-  const stateNames = states.map((state) => state.stateName).join(' and ');
   const requestName =
     'case:matcher:uniqueName' in interaction.request
       ? interaction.request['case:matcher:uniqueName']

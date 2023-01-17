@@ -16,7 +16,12 @@ export type StripMatcherFn<T extends AnyCaseNodeType> = (
   matchContext: MatchContext
 ) => AnyData;
 
+export type NameMatcherFn<T extends AnyCaseNodeType> = (
+  matcher: CaseNodeFor<T>,
+  matchContext: MatchContext
+) => string;
 export interface MatcherExecutor<T extends AnyCaseNodeType> {
+  describe: NameMatcherFn<T>;
   check: CheckMatchFn<T>;
   strip: StripMatcherFn<T>;
 }

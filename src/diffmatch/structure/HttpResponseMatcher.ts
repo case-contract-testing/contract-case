@@ -71,6 +71,24 @@ const check = async (
   );
 };
 
+const name = (
+  response: CoreHttpResponseMatcher,
+  context: MatchContext
+): string =>
+  response.uniqueName
+    ? response.uniqueName
+    : `a http response with ${context.descendAndDescribe(
+        response.status,
+        addLocation('status', context)
+      )} response ${
+        response.body
+          ? context.descendAndDescribe(
+              response.body,
+              addLocation('body', context)
+            )
+          : 'without a body'
+      }`;
+
 export const HttpResponseMatcher: MatcherExecutor<
   typeof HTTP_RESPONSE_MATCHER_TYPE
-> = { check, strip };
+> = { describe: name, check, strip };

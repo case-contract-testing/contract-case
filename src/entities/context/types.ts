@@ -35,6 +35,10 @@ export interface TraversalFns {
     matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
     parentMatchContext: MatchContext
   ) => ReturnType<MatcherExecutor<T>['strip']>;
+  descendAndDescribe: <T extends AnyCaseNodeType>(
+    matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
+    parentMatchContext: MatchContext
+  ) => string;
   selfVerify: <T extends AnyCaseNodeType>(
     matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
     parentMatchContext: MatchContext

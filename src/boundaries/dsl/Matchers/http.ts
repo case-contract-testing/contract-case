@@ -12,4 +12,12 @@ import type { CoreHttpStatusCodeMatcher } from 'entities/types';
 export const httpStatus = (
   match: number | string | Array<number | string>,
   example?: number
-): CoreHttpStatusCodeMatcher => httpStatusCodeMatcher(match, example);
+): CoreHttpStatusCodeMatcher => {
+  if (Array.isArray(match)) {
+    return httpStatusCodeMatcher(
+      match.map((r) => `${r}`),
+      example
+    );
+  }
+  return httpStatusCodeMatcher(`${match}`, example);
+};

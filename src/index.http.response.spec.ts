@@ -124,6 +124,27 @@ describe('simple get endpoint', () => {
           expect(context.assert()).resolves.toEqual(makeNoErrorResult()));
       });
 
+      describe('and a matching interaction with the same status as a previous one, but a string', () => {
+        beforeEach(async () => {
+          context = await contract.setup(
+            [],
+            willSendHttpInteraction({
+              request: {
+                method: 'GET',
+                path: '/health',
+              },
+              response: {
+                status: httpStatus('200'),
+                body: logLevel('maintainerDebug', { status: anyString('up') }),
+              },
+            }),
+            config
+          );
+        });
+        it('succeeds', () =>
+          expect(context.assert()).resolves.toEqual(makeNoErrorResult()));
+      });
+
       describe('and a non-matching body', () => {
         beforeEach(async () => {
           context = await contract.setup(
@@ -174,7 +195,7 @@ describe('simple get endpoint', () => {
                 method: 'POST',
                 path: '/health',
               },
-              response: { status: httpStatus('200'), body: { status: 'up' } },
+              response: { status: httpStatus(200), body: { status: 'up' } },
             }),
             config
           );

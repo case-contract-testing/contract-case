@@ -52,6 +52,10 @@ const check = (
   );
 
 export const NumberMatcher: MatcherExecutor<typeof NUMBER_MATCHER_TYPE> = {
+  describe: (matcher, matchContext) =>
+    matchContext['case:context:matchBy'] === 'exact'
+      ? `${matcher['case:matcher:example']}`
+      : '<any number>',
   check,
   strip: (matcher: CoreNumberMatcher) => matcher['case:matcher:example'],
 };

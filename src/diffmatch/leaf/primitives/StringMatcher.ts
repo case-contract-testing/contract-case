@@ -31,6 +31,10 @@ const check = (
   );
 
 export const StringMatcher: MatcherExecutor<typeof STRING_MATCHER_TYPE> = {
+  describe: (matcher, matchContext) =>
+    matchContext['case:context:matchBy'] === 'exact'
+      ? `"${matcher['case:matcher:example']}"`
+      : '<any string>',
   check,
   strip: (matcher: CoreStringMatcher) => matcher['case:matcher:example'],
 };

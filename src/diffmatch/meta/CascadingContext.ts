@@ -26,4 +26,12 @@ const strip = (
 
 export const CascadingContext: MatcherExecutor<
   typeof CASCADING_CONTEXT_MATCHER_TYPE
-> = { check, strip };
+> = {
+  describe: (matcher, matchContext) =>
+    matchContext.descendAndDescribe(
+      matcher['case:matcher:child'],
+      matchContext
+    ),
+  check,
+  strip,
+};

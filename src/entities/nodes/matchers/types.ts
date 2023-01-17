@@ -160,7 +160,7 @@ export interface CoreShapedObjectMatcher {
   'case:matcher:children': JsonOrMatcherMap;
 }
 
-export const ARRAY_LENGTH_PARAMETER_INFINITE = 'NO_LIMIT' as const;
+export const ARRAY_LENGTH_PARAMETER_INFINITE = 'unlimited' as const;
 
 export interface CoreArrayLengthMatcher {
   'case:matcher:type': typeof ARRAY_LENGTH_MATCHER_TYPE;

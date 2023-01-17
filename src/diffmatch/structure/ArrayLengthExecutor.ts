@@ -68,4 +68,9 @@ const check: CheckMatchFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
 
 export const ArrayLengthExecutor: MatcherExecutor<
   typeof ARRAY_LENGTH_MATCHER_TYPE
-> = { check, strip };
+> = {
+  describe: (matcher) =>
+    `an array of length min: ${matcher['case:matcher:minLength']}, max: ${matcher['case:matcher:maxLength']};`,
+  check,
+  strip,
+};

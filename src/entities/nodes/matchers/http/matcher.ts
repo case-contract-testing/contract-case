@@ -11,7 +11,7 @@ import {
 import { validateCodes } from './validator';
 
 export const httpStatusCodeMatcher = (
-  codes: number | string | Array<number | string>,
+  codes: string | Array<string>,
   example?: number
 ): CoreHttpStatusCodeMatcher => {
   const impliedExample = validateCodes(codes);

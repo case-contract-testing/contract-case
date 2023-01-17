@@ -48,6 +48,11 @@ const check = async (
 export const StringContainsMatcher: MatcherExecutor<
   typeof STRING_CONTAINS_TYPE
 > = {
+  describe: (matcher: CoreStringContainsMatcher, matchContext) =>
+    `a string containing "${mustResolveToString(
+      matcher['case:matcher:contains'],
+      matchContext
+    )}`,
   check,
   strip: (matcher: CoreStringContainsMatcher, matchContext) => {
     if ('case:matcher:example' in matcher) {

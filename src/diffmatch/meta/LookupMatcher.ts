@@ -39,6 +39,11 @@ const check: CheckMatchFn<typeof LOOKUP_MATCHER_TYPE> = async (
   );
 
 export const LookupMatcher: MatcherExecutor<typeof LOOKUP_MATCHER_TYPE> = {
+  describe: (matcher: LookupableMatcher, matchContext: MatchContext) =>
+    matchContext.descendAndDescribe(
+      getMatcher(matcher, matchContext),
+      addLocation(`[${matcher['case:matcher:uniqueName']}]`, matchContext)
+    ),
   check,
   strip,
 };

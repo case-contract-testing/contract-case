@@ -20,6 +20,10 @@ const check = (
   );
 
 export const IntegerMatcher: MatcherExecutor<typeof INTEGER_MATCH_TYPE> = {
+  describe: (matcher: CoreIntegerMatch, matchContext: MatchContext) =>
+    matchContext['case:context:matchBy'] === 'exact'
+      ? `${matcher['case:matcher:example']}`
+      : '<any integer>',
   check,
   strip: (matcher: CoreIntegerMatch) => matcher['case:matcher:example'],
 };

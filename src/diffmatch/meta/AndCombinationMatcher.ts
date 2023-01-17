@@ -72,4 +72,16 @@ const check: CheckMatchFn<typeof COMBINE_MATCHERS_TYPE> = async (
 
 export const AndCombinationMatcher: MatcherExecutor<
   typeof COMBINE_MATCHERS_TYPE
-> = { check, strip };
+> = {
+  describe: (matcher, matchContext) =>
+    matcher['case:matcher:children']
+      .map((child, index) =>
+        matchContext.descendAndDescribe(
+          child,
+          addLocation(`:and[${index}]`, matchContext)
+        )
+      )
+      .join(' and '),
+  check,
+  strip,
+};

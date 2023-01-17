@@ -1,6 +1,7 @@
 import type {
   CoreHttpRequestMatcher,
   CoreHttpResponseMatcher,
+  LookupableMatcher,
 } from 'entities/types';
 
 export type AnyInteractionType =
@@ -33,8 +34,8 @@ export type CaseInteractionFor<T extends AnyInteractionType> = Extract<
 >;
 
 export interface CoreHttpRequestResponseMatcherPair {
-  request: CoreHttpRequestMatcher;
-  response: CoreHttpResponseMatcher;
+  request: CoreHttpRequestMatcher | LookupableMatcher;
+  response: CoreHttpResponseMatcher | LookupableMatcher;
 }
 
 export type ConsumeHttpResponse = HasTypeForInteraction<

@@ -37,6 +37,10 @@ const check: CheckMatchFn<typeof BOOLEAN_MATCHER_TYPE> = (
   );
 
 export const BooleanMatcher: MatcherExecutor<typeof BOOLEAN_MATCHER_TYPE> = {
+  describe: (matcher: CoreBooleanMatcher, matchContext: MatchContext) =>
+    matchContext['case:context:matchBy'] === 'exact'
+      ? `${matcher['case:matcher:example']}`
+      : '<any boolean>',
   check,
   strip: (matcher: CoreBooleanMatcher) => matcher['case:matcher:example'],
 };

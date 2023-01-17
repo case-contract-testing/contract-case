@@ -110,9 +110,9 @@ describe('Server verification', () => {
       verifier.verifyContract(
         stateSetups,
         runJestTestExepectingErrors({
-          "When Server is down, then Interaction 3's request responds with Interaction 3's response":
+          'When Server is down, then a http "GET" request to "/health" without a body responds with a http response with status in 4XX,5XX response without a body':
             CaseConfigurationError,
-          "When Server is down, then Interaction 2's request responds with Interaction 2's response":
+          'When Server is down, then a http "GET" request to "/health" without a body responds with a http response with 503 response an object shaped like {status: "down"}':
             CaseConfigurationError,
         })
       );
@@ -151,13 +151,13 @@ describe('Server verification', () => {
       verifier.verifyContract(
         stateSetups,
         runJestTestExepectingErrors({
-          "When Server is up, then Interaction 1's request responds with Interaction 1's response":
+          'When Server is up, then a http "GET" request to "/health" without a body responds with a http response with 200 response an object shaped like {status: "up"}':
             CaseConfigurationError,
-          "When Server is up and No users exist, then Interaction 5's request responds with Interaction 5's response":
+          'When Server is up, then a http "GET" request to "/health" without a body responds with a http response with 200 response an object shaped like {status: <any string>}':
             CaseConfigurationError,
-          "When Server is up, then Interaction 0's request responds with Interaction 0's response":
+          [`When Server is up and A user exists, then a http "GET" request to "/users/\${userId}" without a body responds with a http response with 200 response an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
-          "When Server is up and A user exists, then Interaction 4's request responds with Interaction 4's response":
+          'When Server is up and No users exist, then a http "GET" request to "/users/"123"" without a body responds with a http response with 404 response without a body':
             CaseConfigurationError,
         })
       );
@@ -201,13 +201,13 @@ describe('Server verification', () => {
       verifier.verifyContract(
         stateSetups,
         runJestTestExepectingErrors({
-          "When Server is up, then Interaction 1's request responds with Interaction 1's response":
+          'When Server is up, then a http "GET" request to "/health" without a body responds with a http response with 200 response an object shaped like {status: "up"}':
             CaseConfigurationError,
-          "When Server is up and No users exist, then Interaction 5's request responds with Interaction 5's response":
+          'When Server is up, then a http "GET" request to "/health" without a body responds with a http response with 200 response an object shaped like {status: <any string>}':
             CaseConfigurationError,
-          "When Server is up, then Interaction 0's request responds with Interaction 0's response":
+          [`When Server is up and A user exists, then a http "GET" request to "/users/\${userId}" without a body responds with a http response with 200 response an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
-          "When Server is up and A user exists, then Interaction 4's request responds with Interaction 4's response":
+          'When Server is up and No users exist, then a http "GET" request to "/users/"123"" without a body responds with a http response with 404 response without a body':
             CaseConfigurationError,
         })
       );
@@ -245,7 +245,7 @@ describe('Server verification', () => {
       verifier.verifyContract(
         stateSetups,
         runJestTestExepectingErrors({
-          "When Server is up and A user exists, then Interaction 4's request responds with Interaction 4's response":
+          [`When Server is up and A user exists, then a http "GET" request to "/users/\${userId}" without a body responds with a http response with 200 response an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
         })
       );
@@ -284,7 +284,7 @@ describe('Server verification', () => {
       verifier.verifyContract(
         stateSetups,
         runJestTestExepectingErrors({
-          "When Server is up and A user exists, then Interaction 4's request responds with Interaction 4's response":
+          [`When Server is up and A user exists, then a http "GET" request to "/users/\${userId}" without a body responds with a http response with 200 response an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
         })
       );
@@ -358,7 +358,7 @@ describe('Server verification', () => {
       verifier.verifyContract(
         stateSetups,
         runJestTestExepectingErrors({
-          "When Server is up and A user exists, then Interaction 4's request responds with Interaction 4's response":
+          [`When Server is up and A user exists, then a http "GET" request to "/users/\${userId}" without a body responds with a http response with 200 response an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
         })
       );

@@ -110,6 +110,15 @@ const check: CheckMatchFn<typeof ARRAY_CONTAINS_TYPE> = async (
   );
 
 export const ArrayContains: MatcherExecutor<typeof ARRAY_CONTAINS_TYPE> = {
+  describe: (matcher, matchContext) =>
+    `an array containing ${matcher['case:matcher:matchers']
+      .map((childMatcher, index) =>
+        matchContext.descendAndDescribe(
+          childMatcher,
+          addLocation(`:arrayContains[${index}]`, matchContext)
+        )
+      )
+      .join(' and ')},`,
   check,
   strip,
 };

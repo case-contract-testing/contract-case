@@ -68,4 +68,12 @@ const check: CheckMatchFn<typeof OBJECT_KEYS_MATCH_TYPE> = async (
 
 export const ObjectEachKeyMatches: MatcherExecutor<
   typeof OBJECT_KEYS_MATCH_TYPE
-> = { check, strip };
+> = {
+  describe: (matcher, context) =>
+    `an object where each key is ${context.descendAndDescribe(
+      matcher['case:matcher:matcher'],
+      addLocation(':eachKeyLike', context)
+    )}`,
+  check,
+  strip,
+};

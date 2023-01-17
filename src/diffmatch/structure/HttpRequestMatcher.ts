@@ -77,6 +77,17 @@ const check = async (
   );
 };
 
+const name = (request: CoreHttpRequestMatcher, context: MatchContext): string =>
+  request.uniqueName
+    ? request.uniqueName
+    : `a http ${context.descendAndDescribe(
+        request.method,
+        addLocation('method', context)
+      )} request to ${context.descendAndDescribe(
+        request.path,
+        addLocation('path', context)
+      )} ${request.body ? 'with a body' : 'without a body'}`;
+
 export const HttpRequestMatcher: MatcherExecutor<
   typeof HTTP_REQUEST_MATCHER_TYPE
-> = { check, strip };
+> = { describe: name, check, strip };

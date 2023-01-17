@@ -27,6 +27,7 @@ const getExecutor = <T extends AnyCaseNodeType>(
   }
 
   return {
+    name: () => executor.describe(matcher, matchContext),
     check: async (actual: unknown) => {
       parentMatchContext.logger.maintainerDebug(
         `Entering ${matcher['case:matcher:type']}, actual is:`,
@@ -48,6 +49,11 @@ const descendAndCheck = <T extends AnyCaseNodeType>(
   actual: unknown
 ): ReturnType<MatcherExecutor<AnyCaseNodeType>['check']> =>
   getExecutor(matcherOrData, parentMatchContext).check(actual);
+
+const descendAndDescribe = <T extends AnyCaseNodeType>(
+  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
+  parentMatchContext: MatchContext
+): string => getExecutor(matcherOrData, parentMatchContext).name();
 
 const descendAndStrip = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
@@ -75,6 +81,7 @@ const selfVerify = <T extends AnyCaseNodeType>(
   );
 
 export const traversals = {
+  descendAndDescribe,
   descendAndCheck,
   descendAndStrip,
   selfVerify,

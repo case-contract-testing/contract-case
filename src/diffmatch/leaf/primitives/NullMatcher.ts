@@ -24,6 +24,7 @@ const check: CheckMatchFn<typeof NULL_MATCHER_TYPE> = (
   );
 
 export const NullMatcher: MatcherExecutor<typeof NULL_MATCHER_TYPE> = {
+  describe: () => `null`,
   check,
   strip: () => null,
 };

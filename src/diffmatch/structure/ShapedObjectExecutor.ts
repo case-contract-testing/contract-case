@@ -110,4 +110,17 @@ const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
 
 export const ShapedObjectExecutor: MatcherExecutor<
   typeof SHAPED_OBJECT_MATCHER_TYPE
-> = { check, strip };
+> = {
+  describe: (matcher, context) =>
+    `an object shaped like {${Object.entries(matcher['case:matcher:children'])
+      .map(
+        ([key, child]) =>
+          `${key}: ${context.descendAndDescribe(
+            child,
+            addLocation(key, context)
+          )}`
+      )
+      .join(',')}}`,
+  check,
+  strip,
+};

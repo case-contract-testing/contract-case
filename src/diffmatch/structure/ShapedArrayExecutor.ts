@@ -81,4 +81,13 @@ const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
 
 export const ShapedArrayExecutor: MatcherExecutor<
   typeof SHAPED_ARRAY_MATCHER_TYPE
-> = { check, strip };
+> = {
+  describe: (matcher, context) =>
+    `an array shaped like [${matcher['case:matcher:children']
+      .map((child, index) =>
+        context.descendAndDescribe(child, addLocation(`[${index}]`, context))
+      )
+      .join(',')}]`,
+  check,
+  strip,
+};

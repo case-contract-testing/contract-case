@@ -1,11 +1,14 @@
 import axios from 'axios';
 
 import { PRODUCE_HTTP_RESPONSE } from 'entities/nodes/interactions/types';
-import type {
+import {
   HasBaseUrlUnderTest,
   LoggableContext,
   MatchContext,
   CoreHttpRequestResponseMatcherPair,
+  CoreHttpRequestMatcher,
+  LookupableMatcher,
+  HTTP_REQUEST_MATCHER_TYPE,
 } from 'entities/types';
 import { addLocation } from 'entities/context';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
@@ -33,72 +36,102 @@ const validateConfig = (
   );
 };
 
+// TODO this really shouldn't be here
+const getMatcher = (
+  matcher: LookupableMatcher | CoreHttpRequestMatcher,
+  matchContext: MatchContext
+): CoreHttpRequestMatcher => {
+  if (matcher['case:matcher:type'] === HTTP_REQUEST_MATCHER_TYPE) {
+    return matcher;
+  }
+  if ('case:matcher:child' in matcher) {
+    matchContext.saveLookupableMatcher(matcher);
+  }
+  const stored = matchContext.lookupMatcher(matcher['case:matcher:uniqueName']);
+  if (
+    typeof stored === 'object' &&
+    stored != null &&
+    'case:matcher:type' in stored &&
+    stored['case:matcher:type'] === HTTP_REQUEST_MATCHER_TYPE
+  ) {
+    return stored;
+  }
+  throw new CaseConfigurationError(
+    `The HTTP matcher didn't resolve to an ${HTTP_REQUEST_MATCHER_TYPE}`,
+    matchContext
+  );
+};
+
 export const setupHttpResponseConsumer = (
   {
-    request: expectedRequest,
+    request: requestMatcher,
     response: expectedResponse,
   }: CoreHttpRequestResponseMatcherPair,
   context: MatchContext
 ): Promise<InteractionData<typeof PRODUCE_HTTP_RESPONSE>> =>
-  validateConfig(context).then(
-    (run: LoggableContext & HasBaseUrlUnderTest) => ({
-      mock: { 'case:interaction:type': PRODUCE_HTTP_RESPONSE },
-      assertableData: () =>
-        axios
-          .request({
-            validateStatus: () => true, // This means that all status codes resolve the promise
-            method: mustResolveToString(
-              expectedRequest.method,
-              addLocation('method', context)
-            ),
-            url: `${
-              run['case:currentRun:context:baseUrlUnderTest']
-            }${mustResolveToString(
-              expectedRequest.path,
-              addLocation('path', context)
-            )}`,
-            ...(expectedRequest.body
-              ? {
-                  body: context.descendAndStrip(
-                    expectedRequest.body,
-                    addLocation('body', context)
-                  ),
-                }
-              : {}),
-          })
-          .then(
-            (response) => ({ body: response.data, status: response.status }),
-            (err) => {
-              if (axios.isAxiosError(err)) {
-                if (err.request) {
-                  return Promise.reject(
-                    new CaseConfigurationError(
-                      `[${
-                        err.code ? err.code : 'HTTP_FAIL'
-                      }]\n\nRequest was made to '${
-                        run['case:currentRun:context:baseUrlUnderTest']
-                      }', but no response. \n\nConfirm that you have:\n 1) Started the real server\n 2) Provided the correct URL to the running server\n\nUnderlying Error: ${
-                        err.message
-                      }`,
-                      run
-                    )
+  Promise.resolve().then(() => {
+    const expectedRequest = getMatcher(requestMatcher, context);
+
+    return validateConfig(context).then(
+      (run: LoggableContext & HasBaseUrlUnderTest) => ({
+        mock: { 'case:interaction:type': PRODUCE_HTTP_RESPONSE },
+        assertableData: () =>
+          axios
+            .request({
+              validateStatus: () => true, // This means that all status codes resolve the promise
+              method: mustResolveToString(
+                expectedRequest.method,
+                addLocation('method', context)
+              ),
+              url: `${
+                run['case:currentRun:context:baseUrlUnderTest']
+              }${mustResolveToString(
+                expectedRequest.path,
+                addLocation('path', context)
+              )}`,
+              ...(expectedRequest.body
+                ? {
+                    body: context.descendAndStrip(
+                      expectedRequest.body,
+                      addLocation('body', context)
+                    ),
+                  }
+                : {}),
+            })
+            .then(
+              (response) => ({ body: response.data, status: response.status }),
+              (err) => {
+                if (axios.isAxiosError(err)) {
+                  if (err.request) {
+                    return Promise.reject(
+                      new CaseConfigurationError(
+                        `[${
+                          err.code ? err.code : 'HTTP_FAIL'
+                        }]\n\nRequest was made to '${
+                          run['case:currentRun:context:baseUrlUnderTest']
+                        }', but no response. \n\nConfirm that you have:\n 1) Started the real server\n 2) Provided the correct URL to the running server\n\nUnderlying Error: ${
+                          err.message
+                        }`,
+                        run
+                      )
+                    );
+                  }
+                  throw new CaseConfigurationError(
+                    `Unable to send request to http server - did you start the server and provide the URL? (${err.message})`,
+                    run
                   );
                 }
-                throw new CaseConfigurationError(
-                  `Unable to send request to http server - did you start the server and provide the URL? (${err.message})`,
+                throw new CaseCoreError(
+                  `Something went wrong while creating the http request: ${err.message}`,
                   run
                 );
               }
-              throw new CaseCoreError(
-                `Something went wrong while creating the http request: ${err.message}`,
-                run
-              );
-            }
-          )
-          .then(async (result) => ({
-            actual: result,
-            context: addLocation('response', context),
-            expected: expectedResponse,
-          })),
-    })
-  );
+            )
+            .then(async (result) => ({
+              actual: result,
+              context: addLocation('response', context),
+              expected: expectedResponse,
+            })),
+      })
+    );
+  });

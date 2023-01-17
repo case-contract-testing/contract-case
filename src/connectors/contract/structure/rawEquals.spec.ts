@@ -40,4 +40,31 @@ describe('raw equals', () => {
     expect(rawEquality({ a: '', b: 1 }, {})).toBe(false);
     expect(rawEquality(and(anyString()), and(anyNumber()))).toBe(false);
   });
+
+  it('handles matchers', () => {
+    const matcher = {
+      status: {
+        'case:matcher:type': 'HttpStatusCode',
+        'case:matcher:example': 200,
+        'case:matcher:rule': 200,
+        'case:matcher:resolvesTo': 'HttpStatusCode',
+      },
+      body: { status: 'up' },
+      'case:matcher:type': 'HttpResponseMatcher',
+    };
+
+    expect(rawEquality(matcher, matcher)).toBe(true);
+    expect(
+      rawEquality(matcher, {
+        status: {
+          'case:matcher:type': 'HttpStatusCode',
+          'case:matcher:example': 200,
+          'case:matcher:rule': '200',
+          'case:matcher:resolvesTo': 'HttpStatusCode',
+        },
+        body: { status: 'up' },
+        'case:matcher:type': 'HttpResponseMatcher',
+      })
+    ).toBe(false);
+  });
 });

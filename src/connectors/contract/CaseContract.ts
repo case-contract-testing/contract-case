@@ -1,7 +1,7 @@
 import {
   configToRunContext,
   DEFAULT_CONFIG,
-  setupHandledAssert,
+  setupWritingAssert,
 } from 'connectors/contract/core';
 import type { CaseConfig } from 'connectors/contract/core/types';
 import { makeLogger as defaultMakeLogger } from 'connectors/logger';
@@ -65,7 +65,7 @@ export class CaseContract extends BaseCaseContract {
       })
     );
 
-    return setupHandledAssert(states, interaction, thisRunContext, this);
+    return setupWritingAssert(states, interaction, thisRunContext, this);
   }
 
   recordSuccess(

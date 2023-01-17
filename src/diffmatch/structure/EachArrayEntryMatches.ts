@@ -72,4 +72,12 @@ const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = async (
 
 export const EachArrayEntryMatches: MatcherExecutor<
   typeof ARRAY_EACH_ENTRY_MATCHES_TYPE
-> = { check, strip };
+> = {
+  describe: (matcher, context) =>
+    `an array where each entry matches ${context.descendAndDescribe(
+      matcher['case:matcher:matcher'],
+      addLocation(`:eachEntryLike`, context)
+    )}`,
+  check,
+  strip,
+};

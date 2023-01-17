@@ -68,4 +68,12 @@ const check: CheckMatchFn<typeof OBJECT_VALUES_MATCH_TYPE> = async (
 
 export const ObjectEachValueMatches: MatcherExecutor<
   typeof OBJECT_VALUES_MATCH_TYPE
-> = { check, strip };
+> = {
+  describe: (matcher, context) =>
+    `an object where each value is ${context.descendAndDescribe(
+      matcher['case:matcher:matcher'],
+      addLocation(':eachValueLike', context)
+    )}`,
+  check,
+  strip,
+};

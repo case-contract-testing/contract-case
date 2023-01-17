@@ -42,6 +42,11 @@ const check = async (
 };
 
 export const StringPrefixMatcher: MatcherExecutor<typeof STRING_PREFIX_TYPE> = {
+  describe: (matcher: CoreStringPrefixMatcher, matchContext) =>
+    `"${matcher['case:matcher:prefix']}${matchContext.descendAndDescribe(
+      matcher['case:matcher:suffix'],
+      addLocation(':prefix', matchContext)
+    )}"`,
   check,
   strip: (matcher: CoreStringPrefixMatcher, matchContext) =>
     `${matcher['case:matcher:prefix']}${mustResolveToString(

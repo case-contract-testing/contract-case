@@ -7,9 +7,12 @@ import {
   CoreHttpRequestResponseMatcherPair,
   MatchContext,
   CONSUME_HTTP_RESPONSE,
+  HTTP_RESPONSE_MATCHER_TYPE,
+  CoreHttpResponseMatcher,
+  LookupableMatcher,
 } from 'entities/types';
 import { addLocation } from 'entities/context';
-import { CaseCoreError } from 'entities';
+import { CaseConfigurationError, CaseCoreError } from 'entities';
 import type { InteractionData } from 'entities/nodes/interactions/setup.types';
 
 const addressToString = (address: string | net.AddressInfo | null) => {
@@ -25,10 +28,36 @@ const addressToString = (address: string | net.AddressInfo | null) => {
   }`;
 };
 
+// TODO this really shouldn't be here
+const getMatcher = (
+  matcher: LookupableMatcher | CoreHttpResponseMatcher,
+  matchContext: MatchContext
+): CoreHttpResponseMatcher => {
+  if (matcher['case:matcher:type'] === HTTP_RESPONSE_MATCHER_TYPE) {
+    return matcher;
+  }
+  if ('case:matcher:child' in matcher) {
+    matchContext.saveLookupableMatcher(matcher);
+  }
+  const stored = matchContext.lookupMatcher(matcher['case:matcher:uniqueName']);
+  if (
+    typeof stored === 'object' &&
+    stored != null &&
+    'case:matcher:type' in stored &&
+    stored['case:matcher:type'] === HTTP_RESPONSE_MATCHER_TYPE
+  ) {
+    return stored;
+  }
+  throw new CaseConfigurationError(
+    `The HTTP matcher didn't resolve to an ${HTTP_RESPONSE_MATCHER_TYPE}`,
+    matchContext
+  );
+};
+
 export const setupHttpResponseProducer = (
   {
     request: expectedRequest,
-    response: expectedResponse,
+    response: responseMatcher,
   }: CoreHttpRequestResponseMatcherPair,
   context: MatchContext
 ): Promise<InteractionData<typeof CONSUME_HTTP_RESPONSE>> => {
@@ -39,6 +68,7 @@ export const setupHttpResponseProducer = (
       const app = express();
       app.all('*', (req, res, next) => {
         requestData = { method: req.method, path: req.path, body: req.body };
+        const expectedResponse = getMatcher(responseMatcher, context);
 
         context.logger.debug(
           `Mock server at '${addressToString(server?.address())}' received`,
