@@ -140,7 +140,15 @@
       "interaction": {
         "request": {
           "method": "GET",
-          "path": "/users",
+          "path": {
+            "case:matcher:type": "StringPrefix",
+            "case:matcher:prefix": "/users/",
+            "case:matcher:suffix": {
+              "case:matcher:type": "ContextVariable",
+              "case:matcher:variableName": "userId"
+            },
+            "case:matcher:resolvesTo": "string"
+          },
           "case:matcher:type": "HttpRequestMatcher"
         },
         "response": {
@@ -173,7 +181,12 @@
       "interaction": {
         "request": {
           "method": "GET",
-          "path": "/users",
+          "path": {
+            "case:matcher:type": "StringPrefix",
+            "case:matcher:prefix": "/users/",
+            "case:matcher:suffix": "123",
+            "case:matcher:resolvesTo": "string"
+          },
           "case:matcher:type": "HttpRequestMatcher"
         },
         "response": {

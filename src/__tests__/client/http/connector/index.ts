@@ -30,7 +30,7 @@ const api = (baseurl: string): Api => {
     getAllProducts: () => server.authedGet<string[]>('/products'),
     getProduct: (id) => server.authedGet(`/products/${id}`),
     getUser: (id: string) =>
-      server.authedGet<User>(`/users`).catch((e) => {
+      server.authedGet<User>(`/users/${id}`).catch((e) => {
         if (e.code === API_NOT_FOUND) {
           throw new UserNotFoundConsumerError(`Unable to find user '${id}'`);
         }

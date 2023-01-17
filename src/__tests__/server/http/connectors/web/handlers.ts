@@ -30,8 +30,10 @@ export const health: (deps: HealthServiceDependencies) => RequestHandler =
 
 export const users: (deps: UserServiceDependencies) => RequestHandler =
   ({ userRepository }: UserServiceDependencies) =>
-  (_req: Request, res: Response) => {
+  (req: Request, res: Response) => {
+    const { userId } = req.params;
+    if (typeof userId !== 'string') throw new Error('No userID provided');
     responder(res).success<User>(
-      makeUserService({ userRepository }).getUser('42')
+      makeUserService({ userRepository }).getUser(userId)
     );
   };

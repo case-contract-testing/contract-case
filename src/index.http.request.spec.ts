@@ -4,7 +4,12 @@ import type * as http from 'node:http';
 import api from '__tests__/client/http/connector';
 import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
 import type { Assertable } from 'entities/types';
-import { httpStatus, shapedLike, stateVariable } from 'boundaries/dsl/Matchers';
+import {
+  httpStatus,
+  shapedLike,
+  stateVariable,
+  stringPrefix,
+} from 'boundaries/dsl/Matchers';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { readContract } from 'connectors/contract/writer/fileSystem';
 import type { RunTestCallback } from 'connectors/contract/types';
@@ -180,7 +185,7 @@ describe('e2e http consumer driven', () => {
             willSendHttpInteraction({
               request: {
                 method: 'GET',
-                path: '/users', // TODO update this
+                path: stringPrefix('/users/', stateVariable('userId')),
               },
               response: {
                 status: 200,
@@ -190,7 +195,7 @@ describe('e2e http consumer driven', () => {
           );
         });
 
-        it('calls server health', async () => {
+        it('returns an existing user', async () => {
           const client = api(context.mock.baseUrl);
           expect(context.stripMatchers(responseBody)).toEqual({
             userId: '123',
@@ -215,7 +220,7 @@ describe('e2e http consumer driven', () => {
             willSendHttpInteraction({
               request: {
                 method: 'GET',
-                path: '/users', // TODO update this
+                path: stringPrefix('/users/', '123'),
               },
               response: {
                 status: 404,
@@ -224,7 +229,7 @@ describe('e2e http consumer driven', () => {
           );
         });
 
-        it('calls server health', async () => {
+        it('returns a user not found error', async () => {
           const client = api(context.mock.baseUrl);
 
           return expect(client.getUser('123')).rejects.toBeInstanceOf(

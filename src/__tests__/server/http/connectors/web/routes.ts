@@ -14,7 +14,7 @@ const errorHandler: ErrorRequestHandler = (err: Error, _req, res, _next) => {
 export default (app: Express, deps: Dependencies): void => {
   app.get('/', handlers.base(deps));
   app.get('/health', handlers.health(deps));
-  app.get('/users', handlers.users(deps));
+  app.get('/users/:userId', handlers.users(deps));
 
   app.use(errorHandler);
 };
