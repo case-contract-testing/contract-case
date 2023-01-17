@@ -2,7 +2,7 @@ import { errorWhen, matchingError, actualToString } from 'entities/results';
 import type {
   CheckMatchFn,
   MatcherExecutor,
-  MatchingError,
+  CaseError,
   MatchContext,
   CoreNullMatcher,
   NULL_MATCHER_TYPE,
@@ -12,7 +12,7 @@ const check: CheckMatchFn<typeof NULL_MATCHER_TYPE> = (
   matcher: CoreNullMatcher,
   matchContext: MatchContext,
   actual: unknown
-): Array<MatchingError> =>
+): Array<CaseError> =>
   errorWhen(
     actual !== null,
     matchingError(

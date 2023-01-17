@@ -4,6 +4,7 @@ import type { CaseExample } from 'entities/contract/types';
 import { setupUnhandledAssert } from 'connectors/contract/core/setup';
 import { handleResult } from 'entities/results/handlers';
 import type { StateFunctions } from 'entities/states/types';
+import { executionError, makeResults } from 'entities/results';
 import {
   getContextFromStateHandlers,
   executeTeardownHandlers,
@@ -31,16 +32,28 @@ export const executeVerification =
       example.states,
       stateSetups,
       initialContext
-    ).then((context) => {
-      context.logger.maintainerDebug(`Calling setupVerify`);
-      return setupUnhandledAssert(example.interaction, context)
-        .then((verifiable) => verifiable.assert())
-        .then((result) => handleResult(example, exampleIndex, result, context))
-        .finally(() =>
-          executeTeardownHandlers(example.states, stateSetups, context)
-        )
-        .then(() => {
-          context.logger.debug(`This interaction passed verification`);
-        });
-    });
+    )
+      .then((context) => {
+        context.logger.maintainerDebug(`Calling setupVerify`);
+        return setupUnhandledAssert(example.interaction, context)
+          .then((verifiable) => verifiable.assert())
+          .finally(() =>
+            executeTeardownHandlers(example.states, stateSetups, context)
+          );
+      })
+      .then(
+        (result) => handleResult(example, exampleIndex, result, initialContext),
+        (error) => {
+          handleResult(
+            example,
+            exampleIndex,
+            makeResults(executionError(error, initialContext)),
+            initialContext
+          );
+          throw error;
+        }
+      )
+      .then(() => {
+        initialContext.logger.debug(`This interaction passed verification`);
+      });
   };

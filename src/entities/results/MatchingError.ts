@@ -1,12 +1,17 @@
 import { locationString } from 'entities/context';
 import type { MatchContext } from 'entities/context/types';
 import type { AnyCaseMatcher } from 'entities/nodes/matchers/types';
-import type { MatchingError } from './types';
+import {
+  ERROR_TYPE_MATCHING,
+  CaseError,
+  ExecutionError,
+  ERROR_TYPE_EXECUTION,
+} from './types';
 
 export const errorWhen = (
   test: boolean,
-  err: MatchingError | Array<MatchingError>
-): Array<MatchingError> => (test ? [err].flat() : []);
+  err: CaseError | Array<CaseError>
+): Array<CaseError> => (test ? [err].flat() : []);
 
 /**
  *
@@ -21,7 +26,8 @@ export const matchingError = (
   actual: unknown,
   context: MatchContext,
   expected?: unknown
-): MatchingError => ({
+): CaseError => ({
+  type: ERROR_TYPE_MATCHING,
   matcher,
   message,
   expected:
@@ -33,4 +39,14 @@ export const matchingError = (
   location: context['case:currentRun:context:location'],
   toString: () =>
     `${locationString(context)}: ${message} (${matcher['case:matcher:type']})`,
+});
+
+export const executionError = (
+  error: Error,
+  context: MatchContext
+): ExecutionError => ({
+  type: ERROR_TYPE_EXECUTION,
+  message: error.message,
+  code: error.name,
+  location: context['case:currentRun:context:location'],
 });

@@ -2,13 +2,13 @@ import type { MatchContext } from 'entities/context/types';
 import type { AnyLeafMatcher } from 'entities/nodes/matchers/types';
 import { errorWhen, matchingError } from 'entities/results/MatchingError';
 import { actualToString } from 'entities/results/renderActual';
-import type { MatchingError } from 'entities/types';
+import type { CaseError } from 'entities/types';
 
 export const testExactMatch = (
   matcher: AnyLeafMatcher,
   matchContext: MatchContext,
   actual: unknown
-): Array<MatchingError> =>
+): Array<CaseError> =>
   errorWhen(
     actual !== matcher['case:matcher:example'],
     matchingError(

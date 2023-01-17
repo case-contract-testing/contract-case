@@ -4,10 +4,13 @@ import type { HasLocation } from 'entities/context/types';
 import { nameExample } from 'entities/contract/interactions';
 import type { CaseExample } from 'entities/contract/types';
 import { actualToString } from 'entities/results/renderActual';
-import type {
+import {
+  ERROR_TYPE_MATCHING,
+  ExecutionError,
   MatchContext,
-  MatchingError,
+  CaseError,
   ResultPrinter,
+  MatchingError,
 } from 'entities/types';
 import { Console } from 'node:console';
 
@@ -21,15 +24,13 @@ const spaces = (size: number, str: string) => {
   return `${space}${str.replace(/\n/g, `\n${space}`)}`;
 };
 
-const firstLine = (error: MatchingError) =>
+const errorTitleLine = (title: string, message: string) =>
   spaces(
     6,
-    `${chalk.bgRed.white(' MATCHING ERROR ')}: ${chalk.whiteBright(
-      error.message
-    )}`
+    `${chalk.bgRed.white(` ${title} `)}: ${chalk.whiteBright(message)}`
   );
 
-const secondLine = (error: MatchingError) =>
+const secondMatchErrorLine = (error: MatchingError) =>
   spaces(
     9,
     `Expected something like:\n${spaces(
@@ -38,30 +39,46 @@ const secondLine = (error: MatchingError) =>
     )}`
   );
 
-const thirdLine = (error: MatchingError) =>
+const thirdMatchErrorLine = (error: MatchingError) =>
   spaces(
     9,
     `Actual:\n${spaces(3, chalk.red(actualToString(error.actual, 10)))}`
   );
 
-const finalLine = (error: MatchingError) =>
+const locationLine = (error: CaseError | ExecutionError) =>
   spaces(
     12,
     `${chalk.gray(
       ` - ${locationString({
         'case:currentRun:context:location': error.location,
-      })} [${error.matcher['case:matcher:type']}]`
+      })} [${
+        'matcher' in error ? error.matcher['case:matcher:type'] : error.code
+      }]`
     )}`
   );
 
-const printError = (error: MatchingError, context: MatchContext): void => {
+const printError = (
+  error: CaseError | ExecutionError,
+  context: MatchContext
+): void => {
   if (context['case:currentRun:context:printResults']) {
-    // This is done as one line to prevent it splitting when multiple tests are running
-    stdout.log(
-      `${firstLine(error)}\n${secondLine(error)}\n${thirdLine(
-        error
-      )}\n\n${finalLine(error)}\n\n`
-    );
+    if (error.type === ERROR_TYPE_MATCHING) {
+      // This is done as one line to prevent it splitting when multiple tests are running
+      stdout.log(
+        `${errorTitleLine(
+          'MATCHING ERROR',
+          error.message
+        )}\n${secondMatchErrorLine(error)}\n${thirdMatchErrorLine(
+          error
+        )}\n\n${locationLine(error)}\n\n`
+      );
+    } else {
+      stdout.log(
+        `${errorTitleLine('EXECUTION ERROR', error.message)}\n\n${locationLine(
+          error
+        )}\n\n`
+      );
+    }
   }
 };
 

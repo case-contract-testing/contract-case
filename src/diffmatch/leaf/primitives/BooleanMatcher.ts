@@ -5,7 +5,7 @@ import {
   actualToString,
 } from 'entities/results';
 import type {
-  MatchingError,
+  CaseError,
   CheckMatchFn,
   MatcherExecutor,
   MatchContext,
@@ -19,7 +19,7 @@ const check: CheckMatchFn<typeof BOOLEAN_MATCHER_TYPE> = (
   matcher: CoreBooleanMatcher,
   matchContext: MatchContext,
   actual: unknown
-): Array<MatchingError> =>
+): Array<CaseError> =>
   combineResults(
     matchContext['case:context:matchBy'] === 'exact'
       ? testExactMatch(matcher, matchContext, actual)

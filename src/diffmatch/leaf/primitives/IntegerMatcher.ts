@@ -1,6 +1,6 @@
 import { errorWhen, matchingError, combineResults } from 'entities/results';
 import type {
-  MatchingError,
+  CaseError,
   MatcherExecutor,
   MatchContext,
   CoreIntegerMatch,
@@ -11,7 +11,7 @@ const check = (
   matcher: CoreIntegerMatch,
   matchContext: MatchContext,
   actual: unknown
-): Array<MatchingError> =>
+): Array<CaseError> =>
   combineResults(
     errorWhen(
       !Number.isInteger(actual),

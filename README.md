@@ -130,7 +130,7 @@ Contract file access patterns
 
 Internals
 
-- [ ] Errors that don't have associated matchers
+- [x] Errors that don't have associated matchers
 - [ ] Fail tests if there are configuration errors inside the handler
 - [ ] Tidy up strip matcher stuff
 - [ ] Error collapsers, so if the same spot produces the same errors for different reasons it will only be reported once.

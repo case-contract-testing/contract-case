@@ -7,7 +7,7 @@ import {
   actualToString,
 } from 'entities/results';
 import type {
-  MatchingError,
+  CaseError,
   MatchResult,
   CheckMatchFn,
   MatcherExecutor,
@@ -19,7 +19,7 @@ import type {
 const checkExample = (
   rule: number | string,
   actual: unknown,
-  makeError: (message: string) => MatchingError
+  makeError: (message: string) => CaseError
 ): MatchResult => {
   if (typeof actual !== 'number')
     return makeResults(

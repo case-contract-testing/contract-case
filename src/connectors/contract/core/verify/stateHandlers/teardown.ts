@@ -37,7 +37,7 @@ const stateTeardownHandler = (
             `Please check the implementation of the '${state.stateName}' state teardown function`
           );
           throw new CaseConfigurationError(
-            `State teardown '${state.stateName}}' failed: ${e.message}. Please check the implementation of your state teardown handler`
+            `State teardown '${state.stateName}' failed: ${e.message}. Please check the implementation of your state teardown handler`
           );
         })
   );

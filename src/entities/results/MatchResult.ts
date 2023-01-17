@@ -1,9 +1,9 @@
-import type { MatchingError, MatchResult } from './types';
+import type { CaseError, MatchResult } from './types';
 
 export const combineResults = (...results: MatchResult[]): MatchResult =>
   results.flat();
 
-export const makeResults = (...err: MatchingError[]): MatchResult => [...err];
+export const makeResults = (...err: CaseError[]): MatchResult => [...err];
 
 export const makeNoErrorResult = (): MatchResult => [];
 

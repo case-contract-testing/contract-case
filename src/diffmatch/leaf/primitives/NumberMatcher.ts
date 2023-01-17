@@ -1,6 +1,6 @@
 import { errorWhen, matchingError, combineResults } from 'entities/results';
 import type {
-  MatchingError,
+  CaseError,
   MatcherExecutor,
   CoreNumberMatcher,
   NUMBER_MATCHER_TYPE,
@@ -13,7 +13,7 @@ const check = (
   matcher: CoreNumberMatcher,
   matchContext: MatchContext,
   actual: unknown
-): Array<MatchingError> =>
+): Array<CaseError> =>
   combineResults(
     errorWhen(
       matchContext['case:context:matchBy'] === 'exact',

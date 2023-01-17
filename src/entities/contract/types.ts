@@ -1,5 +1,5 @@
 import type { AnyState } from 'entities/states/types';
-import type { AnyInteraction, MatchingError } from 'entities/types';
+import type { AnyInteraction, CaseError } from 'entities/types';
 
 export interface ContractDescription {
   consumerName: string;
@@ -17,7 +17,7 @@ interface SuccessfulCaseExample extends BaseCaseExample {
 
 interface FailedCaseExample extends BaseCaseExample {
   result: 'FAILED';
-  errors: MatchingError[];
+  errors: CaseError[];
 }
 
 export type CaseExample = SuccessfulCaseExample | FailedCaseExample;

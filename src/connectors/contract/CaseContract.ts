@@ -5,11 +5,7 @@ import {
 } from 'connectors/contract/core';
 import type { CaseConfig } from 'connectors/contract/core/types';
 import { makeLogger as defaultMakeLogger } from 'connectors/logger';
-import {
-  CaseCoreError,
-  CaseConfigurationError,
-  coreNullMatcher,
-} from 'entities';
+import { CaseCoreError, CaseConfigurationError } from 'entities';
 import { CaseFailedError } from 'entities/CaseFailedError';
 import {
   addDefaultVariable,
@@ -20,14 +16,15 @@ import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
 import { makeResults } from 'entities/results';
 import { AnyState, SETUP_VARIABLE_STATE } from 'entities/states/types';
-import type {
+import {
   LogLevelContext,
   AnyInteractionType,
   CaseInteractionFor,
   Assertable,
   AnyInteraction,
-  MatchingError,
+  CaseError,
   MatchContext,
+  ERROR_TYPE_EXECUTION,
 } from 'entities/types';
 
 import { BaseCaseContract } from './BaseCaseContract';
@@ -101,7 +98,7 @@ export class CaseContract extends BaseCaseContract {
     interaction: AnyInteraction,
     states: Array<AnyState>,
     currentContext: MatchContext,
-    errors: Array<MatchingError>
+    errors: Array<CaseError>
   ): CaseExample {
     if (!this.currentContract) {
       currentContext.logger.error(
@@ -131,10 +128,9 @@ export class CaseContract extends BaseCaseContract {
       // TODO: Print all failures
       throw new CaseFailedError(
         makeResults({
+          type: ERROR_TYPE_EXECUTION,
           message: 'There were contract failures',
-          expected: 'No failures',
-          matcher: coreNullMatcher(),
-          actual: 'Some failures',
+          code: 'FAIL',
           location: ['Writing Contract'],
           toString: () => 'There were contract failures',
         })
