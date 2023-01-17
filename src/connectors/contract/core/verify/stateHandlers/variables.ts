@@ -28,9 +28,9 @@ export const validateVariables = async (
       if (missingVariables.length > 0) {
         const message = `The state setup for '${
           state.stateName
-        }' was expected to return an object with the variables ${Object.keys(
+        }' was expected to return an object with the variables [${Object.keys(
           state.variables
-        )} set, but the following were missing: ${missingVariables}`;
+        )}], but the following were missing: [${missingVariables}]`;
         context.logger.error(message);
         throw new CaseConfigurationError(message);
       }
@@ -41,9 +41,9 @@ export const validateVariables = async (
       if (extraVariables.length > 0) {
         const message = `The state setup for '${
           state.stateName
-        }' recieved extra variables ${extraVariables} set, but it was only expecting ${Object.keys(
+        }' recieved extra variables [${extraVariables}], but it was only expecting [${Object.keys(
           state.variables
-        )}. This is probably a misconfigured state handler, and might cause failures later.`;
+        )}]. This is probably a misconfigured state handler, and might cause failures later.`;
         context.logger.warn(message);
       }
 

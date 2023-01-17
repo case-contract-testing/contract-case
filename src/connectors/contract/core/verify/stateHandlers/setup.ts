@@ -33,11 +33,14 @@ const stateSetupHandler =
       })
       .catch((e) => {
         context.logger.error(
-          `State setup '${state.stateName}}' failed with: ${e.message}`,
+          `State setup '${state.stateName}' failed with the following error: "${e.message}"`,
           e
         );
+        context.logger.error(
+          `Please check the implementation of the '${state.stateName}' state setup handler`
+        );
         throw new CaseConfigurationError(
-          `State setup '${state.stateName}}' failed: ${e.message}. Please check the implementation of your state setup handler`
+          `State setup '${state.stateName}' failed with the following error: "${e.message}". Please check the implementation of your state setup handler`
         );
       });
   };
@@ -50,46 +53,47 @@ type StateSetupResult = {
 export const getContextFromStateHandlers = (
   states: Array<AnyState>,
   stateSetups: StateFunctions,
-  context: MatchContext
+  parentContext: MatchContext
 ): Promise<MatchContext> =>
-  Promise.resolve()
-    .then(async () => {
-      const result: StateSetupResult[] = [];
-      // Usually the following code is a mistake,
-      // but here we want to execute each handler in order
-      // So we turn off the usual lint rules on purpose.
-      // eslint-disable-next-line no-restricted-syntax
-      for (const state of states) {
-        const stateContext = addLocation(`:setup[${state.stateName}]`, context);
-        // eslint-disable-next-line no-await-in-loop
-        const variables = await validateVariables(
-          state,
-          stateContext,
-          stateSetupHandler(stateSetups, stateContext)
-        );
+  Promise.resolve(addLocation(`:stateSetup`, parentContext)).then((context) =>
+    Promise.resolve()
+      .then(async () => {
+        const result: StateSetupResult[] = [];
+        // Usually the following code is a mistake,
+        // but here we want to execute each handler in order
+        // So we turn off the usual lint rules on purpose.
+        // eslint-disable-next-line no-restricted-syntax
+        for (const state of states) {
+          const stateContext = addLocation(`[${state.stateName}]`, context);
+          // eslint-disable-next-line no-await-in-loop
+          const variables = await validateVariables(
+            state,
+            stateContext,
+            stateSetupHandler(stateSetups, stateContext)
+          );
 
-        result.push({
-          stateName: state.stateName,
-          variables: variables || {},
-        });
-      }
-      return result;
-    })
-    .then((stateSetupResults) =>
-      stateSetupResults.reduce(
-        (currentContext, state) =>
-          Object.entries(state.variables).reduce(
-            (acc, [key, value]) =>
-              addStateSetupVariable(key, state.stateName, value, acc),
-            currentContext
-          ),
-        context
+          result.push({
+            stateName: state.stateName,
+            variables: variables || {},
+          });
+        }
+        return result;
+      })
+      .then((stateSetupResults) =>
+        stateSetupResults.reduce(
+          (currentContext, state) =>
+            Object.entries(state.variables).reduce(
+              (acc, [key, value]) =>
+                addStateSetupVariable(key, state.stateName, value, acc),
+              currentContext
+            ),
+          parentContext
+        )
       )
-    )
-    .catch((e) => {
-      context.logger.error(
-        `Failed to execute state setup before test, not running test`,
-        e.message
-      );
-      throw new CaseConfigurationError(`State setup errored: ${e.message}`);
-    });
+      .catch((e) => {
+        context.logger.error(
+          `Failed to execute state setup before test, not running test. See the logs above for more information`
+        );
+        throw new CaseConfigurationError(`State setup errored: ${e.message}`);
+      })
+  );
