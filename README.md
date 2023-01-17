@@ -157,7 +157,7 @@ Configuration
 
 - [x] Log levels
 - [x] File locations
-- [ ] Silent mode (no logs or test output)
+- [x] Silent mode (no logs or test output)
 
 Documentation
 

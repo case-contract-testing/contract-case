@@ -58,7 +58,7 @@ export const validateVariables = async (
         );
 
         matchResult.forEach((e) => {
-          context.resultPrinter.printError(e);
+          context.resultPrinter.printError(e, context);
         });
         throw new CaseConfigurationError(
           `The state setup for '${state.stateName}' did not return the expected variables`

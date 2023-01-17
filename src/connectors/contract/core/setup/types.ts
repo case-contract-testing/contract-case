@@ -5,6 +5,7 @@ export type BaseCaseConfig = {
   logLevel: LogLevel;
   contractDir: string;
   testRunId: string;
+  printResults: boolean;
 };
 export type CaseConfig = Partial<HttpResponseProviderConfig> &
   Partial<BaseCaseConfig>;

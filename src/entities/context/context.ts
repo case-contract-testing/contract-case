@@ -28,6 +28,7 @@ const DEFAULT_CONTEXT: DefaultContext = {
   'case:currentRun:context:location': [],
   'case:currentRun:context:expectation': 'consume',
   'case:currentRun:context:logLevel': 'info',
+  'case:currentRun:context:printResults': true,
   'case:context:matchBy': 'exact',
   'case:context:serialisableTo': 'json',
 };

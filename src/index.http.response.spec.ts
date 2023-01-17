@@ -40,6 +40,7 @@ describe('simple get endpoint', () => {
     },
     {
       testRunId: 'REQUEST',
+      printResults: false,
     }
   );
 

@@ -1,5 +1,5 @@
 import type { CaseExample } from 'entities/contract/types';
-import type { AnyCaseMatcher } from 'entities/types';
+import type { AnyCaseMatcher, MatchContext } from 'entities/types';
 
 export interface MatchingError {
   message: string;
@@ -13,7 +13,15 @@ export interface MatchingError {
 export type MatchResult = Array<MatchingError>;
 
 export type ResultPrinter = {
-  printError: (e: MatchingError) => void;
-  printSuccessTitle: (example: CaseExample, index: string) => void;
-  printFailureTitle: (example: CaseExample, index: string) => void;
+  printError: (e: MatchingError, context: MatchContext) => void;
+  printSuccessTitle: (
+    example: CaseExample,
+    index: string,
+    context: MatchContext
+  ) => void;
+  printFailureTitle: (
+    example: CaseExample,
+    index: string,
+    context: MatchContext
+  ) => void;
 };

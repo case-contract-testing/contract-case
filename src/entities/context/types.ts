@@ -83,6 +83,7 @@ export type DefaultContext = HasLocation &
     'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
     'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
     'case:currentRun:context:expectation': 'produce' | 'consume';
+    'case:currentRun:context:printResults': boolean;
   };
 
 interface InjectableContext {
@@ -110,6 +111,7 @@ export interface RunContext
   extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest> {
   'case:run:context:tree'?: AnyCaseNodeOrData | AnyInteraction;
   'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
+  'case:currentRun:context:printResults': boolean;
   'case:currentRun:context:runVariables': Record<
     string,
     ContextStateVariable | ExampleVariable

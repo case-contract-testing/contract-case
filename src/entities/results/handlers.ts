@@ -12,11 +12,11 @@ export const handleResult = (
 ): void => {
   if (hasErrors(matchResult)) {
     context.logger.debug(`Matching errors present`);
-    context.resultPrinter.printFailureTitle(example, exampleIndex);
+    context.resultPrinter.printFailureTitle(example, exampleIndex, context);
     matchResult.forEach((e) => {
-      context.resultPrinter.printError(e);
+      context.resultPrinter.printError(e, context);
     });
     throw new CaseFailedError(matchResult);
   }
-  context.resultPrinter.printSuccessTitle(example, exampleIndex);
+  context.resultPrinter.printSuccessTitle(example, exampleIndex, context);
 };

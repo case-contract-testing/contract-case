@@ -4,7 +4,11 @@ import type { HasLocation } from 'entities/context/types';
 import { nameExample } from 'entities/contract/interactions';
 import type { CaseExample } from 'entities/contract/types';
 import { actualToString } from 'entities/results/renderActual';
-import type { MatchingError, ResultPrinter } from 'entities/types';
+import type {
+  MatchContext,
+  MatchingError,
+  ResultPrinter,
+} from 'entities/types';
 import { Console } from 'node:console';
 
 const stdout = new Console({ stdout: process.stdout });
@@ -50,37 +54,51 @@ const finalLine = (error: MatchingError) =>
     )}`
   );
 
-const printError = (error: MatchingError): void => {
-  // This is done as one line to prevent it splitting when multiple tests are running
-  stdout.log(
-    `${firstLine(error)}\n${secondLine(error)}\n${thirdLine(
-      error
-    )}\n\n${finalLine(error)}\n\n`
-  );
+const printError = (error: MatchingError, context: MatchContext): void => {
+  if (context['case:currentRun:context:printResults']) {
+    // This is done as one line to prevent it splitting when multiple tests are running
+    stdout.log(
+      `${firstLine(error)}\n${secondLine(error)}\n${thirdLine(
+        error
+      )}\n\n${finalLine(error)}\n\n`
+    );
+  }
 };
 
-const printFailureTitle = (example: CaseExample, index: string): void => {
-  // This is done as one line to prevent it splitting when multiple tests are running
-  stdout.log(
-    spaces(
-      3,
-      `\n${chalk.red(`✘`)} ${chalk.whiteBright(
-        nameExample(example, index)
-      )}\n   Error details follow:\n`
-    )
-  );
+const printFailureTitle = (
+  example: CaseExample,
+  index: string,
+  context: MatchContext
+): void => {
+  if (context['case:currentRun:context:printResults']) {
+    // This is done as one line to prevent it splitting when multiple tests are running
+    stdout.log(
+      spaces(
+        3,
+        `\n${chalk.red(`✘`)} ${chalk.whiteBright(
+          nameExample(example, index)
+        )}\n   Error details follow:\n`
+      )
+    );
+  }
 };
 
-const printSuccessTitle = (example: CaseExample, index: string): void => {
-  // This is done as one line to prevent it splitting when multiple tests are running
-  stdout.log(
-    spaces(
-      3,
-      `\n${chalk.greenBright(`✅`)} ${chalk.whiteBright(
-        nameExample(example, index)
-      )}\n`
-    )
-  );
+const printSuccessTitle = (
+  example: CaseExample,
+  index: string,
+  context: MatchContext
+): void => {
+  if (context['case:currentRun:context:printResults']) {
+    // This is done as one line to prevent it splitting when multiple tests are running
+    stdout.log(
+      spaces(
+        3,
+        `\n${chalk.greenBright(`✅`)} ${chalk.whiteBright(
+          nameExample(example, index)
+        )}\n`
+      )
+    );
+  }
 };
 
 export const resultPrinter: ResultPrinter = {
