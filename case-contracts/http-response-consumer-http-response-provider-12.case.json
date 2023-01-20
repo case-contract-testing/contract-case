@@ -4,19 +4,19 @@
     "providerName": "http response provider"
   },
   "matcherLookup": {
-    "a (200) response with body an object shaped like {status: \"up\"}": {
+    "matcher:a (200) response with body an object shaped like {status: \"up\"}": {
       "status": 200,
       "body": {
         "status": "up"
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "an http \"GET\" request to \"/health\" without a body": {
+    "matcher:an http \"GET\" request to \"/health\" without a body": {
       "method": "GET",
       "path": "/health",
       "case:matcher:type": "HttpRequestMatcher"
     },
-    "a (200) response with body an object shaped like {status: <any string>}": {
+    "matcher:a (200) response with body an object shaped like {status: <any string>}": {
       "status": 200,
       "body": {
         "case:matcher:type": "CascadingContext",
@@ -27,7 +27,7 @@
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "a (in 4XX,5XX) response without a body": {
+    "matcher:a (in 4XX,5XX) response without a body": {
       "status": {
         "case:matcher:type": "HttpStatusCode",
         "case:matcher:example": 400,
@@ -39,14 +39,14 @@
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "a (503) response with body an object shaped like {status: \"down\"}": {
+    "matcher:a (503) response with body an object shaped like {status: \"down\"}": {
       "status": 503,
       "body": {
         "status": "down"
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "a (200) response with body an object shaped like {userId: ${userId}}": {
+    "matcher:a (200) response with body an object shaped like {userId: ${userId}}": {
       "status": 200,
       "body": {
         "userId": {
@@ -56,7 +56,7 @@
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "an http \"GET\" request to \"/users/${userId}\" without a body": {
+    "matcher:an http \"GET\" request to \"/users/${userId}\" without a body": {
       "method": "GET",
       "path": {
         "case:matcher:type": "StringPrefix",
@@ -69,11 +69,11 @@
       },
       "case:matcher:type": "HttpRequestMatcher"
     },
-    "a (404) response without a body": {
+    "matcher:a (404) response without a body": {
       "status": 404,
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "an http \"GET\" request to \"/users/123\" without a body": {
+    "matcher:an http \"GET\" request to \"/users/123\" without a body": {
       "method": "GET",
       "path": {
         "case:matcher:type": "StringPrefix",
