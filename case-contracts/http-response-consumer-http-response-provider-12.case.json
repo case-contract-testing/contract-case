@@ -27,7 +27,7 @@
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "matcher:a (in 4XX,5XX) response without a body": {
+    "matcher:a (httpStaus 4XX | 5XX) response without a body": {
       "status": {
         "case:matcher:type": "HttpStatusCode",
         "case:matcher:example": 400,
@@ -182,7 +182,7 @@
         },
         "response": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "a (in 4XX,5XX) response without a body",
+          "case:matcher:uniqueName": "a (httpStaus 4XX | 5XX) response without a body",
           "case:matcher:child": {
             "status": {
               "case:matcher:type": "HttpStatusCode",
