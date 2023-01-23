@@ -13,7 +13,6 @@ import { applyNodeToContext, constructInitialContext } from 'entities/context';
 import type {
   AnyCaseNodeOrData,
   LookupableMatcher,
-  ContractFns,
   LogLevelContext,
   MatchContext,
   AnyCaseNodeType,
@@ -22,6 +21,8 @@ import type {
   MatchResult,
   ContractDescription,
   Logger,
+  LogContext,
+  RawLookupFns,
 } from 'entities/types';
 import { hasErrors } from 'entities/results';
 
@@ -40,7 +41,7 @@ export class BaseCaseContract {
   ) {
     this.currentContract = makeContract(description);
 
-    const contractFns: ContractFns = {
+    const contractFns: RawLookupFns = {
       lookupMatcher: this.lookupMatcher.bind(this),
       saveLookupableMatcher: this.saveLookupableMatcher.bind(this),
     };
@@ -65,10 +66,10 @@ export class BaseCaseContract {
 
   saveLookupableMatcher(
     namedMatcher: LookupableMatcher,
-    logger: Logger
+    context: LogContext
   ): ContractFile {
     if (this.currentContract === undefined) {
-      logger.error(
+      context.logger.error(
         'saveNamedMatcher was called without initialising the contract file. This should not be possible.'
       );
       throw new CaseConfigurationError(
@@ -79,14 +80,14 @@ export class BaseCaseContract {
     this.currentContract = addLookupableMatcher(
       this.currentContract,
       namedMatcher,
-      logger
+      context
     );
     return this.currentContract;
   }
 
-  lookupMatcher(uniqueName: string, logger: Logger): AnyCaseNodeOrData {
+  lookupMatcher(uniqueName: string, context: LogContext): AnyCaseNodeOrData {
     if (!this.currentContract) {
-      logger.error(
+      context.logger.error(
         'lookupMatcher was called without initialising the contract file. This should not be possible.'
       );
       throw new CaseCoreError(

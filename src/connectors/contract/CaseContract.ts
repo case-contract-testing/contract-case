@@ -89,7 +89,7 @@ export class CaseContract extends BaseCaseContract {
     this.currentContract = addExample(
       this.currentContract,
       example,
-      currentContext.logger
+      currentContext
     );
     return example;
   }
@@ -117,7 +117,7 @@ export class CaseContract extends BaseCaseContract {
     this.currentContract = addExample(
       this.currentContract,
       example,
-      currentContext.logger
+      currentContext
     );
     return example;
   }

@@ -1,32 +1,30 @@
 import { CaseConfigurationError } from 'entities';
-import type { AnyCaseNodeOrData, Logger } from 'entities/types';
+import type { AnyCaseNodeOrData, LogContext } from 'entities/types';
 import { rawEquality } from './rawEquals';
-import type { LookupMap } from './types';
-
-type LookupType = 'matcher';
+import type { LookupMap, LookupType } from './types';
 
 export const addLookup = (
   matcherLookup: LookupMap,
   lookupType: LookupType,
   uniqueName: string,
   matcher: AnyCaseNodeOrData,
-  logger: Logger
+  context: LogContext
 ): Record<string, AnyCaseNodeOrData> => {
   const lookupName = `${lookupType}:${uniqueName}`;
-  logger.maintainerDebug(`Saving lookup ${lookupType}:`, matcher);
+  context.logger.maintainerDebug(`Saving lookup ${lookupType}:`, matcher);
   if (matcherLookup[lookupName]) {
     if (!rawEquality(matcher, matcherLookup[lookupName])) {
-      logger.error(
+      context.logger.error(
         `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`
       );
-      logger.error('New matcher is', matcher);
-      logger.error('Existing matcher is', matcherLookup[lookupName]);
+      context.logger.error('New matcher is', matcher);
+      context.logger.error('Existing matcher is', matcherLookup[lookupName]);
 
       throw new CaseConfigurationError(
         `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`
       );
     } else {
-      logger.maintainerDebug(
+      context.logger.maintainerDebug(
         `The ${lookupType} with the name '${lookupName}' is already stored exactly as given`
       );
     }

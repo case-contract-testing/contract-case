@@ -7,15 +7,13 @@ import {
   isCaseNode,
   AnyCaseNodeOrData,
   AnyCaseMatcher,
-  LookupableMatcher,
 } from 'entities/nodes/matchers/types';
-import type { ResultPrinter } from 'entities/types';
+import type { RawLookupFns, ResultPrinter } from 'entities/types';
 import type {
   MatchContext,
   RunContext,
   DefaultContext,
   TraversalFns,
-  ContractFns,
   HasLocation,
   LogLevelContext,
 } from './types';
@@ -79,7 +77,7 @@ const combineWithRoot = (
 export const constructInitialContext = (
   traversals: TraversalFns,
   makeLogger: (c: LogLevelContext) => Logger,
-  contractFns: ContractFns,
+  lookupFns: RawLookupFns,
   resultPrinter: ResultPrinter,
   runConfig: Partial<RunContext>
 ): MatchContext => {
@@ -93,15 +91,19 @@ export const constructInitialContext = (
     ...runConfig,
   };
 
-  const logger = makeLogger(context);
-  return {
+  const logContext = {
     ...context,
-    logger,
+    logger: makeLogger(context),
     resultPrinter,
+    lookupFns,
+  };
+
+  return {
+    ...logContext,
     lookupMatcher: (uniqueName: string) =>
-      contractFns.lookupMatcher(uniqueName, logger),
-    saveLookupableMatcher: (matcher: LookupableMatcher) =>
-      contractFns.saveLookupableMatcher(matcher, logger),
+      lookupFns.lookupMatcher(uniqueName, logContext),
+    saveLookupableMatcher: (matcher) =>
+      lookupFns.saveLookupableMatcher(matcher, logContext),
   };
 };
 
@@ -115,15 +117,22 @@ export const addLocation = (
   location: string,
   context: MatchContext
 ): MatchContext => {
-  const nextContext = {
+  const nextDataContext = {
     ...context,
 
     'case:currentRun:context:location': context[
       'case:currentRun:context:location'
     ].concat([location]),
   };
-  const logger = nextContext.makeLogger(nextContext);
-  return { ...nextContext, logger };
+  const logger = nextDataContext.makeLogger(nextDataContext);
+  const nextContext = { ...nextDataContext, logger };
+  return {
+    ...nextContext,
+    lookupMatcher: (uniqueName: string) =>
+      nextDataContext.lookupFns.lookupMatcher(uniqueName, nextContext),
+    saveLookupableMatcher: (matcher) =>
+      nextDataContext.lookupFns.saveLookupableMatcher(matcher, nextContext),
+  };
 };
 
 export const locationString = (matchContext: HasLocation): string =>

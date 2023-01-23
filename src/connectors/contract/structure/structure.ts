@@ -1,10 +1,10 @@
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
-import type { Logger } from 'entities/logger/types';
 import {
   type AnyInteraction,
   isLookupableMatcher,
   type AnyCaseNodeOrData,
   LookupableMatcher,
+  LogContext,
 } from 'entities/types';
 
 import { addLookup, findLookup } from './lookup';
@@ -13,7 +13,7 @@ import type { ContractFile } from './types';
 const addMatcher = (
   matcherLookup: Record<string, AnyCaseNodeOrData>,
   matcher: AnyCaseNodeOrData,
-  logger: Logger
+  context: LogContext
 ): Record<string, AnyCaseNodeOrData> => {
   if (isLookupableMatcher(matcher) && 'case:matcher:child' in matcher) {
     return addLookup(
@@ -21,7 +21,7 @@ const addMatcher = (
       'matcher',
       matcher['case:matcher:uniqueName'],
       matcher['case:matcher:child'],
-      logger
+      context
     );
   }
   return matcherLookup;
@@ -30,18 +30,12 @@ const addMatcher = (
 const addInteraction = (
   matcherLookup: Record<string, AnyCaseNodeOrData>,
   interaction: AnyInteraction,
-  logger: Logger
+  context: LogContext
 ) =>
   [interaction.request, interaction.response].reduce(
-    (acc, curr) => addMatcher(acc, curr, logger),
+    (acc, curr) => addMatcher(acc, curr, context),
     matcherLookup
   );
-
-export const findMatcher = (
-  contract: ContractFile,
-  uniqueName: string
-): AnyCaseNodeOrData | undefined =>
-  findLookup(contract.matcherLookup, 'matcher', uniqueName);
 
 export const makeContract = (
   description: ContractDescription
@@ -54,13 +48,13 @@ export const makeContract = (
 export const addExample = (
   contract: ContractFile,
   example: CaseExample,
-  logger: Logger
+  context: LogContext
 ): ContractFile => ({
   ...contract,
   matcherLookup: addInteraction(
     contract.matcherLookup,
     example.interaction,
-    logger
+    context
   ),
   examples: [...contract.examples, example],
 });
@@ -72,9 +66,48 @@ export const hasFailure = (contract: ContractFile): boolean =>
 export const addLookupableMatcher = (
   contract: ContractFile,
   matcher: LookupableMatcher,
-  logger: Logger
+  context: LogContext
 ): ContractFile => ({
   ...contract,
-  matcherLookup: addMatcher(contract.matcherLookup, matcher, logger),
+  matcherLookup: addMatcher(contract.matcherLookup, matcher, context),
   examples: [...contract.examples],
 });
+
+export const findMatcher = (
+  contract: ContractFile,
+  uniqueName: string
+): AnyCaseNodeOrData | undefined =>
+  findLookup(contract.matcherLookup, 'matcher', uniqueName);
+
+export const addLookupVariable = (
+  contract: ContractFile,
+  type: 'default' | 'state',
+  uniqueName: string,
+  variable: LookupableMatcher,
+  context: LogContext
+): ContractFile => ({
+  ...contract,
+  matcherLookup: addLookup(
+    contract.matcherLookup,
+    `variable:${type}`,
+    uniqueName,
+    variable,
+    context
+  ),
+  examples: [...contract.examples],
+});
+
+export const findVariable = (
+  contract: ContractFile,
+  uniqueName: string
+): AnyCaseNodeOrData | undefined => {
+  const stateVariable = findLookup(
+    contract.matcherLookup,
+    'variable:state',
+    uniqueName
+  );
+  if (stateVariable !== undefined) {
+    return stateVariable;
+  }
+  return findLookup(contract.matcherLookup, 'variable:default', uniqueName);
+};

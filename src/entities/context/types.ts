@@ -15,14 +15,18 @@ export const MATCH_BY_EXACT = 'exact' as const;
 
 export const SERIALIABLE_TO_JSON = 'json' as const;
 
-export interface ContractFns {
-  lookupMatcher: (uniqueName: string, logger: Logger) => AnyCaseNodeOrData;
-  saveLookupableMatcher: (matcher: LookupableMatcher, logger: Logger) => void;
+export interface RawLookupFns {
+  lookupMatcher: (uniqueName: string, context: LogContext) => AnyCaseNodeOrData;
+  saveLookupableMatcher: (
+    matcher: LookupableMatcher,
+    context: LogContext
+  ) => void;
 }
 
-export interface ContractContextFns {
+export interface ContractLookupFns {
   lookupMatcher: (uniqueName: string) => AnyCaseNodeOrData;
   saveLookupableMatcher: (matcher: LookupableMatcher) => void;
+  lookupFns: RawLookupFns;
 }
 
 export interface TraversalFns {
@@ -54,7 +58,7 @@ interface ContextLoggers {
 export type MatchContext = TraversalFns &
   DefaultContext &
   ContextLoggers &
-  ContractContextFns &
+  ContractLookupFns &
   Partial<InjectableContext> &
   Partial<ContractFileConfig> &
   HasLocation &
@@ -67,8 +71,9 @@ export type HasLocation = {
 
 export type LoggableContext = Omit<
   MatchContext,
-  keyof ContextLoggers | keyof TraversalFns | keyof ContractFns
+  keyof ContextLoggers | keyof TraversalFns | keyof ContractLookupFns
 >;
+export type LogContext = Omit<MatchContext, keyof ContractLookupFns>;
 
 export type LogLevelContext = HasLocation & {
   'case:currentRun:context:logLevel': LogLevel;
