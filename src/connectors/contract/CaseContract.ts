@@ -7,11 +7,7 @@ import type { CaseConfig } from 'connectors/contract/core/types';
 import { makeLogger as defaultMakeLogger } from 'connectors/logger';
 import { CaseCoreError, CaseConfigurationError } from 'entities';
 import { CaseFailedError } from 'entities/CaseFailedError';
-import {
-  addDefaultVariable,
-  addLocation,
-  applyNodeToContext,
-} from 'entities/context';
+import { addLocation, applyNodeToContext } from 'entities/context';
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
 import { makeResults } from 'entities/results';
@@ -50,22 +46,20 @@ export class CaseContract extends BaseCaseContract {
     const thisIndex = this.testIndex;
     this.testIndex += 1;
 
-    const thisRunContext = states.reduce(
-      (intermediateContext, state) =>
-        state['case:state:type'] !== SETUP_VARIABLE_STATE
-          ? intermediateContext
-          : Object.entries(state.variables).reduce(
-              (acc, [key, value]) =>
-                addDefaultVariable(key, state.stateName, value, acc),
-              intermediateContext
-            ),
-      applyNodeToContext(interaction, this.initialContext, {
-        ...(runConfig ? configToRunContext(runConfig) : {}),
-        'case:currentRun:context:testName': `${thisIndex}`,
-      })
-    );
+    const runContext = applyNodeToContext(interaction, this.initialContext, {
+      ...(runConfig ? configToRunContext(runConfig) : {}),
+      'case:currentRun:context:testName': `${thisIndex}`,
+    });
 
-    return setupWritingAssert(states, interaction, thisRunContext, this);
+    states.forEach((state) => {
+      if (state['case:state:type'] === SETUP_VARIABLE_STATE) {
+        Object.entries(state.variables).forEach(([key, value]) =>
+          runContext.addDefaultVariable(key, state.stateName, value)
+        );
+      }
+    });
+
+    return setupWritingAssert(states, interaction, runContext, this);
   }
 
   recordSuccess(

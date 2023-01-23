@@ -1,5 +1,5 @@
 import { CaseConfigurationError } from 'entities';
-import { addLocation, addStateSetupVariable } from 'entities/context';
+import { addLocation } from 'entities/context';
 import {
   type StateFunctions,
   type AnyState,
@@ -50,11 +50,11 @@ type StateSetupResult = {
   variables: Record<string, AnyCaseNodeOrData>;
 };
 
-export const getContextFromStateHandlers = (
+export const executeStateHandlers = (
   states: Array<AnyState>,
   stateSetups: StateFunctions,
   parentContext: MatchContext
-): Promise<MatchContext> =>
+): Promise<void> =>
   Promise.resolve(addLocation(`:stateSetup`, parentContext)).then((context) =>
     Promise.resolve()
       .then(async () => {
@@ -79,17 +79,13 @@ export const getContextFromStateHandlers = (
         }
         return result;
       })
-      .then((stateSetupResults) =>
-        stateSetupResults.reduce(
-          (currentContext, state) =>
-            Object.entries(state.variables).reduce(
-              (acc, [key, value]) =>
-                addStateSetupVariable(key, state.stateName, value, acc),
-              currentContext
-            ),
-          parentContext
-        )
-      )
+      .then((stateSetupResults) => {
+        stateSetupResults.forEach((state) =>
+          Object.entries(state.variables).forEach(([key, value]) =>
+            context.addStateVariable(key, state.stateName, value)
+          )
+        );
+      })
       .catch((e) => {
         context.logger.error(
           `Failed to execute state setup before test, not running test. See the logs above for more information`

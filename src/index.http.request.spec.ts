@@ -197,12 +197,12 @@ describe('e2e http consumer driven', () => {
 
         it('returns an existing user', async () => {
           const client = api(context.mock.baseUrl);
-          expect(context.stripMatchers(responseBody)).toEqual({
+          expect(contract.stripMatchers(responseBody)).toEqual({
             userId: '123',
           });
 
           return expect(client.getUser('123')).resolves.toEqual(
-            context.stripMatchers(responseBody)
+            contract.stripMatchers(responseBody)
           );
         });
 

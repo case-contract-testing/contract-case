@@ -21,12 +21,34 @@ export interface RawLookupFns {
     matcher: LookupableMatcher,
     context: LogContext
   ) => void;
+  addVariable: (
+    name: string,
+    type: 'default' | 'state',
+    stateName: string,
+    value: AnyCaseNodeOrData,
+    context: LogContext
+  ) => void;
+  lookupVariable: (name: string, context: LogContext) => AnyCaseNodeOrData;
 }
 
 export interface ContractLookupFns {
   lookupMatcher: (uniqueName: string) => AnyCaseNodeOrData;
   saveLookupableMatcher: (matcher: LookupableMatcher) => void;
-  lookupFns: RawLookupFns;
+  addDefaultVariable: (
+    name: string,
+    stateName: string,
+    value: AnyCaseNodeOrData
+  ) => void;
+  addStateVariable: (
+    name: string,
+    stateName: string,
+    value: AnyCaseNodeOrData
+  ) => void;
+  lookupVariable: (name: string) => AnyCaseNodeOrData;
+}
+
+interface HasMakeLookup {
+  makeLookup: (c: LogContext) => ContractLookupFns;
 }
 
 export interface TraversalFns {
@@ -59,6 +81,7 @@ export type MatchContext = TraversalFns &
   DefaultContext &
   ContextLoggers &
   ContractLookupFns &
+  HasMakeLookup &
   Partial<InjectableContext> &
   Partial<ContractFileConfig> &
   HasLocation &
@@ -71,9 +94,15 @@ export type HasLocation = {
 
 export type LoggableContext = Omit<
   MatchContext,
-  keyof ContextLoggers | keyof TraversalFns | keyof ContractLookupFns
+  | keyof ContextLoggers
+  | keyof TraversalFns
+  | keyof ContractLookupFns
+  | keyof HasMakeLookup
 >;
-export type LogContext = Omit<MatchContext, keyof ContractLookupFns>;
+export type LogContext = Omit<
+  MatchContext,
+  keyof ContractLookupFns | keyof HasMakeLookup
+>;
 
 export type LogLevelContext = HasLocation & {
   'case:currentRun:context:logLevel': LogLevel;
@@ -104,27 +133,11 @@ export interface HasBaseUrlUnderTest {
   'case:currentRun:context:baseUrlUnderTest': string;
 }
 
-type ContextStateVariable = {
-  source: 'state';
-  stateName: string;
-  value: AnyCaseNodeOrData;
-};
-
-type ExampleVariable = {
-  source: 'default';
-  stateName: string;
-  value: AnyCaseNodeOrData;
-};
-
 export interface RunContext
   extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest> {
   'case:run:context:tree'?: AnyCaseNodeOrData | AnyInteraction;
   'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
   'case:currentRun:context:printResults': boolean;
-  'case:currentRun:context:runVariables': Record<
-    string,
-    ContextStateVariable | ExampleVariable
-  >;
 }
 
 export interface MatchContextByType {

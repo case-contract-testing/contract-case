@@ -1,44 +1,35 @@
-import { CaseConfigurationError } from 'entities';
-import type { AnyCaseNodeOrData, LogContext } from 'entities/types';
-import { rawEquality } from './rawEquals';
-import type { LookupMap, LookupType } from './types';
+import {
+  AnyCaseNodeOrData,
+  AnyInteraction,
+  isLookupableMatcher,
+  LogContext,
+} from 'entities/types';
+import { addLookup } from './internals';
+import type { LookupMap } from './types';
 
-export const addLookup = (
+export const addMatcher = (
   matcherLookup: LookupMap,
-  lookupType: LookupType,
-  uniqueName: string,
   matcher: AnyCaseNodeOrData,
   context: LogContext
-): Record<string, AnyCaseNodeOrData> => {
-  const lookupName = `${lookupType}:${uniqueName}`;
-  context.logger.maintainerDebug(`Saving lookup ${lookupType}:`, matcher);
-  if (matcherLookup[lookupName]) {
-    if (!rawEquality(matcher, matcherLookup[lookupName])) {
-      context.logger.error(
-        `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`
-      );
-      context.logger.error('New matcher is', matcher);
-      context.logger.error('Existing matcher is', matcherLookup[lookupName]);
-
-      throw new CaseConfigurationError(
-        `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`
-      );
-    } else {
-      context.logger.maintainerDebug(
-        `The ${lookupType} with the name '${lookupName}' is already stored exactly as given`
-      );
-    }
+): LookupMap => {
+  if (isLookupableMatcher(matcher) && 'case:matcher:child' in matcher) {
+    return addLookup(
+      matcherLookup,
+      'matcher',
+      matcher['case:matcher:uniqueName'],
+      matcher['case:matcher:child'],
+      context
+    );
   }
-
-  return {
-    ...matcherLookup,
-    [lookupName]: matcher,
-  };
+  return matcherLookup;
 };
 
-export const findLookup = (
+export const addInteraction = (
   matcherLookup: LookupMap,
-  lookupType: LookupType,
-  uniqueName: string
-): AnyCaseNodeOrData | undefined =>
-  matcherLookup[`${lookupType}:${uniqueName}`];
+  interaction: AnyInteraction,
+  context: LogContext
+): LookupMap =>
+  [interaction.request, interaction.response].reduce(
+    (acc, curr) => addMatcher(acc, curr, context),
+    matcherLookup
+  );

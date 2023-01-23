@@ -5,35 +5,28 @@ import { setupUnhandledAssert } from 'connectors/contract/core/setup';
 import { handleResult } from 'entities/results/handlers';
 import type { StateFunctions } from 'entities/states/types';
 import { executionError, makeResults } from 'entities/results';
-import {
-  getContextFromStateHandlers,
-  executeTeardownHandlers,
-} from './stateHandlers';
+import { executeStateHandlers, executeTeardownHandlers } from './stateHandlers';
 
 export const executeVerification =
   (
     example: CaseExample,
     exampleIndex: string,
     stateSetups: StateFunctions,
-    initialContext: MatchContext
+    context: MatchContext
   ): (() => Promise<void>) =>
   () => {
-    initialContext.logger.debug(
+    context.logger.debug(
       `Beginning verification for interaction "${nameExample(
         example,
         exampleIndex
       )}"`
     );
-    initialContext.logger.maintainerDebug(
+    context.logger.maintainerDebug(
       'Context is',
-      JSON.stringify(initialContext, null, 2)
+      JSON.stringify(context, null, 2)
     );
-    return getContextFromStateHandlers(
-      example.states,
-      stateSetups,
-      initialContext
-    )
-      .then((context) => {
+    return executeStateHandlers(example.states, stateSetups, context)
+      .then(() => {
         context.logger.maintainerDebug(`Calling setupVerify`);
         return setupUnhandledAssert(example.interaction, context)
           .then((verifiable) => verifiable.assert())
@@ -42,18 +35,18 @@ export const executeVerification =
           );
       })
       .then(
-        (result) => handleResult(example, exampleIndex, result, initialContext),
+        (result) => handleResult(example, exampleIndex, result, context),
         (error) => {
           handleResult(
             example,
             exampleIndex,
-            makeResults(executionError(error, initialContext)),
-            initialContext
+            makeResults(executionError(error, context)),
+            context
           );
           throw error;
         }
       )
       .then(() => {
-        initialContext.logger.debug(`This interaction passed verification`);
+        context.logger.debug(`This interaction passed verification`);
       });
   };

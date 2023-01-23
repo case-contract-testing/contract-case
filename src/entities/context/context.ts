@@ -8,7 +8,11 @@ import {
   AnyCaseNodeOrData,
   AnyCaseMatcher,
 } from 'entities/nodes/matchers/types';
-import type { RawLookupFns, ResultPrinter } from 'entities/types';
+import type {
+  ContractLookupFns,
+  LogContext,
+  ResultPrinter,
+} from 'entities/types';
 import type {
   MatchContext,
   RunContext,
@@ -77,7 +81,7 @@ const combineWithRoot = (
 export const constructInitialContext = (
   traversals: TraversalFns,
   makeLogger: (c: LogLevelContext) => Logger,
-  lookupFns: RawLookupFns,
+  makeLookup: (c: LogContext) => ContractLookupFns,
   resultPrinter: ResultPrinter,
   runConfig: Partial<RunContext>
 ): MatchContext => {
@@ -95,15 +99,12 @@ export const constructInitialContext = (
     ...context,
     logger: makeLogger(context),
     resultPrinter,
-    lookupFns,
+    makeLookup,
   };
 
   return {
     ...logContext,
-    lookupMatcher: (uniqueName: string) =>
-      lookupFns.lookupMatcher(uniqueName, logContext),
-    saveLookupableMatcher: (matcher) =>
-      lookupFns.saveLookupableMatcher(matcher, logContext),
+    ...makeLookup(logContext),
   };
 };
 
@@ -128,10 +129,7 @@ export const addLocation = (
   const nextContext = { ...nextDataContext, logger };
   return {
     ...nextContext,
-    lookupMatcher: (uniqueName: string) =>
-      nextDataContext.lookupFns.lookupMatcher(uniqueName, nextContext),
-    saveLookupableMatcher: (matcher) =>
-      nextDataContext.lookupFns.saveLookupableMatcher(matcher, nextContext),
+    ...nextContext.makeLookup(nextContext),
   };
 };
 

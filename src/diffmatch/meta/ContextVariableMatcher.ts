@@ -1,4 +1,3 @@
-import { CaseConfigurationError } from 'entities';
 import { addLocation } from 'entities/context';
 import type {
   MatchResult,
@@ -9,25 +8,13 @@ import type {
   CONTEXT_VARIABLE_TYPE,
 } from 'entities/types';
 
-const getVariable = (variableName: string, matchContext: MatchContext) => {
-  const variable =
-    matchContext['case:currentRun:context:runVariables'][variableName];
-  if (variable === undefined) {
-    throw new CaseConfigurationError(
-      `Variable '${variableName}' didn't appear to have a value. Is it correctly spelt, and set in a state variable that is used in this run?`,
-      matchContext
-    );
-  }
-  return variable.value;
-};
-
 const check = (
   matcher: CoreContextVariableMatcher,
   matchContext: MatchContext,
   actual: unknown
 ): Promise<MatchResult> | MatchResult =>
   matchContext.descendAndCheck(
-    getVariable(matcher['case:matcher:variableName'], matchContext),
+    matchContext.lookupVariable(matcher['case:matcher:variableName']),
     addLocation(
       `:variable[${matcher['case:matcher:variableName']}]`,
       matchContext
@@ -40,7 +27,7 @@ const strip = (
   matchContext: MatchContext
 ): AnyData =>
   matchContext.descendAndStrip(
-    getVariable(matcher['case:matcher:variableName'], matchContext),
+    matchContext.lookupVariable(matcher['case:matcher:variableName']),
     addLocation(
       `:variable[${matcher['case:matcher:variableName']}]`,
       matchContext

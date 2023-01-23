@@ -46,6 +46,11 @@
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
+    "variable:default:userId": {
+      "case:matcher:type": "CascadingContext",
+      "case:matcher:child": "123",
+      "case:context:matchBy": "type"
+    },
     "matcher:a (200) response with body an object shaped like {userId: ${userId}}": {
       "status": 200,
       "body": {

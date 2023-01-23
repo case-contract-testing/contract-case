@@ -23,10 +23,17 @@ import type {
   Logger,
   LogContext,
   RawLookupFns,
+  ContractLookupFns,
 } from 'entities/types';
 import { hasErrors } from 'entities/results';
 
-import { findMatcher, makeContract, addLookupableMatcher } from './structure';
+import {
+  findMatcher,
+  makeContract,
+  addLookupableMatcher,
+  addVariable,
+  findVariable,
+} from './structure';
 import type { ContractFile } from './structure/types';
 
 export class BaseCaseContract {
@@ -44,11 +51,33 @@ export class BaseCaseContract {
     const contractFns: RawLookupFns = {
       lookupMatcher: this.lookupMatcher.bind(this),
       saveLookupableMatcher: this.saveLookupableMatcher.bind(this),
+      addVariable: this.addVariable.bind(this),
+      lookupVariable: this.lookupVariable.bind(this),
     };
+
+    const makeLookup = (context: LogContext): ContractLookupFns => ({
+      lookupMatcher: (uniqueName: string) =>
+        contractFns.lookupMatcher(uniqueName, context),
+      saveLookupableMatcher: (matcher) =>
+        contractFns.saveLookupableMatcher(matcher, context),
+      addDefaultVariable: (
+        name: string,
+        stateName: string,
+        value: AnyCaseNodeOrData
+      ) => contractFns.addVariable(name, 'default', stateName, value, context),
+      addStateVariable: (
+        name: string,
+        stateName: string,
+        value: AnyCaseNodeOrData
+      ) => contractFns.addVariable(name, 'state', stateName, value, context),
+      lookupVariable: (name: string) =>
+        contractFns.lookupVariable(name, context),
+    });
+
     this.initialContext = constructInitialContext(
       traversals,
       makeLogger,
-      contractFns,
+      makeLookup,
       resultPrinter,
       { ...configToRunContext(DEFAULT_CONFIG), ...configToRunContext(config) }
     );
@@ -62,6 +91,56 @@ export class BaseCaseContract {
         // TODO: put in a URL to the documentation here
       );
     }
+  }
+
+  lookupVariable(name: string, context: LogContext): AnyCaseNodeOrData {
+    if (this.currentContract === undefined) {
+      context.logger.error(
+        `lookupVariable was called without initialising the contract file. This should not be possible.`
+      );
+      throw new CaseConfigurationError(
+        'Contract was not initialised at the time that lookupVariable was called'
+      );
+    }
+
+    const stateVariable = findVariable(this.currentContract, 'state', name);
+    if (stateVariable !== undefined) {
+      return stateVariable;
+    }
+    const defaultVariable = findVariable(this.currentContract, 'default', name);
+
+    if (defaultVariable === undefined) {
+      throw new CaseConfigurationError(
+        `Variable '${name}' was requested but appears not to be set. Is the variable spelt correctly, and the states for this interaction are correctly set`
+      );
+    }
+    return defaultVariable;
+  }
+
+  addVariable(
+    name: string,
+    type: 'default' | 'state',
+    stateName: string,
+    value: AnyCaseNodeOrData,
+    context: LogContext
+  ): ContractFile {
+    if (this.currentContract === undefined) {
+      context.logger.error(
+        `addVariable was called by state '${stateName}' without initialising the contract file. This should not be possible.`
+      );
+      throw new CaseConfigurationError(
+        'Contract was not initialised at the time that addVariable was called'
+      );
+    }
+
+    this.currentContract = addVariable(
+      this.currentContract,
+      type,
+      name,
+      value,
+      context
+    );
+    return this.currentContract;
   }
 
   saveLookupableMatcher(
@@ -108,9 +187,6 @@ export class BaseCaseContract {
   stripMatchers<T extends AnyCaseNodeType>(
     matcherOrData: DataOrCaseNodeFor<T>
   ): AnyData {
-    this.initialContext.logger.warn(
-      'DEPRECATED: This function should be removed and a new Interaction concept brought in'
-    );
     return traversals.descendAndStrip(
       matcherOrData,
       applyNodeToContext(matcherOrData, this.initialContext)
