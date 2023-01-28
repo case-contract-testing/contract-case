@@ -11,7 +11,7 @@ Here we record the principles that are used to make implementation choices
 
 ## Internals
 
-- The only difference between test and verification is: Verification is multiple tests, while test is single tests.
+- The only difference between test and verification is: Verification is multiple tests, while test is a single test. The input to a single verification is the same as the input to a single test.
 - All matchers are only data, so they can be saved in the contract.
 - Matchers are recursive. Each matcher that has children also accepts matchers.
 - The context is also data, immutable (but may be replaced as you walk the matcher tree)

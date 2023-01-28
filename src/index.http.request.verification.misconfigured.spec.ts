@@ -118,6 +118,7 @@ describe('Server verification', () => {
       );
     });
 
+    // eslint-disable-next-line jest/no-focused-tests
     describe('contract verification with state that fails', () => {
       const stateSetups: StateFunctions = {
         'Server is up': () => {

@@ -7,7 +7,7 @@ import type { StateFunctions } from 'entities/states/types';
 import { executionError, makeResults } from 'entities/results';
 import { executeStateHandlers, executeTeardownHandlers } from './stateHandlers';
 
-export const executeVerification =
+export const executeExample =
   (
     example: CaseExample,
     exampleIndex: string,
@@ -25,13 +25,13 @@ export const executeVerification =
       'Context is',
       JSON.stringify(context, null, 2)
     );
-    return executeStateHandlers(example.states, stateSetups, context)
+    return executeStateHandlers(example, stateSetups, context)
       .then(() => {
         context.logger.maintainerDebug(`Calling setupVerify`);
         return setupUnhandledAssert(example.interaction, context)
           .then((verifiable) => verifiable.assert())
           .finally(() =>
-            executeTeardownHandlers(example.states, stateSetups, context)
+            executeTeardownHandlers(example, stateSetups, context)
           );
       })
       .then(

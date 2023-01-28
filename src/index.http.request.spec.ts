@@ -3,7 +3,11 @@ import type * as http from 'node:http';
 
 import api from '__tests__/client/http/connector';
 import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
-import type { Assertable } from 'entities/types';
+import type {
+  AnyInteractionType,
+  Assertable,
+  CaseInteractionFor,
+} from 'entities/types';
 import {
   httpStatus,
   shapedLike,
@@ -13,7 +17,7 @@ import {
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
 import { readContract } from 'connectors/contract/writer/fileSystem';
 import type { RunTestCallback } from 'connectors/contract/types';
-import type { StateFunctions } from 'entities/states/types';
+import type { AnyState, StateFunctions } from 'entities/states/types';
 
 import start from '__tests__/server/http/connectors/web';
 import { baseService } from '__tests__/server/http/domain/baseService';
@@ -47,6 +51,107 @@ describe('e2e http consumer driven', () => {
     describe('health get', () => {
       describe('When the server is up', () => {
         const state = inState('Server is up');
+
+        const testInteraction = <T extends AnyInteractionType, R>(
+          states: Array<AnyState>,
+          interaction: CaseInteractionFor<T>,
+          trigger: (config: Assertable<T>['config']) => Promise<R>,
+          testResponseObject: (data: R) => unknown
+        ) =>
+          contract.setup(states, interaction).then((assertable) =>
+            // setup states, either default or real
+            // trigger, either fake or provided
+            trigger(assertable.config)
+              // either check response object, or compare it
+              .then(testResponseObject)
+              // confirm that server was happy
+              .then(assertable.assert)
+              // print results
+              .then((res) => {
+                if (res.length !== 0) {
+                  throw new Error(res.join('\n').toString());
+                }
+              })
+          );
+
+        describe('health endpoint', () => {
+          const sendHealthRequest = (
+            config: Assertable<'ConsumeHttpResponse'>['config']
+          ) => api(config.baseUrl).health();
+          it('behaves as expected', () =>
+            testInteraction(
+              [state],
+              willSendHttpInteraction({
+                request: {
+                  method: 'GET',
+                  path: '/health',
+                },
+                response: { status: 200, body: { status: 'up' } },
+              }),
+              sendHealthRequest,
+              (health) => {
+                expect(health).toEqual('up');
+              }
+            ));
+
+          describe('arbitrary status response string', () => {
+            it('behaves as expected', () =>
+              testInteraction(
+                [state],
+                willSendHttpInteraction({
+                  request: {
+                    method: 'GET',
+                    path: '/health',
+                  },
+                  response: {
+                    status: 200,
+                    body: shapedLike({ status: 'whatever' }),
+                  },
+                }),
+                sendHealthRequest,
+                (health) => {
+                  expect(health).toEqual('whatever');
+                }
+              ));
+          });
+        });
+      });
+
+      describe('When the server is down', () => {
+        const state = inState('Server is down');
+        describe('No body server response', () => {
+          beforeEach(async () => {
+            context = await contract.setup(
+              [state],
+              willSendHttpInteraction({
+                request: {
+                  method: 'GET',
+                  path: '/health',
+                },
+                response: { status: httpStatus(['4XX', '5XX']) },
+              })
+            );
+          });
+
+          it('calls server health', () => {
+            const client = api(context.config.baseUrl);
+
+            return expect(client.health()).rejects.toBeInstanceOf(ApiError);
+          });
+
+          afterEach(async () => {
+            const res = await context.assert();
+            if (res.length !== 0) {
+              throw new Error(
+                res
+                  .map((m) => m.toString())
+                  .join('\n')
+                  .toString()
+              );
+            }
+          });
+        });
+
         describe('specific server response', () => {
           beforeEach(async () => {
             context = await contract.setup(
@@ -56,16 +161,15 @@ describe('e2e http consumer driven', () => {
                   method: 'GET',
                   path: '/health',
                 },
-                response: { status: 200, body: { status: 'up' } },
+                response: { status: 503, body: { status: 'down' } },
               })
             );
           });
 
           it('calls server health', async () => {
-            const client = api(context.mock.baseUrl);
+            const client = api(context.config.baseUrl);
 
-            const health = await client.health();
-            expect(health).toEqual('up');
+            return expect(client.health()).rejects.toBeInstanceOf(ApiError);
           });
 
           afterEach(async () => {
@@ -74,101 +178,6 @@ describe('e2e http consumer driven', () => {
               throw new Error(res.join('\n').toString());
             }
           });
-        });
-        describe('arbitrary status response string', () => {
-          beforeEach(async () => {
-            context = await contract.setup(
-              [state],
-              willSendHttpInteraction({
-                request: {
-                  method: 'GET',
-                  path: '/health',
-                },
-                response: {
-                  status: 200,
-                  body: shapedLike({ status: 'whatever' }),
-                },
-              })
-            );
-          });
-
-          it('calls server health', async () => {
-            const client = api(context.mock.baseUrl);
-
-            const health = await client.health();
-            expect(health).toEqual('whatever');
-          });
-
-          afterEach(async () => {
-            const res = await context.assert();
-            if (res.length !== 0) {
-              throw new Error(res.join('\n').toString());
-            }
-          });
-        });
-      });
-    });
-
-    describe('When the server is down', () => {
-      const state = inState('Server is down');
-      describe('No body server response', () => {
-        beforeEach(async () => {
-          context = await contract.setup(
-            [state],
-            willSendHttpInteraction({
-              request: {
-                method: 'GET',
-                path: '/health',
-              },
-              response: { status: httpStatus(['4XX', '5XX']) },
-            })
-          );
-        });
-
-        it('calls server health', () => {
-          const client = api(context.mock.baseUrl);
-
-          return expect(client.health()).rejects.toBeInstanceOf(ApiError);
-        });
-
-        afterEach(async () => {
-          const res = await context.assert();
-          if (res.length !== 0) {
-            throw new Error(
-              res
-                .map((m) => m.toString())
-                .join('\n')
-                .toString()
-            );
-          }
-        });
-      });
-
-      describe('specific server response', () => {
-        beforeEach(async () => {
-          context = await contract.setup(
-            [state],
-            willSendHttpInteraction({
-              request: {
-                method: 'GET',
-                path: '/health',
-              },
-              response: { status: 503, body: { status: 'down' } },
-            })
-          );
-        });
-
-        it('calls server health', async () => {
-          const client = api(context.mock.baseUrl);
-
-          return expect(client.health()).rejects.toBeInstanceOf(ApiError);
-        });
-
-        afterEach(async () => {
-          const res = await context.assert();
-          if (res.length !== 0) {
-            throw new Error(res.join('\n').toString());
-          }
         });
       });
     });
@@ -196,7 +205,7 @@ describe('e2e http consumer driven', () => {
         });
 
         it('returns an existing user', async () => {
-          const client = api(context.mock.baseUrl);
+          const client = api(context.config.baseUrl);
           expect(contract.stripMatchers(responseBody)).toEqual({
             userId: '123',
           });
@@ -230,7 +239,7 @@ describe('e2e http consumer driven', () => {
         });
 
         it('returns a user not found error', async () => {
-          const client = api(context.mock.baseUrl);
+          const client = api(context.config.baseUrl);
 
           return expect(client.getUser('123')).rejects.toBeInstanceOf(
             UserNotFoundConsumerError

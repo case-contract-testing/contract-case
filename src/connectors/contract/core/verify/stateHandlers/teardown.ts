@@ -5,7 +5,7 @@ import {
   type AnyState,
   isSetupFunction,
 } from 'entities/states/types';
-import type { MatchContext } from 'entities/types';
+import type { CaseExample, MatchContext } from 'entities/types';
 
 const stateTeardownHandler = (
   stateSetups: StateFunctions,
@@ -43,19 +43,34 @@ const stateTeardownHandler = (
   );
 
 export const executeTeardownHandlers = (
-  states: Array<AnyState>,
+  example: CaseExample,
   stateSetups: StateFunctions,
   parentContext: MatchContext
 ): Promise<unknown> =>
   Promise.resolve(addLocation(':stateTeardown', parentContext)).then(
-    (context) =>
-      Promise.resolve()
+    (context) => {
+      const variableSource =
+        example.interaction['case:run:context:setup'][
+          context['case:currentRun:context:contractMode']
+        ].stateVariables;
+
+      if (variableSource === 'default') {
+        context.logger.maintainerDebug(
+          `Not executing state teardown handlers, since run mode is '${context['case:currentRun:context:contractMode']}'. Variables obtained from ${variableSource}`
+        );
+        return Promise.resolve();
+      }
+      context.logger.maintainerDebug(
+        `Executing state teardown handlers in '${context['case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`
+      );
+
+      return Promise.resolve()
         .then(async () => {
           // Usually the following code is a mistake,
           // but here we want to execute each handler in order
           // So we turn off the usual lint rules on purpose.
           // eslint-disable-next-line no-restricted-syntax
-          for (const state of states) {
+          for (const state of example.states) {
             // eslint-disable-next-line no-await-in-loop
             await stateTeardownHandler(stateSetups, state, context);
           }
@@ -68,5 +83,6 @@ export const executeTeardownHandlers = (
           throw new CaseConfigurationError(
             `State teardown errored: ${e.message}`
           );
-        })
+        });
+    }
   );

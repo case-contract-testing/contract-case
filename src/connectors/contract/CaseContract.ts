@@ -49,6 +49,7 @@ export class CaseContract extends BaseCaseContract {
     const runContext = applyNodeToContext(interaction, this.initialContext, {
       ...(runConfig ? configToRunContext(runConfig) : {}),
       'case:currentRun:context:testName': `${thisIndex}`,
+      'case:currentRun:context:contractMode': 'write',
     });
 
     states.forEach((state) => {

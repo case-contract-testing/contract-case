@@ -9,6 +9,6 @@ export * from './contract/types';
 export * from './logger/types';
 
 export type Assertable<T extends AnyInteractionType> = {
-  mock: SetupInfoFor<T>;
+  config: SetupInfoFor<T>;
   assert: () => Promise<MatchResult>;
 };

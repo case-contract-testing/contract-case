@@ -121,12 +121,14 @@ export type DefaultContext = HasLocation &
     'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
     'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
     'case:currentRun:context:expectation': 'produce' | 'consume';
+    'case:currentRun:context:contractMode': 'write' | 'read';
     'case:currentRun:context:printResults': boolean;
   };
 
 interface InjectableContext {
   'case:currentRun:context:baseUrlUnderTest'?: string;
   'case:currentRun:context:expectation'?: 'produce' | 'consume';
+  'case:currentRun:context:contractMode': 'write' | 'read';
 }
 
 export interface HasBaseUrlUnderTest {

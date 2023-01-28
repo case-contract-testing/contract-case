@@ -30,6 +30,7 @@ import type {
 const DEFAULT_CONTEXT: DefaultContext = {
   'case:currentRun:context:location': [],
   'case:currentRun:context:expectation': 'consume',
+  'case:currentRun:context:contractMode': 'write',
   'case:currentRun:context:logLevel': 'info',
   'case:currentRun:context:printResults': true,
   'case:context:matchBy': 'exact',

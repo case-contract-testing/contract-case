@@ -4,8 +4,13 @@ import {
   type StateFunctions,
   type AnyState,
   isSetupFunction,
+  SETUP_VARIABLE_STATE,
 } from 'entities/states/types';
-import type { MatchContext, AnyCaseNodeOrData } from 'entities/types';
+import type {
+  MatchContext,
+  AnyCaseNodeOrData,
+  CaseExample,
+} from 'entities/types';
 import { validateVariables } from './variables';
 
 const stateSetupHandler =
@@ -51,19 +56,36 @@ type StateSetupResult = {
 };
 
 export const executeStateHandlers = (
-  states: Array<AnyState>,
+  example: CaseExample,
   stateSetups: StateFunctions,
   parentContext: MatchContext
 ): Promise<void> =>
-  Promise.resolve(addLocation(`:stateSetup`, parentContext)).then((context) =>
-    Promise.resolve()
+  Promise.resolve(addLocation(`:stateSetup`, parentContext)).then((context) => {
+    const variableSource =
+      example.interaction['case:run:context:setup'][
+        context['case:currentRun:context:contractMode']
+      ].stateVariables;
+    context.logger.maintainerDebug(
+      `Executing state setup handlers in '${context['case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`
+    );
+    if (variableSource === 'default') {
+      example.states.forEach((state) => {
+        if (state['case:state:type'] === SETUP_VARIABLE_STATE) {
+          Object.entries(state.variables).forEach(([key, value]) =>
+            context.addDefaultVariable(key, state.stateName, value)
+          );
+        }
+      });
+      return Promise.resolve();
+    }
+    return Promise.resolve()
       .then(async () => {
         const result: StateSetupResult[] = [];
         // Usually the following code is a mistake,
         // but here we want to execute each handler in order
         // So we turn off the usual lint rules on purpose.
         // eslint-disable-next-line no-restricted-syntax
-        for (const state of states) {
+        for (const state of example.states) {
           const stateContext = addLocation(`[${state.stateName}]`, context);
           // eslint-disable-next-line no-await-in-loop
           const variables = await validateVariables(
@@ -91,5 +113,5 @@ export const executeStateHandlers = (
           `Failed to execute state setup before test, not running test. See the logs above for more information`
         );
         throw new CaseConfigurationError(`State setup errored: ${e.message}`);
-      })
-  );
+      });
+  });

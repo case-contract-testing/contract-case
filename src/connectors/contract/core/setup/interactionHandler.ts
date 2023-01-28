@@ -25,7 +25,7 @@ export const setupUnhandledAssert = <T extends AnyInteractionType>(
     InteractionExecutors,
     parentMatchContext
   ).then(({ mock, assertableData }) => ({
-    mock,
+    config: mock,
     assert: () =>
       assertableData().then(({ expected, context, actual }) =>
         Promise.resolve(

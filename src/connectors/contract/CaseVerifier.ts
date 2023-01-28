@@ -1,4 +1,4 @@
-import { DEFAULT_CONFIG, executeVerification } from 'connectors/contract/core';
+import { DEFAULT_CONFIG, executeExample } from 'connectors/contract/core';
 import type { CaseConfig } from 'connectors/contract/core/types';
 import { makeLogger as defaultMakeLogger } from 'connectors/logger';
 
@@ -33,12 +33,13 @@ export class CaseVerifier extends BaseCaseContract {
     this.currentContract.examples.forEach((example, index) => {
       runTestCb(
         nameExample(example, `${index}`),
-        executeVerification(
+        executeExample(
           example,
           `${index}`,
           stateSetups,
           applyNodeToContext(example.interaction, this.initialContext, {
             'case:currentRun:context:expectation': 'produce',
+            'case:currentRun:context:contractMode': 'read',
             'case:currentRun:context:location': [
               'verification',
               `interaction[${index}]`,

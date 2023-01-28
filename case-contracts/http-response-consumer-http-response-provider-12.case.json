@@ -121,7 +121,19 @@
         },
         "case:interaction:uniqueName": "",
         "case:interaction:type": "ConsumeHttpResponse",
-        "case:run:context:asWritten": "consume"
+        "case:run:context:asWritten": "consume",
+        "case:run:context:setup": {
+          "write": {
+            "type": "ConsumeHttpResponse",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "ProduceHttpResponse",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
       }
     },
     {
@@ -159,7 +171,19 @@
         },
         "case:interaction:uniqueName": "",
         "case:interaction:type": "ConsumeHttpResponse",
-        "case:run:context:asWritten": "consume"
+        "case:run:context:asWritten": "consume",
+        "case:run:context:setup": {
+          "write": {
+            "type": "ConsumeHttpResponse",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "ProduceHttpResponse",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
       }
     },
     {
@@ -198,7 +222,19 @@
         },
         "case:interaction:uniqueName": "",
         "case:interaction:type": "ConsumeHttpResponse",
-        "case:run:context:asWritten": "consume"
+        "case:run:context:asWritten": "consume",
+        "case:run:context:setup": {
+          "write": {
+            "type": "ConsumeHttpResponse",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "ProduceHttpResponse",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
       }
     },
     {
@@ -232,7 +268,19 @@
         },
         "case:interaction:uniqueName": "",
         "case:interaction:type": "ConsumeHttpResponse",
-        "case:run:context:asWritten": "consume"
+        "case:run:context:asWritten": "consume",
+        "case:run:context:setup": {
+          "write": {
+            "type": "ConsumeHttpResponse",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "ProduceHttpResponse",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
       }
     },
     {
@@ -288,7 +336,19 @@
         },
         "case:interaction:uniqueName": "",
         "case:interaction:type": "ConsumeHttpResponse",
-        "case:run:context:asWritten": "consume"
+        "case:run:context:asWritten": "consume",
+        "case:run:context:setup": {
+          "write": {
+            "type": "ConsumeHttpResponse",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "ProduceHttpResponse",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
       }
     },
     {
@@ -328,7 +388,19 @@
         },
         "case:interaction:uniqueName": "",
         "case:interaction:type": "ConsumeHttpResponse",
-        "case:run:context:asWritten": "consume"
+        "case:run:context:asWritten": "consume",
+        "case:run:context:setup": {
+          "write": {
+            "type": "ConsumeHttpResponse",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "ProduceHttpResponse",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
       }
     }
   ]

@@ -36,6 +36,18 @@ export type CaseInteractionFor<T extends AnyInteractionType> = Extract<
 export interface CoreHttpRequestResponseMatcherPair {
   request: CoreHttpRequestMatcher | LookupableMatcher;
   response: CoreHttpResponseMatcher | LookupableMatcher;
+  'case:run:context:setup': {
+    write: {
+      type: typeof CONSUME_HTTP_RESPONSE;
+      stateVariables: 'default';
+      triggers: 'provided';
+    };
+    read: {
+      type: typeof PRODUCE_HTTP_RESPONSE;
+      stateVariables: 'state';
+      triggers: 'generated';
+    };
+  };
 }
 
 export type ConsumeHttpResponse = HasTypeForInteraction<
