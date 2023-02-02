@@ -18,11 +18,13 @@ import type { InteractionData } from 'entities/nodes/interactions/setup.types';
 const addressToString = (address: string | net.AddressInfo | null) => {
   if (typeof address === 'string') return address;
   if (address === null || address === undefined) return `${address}`;
+  /*
+  // This is no longer required after bumping axios version
   if (address.family === 'IPv6') {
-    return `[${address.address === '::' ? '::1' : address.address}]:${
+    return `[${address.address === '::' ? '::' : address.address}]:${
       address.port
     }`;
-  }
+  }  */
   return `${address.address === '::' ? 'localhost' : address.address}:${
     address.port
   }`;

@@ -44,7 +44,10 @@ export const unmarshallFailure = (error: Error): never => {
       );
     }
     if (error.request) {
-      throw new ApiError("The server didn't respond", API_NO_RESPONSE);
+      throw new ApiError(
+        `The server didn't respond: ${error.message} `,
+        API_NO_RESPONSE
+      );
     }
   }
   throw new Error(`[API Failed] ${error.message}`);
