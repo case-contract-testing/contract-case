@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as http from 'node:http';
 
 import { PRODUCE_HTTP_RESPONSE } from 'entities/nodes/interactions/types';
 import {
@@ -62,6 +63,10 @@ const getMatcher = (
   );
 };
 
+const httpAgent = new http.Agent({
+  keepAlive: false,
+});
+
 export const setupHttpResponseConsumer = (
   {
     request: requestMatcher,
@@ -83,6 +88,7 @@ export const setupHttpResponseConsumer = (
                 expectedRequest.method,
                 addLocation('method', context)
               ),
+              httpAgent,
               url: `${
                 run['case:currentRun:context:baseUrlUnderTest']
               }${mustResolveToString(
