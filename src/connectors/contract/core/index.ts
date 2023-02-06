@@ -1,2 +1,2 @@
-export * from './verify/setup';
-export * from './verify';
+export * from './executeExample/setup';
+export * from './executeExample';

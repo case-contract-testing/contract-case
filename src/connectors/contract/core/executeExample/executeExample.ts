@@ -1,7 +1,7 @@
 import type { MatchContext } from 'entities/context/types';
 import { nameExample } from 'entities/contract/interactions';
 import type { CaseExample } from 'entities/contract/types';
-import { setupUnhandledAssert } from 'connectors/contract/core/verify/setup';
+import { setupUnhandledAssert } from 'connectors/contract/core/executeExample/setup';
 import { handleResult } from 'entities/results/handlers';
 import type { StateFunctions } from 'entities/states/types';
 import { executionError, hasErrors, makeResults } from 'entities/results';
