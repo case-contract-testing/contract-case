@@ -325,7 +325,7 @@ describe('e2e http consumer driven', () => {
       // JEST BOILERPLATE
       const runJestTest: RunTestCallback = (
         testName: string,
-        verify: () => Promise<void>
+        verify: () => Promise<unknown>
       ): void => {
         // eslint-disable-next-line jest/expect-expect
         it(`${testName}`, () => verify());

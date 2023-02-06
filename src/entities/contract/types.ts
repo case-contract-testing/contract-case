@@ -15,9 +15,16 @@ interface SuccessfulCaseExample extends BaseCaseExample {
   result: 'VERIFIED';
 }
 
+interface PendingCaseExample extends BaseCaseExample {
+  result: 'PENDING';
+}
+
 interface FailedCaseExample extends BaseCaseExample {
   result: 'FAILED';
   errors: CaseError[];
 }
 
-export type CaseExample = SuccessfulCaseExample | FailedCaseExample;
+export type CaseExample =
+  | SuccessfulCaseExample
+  | FailedCaseExample
+  | PendingCaseExample;

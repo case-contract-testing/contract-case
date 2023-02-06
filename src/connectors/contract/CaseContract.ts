@@ -1,13 +1,18 @@
 import {
   configToRunContext,
   DEFAULT_CONFIG,
-  setupWritingAssert,
+  executeExample,
 } from 'connectors/contract/core';
 import type { CaseConfig } from 'connectors/contract/core/types';
 import { makeLogger as defaultMakeLogger } from 'connectors/logger';
 import { CaseCoreError, CaseConfigurationError } from 'entities';
 import { CaseFailedError } from 'entities/CaseFailedError';
 import { addLocation, applyNodeToContext } from 'entities/context';
+import {
+  makeFailedExample,
+  makeSuccessExample,
+  nameInteraction,
+} from 'entities/contract/interactions';
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
 import { makeResults } from 'entities/results';
@@ -17,7 +22,6 @@ import {
   AnyInteractionType,
   CaseInteractionFor,
   Assertable,
-  AnyInteraction,
   CaseError,
   MatchContext,
   ERROR_TYPE_EXECUTION,
@@ -60,12 +64,20 @@ export class CaseContract extends BaseCaseContract {
       }
     });
 
-    return setupWritingAssert(states, interaction, runContext, this);
+    return executeExample(
+      {
+        states,
+        interaction: nameInteraction(interaction, runContext),
+        result: 'PENDING',
+      },
+      {},
+      this,
+      runContext
+    );
   }
 
   recordSuccess(
-    interaction: AnyInteraction,
-    states: Array<AnyState>,
+    example: CaseExample,
     currentContext: MatchContext
   ): CaseExample {
     if (!this.currentContract) {
@@ -73,25 +85,25 @@ export class CaseContract extends BaseCaseContract {
         'recordSuccess was called without initialising the contract file. This should not be possible.'
       );
       throw new CaseCoreError(
-        'Contract was not initialised at the time that recordSuccess was called)'
+        'Contract was not initialised at the time that recordSuccess was called'
       );
     }
-    const example: CaseExample = {
-      result: 'VERIFIED',
-      states,
-      interaction,
-    };
+    if (example.result !== 'PENDING') {
+      throw new CaseCoreError(
+        "Trying to record a successful example that wasn't pending"
+      );
+    }
+    const success: CaseExample = makeSuccessExample(example);
     this.currentContract = addExample(
       this.currentContract,
-      example,
+      success,
       currentContext
     );
-    return example;
+    return success;
   }
 
   recordFailure(
-    interaction: AnyInteraction,
-    states: Array<AnyState>,
+    example: CaseExample,
     currentContext: MatchContext,
     errors: Array<CaseError>
   ): CaseExample {
@@ -103,15 +115,15 @@ export class CaseContract extends BaseCaseContract {
         'You must call `startContract` before running tests (Contract was not initialised at the time that recordFailure was called)'
       );
     }
-    const example: CaseExample = {
-      result: 'FAILED',
-      states,
-      interaction,
-      errors,
-    };
+    if (example.result !== 'PENDING') {
+      throw new CaseCoreError(
+        "Trying to record a failed example that wasn't pending"
+      );
+    }
+    const failure: CaseExample = makeFailedExample(example, errors);
     this.currentContract = addExample(
       this.currentContract,
-      example,
+      failure,
       currentContext
     );
     return example;

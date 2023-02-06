@@ -56,7 +56,7 @@ describe('Server verification', () => {
     // JEST BOILERPLATE
     const runJestTestExepectingErrors =
       (errors: Record<string, Function>): RunTestCallback =>
-      (testName: string, verify: () => Promise<void>): void => {
+      (testName: string, verify: () => Promise<unknown>): void => {
         // eslint-disable-next-line jest/expect-expect
         it(`${testName}`, () =>
           verify().then(

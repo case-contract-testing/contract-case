@@ -7,7 +7,7 @@ import {
   configToRunContext,
   DEFAULT_CONFIG,
   DEFAULT_TEST_ID,
-} from 'connectors/contract/core/setup';
+} from 'connectors/contract/core/verify/setup';
 import type { CaseConfig } from 'connectors/contract/core/types';
 import { applyNodeToContext, constructInitialContext } from 'entities/context';
 import type {

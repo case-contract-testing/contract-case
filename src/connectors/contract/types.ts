@@ -1,4 +1,4 @@
 export type RunTestCallback = (
   testName: string,
-  verify: () => Promise<void>
+  verify: () => Promise<unknown>
 ) => void;

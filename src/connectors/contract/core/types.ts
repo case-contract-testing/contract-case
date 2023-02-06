@@ -1,1 +1,1 @@
-export * from './setup/types';
+export * from './verify/setup/types';

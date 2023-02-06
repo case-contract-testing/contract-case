@@ -91,7 +91,6 @@
   },
   "examples": [
     {
-      "result": "VERIFIED",
       "states": [
         {
           "case:state:type": "NamedState",
@@ -134,10 +133,10 @@
             "triggers": "generated"
           }
         }
-      }
+      },
+      "result": "VERIFIED"
     },
     {
-      "result": "VERIFIED",
       "states": [
         {
           "case:state:type": "NamedState",
@@ -184,10 +183,10 @@
             "triggers": "generated"
           }
         }
-      }
+      },
+      "result": "VERIFIED"
     },
     {
-      "result": "VERIFIED",
       "states": [
         {
           "case:state:type": "NamedState",
@@ -235,10 +234,10 @@
             "triggers": "generated"
           }
         }
-      }
+      },
+      "result": "VERIFIED"
     },
     {
-      "result": "VERIFIED",
       "states": [
         {
           "case:state:type": "NamedState",
@@ -281,10 +280,10 @@
             "triggers": "generated"
           }
         }
-      }
+      },
+      "result": "VERIFIED"
     },
     {
-      "result": "VERIFIED",
       "states": [
         {
           "case:state:type": "NamedState",
@@ -349,10 +348,10 @@
             "triggers": "generated"
           }
         }
-      }
+      },
+      "result": "VERIFIED"
     },
     {
-      "result": "VERIFIED",
       "states": [
         {
           "case:state:type": "NamedState",
@@ -401,7 +400,8 @@
             "triggers": "generated"
           }
         }
-      }
+      },
+      "result": "VERIFIED"
     }
   ]
 }
