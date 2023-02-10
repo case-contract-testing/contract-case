@@ -36,7 +36,7 @@ type SetupTeardown = {
   teardown: TeardownFunction;
 };
 
-export type StateFunctions = Record<string, SetupFunction | SetupTeardown>;
+export type StateHandlers = Record<string, SetupFunction | SetupTeardown>;
 
 export const isSetupFunction = (
   f: SetupFunction | SetupTeardown | undefined

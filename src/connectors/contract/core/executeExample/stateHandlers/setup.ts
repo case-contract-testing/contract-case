@@ -1,7 +1,7 @@
 import { CaseConfigurationError } from 'entities';
 import { addLocation } from 'entities/context';
 import {
-  type StateFunctions,
+  type StateHandlers,
   type AnyState,
   isSetupFunction,
   SETUP_VARIABLE_STATE,
@@ -15,7 +15,7 @@ import { validateVariables } from './variables';
 
 const stateSetupHandler =
   (
-    stateSetups: StateFunctions,
+    stateSetups: StateHandlers,
     context: MatchContext
   ): ((state: AnyState) => Promise<void | Record<string, AnyCaseNodeOrData>>) =>
   (state: AnyState) => {
@@ -59,7 +59,7 @@ type StateSetupResult = {
 
 export const executeStateHandlers = (
   example: CaseExample,
-  stateSetups: StateFunctions,
+  stateSetups: StateHandlers,
   parentContext: MatchContext
 ): Promise<void> =>
   Promise.resolve(addLocation(`:stateSetup`, parentContext)).then((context) => {

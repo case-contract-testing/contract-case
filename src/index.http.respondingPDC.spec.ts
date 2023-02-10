@@ -1,24 +1,32 @@
 /* eslint-disable jest/expect-expect */
 import * as fs from 'node:fs';
-import type * as http from 'node:http';
 
+// These imports are our code under test
+import type * as http from 'node:http';
+import start from '__tests__/server/http/connectors/web';
+import type { User } from '__tests__/server/http/model/responses';
+import type { Dependencies } from '__tests__/server/http/domain/types';
+import { baseService } from '__tests__/server/http/domain/baseService';
+
+// This import is our Jest DSL
+import { runJestTest } from '__tests__/jest';
+
+// These imports support the partial DSL that hasn't been extracted yet
 import type { AnyInteractionType, CaseInteractionFor } from 'entities/types';
+import type { AnyState } from 'entities/states/types';
+
 import {
+  inState,
+  CaseContract,
+  CaseVerifier,
   httpStatus,
   shapedLike,
   stateVariable,
   stringPrefix,
-} from 'boundaries/dsl/Matchers';
-import { willReceiveHttpInteraction } from 'entities/nodes/interactions/http';
-import type { AnyState, StateFunctions } from 'entities/states/types';
-
-import start from '__tests__/server/http/connectors/web';
-import type { User } from '__tests__/server/http/model/responses';
-
-import type { Dependencies } from '__tests__/server/http/domain/types';
-import { baseService } from '__tests__/server/http/domain/baseService';
-
-import { inState, CaseContract } from '.';
+  StateHandlers,
+  readContract,
+  willReceiveHttpRequest,
+} from '.';
 
 const contractDetails = {
   consumerName: 'http request consumer',
@@ -73,7 +81,7 @@ describe('e2e http provider driven', () => {
       }).finally(() => contract.endRecord())
     );
 
-    const stateHandlers: StateFunctions = {
+    const stateHandlers: StateHandlers = {
       'Server is up': () => {
         mockHealthStatus = true;
       },
@@ -133,7 +141,7 @@ describe('e2e http provider driven', () => {
           it('behaves as expected', () =>
             testInteraction(
               [state],
-              willReceiveHttpInteraction({
+              willReceiveHttpRequest({
                 request: {
                   method: 'GET',
                   path: '/health',
@@ -146,7 +154,7 @@ describe('e2e http provider driven', () => {
             it('behaves as expected', () =>
               testInteraction(
                 [state],
-                willReceiveHttpInteraction({
+                willReceiveHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
@@ -166,7 +174,7 @@ describe('e2e http provider driven', () => {
           it('calls server health', () => {
             testFailedInteraction(
               [state],
-              willReceiveHttpInteraction({
+              willReceiveHttpRequest({
                 request: {
                   method: 'GET',
                   path: '/health',
@@ -181,7 +189,7 @@ describe('e2e http provider driven', () => {
           it('calls server health', async () => {
             testFailedInteraction(
               [state],
-              willReceiveHttpInteraction({
+              willReceiveHttpRequest({
                 request: {
                   method: 'GET',
                   path: '/health',
@@ -203,7 +211,7 @@ describe('e2e http provider driven', () => {
               inState('Server is up'),
               inState('A user exists', { userId: '123' }),
             ],
-            willReceiveHttpInteraction({
+            willReceiveHttpRequest({
               request: {
                 method: 'GET',
                 path: stringPrefix('/users/', stateVariable('userId')),
@@ -219,7 +227,7 @@ describe('e2e http provider driven', () => {
         it('returns a user not found error', () =>
           testFailedInteraction(
             [inState('Server is up'), inState('No users exist')],
-            willReceiveHttpInteraction({
+            willReceiveHttpRequest({
               request: {
                 method: 'GET',
                 path: stringPrefix('/users/', '123'),
@@ -234,86 +242,14 @@ describe('e2e http provider driven', () => {
   });
 });
 
-// eslint-disable-next-line jest/no-commented-out-tests
-/*
-  describe('Server verification', () => {
-    let server: http.Server;
-    let mockHealthStatus = true;
-    let mockGetUser: (id: string) => User | undefined = () => undefined;
-    const port = 8087;
-    const serverDependencies: Dependencies = {
-      healthService: {
-        ready: () => mockHealthStatus,
-      },
-      baseService,
-      userRepository: { get: (id) => mockGetUser(id) },
-    };
-    const verifier = new CaseVerifier(readContract(FILENAME), {
-      baseUrlUnderTest: `http://localhost:${port}`,
-      printResults: false,
-    });
-    beforeAll(async () => {
-      server = await start(port, serverDependencies);
-    });
-    afterAll(
-      () =>
-        new Promise<void>((resolve, reject) => {
-          if (server) {
-            server.close((err?: Error) => {
-              if (err) reject(err);
-              resolve();
-            });
-          } else {
-            resolve();
-          }
-        })
-    );
+describe('Server verification', () => {
+  const verifier = new CaseVerifier(readContract(FILENAME), {
+    printResults: false,
+  });
 
-    const stateSetups: StateFunctions = {
-      'Server is up': () => {
-        mockHealthStatus = true;
-      },
-      'Server is down': () => {
-        mockHealthStatus = false;
-      },
-      'A user exists': {
-        setup: () => {
-          const userId = '42';
-          mockGetUser = (id) => {
-            if (id === userId)
-              return {
-                userId,
-                name: 'John',
-              };
-            return undefined;
-          };
-          return { userId };
-        },
-        teardown: () => {
-          mockGetUser = () => undefined;
-        },
-      },
-      'No users exist': () => {
-        mockGetUser = () => undefined;
-      },
-    };
-    describe('with a file contract', () => {
-      // JEST BOILERPLATE
-      const runJestTest: RunTestCallback = (
-        testName: string,
-        verify: () => Promise<unknown>
-      ): void => {
-        // eslint-disable-next-line jest/expect-expect
-        it(`${testName}`, () => verify());
-      };
-
-      // END JEST BOILERPLATE
-
-      describe('contract verification', () => {
-        verifier.verifyContract(stateSetups, runJestTest);
-      });
+  describe('with a file contract', () => {
+    describe('contract verification', () => {
+      verifier.verifyContract({}, runJestTest);
     });
   });
 });
-
-*/

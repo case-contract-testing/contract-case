@@ -1,5 +1,5 @@
 import type { SetupInfoFor } from 'entities/nodes/interactions/setup.types';
-import type { AnyState, StateFunctions } from 'entities/states/types';
+import type { AnyState, StateHandlers } from 'entities/states/types';
 import type { AnyInteractionType, CaseInteractionFor } from 'entities/types';
 
 export type RunTestCallback = (
@@ -11,9 +11,15 @@ type Trigger<T extends AnyInteractionType, R = unknown> = (
   config: SetupInfoFor<T>
 ) => Promise<R>;
 
-export type TestInvoker<T extends AnyInteractionType, R = unknown> = {
+export type MultiTestInvoker = {
+  stateHandlers?: StateHandlers;
+};
+
+export type TestInvoker<
+  T extends AnyInteractionType,
+  R = unknown
+> = MultiTestInvoker & {
   states?: Array<AnyState>;
   interaction: CaseInteractionFor<T>;
   trigger?: Trigger<T, R>;
-  stateHandlers?: StateFunctions;
 };

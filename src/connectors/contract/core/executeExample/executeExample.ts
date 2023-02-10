@@ -7,7 +7,7 @@ import {
 import type { CaseExample } from 'entities/contract/types';
 import { setupUnhandledAssert } from 'connectors/contract/core/executeExample/setup';
 import { handleResult } from 'entities/results/handlers';
-import type { StateFunctions } from 'entities/states/types';
+import type { StateHandlers } from 'entities/states/types';
 import { executionError, hasErrors, makeResults } from 'entities/results';
 import type { CaseContract, CaseVerifier } from 'connectors/contract';
 import type {
@@ -21,7 +21,7 @@ import { executeStateHandlers, executeTeardownHandlers } from './stateHandlers';
 
 const setupExample = <T extends AnyInteractionType>(
   example: CaseExample,
-  stateSetups: StateFunctions,
+  stateSetups: StateHandlers,
   context: MatchContext
 ): Promise<Assertable<T>> => {
   context.logger.debug(
@@ -84,7 +84,7 @@ const toResultingExample = <T extends AnyInteractionType>(
 
 export const executeExample = <T extends AnyInteractionType>(
   example: CaseExample,
-  stateSetups: StateFunctions,
+  stateSetups: StateHandlers,
   contract: CaseContract | CaseVerifier,
   trigger: (config: Assertable<T>['config']) => Promise<unknown>,
   context: MatchContext
@@ -130,7 +130,7 @@ export const executeExample = <T extends AnyInteractionType>(
 
 export const executeNoTriggerExample = <T extends AnyInteractionType>(
   example: CaseExample,
-  stateSetups: StateFunctions,
+  stateSetups: StateHandlers,
   contract: CaseContract | CaseVerifier,
 
   context: MatchContext

@@ -1,31 +1,39 @@
-import * as fs from 'node:fs';
+// These imports are our code under test
 import type * as http from 'node:http';
-
 import api from '__tests__/client/http/connector';
 import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
-import type {
-  AnyInteractionType,
-  Assertable,
-  CaseInteractionFor,
-} from 'entities/types';
-import {
-  httpStatus,
-  shapedLike,
-  stateVariable,
-  stringPrefix,
-} from 'boundaries/dsl/Matchers';
-import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
-import type { AnyState, StateFunctions } from 'entities/states/types';
-
 import start from '__tests__/server/http/connectors/web';
 import { baseService } from '__tests__/server/http/domain/baseService';
 import type { User } from '__tests__/server/http/model/responses';
 import { UserNotFoundConsumerError } from '__tests__/client/http/connector/errors';
 import type { Dependencies } from '__tests__/server/http/domain/types';
-import { readContract } from 'connectors/contract/writer/fileSystem';
-import type { RunTestCallback } from 'connectors/contract/types';
 
-import { inState, CaseContract, CaseVerifier } from '.';
+// This import is our Jest DSL
+import { runJestTest } from '__tests__/jest';
+
+// These imports support the partial DSL that hasn't been extracted yet
+import type { AnyState } from 'entities/states/types';
+import type {
+  AnyInteractionType,
+  Assertable,
+  CaseInteractionFor,
+} from 'entities/types';
+import * as fs from 'node:fs';
+
+// These imports are from Case
+import {
+  inState,
+  CaseContract,
+  CaseVerifier,
+  httpStatus,
+  shapedLike,
+  stateVariable,
+  stringPrefix,
+  StateHandlers,
+  readContract,
+  willSendHttpRequest,
+  HttpRequestConfig,
+} from '.';
 
 const contractDetails = {
   consumerName: 'http response consumer',
@@ -37,6 +45,7 @@ const FILENAME = `case-contracts/http-response-consumer-http-response-provider-$
 
 describe('e2e http consumer driven', () => {
   beforeAll(() => {
+    // Delete the contract file first
     try {
       fs.rmSync(FILENAME);
       fs.mkdirSync('case-contracts');
@@ -51,7 +60,7 @@ describe('e2e http consumer driven', () => {
     });
 
     // JEST BOILERPLATE
-    const testInteraction = <T extends AnyInteractionType, R>(
+    const runCaseExample = <T extends AnyInteractionType, R>(
       states: Array<AnyState>,
       interaction: CaseInteractionFor<T>,
       trigger: (config: Assertable<T>['config']) => Promise<R>,
@@ -63,7 +72,7 @@ describe('e2e http consumer driven', () => {
         trigger: (config) => trigger(config).then(testResponseObject),
       });
 
-    const testFailedInteraction = <T extends AnyInteractionType, R>(
+    const runCaseRejectExample = <T extends AnyInteractionType, R>(
       states: Array<AnyState>,
       interaction: CaseInteractionFor<T>,
       trigger: (config: Assertable<T>['config']) => Promise<R>,
@@ -83,17 +92,16 @@ describe('e2e http consumer driven', () => {
     // END JEST BOILERPLATE
 
     describe('health get', () => {
-      const sendHealthRequest = (
-        config: Assertable<'ConsumeHttpResponse'>['config']
-      ) => api(config.baseUrl).health();
+      const sendHealthRequest = (config: HttpRequestConfig) =>
+        api(config.baseUrl).health();
       describe('When the server is up', () => {
         const state = inState('Server is up');
 
         describe('health endpoint', () => {
           it('behaves as expected', () =>
-            testInteraction(
+            runCaseExample(
               [state],
-              willSendHttpInteraction({
+              willSendHttpRequest({
                 request: {
                   method: 'GET',
                   path: '/health',
@@ -108,9 +116,9 @@ describe('e2e http consumer driven', () => {
 
           describe('arbitrary status response string', () => {
             it('behaves as expected', () =>
-              testInteraction(
+              runCaseExample(
                 [state],
-                willSendHttpInteraction({
+                willSendHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
@@ -132,9 +140,9 @@ describe('e2e http consumer driven', () => {
         const state = inState('Server is down');
         describe('No body server response', () => {
           it('calls server health', () => {
-            testFailedInteraction(
+            runCaseRejectExample(
               [state],
-              willSendHttpInteraction({
+              willSendHttpRequest({
                 request: {
                   method: 'GET',
                   path: '/health',
@@ -151,9 +159,9 @@ describe('e2e http consumer driven', () => {
 
         describe('specific server response', () => {
           it('calls server health', async () => {
-            testFailedInteraction(
+            runCaseRejectExample(
               [state],
-              willSendHttpInteraction({
+              willSendHttpRequest({
                 request: {
                   method: 'GET',
                   path: '/health',
@@ -170,20 +178,18 @@ describe('e2e http consumer driven', () => {
       });
     });
     describe('User', () => {
-      const sendUserRequest =
-        (userId: string) =>
-        (config: Assertable<'ConsumeHttpResponse'>['config']) =>
-          api(config.baseUrl).getUser(userId);
+      const sendUserRequest = (userId: string) => (config: HttpRequestConfig) =>
+        api(config.baseUrl).getUser(userId);
       describe('when the user exists', () => {
         const responseBody = { userId: stateVariable('userId') };
 
         it('returns an existing user', async () =>
-          testInteraction(
+          runCaseExample(
             [
               inState('Server is up'),
               inState('A user exists', { userId: '123' }),
             ],
-            willSendHttpInteraction({
+            willSendHttpRequest({
               request: {
                 method: 'GET',
                 path: stringPrefix('/users/', stateVariable('userId')),
@@ -204,9 +210,9 @@ describe('e2e http consumer driven', () => {
       });
       describe("when the user doesn't exist", () => {
         it('returns a user not found error', () =>
-          testFailedInteraction(
+          runCaseRejectExample(
             [inState('Server is up'), inState('No users exist')],
-            willSendHttpInteraction({
+            willSendHttpRequest({
               request: {
                 method: 'GET',
                 path: stringPrefix('/users/', '123'),
@@ -226,6 +232,7 @@ describe('e2e http consumer driven', () => {
 });
 
 describe('Server verification', () => {
+  // PROVIDER SETUP BOILERPLATE
   let server: http.Server;
   let mockHealthStatus = true;
   let mockGetUser: (id: string) => User | undefined = () => undefined;
@@ -237,10 +244,7 @@ describe('Server verification', () => {
     baseService,
     userRepository: { get: (id) => mockGetUser(id) },
   };
-  const verifier = new CaseVerifier(readContract(FILENAME), {
-    baseUrlUnderTest: `http://localhost:${port}`,
-    printResults: false,
-  });
+
   beforeAll(async () => {
     server = await start(port, serverDependencies);
   });
@@ -257,8 +261,14 @@ describe('Server verification', () => {
         }
       })
   );
+  // END PROVIDER SETUP BOILERPLATE
 
-  const stateSetups: StateFunctions = {
+  const verifier = new CaseVerifier(readContract(FILENAME), {
+    baseUrlUnderTest: `http://localhost:${port}`,
+    printResults: false,
+  });
+
+  const stateHandlers: StateHandlers = {
     'Server is up': () => {
       mockHealthStatus = true;
     },
@@ -287,19 +297,8 @@ describe('Server verification', () => {
     },
   };
   describe('with a file contract', () => {
-    // JEST BOILERPLATE
-    const runJestTest: RunTestCallback = (
-      testName: string,
-      verify: () => Promise<unknown>
-    ): void => {
-      // eslint-disable-next-line jest/expect-expect
-      it(`${testName}`, () => verify());
-    };
-
-    // END JEST BOILERPLATE
-
     describe('contract verification', () => {
-      verifier.verifyContract(stateSetups, runJestTest);
+      verifier.verifyContract({ stateHandlers }, runJestTest);
     });
   });
 });

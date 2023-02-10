@@ -1,14 +1,14 @@
 import { CaseConfigurationError } from 'entities';
 import { addLocation } from 'entities/context';
 import {
-  type StateFunctions,
+  type StateHandlers,
   type AnyState,
   isSetupFunction,
 } from 'entities/states/types';
 import type { CaseExample, MatchContext } from 'entities/types';
 
 const stateTeardownHandler = (
-  stateSetups: StateFunctions,
+  stateSetups: StateHandlers,
   state: AnyState,
   parentContext: MatchContext
 ) =>
@@ -44,7 +44,7 @@ const stateTeardownHandler = (
 
 export const executeTeardownHandlers = (
   example: CaseExample,
-  stateSetups: StateFunctions,
+  stateSetups: StateHandlers,
   parentContext: MatchContext
 ): Promise<unknown> =>
   Promise.resolve(addLocation(':stateTeardown', parentContext)).then(

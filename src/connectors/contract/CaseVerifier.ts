@@ -12,7 +12,6 @@ import {
   nameExample,
 } from 'entities/contract/interactions';
 import type { Logger } from 'entities/logger/types';
-import type { StateFunctions } from 'entities/states/types';
 import type {
   CaseError,
   CaseExample,
@@ -22,7 +21,7 @@ import type {
 
 import { BaseCaseContract } from './BaseCaseContract';
 import type { ContractFile } from './structure/types';
-import type { RunTestCallback } from './types';
+import type { MultiTestInvoker, RunTestCallback } from './types';
 
 export class CaseVerifier extends BaseCaseContract {
   mutex: Mutex;
@@ -43,7 +42,7 @@ export class CaseVerifier extends BaseCaseContract {
   }
 
   verifyContract(
-    stateSetups: StateFunctions,
+    { stateHandlers = {} }: MultiTestInvoker,
     runTestCb: RunTestCallback
   ): void {
     this.currentContract.examples.forEach((example, index) => {
@@ -56,7 +55,7 @@ export class CaseVerifier extends BaseCaseContract {
         this.mutex.runExclusive(() =>
           executeExample(
             { ...example, result: 'PENDING' },
-            stateSetups,
+            stateHandlers,
             this,
             async () => {},
             applyNodeToContext(example.interaction, this.initialContext, {

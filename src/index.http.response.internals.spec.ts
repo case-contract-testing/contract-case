@@ -1,5 +1,5 @@
 import type * as http from 'http';
-import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
+import { willSendHttpRequest } from 'entities/nodes/interactions/http';
 import type { MatchResult } from 'entities/types';
 import { makeNoErrorResult } from 'entities/results';
 import { anyString, httpStatus, logLevel } from 'boundaries/dsl/Matchers';
@@ -44,7 +44,7 @@ describe('simple get endpoint', () => {
     }
   );
 
-  const interaction = willSendHttpInteraction({
+  const interaction = willSendHttpRequest({
     request: {
       method: 'GET',
       path: '/health',
@@ -117,7 +117,7 @@ describe('simple get endpoint', () => {
           expect(
             contract.executeTest(
               {
-                interaction: willSendHttpInteraction({
+                interaction: willSendHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
@@ -140,7 +140,7 @@ describe('simple get endpoint', () => {
           expect(
             contract.executeTest(
               {
-                interaction: willSendHttpInteraction({
+                interaction: willSendHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
@@ -165,7 +165,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  interaction: willSendHttpInteraction({
+                  interaction: willSendHttpRequest({
                     request: {
                       method: 'GET',
                       path: '/health',
@@ -186,7 +186,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  interaction: willSendHttpInteraction({
+                  interaction: willSendHttpRequest({
                     request: {
                       method: 'GET',
                       path: '/health',
@@ -209,7 +209,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  interaction: willSendHttpInteraction({
+                  interaction: willSendHttpRequest({
                     request: {
                       method: 'POST',
                       path: '/health',
@@ -232,7 +232,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  interaction: willSendHttpInteraction({
+                  interaction: willSendHttpRequest({
                     request: {
                       method: 'GET',
                       path: '/healthy',

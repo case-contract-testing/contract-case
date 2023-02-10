@@ -15,7 +15,7 @@ type HttpRequestResponseDescription = {
   response: HttpInteractionResponse;
 };
 
-export const willSendHttpInteraction = ({
+export const willSendHttpRequest = ({
   request,
   response,
 }: HttpRequestResponseDescription): ConsumeHttpResponse => ({
@@ -38,7 +38,7 @@ export const willSendHttpInteraction = ({
   },
 });
 
-export const willReceiveHttpInteraction = ({
+export const willReceiveHttpRequest = ({
   request,
   response,
 }: HttpRequestResponseDescription): ProduceHttpResponse => ({
