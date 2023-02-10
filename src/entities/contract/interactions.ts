@@ -46,7 +46,7 @@ export const nameInteraction = <T extends AnyInteractionType>(
 export const makeSuccessExample = (example: CaseExample): CaseExample => {
   if (example.result !== 'PENDING') {
     throw new CaseCoreError(
-      "Trying to make a successful example from one that wasn't pending"
+      `Trying to make a successful example from one that wasn't pending (was ${example.result})`
     );
   }
   return { ...example, result: 'VERIFIED' };
@@ -58,7 +58,7 @@ export const makeFailedExample = (
 ): CaseExample => {
   if (example.result !== 'PENDING') {
     throw new CaseCoreError(
-      "Trying to make a successful example from one that wasn't pending"
+      `Trying to make a failed example from one that wasn't pending (was ${example.result})`
     );
   }
   return { ...example, result: 'FAILED', errors };

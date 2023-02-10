@@ -1,5 +1,9 @@
 import type { MatchContext } from 'entities/context/types';
-import { nameExample } from 'entities/contract/interactions';
+import {
+  makeFailedExample,
+  makeSuccessExample,
+  nameExample,
+} from 'entities/contract/interactions';
 import type { CaseExample } from 'entities/contract/types';
 import { setupUnhandledAssert } from 'connectors/contract/core/executeExample/setup';
 import { handleResult } from 'entities/results/handlers';
@@ -12,16 +16,16 @@ import type {
   CaseInteractionFor,
 } from 'entities/types';
 
+import { CaseConfigurationError } from 'entities';
 import { executeStateHandlers, executeTeardownHandlers } from './stateHandlers';
 
-export const executeExample = <T extends AnyInteractionType>(
+const setupExample = <T extends AnyInteractionType>(
   example: CaseExample,
   stateSetups: StateFunctions,
-  contract: CaseContract | CaseVerifier,
   context: MatchContext
 ): Promise<Assertable<T>> => {
   context.logger.debug(
-    `Beginning execution for example "${nameExample(
+    `Beginning setup for example "${nameExample(
       example,
       context['case:currentRun:context:testName']
     )}"`
@@ -40,39 +44,95 @@ export const executeExample = <T extends AnyInteractionType>(
       assert: () =>
         assertable
           .assert()
-          .finally(() => executeTeardownHandlers(example, stateSetups, context))
-          .then(
-            (result) => {
-              if (hasErrors(result)) {
-                handleResult(
-                  contract.recordFailure(example, context, result),
-                  context['case:currentRun:context:testName'],
-                  result,
-                  context
-                );
-              } else {
-                handleResult(
-                  contract.recordSuccess(example, context),
-                  context['case:currentRun:context:testName'],
-                  result,
-                  context
-                );
-              }
-              context.logger.debug(`This example passed`);
-              return result;
-            },
-            (error) => {
-              const results = makeResults(executionError(error, context));
-              handleResult(
-                contract.recordFailure(example, context, results),
-                context['case:currentRun:context:testName'],
-                results,
-                context
-              );
-              context.logger.debug(`This example failed`);
-              throw error;
-            }
+          .finally(() =>
+            executeTeardownHandlers(example, stateSetups, context)
           ),
     }));
   });
 };
+
+const toResultingExample = <T extends AnyInteractionType>(
+  assertable: Assertable<T>,
+  example: CaseExample,
+  context: MatchContext
+) =>
+  assertable.assert().then(
+    (matchResult) => {
+      if (hasErrors(matchResult)) {
+        context.logger.debug(`This example failed the test`);
+        return makeFailedExample(example, matchResult);
+      }
+      context.logger.debug(`This example passed the test`);
+      return makeSuccessExample(example);
+    },
+    (error) => {
+      context.logger.debug(`This example failed while trying to run the test`);
+      return makeFailedExample(
+        example,
+        makeResults(
+          executionError(
+            new CaseConfigurationError('Failed during case assertion'),
+            context
+          ),
+          executionError(error, context)
+        )
+      );
+    }
+  );
+
+export const executeExample = <T extends AnyInteractionType>(
+  example: CaseExample,
+  stateSetups: StateFunctions,
+  contract: CaseContract | CaseVerifier,
+  trigger: (config: Assertable<T>['config']) => Promise<unknown>,
+  context: MatchContext
+): Promise<unknown> =>
+  setupExample<T>(example, stateSetups, context).then(
+    (assertable: Assertable<T>) => {
+      context.logger.debug(`Invoking trigger with`, assertable.config);
+      return trigger(assertable.config)
+        .then(
+          () => {
+            context.logger.debug(`Asserting result`);
+            return toResultingExample(assertable, example, context);
+          },
+          (error) => {
+            context.logger.debug(
+              `This example failed while trying to invoke the example`
+            );
+            return makeFailedExample(
+              example,
+              makeResults(
+                executionError(
+                  new CaseConfigurationError('Failed during trigger function'),
+                  context
+                ),
+                executionError(error, context)
+              )
+            );
+          }
+        )
+        .then((resultingExample) => {
+          handleResult(
+            contract.recordExample(resultingExample, context),
+            context['case:currentRun:context:testName'],
+            context
+          );
+        });
+    }
+  );
+
+export const executeNoTriggerExample = <T extends AnyInteractionType>(
+  example: CaseExample,
+  stateSetups: StateFunctions,
+  contract: CaseContract | CaseVerifier,
+
+  context: MatchContext
+): Promise<unknown> =>
+  executeExample<T>(
+    example,
+    stateSetups,
+    contract,
+    () => Promise.resolve(),
+    context
+  );

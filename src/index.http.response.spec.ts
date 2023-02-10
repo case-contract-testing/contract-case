@@ -1,6 +1,6 @@
 import type * as http from 'http';
 import { willSendHttpInteraction } from 'entities/nodes/interactions/http';
-import type { Assertable, MatchResult } from 'entities/types';
+import type { MatchResult } from 'entities/types';
 import { makeNoErrorResult } from 'entities/results';
 import { anyString, httpStatus, logLevel } from 'boundaries/dsl/Matchers';
 import type { CaseConfig } from 'connectors/contract/core/types';
@@ -11,10 +11,10 @@ import { CaseContract } from 'boundaries';
 import start from './__tests__/server/http/index';
 
 const expectErrorContaining = async (
-  context: Assertable<'ConsumeHttpResponse'>,
+  context: Promise<unknown>,
   expectedContent: string
 ) => {
-  await context.assert().then(
+  await context.then(
     () => {
       throw new Error(
         "This unit test expected a failure, but there wasn't one"
@@ -52,11 +52,10 @@ describe('simple get endpoint', () => {
     response: { status: 200, body: { status: 'up' } },
   });
 
-  let context: Assertable<'ConsumeHttpResponse'>;
   describe('without a URL', () => {
     it('fails to setup', () =>
       expect(
-        contract.setup([], interaction, {
+        contract.executeTestNoTrigger([], interaction, {
           expectation: 'produce',
         } as CaseConfig)
       ).rejects.toBeInstanceOf(CaseConfigurationError));
@@ -68,17 +67,13 @@ describe('simple get endpoint', () => {
       expectation: 'produce',
     };
     describe('but no running server', () => {
-      beforeEach(async () => {
-        context = await contract.setup([], interaction, {
-          ...config,
-          baseUrlUnderTest: 'http://localhost:8081',
-        });
-      });
-
       it('fails to start', () =>
-        expect(context.assert()).rejects.toBeInstanceOf(
-          CaseConfigurationError
-        ));
+        expect(
+          contract.executeTestNoTrigger([], interaction, {
+            ...config,
+            baseUrlUnderTest: 'http://localhost:8081',
+          })
+        ).rejects.toBeInstanceOf(CaseConfigurationError));
     });
     describe('with a running server', () => {
       let server: http.Server;
@@ -96,130 +91,135 @@ describe('simple get endpoint', () => {
       });
 
       describe('and a matching interaction', () => {
-        beforeEach(async () => {
-          context = await contract.setup([], interaction, config);
-        });
         it('succeeds', () =>
-          expect(context.assert()).resolves.toEqual(makeNoErrorResult()));
+          expect(
+            contract.executeTestNoTrigger([], interaction, config)
+          ).resolves.toBe(undefined));
       });
 
       describe('and a matching interaction that is generic', () => {
-        beforeEach(async () => {
-          context = await contract.setup(
-            [],
-            willSendHttpInteraction({
-              request: {
-                method: 'GET',
-                path: '/health',
-              },
-              response: {
-                status: httpStatus(200),
-                body: logLevel('maintainerDebug', { status: anyString('up') }),
-              },
-            }),
-            config
-          );
-        });
         it('succeeds', () =>
-          expect(context.assert()).resolves.toEqual(makeNoErrorResult()));
+          expect(
+            contract.executeTestNoTrigger(
+              [],
+              willSendHttpInteraction({
+                request: {
+                  method: 'GET',
+                  path: '/health',
+                },
+                response: {
+                  status: httpStatus(200),
+                  body: logLevel('maintainerDebug', {
+                    status: anyString('up'),
+                  }),
+                },
+              }),
+              config
+            )
+          ).resolves.toBe(undefined));
       });
 
       describe('and a matching interaction with the same status as a previous one, but a string', () => {
-        beforeEach(async () => {
-          context = await contract.setup(
-            [],
-            willSendHttpInteraction({
-              request: {
-                method: 'GET',
-                path: '/health',
-              },
-              response: {
-                status: httpStatus('200'),
-                body: logLevel('maintainerDebug', { status: anyString('up') }),
-              },
-            }),
-            config
-          );
-        });
         it('succeeds', () =>
-          expect(context.assert()).resolves.toEqual(makeNoErrorResult()));
+          expect(
+            contract.executeTestNoTrigger(
+              [],
+              willSendHttpInteraction({
+                request: {
+                  method: 'GET',
+                  path: '/health',
+                },
+                response: {
+                  status: httpStatus('200'),
+                  body: logLevel('maintainerDebug', {
+                    status: anyString('up'),
+                  }),
+                },
+              }),
+              config
+            )
+          ).resolves.toBe(undefined));
       });
 
       describe('and a non-matching body', () => {
-        beforeEach(async () => {
-          context = await contract.setup(
-            [],
-            willSendHttpInteraction({
-              request: {
-                method: 'GET',
-                path: '/health',
-              },
-              response: { status: 200, body: { status: 'down' } },
-            }),
-            config
-          );
-        });
+        beforeEach(async () => {});
         it('fails', () =>
           expectErrorContaining(
-            context,
+            Promise.resolve().then(() =>
+              contract.executeTestNoTrigger(
+                [],
+                willSendHttpInteraction({
+                  request: {
+                    method: 'GET',
+                    path: '/health',
+                  },
+                  response: { status: 200, body: { status: 'down' } },
+                }),
+                config
+              )
+            ),
             '"up" (string) is not exactly equal to "down" (string)'
           ));
       });
 
       describe('and a non-matching status', () => {
-        beforeEach(async () => {
-          context = await contract.setup(
-            [],
-            willSendHttpInteraction({
-              request: {
-                method: 'GET',
-                path: '/health',
-              },
-              response: { status: httpStatus([400]), body: { status: 'up' } },
-            }),
-            config
-          );
-        });
         it('fails', () =>
           expectErrorContaining(
-            context,
+            Promise.resolve().then(() =>
+              contract.executeTestNoTrigger(
+                [],
+                willSendHttpInteraction({
+                  request: {
+                    method: 'GET',
+                    path: '/health',
+                  },
+                  response: {
+                    status: httpStatus([400]),
+                    body: { status: 'up' },
+                  },
+                }),
+                config
+              )
+            ),
             'The returned http status code (200) did not match'
           ));
       });
       describe('and a non-matching method', () => {
-        beforeEach(async () => {
-          context = await contract.setup(
-            [],
-            willSendHttpInteraction({
-              request: {
-                method: 'POST',
-                path: '/health',
-              },
-              response: { status: httpStatus(200), body: { status: 'up' } },
-            }),
-            config
-          );
-        });
         it('fails', () =>
-          expect(context.assert()).rejects.not.toEqual(makeNoErrorResult()));
+          expect(
+            Promise.resolve().then(() =>
+              contract.executeTestNoTrigger(
+                [],
+                willSendHttpInteraction({
+                  request: {
+                    method: 'POST',
+                    path: '/health',
+                  },
+                  response: { status: httpStatus(200), body: { status: 'up' } },
+                }),
+                config
+              )
+            )
+          ).rejects.not.toEqual(makeNoErrorResult()));
       });
 
       describe('and a non-matching path', () => {
-        beforeEach(async () => {
-          context = await contract.setup(
-            [],
-            willSendHttpInteraction({
-              request: {
-                method: 'GET',
-                path: '/healthy',
-              },
-              response: { status: httpStatus(200), body: { status: 'up' } },
-            }),
-            config
-          );
-        });
         it('fails', () =>
-          expect(context.assert()).rejects.not.toEqual(makeNoErrorResult()));
+          expect(
+            Promise.resolve().then(() =>
+              contract.executeTestNoTrigger(
+                [],
+                willSendHttpInteraction({
+                  request: {
+                    method: 'GET',
+                    path: '/healthy',
+                  },
+                  response: { status: httpStatus(200), body: { status: 'up' } },
+                }),
+                config
+              )
+            )
+          ).rejects.not.toEqual(makeNoErrorResult()));
       });
     });
   });

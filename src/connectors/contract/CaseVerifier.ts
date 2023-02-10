@@ -51,6 +51,7 @@ export class CaseVerifier extends BaseCaseContract {
           { ...example, result: 'PENDING' },
           stateSetups,
           this,
+          async () => {},
           applyNodeToContext(example.interaction, this.initialContext, {
             'case:currentRun:context:testName': `${index}`,
             'case:currentRun:context:expectation': 'produce',
@@ -60,9 +61,18 @@ export class CaseVerifier extends BaseCaseContract {
               `interaction[${index}]`,
             ],
           })
-        ).then((assertable) => assertable.assert())
+        )
       );
     });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  recordExample(
+    example: CaseExample,
+    currentContext: MatchContext
+  ): CaseExample {
+    currentContext.logger.debug(`${example}`);
+    return example;
   }
 
   // eslint-disable-next-line class-methods-use-this

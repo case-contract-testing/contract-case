@@ -27,6 +27,11 @@
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
+    "variable:default:userId": {
+      "case:matcher:type": "CascadingContext",
+      "case:matcher:child": "123",
+      "case:context:matchBy": "type"
+    },
     "matcher:a (httpStaus 4XX | 5XX) response without a body": {
       "status": {
         "case:matcher:type": "HttpStatusCode",
@@ -45,11 +50,6 @@
         "status": "down"
       },
       "case:matcher:type": "HttpResponseMatcher"
-    },
-    "variable:default:userId": {
-      "case:matcher:type": "CascadingContext",
-      "case:matcher:child": "123",
-      "case:context:matchBy": "type"
     },
     "matcher:a (200) response with body an object shaped like {userId: ${userId}}": {
       "status": 200,

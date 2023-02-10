@@ -100,6 +100,7 @@ export const setupHttpResponseProducer = (
       server = app.listen();
       const address = server.address();
 
+      context.logger.maintainerDebug(`Mock server setup on address`, address);
       context.logger.debug(
         `Mock server now listening on ${addressToString(address)}`
       );

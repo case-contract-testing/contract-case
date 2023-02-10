@@ -46,38 +46,41 @@ describe('e2e http consumer driven', () => {
       testRunId: '12',
     });
 
+    // JEST BOILERPLATE
+    const testInteraction = <T extends AnyInteractionType, R>(
+      states: Array<AnyState>,
+      interaction: CaseInteractionFor<T>,
+      trigger: (config: Assertable<T>['config']) => Promise<R>,
+      testResponseObject: (data: R) => unknown
+    ) =>
+      contract.executeTest(states, interaction, (config) =>
+        trigger(config).then(testResponseObject)
+      );
+
+    const testFailedInteraction = <T extends AnyInteractionType, R>(
+      states: Array<AnyState>,
+      interaction: CaseInteractionFor<T>,
+      trigger: (config: Assertable<T>['config']) => Promise<R>,
+      testResponseObject: (error: Error) => unknown
+    ) =>
+      contract.executeTest(states, interaction, (config) =>
+        trigger(config).then((d) => {
+          throw new Error(`Expected an error, but was ${d}`);
+        }, testResponseObject)
+      );
+
     afterAll(() => contract.endRecord());
-    let context: Assertable<'ConsumeHttpResponse'>;
+
+    // END JEST BOILERPLATE
+
     describe('health get', () => {
+      const sendHealthRequest = (
+        config: Assertable<'ConsumeHttpResponse'>['config']
+      ) => api(config.baseUrl).health();
       describe('When the server is up', () => {
         const state = inState('Server is up');
 
-        const testInteraction = <T extends AnyInteractionType, R>(
-          states: Array<AnyState>,
-          interaction: CaseInteractionFor<T>,
-          trigger: (config: Assertable<T>['config']) => Promise<R>,
-          testResponseObject: (data: R) => unknown
-        ) =>
-          contract.setup(states, interaction).then((assertable) =>
-            // setup states, either default or real
-            // trigger, either fake or provided
-            trigger(assertable.config)
-              // either check response object, or compare it
-              .then(testResponseObject)
-              // confirm that server was happy
-              .then(assertable.assert)
-              // print results
-              .then((res) => {
-                if (res.length !== 0) {
-                  throw new Error(res.join('\n').toString());
-                }
-              })
-          );
-
         describe('health endpoint', () => {
-          const sendHealthRequest = (
-            config: Assertable<'ConsumeHttpResponse'>['config']
-          ) => api(config.baseUrl).health();
           it('behaves as expected', () =>
             testInteraction(
               [state],
@@ -116,12 +119,11 @@ describe('e2e http consumer driven', () => {
           });
         });
       });
-
       describe('When the server is down', () => {
         const state = inState('Server is down');
         describe('No body server response', () => {
-          beforeEach(async () => {
-            context = await contract.setup(
+          it('calls server health', () => {
+            testFailedInteraction(
               [state],
               willSendHttpInteraction({
                 request: {
@@ -129,32 +131,18 @@ describe('e2e http consumer driven', () => {
                   path: '/health',
                 },
                 response: { status: httpStatus(['4XX', '5XX']) },
-              })
+              }),
+              sendHealthRequest,
+              (e) => {
+                expect(e).toBeInstanceOf(ApiError);
+              }
             );
-          });
-
-          it('calls server health', () => {
-            const client = api(context.config.baseUrl);
-
-            return expect(client.health()).rejects.toBeInstanceOf(ApiError);
-          });
-
-          afterEach(async () => {
-            const res = await context.assert();
-            if (res.length !== 0) {
-              throw new Error(
-                res
-                  .map((m) => m.toString())
-                  .join('\n')
-                  .toString()
-              );
-            }
           });
         });
 
         describe('specific server response', () => {
-          beforeEach(async () => {
-            context = await contract.setup(
+          it('calls server health', async () => {
+            testFailedInteraction(
               [state],
               willSendHttpInteraction({
                 request: {
@@ -162,31 +150,26 @@ describe('e2e http consumer driven', () => {
                   path: '/health',
                 },
                 response: { status: 503, body: { status: 'down' } },
-              })
+              }),
+              sendHealthRequest,
+              (e) => {
+                expect(e).toBeInstanceOf(ApiError);
+              }
             );
-          });
-
-          it('calls server health', async () => {
-            const client = api(context.config.baseUrl);
-
-            return expect(client.health()).rejects.toBeInstanceOf(ApiError);
-          });
-
-          afterEach(async () => {
-            const res = await context.assert();
-            if (res.length !== 0) {
-              throw new Error(res.join('\n').toString());
-            }
           });
         });
       });
     });
-
     describe('User', () => {
+      const sendUserRequest =
+        (userId: string) =>
+        (config: Assertable<'ConsumeHttpResponse'>['config']) =>
+          api(config.baseUrl).getUser(userId);
       describe('when the user exists', () => {
         const responseBody = { userId: stateVariable('userId') };
-        beforeEach(async () => {
-          context = await contract.setup(
+
+        it('returns an existing user', async () =>
+          testInteraction(
             [
               inState('Server is up'),
               inState('A user exists', { userId: '123' }),
@@ -200,31 +183,19 @@ describe('e2e http consumer driven', () => {
                 status: 200,
                 body: responseBody,
               },
-            })
-          );
-        });
-
-        it('returns an existing user', async () => {
-          const client = api(context.config.baseUrl);
-          expect(contract.stripMatchers(responseBody)).toEqual({
-            userId: '123',
-          });
-
-          return expect(client.getUser('123')).resolves.toEqual(
-            contract.stripMatchers(responseBody)
-          );
-        });
-
-        afterEach(async () => {
-          const res = await context.assert();
-          if (res.length !== 0) {
-            throw new Error(res.join('\n').toString());
-          }
-        });
+            }),
+            sendUserRequest('123'),
+            (health) => {
+              expect(contract.stripMatchers(responseBody)).toEqual({
+                userId: '123',
+              });
+              expect(health).toEqual(contract.stripMatchers(responseBody));
+            }
+          ));
       });
       describe("when the user doesn't exist", () => {
-        beforeEach(async () => {
-          context = await contract.setup(
+        it('returns a user not found error', () =>
+          testFailedInteraction(
             [inState('Server is up'), inState('No users exist')],
             willSendHttpInteraction({
               request: {
@@ -234,24 +205,12 @@ describe('e2e http consumer driven', () => {
               response: {
                 status: 404,
               },
-            })
-          );
-        });
-
-        it('returns a user not found error', async () => {
-          const client = api(context.config.baseUrl);
-
-          return expect(client.getUser('123')).rejects.toBeInstanceOf(
-            UserNotFoundConsumerError
-          );
-        });
-
-        afterEach(async () => {
-          const res = await context.assert();
-          if (res.length !== 0) {
-            throw new Error(res.join('\n').toString());
-          }
-        });
+            }),
+            sendUserRequest('123'),
+            (e) => {
+              expect(e).toBeInstanceOf(UserNotFoundConsumerError);
+            }
+          ));
       });
     });
   });
@@ -274,6 +233,7 @@ describe('e2e http consumer driven', () => {
       ),
       {
         baseUrlUnderTest: `http://localhost:${port}`,
+        printResults: false,
       }
     );
     beforeAll(async () => {

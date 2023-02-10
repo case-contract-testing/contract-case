@@ -70,6 +70,9 @@ export const executeStateHandlers = (
     );
     if (variableSource === 'default') {
       example.states.forEach((state) => {
+        context.logger.debug(
+          `Setting up state '${state.stateName}' with default values`
+        );
         if (state['case:state:type'] === SETUP_VARIABLE_STATE) {
           Object.entries(state.variables).forEach(([key, value]) =>
             context.addDefaultVariable(key, state.stateName, value)
@@ -86,6 +89,9 @@ export const executeStateHandlers = (
         // So we turn off the usual lint rules on purpose.
         // eslint-disable-next-line no-restricted-syntax
         for (const state of example.states) {
+          context.logger.debug(
+            `Setting up state '${state.stateName}' with the provided handler`
+          );
           const stateContext = addLocation(`[${state.stateName}]`, context);
           // eslint-disable-next-line no-await-in-loop
           const variables = await validateVariables(
