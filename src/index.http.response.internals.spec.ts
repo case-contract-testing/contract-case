@@ -55,9 +55,14 @@ describe('simple get endpoint', () => {
   describe('without a URL', () => {
     it('fails to setup', () =>
       expect(
-        contract.executeTestNoTrigger([], interaction, {
-          expectation: 'produce',
-        } as CaseConfig)
+        contract.executeTest(
+          {
+            interaction,
+          },
+          {
+            expectation: 'produce',
+          } as CaseConfig
+        )
       ).rejects.toBeInstanceOf(CaseConfigurationError));
   });
 
@@ -69,10 +74,15 @@ describe('simple get endpoint', () => {
     describe('but no running server', () => {
       it('fails to start', () =>
         expect(
-          contract.executeTestNoTrigger([], interaction, {
-            ...config,
-            baseUrlUnderTest: 'http://localhost:8081',
-          })
+          contract.executeTest(
+            {
+              interaction,
+            },
+            {
+              ...config,
+              baseUrlUnderTest: 'http://localhost:8081',
+            }
+          )
         ).rejects.toBeInstanceOf(CaseConfigurationError));
     });
     describe('with a running server', () => {
@@ -93,27 +103,33 @@ describe('simple get endpoint', () => {
       describe('and a matching interaction', () => {
         it('succeeds', () =>
           expect(
-            contract.executeTestNoTrigger([], interaction, config)
+            contract.executeTest(
+              {
+                interaction,
+              },
+              config
+            )
           ).resolves.toBe(undefined));
       });
 
       describe('and a matching interaction that is generic', () => {
         it('succeeds', () =>
           expect(
-            contract.executeTestNoTrigger(
-              [],
-              willSendHttpInteraction({
-                request: {
-                  method: 'GET',
-                  path: '/health',
-                },
-                response: {
-                  status: httpStatus(200),
-                  body: logLevel('maintainerDebug', {
-                    status: anyString('up'),
-                  }),
-                },
-              }),
+            contract.executeTest(
+              {
+                interaction: willSendHttpInteraction({
+                  request: {
+                    method: 'GET',
+                    path: '/health',
+                  },
+                  response: {
+                    status: httpStatus(200),
+                    body: logLevel('maintainerDebug', {
+                      status: anyString('up'),
+                    }),
+                  },
+                }),
+              },
               config
             )
           ).resolves.toBe(undefined));
@@ -122,20 +138,21 @@ describe('simple get endpoint', () => {
       describe('and a matching interaction with the same status as a previous one, but a string', () => {
         it('succeeds', () =>
           expect(
-            contract.executeTestNoTrigger(
-              [],
-              willSendHttpInteraction({
-                request: {
-                  method: 'GET',
-                  path: '/health',
-                },
-                response: {
-                  status: httpStatus('200'),
-                  body: logLevel('maintainerDebug', {
-                    status: anyString('up'),
-                  }),
-                },
-              }),
+            contract.executeTest(
+              {
+                interaction: willSendHttpInteraction({
+                  request: {
+                    method: 'GET',
+                    path: '/health',
+                  },
+                  response: {
+                    status: httpStatus('200'),
+                    body: logLevel('maintainerDebug', {
+                      status: anyString('up'),
+                    }),
+                  },
+                }),
+              },
               config
             )
           ).resolves.toBe(undefined));
@@ -146,15 +163,16 @@ describe('simple get endpoint', () => {
         it('fails', () =>
           expectErrorContaining(
             Promise.resolve().then(() =>
-              contract.executeTestNoTrigger(
-                [],
-                willSendHttpInteraction({
-                  request: {
-                    method: 'GET',
-                    path: '/health',
-                  },
-                  response: { status: 200, body: { status: 'down' } },
-                }),
+              contract.executeTest(
+                {
+                  interaction: willSendHttpInteraction({
+                    request: {
+                      method: 'GET',
+                      path: '/health',
+                    },
+                    response: { status: 200, body: { status: 'down' } },
+                  }),
+                },
                 config
               )
             ),
@@ -166,18 +184,19 @@ describe('simple get endpoint', () => {
         it('fails', () =>
           expectErrorContaining(
             Promise.resolve().then(() =>
-              contract.executeTestNoTrigger(
-                [],
-                willSendHttpInteraction({
-                  request: {
-                    method: 'GET',
-                    path: '/health',
-                  },
-                  response: {
-                    status: httpStatus([400]),
-                    body: { status: 'up' },
-                  },
-                }),
+              contract.executeTest(
+                {
+                  interaction: willSendHttpInteraction({
+                    request: {
+                      method: 'GET',
+                      path: '/health',
+                    },
+                    response: {
+                      status: httpStatus([400]),
+                      body: { status: 'up' },
+                    },
+                  }),
+                },
                 config
               )
             ),
@@ -188,15 +207,19 @@ describe('simple get endpoint', () => {
         it('fails', () =>
           expect(
             Promise.resolve().then(() =>
-              contract.executeTestNoTrigger(
-                [],
-                willSendHttpInteraction({
-                  request: {
-                    method: 'POST',
-                    path: '/health',
-                  },
-                  response: { status: httpStatus(200), body: { status: 'up' } },
-                }),
+              contract.executeTest(
+                {
+                  interaction: willSendHttpInteraction({
+                    request: {
+                      method: 'POST',
+                      path: '/health',
+                    },
+                    response: {
+                      status: httpStatus(200),
+                      body: { status: 'up' },
+                    },
+                  }),
+                },
                 config
               )
             )
@@ -207,15 +230,19 @@ describe('simple get endpoint', () => {
         it('fails', () =>
           expect(
             Promise.resolve().then(() =>
-              contract.executeTestNoTrigger(
-                [],
-                willSendHttpInteraction({
-                  request: {
-                    method: 'GET',
-                    path: '/healthy',
-                  },
-                  response: { status: httpStatus(200), body: { status: 'up' } },
-                }),
+              contract.executeTest(
+                {
+                  interaction: willSendHttpInteraction({
+                    request: {
+                      method: 'GET',
+                      path: '/healthy',
+                    },
+                    response: {
+                      status: httpStatus(200),
+                      body: { status: 'up' },
+                    },
+                  }),
+                },
                 config
               )
             )

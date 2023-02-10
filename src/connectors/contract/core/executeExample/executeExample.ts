@@ -59,14 +59,16 @@ const toResultingExample = <T extends AnyInteractionType>(
   assertable.assert().then(
     (matchResult) => {
       if (hasErrors(matchResult)) {
-        context.logger.debug(`This example failed the test`);
+        context.logger.debug(`This example failed the assertions`);
         return makeFailedExample(example, matchResult);
       }
-      context.logger.debug(`This example passed the test`);
+      context.logger.debug(`This example passed all assertions`);
       return makeSuccessExample(example);
     },
     (error) => {
-      context.logger.debug(`This example failed while trying to run the test`);
+      context.logger.debug(
+        `This example failed while trying to run the assertion`
+      );
       return makeFailedExample(
         example,
         makeResults(
@@ -89,7 +91,11 @@ export const executeExample = <T extends AnyInteractionType>(
 ): Promise<unknown> =>
   setupExample<T>(example, stateSetups, context).then(
     (assertable: Assertable<T>) => {
-      context.logger.debug(`Invoking trigger with`, assertable.config);
+      context.logger.debug(
+        `Invoking trigger with`,
+        assertable.config,
+        context['case:currentRun:context:location']
+      );
       return trigger(assertable.config)
         .then(
           () => {

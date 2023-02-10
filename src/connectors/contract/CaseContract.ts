@@ -1,3 +1,5 @@
+import { Mutex } from 'async-mutex';
+
 import {
   configToRunContext,
   DEFAULT_CONFIG,
@@ -11,23 +13,24 @@ import { addLocation, applyNodeToContext } from 'entities/context';
 import { nameInteraction } from 'entities/contract/interactions';
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
-import type { SetupInfoFor } from 'entities/nodes/interactions/setup.types';
 import { makeResults } from 'entities/results';
-import { AnyState, SETUP_VARIABLE_STATE } from 'entities/states/types';
+import { SETUP_VARIABLE_STATE } from 'entities/states/types';
 import {
   LogLevelContext,
   AnyInteractionType,
-  CaseInteractionFor,
   MatchContext,
   ERROR_TYPE_EXECUTION,
 } from 'entities/types';
 
 import { BaseCaseContract } from './BaseCaseContract';
 import { addExample, hasFailure } from './structure';
+import type { TestInvoker } from './types';
 import { writeContract } from './writer/fileSystem';
 
 export class CaseContract extends BaseCaseContract {
   testIndex = 0;
+
+  mutex: Mutex;
 
   constructor(
     description: ContractDescription,
@@ -35,25 +38,16 @@ export class CaseContract extends BaseCaseContract {
     makeLogger: (context: LogLevelContext) => Logger = defaultMakeLogger
   ) {
     super(description, config, makeLogger);
-  }
-
-  executeTestNoTrigger<T extends AnyInteractionType>(
-    states: Array<AnyState>,
-    interaction: CaseInteractionFor<T>,
-    runConfig?: CaseConfig
-  ): Promise<unknown> {
-    return this.executeTest(
-      states,
-      interaction,
-      () => Promise.resolve(),
-      runConfig
-    );
+    this.mutex = new Mutex();
   }
 
   executeTest<T extends AnyInteractionType>(
-    states: Array<AnyState>,
-    interaction: CaseInteractionFor<T>,
-    trigger: (config: SetupInfoFor<T>) => Promise<unknown>,
+    {
+      states = [],
+      interaction,
+      trigger = () => Promise.resolve(),
+      stateHandlers = {},
+    }: TestInvoker<T>,
     runConfig?: CaseConfig
   ): Promise<unknown> {
     const thisIndex = this.testIndex;
@@ -65,25 +59,27 @@ export class CaseContract extends BaseCaseContract {
       'case:currentRun:context:contractMode': 'write',
     });
 
-    states.forEach((state) => {
-      if (state['case:state:type'] === SETUP_VARIABLE_STATE) {
-        Object.entries(state.variables).forEach(([key, value]) =>
-          runContext.addDefaultVariable(key, state.stateName, value)
-        );
-      }
-    });
+    return this.mutex.runExclusive(() => {
+      states.forEach((state) => {
+        if (state['case:state:type'] === SETUP_VARIABLE_STATE) {
+          Object.entries(state.variables).forEach(([key, value]) =>
+            runContext.addDefaultVariable(key, state.stateName, value)
+          );
+        }
+      });
 
-    return executeExample(
-      {
-        states,
-        interaction: nameInteraction(interaction, runContext),
-        result: 'PENDING',
-      },
-      {},
-      this,
-      trigger,
-      runContext
-    );
+      return executeExample(
+        {
+          states,
+          interaction: nameInteraction(interaction, runContext),
+          result: 'PENDING',
+        },
+        stateHandlers,
+        this,
+        trigger,
+        runContext
+      );
+    });
   }
 
   recordExample(

@@ -65,7 +65,7 @@ export const validateVariables = async (
         );
       }
       context.logger.debug(
-        `The state setup for '${state.stateName}' returned the following variables`,
+        `The state setup for '${state.stateName}' returned successfully; with the following variables:`,
         variables
       );
       return variables;
@@ -77,7 +77,7 @@ export const validateVariables = async (
     }
 
     context.logger.debug(
-      `The state setup for '${state.stateName}' was not configured to return any variables`
+      `The state setup for '${state.stateName}' returned successfully; with no variables`
     );
     return {};
   });

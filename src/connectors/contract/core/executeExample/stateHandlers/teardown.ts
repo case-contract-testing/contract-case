@@ -18,12 +18,12 @@ const stateTeardownHandler = (
         .then(async () => {
           const stateFn = stateSetups[state.stateName];
           if (stateFn !== undefined && !isSetupFunction(stateFn)) {
-            context.logger.debug(
+            context.logger.maintainerDebug(
               `Calling state teardown for '${state.stateName}'`
             );
             await stateFn.teardown();
           } else {
-            context.logger.debug(
+            context.logger.maintainerDebug(
               `No state teardown exists for '${state.stateName}'`
             );
           }

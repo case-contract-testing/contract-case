@@ -1,3 +1,5 @@
+import { Mutex } from 'async-mutex';
+
 import { DEFAULT_CONFIG, executeExample } from 'connectors/contract/core';
 import type { CaseConfig } from 'connectors/contract/core/types';
 import { makeLogger as defaultMakeLogger } from 'connectors/logger';
@@ -23,6 +25,8 @@ import type { ContractFile } from './structure/types';
 import type { RunTestCallback } from './types';
 
 export class CaseVerifier extends BaseCaseContract {
+  mutex: Mutex;
+
   constructor(
     contractFile: ContractFile,
     config: CaseConfig = DEFAULT_CONFIG,
@@ -34,6 +38,8 @@ export class CaseVerifier extends BaseCaseContract {
       makeLogger
     );
     this.currentContract = contractFile;
+
+    this.mutex = new Mutex();
   }
 
   verifyContract(
@@ -47,20 +53,22 @@ export class CaseVerifier extends BaseCaseContract {
         );
       }
       runTestCb(nameExample(example, `${index}`), () =>
-        executeExample(
-          { ...example, result: 'PENDING' },
-          stateSetups,
-          this,
-          async () => {},
-          applyNodeToContext(example.interaction, this.initialContext, {
-            'case:currentRun:context:testName': `${index}`,
-            'case:currentRun:context:expectation': 'produce',
-            'case:currentRun:context:contractMode': 'read',
-            'case:currentRun:context:location': [
-              'verification',
-              `interaction[${index}]`,
-            ],
-          })
+        this.mutex.runExclusive(() =>
+          executeExample(
+            { ...example, result: 'PENDING' },
+            stateSetups,
+            this,
+            async () => {},
+            applyNodeToContext(example.interaction, this.initialContext, {
+              'case:currentRun:context:testName': `${index}`,
+              'case:currentRun:context:expectation': 'produce',
+              'case:currentRun:context:contractMode': 'read',
+              'case:currentRun:context:location': [
+                'verification',
+                `interaction[${index}]`,
+              ],
+            })
+          )
         )
       );
     });

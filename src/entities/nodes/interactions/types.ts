@@ -36,30 +36,44 @@ export type CaseInteractionFor<T extends AnyInteractionType> = Extract<
 export interface CoreHttpRequestResponseMatcherPair {
   request: CoreHttpRequestMatcher | LookupableMatcher;
   response: CoreHttpResponseMatcher | LookupableMatcher;
-  'case:run:context:setup': {
-    write: {
-      type: typeof CONSUME_HTTP_RESPONSE;
-      stateVariables: 'default';
-      triggers: 'provided';
-    };
-    read: {
-      type: typeof PRODUCE_HTTP_RESPONSE;
-      stateVariables: 'state';
-      triggers: 'generated';
-    };
-  };
 }
 
 export type ConsumeHttpResponse = HasTypeForInteraction<
   typeof CONSUME_HTTP_RESPONSE
 > & {
-  'case:run:context:asWritten': 'consume';
+  'case:run:context:asWritten': 'consume' | 'produce';
 } & CoreHttpRequestResponseMatcherPair &
-  BaseInteraction;
+  BaseInteraction & {
+    'case:run:context:setup': {
+      write: {
+        type: typeof CONSUME_HTTP_RESPONSE;
+        stateVariables: 'default';
+        triggers: 'provided';
+      };
+      read: {
+        type: typeof PRODUCE_HTTP_RESPONSE;
+        stateVariables: 'state';
+        triggers: 'generated';
+      };
+    };
+  };
 
 export type ProduceHttpResponse = HasTypeForInteraction<
   typeof PRODUCE_HTTP_RESPONSE
 > & {
-  'case:run:context:asWritten': 'produce';
+  'case:run:context:asWritten': 'consume' | 'produce';
 } & CoreHttpRequestResponseMatcherPair &
-  BaseInteraction;
+  BaseInteraction & {
+    'case:run:context:setup': {
+      write: {
+        type: typeof PRODUCE_HTTP_RESPONSE;
+        stateVariables: 'state';
+        triggers: 'generated';
+      };
+      read: {
+        type: typeof CONSUME_HTTP_RESPONSE;
+        stateVariables: 'default';
+        triggers: 'provided';
+      };
+    };
+  };

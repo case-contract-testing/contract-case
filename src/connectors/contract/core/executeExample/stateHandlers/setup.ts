@@ -33,7 +33,9 @@ const stateSetupHandler =
 
     return Promise.resolve()
       .then(() => {
-        context.logger.debug(`Calling state setup for '${state.stateName}'`);
+        context.logger.maintainerDebug(
+          `Calling state setup for '${state.stateName}'`
+        );
         return isSetupFunction(setupState) ? setupState() : setupState.setup();
       })
       .catch((e) => {
@@ -89,7 +91,7 @@ export const executeStateHandlers = (
         // So we turn off the usual lint rules on purpose.
         // eslint-disable-next-line no-restricted-syntax
         for (const state of example.states) {
-          context.logger.debug(
+          context.logger.maintainerDebug(
             `Setting up state '${state.stateName}' with the provided handler`
           );
           const stateContext = addLocation(`[${state.stateName}]`, context);

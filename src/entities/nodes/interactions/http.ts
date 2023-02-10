@@ -38,7 +38,7 @@ export const willSendHttpInteraction = ({
   },
 });
 
-export const willRecieveHttpInteraction = ({
+export const willReceiveHttpInteraction = ({
   request,
   response,
 }: HttpRequestResponseDescription): ProduceHttpResponse => ({
@@ -46,17 +46,17 @@ export const willRecieveHttpInteraction = ({
   response: httpResponseMatcher(response),
   'case:interaction:uniqueName': '',
   'case:interaction:type': PRODUCE_HTTP_RESPONSE,
-  'case:run:context:asWritten': 'produce',
+  'case:run:context:asWritten': 'consume',
   'case:run:context:setup': {
     write: {
-      type: CONSUME_HTTP_RESPONSE,
-      stateVariables: 'default',
-      triggers: 'provided',
-    },
-    read: {
       type: PRODUCE_HTTP_RESPONSE,
       stateVariables: 'state',
       triggers: 'generated',
+    },
+    read: {
+      type: CONSUME_HTTP_RESPONSE,
+      stateVariables: 'default',
+      triggers: 'provided',
     },
   },
 });

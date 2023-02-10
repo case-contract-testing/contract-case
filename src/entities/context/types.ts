@@ -99,6 +99,7 @@ export type LoggableContext = Omit<
   | keyof ContractLookupFns
   | keyof HasMakeLookup
 >;
+
 export type LogContext = Omit<
   MatchContext,
   keyof ContractLookupFns | keyof HasMakeLookup

@@ -47,6 +47,15 @@ const contextProperties = (
     )
     .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {} as MatchContext);
 
+const updateFunctions = (context: MatchContext) => {
+  const logger = context.makeLogger(context);
+  const nextContext = { ...context, logger };
+  return {
+    ...nextContext,
+    ...nextContext.makeLookup(nextContext),
+  };
+};
+
 export const foldIntoContext = (
   caseNode: AnyCaseMatcher | AnyInteraction,
   context: MatchContext
@@ -76,7 +85,7 @@ const combineWithRoot = (
     ],
   };
   interactionId += 1;
-  return newContext;
+  return updateFunctions(newContext);
 };
 
 export const constructInitialContext = (
@@ -92,7 +101,6 @@ export const constructInitialContext = (
     ...DEFAULT_CONTEXT,
     'case:currentRun:context:location': [],
     'case:currentRun:context:testName': 'OUTSIDE_TESTS' as const,
-    'case:currentRun:context:runVariables': {},
     ...runConfig,
   };
 
@@ -118,21 +126,13 @@ export const applyNodeToContext = (
 export const addLocation = (
   location: string,
   context: MatchContext
-): MatchContext => {
-  const nextDataContext = {
+): MatchContext =>
+  updateFunctions({
     ...context,
-
     'case:currentRun:context:location': context[
       'case:currentRun:context:location'
     ].concat([location]),
-  };
-  const logger = nextDataContext.makeLogger(nextDataContext);
-  const nextContext = { ...nextDataContext, logger };
-  return {
-    ...nextContext,
-    ...nextContext.makeLookup(nextContext),
-  };
-};
+  });
 
 export const locationString = (matchContext: HasLocation): string =>
   matchContext['case:currentRun:context:location'].reduce<string>(
