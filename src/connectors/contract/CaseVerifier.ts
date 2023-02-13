@@ -7,12 +7,13 @@ import { CaseCoreError } from 'entities';
 
 import { applyNodeToContext } from 'entities/context';
 import {
+  exampleToNames,
   makeFailedExample,
   makeSuccessExample,
-  nameExample,
 } from 'entities/contract/interactions';
 import type { Logger } from 'entities/logger/types';
 import type {
+  AnyInteractionType,
   CaseError,
   CaseExample,
   LogLevelContext,
@@ -41,8 +42,8 @@ export class CaseVerifier extends BaseCaseContract {
     this.mutex = new Mutex();
   }
 
-  verifyContract(
-    { stateHandlers = {} }: MultiTestInvoker,
+  verifyContract<T extends AnyInteractionType>(
+    { stateHandlers = {}, triggers }: MultiTestInvoker<T>,
     runTestCb: RunTestCallback
   ): void {
     this.currentContract.examples.forEach((example, index) => {
@@ -51,13 +52,15 @@ export class CaseVerifier extends BaseCaseContract {
           `Attempting to verify an example which was '${example.result}'. This should never happen in normal operation, and might be the result of a corrupted Case file, a file that was not written by Case, or a bug.`
         );
       }
-      runTestCb(nameExample(example, `${index}`), () =>
+
+      const names = exampleToNames(example, `${index}`);
+
+      runTestCb(names.interactionName, () =>
         this.mutex.runExclusive(() =>
           executeExample(
             { ...example, result: 'PENDING' },
-            stateHandlers,
+            { stateHandlers, names, triggers },
             this,
-            async () => {},
             applyNodeToContext(example.interaction, this.initialContext, {
               'case:currentRun:context:testName': `${index}`,
               'case:currentRun:context:expectation': 'produce',

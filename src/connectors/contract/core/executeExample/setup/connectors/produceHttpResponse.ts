@@ -117,6 +117,7 @@ export const setupHttpResponseProducer = (
       const mock = {
         'case:interaction:type': CONSUME_HTTP_RESPONSE,
         baseUrl: `http://${addressToString(address)}`,
+        variables: { userId: '42' }, // TODO replace this with actual variables
       };
       context.logger.maintainerDebug(
         `Mock listening and ready to accept ${

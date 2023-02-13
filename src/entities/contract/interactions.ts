@@ -6,17 +6,16 @@ import type {
   AnyInteractionType,
   CaseInteractionFor,
   CaseError,
+  ExampleNames,
 } from 'entities/types';
 import type { CaseExample } from './types';
 
-export const nameExample = (
+export const exampleToNames = (
   { states, interaction }: CaseExample,
   index: string
-): string => {
+): ExampleNames => {
   const stateNames = states.map((state) => state.stateName).join(' and ');
-  if (interaction['case:interaction:uniqueName']) {
-    return interaction['case:interaction:uniqueName'];
-  }
+
   const requestName =
     'case:matcher:uniqueName' in interaction.request
       ? interaction.request['case:matcher:uniqueName']
@@ -26,9 +25,15 @@ export const nameExample = (
       ? interaction.response['case:matcher:uniqueName']
       : `Interaction ${index}'s response`;
 
-  return `${
-    stateNames !== '' ? `When ${stateNames}, then ` : ''
-  }${requestName} -> ${responseName}`;
+  return {
+    requestName,
+    responseName,
+    interactionName: `${stateNames !== '' ? `When ${stateNames}, then ` : ''}${
+      interaction['case:interaction:uniqueName']
+        ? interaction['case:interaction:uniqueName']
+        : `${requestName} -> ${responseName}`
+    }`,
+  };
 };
 
 const nameMatcher = (matcher: AnyCaseNodeOrData, context: MatchContext) =>

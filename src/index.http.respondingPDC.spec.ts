@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 /* eslint-disable jest/expect-expect */
 import * as fs from 'node:fs';
 
@@ -7,6 +8,9 @@ import start from '__tests__/server/http/connectors/web';
 import type { User } from '__tests__/server/http/model/responses';
 import type { Dependencies } from '__tests__/server/http/domain/types';
 import { baseService } from '__tests__/server/http/domain/baseService';
+import api from '__tests__/client/http/connector';
+import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
+import { UserNotFoundConsumerError } from '__tests__/client/http/connector/errors';
 
 // This import is our Jest DSL
 import { runJestTest } from '__tests__/jest';
@@ -26,6 +30,7 @@ import {
   StateHandlers,
   readContract,
   willReceiveHttpRequest,
+  HttpRequestConfig,
 } from '.';
 
 const contractDetails = {
@@ -242,14 +247,70 @@ describe('e2e http provider driven', () => {
   });
 });
 
-describe('Server verification', () => {
+describe('Client verification', () => {
   const verifier = new CaseVerifier(readContract(FILENAME), {
     printResults: false,
   });
 
   describe('with a file contract', () => {
     describe('contract verification', () => {
-      verifier.verifyContract({}, runJestTest);
+      verifier.verifyContract(
+        {
+          triggers: {
+            'an http "GET" request to "/health" without a body': {
+              trigger: (config: HttpRequestConfig) =>
+                api(config.baseUrl).health(),
+              verifiers: {
+                'a (200) response with body an object shaped like {status: "up"}':
+                  (health) => {
+                    expect(health).toEqual('up');
+                  },
+                'a (200) response with body an object shaped like {status: <any string>}':
+                  (health) => expect(typeof health).toBe('string'),
+              },
+              errorVerifiers: {
+                'a (httpStaus 4XX | 5XX) response without a body': (e) => {
+                  expect(e).toBeInstanceOf(ApiError);
+                },
+                'a (503) response with body an object shaped like {status: "down"}':
+                  (e) => {
+                    expect(e).toBeInstanceOf(ApiError);
+                  },
+              },
+            },
+            'an http "GET" request to "/users/123" without a body': {
+              trigger: (config: HttpRequestConfig) =>
+                api(config.baseUrl).getUser('123'),
+              verifiers: {},
+              errorVerifiers: {
+                'a (404) response without a body': (e) => {
+                  expect(e).toBeInstanceOf(UserNotFoundConsumerError);
+                },
+              },
+            },
+            'an http "GET" request to "/users/${userId}" without a body': {
+              trigger: (config: HttpRequestConfig) =>
+                api(config.baseUrl).getUser(
+                  config.variables['userId'] as string
+                ),
+              verifiers: {
+                'a (200) response with body an object shaped like {userId: ${userId}}':
+                  (user, config) => {
+                    expect(user).toEqual({
+                      userId: config.variables['userId'],
+                    });
+                  },
+              },
+              errorVerifiers: {
+                'a (404) response without a body': (e) => {
+                  expect(e).toBeInstanceOf(UserNotFoundConsumerError);
+                },
+              },
+            },
+          },
+        },
+        runJestTest
+      );
     });
   });
 });

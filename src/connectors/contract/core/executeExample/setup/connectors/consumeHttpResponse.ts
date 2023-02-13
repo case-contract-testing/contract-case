@@ -79,7 +79,10 @@ export const setupHttpResponseConsumer = (
 
     return validateConfig(context).then(
       (run: LoggableContext & HasBaseUrlUnderTest) => ({
-        mock: { 'case:interaction:type': PRODUCE_HTTP_RESPONSE },
+        mock: {
+          'case:interaction:type': PRODUCE_HTTP_RESPONSE,
+          variables: { userId: '42' }, // TODO replace this with actual variables
+        },
         assertableData: () =>
           axios
             .request({

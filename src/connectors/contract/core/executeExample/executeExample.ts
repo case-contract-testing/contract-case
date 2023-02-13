@@ -2,7 +2,7 @@ import type { MatchContext } from 'entities/context/types';
 import {
   makeFailedExample,
   makeSuccessExample,
-  nameExample,
+  exampleToNames,
 } from 'entities/contract/interactions';
 import type { CaseExample } from 'entities/contract/types';
 import { setupUnhandledAssert } from 'connectors/contract/core/executeExample/setup';
@@ -10,6 +10,7 @@ import { handleResult } from 'entities/results/handlers';
 import type { StateHandlers } from 'entities/states/types';
 import { executionError, hasErrors, makeResults } from 'entities/results';
 import type { CaseContract, CaseVerifier } from 'connectors/contract';
+import type { InvokingScaffold } from 'connectors/contract/types';
 import type {
   AnyInteractionType,
   Assertable,
@@ -18,17 +19,20 @@ import type {
 
 import { CaseConfigurationError } from 'entities';
 import { executeStateHandlers, executeTeardownHandlers } from './stateHandlers';
+import { callTrigger } from './triggers';
 
 const setupExample = <T extends AnyInteractionType>(
   example: CaseExample,
   stateSetups: StateHandlers,
   context: MatchContext
 ): Promise<Assertable<T>> => {
+  const exampleName = exampleToNames(
+    example,
+    context['case:currentRun:context:testName']
+  );
+
   context.logger.debug(
-    `Beginning setup for example "${nameExample(
-      example,
-      context['case:currentRun:context:testName']
-    )}"`
+    `Beginning setup for example "${exampleName.interactionName}"`
   );
   context.logger.maintainerDebug(
     'Context is',
@@ -84,19 +88,23 @@ const toResultingExample = <T extends AnyInteractionType>(
 
 export const executeExample = <T extends AnyInteractionType>(
   example: CaseExample,
-  stateSetups: StateHandlers,
+  { stateHandlers = {}, trigger, triggers, names }: InvokingScaffold<T>,
   contract: CaseContract | CaseVerifier,
-  trigger: (config: Assertable<T>['config']) => Promise<unknown>,
   context: MatchContext
 ): Promise<unknown> =>
-  setupExample<T>(example, stateSetups, context).then(
+  setupExample<T>(example, stateHandlers, context).then(
     (assertable: Assertable<T>) => {
       context.logger.debug(
         `Invoking trigger with`,
         assertable.config,
         context['case:currentRun:context:location']
       );
-      return trigger(assertable.config)
+      return callTrigger<T>(
+        example.interaction as CaseInteractionFor<T>,
+        { trigger, triggers, names },
+        assertable,
+        context
+      )
         .then(
           () => {
             context.logger.debug(`Asserting result`);
@@ -126,19 +134,4 @@ export const executeExample = <T extends AnyInteractionType>(
           );
         });
     }
-  );
-
-export const executeNoTriggerExample = <T extends AnyInteractionType>(
-  example: CaseExample,
-  stateSetups: StateHandlers,
-  contract: CaseContract | CaseVerifier,
-
-  context: MatchContext
-): Promise<unknown> =>
-  executeExample<T>(
-    example,
-    stateSetups,
-    contract,
-    () => Promise.resolve(),
-    context
   );

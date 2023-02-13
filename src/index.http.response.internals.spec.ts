@@ -53,23 +53,30 @@ describe('simple get endpoint', () => {
   });
 
   describe('without a URL', () => {
+    const config = {
+      expectation: 'produce',
+      contractMode: 'read',
+    } as CaseConfig;
+
     it('fails to setup', () =>
       expect(
         contract.executeTest(
           {
             interaction,
           },
-          {
-            expectation: 'produce',
-          } as CaseConfig
+          config
         )
       ).rejects.toBeInstanceOf(CaseConfigurationError));
   });
 
   describe('with a URL', () => {
-    const config: CaseConfig & { expectation: 'produce' } = {
+    const config: CaseConfig & {
+      expectation: 'produce';
+      contractMode: 'read';
+    } = {
       baseUrlUnderTest: 'http://localhost:8282',
       expectation: 'produce',
+      contractMode: 'read',
     };
     describe('but no running server', () => {
       it('fails to start', () =>

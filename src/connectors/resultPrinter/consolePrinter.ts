@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { locationString as formatLocationString } from 'entities/context';
 import type { HasLocation } from 'entities/context/types';
-import { nameExample } from 'entities/contract/interactions';
+import { exampleToNames } from 'entities/contract/interactions';
 import type { CaseExample } from 'entities/contract/types';
 import { actualToString } from 'entities/results/renderActual';
 import {
@@ -93,7 +93,7 @@ const printFailureTitle = (
       spaces(
         3,
         `\n${chalk.red(`✘`)} ${chalk.whiteBright(
-          nameExample(example, index)
+          exampleToNames(example, index).interactionName
         )}\n   Error details follow:\n`
       )
     );
@@ -111,7 +111,7 @@ const printSuccessTitle = (
       spaces(
         3,
         `\n${chalk.greenBright(`✅`)} ${chalk.whiteBright(
-          nameExample(example, index)
+          exampleToNames(example, index).interactionName
         )}\n`
       )
     );

@@ -10,7 +10,10 @@ import { makeLogger as defaultMakeLogger } from 'connectors/logger';
 import { CaseCoreError } from 'entities';
 import { CaseFailedError } from 'entities/CaseFailedError';
 import { addLocation, applyNodeToContext } from 'entities/context';
-import { nameInteraction } from 'entities/contract/interactions';
+import {
+  exampleToNames,
+  nameInteraction,
+} from 'entities/contract/interactions';
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
 import { makeResults } from 'entities/results';
@@ -42,23 +45,23 @@ export class CaseContract extends BaseCaseContract {
   }
 
   executeTest<T extends AnyInteractionType>(
-    {
-      states = [],
-      interaction,
-      trigger = () => Promise.resolve(),
-      stateHandlers = {},
-    }: TestInvoker<T>,
+    { states = [], interaction, trigger, stateHandlers = {} }: TestInvoker<T>,
     runConfig?: CaseConfig
   ): Promise<unknown> {
     const thisIndex = this.testIndex;
     this.testIndex += 1;
 
     const runContext = applyNodeToContext(interaction, this.initialContext, {
-      ...(runConfig ? configToRunContext(runConfig) : {}),
-      'case:currentRun:context:testName': `${thisIndex}`,
       'case:currentRun:context:contractMode': 'write',
+      'case:currentRun:context:testName': `${thisIndex}`,
+      ...(runConfig ? configToRunContext(runConfig) : {}),
     });
 
+    if (runContext['case:currentRun:context:contractMode'] !== 'write') {
+      runContext.logger.warn(
+        `The contractMode is expected to be 'write', but it was '${runContext['case:currentRun:context:contractMode']}'. If you are not expecting this message, this is almost certainly a misconfiguration`
+      );
+    }
     return this.mutex.runExclusive(() => {
       states.forEach((state) => {
         if (state['case:state:type'] === SETUP_VARIABLE_STATE) {
@@ -68,15 +71,20 @@ export class CaseContract extends BaseCaseContract {
         }
       });
 
-      return executeExample(
+      const example: CaseExample = {
+        states,
+        interaction: nameInteraction(interaction, runContext),
+        result: 'PENDING',
+      };
+
+      return executeExample<T>(
+        example,
         {
-          states,
-          interaction: nameInteraction(interaction, runContext),
-          result: 'PENDING',
+          stateHandlers,
+          trigger,
+          names: exampleToNames(example, `${this.testIndex}`),
         },
-        stateHandlers,
         this,
-        trigger,
         runContext
       );
     });

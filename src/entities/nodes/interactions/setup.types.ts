@@ -24,15 +24,21 @@ export type InteractionSetupFn<T extends AnyInteractionType> = (
   context: MatchContext
 ) => Promise<InteractionData<T>>;
 
+type BaseConfig = {
+  variables: Record<string, unknown>;
+};
+
 export type HttpRequestConsumerSetup = HasTypeForInteraction<
   typeof CONSUME_HTTP_RESPONSE
-> & {
-  baseUrl: string;
-};
+> &
+  BaseConfig & {
+    baseUrl: string;
+  };
 
 export type HttpRequestProducerSetup = HasTypeForInteraction<
   typeof PRODUCE_HTTP_RESPONSE
->;
+> &
+  BaseConfig;
 
 type AnySetupInfo = HttpRequestConsumerSetup | HttpRequestProducerSetup;
 

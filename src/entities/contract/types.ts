@@ -28,3 +28,9 @@ export type CaseExample =
   | SuccessfulCaseExample
   | FailedCaseExample
   | PendingCaseExample;
+
+export type ExampleNames = {
+  interactionName: string;
+  requestName: string;
+  responseName: string;
+};
