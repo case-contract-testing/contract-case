@@ -74,6 +74,7 @@ Pact Parity
   - [ ] Error handling when the files don't exist
   - [ ] Get files from broker
 - [ ] Http Headers
+- [ ] Query strings
 - [ ] Crash messages
 - [ ] Helpers for setting up tests
 - [ ] Timeouts

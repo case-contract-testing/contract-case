@@ -125,7 +125,7 @@ export const setupHttpResponseProducer = (
       mock
     );
     resolve({
-      mock,
+      config: mock,
       assertableData: () =>
         new Promise<void>((startVerify, closeReject) => {
           server.close((err?: Error) => {

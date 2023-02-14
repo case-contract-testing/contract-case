@@ -15,7 +15,7 @@ type MockOutput = {
 };
 
 export type MockData<T extends AnyMockDescriptorType> = {
-  mock: SetupInfoFor<T>;
+  config: SetupInfoFor<T>;
   assertableData: () => Promise<MockOutput>;
 };
 

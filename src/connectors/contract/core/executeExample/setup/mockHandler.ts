@@ -12,12 +12,12 @@ import { mockExecutor } from './mockExecutor';
 import { MockExecutors } from './mockExecutors';
 
 export const setupUnhandledAssert = <T extends AnyMockDescriptorType>(
-  mock: CaseMockDescriptorFor<T>,
+  mockDescriptor: CaseMockDescriptorFor<T>,
   parentMatchContext: MatchContext
 ): Promise<Assertable<T>> =>
-  mockExecutor(mock, MockExecutors, parentMatchContext).then(
-    ({ mock, assertableData }) => ({
-      config: mock,
+  mockExecutor(mockDescriptor, MockExecutors, parentMatchContext).then(
+    ({ config, assertableData }) => ({
+      config,
       assert: () =>
         assertableData().then(({ expected, context, actual }) =>
           Promise.resolve(
