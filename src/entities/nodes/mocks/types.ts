@@ -1,8 +1,4 @@
-import type {
-  CoreHttpRequestMatcher,
-  CoreHttpResponseMatcher,
-  LookupableMatcher,
-} from 'entities/types';
+import type { AnyCaseMatcher } from 'entities/types';
 
 export type AnyMockDescriptorType =
   | typeof MOCK_HTTP_SERVER
@@ -30,8 +26,8 @@ export type CaseMockDescriptorFor<T extends AnyMockDescriptorType> = Extract<
 >;
 
 export interface CoreHttpRequestResponseMatcherPair {
-  request: CoreHttpRequestMatcher | LookupableMatcher;
-  response: CoreHttpResponseMatcher | LookupableMatcher;
+  request: AnyCaseMatcher;
+  response: AnyCaseMatcher;
 }
 
 export type ConsumeHttpResponse = HasTypeForMockDescriptor<
