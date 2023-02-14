@@ -21,6 +21,7 @@ export type CoreHttpResponseMatcher = {
   uniqueName?: string;
   status: number | CoreHttpStatusCodeMatcher;
   body?: AnyCaseNodeOrData;
+  headers?: AnyCaseNodeOrData | Record<string, AnyCaseNodeOrData>;
 };
 
 export type CoreHttpRequestMatcher = {
@@ -30,22 +31,26 @@ export type CoreHttpRequestMatcher = {
   path: AnyStringMatcher | string;
   method: AnyStringMatcher | string;
   body?: AnyCaseNodeOrData;
+  headers?: AnyCaseNodeOrData | Record<string, AnyCaseNodeOrData>;
 };
 
 export type HttpRequestData = {
   body: AnyData;
   method: string;
   path: string;
+  headers?: Record<string, string | string[] | undefined>;
 };
 
 export type HttpResponseData = {
   status: number;
   body: AnyData;
+  headers?: Record<string, string>;
 };
 
 export interface HttpMockResponse {
   uniqueName?: string;
   status: number | CoreHttpStatusCodeMatcher;
+  headers?: AnyCaseNodeOrData | Record<string, AnyCaseNodeOrData>;
   body?: AnyCaseNodeOrData;
 }
 
@@ -53,5 +58,6 @@ export interface HttpMockRequest {
   uniqueName?: string;
   path: AnyStringMatcher | string;
   method: AnyStringMatcher | string;
+  headers?: AnyCaseNodeOrData | Record<string, AnyCaseNodeOrData>;
   body?: AnyCaseNodeOrData;
 }

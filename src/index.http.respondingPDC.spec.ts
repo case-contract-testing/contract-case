@@ -153,6 +153,7 @@ describe('e2e http provider driven', () => {
                 request: {
                   method: 'GET',
                   path: '/health',
+                  headers: { accept: 'application/json' },
                 },
                 response: { status: 200, body: { status: 'up' } },
               })
@@ -281,6 +282,18 @@ describe('Client verification', () => {
                   },
               },
             },
+            'an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"}':
+              {
+                trigger: (config: HttpRequestConfig) =>
+                  api(config.baseUrl).health(),
+                verifiers: {
+                  'a (200) response with body an object shaped like {status: "up"}':
+                    (health) => {
+                      expect(health).toEqual('up');
+                    },
+                },
+                errorVerifiers: {},
+              },
             'an http "GET" request to "/users/123" without a body': {
               trigger: (config: HttpRequestConfig) =>
                 api(config.baseUrl).getUser('123'),

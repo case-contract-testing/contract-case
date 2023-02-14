@@ -14,6 +14,7 @@ import type {
   MatchContext,
   HttpRequestData,
 } from 'entities/types';
+import { makeAssertionsOn } from './assert/assert';
 
 const isHasBaseUrl = (
   context: Partial<MatchContextData>
@@ -49,23 +50,15 @@ const validateHttpRequestData = (
       "Expected request description didn't resolve to a object"
     );
   }
-  if (!('method' in data)) {
-    throw new CaseConfigurationError(
-      "Expected request description didn't contain a 'method' key"
-    );
-  }
 
-  if (typeof data.method !== 'string') {
-    throw new CaseConfigurationError(
-      "Expected request description's method must be a string"
-    );
-  }
-
-  if (!('path' in data) || typeof data.path !== 'string') {
-    throw new CaseConfigurationError(
-      "Expected request description didn't contain a 'path' key"
-    );
-  }
+  const { assertFieldPresent, assertIfFieldPresent } = makeAssertionsOn(
+    data,
+    'Expected request description'
+  );
+  assertFieldPresent({ field: 'method', type: 'string' });
+  assertFieldPresent({ field: 'path', type: 'string' });
+  assertIfFieldPresent({ field: 'body', type: 'object' });
+  assertIfFieldPresent({ field: 'headers', type: 'object', notNull: true });
 
   return data;
 };
@@ -85,7 +78,7 @@ export const setupHttpResponseConsumer = (
       )
     );
 
-    const { body, method, path } = expectedRequest;
+    const { body, method, path, headers } = expectedRequest;
 
     return validateConfig(parentContext).then(
       (run: MatchContextData & HasBaseUrlUnderTest) => ({
@@ -105,6 +98,7 @@ export const setupHttpResponseConsumer = (
                     body,
                   }
                 : {}),
+              ...(headers ? { headers } : {}),
             })
             .then(
               (response) => ({ body: response.data, status: response.status }),

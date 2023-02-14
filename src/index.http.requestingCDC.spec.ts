@@ -105,6 +105,7 @@ describe('e2e http consumer driven', () => {
                 request: {
                   method: 'GET',
                   path: '/health',
+                  headers: { accept: 'application/json' },
                 },
                 response: { status: 200, body: { status: 'up' } },
               }),

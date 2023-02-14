@@ -82,6 +82,7 @@ export const setupHttpResponseProducer = (
               method: req.method,
               path: req.path,
               body: req.body,
+              headers: req.headers,
             };
 
             context.logger.debug(

@@ -152,7 +152,7 @@ describe('Server verification', () => {
       verifier.verifyContract(
         { stateHandlers },
         runJestTestExepectingErrors({
-          'When Server is up, then an http "GET" request to "/health" without a body -> a (200) response with body an object shaped like {status: "up"}':
+          'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} -> a (200) response with body an object shaped like {status: "up"}':
             CaseConfigurationError,
           'When Server is up, then an http "GET" request to "/health" without a body -> a (200) response with body an object shaped like {status: <any string>}':
             CaseConfigurationError,
@@ -202,7 +202,7 @@ describe('Server verification', () => {
       verifier.verifyContract(
         { stateHandlers },
         runJestTestExepectingErrors({
-          'When Server is up, then an http "GET" request to "/health" without a body -> a (200) response with body an object shaped like {status: "up"}':
+          'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} -> a (200) response with body an object shaped like {status: "up"}':
             CaseConfigurationError,
           'When Server is up, then an http "GET" request to "/health" without a body -> a (200) response with body an object shaped like {status: <any string>}':
             CaseConfigurationError,

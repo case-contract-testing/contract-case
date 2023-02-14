@@ -11,9 +11,12 @@
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "matcher:an http \"GET\" request to \"/health\" without a body": {
+    "matcher:an http \"GET\" request to \"/health\" without a body with the following headers an object shaped like {accept: \"application/json\"}": {
       "method": "GET",
       "path": "/health",
+      "headers": {
+        "accept": "application/json"
+      },
       "case:matcher:type": "HttpRequestMatcher"
     },
     "matcher:a (200) response with body an object shaped like {status: <any string>}": {
@@ -26,6 +29,11 @@
         "case:context:matchBy": "type"
       },
       "case:matcher:type": "HttpResponseMatcher"
+    },
+    "matcher:an http \"GET\" request to \"/health\" without a body": {
+      "method": "GET",
+      "path": "/health",
+      "case:matcher:type": "HttpRequestMatcher"
     },
     "matcher:a (httpStaus 4XX | 5XX) response without a body": {
       "status": {
@@ -100,10 +108,13 @@
       "mock": {
         "request": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
+          "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body with the following headers an object shaped like {accept: \"application/json\"}",
           "case:matcher:child": {
             "method": "GET",
             "path": "/health",
+            "headers": {
+              "accept": "application/json"
+            },
             "case:matcher:type": "HttpRequestMatcher"
           }
         },

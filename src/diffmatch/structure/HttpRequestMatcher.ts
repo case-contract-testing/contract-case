@@ -32,6 +32,14 @@ const strip = (
         ),
       }
     : {}),
+  ...(matcher.headers
+    ? {
+        headers: matchContext.descendAndStrip(
+          matcher.headers,
+          addLocation('headers', matchContext)
+        ),
+      }
+    : {}),
   method: mustResolveToString(
     matcher.method,
     addLocation('method', matchContext)
@@ -67,6 +75,13 @@ const check = async (
       addLocation('path', matchContext),
       actual.path
     ),
+    matcher.headers !== undefined
+      ? await matchContext.descendAndCheck(
+          matcher.headers,
+          addLocation('headers', matchContext),
+          actual.headers
+        )
+      : makeResults(),
     matcher.body !== undefined
       ? await matchContext.descendAndCheck(
           matcher.body,
@@ -86,7 +101,14 @@ const name = (request: CoreHttpRequestMatcher, context: MatchContext): string =>
       )} request to ${context.descendAndDescribe(
         request.path,
         addLocation('path', context)
-      )} ${request.body ? 'with a body' : 'without a body'}`;
+      )} ${request.body ? 'with a body' : 'without a body'}${
+        request.headers
+          ? ` with the following headers ${context.descendAndDescribe(
+              request.headers,
+              addLocation('headers', context)
+            )}`
+          : ''
+      }`;
 
 export const HttpRequestMatcher: MatcherExecutor<
   typeof HTTP_REQUEST_MATCHER_TYPE

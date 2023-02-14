@@ -14,11 +14,12 @@ export const makeAxiosConnector = (baseurl: string): HttpConnector => ({
   authedGet: (path) =>
     axios
       .get(`${baseurl}${path}`, {
+        headers: { Accept: 'application/json' },
         //      headers: { Authorization: `Bearer ${authToken}` },
       })
       .then(unmarshallSuccess, unmarshallFailure),
   get: (path) =>
     axios
-      .get(`${baseurl}${path}`, {})
+      .get(`${baseurl}${path}`, { headers: { Accept: 'application/json' } })
       .then(unmarshallSuccess, unmarshallFailure),
 });
