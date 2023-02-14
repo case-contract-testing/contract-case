@@ -7,9 +7,7 @@ import {
   CoreHttpRequestResponseMatcherPair,
   MatchContext,
   MOCK_HTTP_SERVER,
-  HTTP_RESPONSE_MATCHER_TYPE,
-  CoreHttpResponseMatcher,
-  LookupableMatcher,
+  HttpResponseData,
 } from 'entities/types';
 import { addLocation } from 'entities/context';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
@@ -30,30 +28,30 @@ const addressToString = (address: string | net.AddressInfo | null) => {
   }`;
 };
 
-// TODO this really shouldn't be here
-const getMatcher = (
-  matcher: LookupableMatcher | CoreHttpResponseMatcher,
-  matchContext: MatchContext
-): CoreHttpResponseMatcher => {
-  if (matcher['case:matcher:type'] === HTTP_RESPONSE_MATCHER_TYPE) {
-    return matcher;
-  }
-  if ('case:matcher:child' in matcher) {
-    matchContext.saveLookupableMatcher(matcher);
-  }
-  const stored = matchContext.lookupMatcher(matcher['case:matcher:uniqueName']);
+const validateHttpResponseData = (
+  maybeHttpResponseData: unknown
+): HttpResponseData => {
   if (
-    typeof stored === 'object' &&
-    stored != null &&
-    'case:matcher:type' in stored &&
-    stored['case:matcher:type'] === HTTP_RESPONSE_MATCHER_TYPE
+    maybeHttpResponseData === null ||
+    typeof maybeHttpResponseData !== 'object'
   ) {
-    return stored;
+    throw new CaseConfigurationError(
+      "Expected response description didn't resolve to a object"
+    );
   }
-  throw new CaseConfigurationError(
-    `The HTTP matcher didn't resolve to an ${HTTP_RESPONSE_MATCHER_TYPE}`,
-    matchContext
-  );
+  const data = maybeHttpResponseData as HttpResponseData;
+
+  if (!('status' in data)) {
+    throw new CaseConfigurationError(
+      "Expected response description didn't contain a 'status' key"
+    );
+  }
+
+  if (typeof data.status === 'string') {
+    data.status = Number.parseInt(data.status, 10);
+  }
+
+  return data;
 };
 
 export const setupHttpResponseProducer = (
@@ -65,98 +63,110 @@ export const setupHttpResponseProducer = (
 ): Promise<MockData<typeof MOCK_HTTP_SERVER>> => {
   let requestData: HttpRequestData;
   let server: http.Server;
-  return new Promise<MockData<typeof MOCK_HTTP_SERVER>>((resolve, reject) => {
-    const app = express();
-    app.all('*', (req, res, next) => {
-      requestData = { method: req.method, path: req.path, body: req.body };
-      const expectedResponse = getMatcher(responseMatcher, context);
 
-      context.logger.debug(
-        `Mock server at '${addressToString(server?.address())}' received`,
-        requestData
-      );
-
-      res.status(
+  return Promise.resolve()
+    .then(() =>
+      validateHttpResponseData(
         context.descendAndStrip(
-          expectedResponse.status,
-          addLocation('response.status', context)
-        ) as number
-      );
+          responseMatcher,
+          addLocation('expectedRequest', context)
+        )
+      )
+    )
+    .then(
+      (expectedResponse) =>
+        new Promise<MockData<typeof MOCK_HTTP_SERVER>>((resolve, reject) => {
+          const app = express();
+          app.all('*', (req, res, next) => {
+            requestData = {
+              method: req.method,
+              path: req.path,
+              body: req.body,
+            };
 
-      if (expectedResponse.body) {
-        res.send(
-          context.descendAndStrip(
-            expectedResponse.body,
-            addLocation('response.body', context)
-          )
-        );
-      } else {
-        res.send();
-      }
-      next();
-    });
-
-    server = app.listen();
-    const address = server.address();
-
-    context.logger.maintainerDebug(`Mock server setup on address`, address);
-    context.logger.debug(
-      `Mock server now listening on ${addressToString(address)}`
-    );
-
-    if (address == null) {
-      context.logger.error(
-        `Server address was null or undefined. This shouldn't happen, and is a bug`
-      );
-      reject(
-        new CaseCoreError('Server address was null after startup', context)
-      );
-      return;
-    }
-    const mock = {
-      'case:mock:type': MOCK_HTTP_SERVER,
-      baseUrl: `http://${addressToString(address)}`,
-      variables: { userId: '42' }, // TODO replace this with actual variables
-    };
-    context.logger.maintainerDebug(
-      `Mock listening and ready to accept ${
-        typeof address === 'object' ? address.family : 'no-family'
-      } connections: `,
-      mock
-    );
-    resolve({
-      config: mock,
-      assertableData: () =>
-        new Promise<void>((startVerify, closeReject) => {
-          server.close((err?: Error) => {
-            context.logger.maintainerDebug(
-              `Closing server from ${mock.baseUrl}`,
-              mock
+            context.logger.debug(
+              `Mock server at '${addressToString(server?.address())}' received`,
+              requestData
             );
-            if (err) {
-              context.logger.error(
-                `There was an error shutting down the mock server. This shouldn't happen, and might be a bug`
-              );
-              closeReject(
-                new CaseCoreError(
-                  `The server at ${mock.baseUrl} was not running when it was asserted: ${err}`
-                )
-              );
+
+            res.status(expectedResponse.status);
+
+            if (expectedResponse.body) {
+              res.send(expectedResponse.body);
             } else {
-              startVerify();
+              res.send();
             }
+            next();
           });
-        }).then(async () => {
+
+          server = app.listen();
+          const address = server.address();
+
           context.logger.maintainerDebug(
-            `Asserting that the expected request for the mock at ${mock.baseUrl} happened correctly`
+            `Mock server setup on address`,
+            address
+          );
+          context.logger.debug(
+            `Mock server now listening on ${addressToString(address)}`
           );
 
-          return {
-            actual: requestData,
-            context: addLocation('request', context),
-            expected: expectedRequest,
+          if (address == null) {
+            context.logger.error(
+              `Server address was null or undefined. This shouldn't happen, and is a bug`
+            );
+            reject(
+              new CaseCoreError(
+                'Server address was null after startup',
+                context
+              )
+            );
+            return;
+          }
+          const mock = {
+            'case:mock:type': MOCK_HTTP_SERVER,
+            baseUrl: `http://${addressToString(address)}`,
+            variables: { userId: '42' }, // TODO replace this with actual variables
           };
-        }),
-    });
-  });
+          context.logger.maintainerDebug(
+            `Mock listening and ready to accept ${
+              typeof address === 'object' ? address.family : 'no-family'
+            } connections: `,
+            mock
+          );
+          resolve({
+            config: mock,
+            assertableData: () =>
+              new Promise<void>((startVerify, closeReject) => {
+                server.close((err?: Error) => {
+                  context.logger.maintainerDebug(
+                    `Closing server from ${mock.baseUrl}`,
+                    mock
+                  );
+                  if (err) {
+                    context.logger.error(
+                      `There was an error shutting down the mock server. This shouldn't happen, and might be a bug`
+                    );
+                    closeReject(
+                      new CaseCoreError(
+                        `The server at ${mock.baseUrl} was not running when it was asserted: ${err}`
+                      )
+                    );
+                  } else {
+                    startVerify();
+                  }
+                });
+              }).then(async () => {
+                context.logger.maintainerDebug(
+                  `Asserting that the expected request for the mock at ${mock.baseUrl} happened correctly`
+                );
+
+                return {
+                  actual: requestData,
+                  context: addLocation('request', context),
+                  expected: expectedRequest,
+                };
+              }),
+          });
+        })
+    );
 };

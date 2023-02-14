@@ -38,6 +38,11 @@ export type HttpRequestData = {
   path: string;
 };
 
+export type HttpResponseData = {
+  status: number;
+  body: AnyData;
+};
+
 export interface HttpMockResponse {
   uniqueName?: string;
   status: number | CoreHttpStatusCodeMatcher;

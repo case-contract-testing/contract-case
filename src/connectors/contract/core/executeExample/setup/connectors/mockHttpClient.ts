@@ -1,20 +1,19 @@
 import axios from 'axios';
 import * as http from 'node:http';
 
-import { MOCK_HTTP_CLIENT } from 'entities/nodes/mocks/types';
 import {
-  HasBaseUrlUnderTest,
-  MatchContextData,
-  MatchContext,
   CoreHttpRequestResponseMatcherPair,
-  CoreHttpRequestMatcher,
-  LookupableMatcher,
-  HTTP_REQUEST_MATCHER_TYPE,
-} from 'entities/types';
+  MOCK_HTTP_CLIENT,
+} from 'entities/nodes/mocks/types';
 import { addLocation } from 'entities/context';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
-import { mustResolveToString } from 'entities/nodes/matchers/resolve';
 import type { MockData } from 'entities/nodes/mocks/setup.types';
+import type {
+  MatchContextData,
+  HasBaseUrlUnderTest,
+  MatchContext,
+  HttpRequestData,
+} from 'entities/types';
 
 const isHasBaseUrl = (
   context: Partial<MatchContextData>
@@ -37,47 +36,58 @@ const validateConfig = (
   );
 };
 
-// TODO this really shouldn't be here
-const getMatcher = (
-  matcher: LookupableMatcher | CoreHttpRequestMatcher,
-  matchContext: MatchContext
-): CoreHttpRequestMatcher => {
-  if (matcher['case:matcher:type'] === HTTP_REQUEST_MATCHER_TYPE) {
-    return matcher;
-  }
-  if ('case:matcher:child' in matcher) {
-    matchContext.saveLookupableMatcher(matcher);
-  }
-  const stored = matchContext.lookupMatcher(matcher['case:matcher:uniqueName']);
-  if (
-    typeof stored === 'object' &&
-    stored != null &&
-    'case:matcher:type' in stored &&
-    stored['case:matcher:type'] === HTTP_REQUEST_MATCHER_TYPE
-  ) {
-    return stored;
-  }
-  throw new CaseConfigurationError(
-    `The HTTP matcher didn't resolve to an ${HTTP_REQUEST_MATCHER_TYPE}`,
-    matchContext
-  );
-};
-
 const httpAgent = new http.Agent({
   keepAlive: false,
 });
+
+const validateHttpRequestData = (
+  maybeHttpRequestData: unknown
+): HttpRequestData => {
+  const data = maybeHttpRequestData as HttpRequestData;
+  if (data === null || typeof data !== 'object') {
+    throw new CaseConfigurationError(
+      "Expected request description didn't resolve to a object"
+    );
+  }
+  if (!('method' in data)) {
+    throw new CaseConfigurationError(
+      "Expected request description didn't contain a 'method' key"
+    );
+  }
+
+  if (typeof data.method !== 'string') {
+    throw new CaseConfigurationError(
+      "Expected request description's method must be a string"
+    );
+  }
+
+  if (!('path' in data) || typeof data.path !== 'string') {
+    throw new CaseConfigurationError(
+      "Expected request description didn't contain a 'path' key"
+    );
+  }
+
+  return data;
+};
 
 export const setupHttpResponseConsumer = (
   {
     request: requestMatcher,
     response: expectedResponse,
   }: CoreHttpRequestResponseMatcherPair,
-  context: MatchContext
+  parentContext: MatchContext
 ): Promise<MockData<typeof MOCK_HTTP_CLIENT>> =>
   Promise.resolve().then(() => {
-    const expectedRequest = getMatcher(requestMatcher, context);
+    const expectedRequest = validateHttpRequestData(
+      parentContext.descendAndStrip(
+        requestMatcher,
+        addLocation('expectedRequest', parentContext)
+      )
+    );
 
-    return validateConfig(context).then(
+    const { body, method, path } = expectedRequest;
+
+    return validateConfig(parentContext).then(
       (run: MatchContextData & HasBaseUrlUnderTest) => ({
         config: {
           'case:mock:type': MOCK_HTTP_CLIENT,
@@ -87,23 +97,12 @@ export const setupHttpResponseConsumer = (
           axios
             .request({
               validateStatus: () => true, // This means that all status codes resolve the promise
-              method: mustResolveToString(
-                expectedRequest.method,
-                addLocation('method', context)
-              ),
+              method,
               httpAgent,
-              url: `${
-                run['case:currentRun:context:baseUrlUnderTest']
-              }${mustResolveToString(
-                expectedRequest.path,
-                addLocation('path', context)
-              )}`,
-              ...(expectedRequest.body
+              url: `${run['case:currentRun:context:baseUrlUnderTest']}${path}`,
+              ...(body
                 ? {
-                    body: context.descendAndStrip(
-                      expectedRequest.body,
-                      addLocation('body', context)
-                    ),
+                    body,
                   }
                 : {}),
             })
@@ -138,7 +137,7 @@ export const setupHttpResponseConsumer = (
             )
             .then(async (result) => ({
               actual: result,
-              context: addLocation('response', context),
+              context: addLocation('response', parentContext),
               expected: expectedResponse,
             })),
       })

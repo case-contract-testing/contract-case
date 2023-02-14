@@ -132,7 +132,7 @@ Contract file access patterns
 Internals
 
 - [x] Errors that don't have associated matchers
-- [ ] Move interactions to matchers
+- [x] Move interactions to matchers
 - [x] Fail tests if there are configuration errors inside the handler
 - [x] Tidy up strip matcher stuff
 - [ ] Strip matchers should take states
