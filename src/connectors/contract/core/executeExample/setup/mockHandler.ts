@@ -1,14 +1,18 @@
 import type { MatchContext } from 'entities/context/types';
 import { hasErrors } from 'entities/results/MatchResult';
-import type { AnyMockType, CaseMockFor, Assertable } from 'entities/types';
+import type {
+  AnyMockDescriptorType,
+  CaseMockDescriptorFor,
+  Assertable,
+} from 'entities/types';
 import { addLocation } from 'entities/context';
 import { CaseConfigurationError } from 'entities';
 
 import { mockExecutor } from './mockExecutor';
 import { MockExecutors } from './mockExecutors';
 
-export const setupUnhandledAssert = <T extends AnyMockType>(
-  mock: CaseMockFor<T>,
+export const setupUnhandledAssert = <T extends AnyMockDescriptorType>(
+  mock: CaseMockDescriptorFor<T>,
   parentMatchContext: MatchContext
 ): Promise<Assertable<T>> =>
   mockExecutor(mock, MockExecutors, parentMatchContext).then(

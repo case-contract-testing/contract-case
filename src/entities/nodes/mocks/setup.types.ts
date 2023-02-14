@@ -1,10 +1,10 @@
 import type { MatchContext } from 'entities/context/types';
 import type { AnyCaseNodeOrData, AnyData } from 'entities/nodes/matchers/types';
 import type {
-  AnyMockType,
-  CaseMockFor,
+  AnyMockDescriptorType,
+  CaseMockDescriptorFor,
   MOCK_HTTP_CLIENT,
-  HasTypeForMock,
+  HasTypeForMockDescriptor,
   MOCK_HTTP_SERVER,
 } from './types';
 
@@ -14,13 +14,13 @@ type MockOutput = {
   context: MatchContext;
 };
 
-export type MockData<T extends AnyMockType> = {
+export type MockData<T extends AnyMockDescriptorType> = {
   mock: SetupInfoFor<T>;
   assertableData: () => Promise<MockOutput>;
 };
 
-export type MockSetupFn<T extends AnyMockType> = (
-  mock: CaseMockFor<T>,
+export type MockSetupFn<T extends AnyMockDescriptorType> = (
+  mock: CaseMockDescriptorFor<T>,
   context: MatchContext
 ) => Promise<MockData<T>>;
 
@@ -28,17 +28,21 @@ type BaseConfig = {
   variables: Record<string, unknown>;
 };
 
-export type HttpRequestConsumerSetup = HasTypeForMock<typeof MOCK_HTTP_SERVER> &
+export type HttpRequestConsumerSetup = HasTypeForMockDescriptor<
+  typeof MOCK_HTTP_SERVER
+> &
   BaseConfig & {
     baseUrl: string;
   };
 
-export type HttpRequestProducerSetup = HasTypeForMock<typeof MOCK_HTTP_CLIENT> &
+export type HttpRequestProducerSetup = HasTypeForMockDescriptor<
+  typeof MOCK_HTTP_CLIENT
+> &
   BaseConfig;
 
 type AnySetupInfo = HttpRequestConsumerSetup | HttpRequestProducerSetup;
 
-export type SetupInfoFor<T extends AnyMockType> = Extract<
+export type SetupInfoFor<T extends AnyMockDescriptorType> = Extract<
   AnySetupInfo,
-  HasTypeForMock<T>
+  HasTypeForMockDescriptor<T>
 >;

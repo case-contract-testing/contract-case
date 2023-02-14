@@ -1,5 +1,5 @@
 import type { Logger } from 'entities/logger/types';
-import { AnyMock, isCaseMock } from 'entities/nodes/mocks/types';
+import { AnyMockDescriptor, isCaseMock } from 'entities/nodes/mocks/types';
 import {
   isCaseNode,
   AnyCaseNodeOrData,
@@ -26,7 +26,6 @@ import type {
  */
 const DEFAULT_CONTEXT: DefaultContext = {
   'case:currentRun:context:location': [],
-  'case:currentRun:context:expectation': 'consume',
   'case:currentRun:context:contractMode': 'write',
   'case:currentRun:context:logLevel': 'info',
   'case:currentRun:context:printResults': true,
@@ -34,7 +33,9 @@ const DEFAULT_CONTEXT: DefaultContext = {
   'case:context:serialisableTo': 'json',
 };
 
-const contextProperties = (caseNode: AnyCaseMatcher | AnyMock): MatchContext =>
+const contextProperties = (
+  caseNode: AnyCaseMatcher | AnyMockDescriptor
+): MatchContext =>
   Object.entries(caseNode)
     .filter(
       ([k]) =>
@@ -52,7 +53,7 @@ const updateFunctions = (context: MatchContext) => {
 };
 
 export const foldIntoContext = (
-  caseNode: AnyCaseMatcher | AnyMock,
+  caseNode: AnyCaseMatcher | AnyMockDescriptor,
   context: MatchContext
 ): MatchContext => ({
   ...context,
@@ -62,7 +63,7 @@ export const foldIntoContext = (
 let mockId = 0;
 
 const combineWithRoot = (
-  caseNodeOrData: AnyCaseNodeOrData | AnyMock,
+  caseNodeOrData: AnyCaseNodeOrData | AnyMockDescriptor,
   context: MatchContext,
   runConfig: Partial<RunContext>
 ) => {
@@ -113,7 +114,7 @@ export const constructInitialContext = (
 };
 
 export const applyNodeToContext = (
-  caseNodeOrData: AnyCaseNodeOrData | AnyMock,
+  caseNodeOrData: AnyCaseNodeOrData | AnyMockDescriptor,
   context: MatchContext,
   runConfig: Partial<RunContext> = {}
 ): MatchContext => combineWithRoot(caseNodeOrData, context, runConfig);

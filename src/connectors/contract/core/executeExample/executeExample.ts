@@ -11,13 +11,17 @@ import type { StateHandlers } from 'entities/states/types';
 import { executionError, hasErrors, makeResults } from 'entities/results';
 import type { CaseContract, CaseVerifier } from 'connectors/contract';
 import type { InvokingScaffold } from 'connectors/contract/types';
-import type { AnyMockType, Assertable, CaseMockFor } from 'entities/types';
+import type {
+  AnyMockDescriptorType,
+  Assertable,
+  CaseMockDescriptorFor,
+} from 'entities/types';
 
 import { CaseConfigurationError } from 'entities';
 import { executeStateHandlers, executeTeardownHandlers } from './stateHandlers';
 import { callTrigger } from './triggers';
 
-const setupExample = <T extends AnyMockType>(
+const setupExample = <T extends AnyMockDescriptorType>(
   example: CaseExample,
   stateSetups: StateHandlers,
   context: MatchContext
@@ -34,21 +38,22 @@ const setupExample = <T extends AnyMockType>(
   );
   return executeStateHandlers(example, stateSetups, context).then(() => {
     context.logger.maintainerDebug(`Calling setupUnhandledAssert`);
-    return setupUnhandledAssert(example.mock as CaseMockFor<T>, context).then(
-      (assertable: Assertable<T>) => ({
-        ...assertable,
-        assert: () =>
-          assertable
-            .assert()
-            .finally(() =>
-              executeTeardownHandlers(example, stateSetups, context)
-            ),
-      })
-    );
+    return setupUnhandledAssert(
+      example.mock as CaseMockDescriptorFor<T>,
+      context
+    ).then((assertable: Assertable<T>) => ({
+      ...assertable,
+      assert: () =>
+        assertable
+          .assert()
+          .finally(() =>
+            executeTeardownHandlers(example, stateSetups, context)
+          ),
+    }));
   });
 };
 
-const toResultingExample = <T extends AnyMockType>(
+const toResultingExample = <T extends AnyMockDescriptorType>(
   assertable: Assertable<T>,
   example: CaseExample,
   context: MatchContext
@@ -79,7 +84,7 @@ const toResultingExample = <T extends AnyMockType>(
     }
   );
 
-export const executeExample = <T extends AnyMockType>(
+export const executeExample = <T extends AnyMockDescriptorType>(
   example: CaseExample,
   { stateHandlers = {}, trigger, triggers, names }: InvokingScaffold<T>,
   contract: CaseContract | CaseVerifier,
@@ -93,7 +98,7 @@ export const executeExample = <T extends AnyMockType>(
         context['case:currentRun:context:location']
       );
       return callTrigger<T>(
-        example.mock as CaseMockFor<T>,
+        example.mock as CaseMockDescriptorFor<T>,
         { trigger, triggers, names },
         assertable,
         context

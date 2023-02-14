@@ -1,4 +1,4 @@
-import type { AnyMockType } from './nodes/mocks/types';
+import type { AnyMockDescriptorType } from './nodes/mocks/types';
 import type { MatchResult } from './results/types';
 import type { SetupInfoFor } from './nodes/mocks/setup.types';
 
@@ -8,7 +8,7 @@ export * from './context/types';
 export * from './contract/types';
 export * from './logger/types';
 
-export type Assertable<T extends AnyMockType> = {
+export type Assertable<T extends AnyMockDescriptorType> = {
   config: SetupInfoFor<T>;
   assert: () => Promise<MatchResult>;
 };

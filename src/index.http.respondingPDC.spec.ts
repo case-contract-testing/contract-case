@@ -16,7 +16,10 @@ import { UserNotFoundConsumerError } from '__tests__/client/http/connector/error
 import { runJestTest } from '__tests__/jest';
 
 // These imports support the partial DSL that hasn't been extracted yet
-import type { AnyMockType, CaseMockFor } from 'entities/types';
+import type {
+  AnyMockDescriptorType,
+  CaseMockDescriptorFor,
+} from 'entities/types';
 import type { AnyState } from 'entities/states/types';
 
 import {
@@ -116,9 +119,9 @@ describe('e2e http provider driven', () => {
     };
 
     // JEST BOILERPLATE
-    const testMock = <T extends AnyMockType>(
+    const testMock = <T extends AnyMockDescriptorType>(
       states: Array<AnyState>,
-      mock: CaseMockFor<T>
+      mock: CaseMockDescriptorFor<T>
     ) =>
       contract.executeTest({
         states,
@@ -126,9 +129,9 @@ describe('e2e http provider driven', () => {
         stateHandlers,
       });
 
-    const testFailedMock = <T extends AnyMockType>(
+    const testFailedMock = <T extends AnyMockDescriptorType>(
       states: Array<AnyState>,
-      mock: CaseMockFor<T>
+      mock: CaseMockDescriptorFor<T>
     ) =>
       contract.executeTest({
         states,

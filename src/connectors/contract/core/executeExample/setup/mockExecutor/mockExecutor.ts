@@ -1,37 +1,25 @@
 import type { MatchContext } from 'entities/context/types';
 import { CaseCoreError } from 'entities/CaseCoreError';
-import {
-  AnyMockType,
-  CaseMockFor,
-  MOCK_HTTP_CLIENT,
-  MOCK_HTTP_SERVER,
-} from 'entities/nodes/mocks/types';
 import type { MockData } from 'entities/nodes/mocks/setup.types';
+import type {
+  AnyMockDescriptorType,
+  CaseMockDescriptorFor,
+} from 'entities/types';
 import { addLocation } from 'entities/context';
 import type { MockSetupFns } from './types';
 
-const invert = (t: AnyMockType): AnyMockType => {
-  switch (t) {
-    case MOCK_HTTP_CLIENT:
-      return MOCK_HTTP_SERVER;
-    case MOCK_HTTP_SERVER:
-      return MOCK_HTTP_CLIENT;
-    default:
-      throw new CaseCoreError(`Unable to invert mock type '${t}'`);
-  }
-};
-
-const inferMock = <T extends AnyMockType>(
-  mock: CaseMockFor<T>,
+const inferMock = <T extends AnyMockDescriptorType>(
+  mock: CaseMockDescriptorFor<T>,
   context: MatchContext
 ) => {
-  context.logger.maintainerDebug('Mock is', mock);
+  context.logger.maintainerDebug('Raw mockDescriptor is', mock);
 
-  if (
-    mock['case:run:context:asWritten'] !==
-    context['case:currentRun:context:expectation']
-  ) {
-    const invertedType = invert(mock['case:mock:type']);
+  const invertedType =
+    mock['case:run:context:setup'][
+      context['case:currentRun:context:contractMode']
+    ].type;
+
+  if (invertedType !== mock['case:mock:type']) {
     context.logger.maintainerDebug(
       `Inverting mock from '${mock['case:mock:type']}' to '${invertedType}'`
     );
@@ -46,15 +34,15 @@ const inferMock = <T extends AnyMockType>(
   return mock;
 };
 
-const executeMock = <T extends AnyMockType>(
-  mock: CaseMockFor<T>,
+const executeMock = <T extends AnyMockDescriptorType>(
+  mock: CaseMockDescriptorFor<T>,
   MockSetup: MockSetupFns,
   context: MatchContext
 ) => {
   const mockType: T = mock['case:mock:type'];
   if (!mockType) {
     throw new CaseCoreError(
-      `Missing type on mock. You must pass an mock to setup`,
+      `Missing type for mock setup. You must pass a MockDescriptor to setup`,
       context
     );
   }
@@ -63,12 +51,12 @@ const executeMock = <T extends AnyMockType>(
   if (!executor) {
     throw new CaseCoreError(`Missing setup for mock type '${mockType}'`);
   }
-
+  context.logger.debug(`Initialising a ${mock['case:mock:type']}`);
   return executor(mock, addLocation(mockType, context));
 };
 
-export const mockExecutor = <T extends AnyMockType>(
-  mock: CaseMockFor<T>,
+export const mockExecutor = <T extends AnyMockDescriptorType>(
+  mock: CaseMockDescriptorFor<T>,
   MockSetup: MockSetupFns,
   context: MatchContext
 ): Promise<MockData<T>> =>

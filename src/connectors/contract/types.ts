@@ -1,17 +1,21 @@
 import type { SetupInfoFor } from 'entities/nodes/mocks/setup.types';
 import type { AnyState, StateHandlers } from 'entities/states/types';
-import type { AnyMockType, CaseMockFor, ExampleNames } from 'entities/types';
+import type {
+  AnyMockDescriptorType,
+  CaseMockDescriptorFor,
+  ExampleNames,
+} from 'entities/types';
 
 export type RunTestCallback = (
   testName: string,
   verify: () => Promise<unknown>
 ) => void;
 
-type Trigger<T extends AnyMockType, R = unknown> = (
+type Trigger<T extends AnyMockDescriptorType, R = unknown> = (
   config: SetupInfoFor<T>
 ) => Promise<R>;
 
-type TriggerPair<T extends AnyMockType, R> = {
+type TriggerPair<T extends AnyMockDescriptorType, R> = {
   trigger: Trigger<T, R>;
   verifiers: Record<
     string,
@@ -23,21 +27,21 @@ type TriggerPair<T extends AnyMockType, R> = {
   >;
 };
 
-export type MultiTestInvoker<T extends AnyMockType, R = unknown> = {
+export type MultiTestInvoker<T extends AnyMockDescriptorType, R = unknown> = {
   stateHandlers?: StateHandlers;
   triggers?: Record<string, TriggerPair<T, R>> | undefined;
 };
 
-export type TestInvoker<T extends AnyMockType, R = unknown> = MultiTestInvoker<
-  T,
-  R
-> & {
+export type TestInvoker<
+  T extends AnyMockDescriptorType,
+  R = unknown
+> = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
-  mock: CaseMockFor<T>;
+  mock: CaseMockDescriptorFor<T>;
   trigger?: Trigger<T, R> | undefined;
 };
 
-export type InvokingScaffold<T extends AnyMockType> = Omit<
+export type InvokingScaffold<T extends AnyMockDescriptorType> = Omit<
   TestInvoker<T>,
   'mock'
 > & { names: ExampleNames };

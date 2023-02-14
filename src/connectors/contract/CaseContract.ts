@@ -17,7 +17,7 @@ import { makeResults } from 'entities/results';
 import { SETUP_VARIABLE_STATE } from 'entities/states/types';
 import {
   LogLevelContext,
-  AnyMockType,
+  AnyMockDescriptorType,
   MatchContext,
   ERROR_TYPE_EXECUTION,
 } from 'entities/types';
@@ -41,7 +41,7 @@ export class CaseContract extends BaseCaseContract {
     this.mutex = new Mutex();
   }
 
-  executeTest<T extends AnyMockType>(
+  executeTest<T extends AnyMockDescriptorType>(
     { states = [], mock, trigger, stateHandlers = {} }: TestInvoker<T>,
     runConfig?: CaseConfig
   ): Promise<unknown> {

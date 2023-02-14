@@ -1,5 +1,5 @@
 import type { AnyState } from 'entities/states/types';
-import type { AnyMock, CaseError } from 'entities/types';
+import type { AnyMockDescriptor, CaseError } from 'entities/types';
 
 export interface ContractDescription {
   consumerName: string;
@@ -8,7 +8,7 @@ export interface ContractDescription {
 
 interface BaseCaseExample {
   states: AnyState[];
-  mock: AnyMock;
+  mock: AnyMockDescriptor;
 }
 
 interface SuccessfulCaseExample extends BaseCaseExample {

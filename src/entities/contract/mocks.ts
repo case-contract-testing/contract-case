@@ -2,17 +2,17 @@ import { coreLookupMatcher } from 'entities/nodes/matchers';
 import type {
   AnyCaseNodeOrData,
   MatchContext,
-  AnyMockType,
-  CaseMockFor,
+  AnyMockDescriptorType,
+  CaseMockDescriptorFor,
 } from 'entities/types';
 
 const nameMatcher = (matcher: AnyCaseNodeOrData, context: MatchContext) =>
   coreLookupMatcher(context.descendAndDescribe(matcher, context), matcher);
 
-export const nameMock = <T extends AnyMockType>(
-  mock: CaseMockFor<T>,
+export const nameMock = <T extends AnyMockDescriptorType>(
+  mock: CaseMockDescriptorFor<T>,
   context: MatchContext
-): CaseMockFor<T> => ({
+): CaseMockDescriptorFor<T> => ({
   ...mock,
   request: nameMatcher(mock.request, context),
   response: nameMatcher(mock.response, context),

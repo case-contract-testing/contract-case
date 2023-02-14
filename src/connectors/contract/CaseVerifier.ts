@@ -13,7 +13,7 @@ import {
 } from 'entities/contract';
 import type { Logger } from 'entities/logger/types';
 import type {
-  AnyMockType,
+  AnyMockDescriptorType,
   CaseError,
   CaseExample,
   LogLevelContext,
@@ -42,7 +42,7 @@ export class CaseVerifier extends BaseCaseContract {
     this.mutex = new Mutex();
   }
 
-  verifyContract<T extends AnyMockType>(
+  verifyContract<T extends AnyMockDescriptorType>(
     { stateHandlers = {}, triggers }: MultiTestInvoker<T>,
     runTestCb: RunTestCallback
   ): void {
@@ -63,7 +63,6 @@ export class CaseVerifier extends BaseCaseContract {
             this,
             applyNodeToContext(example.mock, this.initialContext, {
               'case:currentRun:context:testName': `${index}`,
-              'case:currentRun:context:expectation': 'produce',
               'case:currentRun:context:contractMode': 'read',
               'case:currentRun:context:location': [
                 'verification',

@@ -1,6 +1,6 @@
 import {
   AnyCaseNodeOrData,
-  AnyMock,
+  AnyMockDescriptor,
   isLookupableMatcher,
   LogContext,
 } from 'entities/types';
@@ -26,7 +26,7 @@ export const addMatcher = (
 
 export const addMock = (
   matcherLookup: LookupMap,
-  mock: AnyMock,
+  mock: AnyMockDescriptor,
   context: LogContext
 ): LookupMap =>
   [mock.request, mock.response].reduce(

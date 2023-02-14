@@ -119,7 +119,6 @@
           }
         },
         "case:mock:type": "MockHttpServer",
-        "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
             "type": "MockHttpServer",
@@ -168,7 +167,6 @@
           }
         },
         "case:mock:type": "MockHttpServer",
-        "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
             "type": "MockHttpServer",
@@ -218,7 +216,6 @@
           }
         },
         "case:mock:type": "MockHttpServer",
-        "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
             "type": "MockHttpServer",
@@ -263,7 +260,6 @@
           }
         },
         "case:mock:type": "MockHttpServer",
-        "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
             "type": "MockHttpServer",
@@ -330,7 +326,6 @@
           }
         },
         "case:mock:type": "MockHttpServer",
-        "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
             "type": "MockHttpServer",
@@ -381,7 +376,6 @@
           }
         },
         "case:mock:type": "MockHttpServer",
-        "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
             "type": "MockHttpServer",

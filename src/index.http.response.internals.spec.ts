@@ -54,7 +54,6 @@ describe('simple get endpoint', () => {
 
   describe('without a URL', () => {
     const config = {
-      expectation: 'produce',
       contractMode: 'read',
     } as CaseConfig;
 
@@ -71,11 +70,9 @@ describe('simple get endpoint', () => {
 
   describe('with a URL', () => {
     const config: CaseConfig & {
-      expectation: 'produce';
       contractMode: 'read';
     } = {
       baseUrlUnderTest: 'http://localhost:8282',
-      expectation: 'produce',
       contractMode: 'read',
     };
     describe('but no running server', () => {

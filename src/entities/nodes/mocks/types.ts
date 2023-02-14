@@ -4,25 +4,29 @@ import type {
   LookupableMatcher,
 } from 'entities/types';
 
-export type AnyMockType = typeof MOCK_HTTP_SERVER | typeof MOCK_HTTP_CLIENT;
+export type AnyMockDescriptorType =
+  | typeof MOCK_HTTP_SERVER
+  | typeof MOCK_HTTP_CLIENT;
 
 export const MOCK_HTTP_SERVER = 'MockHttpServer' as const;
 export const MOCK_HTTP_CLIENT = 'MockHttpClient' as const;
 
-export type HasTypeForMock<T extends AnyMockType> = {
+export type HasTypeForMockDescriptor<T extends AnyMockDescriptorType> = {
   'case:mock:type': T;
 };
 
-export const isCaseMock = (maybeMock: unknown): maybeMock is AnyMock =>
+export const isCaseMock = (
+  maybeMock: unknown
+): maybeMock is AnyMockDescriptor =>
   typeof maybeMock === 'object' &&
   maybeMock != null &&
-  'case:mock:type' in (maybeMock as AnyMock);
+  'case:mock:type' in (maybeMock as AnyMockDescriptor);
 
-export type AnyMock = ConsumeHttpResponse | ProduceHttpResponse;
+export type AnyMockDescriptor = ConsumeHttpResponse | ProduceHttpResponse;
 
-export type CaseMockFor<T extends AnyMockType> = Extract<
-  AnyMock,
-  HasTypeForMock<T>
+export type CaseMockDescriptorFor<T extends AnyMockDescriptorType> = Extract<
+  AnyMockDescriptor,
+  HasTypeForMockDescriptor<T>
 >;
 
 export interface CoreHttpRequestResponseMatcherPair {
@@ -30,9 +34,9 @@ export interface CoreHttpRequestResponseMatcherPair {
   response: CoreHttpResponseMatcher | LookupableMatcher;
 }
 
-export type ConsumeHttpResponse = HasTypeForMock<typeof MOCK_HTTP_SERVER> & {
-  'case:run:context:asWritten': 'consume' | 'produce';
-} & CoreHttpRequestResponseMatcherPair & {
+export type ConsumeHttpResponse = HasTypeForMockDescriptor<
+  typeof MOCK_HTTP_SERVER
+> & {} & CoreHttpRequestResponseMatcherPair & {
     'case:run:context:setup': {
       write: {
         type: typeof MOCK_HTTP_SERVER;
@@ -47,9 +51,9 @@ export type ConsumeHttpResponse = HasTypeForMock<typeof MOCK_HTTP_SERVER> & {
     };
   };
 
-export type ProduceHttpResponse = HasTypeForMock<typeof MOCK_HTTP_CLIENT> & {
-  'case:run:context:asWritten': 'consume' | 'produce';
-} & CoreHttpRequestResponseMatcherPair & {
+export type ProduceHttpResponse = HasTypeForMockDescriptor<
+  typeof MOCK_HTTP_CLIENT
+> & {} & CoreHttpRequestResponseMatcherPair & {
     'case:run:context:setup': {
       write: {
         type: typeof MOCK_HTTP_CLIENT;

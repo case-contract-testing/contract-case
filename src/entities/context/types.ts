@@ -1,5 +1,5 @@
 import type {
-  AnyMock,
+  AnyMockDescriptor,
   MatcherExecutor,
   AnyCaseNodeOrData,
   AnyCaseNodeType,
@@ -121,14 +121,12 @@ export type DefaultContext = HasLocation &
   LogLevelContext & {
     'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
     'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
-    'case:currentRun:context:expectation': 'produce' | 'consume';
     'case:currentRun:context:contractMode': 'write' | 'read';
     'case:currentRun:context:printResults': boolean;
   };
 
 interface InjectableContext {
   'case:currentRun:context:baseUrlUnderTest'?: string;
-  'case:currentRun:context:expectation'?: 'produce' | 'consume';
   'case:currentRun:context:contractMode': 'write' | 'read';
 }
 
@@ -138,7 +136,7 @@ export interface HasBaseUrlUnderTest {
 
 export interface RunContext
   extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest> {
-  'case:run:context:tree'?: AnyCaseNodeOrData | AnyMock;
+  'case:run:context:tree'?: AnyCaseNodeOrData | AnyMockDescriptor;
   'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
   'case:currentRun:context:printResults': boolean;
 }

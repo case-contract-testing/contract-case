@@ -13,7 +13,11 @@ import { runJestTest } from '__tests__/jest';
 
 // These imports support the partial DSL that hasn't been extracted yet
 import type { AnyState } from 'entities/states/types';
-import type { AnyMockType, Assertable, CaseMockFor } from 'entities/types';
+import type {
+  AnyMockDescriptorType,
+  Assertable,
+  CaseMockDescriptorFor,
+} from 'entities/types';
 import * as fs from 'node:fs';
 
 // These imports are from Case
@@ -56,9 +60,9 @@ describe('e2e http consumer driven', () => {
     });
 
     // JEST BOILERPLATE
-    const runCaseExample = <T extends AnyMockType, R>(
+    const runCaseExample = <T extends AnyMockDescriptorType, R>(
       states: Array<AnyState>,
-      mock: CaseMockFor<T>,
+      mock: CaseMockDescriptorFor<T>,
       trigger: (config: Assertable<T>['config']) => Promise<R>,
       testResponseObject: (data: R) => unknown
     ) =>
@@ -68,9 +72,9 @@ describe('e2e http consumer driven', () => {
         trigger: (config) => trigger(config).then(testResponseObject),
       });
 
-    const runCaseRejectExample = <T extends AnyMockType, R>(
+    const runCaseRejectExample = <T extends AnyMockDescriptorType, R>(
       states: Array<AnyState>,
-      mock: CaseMockFor<T>,
+      mock: CaseMockDescriptorFor<T>,
       trigger: (config: Assertable<T>['config']) => Promise<R>,
       testResponseObject: (error: Error) => unknown
     ) =>

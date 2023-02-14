@@ -19,7 +19,6 @@ export const willSendHttpRequest = ({
   request: httpRequestMatcher(request),
   response: httpResponseMatcher(response),
   'case:mock:type': MOCK_HTTP_SERVER,
-  'case:run:context:asWritten': 'consume',
   'case:run:context:setup': {
     write: {
       type: MOCK_HTTP_SERVER,
@@ -41,7 +40,6 @@ export const willReceiveHttpRequest = ({
   request: httpRequestMatcher(request),
   response: httpResponseMatcher(response),
   'case:mock:type': MOCK_HTTP_CLIENT,
-  'case:run:context:asWritten': 'consume',
   'case:run:context:setup': {
     write: {
       type: MOCK_HTTP_CLIENT,
