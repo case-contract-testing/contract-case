@@ -82,7 +82,7 @@ Major features
 
 - [x] Add context to start and end contract
 - [x] Test harness integration
-- [ ] Provider defined examples
+- [x] Provider defined examples
 - [ ] Authentication sources (authentication as a first class citizen)
 - [ ] SNS and SQS support
 
