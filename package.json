@@ -1,6 +1,6 @@
 {
   "name": "case",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Contract testing suite",
   "main": "index.js",
   "scripts": {

@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.0](https://github.com/TimothyJones/case/compare/v0.0.2...v0.1.0) (2023-02-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace interaction in contract file property names with mock
+* Change the name of the http interactions to make behaviour clearer
+
+### Features
+
+* Add 'none' logLevel ([3cc6976](https://github.com/TimothyJones/case/commit/3cc6976b9bb805b53141168eb7b8cc0a4a29dd1a))
+* Add ability for matchers to describe themselves, bringing in a substantially improved autoname ([3027c6c](https://github.com/TimothyJones/case/commit/3027c6c768d3b192ed7fe4391658714b48dd7a79))
+* Add ability to get variables from provider state ([96b71c7](https://github.com/TimothyJones/case/commit/96b71c7969f3f99a188d0bf1f51730ec05dd37b6))
+* Add ability to match headers ([e29da44](https://github.com/TimothyJones/case/commit/e29da4400178d3742eb54bc3ca8bf7a5ccc26779))
+* Add logLevel matcher allowing fine grained control over logging ([e9e5c24](https://github.com/TimothyJones/case/commit/e9e5c24cf719907d9e9cf0f05924d4f070eecfaf))
+* Add provider driven contract creation ([ba2d8a2](https://github.com/TimothyJones/case/commit/ba2d8a2b6bdea8ccbe9ca710a9e810c46dbb687b))
+* Add stringPrefix and stringSuffix matchers ([824a69b](https://github.com/TimothyJones/case/commit/824a69bdd7f03ab56e46f304ad7ba4933ec555ba))
+* Add trigger map for client verification ([163c10b](https://github.com/TimothyJones/case/commit/163c10be3069ffe944305bf2baabb28618f4447d))
+* Added an option to control whether or not results are printed ([73a6b70](https://github.com/TimothyJones/case/commit/73a6b704eeca4f7abb962fcd28fbc87885b7f8cf))
+
+
+### Bug Fixes
+
+* Correct typo in error message ([9af1b04](https://github.com/TimothyJones/case/commit/9af1b04fd6cb291b0a6f3e678f1c417dd80b2b5e))
+* Ensure that failure messages are printed if configuration errors happen during verification ([ed027ec](https://github.com/TimothyJones/case/commit/ed027ec604436e2086af0843b9ffefd2cf26235c))
+* Improve formatting of http status describe ([60a8b1c](https://github.com/TimothyJones/case/commit/60a8b1c21294a9f8bc07e09c3ee65ca88a42ca0a))
+* Prettify the contract file when writing so it is easier to read by humans ([98ca5c7](https://github.com/TimothyJones/case/commit/98ca5c7820fe2ac7331c9fdd549c71005badf286))
+* Remove unnecessary getMatcher in mock setup, which makes mock setup significantly more flexible ([8688368](https://github.com/TimothyJones/case/commit/86883682ea9fb0acb204f71493ac49604bf354f9))
+* Stop useing replaceAll (again) so that it compiles on node14 (again) ([f3686d1](https://github.com/TimothyJones/case/commit/f3686d113b3649c8932e2dca268d0cef7c9d9bac))
+* Substantially improve formatting of names ([83767df](https://github.com/TimothyJones/case/commit/83767df52a447048df626f0e606a6e8eeccbe8f4))
+* Use keep-alive false for http tests, avoiding any issues from repeated requests ([d876308](https://github.com/TimothyJones/case/commit/d876308824f778f70f53fee8668b1296cc43188e))
+* Widen type for http request and responses ([23317d0](https://github.com/TimothyJones/case/commit/23317d0fc8748237004f3023fcb164780dd9f66b))
+
+
+* Change the name of the http interactions to make behaviour clearer ([9b43ad9](https://github.com/TimothyJones/case/commit/9b43ad9ce0f58a399118429c4a034cae43c6e3ae))
+* Replace interaction in contract file property names with mock ([0b46a29](https://github.com/TimothyJones/case/commit/0b46a29061446dbdbe30ddd73ba26caf8c46dabc))
+
 ### [0.0.2](https://github.com/TimothyJones/case/compare/v0.0.1...v0.0.2) (2023-01-11)
 
 
