@@ -33,11 +33,11 @@ export type TestInvoker<T extends AnyMockType, R = unknown> = MultiTestInvoker<
   R
 > & {
   states?: Array<AnyState>;
-  interaction: CaseMockFor<T>;
+  mock: CaseMockFor<T>;
   trigger?: Trigger<T, R> | undefined;
 };
 
 export type InvokingScaffold<T extends AnyMockType> = Omit<
   TestInvoker<T>,
-  'interaction'
+  'mock'
 > & { names: ExampleNames };

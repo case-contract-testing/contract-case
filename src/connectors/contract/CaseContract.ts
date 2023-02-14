@@ -10,7 +10,7 @@ import { makeLogger as defaultMakeLogger } from 'connectors/logger';
 import { CaseCoreError } from 'entities';
 import { CaseFailedError } from 'entities/CaseFailedError';
 import { addLocation, applyNodeToContext } from 'entities/context';
-import { exampleToNames, nameMock } from 'entities/contract/interactions';
+import { exampleToNames, nameMock } from 'entities/contract';
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
 import { makeResults } from 'entities/results';
@@ -42,13 +42,13 @@ export class CaseContract extends BaseCaseContract {
   }
 
   executeTest<T extends AnyMockType>(
-    { states = [], interaction, trigger, stateHandlers = {} }: TestInvoker<T>,
+    { states = [], mock, trigger, stateHandlers = {} }: TestInvoker<T>,
     runConfig?: CaseConfig
   ): Promise<unknown> {
     const thisIndex = this.testIndex;
     this.testIndex += 1;
 
-    const runContext = applyNodeToContext(interaction, this.initialContext, {
+    const runContext = applyNodeToContext(mock, this.initialContext, {
       'case:currentRun:context:contractMode': 'write',
       'case:currentRun:context:testName': `${thisIndex}`,
       ...(runConfig ? configToRunContext(runConfig) : {}),
@@ -70,7 +70,7 @@ export class CaseContract extends BaseCaseContract {
 
       const example: CaseExample = {
         states,
-        interaction: nameMock(interaction, runContext),
+        mock: nameMock(mock, runContext),
         result: 'PENDING',
       };
 

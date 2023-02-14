@@ -18,8 +18,8 @@ export const willSendHttpRequest = ({
 }: HttpRequestResponseDescription): ConsumeHttpResponse => ({
   request: httpRequestMatcher(request),
   response: httpResponseMatcher(response),
-  'case:interaction:uniqueName': '',
-  'case:interaction:type': MOCK_HTTP_SERVER,
+  'case:mock:uniqueName': '',
+  'case:mock:type': MOCK_HTTP_SERVER,
   'case:run:context:asWritten': 'consume',
   'case:run:context:setup': {
     write: {
@@ -41,8 +41,8 @@ export const willReceiveHttpRequest = ({
 }: HttpRequestResponseDescription): ProduceHttpResponse => ({
   request: httpRequestMatcher(request),
   response: httpResponseMatcher(response),
-  'case:interaction:uniqueName': '',
-  'case:interaction:type': MOCK_HTTP_CLIENT,
+  'case:mock:uniqueName': '',
+  'case:mock:type': MOCK_HTTP_CLIENT,
   'case:run:context:asWritten': 'consume',
   'case:run:context:setup': {
     write: {

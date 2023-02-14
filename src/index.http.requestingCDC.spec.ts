@@ -58,25 +58,25 @@ describe('e2e http consumer driven', () => {
     // JEST BOILERPLATE
     const runCaseExample = <T extends AnyMockType, R>(
       states: Array<AnyState>,
-      interaction: CaseMockFor<T>,
+      mock: CaseMockFor<T>,
       trigger: (config: Assertable<T>['config']) => Promise<R>,
       testResponseObject: (data: R) => unknown
     ) =>
       contract.executeTest({
         states,
-        interaction,
+        mock,
         trigger: (config) => trigger(config).then(testResponseObject),
       });
 
     const runCaseRejectExample = <T extends AnyMockType, R>(
       states: Array<AnyState>,
-      interaction: CaseMockFor<T>,
+      mock: CaseMockFor<T>,
       trigger: (config: Assertable<T>['config']) => Promise<R>,
       testResponseObject: (error: Error) => unknown
     ) =>
       contract.executeTest({
         states,
-        interaction,
+        mock,
         trigger: (config) =>
           trigger(config).then((d) => {
             throw new Error(`Expected an error, but was ${d}`);

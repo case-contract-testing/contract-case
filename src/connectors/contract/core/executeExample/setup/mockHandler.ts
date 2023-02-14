@@ -4,14 +4,14 @@ import type { AnyMockType, CaseMockFor, Assertable } from 'entities/types';
 import { addLocation } from 'entities/context';
 import { CaseConfigurationError } from 'entities';
 
-import { interactionExecutor } from './mockExecutor';
+import { mockExecutor } from './mockExecutor';
 import { MockExecutors } from './mockExecutors';
 
 export const setupUnhandledAssert = <T extends AnyMockType>(
-  interaction: CaseMockFor<T>,
+  mock: CaseMockFor<T>,
   parentMatchContext: MatchContext
 ): Promise<Assertable<T>> =>
-  interactionExecutor(interaction, MockExecutors, parentMatchContext).then(
+  mockExecutor(mock, MockExecutors, parentMatchContext).then(
     ({ mock, assertableData }) => ({
       config: mock,
       assert: () =>

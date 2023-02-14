@@ -23,7 +23,7 @@ export const addExample = (
   context: LogContext
 ): ContractFile => ({
   ...contract,
-  matcherLookup: addMock(contract.matcherLookup, example.interaction, context),
+  matcherLookup: addMock(contract.matcherLookup, example.mock, context),
   examples: [...contract.examples, example],
 });
 

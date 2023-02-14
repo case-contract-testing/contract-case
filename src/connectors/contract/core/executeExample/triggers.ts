@@ -8,27 +8,27 @@ import type {
 } from 'entities/types';
 
 export const callTrigger = <T extends AnyMockType>(
-  interaction: CaseMockFor<T>,
+  mock: CaseMockFor<T>,
   { trigger, triggers, names }: InvokingScaffold<T>,
   assertable: Assertable<T>,
   context: MatchContext
 ): Promise<unknown> => {
   context.logger.maintainerDebug(
-    `In this interaction (${interaction['case:interaction:type']}), in '${
+    `In this mock (${mock['case:mock:type']}), in '${
       context['case:currentRun:context:contractMode']
     }' mode, the triggers are ${
-      interaction['case:run:context:setup'][
+      mock['case:run:context:setup'][
         context['case:currentRun:context:contractMode']
       ].triggers
     }`
   );
   if (
-    interaction['case:run:context:setup'][
+    mock['case:run:context:setup'][
       context['case:currentRun:context:contractMode']
     ].triggers === 'generated'
   ) {
     context.logger.maintainerDebug(
-      "Triggers don't exist for this interaction type; skipping"
+      "Triggers don't exist for this mock type; skipping"
     );
     return Promise.resolve();
   }
@@ -62,7 +62,7 @@ export const callTrigger = <T extends AnyMockType>(
           (data) => {
             throw new CaseConfigurationError(
               `The trigger for '${
-                names.interactionName
+                names.mockName
               }' did not fail with an error. It instead returned: ${JSON.stringify(
                 data
               )}`,

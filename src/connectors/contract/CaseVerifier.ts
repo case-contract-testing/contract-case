@@ -10,7 +10,7 @@ import {
   exampleToNames,
   makeFailedExample,
   makeSuccessExample,
-} from 'entities/contract/interactions';
+} from 'entities/contract';
 import type { Logger } from 'entities/logger/types';
 import type {
   AnyMockType,
@@ -55,19 +55,19 @@ export class CaseVerifier extends BaseCaseContract {
 
       const names = exampleToNames(example, `${index}`);
 
-      runTestCb(names.interactionName, () =>
+      runTestCb(names.mockName, () =>
         this.mutex.runExclusive(() =>
           executeExample(
             { ...example, result: 'PENDING' },
             { stateHandlers, names, triggers },
             this,
-            applyNodeToContext(example.interaction, this.initialContext, {
+            applyNodeToContext(example.mock, this.initialContext, {
               'case:currentRun:context:testName': `${index}`,
               'case:currentRun:context:expectation': 'produce',
               'case:currentRun:context:contractMode': 'read',
               'case:currentRun:context:location': [
                 'verification',
-                `interaction[${index}]`,
+                `mock[${index}]`,
               ],
             })
           )

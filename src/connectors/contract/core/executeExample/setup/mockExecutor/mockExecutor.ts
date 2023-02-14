@@ -17,65 +17,63 @@ const invert = (t: AnyMockType): AnyMockType => {
     case MOCK_HTTP_SERVER:
       return MOCK_HTTP_CLIENT;
     default:
-      throw new CaseCoreError(`Unable to invert interaction type '${t}'`);
+      throw new CaseCoreError(`Unable to invert mock type '${t}'`);
   }
 };
 
 const inferMock = <T extends AnyMockType>(
-  interaction: CaseMockFor<T>,
+  mock: CaseMockFor<T>,
   context: MatchContext
 ) => {
-  context.logger.maintainerDebug('Mock is', interaction);
+  context.logger.maintainerDebug('Mock is', mock);
 
   if (
-    interaction['case:run:context:asWritten'] !==
+    mock['case:run:context:asWritten'] !==
     context['case:currentRun:context:expectation']
   ) {
-    const invertedType = invert(interaction['case:interaction:type']);
+    const invertedType = invert(mock['case:mock:type']);
     context.logger.maintainerDebug(
-      `Inverting interaction from '${interaction['case:interaction:type']}' to '${invertedType}'`
+      `Inverting mock from '${mock['case:mock:type']}' to '${invertedType}'`
     );
     return {
-      ...interaction,
-      'case:interaction:type': invertedType,
+      ...mock,
+      'case:mock:type': invertedType,
     };
   }
   context.logger.maintainerDebug(
-    `Mock type left at '${interaction['case:interaction:type']}'`
+    `Mock type left at '${mock['case:mock:type']}'`
   );
-  return interaction;
+  return mock;
 };
 
 const executeMock = <T extends AnyMockType>(
-  interaction: CaseMockFor<T>,
+  mock: CaseMockFor<T>,
   MockSetup: MockSetupFns,
   context: MatchContext
 ) => {
-  const interactionType: T = interaction['case:interaction:type'];
-  if (!interactionType) {
+  const mockType: T = mock['case:mock:type'];
+  if (!mockType) {
     throw new CaseCoreError(
-      `Missing type on interaction. You must pass an interaction to setup`,
+      `Missing type on mock. You must pass an mock to setup`,
       context
     );
   }
 
-  const executor = MockSetup[interactionType];
+  const executor = MockSetup[mockType];
   if (!executor) {
-    throw new CaseCoreError(
-      `Missing setup for interaction type '${interactionType}'`
-    );
+    throw new CaseCoreError(`Missing setup for mock type '${mockType}'`);
   }
 
-  return executor(interaction, addLocation(interactionType, context));
+  return executor(mock, addLocation(mockType, context));
 };
 
-export const interactionExecutor = <T extends AnyMockType>(
-  interaction: CaseMockFor<T>,
+export const mockExecutor = <T extends AnyMockType>(
+  mock: CaseMockFor<T>,
   MockSetup: MockSetupFns,
   context: MatchContext
 ): Promise<MockData<T>> =>
   executeMock(
-    inferMock(interaction, addLocation('inference', context)),
+    inferMock(mock, addLocation('inference', context)),
     MockSetup,
     context
   );

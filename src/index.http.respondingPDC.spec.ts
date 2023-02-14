@@ -118,21 +118,21 @@ describe('e2e http provider driven', () => {
     // JEST BOILERPLATE
     const testMock = <T extends AnyMockType>(
       states: Array<AnyState>,
-      interaction: CaseMockFor<T>
+      mock: CaseMockFor<T>
     ) =>
       contract.executeTest({
         states,
-        interaction,
+        mock,
         stateHandlers,
       });
 
     const testFailedMock = <T extends AnyMockType>(
       states: Array<AnyState>,
-      interaction: CaseMockFor<T>
+      mock: CaseMockFor<T>
     ) =>
       contract.executeTest({
         states,
-        interaction,
+        mock,
         stateHandlers,
       });
 

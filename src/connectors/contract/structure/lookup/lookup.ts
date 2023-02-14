@@ -26,10 +26,10 @@ export const addMatcher = (
 
 export const addMock = (
   matcherLookup: LookupMap,
-  interaction: AnyMock,
+  mock: AnyMock,
   context: LogContext
 ): LookupMap =>
-  [interaction.request, interaction.response].reduce(
+  [mock.request, mock.response].reduce(
     (acc, curr) => addMatcher(acc, curr, context),
     matcherLookup
   );

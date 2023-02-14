@@ -10,17 +10,17 @@ export const MOCK_HTTP_SERVER = 'MockHttpServer' as const;
 export const MOCK_HTTP_CLIENT = 'MockHttpClient' as const;
 
 export type HasTypeForMock<T extends AnyMockType> = {
-  'case:interaction:type': T;
+  'case:mock:type': T;
 };
 
 type BaseMock = {
-  'case:interaction:uniqueName': string;
+  'case:mock:uniqueName': string;
 };
 
 export const isCaseMock = (maybeMock: unknown): maybeMock is AnyMock =>
   typeof maybeMock === 'object' &&
   maybeMock != null &&
-  'case:interaction:type' in (maybeMock as AnyMock);
+  'case:mock:type' in (maybeMock as AnyMock);
 
 export type AnyMock = ConsumeHttpResponse | ProduceHttpResponse;
 

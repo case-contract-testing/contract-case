@@ -111,7 +111,7 @@ export class BaseCaseContract {
 
     if (defaultVariable === undefined) {
       throw new CaseConfigurationError(
-        `Variable '${name}' was requested but appears not to be set. Is the variable spelt correctly, and the states for this interaction are correctly set`
+        `Variable '${name}' was requested but appears not to be set. Is the variable spelt correctly, and the states for this mock are correctly set`
       );
     }
     return defaultVariable;

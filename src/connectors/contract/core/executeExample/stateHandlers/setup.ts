@@ -64,7 +64,7 @@ export const executeStateHandlers = (
 ): Promise<void> =>
   Promise.resolve(addLocation(`:stateSetup`, parentContext)).then((context) => {
     const variableSource =
-      example.interaction['case:run:context:setup'][
+      example.mock['case:run:context:setup'][
         context['case:currentRun:context:contractMode']
       ].stateVariables;
     context.logger.maintainerDebug(

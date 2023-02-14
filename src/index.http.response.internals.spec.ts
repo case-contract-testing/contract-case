@@ -44,7 +44,7 @@ describe('simple get endpoint', () => {
     }
   );
 
-  const interaction = willSendHttpRequest({
+  const mock = willSendHttpRequest({
     request: {
       method: 'GET',
       path: '/health',
@@ -62,7 +62,7 @@ describe('simple get endpoint', () => {
       expect(
         contract.executeTest(
           {
-            interaction,
+            mock,
           },
           config
         )
@@ -83,7 +83,7 @@ describe('simple get endpoint', () => {
         expect(
           contract.executeTest(
             {
-              interaction,
+              mock,
             },
             {
               ...config,
@@ -107,24 +107,24 @@ describe('simple get endpoint', () => {
         return closePromise;
       });
 
-      describe('and a matching interaction', () => {
+      describe('and a matching mock', () => {
         it('succeeds', () =>
           expect(
             contract.executeTest(
               {
-                interaction,
+                mock,
               },
               config
             )
           ).resolves.toBe(undefined));
       });
 
-      describe('and a matching interaction that is generic', () => {
+      describe('and a matching mock that is generic', () => {
         it('succeeds', () =>
           expect(
             contract.executeTest(
               {
-                interaction: willSendHttpRequest({
+                mock: willSendHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
@@ -142,12 +142,12 @@ describe('simple get endpoint', () => {
           ).resolves.toBe(undefined));
       });
 
-      describe('and a matching interaction with the same status as a previous one, but a string', () => {
+      describe('and a matching mock with the same status as a previous one, but a string', () => {
         it('succeeds', () =>
           expect(
             contract.executeTest(
               {
-                interaction: willSendHttpRequest({
+                mock: willSendHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
@@ -172,7 +172,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  interaction: willSendHttpRequest({
+                  mock: willSendHttpRequest({
                     request: {
                       method: 'GET',
                       path: '/health',
@@ -193,7 +193,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  interaction: willSendHttpRequest({
+                  mock: willSendHttpRequest({
                     request: {
                       method: 'GET',
                       path: '/health',
@@ -216,7 +216,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  interaction: willSendHttpRequest({
+                  mock: willSendHttpRequest({
                     request: {
                       method: 'POST',
                       path: '/health',
@@ -239,7 +239,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  interaction: willSendHttpRequest({
+                  mock: willSendHttpRequest({
                     request: {
                       method: 'GET',
                       path: '/healthy',

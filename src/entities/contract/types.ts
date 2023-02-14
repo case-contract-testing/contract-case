@@ -8,7 +8,7 @@ export interface ContractDescription {
 
 interface BaseCaseExample {
   states: AnyState[];
-  interaction: AnyMock;
+  mock: AnyMock;
 }
 
 interface SuccessfulCaseExample extends BaseCaseExample {
@@ -30,7 +30,7 @@ export type CaseExample =
   | PendingCaseExample;
 
 export type ExampleNames = {
-  interactionName: string;
+  mockName: string;
   requestName: string;
   responseName: string;
 };

@@ -3,7 +3,7 @@ import {
   makeFailedExample,
   makeSuccessExample,
   exampleToNames,
-} from 'entities/contract/interactions';
+} from 'entities/contract';
 import type { CaseExample } from 'entities/contract/types';
 import { setupUnhandledAssert } from 'connectors/contract/core/executeExample/setup';
 import { handleResult } from 'entities/results/handlers';
@@ -27,27 +27,24 @@ const setupExample = <T extends AnyMockType>(
     context['case:currentRun:context:testName']
   );
 
-  context.logger.debug(
-    `Beginning setup for example "${exampleName.interactionName}"`
-  );
+  context.logger.debug(`Beginning setup for example "${exampleName.mockName}"`);
   context.logger.maintainerDebug(
     'Context is',
     JSON.stringify(context, null, 2)
   );
   return executeStateHandlers(example, stateSetups, context).then(() => {
     context.logger.maintainerDebug(`Calling setupUnhandledAssert`);
-    return setupUnhandledAssert(
-      example.interaction as CaseMockFor<T>,
-      context
-    ).then((assertable: Assertable<T>) => ({
-      ...assertable,
-      assert: () =>
-        assertable
-          .assert()
-          .finally(() =>
-            executeTeardownHandlers(example, stateSetups, context)
-          ),
-    }));
+    return setupUnhandledAssert(example.mock as CaseMockFor<T>, context).then(
+      (assertable: Assertable<T>) => ({
+        ...assertable,
+        assert: () =>
+          assertable
+            .assert()
+            .finally(() =>
+              executeTeardownHandlers(example, stateSetups, context)
+            ),
+      })
+    );
   });
 };
 
@@ -96,7 +93,7 @@ export const executeExample = <T extends AnyMockType>(
         context['case:currentRun:context:location']
       );
       return callTrigger<T>(
-        example.interaction as CaseMockFor<T>,
+        example.mock as CaseMockFor<T>,
         { trigger, triggers, names },
         assertable,
         context

@@ -59,7 +59,7 @@ export const foldIntoContext = (
   ...contextProperties(caseNode),
 });
 
-let interactionId = 0;
+let mockId = 0;
 
 const combineWithRoot = (
   caseNodeOrData: AnyCaseNodeOrData | AnyMock,
@@ -76,10 +76,10 @@ const combineWithRoot = (
       : { 'case:run:context:tree': caseNodeOrData }),
     'case:currentRun:context:location': [
       ...context['case:currentRun:context:location'],
-      `Test[${interactionId}]`,
+      `Test[${mockId}]`,
     ],
   };
-  interactionId += 1;
+  mockId += 1;
   return updateFunctions(newContext);
 };
 

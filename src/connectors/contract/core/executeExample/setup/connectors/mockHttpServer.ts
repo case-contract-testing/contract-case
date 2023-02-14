@@ -114,7 +114,7 @@ export const setupHttpResponseProducer = (
       return;
     }
     const mock = {
-      'case:interaction:type': MOCK_HTTP_SERVER,
+      'case:mock:type': MOCK_HTTP_SERVER,
       baseUrl: `http://${addressToString(address)}`,
       variables: { userId: '42' }, // TODO replace this with actual variables
     };

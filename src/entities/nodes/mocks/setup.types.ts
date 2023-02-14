@@ -20,7 +20,7 @@ export type MockData<T extends AnyMockType> = {
 };
 
 export type MockSetupFn<T extends AnyMockType> = (
-  interaction: CaseMockFor<T>,
+  mock: CaseMockFor<T>,
   context: MatchContext
 ) => Promise<MockData<T>>;
 

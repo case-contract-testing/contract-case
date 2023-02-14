@@ -50,7 +50,7 @@ export const executeTeardownHandlers = (
   Promise.resolve(addLocation(':stateTeardown', parentContext)).then(
     (context) => {
       const variableSource =
-        example.interaction['case:run:context:setup'][
+        example.mock['case:run:context:setup'][
           context['case:currentRun:context:contractMode']
         ].stateVariables;
 

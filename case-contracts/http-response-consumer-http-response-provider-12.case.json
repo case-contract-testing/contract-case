@@ -97,7 +97,7 @@
           "stateName": "Server is up"
         }
       ],
-      "interaction": {
+      "mock": {
         "request": {
           "case:matcher:type": "Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
@@ -118,8 +118,8 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:interaction:uniqueName": "",
-        "case:interaction:type": "MockHttpServer",
+        "case:mock:uniqueName": "",
+        "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
@@ -143,7 +143,7 @@
           "stateName": "Server is up"
         }
       ],
-      "interaction": {
+      "mock": {
         "request": {
           "case:matcher:type": "Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
@@ -168,8 +168,8 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:interaction:uniqueName": "",
-        "case:interaction:type": "MockHttpServer",
+        "case:mock:uniqueName": "",
+        "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
@@ -193,7 +193,7 @@
           "stateName": "Server is down"
         }
       ],
-      "interaction": {
+      "mock": {
         "request": {
           "case:matcher:type": "Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
@@ -219,8 +219,8 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:interaction:uniqueName": "",
-        "case:interaction:type": "MockHttpServer",
+        "case:mock:uniqueName": "",
+        "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
@@ -244,7 +244,7 @@
           "stateName": "Server is down"
         }
       ],
-      "interaction": {
+      "mock": {
         "request": {
           "case:matcher:type": "Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
@@ -265,8 +265,8 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:interaction:uniqueName": "",
-        "case:interaction:type": "MockHttpServer",
+        "case:mock:uniqueName": "",
+        "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
@@ -301,7 +301,7 @@
           }
         }
       ],
-      "interaction": {
+      "mock": {
         "request": {
           "case:matcher:type": "Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/users/${userId}\" without a body",
@@ -333,8 +333,8 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:interaction:uniqueName": "",
-        "case:interaction:type": "MockHttpServer",
+        "case:mock:uniqueName": "",
+        "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
@@ -362,7 +362,7 @@
           "stateName": "No users exist"
         }
       ],
-      "interaction": {
+      "mock": {
         "request": {
           "case:matcher:type": "Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/users/123\" without a body",
@@ -385,8 +385,8 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:interaction:uniqueName": "",
-        "case:interaction:type": "MockHttpServer",
+        "case:mock:uniqueName": "",
+        "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
