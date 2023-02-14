@@ -20,11 +20,9 @@ export const exampleToNames = (
   return {
     requestName,
     responseName,
-    mockName: `${stateNames !== '' ? `When ${stateNames}, then ` : ''}${
-      mock['case:mock:uniqueName']
-        ? mock['case:mock:uniqueName']
-        : `${requestName} -> ${responseName}`
-    }`,
+    mockName: `${
+      stateNames !== '' ? `When ${stateNames}, then ` : ''
+    }${requestName} -> ${responseName}`,
   };
 };
 

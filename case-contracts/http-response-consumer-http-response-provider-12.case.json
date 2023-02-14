@@ -118,7 +118,6 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:mock:uniqueName": "",
         "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
@@ -168,7 +167,6 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:mock:uniqueName": "",
         "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
@@ -219,7 +217,6 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:mock:uniqueName": "",
         "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
@@ -265,7 +262,6 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:mock:uniqueName": "",
         "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
@@ -333,7 +329,6 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:mock:uniqueName": "",
         "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
@@ -385,7 +380,6 @@
             "case:matcher:type": "HttpResponseMatcher"
           }
         },
-        "case:mock:uniqueName": "",
         "case:mock:type": "MockHttpServer",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {

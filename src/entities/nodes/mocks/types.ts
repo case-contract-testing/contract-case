@@ -13,10 +13,6 @@ export type HasTypeForMock<T extends AnyMockType> = {
   'case:mock:type': T;
 };
 
-type BaseMock = {
-  'case:mock:uniqueName': string;
-};
-
 export const isCaseMock = (maybeMock: unknown): maybeMock is AnyMock =>
   typeof maybeMock === 'object' &&
   maybeMock != null &&
@@ -36,8 +32,7 @@ export interface CoreHttpRequestResponseMatcherPair {
 
 export type ConsumeHttpResponse = HasTypeForMock<typeof MOCK_HTTP_SERVER> & {
   'case:run:context:asWritten': 'consume' | 'produce';
-} & CoreHttpRequestResponseMatcherPair &
-  BaseMock & {
+} & CoreHttpRequestResponseMatcherPair & {
     'case:run:context:setup': {
       write: {
         type: typeof MOCK_HTTP_SERVER;
@@ -54,8 +49,7 @@ export type ConsumeHttpResponse = HasTypeForMock<typeof MOCK_HTTP_SERVER> & {
 
 export type ProduceHttpResponse = HasTypeForMock<typeof MOCK_HTTP_CLIENT> & {
   'case:run:context:asWritten': 'consume' | 'produce';
-} & CoreHttpRequestResponseMatcherPair &
-  BaseMock & {
+} & CoreHttpRequestResponseMatcherPair & {
     'case:run:context:setup': {
       write: {
         type: typeof MOCK_HTTP_CLIENT;
