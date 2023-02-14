@@ -186,9 +186,9 @@ Potential issues:
 Here I write notes to myself to make sure I don't miss anything
 
 - [ ] Do I need runcontext:tree? Maybe I can remove it.
-- [ ] Review the invert contract logic, possibly this can be removed too.
+- [x] Review the invert contract logic, possibly this can be removed too - Update, it could
 - [ ] Make loggable context explicit instead of calculated - or, calculate it better.
-- [ ] Sort out the LoggableContext / LogContext naming mess
+- [x] Sort out the LoggableContext / LogContext naming mess
 - [x] Remove logLevel setting and do it with context instead, allowing localised logging
 - [x] Do we need to give the `and` matcher an optional example?
 - [x] Examples might have matchers in them, need to strip those too

@@ -16,19 +16,25 @@ export const MATCH_BY_EXACT = 'exact' as const;
 export const SERIALIABLE_TO_JSON = 'json' as const;
 
 export interface RawLookupFns {
-  lookupMatcher: (uniqueName: string, context: LogContext) => AnyCaseNodeOrData;
+  lookupMatcher: (
+    uniqueName: string,
+    context: MatchContextWithoutLookup
+  ) => AnyCaseNodeOrData;
   saveLookupableMatcher: (
     matcher: LookupableMatcher,
-    context: LogContext
+    context: MatchContextWithoutLookup
   ) => void;
   addVariable: (
     name: string,
     type: 'default' | 'state',
     stateName: string,
     value: AnyCaseNodeOrData,
-    context: LogContext
+    context: MatchContextWithoutLookup
   ) => void;
-  lookupVariable: (name: string, context: LogContext) => AnyCaseNodeOrData;
+  lookupVariable: (
+    name: string,
+    context: MatchContextWithoutLookup
+  ) => AnyCaseNodeOrData;
 }
 
 export interface ContractLookupFns {
@@ -47,8 +53,8 @@ export interface ContractLookupFns {
   lookupVariable: (name: string) => AnyCaseNodeOrData;
 }
 
-interface HasMakeLookup {
-  makeLookup: (c: LogContext) => ContractLookupFns;
+interface HasMakeLookupFn {
+  makeLookup: (c: MatchContextWithoutLookup) => ContractLookupFns;
 }
 
 export interface TraversalFns {
@@ -71,38 +77,38 @@ export interface TraversalFns {
   ) => ReturnType<MatcherExecutor<T>['check']>;
 }
 
-interface ContextLoggers {
+interface ContextLoggerFns {
   logger: Logger;
   resultPrinter: ResultPrinter;
   makeLogger: (m: LogLevelContext) => Logger;
 }
 
-export type MatchContext = TraversalFns &
-  DefaultContext &
-  ContextLoggers &
-  ContractLookupFns &
-  HasMakeLookup &
+export type MatchContext = DefaultContext &
   Partial<InjectableContext> &
   Partial<ContractFileConfig> &
   HasLocation &
+  RunContext &
   LogLevelContext &
-  RunContext;
+  TraversalFns &
+  ContextLoggerFns &
+  ContractLookupFns &
+  HasMakeLookupFn;
 
 export type HasLocation = {
   'case:currentRun:context:location': Array<string>;
 };
 
-export type LoggableContext = Omit<
+export type MatchContextData = Omit<
   MatchContext,
-  | keyof ContextLoggers
+  | keyof ContextLoggerFns
   | keyof TraversalFns
   | keyof ContractLookupFns
-  | keyof HasMakeLookup
+  | keyof HasMakeLookupFn
 >;
 
-export type LogContext = Omit<
+export type MatchContextWithoutLookup = Omit<
   MatchContext,
-  keyof ContractLookupFns | keyof HasMakeLookup
+  keyof ContractLookupFns | keyof HasMakeLookupFn
 >;
 
 export type LogLevelContext = HasLocation & {

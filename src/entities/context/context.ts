@@ -7,7 +7,7 @@ import {
 } from 'entities/nodes/matchers/types';
 import type {
   ContractLookupFns,
-  LogContext,
+  MatchContextWithoutLookup,
   ResultPrinter,
 } from 'entities/types';
 import type {
@@ -87,7 +87,7 @@ const combineWithRoot = (
 export const constructInitialContext = (
   traversals: TraversalFns,
   makeLogger: (c: LogLevelContext) => Logger,
-  makeLookup: (c: LogContext) => ContractLookupFns,
+  makeLookup: (c: MatchContextWithoutLookup) => ContractLookupFns,
   resultPrinter: ResultPrinter,
   runConfig: Partial<RunContext>
 ): MatchContext => {

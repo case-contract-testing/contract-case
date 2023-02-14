@@ -1,8 +1,8 @@
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type {
   AnyCaseNodeOrData,
-  LogContext,
   LookupableMatcher,
+  MatchContextWithoutLookup,
 } from 'entities/types';
 import { addMock, addMatcher } from './lookup';
 
@@ -20,7 +20,7 @@ export const makeContract = (
 export const addExample = (
   contract: ContractFile,
   example: CaseExample,
-  context: LogContext
+  context: MatchContextWithoutLookup
 ): ContractFile => ({
   ...contract,
   matcherLookup: addMock(contract.matcherLookup, example.mock, context),
@@ -42,7 +42,7 @@ export const addVariable = (
   type: 'state' | 'default',
   uniqueName: string,
   variable: AnyCaseNodeOrData,
-  context: LogContext
+  context: MatchContextWithoutLookup
 ): ContractFile => ({
   ...contract,
   matcherLookup: addLookup(
@@ -74,7 +74,7 @@ export const findVariable = (
 export const addLookupableMatcher = (
   contract: ContractFile,
   matcher: LookupableMatcher,
-  context: LogContext
+  context: MatchContextWithoutLookup
 ): ContractFile => ({
   ...contract,
   matcherLookup: addMatcher(contract.matcherLookup, matcher, context),

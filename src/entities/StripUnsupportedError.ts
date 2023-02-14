@@ -1,11 +1,11 @@
-import type { LoggableContext } from './context/types';
+import type { MatchContextData } from './context/types';
 import type { AnyCaseMatcher } from './types';
 
-const locationString = (matchContext: LoggableContext) =>
+const locationString = (matchContext: MatchContextData) =>
   `(at ${matchContext['case:currentRun:context:location'].join('.')})`;
 
 export class StripUnsupportedError extends Error {
-  constructor(matcher: AnyCaseMatcher, context: LoggableContext) {
+  constructor(matcher: AnyCaseMatcher, context: MatchContextData) {
     super(
       `Matchers of type '${
         matcher['case:matcher:type']

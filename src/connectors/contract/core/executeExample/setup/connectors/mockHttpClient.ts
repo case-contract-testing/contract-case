@@ -4,7 +4,7 @@ import * as http from 'node:http';
 import { MOCK_HTTP_CLIENT } from 'entities/nodes/mocks/types';
 import {
   HasBaseUrlUnderTest,
-  LoggableContext,
+  MatchContextData,
   MatchContext,
   CoreHttpRequestResponseMatcherPair,
   CoreHttpRequestMatcher,
@@ -17,7 +17,7 @@ import { mustResolveToString } from 'entities/nodes/matchers/resolve';
 import type { MockData } from 'entities/nodes/mocks/setup.types';
 
 const isHasBaseUrl = (
-  context: Partial<LoggableContext>
+  context: Partial<MatchContextData>
 ): context is HasBaseUrlUnderTest =>
   'case:currentRun:context:baseUrlUnderTest' in context &&
   context['case:currentRun:context:baseUrlUnderTest'] !== undefined &&
@@ -78,7 +78,7 @@ export const setupHttpResponseConsumer = (
     const expectedRequest = getMatcher(requestMatcher, context);
 
     return validateConfig(context).then(
-      (run: LoggableContext & HasBaseUrlUnderTest) => ({
+      (run: MatchContextData & HasBaseUrlUnderTest) => ({
         mock: {
           'case:mock:type': MOCK_HTTP_CLIENT,
           variables: { userId: '42' }, // TODO replace this with actual variables

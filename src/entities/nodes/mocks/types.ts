@@ -36,7 +36,8 @@ export interface CoreHttpRequestResponseMatcherPair {
 
 export type ConsumeHttpResponse = HasTypeForMockDescriptor<
   typeof MOCK_HTTP_SERVER
-> & {} & CoreHttpRequestResponseMatcherPair & {
+> &
+  CoreHttpRequestResponseMatcherPair & {
     'case:run:context:setup': {
       write: {
         type: typeof MOCK_HTTP_SERVER;
@@ -53,7 +54,8 @@ export type ConsumeHttpResponse = HasTypeForMockDescriptor<
 
 export type ProduceHttpResponse = HasTypeForMockDescriptor<
   typeof MOCK_HTTP_CLIENT
-> & {} & CoreHttpRequestResponseMatcherPair & {
+> &
+  CoreHttpRequestResponseMatcherPair & {
     'case:run:context:setup': {
       write: {
         type: typeof MOCK_HTTP_CLIENT;

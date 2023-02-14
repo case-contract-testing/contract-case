@@ -21,9 +21,9 @@ import type {
   MatchResult,
   ContractDescription,
   Logger,
-  LogContext,
   RawLookupFns,
   ContractLookupFns,
+  MatchContextWithoutLookup,
 } from 'entities/types';
 import { hasErrors } from 'entities/results';
 
@@ -55,7 +55,9 @@ export class BaseCaseContract {
       lookupVariable: this.lookupVariable.bind(this),
     };
 
-    const makeLookup = (context: LogContext): ContractLookupFns => ({
+    const makeLookup = (
+      context: MatchContextWithoutLookup
+    ): ContractLookupFns => ({
       lookupMatcher: (uniqueName: string) =>
         contractFns.lookupMatcher(uniqueName, context),
       saveLookupableMatcher: (matcher) =>
@@ -93,7 +95,10 @@ export class BaseCaseContract {
     }
   }
 
-  lookupVariable(name: string, context: LogContext): AnyCaseNodeOrData {
+  lookupVariable(
+    name: string,
+    context: MatchContextWithoutLookup
+  ): AnyCaseNodeOrData {
     if (this.currentContract === undefined) {
       context.logger.error(
         `lookupVariable was called without initialising the contract file. This should not be possible.`
@@ -122,7 +127,7 @@ export class BaseCaseContract {
     type: 'default' | 'state',
     stateName: string,
     value: AnyCaseNodeOrData,
-    context: LogContext
+    context: MatchContextWithoutLookup
   ): ContractFile {
     if (this.currentContract === undefined) {
       context.logger.error(
@@ -145,7 +150,7 @@ export class BaseCaseContract {
 
   saveLookupableMatcher(
     namedMatcher: LookupableMatcher,
-    context: LogContext
+    context: MatchContextWithoutLookup
   ): ContractFile {
     if (this.currentContract === undefined) {
       context.logger.error(
@@ -164,7 +169,10 @@ export class BaseCaseContract {
     return this.currentContract;
   }
 
-  lookupMatcher(uniqueName: string, context: LogContext): AnyCaseNodeOrData {
+  lookupMatcher(
+    uniqueName: string,
+    context: MatchContextWithoutLookup
+  ): AnyCaseNodeOrData {
     if (!this.currentContract) {
       context.logger.error(
         'lookupMatcher was called without initialising the contract file. This should not be possible.'

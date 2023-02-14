@@ -1,5 +1,8 @@
 import { CaseConfigurationError } from 'entities';
-import type { AnyCaseNodeOrData, LogContext } from 'entities/types';
+import type {
+  AnyCaseNodeOrData,
+  MatchContextWithoutLookup,
+} from 'entities/types';
 import { rawEquality } from './rawEquals';
 import type { LookupMap, LookupType } from './types';
 
@@ -8,7 +11,7 @@ export const addLookup = (
   lookupType: LookupType,
   uniqueName: string,
   matcher: AnyCaseNodeOrData,
-  context: LogContext
+  context: MatchContextWithoutLookup
 ): Record<string, AnyCaseNodeOrData> => {
   const lookupName = `${lookupType}:${uniqueName}`;
   context.logger.maintainerDebug(`Saving lookup ${lookupType}:`, matcher);
