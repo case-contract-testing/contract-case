@@ -3,8 +3,8 @@ import { coreLookupMatcher } from 'entities/nodes/matchers';
 import type {
   AnyCaseNodeOrData,
   MatchContext,
-  AnyInteractionType,
-  CaseInteractionFor,
+  AnyMockType,
+  CaseMockFor,
   CaseError,
   ExampleNames,
 } from 'entities/types';
@@ -19,11 +19,11 @@ export const exampleToNames = (
   const requestName =
     'case:matcher:uniqueName' in interaction.request
       ? interaction.request['case:matcher:uniqueName']
-      : `Interaction ${index}'s request`;
+      : `Mock ${index}'s request`;
   const responseName =
     'case:matcher:uniqueName' in interaction.response
       ? interaction.response['case:matcher:uniqueName']
-      : `Interaction ${index}'s response`;
+      : `Mock ${index}'s response`;
 
   return {
     requestName,
@@ -39,10 +39,10 @@ export const exampleToNames = (
 const nameMatcher = (matcher: AnyCaseNodeOrData, context: MatchContext) =>
   coreLookupMatcher(context.descendAndDescribe(matcher, context), matcher);
 
-export const nameInteraction = <T extends AnyInteractionType>(
-  interaction: CaseInteractionFor<T>,
+export const nameMock = <T extends AnyMockType>(
+  interaction: CaseMockFor<T>,
   context: MatchContext
-): CaseInteractionFor<T> => ({
+): CaseMockFor<T> => ({
   ...interaction,
   request: nameMatcher(interaction.request, context),
   response: nameMatcher(interaction.response, context),

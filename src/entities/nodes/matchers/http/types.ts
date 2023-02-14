@@ -38,13 +38,13 @@ export type HttpRequestData = {
   path: string;
 };
 
-export interface HttpInteractionResponse {
+export interface HttpMockResponse {
   uniqueName?: string;
   status: number | CoreHttpStatusCodeMatcher;
   body?: AnyCaseNodeOrData;
 }
 
-export interface HttpInteractionRequest {
+export interface HttpMockRequest {
   uniqueName?: string;
   path: AnyStringMatcher | string;
   method: AnyStringMatcher | string;

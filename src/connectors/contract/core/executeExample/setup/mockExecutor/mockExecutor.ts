@@ -1,16 +1,16 @@
 import type { MatchContext } from 'entities/context/types';
 import { CaseCoreError } from 'entities/CaseCoreError';
 import {
-  AnyInteractionType,
-  CaseInteractionFor,
+  AnyMockType,
+  CaseMockFor,
   MOCK_HTTP_CLIENT,
   MOCK_HTTP_SERVER,
-} from 'entities/nodes/interactions/types';
-import type { InteractionData } from 'entities/nodes/interactions/setup.types';
+} from 'entities/nodes/mocks/types';
+import type { MockData } from 'entities/nodes/mocks/setup.types';
 import { addLocation } from 'entities/context';
-import type { InteractionSetupFns } from './types';
+import type { MockSetupFns } from './types';
 
-const invert = (t: AnyInteractionType): AnyInteractionType => {
+const invert = (t: AnyMockType): AnyMockType => {
   switch (t) {
     case MOCK_HTTP_CLIENT:
       return MOCK_HTTP_SERVER;
@@ -21,11 +21,11 @@ const invert = (t: AnyInteractionType): AnyInteractionType => {
   }
 };
 
-const inferInteraction = <T extends AnyInteractionType>(
-  interaction: CaseInteractionFor<T>,
+const inferMock = <T extends AnyMockType>(
+  interaction: CaseMockFor<T>,
   context: MatchContext
 ) => {
-  context.logger.maintainerDebug('Interaction is', interaction);
+  context.logger.maintainerDebug('Mock is', interaction);
 
   if (
     interaction['case:run:context:asWritten'] !==
@@ -41,14 +41,14 @@ const inferInteraction = <T extends AnyInteractionType>(
     };
   }
   context.logger.maintainerDebug(
-    `Interaction type left at '${interaction['case:interaction:type']}'`
+    `Mock type left at '${interaction['case:interaction:type']}'`
   );
   return interaction;
 };
 
-const executeInteraction = <T extends AnyInteractionType>(
-  interaction: CaseInteractionFor<T>,
-  InteractionSetup: InteractionSetupFns,
+const executeMock = <T extends AnyMockType>(
+  interaction: CaseMockFor<T>,
+  MockSetup: MockSetupFns,
   context: MatchContext
 ) => {
   const interactionType: T = interaction['case:interaction:type'];
@@ -59,7 +59,7 @@ const executeInteraction = <T extends AnyInteractionType>(
     );
   }
 
-  const executor = InteractionSetup[interactionType];
+  const executor = MockSetup[interactionType];
   if (!executor) {
     throw new CaseCoreError(
       `Missing setup for interaction type '${interactionType}'`
@@ -69,13 +69,13 @@ const executeInteraction = <T extends AnyInteractionType>(
   return executor(interaction, addLocation(interactionType, context));
 };
 
-export const interactionExecutor = <T extends AnyInteractionType>(
-  interaction: CaseInteractionFor<T>,
-  InteractionSetup: InteractionSetupFns,
+export const interactionExecutor = <T extends AnyMockType>(
+  interaction: CaseMockFor<T>,
+  MockSetup: MockSetupFns,
   context: MatchContext
-): Promise<InteractionData<T>> =>
-  executeInteraction(
-    inferInteraction(interaction, addLocation('inference', context)),
-    InteractionSetup,
+): Promise<MockData<T>> =>
+  executeMock(
+    inferMock(interaction, addLocation('inference', context)),
+    MockSetup,
     context
   );

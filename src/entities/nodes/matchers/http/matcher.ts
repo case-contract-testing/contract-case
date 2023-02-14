@@ -2,8 +2,8 @@ import {
   CoreHttpRequestMatcher,
   CoreHttpResponseMatcher,
   CoreHttpStatusCodeMatcher,
-  HttpInteractionRequest,
-  HttpInteractionResponse,
+  HttpMockRequest,
+  HttpMockResponse,
   HTTP_REQUEST_MATCHER_TYPE,
   HTTP_RESPONSE_MATCHER_TYPE,
   HTTP_STATUS_CODE_MATCHER_TYPE,
@@ -24,14 +24,14 @@ export const httpStatusCodeMatcher = (
 };
 
 export const httpRequestMatcher = (
-  request: HttpInteractionRequest
+  request: HttpMockRequest
 ): CoreHttpRequestMatcher => ({
   ...request,
   'case:matcher:type': HTTP_REQUEST_MATCHER_TYPE,
 });
 
 export const httpResponseMatcher = (
-  response: HttpInteractionResponse
+  response: HttpMockResponse
 ): CoreHttpResponseMatcher => ({
   ...response,
   'case:matcher:type': HTTP_RESPONSE_MATCHER_TYPE,

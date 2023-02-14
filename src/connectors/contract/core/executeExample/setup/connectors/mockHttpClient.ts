@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as http from 'node:http';
 
-import { MOCK_HTTP_CLIENT } from 'entities/nodes/interactions/types';
+import { MOCK_HTTP_CLIENT } from 'entities/nodes/mocks/types';
 import {
   HasBaseUrlUnderTest,
   LoggableContext,
@@ -14,7 +14,7 @@ import {
 import { addLocation } from 'entities/context';
 import { CaseConfigurationError, CaseCoreError } from 'entities';
 import { mustResolveToString } from 'entities/nodes/matchers/resolve';
-import type { InteractionData } from 'entities/nodes/interactions/setup.types';
+import type { MockData } from 'entities/nodes/mocks/setup.types';
 
 const isHasBaseUrl = (
   context: Partial<LoggableContext>
@@ -73,7 +73,7 @@ export const setupHttpResponseConsumer = (
     response: expectedResponse,
   }: CoreHttpRequestResponseMatcherPair,
   context: MatchContext
-): Promise<InteractionData<typeof MOCK_HTTP_CLIENT>> =>
+): Promise<MockData<typeof MOCK_HTTP_CLIENT>> =>
   Promise.resolve().then(() => {
     const expectedRequest = getMatcher(requestMatcher, context);
 

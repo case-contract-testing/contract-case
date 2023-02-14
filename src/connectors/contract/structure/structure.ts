@@ -4,7 +4,7 @@ import type {
   LogContext,
   LookupableMatcher,
 } from 'entities/types';
-import { addInteraction, addMatcher } from './lookup';
+import { addMock, addMatcher } from './lookup';
 
 import { addLookup, findLookup } from './lookup/internals';
 import type { ContractFile } from './types';
@@ -23,11 +23,7 @@ export const addExample = (
   context: LogContext
 ): ContractFile => ({
   ...contract,
-  matcherLookup: addInteraction(
-    contract.matcherLookup,
-    example.interaction,
-    context
-  ),
+  matcherLookup: addMock(contract.matcherLookup, example.interaction, context),
   examples: [...contract.examples, example],
 });
 

@@ -13,7 +13,7 @@ import {
 } from 'entities/contract/interactions';
 import type { Logger } from 'entities/logger/types';
 import type {
-  AnyInteractionType,
+  AnyMockType,
   CaseError,
   CaseExample,
   LogLevelContext,
@@ -42,7 +42,7 @@ export class CaseVerifier extends BaseCaseContract {
     this.mutex = new Mutex();
   }
 
-  verifyContract<T extends AnyInteractionType>(
+  verifyContract<T extends AnyMockType>(
     { stateHandlers = {}, triggers }: MultiTestInvoker<T>,
     runTestCb: RunTestCallback
   ): void {

@@ -1,14 +1,14 @@
 import type { InvokingScaffold } from 'connectors/contract/types';
 import { CaseConfigurationError } from 'entities';
 import type {
-  AnyInteractionType,
-  CaseInteractionFor,
+  AnyMockType,
+  CaseMockFor,
   Assertable,
   MatchContext,
 } from 'entities/types';
 
-export const callTrigger = <T extends AnyInteractionType>(
-  interaction: CaseInteractionFor<T>,
+export const callTrigger = <T extends AnyMockType>(
+  interaction: CaseMockFor<T>,
   { trigger, triggers, names }: InvokingScaffold<T>,
   assertable: Assertable<T>,
   context: MatchContext

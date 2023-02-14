@@ -16,7 +16,7 @@ import { UserNotFoundConsumerError } from '__tests__/client/http/connector/error
 import { runJestTest } from '__tests__/jest';
 
 // These imports support the partial DSL that hasn't been extracted yet
-import type { AnyInteractionType, CaseInteractionFor } from 'entities/types';
+import type { AnyMockType, CaseMockFor } from 'entities/types';
 import type { AnyState } from 'entities/states/types';
 
 import {
@@ -116,9 +116,9 @@ describe('e2e http provider driven', () => {
     };
 
     // JEST BOILERPLATE
-    const testInteraction = <T extends AnyInteractionType>(
+    const testMock = <T extends AnyMockType>(
       states: Array<AnyState>,
-      interaction: CaseInteractionFor<T>
+      interaction: CaseMockFor<T>
     ) =>
       contract.executeTest({
         states,
@@ -126,9 +126,9 @@ describe('e2e http provider driven', () => {
         stateHandlers,
       });
 
-    const testFailedInteraction = <T extends AnyInteractionType>(
+    const testFailedMock = <T extends AnyMockType>(
       states: Array<AnyState>,
-      interaction: CaseInteractionFor<T>
+      interaction: CaseMockFor<T>
     ) =>
       contract.executeTest({
         states,
@@ -144,7 +144,7 @@ describe('e2e http provider driven', () => {
 
         describe('health endpoint', () => {
           it('behaves as expected', () =>
-            testInteraction(
+            testMock(
               [state],
               willReceiveHttpRequest({
                 request: {
@@ -157,7 +157,7 @@ describe('e2e http provider driven', () => {
 
           describe('arbitrary status response string', () => {
             it('behaves as expected', () =>
-              testInteraction(
+              testMock(
                 [state],
                 willReceiveHttpRequest({
                   request: {
@@ -177,7 +177,7 @@ describe('e2e http provider driven', () => {
         const state = inState('Server is down');
         describe('No body server response', () => {
           it('calls server health', () => {
-            testFailedInteraction(
+            testFailedMock(
               [state],
               willReceiveHttpRequest({
                 request: {
@@ -192,7 +192,7 @@ describe('e2e http provider driven', () => {
 
         describe('specific server response', () => {
           it('calls server health', async () => {
-            testFailedInteraction(
+            testFailedMock(
               [state],
               willReceiveHttpRequest({
                 request: {
@@ -211,7 +211,7 @@ describe('e2e http provider driven', () => {
         const responseBody = { userId: stateVariable('userId') };
 
         it('returns an existing user', async () =>
-          testInteraction(
+          testMock(
             [
               inState('Server is up'),
               inState('A user exists', { userId: '123' }),
@@ -230,7 +230,7 @@ describe('e2e http provider driven', () => {
       });
       describe("when the user doesn't exist", () => {
         it('returns a user not found error', () =>
-          testFailedInteraction(
+          testFailedMock(
             [inState('Server is up'), inState('No users exist')],
             willReceiveHttpRequest({
               request: {

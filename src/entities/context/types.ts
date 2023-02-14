@@ -1,5 +1,5 @@
 import type {
-  AnyInteraction,
+  AnyMock,
   MatcherExecutor,
   AnyCaseNodeOrData,
   AnyCaseNodeType,
@@ -138,7 +138,7 @@ export interface HasBaseUrlUnderTest {
 
 export interface RunContext
   extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest> {
-  'case:run:context:tree'?: AnyCaseNodeOrData | AnyInteraction;
+  'case:run:context:tree'?: AnyCaseNodeOrData | AnyMock;
   'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
   'case:currentRun:context:printResults': boolean;
 }

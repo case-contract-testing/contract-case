@@ -1,4 +1,4 @@
 export {
   willReceiveHttpRequest,
   willSendHttpRequest,
-} from 'entities/nodes/interactions/http';
+} from 'entities/nodes/mocks/http';

@@ -11,17 +11,13 @@ import type { StateHandlers } from 'entities/states/types';
 import { executionError, hasErrors, makeResults } from 'entities/results';
 import type { CaseContract, CaseVerifier } from 'connectors/contract';
 import type { InvokingScaffold } from 'connectors/contract/types';
-import type {
-  AnyInteractionType,
-  Assertable,
-  CaseInteractionFor,
-} from 'entities/types';
+import type { AnyMockType, Assertable, CaseMockFor } from 'entities/types';
 
 import { CaseConfigurationError } from 'entities';
 import { executeStateHandlers, executeTeardownHandlers } from './stateHandlers';
 import { callTrigger } from './triggers';
 
-const setupExample = <T extends AnyInteractionType>(
+const setupExample = <T extends AnyMockType>(
   example: CaseExample,
   stateSetups: StateHandlers,
   context: MatchContext
@@ -41,7 +37,7 @@ const setupExample = <T extends AnyInteractionType>(
   return executeStateHandlers(example, stateSetups, context).then(() => {
     context.logger.maintainerDebug(`Calling setupUnhandledAssert`);
     return setupUnhandledAssert(
-      example.interaction as CaseInteractionFor<T>,
+      example.interaction as CaseMockFor<T>,
       context
     ).then((assertable: Assertable<T>) => ({
       ...assertable,
@@ -55,7 +51,7 @@ const setupExample = <T extends AnyInteractionType>(
   });
 };
 
-const toResultingExample = <T extends AnyInteractionType>(
+const toResultingExample = <T extends AnyMockType>(
   assertable: Assertable<T>,
   example: CaseExample,
   context: MatchContext
@@ -86,7 +82,7 @@ const toResultingExample = <T extends AnyInteractionType>(
     }
   );
 
-export const executeExample = <T extends AnyInteractionType>(
+export const executeExample = <T extends AnyMockType>(
   example: CaseExample,
   { stateHandlers = {}, trigger, triggers, names }: InvokingScaffold<T>,
   contract: CaseContract | CaseVerifier,
@@ -100,7 +96,7 @@ export const executeExample = <T extends AnyInteractionType>(
         context['case:currentRun:context:location']
       );
       return callTrigger<T>(
-        example.interaction as CaseInteractionFor<T>,
+        example.interaction as CaseMockFor<T>,
         { trigger, triggers, names },
         assertable,
         context

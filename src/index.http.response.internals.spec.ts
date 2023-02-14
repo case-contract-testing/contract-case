@@ -1,5 +1,5 @@
 import type * as http from 'http';
-import { willSendHttpRequest } from 'entities/nodes/interactions/http';
+import { willSendHttpRequest } from 'entities/nodes/mocks/http';
 import type { MatchResult } from 'entities/types';
 import { makeNoErrorResult } from 'entities/results';
 import { anyString, httpStatus, logLevel } from 'boundaries/dsl/Matchers';

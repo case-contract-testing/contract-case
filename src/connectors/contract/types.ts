@@ -1,21 +1,17 @@
-import type { SetupInfoFor } from 'entities/nodes/interactions/setup.types';
+import type { SetupInfoFor } from 'entities/nodes/mocks/setup.types';
 import type { AnyState, StateHandlers } from 'entities/states/types';
-import type {
-  AnyInteractionType,
-  CaseInteractionFor,
-  ExampleNames,
-} from 'entities/types';
+import type { AnyMockType, CaseMockFor, ExampleNames } from 'entities/types';
 
 export type RunTestCallback = (
   testName: string,
   verify: () => Promise<unknown>
 ) => void;
 
-type Trigger<T extends AnyInteractionType, R = unknown> = (
+type Trigger<T extends AnyMockType, R = unknown> = (
   config: SetupInfoFor<T>
 ) => Promise<R>;
 
-type TriggerPair<T extends AnyInteractionType, R> = {
+type TriggerPair<T extends AnyMockType, R> = {
   trigger: Trigger<T, R>;
   verifiers: Record<
     string,
@@ -27,21 +23,21 @@ type TriggerPair<T extends AnyInteractionType, R> = {
   >;
 };
 
-export type MultiTestInvoker<T extends AnyInteractionType, R = unknown> = {
+export type MultiTestInvoker<T extends AnyMockType, R = unknown> = {
   stateHandlers?: StateHandlers;
   triggers?: Record<string, TriggerPair<T, R>> | undefined;
 };
 
-export type TestInvoker<
-  T extends AnyInteractionType,
-  R = unknown
-> = MultiTestInvoker<T, R> & {
+export type TestInvoker<T extends AnyMockType, R = unknown> = MultiTestInvoker<
+  T,
+  R
+> & {
   states?: Array<AnyState>;
-  interaction: CaseInteractionFor<T>;
+  interaction: CaseMockFor<T>;
   trigger?: Trigger<T, R> | undefined;
 };
 
-export type InvokingScaffold<T extends AnyInteractionType> = Omit<
+export type InvokingScaffold<T extends AnyMockType> = Omit<
   TestInvoker<T>,
   'interaction'
 > & { names: ExampleNames };

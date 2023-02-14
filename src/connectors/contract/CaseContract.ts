@@ -10,17 +10,14 @@ import { makeLogger as defaultMakeLogger } from 'connectors/logger';
 import { CaseCoreError } from 'entities';
 import { CaseFailedError } from 'entities/CaseFailedError';
 import { addLocation, applyNodeToContext } from 'entities/context';
-import {
-  exampleToNames,
-  nameInteraction,
-} from 'entities/contract/interactions';
+import { exampleToNames, nameMock } from 'entities/contract/interactions';
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type { Logger } from 'entities/logger/types';
 import { makeResults } from 'entities/results';
 import { SETUP_VARIABLE_STATE } from 'entities/states/types';
 import {
   LogLevelContext,
-  AnyInteractionType,
+  AnyMockType,
   MatchContext,
   ERROR_TYPE_EXECUTION,
 } from 'entities/types';
@@ -44,7 +41,7 @@ export class CaseContract extends BaseCaseContract {
     this.mutex = new Mutex();
   }
 
-  executeTest<T extends AnyInteractionType>(
+  executeTest<T extends AnyMockType>(
     { states = [], interaction, trigger, stateHandlers = {} }: TestInvoker<T>,
     runConfig?: CaseConfig
   ): Promise<unknown> {
@@ -73,7 +70,7 @@ export class CaseContract extends BaseCaseContract {
 
       const example: CaseExample = {
         states,
-        interaction: nameInteraction(interaction, runContext),
+        interaction: nameMock(interaction, runContext),
         result: 'PENDING',
       };
 

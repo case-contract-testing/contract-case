@@ -4,33 +4,29 @@ import type {
   LookupableMatcher,
 } from 'entities/types';
 
-export type AnyInteractionType =
-  | typeof MOCK_HTTP_SERVER
-  | typeof MOCK_HTTP_CLIENT;
+export type AnyMockType = typeof MOCK_HTTP_SERVER | typeof MOCK_HTTP_CLIENT;
 
 export const MOCK_HTTP_SERVER = 'MockHttpServer' as const;
 export const MOCK_HTTP_CLIENT = 'MockHttpClient' as const;
 
-export type HasTypeForInteraction<T extends AnyInteractionType> = {
+export type HasTypeForMock<T extends AnyMockType> = {
   'case:interaction:type': T;
 };
 
-type BaseInteraction = {
+type BaseMock = {
   'case:interaction:uniqueName': string;
 };
 
-export const isCaseInteraction = (
-  maybeInteraction: unknown
-): maybeInteraction is AnyInteraction =>
-  typeof maybeInteraction === 'object' &&
-  maybeInteraction != null &&
-  'case:interaction:type' in (maybeInteraction as AnyInteraction);
+export const isCaseMock = (maybeMock: unknown): maybeMock is AnyMock =>
+  typeof maybeMock === 'object' &&
+  maybeMock != null &&
+  'case:interaction:type' in (maybeMock as AnyMock);
 
-export type AnyInteraction = ConsumeHttpResponse | ProduceHttpResponse;
+export type AnyMock = ConsumeHttpResponse | ProduceHttpResponse;
 
-export type CaseInteractionFor<T extends AnyInteractionType> = Extract<
-  AnyInteraction,
-  HasTypeForInteraction<T>
+export type CaseMockFor<T extends AnyMockType> = Extract<
+  AnyMock,
+  HasTypeForMock<T>
 >;
 
 export interface CoreHttpRequestResponseMatcherPair {
@@ -38,12 +34,10 @@ export interface CoreHttpRequestResponseMatcherPair {
   response: CoreHttpResponseMatcher | LookupableMatcher;
 }
 
-export type ConsumeHttpResponse = HasTypeForInteraction<
-  typeof MOCK_HTTP_SERVER
-> & {
+export type ConsumeHttpResponse = HasTypeForMock<typeof MOCK_HTTP_SERVER> & {
   'case:run:context:asWritten': 'consume' | 'produce';
 } & CoreHttpRequestResponseMatcherPair &
-  BaseInteraction & {
+  BaseMock & {
     'case:run:context:setup': {
       write: {
         type: typeof MOCK_HTTP_SERVER;
@@ -58,12 +52,10 @@ export type ConsumeHttpResponse = HasTypeForInteraction<
     };
   };
 
-export type ProduceHttpResponse = HasTypeForInteraction<
-  typeof MOCK_HTTP_CLIENT
-> & {
+export type ProduceHttpResponse = HasTypeForMock<typeof MOCK_HTTP_CLIENT> & {
   'case:run:context:asWritten': 'consume' | 'produce';
 } & CoreHttpRequestResponseMatcherPair &
-  BaseInteraction & {
+  BaseMock & {
     'case:run:context:setup': {
       write: {
         type: typeof MOCK_HTTP_CLIENT;

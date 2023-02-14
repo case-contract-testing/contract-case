@@ -1,8 +1,5 @@
 import type { Logger } from 'entities/logger/types';
-import {
-  AnyInteraction,
-  isCaseInteraction,
-} from 'entities/nodes/interactions/types';
+import { AnyMock, isCaseMock } from 'entities/nodes/mocks/types';
 import {
   isCaseNode,
   AnyCaseNodeOrData,
@@ -37,9 +34,7 @@ const DEFAULT_CONTEXT: DefaultContext = {
   'case:context:serialisableTo': 'json',
 };
 
-const contextProperties = (
-  caseNode: AnyCaseMatcher | AnyInteraction
-): MatchContext =>
+const contextProperties = (caseNode: AnyCaseMatcher | AnyMock): MatchContext =>
   Object.entries(caseNode)
     .filter(
       ([k]) =>
@@ -57,7 +52,7 @@ const updateFunctions = (context: MatchContext) => {
 };
 
 export const foldIntoContext = (
-  caseNode: AnyCaseMatcher | AnyInteraction,
+  caseNode: AnyCaseMatcher | AnyMock,
   context: MatchContext
 ): MatchContext => ({
   ...context,
@@ -67,12 +62,12 @@ export const foldIntoContext = (
 let interactionId = 0;
 
 const combineWithRoot = (
-  caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
+  caseNodeOrData: AnyCaseNodeOrData | AnyMock,
   context: MatchContext,
   runConfig: Partial<RunContext>
 ) => {
   const newContext = {
-    ...(isCaseNode(caseNodeOrData) || isCaseInteraction(caseNodeOrData)
+    ...(isCaseNode(caseNodeOrData) || isCaseMock(caseNodeOrData)
       ? foldIntoContext(caseNodeOrData, context)
       : context),
     ...runConfig,
@@ -118,7 +113,7 @@ export const constructInitialContext = (
 };
 
 export const applyNodeToContext = (
-  caseNodeOrData: AnyCaseNodeOrData | AnyInteraction,
+  caseNodeOrData: AnyCaseNodeOrData | AnyMock,
   context: MatchContext,
   runConfig: Partial<RunContext> = {}
 ): MatchContext => combineWithRoot(caseNodeOrData, context, runConfig);

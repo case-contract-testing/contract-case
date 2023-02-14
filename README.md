@@ -167,7 +167,7 @@ Documentation
 
 - [ ] Differences from Pact
 - [ ] -- Pass-through APIs
-- [ ] -- Interaction model
+- [ ] -- Mock model
 - [ ] -- How to do proxy testing
 - [ ] -- Extensibility
 - [ ] How to use

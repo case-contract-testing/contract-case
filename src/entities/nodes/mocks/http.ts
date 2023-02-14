@@ -1,8 +1,5 @@
 import { httpRequestMatcher, httpResponseMatcher } from 'entities';
-import type {
-  HttpInteractionRequest,
-  HttpInteractionResponse,
-} from 'entities/types';
+import type { HttpMockRequest, HttpMockResponse } from 'entities/types';
 import {
   type ConsumeHttpResponse,
   MOCK_HTTP_SERVER,
@@ -11,8 +8,8 @@ import {
 } from './types';
 
 type HttpRequestResponseDescription = {
-  request: HttpInteractionRequest;
-  response: HttpInteractionResponse;
+  request: HttpMockRequest;
+  response: HttpMockResponse;
 };
 
 export const willSendHttpRequest = ({
