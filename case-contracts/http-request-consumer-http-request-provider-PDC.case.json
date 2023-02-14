@@ -120,16 +120,16 @@
           }
         },
         "case:interaction:uniqueName": "",
-        "case:interaction:type": "ProduceHttpResponse",
+        "case:interaction:type": "MockHttpClient",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
-            "type": "ProduceHttpResponse",
+            "type": "MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           },
           "read": {
-            "type": "ConsumeHttpResponse",
+            "type": "MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           }
@@ -170,16 +170,16 @@
           }
         },
         "case:interaction:uniqueName": "",
-        "case:interaction:type": "ProduceHttpResponse",
+        "case:interaction:type": "MockHttpClient",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
-            "type": "ProduceHttpResponse",
+            "type": "MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           },
           "read": {
-            "type": "ConsumeHttpResponse",
+            "type": "MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           }
@@ -221,16 +221,16 @@
           }
         },
         "case:interaction:uniqueName": "",
-        "case:interaction:type": "ProduceHttpResponse",
+        "case:interaction:type": "MockHttpClient",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
-            "type": "ProduceHttpResponse",
+            "type": "MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           },
           "read": {
-            "type": "ConsumeHttpResponse",
+            "type": "MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           }
@@ -267,16 +267,16 @@
           }
         },
         "case:interaction:uniqueName": "",
-        "case:interaction:type": "ProduceHttpResponse",
+        "case:interaction:type": "MockHttpClient",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
-            "type": "ProduceHttpResponse",
+            "type": "MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           },
           "read": {
-            "type": "ConsumeHttpResponse",
+            "type": "MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           }
@@ -335,16 +335,16 @@
           }
         },
         "case:interaction:uniqueName": "",
-        "case:interaction:type": "ProduceHttpResponse",
+        "case:interaction:type": "MockHttpClient",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
-            "type": "ProduceHttpResponse",
+            "type": "MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           },
           "read": {
-            "type": "ConsumeHttpResponse",
+            "type": "MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           }
@@ -387,16 +387,16 @@
           }
         },
         "case:interaction:uniqueName": "",
-        "case:interaction:type": "ProduceHttpResponse",
+        "case:interaction:type": "MockHttpClient",
         "case:run:context:asWritten": "consume",
         "case:run:context:setup": {
           "write": {
-            "type": "ProduceHttpResponse",
+            "type": "MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           },
           "read": {
-            "type": "ConsumeHttpResponse",
+            "type": "MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           }

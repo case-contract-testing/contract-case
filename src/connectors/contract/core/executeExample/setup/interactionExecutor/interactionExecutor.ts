@@ -1,8 +1,10 @@
 import type { MatchContext } from 'entities/context/types';
 import { CaseCoreError } from 'entities/CaseCoreError';
-import type {
+import {
   AnyInteractionType,
   CaseInteractionFor,
+  MOCK_HTTP_CLIENT,
+  MOCK_HTTP_SERVER,
 } from 'entities/nodes/interactions/types';
 import type { InteractionData } from 'entities/nodes/interactions/setup.types';
 import { addLocation } from 'entities/context';
@@ -10,10 +12,10 @@ import type { InteractionSetupFns } from './types';
 
 const invert = (t: AnyInteractionType): AnyInteractionType => {
   switch (t) {
-    case 'ConsumeHttpResponse':
-      return 'ProduceHttpResponse';
-    case 'ProduceHttpResponse':
-      return 'ConsumeHttpResponse';
+    case MOCK_HTTP_CLIENT:
+      return MOCK_HTTP_SERVER;
+    case MOCK_HTTP_SERVER:
+      return MOCK_HTTP_CLIENT;
     default:
       throw new CaseCoreError(`Unable to invert interaction type '${t}'`);
   }

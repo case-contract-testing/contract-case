@@ -5,11 +5,11 @@ import type {
 } from 'entities/types';
 
 export type AnyInteractionType =
-  | typeof CONSUME_HTTP_RESPONSE
-  | typeof PRODUCE_HTTP_RESPONSE;
+  | typeof MOCK_HTTP_SERVER
+  | typeof MOCK_HTTP_CLIENT;
 
-export const CONSUME_HTTP_RESPONSE = 'ConsumeHttpResponse' as const;
-export const PRODUCE_HTTP_RESPONSE = 'ProduceHttpResponse' as const;
+export const MOCK_HTTP_SERVER = 'MockHttpServer' as const;
+export const MOCK_HTTP_CLIENT = 'MockHttpClient' as const;
 
 export type HasTypeForInteraction<T extends AnyInteractionType> = {
   'case:interaction:type': T;
@@ -39,19 +39,19 @@ export interface CoreHttpRequestResponseMatcherPair {
 }
 
 export type ConsumeHttpResponse = HasTypeForInteraction<
-  typeof CONSUME_HTTP_RESPONSE
+  typeof MOCK_HTTP_SERVER
 > & {
   'case:run:context:asWritten': 'consume' | 'produce';
 } & CoreHttpRequestResponseMatcherPair &
   BaseInteraction & {
     'case:run:context:setup': {
       write: {
-        type: typeof CONSUME_HTTP_RESPONSE;
+        type: typeof MOCK_HTTP_SERVER;
         stateVariables: 'default';
         triggers: 'provided';
       };
       read: {
-        type: typeof PRODUCE_HTTP_RESPONSE;
+        type: typeof MOCK_HTTP_CLIENT;
         stateVariables: 'state';
         triggers: 'generated';
       };
@@ -59,19 +59,19 @@ export type ConsumeHttpResponse = HasTypeForInteraction<
   };
 
 export type ProduceHttpResponse = HasTypeForInteraction<
-  typeof PRODUCE_HTTP_RESPONSE
+  typeof MOCK_HTTP_CLIENT
 > & {
   'case:run:context:asWritten': 'consume' | 'produce';
 } & CoreHttpRequestResponseMatcherPair &
   BaseInteraction & {
     'case:run:context:setup': {
       write: {
-        type: typeof PRODUCE_HTTP_RESPONSE;
+        type: typeof MOCK_HTTP_CLIENT;
         stateVariables: 'state';
         triggers: 'generated';
       };
       read: {
-        type: typeof CONSUME_HTTP_RESPONSE;
+        type: typeof MOCK_HTTP_SERVER;
         stateVariables: 'default';
         triggers: 'provided';
       };

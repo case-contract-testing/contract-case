@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as http from 'node:http';
 
-import { PRODUCE_HTTP_RESPONSE } from 'entities/nodes/interactions/types';
+import { MOCK_HTTP_CLIENT } from 'entities/nodes/interactions/types';
 import {
   HasBaseUrlUnderTest,
   LoggableContext,
@@ -73,14 +73,14 @@ export const setupHttpResponseConsumer = (
     response: expectedResponse,
   }: CoreHttpRequestResponseMatcherPair,
   context: MatchContext
-): Promise<InteractionData<typeof PRODUCE_HTTP_RESPONSE>> =>
+): Promise<InteractionData<typeof MOCK_HTTP_CLIENT>> =>
   Promise.resolve().then(() => {
     const expectedRequest = getMatcher(requestMatcher, context);
 
     return validateConfig(context).then(
       (run: LoggableContext & HasBaseUrlUnderTest) => ({
         mock: {
-          'case:interaction:type': PRODUCE_HTTP_RESPONSE,
+          'case:interaction:type': MOCK_HTTP_CLIENT,
           variables: { userId: '42' }, // TODO replace this with actual variables
         },
         assertableData: () =>

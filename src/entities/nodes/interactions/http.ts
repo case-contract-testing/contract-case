@@ -5,8 +5,8 @@ import type {
 } from 'entities/types';
 import {
   type ConsumeHttpResponse,
-  CONSUME_HTTP_RESPONSE,
-  PRODUCE_HTTP_RESPONSE,
+  MOCK_HTTP_SERVER,
+  MOCK_HTTP_CLIENT,
   ProduceHttpResponse,
 } from './types';
 
@@ -22,16 +22,16 @@ export const willSendHttpRequest = ({
   request: httpRequestMatcher(request),
   response: httpResponseMatcher(response),
   'case:interaction:uniqueName': '',
-  'case:interaction:type': CONSUME_HTTP_RESPONSE,
+  'case:interaction:type': MOCK_HTTP_SERVER,
   'case:run:context:asWritten': 'consume',
   'case:run:context:setup': {
     write: {
-      type: CONSUME_HTTP_RESPONSE,
+      type: MOCK_HTTP_SERVER,
       stateVariables: 'default',
       triggers: 'provided',
     },
     read: {
-      type: PRODUCE_HTTP_RESPONSE,
+      type: MOCK_HTTP_CLIENT,
       stateVariables: 'state',
       triggers: 'generated',
     },
@@ -45,16 +45,16 @@ export const willReceiveHttpRequest = ({
   request: httpRequestMatcher(request),
   response: httpResponseMatcher(response),
   'case:interaction:uniqueName': '',
-  'case:interaction:type': PRODUCE_HTTP_RESPONSE,
+  'case:interaction:type': MOCK_HTTP_CLIENT,
   'case:run:context:asWritten': 'consume',
   'case:run:context:setup': {
     write: {
-      type: PRODUCE_HTTP_RESPONSE,
+      type: MOCK_HTTP_CLIENT,
       stateVariables: 'state',
       triggers: 'generated',
     },
     read: {
-      type: CONSUME_HTTP_RESPONSE,
+      type: MOCK_HTTP_SERVER,
       stateVariables: 'default',
       triggers: 'provided',
     },

@@ -3,9 +3,9 @@ import type { AnyCaseNodeOrData, AnyData } from 'entities/nodes/matchers/types';
 import type {
   AnyInteractionType,
   CaseInteractionFor,
-  PRODUCE_HTTP_RESPONSE,
+  MOCK_HTTP_CLIENT,
   HasTypeForInteraction,
-  CONSUME_HTTP_RESPONSE,
+  MOCK_HTTP_SERVER,
 } from './types';
 
 type InteractionOutput = {
@@ -29,14 +29,14 @@ type BaseConfig = {
 };
 
 export type HttpRequestConsumerSetup = HasTypeForInteraction<
-  typeof CONSUME_HTTP_RESPONSE
+  typeof MOCK_HTTP_SERVER
 > &
   BaseConfig & {
     baseUrl: string;
   };
 
 export type HttpRequestProducerSetup = HasTypeForInteraction<
-  typeof PRODUCE_HTTP_RESPONSE
+  typeof MOCK_HTTP_CLIENT
 > &
   BaseConfig;
 

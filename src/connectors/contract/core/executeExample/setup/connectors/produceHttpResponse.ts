@@ -6,7 +6,7 @@ import {
   HttpRequestData,
   CoreHttpRequestResponseMatcherPair,
   MatchContext,
-  CONSUME_HTTP_RESPONSE,
+  MOCK_HTTP_SERVER,
   HTTP_RESPONSE_MATCHER_TYPE,
   CoreHttpResponseMatcher,
   LookupableMatcher,
@@ -62,10 +62,10 @@ export const setupHttpResponseProducer = (
     response: responseMatcher,
   }: CoreHttpRequestResponseMatcherPair,
   context: MatchContext
-): Promise<InteractionData<typeof CONSUME_HTTP_RESPONSE>> => {
+): Promise<InteractionData<typeof MOCK_HTTP_SERVER>> => {
   let requestData: HttpRequestData;
   let server: http.Server;
-  return new Promise<InteractionData<typeof CONSUME_HTTP_RESPONSE>>(
+  return new Promise<InteractionData<typeof MOCK_HTTP_SERVER>>(
     (resolve, reject) => {
       const app = express();
       app.all('*', (req, res, next) => {
@@ -115,7 +115,7 @@ export const setupHttpResponseProducer = (
         return;
       }
       const mock = {
-        'case:interaction:type': CONSUME_HTTP_RESPONSE,
+        'case:interaction:type': MOCK_HTTP_SERVER,
         baseUrl: `http://${addressToString(address)}`,
         variables: { userId: '42' }, // TODO replace this with actual variables
       };
