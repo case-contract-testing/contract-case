@@ -52,7 +52,6 @@ We plan for Case to always be compatible with both of these brokers.
 
 - Native message formats - actually invoke SQS queues / kafka messages etc during verification
 - Easy user extensions - write extensions for Case just by extending a class in JS, Python, Go or Java
--
 
 ## Roadmap
 
