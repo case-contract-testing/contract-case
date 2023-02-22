@@ -41,6 +41,7 @@ describe('simple get endpoint', () => {
     {
       testRunId: 'REQUEST',
       printResults: false,
+      logLevel: 'error',
     }
   );
 
@@ -55,6 +56,7 @@ describe('simple get endpoint', () => {
   describe('without a URL', () => {
     const config = {
       contractMode: 'read',
+      logLevel: 'error',
     } as CaseConfig;
 
     it('fails to setup', () =>
@@ -74,6 +76,7 @@ describe('simple get endpoint', () => {
     } = {
       baseUrlUnderTest: 'http://localhost:8282',
       contractMode: 'read',
+      logLevel: 'error',
     };
     describe('but no running server', () => {
       it('fails to start', () =>
