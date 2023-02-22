@@ -10,17 +10,36 @@ Work in progress, use at your own risk. Expected ready for beta testing: Feb 202
 
 ![Case](/docs/suitcase.png)
 
-<sub>[Briefcase sticker created by Gohsantosadrive - Flaticon](https://www.flaticon.com/free-stickers/law)</sub>
+<sub>[Briefcase sticker created by Gohsantosadrive on Flaticon](https://www.flaticon.com/free-stickers/law)</sub>
 
 </span>
 
 Case is a next-generation consumer-driven contract testing framework, building
-on many of the lessons from the excellent [Pact](pact.io) contract testing
-framework. It is intended to solve some of the pain points when using Pact.
+on many of the lessons from maintaining the excellent [Pact](pact.io) contract testing
+framework. It is our belief that contract testing is the best way to get
+deployment confidence for your applications and services.
 
-Documentation and beta release coming soon.
+Documentation and beta release coming soon
 
-## Differences from Pact
+## For Pact users
+
+> _TODO: Pull this section out and expand into detailled documentation_
+
+Case is intended to solve some of the pain points when using Pact - if
+you are not hitting those pain points, there is no need to switch to using Case (unless
+you want to or something).
+
+Case has a very similar philosophy to Pact. You write your pacts as a contract, which is a series of examples.
+
+Like Pact, Case requires a broker to operate. To maximise Pact compatibility, Case works with the Pact broker. We
+recommend either:
+
+- The [Pact Broker](https://github.com/pact-foundation/pact_broker) for users wanting to host their own broke
+- The excellent [Pactflow Broker](https://pactflow.io) for those needing SaaS and enterprise features
+
+We plan for Case to always be compatible with both of these brokers.
+
+## Feature differences from Pact
 
 - Drive contracts from the client or the server. Case is always consumer-driven, but what you are consuming might be a request, instead of a response.
   - Example [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts)
