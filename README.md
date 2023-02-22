@@ -14,8 +14,8 @@ Work in progress, not ready for use yet. Expected beta testing: Feb 2023.
 ## Roadmap
 
 1. Pact Parity (in progress)
-2. Provider driven contracts
-3. Arbitrary combinations of req/resp pairs (incidentally including SQS)
+2. Provider driven contracts (done)
+3. Arbitrary combinations of req/resp pairs, incidentally including native SQS support
 4. RELEASE BETA
 5. Passthrough APIs
 6. Plugins and arbitrary extensions
