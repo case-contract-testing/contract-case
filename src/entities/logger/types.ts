@@ -1,10 +1,4 @@
-export type LogLevel =
-  | 'none'
-  | 'error'
-  | 'warn'
-  | 'info'
-  | 'debug'
-  | 'maintainerDebug';
+export type LogLevel = 'none' | 'error' | 'warn' | 'debug' | 'maintainerDebug';
 
 export interface Logger {
   /**
@@ -15,10 +9,6 @@ export interface Logger {
    * It seems likely that there is a misconfiguration
    */
   warn: (message: string, ...additional: unknown[]) => void;
-  /**
-   * Information about failed tests and overall test run statistics
-   */
-  info: (message: string, ...additional: unknown[]) => void;
   /**
    * Information to help users find out what is happening during their tests
    */

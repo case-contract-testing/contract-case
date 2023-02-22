@@ -29,16 +29,6 @@ const timestampString = (): string =>
 export const makeLogger: (context: LogLevelContext) => Logger = (
   matchContext: LogLevelContext
 ) => ({
-  info(message: string, ...additional: unknown[]): void {
-    if (shouldLog(matchContext, 'info')) {
-      stdoutLogger.log(
-        `${timestampString()} ${caseVersionString} ${locationString(
-          matchContext
-        )}: ${message}`,
-        ...additional
-      );
-    }
-  },
   warn(message: string, ...additional: unknown[]): void {
     if (shouldLog(matchContext, 'warn')) {
       stdoutLogger.log(

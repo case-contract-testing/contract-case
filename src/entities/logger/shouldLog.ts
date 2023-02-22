@@ -13,12 +13,6 @@ export const shouldLog = (
     case 'error':
       return logFunction === 'error';
     case 'warn':
-      return (
-        logFunction !== 'maintainerDebug' &&
-        logFunction !== 'debug' &&
-        logFunction !== 'info'
-      );
-    case 'info':
       return logFunction !== 'maintainerDebug' && logFunction !== 'debug';
     case 'debug':
       return logFunction !== 'maintainerDebug';

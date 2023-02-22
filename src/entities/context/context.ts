@@ -27,7 +27,7 @@ import type {
 const DEFAULT_CONTEXT: DefaultContext = {
   'case:currentRun:context:location': [],
   'case:currentRun:context:contractMode': 'write',
-  'case:currentRun:context:logLevel': 'info',
+  'case:currentRun:context:logLevel': 'warn',
   'case:currentRun:context:printResults': true,
   'case:context:matchBy': 'exact',
   'case:context:serialisableTo': 'json',
