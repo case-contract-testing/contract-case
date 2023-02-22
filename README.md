@@ -1,6 +1,8 @@
 # Case Contract Testing Framework
 
 [![Build and test](https://github.com/TimothyJones/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/TimothyJones/case/actions/workflows/build-and-test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/TimothyJones/case/badge.svg?branch=main)](https://coveralls.io/github/TimothyJones/case?branch=main)
+[![Known Vulnerabilities](https://snyk.io/test/github/TimothyJones/case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/TimothyJones/case?targetFile=package.json)
 
 Work in progress, use at your own risk. Expected ready for beta testing: Feb 2023.
 
