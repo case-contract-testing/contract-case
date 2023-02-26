@@ -1,2 +1,2 @@
-export * from './executeExample/setup';
+export * from './executeExample/setup/setupMock';
 export * from './executeExample';

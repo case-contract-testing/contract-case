@@ -84,7 +84,7 @@ export const setupHttpResponseConsumer = (
       (run: MatchContextData & HasBaseUrlUnderTest) => ({
         config: {
           'case:mock:type': MOCK_HTTP_CLIENT,
-          variables: { userId: '42' }, // TODO replace this with actual variables
+          variables: parentContext['case:currentRun:context:variables'],
         },
         assertableData: () =>
           axios

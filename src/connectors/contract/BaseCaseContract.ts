@@ -7,7 +7,7 @@ import {
   configToRunContext,
   DEFAULT_CONFIG,
   DEFAULT_TEST_ID,
-} from 'connectors/contract/core/executeExample/setup';
+} from 'connectors/contract/core/executeExample/setup/setupMock';
 import type { CaseConfig } from 'connectors/contract/core/types';
 import { applyNodeToContext, constructInitialContext } from 'entities/context';
 import type {
@@ -26,6 +26,7 @@ import type {
   MatchContextWithoutLookup,
 } from 'entities/types';
 import { hasErrors } from 'entities/results';
+import { coreShapedLike } from 'entities/nodes/matchers/auxillary';
 
 import {
   findMatcher,
@@ -108,10 +109,6 @@ export class BaseCaseContract {
       );
     }
 
-    const stateVariable = findVariable(this.currentContract, 'state', name);
-    if (stateVariable !== undefined) {
-      return stateVariable;
-    }
     const defaultVariable = findVariable(this.currentContract, 'default', name);
 
     if (defaultVariable === undefined) {
@@ -119,7 +116,7 @@ export class BaseCaseContract {
         `Variable '${name}' was requested but appears not to be set. Is the variable spelt correctly, and the states for this mock are correctly set`
       );
     }
-    return defaultVariable;
+    return coreShapedLike(defaultVariable);
   }
 
   addVariable(
@@ -128,7 +125,7 @@ export class BaseCaseContract {
     stateName: string,
     value: AnyCaseNodeOrData,
     context: MatchContextWithoutLookup
-  ): ContractFile {
+  ): [name: string, value: AnyCaseNodeOrData] {
     if (this.currentContract === undefined) {
       context.logger.error(
         `addVariable was called by state '${stateName}' without initialising the contract file. This should not be possible.`
@@ -138,14 +135,17 @@ export class BaseCaseContract {
       );
     }
 
-    this.currentContract = addVariable(
-      this.currentContract,
-      type,
-      name,
-      value,
-      context
-    );
-    return this.currentContract;
+    if (type !== 'state') {
+      this.currentContract = addVariable(
+        this.currentContract,
+        type,
+        name,
+        coreShapedLike(value),
+        context
+      );
+    }
+
+    return [name, value];
   }
 
   saveLookupableMatcher(

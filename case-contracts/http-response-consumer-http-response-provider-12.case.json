@@ -56,7 +56,11 @@
     },
     "variable:default:userId": {
       "case:matcher:type": "CascadingContext",
-      "case:matcher:child": "123",
+      "case:matcher:child": {
+        "case:matcher:type": "CascadingContext",
+        "case:matcher:child": "123",
+        "case:context:matchBy": "type"
+      },
       "case:context:matchBy": "type"
     },
     "matcher:a (200) response with body an object shaped like {userId: ${userId}}": {

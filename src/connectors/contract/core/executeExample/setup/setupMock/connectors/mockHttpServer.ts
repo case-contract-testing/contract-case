@@ -126,7 +126,7 @@ export const setupHttpResponseProducer = (
           const mock = {
             'case:mock:type': MOCK_HTTP_SERVER,
             baseUrl: `http://${addressToString(address)}`,
-            variables: { userId: '42' }, // TODO replace this with actual variables
+            variables: context['case:currentRun:context:variables'],
           };
           context.logger.maintainerDebug(
             `Mock listening and ready to accept ${

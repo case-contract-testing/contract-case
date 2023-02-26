@@ -1,1 +1,1 @@
-export * from './executeExample/setup/types';
+export * from './executeExample/setup/setupMock/types';

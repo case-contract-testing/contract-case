@@ -1,3 +1,4 @@
+import { CaseConfigurationError } from 'entities';
 import { addLocation } from 'entities/context';
 import type {
   MatchResult,
@@ -12,27 +13,74 @@ const check = (
   matcher: CoreContextVariableMatcher,
   matchContext: MatchContext,
   actual: unknown
-): Promise<MatchResult> | MatchResult =>
-  matchContext.descendAndCheck(
+): Promise<MatchResult> | MatchResult => {
+  if (
+    matcher['case:matcher:variableName'] in
+    matchContext['case:currentRun:context:variables']
+  ) {
+    const value =
+      matchContext['case:currentRun:context:variables'][
+        matcher['case:matcher:variableName']
+      ];
+    if (value === undefined) {
+      throw new CaseConfigurationError(
+        `The variable '${matcher['case:matcher:variableName']}' was undefined, which is not a valid variable value`,
+        matchContext
+      );
+    }
+    return matchContext.descendAndCheck(
+      value,
+      addLocation(
+        `:stateVariable[${matcher['case:matcher:variableName']}]`,
+        matchContext
+      ),
+      actual
+    );
+  }
+  return matchContext.descendAndCheck(
     matchContext.lookupVariable(matcher['case:matcher:variableName']),
     addLocation(
-      `:variable[${matcher['case:matcher:variableName']}]`,
+      `:contractVariable[${matcher['case:matcher:variableName']}]`,
       matchContext
     ),
     actual
   );
+};
 
 const strip = (
   matcher: CoreContextVariableMatcher,
   matchContext: MatchContext
-): AnyData =>
-  matchContext.descendAndStrip(
+): AnyData => {
+  if (
+    matcher['case:matcher:variableName'] in
+    matchContext['case:currentRun:context:variables']
+  ) {
+    const value =
+      matchContext['case:currentRun:context:variables'][
+        matcher['case:matcher:variableName']
+      ];
+    if (value === undefined) {
+      throw new CaseConfigurationError(
+        `The variable '${matcher['case:matcher:variableName']}' was undefined, which is not a valid variable value`,
+        matchContext
+      );
+    }
+    return matchContext.descendAndStrip(
+      value,
+      addLocation(
+        `:stateVariable[${matcher['case:matcher:variableName']}]`,
+        matchContext
+      )
+    );
+  }
+  return matchContext.descendAndStrip(
     matchContext.lookupVariable(matcher['case:matcher:variableName']),
     addLocation(
-      `:variable[${matcher['case:matcher:variableName']}]`,
+      `:contractVariable[${matcher['case:matcher:variableName']}]`,
       matchContext
     )
   );
+};
 
 export const ContextVariableMatcher: MatcherExecutor<
   typeof CONTEXT_VARIABLE_TYPE

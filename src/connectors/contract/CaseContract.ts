@@ -25,7 +25,7 @@ import {
 import { BaseCaseContract } from './BaseCaseContract';
 import { addExample, hasFailure } from './structure';
 import type { TestInvoker } from './types';
-import { writeContract } from './writer/fileSystem';
+import { writeContract } from './writer';
 
 export class CaseContract extends BaseCaseContract {
   testIndex = 0;

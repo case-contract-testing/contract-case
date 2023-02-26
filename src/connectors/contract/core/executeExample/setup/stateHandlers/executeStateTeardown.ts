@@ -42,7 +42,7 @@ const stateTeardownHandler = (
         })
   );
 
-export const executeTeardownHandlers = (
+export const executeStateTeardown = (
   example: CaseExample,
   stateSetups: StateHandlers,
   parentContext: MatchContext

@@ -1,13 +1,7 @@
 import type { MatchContext } from 'entities/context/types';
-import {
-  makeFailedExample,
-  makeSuccessExample,
-  exampleToNames,
-} from 'entities/contract';
+import { makeFailedExample, makeSuccessExample } from 'entities/contract';
 import type { CaseExample } from 'entities/contract/types';
-import { setupUnhandledAssert } from 'connectors/contract/core/executeExample/setup';
 import { handleResult } from 'entities/results/handlers';
-import type { StateHandlers } from 'entities/states/types';
 import { executionError, hasErrors, makeResults } from 'entities/results';
 import type { CaseContract, CaseVerifier } from 'connectors/contract';
 import type { InvokingScaffold } from 'connectors/contract/types';
@@ -16,42 +10,10 @@ import type {
   Assertable,
   CaseMockDescriptorFor,
 } from 'entities/types';
-
 import { CaseConfigurationError } from 'entities';
-import { executeStateHandlers, executeTeardownHandlers } from './stateHandlers';
+
 import { callTrigger } from './triggers';
-
-const setupExample = <T extends AnyMockDescriptorType>(
-  example: CaseExample,
-  stateSetups: StateHandlers,
-  context: MatchContext
-): Promise<Assertable<T>> => {
-  const exampleName = exampleToNames(
-    example,
-    context['case:currentRun:context:testName']
-  );
-
-  context.logger.debug(`Beginning setup for example "${exampleName.mockName}"`);
-  context.logger.maintainerDebug(
-    'Context is',
-    JSON.stringify(context, null, 2)
-  );
-  return executeStateHandlers(example, stateSetups, context).then(() => {
-    context.logger.maintainerDebug(`Calling setupUnhandledAssert`);
-    return setupUnhandledAssert(
-      example.mock as CaseMockDescriptorFor<T>,
-      context
-    ).then((assertable: Assertable<T>) => ({
-      ...assertable,
-      assert: () =>
-        assertable
-          .assert()
-          .finally(() =>
-            executeTeardownHandlers(example, stateSetups, context)
-          ),
-    }));
-  });
-};
+import { setupExample } from './setup';
 
 const toResultingExample = <T extends AnyMockDescriptorType>(
   assertable: Assertable<T>,

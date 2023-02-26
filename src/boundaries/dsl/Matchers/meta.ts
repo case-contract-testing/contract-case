@@ -1,5 +1,8 @@
 import { coreLookupMatcher, coreLookupMatcherRequest } from 'entities';
-import { coreAndMatcher } from 'entities/nodes/matchers/auxillary';
+import {
+  coreAndMatcher,
+  coreShapedLike,
+} from 'entities/nodes/matchers/auxillary';
 import {
   AnyCaseNodeOrData,
   CoreAndCombinationMatcher,
@@ -67,13 +70,8 @@ export const exactlyLike = (
  *
  * @param content The example object, array, primitive or matcher to match against
  */
-export const shapedLike = (
-  content: AnyCaseNodeOrData
-): CoreCascadingMatcher => ({
-  'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-  'case:matcher:child': content,
-  'case:context:matchBy': 'type',
-});
+export const shapedLike = (content: AnyCaseNodeOrData): CoreCascadingMatcher =>
+  coreShapedLike(content);
 
 /**
  * Matches the content of a variable from a provider state.

@@ -30,7 +30,7 @@ export interface RawLookupFns {
     stateName: string,
     value: AnyCaseNodeOrData,
     context: MatchContextWithoutLookup
-  ) => void;
+  ) => [name: string, value: AnyCaseNodeOrData];
   lookupVariable: (
     name: string,
     context: MatchContextWithoutLookup
@@ -44,12 +44,12 @@ export interface ContractLookupFns {
     name: string,
     stateName: string,
     value: AnyCaseNodeOrData
-  ) => void;
+  ) => [name: string, value: AnyCaseNodeOrData];
   addStateVariable: (
     name: string,
     stateName: string,
     value: AnyCaseNodeOrData
-  ) => void;
+  ) => [name: string, value: AnyCaseNodeOrData];
   lookupVariable: (name: string) => AnyCaseNodeOrData;
 }
 
@@ -145,6 +145,7 @@ export interface RunContext
   'case:run:context:tree'?: AnyCaseNodeOrData | AnyMockDescriptor;
   'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
   'case:currentRun:context:printResults': boolean;
+  'case:currentRun:context:variables': Record<string, AnyCaseNodeOrData>;
 }
 
 export interface MatchContextByType {

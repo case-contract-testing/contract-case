@@ -45,4 +45,5 @@ type AnySetupInfo = HttpRequestConsumerSetup | HttpRequestProducerSetup;
 export type SetupInfoFor<T extends AnyMockDescriptorType> = Extract<
   AnySetupInfo,
   HasTypeForMockDescriptor<T>
->;
+> &
+  BaseConfig;

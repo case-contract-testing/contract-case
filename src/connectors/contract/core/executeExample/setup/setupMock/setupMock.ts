@@ -11,7 +11,7 @@ import { CaseConfigurationError } from 'entities';
 import { mockExecutor } from './mockExecutor';
 import { MockExecutors } from './mockExecutors';
 
-export const setupUnhandledAssert = <T extends AnyMockDescriptorType>(
+export const setupMock = <T extends AnyMockDescriptorType>(
   mockDescriptor: CaseMockDescriptorFor<T>,
   parentMatchContext: MatchContext
 ): Promise<Assertable<T>> =>
