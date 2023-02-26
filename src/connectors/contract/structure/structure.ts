@@ -39,7 +39,6 @@ export const findMatcher = (
 
 export const addVariable = (
   contract: ContractFile,
-  type: 'state' | 'default',
   uniqueName: string,
   variable: AnyCaseNodeOrData,
   context: MatchContextWithoutLookup
@@ -47,7 +46,7 @@ export const addVariable = (
   ...contract,
   matcherLookup: addLookup(
     contract.matcherLookup,
-    `variable:${type}`,
+    `variable:default`,
     uniqueName,
     variable,
     context
@@ -57,7 +56,6 @@ export const addVariable = (
 
 export const findVariable = (
   contract: ContractFile,
-  type: 'state' | 'default',
   uniqueName: string
 ): AnyCaseNodeOrData | undefined => {
   const stateVariable = findLookup(
@@ -68,7 +66,7 @@ export const findVariable = (
   if (stateVariable !== undefined) {
     return stateVariable;
   }
-  return findLookup(contract.matcherLookup, `variable:${type}`, uniqueName);
+  return findLookup(contract.matcherLookup, `variable:default`, uniqueName);
 };
 
 export const addLookupableMatcher = (

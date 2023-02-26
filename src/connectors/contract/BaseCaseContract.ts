@@ -109,7 +109,7 @@ export class BaseCaseContract {
       );
     }
 
-    const defaultVariable = findVariable(this.currentContract, 'default', name);
+    const defaultVariable = findVariable(this.currentContract, name);
 
     if (defaultVariable === undefined) {
       throw new CaseConfigurationError(
@@ -138,7 +138,6 @@ export class BaseCaseContract {
     if (type !== 'state') {
       this.currentContract = addVariable(
         this.currentContract,
-        type,
         name,
         coreShapedLike(value),
         context
