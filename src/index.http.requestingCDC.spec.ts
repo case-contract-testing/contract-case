@@ -9,15 +9,14 @@ import { UserNotFoundConsumerError } from '__tests__/client/http/connector/error
 import type { Dependencies } from '__tests__/server/http/domain/types';
 
 // This import is our Jest DSL
-import { runJestTest } from '__tests__/jest';
+import {
+  runCaseExample as jestRunCaseExample,
+  runCaseRejectExample as jestRunCaseRejectExample,
+  runJestTest,
+} from '__tests__/jest';
 
 // These imports support the partial DSL that hasn't been extracted yet
-import type { AnyState } from 'entities/states/types';
-import type {
-  AnyMockDescriptorType,
-  Assertable,
-  CaseMockDescriptorFor,
-} from 'entities/types';
+import type { AnyMockDescriptorType } from 'entities/types';
 import * as fs from 'node:fs';
 
 // These imports are from Case
@@ -33,6 +32,9 @@ import {
   readContract,
   willSendHttpRequest,
   HttpRequestConfig,
+  AnyState,
+  Assertable,
+  CaseMockDescriptorFor,
 } from '.';
 
 const contractDetails = {
@@ -54,38 +56,32 @@ describe('e2e http consumer driven', () => {
     }
   });
   describe('test and write contract', () => {
+    // JEST BOILERPLATE
     const contract = new CaseContract(contractDetails, {
       testRunId: TEST_RUN_ID,
       printResults: false,
     });
-
-    // JEST BOILERPLATE
     const runCaseExample = <T extends AnyMockDescriptorType, R>(
       states: Array<AnyState>,
       mock: CaseMockDescriptorFor<T>,
       trigger: (config: Assertable<T>['config']) => Promise<R>,
       testResponseObject: (data: R) => unknown
     ) =>
-      contract.executeTest({
-        states,
-        mock,
-        trigger: (config) => trigger(config).then(testResponseObject),
-      });
+      jestRunCaseExample(contract, states, mock, trigger, testResponseObject);
 
     const runCaseRejectExample = <T extends AnyMockDescriptorType, R>(
       states: Array<AnyState>,
       mock: CaseMockDescriptorFor<T>,
       trigger: (config: Assertable<T>['config']) => Promise<R>,
-      testResponseObject: (error: Error) => unknown
+      testResponseObject: (data: Error) => unknown
     ) =>
-      contract.executeTest({
+      jestRunCaseRejectExample(
+        contract,
         states,
         mock,
-        trigger: (config) =>
-          trigger(config).then((d) => {
-            throw new Error(`Expected an error, but was ${d}`);
-          }, testResponseObject),
-      });
+        trigger,
+        testResponseObject
+      );
 
     afterAll(() => contract.endRecord());
 
