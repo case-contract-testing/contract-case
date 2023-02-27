@@ -163,7 +163,7 @@ Here I write notes to myself to make sure I don't miss anything
 - [x] Review the invert contract logic, possibly this can be removed too - Update, it could
 - [ ] Make loggable context explicit instead of calculated - or, calculate it better.
 - [x] Fix issue with multiple values for the same variable
-- [ ] Fix issue where a failed trigger results in open sockets
+- [x] Fix issue where a failed trigger results in open sockets
 - [x] Sort out the LoggableContext / LogContext naming mess
 - [x] Remove logLevel setting and do it with context instead, allowing localised logging
 - [x] Do we need to give the `and` matcher an optional example?

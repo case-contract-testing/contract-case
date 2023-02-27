@@ -78,10 +78,17 @@ export const executeExample = <T extends AnyMockDescriptorType>(
             context.logger.debug(`Asserting result`);
             return toResultingExample(assertable, example, context);
           },
-          (error) => {
+          async (error) => {
             context.logger.debug(
               `This example failed while trying to invoke the example`
             );
+            // We still need to drain the assertable
+
+            context.logger.maintainerDebug(
+              `Draining assertable and ignoring the result`
+            );
+            await assertable.assert().catch();
+
             if (error instanceof VerifyTriggerReturnObjectError) {
               return makeFailedExample(
                 example,
