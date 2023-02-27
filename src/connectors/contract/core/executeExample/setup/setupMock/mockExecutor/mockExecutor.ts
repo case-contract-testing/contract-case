@@ -1,5 +1,5 @@
 import type { MatchContext } from 'entities/context/types';
-import { CaseCoreError } from 'entities/CaseCoreError';
+import { CaseCoreError } from 'entities';
 import type { MockData } from 'entities/nodes/mocks/setup.types';
 import type {
   AnyMockDescriptorType,

@@ -1,4 +1,4 @@
-import { CaseConfigurationError } from 'entities/CaseConfigurationError';
+import { CaseConfigurationError } from 'entities/errors/CaseConfigurationError';
 
 const validateCodeNumber = (code: number): number => {
   if (code < 100 || code >= 600) {

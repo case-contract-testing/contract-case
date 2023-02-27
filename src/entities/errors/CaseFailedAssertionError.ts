@@ -1,6 +1,6 @@
-import type { MatchResult } from './types';
+import type { MatchResult } from 'entities/types';
 
-export class CaseFailedError extends Error {
+export class CaseFailedAssertionError extends Error {
   matchResult: MatchResult;
 
   constructor(matchResult: MatchResult) {
@@ -8,7 +8,7 @@ export class CaseFailedError extends Error {
       `Contract test failed: \n\n${matchResult.map((r) => `${r.message}\n`)}`
     );
     Object.setPrototypeOf(this, new.target.prototype);
-    this.name = CaseFailedError.name;
+    this.name = CaseFailedAssertionError.name;
     this.matchResult = matchResult;
   }
 }

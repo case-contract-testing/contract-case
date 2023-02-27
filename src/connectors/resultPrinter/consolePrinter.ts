@@ -11,6 +11,8 @@ import {
   CaseError,
   ResultPrinter,
   MatchingError,
+  ERROR_TYPE_EXECUTION,
+  ERROR_TYPE_VERIFICATION,
 } from 'entities/types';
 import { Console } from 'node:console';
 
@@ -57,27 +59,42 @@ const locationLine = (error: CaseError | ExecutionError) =>
     )}`
   );
 
-const printError = (
-  error: CaseError | ExecutionError,
-  context: MatchContext
-): void => {
+const printError = (error: CaseError, context: MatchContext): void => {
   if (context['case:currentRun:context:printResults']) {
-    if (error.type === ERROR_TYPE_MATCHING) {
-      // This is done as one line to prevent it splitting when multiple tests are running
-      stdout.log(
-        `${errorTitleLine(
-          'MATCHING ERROR',
-          error.message
-        )}\n${secondMatchErrorLine(error)}\n${thirdMatchErrorLine(
-          error
-        )}\n\n${locationLine(error)}\n\n`
-      );
-    } else {
-      stdout.log(
-        `${errorTitleLine('EXECUTION ERROR', error.message)}\n\n${locationLine(
-          error
-        )}\n\n`
-      );
+    switch (error.type) {
+      case ERROR_TYPE_MATCHING:
+        // This is done as one line to prevent it splitting when multiple tests are running
+        stdout.log(
+          `${errorTitleLine(
+            'MATCHING ERROR',
+            error.message
+          )}\n${secondMatchErrorLine(error)}\n${thirdMatchErrorLine(
+            error
+          )}\n\n${locationLine(error)}\n\n`
+        );
+        break;
+      case ERROR_TYPE_EXECUTION:
+        stdout.log(
+          `${errorTitleLine('EXECUTION RROR', error.message)}\n\n${locationLine(
+            error
+          )}\n\n`
+        );
+        break;
+      case ERROR_TYPE_VERIFICATION:
+        stdout.log(
+          `${errorTitleLine(
+            'ERROR VERIFYING RETURNED OBJECT',
+            error.message
+          )}\n\n${locationLine(error)}\n\n`
+        );
+        break;
+      default:
+        stdout.log(
+          `${errorTitleLine(
+            'ERROR',
+            (error as Error).message
+          )}\n\n${locationLine(error)}\n\n`
+        );
     }
   }
 };

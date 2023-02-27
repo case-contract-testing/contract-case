@@ -1,5 +1,8 @@
 import type { InvokingScaffold } from 'connectors/contract/types';
-import { CaseConfigurationError } from 'entities';
+import {
+  CaseConfigurationError,
+  VerifyTriggerReturnObjectError,
+} from 'entities';
 import type {
   AnyMockDescriptorType,
   CaseMockDescriptorFor,
@@ -49,9 +52,13 @@ export const callTrigger = <T extends AnyMockDescriptorType>(
         context.logger.debug(
           `Invoking provided trigger for '${names.requestName}', and verification for a successful '${names.responseName}'`
         );
-        return req
-          .trigger(assertable.config)
-          .then((data) => res(data, assertable.config));
+        return req.trigger(assertable.config).then((data) =>
+          Promise.resolve()
+            .then(() => res(data, assertable.config))
+            .catch((err) => {
+              throw new VerifyTriggerReturnObjectError(err);
+            })
+        );
       }
       const errRes = req.errorVerifiers[names.responseName];
       if (errRes !== undefined) {
@@ -69,7 +76,12 @@ export const callTrigger = <T extends AnyMockDescriptorType>(
               context
             );
           },
-          (e) => errRes(e, assertable.config)
+          (expectedError) =>
+            Promise.resolve()
+              .then(() => errRes(expectedError, assertable.config))
+              .catch((err) => {
+                throw new VerifyTriggerReturnObjectError(err);
+              })
         );
       }
       context.logger.error(

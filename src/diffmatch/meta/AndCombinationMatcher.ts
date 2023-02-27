@@ -1,5 +1,5 @@
 import { addLocation } from 'entities/context';
-import { StripUnsupportedError } from 'entities/StripUnsupportedError';
+import { StripUnsupportedError } from 'entities/errors/StripUnsupportedError';
 import {
   StripMatcherFn,
   COMBINE_MATCHERS_TYPE,

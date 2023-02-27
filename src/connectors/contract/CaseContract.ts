@@ -7,8 +7,7 @@ import {
 } from 'connectors/contract/core';
 import type { CaseConfig } from 'connectors/contract/core/types';
 import { makeLogger as defaultMakeLogger } from 'connectors/logger';
-import { CaseCoreError } from 'entities';
-import { CaseFailedError } from 'entities/CaseFailedError';
+import { CaseCoreError, CaseFailedAssertionError } from 'entities';
 import { addLocation, applyNodeToContext } from 'entities/context';
 import { exampleToNames, nameMock } from 'entities/contract';
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
@@ -116,7 +115,7 @@ export class CaseContract extends BaseCaseContract {
     const writingContext = addLocation('WritingContract', this.initialContext);
     if (hasFailure(this.currentContract)) {
       // TODO: Print all failures
-      throw new CaseFailedError(
+      throw new CaseFailedAssertionError(
         makeResults({
           type: ERROR_TYPE_EXECUTION,
           message: 'There were contract failures',

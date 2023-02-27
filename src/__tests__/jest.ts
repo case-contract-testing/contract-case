@@ -6,6 +6,7 @@ import type {
   Assertable,
   CaseContract,
 } from 'boundaries';
+import { VerifyTriggerReturnObjectError } from 'entities';
 
 export const runJestTest: RunTestCallback = (
   testName: string,
@@ -26,7 +27,14 @@ export const runCaseExample = <T extends AnyMockDescriptorType, R>(
   contract.executeTest({
     states,
     mock,
-    trigger: (config) => trigger(config).then(testResponseObject),
+    trigger: (config) =>
+      trigger(config).then((r) => {
+        try {
+          return testResponseObject(r);
+        } catch (e) {
+          throw new VerifyTriggerReturnObjectError(e);
+        }
+      }),
   });
 
 export const runCaseRejectExample = <T extends AnyMockDescriptorType, R>(

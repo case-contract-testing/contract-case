@@ -1,11 +1,14 @@
 import { locationString } from 'entities/context';
 import type { MatchContext } from 'entities/context/types';
+import type { VerifyTriggerReturnObjectError } from 'entities/errors';
 import type { AnyCaseMatcher } from 'entities/nodes/matchers/types';
 import {
   ERROR_TYPE_MATCHING,
   CaseError,
   ExecutionError,
   ERROR_TYPE_EXECUTION,
+  ERROR_TYPE_VERIFICATION,
+  VerificationError,
 } from './types';
 
 export const errorWhen = (
@@ -48,5 +51,16 @@ export const executionError = (
   type: ERROR_TYPE_EXECUTION,
   message: error.message,
   code: error.name,
+  location: context['case:currentRun:context:location'],
+});
+
+export const verificationError = (
+  error: VerifyTriggerReturnObjectError,
+  context: MatchContext
+): VerificationError => ({
+  type: ERROR_TYPE_VERIFICATION,
+  message: error.message,
+  code: error.name,
+  error,
   location: context['case:currentRun:context:location'],
 });

@@ -4,8 +4,7 @@ import type { MatchResult } from 'entities/types';
 import { makeNoErrorResult } from 'entities/results';
 import { anyString, httpStatus, logLevel } from 'boundaries/dsl/Matchers';
 import type { CaseConfig } from 'connectors/contract/core/types';
-import { CaseConfigurationError } from 'entities';
-import { CaseFailedError } from 'entities/CaseFailedError';
+import { CaseConfigurationError, CaseFailedAssertionError } from 'entities';
 import { CaseContract } from 'boundaries';
 
 import start from './__tests__/server/http/index';
@@ -21,7 +20,7 @@ const expectErrorContaining = async (
       );
     },
     (e) => {
-      expect(e).toBeInstanceOf(CaseFailedError);
+      expect(e).toBeInstanceOf(CaseFailedAssertionError);
       expect(e.matchResult).not.toHaveLength(0);
       expect(
         (e.matchResult as MatchResult)

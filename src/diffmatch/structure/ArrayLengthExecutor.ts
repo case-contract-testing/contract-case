@@ -1,4 +1,4 @@
-import { StripUnsupportedError } from 'entities/StripUnsupportedError';
+import { StripUnsupportedError } from 'entities/errors/StripUnsupportedError';
 import {
   combineResults,
   errorWhen,

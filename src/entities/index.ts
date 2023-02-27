@@ -1,3 +1,2 @@
-export * from './CaseCoreError';
-export * from './CaseConfigurationError';
+export * from './errors';
 export * from './nodes/matchers';

@@ -2,7 +2,12 @@ import type { MatchContext } from 'entities/context/types';
 import { makeFailedExample, makeSuccessExample } from 'entities/contract';
 import type { CaseExample } from 'entities/contract/types';
 import { handleResult } from 'entities/results/handlers';
-import { executionError, hasErrors, makeResults } from 'entities/results';
+import {
+  executionError,
+  hasErrors,
+  makeResults,
+  verificationError,
+} from 'entities/results';
 import type { CaseContract, CaseVerifier } from 'connectors/contract';
 import type { InvokingScaffold } from 'connectors/contract/types';
 import type {
@@ -10,7 +15,10 @@ import type {
   Assertable,
   CaseMockDescriptorFor,
 } from 'entities/types';
-import { CaseConfigurationError } from 'entities';
+import {
+  CaseConfigurationError,
+  VerifyTriggerReturnObjectError,
+} from 'entities';
 
 import { callTrigger } from './triggers';
 import { setupExample } from './setup';
@@ -74,6 +82,12 @@ export const executeExample = <T extends AnyMockDescriptorType>(
             context.logger.debug(
               `This example failed while trying to invoke the example`
             );
+            if (error instanceof VerifyTriggerReturnObjectError) {
+              return makeFailedExample(
+                example,
+                makeResults(verificationError(error, context))
+              );
+            }
             return makeFailedExample(
               example,
               makeResults(

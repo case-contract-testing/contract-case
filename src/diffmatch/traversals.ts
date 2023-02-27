@@ -1,5 +1,5 @@
 import type { MatchContext } from 'entities/context/types';
-import { CaseCoreError } from 'entities/CaseCoreError';
+import { CaseCoreError } from 'entities';
 import { foldIntoContext } from 'entities/context';
 import { inferMatcher } from 'diffmatch/inferMatcher';
 

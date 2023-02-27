@@ -12,7 +12,7 @@ import {
 } from 'boundaries/dsl/Matchers';
 import { CaseConfigurationError } from 'entities';
 import { makeNoErrorResult } from 'entities/results';
-import { StripUnsupportedError } from 'entities/StripUnsupportedError';
+import { StripUnsupportedError } from 'entities/errors/StripUnsupportedError';
 import {
   MAINTAINER_TEST_CONTEXT,
   makeExpectErrorContaining,

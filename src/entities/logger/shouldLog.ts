@@ -1,5 +1,4 @@
-import { CaseConfigurationError } from 'entities/CaseConfigurationError';
-import { CaseCoreError } from 'entities/CaseCoreError';
+import { CaseConfigurationError, CaseCoreError } from 'entities';
 import type { LogLevelContext } from 'entities/types';
 import type { LogLevel } from './types';
 

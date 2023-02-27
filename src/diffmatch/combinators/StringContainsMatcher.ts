@@ -5,7 +5,7 @@ import {
   combineResults,
   makeResults,
 } from 'entities/results';
-import { StripUnsupportedError } from 'entities/StripUnsupportedError';
+import { StripUnsupportedError } from 'entities/errors/StripUnsupportedError';
 import type {
   MatchContext,
   MatcherExecutor,

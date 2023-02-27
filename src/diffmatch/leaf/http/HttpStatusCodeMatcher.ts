@@ -1,4 +1,4 @@
-import { CaseCoreError } from 'entities/CaseCoreError';
+import { CaseCoreError } from 'entities';
 import {
   errorWhen,
   matchingError,
