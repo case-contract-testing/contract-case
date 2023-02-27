@@ -162,7 +162,7 @@ Here I write notes to myself to make sure I don't miss anything
 - [ ] Do I need runcontext:tree? Maybe I can remove it.
 - [x] Review the invert contract logic, possibly this can be removed too - Update, it could
 - [ ] Make loggable context explicit instead of calculated - or, calculate it better.
-- [ ] Fix issue with multiple values for the same variable
+- [x] Fix issue with multiple values for the same variable
 - [ ] Fix issue where a failed trigger results in open sockets
 - [x] Sort out the LoggableContext / LogContext naming mess
 - [x] Remove logLevel setting and do it with context instead, allowing localised logging
