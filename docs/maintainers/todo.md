@@ -108,17 +108,17 @@ Internals
 - [x] Move interactions to matchers
 - [x] Fail tests if there are configuration errors inside the handler
 - [x] Tidy up strip matcher stuff
-- [ ] Strip matchers should take states
-- [ ] State setups should be available in the config
-- [ ] "Is this interaction the same as that"?
+- [x] State setups should be available in the config
 - [x] Make sure all errors include context
 - [x] Do state handlers in order they're defined instead of all at once
+- [ ] Make teardowns run for successful state setup functions when one of the setups (or other teardowns) fails.
+- [ ] Strip matchers should take states
+- [ ] "Is this interaction the same as that"?
 - [ ] Broker CLI / integration?
 - [ ] Release plan that includes version number - can we just import this like we did in pact? It would be nice if it was accurate.
 - [ ] Fix global import issue - probably post process the dist directory. Or rewrite all the imports :/
 - [ ] Combine files for upload (does the broker support multiple contracts between the same two services?)
 - [ ] Review test harness and separate into a dedicated module
-- [ ] Warn on unused lookup matchers?
 - [ ] Indentation on test output
 - [ ] Better system for stripping matchers with `and()` - maybe `{ items, keys, structure }`?
 
@@ -153,7 +153,7 @@ Documentation
 Potential issues:
 
 - [ ] Double handling of lookup interactions if the same data is traversed (eg, by checkMatch and stripMatch)
-- [ ] Need to allow multiple values for variables
+- [x] Need to allow multiple values for variables
 
 ### Implementation notebook
 
