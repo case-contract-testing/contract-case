@@ -406,5 +406,11 @@
       },
       "result": "VERIFIED"
     }
-  ]
+  ],
+  "consumer": {
+    "name": "http response consumer"
+  },
+  "provider": {
+    "name": "http response provider"
+  }
 }
