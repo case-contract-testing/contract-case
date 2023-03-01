@@ -11,7 +11,7 @@
     "format:base": "prettier --parser typescript \"**/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write ",
-    "test": "jest && pact-broker publish case-contracts --consumer-app-version=$(absolute-version-from-git-tag) --broker-token=${CASE_PACTFLOW_CI_TOKEN}"
+    "test": "jest && pact-broker publish case-contracts --consumer-app-version=$(absolute-version-from-git-tag) --broker-token=${CASE_PACTFLOW_CI_TOKEN} --broker-base-url=https://timothyjones.pactflow.io/"
   },
   "author": "Timothy Jones",
   "license": "MIT",
