@@ -20,7 +20,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: ci/build-and-test.sh
         env:
-          PACTFLOW_TOKEN: ${{ secrets.CASE_PACTFLOW_CI_TOKEN }}
+          CASE_PACTFLOW_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
 
@@ -37,7 +37,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: ci/build-and-test.sh
         env:
-          PACTFLOW_TOKEN: ${{ secrets.CASE_PACTFLOW_CI_TOKEN }}
+          CASE_PACTFLOW_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
 
@@ -55,7 +55,7 @@ jobs:
       - run: bash ci/build-and-test.sh
         shell: bash
         env:
-          PACTFLOW_TOKEN: ${{ secrets.CASE_PACTFLOW_CI_TOKEN }}        
+          CASE_PACTFLOW_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}        
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
 
