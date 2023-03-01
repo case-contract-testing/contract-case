@@ -24,7 +24,7 @@ jobs:
         npm ci
         npm run test
       env:
-        PACTFLOW_TOKEN: ${{ secrets.CASE_PACTFLOW_CI_TOKEN }}
+        CASE_PACTFLOW_CI_TOKEN: ${{ secrets.CASE_PACTFLOW_CI_TOKEN }}
         FORCE_COLOR: true
 
     - name: Coveralls
