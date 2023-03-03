@@ -24,6 +24,7 @@ import type {
   RawLookupFns,
   ContractLookupFns,
   MatchContextWithoutLookup,
+  ContractFile,
 } from 'entities/types';
 import { hasErrors } from 'entities/results';
 import { coreShapedLike } from 'entities/nodes/matchers/auxillary';
@@ -35,7 +36,6 @@ import {
   addVariable,
   findVariable,
 } from './structure';
-import type { ContractFile } from './structure/types';
 
 export class BaseCaseContract {
   currentContract: ContractFile;

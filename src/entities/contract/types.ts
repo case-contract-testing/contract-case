@@ -1,5 +1,9 @@
 import type { AnyState } from 'entities/states/types';
-import type { AnyMockDescriptor, CaseError } from 'entities/types';
+import type {
+  AnyCaseNodeOrData,
+  AnyMockDescriptor,
+  CaseError,
+} from 'entities/types';
 
 export interface ContractDescription {
   consumerName: string;
@@ -34,3 +38,9 @@ export type ExampleNames = {
   requestName: string;
   responseName: string;
 };
+
+export interface ContractFile {
+  description: ContractDescription;
+  matcherLookup: Record<string, AnyCaseNodeOrData>;
+  examples: Array<CaseExample>;
+}

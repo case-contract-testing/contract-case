@@ -18,10 +18,11 @@ import type {
   CaseExample,
   LogLevelContext,
   MatchContext,
+  ContractFile,
 } from 'entities/types';
 
 import { BaseCaseContract } from './BaseCaseContract';
-import type { ContractFile } from './structure/types';
+
 import type { MultiTestInvoker, RunTestCallback } from './types';
 
 export class CaseVerifier extends BaseCaseContract {

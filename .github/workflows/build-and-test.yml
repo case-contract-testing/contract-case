@@ -20,7 +20,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: ci/build-and-test.sh
         env:
-          CASE_PACTFLOW_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
+          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
+          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
 
@@ -37,7 +38,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: ci/build-and-test.sh
         env:
-          CASE_PACTFLOW_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
+          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
+          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
 
@@ -55,7 +57,8 @@ jobs:
       - run: bash ci/build-and-test.sh
         shell: bash
         env:
-          CASE_PACTFLOW_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}        
+          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
+          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/ 
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
 

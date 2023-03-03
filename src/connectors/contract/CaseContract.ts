@@ -1,4 +1,5 @@
 import { Mutex } from 'async-mutex';
+import { makeBrokerApi } from 'connectors/broker';
 
 import {
   configToRunContext,
@@ -111,7 +112,7 @@ export class CaseContract extends BaseCaseContract {
     return example;
   }
 
-  endRecord(): void {
+  endRecord(): Promise<unknown> {
     const writingContext = addLocation('WritingContract', this.initialContext);
     if (hasFailure(this.currentContract)) {
       // TODO: Print all failures
@@ -127,7 +128,11 @@ export class CaseContract extends BaseCaseContract {
     }
     //  - if success, write contract
     const fileName = writeContract(this.currentContract, writingContext);
-
     writingContext.logger.debug(`Wrote contract file: ${fileName}`);
+
+    return makeBrokerApi().publishContract(
+      this.currentContract,
+      addLocation('PublishingContract', this.initialContext)
+    );
   }
 }

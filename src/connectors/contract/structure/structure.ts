@@ -1,13 +1,13 @@
 import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type {
   AnyCaseNodeOrData,
+  ContractFile,
   LookupableMatcher,
   MatchContextWithoutLookup,
 } from 'entities/types';
 import { addMock, addMatcher } from './lookup';
 
 import { addLookup, findLookup } from './lookup/internals';
-import type { ContractFile } from './types';
 
 export const makeContract = (
   description: ContractDescription
