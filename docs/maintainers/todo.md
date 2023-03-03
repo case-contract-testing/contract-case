@@ -1,3 +1,14 @@
+## Release roadmap
+
+- [ ] Broker verification - read and publish result
+- [ ] Initial docs
+- [ ] Query string, probably
+- [ ] Note about stability
+- [ ] Determine how package structure will work
+- [ ] Maybe pull out Jest package?
+- [ ] Maybe pull out core?
+- [ ] Spike translation to C# etc
+
 ## Todo list
 
 Completed
@@ -41,11 +52,14 @@ Pact Parity
 - [x] Write contract file
   - [x] Print errors nicely
   - [x] Config for location
+- [ ] Broker compatibility
+  - [x] Publish contract
+  - [ ] Get contract from broker
+  - [ ] Publish verification result
 - [x] Read contract file
-  - [ ] Read all files in a location
+  - [ ] Read all files in a location?
   - [x] Verify contract file
   - [ ] Error handling when the files don't exist
-  - [ ] Get files from broker
 - [x] Http Headers
 - [ ] Query strings
 - [ ] Crash messages
