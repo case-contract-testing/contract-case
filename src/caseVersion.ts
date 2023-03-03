@@ -1,1 +1,1 @@
-export const caseVersion = '0.0.2';
+export const caseVersion = '0.1.0';
