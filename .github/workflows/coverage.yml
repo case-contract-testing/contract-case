@@ -8,7 +8,7 @@ name: Test Coveralls
 jobs:
 
   build:
-    name: Build
+    name: Coverage
     runs-on: ubuntu-latest
     steps:
 
