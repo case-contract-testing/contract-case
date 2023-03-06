@@ -4,8 +4,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/TimothyJones/case/badge.svg?branch=main)](https://coveralls.io/github/TimothyJones/case?branch=main)
 [![Known Vulnerabilities](https://snyk.io/test/github/TimothyJones/case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/TimothyJones/case?targetFile=package.json)
 
-Work in progress, use at your own risk.
-
 <span align="center">
 
 ![Case](/docs/suitcase.png)
@@ -21,17 +19,19 @@ deployment confidence for your applications and services.
 
 Full documentation coming soon
 
-## Caveats and limitations
-
 Case releases follow [semantic versioning](https://semver.org/), with two additional restrictions:
 
 1. Before 1.0.0, Case is in Beta, and the API is considered unstable. Breaking changes will be indicated in minor
    version bumps- that is, 0.2.0 and 0.3.0 are not entirely compatible.
 2. Patch versions will always be backwards compatible.
 
+## Caveats and limitations
+
 Breaking changes will always be detailed in the [changelog](./CHANGELOG.md)
 
 **WARNING: THE API IS UNSTABLE AND MAY CHANGE BETWEEN MINOR VERSIONS**
+
+Work in progress, use at your own risk.
 
 The API is considered unstable because we'd like to ensure that it's ergonomic
 and intuitive for users. Feedback on the Case API / DSL and (especially) naming
