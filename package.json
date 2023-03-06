@@ -2,7 +2,8 @@
   "name": "case",
   "version": "0.1.0",
   "description": "Contract testing suite",
-  "main": "dist/src/index.js",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
