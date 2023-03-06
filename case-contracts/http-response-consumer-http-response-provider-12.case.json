@@ -1,11 +1,7 @@
 {
   "description": {
     "consumerName": "http response consumer",
-    "providerName": "http response provider",
-    "config": {
-      "printResults": false,
-      "contractFilename": "case-contracts/http-response-consumer-http-response-provider-12.case.json"
-    }
+    "providerName": "http response provider"
   },
   "matcherLookup": {
     "matcher:a (200) response with body an object shaped like {status: \"up\"}": {

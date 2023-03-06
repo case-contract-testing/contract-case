@@ -19,14 +19,14 @@ type CaseJestConfig = ContractDescription & {
 type CaseJestCallback = (contract: DefineCaseContract) => void;
 
 export const caseContractWith = (
-  contractConfig: CaseJestConfig,
+  { config, ...contractConfig }: CaseJestConfig,
   callback: CaseJestCallback
 ): void =>
   describe(`Case contract between ${contractConfig.consumerName}`, () => {
     const contract = new WritingCaseContract(contractConfig, {
       testRunId:
         process.env['JEST_WORKER_ID'] || 'JEST_WORKER_ID_WAS_UNDEFINED',
-      ...(contractConfig.config ? { ...contractConfig.config } : {}),
+      ...(config ? { ...config } : {}),
     });
     afterAll(() => contract.endRecord());
 
