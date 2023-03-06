@@ -1,5 +1,5 @@
-import { actualToString } from 'entities/results';
-import type { AnyCaseNodeOrData } from 'entities/types';
+import { actualToString } from '../../../entities/results';
+import type { AnyCaseNodeOrData } from '../../../entities/types';
 
 export const isObject = (
   actual: unknown

@@ -1,11 +1,11 @@
-import { matchingError } from 'entities/results/MatchingError';
-
-import { addLocation } from 'entities/context';
+import { addLocation } from '../../entities/context';
 import {
+  matcherToString,
+  matchingError,
   combineResults,
   hasErrors,
   makeResults,
-} from 'entities/results/MatchResult';
+} from '../../entities/results';
 import {
   AnyData,
   MatchContext,
@@ -17,8 +17,7 @@ import {
   CoreArrayContainsMatch,
   isCaseNode,
   AnyCaseNodeOrData,
-} from 'entities/types';
-import { matcherToString } from 'entities/results';
+} from '../../entities/types';
 
 const strip: StripMatcherFn<typeof ARRAY_CONTAINS_TYPE> = (
   matcher: CoreArrayContainsMatch,

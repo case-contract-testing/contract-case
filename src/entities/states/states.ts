@@ -1,7 +1,7 @@
 import {
   AnyCaseNodeOrData,
   CASCADING_CONTEXT_MATCHER_TYPE,
-} from 'entities/types';
+} from '../../entities/types';
 import {
   NameOnlyState,
   SETUP_NAMED_STATE,

@@ -1,28 +1,26 @@
 import { Mutex } from 'async-mutex';
-import { makeBrokerApi } from 'connectors/broker';
 
+import { makeLogger as defaultMakeLogger } from '../../connectors/logger';
+
+import { CaseCoreError, CaseFailedAssertionError } from '../../entities';
+import { applyNodeToContext, addLocation } from '../../entities/context';
+import { nameMock, exampleToNames } from '../../entities/contract';
+import { makeResults } from '../../entities/results';
 import {
-  configToRunContext,
-  DEFAULT_CONFIG,
-  executeExample,
-} from 'connectors/contract/core';
-import type { CaseConfig } from 'connectors/contract/core/types';
-import { makeLogger as defaultMakeLogger } from 'connectors/logger';
-import { CaseCoreError, CaseFailedAssertionError } from 'entities';
-import { addLocation, applyNodeToContext } from 'entities/context';
-import { exampleToNames, nameMock } from 'entities/contract';
-import type { CaseExample, ContractDescription } from 'entities/contract/types';
-import type { Logger } from 'entities/logger/types';
-import { makeResults } from 'entities/results';
-import { SETUP_VARIABLE_STATE } from 'entities/states/types';
-import {
-  LogLevelContext,
-  AnyMockDescriptorType,
-  MatchContext,
+  type ContractDescription,
+  type LogLevelContext,
+  type Logger,
+  SETUP_VARIABLE_STATE,
+  type CaseExample,
+  type MatchContext,
   ERROR_TYPE_EXECUTION,
-} from 'entities/types';
+  AnyMockDescriptorType,
+} from '../../entities/types';
+import { makeBrokerApi } from '../broker';
 
 import { BaseCaseContract } from './BaseCaseContract';
+import { DEFAULT_CONFIG, configToRunContext, executeExample } from './core';
+import type { CaseConfig } from './core/types';
 import { addExample, hasFailure } from './structure';
 import type { TestInvoker } from './types';
 import { writeContract } from './writer';

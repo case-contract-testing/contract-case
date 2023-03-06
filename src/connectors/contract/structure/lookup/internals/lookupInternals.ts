@@ -1,8 +1,8 @@
-import { CaseConfigurationError } from 'entities';
+import { CaseConfigurationError } from '../../../../../entities';
 import type {
   AnyCaseNodeOrData,
   MatchContextWithoutLookup,
-} from 'entities/types';
+} from '../../../../../entities/types';
 import { rawEquality } from './rawEquals';
 import type { LookupMap, LookupType } from './types';
 

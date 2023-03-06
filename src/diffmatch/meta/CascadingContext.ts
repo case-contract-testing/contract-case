@@ -1,11 +1,11 @@
 import type {
-  MatchResult,
-  MatcherExecutor,
-  MatchContext,
-  AnyData,
-  CASCADING_CONTEXT_MATCHER_TYPE,
   CoreCascadingMatcher,
-} from 'entities/types';
+  MatchContext,
+  MatchResult,
+  AnyData,
+  MatcherExecutor,
+  CASCADING_CONTEXT_MATCHER_TYPE,
+} from '../../entities/types';
 
 const check = (
   matcher: CoreCascadingMatcher,

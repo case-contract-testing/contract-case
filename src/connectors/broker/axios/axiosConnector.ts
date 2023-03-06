@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { MatchContext } from 'entities/types';
+import type { MatchContext } from '../../../entities/types';
 
 import { unmarshallSuccess, unmarshallFailure } from './marshaller';
 

@@ -1,10 +1,11 @@
-import type { SetupInfoFor } from 'entities/nodes/mocks/setup.types';
-import type { AnyState, StateHandlers } from 'entities/states/types';
+import type { SetupInfoFor } from '../../entities/nodes/mocks/setup.types';
 import type {
-  AnyMockDescriptorType,
-  CaseMockDescriptorFor,
+  StateHandlers,
   ExampleNames,
-} from 'entities/types';
+  AnyMockDescriptorType,
+  AnyState,
+  CaseMockDescriptorFor,
+} from '../../entities/types';
 
 export type RunTestCallback = (
   testName: string,

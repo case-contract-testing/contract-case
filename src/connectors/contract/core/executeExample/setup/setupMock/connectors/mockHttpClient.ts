@@ -1,19 +1,20 @@
 import axios from 'axios';
 import * as http from 'node:http';
-
 import {
-  CoreHttpRequestResponseMatcherPair,
+  CaseConfigurationError,
+  CaseCoreError,
+} from '../../../../../../../entities';
+import { addLocation } from '../../../../../../../entities/context';
+import {
+  type MatchContextData,
+  type HasBaseUrlUnderTest,
+  type MatchContext,
+  type HttpRequestData,
+  type CoreHttpRequestResponseMatcherPair,
+  type MockData,
   MOCK_HTTP_CLIENT,
-} from 'entities/nodes/mocks/types';
-import { addLocation } from 'entities/context';
-import { CaseConfigurationError, CaseCoreError } from 'entities';
-import type { MockData } from 'entities/nodes/mocks/setup.types';
-import type {
-  MatchContextData,
-  HasBaseUrlUnderTest,
-  MatchContext,
-  HttpRequestData,
-} from 'entities/types';
+} from '../../../../../../../entities/types';
+
 import { makeAssertionsOn } from './assert/assert';
 
 const isHasBaseUrl = (

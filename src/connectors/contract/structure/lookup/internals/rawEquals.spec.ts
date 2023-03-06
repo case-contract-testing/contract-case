@@ -1,4 +1,4 @@
-import { and, anyNumber, anyString } from 'boundaries/dsl/Matchers';
+import { and, anyString, anyNumber } from '../../../../../boundaries';
 import { rawEquality } from './rawEquals';
 
 describe('raw equals', () => {

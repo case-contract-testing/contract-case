@@ -1,17 +1,19 @@
-import { matchingError } from 'entities/results/MatchingError';
-
-import { addLocation } from 'entities/context';
-import { combineResults, makeResults } from 'entities/results/MatchResult';
+import { addLocation } from '../../entities/context';
+import {
+  combineResults,
+  makeResults,
+  matchingError,
+} from '../../entities/results';
 import type {
-  AnyData,
-  MatchContext,
-  MatchResult,
   StripMatcherFn,
-  CheckMatchFn,
-  MatcherExecutor,
   OBJECT_KEYS_MATCH_TYPE,
   CoreObjectKeysMatcher,
-} from 'entities/types';
+  MatchContext,
+  AnyData,
+  CheckMatchFn,
+  MatchResult,
+  MatcherExecutor,
+} from '../../entities/types';
 import { isObject, whyNotAnObject } from './internals/objectTests';
 
 const strip: StripMatcherFn<typeof OBJECT_KEYS_MATCH_TYPE> = (

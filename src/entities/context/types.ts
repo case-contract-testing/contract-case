@@ -6,9 +6,9 @@ import type {
   AnyLeafOrStructure,
   CaseNodeFor,
   LookupableMatcher,
-} from 'entities/nodes/types';
-import type { Logger, LogLevel } from 'entities/logger/types';
-import type { ResultPrinter } from 'entities/results/types';
+} from '../../entities/nodes/types';
+import type { Logger, LogLevel } from '../../entities/logger/types';
+import type { ResultPrinter } from '../../entities/results/types';
 
 export const MATCH_BY_TYPE = 'type' as const;
 export const MATCH_BY_EXACT = 'exact' as const;

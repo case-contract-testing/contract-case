@@ -1,20 +1,21 @@
 import chalk from 'chalk';
-import { locationString as formatLocationString } from 'entities/context';
-import type { HasLocation } from 'entities/context/types';
-import { exampleToNames } from 'entities/contract';
-import type { CaseExample } from 'entities/contract/types';
-import { actualToString } from 'entities/results/renderActual';
+
+import { Console } from 'node:console';
+import { exampleToNames } from '../../entities/contract';
+import { actualToString } from '../../entities/results';
 import {
+  type HasLocation,
+  type MatchingError,
+  type CaseError,
+  type ExecutionError,
+  type MatchContext,
   ERROR_TYPE_MATCHING,
-  ExecutionError,
-  MatchContext,
-  CaseError,
-  ResultPrinter,
-  MatchingError,
   ERROR_TYPE_EXECUTION,
   ERROR_TYPE_VERIFICATION,
-} from 'entities/types';
-import { Console } from 'node:console';
+  type CaseExample,
+  type ResultPrinter,
+} from '../../entities/types';
+import { locationString as formatLocationString } from '../../entities/context';
 
 const stdout = new Console({ stdout: process.stdout });
 

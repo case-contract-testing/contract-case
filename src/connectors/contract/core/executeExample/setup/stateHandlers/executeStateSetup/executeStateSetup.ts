@@ -1,16 +1,14 @@
-import { CaseConfigurationError } from 'entities';
-import { addLocation } from 'entities/context';
+import { CaseConfigurationError } from '../../../../../../../entities';
+import { addLocation } from '../../../../../../../entities/context';
 import {
   type StateHandlers,
-  type AnyState,
+  type MatchContext,
+  type AnyCaseNodeOrData,
   isSetupFunction,
+  type CaseExample,
   SETUP_VARIABLE_STATE,
-} from 'entities/states/types';
-import type {
-  MatchContext,
-  AnyCaseNodeOrData,
-  CaseExample,
-} from 'entities/types';
+  AnyState,
+} from '../../../../../../../entities/types';
 import { validateVariables } from './validateVariables';
 
 const stateSetupHandler =

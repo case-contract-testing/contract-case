@@ -1,5 +1,5 @@
-import { CaseCoreError } from 'entities';
-import type { CaseError } from 'entities/types';
+import { CaseCoreError } from '../../entities';
+import type { CaseError } from '../../entities/types';
 import type { CaseExample, ExampleNames } from './types';
 
 export const exampleToNames = (

@@ -1,10 +1,11 @@
-import type { CaseExample, ContractDescription } from 'entities/contract/types';
 import type {
-  AnyCaseNodeOrData,
+  ContractDescription,
   ContractFile,
-  LookupableMatcher,
+  AnyCaseNodeOrData,
+  CaseExample,
   MatchContextWithoutLookup,
-} from 'entities/types';
+  LookupableMatcher,
+} from '../../../entities/types';
 import { addMock, addMatcher } from './lookup';
 
 import { addLookup, findLookup } from './lookup/internals';

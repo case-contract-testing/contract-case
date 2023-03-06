@@ -4,23 +4,23 @@ import * as fs from 'node:fs';
 
 // These imports are our code under test
 import type * as http from 'node:http';
-import start from '__tests__/server/http/connectors/web';
-import type { User } from '__tests__/server/http/model/responses';
-import type { Dependencies } from '__tests__/server/http/domain/types';
-import { baseService } from '__tests__/server/http/domain/baseService';
-import api from '__tests__/client/http/connector';
-import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
-import { UserNotFoundConsumerError } from '__tests__/client/http/connector/errors';
+import start from './__tests__/server/http/connectors/web';
+import type { User } from './__tests__/server/http/model/responses';
+import type { Dependencies } from './__tests__/server/http/domain/types';
+import { baseService } from './__tests__/server/http/domain/baseService';
+import api from './__tests__/client/http/connector';
+import { ApiError } from './__tests__/client/http/connector/internals/apiErrors';
+import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';
 
 // This import is our Jest DSL
-import { runJestTest } from '__tests__/jest';
+import { runJestTest } from './__tests__/jest';
 
 // These imports support the partial DSL that hasn't been extracted yet
 import type {
   AnyMockDescriptorType,
   CaseMockDescriptorFor,
-} from 'entities/types';
-import type { AnyState } from 'entities/states/types';
+  AnyState,
+} from './entities/types';
 
 import {
   inState,

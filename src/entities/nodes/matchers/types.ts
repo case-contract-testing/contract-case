@@ -1,4 +1,4 @@
-import type { MatchContext } from 'entities/context/types';
+import type { MatchContext } from '../../../entities/context/types';
 import type {
   CoreHttpRequestMatcher,
   CoreHttpResponseMatcher,

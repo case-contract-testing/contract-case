@@ -1,34 +1,31 @@
-import { CaseConfigurationError, CaseCoreError } from 'entities';
-import { makeLogger as defaultMakeLogger } from 'connectors/logger';
-
-import { traversals } from 'diffmatch/traversals';
-import { resultPrinter } from 'connectors/resultPrinter';
+import { makeLogger as defaultMakeLogger } from '../../connectors/logger';
+import { traversals } from '../../diffmatch';
+import { CaseConfigurationError, CaseCoreError } from '../../entities';
 import {
-  configToRunContext,
-  DEFAULT_CONFIG,
-  DEFAULT_TEST_ID,
-} from 'connectors/contract/core/executeExample/setup/setupMock';
-import type { CaseConfig } from 'connectors/contract/core/types';
-import { applyNodeToContext, constructInitialContext } from 'entities/context';
+  constructInitialContext,
+  applyNodeToContext,
+} from '../../entities/context';
+import { coreShapedLike } from '../../entities/nodes/matchers/auxillary';
+import { hasErrors } from '../../entities/results';
 import type {
-  AnyCaseNodeOrData,
-  LookupableMatcher,
-  LogLevelContext,
+  ContractFile,
   MatchContext,
-  AnyCaseNodeType,
-  AnyData,
-  DataOrCaseNodeFor,
-  MatchResult,
   ContractDescription,
+  LogLevelContext,
   Logger,
   RawLookupFns,
-  ContractLookupFns,
   MatchContextWithoutLookup,
-  ContractFile,
-} from 'entities/types';
-import { hasErrors } from 'entities/results';
-import { coreShapedLike } from 'entities/nodes/matchers/auxillary';
-
+  ContractLookupFns,
+  AnyCaseNodeOrData,
+  LookupableMatcher,
+  AnyCaseNodeType,
+  DataOrCaseNodeFor,
+  AnyData,
+  MatchResult,
+} from '../../entities/types';
+import { resultPrinter } from '../resultPrinter';
+import { configToRunContext, DEFAULT_CONFIG, DEFAULT_TEST_ID } from './core';
+import type { CaseConfig } from './core/types';
 import {
   findMatcher,
   makeContract,

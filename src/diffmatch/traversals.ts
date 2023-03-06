@@ -1,14 +1,15 @@
-import type { MatchContext } from 'entities/context/types';
-import { CaseCoreError } from 'entities';
-import { foldIntoContext } from 'entities/context';
-import { inferMatcher } from 'diffmatch/inferMatcher';
-
 import type {
+  MatchContext,
   MatcherExecutor,
   AnyCaseNodeType,
   CaseNodeFor,
   AnyLeafOrStructure,
-} from 'entities/types';
+} from '../entities/types';
+import { CaseCoreError } from '../entities';
+import { foldIntoContext } from '../entities/context';
+
+import { inferMatcher } from '../diffmatch/inferMatcher';
+
 import { MatcherExecutors } from './MatcherExecutors';
 
 const getExecutor = <T extends AnyCaseNodeType>(

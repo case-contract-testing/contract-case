@@ -1,14 +1,14 @@
-import { CaseContract } from 'boundaries';
+import { CaseContract } from './boundaries';
 import {
   objectEachKeyMatches,
   objectEachValueMatches,
   stringContaining,
-} from 'boundaries/dsl/Matchers';
-import { makeNoErrorResult } from 'entities/results';
+} from './boundaries/dsl/Matchers';
+import { makeNoErrorResult } from './entities/results';
 import {
   MAINTAINER_TEST_CONTEXT,
   makeExpectErrorContaining,
-} from '__tests__/expectErrorContaining';
+} from './__tests__/expectErrorContaining';
 
 describe('basic types and structure checks', () => {
   const contract = new CaseContract(

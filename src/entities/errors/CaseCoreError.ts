@@ -1,4 +1,4 @@
-import type { MatchContextData } from 'entities/context/types';
+import type { MatchContextData } from '../../entities/context/types';
 
 const locationString = (matchContext: MatchContextData) =>
   `(at ${matchContext['case:currentRun:context:location'].join('.')})`;

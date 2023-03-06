@@ -1,18 +1,17 @@
 import {
-  matchingError,
   combineResults,
   makeResults,
+  matchingError,
   actualToString,
-} from 'entities/results';
+} from '../../../entities/results';
 import type {
+  BOOLEAN_MATCHER_TYPE,
   CaseError,
   CheckMatchFn,
-  MatcherExecutor,
-  MatchContext,
   CoreBooleanMatcher,
-  BOOLEAN_MATCHER_TYPE,
-} from 'entities/types';
-
+  MatchContext,
+  MatcherExecutor,
+} from '../../../entities/types';
 import { testExactMatch } from './internal/testExactMatch';
 
 const check: CheckMatchFn<typeof BOOLEAN_MATCHER_TYPE> = (

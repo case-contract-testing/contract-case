@@ -1,13 +1,12 @@
-import type { MatchContext } from 'entities/context/types';
-import { hasErrors } from 'entities/results/MatchResult';
+import { CaseConfigurationError } from '../../../../../../entities';
+import { addLocation } from '../../../../../../entities/context';
+import { hasErrors } from '../../../../../../entities/results';
 import type {
   AnyMockDescriptorType,
-  CaseMockDescriptorFor,
   Assertable,
-} from 'entities/types';
-import { addLocation } from 'entities/context';
-import { CaseConfigurationError } from 'entities';
-
+  CaseMockDescriptorFor,
+  MatchContext,
+} from '../../../../../../entities/types';
 import { mockExecutor } from './mockExecutor';
 import { MockExecutors } from './mockExecutors';
 

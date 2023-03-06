@@ -1,14 +1,14 @@
-import type { InvokingScaffold } from 'connectors/contract/types';
 import {
-  CaseConfigurationError,
   VerifyTriggerReturnObjectError,
-} from 'entities';
+  CaseConfigurationError,
+} from '../../../../entities';
 import type {
   AnyMockDescriptorType,
-  CaseMockDescriptorFor,
   Assertable,
+  CaseMockDescriptorFor,
   MatchContext,
-} from 'entities/types';
+} from '../../../../entities/types';
+import type { InvokingScaffold } from '../../types';
 
 export const callTrigger = <T extends AnyMockDescriptorType>(
   mock: CaseMockDescriptorFor<T>,

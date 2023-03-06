@@ -23,7 +23,7 @@ import {
   CONTEXT_VARIABLE_TYPE,
   STRING_PREFIX_TYPE,
   STRING_SUFFIX_TYPE,
-} from 'entities/types';
+} from '../entities/types';
 import {
   NumberMatcher,
   StringMatcher,

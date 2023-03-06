@@ -1,18 +1,15 @@
-import { mustResolveToNumber } from 'entities/nodes/matchers/resolve';
-import { CaseCoreError } from 'entities';
-import { addLocation } from 'entities/context';
-import type { MatchContext } from 'entities/context/types';
-import {
-  combineResults,
-  makeNoErrorResult,
-} from 'entities/results/MatchResult';
+import { CaseCoreError } from '../../entities';
+import { addLocation } from '../../entities/context';
+import { mustResolveToNumber } from '../../entities/nodes/matchers/resolve';
+import { combineResults, makeNoErrorResult } from '../../entities/results';
 import type {
-  MatcherExecutor,
-  AnyData,
   CoreHttpResponseMatcher,
-  HTTP_RESPONSE_MATCHER_TYPE,
+  MatchContext,
+  AnyData,
   MatchResult,
-} from 'entities/types';
+  MatcherExecutor,
+  HTTP_RESPONSE_MATCHER_TYPE,
+} from '../../entities/types';
 
 type HttpResponseData = {
   body?: unknown;

@@ -1,21 +1,20 @@
-import { matchingError } from 'entities/results/MatchingError';
-
-import { addLocation } from 'entities/context';
+import { addLocation } from '../../entities/context';
 import {
   combineResults,
-  makeNoErrorResult,
   makeResults,
-} from 'entities/results/MatchResult';
+  matchingError,
+  makeNoErrorResult,
+} from '../../entities/results';
 import type {
-  AnyData,
-  CoreShapedArrayMatcher,
-  SHAPED_ARRAY_MATCHER_TYPE,
-  MatchContext,
-  MatchResult,
   StripMatcherFn,
+  SHAPED_ARRAY_MATCHER_TYPE,
+  CoreShapedArrayMatcher,
+  MatchContext,
+  AnyData,
   CheckMatchFn,
+  MatchResult,
   MatcherExecutor,
-} from 'entities/types';
+} from '../../entities/types';
 
 const strip: StripMatcherFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = (
   matcher: CoreShapedArrayMatcher,

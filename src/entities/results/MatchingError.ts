@@ -1,7 +1,7 @@
-import { locationString } from 'entities/context';
-import type { MatchContext } from 'entities/context/types';
-import type { VerifyTriggerReturnObjectError } from 'entities/errors';
-import type { AnyCaseMatcher } from 'entities/nodes/matchers/types';
+import { locationString } from '../../entities/context';
+import type { MatchContext } from '../../entities/context/types';
+import type { VerifyTriggerReturnObjectError } from '../../entities/errors';
+import type { AnyCaseMatcher } from '../../entities/nodes/matchers/types';
 import {
   ERROR_TYPE_MATCHING,
   CaseError,

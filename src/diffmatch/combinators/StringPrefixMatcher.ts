@@ -1,13 +1,13 @@
-import { addLocation } from 'entities/context';
-import { mustResolveToString } from 'entities/nodes/matchers/resolve';
-import { matchingError, makeResults } from 'entities/results';
+import { mustResolveToString } from '../../entities';
+import { addLocation } from '../../entities/context';
+import { makeResults, matchingError } from '../../entities/results';
 import type {
-  MatchContext,
-  MatcherExecutor,
-  MatchResult,
-  STRING_PREFIX_TYPE,
   CoreStringPrefixMatcher,
-} from 'entities/types';
+  MatchContext,
+  MatchResult,
+  MatcherExecutor,
+  STRING_PREFIX_TYPE,
+} from '../../entities/types';
 
 const check = async (
   matcher: CoreStringPrefixMatcher,

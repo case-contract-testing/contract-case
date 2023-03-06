@@ -1,19 +1,21 @@
-import { matchingError } from 'entities/results/MatchingError';
-
-import { addLocation } from 'entities/context';
-import { combineResults, makeResults } from 'entities/results/MatchResult';
-import { actualToString } from 'entities/results/renderActual';
+import { addLocation } from '../../entities/context';
+import {
+  actualToString,
+  combineResults,
+  makeResults,
+  matchingError,
+} from '../../entities/results';
 import type {
-  AnyCaseNodeOrData,
-  AnyData,
-  CoreShapedObjectMatcher,
-  SHAPED_OBJECT_MATCHER_TYPE,
-  MatchContext,
-  MatchResult,
   StripMatcherFn,
+  SHAPED_OBJECT_MATCHER_TYPE,
+  CoreShapedObjectMatcher,
+  MatchContext,
+  AnyData,
+  AnyCaseNodeOrData,
   CheckMatchFn,
+  MatchResult,
   MatcherExecutor,
-} from 'entities/types';
+} from '../../entities/types';
 
 const strip: StripMatcherFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = (
   matcher: CoreShapedObjectMatcher,

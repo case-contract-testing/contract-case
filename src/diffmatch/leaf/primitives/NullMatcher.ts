@@ -1,12 +1,16 @@
-import { errorWhen, matchingError, actualToString } from 'entities/results';
+import {
+  errorWhen,
+  matchingError,
+  actualToString,
+} from '../../../entities/results';
 import type {
   CheckMatchFn,
-  MatcherExecutor,
-  CaseError,
-  MatchContext,
-  CoreNullMatcher,
   NULL_MATCHER_TYPE,
-} from 'entities/types';
+  CoreNullMatcher,
+  MatchContext,
+  CaseError,
+  MatcherExecutor,
+} from '../../../entities/types';
 
 const check: CheckMatchFn<typeof NULL_MATCHER_TYPE> = (
   matcher: CoreNullMatcher,

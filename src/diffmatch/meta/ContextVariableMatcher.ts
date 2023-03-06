@@ -1,13 +1,13 @@
-import { CaseConfigurationError } from 'entities';
-import { addLocation } from 'entities/context';
+import { CaseConfigurationError } from '../../entities';
+import { addLocation } from '../../entities/context';
 import type {
-  MatchResult,
-  MatcherExecutor,
-  MatchContext,
-  AnyData,
   CoreContextVariableMatcher,
+  MatchContext,
+  MatchResult,
+  AnyData,
+  MatcherExecutor,
   CONTEXT_VARIABLE_TYPE,
-} from 'entities/types';
+} from '../../entities/types';
 
 const check = (
   matcher: CoreContextVariableMatcher,

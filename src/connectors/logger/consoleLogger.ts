@@ -1,10 +1,10 @@
-import { caseVersion } from 'caseVersion';
 import chalk from 'chalk';
-import { locationString as formatLocationString } from 'entities/context';
-import type { LogLevelContext } from 'entities/context/types';
-import { shouldLog } from 'entities/logger/shouldLog';
-import type { Logger } from 'entities/logger/types';
+
 import { Console } from 'node:console';
+import { caseVersion } from '../../caseVersion';
+import { shouldLog } from '../../entities/logger/shouldLog';
+import { locationString as formatLocationString } from '../../entities/context';
+import type { LogLevelContext, Logger } from '../../entities/types';
 
 const stdoutLogger = new Console({ stdout: process.stdout });
 

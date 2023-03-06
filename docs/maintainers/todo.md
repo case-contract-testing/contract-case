@@ -125,15 +125,15 @@ Internals
 - [x] State setups should be available in the config
 - [x] Make sure all errors include context
 - [x] Do state handlers in order they're defined instead of all at once
+- [x] Fix global import issue - probably post process the dist directory. Or rewrite all the imports :/
+- [x] Indentation on test output
 - [ ] Make teardowns run for successful state setup functions when one of the setups (or other teardowns) fails.
 - [ ] Strip matchers should take states
 - [ ] "Is this interaction the same as that"?
 - [ ] Broker CLI / integration?
 - [ ] Release plan that includes version number - can we just import this like we did in pact? It would be nice if it was accurate.
-- [ ] Fix global import issue - probably post process the dist directory. Or rewrite all the imports :/
 - [ ] Combine files for upload (does the broker support multiple contracts between the same two services?)
 - [ ] Review test harness and separate into a dedicated module
-- [ ] Indentation on test output
 - [ ] Better system for stripping matchers with `and()` - maybe `{ items, keys, structure }`?
 
 Configuration and ergonomics

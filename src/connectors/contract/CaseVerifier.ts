@@ -1,27 +1,27 @@
 import { Mutex } from 'async-mutex';
 
-import { DEFAULT_CONFIG, executeExample } from 'connectors/contract/core';
-import type { CaseConfig } from 'connectors/contract/core/types';
-import { makeLogger as defaultMakeLogger } from 'connectors/logger';
-import { CaseCoreError } from 'entities';
+import { makeLogger as defaultMakeLogger } from '../../connectors/logger';
 
-import { applyNodeToContext } from 'entities/context';
+import { CaseCoreError } from '../../entities';
+import { applyNodeToContext } from '../../entities/context';
 import {
   exampleToNames,
-  makeFailedExample,
   makeSuccessExample,
-} from 'entities/contract';
-import type { Logger } from 'entities/logger/types';
+  makeFailedExample,
+} from '../../entities/contract';
 import type {
-  AnyMockDescriptorType,
-  CaseError,
-  CaseExample,
-  LogLevelContext,
-  MatchContext,
   ContractFile,
-} from 'entities/types';
+  LogLevelContext,
+  Logger,
+  CaseExample,
+  MatchContext,
+  CaseError,
+  AnyMockDescriptorType,
+} from '../../entities/types';
 
 import { BaseCaseContract } from './BaseCaseContract';
+import { DEFAULT_CONFIG, executeExample } from './core';
+import type { CaseConfig } from './core/types';
 
 import type { MultiTestInvoker, RunTestCallback } from './types';
 

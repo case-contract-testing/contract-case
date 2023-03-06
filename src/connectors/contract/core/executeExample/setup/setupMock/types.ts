@@ -1,4 +1,4 @@
-import type { LogLevel } from 'entities/logger/types';
+import type { LogLevel } from '../../../../../../entities/logger/types';
 import type { HttpResponseProviderConfig } from './connectors/types';
 
 export type BaseCaseConfig = {

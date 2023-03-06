@@ -1,6 +1,6 @@
-import type { CaseExample } from 'entities/contract/types';
-import type { VerifyTriggerReturnObjectError } from 'entities/errors';
-import type { AnyCaseMatcher, MatchContext } from 'entities/types';
+import type { CaseExample } from '../../entities/contract/types';
+import type { VerifyTriggerReturnObjectError } from '../../entities/errors';
+import type { AnyCaseMatcher, MatchContext } from '../../entities/types';
 
 export const ERROR_TYPE_MATCHING = 'MATCHING_ERROR' as const;
 export const ERROR_TYPE_EXECUTION = 'EXECUTION_ERROR' as const;

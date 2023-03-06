@@ -1,4 +1,4 @@
-import type { RunContext } from 'entities/types';
+import type { RunContext } from '../../../../../../entities/types';
 import type { CaseConfig } from './types';
 
 export const configToRunContext = (config: CaseConfig): RunContext =>

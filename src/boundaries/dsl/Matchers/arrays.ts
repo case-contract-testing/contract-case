@@ -1,14 +1,17 @@
-import { CaseConfigurationError, coreShapedArrayMatcher } from 'entities';
-import { coreArrayLengthMatcher } from 'entities/nodes/matchers/auxillary';
 import {
-  AnyCaseNodeOrData,
-  ARRAY_CONTAINS_TYPE,
+  CaseConfigurationError,
+  coreArrayLengthMatcher,
+  coreShapedArrayMatcher,
+} from '../../../entities';
+import {
+  type AnyCaseNodeOrData,
+  type CoreArrayEachEntryMatches,
   ARRAY_EACH_ENTRY_MATCHES_TYPE,
-  CoreArrayContainsMatch,
-  CoreArrayEachEntryMatches,
-  CoreArrayLengthMatcher,
-  CoreShapedArrayMatcher,
-} from 'entities/types';
+  type CoreArrayLengthMatcher,
+  type CoreArrayContainsMatch,
+  ARRAY_CONTAINS_TYPE,
+  type CoreShapedArrayMatcher,
+} from '../../../entities/types';
 
 type ArrayLengthOptions = { minLength?: number; maxLength?: number };
 

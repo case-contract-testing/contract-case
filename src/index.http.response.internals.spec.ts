@@ -1,11 +1,11 @@
 import type * as http from 'http';
-import { willSendHttpRequest } from 'entities/nodes/mocks/http';
-import type { MatchResult } from 'entities/types';
-import { makeNoErrorResult } from 'entities/results';
-import { anyString, httpStatus, logLevel } from 'boundaries/dsl/Matchers';
-import type { CaseConfig } from 'connectors/contract/core/types';
-import { CaseConfigurationError, CaseFailedAssertionError } from 'entities';
-import { CaseContract } from 'boundaries';
+import { willSendHttpRequest } from './entities/nodes/mocks/http';
+import type { MatchResult } from './entities/types';
+import { makeNoErrorResult } from './entities/results';
+import { anyString, httpStatus, logLevel } from './boundaries/dsl/Matchers';
+import type { CaseConfig } from './connectors/contract/core/types';
+import { CaseConfigurationError, CaseFailedAssertionError } from './entities';
+import { CaseContract } from './boundaries';
 
 import start from './__tests__/server/http/index';
 

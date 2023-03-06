@@ -1,10 +1,10 @@
-import { StripUnsupportedError } from 'entities/errors/StripUnsupportedError';
+import { StripUnsupportedError } from '../../entities/errors';
 import {
   combineResults,
   errorWhen,
   makeResults,
   matchingError,
-} from 'entities/results';
+} from '../../entities/results';
 import {
   AnyData,
   MatchContext,
@@ -15,7 +15,7 @@ import {
   ARRAY_LENGTH_MATCHER_TYPE,
   CoreArrayLengthMatcher,
   ARRAY_LENGTH_PARAMETER_INFINITE,
-} from 'entities/types';
+} from '../../entities/types';
 
 const strip: StripMatcherFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
   matcher: CoreArrayLengthMatcher,

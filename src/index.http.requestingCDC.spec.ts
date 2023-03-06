@@ -1,23 +1,23 @@
+import * as fs from 'node:fs';
 // These imports are our code under test
 import type * as http from 'node:http';
-import api from '__tests__/client/http/connector';
-import { ApiError } from '__tests__/client/http/connector/internals/apiErrors';
-import start from '__tests__/server/http/connectors/web';
-import { baseService } from '__tests__/server/http/domain/baseService';
-import type { User } from '__tests__/server/http/model/responses';
-import { UserNotFoundConsumerError } from '__tests__/client/http/connector/errors';
-import type { Dependencies } from '__tests__/server/http/domain/types';
+import api from './__tests__/client/http/connector';
+import { ApiError } from './__tests__/client/http/connector/internals/apiErrors';
+import start from './__tests__/server/http/connectors/web';
+import { baseService } from './__tests__/server/http/domain/baseService';
+import type { User } from './__tests__/server/http/model/responses';
+import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';
+import type { Dependencies } from './__tests__/server/http/domain/types';
 
 // This import is our Jest DSL
 import {
   runCaseExample as jestRunCaseExample,
   runCaseRejectExample as jestRunCaseRejectExample,
   runJestTest,
-} from '__tests__/jest';
+} from './__tests__/jest';
 
 // These imports support the partial DSL that hasn't been extracted yet
-import type { AnyMockDescriptorType } from 'entities/types';
-import * as fs from 'node:fs';
+import type { AnyMockDescriptorType } from './entities/types';
 
 // These imports are from Case
 import {

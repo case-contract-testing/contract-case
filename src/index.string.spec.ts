@@ -3,14 +3,14 @@ import {
   stringContaining,
   stringPrefix,
   stringSuffix,
-} from 'boundaries/dsl/Matchers';
-import { CaseContract } from 'connectors/contract';
+} from './boundaries/dsl/Matchers';
+import { CaseContract } from './connectors/contract';
 
-import { makeNoErrorResult } from 'entities/results';
+import { makeNoErrorResult } from './entities/results';
 import {
   MAINTAINER_TEST_CONTEXT,
   makeExpectErrorContaining,
-} from '__tests__/expectErrorContaining';
+} from './__tests__/expectErrorContaining';
 
 describe('string matchers', () => {
   const contract = new CaseContract(

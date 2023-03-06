@@ -1,4 +1,7 @@
-import { MOCK_HTTP_CLIENT, MOCK_HTTP_SERVER } from 'entities/types';
+import {
+  MOCK_HTTP_CLIENT,
+  MOCK_HTTP_SERVER,
+} from '../../../../../../entities/types';
 
 import type { MockSetupFns } from './mockExecutor/types';
 import { setupHttpResponseProducer } from './connectors/mockHttpServer';

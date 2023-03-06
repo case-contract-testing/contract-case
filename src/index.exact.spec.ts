@@ -1,8 +1,8 @@
-import { CaseContract } from 'boundaries';
+import { CaseContract } from './boundaries';
 import {
   MAINTAINER_TEST_CONTEXT,
   makeExpectErrorContaining,
-} from '__tests__/expectErrorContaining';
+} from './__tests__/expectErrorContaining';
 
 describe('basic types and structure checks', () => {
   const contract = new CaseContract(

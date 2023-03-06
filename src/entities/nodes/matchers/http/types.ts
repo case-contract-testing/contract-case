@@ -2,7 +2,7 @@ import type {
   AnyCaseNodeOrData,
   AnyData,
   AnyStringMatcher,
-} from 'entities/types';
+} from '../../../../entities/types';
 
 export const HTTP_STATUS_CODE_MATCHER_TYPE = 'HttpStatusCode' as const;
 export const HTTP_RESPONSE_MATCHER_TYPE = 'HttpResponseMatcher' as const;

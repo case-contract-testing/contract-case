@@ -1,11 +1,15 @@
-import { errorWhen, matchingError, combineResults } from 'entities/results';
+import {
+  combineResults,
+  errorWhen,
+  matchingError,
+} from '../../../entities/results';
 import type {
+  CoreIntegerMatch,
+  MatchContext,
   CaseError,
   MatcherExecutor,
-  MatchContext,
-  CoreIntegerMatch,
   INTEGER_MATCH_TYPE,
-} from 'entities/types';
+} from '../../../entities/types';
 
 const check = (
   matcher: CoreIntegerMatch,

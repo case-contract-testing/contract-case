@@ -1,7 +1,11 @@
-import { CaseConfigurationError } from 'entities';
-import { hasErrors } from 'entities/results';
-import { type AnyState, SETUP_VARIABLE_STATE } from 'entities/states/types';
-import type { MatchContext, AnyCaseNodeOrData } from 'entities/types';
+import { CaseConfigurationError } from '../../../../../../../entities';
+import { hasErrors } from '../../../../../../../entities/results';
+import {
+  type MatchContext,
+  type AnyCaseNodeOrData,
+  SETUP_VARIABLE_STATE,
+  AnyState,
+} from '../../../../../../../entities/types';
 
 export const validateVariables = async (
   state: AnyState,

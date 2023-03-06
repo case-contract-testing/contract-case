@@ -1,7 +1,9 @@
-import { matchingError } from 'entities/results/MatchingError';
-
-import { addLocation } from 'entities/context';
-import { combineResults, makeResults } from 'entities/results/MatchResult';
+import { addLocation } from '../../entities/context';
+import {
+  matchingError,
+  combineResults,
+  makeResults,
+} from '../../entities/results';
 import type {
   AnyData,
   MatchContext,
@@ -11,7 +13,7 @@ import type {
   MatcherExecutor,
   ARRAY_EACH_ENTRY_MATCHES_TYPE,
   CoreArrayEachEntryMatches,
-} from 'entities/types';
+} from '../../entities/types';
 
 const strip: StripMatcherFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = (
   matcher: CoreArrayEachEntryMatches,

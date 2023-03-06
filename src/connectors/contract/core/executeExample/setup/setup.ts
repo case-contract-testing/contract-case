@@ -1,13 +1,12 @@
-import { exampleToNames } from 'entities/contract';
-import type { StateHandlers } from 'entities/states/types';
+import { exampleToNames } from '../../../../../entities/contract';
 import type {
-  AnyMockDescriptorType,
   CaseExample,
+  StateHandlers,
   MatchContext,
-  CaseMockDescriptorFor,
+  AnyMockDescriptorType,
   Assertable,
-} from 'entities/types';
-
+  CaseMockDescriptorFor,
+} from '../../../../../entities/types';
 import { setupMock } from './setupMock';
 import { executeStateTeardown, executeStateSetup } from './stateHandlers';
 

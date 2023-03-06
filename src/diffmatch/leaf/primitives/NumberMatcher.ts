@@ -1,12 +1,15 @@
-import { errorWhen, matchingError, combineResults } from 'entities/results';
+import {
+  combineResults,
+  errorWhen,
+  matchingError,
+} from '../../../entities/results';
 import type {
+  CoreNumberMatcher,
+  MatchContext,
   CaseError,
   MatcherExecutor,
-  CoreNumberMatcher,
   NUMBER_MATCHER_TYPE,
-  MatchContext,
-} from 'entities/types';
-
+} from '../../../entities/types';
 import { testExactMatch } from './internal/testExactMatch';
 
 const check = (

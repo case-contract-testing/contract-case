@@ -1,12 +1,12 @@
 import type {
   RunTestCallback,
   AnyMockDescriptorType,
+  CaseContract,
   AnyState,
   CaseMockDescriptorFor,
   Assertable,
-  CaseContract,
-} from 'boundaries';
-import { VerifyTriggerReturnObjectError } from 'entities';
+} from '../boundaries';
+import { VerifyTriggerReturnObjectError } from '../entities';
 
 export const runJestTest: RunTestCallback = (
   testName: string,

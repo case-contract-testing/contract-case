@@ -1,6 +1,5 @@
-import { state } from 'entities/states/states';
-import type { AnyState } from 'entities/states/types';
-import type { AnyCaseNodeOrData } from 'entities/types';
+import { state } from '../../entities/states';
+import type { AnyCaseNodeOrData, AnyState } from '../../entities/types';
 
 export const inState = (
   name: string,

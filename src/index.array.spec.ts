@@ -1,4 +1,4 @@
-import { CaseContract } from 'boundaries';
+import { CaseContract } from './boundaries';
 import {
   anyNumber,
   anyString,
@@ -9,14 +9,14 @@ import {
   objectEachValueMatches,
   shapedLike,
   withExample,
-} from 'boundaries/dsl/Matchers';
-import { CaseConfigurationError } from 'entities';
-import { makeNoErrorResult } from 'entities/results';
-import { StripUnsupportedError } from 'entities/errors/StripUnsupportedError';
+} from './boundaries/dsl/Matchers';
+import { CaseConfigurationError } from './entities';
+import { makeNoErrorResult } from './entities/results';
+import { StripUnsupportedError } from './entities/errors/StripUnsupportedError';
 import {
   MAINTAINER_TEST_CONTEXT,
   makeExpectErrorContaining,
-} from '__tests__/expectErrorContaining';
+} from './__tests__/expectErrorContaining';
 
 describe('basic types and structure checks', () => {
   const contract = new CaseContract(

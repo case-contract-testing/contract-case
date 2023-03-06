@@ -1,16 +1,16 @@
-import { mustResolveToString } from 'entities/nodes/matchers/resolve';
-import { CaseConfigurationError, CaseCoreError } from 'entities';
-import { addLocation } from 'entities/context';
-import type { MatchContext } from 'entities/context/types';
-import { combineResults, makeResults } from 'entities/results/MatchResult';
+import { CaseConfigurationError, CaseCoreError } from '../../entities';
+import { addLocation } from '../../entities/context';
+import { mustResolveToString } from '../../entities/nodes/matchers/resolve';
+import { combineResults, makeResults } from '../../entities/results';
 import type {
-  MatcherExecutor,
-  AnyData,
-  CoreHttpRequestMatcher,
   HttpRequestData,
-  HTTP_REQUEST_MATCHER_TYPE,
+  CoreHttpRequestMatcher,
+  MatchContext,
+  AnyData,
   MatchResult,
-} from 'entities/types';
+  MatcherExecutor,
+  HTTP_REQUEST_MATCHER_TYPE,
+} from '../../entities/types';
 
 const isHttpRequestData = (data: unknown): data is HttpRequestData => {
   const maybeRequestData = data as HttpRequestData;

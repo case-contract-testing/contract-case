@@ -1,9 +1,9 @@
-import type { AnyState } from 'entities/states/types';
 import type {
+  AnyState,
   AnyCaseNodeOrData,
   AnyMockDescriptor,
   CaseError,
-} from 'entities/types';
+} from '../../entities/types';
 
 export interface ContractDescription {
   consumerName: string;

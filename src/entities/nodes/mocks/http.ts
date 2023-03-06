@@ -1,5 +1,9 @@
-import { httpRequestMatcher, httpResponseMatcher } from 'entities';
-import type { HttpMockRequest, HttpMockResponse } from 'entities/types';
+import { httpRequestMatcher, httpResponseMatcher } from '../../../entities';
+import type {
+  HttpMockRequest,
+  HttpMockResponse,
+} from '../../../entities/types';
+
 import {
   type ConsumeHttpResponse,
   MOCK_HTTP_SERVER,

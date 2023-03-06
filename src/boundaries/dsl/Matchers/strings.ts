@@ -1,12 +1,12 @@
 import {
   type CoreStringContainsMatcher,
   STRING_CONTAINS_TYPE,
+  type AnyCaseMatcher,
+  type CoreStringPrefixMatcher,
   STRING_PREFIX_TYPE,
-  CoreStringPrefixMatcher,
-  AnyCaseMatcher,
+  type CoreStringSuffixMatcher,
   STRING_SUFFIX_TYPE,
-  CoreStringSuffixMatcher,
-} from 'entities/types';
+} from '../../../entities/types';
 import { anyString } from './primitives';
 
 /**

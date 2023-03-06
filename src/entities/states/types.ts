@@ -1,4 +1,4 @@
-import type { AnyCaseNodeOrData } from 'entities/types';
+import type { AnyCaseNodeOrData } from '../../entities/types';
 
 export const SETUP_NAMED_STATE = 'NamedState' as const;
 export const SETUP_VARIABLE_STATE = 'StateWithVariables' as const;

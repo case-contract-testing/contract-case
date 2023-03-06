@@ -1,11 +1,12 @@
-import type { MatchContext } from 'entities/context/types';
-import { CaseCoreError } from 'entities';
-import type { MockData } from 'entities/nodes/mocks/setup.types';
+import { CaseCoreError } from '../../../../../../../entities';
+import { addLocation } from '../../../../../../../entities/context';
+import type { MockData } from '../../../../../../../entities/nodes/types';
 import type {
   AnyMockDescriptorType,
   CaseMockDescriptorFor,
-} from 'entities/types';
-import { addLocation } from 'entities/context';
+  MatchContext,
+} from '../../../../../../../entities/types';
+
 import type { MockSetupFns } from './types';
 
 const inferMock = <T extends AnyMockDescriptorType>(

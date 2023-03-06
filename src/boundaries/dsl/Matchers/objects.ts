@@ -1,10 +1,10 @@
 import {
-  AnyCaseNodeOrData,
-  CoreObjectKeysMatcher,
-  CoreObjectValuesMatch,
-  OBJECT_KEYS_MATCH_TYPE,
+  type AnyCaseNodeOrData,
+  type CoreObjectValuesMatch,
   OBJECT_VALUES_MATCH_TYPE,
-} from 'entities/types';
+  type CoreObjectKeysMatcher,
+  OBJECT_KEYS_MATCH_TYPE,
+} from '../../../entities/types';
 
 /**
  * Matches an object where each value matches the provided matcher.

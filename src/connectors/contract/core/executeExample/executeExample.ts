@@ -1,27 +1,31 @@
-import type { MatchContext } from 'entities/context/types';
-import { makeFailedExample, makeSuccessExample } from 'entities/contract';
-import type { CaseExample } from 'entities/contract/types';
-import { handleResult } from 'entities/results/handlers';
-import {
-  executionError,
-  hasErrors,
-  makeResults,
-  verificationError,
-} from 'entities/results';
-import type { CaseContract, CaseVerifier } from 'connectors/contract';
-import type { InvokingScaffold } from 'connectors/contract/types';
-import type {
-  AnyMockDescriptorType,
-  Assertable,
-  CaseMockDescriptorFor,
-} from 'entities/types';
+import { callTrigger } from './triggers';
+import { setupExample } from './setup';
+
 import {
   CaseConfigurationError,
   VerifyTriggerReturnObjectError,
-} from 'entities';
-
-import { callTrigger } from './triggers';
-import { setupExample } from './setup';
+} from '../../../../entities';
+import {
+  makeFailedExample,
+  makeSuccessExample,
+} from '../../../../entities/contract';
+import {
+  hasErrors,
+  makeResults,
+  executionError,
+  verificationError,
+  handleResult,
+} from '../../../../entities/results';
+import type {
+  AnyMockDescriptorType,
+  Assertable,
+  CaseExample,
+  CaseMockDescriptorFor,
+  MatchContext,
+} from '../../../../entities/types';
+import type { CaseContract } from '../../CaseContract';
+import type { CaseVerifier } from '../../CaseVerifier';
+import type { InvokingScaffold } from '../../types';
 
 const toResultingExample = <T extends AnyMockDescriptorType>(
   assertable: Assertable<T>,

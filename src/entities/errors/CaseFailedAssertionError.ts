@@ -1,4 +1,4 @@
-import type { MatchResult } from 'entities/types';
+import type { MatchResult } from '../../entities/types';
 
 export class CaseFailedAssertionError extends Error {
   matchResult: MatchResult;

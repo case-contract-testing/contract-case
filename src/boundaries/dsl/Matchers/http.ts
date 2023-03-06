@@ -1,5 +1,5 @@
-import { httpStatusCodeMatcher } from 'entities';
-import type { CoreHttpStatusCodeMatcher } from 'entities/types';
+import { httpStatusCodeMatcher } from '../../../entities';
+import type { CoreHttpStatusCodeMatcher } from '../../../entities/types';
 
 /**
  * Matches http status codes. Matches may be provided as a string, eg '4XX' or '401', or a number.

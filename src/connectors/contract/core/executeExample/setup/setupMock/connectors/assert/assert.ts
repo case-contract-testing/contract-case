@@ -1,4 +1,4 @@
-import { CaseConfigurationError } from 'entities';
+import { CaseConfigurationError } from '../../../../../../../../entities';
 
 const assertPresentInternal = <T extends object>(
   data: T,

@@ -1,13 +1,13 @@
 import {
-  coreIntegerMatcher,
   coreNumberMatcher,
+  coreIntegerMatcher,
   coreStringMatcher,
-} from 'entities/nodes/matchers/leaf';
+} from '../../../entities';
 import {
+  type CoreAndCombinationMatcher,
   BOOLEAN_MATCHER_TYPE,
-  CoreAndCombinationMatcher,
   NULL_MATCHER_TYPE,
-} from 'entities/types';
+} from '../../../entities/types';
 import { and } from './meta';
 import type {
   BooleanMatcher,

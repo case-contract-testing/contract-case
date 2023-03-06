@@ -1,11 +1,11 @@
-import { and, arrayLength, shapedLike } from 'boundaries/dsl/Matchers';
-import { CaseContract } from 'connectors/contract';
+import { and, arrayLength, shapedLike } from './boundaries/dsl/Matchers';
+import { CaseContract } from './connectors/contract';
 
-import { makeNoErrorResult } from 'entities/results';
+import { makeNoErrorResult } from './entities/results';
 import {
   MAINTAINER_TEST_CONTEXT,
   makeExpectErrorContaining,
-} from '__tests__/expectErrorContaining';
+} from './__tests__/expectErrorContaining';
 
 describe('and matchers', () => {
   const contract = new CaseContract(

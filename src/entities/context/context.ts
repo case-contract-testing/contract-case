@@ -1,15 +1,14 @@
-import type { Logger } from 'entities/logger/types';
-import { AnyMockDescriptor, isCaseMock } from 'entities/nodes/mocks/types';
-import {
-  isCaseNode,
+import type { Logger } from '../../entities/logger/types';
+import { isCaseMock } from '../../entities/nodes/mocks/types';
+import { isCaseNode } from '../../entities/nodes/matchers/types';
+import type {
+  AnyMockDescriptor,
   AnyCaseNodeOrData,
   AnyCaseMatcher,
-} from 'entities/nodes/matchers/types';
-import type {
   ContractLookupFns,
   MatchContextWithoutLookup,
   ResultPrinter,
-} from 'entities/types';
+} from '../../entities/types';
 import type {
   MatchContext,
   RunContext,

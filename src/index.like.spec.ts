@@ -6,14 +6,14 @@ import {
   anyString,
   exactlyLike,
   shapedLike,
-} from 'boundaries/dsl/Matchers';
-import { CaseContract } from 'connectors/contract';
+} from './boundaries/dsl/Matchers';
+import { CaseContract } from './connectors/contract';
 
-import { CaseConfigurationError } from 'entities';
+import { CaseConfigurationError } from './entities';
 import {
   MAINTAINER_TEST_CONTEXT,
   makeExpectErrorContaining,
-} from '__tests__/expectErrorContaining';
+} from './__tests__/expectErrorContaining';
 
 describe('basic matchers', () => {
   const contract = new CaseContract(

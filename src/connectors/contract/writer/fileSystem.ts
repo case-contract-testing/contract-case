@@ -3,13 +3,13 @@ import slug from 'slug';
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { CaseConfigurationError } from 'entities';
-import type { ContractDescription } from 'entities/contract/types';
+import { CaseConfigurationError } from '../../../entities';
 import type {
-  ContractFile,
   MatchContext,
   MatchContextWithContractFileConfig,
-} from 'entities/types';
+  ContractDescription,
+  ContractFile,
+} from '../../../entities/types';
 
 const checkCurrentRunField = <T extends MatchContext>(
   context: MatchContext,

@@ -1,5 +1,5 @@
-import { CaseConfigurationError } from 'entities';
-import type { AnyCaseNodeOrData } from 'entities/types';
+import { CaseConfigurationError } from "../../../../../entities";
+import type { AnyCaseNodeOrData } from "../../../../../entities/types";
 
 export const rawEquality = (
   a: AnyCaseNodeOrData | undefined,

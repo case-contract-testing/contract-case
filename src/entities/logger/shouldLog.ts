@@ -1,5 +1,6 @@
-import { CaseConfigurationError, CaseCoreError } from 'entities';
-import type { LogLevelContext } from 'entities/types';
+import { CaseConfigurationError, CaseCoreError } from '../../entities';
+import type { LogLevelContext } from '../../entities/types';
+
 import type { LogLevel } from './types';
 
 export const shouldLog = (

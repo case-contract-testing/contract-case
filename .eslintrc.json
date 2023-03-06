@@ -25,9 +25,9 @@
     "camelcase": "off",
     "no-console": "error",
     "import/prefer-default-export": "off",
+    "import/no-useless-path-segments": "off",
     "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "error",
-    "no-restricted-imports": ["error", { "patterns": ["**/../*"] }]
+    "@typescript-eslint/explicit-module-boundary-types": "error"
   },
 
   "overrides": [
@@ -63,7 +63,7 @@
       "rules": {
         "no-restricted-imports": [
           "error",
-          { "patterns": ["**/boundaries", "**/boundaries/*", "**/../*"] }
+          { "patterns": ["**/boundaries", "**/boundaries/*"] }
         ]
       }
     },
@@ -77,8 +77,7 @@
               "**/connectors",
               "**/connectors/*",
               "**/boundaries",
-              "**/boundaries/*",
-              "**/../*"
+              "**/boundaries/*"
             ]
           }
         ]
@@ -96,8 +95,7 @@
               "**/connectors",
               "**/connectors/*",
               "**/boundaries",
-              "**/boundaries/*",
-              "**/../*"
+              "**/boundaries/*"
             ]
           }
         ]
@@ -117,8 +115,7 @@
               "**/connectors",
               "**/connectors/*",
               "**/boundaries",
-              "**/boundaries/*",
-              "**/../*"
+              "**/boundaries/*"
             ]
           }
         ]

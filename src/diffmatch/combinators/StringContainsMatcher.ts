@@ -1,18 +1,17 @@
-import { mustResolveToString } from 'entities/nodes/matchers/resolve';
+import { mustResolveToString, StripUnsupportedError } from '../../entities';
 import {
+  combineResults,
   errorWhen,
   matchingError,
-  combineResults,
   makeResults,
-} from 'entities/results';
-import { StripUnsupportedError } from 'entities/errors/StripUnsupportedError';
+} from '../../entities/results';
 import type {
-  MatchContext,
-  MatcherExecutor,
   CoreStringContainsMatcher,
+  MatchContext,
   MatchResult,
+  MatcherExecutor,
   STRING_CONTAINS_TYPE,
-} from 'entities/types';
+} from '../../entities/types';
 
 const check = async (
   matcher: CoreStringContainsMatcher,

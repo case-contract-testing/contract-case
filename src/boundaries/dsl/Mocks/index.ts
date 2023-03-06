@@ -1,4 +1,4 @@
 export {
   willReceiveHttpRequest,
   willSendHttpRequest,
-} from 'entities/nodes/mocks/http';
+} from '../../../entities/nodes/mocks/http';

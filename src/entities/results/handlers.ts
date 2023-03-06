@@ -1,6 +1,9 @@
-import { CaseConfigurationError, CaseFailedAssertionError } from 'entities';
-import type { MatchContext } from 'entities/context/types';
-import type { CaseExample } from 'entities/contract/types';
+import {
+  CaseConfigurationError,
+  CaseFailedAssertionError,
+} from '../../entities';
+import type { MatchContext } from '../../entities/context/types';
+import type { CaseExample } from '../../entities/contract/types';
 import {
   ERROR_TYPE_MATCHING,
   ERROR_TYPE_VERIFICATION,

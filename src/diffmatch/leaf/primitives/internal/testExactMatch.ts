@@ -1,8 +1,13 @@
-import type { MatchContext } from 'entities/context/types';
-import type { AnyLeafMatcher } from 'entities/nodes/matchers/types';
-import { errorWhen, matchingError } from 'entities/results/MatchingError';
-import { actualToString } from 'entities/results/renderActual';
-import type { CaseError } from 'entities/types';
+import {
+  errorWhen,
+  matchingError,
+  actualToString,
+} from '../../../../entities/results';
+import type {
+  AnyLeafMatcher,
+  MatchContext,
+  CaseError,
+} from '../../../../entities/types';
 
 export const testExactMatch = (
   matcher: AnyLeafMatcher,

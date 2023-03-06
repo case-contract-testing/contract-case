@@ -1,17 +1,19 @@
 import type * as http from 'http';
 import express from 'express';
 import type * as net from 'node:net';
-
 import {
-  HttpRequestData,
-  CoreHttpRequestResponseMatcherPair,
-  MatchContext,
+  CaseConfigurationError,
+  CaseCoreError,
+} from '../../../../../../../entities';
+import { addLocation } from '../../../../../../../entities/context';
+import type { MockData } from '../../../../../../../entities/nodes/types';
+import {
+  type HttpResponseData,
+  type CoreHttpRequestResponseMatcherPair,
+  type MatchContext,
   MOCK_HTTP_SERVER,
-  HttpResponseData,
-} from 'entities/types';
-import { addLocation } from 'entities/context';
-import { CaseConfigurationError, CaseCoreError } from 'entities';
-import type { MockData } from 'entities/nodes/mocks/setup.types';
+  type HttpRequestData,
+} from '../../../../../../../entities/types';
 
 const addressToString = (address: string | net.AddressInfo | null) => {
   if (typeof address === 'string') return address;

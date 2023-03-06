@@ -1,9 +1,9 @@
 import {
-  AnyCaseNodeOrData,
-  AnyMockDescriptor,
+  type AnyCaseNodeOrData,
+  type MatchContextWithoutLookup,
   isLookupableMatcher,
-  MatchContextWithoutLookup,
-} from 'entities/types';
+  type AnyMockDescriptor,
+} from '../../../../entities/types';
 import { addLookup } from './internals';
 import type { LookupMap } from './types';
 

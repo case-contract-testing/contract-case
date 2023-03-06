@@ -1,21 +1,22 @@
-import { coreLookupMatcher, coreLookupMatcherRequest } from 'entities';
 import {
   coreAndMatcher,
+  coreLookupMatcherRequest,
+  coreLookupMatcher,
   coreShapedLike,
-} from 'entities/nodes/matchers/auxillary';
+} from '../../../entities';
 import {
-  AnyCaseNodeOrData,
-  CoreAndCombinationMatcher,
-  LookupableMatcher,
+  type AnyCaseNodeOrData,
+  type CoreAndCombinationMatcher,
+  type AnyCaseMatcher,
+  type AnyData,
+  type HasExample,
+  type LookupableMatcher,
+  type CoreCascadingMatcher,
   CASCADING_CONTEXT_MATCHER_TYPE,
-  CoreCascadingMatcher,
-  AnyData,
-  AnyCaseMatcher,
-  HasExample,
+  type CoreContextVariableMatcher,
   CONTEXT_VARIABLE_TYPE,
-  CoreContextVariableMatcher,
-  LogLevel,
-} from 'entities/types';
+  type LogLevel,
+} from '../../../entities/types';
 
 /**
  * Meta matcher that matches all matchers provided. Use this to combine matching rules for the same element

@@ -1,7 +1,7 @@
 import { versionFromGitTag } from 'absolute-version';
+import { CaseConfigurationError } from '../../entities';
+import type { ContractFile, MatchContext } from '../../entities/types';
 
-import { CaseConfigurationError } from 'entities';
-import type { ContractFile, MatchContext } from 'entities/types';
 import { makeAxiosConnector } from './axios';
 
 interface Broker {
@@ -62,11 +62,7 @@ export const makeBrokerApi = (
       )}/version/${encodeURIComponent(version)}`;
 
       context.logger.maintainerDebug(`Publish path is: ${path}`);
-      return server.authedPut(path, contract, context).then((d) => {
-        // eslint-disable-next-line no-console
-        console.log(d);
-        return d;
-      });
+      return server.authedPut(path, contract, context).then((d) => d);
     },
   };
 };

@@ -1,20 +1,20 @@
-import { CaseCoreError } from 'entities';
+import { CaseCoreError } from '../../../entities';
 import {
-  errorWhen,
-  matchingError,
   makeResults,
-  hasNoErrors,
+  errorWhen,
   actualToString,
-} from 'entities/results';
+  matchingError,
+  hasNoErrors,
+} from '../../../entities/results';
 import type {
   CaseError,
   MatchResult,
   CheckMatchFn,
-  MatcherExecutor,
-  MatchContext,
-  CoreHttpStatusCodeMatcher,
   HTTP_STATUS_CODE_MATCHER_TYPE,
-} from 'entities/types';
+  CoreHttpStatusCodeMatcher,
+  MatchContext,
+  MatcherExecutor,
+} from '../../../entities/types';
 
 const checkExample = (
   rule: number | string,

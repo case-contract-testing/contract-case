@@ -1,6 +1,5 @@
-import { CaseCoreError } from 'entities';
-import type { MatchContext } from 'entities/context/types';
-import type { AnyCaseNodeOrData } from 'entities/types';
+import { CaseCoreError } from '../../../entities/errors';
+import type { AnyCaseNodeOrData, MatchContext } from '../../../entities/types';
 
 export const mustResolveToString = (
   matcher: AnyCaseNodeOrData,

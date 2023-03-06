@@ -1,16 +1,16 @@
-import { addLocation } from 'entities/context';
-import { StripUnsupportedError } from 'entities/errors/StripUnsupportedError';
+import { StripUnsupportedError } from '../../entities';
+import { addLocation } from '../../entities/context';
 import {
-  StripMatcherFn,
-  COMBINE_MATCHERS_TYPE,
-  CoreAndCombinationMatcher,
-  MatchContext,
-  AnyData,
-  CheckMatchFn,
-  MatchResult,
-  MatcherExecutor,
+  type StripMatcherFn,
+  type COMBINE_MATCHERS_TYPE,
+  type CoreAndCombinationMatcher,
+  type MatchContext,
+  type AnyData,
   isCaseNode,
-} from 'entities/types';
+  type CheckMatchFn,
+  type MatchResult,
+  type MatcherExecutor,
+} from '../../entities/types';
 
 const strip: StripMatcherFn<typeof COMBINE_MATCHERS_TYPE> = (
   matcher: CoreAndCombinationMatcher,
