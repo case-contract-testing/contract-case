@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.0](https://github.com/TimothyJones/case/compare/v0.1.0...v1.0.0) (2023-03-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove info log level as it was never needed
+
+### Features
+
+* Add deepMaintainerDebug log level ([673c3c2](https://github.com/TimothyJones/case/commit/673c3c2b418ac99d95a762be6b0f28d68609e9a2))
+* Add native broker client ([465cf44](https://github.com/TimothyJones/case/commit/465cf44656cf5264bd5814804c4a853bff480b3e))
+* Allow files to be uploaded to Pact Brokers ([4879b35](https://github.com/TimothyJones/case/commit/4879b354ef4e9a0e784126a63626eff9af8ec5b5))
+
+
+### Bug Fixes
+
+* Connect state variables to the config object that handlers receive ([76e4e49](https://github.com/TimothyJones/case/commit/76e4e49e5d7c4422ecdce2782ea7cadb939f5293))
+* Ensure that version number in logs is always correct ([672301f](https://github.com/TimothyJones/case/commit/672301f4435c2e6f7a20e47f6fb7d5c0161f80e0))
+* ensure the Assertable promise isn't left open if a trigger function fails ([7a6270d](https://github.com/TimothyJones/case/commit/7a6270dbc1c1198b0a5001d74b6ddd7004285370))
+* Expose typescript types in compiled package ([0ad7502](https://github.com/TimothyJones/case/commit/0ad7502689bfe011ec50da784c15e5af119a857b))
+* Remove info log level as it was never needed ([b6801b6](https://github.com/TimothyJones/case/commit/b6801b6b777d409c5d05308749557930dabcdcf8))
+* Substantially improve error message when the verification of a trigger return object fails ([085df9b](https://github.com/TimothyJones/case/commit/085df9bdf68ddd833662f8031dfdefcca8b90eb4))
+* upgrade axios from 1.3.1 to 1.3.2 ([c98b4a6](https://github.com/TimothyJones/case/commit/c98b4a6a9299c3e89fbe0e18b9787e146efde935))
+* upgrade pretty-format from 29.3.1 to 29.4.1 ([951696e](https://github.com/TimothyJones/case/commit/951696e1f03d4b9d23ebd12dc22180b47925ba21))
+
 ## [0.1.0](https://github.com/TimothyJones/case/compare/v0.0.2...v0.1.0) (2023-02-14)
 
 
