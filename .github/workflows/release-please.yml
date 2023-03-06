@@ -14,7 +14,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
-          package-name: case
+          package-name: '@case-contract-testing/case'
           bump-minor-pre-major: true
       # The logic below handles the npm publication:
       - uses: actions/checkout@v3
