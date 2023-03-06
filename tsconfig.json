@@ -4,8 +4,9 @@
     "outDir": "./dist/",
     "noImplicitAny": true,
     "strict": true,
-    "rootDir": "./src",
-    "allowJs": true
+    "rootDir": ".",
+    "allowJs": true,
+    "resolveJsonModule": true
   },
 
   "exclude": ["jest.config.ts", "dist/**/*.js", "example/*", "coverage"]
