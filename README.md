@@ -45,6 +45,7 @@ contracts. However, the following caveats should be kept in mind:
 1. Case currently is only compatible with Jest. At a later date, the jest support will be extracted, and the peer-dependency removed.
 1. Case currently doesn't support query strings.
 1. Case currently doesn't support reporting your results to a broker.
+1. Case currently doesn't support retrieving your contracts from a broker.
 1. Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
 1. There isn't much documentation at the moment. If you want to get started immediately, we recommend starting with either the [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts), or the [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts). Make sure you remove `printResults: false`.
 
