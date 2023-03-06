@@ -102,7 +102,7 @@ describe('e2e http consumer driven', () => {
         describe('When the server is down', () => {
           const state = inState('Server is down');
           describe('No body server response', () => {
-            it('calls server health', () => {
+            it('calls server health', () =>
               contract.runRejectingExample(
                 [state],
                 willSendHttpRequest({
@@ -116,12 +116,11 @@ describe('e2e http consumer driven', () => {
                 (e) => {
                   expect(e).toBeInstanceOf(ApiError);
                 }
-              );
-            });
+              ));
           });
 
           describe('specific server response', () => {
-            it('calls server health', async () => {
+            it('calls server health', async () =>
               contract.runRejectingExample(
                 [state],
                 willSendHttpRequest({
@@ -135,8 +134,7 @@ describe('e2e http consumer driven', () => {
                 (e) => {
                   expect(e).toBeInstanceOf(ApiError);
                 }
-              );
-            });
+              ));
           });
         });
       });
