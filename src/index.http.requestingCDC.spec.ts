@@ -31,8 +31,8 @@ const contractDetails = {
   providerName: 'http response provider',
 };
 
-const TEST_RUN_ID = '12';
-const FILENAME = `case-contracts/http-response-consumer-http-response-provider-${TEST_RUN_ID}.case.json`;
+// Normally you can just let Case set a filename for you.
+const FILENAME = `case-contracts/http-response-consumer-http-response-provider-12.case.json`;
 
 describe('e2e http consumer driven', () => {
   beforeAll(() => {
@@ -45,7 +45,13 @@ describe('e2e http consumer driven', () => {
     }
   });
   caseContractWith(
-    { ...contractDetails, config: { printResults: false } },
+    {
+      ...contractDetails,
+      config: {
+        printResults: false, // Set this to true for you own tests
+        contractFilename: FILENAME, // Usually you will not need to provide a filename
+      },
+    },
     (contract) => {
       describe('health get', () => {
         const sendHealthRequest = (config: HttpRequestConfig) =>

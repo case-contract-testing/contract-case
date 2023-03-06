@@ -118,6 +118,7 @@ export type LogLevelContext = HasLocation & {
 export interface ContractFileConfig {
   'case:currentRun:context:testRunId': string;
   'case:currentRun:context:contractDir': string;
+  'case:currentRun:context:contractFilename'?: string;
 }
 
 export type MatchContextWithContractFileConfig = MatchContext &

@@ -10,6 +10,7 @@ import type {
   ContractDescription,
   ContractFile,
 } from '../../../entities/types';
+import { DEFAULT_CONFIG } from '../core';
 
 const checkCurrentRunField = <T extends MatchContext>(
   context: MatchContext,
@@ -81,7 +82,23 @@ export const writeContract = (
       'Unable to write contract without required configuration options set. See the error logs for more information.'
     );
   }
-  const pathToFile = makePath(contract.description, context);
+  if (
+    context['case:currentRun:context:contractFilename'] !== 'undefined' &&
+    context['case:currentRun:context:contractDir'] !==
+      DEFAULT_CONFIG.contractDir
+  ) {
+    context.logger.warn(
+      'Both contractFilename and contractDir have been specified, but you should only set one of these.'
+    );
+
+    context.logger.warn(
+      `Ignoring contractDir setting, and writing to file at: ${context['case:currentRun:context:contractFilename']}`
+    );
+  }
+
+  const pathToFile = context['case:currentRun:context:contractFilename']
+    ? context['case:currentRun:context:contractFilename']
+    : makePath(contract.description, context);
 
   context.logger.maintainerDebug(`About to write contract to '${pathToFile}'`);
   if (fs.existsSync(pathToFile)) {
