@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/TimothyJones/case/badge.svg?branch=main)](https://coveralls.io/github/TimothyJones/case?branch=main)
 [![Known Vulnerabilities](https://snyk.io/test/github/TimothyJones/case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/TimothyJones/case?targetFile=package.json)
 
-Work in progress, use at your own risk. Expected ready for beta testing: Feb 2023.
+Work in progress, use at your own risk.
 
 <span align="center">
 
@@ -19,7 +19,48 @@ on many of the lessons from maintaining the excellent [Pact](pact.io) contract t
 framework. It is our belief that contract testing is the best way to get
 deployment confidence for your applications and services.
 
-Documentation and beta release coming soon
+Full documentation coming soon
+
+## Caveats and limitations
+
+Case releases follow [semantic versioning](https://semver.org/), with two additional restrictions:
+
+1. Before 1.0.0, Case is in Beta, and the API is considered unstable. Breaking changes will be indicated in minor
+   version bumps- that is, 0.2.0 and 0.3.0 are not entirely compatible.
+2. Patch versions will always be backwards compatible.
+
+Breaking changes will always be detailed in the [changelog](./CHANGELOG.md)
+
+**WARNING: THE API IS UNSTABLE AND MAY CHANGE BETWEEN MINOR VERSIONS**
+
+The API is considered unstable because we'd like to ensure that it's ergonomic
+and intuitive for users. Feedback on the Case API / DSL and (especially) naming
+conventions very welcome.
+
+Case is now available and should work for both client and server driven http/https
+contracts. However, the following caveats should be kept in mind:
+
+1. Case is currently only available in Javascript / Typescript. At a later date, support for Python, Java, C# and Go will be added, using [JSii](https://aws.github.io/jsii/). There are no plans to add other languages at this time.
+1. Case doesn't yet support merging of contracts. This means that your whole contract must be defined in one test file.
+1. Case currently is only compatible with Jest. At a later date, the jest support will be extracted, and the peer-dependency removed.
+1. Case currently doesn't support query strings.
+1. Case currently doesn't support reporting your results to a broker.
+1. Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
+1. There isn't much documentation at the moment. If you want to get started immediately, we recommend starting with either the [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts), or the [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts). Make sure you remove `printResults: false`.
+
+You can follow the detailled progress by reading the [maintainer todo list](./docs/maintainers/todo.md). These caveats will be updated as progress is made.
+
+### I'm fine with all the caveats, how do I get started?
+
+```
+npm install --save-dev @case-contract-testing/case
+```
+
+You may also need the peer dependencies:
+
+```
+npm install --save-dev jest@^29.4.3
+```
 
 ## For Pact users
 
@@ -58,7 +99,7 @@ We plan for Case to always be compatible with both of these brokers.
 1. Pact Parity (in progress, close to complete)
 2. "Provider" driven contracts (done)
 3. Documentation (in progress)
-4. RELEASE BETA
+4. RELEASE BETA (done)
 5. Support Python, C# and Go
 6. Arbitrary combinations of req/resp pairs, incidentally including native SQS support
 7. Passthrough APIs
