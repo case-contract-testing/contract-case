@@ -3,8 +3,9 @@
 - [ ] Broker verification - read and publish result
 - [ ] Initial docs
 - [ ] Query string, probably
-- [ ] Note about stability
+- [x] Note about stability
 - [ ] Determine how package structure will work
+- [x] Extract Jest DSL
 - [ ] Maybe pull out Jest package?
 - [ ] Maybe pull out core?
 - [ ] Spike translation to C# etc
