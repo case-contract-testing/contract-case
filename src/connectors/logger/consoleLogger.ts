@@ -69,4 +69,15 @@ export const makeLogger: (context: LogLevelContext) => Logger = (
       );
     }
   },
+
+  deepMaintainerDebug(message: string, ...additional: unknown[]): void {
+    if (shouldLog(matchContext, 'deepMaintainerDebug')) {
+      stdoutLogger.log(
+        `${timestampString()} ${caseVersionString} ${chalk.bgMagentaBright.black(
+          `[DEEP-MAINTAINER-DEBUG]`
+        )} ${locationString(matchContext)}: ${message}`,
+        ...additional
+      );
+    }
+  },
 });

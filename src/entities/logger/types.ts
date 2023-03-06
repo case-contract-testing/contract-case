@@ -1,4 +1,10 @@
-export type LogLevel = 'none' | 'error' | 'warn' | 'debug' | 'maintainerDebug';
+export type LogLevel =
+  | 'none'
+  | 'error'
+  | 'warn'
+  | 'debug'
+  | 'maintainerDebug'
+  | 'deepMaintainerDebug';
 
 export interface Logger {
   /**
@@ -17,4 +23,8 @@ export interface Logger {
    * Information to help maintainers debug what is happening in the test framework
    */
   maintainerDebug: (message: string, ...additional: unknown[]) => void;
+  /**
+   * Like maintainerDebug, but much deeper - including eg detailled matching docs, etc.
+   */
+  deepMaintainerDebug: (message: string, ...additional: unknown[]) => void;
 }

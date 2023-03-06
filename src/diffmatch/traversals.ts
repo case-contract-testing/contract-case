@@ -30,12 +30,12 @@ const getExecutor = <T extends AnyCaseNodeType>(
   return {
     name: () => executor.describe(matcher, matchContext),
     check: async (actual: unknown) => {
-      parentMatchContext.logger.maintainerDebug(
+      parentMatchContext.logger.deepMaintainerDebug(
         `Entering ${matcher['case:matcher:type']}, actual is:`,
         actual
       );
       const result = await executor.check(matcher, matchContext, actual);
-      parentMatchContext.logger.maintainerDebug(
+      parentMatchContext.logger.deepMaintainerDebug(
         `Exiting ${matcher['case:matcher:type']}, with ${result.length} errors`
       );
       return result;

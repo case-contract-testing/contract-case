@@ -7,10 +7,13 @@ describe('console logger', () => {
    */
   const logger = makeLogger({
     'case:currentRun:context:location': ['UnitTest', '[logger]', ':printing'],
-    'case:currentRun:context:logLevel': 'maintainerDebug',
+    'case:currentRun:context:logLevel': 'deepMaintainerDebug',
   });
 
   it('logs at each log level', () => {
+    logger.deepMaintainerDebug('This is a deep maintainer debug log line', {
+      with: 'parameters',
+    });
     logger.maintainerDebug('This is a maintainer debug log line', {
       with: 'parameters',
     });

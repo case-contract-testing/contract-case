@@ -13,10 +13,19 @@ export const shouldLog = (
     case 'error':
       return logFunction === 'error';
     case 'warn':
-      return logFunction !== 'maintainerDebug' && logFunction !== 'debug';
+      return (
+        logFunction !== 'deepMaintainerDebug' &&
+        logFunction !== 'maintainerDebug' &&
+        logFunction !== 'debug'
+      );
     case 'debug':
-      return logFunction !== 'maintainerDebug';
+      return (
+        logFunction !== 'maintainerDebug' &&
+        logFunction !== 'deepMaintainerDebug'
+      );
     case 'maintainerDebug':
+      return logFunction !== 'deepMaintainerDebug';
+    case 'deepMaintainerDebug':
       return true;
     case undefined:
       throw new CaseCoreError(

@@ -62,7 +62,15 @@ export const makeBrokerApi = (
       )}/version/${encodeURIComponent(version)}`;
 
       context.logger.maintainerDebug(`Publish path is: ${path}`);
-      return server.authedPut(path, contract, context).then((d) => d);
+
+      return server.authedPut(path, contract, context).then((d) => {
+        context.logger.debug(`Published successfully`);
+        context.logger.deepMaintainerDebug(
+          `Published result was`,
+          JSON.stringify(d)
+        );
+        return d;
+      });
     },
   };
 };
