@@ -180,7 +180,7 @@ describe('e2e http provider driven', () => {
       describe('When the server is down', () => {
         const state = inState('Server is down');
         describe('No body server response', () => {
-          it('calls server health', () => {
+          it('calls server health', () =>
             testFailedMock(
               [state],
               willReceiveHttpRequest({
@@ -190,12 +190,11 @@ describe('e2e http provider driven', () => {
                 },
                 response: { status: httpStatus(['4XX', '5XX']) },
               })
-            );
-          });
+            ));
         });
 
         describe('specific server response', () => {
-          it('calls server health', async () => {
+          it('calls server health', async () =>
             testFailedMock(
               [state],
               willReceiveHttpRequest({
@@ -205,8 +204,7 @@ describe('e2e http provider driven', () => {
                 },
                 response: { status: 503, body: { status: 'down' } },
               })
-            );
-          });
+            ));
         });
       });
     });
