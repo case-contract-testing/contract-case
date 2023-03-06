@@ -4,16 +4,14 @@ import {
   stringPrefix,
   stringSuffix,
 } from './boundaries/dsl/Matchers';
-import { CaseContract } from './connectors/contract';
+import { WritingCaseContract } from './connectors/contract';
 
 import { makeNoErrorResult } from './entities/results';
-import {
-  MAINTAINER_TEST_CONTEXT,
-  makeExpectErrorContaining,
-} from './__tests__/expectErrorContaining';
+import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
+import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 
 describe('string matchers', () => {
-  const contract = new CaseContract(
+  const contract = new WritingCaseContract(
     {
       consumerName: 'test string consumer',
       providerName: 'test string provider',

@@ -20,7 +20,3 @@ export const makeExpectErrorContaining =
       });
     });
   };
-
-export const MAINTAINER_TEST_CONTEXT = {
-  testRunId: 'MAINTAINER',
-};

@@ -7,16 +7,14 @@ import {
   exactlyLike,
   shapedLike,
 } from './boundaries/dsl/Matchers';
-import { CaseContract } from './connectors/contract';
+import { WritingCaseContract } from './connectors/contract';
 
 import { CaseConfigurationError } from './entities';
-import {
-  MAINTAINER_TEST_CONTEXT,
-  makeExpectErrorContaining,
-} from './__tests__/expectErrorContaining';
+import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
+import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 
 describe('basic matchers', () => {
-  const contract = new CaseContract(
+  const contract = new WritingCaseContract(
     {
       consumerName: 'test like consumer',
       providerName: 'test like provider',

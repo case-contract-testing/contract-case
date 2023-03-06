@@ -1,2 +1,2 @@
-export * from './CaseContract';
+export * from './WritingCaseContract';
 export * from './CaseVerifier';

@@ -1,6 +1,6 @@
 import { Mutex } from 'async-mutex';
 
-import { makeLogger as defaultMakeLogger } from '../../connectors/logger';
+import { makeLogger as defaultMakeLogger } from '../logger';
 
 import { CaseCoreError, CaseFailedAssertionError } from '../../entities';
 import { applyNodeToContext, addLocation } from '../../entities/context';
@@ -25,7 +25,7 @@ import { addExample, hasFailure } from './structure';
 import type { TestInvoker } from './types';
 import { writeContract } from './writer';
 
-export class CaseContract extends BaseCaseContract {
+export class WritingCaseContract extends BaseCaseContract {
   testIndex = 0;
 
   mutex: Mutex;

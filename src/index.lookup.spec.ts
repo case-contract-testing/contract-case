@@ -1,15 +1,13 @@
 import { anyNumber, anyString, namedMatch } from './boundaries/dsl/Matchers';
-import { CaseContract } from './connectors/contract';
+import { WritingCaseContract } from './connectors/contract';
 
 import { CaseConfigurationError } from './entities';
 import type { AnyCaseNodeOrData } from './entities/types';
-import {
-  MAINTAINER_TEST_CONTEXT,
-  makeExpectErrorContaining,
-} from './__tests__/expectErrorContaining';
+import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
+import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 
 describe('named matches', () => {
-  const contract = new CaseContract(
+  const contract = new WritingCaseContract(
     {
       consumerName: 'test lookup consumer',
       providerName: 'test lookup provider',

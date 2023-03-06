@@ -3,7 +3,10 @@ export * from './dsl/Matchers';
 export * from './dsl/Mocks';
 
 // TODO Move these into boundaries
-export { CaseContract, CaseVerifier } from '../connectors/contract';
+export {
+  WritingCaseContract as CaseContract,
+  CaseVerifier,
+} from '../connectors/contract';
 export type { RunTestCallback } from '../connectors/contract/types';
 export type { AnyState } from '../entities/states/types';
 export type {

@@ -13,10 +13,8 @@ import {
 import { CaseConfigurationError } from './entities';
 import { makeNoErrorResult } from './entities/results';
 import { StripUnsupportedError } from './entities/errors/StripUnsupportedError';
-import {
-  MAINTAINER_TEST_CONTEXT,
-  makeExpectErrorContaining,
-} from './__tests__/expectErrorContaining';
+import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
+import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 
 describe('basic types and structure checks', () => {
   const contract = new CaseContract(

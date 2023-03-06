@@ -23,7 +23,7 @@ import type {
   CaseMockDescriptorFor,
   MatchContext,
 } from '../../../../entities/types';
-import type { CaseContract } from '../../CaseContract';
+import type { WritingCaseContract } from '../../WritingCaseContract';
 import type { CaseVerifier } from '../../CaseVerifier';
 import type { InvokingScaffold } from '../../types';
 
@@ -61,7 +61,7 @@ const toResultingExample = <T extends AnyMockDescriptorType>(
 export const executeExample = <T extends AnyMockDescriptorType>(
   example: CaseExample,
   { stateHandlers = {}, trigger, triggers, names }: InvokingScaffold<T>,
-  contract: CaseContract | CaseVerifier,
+  contract: WritingCaseContract | CaseVerifier,
   context: MatchContext
 ): Promise<unknown> =>
   setupExample<T>(example, stateHandlers, context).then(

@@ -13,7 +13,7 @@ import { ApiError } from './__tests__/client/http/connector/internals/apiErrors'
 import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';
 
 // This import is our Jest DSL
-import { runJestTest } from './__tests__/jest';
+import { runJestTest } from './boundaries/jest/jest';
 
 // These imports support the partial DSL that hasn't been extracted yet
 import type {
