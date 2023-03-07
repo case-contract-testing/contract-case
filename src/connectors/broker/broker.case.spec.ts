@@ -40,6 +40,9 @@ const emptyContext = {
 };
 
 const contractFilename = 'case-contracts/case-pact-broker.case.json';
+const uploadingContract = readContract(
+  'case-contracts/contract-for-broker-upload-test.json'
+);
 
 describe('broker client', () => {
   beforeAll(() => {
@@ -100,12 +103,7 @@ describe('broker client', () => {
                 makeBrokerApi(
                   config.baseUrl,
                   config.variables['token'] as string
-                ).publishContract(
-                  readContract(
-                    'case-contracts/http-request-consumer-http-request-provider-PDC.case.json'
-                  ),
-                  emptyContext
-                ),
+                ).publishContract(uploadingContract, emptyContext),
               testResponse: (data) => {
                 expect(data).not.toBeNull();
               },
@@ -141,12 +139,7 @@ describe('broker client', () => {
                 makeBrokerApi(
                   config.baseUrl,
                   config.variables['invalidToken'] as string
-                ).publishContract(
-                  readContract(
-                    'case-contracts/contract-for-broker-upload-test.json'
-                  ),
-                  emptyContext
-                ),
+                ).publishContract(uploadingContract, emptyContext),
               testErrorResponse: (error) => {
                 expect(error.name).toBe(API_NOT_AUTHORISED);
               },
