@@ -311,7 +311,7 @@ verifyContract(
               (config.variables['userId'] as string) || '123'
             ),
           verifiers: {
-            'a (200) response with body an object shaped like {userId: ${userId}}':
+            'a (200) response with body an object shaped like {userId: {{userId}}}':
               (user, config) => {
                 expect(user).toEqual({
                   userId: config.variables['userId'],
@@ -334,13 +334,13 @@ verifyContract(
             },
           },
         },
-        'an http "GET" request to "/users/${userId}" without a body': {
+        'an http "GET" request to "/users/{{userId}}" without a body': {
           trigger: (config: HttpRequestConfig) =>
             api(config.baseUrl).getUserByPath(
               config.variables['userId'] as string
             ),
           verifiers: {
-            'a (200) response with body an object shaped like {userId: ${userId}}':
+            'a (200) response with body an object shaped like {userId: {{userId}}}':
               (user, config) => {
                 expect(user).toEqual({
                   userId: config.variables['userId'],

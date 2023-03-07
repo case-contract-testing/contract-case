@@ -169,6 +169,7 @@ Potential issues:
 
 - [ ] Double handling of lookup interactions if the same data is traversed (eg, by checkMatch and stripMatch)
 - [x] Need to allow multiple values for variables
+- [ ] Dangling promises when 'No verifier or errorVerifier provided' CaseConfigurationError happens
 
 ### Implementation notebook
 

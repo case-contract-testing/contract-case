@@ -85,7 +85,7 @@ const strip = (
 export const ContextVariableMatcher: MatcherExecutor<
   typeof CONTEXT_VARIABLE_TYPE
 > = {
-  describe: (matcher) => `\${${matcher['case:matcher:variableName']}}`,
+  describe: (matcher) => `{{${matcher['case:matcher:variableName']}}}`,
   check,
   strip,
 };
