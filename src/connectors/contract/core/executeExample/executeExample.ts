@@ -1,8 +1,9 @@
-import { callTrigger } from './triggers';
+import { findAndCallTrigger } from './triggers';
 import { setupExample } from './setup';
 
 import {
   CaseConfigurationError,
+  CaseFailedAssertionError,
   VerifyTriggerReturnObjectError,
 } from '../../../../entities';
 import {
@@ -45,6 +46,22 @@ const toResultingExample = <T extends AnyMockDescriptorType>(
       context.logger.debug(
         `This example failed while trying to run the assertion`
       );
+      if (error instanceof CaseConfigurationError) {
+        return makeFailedExample(
+          example,
+          makeResults(
+            executionError(
+              new Error('Case was configured incorrectly'),
+              context
+            ),
+            executionError(error, context)
+          )
+        );
+      }
+      if (error instanceof CaseFailedAssertionError) {
+        return makeFailedExample(example, error.matchResult);
+      }
+
       return makeFailedExample(
         example,
         makeResults(
@@ -58,9 +75,16 @@ const toResultingExample = <T extends AnyMockDescriptorType>(
     }
   );
 
-export const executeExample = <T extends AnyMockDescriptorType>(
+export const executeExample = <T extends AnyMockDescriptorType, R>(
   example: CaseExample,
-  { stateHandlers = {}, trigger, triggers, names }: InvokingScaffold<T>,
+  {
+    stateHandlers = {},
+    trigger,
+    triggers,
+    names,
+    testErrorResponse,
+    testResponse,
+  }: InvokingScaffold<T, R>,
   contract: WritingCaseContract | CaseVerifier,
   context: MatchContext
 ): Promise<unknown> =>
@@ -71,9 +95,9 @@ export const executeExample = <T extends AnyMockDescriptorType>(
         assertable.config,
         context['case:currentRun:context:location']
       );
-      return callTrigger<T>(
+      return findAndCallTrigger(
         example.mock as CaseMockDescriptorFor<T>,
-        { trigger, triggers, names },
+        { trigger, triggers, names, testErrorResponse, testResponse },
         assertable,
         context
       )

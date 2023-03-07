@@ -7,13 +7,14 @@ import {
   type HasLocation,
   type MatchingError,
   type CaseError,
-  type ExecutionError,
   type MatchContext,
   ERROR_TYPE_MATCHING,
   ERROR_TYPE_EXECUTION,
   ERROR_TYPE_VERIFICATION,
   type CaseExample,
   type ResultPrinter,
+  ERROR_TYPE_RAW_MATCH,
+  RawMatchError,
 } from '../../entities/types';
 import { locationString as formatLocationString } from '../../entities/context';
 
@@ -33,7 +34,7 @@ const errorTitleLine = (title: string, message: string) =>
     `${chalk.bgRed.white(` ${title} `)}: ${chalk.whiteBright(message)}`
   );
 
-const secondMatchErrorLine = (error: MatchingError) =>
+const secondMatchErrorLine = (error: MatchingError | RawMatchError) =>
   spaces(
     9,
     `Expected something like:\n${spaces(
@@ -42,13 +43,13 @@ const secondMatchErrorLine = (error: MatchingError) =>
     )}`
   );
 
-const thirdMatchErrorLine = (error: MatchingError) =>
+const thirdMatchErrorLine = (error: MatchingError | RawMatchError) =>
   spaces(
     9,
     `Actual:\n${spaces(3, chalk.red(actualToString(error.actual, 10)))}`
   );
 
-const locationLine = (error: CaseError | ExecutionError) =>
+const locationLine = (error: CaseError) =>
   spaces(
     12,
     `${chalk.gray(
@@ -63,8 +64,18 @@ const locationLine = (error: CaseError | ExecutionError) =>
 const printError = (error: CaseError, context: MatchContext): void => {
   if (context['case:currentRun:context:printResults']) {
     switch (error.type) {
+      // This is done as one line to prevent it splitting when multiple tests are running
       case ERROR_TYPE_MATCHING:
-        // This is done as one line to prevent it splitting when multiple tests are running
+        stdout.log(
+          `${errorTitleLine(
+            'MATCHING ERROR',
+            error.message
+          )}\n${secondMatchErrorLine(error)}\n${thirdMatchErrorLine(
+            error
+          )}\n\n${locationLine(error)}\n\n`
+        );
+        break;
+      case ERROR_TYPE_RAW_MATCH:
         stdout.log(
           `${errorTitleLine(
             'MATCHING ERROR',

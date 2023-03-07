@@ -5,6 +5,7 @@ import type {
   AnyMockDescriptorType,
   AnyState,
   CaseMockDescriptorFor,
+  Assertable,
 } from '../../entities/types';
 
 export type RunTestCallback = (
@@ -12,7 +13,7 @@ export type RunTestCallback = (
   verify: () => Promise<unknown>
 ) => void;
 
-type Trigger<T extends AnyMockDescriptorType, R = unknown> = (
+export type Trigger<T extends AnyMockDescriptorType, R = unknown> = (
   config: SetupInfoFor<T>
 ) => Promise<R>;
 
@@ -38,11 +39,17 @@ export type TestInvoker<
   R = unknown
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
-  mock: CaseMockDescriptorFor<T>;
+  mockDescription: CaseMockDescriptorFor<T>;
   trigger?: Trigger<T, R> | undefined;
+  testResponse?:
+    | ((data: R, config: Assertable<T>['config']) => unknown)
+    | undefined;
+  testErrorResponse?:
+    | ((data: Error, config: Assertable<T>['config']) => unknown)
+    | undefined;
 };
 
-export type InvokingScaffold<T extends AnyMockDescriptorType> = Omit<
-  TestInvoker<T>,
-  'mock'
+export type InvokingScaffold<T extends AnyMockDescriptorType, R> = Omit<
+  TestInvoker<T, R>,
+  'mockDescription'
 > & { names: ExampleNames };

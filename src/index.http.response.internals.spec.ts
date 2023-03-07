@@ -62,7 +62,7 @@ describe('simple get endpoint', () => {
       expect(
         contract.executeTest(
           {
-            mock,
+            mockDescription: mock,
           },
           config
         )
@@ -82,7 +82,7 @@ describe('simple get endpoint', () => {
         expect(
           contract.executeTest(
             {
-              mock,
+              mockDescription: mock,
             },
             {
               ...config,
@@ -111,7 +111,7 @@ describe('simple get endpoint', () => {
           expect(
             contract.executeTest(
               {
-                mock,
+                mockDescription: mock,
               },
               config
             )
@@ -123,7 +123,7 @@ describe('simple get endpoint', () => {
           expect(
             contract.executeTest(
               {
-                mock: willSendHttpRequest({
+                mockDescription: willSendHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
@@ -146,7 +146,7 @@ describe('simple get endpoint', () => {
           expect(
             contract.executeTest(
               {
-                mock: willSendHttpRequest({
+                mockDescription: willSendHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
@@ -171,7 +171,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  mock: willSendHttpRequest({
+                  mockDescription: willSendHttpRequest({
                     request: {
                       method: 'GET',
                       path: '/health',
@@ -192,7 +192,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  mock: willSendHttpRequest({
+                  mockDescription: willSendHttpRequest({
                     request: {
                       method: 'GET',
                       path: '/health',
@@ -215,7 +215,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  mock: willSendHttpRequest({
+                  mockDescription: willSendHttpRequest({
                     request: {
                       method: 'POST',
                       path: '/health',
@@ -238,7 +238,7 @@ describe('simple get endpoint', () => {
             Promise.resolve().then(() =>
               contract.executeTest(
                 {
-                  mock: willSendHttpRequest({
+                  mockDescription: willSendHttpRequest({
                     request: {
                       method: 'GET',
                       path: '/healthy',

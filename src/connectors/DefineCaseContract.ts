@@ -1,14 +1,35 @@
-import type { WritingCaseContract } from './contract';
-import { VerifyTriggerReturnObjectError } from '../entities';
+import { CaseConfigurationError } from '../entities';
 import type {
   AnyCaseNodeType,
   AnyData,
   AnyMockDescriptorType,
   AnyState,
-  Assertable,
   CaseMockDescriptorFor,
   DataOrCaseNodeFor,
 } from '../entities/types';
+
+import type { WritingCaseContract } from './contract';
+import type { MultiTestInvoker, Trigger } from './contract/types';
+
+export type DefinitionSuccessExample<
+  T extends AnyMockDescriptorType,
+  R = unknown
+> = MultiTestInvoker<T, R> & {
+  states?: Array<AnyState>;
+  definition: CaseMockDescriptorFor<T>;
+  trigger?: Trigger<T, R>;
+  testResponse?: (data: R) => unknown;
+};
+
+export type DefinitionFailingExample<
+  T extends AnyMockDescriptorType,
+  R = unknown
+> = MultiTestInvoker<T, R> & {
+  states?: Array<AnyState>;
+  definition: CaseMockDescriptorFor<T>;
+  trigger?: Trigger<T, R>;
+  testErrorResponse?: (err: Error) => unknown;
+};
 
 export class DefineCaseContract {
   contract: WritingCaseContract;
@@ -17,39 +38,59 @@ export class DefineCaseContract {
     this.contract = contract;
   }
 
-  runExample<T extends AnyMockDescriptorType, R>(
-    states: Array<AnyState>,
-    mock: CaseMockDescriptorFor<T>,
-    trigger: (config: Assertable<T>['config']) => Promise<R>,
-    testResponseObject: (data: R) => unknown
-  ): Promise<unknown> {
+  runExample<T extends AnyMockDescriptorType, R>({
+    states = [],
+    definition,
+    trigger,
+    testResponse,
+    stateHandlers = {},
+  }: DefinitionSuccessExample<T, R>): Promise<unknown> {
+    if (trigger === undefined && testResponse !== undefined) {
+      throw new CaseConfigurationError(
+        'The testResponse function was supplied, but this is not valid without also supplying `trigger`'
+      );
+    }
+
+    if (trigger !== undefined && testResponse === undefined) {
+      throw new CaseConfigurationError(
+        'There was a trigger supplied, but without a corresponding `testResponse` function'
+      );
+    }
     return this.contract.executeTest({
       states,
-      mock,
-      trigger: (config) =>
-        trigger(config).then((r) => {
-          try {
-            return testResponseObject(r);
-          } catch (e) {
-            throw new VerifyTriggerReturnObjectError(e);
-          }
-        }),
+      mockDescription: definition,
+      trigger,
+      testResponse,
+      stateHandlers,
     });
   }
 
-  runRejectingExample<T extends AnyMockDescriptorType, R>(
-    states: Array<AnyState>,
-    mock: CaseMockDescriptorFor<T>,
-    trigger: (config: Assertable<T>['config']) => Promise<R>,
-    testResponseObject: (error: Error) => unknown
-  ): Promise<unknown> {
+  runRejectingExample<T extends AnyMockDescriptorType, R>({
+    states = [],
+    definition,
+    trigger,
+    testErrorResponse,
+    stateHandlers = {},
+  }: DefinitionFailingExample<T, R>): Promise<unknown> {
+    if (trigger === undefined && testErrorResponse !== undefined) {
+      throw new CaseConfigurationError(
+        'The testErrorResponse function was supplied, but this is not valid without also supplying `trigger`'
+      );
+    }
+
+    if (trigger !== undefined && testErrorResponse === undefined) {
+      throw new CaseConfigurationError(
+        'There was a trigger supplied, but without a corresponding `testErrorResponse` function'
+      );
+    }
+
     return this.contract.executeTest({
       states,
-      mock,
-      trigger: (config) =>
-        trigger(config).then((d) => {
-          throw new Error(`Expected an error, but was ${d}`);
-        }, testResponseObject),
+      mockDescription: definition,
+      trigger,
+      testResponse: undefined,
+      testErrorResponse,
+      stateHandlers,
     });
   }
 

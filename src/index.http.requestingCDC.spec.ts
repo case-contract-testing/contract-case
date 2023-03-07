@@ -61,9 +61,9 @@ describe('e2e http consumer driven', () => {
 
           describe('health endpoint', () => {
             it('behaves as expected', () =>
-              contract.runExample(
-                [state],
-                willSendHttpRequest({
+              contract.runExample({
+                states: [state],
+                definition: willSendHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
@@ -71,17 +71,17 @@ describe('e2e http consumer driven', () => {
                   },
                   response: { status: 200, body: { status: 'up' } },
                 }),
-                sendHealthRequest,
-                (health) => {
+                trigger: sendHealthRequest,
+                testResponse: (health) => {
                   expect(health).toEqual('up');
-                }
-              ));
+                },
+              }));
 
             describe('arbitrary status response string', () => {
               it('behaves as expected', () =>
-                contract.runExample(
-                  [state],
-                  willSendHttpRequest({
+                contract.runExample({
+                  states: [state],
+                  definition: willSendHttpRequest({
                     request: {
                       method: 'GET',
                       path: '/health',
@@ -91,11 +91,11 @@ describe('e2e http consumer driven', () => {
                       body: shapedLike({ status: 'whatever' }),
                     },
                   }),
-                  sendHealthRequest,
-                  (health) => {
+                  trigger: sendHealthRequest,
+                  testResponse: (health) => {
                     expect(health).toEqual('whatever');
-                  }
-                ));
+                  },
+                }));
             });
           });
         });
@@ -103,38 +103,38 @@ describe('e2e http consumer driven', () => {
           const state = inState('Server is down');
           describe('No body server response', () => {
             it('calls server health', () =>
-              contract.runRejectingExample(
-                [state],
-                willSendHttpRequest({
+              contract.runRejectingExample({
+                states: [state],
+                definition: willSendHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
                   },
                   response: { status: httpStatus(['4XX', '5XX']) },
                 }),
-                sendHealthRequest,
-                (e) => {
+                trigger: sendHealthRequest,
+                testErrorResponse: (e) => {
                   expect(e).toBeInstanceOf(ApiError);
-                }
-              ));
+                },
+              }));
           });
 
           describe('specific server response', () => {
             it('calls server health', async () =>
-              contract.runRejectingExample(
-                [state],
-                willSendHttpRequest({
+              contract.runRejectingExample({
+                states: [state],
+                definition: willSendHttpRequest({
                   request: {
                     method: 'GET',
                     path: '/health',
                   },
                   response: { status: 503, body: { status: 'down' } },
                 }),
-                sendHealthRequest,
-                (e) => {
+                trigger: sendHealthRequest,
+                testErrorResponse: (e) => {
                   expect(e).toBeInstanceOf(ApiError);
-                }
-              ));
+                },
+              }));
           });
         });
       });
@@ -146,12 +146,12 @@ describe('e2e http consumer driven', () => {
           const responseBody = { userId: stateVariable('userId') };
 
           it('returns an existing user', async () =>
-            contract.runExample(
-              [
+            contract.runExample({
+              states: [
                 inState('Server is up'),
                 inState('A user exists', { userId: '123' }),
               ],
-              willSendHttpRequest({
+              definition: willSendHttpRequest({
                 request: {
                   method: 'GET',
                   path: stringPrefix('/users/', stateVariable('userId')),
@@ -161,20 +161,20 @@ describe('e2e http consumer driven', () => {
                   body: responseBody,
                 },
               }),
-              sendUserRequest('123'),
-              (health) => {
+              trigger: sendUserRequest('123'),
+              testResponse: (health) => {
                 expect(contract.stripMatchers(responseBody)).toEqual({
                   userId: '123',
                 });
                 expect(health).toEqual(contract.stripMatchers(responseBody));
-              }
-            ));
+              },
+            }));
         });
         describe("when the user doesn't exist", () => {
           it('returns a user not found error', () =>
-            contract.runRejectingExample(
-              [inState('Server is up'), inState('No users exist')],
-              willSendHttpRequest({
+            contract.runRejectingExample({
+              states: [inState('Server is up'), inState('No users exist')],
+              definition: willSendHttpRequest({
                 request: {
                   method: 'GET',
                   path: stringPrefix('/users/', '123'),
@@ -183,11 +183,11 @@ describe('e2e http consumer driven', () => {
                   status: 404,
                 },
               }),
-              sendUserRequest('123'),
-              (e) => {
+              trigger: sendUserRequest('123'),
+              testErrorResponse: (e) => {
                 expect(e).toBeInstanceOf(UserNotFoundConsumerError);
-              }
-            ));
+              },
+            }));
         });
       });
     }

@@ -13,18 +13,10 @@ import { ApiError } from './__tests__/client/http/connector/internals/apiErrors'
 import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';
 
 // This import is our Jest DSL
-import { runJestTest } from './boundaries/jest/jest';
-
-// These imports support the partial DSL that hasn't been extracted yet
-import type {
-  AnyMockDescriptorType,
-  CaseMockDescriptorFor,
-  AnyState,
-} from './entities/types';
+import { caseContractWith, runJestTest } from './boundaries/jest/jest';
 
 import {
   inState,
-  CaseContract,
   CaseVerifier,
   httpStatus,
   shapedLike,
@@ -70,182 +62,172 @@ describe('e2e http provider driven', () => {
       server = await start(port, serverDependencies);
     });
 
-    const contract = new CaseContract(contractDetails, {
-      testRunId: TEST_RUN_ID,
-      baseUrlUnderTest: `http://localhost:${port}`,
-      printResults: false,
-    });
-
-    afterAll(() =>
-      new Promise<void>((resolve, reject) => {
-        if (server) {
-          server.close((err?: Error) => {
-            if (err) reject(err);
+    afterAll(
+      () =>
+        new Promise<void>((resolve, reject) => {
+          if (server) {
+            server.close((err?: Error) => {
+              if (err) reject(err);
+              resolve();
+            });
+          } else {
             resolve();
-          });
-        } else {
-          resolve();
-        }
-      }).finally(() => contract.endRecord())
+          }
+        })
     );
 
-    const stateHandlers: StateHandlers = {
-      'Server is up': () => {
-        mockHealthStatus = true;
+    caseContractWith(
+      {
+        ...contractDetails,
+        config: {
+          testRunId: TEST_RUN_ID,
+          baseUrlUnderTest: `http://localhost:${port}`,
+          printResults: false,
+        },
       },
-      'Server is down': () => {
-        mockHealthStatus = false;
-      },
-      'A user exists': {
-        setup: () => {
-          const userId = '42';
-          mockGetUser = (id) => {
-            if (id === userId)
-              return {
-                userId,
-                name: 'John',
+      (contract) => {
+        const stateHandlers: StateHandlers = {
+          'Server is up': () => {
+            mockHealthStatus = true;
+          },
+          'Server is down': () => {
+            mockHealthStatus = false;
+          },
+          'A user exists': {
+            setup: () => {
+              const userId = '42';
+              mockGetUser = (id) => {
+                if (id === userId)
+                  return {
+                    userId,
+                    name: 'John',
+                  };
+                return undefined;
               };
-            return undefined;
-          };
-          return { userId };
-        },
-        teardown: () => {
-          mockGetUser = () => undefined;
-        },
-      },
-      'No users exist': () => {
-        mockGetUser = () => undefined;
-      },
-    };
+              return { userId };
+            },
+            teardown: () => {
+              mockGetUser = () => undefined;
+            },
+          },
+          'No users exist': () => {
+            mockGetUser = () => undefined;
+          },
+        };
 
-    // JEST BOILERPLATE
-    const testMock = <T extends AnyMockDescriptorType>(
-      states: Array<AnyState>,
-      mock: CaseMockDescriptorFor<T>
-    ) =>
-      contract.executeTest({
-        states,
-        mock,
-        stateHandlers,
-      });
+        describe('health get', () => {
+          describe('When the server is up', () => {
+            const state = inState('Server is up');
 
-    const testFailedMock = <T extends AnyMockDescriptorType>(
-      states: Array<AnyState>,
-      mock: CaseMockDescriptorFor<T>
-    ) =>
-      contract.executeTest({
-        states,
-        mock,
-        stateHandlers,
-      });
+            describe('health endpoint', () => {
+              it('behaves as expected', () =>
+                contract.runExample({
+                  states: [state],
+                  definition: willReceiveHttpRequest({
+                    request: {
+                      method: 'GET',
+                      path: '/health',
+                      headers: { accept: 'application/json' },
+                    },
+                    response: { status: 200, body: { status: 'up' } },
+                  }),
+                  stateHandlers,
+                }));
 
-    // END JEST BOILERPLATE
+              describe('arbitrary status response string', () => {
+                it('behaves as expected', () =>
+                  contract.runExample({
+                    states: [state],
+                    definition: willReceiveHttpRequest({
+                      request: {
+                        method: 'GET',
+                        path: '/health',
+                      },
+                      response: {
+                        status: 200,
+                        body: shapedLike({ status: 'whatever' }),
+                      },
+                    }),
+                    stateHandlers,
+                  }));
+              });
+            });
+          });
+          describe('When the server is down', () => {
+            const state = inState('Server is down');
+            describe('No body server response', () => {
+              it('calls server health', () =>
+                contract.runRejectingExample({
+                  states: [state],
+                  definition: willReceiveHttpRequest({
+                    request: {
+                      method: 'GET',
+                      path: '/health',
+                    },
+                    response: { status: httpStatus(['4XX', '5XX']) },
+                  }),
+                  stateHandlers,
+                }));
+            });
 
-    describe('health get', () => {
-      describe('When the server is up', () => {
-        const state = inState('Server is up');
+            describe('specific server response', () => {
+              it('calls server health', async () =>
+                contract.runRejectingExample({
+                  states: [state],
+                  definition: willReceiveHttpRequest({
+                    request: {
+                      method: 'GET',
+                      path: '/health',
+                    },
+                    response: { status: 503, body: { status: 'down' } },
+                  }),
+                  stateHandlers,
+                }));
+            });
+          });
+        });
+        describe('User', () => {
+          describe('when the user exists', () => {
+            const responseBody = { userId: stateVariable('userId') };
 
-        describe('health endpoint', () => {
-          it('behaves as expected', () =>
-            testMock(
-              [state],
-              willReceiveHttpRequest({
-                request: {
-                  method: 'GET',
-                  path: '/health',
-                  headers: { accept: 'application/json' },
-                },
-                response: { status: 200, body: { status: 'up' } },
-              })
-            ));
-
-          describe('arbitrary status response string', () => {
-            it('behaves as expected', () =>
-              testMock(
-                [state],
-                willReceiveHttpRequest({
+            it('returns an existing user', async () =>
+              contract.runExample({
+                states: [
+                  inState('Server is up'),
+                  inState('A user exists', { userId: '123' }),
+                ],
+                definition: willReceiveHttpRequest({
                   request: {
                     method: 'GET',
-                    path: '/health',
+                    path: stringPrefix('/users/', stateVariable('userId')),
                   },
                   response: {
                     status: 200,
-                    body: shapedLike({ status: 'whatever' }),
+                    body: responseBody,
                   },
-                })
-              ));
+                }),
+                stateHandlers,
+              }));
+          });
+          describe("when the user doesn't exist", () => {
+            it('returns a user not found error', () =>
+              contract.runRejectingExample({
+                states: [inState('Server is up'), inState('No users exist')],
+                definition: willReceiveHttpRequest({
+                  request: {
+                    method: 'GET',
+                    path: stringPrefix('/users/', '123'),
+                  },
+                  response: {
+                    status: 404,
+                  },
+                }),
+                stateHandlers,
+              }));
           });
         });
-      });
-      describe('When the server is down', () => {
-        const state = inState('Server is down');
-        describe('No body server response', () => {
-          it('calls server health', () =>
-            testFailedMock(
-              [state],
-              willReceiveHttpRequest({
-                request: {
-                  method: 'GET',
-                  path: '/health',
-                },
-                response: { status: httpStatus(['4XX', '5XX']) },
-              })
-            ));
-        });
-
-        describe('specific server response', () => {
-          it('calls server health', async () =>
-            testFailedMock(
-              [state],
-              willReceiveHttpRequest({
-                request: {
-                  method: 'GET',
-                  path: '/health',
-                },
-                response: { status: 503, body: { status: 'down' } },
-              })
-            ));
-        });
-      });
-    });
-    describe('User', () => {
-      describe('when the user exists', () => {
-        const responseBody = { userId: stateVariable('userId') };
-
-        it('returns an existing user', async () =>
-          testMock(
-            [
-              inState('Server is up'),
-              inState('A user exists', { userId: '123' }),
-            ],
-            willReceiveHttpRequest({
-              request: {
-                method: 'GET',
-                path: stringPrefix('/users/', stateVariable('userId')),
-              },
-              response: {
-                status: 200,
-                body: responseBody,
-              },
-            })
-          ));
-      });
-      describe("when the user doesn't exist", () => {
-        it('returns a user not found error', () =>
-          testFailedMock(
-            [inState('Server is up'), inState('No users exist')],
-            willReceiveHttpRequest({
-              request: {
-                method: 'GET',
-                path: stringPrefix('/users/', '123'),
-              },
-              response: {
-                status: 404,
-              },
-            })
-          ));
-      });
-    });
+      }
+    );
   });
 });
 

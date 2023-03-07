@@ -39,18 +39,29 @@ export class WritingCaseContract extends BaseCaseContract {
     this.mutex = new Mutex();
   }
 
-  executeTest<T extends AnyMockDescriptorType>(
-    { states = [], mock, trigger, stateHandlers = {} }: TestInvoker<T>,
+  executeTest<T extends AnyMockDescriptorType, R>(
+    {
+      states = [],
+      mockDescription,
+      trigger,
+      testResponse,
+      testErrorResponse,
+      stateHandlers = {},
+    }: TestInvoker<T, R>,
     runConfig?: CaseConfig
   ): Promise<unknown> {
     const thisIndex = this.testIndex;
     this.testIndex += 1;
 
-    const runContext = applyNodeToContext(mock, this.initialContext, {
-      'case:currentRun:context:contractMode': 'write',
-      'case:currentRun:context:testName': `${thisIndex}`,
-      ...(runConfig ? configToRunContext(runConfig) : {}),
-    });
+    const runContext = applyNodeToContext(
+      mockDescription,
+      this.initialContext,
+      {
+        'case:currentRun:context:contractMode': 'write',
+        'case:currentRun:context:testName': `${thisIndex}`,
+        ...(runConfig ? configToRunContext(runConfig) : {}),
+      }
+    );
 
     if (runContext['case:currentRun:context:contractMode'] !== 'write') {
       runContext.logger.warn(
@@ -68,15 +79,17 @@ export class WritingCaseContract extends BaseCaseContract {
 
       const example: CaseExample = {
         states,
-        mock: nameMock(mock, runContext),
+        mock: nameMock(mockDescription, runContext),
         result: 'PENDING',
       };
 
-      return executeExample<T>(
+      return executeExample<T, R>(
         example,
         {
           stateHandlers,
           trigger,
+          testResponse,
+          testErrorResponse,
           names: exampleToNames(example, `${this.testIndex}`),
         },
         this,

@@ -4,6 +4,7 @@ import type { AnyCaseMatcher, MatchContext } from '../../entities/types';
 
 export const ERROR_TYPE_MATCHING = 'MATCHING_ERROR' as const;
 export const ERROR_TYPE_EXECUTION = 'EXECUTION_ERROR' as const;
+export const ERROR_TYPE_RAW_MATCH = 'RAW_MATCH_ERROR' as const;
 export const ERROR_TYPE_VERIFICATION = 'VERIFICATION_ERROR' as const;
 
 export interface MatchingError {
@@ -11,6 +12,16 @@ export interface MatchingError {
   message: string;
   expected: unknown;
   matcher: AnyCaseMatcher;
+  actual: unknown;
+  location: Array<string>;
+  toString: () => string;
+}
+
+export interface RawMatchError {
+  type: typeof ERROR_TYPE_RAW_MATCH;
+  message: string;
+  expected: unknown;
+  code: string;
   actual: unknown;
   location: Array<string>;
   toString: () => string;
@@ -33,7 +44,11 @@ export interface ExecutionError {
   toString: () => string;
 }
 
-export type CaseError = MatchingError | ExecutionError | VerificationError;
+export type CaseError =
+  | MatchingError
+  | ExecutionError
+  | VerificationError
+  | RawMatchError;
 
 export type MatchResult = Array<CaseError>;
 

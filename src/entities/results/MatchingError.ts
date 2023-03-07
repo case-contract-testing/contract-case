@@ -9,6 +9,7 @@ import {
   ERROR_TYPE_EXECUTION,
   ERROR_TYPE_VERIFICATION,
   VerificationError,
+  ERROR_TYPE_RAW_MATCH,
 } from './types';
 
 export const errorWhen = (
@@ -17,10 +18,13 @@ export const errorWhen = (
 ): Array<CaseError> => (test ? [err].flat() : []);
 
 /**
+ * This represents a mismatched matcher
  *
  * @param matcher The matcher that generated this error
- * @param message
- * @param actual
+ * @param message The message that describes this error
+ * @param actual The actual value that was recieved
+ * @param context The match context this occurred in
+ * @param expected An optional expected value (might be a description of what was expected)
  * @returns
  */
 export const matchingError = (
@@ -44,6 +48,42 @@ export const matchingError = (
     `${locationString(context)}: ${message} (${matcher['case:matcher:type']})`,
 });
 
+/**
+ * This represents a mismatch during a case execution that isn't covered by a
+ * matcher (usually this is a misconfiguration that is not well described by a
+ * {@link ../../entities/errors/#CaseConfigurationError | CaseConfigurationError})
+ *
+ * @param message The message that describes this error
+ * @param actual The actual value that was recieved
+ * @param code A code that can be looked up in the documentation
+ * @param context The match context this occurred in
+ * @param expected An optional expected value (might be a description of what was expected)
+ * @returns @type CaseError
+ */
+export const failedExpectationError = (
+  message: string,
+  actual: unknown,
+  code: string,
+  context: MatchContext,
+  expected: unknown
+): CaseError => ({
+  type: ERROR_TYPE_RAW_MATCH,
+  message,
+  expected,
+  actual,
+  code,
+  location: context['case:currentRun:context:location'],
+  toString: () => `${locationString(context)}: ${message}`,
+});
+
+/**
+ * This represents an error thrown by user code during execution of an example
+ * (eg, when a user's trigger is called)
+ *
+ * @param error The error thrown
+ * @param context the context that the error was in
+ * @returns ExecutionError
+ */
 export const executionError = (
   error: Error,
   context: MatchContext
@@ -54,6 +94,14 @@ export const executionError = (
   location: context['case:currentRun:context:location'],
 });
 
+/**
+ * This represents an error thrown during verification using the provided
+ * verification function
+ *
+ * @param error The VerifyTriggerReturnObjectError from the verification
+ * @param context the context that the error was in
+ * @returns VerificationError
+ */
 export const verificationError = (
   error: VerifyTriggerReturnObjectError,
   context: MatchContext

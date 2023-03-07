@@ -1,18 +1,71 @@
 import {
   VerifyTriggerReturnObjectError,
   CaseConfigurationError,
+  CaseCoreError,
+  CaseFailedAssertionError,
 } from '../../../../entities';
+import {
+  failedExpectationError,
+  makeResults,
+} from '../../../../entities/results';
 import type {
   AnyMockDescriptorType,
   Assertable,
   CaseMockDescriptorFor,
   MatchContext,
 } from '../../../../entities/types';
-import type { InvokingScaffold } from '../../types';
+import type { InvokingScaffold, Trigger } from '../../types';
 
-export const callTrigger = <T extends AnyMockDescriptorType>(
+const invokeTrigger = <T extends AnyMockDescriptorType, R>(
+  trigger: Trigger<T, R>,
+  testResponse: (data: R, config: Assertable<T>['config']) => unknown,
+  config: Assertable<T>['config']
+) =>
+  trigger(config).then((response) => {
+    try {
+      return testResponse(response, config);
+    } catch (e) {
+      throw new VerifyTriggerReturnObjectError(e);
+    }
+  });
+
+const invokeFailingTrigger = <T extends AnyMockDescriptorType, R>(
+  trigger: Trigger<T, R>,
+  testErrorResponse: (error: Error, config: Assertable<T>['config']) => unknown,
+  config: Assertable<T>['config'],
+  context: MatchContext
+) =>
+  trigger(config).then(
+    (data) => {
+      throw new CaseFailedAssertionError(
+        makeResults(
+          failedExpectationError(
+            `Expected the provided trigger to throw an error, but instead it was ${data}'`,
+            data,
+            'TriggerWasMeantToFail',
+            context,
+            'A rejecting Promise object'
+          )
+        )
+      );
+    },
+    (actualError) =>
+      Promise.resolve()
+        .then(() => testErrorResponse(actualError, config))
+        .catch((err) => {
+          throw new VerifyTriggerReturnObjectError(err);
+        })
+  );
+
+export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
   mock: CaseMockDescriptorFor<T>,
-  { trigger, triggers, names }: InvokingScaffold<T>,
+  {
+    trigger,
+    triggers,
+    names,
+    testErrorResponse,
+    testResponse,
+  }: InvokingScaffold<T, R>,
   assertable: Assertable<T>,
   context: MatchContext
 ): Promise<unknown> => {
@@ -36,10 +89,28 @@ export const callTrigger = <T extends AnyMockDescriptorType>(
     return Promise.resolve();
   }
   if (trigger !== undefined) {
-    context.logger.debug(
-      `Invoking provided trigger for '${names.requestName}'`
-    );
-    return trigger(assertable.config);
+    if (testErrorResponse === undefined && testResponse === undefined) {
+      throw new CaseCoreError(
+        'callTrigger received a trigger, but with no testErrorResponse or testResponse supplied\n.This is supposed to be prevented by DefineCaseContract'
+      );
+    }
+    if (testResponse !== undefined) {
+      context.logger.debug(
+        `Invoking provided trigger for '${names.requestName}', and testing a successful response`
+      );
+      return invokeTrigger(trigger, testResponse, assertable.config);
+    }
+    if (testErrorResponse !== undefined) {
+      context.logger.debug(
+        `Invoking provided trigger for '${names.requestName}', and testing a response that is expected to fail`
+      );
+      return invokeFailingTrigger(
+        trigger,
+        testErrorResponse,
+        assertable.config,
+        context
+      );
+    }
   }
   if (triggers !== undefined) {
     const req = triggers[names.requestName];
@@ -52,36 +123,18 @@ export const callTrigger = <T extends AnyMockDescriptorType>(
         context.logger.debug(
           `Invoking provided trigger for '${names.requestName}', and verification for a successful '${names.responseName}'`
         );
-        return req.trigger(assertable.config).then((data) =>
-          Promise.resolve()
-            .then(() => res(data, assertable.config))
-            .catch((err) => {
-              throw new VerifyTriggerReturnObjectError(err);
-            })
-        );
+        return invokeTrigger(req.trigger, res, assertable.config);
       }
       const errRes = req.errorVerifiers[names.responseName];
       if (errRes !== undefined) {
         context.logger.debug(
           `Invoking provided trigger for '${names.requestName}', and verification for an error '${names.responseName}'`
         );
-        return req.trigger(assertable.config).then(
-          (data) => {
-            throw new CaseConfigurationError(
-              `The trigger for '${
-                names.mockName
-              }' did not fail with an error. It instead returned: ${JSON.stringify(
-                data
-              )}`,
-              context
-            );
-          },
-          (expectedError) =>
-            Promise.resolve()
-              .then(() => errRes(expectedError, assertable.config))
-              .catch((err) => {
-                throw new VerifyTriggerReturnObjectError(err);
-              })
+        return invokeFailingTrigger(
+          req.trigger,
+          errRes,
+          assertable.config,
+          context
         );
       }
       context.logger.error(
