@@ -31,19 +31,23 @@ export type DefinitionFailingExample<
   testErrorResponse?: (err: Error) => unknown;
 };
 
-export class ContractDefiner {
+export class ContractDefiner<M extends AnyMockDescriptorType> {
   contract: WritingCaseContract;
 
-  constructor(contract: WritingCaseContract) {
+  invoker: MultiTestInvoker<M>;
+
+  constructor(contract: WritingCaseContract, invoker: MultiTestInvoker<M>) {
     this.contract = contract;
+    this.invoker = invoker;
   }
 
   runExample<T extends AnyMockDescriptorType, R>({
     states = [],
     definition,
     trigger,
+    triggers,
     testResponse,
-    stateHandlers = {},
+    stateHandlers,
   }: DefinitionSuccessExample<T, R>): Promise<unknown> {
     if (trigger === undefined && testResponse !== undefined) {
       throw new CaseConfigurationError(
@@ -61,7 +65,11 @@ export class ContractDefiner {
       mockDescription: definition,
       trigger,
       testResponse,
-      stateHandlers,
+      triggers:
+        triggers ||
+        (this.invoker as unknown as MultiTestInvoker<T, R>).triggers ||
+        {},
+      stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
     });
   }
 
@@ -69,6 +77,7 @@ export class ContractDefiner {
     states = [],
     definition,
     trigger,
+    triggers,
     testErrorResponse,
     stateHandlers = {},
   }: DefinitionFailingExample<T, R>): Promise<unknown> {
@@ -90,7 +99,11 @@ export class ContractDefiner {
       trigger,
       testResponse: undefined,
       testErrorResponse,
-      stateHandlers,
+      triggers:
+        triggers ||
+        (this.invoker as unknown as MultiTestInvoker<T, R>).triggers ||
+        {},
+      stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
     });
   }
 

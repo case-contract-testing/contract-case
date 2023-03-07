@@ -72,6 +72,35 @@ describe('e2e http provider driven', () => {
     );
     // END CODE UNDER TEST SETUP BOILERPLATE
 
+    const stateHandlers: StateHandlers = {
+      'Server is up': () => {
+        mockHealthStatus = true;
+      },
+      'Server is down': () => {
+        mockHealthStatus = false;
+      },
+      'A user exists': {
+        setup: () => {
+          const userId = '42';
+          mockGetUser = (id) => {
+            if (id === userId)
+              return {
+                userId,
+                name: 'John',
+              };
+            return undefined;
+          };
+          return { userId };
+        },
+        teardown: () => {
+          mockGetUser = () => undefined;
+        },
+      },
+      'No users exist': () => {
+        mockGetUser = () => undefined;
+      },
+    };
+
     defineContract(
       {
         consumerName: 'http request consumer',
@@ -80,38 +109,10 @@ describe('e2e http provider driven', () => {
           testRunId: TEST_RUN_ID,
           baseUrlUnderTest: `http://localhost:${port}`,
           printResults: false,
+          stateHandlers,
         },
       },
       (contract) => {
-        const stateHandlers: StateHandlers = {
-          'Server is up': () => {
-            mockHealthStatus = true;
-          },
-          'Server is down': () => {
-            mockHealthStatus = false;
-          },
-          'A user exists': {
-            setup: () => {
-              const userId = '42';
-              mockGetUser = (id) => {
-                if (id === userId)
-                  return {
-                    userId,
-                    name: 'John',
-                  };
-                return undefined;
-              };
-              return { userId };
-            },
-            teardown: () => {
-              mockGetUser = () => undefined;
-            },
-          },
-          'No users exist': () => {
-            mockGetUser = () => undefined;
-          },
-        };
-
         describe('health get', () => {
           describe('When the server is up', () => {
             const state = inState('Server is up');
@@ -128,7 +129,6 @@ describe('e2e http provider driven', () => {
                     },
                     response: { status: 200, body: { status: 'up' } },
                   }),
-                  stateHandlers,
                 }));
 
               describe('arbitrary status response string', () => {
@@ -145,7 +145,6 @@ describe('e2e http provider driven', () => {
                         body: shapedLike({ status: 'whatever' }),
                       },
                     }),
-                    stateHandlers,
                   }));
               });
             });
@@ -163,7 +162,6 @@ describe('e2e http provider driven', () => {
                     },
                     response: { status: httpStatus(['4XX', '5XX']) },
                   }),
-                  stateHandlers,
                 }));
             });
 
@@ -178,7 +176,6 @@ describe('e2e http provider driven', () => {
                     },
                     response: { status: 503, body: { status: 'down' } },
                   }),
-                  stateHandlers,
                 }));
             });
           });
@@ -203,7 +200,6 @@ describe('e2e http provider driven', () => {
                     body: responseBody,
                   },
                 }),
-                stateHandlers,
               }));
           });
           describe("when the user doesn't exist", () => {
@@ -219,7 +215,6 @@ describe('e2e http provider driven', () => {
                     status: 404,
                   },
                 }),
-                stateHandlers,
               }));
           });
         });

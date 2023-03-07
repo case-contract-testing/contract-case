@@ -14,11 +14,13 @@ import type {
 } from '../../entities/types';
 import { ContractDefiner } from '../../connectors/ContractDefiner';
 
-type CaseJestConfig = ContractDescription & {
-  config?: CaseConfig;
+type CaseJestConfig<T extends AnyMockDescriptorType> = ContractDescription & {
+  config?: CaseConfig & MultiTestInvoker<T>;
 };
 
-type DefineCaseJestCallback = (contract: ContractDefiner) => void;
+type DefineCaseJestCallback = <T extends AnyMockDescriptorType>(
+  contract: ContractDefiner<T>
+) => void;
 
 const runJestTest: RunTestCallback = (
   testName: string,
@@ -43,20 +45,22 @@ class ContractVerifier {
 }
 type VerifiyCaseJestCallback = (contract: ContractVerifier) => void;
 
-export const defineContract = (
-  { config, ...contractConfig }: CaseJestConfig,
+export const defineContract = <T extends AnyMockDescriptorType>(
+  { config, ...contractConfig }: CaseJestConfig<T>,
   callback: DefineCaseJestCallback
 ): void =>
   describe(`Case contract definition`, () => {
+    const { stateHandlers, triggers, ...contextConfig } = config || {};
+
     const contract = new WritingCaseContract(contractConfig, {
       testRunId:
         process.env['JEST_WORKER_ID'] || 'JEST_WORKER_ID_WAS_UNDEFINED',
-      ...(config ? { ...config } : {}),
+      ...contextConfig,
     });
     afterAll(() => contract.endRecord());
 
     describe(`between ${contractConfig.consumerName} and ${contractConfig.providerName}`, () => {
-      callback(new ContractDefiner(contract));
+      callback(new ContractDefiner(contract, { stateHandlers, triggers }));
     });
   });
 

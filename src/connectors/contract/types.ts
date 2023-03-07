@@ -30,7 +30,7 @@ type TriggerPair<T extends AnyMockDescriptorType, R> = {
 };
 
 export type MultiTestInvoker<T extends AnyMockDescriptorType, R = unknown> = {
-  stateHandlers?: StateHandlers;
+  stateHandlers?: StateHandlers | undefined;
   triggers?: Record<string, TriggerPair<T, R>> | undefined;
 };
 

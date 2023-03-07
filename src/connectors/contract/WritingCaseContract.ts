@@ -45,6 +45,7 @@ export class WritingCaseContract extends BaseCaseContract {
       mockDescription,
       trigger,
       testResponse,
+      triggers,
       testErrorResponse,
       stateHandlers = {},
     }: TestInvoker<T, R>,
@@ -88,6 +89,7 @@ export class WritingCaseContract extends BaseCaseContract {
         {
           stateHandlers,
           trigger,
+          triggers,
           testResponse,
           testErrorResponse,
           names: exampleToNames(example, `${this.testIndex}`),
