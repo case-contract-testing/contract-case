@@ -60,4 +60,19 @@ describe('isObject', () => {
       expect(whyNotAnObject(e)).toBe('Expected an object, but it was an array');
     });
   });
+
+  describe('object', () => {
+    const e = {};
+    it('passes', () => {
+      expect(isObject(e)).toBeTruthy();
+    });
+
+    it('has the appropriate message', () => {
+      expect(
+        whyNotAnObject(e).startsWith(
+          'If you are seeing this message, there is a bug'
+        )
+      ).toBeTruthy();
+    });
+  });
 });
