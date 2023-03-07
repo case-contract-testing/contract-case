@@ -1,13 +1,13 @@
 import { versionFromGitTag } from 'absolute-version';
 import { CaseConfigurationError } from '../../entities';
-import type { ContractFile, MatchContext } from '../../entities/types';
+import type { ContextLogger, ContractFile } from '../../entities/types';
 
 import { makeAxiosConnector } from './axios';
 
 interface Broker {
   publishContract: (
     contract: ContractFile,
-    context: MatchContext
+    context: ContextLogger
   ) => Promise<unknown>;
 }
 
@@ -49,7 +49,7 @@ export const makeBrokerApi = (
   const server = makeAxiosConnector(trimSlash(baseUrl), authToken);
 
   return {
-    publishContract: (contract: ContractFile, context: MatchContext) => {
+    publishContract: (contract: ContractFile, context: ContextLogger) => {
       const version = versionFromGitTag();
       context.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`

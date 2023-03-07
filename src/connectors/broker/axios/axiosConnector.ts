@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { MatchContext } from '../../../entities/types';
+import type { ContextLogger } from '../../../entities/types';
 
 import { unmarshallSuccess, unmarshallFailure } from './marshaller';
 
@@ -8,7 +8,7 @@ type HttpConnector = {
   authedPut: <T, R>(
     path: string,
     content: T,
-    context: MatchContext
+    context: ContextLogger
   ) => Promise<R>;
 };
 
@@ -29,7 +29,7 @@ export const makeAxiosConnector = (
       })
       .then(unmarshallSuccess, unmarshallFailure),
 
-  authedPut: (path, content, context: MatchContext) => {
+  authedPut: (path, content, context: ContextLogger) => {
     context.logger.maintainerDebug(`PUT: ${baseurl}${path}`);
     return axios
       .put(`${baseurl}${path}`, content, {

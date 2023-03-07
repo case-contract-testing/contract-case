@@ -25,13 +25,12 @@ const isWireErrorResponse = (data: unknown): data is WireErrorResponse => {
 export const unmarshallFailure = (error: Error): never => {
   if (axios.isAxiosError(error)) {
     if (error.response) {
-      if (error.response.status === 401) {
+      if (error.response.status === 403) {
         throw new ApiError(
-          "The server says that you're not authorised.",
+          `The access token you provided was rejected by the broker`,
           API_NOT_AUTHORISED
         );
       }
-
       if (error.response.status === 404) {
         throw new ApiError(
           `${JSON.stringify(error.request.url)} Not found: ${JSON.stringify(

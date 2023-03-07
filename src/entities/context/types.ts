@@ -77,7 +77,7 @@ export interface TraversalFns {
   ) => ReturnType<MatcherExecutor<T>['check']>;
 }
 
-interface ContextLoggerFns {
+export interface ContextLogger {
   logger: Logger;
   resultPrinter: ResultPrinter;
   makeLogger: (m: LogLevelContext) => Logger;
@@ -90,7 +90,7 @@ export type MatchContext = DefaultContext &
   RunContext &
   LogLevelContext &
   TraversalFns &
-  ContextLoggerFns &
+  ContextLogger &
   ContractLookupFns &
   HasMakeLookupFn;
 
@@ -100,7 +100,7 @@ export type HasLocation = {
 
 export type MatchContextData = Omit<
   MatchContext,
-  | keyof ContextLoggerFns
+  | keyof ContextLogger
   | keyof TraversalFns
   | keyof ContractLookupFns
   | keyof HasMakeLookupFn
