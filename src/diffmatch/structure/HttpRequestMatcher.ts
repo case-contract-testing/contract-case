@@ -13,6 +13,7 @@ import type {
   MatcherExecutor,
   HTTP_REQUEST_MATCHER_TYPE,
   CaseError,
+  AnyCaseNodeOrData,
 } from '../../entities/types';
 
 const isHttpRequestData = (data: unknown): data is HttpRequestData => {
@@ -122,12 +123,21 @@ const name = (request: CoreHttpRequestMatcher, context: MatchContext): string =>
         request.path,
         addLocation('path', context)
       )}${
-        request.query
+        request.query !== undefined
           ? `?${qs.stringify(
-              context.descendAndStrip(
-                request.query,
-                addLocation('query', context)
-              )
+              Object.entries(
+                request.query as Record<string, AnyCaseNodeOrData>
+              ).reduce<Record<string, string>>(
+                (acc, [key, value]) => ({
+                  ...acc,
+                  [key]: context.descendAndDescribe(
+                    value,
+                    addLocation(`query[${key}]`, context)
+                  ),
+                }),
+                {} as Record<string, string>
+              ),
+              { encode: false }
             )}`
           : ''
       } ${request.body ? 'with a body' : 'without a body'}${

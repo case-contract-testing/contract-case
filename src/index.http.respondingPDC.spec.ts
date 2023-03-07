@@ -305,7 +305,7 @@ verifyContract(
             },
             errorVerifiers: {},
           },
-        'an http "GET" request to "/users"?id=123 without a body': {
+        'an http "GET" request to "/users"?id={{userId}} without a body': {
           trigger: (config: HttpRequestConfig) =>
             api(config.baseUrl).getUserByQuery(
               (config.variables['userId'] as string) || '123'

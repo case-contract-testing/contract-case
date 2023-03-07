@@ -73,7 +73,7 @@
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "matcher:an http \"GET\" request to \"/users\"?id=123 without a body": {
+    "matcher:an http \"GET\" request to \"/users\"?id={{userId}} without a body": {
       "method": "GET",
       "path": "/users",
       "query": {
@@ -322,7 +322,7 @@
       "mock": {
         "request": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "an http \"GET\" request to \"/users\"?id=123 without a body",
+          "case:matcher:uniqueName": "an http \"GET\" request to \"/users\"?id={{userId}} without a body",
           "case:matcher:child": {
             "method": "GET",
             "path": "/users",
@@ -379,7 +379,7 @@
       "mock": {
         "request": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "an http \"GET\" request to \"/users\"?id=123 without a body",
+          "case:matcher:uniqueName": "an http \"GET\" request to \"/users\"?id={{userId}} without a body",
           "case:matcher:child": {
             "method": "GET",
             "path": "/users",
