@@ -61,6 +61,9 @@ const locationLine = (error: CaseError) =>
     )}`
   );
 
+const camelToCapital = (camel: string) =>
+  camel.replace(/([a-z])([A-Z])/g, '$1 $2').toLocaleUpperCase();
+
 const printError = (error: CaseError, context: MatchContext): void => {
   if (context['case:currentRun:context:printResults']) {
     switch (error.type) {
@@ -87,9 +90,10 @@ const printError = (error: CaseError, context: MatchContext): void => {
         break;
       case ERROR_TYPE_EXECUTION:
         stdout.log(
-          `${errorTitleLine('EXECUTION RROR', error.message)}\n\n${locationLine(
-            error
-          )}\n\n`
+          `${errorTitleLine(
+            camelToCapital(error.code),
+            error.message
+          )}\n\n${locationLine(error)}\n\n`
         );
         break;
       case ERROR_TYPE_VERIFICATION:

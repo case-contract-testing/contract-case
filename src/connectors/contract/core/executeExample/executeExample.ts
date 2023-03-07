@@ -49,13 +49,7 @@ const toResultingExample = <T extends AnyMockDescriptorType>(
       if (error instanceof CaseConfigurationError) {
         return makeFailedExample(
           example,
-          makeResults(
-            executionError(
-              new Error('Case was configured incorrectly'),
-              context
-            ),
-            executionError(error, context)
-          )
+          makeResults(executionError(error, context))
         );
       }
       if (error instanceof CaseFailedAssertionError) {
