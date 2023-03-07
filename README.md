@@ -1,10 +1,11 @@
 # Case Contract Testing Framework
 
-[![npm](https://img.shields.io/npm/v/@case-contract-testing/case.svg)](https://www.npmjs.com/package/@case-contract-testing/case)
-
 [![Build and test](https://github.com/TimothyJones/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/TimothyJones/case/actions/workflows/build-and-test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/TimothyJones/case/badge.svg?branch=main)](https://coveralls.io/github/TimothyJones/case?branch=main)
 [![Known Vulnerabilities](https://snyk.io/test/github/TimothyJones/case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/TimothyJones/case?targetFile=package.json)
+
+[![npm](https://img.shields.io/npm/v/@case-contract-testing/case.svg)](https://www.npmjs.com/package/@case-contract-testing/case)
+[![bundle size](https://img.shields.io/bundlephobia/min/@case-contract-testing/case)](https://www.npmjs.com/package/@case-contract-testing/case)
 
 <span align="center">
 
