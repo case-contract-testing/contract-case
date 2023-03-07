@@ -1,2 +1,2 @@
 export * from './WritingCaseContract';
-export * from './CaseVerifier';
+export * from './ReadingCaseContract';

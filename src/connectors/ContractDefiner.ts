@@ -31,7 +31,7 @@ export type DefinitionFailingExample<
   testErrorResponse?: (err: Error) => unknown;
 };
 
-export class DefineCaseContract {
+export class ContractDefiner {
   contract: WritingCaseContract;
 
   constructor(contract: WritingCaseContract) {

@@ -5,7 +5,7 @@ export * from './dsl/Mocks';
 // TODO Move these into boundaries
 export {
   WritingCaseContract as CaseContract,
-  CaseVerifier,
+  ReadingCaseContract as CaseVerifier,
 } from '../connectors/contract';
 export type { RunTestCallback } from '../connectors/contract/types';
 export type { AnyState } from '../entities/states/types';

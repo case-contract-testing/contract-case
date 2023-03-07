@@ -1,6 +1,6 @@
 import { Mutex } from 'async-mutex';
 
-import { makeLogger as defaultMakeLogger } from '../../connectors/logger';
+import { makeLogger as defaultMakeLogger } from '../logger';
 
 import { CaseCoreError } from '../../entities';
 import { applyNodeToContext } from '../../entities/context';
@@ -25,7 +25,7 @@ import type { CaseConfig } from './core/types';
 
 import type { MultiTestInvoker, RunTestCallback } from './types';
 
-export class CaseVerifier extends BaseCaseContract {
+export class ReadingCaseContract extends BaseCaseContract {
   mutex: Mutex;
 
   constructor(

@@ -25,7 +25,7 @@ import type {
   MatchContext,
 } from '../../../../entities/types';
 import type { WritingCaseContract } from '../../WritingCaseContract';
-import type { CaseVerifier } from '../../CaseVerifier';
+import type { ReadingCaseContract } from '../../ReadingCaseContract';
 import type { InvokingScaffold } from '../../types';
 
 const toResultingExample = <T extends AnyMockDescriptorType>(
@@ -85,7 +85,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
     testErrorResponse,
     testResponse,
   }: InvokingScaffold<T, R>,
-  contract: WritingCaseContract | CaseVerifier,
+  contract: WritingCaseContract | ReadingCaseContract,
   context: MatchContext
 ): Promise<unknown> =>
   setupExample<T>(example, stateHandlers, context).then(

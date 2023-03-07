@@ -10,12 +10,11 @@ import { UserNotFoundConsumerError } from './__tests__/client/http/connector/err
 import type { Dependencies } from './__tests__/server/http/domain/types';
 
 // This import is our Jest DSL
-import { runJestTest, caseContractWith } from './boundaries/jest/jest';
+import { defineContract, verifyContract } from './boundaries/jest/jest';
 
 // These imports are from Case
 import {
   inState,
-  CaseVerifier,
   httpStatus,
   shapedLike,
   stateVariable,
@@ -44,7 +43,7 @@ describe('e2e http consumer driven', () => {
       // We don't care if this fails
     }
   });
-  caseContractWith(
+  defineContract(
     {
       ...contractDetails,
       config: {
@@ -226,42 +225,43 @@ describe('Server verification', () => {
   );
   // END PROVIDER SETUP BOILERPLATE
 
-  const verifier = new CaseVerifier(readContract(FILENAME), {
-    baseUrlUnderTest: `http://localhost:${port}`,
-    printResults: false,
-  });
-
-  const stateHandlers: StateHandlers = {
-    'Server is up': () => {
-      mockHealthStatus = true;
+  verifyContract(
+    readContract(FILENAME),
+    {
+      baseUrlUnderTest: `http://localhost:${port}`,
+      printResults: false,
     },
-    'Server is down': () => {
-      mockHealthStatus = false;
-    },
-    'A user exists': {
-      setup: () => {
-        const userId = '42';
-        mockGetUser = (id) => {
-          if (id === userId)
-            return {
-              userId,
-              name: 'John',
+    (verifier) => {
+      const stateHandlers: StateHandlers = {
+        'Server is up': () => {
+          mockHealthStatus = true;
+        },
+        'Server is down': () => {
+          mockHealthStatus = false;
+        },
+        'A user exists': {
+          setup: () => {
+            const userId = '42';
+            mockGetUser = (id) => {
+              if (id === userId)
+                return {
+                  userId,
+                  name: 'John',
+                };
+              return undefined;
             };
-          return undefined;
-        };
-        return { userId };
-      },
-      teardown: () => {
-        mockGetUser = () => undefined;
-      },
-    },
-    'No users exist': () => {
-      mockGetUser = () => undefined;
-    },
-  };
-  describe('with a file contract', () => {
-    describe('contract verification', () => {
-      verifier.verifyContract({ stateHandlers }, runJestTest);
-    });
-  });
+            return { userId };
+          },
+          teardown: () => {
+            mockGetUser = () => undefined;
+          },
+        },
+        'No users exist': () => {
+          mockGetUser = () => undefined;
+        },
+      };
+
+      verifier.verifyContract({ stateHandlers });
+    }
+  );
 });

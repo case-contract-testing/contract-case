@@ -1,10 +1,26 @@
-import { WritingCaseContract } from '../../connectors/contract';
+import {
+  ReadingCaseContract,
+  WritingCaseContract,
+} from '../../connectors/contract';
 import type { CaseConfig } from '../../connectors/contract/core/types';
-import type { RunTestCallback } from '../../connectors/contract/types';
-import type { ContractDescription } from '../../entities/types';
-import { DefineCaseContract } from '../../connectors/DefineCaseContract';
+import type {
+  MultiTestInvoker,
+  RunTestCallback,
+} from '../../connectors/contract/types';
+import type {
+  AnyMockDescriptorType,
+  ContractDescription,
+  ContractFile,
+} from '../../entities/types';
+import { ContractDefiner } from '../../connectors/ContractDefiner';
 
-export const runJestTest: RunTestCallback = (
+type CaseJestConfig = ContractDescription & {
+  config?: CaseConfig;
+};
+
+type DefineCaseJestCallback = (contract: ContractDefiner) => void;
+
+const runJestTest: RunTestCallback = (
   testName: string,
   verify: () => Promise<unknown>
 ): void => {
@@ -12,17 +28,26 @@ export const runJestTest: RunTestCallback = (
   it(`${testName}`, () => verify());
 };
 
-type CaseJestConfig = ContractDescription & {
-  config?: CaseConfig;
-};
+class ContractVerifier {
+  contract: ReadingCaseContract;
 
-type CaseJestCallback = (contract: DefineCaseContract) => void;
+  constructor(contract: ReadingCaseContract) {
+    this.contract = contract;
+  }
 
-export const caseContractWith = (
+  verifyContract<T extends AnyMockDescriptorType>(
+    invoker: MultiTestInvoker<T>
+  ): void {
+    this.contract.verifyContract(invoker, runJestTest);
+  }
+}
+type VerifiyCaseJestCallback = (contract: ContractVerifier) => void;
+
+export const defineContract = (
   { config, ...contractConfig }: CaseJestConfig,
-  callback: CaseJestCallback
+  callback: DefineCaseJestCallback
 ): void =>
-  describe(`Case contract between ${contractConfig.consumerName}`, () => {
+  describe(`Case contract definition`, () => {
     const contract = new WritingCaseContract(contractConfig, {
       testRunId:
         process.env['JEST_WORKER_ID'] || 'JEST_WORKER_ID_WAS_UNDEFINED',
@@ -30,7 +55,20 @@ export const caseContractWith = (
     });
     afterAll(() => contract.endRecord());
 
-    describe(`and ${contractConfig.providerName}`, () => {
-      callback(new DefineCaseContract(contract));
+    describe(`between ${contractConfig.consumerName} and ${contractConfig.providerName}`, () => {
+      callback(new ContractDefiner(contract));
+    });
+  });
+
+export const verifyContract = (
+  contract: ContractFile,
+  config: CaseConfig,
+  callback: VerifiyCaseJestCallback
+): void =>
+  describe('Case contract verification', () => {
+    const verifier = new ReadingCaseContract(contract, config);
+
+    describe(``, () => {
+      callback(new ContractVerifier(verifier));
     });
   });
