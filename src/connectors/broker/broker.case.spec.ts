@@ -76,6 +76,18 @@ describe('broker client', () => {
               CaseConfigurationError
             );
           });
+
+          it('fails with a non-string baseUrl', () => {
+            expect(() =>
+              makeBrokerApi(3 as unknown as string, 'TOKEN')
+            ).toThrow(CaseConfigurationError);
+          });
+
+          it('fails with a non-string token', () => {
+            expect(() => makeBrokerApi('s', 3 as unknown as string)).toThrow(
+              CaseConfigurationError
+            );
+          });
         });
 
         describe('with a valid auth token', () => {

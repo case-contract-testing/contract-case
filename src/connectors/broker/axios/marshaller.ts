@@ -13,15 +13,6 @@ import {
 export const unmarshallSuccess = <T>(response: AxiosResponse<T>): T =>
   response.data;
 
-type WireErrorResponse = {
-  message: string;
-};
-
-const isWireErrorResponse = (data: unknown): data is WireErrorResponse => {
-  const maybeResponse = data as WireErrorResponse;
-  return 'message' in maybeResponse && typeof maybeResponse === 'string';
-};
-
 export const unmarshallFailure = (error: Error): never => {
   if (axios.isAxiosError(error)) {
     if (error.response) {
@@ -41,7 +32,7 @@ export const unmarshallFailure = (error: Error): never => {
       }
 
       throw new ApiError(
-        error.response.data && isWireErrorResponse(error.response.data)
+        error.response.data
           ? error.response.data.message
           : `The server returned an error code (${error.response.status})`,
         API_ERROR
