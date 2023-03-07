@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.3.0](https://github.com/TimothyJones/case/compare/v0.2.0...v0.3.0) (2023-03-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* Change the automatic description of variables from ${varName} to {{varName}}
+* **jest:** Add verifyContract helper; rename caseContractWith to defineContract for consistency
+
+### Features
+
+* Add ability to pass common config (statehandlers and triggers) to the contract at initialisation ([e30fe34](https://github.com/TimothyJones/case/commit/e30fe34063caccdc84ba156bab68fa9b3fc1849d))
+* **jest:** Add verifyContract helper; rename caseContractWith to defineContract for consistency ([a035fc7](https://github.com/TimothyJones/case/commit/a035fc7e916f6663782d5f76e0a9e22c6d5510a5))
+* Support query strings in http tests ([0909b4c](https://github.com/TimothyJones/case/commit/0909b4c795f6210671330ab05ccbc4ec55a80c25))
+
+
+### Bug Fixes
+
+* Change the automatic description of variables from ${varName} to {{varName}} ([eecab14](https://github.com/TimothyJones/case/commit/eecab14d02e7397b1affb3c107076b106b2cacc1))
+* Print name of error instead of 'EXECUTION ERROR' when an execution error happens ([30610e5](https://github.com/TimothyJones/case/commit/30610e57a6a6aa67d0a9d532bd78e1ba9d3d802f))
+
 ## [0.2.0](https://github.com/TimothyJones/case/compare/v0.1.0...v0.2.0) (2023-03-06)
 
 
