@@ -2,7 +2,7 @@
 
 - [ ] Broker verification - read and publish result
 - [ ] Initial docs
-- [ ] Query string, probably
+- [x] Query string, probably
 - [x] Note about stability
 - [ ] Determine how package structure will work
 - [x] Extract Jest DSL

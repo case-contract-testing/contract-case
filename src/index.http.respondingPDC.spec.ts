@@ -1,4 +1,3 @@
-/* eslint-disable no-template-curly-in-string */
 /* eslint-disable jest/expect-expect */
 import * as fs from 'node:fs';
 

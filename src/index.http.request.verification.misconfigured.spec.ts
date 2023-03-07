@@ -57,7 +57,6 @@ describe('Server verification', () => {
     const runJestTestExepectingErrors =
       (errors: Record<string, Function>): RunTestCallback =>
       (testName: string, verify: () => Promise<unknown>): void => {
-        // eslint-disable-next-line jest/expect-expect
         it(`${testName}`, () =>
           verify().then(
             () => {
@@ -118,7 +117,6 @@ describe('Server verification', () => {
       );
     });
 
-    // eslint-disable-next-line jest/no-focused-tests
     describe('contract verification with state that fails', () => {
       const stateHandlers: StateHandlers = {
         'Server is up': () => {
