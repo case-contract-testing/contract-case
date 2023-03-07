@@ -79,7 +79,7 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
     trigger,
     triggers,
     testErrorResponse,
-    stateHandlers = {},
+    stateHandlers,
   }: DefinitionFailingExample<T, R>): Promise<unknown> {
     if (trigger === undefined && testErrorResponse !== undefined) {
       throw new CaseConfigurationError(
