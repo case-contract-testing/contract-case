@@ -181,41 +181,83 @@ describe('e2e http provider driven', () => {
           });
         });
         describe('User', () => {
-          describe('when the user exists', () => {
-            const responseBody = { userId: stateVariable('userId') };
+          describe('With query variables', () => {
+            describe('when the user exists', () => {
+              const responseBody = { userId: stateVariable('userId') };
 
-            it('returns an existing user', async () =>
-              contract.runExample({
-                states: [
-                  inState('Server is up'),
-                  inState('A user exists', { userId: '123' }),
-                ],
-                definition: willReceiveHttpRequest({
-                  request: {
-                    method: 'GET',
-                    path: stringPrefix('/users/', stateVariable('userId')),
-                  },
-                  response: {
-                    status: 200,
-                    body: responseBody,
-                  },
-                }),
-              }));
+              it('returns an existing user', async () =>
+                contract.runExample({
+                  states: [
+                    inState('Server is up'),
+                    inState('A user exists', { userId: '123' }),
+                  ],
+                  definition: willReceiveHttpRequest({
+                    request: {
+                      method: 'GET',
+                      path: '/users',
+                      query: { id: stateVariable('userId') },
+                    },
+                    response: {
+                      status: 200,
+                      body: responseBody,
+                    },
+                  }),
+                }));
+            });
+            describe("when the user doesn't exist", () => {
+              it('returns a user not found error', () =>
+                contract.runRejectingExample({
+                  states: [inState('Server is up'), inState('No users exist')],
+                  definition: willReceiveHttpRequest({
+                    request: {
+                      method: 'GET',
+                      path: '/users',
+                      query: { id: stateVariable('userId') },
+                    },
+                    response: {
+                      status: 404,
+                    },
+                  }),
+                }));
+            });
           });
-          describe("when the user doesn't exist", () => {
-            it('returns a user not found error', () =>
-              contract.runRejectingExample({
-                states: [inState('Server is up'), inState('No users exist')],
-                definition: willReceiveHttpRequest({
-                  request: {
-                    method: 'GET',
-                    path: stringPrefix('/users/', '123'),
-                  },
-                  response: {
-                    status: 404,
-                  },
-                }),
-              }));
+          describe('with path variables', () => {
+            describe('when the user exists', () => {
+              const responseBody = { userId: stateVariable('userId') };
+
+              it('returns an existing user', async () =>
+                contract.runExample({
+                  states: [
+                    inState('Server is up'),
+                    inState('A user exists', { userId: '123' }),
+                  ],
+                  definition: willReceiveHttpRequest({
+                    request: {
+                      method: 'GET',
+                      path: stringPrefix('/users/', stateVariable('userId')),
+                    },
+                    response: {
+                      status: 200,
+                      body: responseBody,
+                    },
+                  }),
+                }));
+            });
+            describe("when the user doesn't exist", () => {
+              it('returns a user not found error', () =>
+                contract.runRejectingExample({
+                  states: [inState('Server is up'), inState('No users exist')],
+                  definition: willReceiveHttpRequest({
+                    request: {
+                      method: 'GET',
+                      path: stringPrefix('/users/', '123'),
+                    },
+                    response: {
+                      status: 404,
+                    },
+                  }),
+                }));
+            });
           });
         });
       }
@@ -263,9 +305,28 @@ verifyContract(
             },
             errorVerifiers: {},
           },
+        'an http "GET" request to "/users"?id=123 without a body': {
+          trigger: (config: HttpRequestConfig) =>
+            api(config.baseUrl).getUserByQuery(
+              (config.variables['userId'] as string) || '123'
+            ),
+          verifiers: {
+            'a (200) response with body an object shaped like {userId: ${userId}}':
+              (user, config) => {
+                expect(user).toEqual({
+                  userId: config.variables['userId'],
+                });
+              },
+          },
+          errorVerifiers: {
+            'a (404) response without a body': (e) => {
+              expect(e).toBeInstanceOf(UserNotFoundConsumerError);
+            },
+          },
+        },
         'an http "GET" request to "/users/123" without a body': {
           trigger: (config: HttpRequestConfig) =>
-            api(config.baseUrl).getUser('123'),
+            api(config.baseUrl).getUserByPath('123'),
           verifiers: {},
           errorVerifiers: {
             'a (404) response without a body': (e) => {
@@ -275,7 +336,9 @@ verifyContract(
         },
         'an http "GET" request to "/users/${userId}" without a body': {
           trigger: (config: HttpRequestConfig) =>
-            api(config.baseUrl).getUser(config.variables['userId'] as string),
+            api(config.baseUrl).getUserByPath(
+              config.variables['userId'] as string
+            ),
           verifiers: {
             'a (200) response with body an object shaped like {userId: ${userId}}':
               (user, config) => {

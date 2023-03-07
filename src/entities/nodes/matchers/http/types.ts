@@ -32,12 +32,18 @@ export type CoreHttpRequestMatcher = {
   method: AnyStringMatcher | string;
   body?: AnyCaseNodeOrData;
   headers?: AnyCaseNodeOrData | Record<string, AnyCaseNodeOrData>;
+  query?: AnyCaseNodeOrData;
+};
+
+type QueryObject = {
+  [key: string]: undefined | string | string[] | QueryObject | QueryObject[];
 };
 
 export type HttpRequestData = {
   body: AnyData;
   method: string;
   path: string;
+  query?: QueryObject;
   headers?: Record<string, string | string[] | undefined>;
 };
 
@@ -55,6 +61,7 @@ export interface HttpMockResponse {
 }
 
 export interface HttpMockRequest {
+  query?: AnyCaseNodeOrData;
   uniqueName?: string;
   path: AnyStringMatcher | string;
   method: AnyStringMatcher | string;

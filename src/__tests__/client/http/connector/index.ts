@@ -15,7 +15,8 @@ interface User {
 interface Api {
   getAllProducts: () => Promise<Array<string>>;
   getProduct: (id: string) => Promise<string>;
-  getUser: (id: string) => Promise<User>;
+  getUserByPath: (id: string) => Promise<User>;
+  getUserByQuery: (id: string) => Promise<User>;
   health: () => Promise<ServerHealth>;
 }
 
@@ -29,8 +30,15 @@ const api = (baseurl: string): Api => {
   return {
     getAllProducts: () => server.authedGet<string[]>('/products'),
     getProduct: (id) => server.authedGet(`/products/${id}`),
-    getUser: (id: string) =>
+    getUserByPath: (id: string) =>
       server.authedGet<User>(`/users/${id}`).catch((e) => {
+        if (e.code === API_NOT_FOUND) {
+          throw new UserNotFoundConsumerError(`Unable to find user '${id}'`);
+        }
+        throw e;
+      }),
+    getUserByQuery: (id: string) =>
+      server.authedGet<User>(`/users`, { id }).catch((e) => {
         if (e.code === API_NOT_FOUND) {
           throw new UserNotFoundConsumerError(`Unable to find user '${id}'`);
         }

@@ -1,3 +1,5 @@
+import qs from 'qs';
+
 import { CaseConfigurationError, CaseCoreError } from '../../entities';
 import { addLocation } from '../../entities/context';
 import { mustResolveToString } from '../../entities/nodes/matchers/resolve';
@@ -10,6 +12,7 @@ import type {
   MatchResult,
   MatcherExecutor,
   HTTP_REQUEST_MATCHER_TYPE,
+  CaseError,
 } from '../../entities/types';
 
 const isHttpRequestData = (data: unknown): data is HttpRequestData => {
@@ -29,6 +32,14 @@ const strip = (
         body: matchContext.descendAndStrip(
           matcher.body,
           addLocation('body', matchContext)
+        ),
+      }
+    : {}),
+  ...(matcher.query
+    ? {
+        query: matchContext.descendAndStrip(
+          matcher.query,
+          addLocation('query', matchContext)
         ),
       }
     : {}),
@@ -65,30 +76,39 @@ const check = async (
     );
   }
   return combineResults(
-    await matchContext.descendAndCheck(
-      matcher.method,
-      addLocation('method', matchContext),
-      actual.method
-    ),
-    await matchContext.descendAndCheck(
-      matcher.path,
-      addLocation('path', matchContext),
-      actual.path
-    ),
-    matcher.headers !== undefined
-      ? await matchContext.descendAndCheck(
-          matcher.headers,
-          addLocation('headers', matchContext),
-          actual.headers
-        )
-      : makeResults(),
-    matcher.body !== undefined
-      ? await matchContext.descendAndCheck(
-          matcher.body,
-          addLocation('body', matchContext),
-          actual.body
-        )
-      : makeResults()
+    ...(await Promise.all<CaseError[]>([
+      matchContext.descendAndCheck(
+        matcher.method,
+        addLocation('method', matchContext),
+        actual.method
+      ),
+      matchContext.descendAndCheck(
+        matcher.path,
+        addLocation('path', matchContext),
+        actual.path
+      ),
+      matcher.query !== undefined
+        ? matchContext.descendAndCheck(
+            matcher.query,
+            addLocation('query', matchContext),
+            actual.query
+          )
+        : Promise.resolve(makeResults()),
+      matcher.headers !== undefined
+        ? matchContext.descendAndCheck(
+            matcher.headers,
+            addLocation('headers', matchContext),
+            actual.headers
+          )
+        : Promise.resolve(makeResults()),
+      matcher.body !== undefined
+        ? matchContext.descendAndCheck(
+            matcher.body,
+            addLocation('body', matchContext),
+            actual.body
+          )
+        : Promise.resolve(makeResults()),
+    ]))
   );
 };
 
@@ -101,7 +121,16 @@ const name = (request: CoreHttpRequestMatcher, context: MatchContext): string =>
       )} request to ${context.descendAndDescribe(
         request.path,
         addLocation('path', context)
-      )} ${request.body ? 'with a body' : 'without a body'}${
+      )}${
+        request.query
+          ? `?${qs.stringify(
+              context.descendAndStrip(
+                request.query,
+                addLocation('query', context)
+              )
+            )}`
+          : ''
+      } ${request.body ? 'with a body' : 'without a body'}${
         request.headers
           ? ` with the following headers ${context.descendAndDescribe(
               request.headers,

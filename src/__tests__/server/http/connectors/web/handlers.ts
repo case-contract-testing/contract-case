@@ -28,12 +28,22 @@ export const health: (deps: HealthServiceDependencies) => RequestHandler =
     }
   };
 
-export const users: (deps: UserServiceDependencies) => RequestHandler =
+export const usersByPath: (deps: UserServiceDependencies) => RequestHandler =
   ({ userRepository }: UserServiceDependencies) =>
   (req: Request, res: Response) => {
     const { userId } = req.params;
     if (typeof userId !== 'string') throw new Error('No userID provided');
     responder(res).success<User>(
       makeUserService({ userRepository }).getUser(userId)
+    );
+  };
+
+export const usersByQuery: (deps: UserServiceDependencies) => RequestHandler =
+  ({ userRepository }: UserServiceDependencies) =>
+  (req: Request, res: Response) => {
+    const { id } = req.query;
+    if (typeof id !== 'string') throw new Error('No userID provided');
+    responder(res).success<User>(
+      makeUserService({ userRepository }).getUser(id)
     );
   };

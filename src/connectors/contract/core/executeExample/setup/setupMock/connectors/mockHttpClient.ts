@@ -58,6 +58,7 @@ const validateHttpRequestData = (
   );
   assertFieldPresent({ field: 'method', type: 'string' });
   assertFieldPresent({ field: 'path', type: 'string' });
+  assertIfFieldPresent({ field: 'query', type: 'object' });
   assertIfFieldPresent({ field: 'body', type: 'object' });
   assertIfFieldPresent({ field: 'headers', type: 'object', notNull: true });
 
@@ -79,7 +80,7 @@ export const setupHttpResponseConsumer = (
       )
     );
 
-    const { body, method, path, headers } = expectedRequest;
+    const { body, method, path, headers, query } = expectedRequest;
 
     return validateConfig(parentContext).then(
       (run: MatchContextData & HasBaseUrlUnderTest) => ({
@@ -100,6 +101,7 @@ export const setupHttpResponseConsumer = (
                   }
                 : {}),
               ...(headers ? { headers } : {}),
+              ...(query ? { params: query } : {}),
             })
             .then(
               (response) => ({ body: response.data, status: response.status }),

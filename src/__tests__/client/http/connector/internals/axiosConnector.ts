@@ -3,7 +3,7 @@ import axios from 'axios';
 import { unmarshallSuccess, unmarshallFailure } from './marshaller';
 
 type HttpConnector = {
-  authedGet: <T>(path: string) => Promise<T>;
+  authedGet: <T>(path: string, query?: Record<string, string>) => Promise<T>;
   get: <T>(path: string) => Promise<T>;
 };
 
@@ -11,10 +11,11 @@ type HttpConnector = {
 // It knows how to turn logical requests into axios calls
 
 export const makeAxiosConnector = (baseurl: string): HttpConnector => ({
-  authedGet: (path) =>
+  authedGet: (path, query) =>
     axios
       .get(`${baseurl}${path}`, {
         headers: { Accept: 'application/json' },
+        ...(query ? { params: query } : {}),
         //      headers: { Authorization: `Bearer ${authToken}` },
       })
       .then(unmarshallSuccess, unmarshallFailure),

@@ -27,7 +27,7 @@ describe('Server verification', () => {
   };
 
   const contract = readContract(
-    'case-contracts/http-response-consumer-http-response-provider-12.case.json'
+    'case-contracts/contract-for-incorrectly-configured-examples.json'
   );
 
   const verifier = new CaseVerifier(contract, {

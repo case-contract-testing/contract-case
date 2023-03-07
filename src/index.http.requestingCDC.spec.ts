@@ -138,55 +138,111 @@ describe('e2e http consumer driven', () => {
         });
       });
       describe('User', () => {
-        const sendUserRequest =
-          (userId: string) => (config: HttpRequestConfig) =>
-            api(config.baseUrl).getUser(userId);
-        describe('when the user exists', () => {
-          const responseBody = { userId: stateVariable('userId') };
+        describe('With query variables', () => {
+          const sendUserRequest =
+            (userId: string) => (config: HttpRequestConfig) =>
+              api(config.baseUrl).getUserByQuery(userId);
+          describe('when the user exists', () => {
+            const responseBody = { userId: stateVariable('userId') };
 
-          it('returns an existing user', async () =>
-            contract.runExample({
-              states: [
-                inState('Server is up'),
-                inState('A user exists', { userId: '123' }),
-              ],
-              definition: willSendHttpRequest({
-                request: {
-                  method: 'GET',
-                  path: stringPrefix('/users/', stateVariable('userId')),
+            it('returns an existing user', async () =>
+              contract.runExample({
+                states: [
+                  inState('Server is up'),
+                  inState('A user exists', { userId: '123' }),
+                ],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'GET',
+                    path: '/users',
+                    query: { id: stateVariable('userId') },
+                  },
+                  response: {
+                    status: 200,
+                    body: responseBody,
+                  },
+                }),
+                trigger: sendUserRequest('123'),
+                testResponse: (health) => {
+                  expect(contract.stripMatchers(responseBody)).toEqual({
+                    userId: '123',
+                  });
+                  expect(health).toEqual(contract.stripMatchers(responseBody));
                 },
-                response: {
-                  status: 200,
-                  body: responseBody,
+              }));
+          });
+          describe("when the user doesn't exist", () => {
+            it('returns a user not found error', () =>
+              contract.runRejectingExample({
+                states: [inState('Server is up'), inState('No users exist')],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'GET',
+                    path: '/users',
+                    query: { id: stateVariable('userId') },
+                  },
+                  response: {
+                    status: 404,
+                  },
+                }),
+                trigger: sendUserRequest('123'),
+                testErrorResponse: (e) => {
+                  expect(e).toBeInstanceOf(UserNotFoundConsumerError);
                 },
-              }),
-              trigger: sendUserRequest('123'),
-              testResponse: (health) => {
-                expect(contract.stripMatchers(responseBody)).toEqual({
-                  userId: '123',
-                });
-                expect(health).toEqual(contract.stripMatchers(responseBody));
-              },
-            }));
+              }));
+          });
         });
-        describe("when the user doesn't exist", () => {
-          it('returns a user not found error', () =>
-            contract.runRejectingExample({
-              states: [inState('Server is up'), inState('No users exist')],
-              definition: willSendHttpRequest({
-                request: {
-                  method: 'GET',
-                  path: stringPrefix('/users/', '123'),
+        describe('With path variables', () => {
+          const sendUserRequest =
+            (userId: string) => (config: HttpRequestConfig) =>
+              api(config.baseUrl).getUserByPath(userId);
+          describe('when the user exists', () => {
+            const responseBody = { userId: stateVariable('userId') };
+
+            it('returns an existing user', async () =>
+              contract.runExample({
+                states: [
+                  inState('Server is up'),
+                  inState('A user exists', { userId: '123' }),
+                ],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'GET',
+                    path: stringPrefix('/users/', stateVariable('userId')),
+                  },
+                  response: {
+                    status: 200,
+                    body: responseBody,
+                  },
+                }),
+                trigger: sendUserRequest('123'),
+                testResponse: (health) => {
+                  expect(contract.stripMatchers(responseBody)).toEqual({
+                    userId: '123',
+                  });
+                  expect(health).toEqual(contract.stripMatchers(responseBody));
                 },
-                response: {
-                  status: 404,
+              }));
+          });
+          describe("when the user doesn't exist", () => {
+            it('returns a user not found error', () =>
+              contract.runRejectingExample({
+                states: [inState('Server is up'), inState('No users exist')],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'GET',
+                    path: stringPrefix('/users/', '123'),
+                  },
+                  response: {
+                    status: 404,
+                  },
+                }),
+                trigger: sendUserRequest('123'),
+                testErrorResponse: (e) => {
+                  expect(e).toBeInstanceOf(UserNotFoundConsumerError);
                 },
-              }),
-              trigger: sendUserRequest('123'),
-              testErrorResponse: (e) => {
-                expect(e).toBeInstanceOf(UserNotFoundConsumerError);
-              },
-            }));
+              }));
+          });
         });
       });
     }
@@ -194,7 +250,8 @@ describe('e2e http consumer driven', () => {
 });
 
 describe('Server verification', () => {
-  // PROVIDER SETUP BOILERPLATE
+  // SERVER SETUP BOILERPLATE
+  // REPLACE WITH YOUR OWN SETUP CODE
   let server: http.Server;
   let mockHealthStatus = true;
   let mockGetUser: (id: string) => User | undefined = () => undefined;
@@ -223,13 +280,13 @@ describe('Server verification', () => {
         }
       })
   );
-  // END PROVIDER SETUP BOILERPLATE
+  // END SERVER SETUP BOILERPLATE
 
   verifyContract(
     readContract(FILENAME),
     {
-      baseUrlUnderTest: `http://localhost:${port}`,
-      printResults: false,
+      baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
+      printResults: false, // Remove this / set to true if you are copying this example
     },
     (verifier) => {
       const stateHandlers: StateHandlers = {

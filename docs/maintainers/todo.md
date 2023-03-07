@@ -62,7 +62,7 @@ Pact Parity
   - [x] Verify contract file
   - [ ] Error handling when the files don't exist
 - [x] Http Headers
-- [ ] Query strings
+- [x] Query strings
 - [ ] Crash messages
 - [ ] Helpers for setting up tests
 - [ ] Timeouts

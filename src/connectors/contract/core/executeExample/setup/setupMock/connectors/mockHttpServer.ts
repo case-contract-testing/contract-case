@@ -84,6 +84,7 @@ export const setupHttpResponseProducer = (
               method: req.method,
               path: req.path,
               body: req.body,
+              query: req.query,
               headers: req.headers,
             };
 
