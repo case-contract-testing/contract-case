@@ -3,6 +3,11 @@
     "consumerName": "Case",
     "providerName": "Pact Broker"
   },
+  "metadata": {
+    "case": {
+      "version": "0.3.0"
+    }
+  },
   "matcherLookup": {
     "variable:default:token": {
       "case:matcher:type": "CascadingContext",

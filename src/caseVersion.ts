@@ -1,3 +1,3 @@
 import packageJson from '../package.json';
 
-export const caseVersion = packageJson.version || 'UNKNOWN-VERSION';
+export const caseVersion: string = packageJson.version || 'UNKNOWN-VERSION';

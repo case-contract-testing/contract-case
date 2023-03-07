@@ -41,6 +41,7 @@ export type ExampleNames = {
 
 export interface ContractFile {
   description: ContractDescription;
+  metadata: Record<string, string | Record<string, string>>;
   matcherLookup: Record<string, AnyCaseNodeOrData>;
   examples: Array<CaseExample>;
 }

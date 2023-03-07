@@ -3,6 +3,11 @@
     "consumerName": "http response consumer",
     "providerName": "http response provider"
   },
+  "metadata": {
+    "case": {
+      "version": "0.2.0"
+    }
+  },
   "matcherLookup": {
     "matcher:a (200) response with body an object shaped like {status: \"up\"}": {
       "status": 200,
@@ -39,10 +44,7 @@
       "status": {
         "case:matcher:type": "HttpStatusCode",
         "case:matcher:example": 400,
-        "case:matcher:rule": [
-          "4XX",
-          "5XX"
-        ],
+        "case:matcher:rule": ["4XX", "5XX"],
         "case:matcher:resolvesTo": "HttpStatusCode"
       },
       "case:matcher:type": "HttpResponseMatcher"
@@ -221,10 +223,7 @@
             "status": {
               "case:matcher:type": "HttpStatusCode",
               "case:matcher:example": 400,
-              "case:matcher:rule": [
-                "4XX",
-                "5XX"
-              ],
+              "case:matcher:rule": ["4XX", "5XX"],
               "case:matcher:resolvesTo": "HttpStatusCode"
             },
             "case:matcher:type": "HttpResponseMatcher"

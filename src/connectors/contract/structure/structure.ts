@@ -1,3 +1,4 @@
+import { caseVersion } from '../../../caseVersion';
 import type {
   ContractDescription,
   ContractFile,
@@ -14,6 +15,7 @@ export const makeContract = (
   description: ContractDescription
 ): ContractFile => ({
   description,
+  metadata: { case: { version: caseVersion } },
   matcherLookup: {} as Record<string, AnyCaseNodeOrData>,
   examples: new Array<CaseExample>(),
 });

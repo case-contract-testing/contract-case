@@ -3,6 +3,11 @@
     "consumerName": "http response consumer",
     "providerName": "http response provider"
   },
+  "metadata": {
+    "case": {
+      "version": "0.3.0"
+    }
+  },
   "matcherLookup": {
     "matcher:a (200) response with body an object shaped like {status: \"up\"}": {
       "status": 200,
