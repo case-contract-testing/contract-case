@@ -71,9 +71,6 @@ const combineWithRoot = (
       ? foldIntoContext(caseNodeOrData, context)
       : context),
     ...runConfig,
-    ...(context['case:run:context:tree'] // Only put the tree in if it isn't there already
-      ? {}
-      : { 'case:run:context:tree': caseNodeOrData }),
     'case:currentRun:context:location': [
       ...context['case:currentRun:context:location'],
       `Test[${mockId}]`,

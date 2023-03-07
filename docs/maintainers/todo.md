@@ -174,7 +174,7 @@ Potential issues:
 
 Here I write notes to myself to make sure I don't miss anything
 
-- [ ] Do I need runcontext:tree? Maybe I can remove it.
+- [x] Do I need runcontext:tree? Maybe I can remove it.
 - [x] Review the invert contract logic, possibly this can be removed too - Update, it could
 - [ ] Make loggable context explicit instead of calculated - or, calculate it better.
 - [x] Fix issue with multiple values for the same variable
