@@ -33,7 +33,7 @@ jobs:
           CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true 
-      - run: npm publish
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         if: ${{ steps.release.outputs.release_created }}
