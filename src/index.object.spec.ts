@@ -4,6 +4,10 @@ import {
   objectEachValueMatches,
   stringContaining,
 } from './boundaries/dsl/Matchers';
+import { makeBrokerApi } from './connectors/contract/broker';
+import { writeContract } from './connectors/contract/writer';
+import { makeLogger } from './connectors/logger';
+import { resultPrinter } from './connectors/resultPrinter';
 import { makeNoErrorResult } from './entities/results';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
@@ -14,6 +18,10 @@ describe('basic types and structure checks', () => {
       consumerName: 'test object consumer',
       providerName: 'test object provider',
     },
+    resultPrinter,
+    makeLogger,
+    makeBrokerApi,
+    writeContract,
     MAINTAINER_TEST_CONTEXT
   );
 

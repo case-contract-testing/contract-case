@@ -7,7 +7,7 @@ export {
   WritingCaseContract as CaseContract,
   ReadingCaseContract as CaseVerifier,
 } from '../connectors/contract';
-export type { RunTestCallback } from '../connectors/contract/types';
+export type { RunTestCallback } from '../core/contract/executeExample/types';
 export type { AnyState } from '../entities/states/types';
 export type {
   AnyMockDescriptorType,

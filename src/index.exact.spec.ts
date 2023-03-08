@@ -1,4 +1,8 @@
 import { CaseContract } from './boundaries';
+import { makeBrokerApi } from './connectors/contract/broker';
+import { writeContract } from './connectors/contract/writer';
+import { makeLogger } from './connectors/logger';
+import { resultPrinter } from './connectors/resultPrinter';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 
@@ -8,6 +12,10 @@ describe('basic types and structure checks', () => {
       consumerName: 'test exact consumer',
       providerName: 'test exact provider',
     },
+    resultPrinter,
+    makeLogger,
+    makeBrokerApi,
+    writeContract,
     MAINTAINER_TEST_CONTEXT
   );
 

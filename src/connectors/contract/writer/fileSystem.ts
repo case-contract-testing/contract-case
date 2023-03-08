@@ -3,6 +3,10 @@ import slug from 'slug';
 
 import * as fs from 'fs';
 import * as path from 'path';
+
+import type { WriteContract } from '../../../core/contract/types';
+import { DEFAULT_CONFIG } from '../../../core/contract';
+
 import { CaseConfigurationError } from '../../../entities';
 import type {
   MatchContext,
@@ -10,7 +14,6 @@ import type {
   ContractDescription,
   ContractFile,
 } from '../../../entities/types';
-import { DEFAULT_CONFIG } from '../core';
 
 const checkCurrentRunField = <T extends MatchContext>(
   context: MatchContext,
@@ -73,7 +76,7 @@ const makePath = (
     makeFilename(description, config)
   );
 
-export const writeContract = (
+export const writeContract: WriteContract = (
   contract: ContractFile,
   context: MatchContext
 ): string => {

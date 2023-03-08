@@ -3,11 +3,15 @@ import { willSendHttpRequest } from './entities/nodes/mocks/http';
 import type { MatchResult } from './entities/types';
 import { makeNoErrorResult } from './entities/results';
 import { anyString, httpStatus, logLevel } from './boundaries/dsl/Matchers';
-import type { CaseConfig } from './connectors/contract/core/types';
+import type { CaseConfig } from './core/types';
 import { CaseConfigurationError, CaseFailedAssertionError } from './entities';
 import { CaseContract } from './boundaries';
 
 import start from './__tests__/server/http/index';
+import { makeBrokerApi } from './connectors/contract/broker';
+import { writeContract } from './connectors/contract/writer';
+import { makeLogger } from './connectors/logger';
+import { resultPrinter } from './connectors/resultPrinter';
 
 const expectErrorContaining = async (
   context: Promise<unknown>,
@@ -37,6 +41,10 @@ describe('simple get endpoint', () => {
       consumerName: 'http request consumer',
       providerName: 'http request provider',
     },
+    resultPrinter,
+    makeLogger,
+    makeBrokerApi,
+    writeContract,
     {
       testRunId: 'REQUEST',
       printResults: false,

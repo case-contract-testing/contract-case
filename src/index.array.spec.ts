@@ -15,6 +15,10 @@ import { makeNoErrorResult } from './entities/results';
 import { StripUnsupportedError } from './entities/errors/StripUnsupportedError';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
+import { makeBrokerApi } from './connectors/contract/broker';
+import { writeContract } from './connectors/contract/writer';
+import { makeLogger } from './connectors/logger';
+import { resultPrinter } from './connectors/resultPrinter';
 
 describe('basic types and structure checks', () => {
   const contract = new CaseContract(
@@ -22,6 +26,10 @@ describe('basic types and structure checks', () => {
       consumerName: 'test array consumer',
       providerName: 'test array provider',
     },
+    resultPrinter,
+    makeLogger,
+    makeBrokerApi,
+    writeContract,
     MAINTAINER_TEST_CONTEXT
   );
 

@@ -1,5 +1,9 @@
 import { anyNumber, anyString, namedMatch } from './boundaries/dsl/Matchers';
 import { WritingCaseContract } from './connectors/contract';
+import { makeBrokerApi } from './connectors/contract/broker';
+import { writeContract } from './connectors/contract/writer';
+import { makeLogger } from './connectors/logger';
+import { resultPrinter } from './connectors/resultPrinter';
 
 import { CaseConfigurationError } from './entities';
 import type { AnyCaseNodeOrData } from './entities/types';
@@ -12,6 +16,10 @@ describe('named matches', () => {
       consumerName: 'test lookup consumer',
       providerName: 'test lookup provider',
     },
+    resultPrinter,
+    makeLogger,
+    makeBrokerApi,
+    writeContract,
     MAINTAINER_TEST_CONTEXT
   );
 

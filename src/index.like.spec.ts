@@ -8,6 +8,10 @@ import {
   shapedLike,
 } from './boundaries/dsl/Matchers';
 import { WritingCaseContract } from './connectors/contract';
+import { makeBrokerApi } from './connectors/contract/broker';
+import { writeContract } from './connectors/contract/writer';
+import { makeLogger } from './connectors/logger';
+import { resultPrinter } from './connectors/resultPrinter';
 
 import { CaseConfigurationError } from './entities';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
@@ -19,6 +23,10 @@ describe('basic matchers', () => {
       consumerName: 'test like consumer',
       providerName: 'test like provider',
     },
+    resultPrinter,
+    makeLogger,
+    makeBrokerApi,
+    writeContract,
     MAINTAINER_TEST_CONTEXT
   );
 

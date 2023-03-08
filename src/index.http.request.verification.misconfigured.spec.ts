@@ -2,7 +2,7 @@
 import type * as http from 'node:http';
 
 import { readContract } from './connectors/contract/writer/fileSystem';
-import type { RunTestCallback } from './connectors/contract/types';
+import type { RunTestCallback } from './core/contract/executeExample/types';
 import type { StateHandlers } from './entities/states/types';
 
 import start from './__tests__/server/http/connectors/web';
@@ -12,6 +12,8 @@ import { CaseConfigurationError } from './entities';
 import type { Dependencies } from './__tests__/server/http/domain/types';
 
 import { CaseVerifier } from '.';
+import { resultPrinter } from './connectors/resultPrinter';
+import { makeLogger } from './connectors/logger';
 
 describe('Server verification', () => {
   let server: http.Server;
@@ -30,7 +32,7 @@ describe('Server verification', () => {
     'case-contracts/contract-for-incorrectly-configured-examples.json'
   );
 
-  const verifier = new CaseVerifier(contract, {
+  const verifier = new CaseVerifier(contract, resultPrinter, makeLogger, {
     baseUrlUnderTest: `http://localhost:${port}`,
     logLevel: 'none',
     printResults: false,
