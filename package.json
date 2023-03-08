@@ -2,6 +2,17 @@
   "name": "@case-contract-testing/case",
   "version": "0.3.0",
   "description": "Next-generation contract testing suite",
+  "keywords": [
+    "contract testing",
+    "testing",
+    "api",
+    "api testing",
+    "deployment confidence",
+    "http",
+    "consumer driven testing",
+    "pact broker",
+    "consumer driven contracts"
+  ],
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "scripts": {
@@ -13,7 +24,23 @@
     "format:fix": "npm run format:base -- --write ",
     "test": "jest"
   },
-  "author": "Timothy Jones",
+  "homepage": "https://github.com/TimothyJones/case#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TimothyJones/case.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TimothyJones/case/issues",
+    "email": "timothy.l.jones@gmail.com"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/TimothyJones"
+  },
+  "engines": {
+    "node": ">=14.21.2"
+  },
+  "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "license": "MIT",
   "devDependencies": {
     "@tsconfig/node16-strictest": "^1.0.3",
