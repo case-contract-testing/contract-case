@@ -12,6 +12,13 @@
 
 ## Todo list
 
+Next:
+
+- [ ] Broker download contracts (probably async contract?)
+- [ ] Make dependency object instead of passing each dependency separately
+- [ ] Write docs for initial setup
+- [ ] Broker publish results
+
 Completed
 
 - [x] Http produce request body matcher
