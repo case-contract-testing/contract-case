@@ -5,7 +5,6 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/TimothyJones/case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/TimothyJones/case?targetFile=package.json)
 
 [![npm](https://img.shields.io/npm/v/@case-contract-testing/case.svg)](https://www.npmjs.com/package/@case-contract-testing/case)
-[![bundle size](https://img.shields.io/bundlephobia/min/@case-contract-testing/case)](https://www.npmjs.com/package/@case-contract-testing/case)
 
 <span align="center">
 
