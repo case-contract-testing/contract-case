@@ -9,7 +9,7 @@
 
 <span align="center">
 
-![Case](/docs/suitcase.png)
+![Case](https://github.com/TimothyJones/case/raw/main/docs/suitcase.png)
 
 <sub>[Briefcase sticker created by Gohsantosadrive on Flaticon](https://www.flaticon.com/free-stickers/law)</sub>
 
