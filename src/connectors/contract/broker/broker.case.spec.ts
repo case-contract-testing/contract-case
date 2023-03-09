@@ -8,7 +8,7 @@ import {
   willSendHttpRequest,
 } from '../../../boundaries';
 import { defineContract } from '../../../boundaries/jest/jest';
-import { caseVersion } from '../../../caseVersion';
+import { caseVersion } from '../../../entities/caseVersion';
 import { CaseConfigurationError } from '../../../entities';
 import type { Logger } from '../../../entities/types';
 import { readContract } from '../writer';

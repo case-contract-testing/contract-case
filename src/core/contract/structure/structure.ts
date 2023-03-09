@@ -1,4 +1,4 @@
-import { caseVersion } from '../../../caseVersion';
+import { caseVersion } from '../../../entities/caseVersion';
 import type {
   ContractDescription,
   ContractData,

@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
 import { Console } from 'node:console';
-import { caseVersion } from '../../caseVersion';
+import { caseVersion } from '../../entities/caseVersion';
 import { shouldLog } from '../../entities/logger/shouldLog';
 import { locationString as formatLocationString } from '../../entities/context';
 import type { LogLevelContext, Logger } from '../../entities/types';
