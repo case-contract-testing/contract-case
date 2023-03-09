@@ -8,7 +8,7 @@ import {
   makeFailedExample,
 } from '../../entities/contract';
 import type {
-  ContractFile,
+  ContractData,
   LogLevelContext,
   Logger,
   CaseExample,
@@ -29,7 +29,7 @@ export class ReadingCaseContract extends BaseCaseContract {
   mutex: Mutex;
 
   constructor(
-    contractFile: ContractFile,
+    contractFile: ContractData,
     resultPrinter: ResultPrinter,
     makeLogger: (context: LogLevelContext) => Logger,
     config: CaseConfig = DEFAULT_CONFIG

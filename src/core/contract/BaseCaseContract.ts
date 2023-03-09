@@ -8,7 +8,7 @@ import {
 import { coreShapedLike } from '../../entities/nodes/matchers/auxillary';
 import { hasErrors } from '../../entities/results';
 import type {
-  ContractFile,
+  ContractData,
   MatchContext,
   ContractDescription,
   LogLevelContext,
@@ -36,7 +36,7 @@ import { configToRunContext, DEFAULT_CONFIG, DEFAULT_TEST_ID } from './config';
 import type { CaseConfig } from './config/types';
 
 export class BaseCaseContract {
-  currentContract: ContractFile;
+  currentContract: ContractData;
 
   initialContext: MatchContext;
 
@@ -149,7 +149,7 @@ export class BaseCaseContract {
   saveLookupableMatcher(
     namedMatcher: LookupableMatcher,
     context: MatchContextWithoutLookup
-  ): ContractFile {
+  ): ContractData {
     if (this.currentContract === undefined) {
       context.logger.error(
         'saveNamedMatcher was called without initialising the contract file. This should not be possible.'

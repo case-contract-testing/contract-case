@@ -3,7 +3,7 @@ import { versionFromGitTag } from 'absolute-version';
 import type { MakeBrokerApi, Broker } from '../../../core/contract/types';
 
 import { CaseConfigurationError } from '../../../entities';
-import type { ContextLogger, ContractFile } from '../../../entities/types';
+import type { ContextLogger, ContractData } from '../../../entities/types';
 
 import { makeAxiosConnector } from './axios';
 
@@ -45,7 +45,7 @@ export const makeBrokerApi: MakeBrokerApi = (
   const server = makeAxiosConnector(trimSlash(baseUrl), authToken);
 
   return {
-    publishContract: (contract: ContractFile, context: ContextLogger) => {
+    publishContract: (contract: ContractData, context: ContextLogger) => {
       const version = versionFromGitTag();
       context.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`

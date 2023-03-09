@@ -12,7 +12,7 @@ import type {
   MatchContext,
   MatchContextWithContractFileConfig,
   ContractDescription,
-  ContractFile,
+  ContractData,
 } from '../../../entities/types';
 
 const checkCurrentRunField = <T extends MatchContext>(
@@ -77,7 +77,7 @@ const makePath = (
   );
 
 export const writeContract: WriteContract = (
-  contract: ContractFile,
+  contract: ContractData,
   context: MatchContext
 ): string => {
   if (!isCaseContractConfig(context)) {
@@ -126,5 +126,5 @@ export const writeContract: WriteContract = (
   return pathToFile;
 };
 
-export const readContract = (pathToContract: string): ContractFile =>
+export const readContract = (pathToContract: string): ContractData =>
   JSON.parse(fs.readFileSync(pathToContract, 'utf-8'));

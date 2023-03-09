@@ -8,7 +8,7 @@ import type {
 } from '../../core/contract/executeExample/types';
 import { ReadingCaseContract } from '../../core/contract/ReadingCaseContract';
 
-import type { AnyMockDescriptorType, ContractFile } from '../../entities/types';
+import type { AnyMockDescriptorType, ContractData } from '../../entities/types';
 
 export class ContractVerifier {
   contract: ReadingCaseContract;
@@ -16,7 +16,7 @@ export class ContractVerifier {
   callback: RunTestCallback;
 
   constructor(
-    contractData: ContractFile,
+    contractData: ContractData,
     config: CaseConfig,
     callback: RunTestCallback
   ) {

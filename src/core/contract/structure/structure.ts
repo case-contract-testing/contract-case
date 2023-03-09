@@ -1,7 +1,7 @@
 import { caseVersion } from '../../../caseVersion';
 import type {
   ContractDescription,
-  ContractFile,
+  ContractData,
   AnyCaseNodeOrData,
   CaseExample,
   MatchContextWithoutLookup,
@@ -13,7 +13,7 @@ import { addLookup, findLookup } from './lookup/internals';
 
 export const makeContract = (
   description: ContractDescription
-): ContractFile => ({
+): ContractData => ({
   description,
   metadata: { case: { version: caseVersion } },
   matcherLookup: {} as Record<string, AnyCaseNodeOrData>,
@@ -21,31 +21,31 @@ export const makeContract = (
 });
 
 export const addExample = (
-  contract: ContractFile,
+  contract: ContractData,
   example: CaseExample,
   context: MatchContextWithoutLookup
-): ContractFile => ({
+): ContractData => ({
   ...contract,
   matcherLookup: addMock(contract.matcherLookup, example.mock, context),
   examples: [...contract.examples, example],
 });
 
-export const hasFailure = (contract: ContractFile): boolean =>
+export const hasFailure = (contract: ContractData): boolean =>
   contract.examples.find((example) => example.result === 'FAILED') !==
   undefined;
 
 export const findMatcher = (
-  contract: ContractFile,
+  contract: ContractData,
   uniqueName: string
 ): AnyCaseNodeOrData | undefined =>
   findLookup(contract.matcherLookup, 'matcher', uniqueName);
 
 export const addVariable = (
-  contract: ContractFile,
+  contract: ContractData,
   uniqueName: string,
   variable: AnyCaseNodeOrData,
   context: MatchContextWithoutLookup
-): ContractFile => ({
+): ContractData => ({
   ...contract,
   matcherLookup: addLookup(
     contract.matcherLookup,
@@ -58,7 +58,7 @@ export const addVariable = (
 });
 
 export const findVariable = (
-  contract: ContractFile,
+  contract: ContractData,
   uniqueName: string
 ): AnyCaseNodeOrData | undefined => {
   const stateVariable = findLookup(
@@ -73,10 +73,10 @@ export const findVariable = (
 };
 
 export const addLookupableMatcher = (
-  contract: ContractFile,
+  contract: ContractData,
   matcher: LookupableMatcher,
   context: MatchContextWithoutLookup
-): ContractFile => ({
+): ContractData => ({
   ...contract,
   matcherLookup: addMatcher(contract.matcherLookup, matcher, context),
   examples: [...contract.examples],

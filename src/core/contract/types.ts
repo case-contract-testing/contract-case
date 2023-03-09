@@ -1,5 +1,5 @@
 import type {
-  ContractFile,
+  ContractData,
   ContextLogger,
   MatchContext,
 } from '../../entities/types';
@@ -13,12 +13,12 @@ export type MakeBrokerApi = (
 
 export interface Broker {
   publishContract: (
-    contract: ContractFile,
+    contract: ContractData,
     context: ContextLogger
   ) => Promise<unknown>;
 }
 
 export type WriteContract = (
-  contract: ContractFile,
+  contract: ContractData,
   context: MatchContext
 ) => string;

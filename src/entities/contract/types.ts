@@ -39,7 +39,7 @@ export type ExampleNames = {
   responseName: string;
 };
 
-export interface ContractFile {
+export interface ContractData {
   description: ContractDescription;
   metadata: Record<string, string | Record<string, string>>;
   matcherLookup: Record<string, AnyCaseNodeOrData>;

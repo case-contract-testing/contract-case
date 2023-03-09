@@ -1,6 +1,6 @@
 import type { CaseConfig } from '../../core/types';
 import type { RunTestCallback } from '../../core/contract/executeExample/types';
-import type { AnyMockDescriptorType, ContractFile } from '../../entities/types';
+import type { AnyMockDescriptorType, ContractData } from '../../entities/types';
 import { ContractDefiner } from '../../connectors/contract/ContractDefiner';
 import { ContractVerifier } from '../../connectors/contract/ContractVerifier';
 import type {
@@ -42,7 +42,7 @@ export const defineContract = <T extends AnyMockDescriptorType>(
   });
 
 export const verifyContract = (
-  contract: ContractFile,
+  contract: ContractData,
   config: CaseConfig,
   callback: VerifiyCaseJestCallback
 ): void =>
