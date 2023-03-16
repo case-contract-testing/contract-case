@@ -19,13 +19,13 @@ on many of the lessons from maintaining the excellent [Pact](pact.io) contract t
 framework. It is our belief that contract testing is the best way to get
 deployment confidence for your applications and services.
 
-Full documentation coming soon
-
 Case releases follow [semantic versioning](https://semver.org/), with two additional restrictions:
 
 1. Before 1.0.0, Case is in Beta, and the API is considered unstable. Breaking changes will be indicated in minor
    version bumps- that is, 0.2.0 and 0.3.0 are not entirely compatible.
 2. Patch versions will always be backwards compatible.
+
+Read the [documentation here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md)
 
 ## Caveats and limitations
 
@@ -50,7 +50,7 @@ contracts. However, the following caveats should be kept in mind:
 1. Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
 1. There isn't much documentation at the moment. If you want to get started immediately, we recommend starting with either the [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts), or the [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts). Make sure you remove `printResults: false`.
 
-You can follow the detailled progress by reading the [maintainer todo list](./docs/maintainers/todo.md). These caveats will be updated as progress is made.
+You can follow the detailed progress by reading the [maintainer todo list](./docs/maintainers/todo.md). These caveats will be updated as progress is made.
 
 ### I'm fine with all the caveats, how do I get started?
 
@@ -103,8 +103,10 @@ We plan for Case to always be compatible with both of these brokers.
 3. Documentation (in progress)
 4. RELEASE BETA (done)
 5. Support Python, C# and Go
-6. Arbitrary combinations of req/resp pairs, incidentally including native SQS support
-7. Passthrough APIs
+6. Arbitrary combinations of request/response pairs, incidentally including native SQS support
+7. Pass-through APIs
 8. Plugins and arbitrary extensions
 
 For the gory details, you can see the implementation notebook / todo list [here](docs/maintainers/todo.md)
+
+<!--- cspell:dictionaries !html --->
