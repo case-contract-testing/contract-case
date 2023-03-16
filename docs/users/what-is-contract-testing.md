@@ -7,7 +7,7 @@ then contract testing is for you.
 
 <span align="center">
 
-!["A small API change had massive ramifications" - Elon Musk](https://github.com/TimothyJones/case/raw/main/docs/users/motivating-tweet.png)
+!["A small API change had massive ramifications" - Elon Musk](https://github.com/TimothyJones/case/raw/main/docs/users/motivating-tweet-small.jpg)
 
 </span>
 
