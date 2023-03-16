@@ -14,6 +14,8 @@
 
 </span>
 
+Read the [documentation here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md).
+
 Case is a next-generation consumer-driven contract testing framework, building
 on many of the lessons from maintaining the excellent [Pact](pact.io) contract testing
 framework. It is our belief that contract testing is the best way to get
@@ -24,8 +26,6 @@ Case releases follow [semantic versioning](https://semver.org/), with two additi
 1. Before 1.0.0, Case is in Beta, and the API is considered unstable. Breaking changes will be indicated in minor
    version bumps- that is, 0.2.0 and 0.3.0 are not entirely compatible.
 2. Patch versions will always be backwards compatible.
-
-Read the [documentation here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md)
 
 ## Caveats and limitations
 
@@ -49,7 +49,8 @@ contracts. However, the following caveats should be kept in mind:
 1. Case currently doesn't support reporting your results to a broker.
 1. Case currently doesn't support retrieving your contracts from a broker.
 1. Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
-1. Incomplete [documentation is here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md). If you want to get started immediately, we recommend starting with either the [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts), or the [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts). Make sure you remove `printResults: false`.
+1. Incomplete [documentation is here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md). At least one new page will be added every time a breaking change is released during the beta period.
+1. If you want to get started immediately, we recommend starting with either the [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts), or the [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts). Make sure you remove `printResults: false`.
 
 You can follow the detailed progress by reading the [maintainer todo list](./docs/maintainers/todo.md). These caveats will be updated as progress is made.
 
