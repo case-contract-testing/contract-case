@@ -10,7 +10,7 @@ import {
 import { defineContract } from '../../../boundaries/jest/jest';
 import { caseVersion } from '../../../entities/caseVersion';
 import { CaseConfigurationError } from '../../../entities';
-import type { Logger } from '../../../entities/types';
+import type { Logger, MatchContext } from '../../../entities/types';
 import { readContract } from '../writer';
 import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { makeBrokerApi } from './broker';
@@ -44,6 +44,15 @@ const uploadingContract = readContract(
   'case-contracts/contract-for-broker-upload-test.json'
 );
 
+const makeBrokerApiForTest = (
+  url: string | undefined,
+  token: string | undefined
+) =>
+  makeBrokerApi({
+    'case:currentRun:context:brokerCiAccessToken': token,
+    'case:currentRun:context:brokerBaseUrl': url,
+  } as MatchContext);
+
 describe('broker client', () => {
   beforeAll(() => {
     // Delete the contract file first
@@ -67,26 +76,26 @@ describe('broker client', () => {
       describe('publish contract', () => {
         describe('with missing configuration', () => {
           it('fails with no token', () => {
-            expect(() => makeBrokerApi('http://localhost', '')).toThrow(
+            expect(() => makeBrokerApiForTest('http://localhost', '')).toThrow(
               CaseConfigurationError
             );
           });
           it('fails with no baseUrl', () => {
-            expect(() => makeBrokerApi('', 'TOKEN')).toThrow(
+            expect(() => makeBrokerApiForTest('', 'TOKEN')).toThrow(
               CaseConfigurationError
             );
           });
 
           it('fails with a non-string baseUrl', () => {
             expect(() =>
-              makeBrokerApi(3 as unknown as string, 'TOKEN')
+              makeBrokerApiForTest(3 as unknown as string, 'TOKEN')
             ).toThrow(CaseConfigurationError);
           });
 
           it('fails with a non-string token', () => {
-            expect(() => makeBrokerApi('s', 3 as unknown as string)).toThrow(
-              CaseConfigurationError
-            );
+            expect(() =>
+              makeBrokerApiForTest('s', 3 as unknown as string)
+            ).toThrow(CaseConfigurationError);
           });
         });
 
@@ -112,7 +121,7 @@ describe('broker client', () => {
                 response: { status: 200 },
               }),
               trigger: (config) =>
-                makeBrokerApi(
+                makeBrokerApiForTest(
                   config.baseUrl,
                   config.variables['token'] as string
                 ).publishContract(uploadingContract, emptyContext),
@@ -148,7 +157,7 @@ describe('broker client', () => {
                 response: { status: 403 },
               }),
               trigger: (config) =>
-                makeBrokerApi(
+                makeBrokerApiForTest(
                   config.baseUrl,
                   config.variables['invalidToken'] as string
                 ).publishContract(uploadingContract, emptyContext),

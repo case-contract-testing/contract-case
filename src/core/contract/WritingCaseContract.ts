@@ -150,7 +150,7 @@ export class WritingCaseContract extends BaseCaseContract {
     const fileName = this.writeContract(this.currentContract, writingContext);
     writingContext.logger.debug(`Wrote contract file: ${fileName}`);
 
-    return this.makeBrokerApi().publishContract(
+    return this.makeBrokerApi(writingContext).publishContract(
       this.currentContract,
       addLocation('PublishingContract', this.initialContext)
     );

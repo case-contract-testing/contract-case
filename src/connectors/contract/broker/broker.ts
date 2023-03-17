@@ -3,7 +3,11 @@ import { versionFromGitTag } from 'absolute-version';
 import type { MakeBrokerApi, Broker } from '../../../core/contract/types';
 
 import { CaseConfigurationError } from '../../../entities';
-import type { ContextLogger, ContractData } from '../../../entities/types';
+import type {
+  ContextLogger,
+  ContractData,
+  MatchContext,
+} from '../../../entities/types';
 
 import { makeAxiosConnector } from './axios';
 
@@ -15,9 +19,12 @@ const trimSlash = (str: string): string => {
 };
 
 export const makeBrokerApi: MakeBrokerApi = (
-  baseUrl: string | undefined = process.env['CASE_BROKER_BASEURL'],
-  authToken: string | undefined = process.env['CASE_BROKER_CI_TOKEN']
+  configContext: MatchContext
 ): Broker => {
+  const authToken =
+    configContext['case:currentRun:context:brokerCiAccessToken'];
+  const baseUrl = configContext['case:currentRun:context:brokerBaseUrl'];
+
   if (authToken === undefined || authToken === '') {
     throw new CaseConfigurationError(
       "Can't access a broker without an authorization token. Set the environment variable CASE_BROKER_CI_TOKEN"
@@ -45,9 +52,12 @@ export const makeBrokerApi: MakeBrokerApi = (
   const server = makeAxiosConnector(trimSlash(baseUrl), authToken);
 
   return {
-    publishContract: (contract: ContractData, context: ContextLogger) => {
+    publishContract: (
+      contract: ContractData,
+      publishContext: ContextLogger
+    ) => {
       const version = versionFromGitTag();
-      context.logger.debug(
+      publishContext.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
       );
 
@@ -57,11 +67,11 @@ export const makeBrokerApi: MakeBrokerApi = (
         contract.description.consumerName
       )}/version/${encodeURIComponent(version)}`;
 
-      context.logger.maintainerDebug(`Publish path is: ${path}`);
+      publishContext.logger.maintainerDebug(`Publish path is: ${path}`);
 
-      return server.authedPut(path, contract, context).then((d) => {
-        context.logger.debug(`Published successfully`);
-        context.logger.deepMaintainerDebug(
+      return server.authedPut(path, contract, publishContext).then((d) => {
+        publishContext.logger.debug(`Published successfully`);
+        publishContext.logger.deepMaintainerDebug(
           `Published result was`,
           JSON.stringify(d)
         );

@@ -18,6 +18,16 @@ export type BaseCaseConfig = {
   contractFilename?: string;
   testRunId: string;
   printResults: boolean;
+
+  /**
+   * The access token to use for the contract broker. Must have CI scope
+   */
+  brokerCiAccessToken?: string;
+
+  /**
+   * The base URL for the contract broker
+   */
+  brokerBaseUrl?: string;
 };
 
 // TODO figure out a better way to get all the config in here

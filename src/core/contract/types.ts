@@ -6,10 +6,7 @@ import type {
 
 export { CaseConfig } from './config/types';
 
-export type MakeBrokerApi = (
-  baseUrl?: string | undefined,
-  authToken?: string | undefined
-) => Broker;
+export type MakeBrokerApi = (context: MatchContext) => Broker;
 
 export interface Broker {
   publishContract: (

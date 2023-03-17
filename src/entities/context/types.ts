@@ -145,6 +145,9 @@ export interface RunContext
   'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
   'case:currentRun:context:printResults': boolean;
   'case:currentRun:context:variables': Record<string, AnyCaseNodeOrData>;
+  // TODO: These are from CaseConfig and should be auto generated
+  'case:currentRun:context:brokerCiAccessToken'?: string;
+  'case:currentRun:context:brokerBaseUrl'?: string;
 }
 
 export interface MatchContextByType {
