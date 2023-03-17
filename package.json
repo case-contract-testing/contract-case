@@ -1,6 +1,6 @@
 {
   "name": "@case-contract-testing/case",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Next-generation contract testing suite",
   "keywords": [
     "case",

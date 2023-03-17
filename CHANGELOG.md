@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.4.0](https://github.com/TimothyJones/case/compare/v0.3.0...v0.4.0) (2023-03-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rename ContractFile type ContractData
+
+### Features
+
+* Add case version metadata to contract file ([479c27b](https://github.com/TimothyJones/case/commit/479c27bd73d260dc5813d61bc71c7bd7e0fcce88))
+
+
+### Code Refactoring
+
+* Rename ContractFile type ContractData ([0329b6c](https://github.com/TimothyJones/case/commit/0329b6c62c9e9f691721426c4fae1aa2e85d4d64))
+
 ## [0.3.0](https://github.com/TimothyJones/case/compare/v0.2.0...v0.3.0) (2023-03-07)
 
 
