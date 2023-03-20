@@ -1,8 +1,7 @@
 import type { CaseConfig } from '../../core/types';
 import type { RunTestCallback } from '../../core/executeExample/types';
 import type { AnyMockDescriptorType, ContractData } from '../../entities/types';
-import { ContractDefiner } from '../../connectors/contract/ContractDefiner';
-import { ContractVerifier } from '../../connectors/contract/ContractVerifier';
+import { ContractDefiner, ContractVerifier } from '../../connectors';
 import type {
   CaseJestConfig,
   DefineCaseJestCallback,

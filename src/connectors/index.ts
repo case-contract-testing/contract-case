@@ -1,1 +1,1 @@
-export * as contractFile from './contract';
+export * from './contract';
