@@ -12,7 +12,7 @@ import type { ResultPrinter } from '../../entities/results/types';
 export const MATCH_BY_TYPE = 'type' as const;
 export const MATCH_BY_EXACT = 'exact' as const;
 
-export const SERIALIABLE_TO_JSON = 'json' as const;
+export const SERIALISABLE_TO_JSON = 'json' as const;
 
 export interface RawLookupFns {
   lookupMatcher: (
@@ -101,7 +101,7 @@ export type MatchContextWithContractFileConfig = MatchContext &
 export type DefaultContext = HasLocation &
   LogLevelContext & {
     'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
-    'case:context:serialisableTo': typeof SERIALIABLE_TO_JSON;
+    'case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
     'case:currentRun:context:contractMode': 'write' | 'read';
     'case:currentRun:context:printResults': boolean;
   };
