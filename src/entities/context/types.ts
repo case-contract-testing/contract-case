@@ -93,10 +93,10 @@ export interface ContractFileConfig {
   'case:currentRun:context:testRunId': string;
   'case:currentRun:context:contractDir': string;
   'case:currentRun:context:contractFilename'?: string;
+  'case:currentRun:context:overwriteFile'?: boolean;
 }
 
-export type MatchContextWithContractFileConfig = MatchContext &
-  ContractFileConfig;
+export type HasContractFileConfig = DataContext & ContractFileConfig;
 
 export type DefaultContext = HasLocation &
   LogLevelContext & {
@@ -115,8 +115,18 @@ export interface HasBaseUrlUnderTest {
   'case:currentRun:context:baseUrlUnderTest': string;
 }
 
+/**
+ * RunContext exists distinct from CaseConfig, as it allows us to have internal configuration properties that aren't exposed
+ *
+ * @internal
+ */
 export interface RunContext
-  extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest> {
+  extends Partial<
+    InjectableContext &
+      LogLevelContext &
+      HasBaseUrlUnderTest &
+      ContractFileConfig
+  > {
   'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
   'case:currentRun:context:printResults': boolean;
   'case:currentRun:context:variables': Record<string, AnyCaseNodeOrData>;

@@ -118,7 +118,7 @@ describe('broker client', () => {
                     )
                   ),
                   headers: {
-                    accept: 'application/json',
+                    accept: 'application/hal+json',
                     authorization: stringPrefix(
                       'Bearer ',
                       stateVariable('token')
@@ -132,6 +132,7 @@ describe('broker client', () => {
                       {
                         deployedOrReleased: true,
                       },
+                      { latest: true },
                     ],
                     providerVersionTags: ['main'],
                   },
@@ -169,7 +170,7 @@ describe('broker client', () => {
                 makeBrokerApiForTest(
                   config.baseUrl,
                   config.variables['token'] as string
-                ).forVerification(
+                ).urlsForVerification(
                   config.variables['providerName'] as string,
                   emptyContext
                 ),

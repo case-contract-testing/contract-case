@@ -4,7 +4,7 @@ import type { LogContext } from '../../../../entities/types';
 import { unmarshallSuccess, unmarshallFailure } from './marshaller';
 
 type HttpConnector = {
-  authedGet: <T>(path: string) => Promise<T>;
+  authedGet: <T>(path?: string) => Promise<T>;
   authedPut: <T, R>(
     path: string,
     content: T,
@@ -25,7 +25,7 @@ export const makeAxiosConnector = (
   baseurl: string,
   authToken: string
 ): HttpConnector => ({
-  authedGet: (path) =>
+  authedGet: (path = '') =>
     axios
       .get(`${baseurl}${path}`, {
         headers: {
@@ -52,7 +52,7 @@ export const makeAxiosConnector = (
     return axios
       .post(`${baseurl}${path}`, content, {
         headers: {
-          Accept: 'application/json',
+          Accept: 'application/hal+json',
           Authorization: `Bearer ${authToken}`,
         },
       })

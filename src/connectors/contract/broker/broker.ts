@@ -1,3 +1,5 @@
+// We need to allow underscores because they're part of the HAL response
+/* eslint-disable no-underscore-dangle */
 import { versionFromGitTag } from 'absolute-version';
 
 import type { MakeBrokerApi, Broker } from '../../../core/contract/types';
@@ -80,7 +82,10 @@ export const makeBrokerApi: MakeBrokerApi = (
       });
     },
 
-    forVerification: (serviceName: string, logContext: LogContext) => {
+    downloadContract: (url: string) =>
+      makeAxiosConnector(url, authToken).authedGet(),
+
+    urlsForVerification: (serviceName: string, logContext: LogContext) => {
       logContext.logger.debug(
         `Finding contracts to verify for service '${serviceName}' on broker at ${baseUrl}`
       );
@@ -101,25 +106,25 @@ export const makeBrokerApi: MakeBrokerApi = (
               {
                 deployedOrReleased: true,
               },
+              { latest: true },
             ],
             providerVersionTags: ['main'],
           },
           logContext
         )
         .then((d) => {
-          logContext.logger.maintainerDebug(
+          logContext.logger.deepMaintainerDebug(
             `Pacts for verification responded with`,
             JSON.stringify(d, undefined, 2)
           );
 
-          // eslint-disable-next-line no-underscore-dangle
           const numPacts = d._embedded.pacts.length;
 
           logContext.logger.debug(
-            `Broker returned ${numPacts} possible contracts for verification`
+            `Broker returned ${numPacts} URLs to possible contracts for verification`
           );
 
-          return d;
+          return d._embedded.pacts.map((contract) => contract._links.self);
         });
     },
   };

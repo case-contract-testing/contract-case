@@ -1,4 +1,5 @@
 {
+  "contractType": "case::contract",
   "description": {
     "consumerName": "http response consumer",
     "providerName": "http response provider"

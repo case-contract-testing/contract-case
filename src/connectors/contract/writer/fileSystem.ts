@@ -9,14 +9,14 @@ import { DEFAULT_CONFIG } from '../../../core/contract';
 
 import { CaseConfigurationError } from '../../../entities';
 import type {
-  MatchContext,
-  MatchContextWithContractFileConfig,
+  HasContractFileConfig,
   ContractDescription,
   ContractData,
+  DataContext,
 } from '../../../entities/types';
 
-const checkCurrentRunField = <T extends MatchContext>(
-  context: MatchContext,
+const checkCurrentRunField = <T extends DataContext>(
+  context: DataContext,
   configName: string
 ) => {
   const maybeCaseContractConfig = context as T;
@@ -47,8 +47,8 @@ const checkCurrentRunField = <T extends MatchContext>(
 };
 
 const isCaseContractConfig = (
-  context: MatchContext
-): context is MatchContextWithContractFileConfig =>
+  context: DataContext
+): context is HasContractFileConfig =>
   ['testRunId', 'contractDir']
     .map((field) => checkCurrentRunField(context, field))
     .reduce((acc, curr) => acc && curr, true);
@@ -59,7 +59,7 @@ const escapeFileName = (pathString: string) => filenamify(pathString);
 
 const makeFilename = (
   description: ContractDescription,
-  config: MatchContextWithContractFileConfig
+  config: HasContractFileConfig
 ) =>
   escapeFileName(
     `${slug(`${description.consumerName}-${description.providerName}`)}-${
@@ -69,7 +69,7 @@ const makeFilename = (
 
 const makePath = (
   description: ContractDescription,
-  config: MatchContextWithContractFileConfig
+  config: HasContractFileConfig
 ) =>
   path.join(
     config['case:currentRun:context:contractDir'],
@@ -78,7 +78,7 @@ const makePath = (
 
 export const writeContract: WriteContract = (
   contract: ContractData,
-  context: MatchContext
+  context: DataContext
 ): string => {
   if (!isCaseContractConfig(context)) {
     throw new CaseConfigurationError(
@@ -86,7 +86,7 @@ export const writeContract: WriteContract = (
     );
   }
   if (
-    context['case:currentRun:context:contractFilename'] !== 'undefined' &&
+    context['case:currentRun:context:contractFilename'] !== undefined &&
     context['case:currentRun:context:contractDir'] !==
       DEFAULT_CONFIG.contractDir
   ) {
@@ -104,7 +104,10 @@ export const writeContract: WriteContract = (
     : makePath(contract.description, context);
 
   context.logger.maintainerDebug(`About to write contract to '${pathToFile}'`);
-  if (fs.existsSync(pathToFile)) {
+  if (
+    fs.existsSync(pathToFile) &&
+    !context['case:currentRun:context:overwriteFile']
+  ) {
     context.logger.error(
       `Can't write to '${pathToFile}, as it already exists'`
     );

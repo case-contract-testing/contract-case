@@ -1,4 +1,5 @@
 {
+  "contractType": "case::contract",
   "description": {
     "consumerName": "Case",
     "providerName": "Pact Broker"
@@ -72,7 +73,7 @@
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "matcher:an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"}": {
+    "matcher:an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with a body with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"}": {
       "method": "POST",
       "path": {
         "case:matcher:type": "UrlEncodedString",
@@ -94,7 +95,7 @@
         "case:matcher:resolvesTo": "string"
       },
       "headers": {
-        "accept": "application/json",
+        "accept": "application/hal+json",
         "authorization": {
           "case:matcher:type": "StringPrefix",
           "case:matcher:prefix": "Bearer ",
@@ -112,6 +113,9 @@
           },
           {
             "deployedOrReleased": true
+          },
+          {
+            "latest": true
           }
         ],
         "providerVersionTags": [
@@ -221,7 +225,7 @@
       "mock": {
         "request": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"}",
+          "case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with a body with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"}",
           "case:matcher:child": {
             "method": "POST",
             "path": {
@@ -244,7 +248,7 @@
               "case:matcher:resolvesTo": "string"
             },
             "headers": {
-              "accept": "application/json",
+              "accept": "application/hal+json",
               "authorization": {
                 "case:matcher:type": "StringPrefix",
                 "case:matcher:prefix": "Bearer ",
@@ -262,6 +266,9 @@
                 },
                 {
                   "deployedOrReleased": true
+                },
+                {
+                  "latest": true
                 }
               ],
               "providerVersionTags": [

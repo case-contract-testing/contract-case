@@ -6,7 +6,7 @@ export const API_NOT_AUTHORISED = 'API_NOT_AUTHORISED';
 export class ApiError extends Error {
   code: string;
 
-  constructor(message = 'An API error occured', code = API_ERROR) {
+  constructor(message = 'An API error occurred', code = API_ERROR) {
     super(message);
 
     // Maintains proper stack trace for where our error was thrown (only available on V8)

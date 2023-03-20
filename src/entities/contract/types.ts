@@ -40,6 +40,7 @@ export type ExampleNames = {
 };
 
 export interface ContractData {
+  contractType: 'case::contract';
   description: ContractDescription;
   metadata: Record<string, string | Record<string, string>>;
   matcherLookup: Record<string, AnyCaseNodeOrData>;

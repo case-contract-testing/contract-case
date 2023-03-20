@@ -1,7 +1,7 @@
 const MESSAGE = 'Failed while verifying object returned by trigger:';
 
 export class VerifyTriggerReturnObjectError extends Error {
-  cause: unknown;
+  override cause: unknown;
 
   constructor(cause: unknown) {
     const maybeError = cause as Error;

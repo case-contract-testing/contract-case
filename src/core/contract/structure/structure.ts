@@ -14,6 +14,7 @@ import { addLookup, findLookup } from './lookup/internals';
 export const makeContract = (
   description: ContractDescription
 ): ContractData => ({
+  contractType: 'case::contract',
   description,
   metadata: { case: { version: caseVersion } },
   matcherLookup: {} as Record<string, AnyCaseNodeOrData>,
