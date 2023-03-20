@@ -49,7 +49,6 @@
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "license": "MIT",
   "devDependencies": {
-    "@tsconfig/node-lts-strictest": "^18.12.1",
     "@types/express": "^4.17.14",
     "@types/jest": "^29.4.0",
     "@types/qs": "^6.9.7",
@@ -69,7 +68,7 @@
     "rimraf": "^4.1.2",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
-    "typescript": "^4.8.3"
+    "typescript": "5.0.2"
   },
   "peerDependencies": {
     "jest": "^29.4.3"

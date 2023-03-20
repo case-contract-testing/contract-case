@@ -1,14 +1,30 @@
 {
-  "extends": "@tsconfig/node-lts-strictest/tsconfig.json",
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "outDir": "./dist/",
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "declaration": true,
+    "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2022"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
-    "strict": true,
-    "rootDir": ".",
-    "allowJs": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./dist/",
     "resolveJsonModule": true,
-    "declaration": true
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2022"
   },
-
+  "display": "Node LTS + Strictest",
   "exclude": ["jest.config.ts", "dist/**/*.js", "example/*", "coverage", "dist"]
 }
