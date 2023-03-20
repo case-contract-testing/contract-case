@@ -6,6 +6,7 @@ import {
   stateVariable,
   stringPrefix,
   stringSuffix,
+  uriEncodedString,
   willSendHttpRequest,
 } from '../../../boundaries';
 import { defineContract } from '../../../boundaries/jest/jest';
@@ -105,11 +106,13 @@ describe('broker client', () => {
               definition: willSendHttpRequest({
                 request: {
                   method: 'POST',
-                  path: stringPrefix(
-                    `/pacts/provider/`,
-                    stringSuffix(
-                      stateVariable('providerName'),
-                      '/for-verification'
+                  path: uriEncodedString(
+                    stringPrefix(
+                      `/pacts/provider/`,
+                      stringSuffix(
+                        stateVariable('providerName'),
+                        '/for-verification'
+                      )
                     )
                   ),
                   headers: {

@@ -3,9 +3,11 @@ import type {
   CoreHttpRequestMatcher,
   CoreHttpResponseMatcher,
   CoreHttpStatusCodeMatcher,
+  CoreUrlEncodedStringMatcher,
   HTTP_REQUEST_MATCHER_TYPE,
   HTTP_RESPONSE_MATCHER_TYPE,
   HTTP_STATUS_CODE_MATCHER_TYPE,
+  URL_ENCODED_STRING_TYPE,
 } from './http/types';
 
 export * from './http/types';
@@ -52,7 +54,8 @@ export type AnyCaseNodeType =
   | typeof STRING_PREFIX_TYPE
   | typeof STRING_SUFFIX_TYPE
   | typeof OBJECT_KEYS_MATCH_TYPE
-  | typeof CONTEXT_VARIABLE_TYPE;
+  | typeof CONTEXT_VARIABLE_TYPE
+  | typeof URL_ENCODED_STRING_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -254,7 +257,8 @@ export type AnyCaseMatcher =
   | CoreArrayContainsMatch
   | CoreStringSuffixMatcher
   | CoreStringPrefixMatcher
-  | CoreContextVariableMatcher;
+  | CoreContextVariableMatcher
+  | CoreUrlEncodedStringMatcher;
 
 export type HasExample<T extends AnyCaseMatcher> = T & {
   'case:matcher:example': unknown;

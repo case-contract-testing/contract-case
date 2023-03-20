@@ -1,0 +1,458 @@
+{
+  "description": {
+    "consumerName": "Case",
+    "providerName": "Pact Broker"
+  },
+  "metadata": {
+    "case": {
+      "version": "0.4.0"
+    }
+  },
+  "matcherLookup": {
+    "variable:default:token": {
+      "case:matcher:type": "CascadingContext",
+      "case:matcher:child": {
+        "case:matcher:type": "CascadingContext",
+        "case:matcher:child": "TOKEN",
+        "case:context:matchBy": "type"
+      },
+      "case:context:matchBy": "type"
+    },
+    "variable:default:providerName": {
+      "case:matcher:type": "CascadingContext",
+      "case:matcher:child": {
+        "case:matcher:type": "CascadingContext",
+        "case:matcher:child": "http request provider",
+        "case:context:matchBy": "type"
+      },
+      "case:context:matchBy": "type"
+    },
+    "matcher:a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array shaped like [an object shaped like {verificationProperties: an object shaped like {notices: an array shaped like [an object shaped like {text: \"This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'\"}] and an array of length min: 1, max: 1;},_links: an object shaped like {self: an object shaped like {href: \"http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a\",name: \"Pact between Foo (v1.0.0) and Bar\"}}}] and an array of length min: 1, max: 1;},_links: an object shaped like {self: an object shaped like {href: \"http://localhost:9292/pacts/provider/Bar/for-verification\",title: \"Pacts to be verified\"}}}": {
+      "status": 200,
+      "body": {
+        "_embedded": {
+          "pacts": [
+            {
+              "verificationProperties": {
+                "notices": [
+                  {
+                    "text": "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'"
+                  }
+                ]
+              },
+              "_links": {
+                "self": {
+                  "href": "http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a",
+                  "name": "Pact between Foo (v1.0.0) and Bar"
+                }
+              }
+            }
+          ]
+        },
+        "_links": {
+          "self": {
+            "href": "http://localhost:9292/pacts/provider/Bar/for-verification",
+            "title": "Pacts to be verified"
+          }
+        }
+      },
+      "case:matcher:type": "HttpResponseMatcher"
+    },
+    "matcher:an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"}": {
+      "method": "POST",
+      "path": {
+        "case:matcher:type": "UrlEncodedString",
+        "case:matcher:child": {
+          "case:matcher:type": "StringPrefix",
+          "case:matcher:prefix": "/pacts/provider/",
+          "case:matcher:suffix": {
+            "case:matcher:type": "StringSuffix",
+            "case:matcher:prefix": {
+              "case:matcher:type": "ContextVariable",
+              "case:matcher:variableName": "providerName"
+            },
+            "case:matcher:suffix": "/for-verification",
+            "case:matcher:resolvesTo": "string"
+          },
+          "case:matcher:resolvesTo": "string"
+        },
+        "case:matcher:accepts": "string",
+        "case:matcher:resolvesTo": "string"
+      },
+      "headers": {
+        "accept": "application/json",
+        "authorization": {
+          "case:matcher:type": "StringPrefix",
+          "case:matcher:prefix": "Bearer ",
+          "case:matcher:suffix": {
+            "case:matcher:type": "ContextVariable",
+            "case:matcher:variableName": "token"
+          },
+          "case:matcher:resolvesTo": "string"
+        }
+      },
+      "body": {
+        "consumerVersionSelectors": [
+          {
+            "mainBranch": true
+          },
+          {
+            "deployedOrReleased": true
+          }
+        ],
+        "providerVersionTags": [
+          "main"
+        ]
+      },
+      "case:matcher:type": "HttpRequestMatcher"
+    },
+    "matcher:a (200) response without a body": {
+      "status": 200,
+      "case:matcher:type": "HttpResponseMatcher"
+    },
+    "matcher:an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"}": {
+      "method": "PUT",
+      "path": {
+        "case:matcher:type": "StringPrefix",
+        "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0",
+        "case:matcher:suffix": {
+          "case:matcher:type": "MatchString",
+          "case:matcher:example": "someString",
+          "case:matcher:resolvesTo": "string",
+          "case:context:matchBy": "type"
+        },
+        "case:matcher:resolvesTo": "string"
+      },
+      "headers": {
+        "accept": "application/json",
+        "authorization": {
+          "case:matcher:type": "StringPrefix",
+          "case:matcher:prefix": "Bearer ",
+          "case:matcher:suffix": {
+            "case:matcher:type": "ContextVariable",
+            "case:matcher:variableName": "token"
+          },
+          "case:matcher:resolvesTo": "string"
+        }
+      },
+      "case:matcher:type": "HttpRequestMatcher"
+    },
+    "variable:default:invalidToken": {
+      "case:matcher:type": "CascadingContext",
+      "case:matcher:child": {
+        "case:matcher:type": "CascadingContext",
+        "case:matcher:child": "TOKEN",
+        "case:context:matchBy": "type"
+      },
+      "case:context:matchBy": "type"
+    },
+    "matcher:a (403) response without a body": {
+      "status": 403,
+      "case:matcher:type": "HttpResponseMatcher"
+    },
+    "matcher:an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"}": {
+      "method": "PUT",
+      "path": {
+        "case:matcher:type": "StringPrefix",
+        "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0",
+        "case:matcher:suffix": {
+          "case:matcher:type": "MatchString",
+          "case:matcher:example": "someString",
+          "case:matcher:resolvesTo": "string",
+          "case:context:matchBy": "type"
+        },
+        "case:matcher:resolvesTo": "string"
+      },
+      "headers": {
+        "accept": "application/json",
+        "authorization": {
+          "case:matcher:type": "StringPrefix",
+          "case:matcher:prefix": "Bearer ",
+          "case:matcher:suffix": {
+            "case:matcher:type": "ContextVariable",
+            "case:matcher:variableName": "invalidToken"
+          },
+          "case:matcher:resolvesTo": "string"
+        }
+      },
+      "case:matcher:type": "HttpRequestMatcher"
+    }
+  },
+  "examples": [
+    {
+      "states": [
+        {
+          "case:state:type": "StateWithVariables",
+          "stateName": "auth token is valid",
+          "variables": {
+            "token": {
+              "case:matcher:type": "CascadingContext",
+              "case:matcher:child": "TOKEN",
+              "case:context:matchBy": "type"
+            }
+          }
+        },
+        {
+          "case:state:type": "StateWithVariables",
+          "stateName": "withProviderName",
+          "variables": {
+            "providerName": {
+              "case:matcher:type": "CascadingContext",
+              "case:matcher:child": "http request provider",
+              "case:context:matchBy": "type"
+            }
+          }
+        }
+      ],
+      "mock": {
+        "request": {
+          "case:matcher:type": "Lookup",
+          "case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"}",
+          "case:matcher:child": {
+            "method": "POST",
+            "path": {
+              "case:matcher:type": "UrlEncodedString",
+              "case:matcher:child": {
+                "case:matcher:type": "StringPrefix",
+                "case:matcher:prefix": "/pacts/provider/",
+                "case:matcher:suffix": {
+                  "case:matcher:type": "StringSuffix",
+                  "case:matcher:prefix": {
+                    "case:matcher:type": "ContextVariable",
+                    "case:matcher:variableName": "providerName"
+                  },
+                  "case:matcher:suffix": "/for-verification",
+                  "case:matcher:resolvesTo": "string"
+                },
+                "case:matcher:resolvesTo": "string"
+              },
+              "case:matcher:accepts": "string",
+              "case:matcher:resolvesTo": "string"
+            },
+            "headers": {
+              "accept": "application/json",
+              "authorization": {
+                "case:matcher:type": "StringPrefix",
+                "case:matcher:prefix": "Bearer ",
+                "case:matcher:suffix": {
+                  "case:matcher:type": "ContextVariable",
+                  "case:matcher:variableName": "token"
+                },
+                "case:matcher:resolvesTo": "string"
+              }
+            },
+            "body": {
+              "consumerVersionSelectors": [
+                {
+                  "mainBranch": true
+                },
+                {
+                  "deployedOrReleased": true
+                }
+              ],
+              "providerVersionTags": [
+                "main"
+              ]
+            },
+            "case:matcher:type": "HttpRequestMatcher"
+          }
+        },
+        "response": {
+          "case:matcher:type": "Lookup",
+          "case:matcher:uniqueName": "a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array shaped like [an object shaped like {verificationProperties: an object shaped like {notices: an array shaped like [an object shaped like {text: \"This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'\"}] and an array of length min: 1, max: 1;},_links: an object shaped like {self: an object shaped like {href: \"http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a\",name: \"Pact between Foo (v1.0.0) and Bar\"}}}] and an array of length min: 1, max: 1;},_links: an object shaped like {self: an object shaped like {href: \"http://localhost:9292/pacts/provider/Bar/for-verification\",title: \"Pacts to be verified\"}}}",
+          "case:matcher:child": {
+            "status": 200,
+            "body": {
+              "_embedded": {
+                "pacts": [
+                  {
+                    "verificationProperties": {
+                      "notices": [
+                        {
+                          "text": "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'"
+                        }
+                      ]
+                    },
+                    "_links": {
+                      "self": {
+                        "href": "http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a",
+                        "name": "Pact between Foo (v1.0.0) and Bar"
+                      }
+                    }
+                  }
+                ]
+              },
+              "_links": {
+                "self": {
+                  "href": "http://localhost:9292/pacts/provider/Bar/for-verification",
+                  "title": "Pacts to be verified"
+                }
+              }
+            },
+            "case:matcher:type": "HttpResponseMatcher"
+          }
+        },
+        "case:mock:type": "MockHttpServer",
+        "case:run:context:setup": {
+          "write": {
+            "type": "MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "case:state:type": "StateWithVariables",
+          "stateName": "auth token is valid",
+          "variables": {
+            "token": {
+              "case:matcher:type": "CascadingContext",
+              "case:matcher:child": "TOKEN",
+              "case:context:matchBy": "type"
+            }
+          }
+        }
+      ],
+      "mock": {
+        "request": {
+          "case:matcher:type": "Lookup",
+          "case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"}",
+          "case:matcher:child": {
+            "method": "PUT",
+            "path": {
+              "case:matcher:type": "StringPrefix",
+              "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0",
+              "case:matcher:suffix": {
+                "case:matcher:type": "MatchString",
+                "case:matcher:example": "someString",
+                "case:matcher:resolvesTo": "string",
+                "case:context:matchBy": "type"
+              },
+              "case:matcher:resolvesTo": "string"
+            },
+            "headers": {
+              "accept": "application/json",
+              "authorization": {
+                "case:matcher:type": "StringPrefix",
+                "case:matcher:prefix": "Bearer ",
+                "case:matcher:suffix": {
+                  "case:matcher:type": "ContextVariable",
+                  "case:matcher:variableName": "token"
+                },
+                "case:matcher:resolvesTo": "string"
+              }
+            },
+            "case:matcher:type": "HttpRequestMatcher"
+          }
+        },
+        "response": {
+          "case:matcher:type": "Lookup",
+          "case:matcher:uniqueName": "a (200) response without a body",
+          "case:matcher:child": {
+            "status": 200,
+            "case:matcher:type": "HttpResponseMatcher"
+          }
+        },
+        "case:mock:type": "MockHttpServer",
+        "case:run:context:setup": {
+          "write": {
+            "type": "MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "case:state:type": "StateWithVariables",
+          "stateName": "auth token is not valid",
+          "variables": {
+            "invalidToken": {
+              "case:matcher:type": "CascadingContext",
+              "case:matcher:child": "TOKEN",
+              "case:context:matchBy": "type"
+            }
+          }
+        }
+      ],
+      "mock": {
+        "request": {
+          "case:matcher:type": "Lookup",
+          "case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"}",
+          "case:matcher:child": {
+            "method": "PUT",
+            "path": {
+              "case:matcher:type": "StringPrefix",
+              "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0",
+              "case:matcher:suffix": {
+                "case:matcher:type": "MatchString",
+                "case:matcher:example": "someString",
+                "case:matcher:resolvesTo": "string",
+                "case:context:matchBy": "type"
+              },
+              "case:matcher:resolvesTo": "string"
+            },
+            "headers": {
+              "accept": "application/json",
+              "authorization": {
+                "case:matcher:type": "StringPrefix",
+                "case:matcher:prefix": "Bearer ",
+                "case:matcher:suffix": {
+                  "case:matcher:type": "ContextVariable",
+                  "case:matcher:variableName": "invalidToken"
+                },
+                "case:matcher:resolvesTo": "string"
+              }
+            },
+            "case:matcher:type": "HttpRequestMatcher"
+          }
+        },
+        "response": {
+          "case:matcher:type": "Lookup",
+          "case:matcher:uniqueName": "a (403) response without a body",
+          "case:matcher:child": {
+            "status": 403,
+            "case:matcher:type": "HttpResponseMatcher"
+          }
+        },
+        "case:mock:type": "MockHttpServer",
+        "case:run:context:setup": {
+          "write": {
+            "type": "MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    }
+  ],
+  "consumer": {
+    "name": "Case"
+  },
+  "provider": {
+    "name": "Pact Broker"
+  }
+}

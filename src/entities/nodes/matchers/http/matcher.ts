@@ -9,6 +9,7 @@ import {
   HTTP_REQUEST_MATCHER_TYPE,
   HTTP_RESPONSE_MATCHER_TYPE,
   HTTP_STATUS_CODE_MATCHER_TYPE,
+  URL_ENCODED_STRING_TYPE,
 } from './types';
 import { validateCodes } from './validator';
 
@@ -39,10 +40,11 @@ export const httpResponseMatcher = (
   'case:matcher:type': HTTP_RESPONSE_MATCHER_TYPE,
 });
 
-export const urlEncodedString = (
+export const coreUrlEncodedString = (
   child: AnyCaseNodeOrData
 ): CoreUrlEncodedStringMatcher => ({
-  'case:matcher:type': HTTP_STATUS_CODE_MATCHER_TYPE,
+  'case:matcher:type': URL_ENCODED_STRING_TYPE,
   'case:matcher:child': child,
   'case:matcher:accepts': 'string',
+  'case:matcher:resolvesTo': 'string',
 });

@@ -1,5 +1,10 @@
 import { httpStatusCodeMatcher } from '../../../entities';
-import type { CoreHttpStatusCodeMatcher } from '../../../entities/types';
+import { coreUrlEncodedString } from '../../../entities/nodes/matchers/http/matcher';
+import type {
+  AnyCaseNodeOrData,
+  CoreHttpStatusCodeMatcher,
+  CoreUrlEncodedStringMatcher,
+} from '../../../entities/types';
 
 /**
  * Matches http status codes. Matches may be provided as a string, eg '4XX' or '401', or a number.
@@ -21,3 +26,17 @@ export const httpStatus = (
   }
   return httpStatusCodeMatcher(`${match}`, example);
 };
+
+/**
+ * Convenience matcher to treat the string as a uri encoded string. Useful in `path` segments.
+ *
+ * During matching, the actual value is decoded with `decodeUriComponent()` and passed to the child matcher.
+ *
+ *
+ * @param child Any string matcher or literal string
+ */
+export const uriEncodedString = (
+  child: AnyCaseNodeOrData
+): CoreUrlEncodedStringMatcher =>
+  // TODO: Check here that the child matcher will accept a string
+  coreUrlEncodedString(child);

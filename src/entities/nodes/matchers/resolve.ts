@@ -8,7 +8,7 @@ export const mustResolveToString = (
   const stripped = context.descendAndStrip(matcher, context);
   if (typeof stripped !== 'string') {
     throw new CaseCoreError(
-      'Provided matcher did not resolve to a string',
+      `Provided matcher did not resolve to a string. Instead, it resolved to: ${stripped}`,
       context
     );
   }

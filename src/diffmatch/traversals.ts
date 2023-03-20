@@ -65,11 +65,23 @@ const descendAndStrip = <T extends AnyCaseNodeType>(
     matcherOrData !== null &&
     'case:matcher:example' in matcherOrData
   ) {
+    parentMatchContext.logger.deepMaintainerDebug(
+      `Executing strip with matcher type: ${matcherOrData['case:matcher:type']} and specific example`
+    );
     return getExecutor(
       matcherOrData['case:matcher:example'],
       parentMatchContext
     ).strip();
   }
+  parentMatchContext.logger.deepMaintainerDebug(
+    `Executing strip with matcher ${
+      typeof matcherOrData === 'object' &&
+      matcherOrData !== null &&
+      'case:matcher:type' in matcherOrData
+        ? `type: ${matcherOrData['case:matcher:type']}`
+        : `inferred from ${typeof matcherOrData}`
+    }`
+  );
   return getExecutor(matcherOrData, parentMatchContext).strip();
 };
 

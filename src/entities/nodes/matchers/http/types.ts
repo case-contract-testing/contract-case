@@ -7,12 +7,13 @@ import type {
 export const HTTP_STATUS_CODE_MATCHER_TYPE = 'HttpStatusCode' as const;
 export const HTTP_RESPONSE_MATCHER_TYPE = 'HttpResponseMatcher' as const;
 export const HTTP_REQUEST_MATCHER_TYPE = 'HttpRequestMatcher' as const;
-export const URL_ENCODED_STRING = 'UrlEncodedString' as const;
+export const URL_ENCODED_STRING_TYPE = 'UrlEncodedString' as const;
 
 export interface CoreUrlEncodedStringMatcher {
-  'case:matcher:type': typeof HTTP_STATUS_CODE_MATCHER_TYPE;
+  'case:matcher:type': typeof URL_ENCODED_STRING_TYPE;
   'case:matcher:child': AnyCaseNodeOrData;
   'case:matcher:accepts': 'string';
+  'case:matcher:resolvesTo': 'string';
 }
 
 export interface CoreHttpStatusCodeMatcher {

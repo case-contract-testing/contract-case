@@ -23,6 +23,7 @@ import {
   CONTEXT_VARIABLE_TYPE,
   STRING_PREFIX_TYPE,
   STRING_SUFFIX_TYPE,
+  URL_ENCODED_STRING_TYPE,
 } from '../entities/types';
 import {
   NumberMatcher,
@@ -37,6 +38,7 @@ import {
   CascadingContext,
   ContextVariableMatcher,
   LookupMatcher,
+  UrlEncodedStringMatcher,
 } from './meta';
 import {
   ShapedArrayExecutor,
@@ -79,4 +81,5 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [INTEGER_MATCH_TYPE]: IntegerMatcher,
     [OBJECT_KEYS_MATCH_TYPE]: ObjectEachKeyMatches,
     [CONTEXT_VARIABLE_TYPE]: ContextVariableMatcher,
+    [URL_ENCODED_STRING_TYPE]: UrlEncodedStringMatcher,
   };
