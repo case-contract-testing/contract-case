@@ -64,7 +64,7 @@ npm install --save-dev jest@^29.4.3
 
 ## For Pact users
 
-> _TODO: Pull this section out and expand into detailled documentation_
+> _TODO: Pull this section out and expand into detailed documentation_
 
 Case is intended to solve some of the pain points when using Pact - if
 you are not hitting those pain points, there is no need to switch to using Case (unless
