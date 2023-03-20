@@ -1,11 +1,11 @@
-import type { MatchContextData } from '../../entities/context/types';
+import type { DataContext } from '../../entities/context/types';
 import type { AnyCaseMatcher } from '../../entities/types';
 
-const locationString = (matchContext: MatchContextData) =>
+const locationString = (matchContext: DataContext) =>
   `(at ${matchContext['case:currentRun:context:location'].join('.')})`;
 
 export class StripUnsupportedError extends Error {
-  constructor(matcher: AnyCaseMatcher, context: MatchContextData) {
+  constructor(matcher: AnyCaseMatcher, context: DataContext) {
     super(
       `Matchers of type '${
         matcher['case:matcher:type']

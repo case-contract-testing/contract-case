@@ -1,12 +1,12 @@
 import { locationString } from './context';
-import type { MatchContextData } from './types';
+import type { DataContext } from './types';
 
 const mockContextWithLocation = (location: string[]) =>
   ({
     // This is a little dirty, as the test really shouldn't know the structure
     // This should be fixed later
     'case:currentRun:context:location': location,
-  } as MatchContextData);
+  } as DataContext);
 
 describe('location string function', () => {
   it.each([

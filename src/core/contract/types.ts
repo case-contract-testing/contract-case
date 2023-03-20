@@ -1,22 +1,23 @@
 import type {
   ContractData,
-  ContextLogger,
+  DataContext,
+  LogContext,
   MatchContext,
 } from '../../entities/types';
 
 export { CaseConfig } from './config/types';
 
-export type MakeBrokerApi = (context: MatchContext) => Broker;
+export type MakeBrokerApi = (context: DataContext) => Broker;
 
 export interface Broker {
   publishContract: (
     contract: ContractData,
-    context: ContextLogger
+    context: LogContext
   ) => Promise<unknown>;
 
   forVerification: (
     serviceName: string,
-    context: ContextLogger
+    context: LogContext
   ) => Promise<unknown>;
 }
 

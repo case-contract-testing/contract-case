@@ -6,7 +6,7 @@ import {
 } from '../../../../../../entities';
 import { addLocation } from '../../../../../../entities/context';
 import {
-  type MatchContextData,
+  type DataContext,
   type HasBaseUrlUnderTest,
   type MatchContext,
   type HttpRequestData,
@@ -18,7 +18,7 @@ import {
 import { makeAssertionsOn } from './assert/assert';
 
 const isHasBaseUrl = (
-  context: Partial<MatchContextData>
+  context: Partial<DataContext>
 ): context is HasBaseUrlUnderTest =>
   'case:currentRun:context:baseUrlUnderTest' in context &&
   context['case:currentRun:context:baseUrlUnderTest'] !== undefined &&
@@ -83,7 +83,7 @@ export const setupHttpResponseConsumer = (
     const { body, method, path, headers, query } = expectedRequest;
 
     return validateConfig(parentContext).then(
-      (run: MatchContextData & HasBaseUrlUnderTest) => ({
+      (run: DataContext & HasBaseUrlUnderTest) => ({
         config: {
           'case:mock:type': MOCK_HTTP_CLIENT,
           variables: parentContext['case:currentRun:context:variables'],

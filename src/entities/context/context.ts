@@ -8,6 +8,7 @@ import type {
   ContractLookupFns,
   MatchContextWithoutLookup,
   ResultPrinter,
+  DataContext,
 } from '../../entities/types';
 import type {
   MatchContext,
@@ -80,16 +81,13 @@ const combineWithRoot = (
   return updateFunctions(newContext);
 };
 
-export const constructInitialContext = (
-  traversals: TraversalFns,
+export const constructDataContext = (
   makeLogger: (c: LogLevelContext) => Logger,
-  makeLookup: (c: MatchContextWithoutLookup) => ContractLookupFns,
   resultPrinter: ResultPrinter,
   runConfig: Partial<RunContext>
-): MatchContext => {
+): DataContext => {
   const context = {
     makeLogger,
-    ...traversals,
     ...DEFAULT_CONTEXT,
     'case:currentRun:context:location': [],
     'case:currentRun:context:testName': 'OUTSIDE_TESTS' as const,
@@ -101,12 +99,29 @@ export const constructInitialContext = (
     ...context,
     logger: makeLogger(context),
     resultPrinter,
-    makeLookup,
   };
 
   return {
     ...logContext,
-    ...makeLookup(logContext),
+  };
+};
+
+export const constructMatchContext = (
+  traversals: TraversalFns,
+  makeLogger: (c: LogLevelContext) => Logger,
+  makeLookup: (c: MatchContextWithoutLookup) => ContractLookupFns,
+  resultPrinter: ResultPrinter,
+  runConfig: Partial<RunContext>
+): MatchContext => {
+  const context = {
+    ...traversals,
+    ...constructDataContext(makeLogger, resultPrinter, runConfig),
+    makeLookup,
+  };
+
+  return {
+    ...context,
+    ...makeLookup(context),
   };
 };
 

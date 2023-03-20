@@ -4,9 +4,9 @@ import type { MakeBrokerApi, Broker } from '../../../core/contract/types';
 
 import { CaseConfigurationError } from '../../../entities';
 import type {
-  ContextLogger,
+  LogContext,
   ContractData,
-  MatchContext,
+  DataContext,
 } from '../../../entities/types';
 
 import { makeAxiosConnector } from './axios';
@@ -23,7 +23,7 @@ const trimSlash = (str: string): string => {
 };
 
 export const makeBrokerApi: MakeBrokerApi = (
-  configContext: MatchContext
+  configContext: DataContext
 ): Broker => {
   const authToken =
     configContext['case:currentRun:context:brokerCiAccessToken'];
@@ -56,7 +56,7 @@ export const makeBrokerApi: MakeBrokerApi = (
   const server = makeAxiosConnector(trimSlash(baseUrl), authToken);
 
   return {
-    publishContract: (contract: ContractData, logContext: ContextLogger) => {
+    publishContract: (contract: ContractData, logContext: LogContext) => {
       const version = versionFromGitTag();
       logContext.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
@@ -80,7 +80,7 @@ export const makeBrokerApi: MakeBrokerApi = (
       });
     },
 
-    forVerification: (serviceName: string, logContext: ContextLogger) => {
+    forVerification: (serviceName: string, logContext: LogContext) => {
       logContext.logger.debug(
         `Finding contracts to verify for service '${serviceName}' on broker at ${baseUrl}`
       );

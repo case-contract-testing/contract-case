@@ -76,34 +76,9 @@ export interface TraversalFns {
   ) => ReturnType<MatcherExecutor<T>['check']>;
 }
 
-export interface ContextLogger {
-  logger: Logger;
-  resultPrinter: ResultPrinter;
-  makeLogger: (m: LogLevelContext) => Logger;
-}
-
-export type MatchContext = DefaultContext &
-  Partial<InjectableContext> &
-  Partial<ContractFileConfig> &
-  HasLocation &
-  RunContext &
-  LogLevelContext &
-  TraversalFns &
-  ContextLogger &
-  ContractLookupFns &
-  HasMakeLookupFn;
-
 export type HasLocation = {
   'case:currentRun:context:location': Array<string>;
 };
-
-export type MatchContextData = Omit<
-  MatchContext,
-  | keyof ContextLogger
-  | keyof TraversalFns
-  | keyof ContractLookupFns
-  | keyof HasMakeLookupFn
->;
 
 export type MatchContextWithoutLookup = Omit<
   MatchContext,
@@ -161,3 +136,22 @@ export interface MatchContextByExact {
 export interface HttpTestContext {
   baseUrl: string;
 }
+
+export interface LogContext {
+  logger: Logger;
+  resultPrinter: ResultPrinter;
+  makeLogger: (m: LogLevelContext) => Logger;
+}
+
+export type DataContext = DefaultContext &
+  Partial<InjectableContext> &
+  Partial<ContractFileConfig> &
+  HasLocation &
+  RunContext &
+  LogLevelContext &
+  LogContext;
+
+export type MatchContext = DataContext &
+  TraversalFns &
+  ContractLookupFns &
+  HasMakeLookupFn;

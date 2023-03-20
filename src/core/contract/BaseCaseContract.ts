@@ -2,7 +2,7 @@ import { traversals } from '../../diffmatch';
 
 import { CaseConfigurationError, CaseCoreError } from '../../entities';
 import {
-  constructInitialContext,
+  constructMatchContext,
   applyNodeToContext,
 } from '../../entities/context';
 import { coreShapedLike } from '../../entities/nodes/matchers/auxillary';
@@ -76,7 +76,7 @@ export class BaseCaseContract {
         contractFns.lookupVariable(name, context),
     });
 
-    this.initialContext = constructInitialContext(
+    this.initialContext = constructMatchContext(
       traversals,
       makeLogger,
       makeLookup,
