@@ -20,12 +20,12 @@ export const errorWhen = (
 /**
  * This represents a mismatched matcher
  *
- * @param matcher The matcher that generated this error
- * @param message The message that describes this error
- * @param actual The actual value that was recieved
- * @param context The match context this occurred in
- * @param expected An optional expected value (might be a description of what was expected)
- * @returns
+ * @param matcher - The matcher that generated this error
+ * @param message - The message that describes this error
+ * @param actual - The actual value that was recieved
+ * @param context - The match context this occurred in
+ * @param expected - An optional expected value (might be a description of what was expected)
+ * @returns CaseError
  */
 export const matchingError = (
   matcher: AnyCaseMatcher,
@@ -51,14 +51,14 @@ export const matchingError = (
 /**
  * This represents a mismatch during a case execution that isn't covered by a
  * matcher (usually this is a misconfiguration that is not well described by a
- * {@link ../../entities/errors/#CaseConfigurationError | CaseConfigurationError})
+ * {@link ../../entities/errors#CaseConfigurationError | CaseConfigurationError})
  *
- * @param message The message that describes this error
- * @param actual The actual value that was recieved
- * @param code A code that can be looked up in the documentation
- * @param context The match context this occurred in
- * @param expected An optional expected value (might be a description of what was expected)
- * @returns @type CaseError
+ * @param message - The message that describes this error
+ * @param actual - The actual value that was recieved
+ * @param code - A code that can be looked up in the documentation
+ * @param context - The match context this occurred in
+ * @param expected - An optional expected value (might be a description of what was expected)
+ * @returns CaseError
  */
 export const failedExpectationError = (
   message: string,
@@ -80,8 +80,8 @@ export const failedExpectationError = (
  * This represents an error thrown by user code during execution of an example
  * (eg, when a user's trigger is called)
  *
- * @param error The error thrown
- * @param context the context that the error was in
+ * @param error - The error thrown
+ * @param context - the context that the error was in
  * @returns ExecutionError
  */
 export const executionError = (
@@ -98,8 +98,8 @@ export const executionError = (
  * This represents an error thrown during verification using the provided
  * verification function
  *
- * @param error The VerifyTriggerReturnObjectError from the verification
- * @param context the context that the error was in
+ * @param error - The VerifyTriggerReturnObjectError from the verification
+ * @param context - the context that the error was in
  * @returns VerificationError
  */
 export const verificationError = (

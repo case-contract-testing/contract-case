@@ -16,11 +16,11 @@ import type {
   StringMatcher,
 } from './types';
 /**
- * Matches a number.
+ * Matches any number.
  *
  * When in a JSON match context, this will be following [RFC 8259 JSON](https://www.rfc-editor.org/rfc/rfc8259) - ie, not NaN or Infinity
  *
- * @param example An example number
+ * @param example - An example number
  */
 export const anyNumber = (example = 1.1): NumberMatcher => ({
   ...coreNumberMatcher(example),
@@ -28,9 +28,9 @@ export const anyNumber = (example = 1.1): NumberMatcher => ({
 });
 
 /**
- * Matches an integer.
+ * Matches any integer.
  *
- * @param example An example number
+ * @param example - An example integer
  */
 export const anyInteger = (example = 1): CoreAndCombinationMatcher =>
   and(coreIntegerMatcher(example), anyNumber(example));
@@ -38,7 +38,7 @@ export const anyInteger = (example = 1): CoreAndCombinationMatcher =>
 /**
  * Matches any string.
  *
- * @param example An example string
+ * @param example - An example string
  */
 export const anyString = (example = 'someString'): StringMatcher => ({
   ...coreStringMatcher(example),
@@ -48,7 +48,7 @@ export const anyString = (example = 'someString'): StringMatcher => ({
 /**
  * Matches any Boolean.
  *
- * @param example An example boolean
+ * @param example - An example boolean
  */
 export const anyBoolean = (example = true): BooleanMatcher => ({
   'case:matcher:type': BOOLEAN_MATCHER_TYPE,
@@ -62,7 +62,7 @@ export const anyBoolean = (example = true): BooleanMatcher => ({
  *
  * You don't actually need this matcher, you can just use the literal `null`
  *
- * @param example An example null
+ * @param example - An example null
  */
 export const anyNull = (example = null): NullMatcher => ({
   'case:matcher:type': NULL_MATCHER_TYPE,

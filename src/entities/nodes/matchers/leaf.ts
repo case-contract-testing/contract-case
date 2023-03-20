@@ -14,7 +14,7 @@ import {
 /**
  * Matches a number following [RFC 8259 JSON](https://www.rfc-editor.org/rfc/rfc8259).
  *
- * @param example Any floating point number, not infinity, not NaN.
+ * @param example - Any floating point number, not infinity, not NaN.
  * @returns
  */
 export const coreNumberMatcher = (example: number): CoreNumberMatcher => ({

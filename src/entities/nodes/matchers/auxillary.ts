@@ -33,7 +33,7 @@ export const coreAndMatcher = (
  *
  * Use this to switch out of the default `exactlyLike` matching.
  *
- * @param content The example object, array, primitive or matcher to match against
+ * @param content - The example object, array, primitive or matcher to match against
  */
 export const coreShapedLike = (
   content: AnyCaseNodeOrData

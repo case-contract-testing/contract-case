@@ -18,7 +18,7 @@ type ArrayLengthOptions = { minLength?: number; maxLength?: number };
 /**
  * Matches an array where each element matches the provided matcher.
  *
- * @param matcher The example object, array, primitive or matcher to match against
+ * @param matcher - The example object, array, primitive or matcher to match against
  */
 export const arrayEachEntryMatches = (
   matcher: AnyCaseNodeOrData,
@@ -32,7 +32,7 @@ export const arrayEachEntryMatches = (
 /**
  * Matches an Array whose length is within a certain range.
  *
- * @param options `ArrayLengthOptions { minLength?: number; maxLength?: number }`
+ * @param options - `ArrayLengthOptions { minLength?: number; maxLength?: number }`
  */
 export const arrayLength = (
   options: ArrayLengthOptions
@@ -51,9 +51,11 @@ export const arrayLength = (
 };
 
 /**
- * Matches an Array which contains elements that match the given matchers
+ * Matches an Array which contains elements that match the given matchers.
  *
- * @param matchers
+ * Note that two different matchers may be satisfied by the same item in the array.
+ *
+ * @param matchers - any number of matchers, each of which must be found inside the array.
  */
 export const arrayContains = (
   ...matchers: AnyCaseNodeOrData[]
@@ -65,7 +67,7 @@ export const arrayContains = (
 /**
  * Matches an Array which starts with the provided array
  *
- * @param matchers
+ * @param matchers - An array of matchers that describes the start of the array
  */
 export const arrayStartsWith = (
   matchers: AnyCaseNodeOrData[]

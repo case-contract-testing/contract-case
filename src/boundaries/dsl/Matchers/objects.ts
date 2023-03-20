@@ -9,8 +9,8 @@ import {
 /**
  * Matches an object where each value matches the provided matcher.
  *
- * @param matcher The object, array, primitive or matcher to match against
- * @param example An example object that passes this matcher
+ * @param matcher - The object, array, primitive or matcher to match against
+ * @param example - An example object that passes this matcher
  */
 export const objectEachValueMatches = (
   matcher: AnyCaseNodeOrData,
@@ -24,8 +24,8 @@ export const objectEachValueMatches = (
 /**
  * Matches an object where each key matches the provided matcher.
  *
- * @param matcher The matcher that all keys must pass
- * @param exampleKey An example key that passes this matcher
+ * @param matcher - The matcher that all keys must pass
+ * @param exampleKey - An example key that passes this matcher
  */
 export const objectEachKeyMatches = (
   matcher: AnyCaseNodeOrData,

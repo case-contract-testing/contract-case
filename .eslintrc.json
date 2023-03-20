@@ -8,7 +8,7 @@
     "airbnb-typescript/base",
     "prettier"
   ],
-  "plugins": ["import", "@typescript-eslint"],
+  "plugins": ["import", "@typescript-eslint", "eslint-plugin-tsdoc"],
   "settings": {
     "import/resolver": {
       "typescript": {
@@ -23,6 +23,7 @@
   },
   "ignorePatterns": ["jest.config.ts"],
   "rules": {
+    "tsdoc/syntax": "error",
     "camelcase": "off",
     "no-console": "error",
     "import/prefer-default-export": "off",
