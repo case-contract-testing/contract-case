@@ -14,7 +14,7 @@
 
 </span>
 
-Read the [documentation here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md).
+Read the [documentation here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md). Documentation is currently in-progress. Feedback welcome!
 
 Case is a next-generation consumer-driven contract testing framework, building
 on many of the lessons from maintaining the excellent [Pact](pact.io) contract testing
@@ -27,27 +27,22 @@ Case releases follow [semantic versioning](https://semver.org/), with two additi
    version bumps- that is, 0.2.0 and 0.3.0 are not entirely compatible.
 2. Patch versions will always be backwards compatible.
 
-## Caveats and limitations
-
 Breaking changes will always be detailed in the [changelog](./CHANGELOG.md)
+
+## Caveats and limitations
 
 **WARNING: THE API IS UNSTABLE AND MAY CHANGE BETWEEN MINOR VERSIONS**
 
-Work in progress, use at your own risk.
-
-The API is considered unstable because we'd like to ensure that it's ergonomic
-and intuitive for users. Feedback on the Case API / DSL and (especially) naming
-conventions very welcome.
-
 Case is now available and should work for both client and server driven http/https
-contracts. However, the following caveats should be kept in mind:
+contracts. Feedback on the Case API / DSL and (especially) naming
+conventions very welcome. However, the following caveats should be kept in mind:
 
 1. Case is currently only available in Javascript / Typescript. At a later date, support for Python, Java, C# and Go will be added, using [JSii](https://aws.github.io/jsii/). There are no plans to add other languages at this time.
 1. Case doesn't yet support merging of contracts. This means that your whole contract must be defined in one test file.
 1. Case currently is only compatible with Jest. At a later date, the jest support will be extracted, and the peer-dependency removed.
 1. Case is currently only compatible with the Pactflow broker, and not the Pact Open Source broker. This is because it only supports bearer authentication.
-1. Case currently doesn't support reporting your results to a broker.
-1. Case currently doesn't support retrieving your contracts from a broker.
+1. Case currently doesn't support reporting your verification results to a broker.
+1. Case currently only has rudimentary support for retrieving contracts from a broker.
 1. Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
 1. Incomplete [documentation is here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md). At least one new page will be added every time a breaking change is released during the beta period.
 1. If you want to get started immediately, we recommend starting with either the [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts), or the [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts). Make sure you remove `printResults: false`.
