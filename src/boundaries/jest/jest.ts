@@ -14,7 +14,7 @@ const runJestTest: RunTestCallback = (
   verify: () => Promise<unknown>
 ): void => {
   // eslint-disable-next-line jest/expect-expect
-  it(`${testName}`, () => verify());
+  it(`${testName}`, () => verify(), 30000);
 };
 
 export const defineContract = <T extends AnyMockDescriptorType>(
