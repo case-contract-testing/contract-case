@@ -483,11 +483,5 @@
       },
       "result": "VERIFIED"
     }
-  ],
-  "consumer": {
-    "name": "Case"
-  },
-  "provider": {
-    "name": "Pact Broker"
-  }
+  ]
 }

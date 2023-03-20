@@ -113,19 +113,7 @@ export const writeContract: WriteContract = (
     );
     throw new CaseConfigurationError(`The file ${pathToFile} already exists`);
   }
-  fs.writeFileSync(
-    pathToFile,
-    JSON.stringify(
-      {
-        ...contract,
-        // The following is a hack so that the contract can be processed by the pact broker CLI
-        consumer: { name: contract.description.consumerName },
-        provider: { name: contract.description.providerName },
-      },
-      undefined,
-      2
-    )
-  );
+  fs.writeFileSync(pathToFile, JSON.stringify(contract, undefined, 2));
   return pathToFile;
 };
 
