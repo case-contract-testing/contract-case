@@ -16,4 +16,4 @@ export type DefineCaseJestCallback = <T extends AnyMockDescriptorType>(
   contract: ContractDefiner<T>
 ) => void;
 
-export type VerifiyCaseJestCallback = (contract: ContractVerifier) => void;
+export type VerifyCaseJestCallback = (contract: ContractVerifier) => void;

@@ -6,7 +6,7 @@ import { ContractVerifier } from '../../connectors/contract/ContractVerifier';
 import type {
   CaseJestConfig,
   DefineCaseJestCallback,
-  VerifiyCaseJestCallback,
+  VerifyCaseJestCallback,
 } from './types';
 
 const runJestTest: RunTestCallback = (
@@ -44,7 +44,7 @@ export const defineContract = <T extends AnyMockDescriptorType>(
 export const verifyContract = (
   contract: ContractData,
   config: CaseConfig,
-  callback: VerifiyCaseJestCallback
+  callback: VerifyCaseJestCallback
 ): void =>
   describe('Case contract verification', () => {
     describe(``, () => {
