@@ -102,7 +102,7 @@ export const HttpStatusCodeMatcher: MatcherExecutor<
   typeof HTTP_STATUS_CODE_MATCHER_TYPE
 > = {
   describe: (matcher: CoreHttpStatusCodeMatcher) =>
-    `httpStaus ${
+    `httpStatus ${
       Array.isArray(matcher['case:matcher:rule'])
         ? matcher['case:matcher:rule'].map((r) => `${r}`).join(' | ')
         : matcher['case:matcher:rule']

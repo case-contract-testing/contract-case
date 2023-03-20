@@ -283,7 +283,7 @@ verifyContract(
               (health) => expect(typeof health).toBe('string'),
           },
           errorVerifiers: {
-            'a (httpStaus 4XX | 5XX) response without a body': (e) => {
+            'a (httpStatus 4XX | 5XX) response without a body': (e) => {
               expect(e).toBeInstanceOf(ApiError);
             },
             'a (503) response with body an object shaped like {status: "down"}':

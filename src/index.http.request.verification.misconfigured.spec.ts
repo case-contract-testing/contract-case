@@ -111,7 +111,7 @@ describe('Server verification', () => {
       verifier.verifyContract(
         { stateHandlers },
         runJestTestExepectingErrors({
-          'When Server is down, then an http "GET" request to "/health" without a body -> a (httpStaus 4XX | 5XX) response without a body':
+          'When Server is down, then an http "GET" request to "/health" without a body -> a (httpStatus 4XX | 5XX) response without a body':
             CaseConfigurationError,
           'When Server is down, then an http "GET" request to "/health" without a body -> a (503) response with body an object shaped like {status: "down"}':
             CaseConfigurationError,
