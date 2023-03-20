@@ -24,6 +24,7 @@ import {
   STRING_PREFIX_TYPE,
   STRING_SUFFIX_TYPE,
   URL_ENCODED_STRING_TYPE,
+  HTTP_BASIC_AUTH_TYPE,
 } from '../entities/types';
 import {
   NumberMatcher,
@@ -37,6 +38,7 @@ import {
   AndCombinationMatcher,
   CascadingContext,
   ContextVariableMatcher,
+  HttpBasicAuthMatcher,
   LookupMatcher,
   UrlEncodedStringMatcher,
 } from './meta';
@@ -82,4 +84,5 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [OBJECT_KEYS_MATCH_TYPE]: ObjectEachKeyMatches,
     [CONTEXT_VARIABLE_TYPE]: ContextVariableMatcher,
     [URL_ENCODED_STRING_TYPE]: UrlEncodedStringMatcher,
+    [HTTP_BASIC_AUTH_TYPE]: HttpBasicAuthMatcher,
   };

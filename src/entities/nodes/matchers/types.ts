@@ -1,9 +1,11 @@
 import type { MatchContext } from '../../../entities/context/types';
 import type {
+  CoreHttpBasicAuthValue,
   CoreHttpRequestMatcher,
   CoreHttpResponseMatcher,
   CoreHttpStatusCodeMatcher,
   CoreUrlEncodedStringMatcher,
+  HTTP_BASIC_AUTH_TYPE,
   HTTP_REQUEST_MATCHER_TYPE,
   HTTP_RESPONSE_MATCHER_TYPE,
   HTTP_STATUS_CODE_MATCHER_TYPE,
@@ -55,7 +57,8 @@ export type AnyCaseNodeType =
   | typeof STRING_SUFFIX_TYPE
   | typeof OBJECT_KEYS_MATCH_TYPE
   | typeof CONTEXT_VARIABLE_TYPE
-  | typeof URL_ENCODED_STRING_TYPE;
+  | typeof URL_ENCODED_STRING_TYPE
+  | typeof HTTP_BASIC_AUTH_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -260,7 +263,8 @@ export type AnyCaseMatcher =
   | CoreStringSuffixMatcher
   | CoreStringPrefixMatcher
   | CoreContextVariableMatcher
-  | CoreUrlEncodedStringMatcher;
+  | CoreUrlEncodedStringMatcher
+  | CoreHttpBasicAuthValue;
 
 export type HasExample<T extends AnyCaseMatcher> = T & {
   'case:matcher:example': unknown;

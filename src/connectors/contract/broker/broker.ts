@@ -12,6 +12,7 @@ import type {
 } from '../../../entities/types';
 
 import { makeAxiosConnector } from './axios';
+import { BasicAuth } from './axios/types';
 import type {
   WireForVerificationRequest,
   WireForVerificationResponse,
@@ -30,32 +31,47 @@ export const makeBrokerApi: MakeBrokerApi = (
   const authToken =
     configContext['case:currentRun:context:brokerCiAccessToken'];
   const baseUrl = configContext['case:currentRun:context:brokerBaseUrl'];
-
-  if (authToken === undefined || authToken === '') {
-    throw new CaseConfigurationError(
-      "Can't access a broker without an authorization token. Set the environment variable CASE_BROKER_CI_TOKEN"
-    );
-  }
-
-  if (typeof authToken !== 'string') {
-    throw new CaseConfigurationError(
-      `Expected the authToken to be a string, but it was '${typeof authToken}'`
-    );
-  }
+  const basicAuth = configContext['case:currentRun:context:brokerBasicAuth'];
 
   if (baseUrl === undefined || baseUrl === '') {
     throw new CaseConfigurationError(
-      "Can't access a broker without specifying the base URL. Set the environment variable CASE_BROKER_BASEURL"
+      "Can't access a broker without specifying the base URL. Set the environment variable CASE_BROKER_BASEURL or the config property brokerBaseUrl"
     );
   }
-
   if (typeof baseUrl !== 'string') {
     throw new CaseConfigurationError(
       `Expected the baseurl to be a string, but it was '${typeof authToken}'`
     );
   }
 
-  const server = makeAxiosConnector(trimSlash(baseUrl), authToken);
+  if (authToken === undefined && basicAuth === undefined) {
+    throw new CaseConfigurationError(
+      "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN"
+    );
+  }
+
+  if (authToken !== undefined) {
+    if (authToken === '') {
+      throw new CaseConfigurationError(
+        "Can't access a broker without an authorization token. Set the environment variable CASE_BROKER_CI_TOKEN"
+      );
+    }
+    if (typeof authToken !== 'string') {
+      throw new CaseConfigurationError(
+        `Expected the authToken to be a string, but it was '${typeof authToken}'`
+      );
+    }
+  }
+
+  if (authToken === undefined && basicAuth === undefined) {
+    throw new CaseConfigurationError(
+      "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN"
+    );
+  }
+
+  const auth = (authToken ?? basicAuth) as string | BasicAuth;
+
+  const server = makeAxiosConnector(trimSlash(baseUrl), auth);
 
   return {
     publishContract: (contract: ContractData, logContext: LogContext) => {
@@ -82,7 +98,7 @@ export const makeBrokerApi: MakeBrokerApi = (
     },
 
     downloadContract: (url: string) =>
-      makeAxiosConnector(url, authToken).authedGet(),
+      makeAxiosConnector(url, auth).authedGet(),
 
     urlsForVerification: (serviceName: string, logContext: LogContext) => {
       logContext.logger.debug(

@@ -8,6 +8,7 @@ export const HTTP_STATUS_CODE_MATCHER_TYPE = 'HttpStatusCode' as const;
 export const HTTP_RESPONSE_MATCHER_TYPE = 'HttpResponseMatcher' as const;
 export const HTTP_REQUEST_MATCHER_TYPE = 'HttpRequestMatcher' as const;
 export const URL_ENCODED_STRING_TYPE = 'UrlEncodedString' as const;
+export const HTTP_BASIC_AUTH_TYPE = 'HttpBasicAuth' as const;
 
 export interface CoreUrlEncodedStringMatcher {
   'case:matcher:type': typeof URL_ENCODED_STRING_TYPE;
@@ -21,6 +22,13 @@ export interface CoreHttpStatusCodeMatcher {
   'case:matcher:rule': string | Array<string>;
   'case:matcher:example': number;
   'case:matcher:resolvesTo': 'HttpStatusCode';
+}
+
+export interface CoreHttpBasicAuthValue {
+  'case:matcher:type': typeof HTTP_BASIC_AUTH_TYPE;
+  'case:matcher:username': AnyCaseNodeOrData;
+  'case:matcher:password': AnyCaseNodeOrData;
+  'case:matcher:resolvesTo': 'string';
 }
 
 export type CoreHttpResponseMatcher = {

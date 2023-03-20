@@ -126,6 +126,86 @@
       },
       "case:matcher:type": "HttpRequestMatcher"
     },
+    "variable:default:username": {
+      "case:matcher:type": "CascadingContext",
+      "case:matcher:child": {
+        "case:matcher:type": "CascadingContext",
+        "case:matcher:child": "someUsername",
+        "case:context:matchBy": "type"
+      },
+      "case:context:matchBy": "type"
+    },
+    "variable:default:password": {
+      "case:matcher:type": "CascadingContext",
+      "case:matcher:child": {
+        "case:matcher:type": "CascadingContext",
+        "case:matcher:child": "somePassword",
+        "case:context:matchBy": "type"
+      },
+      "case:context:matchBy": "type"
+    },
+    "matcher:an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with a body with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Basic http basic auth with username='{{username}}' and password={{password}}\"}": {
+      "method": "POST",
+      "path": {
+        "case:matcher:type": "UrlEncodedString",
+        "case:matcher:child": {
+          "case:matcher:type": "StringPrefix",
+          "case:matcher:prefix": "/pacts/provider/",
+          "case:matcher:suffix": {
+            "case:matcher:type": "StringSuffix",
+            "case:matcher:prefix": {
+              "case:matcher:type": "ContextVariable",
+              "case:matcher:variableName": "providerName"
+            },
+            "case:matcher:suffix": "/for-verification",
+            "case:matcher:resolvesTo": "string"
+          },
+          "case:matcher:resolvesTo": "string"
+        },
+        "case:matcher:accepts": "string",
+        "case:matcher:resolvesTo": "string"
+      },
+      "body": {
+        "consumerVersionSelectors": {
+          "case:matcher:type": "ArrayEachEntryLike",
+          "case:matcher:matcher": {
+            "case:matcher:type": "ObjectValuesMatch",
+            "case:matcher:matcher": {
+              "case:matcher:type": "MatchBoolean",
+              "case:matcher:example": true,
+              "case:context:matchBy": "type",
+              "case:matcher:resolvesTo": "boolean"
+            }
+          }
+        },
+        "providerVersionTags": [
+          "main"
+        ]
+      },
+      "headers": {
+        "accept": "application/hal+json",
+        "authorization": {
+          "case:matcher:type": "StringPrefix",
+          "case:matcher:prefix": "Basic ",
+          "case:matcher:suffix": {
+            "case:matcher:type": "HttpBasicAuth",
+            "case:matcher:username": {
+              "case:matcher:type": "ContextVariable",
+              "case:matcher:variableName": "username",
+              "case:matcher:resolvesTo": "string"
+            },
+            "case:matcher:password": {
+              "case:matcher:type": "ContextVariable",
+              "case:matcher:variableName": "password",
+              "case:matcher:resolvesTo": "string"
+            },
+            "case:matcher:resolvesTo": "string"
+          },
+          "case:matcher:resolvesTo": "string"
+        }
+      },
+      "case:matcher:type": "HttpRequestMatcher"
+    },
     "matcher:a (200) response without a body": {
       "status": 200,
       "case:matcher:type": "HttpResponseMatcher"
@@ -351,11 +431,16 @@
       "states": [
         {
           "case:state:type": "StateWithVariables",
-          "stateName": "auth token is valid",
+          "stateName": "valid basic auth credentials",
           "variables": {
-            "token": {
+            "username": {
               "case:matcher:type": "CascadingContext",
-              "case:matcher:child": "TOKEN",
+              "case:matcher:child": "someUsername",
+              "case:context:matchBy": "type"
+            },
+            "password": {
+              "case:matcher:type": "CascadingContext",
+              "case:matcher:child": "somePassword",
               "case:context:matchBy": "type"
             }
           }
@@ -375,7 +460,7 @@
       "mock": {
         "request": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with a body with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"}",
+          "case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with a body with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Basic http basic auth with username='{{username}}' and password={{password}}\"}",
           "case:matcher:child": {
             "method": "POST",
             "path": {
@@ -418,10 +503,19 @@
               "accept": "application/hal+json",
               "authorization": {
                 "case:matcher:type": "StringPrefix",
-                "case:matcher:prefix": "Bearer ",
+                "case:matcher:prefix": "Basic ",
                 "case:matcher:suffix": {
-                  "case:matcher:type": "ContextVariable",
-                  "case:matcher:variableName": "token",
+                  "case:matcher:type": "HttpBasicAuth",
+                  "case:matcher:username": {
+                    "case:matcher:type": "ContextVariable",
+                    "case:matcher:variableName": "username",
+                    "case:matcher:resolvesTo": "string"
+                  },
+                  "case:matcher:password": {
+                    "case:matcher:type": "ContextVariable",
+                    "case:matcher:variableName": "password",
+                    "case:matcher:resolvesTo": "string"
+                  },
                   "case:matcher:resolvesTo": "string"
                 },
                 "case:matcher:resolvesTo": "string"

@@ -4,6 +4,7 @@ import {
   anyBoolean,
   anyString,
   arrayEachEntryMatches,
+  basicAuth,
   bearerToken,
   inState,
   objectEachValueMatches,
@@ -100,6 +101,11 @@ describe('broker client', () => {
         token: 'TOKEN',
       });
 
+      const validBasicAuth = inState('valid basic auth credentials', {
+        username: 'someUsername',
+        password: 'somePassword',
+      });
+
       const stateProvider = inState('withProviderName', {
         providerName: 'http request provider',
       });
@@ -182,13 +188,16 @@ describe('broker client', () => {
           describe('with valid basic auth', () => {
             it('will be successful', () =>
               contract.runExample({
-                states: [stateAuthTokenValid, stateProvider],
+                states: [validBasicAuth, stateProvider],
                 definition: willSendHttpRequest({
                   request: {
                     ...request,
                     headers: {
                       accept: 'application/hal+json',
-                      authorization: bearerToken(stringStateVariable('token')),
+                      authorization: basicAuth(
+                        stringStateVariable('username'),
+                        stringStateVariable('password')
+                      ),
                     },
                   },
                   response: {
@@ -221,10 +230,13 @@ describe('broker client', () => {
                   },
                 }),
                 trigger: (config) =>
-                  makeBrokerApiForTest(
-                    config.baseUrl,
-                    config.variables['token'] as string
-                  ).urlsForVerification(
+                  makeBrokerApi({
+                    'case:currentRun:context:brokerBasicAuth': {
+                      username: config.variables['username'] as string,
+                      password: config.variables['password'] as string,
+                    },
+                    'case:currentRun:context:brokerBaseUrl': config.baseUrl,
+                  } as DataContext).urlsForVerification(
                     config.variables['providerName'] as string,
                     emptyContext
                   ),

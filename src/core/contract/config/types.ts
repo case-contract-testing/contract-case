@@ -20,7 +20,9 @@ export type BaseCaseConfig = {
   printResults: boolean;
 
   /**
-   * The access token to use for the contract broker. Must have CI scope
+   * The access token to use for the contract broker. Must have CI scope.
+   *
+   * If this is specified along with brokerBasicAuth, the basic auth is ignored.
    */
   brokerCiAccessToken?: string;
 
@@ -28,6 +30,22 @@ export type BaseCaseConfig = {
    * The base URL for the contract broker
    */
   brokerBaseUrl?: string;
+
+  /**
+   * The basic authentication username and password to access the contract broker.
+   *
+   * If this is specified along with brokerCiAccessToken, the basic auth is ignored.
+   */
+  brokerBasicAuth?: {
+    /**
+     * The username for basic auth
+     */
+    username: string;
+    /**
+     * The password for basic auth
+     */
+    password: string;
+  };
 };
 
 // TODO figure out a better way to get all the config in here
