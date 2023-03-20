@@ -1,4 +1,4 @@
-import { WritingCaseContract } from '.';
+import { WritingCaseContract } from '../../core';
 
 import type {
   MultiTestInvoker,

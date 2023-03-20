@@ -1,8 +1,8 @@
-import type { CaseContract } from '../boundaries';
+import { WritingCaseContract } from '../core';
 import type { AnyCaseNodeOrData } from '../entities/types';
 
 export const makeExpectErrorContaining =
-  (contract: CaseContract) =>
+  (contract: WritingCaseContract) =>
   (
     matcher: AnyCaseNodeOrData,
     example: unknown,

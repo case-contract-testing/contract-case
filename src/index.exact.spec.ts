@@ -1,13 +1,13 @@
-import { CaseContract } from './boundaries';
 import { makeBrokerApi } from './connectors/contract/broker';
 import { writeContract } from './connectors/contract/writer';
 import { makeLogger } from './connectors/logger';
 import { resultPrinter } from './connectors/resultPrinter';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
+import { WritingCaseContract } from './core';
 
 describe('basic types and structure checks', () => {
-  const contract = new CaseContract(
+  const contract = new WritingCaseContract(
     {
       consumerName: 'test exact consumer',
       providerName: 'test exact provider',

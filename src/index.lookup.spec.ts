@@ -1,5 +1,4 @@
 import { anyNumber, anyString, namedMatch } from './boundaries/dsl/Matchers';
-import { WritingCaseContract } from './connectors/contract';
 import { makeBrokerApi } from './connectors/contract/broker';
 import { writeContract } from './connectors/contract/writer';
 import { makeLogger } from './connectors/logger';
@@ -9,6 +8,7 @@ import { CaseConfigurationError } from './entities';
 import type { AnyCaseNodeOrData } from './entities/types';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
+import { WritingCaseContract } from './core';
 
 describe('named matches', () => {
   const contract = new WritingCaseContract(

@@ -4,7 +4,6 @@ import {
   stringPrefix,
   stringSuffix,
 } from './boundaries/dsl/Matchers';
-import { WritingCaseContract } from './connectors/contract';
 import { makeBrokerApi } from './connectors/contract/broker';
 import { writeContract } from './connectors/contract/writer';
 import { makeLogger } from './connectors/logger';
@@ -13,6 +12,7 @@ import { resultPrinter } from './connectors/resultPrinter';
 import { makeNoErrorResult } from './entities/results';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
+import { WritingCaseContract } from './core';
 
 describe('string matchers', () => {
   const contract = new WritingCaseContract(

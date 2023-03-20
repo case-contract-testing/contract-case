@@ -1,4 +1,3 @@
-import { CaseContract } from './boundaries';
 import {
   objectEachKeyMatches,
   objectEachValueMatches,
@@ -11,9 +10,10 @@ import { resultPrinter } from './connectors/resultPrinter';
 import { makeNoErrorResult } from './entities/results';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
+import { WritingCaseContract } from './core';
 
 describe('basic types and structure checks', () => {
-  const contract = new CaseContract(
+  const contract = new WritingCaseContract(
     {
       consumerName: 'test object consumer',
       providerName: 'test object provider',

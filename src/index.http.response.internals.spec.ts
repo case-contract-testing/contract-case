@@ -5,13 +5,13 @@ import { makeNoErrorResult } from './entities/results';
 import { anyString, httpStatus, logLevel } from './boundaries/dsl/Matchers';
 import type { CaseConfig } from './core/types';
 import { CaseConfigurationError, CaseFailedAssertionError } from './entities';
-import { CaseContract } from './boundaries';
 
 import start from './__tests__/server/http/index';
 import { makeBrokerApi } from './connectors/contract/broker';
 import { writeContract } from './connectors/contract/writer';
 import { makeLogger } from './connectors/logger';
 import { resultPrinter } from './connectors/resultPrinter';
+import { WritingCaseContract } from './core';
 
 const expectErrorContaining = async (
   context: Promise<unknown>,
@@ -36,7 +36,7 @@ const expectErrorContaining = async (
 };
 
 describe('simple get endpoint', () => {
-  const contract = new CaseContract(
+  const contract = new WritingCaseContract(
     {
       consumerName: 'http request consumer',
       providerName: 'http request provider',
