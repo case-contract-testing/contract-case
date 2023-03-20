@@ -2,7 +2,9 @@ import * as fs from 'node:fs';
 
 import {
   anyString,
+  arrayEachEntryMatches,
   inState,
+  shapedLike,
   stateVariable,
   stringPrefix,
   stringSuffix,
@@ -138,30 +140,28 @@ describe('broker client', () => {
                   status: 200,
                   body: {
                     _embedded: {
-                      pacts: [
-                        {
-                          verificationProperties: {
-                            notices: [
-                              {
-                                text: "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'",
-                              },
-                            ],
-                          },
-                          _links: {
-                            self: {
-                              href: 'http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a',
-                              name: 'Pact between Foo (v1.0.0) and Bar',
-                            },
-                          },
+                      pacts: arrayEachEntryMatches({
+                        verificationProperties: {
+                          notices: arrayEachEntryMatches(
+                            shapedLike({
+                              text: "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'",
+                            })
+                          ),
                         },
-                      ],
+                        _links: shapedLike({
+                          self: {
+                            href: 'http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a',
+                            name: 'Pact between Foo (v1.0.0) and Bar',
+                          },
+                        }),
+                      }),
                     },
-                    _links: {
+                    _links: shapedLike({
                       self: {
                         href: 'http://localhost:9292/pacts/provider/Bar/for-verification',
                         title: 'Pacts to be verified',
                       },
-                    },
+                    }),
                   },
                 },
               }),

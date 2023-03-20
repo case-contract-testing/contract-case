@@ -27,33 +27,47 @@
       },
       "case:context:matchBy": "type"
     },
-    "matcher:a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array shaped like [an object shaped like {verificationProperties: an object shaped like {notices: an array shaped like [an object shaped like {text: \"This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'\"}] and an array of length min: 1, max: 1;},_links: an object shaped like {self: an object shaped like {href: \"http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a\",name: \"Pact between Foo (v1.0.0) and Bar\"}}}] and an array of length min: 1, max: 1;},_links: an object shaped like {self: an object shaped like {href: \"http://localhost:9292/pacts/provider/Bar/for-verification\",title: \"Pacts to be verified\"}}}": {
+    "matcher:a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array where each entry matches an object shaped like {verificationProperties: an object shaped like {notices: an array where each entry matches an object shaped like {text: <any string>}},_links: an object shaped like {self: an object shaped like {href: <any string>,name: <any string>}}}},_links: an object shaped like {self: an object shaped like {href: <any string>,title: <any string>}}}": {
       "status": 200,
       "body": {
         "_embedded": {
-          "pacts": [
-            {
+          "pacts": {
+            "case:matcher:type": "ArrayEachEntryLike",
+            "case:matcher:matcher": {
               "verificationProperties": {
-                "notices": [
-                  {
-                    "text": "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'"
+                "notices": {
+                  "case:matcher:type": "ArrayEachEntryLike",
+                  "case:matcher:matcher": {
+                    "case:matcher:type": "CascadingContext",
+                    "case:matcher:child": {
+                      "text": "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'"
+                    },
+                    "case:context:matchBy": "type"
                   }
-                ]
+                }
               },
               "_links": {
-                "self": {
-                  "href": "http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a",
-                  "name": "Pact between Foo (v1.0.0) and Bar"
-                }
+                "case:matcher:type": "CascadingContext",
+                "case:matcher:child": {
+                  "self": {
+                    "href": "http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a",
+                    "name": "Pact between Foo (v1.0.0) and Bar"
+                  }
+                },
+                "case:context:matchBy": "type"
               }
             }
-          ]
+          }
         },
         "_links": {
-          "self": {
-            "href": "http://localhost:9292/pacts/provider/Bar/for-verification",
-            "title": "Pacts to be verified"
-          }
+          "case:matcher:type": "CascadingContext",
+          "case:matcher:child": {
+            "self": {
+              "href": "http://localhost:9292/pacts/provider/Bar/for-verification",
+              "title": "Pacts to be verified"
+            }
+          },
+          "case:context:matchBy": "type"
         }
       },
       "case:matcher:type": "HttpResponseMatcher"
@@ -259,34 +273,48 @@
         },
         "response": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array shaped like [an object shaped like {verificationProperties: an object shaped like {notices: an array shaped like [an object shaped like {text: \"This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'\"}] and an array of length min: 1, max: 1;},_links: an object shaped like {self: an object shaped like {href: \"http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a\",name: \"Pact between Foo (v1.0.0) and Bar\"}}}] and an array of length min: 1, max: 1;},_links: an object shaped like {self: an object shaped like {href: \"http://localhost:9292/pacts/provider/Bar/for-verification\",title: \"Pacts to be verified\"}}}",
+          "case:matcher:uniqueName": "a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array where each entry matches an object shaped like {verificationProperties: an object shaped like {notices: an array where each entry matches an object shaped like {text: <any string>}},_links: an object shaped like {self: an object shaped like {href: <any string>,name: <any string>}}}},_links: an object shaped like {self: an object shaped like {href: <any string>,title: <any string>}}}",
           "case:matcher:child": {
             "status": 200,
             "body": {
               "_embedded": {
-                "pacts": [
-                  {
+                "pacts": {
+                  "case:matcher:type": "ArrayEachEntryLike",
+                  "case:matcher:matcher": {
                     "verificationProperties": {
-                      "notices": [
-                        {
-                          "text": "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'"
+                      "notices": {
+                        "case:matcher:type": "ArrayEachEntryLike",
+                        "case:matcher:matcher": {
+                          "case:matcher:type": "CascadingContext",
+                          "case:matcher:child": {
+                            "text": "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'"
+                          },
+                          "case:context:matchBy": "type"
                         }
-                      ]
+                      }
                     },
                     "_links": {
-                      "self": {
-                        "href": "http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a",
-                        "name": "Pact between Foo (v1.0.0) and Bar"
-                      }
+                      "case:matcher:type": "CascadingContext",
+                      "case:matcher:child": {
+                        "self": {
+                          "href": "http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a",
+                          "name": "Pact between Foo (v1.0.0) and Bar"
+                        }
+                      },
+                      "case:context:matchBy": "type"
                     }
                   }
-                ]
+                }
               },
               "_links": {
-                "self": {
-                  "href": "http://localhost:9292/pacts/provider/Bar/for-verification",
-                  "title": "Pacts to be verified"
-                }
+                "case:matcher:type": "CascadingContext",
+                "case:matcher:child": {
+                  "self": {
+                    "href": "http://localhost:9292/pacts/provider/Bar/for-verification",
+                    "title": "Pacts to be verified"
+                  }
+                },
+                "case:context:matchBy": "type"
               }
             },
             "case:matcher:type": "HttpResponseMatcher"
