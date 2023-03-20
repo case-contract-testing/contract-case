@@ -12,7 +12,7 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v3
         id: release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_TOKEN }}
           release-type: node
           package-name: '@case-contract-testing/case'
           bump-minor-pre-major: true
