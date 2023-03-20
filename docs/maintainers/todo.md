@@ -79,7 +79,7 @@ Major features
 - [x] Add context to start and end contract
 - [x] Test harness integration
 - [x] Provider defined examples
-- [ ] Authentication sources (authentication as a first class citizen)
+- [x] Authentication sources (authentication as a first class citizen)
 - [ ] SNS and SQS support
 
 Later features
@@ -118,6 +118,7 @@ Cool features
 - [ ] Run as a server so that arbitrary frameworks can use it
 - [ ] "Is this interaction the same as that"?
 - [ ] Combine files for upload (does the broker support multiple contracts between the same two services?)
+- [ ] Parametrised matchers
 
 Contract file access patterns
 
@@ -148,8 +149,10 @@ Configuration and ergonomics
 - [x] File locations
 - [x] Silent mode (no logs or test output)
 - [ ] Named shaped object types (so eg headers doesn't say 'an object shaped like')
+- [ ] Better formatting of locations (strip unnecessary stuff unless in maintainer debug mode)
 - [ ] Accepts / resolvesTo sanity checks
 - [ ] Strip matchers should take states
+- [ ] Nice support for named examples in request / responses
 - [ ] Warn when a logLevel matcher is written to contract
 - [ ] Error types marshalled at boundary
 - [ ] Introduce error codes for different classes of error
@@ -187,7 +190,7 @@ Here I write notes to myself to make sure I don't miss anything
 
 - [x] Do I need runcontext:tree? Maybe I can remove it.
 - [x] Review the invert contract logic, possibly this can be removed too - Update, it could
-- [ ] Make loggable context explicit instead of calculated - or, calculate it better.
+- [x] Make loggable context explicit instead of calculated - or, calculate it better.
 - [x] Fix issue with multiple values for the same variable
 - [x] Fix issue where a failed trigger results in open sockets
 - [x] Sort out the LoggableContext / LogContext naming mess
