@@ -10,6 +10,12 @@ type HttpConnector = {
     content: T,
     context: ContextLogger
   ) => Promise<R>;
+
+  authedPost: <T, R>(
+    path: string,
+    content: T,
+    context: ContextLogger
+  ) => Promise<R>;
 };
 
 // This is the connector for axios.
@@ -30,9 +36,21 @@ export const makeAxiosConnector = (
       .then(unmarshallSuccess, unmarshallFailure),
 
   authedPut: (path, content, context: ContextLogger) => {
-    context.logger.maintainerDebug(`PUT: ${baseurl}${path}`);
+    context.logger.maintainerDebug(`PUT: ${baseurl}${path}`, content);
     return axios
       .put(`${baseurl}${path}`, content, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
+      .then(unmarshallSuccess, unmarshallFailure);
+  },
+
+  authedPost: (path, content, context: ContextLogger) => {
+    context.logger.maintainerDebug(`POST: ${baseurl}${path}`, content);
+    return axios
+      .post(`${baseurl}${path}`, content, {
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${authToken}`,

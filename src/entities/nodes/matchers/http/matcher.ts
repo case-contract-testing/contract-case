@@ -1,7 +1,9 @@
+import type { AnyCaseNodeOrData } from '../types';
 import {
   CoreHttpRequestMatcher,
   CoreHttpResponseMatcher,
   CoreHttpStatusCodeMatcher,
+  CoreUrlEncodedStringMatcher,
   HttpMockRequest,
   HttpMockResponse,
   HTTP_REQUEST_MATCHER_TYPE,
@@ -35,4 +37,12 @@ export const httpResponseMatcher = (
 ): CoreHttpResponseMatcher => ({
   ...response,
   'case:matcher:type': HTTP_RESPONSE_MATCHER_TYPE,
+});
+
+export const urlEncodedString = (
+  child: AnyCaseNodeOrData
+): CoreUrlEncodedStringMatcher => ({
+  'case:matcher:type': HTTP_STATUS_CODE_MATCHER_TYPE,
+  'case:matcher:child': child,
+  'case:matcher:accepts': 'string',
 });

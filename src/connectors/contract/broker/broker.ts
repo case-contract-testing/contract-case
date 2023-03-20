@@ -10,6 +10,10 @@ import type {
 } from '../../../entities/types';
 
 import { makeAxiosConnector } from './axios';
+import type {
+  WireForVerificationRequest,
+  WireForVerificationResponse,
+} from './brokerDto.types';
 
 const trimSlash = (str: string): string => {
   if (str.endsWith('/')) {
@@ -52,12 +56,9 @@ export const makeBrokerApi: MakeBrokerApi = (
   const server = makeAxiosConnector(trimSlash(baseUrl), authToken);
 
   return {
-    publishContract: (
-      contract: ContractData,
-      publishContext: ContextLogger
-    ) => {
+    publishContract: (contract: ContractData, logContext: ContextLogger) => {
       const version = versionFromGitTag();
-      publishContext.logger.debug(
+      logContext.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
       );
 
@@ -67,16 +68,59 @@ export const makeBrokerApi: MakeBrokerApi = (
         contract.description.consumerName
       )}/version/${encodeURIComponent(version)}`;
 
-      publishContext.logger.maintainerDebug(`Publish path is: ${path}`);
+      logContext.logger.maintainerDebug(`Publish path is: ${path}`);
 
-      return server.authedPut(path, contract, publishContext).then((d) => {
-        publishContext.logger.debug(`Published successfully`);
-        publishContext.logger.deepMaintainerDebug(
+      return server.authedPut(path, contract, logContext).then((d) => {
+        logContext.logger.debug(`Published successfully`);
+        logContext.logger.deepMaintainerDebug(
           `Published result was`,
           JSON.stringify(d)
         );
         return d;
       });
+    },
+
+    forVerification: (serviceName: string, logContext: ContextLogger) => {
+      logContext.logger.debug(
+        `Finding contracts to verify for service '${serviceName}' on broker at ${baseUrl}`
+      );
+
+      const path = `/pacts/provider/${encodeURIComponent(
+        serviceName
+      )}/for-verification`;
+
+      logContext.logger.maintainerDebug(`forVerification path is: ${path}`);
+      return server
+        .authedPost<WireForVerificationRequest, WireForVerificationResponse>(
+          path,
+          {
+            consumerVersionSelectors: [
+              {
+                mainBranch: true,
+              },
+              {
+                deployedOrReleased: true,
+              },
+            ],
+            providerVersionTags: ['main'],
+          },
+          logContext
+        )
+        .then((d) => {
+          logContext.logger.maintainerDebug(
+            `Pacts for verification responded with`,
+            JSON.stringify(d, undefined, 2)
+          );
+
+          // eslint-disable-next-line no-underscore-dangle
+          const numPacts = d._embedded.pacts.length;
+
+          logContext.logger.debug(
+            `Broker returned ${numPacts} possible contracts for verification`
+          );
+
+          return d;
+        });
     },
   };
 };

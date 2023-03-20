@@ -13,6 +13,11 @@ export interface Broker {
     contract: ContractData,
     context: ContextLogger
   ) => Promise<unknown>;
+
+  forVerification: (
+    serviceName: string,
+    context: ContextLogger
+  ) => Promise<unknown>;
 }
 
 export type WriteContract = (

@@ -79,6 +79,10 @@ export const setupHttpResponseProducer = (
       (expectedResponse) =>
         new Promise<MockData<typeof MOCK_HTTP_SERVER>>((resolve, reject) => {
           const app = express();
+
+          // TODO: Only do this if we need to
+          app.use(express.json());
+
           app.all('*', (req, res, next) => {
             requestData = {
               method: req.method,
@@ -91,6 +95,11 @@ export const setupHttpResponseProducer = (
             context.logger.debug(
               `Mock server at '${addressToString(server?.address())}' received`,
               requestData
+            );
+
+            context.logger.deepMaintainerDebug(
+              `Full request object received`,
+              req
             );
 
             res.status(expectedResponse.status);

@@ -100,7 +100,7 @@ Cool features
 - [x] Better automatic names eg "a GET request to /health"
 - [ ] String matcher helpers
   - [x] Prefix
-  - [x] Suffic
+  - [x] Suffix
   - [ ] Pivot
   - [ ] Split
 - [x] Matcher content verification
@@ -139,12 +139,14 @@ Internals
 - [x] Indentation on test output
 - [x] Release plan that includes version number - can we just import this like we did in pact? It would be nice if it was accurate.
 - [ ] Review test harness and separate into a dedicated module
+- [ ] Move the error reporting logic closer to the boundary so that it's not possible to miss an example
 
 Configuration and ergonomics
 
 - [x] Log levels
 - [x] File locations
 - [x] Silent mode (no logs or test output)
+- [ ] Accepts / resolvesTo sanity checks
 - [ ] Strip matchers should take states
 - [ ] Warn when a logLevel matcher is written to contract
 - [ ] Error types marshalled at boundary

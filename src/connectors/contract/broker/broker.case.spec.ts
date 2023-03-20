@@ -5,38 +5,29 @@ import {
   inState,
   stateVariable,
   stringPrefix,
+  stringSuffix,
   willSendHttpRequest,
 } from '../../../boundaries';
 import { defineContract } from '../../../boundaries/jest/jest';
 import { caseVersion } from '../../../entities/caseVersion';
 import { CaseConfigurationError } from '../../../entities';
-import type { Logger, MatchContext } from '../../../entities/types';
+import type { MatchContext } from '../../../entities/types';
 import { readContract } from '../writer';
 import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { makeBrokerApi } from './broker';
+import { makeLogger } from '../../logger';
 
 const emptyContext = {
-  logger: {
-    error: () => {},
-    warn: () => {},
-    debug: () => {},
-    maintainerDebug: () => {},
-    deepMaintainerDebug: () => {},
-  },
+  logger: makeLogger({
+    'case:currentRun:context:location': ['DURING_TESTING'],
+    'case:currentRun:context:logLevel': 'none',
+  }),
   resultPrinter: {
     printError(): void {},
     printSuccessTitle(): void {},
     printFailureTitle(): void {},
   },
-  makeLogger(): Logger {
-    return {
-      error: () => {},
-      warn: () => {},
-      debug: () => {},
-      maintainerDebug: () => {},
-      deepMaintainerDebug: () => {},
-    };
-  },
+  makeLogger,
 };
 
 const contractFilename = 'case-contracts/case-pact-broker.case.json';
@@ -64,6 +55,31 @@ describe('broker client', () => {
     }
   });
 
+  describe('with missing configuration', () => {
+    it('fails with no token', () => {
+      expect(() => makeBrokerApiForTest('http://localhost', '')).toThrow(
+        CaseConfigurationError
+      );
+    });
+    it('fails with no baseUrl', () => {
+      expect(() => makeBrokerApiForTest('', 'TOKEN')).toThrow(
+        CaseConfigurationError
+      );
+    });
+
+    it('fails with a non-string baseUrl', () => {
+      expect(() =>
+        makeBrokerApiForTest(3 as unknown as string, 'TOKEN')
+      ).toThrow(CaseConfigurationError);
+    });
+
+    it('fails with a non-string token', () => {
+      expect(() => makeBrokerApiForTest('s', 3 as unknown as string)).toThrow(
+        CaseConfigurationError
+      );
+    });
+  });
+
   defineContract(
     {
       consumerName: 'Case',
@@ -73,36 +89,99 @@ describe('broker client', () => {
       },
     },
     (contract) => {
-      describe('publish contract', () => {
-        describe('with missing configuration', () => {
-          it('fails with no token', () => {
-            expect(() => makeBrokerApiForTest('http://localhost', '')).toThrow(
-              CaseConfigurationError
-            );
-          });
-          it('fails with no baseUrl', () => {
-            expect(() => makeBrokerApiForTest('', 'TOKEN')).toThrow(
-              CaseConfigurationError
-            );
-          });
+      const stateAuthTokenValid = inState('auth token is valid', {
+        token: 'TOKEN',
+      });
 
-          it('fails with a non-string baseUrl', () => {
-            expect(() =>
-              makeBrokerApiForTest(3 as unknown as string, 'TOKEN')
-            ).toThrow(CaseConfigurationError);
-          });
+      const stateProvider = inState('withProviderName', {
+        providerName: 'http request provider',
+      });
 
-          it('fails with a non-string token', () => {
-            expect(() =>
-              makeBrokerApiForTest('s', 3 as unknown as string)
-            ).toThrow(CaseConfigurationError);
-          });
-        });
-
+      describe('find contracts for verification', () => {
         describe('with a valid auth token', () => {
           it('will be successful', () =>
             contract.runExample({
-              states: [inState('auth token is valid', { token: 'TOKEN' })],
+              states: [stateAuthTokenValid, stateProvider],
+              definition: willSendHttpRequest({
+                request: {
+                  method: 'POST',
+                  path: stringPrefix(
+                    `/pacts/provider/`,
+                    stringSuffix(
+                      stateVariable('providerName'),
+                      '/for-verification'
+                    )
+                  ),
+                  headers: {
+                    accept: 'application/json',
+                    authorization: stringPrefix(
+                      'Bearer ',
+                      stateVariable('token')
+                    ),
+                  },
+                  body: {
+                    consumerVersionSelectors: [
+                      {
+                        mainBranch: true,
+                      },
+                      {
+                        deployedOrReleased: true,
+                      },
+                    ],
+                    providerVersionTags: ['main'],
+                  },
+                },
+                response: {
+                  status: 200,
+                  body: {
+                    _embedded: {
+                      pacts: [
+                        {
+                          verificationProperties: {
+                            notices: [
+                              {
+                                text: "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'",
+                              },
+                            ],
+                          },
+                          _links: {
+                            self: {
+                              href: 'http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a',
+                              name: 'Pact between Foo (v1.0.0) and Bar',
+                            },
+                          },
+                        },
+                      ],
+                    },
+                    _links: {
+                      self: {
+                        href: 'http://localhost:9292/pacts/provider/Bar/for-verification',
+                        title: 'Pacts to be verified',
+                      },
+                    },
+                  },
+                },
+              }),
+              trigger: (config) =>
+                makeBrokerApiForTest(
+                  config.baseUrl,
+                  config.variables['token'] as string
+                ).forVerification(
+                  config.variables['providerName'] as string,
+                  emptyContext
+                ),
+              testResponse: (data) => {
+                expect(data).not.toBeNull();
+              },
+            }));
+        });
+      });
+
+      describe('publish contract', () => {
+        describe('with a valid auth token', () => {
+          it('will be successful', () =>
+            contract.runExample({
+              states: [stateAuthTokenValid],
               definition: willSendHttpRequest({
                 request: {
                   method: 'PUT',
