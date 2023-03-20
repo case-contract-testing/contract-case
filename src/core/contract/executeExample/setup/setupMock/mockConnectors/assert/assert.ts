@@ -1,5 +1,16 @@
 import { CaseConfigurationError } from '../../../../../../../entities';
 
+type FieldDescriptor<T extends object> = {
+  field: keyof T;
+  type: string;
+  notNull?: boolean;
+};
+
+type DataAssertions<T extends object> = {
+  assertFieldPresent: (f: FieldDescriptor<T>) => void;
+  assertIfFieldPresent: (f: FieldDescriptor<T>) => void;
+};
+
 const assertPresentInternal = <T extends object>(
   data: T,
   { field, type, notNull }: FieldDescriptor<T>,
@@ -40,17 +51,6 @@ const ifPresentInternal = <T extends object>(
       );
     }
   }
-};
-
-type FieldDescriptor<T extends object> = {
-  field: keyof T;
-  type: string;
-  notNull?: boolean;
-};
-
-type DataAssertions<T extends object> = {
-  assertFieldPresent: (f: FieldDescriptor<T>) => void;
-  assertIfFieldPresent: (f: FieldDescriptor<T>) => void;
 };
 
 export const makeAssertionsOn = <T extends object>(
