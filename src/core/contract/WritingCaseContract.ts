@@ -132,7 +132,7 @@ export class WritingCaseContract extends BaseCaseContract {
     return example;
   }
 
-  endRecord(): Promise<unknown> {
+  async endRecord(): Promise<void> {
     const writingContext = addLocation('WritingContract', this.initialContext);
     if (hasFailure(this.currentContract)) {
       // TODO: Print all failures
@@ -150,7 +150,13 @@ export class WritingCaseContract extends BaseCaseContract {
     const fileName = this.writeContract(this.currentContract, writingContext);
     writingContext.logger.debug(`Wrote contract file: ${fileName}`);
 
-    return this.makeBrokerApi(writingContext).publishContract(
+    if (!this.initialContext['case:currentRun:context:brokerCiAccessToken']) {
+      this.initialContext.logger.warn(
+        'Not publishing a contract, as there is no brokerCiAccessToken set'
+      );
+      return;
+    }
+    await this.makeBrokerApi(writingContext).publishContract(
       this.currentContract,
       addLocation('PublishingContract', this.initialContext)
     );

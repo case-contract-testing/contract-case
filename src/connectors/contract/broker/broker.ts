@@ -78,7 +78,6 @@ export const makeBrokerApi: MakeBrokerApi = (
           `Published result was`,
           JSON.stringify(d)
         );
-        return d;
       });
     },
 

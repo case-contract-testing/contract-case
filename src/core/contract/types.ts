@@ -25,7 +25,7 @@ export interface Broker {
   publishContract: (
     contract: ContractData,
     context: LogContext
-  ) => Promise<unknown>;
+  ) => Promise<void>;
 
   downloadContract: (
     url: string,
