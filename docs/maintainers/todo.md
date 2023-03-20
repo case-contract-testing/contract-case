@@ -82,7 +82,7 @@ Major features
 - [ ] Authentication sources (authentication as a first class citizen)
 - [ ] SNS and SQS support
 
-Later major features
+Later features
 
 - [ ] Save a new matcher directly to contract, without a test (so that it can be used in tests)
 - [ ] Text bodies
@@ -91,6 +91,7 @@ Later major features
 - [ ] grpc support
 - [ ] graphql support
 - [ ] Kafka support
+- [ ] URL matchers
 
 Cool features
 
@@ -146,6 +147,7 @@ Configuration and ergonomics
 - [x] Log levels
 - [x] File locations
 - [x] Silent mode (no logs or test output)
+- [ ] Named shaped object types (so eg headers doesn't say 'an object shaped like')
 - [ ] Accepts / resolvesTo sanity checks
 - [ ] Strip matchers should take states
 - [ ] Warn when a logLevel matcher is written to contract
