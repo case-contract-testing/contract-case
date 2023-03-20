@@ -294,7 +294,7 @@
         },
         {
           "case:state:type": "StateWithVariables",
-          "stateName": "withProviderName",
+          "stateName": "with provider name",
           "variables": {
             "providerName": {
               "case:matcher:type": "CascadingContext",
@@ -447,7 +447,7 @@
         },
         {
           "case:state:type": "StateWithVariables",
-          "stateName": "withProviderName",
+          "stateName": "with provider name",
           "variables": {
             "providerName": {
               "case:matcher:type": "CascadingContext",

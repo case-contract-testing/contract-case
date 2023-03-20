@@ -106,7 +106,7 @@ describe('broker client', () => {
         password: 'somePassword',
       });
 
-      const stateProvider = inState('withProviderName', {
+      const stateProvider = inState('with provider name', {
         providerName: 'http request provider',
       });
 
