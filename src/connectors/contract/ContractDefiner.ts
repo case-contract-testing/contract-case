@@ -62,14 +62,17 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
     this.invoker = invoker;
   }
 
-  runExample<T extends AnyMockDescriptorType, R>({
-    states = [],
-    definition,
-    trigger,
-    triggers,
-    testResponse,
-    stateHandlers,
-  }: DefinitionSuccessExample<T, R>): Promise<unknown> {
+  runExample<T extends AnyMockDescriptorType, R>(
+    {
+      states = [],
+      definition,
+      trigger,
+      triggers,
+      testResponse,
+      stateHandlers,
+    }: DefinitionSuccessExample<T, R>,
+    runConfig?: CaseConfig
+  ): Promise<unknown> {
     if (trigger === undefined && testResponse !== undefined) {
       throw new CaseConfigurationError(
         'The testResponse function was supplied, but this is not valid without also supplying `trigger`'
@@ -81,27 +84,33 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
         'There was a trigger supplied, but without a corresponding `testResponse` function'
       );
     }
-    return this.contract.executeTest({
-      states,
-      mockDescription: definition,
-      trigger,
-      testResponse,
-      triggers:
-        triggers ||
-        (this.invoker as unknown as MultiTestInvoker<T, R>).triggers ||
-        {},
-      stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
-    });
+    return this.contract.executeTest(
+      {
+        states,
+        mockDescription: definition,
+        trigger,
+        testResponse,
+        triggers:
+          triggers ||
+          (this.invoker as unknown as MultiTestInvoker<T, R>).triggers ||
+          {},
+        stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
+      },
+      runConfig
+    );
   }
 
-  runRejectingExample<T extends AnyMockDescriptorType, R>({
-    states = [],
-    definition,
-    trigger,
-    triggers,
-    testErrorResponse,
-    stateHandlers,
-  }: DefinitionFailingExample<T, R>): Promise<unknown> {
+  runRejectingExample<T extends AnyMockDescriptorType, R>(
+    {
+      states = [],
+      definition,
+      trigger,
+      triggers,
+      testErrorResponse,
+      stateHandlers,
+    }: DefinitionFailingExample<T, R>,
+    runConfig?: CaseConfig
+  ): Promise<unknown> {
     if (trigger === undefined && testErrorResponse !== undefined) {
       throw new CaseConfigurationError(
         'The testErrorResponse function was supplied, but this is not valid without also supplying `trigger`'
@@ -114,18 +123,21 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
       );
     }
 
-    return this.contract.executeTest({
-      states,
-      mockDescription: definition,
-      trigger,
-      testResponse: undefined,
-      testErrorResponse,
-      triggers:
-        triggers ||
-        (this.invoker as unknown as MultiTestInvoker<T, R>).triggers ||
-        {},
-      stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
-    });
+    return this.contract.executeTest(
+      {
+        states,
+        mockDescription: definition,
+        trigger,
+        testResponse: undefined,
+        testErrorResponse,
+        triggers:
+          triggers ||
+          (this.invoker as unknown as MultiTestInvoker<T, R>).triggers ||
+          {},
+        stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
+      },
+      runConfig
+    );
   }
 
   endRecord(): Promise<unknown> {
