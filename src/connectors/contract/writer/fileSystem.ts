@@ -4,8 +4,8 @@ import slug from 'slug';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import type { WriteContract } from '../../../core/contract/types';
-import { DEFAULT_CONFIG } from '../../../core/contract';
+import type { WriteContract } from '../../../core/types';
+import { DEFAULT_CONFIG } from '../../../core';
 
 import { CaseConfigurationError } from '../../../entities';
 import type {

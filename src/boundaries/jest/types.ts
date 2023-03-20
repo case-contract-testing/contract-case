@@ -1,6 +1,6 @@
 import type { ContractDefiner } from '../../connectors/contract/ContractDefiner';
 import type { ContractVerifier } from '../../connectors/contract/ContractVerifier';
-import type { MultiTestInvoker } from '../../core/contract/executeExample/types';
+import type { MultiTestInvoker } from '../../core/executeExample/types';
 import type { CaseConfig } from '../../core/types';
 import type {
   AnyMockDescriptorType,

@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 import { versionFromGitTag } from 'absolute-version';
 
-import type { MakeBrokerApi, Broker } from '../../../core/contract/types';
+import type { MakeBrokerApi, Broker } from '../../../core/types';
 
 import { CaseConfigurationError } from '../../../entities';
 import type {

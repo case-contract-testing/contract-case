@@ -2,7 +2,7 @@
 import type * as http from 'node:http';
 
 import { readContract } from './connectors/contract/writer/fileSystem';
-import type { RunTestCallback } from './core/contract/executeExample/types';
+import type { RunTestCallback } from './core/executeExample/types';
 import type { StateHandlers } from './entities/states/types';
 
 import start from './__tests__/server/http/connectors/web';

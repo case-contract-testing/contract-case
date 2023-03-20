@@ -1,13 +1,13 @@
 /* eslint-disable no-underscore-dangle */
-import { makeLogger } from '../../connectors/logger';
-import { resultPrinter } from '../../connectors/resultPrinter';
+import { makeLogger } from '../logger';
+import { resultPrinter } from '../resultPrinter';
 
 import type { CaseConfig } from '../../core/types';
 
 import type { DataContext } from '../../entities/types';
 import { constructDataContext } from '../../entities/context';
-import { DEFAULT_CONFIG } from '../../core/contract';
-import { configToRunContext } from '../../core/contract/config';
+import { DEFAULT_CONFIG } from '../../core';
+import { configToRunContext } from '../../core/config';
 import { makeBrokerApi } from './broker';
 import { writeContract } from './writer';
 

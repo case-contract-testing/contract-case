@@ -1,2 +1,2 @@
-export * from '../../core/contract/WritingCaseContract';
-export * from '../../core/contract/ReadingCaseContract';
+export * from '../../core/WritingCaseContract';
+export * from '../../core/ReadingCaseContract';

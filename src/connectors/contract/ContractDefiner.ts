@@ -3,7 +3,7 @@ import { WritingCaseContract } from '.';
 import type {
   MultiTestInvoker,
   Trigger,
-} from '../../core/contract/executeExample/types';
+} from '../../core/executeExample/types';
 import type { CaseConfig } from '../../core/types';
 
 import { CaseConfigurationError } from '../../entities';

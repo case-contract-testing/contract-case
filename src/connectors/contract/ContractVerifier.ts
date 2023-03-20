@@ -5,8 +5,8 @@ import type { CaseConfig } from '../../core/types';
 import type {
   MultiTestInvoker,
   RunTestCallback,
-} from '../../core/contract/executeExample/types';
-import { ReadingCaseContract } from '../../core/contract/ReadingCaseContract';
+} from '../../core/executeExample/types';
+import { ReadingCaseContract } from '../../core/ReadingCaseContract';
 
 import type { AnyMockDescriptorType, ContractData } from '../../entities/types';
 
