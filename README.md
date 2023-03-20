@@ -27,7 +27,9 @@ Case releases follow [semantic versioning](https://semver.org/), with two additi
    version bumps- that is, 0.2.0 and 0.3.0 are not entirely compatible.
 2. Patch versions will always be backwards compatible.
 
-Breaking changes will always be detailed in the [changelog](./CHANGELOG.md)
+Breaking changes will always be detailed in the [changelog](./CHANGELOG.md).
+
+Incomplete [documentation is here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md). By way of apology for the unstable API, at least one new page of documentation will be added every time a breaking change is released during the beta period.
 
 ## Caveats and limitations
 
@@ -43,8 +45,8 @@ conventions very welcome. However, the following caveats should be kept in mind:
 1. Case currently doesn't support reporting your verification results to a broker.
 1. Case currently only has rudimentary support for retrieving contracts from a broker.
 1. Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
-1. Incomplete [documentation is here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md). At least one new page will be added every time a breaking change is released during the beta period.
-1. If you want to get started immediately, we recommend starting with either the [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts), or the [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts). Make sure you remove `printResults: false`.
+
+If you want to get started immediately, we recommend starting with either the [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts), or the [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts). Make sure you remove `printResults: false`.
 
 You can follow the detailed progress by reading the [maintainer todo list](./docs/maintainers/todo.md). These caveats will be updated as progress is made.
 
