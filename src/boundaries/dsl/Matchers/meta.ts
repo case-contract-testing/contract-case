@@ -16,6 +16,7 @@ import {
   type CoreContextVariableMatcher,
   CONTEXT_VARIABLE_TYPE,
   type LogLevel,
+  ResolvesTo,
 } from '../../../entities/types';
 
 /**
@@ -82,6 +83,19 @@ export const shapedLike = (content: AnyCaseNodeOrData): CoreCascadingMatcher =>
 export const stateVariable = (name: string): CoreContextVariableMatcher => ({
   'case:matcher:type': CONTEXT_VARIABLE_TYPE,
   'case:matcher:variableName': name,
+});
+
+/**
+ * Matches the content of a variable from a provider state.
+ *
+ * @param name The name of the variable
+ */
+export const stringStateVariable = (
+  name: string
+): CoreContextVariableMatcher & ResolvesTo<'string'> => ({
+  'case:matcher:type': CONTEXT_VARIABLE_TYPE,
+  'case:matcher:variableName': name,
+  'case:matcher:resolvesTo': 'string',
 });
 
 /**

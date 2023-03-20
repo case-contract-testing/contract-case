@@ -94,6 +94,23 @@
         "case:matcher:accepts": "string",
         "case:matcher:resolvesTo": "string"
       },
+      "body": {
+        "consumerVersionSelectors": {
+          "case:matcher:type": "ArrayEachEntryLike",
+          "case:matcher:matcher": {
+            "case:matcher:type": "ObjectValuesMatch",
+            "case:matcher:matcher": {
+              "case:matcher:type": "MatchBoolean",
+              "case:matcher:example": true,
+              "case:context:matchBy": "type",
+              "case:matcher:resolvesTo": "boolean"
+            }
+          }
+        },
+        "providerVersionTags": [
+          "main"
+        ]
+      },
       "headers": {
         "accept": "application/hal+json",
         "authorization": {
@@ -101,26 +118,11 @@
           "case:matcher:prefix": "Bearer ",
           "case:matcher:suffix": {
             "case:matcher:type": "ContextVariable",
-            "case:matcher:variableName": "token"
+            "case:matcher:variableName": "token",
+            "case:matcher:resolvesTo": "string"
           },
           "case:matcher:resolvesTo": "string"
         }
-      },
-      "body": {
-        "consumerVersionSelectors": [
-          {
-            "mainBranch": true
-          },
-          {
-            "deployedOrReleased": true
-          },
-          {
-            "latest": true
-          }
-        ],
-        "providerVersionTags": [
-          "main"
-        ]
       },
       "case:matcher:type": "HttpRequestMatcher"
     },
@@ -247,6 +249,23 @@
               "case:matcher:accepts": "string",
               "case:matcher:resolvesTo": "string"
             },
+            "body": {
+              "consumerVersionSelectors": {
+                "case:matcher:type": "ArrayEachEntryLike",
+                "case:matcher:matcher": {
+                  "case:matcher:type": "ObjectValuesMatch",
+                  "case:matcher:matcher": {
+                    "case:matcher:type": "MatchBoolean",
+                    "case:matcher:example": true,
+                    "case:context:matchBy": "type",
+                    "case:matcher:resolvesTo": "boolean"
+                  }
+                }
+              },
+              "providerVersionTags": [
+                "main"
+              ]
+            },
             "headers": {
               "accept": "application/hal+json",
               "authorization": {
@@ -254,26 +273,159 @@
                 "case:matcher:prefix": "Bearer ",
                 "case:matcher:suffix": {
                   "case:matcher:type": "ContextVariable",
-                  "case:matcher:variableName": "token"
+                  "case:matcher:variableName": "token",
+                  "case:matcher:resolvesTo": "string"
                 },
                 "case:matcher:resolvesTo": "string"
               }
             },
+            "case:matcher:type": "HttpRequestMatcher"
+          }
+        },
+        "response": {
+          "case:matcher:type": "Lookup",
+          "case:matcher:uniqueName": "a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array where each entry matches an object shaped like {verificationProperties: an object shaped like {notices: an array where each entry matches an object shaped like {text: <any string>}},_links: an object shaped like {self: an object shaped like {href: <any string>,name: <any string>}}}},_links: an object shaped like {self: an object shaped like {href: <any string>,title: <any string>}}}",
+          "case:matcher:child": {
+            "status": 200,
             "body": {
-              "consumerVersionSelectors": [
-                {
-                  "mainBranch": true
-                },
-                {
-                  "deployedOrReleased": true
-                },
-                {
-                  "latest": true
+              "_embedded": {
+                "pacts": {
+                  "case:matcher:type": "ArrayEachEntryLike",
+                  "case:matcher:matcher": {
+                    "verificationProperties": {
+                      "notices": {
+                        "case:matcher:type": "ArrayEachEntryLike",
+                        "case:matcher:matcher": {
+                          "case:matcher:type": "CascadingContext",
+                          "case:matcher:child": {
+                            "text": "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'"
+                          },
+                          "case:context:matchBy": "type"
+                        }
+                      }
+                    },
+                    "_links": {
+                      "case:matcher:type": "CascadingContext",
+                      "case:matcher:child": {
+                        "self": {
+                          "href": "http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a",
+                          "name": "Pact between Foo (v1.0.0) and Bar"
+                        }
+                      },
+                      "case:context:matchBy": "type"
+                    }
+                  }
                 }
-              ],
+              },
+              "_links": {
+                "case:matcher:type": "CascadingContext",
+                "case:matcher:child": {
+                  "self": {
+                    "href": "http://localhost:9292/pacts/provider/Bar/for-verification",
+                    "title": "Pacts to be verified"
+                  }
+                },
+                "case:context:matchBy": "type"
+              }
+            },
+            "case:matcher:type": "HttpResponseMatcher"
+          }
+        },
+        "case:mock:type": "MockHttpServer",
+        "case:run:context:setup": {
+          "write": {
+            "type": "MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "case:state:type": "StateWithVariables",
+          "stateName": "auth token is valid",
+          "variables": {
+            "token": {
+              "case:matcher:type": "CascadingContext",
+              "case:matcher:child": "TOKEN",
+              "case:context:matchBy": "type"
+            }
+          }
+        },
+        {
+          "case:state:type": "StateWithVariables",
+          "stateName": "withProviderName",
+          "variables": {
+            "providerName": {
+              "case:matcher:type": "CascadingContext",
+              "case:matcher:child": "http request provider",
+              "case:context:matchBy": "type"
+            }
+          }
+        }
+      ],
+      "mock": {
+        "request": {
+          "case:matcher:type": "Lookup",
+          "case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with a body with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"}",
+          "case:matcher:child": {
+            "method": "POST",
+            "path": {
+              "case:matcher:type": "UrlEncodedString",
+              "case:matcher:child": {
+                "case:matcher:type": "StringPrefix",
+                "case:matcher:prefix": "/pacts/provider/",
+                "case:matcher:suffix": {
+                  "case:matcher:type": "StringSuffix",
+                  "case:matcher:prefix": {
+                    "case:matcher:type": "ContextVariable",
+                    "case:matcher:variableName": "providerName"
+                  },
+                  "case:matcher:suffix": "/for-verification",
+                  "case:matcher:resolvesTo": "string"
+                },
+                "case:matcher:resolvesTo": "string"
+              },
+              "case:matcher:accepts": "string",
+              "case:matcher:resolvesTo": "string"
+            },
+            "body": {
+              "consumerVersionSelectors": {
+                "case:matcher:type": "ArrayEachEntryLike",
+                "case:matcher:matcher": {
+                  "case:matcher:type": "ObjectValuesMatch",
+                  "case:matcher:matcher": {
+                    "case:matcher:type": "MatchBoolean",
+                    "case:matcher:example": true,
+                    "case:context:matchBy": "type",
+                    "case:matcher:resolvesTo": "boolean"
+                  }
+                }
+              },
               "providerVersionTags": [
                 "main"
               ]
+            },
+            "headers": {
+              "accept": "application/hal+json",
+              "authorization": {
+                "case:matcher:type": "StringPrefix",
+                "case:matcher:prefix": "Bearer ",
+                "case:matcher:suffix": {
+                  "case:matcher:type": "ContextVariable",
+                  "case:matcher:variableName": "token",
+                  "case:matcher:resolvesTo": "string"
+                },
+                "case:matcher:resolvesTo": "string"
+              }
             },
             "case:matcher:type": "HttpRequestMatcher"
           }

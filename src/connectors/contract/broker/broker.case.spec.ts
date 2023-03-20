@@ -1,12 +1,16 @@
 import * as fs from 'node:fs';
 
 import {
+  anyBoolean,
   anyString,
   arrayEachEntryMatches,
+  bearerToken,
   inState,
+  objectEachValueMatches,
   shapedLike,
   stateVariable,
   stringPrefix,
+  stringStateVariable,
   stringSuffix,
   uriEncodedString,
   willSendHttpRequest,
@@ -14,7 +18,7 @@ import {
 import { defineContract } from '../../../boundaries/jest/jest';
 import { caseVersion } from '../../../entities/caseVersion';
 import { CaseConfigurationError } from '../../../entities';
-import type { MatchContext } from '../../../entities/types';
+import type { DataContext } from '../../../entities/types';
 import { readContract } from '../writer';
 import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { makeBrokerApi } from './broker';
@@ -45,7 +49,7 @@ const makeBrokerApiForTest = (
   makeBrokerApi({
     'case:currentRun:context:brokerCiAccessToken': token,
     'case:currentRun:context:brokerBaseUrl': url,
-  } as MatchContext);
+  } as DataContext);
 
 describe('broker client', () => {
   beforeAll(() => {
@@ -101,83 +105,134 @@ describe('broker client', () => {
       });
 
       describe('find contracts for verification', () => {
-        describe('with a valid auth token', () => {
-          it('will be successful', () =>
-            contract.runExample({
-              states: [stateAuthTokenValid, stateProvider],
-              definition: willSendHttpRequest({
-                request: {
-                  method: 'POST',
-                  path: uriEncodedString(
-                    stringPrefix(
-                      `/pacts/provider/`,
-                      stringSuffix(
-                        stateVariable('providerName'),
-                        '/for-verification'
-                      )
-                    )
-                  ),
-                  headers: {
-                    accept: 'application/hal+json',
-                    authorization: stringPrefix(
-                      'Bearer ',
-                      stateVariable('token')
-                    ),
+        const request = {
+          method: 'POST',
+          path: uriEncodedString(
+            stringPrefix(
+              `/pacts/provider/`,
+              stringSuffix(stateVariable('providerName'), '/for-verification')
+            )
+          ),
+          body: {
+            consumerVersionSelectors: arrayEachEntryMatches(
+              objectEachValueMatches(anyBoolean())
+            ),
+            providerVersionTags: ['main'],
+          },
+        };
+
+        describe('token auth', () => {
+          describe('with a valid auth token', () => {
+            it('will be successful', () =>
+              contract.runExample({
+                states: [stateAuthTokenValid, stateProvider],
+                definition: willSendHttpRequest({
+                  request: {
+                    ...request,
+                    headers: {
+                      accept: 'application/hal+json',
+                      authorization: bearerToken(stringStateVariable('token')),
+                    },
                   },
-                  body: {
-                    consumerVersionSelectors: [
-                      {
-                        mainBranch: true,
-                      },
-                      {
-                        deployedOrReleased: true,
-                      },
-                      { latest: true },
-                    ],
-                    providerVersionTags: ['main'],
-                  },
-                },
-                response: {
-                  status: 200,
-                  body: {
-                    _embedded: {
-                      pacts: arrayEachEntryMatches({
-                        verificationProperties: {
-                          notices: arrayEachEntryMatches(
-                            shapedLike({
-                              text: "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'",
-                            })
-                          ),
-                        },
-                        _links: shapedLike({
-                          self: {
-                            href: 'http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a',
-                            name: 'Pact between Foo (v1.0.0) and Bar',
+                  response: {
+                    status: 200,
+                    body: {
+                      _embedded: {
+                        pacts: arrayEachEntryMatches({
+                          verificationProperties: {
+                            notices: arrayEachEntryMatches(
+                              shapedLike({
+                                text: "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'",
+                              })
+                            ),
                           },
+                          _links: shapedLike({
+                            self: {
+                              href: 'http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a',
+                              name: 'Pact between Foo (v1.0.0) and Bar',
+                            },
+                          }),
                         }),
+                      },
+                      _links: shapedLike({
+                        self: {
+                          href: 'http://localhost:9292/pacts/provider/Bar/for-verification',
+                          title: 'Pacts to be verified',
+                        },
                       }),
                     },
-                    _links: shapedLike({
-                      self: {
-                        href: 'http://localhost:9292/pacts/provider/Bar/for-verification',
-                        title: 'Pacts to be verified',
-                      },
-                    }),
                   },
+                }),
+                trigger: (config) =>
+                  makeBrokerApiForTest(
+                    config.baseUrl,
+                    config.variables['token'] as string
+                  ).urlsForVerification(
+                    config.variables['providerName'] as string,
+                    emptyContext
+                  ),
+                testResponse: (data) => {
+                  expect(data).not.toBeNull();
                 },
-              }),
-              trigger: (config) =>
-                makeBrokerApiForTest(
-                  config.baseUrl,
-                  config.variables['token'] as string
-                ).urlsForVerification(
-                  config.variables['providerName'] as string,
-                  emptyContext
-                ),
-              testResponse: (data) => {
-                expect(data).not.toBeNull();
-              },
-            }));
+              }));
+          });
+        });
+
+        describe('basic auth', () => {
+          describe('with valid basic auth', () => {
+            it('will be successful', () =>
+              contract.runExample({
+                states: [stateAuthTokenValid, stateProvider],
+                definition: willSendHttpRequest({
+                  request: {
+                    ...request,
+                    headers: {
+                      accept: 'application/hal+json',
+                      authorization: bearerToken(stringStateVariable('token')),
+                    },
+                  },
+                  response: {
+                    status: 200,
+                    body: {
+                      _embedded: {
+                        pacts: arrayEachEntryMatches({
+                          verificationProperties: {
+                            notices: arrayEachEntryMatches(
+                              shapedLike({
+                                text: "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'",
+                              })
+                            ),
+                          },
+                          _links: shapedLike({
+                            self: {
+                              href: 'http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a',
+                              name: 'Pact between Foo (v1.0.0) and Bar',
+                            },
+                          }),
+                        }),
+                      },
+                      _links: shapedLike({
+                        self: {
+                          href: 'http://localhost:9292/pacts/provider/Bar/for-verification',
+                          title: 'Pacts to be verified',
+                        },
+                      }),
+                    },
+                  },
+                }),
+                trigger: (config) =>
+                  makeBrokerApiForTest(
+                    config.baseUrl,
+                    config.variables['token'] as string
+                  ).urlsForVerification(
+                    config.variables['providerName'] as string,
+                    emptyContext
+                  ),
+                testResponse: (data) => {
+                  expect(data).not.toBeNull();
+                },
+              }));
+          });
         });
       });
 

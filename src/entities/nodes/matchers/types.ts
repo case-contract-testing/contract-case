@@ -108,11 +108,13 @@ export type DataOrCaseNodeFor<T extends AnyCaseNodeType> =
   | CaseNodeFor<T>
   | AnyLeafOrStructure;
 
-type ResolvesTo<T extends string> = {
+export type ResolvesTo<T extends string> = {
   'case:matcher:resolvesTo': T;
 };
 
-export type AnyStringMatcher = Extract<AnyCaseMatcher, ResolvesTo<'string'>>;
+export type AnyStringMatcher =
+  | Extract<AnyCaseMatcher, ResolvesTo<'string'>>
+  | (AnyCaseMatcher & ResolvesTo<'string'>);
 
 export type CaseNodeFor<T extends AnyCaseNodeType> = Extract<
   AnyCaseMatcher,
