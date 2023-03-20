@@ -79,20 +79,20 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
   contract: WritingCaseContract | ReadingCaseContract,
   context: MatchContext
 ): Promise<unknown> =>
-  setupExample<T>(example, stateHandlers, context).then(
-    (assertable: Assertable<T>) => {
-      context.logger.debug(
-        `Invoking trigger with`,
-        assertable.config,
-        context['case:currentRun:context:location']
-      );
-      return findAndCallTrigger(
-        example.mock as CaseMockDescriptorFor<T>,
-        { trigger, triggers, names, testErrorResponse, testResponse },
-        assertable,
-        context
-      )
-        .then(
+  setupExample<T>(example, stateHandlers, context)
+    .then(
+      (assertable: Assertable<T>) => {
+        context.logger.debug(
+          `Invoking trigger with`,
+          assertable.config,
+          context['case:currentRun:context:location']
+        );
+        return findAndCallTrigger(
+          example.mock as CaseMockDescriptorFor<T>,
+          { trigger, triggers, names, testErrorResponse, testResponse },
+          assertable,
+          context
+        ).then(
           () => {
             context.logger.debug(`Asserting result`);
             return toResultingExample(assertable, example, context);
@@ -125,13 +125,15 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
               )
             );
           }
-        )
-        .then((resultingExample) => {
-          handleResult(
-            contract.recordExample(resultingExample, context),
-            context['case:currentRun:context:testName'],
-            context
-          );
-        });
-    }
-  );
+        );
+      },
+      (error) =>
+        makeFailedExample(example, makeResults(executionError(error, context)))
+    )
+    .then((resultingExample) => {
+      handleResult(
+        contract.recordExample(resultingExample, context),
+        context['case:currentRun:context:testName'],
+        context
+      );
+    });
