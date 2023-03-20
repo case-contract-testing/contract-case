@@ -56,7 +56,7 @@ describe('Server verification', () => {
 
   describe('with a file contract', () => {
     // JEST BOILERPLATE
-    const runJestTestExepectingErrors =
+    const runJestTestExpectingErrors =
       (errors: Record<string, Function>): RunTestCallback =>
       (testName: string, verify: () => Promise<unknown>): void => {
         it(`${testName}`, () =>
@@ -110,7 +110,7 @@ describe('Server verification', () => {
       };
       verifier.verifyContract(
         { stateHandlers },
-        runJestTestExepectingErrors({
+        runJestTestExpectingErrors({
           'When Server is down, then an http "GET" request to "/health" without a body -> a (httpStatus 4XX | 5XX) response without a body':
             CaseConfigurationError,
           'When Server is down, then an http "GET" request to "/health" without a body -> a (503) response with body an object shaped like {status: "down"}':
@@ -151,7 +151,7 @@ describe('Server verification', () => {
       };
       verifier.verifyContract(
         { stateHandlers },
-        runJestTestExepectingErrors({
+        runJestTestExpectingErrors({
           'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} -> a (200) response with body an object shaped like {status: "up"}':
             CaseConfigurationError,
           'When Server is up, then an http "GET" request to "/health" without a body -> a (200) response with body an object shaped like {status: <any string>}':
@@ -201,7 +201,7 @@ describe('Server verification', () => {
       };
       verifier.verifyContract(
         { stateHandlers },
-        runJestTestExepectingErrors({
+        runJestTestExpectingErrors({
           'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} -> a (200) response with body an object shaped like {status: "up"}':
             CaseConfigurationError,
           'When Server is up, then an http "GET" request to "/health" without a body -> a (200) response with body an object shaped like {status: <any string>}':
@@ -245,7 +245,7 @@ describe('Server verification', () => {
       };
       verifier.verifyContract(
         { stateHandlers },
-        runJestTestExepectingErrors({
+        runJestTestExpectingErrors({
           [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
         })
@@ -284,7 +284,7 @@ describe('Server verification', () => {
       };
       verifier.verifyContract(
         { stateHandlers },
-        runJestTestExepectingErrors({
+        runJestTestExpectingErrors({
           [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
         })
@@ -324,7 +324,7 @@ describe('Server verification', () => {
       };
       verifier.verifyContract(
         { stateHandlers },
-        runJestTestExepectingErrors({})
+        runJestTestExpectingErrors({})
       );
     });
 
@@ -361,7 +361,7 @@ describe('Server verification', () => {
       };
       verifier.verifyContract(
         { stateHandlers },
-        runJestTestExepectingErrors({
+        runJestTestExpectingErrors({
           [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
         })
@@ -401,7 +401,7 @@ describe('Server verification', () => {
       };
       verifier.verifyContract(
         { stateHandlers },
-        runJestTestExepectingErrors({})
+        runJestTestExpectingErrors({})
       );
     });
   });
