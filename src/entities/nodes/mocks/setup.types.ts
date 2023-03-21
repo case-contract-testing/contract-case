@@ -24,7 +24,10 @@ export type MockSetupFn<T extends AnyMockDescriptorType> = (
 ) => Promise<MockData<T>>;
 
 type BaseConfig = {
-  variables: Record<string, unknown>;
+  // We allow Any here for now, because it makes defining tests very convenient
+  // TODO: Don't use any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  variables: Record<string, any>;
 };
 
 export type HttpRequestConsumerSetup = HasTypeForMockDescriptor<

@@ -139,9 +139,10 @@ describe('e2e http consumer driven', () => {
       });
       describe('User', () => {
         describe('With query variables', () => {
-          const sendUserRequest =
-            (userId: string) => (config: HttpRequestConfig) =>
-              api(config.baseUrl).getUserByQuery(userId);
+          const sendUserRequest = (config: HttpRequestConfig) =>
+            api(config.baseUrl).getUserByQuery(
+              config.variables['userId'] as string
+            );
           describe('when the user exists', () => {
             const responseBody = { userId: stateVariable('userId') };
 
@@ -162,7 +163,7 @@ describe('e2e http consumer driven', () => {
                     body: responseBody,
                   },
                 }),
-                trigger: sendUserRequest('123'),
+                trigger: sendUserRequest,
                 testResponse: (health) => {
                   expect(contract.stripMatchers(responseBody)).toEqual({
                     userId: '123',
@@ -174,7 +175,10 @@ describe('e2e http consumer driven', () => {
           describe("when the user doesn't exist", () => {
             it('returns a user not found error', () =>
               contract.runRejectingExample({
-                states: [inState('Server is up'), inState('No users exist')],
+                states: [
+                  inState('Server is up'),
+                  inState('No users exist', { userId: '123' }),
+                ],
                 definition: willSendHttpRequest({
                   request: {
                     method: 'GET',
@@ -185,7 +189,7 @@ describe('e2e http consumer driven', () => {
                     status: 404,
                   },
                 }),
-                trigger: sendUserRequest('123'),
+                trigger: sendUserRequest,
                 testErrorResponse: (e) => {
                   expect(e).toBeInstanceOf(UserNotFoundConsumerError);
                 },
@@ -193,9 +197,8 @@ describe('e2e http consumer driven', () => {
           });
         });
         describe('With path variables', () => {
-          const sendUserRequest =
-            (userId: string) => (config: HttpRequestConfig) =>
-              api(config.baseUrl).getUserByPath(userId);
+          const sendUserRequest = (config: HttpRequestConfig) =>
+            api(config.baseUrl).getUserByPath(config.variables['userId']);
           describe('when the user exists', () => {
             const responseBody = { userId: stateVariable('userId') };
 
@@ -212,10 +215,10 @@ describe('e2e http consumer driven', () => {
                   },
                   response: {
                     status: 200,
-                    body: responseBody,
+                    body: { userId: stateVariable('userId') },
                   },
                 }),
-                trigger: sendUserRequest('123'),
+                trigger: sendUserRequest,
                 testResponse: (health) => {
                   expect(contract.stripMatchers(responseBody)).toEqual({
                     userId: '123',
@@ -227,17 +230,20 @@ describe('e2e http consumer driven', () => {
           describe("when the user doesn't exist", () => {
             it('returns a user not found error', () =>
               contract.runRejectingExample({
-                states: [inState('Server is up'), inState('No users exist')],
+                states: [
+                  inState('Server is up'),
+                  inState('No users exist', { userId: '123' }),
+                ],
                 definition: willSendHttpRequest({
                   request: {
                     method: 'GET',
-                    path: stringPrefix('/users/', '123'),
+                    path: stringPrefix('/users/', stateVariable('userId')),
                   },
                   response: {
                     status: 404,
                   },
                 }),
-                trigger: sendUserRequest('123'),
+                trigger: sendUserRequest,
                 testErrorResponse: (e) => {
                   expect(e).toBeInstanceOf(UserNotFoundConsumerError);
                 },
@@ -315,6 +321,7 @@ describe('Server verification', () => {
         },
         'No users exist': () => {
           mockGetUser = () => undefined;
+          return { userId: '12' };
         },
       };
 

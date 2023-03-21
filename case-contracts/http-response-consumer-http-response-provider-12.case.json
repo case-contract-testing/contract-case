@@ -106,16 +106,6 @@
         "case:matcher:resolvesTo": "string"
       },
       "case:matcher:type": "HttpRequestMatcher"
-    },
-    "matcher:an http \"GET\" request to \"/users/123\" without a body": {
-      "method": "GET",
-      "path": {
-        "case:matcher:type": "StringPrefix",
-        "case:matcher:prefix": "/users/",
-        "case:matcher:suffix": "123",
-        "case:matcher:resolvesTo": "string"
-      },
-      "case:matcher:type": "HttpRequestMatcher"
     }
   },
   "examples": [
@@ -378,8 +368,15 @@
           "stateName": "Server is up"
         },
         {
-          "case:state:type": "NamedState",
-          "stateName": "No users exist"
+          "case:state:type": "StateWithVariables",
+          "stateName": "No users exist",
+          "variables": {
+            "userId": {
+              "case:matcher:type": "CascadingContext",
+              "case:matcher:child": "123",
+              "case:context:matchBy": "type"
+            }
+          }
         }
       ],
       "mock": {
@@ -495,20 +492,30 @@
           "stateName": "Server is up"
         },
         {
-          "case:state:type": "NamedState",
-          "stateName": "No users exist"
+          "case:state:type": "StateWithVariables",
+          "stateName": "No users exist",
+          "variables": {
+            "userId": {
+              "case:matcher:type": "CascadingContext",
+              "case:matcher:child": "123",
+              "case:context:matchBy": "type"
+            }
+          }
         }
       ],
       "mock": {
         "request": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "an http \"GET\" request to \"/users/123\" without a body",
+          "case:matcher:uniqueName": "an http \"GET\" request to \"/users/{{userId}}\" without a body",
           "case:matcher:child": {
             "method": "GET",
             "path": {
               "case:matcher:type": "StringPrefix",
               "case:matcher:prefix": "/users/",
-              "case:matcher:suffix": "123",
+              "case:matcher:suffix": {
+                "case:matcher:type": "ContextVariable",
+                "case:matcher:variableName": "userId"
+              },
               "case:matcher:resolvesTo": "string"
             },
             "case:matcher:type": "HttpRequestMatcher"
