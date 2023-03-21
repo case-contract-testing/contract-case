@@ -94,14 +94,19 @@
       "status": 404,
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "matcher:a (200) response with body an object shaped like {userId: {{userId}},name: \"john smith\"}": {
+    "matcher:a (200) response with body an object shaped like {userId: {{userId}},name: <any string>}": {
       "status": 200,
       "body": {
         "userId": {
           "case:matcher:type": "ContextVariable",
           "case:matcher:variableName": "userId"
         },
-        "name": "john smith"
+        "name": {
+          "case:matcher:type": "MatchString",
+          "case:matcher:example": "john smith",
+          "case:matcher:resolvesTo": "string",
+          "case:context:matchBy": "type"
+        }
       },
       "case:matcher:type": "HttpResponseMatcher"
     },
@@ -468,7 +473,7 @@
         },
         "response": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "a (200) response with body an object shaped like {userId: {{userId}},name: \"john smith\"}",
+          "case:matcher:uniqueName": "a (200) response with body an object shaped like {userId: {{userId}},name: <any string>}",
           "case:matcher:child": {
             "status": 200,
             "body": {
@@ -476,7 +481,12 @@
                 "case:matcher:type": "ContextVariable",
                 "case:matcher:variableName": "userId"
               },
-              "name": "john smith"
+              "name": {
+                "case:matcher:type": "MatchString",
+                "case:matcher:example": "john smith",
+                "case:matcher:resolvesTo": "string",
+                "case:context:matchBy": "type"
+              }
             },
             "case:matcher:type": "HttpResponseMatcher"
           }

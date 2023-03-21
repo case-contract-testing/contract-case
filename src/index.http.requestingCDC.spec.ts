@@ -23,6 +23,7 @@ import {
   readContract,
   willSendHttpRequest,
   HttpRequestConfig,
+  anyString,
 } from '.';
 
 const contractDetails = {
@@ -202,7 +203,7 @@ describe('e2e http consumer driven', () => {
           describe('when the user exists', () => {
             const responseBody = {
               userId: stateVariable('userId'),
-              name: 'john smith',
+              name: anyString('john smith'),
             };
 
             it('returns an existing user', async () =>
