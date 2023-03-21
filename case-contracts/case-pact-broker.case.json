@@ -6,7 +6,7 @@
   },
   "metadata": {
     "case": {
-      "version": "0.4.0"
+      "version": "0.5.1"
     }
   },
   "matcherLookup": {
@@ -210,11 +210,11 @@
       "status": 200,
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "matcher:an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"}": {
+    "matcher:an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"}": {
       "method": "PUT",
       "path": {
         "case:matcher:type": "StringPrefix",
-        "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0",
+        "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
         "case:matcher:suffix": {
           "case:matcher:type": "MatchString",
           "case:matcher:example": "someString",
@@ -250,11 +250,11 @@
       "status": 403,
       "case:matcher:type": "HttpResponseMatcher"
     },
-    "matcher:an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"}": {
+    "matcher:an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"}": {
       "method": "PUT",
       "path": {
         "case:matcher:type": "StringPrefix",
-        "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0",
+        "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
         "case:matcher:suffix": {
           "case:matcher:type": "MatchString",
           "case:matcher:example": "someString",
@@ -606,12 +606,12 @@
       "mock": {
         "request": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"}",
+          "case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"}",
           "case:matcher:child": {
             "method": "PUT",
             "path": {
               "case:matcher:type": "StringPrefix",
-              "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0",
+              "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
               "case:matcher:suffix": {
                 "case:matcher:type": "MatchString",
                 "case:matcher:example": "someString",
@@ -676,12 +676,12 @@
       "mock": {
         "request": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"}",
+          "case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" without a body with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"}",
           "case:matcher:child": {
             "method": "PUT",
             "path": {
               "case:matcher:type": "StringPrefix",
-              "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/0.4.0",
+              "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
               "case:matcher:suffix": {
                 "case:matcher:type": "MatchString",
                 "case:matcher:example": "someString",

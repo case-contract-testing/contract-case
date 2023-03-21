@@ -17,7 +17,6 @@ import {
   willSendHttpRequest,
 } from '../../../boundaries';
 import { defineContract } from '../../../boundaries/jest/jest';
-import { caseVersion } from '../../../entities/caseVersion';
 import { CaseConfigurationError } from '../../../entities';
 import type { DataContext } from '../../../entities/types';
 import { readContract } from '../writer';
@@ -257,7 +256,7 @@ describe('broker client', () => {
                 request: {
                   method: 'PUT',
                   path: stringPrefix(
-                    `/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/${caseVersion}`,
+                    `/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/`,
                     anyString()
                   ),
                   headers: {
@@ -282,7 +281,7 @@ describe('broker client', () => {
         });
 
         describe('with an invalid auth token', () => {
-          it('will be successful', () =>
+          it('will be unsuccessful', () =>
             contract.runRejectingExample({
               states: [
                 inState('auth token is not valid', {
@@ -293,7 +292,7 @@ describe('broker client', () => {
                 request: {
                   method: 'PUT',
                   path: stringPrefix(
-                    `/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/${caseVersion}`,
+                    `/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/`,
                     anyString()
                   ),
                   headers: {
