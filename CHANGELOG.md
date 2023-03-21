@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.0](https://github.com/TimothyJones/case/compare/v0.4.0...v0.5.0) (2023-03-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove misnamed exports of CaseContract and CaseVerifier. Use the intended classes ContractDefiner and ContractVerifier instead
+* Rename VerifiyCaseJestCallback -> VerifyCaseJestCallback, fixing a typo in the name
+
+### Features
+
+* Add ability to override config on a per-test level using an optional config parameter for runExample() and runRejectingExample() ([d3fe7de](https://github.com/TimothyJones/case/commit/d3fe7dedced31ad2bfc383a61ab254c56ade88ba))
+* Add bearerToken() matcher for ease of auth headers; and a stringStateVariable() matcher for use when you know a variable is a string ([f9fa501](https://github.com/TimothyJones/case/commit/f9fa501f1b1783992181ee5cf54369502ab77050))
+* Add download-contracts binary which can download contracts from a broker ([7c73360](https://github.com/TimothyJones/case/commit/7c7336091524c6d45f20e3b4ef1bf5599b2de382))
+* Add uriEncodedString() matcher for URI encoded strings ([de7bdea](https://github.com/TimothyJones/case/commit/de7bdea6285aad973e94bdc2577616eb599898fe))
+* **docs:** Defining contract documentation now written ([ab894ff](https://github.com/TimothyJones/case/commit/ab894ff9f7781c597851ba953262aeb1d81d2c0a))
+* Expose config to test reponse functions during contract definition ([d237618](https://github.com/TimothyJones/case/commit/d237618449bfe1c55f2d1a7503a34a18015bd296))
+* Support the Open Source Pact Broker by adding basic auth. Also added a basicAuth() matcher ([997c3ab](https://github.com/TimothyJones/case/commit/997c3abe8017fc67edca43b78f4ce06ac156b155))
+
+
+### Bug Fixes
+
+* Correct typo in httpStatus human-readable string (httpStaus -&gt; httpStatus) ([70e44af](https://github.com/TimothyJones/case/commit/70e44af3d75d416eb4bae81b70552b844431b2fb))
+* Don't try to publish a contract if there's no CI token set; instead just print a warning ([564aa6e](https://github.com/TimothyJones/case/commit/564aa6e2cbd88c7a15b1469b4cf029bd24c2e529))
+* Fix a bug where it was possible to have a failed test ignored instead of leading to failure to write the contract ([757ebf8](https://github.com/TimothyJones/case/commit/757ebf87fa2f43ac402baa0c7297b5263ce09d52))
+* Increase timeout for verifications in Jest to 30 seconds ([ce800c2](https://github.com/TimothyJones/case/commit/ce800c21ad95c566465eb5d81e5350a38ebb4bdf))
+* Loosen type restriction when using variables from Config objects ([f8918d9](https://github.com/TimothyJones/case/commit/f8918d9f77c7c91cb8f5ab836e7a8ad3566c010e))
+* Remove hack to match Pact file format as it is now not necessary ([30ddd7f](https://github.com/TimothyJones/case/commit/30ddd7f62c0c1815fe48d7a8a3f3812660e121de))
+* Remove misnamed exports of CaseContract and CaseVerifier. Use the intended classes ContractDefiner and ContractVerifier instead ([5cd77aa](https://github.com/TimothyJones/case/commit/5cd77aaf6ad90b931c84ae282024079964da9832))
+* Rename VerifiyCaseJestCallback -&gt; VerifyCaseJestCallback, fixing a typo in the name ([d69c4b2](https://github.com/TimothyJones/case/commit/d69c4b258e2d2b3d140c567a5b605072a194eaf0))
+
 ## [0.4.0](https://github.com/TimothyJones/case/compare/v0.3.0...v0.4.0) (2023-03-17)
 
 
