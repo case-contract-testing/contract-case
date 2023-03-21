@@ -33,7 +33,7 @@ export const defineContract = <T extends AnyMockDescriptorType>(
       { stateHandlers, triggers }
     );
 
-    afterAll(() => contract.endRecord());
+    afterAll(() => contract.endRecord(), 30000);
 
     describe(`between ${contractConfig.consumerName} and ${contractConfig.providerName}`, () => {
       callback(contract);
