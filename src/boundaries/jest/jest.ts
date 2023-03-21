@@ -46,7 +46,5 @@ export const verifyContract = (
   callback: VerifyCaseJestCallback
 ): void =>
   describe('Case contract verification', () => {
-    describe(``, () => {
-      callback(new ContractVerifier(contract, config, runJestTest));
-    });
+    callback(new ContractVerifier(contract, config, runJestTest));
   });
