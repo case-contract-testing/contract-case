@@ -15,6 +15,7 @@ import type {
   CaseMockDescriptorFor,
   ContractDescription,
   DataOrCaseNodeFor,
+  SetupInfoFor,
 } from '../../entities/types';
 import { resultPrinter } from '../resultPrinter';
 import { makeLogger } from '../logger';
@@ -28,7 +29,7 @@ export type DefinitionSuccessExample<
   states?: Array<AnyState>;
   definition: CaseMockDescriptorFor<T>;
   trigger?: Trigger<T, R>;
-  testResponse?: (data: R) => unknown;
+  testResponse?: (data: R, config: SetupInfoFor<T>) => unknown;
 };
 
 export type DefinitionFailingExample<
@@ -38,7 +39,7 @@ export type DefinitionFailingExample<
   states?: Array<AnyState>;
   definition: CaseMockDescriptorFor<T>;
   trigger?: Trigger<T, R>;
-  testErrorResponse?: (err: Error) => unknown;
+  testErrorResponse?: (err: Error, config: SetupInfoFor<T>) => unknown;
 };
 
 export class ContractDefiner<M extends AnyMockDescriptorType> {
