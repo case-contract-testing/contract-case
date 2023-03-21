@@ -45,6 +45,6 @@ export const verifyContract = (
   config: CaseConfig,
   callback: VerifyCaseJestCallback
 ): void =>
-  describe('Case contract verification', () => {
+  describe(`Case contract between ${contract.description.consumerName} and ${contract.description.providerName}`, () => {
     callback(new ContractVerifier(contract, config, runJestTest));
   });
