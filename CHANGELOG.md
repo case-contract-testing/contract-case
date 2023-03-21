@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.1](https://github.com/TimothyJones/case/compare/v0.5.0...v0.5.1) (2023-03-21)
+
+
+### Features
+
+* **jest:** Use contract consumerName and providerName in describe block during contract validation ([9763035](https://github.com/TimothyJones/case/commit/9763035c24ea816f07e1ffe11648a6090e51e52e))
+
+
+### Bug Fixes
+
+* Remove an empty describe block present during contract verification in Jest ([e01070e](https://github.com/TimothyJones/case/commit/e01070e70d0c9720b30b289901756a7162b80492))
+
+
+### Miscellaneous Chores
+
+* release 0.5.1 ([4ee5bcb](https://github.com/TimothyJones/case/commit/4ee5bcb37e6dbca84b05f9a769e736fd0600f84e))
+
 ## [0.5.0](https://github.com/TimothyJones/case/compare/v0.4.0...v0.5.0) (2023-03-21)
 
 
