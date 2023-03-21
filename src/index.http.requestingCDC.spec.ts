@@ -164,11 +164,11 @@ describe('e2e http consumer driven', () => {
                   },
                 }),
                 trigger: sendUserRequest,
-                testResponse: (health) => {
+                testResponse: (user) => {
                   expect(contract.stripMatchers(responseBody)).toEqual({
                     userId: '123',
                   });
-                  expect(health).toEqual(contract.stripMatchers(responseBody));
+                  expect(user).toEqual(contract.stripMatchers(responseBody));
                 },
               }));
           });
@@ -200,7 +200,10 @@ describe('e2e http consumer driven', () => {
           const sendUserRequest = (config: HttpRequestConfig) =>
             api(config.baseUrl).getUserByPath(config.variables['userId']);
           describe('when the user exists', () => {
-            const responseBody = { userId: stateVariable('userId') };
+            const responseBody = {
+              userId: stateVariable('userId'),
+              name: 'john smith',
+            };
 
             it('returns an existing user', async () =>
               contract.runExample({
@@ -215,15 +218,16 @@ describe('e2e http consumer driven', () => {
                   },
                   response: {
                     status: 200,
-                    body: { userId: stateVariable('userId') },
+                    body: responseBody,
                   },
                 }),
                 trigger: sendUserRequest,
-                testResponse: (health) => {
+                testResponse: (user) => {
                   expect(contract.stripMatchers(responseBody)).toEqual({
+                    name: 'john smith',
                     userId: '123',
                   });
-                  expect(health).toEqual(contract.stripMatchers(responseBody));
+                  expect(user).toEqual(contract.stripMatchers(responseBody));
                 },
               }));
           });
