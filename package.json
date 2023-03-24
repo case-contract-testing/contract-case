@@ -30,13 +30,13 @@
     "format:fix": "npm run format:base -- --write ",
     "test": "jest"
   },
-  "homepage": "https://github.com/TimothyJones/case#readme",
+  "homepage": "https://case.contract-testing.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TimothyJones/case.git"
+    "url": "https://github.com/case-contract-testing/case.git"
   },
   "bugs": {
-    "url": "https://github.com/TimothyJones/case/issues",
+    "url": "https://github.com/case-contract-testing/case/issues",
     "email": "timothy.l.jones@gmail.com"
   },
   "funding": {
