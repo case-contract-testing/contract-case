@@ -80,7 +80,7 @@
     "axios": "^1.3.4",
     "chalk": "^4.1.2",
     "express": "^4.18.2",
-    "filenamify": "^4.3.0",
+    "filenamify": "^5.1.1",
     "pretty-format": "^29.5.0",
     "qs": "^6.11.1",
     "slug": "^8.2.2"
