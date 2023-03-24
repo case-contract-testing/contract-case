@@ -14,7 +14,7 @@
 
 </span>
 
-Read the [documentation here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md). Documentation is currently in-progress. Feedback welcome!
+Read the [documentation here](https://case.contract-testing.io/docs/intro/). Documentation is currently in-progress. Feedback welcome!
 
 Case is a next-generation consumer-driven contract testing framework, building
 on many of the lessons from maintaining the excellent [Pact](pact.io) contract testing
@@ -29,7 +29,7 @@ Case releases follow [semantic versioning](https://semver.org/), with two additi
 
 Breaking changes will always be detailed in the [changelog](./CHANGELOG.md).
 
-Incomplete [documentation is here](https://github.com/TimothyJones/case/blob/main/docs/users/what-is-contract-testing.md). By way of apology for the unstable API, at least one new page of documentation will be added every time a breaking change is released during the beta period.
+Incomplete [documentation is here](https://case.contract-testing.io/docs/intro/). By way of apology for the unstable API, at least one new page of documentation will be added every time a breaking change is released during the beta period.
 
 ## Caveats and limitations
 
