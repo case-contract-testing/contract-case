@@ -1,14 +1,14 @@
 # Case Contract Testing Framework
 
-[![Build and test](https://github.com/TimothyJones/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/TimothyJones/case/actions/workflows/build-and-test.yml)
-[![Coverage Status](https://coveralls.io/repos/github/TimothyJones/case/badge.svg?branch=main)](https://coveralls.io/github/TimothyJones/case?branch=main)
-[![Known Vulnerabilities](https://snyk.io/test/github/TimothyJones/case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/TimothyJones/case?targetFile=package.json)
+[![Build and test](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/case-contract-testing/case/badge.svg?branch=main)](https://coveralls.io/github/case-contract-testing/case?branch=main)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=package.json)
 
 [![npm](https://img.shields.io/npm/v/@case-contract-testing/case.svg)](https://www.npmjs.com/package/@case-contract-testing/case)
 
 <span align="center">
 
-![Case](https://github.com/TimothyJones/case/raw/main/docs/suitcase.png)
+![Case](https://github.com/case-contract-testing/case/raw/main/docs/suitcase.png)
 
 <sub>[Briefcase sticker created by Gohsantosadrive on Flaticon](https://www.flaticon.com/free-stickers/law)</sub>
 
