@@ -28,10 +28,24 @@ const spaces = (size: number, str: string) => {
   return `${space}${str.replace(/\n/g, `\n${space}`)}`;
 };
 
-const errorTitleLine = (title: string, message: string) =>
+const locationTitleLine = (location: Array<string>, context: LogLevelContext) =>
+  Array.isArray(location) && location.length > 3
+    ? ` ${locationString({
+        ...context,
+        'case:currentRun:context:location': location.slice(2),
+      })}: `
+    : '';
+
+const errorTitleLine = (
+  title: string,
+  error: CaseError,
+  context: LogLevelContext
+) =>
   spaces(
     6,
-    `${chalk.bgRed.white(` ${title} `)}: ${chalk.whiteBright(message)}`
+    `${chalk.bgRed.white(` ${title} `)} ${chalk.whiteBright(
+      locationTitleLine(error.location, context)
+    )} ${chalk.whiteBright(error.message)}`
   );
 
 const secondMatchErrorLine = (error: MatchingError | RawMatchError) =>
@@ -53,17 +67,17 @@ const camelToCapital = (camel: string) =>
   camel.replace(/([a-z])([A-Z])/g, '$1 $2').toLocaleUpperCase();
 
 const printError = (error: CaseError, context: MatchContext): void => {
-  const locationLine = (location: CaseError) =>
+  const locationTagLine = () =>
     spaces(
       12,
       `${chalk.gray(
         ` - ${locationString({
           ...context,
-          'case:currentRun:context:location': location.location,
+          'case:currentRun:context:location': Array.isArray(error.location)
+            ? error.location
+            : [],
         })} [${
-          'matcher' in location
-            ? location.matcher['case:matcher:type']
-            : location.code
+          'matcher' in error ? error.matcher['case:matcher:type'] : error.code
         }]`
       )}`
     );
@@ -75,44 +89,49 @@ const printError = (error: CaseError, context: MatchContext): void => {
         stdout.log(
           `${errorTitleLine(
             'MATCHING ERROR',
-            error.message
+            error,
+            context
           )}\n${secondMatchErrorLine(error)}\n${thirdMatchErrorLine(
             error
-          )}\n\n${locationLine(error)}\n\n`
+          )}\n\n${locationTagLine()}\n\n`
         );
         break;
       case ERROR_TYPE_RAW_MATCH:
         stdout.log(
           `${errorTitleLine(
             'MATCHING ERROR',
-            error.message
+            error,
+            context
           )}\n${secondMatchErrorLine(error)}\n${thirdMatchErrorLine(
             error
-          )}\n\n${locationLine(error)}\n\n`
+          )}\n\n${locationTagLine()}\n\n`
         );
         break;
       case ERROR_TYPE_EXECUTION:
         stdout.log(
           `${errorTitleLine(
             camelToCapital(error.code),
-            error.message
-          )}\n\n${locationLine(error)}\n\n`
+            error,
+            context
+          )}\n\n${locationTagLine()}\n\n`
         );
         break;
       case ERROR_TYPE_TEST_RESPONSE:
         stdout.log(
           `${errorTitleLine(
             'ERROR VERIFYING RETURNED OBJECT',
-            error.message
-          )}\n\n${locationLine(error)}\n\n`
+            error,
+            context
+          )}\n\n${locationTagLine()}\n\n`
         );
         break;
       default:
         stdout.log(
           `${errorTitleLine(
             'ERROR',
-            (error as Error).message
-          )}\n\n${locationLine(error)}\n\n`
+            error,
+            context
+          )}\n\n${locationTagLine()}\n\n`
         );
     }
   }

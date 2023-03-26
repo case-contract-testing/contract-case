@@ -140,6 +140,7 @@ Internals
 - [x] Fix global import issue - probably post process the dist directory. Or rewrite all the imports :/
 - [x] Indentation on test output
 - [x] Release plan that includes version number - can we just import this like we did in pact? It would be nice if it was accurate.
+- [ ] Make it less likely that a key is missed during the location printing (maybe make the maintainer-only location strings an explicit type instead of implied by `:`)
 - [ ] Review test harness and separate into a dedicated module
 - [ ] Move the error reporting logic closer to the boundary so that it's not possible to miss an example
 
