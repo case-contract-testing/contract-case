@@ -15,9 +15,9 @@ import type {
   RunContext,
   DefaultContext,
   TraversalFns,
-  HasLocation,
   LogLevelContext,
 } from './types';
+import { shouldLog } from '../../entities/logger/shouldLog';
 
 /**
  * `case:currentRun:context:*` is not clobberable by child matchers
@@ -142,11 +142,18 @@ export const addLocation = (
     ].concat([location]),
   });
 
-export const locationString = (matchContext: HasLocation): string =>
-  matchContext['case:currentRun:context:location'].reduce<string>(
-    (acc: string, curr: string) =>
-      curr.startsWith('[') || curr.startsWith(':') || acc === ''
-        ? `${acc}${curr}`
-        : `${acc}.${curr}`,
-    ''
-  );
+export const locationString = (matchContext: LogLevelContext): string =>
+  matchContext['case:currentRun:context:location']
+    .filter(
+      (locationItem) =>
+        (locationItem.startsWith(':') &&
+          shouldLog(matchContext, 'maintainerDebug')) ||
+        !locationItem.startsWith(':')
+    )
+    .reduce<string>(
+      (acc: string, curr: string) =>
+        curr.startsWith('[') || curr.startsWith(':') || acc === ''
+          ? `${acc}${curr}`
+          : `${acc}.${curr}`,
+      ''
+    );

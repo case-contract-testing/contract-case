@@ -23,7 +23,7 @@ const strip: StripMatcherFn<typeof LOOKUP_MATCHER_TYPE> = (
 ): AnyData =>
   matchContext.descendAndStrip(
     getMatcher(matcher, matchContext),
-    addLocation(`[${matcher['case:matcher:uniqueName']}]`, matchContext)
+    addLocation(`:lookup[${matcher['case:matcher:uniqueName']}]`, matchContext)
   );
 
 const check: CheckMatchFn<typeof LOOKUP_MATCHER_TYPE> = async (
@@ -33,7 +33,7 @@ const check: CheckMatchFn<typeof LOOKUP_MATCHER_TYPE> = async (
 ): Promise<MatchResult> =>
   matchContext.descendAndCheck(
     getMatcher(matcher, matchContext),
-    addLocation(`[${matcher['case:matcher:uniqueName']}]`, matchContext),
+    addLocation(`:lookup[${matcher['case:matcher:uniqueName']}]`, matchContext),
     actual
   );
 
@@ -41,7 +41,10 @@ export const LookupMatcher: MatcherExecutor<typeof LOOKUP_MATCHER_TYPE> = {
   describe: (matcher: LookupableMatcher, matchContext: MatchContext) =>
     matchContext.descendAndDescribe(
       getMatcher(matcher, matchContext),
-      addLocation(`[${matcher['case:matcher:uniqueName']}]`, matchContext)
+      addLocation(
+        `:lookup[${matcher['case:matcher:uniqueName']}]`,
+        matchContext
+      )
     ),
   check,
   strip,

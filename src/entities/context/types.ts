@@ -76,7 +76,8 @@ export interface TraversalFns {
   ) => ReturnType<MatcherExecutor<T>['check']>;
 }
 
-export type HasLocation = {
+export type LogLevelContext = {
+  'case:currentRun:context:logLevel': LogLevel;
   'case:currentRun:context:location': Array<string>;
 };
 
@@ -84,10 +85,6 @@ export type MatchContextWithoutLookup = Omit<
   MatchContext,
   keyof ContractLookupFns | keyof HasMakeLookupFn
 >;
-
-export type LogLevelContext = HasLocation & {
-  'case:currentRun:context:logLevel': LogLevel;
-};
 
 export interface ContractFileConfig {
   'case:currentRun:context:testRunId': string;
@@ -98,13 +95,12 @@ export interface ContractFileConfig {
 
 export type HasContractFileConfig = DataContext & ContractFileConfig;
 
-export type DefaultContext = HasLocation &
-  LogLevelContext & {
-    'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
-    'case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
-    'case:currentRun:context:contractMode': 'write' | 'read';
-    'case:currentRun:context:printResults': boolean;
-  };
+export type DefaultContext = LogLevelContext & {
+  'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
+  'case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
+  'case:currentRun:context:contractMode': 'write' | 'read';
+  'case:currentRun:context:printResults': boolean;
+};
 
 interface InjectableContext {
   'case:currentRun:context:baseUrlUnderTest'?: string;
@@ -161,7 +157,6 @@ export interface LogContext {
 export type DataContext = DefaultContext &
   Partial<InjectableContext> &
   Partial<ContractFileConfig> &
-  HasLocation &
   RunContext &
   LogLevelContext &
   LogContext;

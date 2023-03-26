@@ -117,10 +117,10 @@ export const HttpBasicAuthMatcher: MatcherExecutor<
   describe: (matcher, matchContext) =>
     `http basic auth with username='${matchContext.descendAndDescribe(
       matcher['case:matcher:username'],
-      matchContext
+      addLocation('username', matchContext)
     )}' and password=${matchContext.descendAndDescribe(
       matcher['case:matcher:password'],
-      matchContext
+      addLocation('password', matchContext)
     )}`,
   check,
   strip,

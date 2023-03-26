@@ -4,7 +4,6 @@ import { Console } from 'node:console';
 import { exampleToNames } from '../../entities/contract';
 import { actualToString } from '../../entities/results';
 import {
-  type HasLocation,
   type MatchingError,
   type CaseError,
   type MatchContext,
@@ -15,12 +14,13 @@ import {
   type ResultPrinter,
   ERROR_TYPE_RAW_MATCH,
   RawMatchError,
+  LogLevelContext,
 } from '../../entities/types';
 import { locationString as formatLocationString } from '../../entities/context';
 
 const stdout = new Console({ stdout: process.stdout });
 
-const locationString = (context: HasLocation) =>
+const locationString = (context: LogLevelContext) =>
   `${formatLocationString(context)}`;
 
 const spaces = (size: number, str: string) => {
@@ -49,22 +49,25 @@ const thirdMatchErrorLine = (error: MatchingError | RawMatchError) =>
     `Actual:\n${spaces(3, chalk.red(actualToString(error.actual, 10)))}`
   );
 
-const locationLine = (error: CaseError) =>
-  spaces(
-    12,
-    `${chalk.gray(
-      ` - ${locationString({
-        'case:currentRun:context:location': error.location,
-      })} [${
-        'matcher' in error ? error.matcher['case:matcher:type'] : error.code
-      }]`
-    )}`
-  );
-
 const camelToCapital = (camel: string) =>
   camel.replace(/([a-z])([A-Z])/g, '$1 $2').toLocaleUpperCase();
 
 const printError = (error: CaseError, context: MatchContext): void => {
+  const locationLine = (location: CaseError) =>
+    spaces(
+      12,
+      `${chalk.gray(
+        ` - ${locationString({
+          ...context,
+          'case:currentRun:context:location': location.location,
+        })} [${
+          'matcher' in location
+            ? location.matcher['case:matcher:type']
+            : location.code
+        }]`
+      )}`
+    );
+
   if (context['case:currentRun:context:printResults']) {
     switch (error.type) {
       // This is done as one line to prevent it splitting when multiple tests are running

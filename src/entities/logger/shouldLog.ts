@@ -5,26 +5,25 @@ import type { LogLevel } from './types';
 
 export const shouldLog = (
   context: LogLevelContext,
-  logFunction: LogLevel
+  logLevel: LogLevel
 ): boolean => {
   switch (context['case:currentRun:context:logLevel']) {
     case 'none':
       return false;
     case 'error':
-      return logFunction === 'error';
+      return logLevel === 'error';
     case 'warn':
       return (
-        logFunction !== 'deepMaintainerDebug' &&
-        logFunction !== 'maintainerDebug' &&
-        logFunction !== 'debug'
+        logLevel !== 'deepMaintainerDebug' &&
+        logLevel !== 'maintainerDebug' &&
+        logLevel !== 'debug'
       );
     case 'debug':
       return (
-        logFunction !== 'maintainerDebug' &&
-        logFunction !== 'deepMaintainerDebug'
+        logLevel !== 'maintainerDebug' && logLevel !== 'deepMaintainerDebug'
       );
     case 'maintainerDebug':
-      return logFunction !== 'deepMaintainerDebug';
+      return logLevel !== 'deepMaintainerDebug';
     case 'deepMaintainerDebug':
       return true;
     case undefined:

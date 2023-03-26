@@ -1,4 +1,5 @@
 import { CaseConfigurationError } from '../../entities';
+import { addLocation } from '../../entities/context';
 import {
   actualToString,
   makeResults,
@@ -21,7 +22,7 @@ const check = (
   typeof actual === 'string'
     ? matchContext.descendAndCheck(
         matcher['case:matcher:child'],
-        matchContext,
+        addLocation(':urlEncoded', matchContext),
         decodeURIComponent(actual)
       )
     : makeResults(
@@ -41,7 +42,7 @@ const strip = (
 ): AnyData => {
   const result = matchContext.descendAndStrip(
     matcher['case:matcher:child'],
-    matchContext
+    addLocation(':urlEncoded', matchContext)
   );
   if (typeof result === 'string') return encodeURIComponent(result);
   throw new CaseConfigurationError(
@@ -55,7 +56,7 @@ export const UrlEncodedStringMatcher: MatcherExecutor<
   describe: (matcher, matchContext) =>
     `uriEncoded string '${matchContext.descendAndDescribe(
       matcher['case:matcher:child'],
-      matchContext
+      addLocation(':urlEncoded', matchContext)
     )}'`,
   check,
   strip,
