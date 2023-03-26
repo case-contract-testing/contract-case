@@ -49,7 +49,7 @@ export const StringSuffixMatcher: MatcherExecutor<typeof STRING_SUFFIX_TYPE> = {
     `"${matchContext
       .descendAndDescribe(
         matcher['case:matcher:prefix'],
-        addLocation(':prefix', matchContext)
+        addLocation(':suffix', matchContext)
       )
       .replace(/^"+|"+$/g, '')}${matcher['case:matcher:suffix']}"`,
   check,
