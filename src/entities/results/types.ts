@@ -2,10 +2,26 @@ import type { CaseExample } from '../../entities/contract/types';
 import type { VerifyTriggerReturnObjectError } from '../../entities/errors';
 import type { AnyCaseMatcher, MatchContext } from '../../entities/types';
 
+// Warning: **ALL** error types must be listed in the function in handlers.ts
+
+/**
+ * Represents an error from a matcher
+ */
 export const ERROR_TYPE_MATCHING = 'MATCHING_ERROR' as const;
-export const ERROR_TYPE_EXECUTION = 'EXECUTION_ERROR' as const;
+/**
+ * Represents an error that would be from a matcher, but there's no physical matcher
+ */
 export const ERROR_TYPE_RAW_MATCH = 'RAW_MATCH_ERROR' as const;
-export const ERROR_TYPE_VERIFICATION = 'VERIFICATION_ERROR' as const;
+
+/**
+ * Represents an error executing the test (usually the trigger function)
+ */
+export const ERROR_TYPE_EXECUTION = 'EXECUTION_ERROR' as const;
+
+/**
+ * Represents an error during the testResponse or testErrorResponse function
+ */
+export const ERROR_TYPE_TEST_RESPONSE = 'TEST_RESPONSE_ERROR' as const;
 
 export interface MatchingError {
   type: typeof ERROR_TYPE_MATCHING;
@@ -28,7 +44,7 @@ export interface RawMatchError {
 }
 
 export interface VerificationError {
-  type: typeof ERROR_TYPE_VERIFICATION;
+  type: typeof ERROR_TYPE_TEST_RESPONSE;
   message: string;
   code: string;
   error: VerifyTriggerReturnObjectError;

@@ -36,7 +36,7 @@ export class ReadingCaseContract extends BaseCaseContract {
   ) {
     super(
       contractFile.description,
-      { testRunId: 'VERIFIER', ...config },
+      { throwOnFail: false, testRunId: 'VERIFIER', ...config },
       resultPrinter,
       makeLogger
     );

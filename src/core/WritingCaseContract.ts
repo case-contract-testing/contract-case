@@ -56,7 +56,7 @@ export class WritingCaseContract extends BaseCaseContract {
       testErrorResponse,
       stateHandlers = {},
     }: TestInvoker<T, R>,
-    runConfig?: CaseConfig
+    runConfig: CaseConfig
   ): Promise<unknown> {
     const thisIndex = this.testIndex;
     this.testIndex += 1;
@@ -65,9 +65,10 @@ export class WritingCaseContract extends BaseCaseContract {
       mockDescription,
       this.initialContext,
       {
+        'case:currentRun:context:throwOnFail': true,
         'case:currentRun:context:contractMode': 'write',
         'case:currentRun:context:testName': `${thisIndex}`,
-        ...(runConfig ? configToRunContext(runConfig) : {}),
+        ...configToRunContext(runConfig),
       }
     );
 

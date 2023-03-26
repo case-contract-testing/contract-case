@@ -22,7 +22,9 @@ const transformConfig = (config: CaseConfig): RunContext =>
     }))
     .reduce((acc, curr) => ({ ...acc, ...curr }), {} as RunContext);
 
-export const configToRunContext = (config: CaseConfig): RunContext => ({
+export const configToRunContext = (
+  config: CaseConfig
+): Partial<RunContext> => ({
   ...transformConfig(configFromEnv()),
   ...transformConfig(config),
 });

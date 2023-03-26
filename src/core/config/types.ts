@@ -20,6 +20,17 @@ export type BaseCaseConfig = {
   printResults: boolean;
 
   /**
+   * Whether or not the test should throw an error if the matching fails.
+   *
+   * Note that any configuration errors will still fail the suite regardless of
+   * this setting. This includes exceptions thrown during trigger functions, but
+   * does not include exceptions thrown by testResponse functions.
+   *
+   * Default: `true` in contract definition, `false` in contract verification
+   */
+  throwOnFail?: boolean;
+
+  /**
    * The access token to use for the contract broker. Must have CI scope.
    *
    * If this is specified along with brokerBasicAuth, the basic auth is ignored.

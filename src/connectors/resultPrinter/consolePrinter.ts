@@ -10,7 +10,7 @@ import {
   type MatchContext,
   ERROR_TYPE_MATCHING,
   ERROR_TYPE_EXECUTION,
-  ERROR_TYPE_VERIFICATION,
+  ERROR_TYPE_TEST_RESPONSE,
   type CaseExample,
   type ResultPrinter,
   ERROR_TYPE_RAW_MATCH,
@@ -96,7 +96,7 @@ const printError = (error: CaseError, context: MatchContext): void => {
           )}\n\n${locationLine(error)}\n\n`
         );
         break;
-      case ERROR_TYPE_VERIFICATION:
+      case ERROR_TYPE_TEST_RESPONSE:
         stdout.log(
           `${errorTitleLine(
             'ERROR VERIFYING RETURNED OBJECT',

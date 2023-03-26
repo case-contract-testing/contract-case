@@ -72,7 +72,7 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
       testResponse,
       stateHandlers,
     }: DefinitionSuccessExample<T, R>,
-    runConfig?: CaseConfig
+    runConfig: CaseConfig = {}
   ): Promise<unknown> {
     if (trigger === undefined && testResponse !== undefined) {
       throw new CaseConfigurationError(
@@ -97,7 +97,7 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
           {},
         stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
       },
-      runConfig
+      { throwOnFail: true, ...runConfig }
     );
   }
 
@@ -110,7 +110,7 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
       testErrorResponse,
       stateHandlers,
     }: DefinitionFailingExample<T, R>,
-    runConfig?: CaseConfig
+    runConfig: CaseConfig = {}
   ): Promise<unknown> {
     if (trigger === undefined && testErrorResponse !== undefined) {
       throw new CaseConfigurationError(
@@ -137,7 +137,7 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
           {},
         stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
       },
-      runConfig
+      { throwOnFail: true, ...runConfig }
     );
   }
 

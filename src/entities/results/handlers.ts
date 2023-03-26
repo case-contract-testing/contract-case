@@ -5,8 +5,10 @@ import {
 import type { MatchContext } from '../../entities/context/types';
 import type { CaseExample } from '../../entities/contract/types';
 import {
+  ERROR_TYPE_EXECUTION,
   ERROR_TYPE_MATCHING,
-  ERROR_TYPE_VERIFICATION,
+  ERROR_TYPE_RAW_MATCH,
+  ERROR_TYPE_TEST_RESPONSE,
   VerificationError,
 } from './types';
 
@@ -20,22 +22,32 @@ export const handleResult = (
     example.errors.forEach((e) => {
       context.resultPrinter.printError(e, context);
     });
+    // Warning: **ALL** error types must be checked in this function
 
-    if (example.errors.some((i) => i.type === ERROR_TYPE_MATCHING)) {
+    if (
+      example.errors.some(
+        (i) => i.type === ERROR_TYPE_MATCHING || i.type === ERROR_TYPE_RAW_MATCH
+      )
+    ) {
       context.logger.debug(`Matching errors present`);
-      throw new CaseFailedAssertionError(example.errors);
+      if (context['case:currentRun:context:throwOnFail']) {
+        throw new CaseFailedAssertionError(example.errors);
+      }
     }
     const verificationError: VerificationError | undefined =
-      example.errors.find((i) => i.type === ERROR_TYPE_VERIFICATION) as
+      example.errors.find((i) => i.type === ERROR_TYPE_TEST_RESPONSE) as
         | VerificationError
         | undefined;
-    if (verificationError) {
+    if (verificationError && context['case:currentRun:context:throwOnFail']) {
       throw verificationError.error;
     }
 
-    throw new CaseConfigurationError(
-      example.errors.map((e) => e.message).join()
-    );
+    if (example.errors.some((i) => i.type === ERROR_TYPE_EXECUTION)) {
+      throw new CaseConfigurationError(
+        example.errors.map((e) => e.message).join()
+      );
+    }
+  } else {
+    context.resultPrinter.printSuccessTitle(example, exampleIndex, context);
   }
-  context.resultPrinter.printSuccessTitle(example, exampleIndex, context);
 };

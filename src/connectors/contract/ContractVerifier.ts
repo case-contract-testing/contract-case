@@ -24,7 +24,7 @@ export class ContractVerifier {
       contractData,
       resultPrinter,
       makeLogger,
-      config
+      { throwOnFail: false, ...config }
     );
     this.callback = callback;
   }

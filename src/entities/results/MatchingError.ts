@@ -7,7 +7,7 @@ import {
   CaseError,
   ExecutionError,
   ERROR_TYPE_EXECUTION,
-  ERROR_TYPE_VERIFICATION,
+  ERROR_TYPE_TEST_RESPONSE,
   VerificationError,
   ERROR_TYPE_RAW_MATCH,
 } from './types';
@@ -106,7 +106,7 @@ export const verificationError = (
   error: VerifyTriggerReturnObjectError,
   context: MatchContext
 ): VerificationError => ({
-  type: ERROR_TYPE_VERIFICATION,
+  type: ERROR_TYPE_TEST_RESPONSE,
   message: error.message,
   code: error.name,
   error,
