@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.6.0](https://github.com/case-contract-testing/case/compare/v0.5.1...v0.6.0) (2023-03-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* Verification no longer throws an error if verification fails. The intended use is to use `can-i-deploy` to gate deployments. If you need failure (eg during development), set `throwOnFail: true` in the options.
+
+### Features
+
+* Verification no longer throws an error if verification fails. The intended use is to use `can-i-deploy` to gate deployments. If you need failure (eg during development), set `throwOnFail: true` in the options. ([ee33690](https://github.com/case-contract-testing/case/commit/ee336900c6ff14cd6fcc7530c2175ea75e0b9978))
+
+
+### Bug Fixes
+
+* Add location information to title of the errors, improving readability ([1f740d9](https://github.com/case-contract-testing/case/commit/1f740d911b59344e77b5d02792b4f45031bf2dc1))
+* Correct location string in the suffix matcher during describe (was incorrectly "prefix") ([a52efca](https://github.com/case-contract-testing/case/commit/a52efcad47d637020d916b4674d61990b6942043))
+* Improve formatting of the thrown error when the assertions fail ([3a50dad](https://github.com/case-contract-testing/case/commit/3a50dad7b8ecadda8726a8c713fc66609e7cd3fb))
+* Rename 'Test' -&gt; 'Example' in the location tag printed in errors ([e8bddf6](https://github.com/case-contract-testing/case/commit/e8bddf68df08ffd1dc046d61bbaf0f0189b929ed))
+* Substantially reduce the verbosity of the location hint in errors (unless logLevel is maintainerDebug or lower) ([63f3413](https://github.com/case-contract-testing/case/commit/63f3413f9023e9dc9694840c00ed5e9413716387))
+
 ## [0.5.1](https://github.com/TimothyJones/case/compare/v0.5.0...v0.5.1) (2023-03-21)
 
 
