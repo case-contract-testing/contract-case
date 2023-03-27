@@ -47,7 +47,7 @@
     "node": ">=14.21.2"
   },
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "@types/express": "^4.17.14",
     "@types/jest": "^29.5.0",
