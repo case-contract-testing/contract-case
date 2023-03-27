@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.6.1](https://github.com/case-contract-testing/case/compare/v0.6.0...v0.6.1) (2023-03-27)
+
+
+### Bug Fixes
+
+* Tidy up boundary layer to improve importing in JSii ([6604996](https://github.com/case-contract-testing/case/commit/66049962d81556997a94ce0c5304e7061c752d9f))
+
+
+### Miscellaneous Chores
+
+* release 0.6.1 ([d34ee95](https://github.com/case-contract-testing/case/commit/d34ee95ee53765f4184076fde1b32720d5f5db3b))
+
 ## [0.6.0](https://github.com/case-contract-testing/case/compare/v0.5.1...v0.6.0) (2023-03-26)
 
 
