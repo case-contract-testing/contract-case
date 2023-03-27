@@ -1,12 +1,13 @@
 import type { CaseConfig } from '../../core/types';
 import type { RunTestCallback } from '../../core/executeExample/types';
 import type { AnyMockDescriptorType, ContractData } from '../../entities/types';
-import { ContractDefiner, ContractVerifier } from '../../connectors';
 import type {
   CaseJestConfig,
   DefineCaseJestCallback,
   VerifyCaseJestCallback,
 } from './types';
+import { ContractDefiner } from '../ContractDefiner';
+import { ContractVerifier } from '../ContractVerifier';
 
 const runJestTest: RunTestCallback = (
   testName: string,

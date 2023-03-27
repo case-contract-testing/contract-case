@@ -1,5 +1,5 @@
-import { makeLogger } from '../../connectors/logger';
-import { resultPrinter } from '../../connectors/resultPrinter';
+import { makeLogger } from '../logger';
+import { resultPrinter } from '../resultPrinter';
 
 import type { CaseConfig } from '../../core/types';
 import type {
@@ -10,7 +10,7 @@ import { ReadingCaseContract } from '../../core/ReadingCaseContract';
 
 import type { AnyMockDescriptorType, ContractData } from '../../entities/types';
 
-export class ContractVerifier {
+export class ContractVerifierConnector {
   contract: ReadingCaseContract;
 
   callback: RunTestCallback;

@@ -42,7 +42,7 @@ export type DefinitionFailingExample<
   testErrorResponse?: (err: Error, config: SetupInfoFor<T>) => unknown;
 };
 
-export class ContractDefiner<M extends AnyMockDescriptorType> {
+export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
   contract: WritingCaseContract;
 
   invoker: MultiTestInvoker<M>;

@@ -1,2 +1,2 @@
-export * from './ContractDefiner';
-export * from './ContractVerifier';
+export * from './ContractDefinerConnector';
+export * from './ContractVerifierConnector';
