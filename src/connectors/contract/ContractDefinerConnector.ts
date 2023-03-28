@@ -19,7 +19,7 @@ import type {
 } from '../../entities/types';
 import { resultPrinter } from '../resultPrinter';
 import { makeLogger } from '../logger';
-import { makeBrokerApi } from './broker';
+import { makeBrokerApi } from '../broker';
 import { writeContract } from './writer';
 
 export type DefinitionSuccessExample<

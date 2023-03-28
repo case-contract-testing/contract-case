@@ -7,7 +7,7 @@ import type { CaseConfig } from './core/types';
 import { CaseConfigurationError, CaseFailedAssertionError } from './entities';
 
 import start from './__tests__/server/http/index';
-import { makeBrokerApi } from './connectors/contract/broker';
+import { makeBrokerApi } from './connectors/broker';
 import { writeContract } from './connectors/contract/writer';
 import { makeLogger } from './connectors/logger';
 import { resultPrinter } from './connectors/resultPrinter';

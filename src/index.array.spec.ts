@@ -14,7 +14,7 @@ import { makeNoErrorResult } from './entities/results';
 import { StripUnsupportedError } from './entities/errors/StripUnsupportedError';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
-import { makeBrokerApi } from './connectors/contract/broker';
+import { makeBrokerApi } from './connectors/broker';
 import { writeContract } from './connectors/contract/writer';
 import { makeLogger } from './connectors/logger';
 import { resultPrinter } from './connectors/resultPrinter';

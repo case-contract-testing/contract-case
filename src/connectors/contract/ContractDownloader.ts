@@ -2,13 +2,13 @@
 import { makeLogger } from '../logger';
 import { resultPrinter } from '../resultPrinter';
 
-import type { CaseConfig } from '../../core/types';
+import type { Broker, CaseConfig } from '../../core/types';
 
 import type { DataContext } from '../../entities/types';
 import { constructDataContext } from '../../entities/context';
 import { DEFAULT_CONFIG } from '../../core';
 import { configToRunContext } from '../../core/config';
-import { makeBrokerApi } from './broker';
+import { makeBrokerApi } from '../broker';
 import { writeContract } from './writer';
 
 export class ContractDownloader {
@@ -22,7 +22,7 @@ export class ContractDownloader {
   }
 
   async download(serviceName: string): Promise<void> {
-    const broker = makeBrokerApi(this.context);
+    const broker: Broker = makeBrokerApi(this.context);
 
     const contractUrls = await broker.urlsForVerification(
       serviceName,

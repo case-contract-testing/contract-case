@@ -1,22 +1,24 @@
 // We need to allow underscores because they're part of the HAL response
 /* eslint-disable no-underscore-dangle */
 import { versionFromGitTag } from 'absolute-version';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import branchName from 'current-git-branch';
 
-import type { MakeBrokerApi, Broker } from '../../../core/types';
-
-import { CaseConfigurationError } from '../../../entities';
+import { CaseConfigurationError } from '../../entities';
 import type {
   LogContext,
   ContractData,
   DataContext,
-} from '../../../entities/types';
+} from '../../entities/types';
 
-import { makeAxiosConnector } from '../../axios';
-import { BasicAuth } from '../../axios/types';
+import { makeAxiosConnector } from './axios';
+import { BasicAuth } from './axios/types';
 import type {
   WireForVerificationRequest,
   WireForVerificationResponse,
+  WireRequestForPublicationAdvanced,
 } from './brokerDto.types';
+import { Broker, MakeBrokerApi, PublishResult } from '../../core/types';
 
 const trimSlash = (str: string): string => {
   if (str.endsWith('/')) {
@@ -75,6 +77,7 @@ export const makeBrokerApi: MakeBrokerApi = (
 
   return {
     publishContract: (contract: ContractData, logContext: LogContext) => {
+      // TODO: Make this a first class object
       const version = versionFromGitTag();
       logContext.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
@@ -95,6 +98,40 @@ export const makeBrokerApi: MakeBrokerApi = (
           JSON.stringify(d)
         );
       });
+    },
+
+    publishContractAdvanced: (
+      contract: ContractData,
+      logContext: LogContext
+    ) => {
+      const version = versionFromGitTag();
+      logContext.logger.debug(
+        `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
+      );
+      const branch = branchName();
+
+      return server.authedPost<
+        WireRequestForPublicationAdvanced,
+        PublishResult
+      >(
+        '/contracts/publish',
+        {
+          pacticipantName: contract.description.consumerName,
+          pacticipantVersionNumber: version,
+          ...(branch !== false ? { branch } : {}),
+          tags: [],
+          contracts: [
+            {
+              consumerName: contract.description.consumerName,
+              providerName: contract.description.providerName,
+              specification: 'pact', // TODO: Replace this with 'case::contract' when the broker supports it
+              contentType: 'application/json',
+              content: Buffer.from(JSON.stringify(contract)).toString('base64'),
+            },
+          ],
+        },
+        logContext
+      );
     },
 
     downloadContract: (url: string) =>

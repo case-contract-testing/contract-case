@@ -4,7 +4,7 @@ import {
   stringPrefix,
   stringSuffix,
 } from './boundaries/dsl/Matchers';
-import { makeBrokerApi } from './connectors/contract/broker';
+import { makeBrokerApi } from './connectors/broker';
 import { writeContract } from './connectors/contract/writer';
 import { makeLogger } from './connectors/logger';
 import { resultPrinter } from './connectors/resultPrinter';

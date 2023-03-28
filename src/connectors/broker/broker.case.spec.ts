@@ -1,8 +1,10 @@
 import * as fs from 'node:fs';
 
 import {
+  and,
   anyBoolean,
   anyString,
+  arrayContains,
   arrayEachEntryMatches,
   basicAuth,
   bearerToken,
@@ -15,14 +17,15 @@ import {
   stringSuffix,
   uriEncodedString,
   willSendHttpRequest,
-} from '../../../boundaries';
-import { defineContract } from '../../../boundaries/jest/jest';
-import { CaseConfigurationError } from '../../../entities';
-import type { DataContext } from '../../../entities/types';
-import { readContract } from '../writer';
-import { API_NOT_AUTHORISED } from '../../axios/apiErrors';
+  withExample,
+} from '../../boundaries';
+import { defineContract } from '../../boundaries/jest/jest';
+import { CaseConfigurationError } from '../../entities';
+import type { DataContext } from '../../entities/types';
+import { readContract } from '../contract/writer';
+import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { makeBrokerApi } from './broker';
-import { makeLogger } from '../../logger';
+import { makeLogger } from '../logger';
 
 const emptyContext = {
   logger: makeLogger({
@@ -316,7 +319,141 @@ describe('broker client', () => {
             }));
         });
       });
+      describe('publish contract advanced endpoint', () => {
+        describe('with a valid auth token', () => {
+          it('will be successful', () =>
+            contract.runExample({
+              states: [stateAuthTokenValid],
+              definition: willSendHttpRequest({
+                request: {
+                  method: 'POST',
+                  path: '/contracts/publish',
+                  headers: {
+                    accept: 'application/hal+json',
+                    authorization: stringPrefix(
+                      'Bearer ',
+                      stateVariable('token')
+                    ),
+                  },
+                  body: {
+                    pacticipantName: anyString(),
+                    pacticipantVersionNumber: anyString(),
+                    branch: anyString(),
+                    tags: [],
+                    contracts: [
+                      {
+                        consumerName: anyString(),
+                        providerName: anyString(),
+                        specification: 'pact',
+                        contentType: 'application/json',
+                        content: anyString(
+                          Buffer.from(
+                            JSON.stringify(uploadingContract)
+                          ).toString('base64')
+                        ),
+                      },
+                    ],
+                  },
+                },
+                response: {
+                  status: 200,
+                  body: {
+                    notices: withExample(
+                      and(
+                        arrayContains({
+                          level: 'debug',
+                          text: anyString(
+                            'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main'
+                          ),
+                        }),
+                        arrayContains({
+                          level: 'info',
+                          text: anyString(
+                            'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.'
+                          ),
+                        })
+                      ),
+                      {
+                        notices: [
+                          {
+                            level: 'debug',
+                            text: 'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main',
+                          },
+                          {
+                            level: 'info',
+                            text: 'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.',
+                          },
+                        ],
+                      }
+                    ),
+                  },
+                },
+              }),
+              trigger: (config) =>
+                makeBrokerApiForTest(
+                  config.baseUrl,
+                  config.variables['token'] as string
+                ).publishContractAdvanced(uploadingContract, emptyContext),
+              testResponse: (data) => {
+                expect(data).not.toBeNull();
+              },
+            }));
+        });
+
+        describe('with an invalid auth token', () => {
+          it('will be unsuccessful', () =>
+            contract.runRejectingExample({
+              states: [
+                inState('auth token is not valid', {
+                  invalidToken: 'TOKEN',
+                }),
+              ],
+              definition: willSendHttpRequest({
+                request: {
+                  method: 'POST',
+                  path: '/contracts/publish',
+                  headers: {
+                    accept: 'application/hal+json',
+                    authorization: stringPrefix(
+                      'Bearer ',
+                      stateVariable('token')
+                    ),
+                  },
+                  body: {
+                    pacticipantName: anyString(),
+                    pacticipantVersionNumber: anyString(),
+                    branch: anyString(),
+                    tags: [],
+                    contracts: [
+                      {
+                        consumerName: anyString(),
+                        providerName: anyString(),
+                        specification: 'pact',
+                        contentType: 'application/json',
+                        content: anyString(
+                          Buffer.from(
+                            JSON.stringify(uploadingContract)
+                          ).toString('base64')
+                        ),
+                      },
+                    ],
+                  },
+                },
+                response: { status: 403 },
+              }),
+              trigger: (config) =>
+                makeBrokerApiForTest(
+                  config.baseUrl,
+                  config.variables['invalidToken'] as string
+                ).publishContractAdvanced(uploadingContract, emptyContext),
+              testErrorResponse: (error) => {
+                expect(error.name).toBe(API_NOT_AUTHORISED);
+              },
+            }));
+        });
+      });
     }
   );
+
   describe('Broker contract', () => {});
 });

@@ -157,7 +157,7 @@ export class WritingCaseContract extends BaseCaseContract {
       );
       return;
     }
-    await this.makeBrokerApi(writingContext).publishContract(
+    await this.makeBrokerApi(writingContext).publishContractAdvanced(
       this.currentContract,
       addLocation('PublishingContract', this.initialContext)
     );
