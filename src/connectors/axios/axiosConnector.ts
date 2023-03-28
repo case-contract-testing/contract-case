@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { LogContext } from '../../../../entities/types';
+import type { LogContext } from '../../entities/types';
 
 import { unmarshallSuccess, unmarshallFailure } from './marshaller';
 import { BasicAuth } from './types';

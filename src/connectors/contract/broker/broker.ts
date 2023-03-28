@@ -11,8 +11,8 @@ import type {
   DataContext,
 } from '../../../entities/types';
 
-import { makeAxiosConnector } from './axios';
-import { BasicAuth } from './axios/types';
+import { makeAxiosConnector } from '../../axios';
+import { BasicAuth } from '../../axios/types';
 import type {
   WireForVerificationRequest,
   WireForVerificationResponse,
