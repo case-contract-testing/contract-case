@@ -1,7 +1,7 @@
 import type { AnyCaseNodeOrData } from '../../entities/types';
 
-export const SETUP_NAMED_STATE = 'NamedState' as const;
-export const SETUP_VARIABLE_STATE = 'StateWithVariables' as const;
+export const SETUP_NAMED_STATE = 'case:NamedState' as const;
+export const SETUP_VARIABLE_STATE = 'case:StateWithVariables' as const;
 
 export type NameOnlyState = HasTypeForState<typeof SETUP_NAMED_STATE> & {
   stateName: string;

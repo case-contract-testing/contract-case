@@ -14,7 +14,7 @@
       "body": {
         "status": "up"
       },
-      "case:matcher:type": "HttpResponseMatcher"
+      "case:matcher:type": "case:HttpResponseMatcher"
     },
     "matcher:an http \"GET\" request to \"/health\" without a body with the following headers an object shaped like {accept: \"application/json\"}": {
       "method": "GET",
@@ -22,44 +22,44 @@
       "headers": {
         "accept": "application/json"
       },
-      "case:matcher:type": "HttpRequestMatcher"
+      "case:matcher:type": "case:HttpRequestMatcher"
     },
     "matcher:a (200) response with body an object shaped like {status: <any string>}": {
       "status": 200,
       "body": {
-        "case:matcher:type": "CascadingContext",
+        "case:matcher:type": "case:CascadingContext",
         "case:matcher:child": {
           "status": "whatever"
         },
         "case:context:matchBy": "type"
       },
-      "case:matcher:type": "HttpResponseMatcher"
+      "case:matcher:type": "case:HttpResponseMatcher"
     },
     "matcher:an http \"GET\" request to \"/health\" without a body": {
       "method": "GET",
       "path": "/health",
-      "case:matcher:type": "HttpRequestMatcher"
+      "case:matcher:type": "case:HttpRequestMatcher"
     },
     "matcher:a (httpStatus 4XX | 5XX) response without a body": {
       "status": {
-        "case:matcher:type": "HttpStatusCode",
+        "case:matcher:type": "case:HttpStatusCode",
         "case:matcher:example": 400,
         "case:matcher:rule": ["4XX", "5XX"],
         "case:matcher:resolvesTo": "HttpStatusCode"
       },
-      "case:matcher:type": "HttpResponseMatcher"
+      "case:matcher:type": "case:HttpResponseMatcher"
     },
     "matcher:a (503) response with body an object shaped like {status: \"down\"}": {
       "status": 503,
       "body": {
         "status": "down"
       },
-      "case:matcher:type": "HttpResponseMatcher"
+      "case:matcher:type": "case:HttpResponseMatcher"
     },
     "variable:default:userId": {
-      "case:matcher:type": "CascadingContext",
+      "case:matcher:type": "case:CascadingContext",
       "case:matcher:child": {
-        "case:matcher:type": "CascadingContext",
+        "case:matcher:type": "case:CascadingContext",
         "case:matcher:child": "123",
         "case:context:matchBy": "type"
       },
@@ -69,51 +69,51 @@
       "status": 200,
       "body": {
         "userId": {
-          "case:matcher:type": "ContextVariable",
+          "case:matcher:type": "case:ContextVariable",
           "case:matcher:variableName": "userId"
         }
       },
-      "case:matcher:type": "HttpResponseMatcher"
+      "case:matcher:type": "case:HttpResponseMatcher"
     },
     "matcher:an http \"GET\" request to \"/users/${userId}\" without a body": {
       "method": "GET",
       "path": {
-        "case:matcher:type": "StringPrefix",
+        "case:matcher:type": "case:StringPrefix",
         "case:matcher:prefix": "/users/",
         "case:matcher:suffix": {
-          "case:matcher:type": "ContextVariable",
+          "case:matcher:type": "case:ContextVariable",
           "case:matcher:variableName": "userId"
         },
         "case:matcher:resolvesTo": "string"
       },
-      "case:matcher:type": "HttpRequestMatcher"
+      "case:matcher:type": "case:HttpRequestMatcher"
     },
     "matcher:a (404) response without a body": {
       "status": 404,
-      "case:matcher:type": "HttpResponseMatcher"
+      "case:matcher:type": "case:HttpResponseMatcher"
     },
     "matcher:an http \"GET\" request to \"/users/123\" without a body": {
       "method": "GET",
       "path": {
-        "case:matcher:type": "StringPrefix",
+        "case:matcher:type": "case:StringPrefix",
         "case:matcher:prefix": "/users/",
         "case:matcher:suffix": "123",
         "case:matcher:resolvesTo": "string"
       },
-      "case:matcher:type": "HttpRequestMatcher"
+      "case:matcher:type": "case:HttpRequestMatcher"
     }
   },
   "examples": [
     {
       "states": [
         {
-          "case:state:type": "NamedState",
+          "case:state:type": "case:NamedState",
           "stateName": "Server is up"
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body with the following headers an object shaped like {accept: \"application/json\"}",
           "case:matcher:child": {
             "method": "GET",
@@ -121,29 +121,29 @@
             "headers": {
               "accept": "application/json"
             },
-            "case:matcher:type": "HttpRequestMatcher"
+            "case:matcher:type": "case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "a (200) response with body an object shaped like {status: \"up\"}",
           "case:matcher:child": {
             "status": 200,
             "body": {
               "status": "up"
             },
-            "case:matcher:type": "HttpResponseMatcher"
+            "case:matcher:type": "case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "MockHttpServer",
+        "case:mock:type": "case:MockHttpServer",
         "case:run:context:setup": {
           "write": {
-            "type": "MockHttpServer",
+            "type": "case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "MockHttpClient",
+            "type": "case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }
@@ -154,44 +154,44 @@
     {
       "states": [
         {
-          "case:state:type": "NamedState",
+          "case:state:type": "case:NamedState",
           "stateName": "Server is up"
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
           "case:matcher:child": {
             "method": "GET",
             "path": "/health",
-            "case:matcher:type": "HttpRequestMatcher"
+            "case:matcher:type": "case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "a (200) response with body an object shaped like {status: <any string>}",
           "case:matcher:child": {
             "status": 200,
             "body": {
-              "case:matcher:type": "CascadingContext",
+              "case:matcher:type": "case:CascadingContext",
               "case:matcher:child": {
                 "status": "whatever"
               },
               "case:context:matchBy": "type"
             },
-            "case:matcher:type": "HttpResponseMatcher"
+            "case:matcher:type": "case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "MockHttpServer",
+        "case:mock:type": "case:MockHttpServer",
         "case:run:context:setup": {
           "write": {
-            "type": "MockHttpServer",
+            "type": "case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "MockHttpClient",
+            "type": "case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }
@@ -202,42 +202,42 @@
     {
       "states": [
         {
-          "case:state:type": "NamedState",
+          "case:state:type": "case:NamedState",
           "stateName": "Server is down"
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
           "case:matcher:child": {
             "method": "GET",
             "path": "/health",
-            "case:matcher:type": "HttpRequestMatcher"
+            "case:matcher:type": "case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "a (httpStatus 4XX | 5XX) response without a body",
           "case:matcher:child": {
             "status": {
-              "case:matcher:type": "HttpStatusCode",
+              "case:matcher:type": "case:HttpStatusCode",
               "case:matcher:example": 400,
               "case:matcher:rule": ["4XX", "5XX"],
               "case:matcher:resolvesTo": "HttpStatusCode"
             },
-            "case:matcher:type": "HttpResponseMatcher"
+            "case:matcher:type": "case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "MockHttpServer",
+        "case:mock:type": "case:MockHttpServer",
         "case:run:context:setup": {
           "write": {
-            "type": "MockHttpServer",
+            "type": "case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "MockHttpClient",
+            "type": "case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }
@@ -248,40 +248,40 @@
     {
       "states": [
         {
-          "case:state:type": "NamedState",
+          "case:state:type": "case:NamedState",
           "stateName": "Server is down"
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
           "case:matcher:child": {
             "method": "GET",
             "path": "/health",
-            "case:matcher:type": "HttpRequestMatcher"
+            "case:matcher:type": "case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "a (503) response with body an object shaped like {status: \"down\"}",
           "case:matcher:child": {
             "status": 503,
             "body": {
               "status": "down"
             },
-            "case:matcher:type": "HttpResponseMatcher"
+            "case:matcher:type": "case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "MockHttpServer",
+        "case:mock:type": "case:MockHttpServer",
         "case:run:context:setup": {
           "write": {
-            "type": "MockHttpServer",
+            "type": "case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "MockHttpClient",
+            "type": "case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }
@@ -292,15 +292,15 @@
     {
       "states": [
         {
-          "case:state:type": "NamedState",
+          "case:state:type": "case:NamedState",
           "stateName": "Server is up"
         },
         {
-          "case:state:type": "StateWithVariables",
+          "case:state:type": "case:StateWithVariables",
           "stateName": "A user exists",
           "variables": {
             "userId": {
-              "case:matcher:type": "CascadingContext",
+              "case:matcher:type": "case:CascadingContext",
               "case:matcher:child": "123",
               "case:context:matchBy": "type"
             }
@@ -309,45 +309,45 @@
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/users/${userId}\" without a body",
           "case:matcher:child": {
             "method": "GET",
             "path": {
-              "case:matcher:type": "StringPrefix",
+              "case:matcher:type": "case:StringPrefix",
               "case:matcher:prefix": "/users/",
               "case:matcher:suffix": {
-                "case:matcher:type": "ContextVariable",
+                "case:matcher:type": "case:ContextVariable",
                 "case:matcher:variableName": "userId"
               },
               "case:matcher:resolvesTo": "string"
             },
-            "case:matcher:type": "HttpRequestMatcher"
+            "case:matcher:type": "case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "a (200) response with body an object shaped like {userId: ${userId}}",
           "case:matcher:child": {
             "status": 200,
             "body": {
               "userId": {
-                "case:matcher:type": "ContextVariable",
+                "case:matcher:type": "case:ContextVariable",
                 "case:matcher:variableName": "userId"
               }
             },
-            "case:matcher:type": "HttpResponseMatcher"
+            "case:matcher:type": "case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "MockHttpServer",
+        "case:mock:type": "case:MockHttpServer",
         "case:run:context:setup": {
           "write": {
-            "type": "MockHttpServer",
+            "type": "case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "MockHttpClient",
+            "type": "case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }
@@ -358,46 +358,46 @@
     {
       "states": [
         {
-          "case:state:type": "NamedState",
+          "case:state:type": "case:NamedState",
           "stateName": "Server is up"
         },
         {
-          "case:state:type": "NamedState",
+          "case:state:type": "case:NamedState",
           "stateName": "No users exist"
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "an http \"GET\" request to \"/users/123\" without a body",
           "case:matcher:child": {
             "method": "GET",
             "path": {
-              "case:matcher:type": "StringPrefix",
+              "case:matcher:type": "case:StringPrefix",
               "case:matcher:prefix": "/users/",
               "case:matcher:suffix": "123",
               "case:matcher:resolvesTo": "string"
             },
-            "case:matcher:type": "HttpRequestMatcher"
+            "case:matcher:type": "case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "Lookup",
+          "case:matcher:type": "case:Lookup",
           "case:matcher:uniqueName": "a (404) response without a body",
           "case:matcher:child": {
             "status": 404,
-            "case:matcher:type": "HttpResponseMatcher"
+            "case:matcher:type": "case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "MockHttpServer",
+        "case:mock:type": "case:MockHttpServer",
         "case:run:context:setup": {
           "write": {
-            "type": "MockHttpServer",
+            "type": "case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "MockHttpClient",
+            "type": "case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }

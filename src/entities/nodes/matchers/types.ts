@@ -14,27 +14,27 @@ import type {
 
 export * from './http/types';
 
-export const NUMBER_MATCHER_TYPE = 'MatchNumber' as const;
-export const STRING_MATCHER_TYPE = 'MatchString' as const;
-export const NULL_MATCHER_TYPE = 'MatchNull' as const;
-export const BOOLEAN_MATCHER_TYPE = 'MatchBoolean' as const;
-export const CASCADING_CONTEXT_MATCHER_TYPE = 'CascadingContext' as const;
-export const SHAPED_ARRAY_MATCHER_TYPE = 'ArrayShape' as const;
-export const SHAPED_OBJECT_MATCHER_TYPE = 'ObjectShape' as const;
-export const LOOKUP_MATCHER_TYPE = 'Lookup' as const;
-export const ARRAY_LENGTH_MATCHER_TYPE = 'ArrayLength' as const;
-export const ARRAY_EACH_ENTRY_MATCHES_TYPE = 'ArrayEachEntryLike' as const;
-export const ARRAY_CONTAINS_TYPE = 'ArrayContains' as const;
-export const COMBINE_MATCHERS_TYPE = 'And' as const;
-export const OBJECT_VALUES_MATCH_TYPE = 'ObjectValuesMatch' as const;
-export const OBJECT_KEYS_MATCH_TYPE = 'ObjectKeysMatch' as const;
-export const INTEGER_MATCH_TYPE = 'Integer' as const;
-export const STRING_CONTAINS_TYPE = 'StringContains' as const;
-export const STRING_PREFIX_TYPE = 'StringPrefix' as const;
-export const STRING_SUFFIX_TYPE = 'StringSuffix' as const;
-export const CONTEXT_VARIABLE_TYPE = 'ContextVariable' as const;
-export const BASE64_ENCODED_TYPE = 'Base64Encoded' as const;
-export const JSON_STRINGIFIED_TYPE = 'JsonEncoded' as const;
+export const NUMBER_MATCHER_TYPE = 'case:MatchNumber' as const;
+export const STRING_MATCHER_TYPE = 'case:MatchString' as const;
+export const NULL_MATCHER_TYPE = 'case:MatchNull' as const;
+export const BOOLEAN_MATCHER_TYPE = 'case:MatchBoolean' as const;
+export const CASCADING_CONTEXT_MATCHER_TYPE = 'case:CascadingContext' as const;
+export const SHAPED_ARRAY_MATCHER_TYPE = 'case:ArrayShape' as const;
+export const SHAPED_OBJECT_MATCHER_TYPE = 'case:ObjectShape' as const;
+export const LOOKUP_MATCHER_TYPE = 'case:Lookup' as const;
+export const ARRAY_LENGTH_MATCHER_TYPE = 'case:ArrayLength' as const;
+export const ARRAY_EACH_ENTRY_MATCHES_TYPE = 'case:ArrayEachEntryLike' as const;
+export const ARRAY_CONTAINS_TYPE = 'case:ArrayContains' as const;
+export const COMBINE_MATCHERS_TYPE = 'case:And' as const;
+export const OBJECT_VALUES_MATCH_TYPE = 'case:ObjectValuesMatch' as const;
+export const OBJECT_KEYS_MATCH_TYPE = 'case:ObjectKeysMatch' as const;
+export const INTEGER_MATCH_TYPE = 'case:Integer' as const;
+export const STRING_CONTAINS_TYPE = 'case:StringContains' as const;
+export const STRING_PREFIX_TYPE = 'case:StringPrefix' as const;
+export const STRING_SUFFIX_TYPE = 'case:StringSuffix' as const;
+export const CONTEXT_VARIABLE_TYPE = 'case:ContextVariable' as const;
+export const BASE64_ENCODED_TYPE = 'case:Base64Encoded' as const;
+export const JSON_STRINGIFIED_TYPE = 'case:JsonEncoded' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE

@@ -4,8 +4,8 @@ export type AnyMockDescriptorType =
   | typeof MOCK_HTTP_SERVER
   | typeof MOCK_HTTP_CLIENT;
 
-export const MOCK_HTTP_SERVER = 'MockHttpServer' as const;
-export const MOCK_HTTP_CLIENT = 'MockHttpClient' as const;
+export const MOCK_HTTP_SERVER = 'case:MockHttpServer' as const;
+export const MOCK_HTTP_CLIENT = 'case:MockHttpClient' as const;
 
 export interface HasTypeForMockDescriptor<T extends AnyMockDescriptorType> {
   'case:mock:type': T;
