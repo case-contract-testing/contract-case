@@ -14,22 +14,17 @@
 
 Next:
 
-- [ ] Broker download contracts (probably async contract?)
-- [ ] Make dependency object instead of passing each dependency separately
-- [ ] Write docs for initial setup
-- [ ] Broker publish results
-
-Completed
-
-- [x] Http produce request body matcher
-- [x] Http produce request path matcher
-- [x] Http consume request verification matcher
-- [x] Http response status matcher
-- [x] Test context
-- [x] Matcher acceptance
-- [x] Location aware errors
-- [x] Reference (named/lookup) interactions and matchers
-- [x] Print objects properly
+- [ ] Fix Broker download contracts
+- [ ] Do upload for verification results
+- [ ] Flatten types at the boundary
+  - [ ] Classes for matchers
+  - [ ] Classes for mocks
+  - [ ] Refactor context
+  - [ ] Figure out types for the triggers
+  - [ ] Figure out types for the check functions
+- [ ] Documentation for config object
+- [ ] Documentation for states
+- [ ] Documentation for verification
 
 Pact Parity
 
@@ -130,6 +125,15 @@ Contract file access patterns
 
 Internals
 
+- [x] Http produce request body matcher
+- [x] Http produce request path matcher
+- [x] Http consume request verification matcher
+- [x] Http response status matcher
+- [x] Test context
+- [x] Matcher acceptance
+- [x] Location aware errors
+- [x] Reference (named/lookup) interactions and matchers
+- [x] Print objects properly
 - [x] Errors that don't have associated matchers
 - [x] Move interactions to matchers
 - [x] Fail tests if there are configuration errors inside the handler
@@ -140,15 +144,28 @@ Internals
 - [x] Fix global import issue - probably post process the dist directory. Or rewrite all the imports :/
 - [x] Indentation on test output
 - [x] Release plan that includes version number - can we just import this like we did in pact? It would be nice if it was accurate.
+- [x] Do I need runcontext:tree? Maybe I can remove it.
+- [x] Review the invert contract logic, possibly this can be removed too - Update, it could
+- [x] Make loggable context explicit instead of calculated - or, calculate it better.
+- [x] Fix issue with multiple values for the same variable
+- [x] Fix issue where a failed trigger results in open sockets
+- [x] Sort out the LoggableContext / LogContext naming mess
+- [x] Remove logLevel setting and do it with context instead, allowing localised logging
+- [x] Do we need to give the `and` matcher an optional example?
+- [x] Examples might have matchers in them, need to strip those too
+- [x] Can / should we give every matcher an optional example?
 - [ ] Make it less likely that a key is missed during the location printing (maybe make the maintainer-only location strings an explicit type instead of implied by `:`)
 - [ ] Review test harness and separate into a dedicated module
 - [ ] Move the error reporting logic closer to the boundary so that it's not possible to miss an example
+- [ ] Make dependency object instead of passing each dependency separately
+- [ ] Ability to tell when the main run is taking place from context
 
 Configuration and ergonomics
 
 - [x] Log levels
 - [x] File locations
 - [x] Silent mode (no logs or test output)
+- [x] Write docs for initial setup
 - [ ] Named shaped object types (so eg headers doesn't say 'an object shaped like')
 - [ ] Better formatting of locations (strip unnecessary stuff unless in maintainer debug mode)
 - [ ] Accepts / resolvesTo sanity checks
@@ -167,14 +184,14 @@ Configuration and ergonomics
 
 Documentation
 
-- [ ] Differences from Pact
+- [x] Differences from Pact
 - [ ] -- Pass-through APIs
 - [ ] -- Mock model
 - [ ] -- How to do proxy testing
 - [ ] -- Extensibility
 - [ ] How to use
 - [ ] How states work
-- [ ] Why there's no optional
+- [x] Why there's no optional
 - [ ] How log levels work
 - [ ] Maintainer documentation
 
@@ -188,14 +205,3 @@ Potential issues:
 ### Implementation notebook
 
 Here I write notes to myself to make sure I don't miss anything
-
-- [x] Do I need runcontext:tree? Maybe I can remove it.
-- [x] Review the invert contract logic, possibly this can be removed too - Update, it could
-- [x] Make loggable context explicit instead of calculated - or, calculate it better.
-- [x] Fix issue with multiple values for the same variable
-- [x] Fix issue where a failed trigger results in open sockets
-- [x] Sort out the LoggableContext / LogContext naming mess
-- [x] Remove logLevel setting and do it with context instead, allowing localised logging
-- [x] Do we need to give the `and` matcher an optional example?
-- [x] Examples might have matchers in them, need to strip those too
-- [x] Can / should we give every matcher an optional example?
