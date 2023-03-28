@@ -7,9 +7,9 @@ export type AnyMockDescriptorType =
 export const MOCK_HTTP_SERVER = 'MockHttpServer' as const;
 export const MOCK_HTTP_CLIENT = 'MockHttpClient' as const;
 
-export type HasTypeForMockDescriptor<T extends AnyMockDescriptorType> = {
+export interface HasTypeForMockDescriptor<T extends AnyMockDescriptorType> {
   'case:mock:type': T;
-};
+}
 
 export const isCaseMock = (
   maybeMock: unknown
@@ -30,38 +30,36 @@ export interface CoreHttpRequestResponseMatcherPair {
   response: AnyCaseMatcher;
 }
 
-export type ConsumeHttpResponse = HasTypeForMockDescriptor<
-  typeof MOCK_HTTP_SERVER
-> &
-  CoreHttpRequestResponseMatcherPair & {
-    'case:run:context:setup': {
-      write: {
-        type: typeof MOCK_HTTP_SERVER;
-        stateVariables: 'default';
-        triggers: 'provided';
-      };
-      read: {
-        type: typeof MOCK_HTTP_CLIENT;
-        stateVariables: 'state';
-        triggers: 'generated';
-      };
+export interface ConsumeHttpResponse
+  extends HasTypeForMockDescriptor<typeof MOCK_HTTP_SERVER>,
+    CoreHttpRequestResponseMatcherPair {
+  'case:run:context:setup': {
+    write: {
+      type: typeof MOCK_HTTP_SERVER;
+      stateVariables: 'default';
+      triggers: 'provided';
+    };
+    read: {
+      type: typeof MOCK_HTTP_CLIENT;
+      stateVariables: 'state';
+      triggers: 'generated';
     };
   };
+}
 
-export type ProduceHttpResponse = HasTypeForMockDescriptor<
-  typeof MOCK_HTTP_CLIENT
-> &
-  CoreHttpRequestResponseMatcherPair & {
-    'case:run:context:setup': {
-      write: {
-        type: typeof MOCK_HTTP_CLIENT;
-        stateVariables: 'state';
-        triggers: 'generated';
-      };
-      read: {
-        type: typeof MOCK_HTTP_SERVER;
-        stateVariables: 'default';
-        triggers: 'provided';
-      };
+export interface ProduceHttpResponse
+  extends HasTypeForMockDescriptor<typeof MOCK_HTTP_CLIENT>,
+    CoreHttpRequestResponseMatcherPair {
+  'case:run:context:setup': {
+    write: {
+      type: typeof MOCK_HTTP_CLIENT;
+      stateVariables: 'state';
+      triggers: 'generated';
+    };
+    read: {
+      type: typeof MOCK_HTTP_SERVER;
+      stateVariables: 'default';
+      triggers: 'provided';
     };
   };
+}

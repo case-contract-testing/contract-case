@@ -103,9 +103,9 @@ export interface LookupableMatcher {
 
 export type AnyCaseNodeOrData = AnyCaseMatcher | AnyLeafOrStructure;
 
-type IsCaseNodeForType<T extends AnyCaseNodeType> = {
+interface IsCaseNodeForType<T extends AnyCaseNodeType> {
   'case:matcher:type': T;
-};
+}
 
 export type DataOrCaseNodeFor<T extends AnyCaseNodeType> =
   | CaseNodeFor<T>

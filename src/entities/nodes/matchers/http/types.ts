@@ -31,16 +31,16 @@ export interface CoreHttpBasicAuthValue {
   'case:matcher:resolvesTo': 'string';
 }
 
-export type CoreHttpResponseMatcher = {
+export interface CoreHttpResponseMatcher {
   'case:matcher:type': typeof HTTP_RESPONSE_MATCHER_TYPE;
   'case:matcher:uniqueName'?: string;
   uniqueName?: string;
   status: number | CoreHttpStatusCodeMatcher;
   body?: AnyCaseNodeOrData;
   headers?: AnyCaseNodeOrData | Record<string, AnyCaseNodeOrData>;
-};
+}
 
-export type CoreHttpRequestMatcher = {
+export interface CoreHttpRequestMatcher {
   'case:matcher:type': typeof HTTP_REQUEST_MATCHER_TYPE;
   'case:matcher:uniqueName'?: string;
   uniqueName?: string;
@@ -49,25 +49,25 @@ export type CoreHttpRequestMatcher = {
   body?: AnyCaseNodeOrData;
   headers?: AnyCaseNodeOrData | Record<string, AnyCaseNodeOrData>;
   query?: AnyCaseNodeOrData;
-};
+}
 
-type QueryObject = {
+interface QueryObject {
   [key: string]: undefined | string | string[] | QueryObject | QueryObject[];
-};
+}
 
-export type HttpRequestData = {
+export interface HttpRequestData {
   body: AnyData;
   method: string;
   path: string;
   query?: QueryObject;
   headers?: Record<string, string | string[] | undefined>;
-};
+}
 
-export type HttpResponseData = {
+export interface HttpResponseData {
   status: number;
   body: AnyData;
   headers?: Record<string, string>;
-};
+}
 
 export interface HttpMockResponse {
   uniqueName?: string;
