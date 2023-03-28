@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.6.2](https://github.com/case-contract-testing/case/compare/v0.6.1...v0.6.2) (2023-03-28)
+
+
+### Features
+
+* Add stringifiedJson and encodedStringBase64 matchers ([5e992e7](https://github.com/case-contract-testing/case/commit/5e992e71bb34bba317b368a2f0f1b67b47798fc9))
+* Use the advanced broker publishing endpoint instead of the old one ([070aee8](https://github.com/case-contract-testing/case/commit/070aee8d8426430dabb06efd8a01ef69e10b9841))
+
+
+### Miscellaneous Chores
+
+* release 0.6.2 ([de6504e](https://github.com/case-contract-testing/case/commit/de6504e8021a17a0b09259efb183cdc83cfe3ca3))
+
 ## [0.6.1](https://github.com/case-contract-testing/case/compare/v0.6.0...v0.6.1) (2023-03-27)
 
 
