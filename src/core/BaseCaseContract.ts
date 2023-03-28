@@ -2,7 +2,7 @@ import { traversals } from '../diffmatch';
 
 import { CaseConfigurationError, CaseCoreError } from '../entities';
 import { constructMatchContext, applyNodeToContext } from '../entities/context';
-import { coreShapedLike } from '../entities/nodes/matchers/auxillary';
+import { coreShapedLike } from '../entities/nodes/matchers/auxiliary';
 import { hasErrors } from '../entities/results';
 import type {
   ContractData,

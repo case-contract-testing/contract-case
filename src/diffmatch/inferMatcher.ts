@@ -1,7 +1,7 @@
 import {
   coreAndMatcher,
   coreArrayLengthMatcher,
-} from '../entities/nodes/matchers/auxillary';
+} from '../entities/nodes/matchers/auxiliary';
 import * as leafMatchers from '../entities/nodes/matchers/leaf';
 import {
   coreShapedArrayMatcher,
