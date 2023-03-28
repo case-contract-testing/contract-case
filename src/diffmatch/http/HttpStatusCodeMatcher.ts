@@ -1,11 +1,11 @@
-import { CaseCoreError } from '../../../entities';
+import { CaseCoreError } from '../../entities';
 import {
   makeResults,
   errorWhen,
   actualToString,
   matchingError,
   hasNoErrors,
-} from '../../../entities/results';
+} from '../../entities/results';
 import type {
   CaseError,
   MatchResult,
@@ -14,7 +14,7 @@ import type {
   CoreHttpStatusCodeMatcher,
   MatchContext,
   MatcherExecutor,
-} from '../../../entities/types';
+} from '../../entities/types';
 
 const checkExample = (
   rule: number | string,

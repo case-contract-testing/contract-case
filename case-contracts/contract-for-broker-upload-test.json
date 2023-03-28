@@ -1,15 +1,16 @@
 {
+  "contractType": "case::contract",
   "description": {
     "consumerName": "http request consumer",
     "providerName": "http request provider"
   },
   "metadata": {
     "case": {
-      "version": "0.3.0"
+      "version": "0.6.1"
     }
   },
   "matcherLookup": {
-    "matcher:an http \"GET\" request to \"/health\" without a body with the following headers an object shaped like {accept: \"application/json\"}": {
+    "matcher:an http \"GET\" request to \"/health\" with the following headers an object shaped like {accept: \"application/json\"} without a body": {
       "method": "GET",
       "path": "/health",
       "headers": {
@@ -125,7 +126,7 @@
       "mock": {
         "request": {
           "case:matcher:type": "Lookup",
-          "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body with the following headers an object shaped like {accept: \"application/json\"}",
+          "case:matcher:uniqueName": "an http \"GET\" request to \"/health\" with the following headers an object shaped like {accept: \"application/json\"} without a body",
           "case:matcher:child": {
             "method": "GET",
             "path": "/health",
@@ -531,11 +532,5 @@
       },
       "result": "VERIFIED"
     }
-  ],
-  "consumer": {
-    "name": "http request consumer"
-  },
-  "provider": {
-    "name": "http request provider"
-  }
+  ]
 }

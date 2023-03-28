@@ -8,6 +8,7 @@ import {
   arrayEachEntryMatches,
   basicAuth,
   bearerToken,
+  encodedStringBase64,
   inState,
   objectEachValueMatches,
   shapedLike,
@@ -15,6 +16,7 @@ import {
   stringPrefix,
   stringStateVariable,
   stringSuffix,
+  stringifiedJson,
   uriEncodedString,
   willSendHttpRequest,
   withExample,
@@ -346,10 +348,14 @@ describe('broker client', () => {
                         providerName: anyString(),
                         specification: 'pact',
                         contentType: 'application/json',
-                        content: anyString(
-                          Buffer.from(
-                            JSON.stringify(uploadingContract)
-                          ).toString('base64')
+                        content: encodedStringBase64(
+                          stringifiedJson({
+                            contractType: 'case::contract',
+                            description: {
+                              consumerName: anyString('Case'),
+                              providerName: anyString('Pact Broker'),
+                            },
+                          })
                         ),
                       },
                     ],

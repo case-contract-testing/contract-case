@@ -140,13 +140,20 @@ const name = (request: CoreHttpRequestMatcher, context: MatchContext): string =>
               { encode: false }
             )}`
           : ''
-      } ${request.body ? 'with a body' : 'without a body'}${
+      }${
         request.headers
           ? ` with the following headers ${context.descendAndDescribe(
               request.headers,
               addLocation('headers', context)
             )}`
           : ''
+      }${
+        request.body
+          ? ` and body ${context.descendAndDescribe(
+              request.body,
+              addLocation('body', context)
+            )}`
+          : ' without a body'
       }`;
 
 export const HttpRequestMatcher: MatcherExecutor<

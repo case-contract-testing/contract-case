@@ -292,7 +292,7 @@ verifyContract(
               },
           },
         },
-        'an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"}':
+        'an http "GET" request to "/health" with the following headers an object shaped like {accept: "application/json"} without a body':
           {
             trigger: (config: HttpRequestConfig) =>
               api(config.baseUrl).health(),

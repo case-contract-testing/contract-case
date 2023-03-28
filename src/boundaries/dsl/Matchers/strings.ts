@@ -6,6 +6,12 @@ import {
   STRING_PREFIX_TYPE,
   type CoreStringSuffixMatcher,
   STRING_SUFFIX_TYPE,
+  CoreBase64Encoded,
+  BASE64_ENCODED_TYPE,
+  AnyStringMatcher,
+  AnyCaseNodeOrData,
+  CoreJsonStringified,
+  JSON_STRINGIFIED_TYPE,
 } from '../../../entities/types';
 import { anyString } from './primitives';
 
@@ -54,5 +60,34 @@ export const stringSuffix = (
   'case:matcher:type': STRING_SUFFIX_TYPE,
   'case:matcher:prefix': prefix !== undefined ? prefix : anyString(),
   'case:matcher:suffix': suffix,
+  'case:matcher:resolvesTo': 'string',
+});
+
+/**
+ * Matches any string that matches a base64 encoded version of the given string or string matcher
+ *
+ * WARNING: Since many strings are accidentally decodable as base64, this matcher is
+ * best combined with a more restrictive string matcher (eg stringifiedJson()).
+ *
+ * @param child - The string or string matcher to match against
+ */
+export const encodedStringBase64 = (
+  child: AnyStringMatcher
+): CoreBase64Encoded => ({
+  'case:matcher:type': BASE64_ENCODED_TYPE,
+  'case:matcher:child': child,
+  'case:matcher:resolvesTo': 'string',
+});
+
+/**
+ * Matches any string that matches a JSON.stringify()ed version of the given object (which may itself contain matchers)
+ *
+ * @param child - The string or string matcher to match against
+ */
+export const stringifiedJson = (
+  child: AnyCaseNodeOrData
+): CoreJsonStringified => ({
+  'case:matcher:type': JSON_STRINGIFIED_TYPE,
+  'case:matcher:child': child,
   'case:matcher:resolvesTo': 'string',
 });

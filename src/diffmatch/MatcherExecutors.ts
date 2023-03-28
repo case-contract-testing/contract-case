@@ -25,22 +25,21 @@ import {
   STRING_SUFFIX_TYPE,
   URL_ENCODED_STRING_TYPE,
   HTTP_BASIC_AUTH_TYPE,
+  JSON_STRINGIFIED_TYPE,
+  BASE64_ENCODED_TYPE,
 } from '../entities/types';
 import {
   NumberMatcher,
   StringMatcher,
   BooleanMatcher,
   NullMatcher,
-  HttpStatusCodeMatcher,
   IntegerMatcher,
 } from './leaf';
 import {
   AndCombinationMatcher,
   CascadingContext,
   ContextVariableMatcher,
-  HttpBasicAuthMatcher,
   LookupMatcher,
-  UrlEncodedStringMatcher,
 } from './meta';
 import {
   ShapedArrayExecutor,
@@ -54,10 +53,17 @@ import {
   ArrayLengthExecutor,
 } from './structure';
 import {
+  Base64EncodedStringMatcher,
+  JsonStringifiedString,
   StringContainsMatcher,
   StringPrefixMatcher,
   StringSuffixMatcher,
-} from './combinators';
+} from './strings';
+import {
+  HttpStatusCodeMatcher,
+  UrlEncodedStringMatcher,
+  HttpBasicAuthMatcher,
+} from './http';
 
 export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
   {
@@ -85,4 +91,6 @@ export const MatcherExecutors: { [T in AnyCaseNodeType]: MatcherExecutor<T> } =
     [CONTEXT_VARIABLE_TYPE]: ContextVariableMatcher,
     [URL_ENCODED_STRING_TYPE]: UrlEncodedStringMatcher,
     [HTTP_BASIC_AUTH_TYPE]: HttpBasicAuthMatcher,
+    [JSON_STRINGIFIED_TYPE]: JsonStringifiedString,
+    [BASE64_ENCODED_TYPE]: Base64EncodedStringMatcher,
   };

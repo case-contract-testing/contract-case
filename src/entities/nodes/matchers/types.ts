@@ -33,6 +33,8 @@ export const STRING_CONTAINS_TYPE = 'StringContains' as const;
 export const STRING_PREFIX_TYPE = 'StringPrefix' as const;
 export const STRING_SUFFIX_TYPE = 'StringSuffix' as const;
 export const CONTEXT_VARIABLE_TYPE = 'ContextVariable' as const;
+export const BASE64_ENCODED_TYPE = 'Base64Encoded' as const;
+export const JSON_STRINGIFIED_TYPE = 'JsonEncoded' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
@@ -58,7 +60,9 @@ export type AnyCaseNodeType =
   | typeof OBJECT_KEYS_MATCH_TYPE
   | typeof CONTEXT_VARIABLE_TYPE
   | typeof URL_ENCODED_STRING_TYPE
-  | typeof HTTP_BASIC_AUTH_TYPE;
+  | typeof HTTP_BASIC_AUTH_TYPE
+  | typeof BASE64_ENCODED_TYPE
+  | typeof JSON_STRINGIFIED_TYPE;
 
 export const isCaseNode = (
   maybeMatcher: unknown
@@ -236,6 +240,18 @@ export interface CoreContextVariableMatcher {
   'case:matcher:variableName': string;
 }
 
+export interface CoreBase64Encoded {
+  'case:matcher:type': typeof BASE64_ENCODED_TYPE;
+  'case:matcher:child': AnyStringMatcher;
+  'case:matcher:resolvesTo': 'string';
+}
+
+export interface CoreJsonStringified {
+  'case:matcher:type': typeof JSON_STRINGIFIED_TYPE;
+  'case:matcher:child': AnyCaseNodeOrData;
+  'case:matcher:resolvesTo': 'string';
+}
+
 /** Leaf matchers are any type where === would match in an exact context */
 export type AnyLeafMatcher =
   | CoreNumberMatcher
@@ -264,7 +280,9 @@ export type AnyCaseMatcher =
   | CoreStringPrefixMatcher
   | CoreContextVariableMatcher
   | CoreUrlEncodedStringMatcher
-  | CoreHttpBasicAuthValue;
+  | CoreHttpBasicAuthValue
+  | CoreBase64Encoded
+  | CoreJsonStringified;
 
 export type HasExample<T extends AnyCaseMatcher> = T & {
   'case:matcher:example': unknown;
