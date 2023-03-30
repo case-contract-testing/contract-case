@@ -73,16 +73,14 @@ export class BrokerService {
                 break;
               default:
                 throw new CaseCoreError(
-                  `The broker returned a log level ('${notice.level}') that we don't know how to handle`
+                  `The broker returned a log level ('${notice.level}') that Case doesn't know how to handle`
                 );
             }
           });
         });
     }
-    const message = `Configuration property publish was set to the unexpected value '${context['case:currentRun:context:publish']}'`;
-    context.logger.error(
-      `Configuration property publish was set to the unexpected value '${context['case:currentRun:context:publish']}'`
-    );
+    const message = `Configuration property 'publish' was set to the unexpected value '${context['case:currentRun:context:publish']}'`;
+    context.logger.error(message);
 
     return Promise.reject(new CaseConfigurationError(message));
   }
