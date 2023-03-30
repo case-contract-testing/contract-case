@@ -38,7 +38,9 @@ export class BrokerService {
     }
     if (
       context['case:currentRun:context:publish'] === true ||
-      context['case:currentRun:context:publish'] === 'ALWAYS'
+      context['case:currentRun:context:publish'] === 'ALWAYS' ||
+      (context['case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
+        this.environment.isCi())
     ) {
       return this.broker
         .publishContractAdvanced(
