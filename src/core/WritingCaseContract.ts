@@ -6,20 +6,22 @@ import { nameMock, exampleToNames } from '../entities/contract';
 import { makeResults } from '../entities/results';
 import {
   type ContractDescription,
-  type LogLevelContext,
-  type Logger,
   SETUP_VARIABLE_STATE,
   type CaseExample,
   type MatchContext,
   ERROR_TYPE_EXECUTION,
   AnyMockDescriptorType,
-  ResultPrinter,
 } from '../entities/types';
 
 import { BaseCaseContract } from './BaseCaseContract';
 import { addExample, hasFailure } from './structure';
 import type { TestInvoker } from './executeExample/types';
-import type { CaseConfig, MakeBrokerApi, WriteContract } from './types';
+import type {
+  CaseConfig,
+  WriterDependencies,
+  MakeBrokerApi,
+  WriteContract,
+} from './types';
 import { DEFAULT_CONFIG, configToRunContext } from './config';
 import { executeExample } from './executeExample';
 
@@ -34,10 +36,12 @@ export class WritingCaseContract extends BaseCaseContract {
 
   constructor(
     description: ContractDescription,
-    resultPrinter: ResultPrinter,
-    makeLogger: (context: LogLevelContext) => Logger,
-    makeBrokerApi: MakeBrokerApi,
-    writeContract: WriteContract,
+    {
+      resultPrinter,
+      makeLogger,
+      makeBrokerApi,
+      writeContract,
+    }: WriterDependencies,
     config: CaseConfig = DEFAULT_CONFIG
   ) {
     super(description, config, resultPrinter, makeLogger);

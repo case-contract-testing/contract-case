@@ -1,60 +1,21 @@
-import type { ContractData, DataContext, LogContext } from '../entities/types';
+import type { LogLevelContext, Logger, ResultPrinter } from '../entities/types';
+import { MakeBrokerApi } from './broker.types';
+import { WriteContract } from './contract.types';
+
+export * from './broker.types';
+export * from './contract.types';
 
 export { CaseConfig } from './config/types';
 
-export type ContractLink = {
-  href: string;
-  name: string;
-};
-
-export type DownloadedContract<T> = T & {
-  _links: {
-    'pb:pact-version': {
-      name: string;
-    };
-  };
-};
-
-export type WriteContract = (
-  contract: ContractData,
-  context: DataContext
-) => string;
-
-export type MakeBrokerApi = (context: DataContext) => Broker;
-
-export interface Broker {
-  publishContract: (
-    contract: ContractData,
-    context: LogContext
-  ) => Promise<void>;
-
-  publishContractAdvanced: (
-    contract: ContractData,
-    logContext: LogContext
-  ) => Promise<PublishResult>;
-
-  downloadContract: (
-    url: string,
-    context: LogContext
-  ) => Promise<DownloadedContract<ContractData>>;
-
-  urlsForVerification: (
-    serviceName: string,
-    context: LogContext
-  ) => Promise<ContractLink[]>;
+export interface ReaderDependencies {
+  resultPrinter: ResultPrinter;
+  makeLogger: (context: LogLevelContext) => Logger;
+  makeBrokerApi: MakeBrokerApi;
 }
 
-interface BrokerNotice {
-  level:
-    | 'debug'
-    | 'info'
-    | 'warning'
-    | 'prompt'
-    | 'success'
-    | 'error'
-    | 'danger';
-}
-
-export interface PublishResult {
-  notices: Array<BrokerNotice>;
+export interface WriterDependencies {
+  resultPrinter: ResultPrinter;
+  makeLogger: (context: LogLevelContext) => Logger;
+  makeBrokerApi: MakeBrokerApi;
+  writeContract: WriteContract;
 }

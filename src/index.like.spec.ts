@@ -7,15 +7,12 @@ import {
   exactlyLike,
   shapedLike,
 } from './boundaries/dsl/Matchers';
-import { makeBrokerApi } from './connectors/broker';
-import { writeContract } from './connectors/contract/writer';
-import { makeLogger } from './connectors/logger';
-import { resultPrinter } from './connectors/resultPrinter';
 
 import { CaseConfigurationError } from './entities';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';
+import { writerDependencies } from './connectors/dependencies';
 
 describe('basic matchers', () => {
   const contract = new WritingCaseContract(
@@ -23,10 +20,7 @@ describe('basic matchers', () => {
       consumerName: 'test like consumer',
       providerName: 'test like provider',
     },
-    resultPrinter,
-    makeLogger,
-    makeBrokerApi,
-    writeContract,
+    writerDependencies,
     MAINTAINER_TEST_CONTEXT
   );
 

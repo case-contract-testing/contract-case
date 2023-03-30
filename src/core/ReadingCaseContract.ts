@@ -9,13 +9,10 @@ import {
 } from '../entities/contract';
 import type {
   ContractData,
-  LogLevelContext,
-  Logger,
   CaseExample,
   MatchContext,
   CaseError,
   AnyMockDescriptorType,
-  ResultPrinter,
 } from '../entities/types';
 
 import { BaseCaseContract } from './BaseCaseContract';
@@ -24,14 +21,14 @@ import { executeExample } from './executeExample';
 import type { MultiTestInvoker, RunTestCallback } from './executeExample/types';
 import { DEFAULT_CONFIG } from './config';
 import type { CaseConfig } from './config/types';
+import { ReaderDependencies } from './types';
 
 export class ReadingCaseContract extends BaseCaseContract {
   mutex: Mutex;
 
   constructor(
     contractFile: ContractData,
-    resultPrinter: ResultPrinter,
-    makeLogger: (context: LogLevelContext) => Logger,
+    { resultPrinter, makeLogger }: ReaderDependencies,
     config: CaseConfig = DEFAULT_CONFIG
   ) {
     super(

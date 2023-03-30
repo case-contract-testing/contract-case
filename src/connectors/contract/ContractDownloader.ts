@@ -1,30 +1,36 @@
 /* eslint-disable no-underscore-dangle */
-import { makeLogger } from '../logger';
-import { resultPrinter } from '../resultPrinter';
 
-import type { Broker, CaseConfig } from '../../core/types';
+import type { Broker, CaseConfig, WriteContract } from '../../core/types';
 
 import type { DataContext } from '../../entities/types';
 import { constructDataContext } from '../../entities/context';
 import { DEFAULT_CONFIG } from '../../core';
 import { configToRunContext } from '../../core/config';
-import { makeBrokerApi } from '../broker';
-import { writeContract } from './writer';
+import { writerDependencies } from '../dependencies';
 
 export class ContractDownloader {
   context: DataContext;
 
-  constructor(config: CaseConfig) {
-    this.context = constructDataContext(makeLogger, resultPrinter, {
-      ...configToRunContext(DEFAULT_CONFIG),
-      ...configToRunContext(config),
-    });
+  broker: Broker;
+
+  writeContract: WriteContract;
+
+  constructor(config: CaseConfig, dependencies = writerDependencies) {
+    this.context = constructDataContext(
+      dependencies.makeLogger,
+      dependencies.resultPrinter,
+      {
+        ...configToRunContext(DEFAULT_CONFIG),
+        ...configToRunContext(config),
+      }
+    );
+
+    this.broker = dependencies.makeBrokerApi(this.context);
+    this.writeContract = dependencies.writeContract;
   }
 
   async download(serviceName: string): Promise<void> {
-    const broker: Broker = makeBrokerApi(this.context);
-
-    const contractUrls = await broker.urlsForVerification(
+    const contractUrls = await this.broker.urlsForVerification(
       serviceName,
       this.context
     );
@@ -41,7 +47,7 @@ export class ContractDownloader {
         this.context.logger.debug(
           `Downloading contract for '${contractUrl.name}' from ${contractUrl.href}`
         );
-        return broker
+        return this.broker
           .downloadContract(contractUrl.href, this.context)
           .then((contractData) => ({
             contractData,
@@ -71,7 +77,7 @@ export class ContractDownloader {
     );
     caseContracts.forEach((c) => {
       this.context.logger.debug(`Writing contract '${c.name}'`);
-      writeContract(c.contractData, {
+      this.writeContract(c.contractData, {
         ...this.context,
         'case:currentRun:context:overwriteFile': true,
         'case:currentRun:context:testRunId':

@@ -154,10 +154,10 @@ Internals
 - [x] Do we need to give the `and` matcher an optional example?
 - [x] Examples might have matchers in them, need to strip those too
 - [x] Can / should we give every matcher an optional example?
+- [x] Make dependency object instead of passing each dependency separately
 - [ ] Make it less likely that a key is missed during the location printing (maybe make the maintainer-only location strings an explicit type instead of implied by `:`)
 - [ ] Review test harness and separate into a dedicated module
 - [ ] Move the error reporting logic closer to the boundary so that it's not possible to miss an example
-- [ ] Make dependency object instead of passing each dependency separately
 - [ ] Ability to tell when the main run is taking place from context
 
 Configuration and ergonomics

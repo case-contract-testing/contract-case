@@ -1,6 +1,3 @@
-import { makeLogger } from '../logger';
-import { resultPrinter } from '../resultPrinter';
-
 import type { CaseConfig } from '../../core/types';
 import type {
   MultiTestInvoker,
@@ -9,6 +6,7 @@ import type {
 import { ReadingCaseContract } from '../../core/ReadingCaseContract';
 
 import type { AnyMockDescriptorType, ContractData } from '../../entities/types';
+import { readerDependencies } from '../dependencies';
 
 export class ContractVerifierConnector {
   contract: ReadingCaseContract;
@@ -18,14 +16,13 @@ export class ContractVerifierConnector {
   constructor(
     contractData: ContractData,
     config: CaseConfig,
-    callback: RunTestCallback
+    callback: RunTestCallback,
+    dependencies = readerDependencies
   ) {
-    this.contract = new ReadingCaseContract(
-      contractData,
-      resultPrinter,
-      makeLogger,
-      { throwOnFail: false, ...config }
-    );
+    this.contract = new ReadingCaseContract(contractData, dependencies, {
+      throwOnFail: false,
+      ...config,
+    });
     this.callback = callback;
   }
 

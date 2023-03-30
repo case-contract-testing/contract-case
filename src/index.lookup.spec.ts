@@ -1,14 +1,11 @@
 import { anyNumber, anyString, namedMatch } from './boundaries/dsl/Matchers';
-import { makeBrokerApi } from './connectors/broker';
-import { writeContract } from './connectors/contract/writer';
-import { makeLogger } from './connectors/logger';
-import { resultPrinter } from './connectors/resultPrinter';
 
 import { CaseConfigurationError } from './entities';
 import type { AnyCaseNodeOrData } from './entities/types';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';
+import { writerDependencies } from './connectors/dependencies';
 
 describe('named matches', () => {
   const contract = new WritingCaseContract(
@@ -16,10 +13,7 @@ describe('named matches', () => {
       consumerName: 'test lookup consumer',
       providerName: 'test lookup provider',
     },
-    resultPrinter,
-    makeLogger,
-    makeBrokerApi,
-    writeContract,
+    writerDependencies,
     MAINTAINER_TEST_CONTEXT
   );
 

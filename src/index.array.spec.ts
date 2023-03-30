@@ -14,11 +14,8 @@ import { makeNoErrorResult } from './entities/results';
 import { StripUnsupportedError } from './entities/errors/StripUnsupportedError';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
-import { makeBrokerApi } from './connectors/broker';
-import { writeContract } from './connectors/contract/writer';
-import { makeLogger } from './connectors/logger';
-import { resultPrinter } from './connectors/resultPrinter';
 import { WritingCaseContract } from './core';
+import { writerDependencies } from './connectors/dependencies';
 
 describe('basic types and structure checks', () => {
   const contract = new WritingCaseContract(
@@ -26,10 +23,7 @@ describe('basic types and structure checks', () => {
       consumerName: 'test array consumer',
       providerName: 'test array provider',
     },
-    resultPrinter,
-    makeLogger,
-    makeBrokerApi,
-    writeContract,
+    writerDependencies,
     MAINTAINER_TEST_CONTEXT
   );
 

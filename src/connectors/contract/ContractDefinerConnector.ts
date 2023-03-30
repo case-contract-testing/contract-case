@@ -17,10 +17,7 @@ import type {
   DataOrCaseNodeFor,
   SetupInfoFor,
 } from '../../entities/types';
-import { resultPrinter } from '../resultPrinter';
-import { makeLogger } from '../logger';
-import { makeBrokerApi } from '../broker';
-import { writeContract } from './writer';
+import { writerDependencies } from '../dependencies';
 
 export type DefinitionSuccessExample<
   T extends AnyMockDescriptorType,
@@ -50,16 +47,10 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
   constructor(
     description: ContractDescription,
     config: CaseConfig,
-    invoker: MultiTestInvoker<M>
+    invoker: MultiTestInvoker<M>,
+    dependencies = writerDependencies
   ) {
-    this.contract = new WritingCaseContract(
-      description,
-      resultPrinter,
-      makeLogger,
-      makeBrokerApi,
-      writeContract,
-      config
-    );
+    this.contract = new WritingCaseContract(description, dependencies, config);
     this.invoker = invoker;
   }
 

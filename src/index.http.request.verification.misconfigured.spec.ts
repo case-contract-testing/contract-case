@@ -11,9 +11,8 @@ import type { User } from './__tests__/server/http/model/responses';
 import { CaseConfigurationError } from './entities';
 import type { Dependencies } from './__tests__/server/http/domain/types';
 
-import { resultPrinter } from './connectors/resultPrinter';
-import { makeLogger } from './connectors/logger';
 import { ReadingCaseContract } from './core';
+import { readerDependencies } from './connectors/dependencies';
 
 describe('Server verification', () => {
   let server: http.Server;
@@ -32,16 +31,11 @@ describe('Server verification', () => {
     'case-contracts/contract-for-incorrectly-configured-examples.json'
   );
 
-  const verifier = new ReadingCaseContract(
-    contract,
-    resultPrinter,
-    makeLogger,
-    {
-      baseUrlUnderTest: `http://localhost:${port}`,
-      logLevel: 'none',
-      printResults: false,
-    }
-  );
+  const verifier = new ReadingCaseContract(contract, readerDependencies, {
+    baseUrlUnderTest: `http://localhost:${port}`,
+    logLevel: 'none',
+    printResults: false,
+  });
   beforeAll(async () => {
     server = await start(port, serverDependencies);
   });

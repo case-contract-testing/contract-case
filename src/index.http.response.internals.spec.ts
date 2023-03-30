@@ -7,11 +7,9 @@ import type { CaseConfig } from './core/types';
 import { CaseConfigurationError, CaseFailedAssertionError } from './entities';
 
 import start from './__tests__/server/http/index';
-import { makeBrokerApi } from './connectors/broker';
-import { writeContract } from './connectors/contract/writer';
-import { makeLogger } from './connectors/logger';
-import { resultPrinter } from './connectors/resultPrinter';
+
 import { WritingCaseContract } from './core';
+import { writerDependencies } from './connectors/dependencies';
 
 const expectErrorContaining = async (
   context: Promise<unknown>,
@@ -41,10 +39,7 @@ describe('simple get endpoint', () => {
       consumerName: 'http request consumer',
       providerName: 'http request provider',
     },
-    resultPrinter,
-    makeLogger,
-    makeBrokerApi,
-    writeContract,
+    writerDependencies,
     {
       testRunId: 'REQUEST',
       printResults: false,
