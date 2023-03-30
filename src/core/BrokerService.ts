@@ -1,4 +1,4 @@
-import { CaseConfigurationError } from '../entities';
+import { CaseConfigurationError, CaseCoreError } from '../entities';
 import { addLocation } from '../entities/context';
 import { ContractData, DataContext, MatchContext } from '../entities/types';
 import { BrokerApi, DownloadedContracts } from './types.broker';
@@ -45,7 +45,37 @@ export class BrokerService {
           contract,
           addLocation('PublishingContract', context)
         )
-        .then(() => {});
+        .then((publishResults) => {
+          publishResults.notices.forEach((notice) => {
+            switch (notice.level) {
+              case 'debug':
+                context.logger.debug(`[Broker] ${notice.text}`);
+                break;
+              case 'info':
+                context.logger.debug(`[Broker] ${notice.text}`);
+                break;
+              case 'prompt':
+                context.logger.debug(`[Broker] ${notice.text}`);
+                break;
+              case 'success':
+                context.logger.debug(`[Broker] ${notice.text}`);
+                break;
+              case 'error':
+                context.logger.error(`[Broker] ${notice.text}`);
+                break;
+              case 'danger':
+                context.logger.error(`[Broker] [DANGER] ${notice.text}`);
+                break;
+              case 'warning':
+                context.logger.warn(`[Broker] ${notice.text}`);
+                break;
+              default:
+                throw new CaseCoreError(
+                  `The broker returned a log level ('${notice.level}') that we don't know how to handle`
+                );
+            }
+          });
+        });
     }
     const message = `Configuration property publish was set to the unexpected value '${context['case:currentRun:context:publish']}'`;
     context.logger.error(
