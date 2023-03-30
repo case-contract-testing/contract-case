@@ -43,7 +43,7 @@ export interface BrokerApi {
 }
 
 interface BrokerNotice {
-  level:
+  type:
     | 'debug'
     | 'info'
     | 'warning'

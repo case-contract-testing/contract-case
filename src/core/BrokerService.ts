@@ -49,7 +49,7 @@ export class BrokerService {
         )
         .then((publishResults) => {
           publishResults.notices.forEach((notice) => {
-            switch (notice.level) {
+            switch (notice.type) {
               case 'debug':
                 context.logger.debug(`[Broker] ${notice.text}`);
                 break;
@@ -74,7 +74,7 @@ export class BrokerService {
               default:
                 throw new CaseCoreError(
                   `The broker returned a log level ('${
-                    notice.level
+                    notice.type
                   }') that Case doesn't know how to handle.\n\nThe problem is in the following notice object:\n\n${JSON.stringify(
                     notice
                   )}`

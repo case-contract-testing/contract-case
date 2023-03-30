@@ -367,13 +367,13 @@ describe('broker client', () => {
                     notices: withExample(
                       and(
                         arrayContains({
-                          level: 'debug',
+                          type: 'debug',
                           text: anyString(
                             'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main'
                           ),
                         }),
                         arrayContains({
-                          level: 'info',
+                          type: 'info',
                           text: anyString(
                             'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.'
                           ),
@@ -382,11 +382,11 @@ describe('broker client', () => {
                       {
                         notices: [
                           {
-                            level: 'debug',
+                            type: 'debug',
                             text: 'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main',
                           },
                           {
-                            level: 'info',
+                            type: 'info',
                             text: 'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.',
                           },
                         ],
