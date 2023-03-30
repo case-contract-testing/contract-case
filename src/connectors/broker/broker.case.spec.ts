@@ -29,10 +29,6 @@ import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { makeBrokerApi } from './broker';
 import { makeLogger } from '../logger';
 
-const makeEnvironment = () => ({
-  isCi: () => true,
-});
-
 const emptyContext = {
   logger: makeLogger({
     'case:currentRun:context:location': ['DURING_TESTING'],
@@ -43,11 +39,8 @@ const emptyContext = {
     printSuccessTitle(): void {},
     printFailureTitle(): void {},
   },
-  'case:currentRun:context:publish': 'ONLY_IN_CI',
-  'case:currentRun:context:location': ['DURING_TESTING'],
-  'case:currentRun:context:logLevel': 'none',
   makeLogger,
-} as unknown as DataContext;
+};
 
 const contractFilename = 'case-contracts/case-pact-broker.case.json';
 const uploadingContract = readContract(
@@ -58,13 +51,10 @@ const makeBrokerApiForTest = (
   url: string | undefined,
   token: string | undefined
 ) =>
-  makeBrokerApi(
-    {
-      'case:currentRun:context:brokerCiAccessToken': token,
-      'case:currentRun:context:brokerBaseUrl': url,
-    } as MatchContext,
-    makeEnvironment()
-  );
+  makeBrokerApi({
+    'case:currentRun:context:brokerCiAccessToken': token,
+    'case:currentRun:context:brokerBaseUrl': url,
+  } as MatchContext);
 
 describe('broker client', () => {
   beforeAll(() => {
@@ -244,16 +234,13 @@ describe('broker client', () => {
                   },
                 }),
                 trigger: (config) =>
-                  makeBrokerApi(
-                    {
-                      'case:currentRun:context:brokerBasicAuth': {
-                        username: config.variables['username'] as string,
-                        password: config.variables['password'] as string,
-                      },
-                      'case:currentRun:context:brokerBaseUrl': config.baseUrl,
-                    } as DataContext,
-                    makeEnvironment()
-                  ).urlsForVerification(
+                  makeBrokerApi({
+                    'case:currentRun:context:brokerBasicAuth': {
+                      username: config.variables['username'] as string,
+                      password: config.variables['password'] as string,
+                    },
+                    'case:currentRun:context:brokerBaseUrl': config.baseUrl,
+                  } as DataContext).urlsForVerification(
                     config.variables['providerName'] as string,
                     emptyContext
                   ),

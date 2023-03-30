@@ -1,4 +1,6 @@
+import { BrokerService } from '../core/BrokerService';
 import { ReaderDependencies, WriterDependencies } from '../core/types';
+import { DataContext } from '../entities/types';
 import { makeBrokerApi } from './broker';
 import { writeContract } from './contract/writer';
 import { makeEnvironment } from './environment/environment';
@@ -8,9 +10,10 @@ import { resultPrinter } from './resultPrinter';
 export const writerDependencies: WriterDependencies = {
   resultPrinter,
   makeLogger,
-  makeBrokerApi,
   writeContract,
   makeEnvironment,
+  makeBrokerService: (context: DataContext) =>
+    new BrokerService(makeBrokerApi(context), makeEnvironment()),
 };
 
 export const readerDependencies: ReaderDependencies = {
