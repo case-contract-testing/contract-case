@@ -1,3 +1,4 @@
+import { CaseConfigurationError } from '../entities';
 import { addLocation } from '../entities/context';
 import { ContractData, DataContext, MatchContext } from '../entities/types';
 import { BrokerApi, DownloadedContracts } from './types.broker';
@@ -17,18 +18,41 @@ export class BrokerService {
     contract: ContractData,
     context: MatchContext
   ): Promise<void> {
-    if (!this.environment.isCi()) {
-      context.logger.warn(
-        `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as we only publish in CI, and this is not a detected CI environment`
+    if (
+      context['case:currentRun:context:publish'] === false ||
+      context['case:currentRun:context:publish'] === 'NEVER'
+    ) {
+      context.logger.debug(
+        `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'NEVER' is set (or false)`
       );
       return Promise.resolve();
     }
-    return this.broker
-      .publishContractAdvanced(
-        contract,
-        addLocation('PublishingContract', context)
-      )
-      .then(() => {});
+    if (
+      context['case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
+      !this.environment.isCi()
+    ) {
+      context.logger.warn(
+        `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'ONLY_IN_CI' is set, and this is not a detected CI environment`
+      );
+      return Promise.resolve();
+    }
+    if (
+      context['case:currentRun:context:publish'] === true ||
+      context['case:currentRun:context:publish'] === 'ALWAYS'
+    ) {
+      return this.broker
+        .publishContractAdvanced(
+          contract,
+          addLocation('PublishingContract', context)
+        )
+        .then(() => {});
+    }
+    const message = `Configuration property publish was set to the unexpected value '${context['case:currentRun:context:publish']}'`;
+    context.logger.error(
+      `Configuration property publish was set to the unexpected value '${context['case:currentRun:context:publish']}'`
+    );
+
+    return Promise.reject(new CaseConfigurationError(message));
   }
 
   async downloadContracts(
