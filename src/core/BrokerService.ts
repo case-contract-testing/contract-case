@@ -73,7 +73,11 @@ export class BrokerService {
                 break;
               default:
                 throw new CaseCoreError(
-                  `The broker returned a log level ('${notice.level}') that Case doesn't know how to handle`
+                  `The broker returned a log level ('${
+                    notice.level
+                  }') that Case doesn't know how to handle.\n\nThe problem is in the following notice object:\n\n${JSON.stringify(
+                    notice
+                  )}`
                 );
             }
           });
