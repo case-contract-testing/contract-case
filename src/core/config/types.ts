@@ -31,6 +31,17 @@ export type BaseCaseConfig = {
   throwOnFail?: boolean;
 
   /**
+   * Whether to publish contracts or verification results to the broker
+   *
+   * `"ONLY_IN_CI"` - only when in in CI according to https://github.com/watson/ci-info#supported-ci-tools
+   * `"NEVER"` or `false` - never publish
+   * `"ALWAYS"` or `true` - always publish (not recommended)
+   *
+   * Default: `"ONLY_IN_CI"`
+   */
+  publish?: false | true | 'ONLY_IN_CI' | 'NEVER' | 'ALWAYS';
+
+  /**
    * The access token to use for the contract broker. Must have CI scope.
    *
    * If this is specified along with brokerBasicAuth, the basic auth is ignored.

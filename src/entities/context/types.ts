@@ -129,6 +129,12 @@ export interface RunContext
   // TODO: These are from CaseConfig and should be auto generated
   'case:currentRun:context:throwOnFail'?: boolean;
   'case:currentRun:context:brokerCiAccessToken'?: string;
+  'case:currentRun:context:publish'?:
+    | false
+    | true
+    | 'ONLY_IN_CI'
+    | 'NEVER'
+    | 'ALWAYS';
   'case:currentRun:context:brokerBasicAuth'?: {
     username: string;
     password: string;

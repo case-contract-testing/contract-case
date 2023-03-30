@@ -16,38 +16,30 @@ import {
 import { BaseCaseContract } from './BaseCaseContract';
 import { addExample, hasFailure } from './structure';
 import type { TestInvoker } from './executeExample/types';
-import type {
-  CaseConfig,
-  WriterDependencies,
-  MakeBrokerApi,
-  WriteContract,
-} from './types';
+import type { CaseConfig, WriterDependencies } from './types';
 import { DEFAULT_CONFIG, configToRunContext } from './config';
 import { executeExample } from './executeExample';
 
 export class WritingCaseContract extends BaseCaseContract {
-  testIndex = 0;
+  private testIndex = 0;
 
-  mutex: Mutex;
+  private mutex: Mutex;
 
-  makeBrokerApi: MakeBrokerApi;
-
-  writeContract: WriteContract;
+  private dependencies: WriterDependencies;
 
   constructor(
     description: ContractDescription,
-    {
-      resultPrinter,
-      makeLogger,
-      makeBrokerApi,
-      writeContract,
-    }: WriterDependencies,
+    dependencies: WriterDependencies,
     config: CaseConfig = DEFAULT_CONFIG
   ) {
-    super(description, config, resultPrinter, makeLogger);
+    super(
+      description,
+      config,
+      dependencies.resultPrinter,
+      dependencies.makeLogger
+    );
     this.mutex = new Mutex();
-    this.makeBrokerApi = makeBrokerApi;
-    this.writeContract = writeContract;
+    this.dependencies = dependencies;
   }
 
   executeTest<T extends AnyMockDescriptorType, R>(
@@ -152,7 +144,10 @@ export class WritingCaseContract extends BaseCaseContract {
       );
     }
     //  - if success, write contract
-    const fileName = this.writeContract(this.currentContract, writingContext);
+    const fileName = this.dependencies.writeContract(
+      this.currentContract,
+      writingContext
+    );
     writingContext.logger.debug(`Wrote contract file: ${fileName}`);
 
     if (!this.initialContext['case:currentRun:context:brokerCiAccessToken']) {
@@ -161,9 +156,11 @@ export class WritingCaseContract extends BaseCaseContract {
       );
       return;
     }
-    await this.makeBrokerApi(writingContext).publishContractAdvanced(
-      this.currentContract,
-      addLocation('PublishingContract', this.initialContext)
-    );
+    await this.dependencies
+      .makeBrokerApi(writingContext, this.dependencies.makeEnvironment())
+      .publishContractAdvanced(
+        this.currentContract,
+        addLocation('PublishingContract', this.initialContext)
+      );
   }
 }

@@ -1,4 +1,5 @@
 import { DataContext, ContractData, LogContext } from '../entities/types';
+import { Environment } from './types.environment';
 
 export type DownloadedContract<T> = T & {
   _links: {
@@ -13,7 +14,10 @@ export type ContractLink = {
   name: string;
 };
 
-export type MakeBrokerApi = (context: DataContext) => Broker;
+export type MakeBrokerApi = (
+  context: DataContext,
+  environment: Environment
+) => Broker;
 
 export interface Broker {
   publishContract: (
@@ -23,7 +27,7 @@ export interface Broker {
 
   publishContractAdvanced: (
     contract: ContractData,
-    logContext: LogContext
+    logContext: DataContext
   ) => Promise<PublishResult>;
 
   downloadContract: (
@@ -46,6 +50,7 @@ interface BrokerNotice {
     | 'success'
     | 'error'
     | 'danger';
+  text: string;
 }
 
 export interface PublishResult {

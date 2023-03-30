@@ -25,7 +25,10 @@ export class ContractDownloader {
       }
     );
 
-    this.broker = dependencies.makeBrokerApi(this.context);
+    this.broker = dependencies.makeBrokerApi(
+      this.context,
+      dependencies.makeEnvironment()
+    );
     this.writeContract = dependencies.writeContract;
   }
 

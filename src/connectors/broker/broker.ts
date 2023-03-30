@@ -18,7 +18,12 @@ import type {
   WireForVerificationResponse,
   WireRequestForPublicationAdvanced,
 } from './brokerDto.types';
-import { Broker, MakeBrokerApi, PublishResult } from '../../core/types';
+import {
+  Broker,
+  Environment,
+  MakeBrokerApi,
+  PublishResult,
+} from '../../core/types';
 
 const trimSlash = (str: string): string => {
   if (str.endsWith('/')) {
@@ -28,7 +33,8 @@ const trimSlash = (str: string): string => {
 };
 
 export const makeBrokerApi: MakeBrokerApi = (
-  configContext: DataContext
+  configContext: DataContext,
+  environment: Environment
 ): Broker => {
   const authToken =
     configContext['case:currentRun:context:brokerCiAccessToken'];
@@ -77,6 +83,13 @@ export const makeBrokerApi: MakeBrokerApi = (
 
   return {
     publishContract: (contract: ContractData, logContext: LogContext) => {
+      if (!environment.isCi()) {
+        logContext.logger.warn(
+          `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as we only publish in CI, and this is not a detected CI environment`
+        );
+        return Promise.resolve();
+      }
+
       // TODO: Make this a first class object
       const version = versionFromGitTag();
       logContext.logger.debug(
@@ -102,8 +115,19 @@ export const makeBrokerApi: MakeBrokerApi = (
 
     publishContractAdvanced: (
       contract: ContractData,
-      logContext: LogContext
+      logContext: DataContext
     ) => {
+      if (!environment.isCi()) {
+        return Promise.resolve({
+          notices: [
+            {
+              level: 'warning',
+              text: `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as we only publish in CI, and this is not a detected CI environment`,
+            },
+          ],
+        });
+      }
+
       const version = versionFromGitTag();
       logContext.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
