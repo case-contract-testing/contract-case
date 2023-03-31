@@ -4,16 +4,16 @@ import slug from 'slug';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import type { WriteContract } from '../../../core/types';
-import { DEFAULT_CONFIG } from '../../../core';
+import type { WriteContract } from '../../core/types';
+import { DEFAULT_CONFIG } from '../../core';
 
-import { CaseConfigurationError } from '../../../entities';
+import { CaseConfigurationError } from '../../entities';
 import type {
   HasContractFileConfig,
   ContractDescription,
   ContractData,
   DataContext,
-} from '../../../entities/types';
+} from '../../entities/types';
 
 const checkCurrentRunField = <T extends DataContext>(
   context: DataContext,

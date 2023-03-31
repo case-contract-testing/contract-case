@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import type * as http from 'node:http';
 
-import { readContract } from './connectors/contract/writer/fileSystem';
+import { readContract } from './connectors/contractWriter/fileSystem';
 import type { RunTestCallback } from './core/executeExample/types';
 import type { StateHandlers } from './entities/states/types';
 

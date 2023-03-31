@@ -24,7 +24,7 @@ import {
 import { defineContract } from '../../boundaries/jest/jest';
 import { CaseConfigurationError } from '../../entities';
 import type { DataContext, MatchContext } from '../../entities/types';
-import { readContract } from '../contract/writer';
+import { readContract } from '../contractWriter';
 import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { makeBrokerApi } from './broker';
 import { makeLogger } from '../logger';
