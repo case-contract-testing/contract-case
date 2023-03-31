@@ -105,10 +105,13 @@ describe('e2e http provider driven', () => {
         consumerName: 'http request consumer',
         providerName: 'http request provider',
         config: {
-          testRunId: TEST_RUN_ID,
-          baseUrlUnderTest: `http://localhost:${port}`,
-          printResults: false,
           stateHandlers,
+          baseUrlUnderTest: `http://localhost:${port}`,
+
+          // remove the following lines for your own tests
+          publish: 'ALWAYS', // Remove this for your own tests
+          printResults: false, // Remove this for your own tests
+          testRunId: TEST_RUN_ID, // Remove this for your own tests
         },
       },
       (contract) => {
