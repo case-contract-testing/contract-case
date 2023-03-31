@@ -4,26 +4,26 @@ import {
   RunTestCallback,
 } from '../core/executeExample/types';
 import { CaseConfig } from '../core/types';
-import { AnyMockDescriptorType, ContractData } from '../entities/types';
+import { AnyMockDescriptorType, ContractDescription } from '../entities/types';
 
 export class ContractVerifier {
   coreVerifier: ContractVerifierConnector;
 
-  constructor(
-    contractData: ContractData,
-    config: CaseConfig,
-    callback: RunTestCallback
-  ) {
-    this.coreVerifier = new ContractVerifierConnector(
-      contractData,
-      config,
-      callback
-    );
+  config: CaseConfig;
+
+  constructor(config: CaseConfig, callback: RunTestCallback) {
+    this.config = config;
+    this.coreVerifier = new ContractVerifierConnector(config, callback);
+  }
+
+  getAvailableContractDescriptions(): ContractDescription[] {
+    return this.coreVerifier.getAvailableContractDescriptions();
   }
 
   verifyContract<T extends AnyMockDescriptorType>(
-    invoker: MultiTestInvoker<T>
+    invoker: MultiTestInvoker<T>,
+    configOverrides = this.config
   ): void {
-    this.coreVerifier.verifyContract(invoker);
+    this.coreVerifier.verifyContract(invoker, configOverrides);
   }
 }

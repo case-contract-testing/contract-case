@@ -3,4 +3,4 @@ export * from './executeExample';
 export * from './ReadingCaseContract';
 export * from './WritingCaseContract';
 
-export { DEFAULT_CONFIG } from './config';
+export { DEFAULT_TEST_ID } from './defaultTestId';

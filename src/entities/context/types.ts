@@ -5,6 +5,7 @@ import type {
   AnyLeafOrStructure,
   CaseNodeFor,
   LookupableMatcher,
+  AnyData,
 } from '../../entities/nodes/types';
 import type { Logger, LogLevel } from '../../entities/logger/types';
 import type { ResultPrinter } from '../../entities/results/types';
@@ -126,6 +127,7 @@ export interface RunContext
   'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
   'case:currentRun:context:printResults': boolean;
   'case:currentRun:context:variables': Record<string, AnyCaseNodeOrData>;
+  'case:currentRun:context:defaultConfig': Record<string, AnyData>;
   // TODO: These are from CaseConfig and should be auto generated
   'case:currentRun:context:throwOnFail'?: boolean;
   'case:currentRun:context:brokerCiAccessToken'?: string;

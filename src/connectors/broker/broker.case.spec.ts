@@ -24,12 +24,12 @@ import {
 import { defineContract } from '../../boundaries/jest/jest';
 import { CaseConfigurationError } from '../../entities';
 import type { DataContext, MatchContext } from '../../entities/types';
-import { readContract } from '../contractWriter';
 import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { makeBrokerApi } from './broker';
 import { makeLogger } from '../logger';
+import { makeContractStore } from '../contractStore/contractReader';
 
-const emptyContext = {
+const emptyContext: DataContext = {
   logger: makeLogger({
     'case:currentRun:context:location': ['DURING_TESTING'],
     'case:currentRun:context:logLevel': 'none',
@@ -38,14 +38,26 @@ const emptyContext = {
     printError(): void {},
     printSuccessTitle(): void {},
     printFailureTitle(): void {},
+    printDownloadedContract(): string[] {
+      return [];
+    },
   },
   makeLogger,
+  'case:currentRun:context:location': ['DURING_TESTING'],
+  'case:currentRun:context:testName': 'mock in broker tests',
+  'case:currentRun:context:logLevel': 'none',
+  'case:context:matchBy': 'type',
+  'case:context:serialisableTo': 'json',
+  'case:currentRun:context:contractMode': 'read',
+  'case:currentRun:context:printResults': false,
+  'case:currentRun:context:variables': {},
+  'case:currentRun:context:defaultConfig': {},
 };
 
 const contractFilename = 'case-contracts/case-pact-broker.case.json';
-const uploadingContract = readContract(
+const uploadingContract = makeContractStore(emptyContext).readContract(
   'case-contracts/contract-for-broker-upload-test.json'
-);
+).contents;
 
 const makeBrokerApiForTest = (
   url: string | undefined,

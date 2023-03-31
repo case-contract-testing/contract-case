@@ -1,6 +1,6 @@
 import type { Logger } from '../../entities/logger/types';
 import { isCaseMock } from '../../entities/nodes/mocks/types';
-import { isCaseNode } from '../../entities/nodes/matchers/types';
+import { AnyData, isCaseNode } from '../../entities/nodes/matchers/types';
 import type {
   AnyMockDescriptor,
   AnyCaseNodeOrData,
@@ -84,11 +84,13 @@ const combineWithRoot = (
 export const constructDataContext = (
   makeLogger: (c: LogLevelContext) => Logger,
   resultPrinter: ResultPrinter,
-  runConfig: Partial<RunContext>
+  runConfig: Partial<RunContext>,
+  defaults: Record<string, AnyData>
 ): DataContext => {
   const context = {
     makeLogger,
     ...DEFAULT_CONTEXT,
+    'case:currentRun:context:defaultConfig': defaults,
     'case:currentRun:context:location': [],
     'case:currentRun:context:testName': 'OUTSIDE_TESTS' as const,
     'case:currentRun:context:variables': {},
@@ -111,11 +113,12 @@ export const constructMatchContext = (
   makeLogger: (c: LogLevelContext) => Logger,
   makeLookup: (c: MatchContextWithoutLookup) => ContractLookupFns,
   resultPrinter: ResultPrinter,
-  runConfig: Partial<RunContext>
+  runConfig: Partial<RunContext>,
+  defaults: Record<string, AnyData>
 ): MatchContext => {
   const context = {
     ...traversals,
-    ...constructDataContext(makeLogger, resultPrinter, runConfig),
+    ...constructDataContext(makeLogger, resultPrinter, runConfig, defaults),
     makeLookup,
   };
 

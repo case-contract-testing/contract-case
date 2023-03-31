@@ -29,8 +29,9 @@ import {
   addVariable,
   findVariable,
 } from './structure';
-import { configToRunContext, DEFAULT_CONFIG, DEFAULT_TEST_ID } from './config';
+import { configToRunContext } from './config';
 import type { CaseConfig } from './config/types';
+import { DEFAULT_TEST_ID } from './defaultTestId';
 
 export class BaseCaseContract {
   currentContract: ContractData;
@@ -40,6 +41,7 @@ export class BaseCaseContract {
   constructor(
     description: ContractDescription,
     config: CaseConfig,
+    defaultConfig: CaseConfig,
     resultPrinter: ResultPrinter,
     makeLogger: (context: LogLevelContext) => Logger
   ) {
@@ -78,7 +80,8 @@ export class BaseCaseContract {
       makeLogger,
       makeLookup,
       resultPrinter,
-      { ...configToRunContext(DEFAULT_CONFIG), ...configToRunContext(config) }
+      { ...configToRunContext({ ...defaultConfig, ...config }) },
+      defaultConfig
     );
 
     if (

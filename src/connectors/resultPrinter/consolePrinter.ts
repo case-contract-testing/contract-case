@@ -15,6 +15,7 @@ import {
   ERROR_TYPE_RAW_MATCH,
   RawMatchError,
   LogLevelContext,
+  DataContext,
 } from '../../entities/types';
 import { locationString as formatLocationString } from '../../entities/context';
 
@@ -173,8 +174,26 @@ const printSuccessTitle = (
   }
 };
 
+const printDownloadedContract = (
+  filename: string,
+  context: DataContext
+): void => {
+  if (context['case:currentRun:context:printResults']) {
+    // This is done as one line to prevent it splitting when multiple tests are running
+    stdout.log(
+      spaces(
+        3,
+        `\n${chalk.greenBright(`📥`)} ${chalk.whiteBright(
+          `Downloaded contract ${filename}`
+        )}\n`
+      )
+    );
+  }
+};
+
 export const resultPrinter: ResultPrinter = {
   printError,
   printFailureTitle,
   printSuccessTitle,
+  printDownloadedContract,
 };

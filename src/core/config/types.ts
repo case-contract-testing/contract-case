@@ -3,10 +3,33 @@ import type { LogLevel } from '../../entities/logger/types';
 // TODO figure out a better way to get all the config in here
 import type { HttpResponseProviderConfig } from '../executeExample/setup/setupMock/mockConnectors/types';
 
-export type BaseCaseConfig = {
+export interface BaseCaseConfig {
+  /**
+   * The name of the provider for this contract.
+   */
+  providerName: string;
+
+  /**
+   * The name of the consumer for this contract.
+   */
+  consumerName: string;
+
+  /**
+   * logLevel - one of:
+   *
+   * `"none"` - Print no logs (note, results may still be printed - see `printResults`)
+   *
+   * `"error"` - Something has gone wrong during the execution of the test framework
+   *
+   * `"warn"` - It seems likely that there is a misconfiguration
+   *
+   * `"debug"` - Information to help users find out what is happening during their tests
+   *
+   * `"maintainerDebug" | "deepMaintainerDebug"` - debugging information for Case maintainers
+   */
   logLevel: LogLevel;
   /**
-   * The directory where the contract will be written. If you provide this, case
+   * The directory where the contract will be written. If you provide this, Case
    * will generate the filename for you (unless `contractFilename` is specified,
    * in which case this setting is ignored)
    */
@@ -68,7 +91,7 @@ export type BaseCaseConfig = {
      */
     password: string;
   };
-};
+}
 
 // TODO figure out a better way to get all the config in here
 export type CaseConfig = Partial<HttpResponseProviderConfig> &

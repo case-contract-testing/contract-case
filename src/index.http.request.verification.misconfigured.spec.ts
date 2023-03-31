@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import type * as http from 'node:http';
 
-import { readContract } from './connectors/contractWriter/fileSystem';
 import type { RunTestCallback } from './core/executeExample/types';
 import type { StateHandlers } from './entities/states/types';
 
@@ -13,6 +12,7 @@ import type { Dependencies } from './__tests__/server/http/domain/types';
 
 import { ReadingCaseContract } from './core';
 import { readerDependencies } from './connectors/dependencies';
+import { readContract } from './connectors/contractStore/contractReader';
 
 describe('Server verification', () => {
   let server: http.Server;

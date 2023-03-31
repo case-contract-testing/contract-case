@@ -94,7 +94,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
           context
         ).then(
           () => {
-            context.logger.debug(`Asserting result`);
+            context.logger.maintainerDebug(`Asserting result`);
             return toResultingExample(assertable, example, context);
           },
           async (error) => {

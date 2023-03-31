@@ -1,6 +1,6 @@
 import type { CaseConfig } from '../../core/types';
 import type { RunTestCallback } from '../../core/executeExample/types';
-import type { AnyMockDescriptorType, ContractData } from '../../entities/types';
+import type { AnyMockDescriptorType } from '../../entities/types';
 import type {
   CaseJestConfig,
   DefineCaseJestCallback,
@@ -42,10 +42,13 @@ export const defineContract = <T extends AnyMockDescriptorType>(
   });
 
 export const verifyContract = (
-  contract: ContractData,
   config: CaseConfig,
   callback: VerifyCaseJestCallback
-): void =>
-  describe(`Case contract between ${contract.description.consumerName} and ${contract.description.providerName}`, () => {
-    callback(new ContractVerifier(contract, config, runJestTest));
+): void => {
+  if (!config.providerName) {
+    throw new Error('Must specify a providerName to verify');
+  }
+  describe(`Provider verification for ${config.providerName}`, () => {
+    callback(new ContractVerifier(config, runJestTest));
   });
+};

@@ -14,7 +14,6 @@ import { BaseCaseContract } from './BaseCaseContract';
 import { executeExample } from './executeExample';
 
 import type { MultiTestInvoker, RunTestCallback } from './executeExample/types';
-import { DEFAULT_CONFIG } from './config';
 import type { CaseConfig } from './config/types';
 import { ReaderDependencies } from './types';
 
@@ -23,12 +22,13 @@ export class ReadingCaseContract extends BaseCaseContract {
 
   constructor(
     contractFile: ContractData,
-    { resultPrinter, makeLogger }: ReaderDependencies,
-    config: CaseConfig = DEFAULT_CONFIG
+    { resultPrinter, makeLogger, defaultConfig }: ReaderDependencies,
+    config: CaseConfig
   ) {
     super(
       contractFile.description,
       { throwOnFail: false, testRunId: 'VERIFIER', ...config },
+      defaultConfig,
       resultPrinter,
       makeLogger
     );
@@ -75,7 +75,7 @@ export class ReadingCaseContract extends BaseCaseContract {
     example: CaseExample,
     currentContext: MatchContext
   ): CaseExample {
-    currentContext.logger.debug(`${example}`);
+    currentContext.logger.maintainerDebug(`recordExample called with`, example);
     return example;
   }
 }

@@ -17,7 +17,7 @@ import { BaseCaseContract } from './BaseCaseContract';
 import { addExample, hasFailure } from './structure';
 import type { TestInvoker } from './executeExample/types';
 import type { CaseConfig, WriterDependencies } from './types';
-import { DEFAULT_CONFIG, configToRunContext } from './config';
+import { configToRunContext } from './config';
 import { executeExample } from './executeExample';
 
 export class WritingCaseContract extends BaseCaseContract {
@@ -30,11 +30,12 @@ export class WritingCaseContract extends BaseCaseContract {
   constructor(
     description: ContractDescription,
     dependencies: WriterDependencies,
-    config: CaseConfig = DEFAULT_CONFIG
+    config: CaseConfig
   ) {
     super(
       description,
       config,
+      dependencies.defaultConfig,
       dependencies.resultPrinter,
       dependencies.makeLogger
     );

@@ -44,6 +44,8 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
 
   invoker: MultiTestInvoker<M>;
 
+  defaultConfig: CaseConfig;
+
   constructor(
     description: ContractDescription,
     config: CaseConfig,
@@ -52,6 +54,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
   ) {
     this.contract = new WritingCaseContract(description, dependencies, config);
     this.invoker = invoker;
+    this.defaultConfig = dependencies.defaultConfig;
   }
 
   runExample<T extends AnyMockDescriptorType, R>(
@@ -88,7 +91,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
           {},
         stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
       },
-      { throwOnFail: true, ...runConfig }
+      { ...this.defaultConfig, ...runConfig }
     );
   }
 
@@ -128,7 +131,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
           {},
         stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
       },
-      { throwOnFail: true, ...runConfig }
+      { ...this.defaultConfig, ...runConfig }
     );
   }
 

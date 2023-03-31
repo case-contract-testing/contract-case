@@ -1,17 +1,23 @@
 import { DataContext, ContractData, LogContext } from '../entities/types';
 
-export type DownloadedContract<T> = T & {
+export interface DownloadedContract extends ContractData {
   _links: {
     'pb:pact-version': {
       name: string;
     };
   };
-};
+}
 
+// TODO: Can probably remove this
 export type DownloadedContracts = {
-  contractData: DownloadedContract<ContractData>;
+  contractData: DownloadedContract;
   name: string;
 }[];
+
+export type ContractFileFromDisk = {
+  contents: DownloadedContract;
+  filePath: string;
+};
 
 export type ContractLink = {
   href: string;
@@ -37,7 +43,7 @@ export interface BrokerApi {
   downloadContract: (
     url: string,
     context: LogContext
-  ) => Promise<DownloadedContract<ContractData>>;
+  ) => Promise<DownloadedContract>;
 
   urlsForVerification: (
     serviceName: string,

@@ -1,8 +1,8 @@
-import { ContractData, DataContext } from '../../entities/types';
+import { DataContext } from '../../entities/types';
 import { ContractLink, BrokerApi, DownloadedContract } from '../types.broker';
 
 type ContractRef = {
-  contractData: DownloadedContract<ContractData>;
+  contractData: DownloadedContract;
   name: string;
 };
 

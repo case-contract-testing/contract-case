@@ -1,6 +1,10 @@
 import type { CaseExample } from '../../entities/contract/types';
 import type { VerifyTriggerReturnObjectError } from '../../entities/errors';
-import type { AnyCaseMatcher, MatchContext } from '../../entities/types';
+import type {
+  AnyCaseMatcher,
+  DataContext,
+  MatchContext,
+} from '../../entities/types';
 
 // Warning: **ALL** error types must be listed in the function in handlers.ts
 
@@ -80,4 +84,5 @@ export type ResultPrinter = {
     index: string,
     context: MatchContext
   ) => void;
+  printDownloadedContract: (filename: string, context: DataContext) => void;
 };

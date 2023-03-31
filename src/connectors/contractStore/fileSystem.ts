@@ -5,7 +5,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import type { WriteContract } from '../../core/types';
-import { DEFAULT_CONFIG } from '../../core';
 
 import { CaseConfigurationError } from '../../entities';
 import type {
@@ -88,10 +87,10 @@ export const writeContract: WriteContract = (
   if (
     context['case:currentRun:context:contractFilename'] !== undefined &&
     context['case:currentRun:context:contractDir'] !==
-      DEFAULT_CONFIG.contractDir
+      context['case:currentRun:context:defaultConfig']['contractDir']
   ) {
     context.logger.warn(
-      'Both contractFilename and contractDir have been specified, but you should only set one of these.'
+      'Both contractFilename and contractDir have been specified, but you should only set one of these when writing a contract.'
     );
 
     context.logger.warn(
@@ -116,6 +115,3 @@ export const writeContract: WriteContract = (
   fs.writeFileSync(pathToFile, JSON.stringify(contract, undefined, 2));
   return pathToFile;
 };
-
-export const readContract = (pathToContract: string): ContractData =>
-  JSON.parse(fs.readFileSync(pathToContract, 'utf-8'));
