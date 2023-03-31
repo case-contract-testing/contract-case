@@ -1,8 +1,9 @@
-import { CaseConfigurationError, CaseCoreError } from '../entities';
-import { addLocation } from '../entities/context';
-import { ContractData, DataContext, MatchContext } from '../entities/types';
-import { BrokerApi, DownloadedContracts } from './types.broker';
-import { Environment } from './types.environment';
+import { CaseConfigurationError, CaseCoreError } from '../../entities';
+import { addLocation } from '../../entities/context';
+import { ContractData, DataContext, MatchContext } from '../../entities/types';
+import { BrokerApi, DownloadedContracts } from '../types.broker';
+import { Environment } from '../types.environment';
+import { downloadCaseContracts } from './downloadCaseContracts';
 
 export class BrokerService {
   broker: BrokerApi;
@@ -105,48 +106,7 @@ export class BrokerService {
       );
       return [];
     }
-    const contracts = await Promise.all(
-      contractUrls.map((contractUrl) => {
-        context.logger.debug(
-          `Downloading contract for '${contractUrl.name}' from ${contractUrl.href}`
-        );
-        return this.broker
-          .downloadContract(contractUrl.href, context)
-          .then((contractData) => ({
-            contractData,
-            name: contractUrl.name,
-          }));
-      })
-    );
 
-    const nonCaseContracts = contracts.filter(
-      (c) =>
-        !(
-          'contractType' in c.contractData &&
-          c.contractData.contractType === 'case::contract'
-        )
-    );
-
-    nonCaseContracts.forEach((c) => {
-      context.logger.debug(
-        `Skipping contract '${c.name}' as it does not appear to be a Case Contract`
-      );
-    });
-
-    const caseContracts = contracts.filter(
-      (c) =>
-        'contractType' in c.contractData &&
-        c.contractData.contractType === 'case::contract'
-    );
-
-    if (caseContracts.length === 0) {
-      context.logger.warn(
-        `No Case contracts to verify. There were ${nonCaseContracts.length} non-case contracts.`
-      );
-      context.logger.warn(
-        'You can see more information by re-running this task with logLevel: debug or lower'
-      );
-    }
-    return caseContracts;
+    return downloadCaseContracts(contractUrls, this.broker, context);
   }
 }
