@@ -277,7 +277,7 @@
       },
       "case:matcher:type": "case:HttpRequestMatcher"
     },
-    "matcher:a (200) response with body an object shaped like {notices: an array containing an object shaped like {level: \"debug\",text: <any string>}, and an array containing an object shaped like {level: \"info\",text: <any string>},}": {
+    "matcher:a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, and an array containing an object shaped like {type: \"info\",text: <any string>},}": {
       "status": 200,
       "body": {
         "notices": {
@@ -287,7 +287,7 @@
               "case:matcher:type": "case:ArrayContains",
               "case:matcher:matchers": [
                 {
-                  "level": "debug",
+                  "type": "debug",
                   "text": {
                     "case:matcher:type": "case:MatchString",
                     "case:matcher:example": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main",
@@ -301,7 +301,7 @@
               "case:matcher:type": "case:ArrayContains",
               "case:matcher:matchers": [
                 {
-                  "level": "info",
+                  "type": "info",
                   "text": {
                     "case:matcher:type": "case:MatchString",
                     "case:matcher:example": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.",
@@ -315,11 +315,11 @@
           "case:matcher:example": {
             "notices": [
               {
-                "level": "debug",
+                "type": "debug",
                 "text": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main"
               },
               {
-                "level": "info",
+                "type": "info",
                 "text": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar."
               }
             ]
@@ -1025,7 +1025,7 @@
         },
         "response": {
           "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "a (200) response with body an object shaped like {notices: an array containing an object shaped like {level: \"debug\",text: <any string>}, and an array containing an object shaped like {level: \"info\",text: <any string>},}",
+          "case:matcher:uniqueName": "a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, and an array containing an object shaped like {type: \"info\",text: <any string>},}",
           "case:matcher:child": {
             "status": 200,
             "body": {
@@ -1036,7 +1036,7 @@
                     "case:matcher:type": "case:ArrayContains",
                     "case:matcher:matchers": [
                       {
-                        "level": "debug",
+                        "type": "debug",
                         "text": {
                           "case:matcher:type": "case:MatchString",
                           "case:matcher:example": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main",
@@ -1050,7 +1050,7 @@
                     "case:matcher:type": "case:ArrayContains",
                     "case:matcher:matchers": [
                       {
-                        "level": "info",
+                        "type": "info",
                         "text": {
                           "case:matcher:type": "case:MatchString",
                           "case:matcher:example": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.",
@@ -1064,11 +1064,11 @@
                 "case:matcher:example": {
                   "notices": [
                     {
-                      "level": "debug",
+                      "type": "debug",
                       "text": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main"
                     },
                     {
-                      "level": "info",
+                      "type": "info",
                       "text": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar."
                     }
                   ]

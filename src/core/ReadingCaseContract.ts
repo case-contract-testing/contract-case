@@ -2,16 +2,11 @@ import { Mutex } from 'async-mutex';
 
 import { CaseCoreError } from '../entities';
 import { applyNodeToContext } from '../entities/context';
-import {
-  exampleToNames,
-  makeSuccessExample,
-  makeFailedExample,
-} from '../entities/contract';
+import { exampleToNames } from '../entities/contract';
 import type {
   ContractData,
   CaseExample,
   MatchContext,
-  CaseError,
   AnyMockDescriptorType,
 } from '../entities/types';
 
@@ -82,24 +77,5 @@ export class ReadingCaseContract extends BaseCaseContract {
   ): CaseExample {
     currentContext.logger.debug(`${example}`);
     return example;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  recordSuccess(
-    example: CaseExample,
-    currentContext: MatchContext
-  ): CaseExample {
-    currentContext.logger.debug(`${example}`);
-    return makeSuccessExample(example);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  recordFailure(
-    example: CaseExample,
-    currentContext: MatchContext,
-    errors: Array<CaseError>
-  ): CaseExample {
-    currentContext.logger.debug(`${example}`);
-    return makeFailedExample(example, errors);
   }
 }
