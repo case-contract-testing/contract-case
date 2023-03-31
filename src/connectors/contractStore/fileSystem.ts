@@ -1,5 +1,6 @@
 import filenamify from 'filenamify';
 import slug from 'slug';
+import { mkdirp } from 'mkdirp';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -103,6 +104,20 @@ export const writeContract: WriteContract = (
     : makePath(contract.description, context);
 
   context.logger.maintainerDebug(`About to write contract to '${pathToFile}'`);
+  const dirName = path.dirname(pathToFile);
+  if (!fs.existsSync(dirName)) {
+    context.logger.maintainerDebug(`Creating directory ${dirName}`);
+    try {
+      mkdirp.sync(dirName);
+    } catch (e) {
+      throw new CaseConfigurationError(
+        `Failed trying to create contract directory '${dirName}': ${
+          (e as Error).message
+        }`
+      );
+    }
+  }
+
   if (
     fs.existsSync(pathToFile) &&
     !context['case:currentRun:context:overwriteFile']
