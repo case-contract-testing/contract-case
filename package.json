@@ -28,7 +28,7 @@
     "format:base": "prettier --parser typescript \"**/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write ",
-    "pretest": "rimraf temp-contracts && ts-node ./bin/downloadContracts.ts 'http request provider' && ts-node ./bin/downloadContracts.ts 'http response provider'",
+    "pretest": "rimraf temp-contracts && ts-node ./bin/downloadContracts.ts \"http request provider\" && ts-node ./bin/downloadContracts.ts \"http response provider\"",
     "test": "jest"
   },
   "homepage": "https://case.contract-testing.io",
