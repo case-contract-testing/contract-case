@@ -57,12 +57,12 @@ Pact Parity
   - [x] Config for location
 - [ ] Broker compatibility
   - [x] Publish contract
-  - [ ] Get contract from broker
+  - [x] Get contract from broker
   - [ ] Publish verification result
 - [x] Read contract file
-  - [ ] Read all files in a location?
+  - [x] Read all files in a location?
   - [x] Verify contract file
-  - [ ] Error handling when the files don't exist
+  - [x] Error handling when the files don't exist
 - [x] Http Headers
 - [x] Query strings
 - [ ] Crash messages

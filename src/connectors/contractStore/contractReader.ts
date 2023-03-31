@@ -7,8 +7,30 @@ import { ContractStore } from '../../core/types.ContractReader';
 
 type Contents<T> = { contents: T; filePath: string };
 
-export const readContract = (pathToContract: string): DownloadedContract =>
-  JSON.parse(fs.readFileSync(pathToContract, 'utf-8'));
+export const readContract = (pathToContract: string): DownloadedContract => {
+  let content = '';
+  try {
+    content = fs.readFileSync(pathToContract, 'utf-8');
+  } catch (e) {
+    throw new CaseConfigurationError(
+      `Unable to load contract file from disk at '${pathToContract}': ${
+        (e as Error).message
+      }`
+    );
+  }
+
+  let contract: DownloadedContract;
+  try {
+    contract = JSON.parse(content);
+  } catch (e) {
+    throw new CaseConfigurationError(
+      `Unable to parse contract file from disk at '${pathToContract}': ${
+        (e as Error).message
+      }`
+    );
+  }
+  return contract;
+};
 
 const readContractsFromDir = (
   pathToDir: string,
@@ -34,7 +56,17 @@ const readContractsFromDir = (
       if (stat.isDirectory()) {
         return null;
       }
-      return { contents: fs.readFileSync(filePath), filePath };
+      let contents: Buffer;
+      try {
+        contents = fs.readFileSync(filePath);
+      } catch (e) {
+        throw new CaseConfigurationError(
+          `Unable to load contract file from disk at '${filePath}': ${
+            (e as Error).message
+          }\n\n.This is almost certainly a race condition where the files were deleted during the directory read.`
+        );
+      }
+      return { contents, filePath };
     })
     .filter((f): f is Contents<Buffer> => f !== null);
 
