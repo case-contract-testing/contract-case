@@ -32,7 +32,7 @@ export class BrokerService {
       context['case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
       !this.environment.isCi()
     ) {
-      context.logger.warn(
+      context.logger.debug(
         `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'ONLY_IN_CI' is set, and this is not a detected CI environment`
       );
       return Promise.resolve();
@@ -48,31 +48,34 @@ export class BrokerService {
           contract,
           this.environment.version(),
           this.environment.branch(),
-          addLocation('PublishingContract', context)
+          addLocation(':PublishingContractAdvanced', context)
         )
         .then((publishResults) => {
+          const brokerResponse = addLocation('Response', context);
           publishResults.notices.forEach((notice) => {
             switch (notice.type) {
               case 'debug':
-                context.logger.debug(`[Broker] ${notice.text}`);
+                brokerResponse.logger.debug(`[Broker] ${notice.text}`);
                 break;
               case 'info':
-                context.logger.debug(`[Broker] ${notice.text}`);
+                brokerResponse.logger.debug(`[Broker] ${notice.text}`);
                 break;
               case 'prompt':
-                context.logger.debug(`[Broker] ${notice.text}`);
+                brokerResponse.logger.warn(`[Broker] ${notice.text}`);
                 break;
               case 'success':
-                context.logger.debug(`[Broker] ${notice.text}`);
+                brokerResponse.logger.debug(`[Broker] ${notice.text}`);
                 break;
               case 'error':
-                context.logger.error(`[Broker] ${notice.text}`);
+                brokerResponse.logger.error(`[Broker] ${notice.text}`);
                 break;
               case 'danger':
-                context.logger.error(`[Broker] [DANGER] ${notice.text}`);
+                brokerResponse.logger.error(
+                  `From-Broker] [DANGER] ${notice.text}`
+                );
                 break;
               case 'warning':
-                context.logger.warn(`[Broker] ${notice.text}`);
+                brokerResponse.logger.warn(`From-Broker] ${notice.text}`);
                 break;
               default:
                 throw new CaseCoreError(
