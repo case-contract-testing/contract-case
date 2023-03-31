@@ -217,7 +217,7 @@
         "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
         "case:matcher:suffix": {
           "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "someString",
+          "case:matcher:example": "1.2.3",
           "case:matcher:resolvesTo": "string",
           "case:context:matchBy": "type"
         },
@@ -257,7 +257,7 @@
         "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
         "case:matcher:suffix": {
           "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "someString",
+          "case:matcher:example": "1.2.3",
           "case:matcher:resolvesTo": "string",
           "case:context:matchBy": "type"
         },
@@ -808,7 +808,7 @@
               "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
               "case:matcher:suffix": {
                 "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "someString",
+                "case:matcher:example": "1.2.3",
                 "case:matcher:resolvesTo": "string",
                 "case:context:matchBy": "type"
               },
@@ -878,7 +878,7 @@
               "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
               "case:matcher:suffix": {
                 "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "someString",
+                "case:matcher:example": "1.2.3",
                 "case:matcher:resolvesTo": "string",
                 "case:context:matchBy": "type"
               },

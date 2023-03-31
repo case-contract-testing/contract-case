@@ -23,11 +23,13 @@ export type MakeBrokerApi = (context: DataContext) => BrokerApi;
 export interface BrokerApi {
   publishContract: (
     contract: ContractData,
+    version: string,
     context: LogContext
   ) => Promise<void>;
 
   publishContractAdvanced: (
     contract: ContractData,
+    version: string,
     logContext: LogContext
   ) => Promise<PublishResult>;
 

@@ -1,6 +1,5 @@
 // We need to allow underscores because they're part of the HAL response
 /* eslint-disable no-underscore-dangle */
-import { versionFromGitTag } from 'absolute-version';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import branchName from 'current-git-branch';
 
@@ -76,9 +75,12 @@ export const makeBrokerApi: MakeBrokerApi = (
   const server = makeAxiosConnector(trimSlash(baseUrl), auth);
 
   return {
-    publishContract: (contract: ContractData, logContext: LogContext) => {
+    publishContract: (
+      contract: ContractData,
+      version: string,
+      logContext: LogContext
+    ) => {
       // TODO: Make this a first class object
-      const version = versionFromGitTag();
       logContext.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
       );
@@ -102,9 +104,9 @@ export const makeBrokerApi: MakeBrokerApi = (
 
     publishContractAdvanced: (
       contract: ContractData,
+      version: string,
       logContext: LogContext
     ) => {
-      const version = versionFromGitTag();
       logContext.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
       );

@@ -253,209 +253,228 @@ describe('broker client', () => {
       });
 
       describe('publish contract', () => {
-        describe('with a valid auth token', () => {
-          it('will be successful', () =>
-            contract.runExample({
-              states: [stateAuthTokenValid],
-              definition: willSendHttpRequest({
-                request: {
-                  method: 'PUT',
-                  path: stringPrefix(
-                    `/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/`,
-                    anyString()
-                  ),
-                  headers: {
-                    accept: 'application/json',
-                    authorization: stringPrefix(
-                      'Bearer ',
-                      stateVariable('token')
+        const someVersion = '1.2.3';
+        describe('publish contract old endpoint', () => {
+          describe('with a valid auth token', () => {
+            it('will be successful', () =>
+              contract.runExample({
+                states: [stateAuthTokenValid],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'PUT',
+                    path: stringPrefix(
+                      `/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/`,
+                      anyString(someVersion)
                     ),
+                    headers: {
+                      accept: 'application/json',
+                      authorization: stringPrefix(
+                        'Bearer ',
+                        stateVariable('token')
+                      ),
+                    },
                   },
+                  response: { status: 200 },
+                }),
+                trigger: (config) =>
+                  makeBrokerApiForTest(
+                    config.baseUrl,
+                    config.variables['token'] as string
+                  ).publishContract(
+                    uploadingContract,
+                    someVersion,
+                    emptyContext
+                  ),
+                testResponse: (data) => {
+                  expect(data).not.toBeNull();
                 },
-                response: { status: 200 },
-              }),
-              trigger: (config) =>
-                makeBrokerApiForTest(
-                  config.baseUrl,
-                  config.variables['token'] as string
-                ).publishContract(uploadingContract, emptyContext),
-              testResponse: (data) => {
-                expect(data).not.toBeNull();
-              },
-            }));
+              }));
+          });
+
+          describe('with an invalid auth token', () => {
+            it('will be unsuccessful', () =>
+              contract.runRejectingExample({
+                states: [
+                  inState('auth token is not valid', {
+                    invalidToken: 'TOKEN',
+                  }),
+                ],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'PUT',
+                    path: stringPrefix(
+                      `/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/`,
+                      anyString(someVersion)
+                    ),
+                    headers: {
+                      accept: 'application/json',
+                      authorization: stringPrefix(
+                        'Bearer ',
+                        stateVariable('invalidToken')
+                      ),
+                    },
+                  },
+                  response: { status: 403 },
+                }),
+                trigger: (config) =>
+                  makeBrokerApiForTest(
+                    config.baseUrl,
+                    config.variables['invalidToken'] as string
+                  ).publishContract(
+                    uploadingContract,
+                    someVersion,
+                    emptyContext
+                  ),
+                testErrorResponse: (error) => {
+                  expect(error.name).toBe(API_NOT_AUTHORISED);
+                },
+              }));
+          });
         });
 
-        describe('with an invalid auth token', () => {
-          it('will be unsuccessful', () =>
-            contract.runRejectingExample({
-              states: [
-                inState('auth token is not valid', {
-                  invalidToken: 'TOKEN',
-                }),
-              ],
-              definition: willSendHttpRequest({
-                request: {
-                  method: 'PUT',
-                  path: stringPrefix(
-                    `/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/`,
-                    anyString()
-                  ),
-                  headers: {
-                    accept: 'application/json',
-                    authorization: stringPrefix(
-                      'Bearer ',
-                      stateVariable('invalidToken')
-                    ),
+        describe('publish contract advanced endpoint', () => {
+          describe('with a valid auth token', () => {
+            it('will be successful', () =>
+              contract.runExample({
+                states: [stateAuthTokenValid],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'POST',
+                    path: '/contracts/publish',
+                    headers: {
+                      accept: 'application/hal+json',
+                      authorization: stringPrefix(
+                        'Bearer ',
+                        stateVariable('token')
+                      ),
+                    },
+                    body: {
+                      pacticipantName: anyString(),
+                      pacticipantVersionNumber: anyString(),
+                      branch: anyString(),
+                      tags: [],
+                      contracts: [
+                        {
+                          consumerName: anyString(),
+                          providerName: anyString(),
+                          specification: 'pact',
+                          contentType: 'application/json',
+                          content: encodedStringBase64(
+                            stringifiedJson({
+                              contractType: 'case::contract',
+                              description: {
+                                consumerName: anyString('Case'),
+                                providerName: anyString('Pact Broker'),
+                              },
+                            })
+                          ),
+                        },
+                      ],
+                    },
                   },
-                },
-                response: { status: 403 },
-              }),
-              trigger: (config) =>
-                makeBrokerApiForTest(
-                  config.baseUrl,
-                  config.variables['invalidToken'] as string
-                ).publishContract(uploadingContract, emptyContext),
-              testErrorResponse: (error) => {
-                expect(error.name).toBe(API_NOT_AUTHORISED);
-              },
-            }));
-        });
-      });
-      describe('publish contract advanced endpoint', () => {
-        describe('with a valid auth token', () => {
-          it('will be successful', () =>
-            contract.runExample({
-              states: [stateAuthTokenValid],
-              definition: willSendHttpRequest({
-                request: {
-                  method: 'POST',
-                  path: '/contracts/publish',
-                  headers: {
-                    accept: 'application/hal+json',
-                    authorization: stringPrefix(
-                      'Bearer ',
-                      stateVariable('token')
-                    ),
-                  },
-                  body: {
-                    pacticipantName: anyString(),
-                    pacticipantVersionNumber: anyString(),
-                    branch: anyString(),
-                    tags: [],
-                    contracts: [
-                      {
-                        consumerName: anyString(),
-                        providerName: anyString(),
-                        specification: 'pact',
-                        contentType: 'application/json',
-                        content: encodedStringBase64(
-                          stringifiedJson({
-                            contractType: 'case::contract',
-                            description: {
-                              consumerName: anyString('Case'),
-                              providerName: anyString('Pact Broker'),
-                            },
+                  response: {
+                    status: 200,
+                    body: {
+                      notices: withExample(
+                        and(
+                          arrayContains({
+                            type: 'debug',
+                            text: anyString(
+                              'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main'
+                            ),
+                          }),
+                          arrayContains({
+                            type: 'info',
+                            text: anyString(
+                              'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.'
+                            ),
                           })
                         ),
-                      },
-                    ],
-                  },
-                },
-                response: {
-                  status: 200,
-                  body: {
-                    notices: withExample(
-                      and(
-                        arrayContains({
-                          type: 'debug',
-                          text: anyString(
-                            'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main'
-                          ),
-                        }),
-                        arrayContains({
-                          type: 'info',
-                          text: anyString(
-                            'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.'
-                          ),
-                        })
+                        {
+                          notices: [
+                            {
+                              type: 'debug',
+                              text: 'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main',
+                            },
+                            {
+                              type: 'info',
+                              text: 'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.',
+                            },
+                          ],
+                        }
                       ),
-                      {
-                        notices: [
-                          {
-                            type: 'debug',
-                            text: 'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main',
-                          },
-                          {
-                            type: 'info',
-                            text: 'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.',
-                          },
-                        ],
-                      }
-                    ),
+                    },
                   },
-                },
-              }),
-              trigger: (config) =>
-                makeBrokerApiForTest(
-                  config.baseUrl,
-                  config.variables['token'] as string
-                ).publishContractAdvanced(uploadingContract, emptyContext),
-              testResponse: (data) => {
-                expect(data).not.toBeNull();
-              },
-            }));
-        });
-
-        describe('with an invalid auth token', () => {
-          it('will be unsuccessful', () =>
-            contract.runRejectingExample({
-              states: [
-                inState('auth token is not valid', {
-                  invalidToken: 'TOKEN',
                 }),
-              ],
-              definition: willSendHttpRequest({
-                request: {
-                  method: 'POST',
-                  path: '/contracts/publish',
-                  headers: {
-                    accept: 'application/hal+json',
-                    authorization: stringPrefix(
-                      'Bearer ',
-                      stateVariable('token')
-                    ),
-                  },
-                  body: {
-                    pacticipantName: anyString(),
-                    pacticipantVersionNumber: anyString(),
-                    branch: anyString(),
-                    tags: [],
-                    contracts: [
-                      {
-                        consumerName: anyString(),
-                        providerName: anyString(),
-                        specification: 'pact',
-                        contentType: 'application/json',
-                        content: anyString(
-                          Buffer.from(
-                            JSON.stringify(uploadingContract)
-                          ).toString('base64')
-                        ),
-                      },
-                    ],
-                  },
+                trigger: (config) =>
+                  makeBrokerApiForTest(
+                    config.baseUrl,
+                    config.variables['token'] as string
+                  ).publishContractAdvanced(
+                    uploadingContract,
+                    someVersion,
+                    emptyContext
+                  ),
+                testResponse: (data) => {
+                  expect(data).not.toBeNull();
                 },
-                response: { status: 403 },
-              }),
-              trigger: (config) =>
-                makeBrokerApiForTest(
-                  config.baseUrl,
-                  config.variables['invalidToken'] as string
-                ).publishContractAdvanced(uploadingContract, emptyContext),
-              testErrorResponse: (error) => {
-                expect(error.name).toBe(API_NOT_AUTHORISED);
-              },
-            }));
+              }));
+          });
+          describe('with an invalid auth token', () => {
+            it('will be unsuccessful', () =>
+              contract.runRejectingExample({
+                states: [
+                  inState('auth token is not valid', {
+                    invalidToken: 'TOKEN',
+                  }),
+                ],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'POST',
+                    path: '/contracts/publish',
+                    headers: {
+                      accept: 'application/hal+json',
+                      authorization: stringPrefix(
+                        'Bearer ',
+                        stateVariable('token')
+                      ),
+                    },
+                    body: {
+                      pacticipantName: anyString(),
+                      pacticipantVersionNumber: anyString(),
+                      branch: anyString(),
+                      tags: [],
+                      contracts: [
+                        {
+                          consumerName: anyString(),
+                          providerName: anyString(),
+                          specification: 'pact',
+                          contentType: 'application/json',
+                          content: anyString(
+                            Buffer.from(
+                              JSON.stringify(uploadingContract)
+                            ).toString('base64')
+                          ),
+                        },
+                      ],
+                    },
+                  },
+                  response: { status: 403 },
+                }),
+                trigger: (config) =>
+                  makeBrokerApiForTest(
+                    config.baseUrl,
+                    config.variables['invalidToken'] as string
+                  ).publishContractAdvanced(
+                    uploadingContract,
+                    someVersion,
+                    emptyContext
+                  ),
+                testErrorResponse: (error) => {
+                  expect(error.name).toBe(API_NOT_AUTHORISED);
+                },
+              }));
+          });
         });
       });
     }

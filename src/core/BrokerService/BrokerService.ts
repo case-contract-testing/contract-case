@@ -46,6 +46,7 @@ export class BrokerService {
       return this.broker
         .publishContractAdvanced(
           contract,
+          this.environment.version(),
           addLocation('PublishingContract', context)
         )
         .then((publishResults) => {
