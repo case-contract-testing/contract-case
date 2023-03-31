@@ -1,8 +1,5 @@
 // We need to allow underscores because they're part of the HAL response
 /* eslint-disable no-underscore-dangle */
-// eslint-disable-next-line import/no-extraneous-dependencies
-import branchName from 'current-git-branch';
-
 import { CaseConfigurationError } from '../../entities';
 import type {
   LogContext,
@@ -105,12 +102,12 @@ export const makeBrokerApi: MakeBrokerApi = (
     publishContractAdvanced: (
       contract: ContractData,
       version: string,
+      branch: string | false,
       logContext: LogContext
     ) => {
       logContext.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
       );
-      const branch = branchName();
 
       return server.authedPost<
         WireRequestForPublicationAdvanced,

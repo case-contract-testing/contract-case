@@ -254,6 +254,7 @@ describe('broker client', () => {
 
       describe('publish contract', () => {
         const someVersion = '1.2.3';
+        const branchName = 'main';
         describe('publish contract old endpoint', () => {
           describe('with a valid auth token', () => {
             it('will be successful', () =>
@@ -350,8 +351,8 @@ describe('broker client', () => {
                     },
                     body: {
                       pacticipantName: anyString(),
-                      pacticipantVersionNumber: anyString(),
-                      branch: anyString(),
+                      pacticipantVersionNumber: anyString(someVersion),
+                      branch: anyString(branchName),
                       tags: [],
                       contracts: [
                         {
@@ -413,6 +414,7 @@ describe('broker client', () => {
                   ).publishContractAdvanced(
                     uploadingContract,
                     someVersion,
+                    branchName,
                     emptyContext
                   ),
                 testResponse: (data) => {
@@ -441,8 +443,8 @@ describe('broker client', () => {
                     },
                     body: {
                       pacticipantName: anyString(),
-                      pacticipantVersionNumber: anyString(),
-                      branch: anyString(),
+                      pacticipantVersionNumber: anyString(someVersion),
+                      branch: anyString(branchName),
                       tags: [],
                       contracts: [
                         {
@@ -468,6 +470,7 @@ describe('broker client', () => {
                   ).publishContractAdvanced(
                     uploadingContract,
                     someVersion,
+                    branchName,
                     emptyContext
                   ),
                 testErrorResponse: (error) => {

@@ -30,6 +30,7 @@ export interface BrokerApi {
   publishContractAdvanced: (
     contract: ContractData,
     version: string,
+    branch: string | false,
     logContext: LogContext
   ) => Promise<PublishResult>;
 

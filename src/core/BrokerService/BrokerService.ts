@@ -2,15 +2,15 @@ import { CaseConfigurationError, CaseCoreError } from '../../entities';
 import { addLocation } from '../../entities/context';
 import { ContractData, DataContext, MatchContext } from '../../entities/types';
 import { BrokerApi, DownloadedContracts } from '../types.broker';
-import { Environment } from '../types.environment';
+import { BuildEnvironment } from '../types.environment';
 import { downloadCaseContracts } from './downloadCaseContracts';
 
 export class BrokerService {
   broker: BrokerApi;
 
-  environment: Environment;
+  environment: BuildEnvironment;
 
-  constructor(broker: BrokerApi, environment: Environment) {
+  constructor(broker: BrokerApi, environment: BuildEnvironment) {
     this.broker = broker;
     this.environment = environment;
   }
@@ -47,6 +47,7 @@ export class BrokerService {
         .publishContractAdvanced(
           contract,
           this.environment.version(),
+          this.environment.branch(),
           addLocation('PublishingContract', context)
         )
         .then((publishResults) => {

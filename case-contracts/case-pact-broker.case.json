@@ -352,13 +352,13 @@
         },
         "pacticipantVersionNumber": {
           "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "someString",
+          "case:matcher:example": "1.2.3",
           "case:matcher:resolvesTo": "string",
           "case:context:matchBy": "type"
         },
         "branch": {
           "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "someString",
+          "case:matcher:example": "main",
           "case:matcher:resolvesTo": "string",
           "case:context:matchBy": "type"
         },
@@ -433,13 +433,13 @@
         },
         "pacticipantVersionNumber": {
           "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "someString",
+          "case:matcher:example": "1.2.3",
           "case:matcher:resolvesTo": "string",
           "case:context:matchBy": "type"
         },
         "branch": {
           "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "someString",
+          "case:matcher:example": "main",
           "case:matcher:resolvesTo": "string",
           "case:context:matchBy": "type"
         },
@@ -965,13 +965,13 @@
               },
               "pacticipantVersionNumber": {
                 "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "someString",
+                "case:matcher:example": "1.2.3",
                 "case:matcher:resolvesTo": "string",
                 "case:context:matchBy": "type"
               },
               "branch": {
                 "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "someString",
+                "case:matcher:example": "main",
                 "case:matcher:resolvesTo": "string",
                 "case:context:matchBy": "type"
               },
@@ -1136,13 +1136,13 @@
               },
               "pacticipantVersionNumber": {
                 "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "someString",
+                "case:matcher:example": "1.2.3",
                 "case:matcher:resolvesTo": "string",
                 "case:context:matchBy": "type"
               },
               "branch": {
                 "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "someString",
+                "case:matcher:example": "main",
                 "case:matcher:resolvesTo": "string",
                 "case:context:matchBy": "type"
               },

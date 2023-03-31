@@ -3,7 +3,7 @@ import { ReaderDependencies, WriterDependencies } from '../core/types';
 import { DataContext } from '../entities/types';
 import { makeBrokerApi } from './broker';
 import { writeContract } from './contractWriter';
-import { makeEnvironment } from './environment/environment';
+import { makeEnvironment } from './BuildEnvironment/BuildEnvironment';
 import { makeLogger } from './logger';
 import { resultPrinter } from './resultPrinter';
 

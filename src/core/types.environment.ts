@@ -1,4 +1,5 @@
-export interface Environment {
+export interface BuildEnvironment {
+  branch(): string | false;
   /**
    * Do we think the current environment is running in a CI server?
    */
@@ -10,4 +11,4 @@ export interface Environment {
   version(): string;
 }
 
-export type MakeEnvironment = () => Environment;
+export type MakeEnvironment = () => BuildEnvironment;
