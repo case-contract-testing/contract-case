@@ -9,12 +9,14 @@ import type {
 import { ContractDefiner } from '../ContractDefiner';
 import { ContractVerifier } from '../ContractVerifier';
 
+const TIMEOUT = 30000;
+
 const runJestTest: RunTestCallback = (
   testName: string,
   verify: () => Promise<unknown>
 ): void => {
   // eslint-disable-next-line jest/expect-expect
-  it(`${testName}`, () => verify(), 30000);
+  it(`${testName}`, () => verify(), TIMEOUT);
 };
 
 export const defineContract = <T extends AnyMockDescriptorType>(
@@ -34,9 +36,11 @@ export const defineContract = <T extends AnyMockDescriptorType>(
       { stateHandlers, triggers }
     );
 
-    afterAll(() => contract.endRecord(), 30000);
+    afterAll(() => contract.endRecord(), TIMEOUT);
 
     describe(`between ${contractConfig.consumerName} and ${contractConfig.providerName}`, () => {
+      jest.setTimeout(30000);
+
       callback(contract);
     });
   });
