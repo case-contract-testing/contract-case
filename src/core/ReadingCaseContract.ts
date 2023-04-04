@@ -1,10 +1,9 @@
 import { Mutex } from 'async-mutex';
 
 import { CaseCoreError } from '../entities';
-import { applyNodeToContext } from '../entities/context';
+import { addLocation, applyNodeToContext } from '../entities/context';
 import { exampleToNames } from '../entities/contract';
 import type {
-  ContractData,
   CaseExample,
   MatchContext,
   AnyMockDescriptorType,
@@ -15,14 +14,29 @@ import { executeExample } from './executeExample';
 
 import type { MultiTestInvoker, RunTestCallback } from './executeExample/types';
 import type { CaseConfig } from './config/types';
-import { ReaderDependencies } from './types';
+import {
+  DownloadedContract,
+  MakeBrokerService,
+  ReaderDependencies,
+} from './types';
 
 export class ReadingCaseContract extends BaseCaseContract {
-  mutex: Mutex;
+  private mutex: Mutex;
+
+  private makeBrokerService: MakeBrokerService;
+
+  private links: DownloadedContract;
+
+  private status: 'UNKNOWN' | 'FAILED' | 'SUCCESS';
 
   constructor(
-    contractFile: ContractData,
-    { resultPrinter, makeLogger, defaultConfig }: ReaderDependencies,
+    contractFile: DownloadedContract,
+    {
+      resultPrinter,
+      makeLogger,
+      defaultConfig,
+      makeBrokerService,
+    }: ReaderDependencies,
     config: CaseConfig
   ) {
     super(
@@ -33,6 +47,9 @@ export class ReadingCaseContract extends BaseCaseContract {
       makeLogger
     );
     this.currentContract = contractFile;
+    this.makeBrokerService = makeBrokerService;
+    this.links = contractFile;
+    this.status = 'UNKNOWN';
 
     this.mutex = new Mutex();
   }
@@ -68,6 +85,10 @@ export class ReadingCaseContract extends BaseCaseContract {
         )
       );
     });
+    runTestCb('Publishing verification results', () => {
+      this.initialContext.logger.maintainerDebug('In test callback');
+      return this.endRecord();
+    });
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -75,7 +96,42 @@ export class ReadingCaseContract extends BaseCaseContract {
     example: CaseExample,
     currentContext: MatchContext
   ): CaseExample {
+    if (example.result === 'FAILED') {
+      this.status = 'FAILED';
+    }
     currentContext.logger.maintainerDebug(`recordExample called with`, example);
     return example;
+  }
+
+  async endRecord(): Promise<void> {
+    const publishingContext = addLocation(
+      'PublishingResults',
+      this.initialContext
+    );
+    if (this.status === 'UNKNOWN') {
+      this.status = 'SUCCESS';
+    }
+    if (this.status === 'FAILED') {
+      // TODO: Print all failures
+      this.initialContext.logger.maintainerDebug('Verification failed');
+    } else {
+      this.initialContext.logger.maintainerDebug('Verification successful');
+    }
+
+    if (!this.initialContext['case:currentRun:context:brokerCiAccessToken']) {
+      this.initialContext.logger.warn(
+        'Not publishing verification results, as there is no brokerCiAccessToken set'
+      );
+      return;
+    }
+
+    this.initialContext.logger.maintainerDebug(
+      'Calling publishVerificationResults'
+    );
+    await this.makeBrokerService(publishingContext).publishVerificationResults(
+      this.links,
+      this.status === 'SUCCESS',
+      addLocation('PublishingContract', this.initialContext)
+    );
   }
 }

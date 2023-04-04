@@ -5,6 +5,10 @@ export interface DownloadedContract extends ContractData {
     'pb:pact-version': {
       name: string;
     };
+    'pb:publish-verification-results': {
+      title: string;
+      href: string;
+    };
   };
 }
 
@@ -38,7 +42,15 @@ export interface BrokerApi {
     version: string,
     branch: string | false,
     logContext: LogContext
-  ) => Promise<PublishResult>;
+  ) => Promise<PublishContractResult>;
+
+  publishVerificationResults: (
+    contract: DownloadedContract,
+    success: boolean,
+    version: string,
+    branch: string | false,
+    logContext: LogContext
+  ) => Promise<PublishVerificationResult>;
 
   downloadContract: (
     url: string,
@@ -63,6 +75,10 @@ interface BrokerNotice {
   text: string;
 }
 
-export interface PublishResult {
+export interface PublishVerificationResult {
+  logs: Array<BrokerNotice>;
+}
+
+export interface PublishContractResult {
   notices: Array<BrokerNotice>;
 }

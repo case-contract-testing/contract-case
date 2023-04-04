@@ -32,6 +32,29 @@ export interface WireRequestForPublicationAdvanced {
   buildUrl?: string;
   contracts: Array<ContractForPublication>;
 }
+/*
+    {
+      tests: [
+        {
+          testDescription: '1',
+          status: 'passed',
+          pact_uri: pact_uri,
+          pact_interaction: pact_interaction
+        }
+      ]
+    }
+    */
+
+export interface WireRequestPublishVerificationResults {
+  providerApplicationVersion: string;
+  success: boolean;
+  branch?: string;
+  tags: Array<string>;
+  buildUrl?: string;
+  executionDate: string; // DateTime.now;
+  verifiedByImplementation: 'ContractCase';
+  verifiedByVersion: string;
+}
 
 export interface WireForVerificationRequest {
   consumerVersionSelectors: Record<string, string | boolean>[];

@@ -17,6 +17,8 @@ export * from './types.environment';
 
 export { CaseConfig } from './config/types';
 
+export type MakeBrokerService = (context: DataContext) => BrokerService;
+
 export interface ReaderDependencies {
   defaultConfig: CaseConfig;
   resultPrinter: ResultPrinter;
@@ -24,6 +26,7 @@ export interface ReaderDependencies {
   makeBrokerApi: MakeBrokerApi;
   makeEnvironment: MakeEnvironment;
   makeContractStore: MakeContractStore;
+  makeBrokerService: MakeBrokerService;
 }
 
 export interface WriterDependencies {
@@ -32,5 +35,5 @@ export interface WriterDependencies {
   makeLogger: (context: LogLevelContext) => Logger;
   writeContract: WriteContract;
   makeEnvironment: MakeEnvironment;
-  makeBrokerService: (context: DataContext) => BrokerService;
+  makeBrokerService: MakeBrokerService;
 }

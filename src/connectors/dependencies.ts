@@ -38,4 +38,6 @@ export const readerDependencies: ReaderDependencies = {
   makeBrokerApi,
   makeEnvironment,
   makeContractStore,
+  makeBrokerService: (context: DataContext) =>
+    new BrokerService(makeBrokerApi(context), makeEnvironment()),
 };

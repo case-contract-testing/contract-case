@@ -110,8 +110,6 @@ describe('broker client', () => {
       providerName: 'Pact Broker',
       config: {
         contractFilename,
-        logLevel: 'debug',
-        publish: true,
       },
     },
     (contract) => {

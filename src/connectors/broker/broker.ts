@@ -9,12 +9,20 @@ import type {
 
 import { makeAxiosConnector } from './axios';
 import { BasicAuth } from './axios/types';
-import type {
+import {
   WireForVerificationRequest,
   WireForVerificationResponse,
   WireRequestForPublicationAdvanced,
+  WireRequestPublishVerificationResults,
 } from './brokerDto.types';
-import { BrokerApi, MakeBrokerApi, PublishResult } from '../../core/types';
+import {
+  BrokerApi,
+  DownloadedContract,
+  MakeBrokerApi,
+  PublishContractResult,
+  PublishVerificationResult,
+} from '../../core/types';
+import { caseVersion } from '../../entities/caseVersion';
 
 const trimSlash = (str: string): string => {
   if (str.endsWith('/')) {
@@ -111,7 +119,7 @@ export const makeBrokerApi: MakeBrokerApi = (
 
       return server.authedPost<
         WireRequestForPublicationAdvanced,
-        PublishResult
+        PublishContractResult
       >(
         '/contracts/publish',
         {
@@ -132,6 +140,35 @@ export const makeBrokerApi: MakeBrokerApi = (
         logContext
       );
     },
+
+    publishVerificationResults: (
+      contract: DownloadedContract,
+      success: boolean,
+      providerVersion: string,
+      branch: string | false,
+      logContext: LogContext
+    ) =>
+      makeAxiosConnector(
+        contract._links['pb:publish-verification-results'].href,
+        auth
+      )
+        .authedPost<
+          WireRequestPublishVerificationResults,
+          PublishVerificationResult
+        >(
+          '',
+          {
+            providerApplicationVersion: providerVersion,
+            success,
+            ...(branch !== false ? { branch } : {}),
+            verifiedByImplementation: 'ContractCase',
+            verifiedByVersion: caseVersion,
+            executionDate: new Date(Date.now()).toISOString(),
+            tags: [],
+          },
+          logContext
+        )
+        .then((t) => t),
 
     downloadContract: (url: string) =>
       makeAxiosConnector(url, auth).authedGet(),

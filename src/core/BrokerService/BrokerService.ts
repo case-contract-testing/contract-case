@@ -1,7 +1,11 @@
 import { CaseConfigurationError, CaseCoreError } from '../../entities';
 import { addLocation } from '../../entities/context';
 import { ContractData, DataContext, MatchContext } from '../../entities/types';
-import { BrokerApi, DownloadedContracts } from '../types.broker';
+import {
+  BrokerApi,
+  DownloadedContract,
+  DownloadedContracts,
+} from '../types.broker';
 import { BuildEnvironment } from '../types.environment';
 import { downloadCaseContracts } from './downloadCaseContracts';
 
@@ -13,6 +17,51 @@ export class BrokerService {
   constructor(broker: BrokerApi, environment: BuildEnvironment) {
     this.broker = broker;
     this.environment = environment;
+  }
+
+  publishVerificationResults(
+    contract: DownloadedContract,
+    success: boolean,
+    context: MatchContext
+  ): Promise<void> {
+    if (
+      context['case:currentRun:context:publish'] === false ||
+      context['case:currentRun:context:publish'] === 'NEVER'
+    ) {
+      context.logger.debug(
+        `Not publishing verification results for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'NEVER' is set (or false)`
+      );
+      return Promise.resolve();
+    }
+    if (
+      context['case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
+      !this.environment.isCi()
+    ) {
+      context.logger.debug(
+        `Not publishing verification results for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'ONLY_IN_CI' is set, and this is not a detected CI environment`
+      );
+      return Promise.resolve();
+    }
+    if (
+      context['case:currentRun:context:publish'] === true ||
+      context['case:currentRun:context:publish'] === 'ALWAYS' ||
+      (context['case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
+        this.environment.isCi())
+    ) {
+      return this.broker
+        .publishVerificationResults(
+          contract,
+          success,
+          this.environment.version(),
+          this.environment.branch(),
+          addLocation(':PublishingContractAdvanced', context)
+        )
+        .then(() => {});
+    }
+    const message = `Configuration property 'publish' was set to the unexpected value '${context['case:currentRun:context:publish']}'`;
+    context.logger.error(message);
+
+    return Promise.reject(new CaseConfigurationError(message));
   }
 
   publishContract(
