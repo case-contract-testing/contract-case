@@ -42,9 +42,9 @@ conventions very welcome. However, the following caveats should be kept in mind:
 1. Case is currently only available in Javascript / Typescript. At a later date, support for Python, Java, C# and Go will be added, using [JSii](https://aws.github.io/jsii/). There are no plans to add other languages at this time.
 1. Case doesn't yet support merging of contracts. This means that your whole contract must be defined in one test file.
 1. Case currently is only compatible with Jest. At a later date, the jest support will be extracted, and the peer-dependency removed.
-1. Case currently doesn't support reporting your verification results to a broker.
-1. Case currently only has rudimentary support for retrieving contracts from a broker.
-1. Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
+1. Case currently only has rudimentary broker support - it works but it's not very configurable.
+
+Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
 
 If you want to get started immediately, we recommend starting with either the [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts), or the [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts). Make sure you remove `printResults: false`.
 
