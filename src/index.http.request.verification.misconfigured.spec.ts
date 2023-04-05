@@ -35,6 +35,7 @@ describe('Server verification', () => {
     baseUrlUnderTest: `http://localhost:${port}`,
     logLevel: 'none',
     printResults: false,
+    publish: false,
   });
   beforeAll(async () => {
     server = await start(port, serverDependencies);
