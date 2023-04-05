@@ -171,8 +171,7 @@ Configuration and ergonomics
 - [x] Write docs for initial setup
 - [ ] Check that contract is actually downloaded before trying to report results (etc)
 - [ ] Named shaped object types (so eg headers doesn't say 'an object shaped like')
-- [ ] Better formatting of locations (strip unnecessary stuff unless in maintainer debug mode)
-- [ ] Accepts / resolvesTo sanity checks
+- [x] Better formatting of locations (strip unnecessary stuff unless in maintainer debug mode)
 - [ ] Strip matchers should take states
 - [ ] Nice support for named examples in request / responses
 - [ ] Warn when a logLevel matcher is written to contract
@@ -185,6 +184,7 @@ Configuration and ergonomics
 - [ ] Debug logs should include state variables
 - [ ] Error collapsers, so if the same spot produces the same errors for different reasons it will only be reported once.
 - [ ] Better system for stripping matchers with `and()` - maybe `{ items, keys, structure }`?
+- [ ] Accepts / resolvesTo sanity checks
 
 Documentation
 
