@@ -14,8 +14,8 @@
 
 Next:
 
-- [ ] Fix Broker download contracts
-- [ ] Do upload for verification results
+- [x] Fix Broker download contracts
+- [x] Do upload for verification results
 - [ ] Flatten types at the boundary
   - [ ] Classes for matchers
   - [ ] Classes for mocks
@@ -58,7 +58,10 @@ Pact Parity
 - [ ] Broker compatibility
   - [x] Publish contract
   - [x] Get contract from broker
-  - [ ] Publish verification result
+  - [x] Publish verification result
+  - [ ] Choose version selectors for upload
+  - [ ] Choose version selectors for download
+  - [ ] Make download actually a nice CLI
 - [x] Read contract file
   - [x] Read all files in a location?
   - [x] Verify contract file
@@ -166,6 +169,7 @@ Configuration and ergonomics
 - [x] File locations
 - [x] Silent mode (no logs or test output)
 - [x] Write docs for initial setup
+- [ ] Check that contract is actually downloaded before trying to report results (etc)
 - [ ] Named shaped object types (so eg headers doesn't say 'an object shaped like')
 - [ ] Better formatting of locations (strip unnecessary stuff unless in maintainer debug mode)
 - [ ] Accepts / resolvesTo sanity checks
