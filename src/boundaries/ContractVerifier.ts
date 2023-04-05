@@ -20,7 +20,7 @@ export class ContractVerifier {
     return this.coreVerifier.getAvailableContractDescriptions();
   }
 
-  verifyContract<T extends AnyMockDescriptorType>(
+  runVerification<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
     configOverrides = this.config
   ): void {
