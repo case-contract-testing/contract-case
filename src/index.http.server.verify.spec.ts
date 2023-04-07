@@ -15,7 +15,7 @@ verifyContract(
       triggers: {
         'an http "GET" request to "/health" without a body': {
           trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
-          verifiers: {
+          testResponses: {
             'a (200) response with body an object shaped like {status: "up"}': (
               health
             ) => {
@@ -24,7 +24,7 @@ verifyContract(
             'a (200) response with body an object shaped like {status: <any string>}':
               (health) => expect(typeof health).toBe('string'),
           },
-          errorVerifiers: {
+          testErrorResponses: {
             'a (httpStatus 4XX | 5XX) response without a body': (e) => {
               expect(e).toBeInstanceOf(ApiError);
             },
@@ -38,20 +38,20 @@ verifyContract(
           {
             trigger: (config: HttpRequestConfig) =>
               api(config.baseUrl).health(),
-            verifiers: {
+            testResponses: {
               'a (200) response with body an object shaped like {status: "up"}':
                 (health) => {
                   expect(health).toEqual('up');
                 },
             },
-            errorVerifiers: {},
+            testErrorResponses: {},
           },
         'an http "GET" request to "/users"?id={{userId}} without a body': {
           trigger: (config: HttpRequestConfig) =>
             api(config.baseUrl).getUserByQuery(
               (config.variables['userId'] as string) || '123'
             ),
-          verifiers: {
+          testResponses: {
             'a (200) response with body an object shaped like {userId: {{userId}}}':
               (user, config) => {
                 expect(user).toEqual({
@@ -59,7 +59,7 @@ verifyContract(
                 });
               },
           },
-          errorVerifiers: {
+          testErrorResponses: {
             'a (404) response without a body': (e) => {
               expect(e).toBeInstanceOf(UserNotFoundConsumerError);
             },
@@ -68,8 +68,8 @@ verifyContract(
         'an http "GET" request to "/users/123" without a body': {
           trigger: (config: HttpRequestConfig) =>
             api(config.baseUrl).getUserByPath('123'),
-          verifiers: {},
-          errorVerifiers: {
+          testResponses: {},
+          testErrorResponses: {
             'a (404) response without a body': (e) => {
               expect(e).toBeInstanceOf(UserNotFoundConsumerError);
             },
@@ -80,7 +80,7 @@ verifyContract(
             api(config.baseUrl).getUserByPath(
               config.variables['userId'] as string
             ),
-          verifiers: {
+          testResponses: {
             'a (200) response with body an object shaped like {userId: {{userId}}}':
               (user, config) => {
                 expect(user).toEqual({
@@ -88,7 +88,7 @@ verifyContract(
                 });
               },
           },
-          errorVerifiers: {
+          testErrorResponses: {
             'a (404) response without a body': (e) => {
               expect(e).toBeInstanceOf(UserNotFoundConsumerError);
             },

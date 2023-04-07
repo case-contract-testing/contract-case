@@ -19,11 +19,11 @@ export type Trigger<T extends AnyMockDescriptorType, R = unknown> = (
 
 type TriggerPair<T extends AnyMockDescriptorType, R> = {
   trigger: Trigger<T, R>;
-  verifiers: Record<
+  testResponses: Record<
     string,
     (data: R, config: SetupInfoFor<T>) => Promise<unknown> | void
   >;
-  errorVerifiers: Record<
+  testErrorResponses: Record<
     string,
     (error: Error, config: SetupInfoFor<T>) => Promise<unknown> | void
   >;
