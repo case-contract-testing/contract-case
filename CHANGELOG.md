@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.7.0](https://github.com/case-contract-testing/case/compare/v0.6.2...v0.7.0) (2023-04-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rename the verifier options triggers.verifiers to triggers.testResponses and triggers.errorVerifiers to triggers.testErrorResponses for consistency with the runExample DSL
+* Rename `contract.verifyContract` to `contract.runVerification` for consistency
+* Verification now supports reading contracts from a directory, to allow contract download from a broker. The interface to `verifyContract` has now changed - use contractFilename or contractDirectory instead of passing the raw contract.
+* Change the default to not publish contracts if not in CI. Set the new config option `publish: true` or `publish: "ALWAYS"` if you need the old behaviour of always publishing
+* All matcher and mock types are now prefixed with `case:`. This change allows extensions without naming clashes, but means any contracts prior to this version must be regenerated.
+
+### Features
+
+* Add ability to publish verification results ([cc2b7c2](https://github.com/case-contract-testing/case/commit/cc2b7c287b4e08607cced24d1f6db1eb2d9cc1b1))
+* Change the default to not publish contracts if not in CI. Set the new config option `publish: true` or `publish: "ALWAYS"` if you need the old behaviour of always publishing ([9ab6ca9](https://github.com/case-contract-testing/case/commit/9ab6ca9ad6319c8f0e9e6271849b835a56ed6799))
+* Print broker response messages ([093d896](https://github.com/case-contract-testing/case/commit/093d896a0871e2a7d7ff913e7387453cd643b295))
+* Verification now supports reading contracts from a directory, to allow contract download from a broker. The interface to `verifyContract` has now changed - use contractFilename or contractDirectory instead of passing the raw contract. ([e0b9fbb](https://github.com/case-contract-testing/case/commit/e0b9fbb441ab393bcfeb9fb987b424b698411514))
+* When saving contracts, create contract directory if it doesn't already exist ([72f8edb](https://github.com/case-contract-testing/case/commit/72f8edbb3ebb7f38833109f12878edbfaa2549b6))
+
+
+### Bug Fixes
+
+* Correct parsing of Broker response messages ([f625168](https://github.com/case-contract-testing/case/commit/f6251687be2ae9ed9f8ba25981da1447754a55a9))
+* Empty triggers.testResponses and triggers.testErrorResponses blocks are no longer required ([4a2d6e6](https://github.com/case-contract-testing/case/commit/4a2d6e67e7ac787cfbd2aaccd21a404435dcd354))
+* Extend Jest's timeout during contract definition as well as verification ([db998a6](https://github.com/case-contract-testing/case/commit/db998a6b5fab44c6727bed4dc50cf2485434289d))
+* Improve debug message when the trigger fails ([098050a](https://github.com/case-contract-testing/case/commit/098050ae6942638ddbac9c380e4237b84fe48007))
+* Improve error message when publish is misconfigured ([fc0fb1e](https://github.com/case-contract-testing/case/commit/fc0fb1ef45e468c686630dfe8dd4c932410eb1bb))
+
+
+### Code Refactoring
+
+* All matcher and mock types are now prefixed with `case:`. This change allows extensions without naming clashes, but means any contracts prior to this version must be regenerated. ([945808b](https://github.com/case-contract-testing/case/commit/945808bba0f425b1defbeb766b7d2671baeea8d5))
+* Rename `contract.verifyContract` to `contract.runVerification` for consistency ([b739ceb](https://github.com/case-contract-testing/case/commit/b739cebea5cbf7c232768fa17204c63854043a74))
+* Rename the verifier options triggers.verifiers to triggers.testResponses and triggers.errorVerifiers to triggers.testErrorResponses for consistency with the runExample DSL ([a6fe848](https://github.com/case-contract-testing/case/commit/a6fe848cf0020b0aa0e7f4bd97aeab4ebd7540a1))
+
 ## [0.6.2](https://github.com/case-contract-testing/case/compare/v0.6.1...v0.6.2) (2023-03-28)
 
 
