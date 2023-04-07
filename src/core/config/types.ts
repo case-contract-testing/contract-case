@@ -25,11 +25,11 @@ export interface BaseCaseConfig {
    *
    * `"debug"` - Information to help users find out what is happening during their tests
    *
-   * `"maintainerDebug" | "deepMaintainerDebug"` - debugging information for Case maintainers
+   * `"maintainerDebug" | "deepMaintainerDebug"` - debugging information for ContractCase maintainers
    */
   logLevel: LogLevel;
   /**
-   * The directory where the contract will be written. If you provide this, Case
+   * The directory where the contract will be written. If you provide this, ContractCase
    * will generate the filename for you (unless `contractFilename` is specified,
    * in which case this setting is ignored)
    */

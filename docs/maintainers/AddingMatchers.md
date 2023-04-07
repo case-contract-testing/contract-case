@@ -1,4 +1,4 @@
-## Case Maintainer Documentation: How to add a new matcher
+## ContractCase Maintainer Documentation: How to add a new matcher
 
 This describes the process to add in a new matcher for maintainers.
 Adding a new matcher as a plugin will be a subset of these steps.
@@ -30,7 +30,7 @@ the raw data (mostly parameters if your matcher has any)
     ```
 
     If your matcher modifies the context, add fields prefixed with
-    `case:context:` - these are automatically picked up by Case and rolled
+    `case:context:` - these are automatically picked up by ContractCase and rolled
     into the context before this matcher is invoked (and passed down to any child matchers).
 
 3.  Add these new types to both `AnyCaseNodeType` and `AnyCaseMatcher`:

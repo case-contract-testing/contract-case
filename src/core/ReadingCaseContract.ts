@@ -61,7 +61,7 @@ export class ReadingCaseContract extends BaseCaseContract {
     this.currentContract.examples.forEach((example, index) => {
       if (example.result !== 'VERIFIED') {
         throw new CaseCoreError(
-          `Attempting to verify an example which was '${example.result}'. This should never happen in normal operation, and might be the result of a corrupted Case file, a file that was not written by Case, or a bug.`
+          `Attempting to verify an example which was '${example.result}'. This should never happen in normal operation, and might be the result of a corrupted ContractCase file, a file that was not written by ContractCase, or a bug.`
         );
       }
 

@@ -39,7 +39,7 @@ const filterNonCaseContracts = (
 
   nonCaseContracts.forEach((c) => {
     context.logger.debug(
-      `Skipping contract '${c.name}' as it does not appear to be a Case Contract`
+      `Skipping contract '${c.name}' as it does not appear to be a ContractCase Contract`
     );
   });
   return nonCaseContracts;
@@ -66,7 +66,7 @@ export const downloadCaseContracts = async (
 
   if (caseContracts.length === 0) {
     context.logger.warn(
-      `No Case contracts to verify. There were ${nonCaseContracts.length} non-case contracts.`
+      `No ContractCase contracts to verify. There were ${nonCaseContracts.length} non-case contracts.`
     );
     context.logger.warn(
       'You can see more information by re-running this task with logLevel: debug or lower'

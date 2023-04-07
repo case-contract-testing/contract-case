@@ -1,11 +1,11 @@
-# Layout of Case source
+# Layout of ContractCase source
 
 First, the important bit, then the details:
 
 ## Layout structure
 
-- boundaries: For the DSL that will be used by different languages. Everything in here should only be for exposing Case to the users, and there should be no behaviour
-- connectors: General connections outside Case (including incoming)
+- boundaries: For the DSL that will be used by different languages. Everything in here should only be for exposing ContractCase to the users, and there should be no behaviour
+- connectors: General connections outside ContractCase (including incoming)
 - core: The engine that runs the mocks
 - diffmatch: The engine that runs the data matching
 - entities: The base layer of application wide concepts

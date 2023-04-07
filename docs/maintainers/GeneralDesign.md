@@ -1,14 +1,14 @@
 # Guidelines
 
 This document contains the guidelines used to make design and code choices when
-extending or maintaining Case.
+extending or maintaining ContractCase.
 
 ## Values
 
-- User first: If misconfigurations happens, Case will print helpful errors that assist the user in finding a solution
-- Not magic: Case prefers strict and fail-fast behaviour over "I guess you probably meant this".
+- User first: If misconfigurations happens, ContractCase will print helpful errors that assist the user in finding a solution
+- Not magic: ContractCase prefers strict and fail-fast behaviour over "I guess you probably meant this".
   If there is a misconfiguration, and the user may have meant more than one thing, case will fail with with helpful errors.
-- One model: There's only one model for Case. It's used in the contract file, to set contract tests, to extend with plugins, and to think about how tests work.
+- One model: There's only one model for ContractCase. It's used in the contract file, to set contract tests, to extend with plugins, and to think about how tests work.
 
 ## Guidelines
 

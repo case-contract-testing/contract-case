@@ -1,4 +1,4 @@
-# Case Contract Testing Framework
+# ContractCase Contract Testing Framework
 
 [![Build and test](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/case-contract-testing/case/badge.svg?branch=main)](https://coveralls.io/github/case-contract-testing/case?branch=main)
@@ -16,14 +16,14 @@
 
 Read the [documentation here](https://case.contract-testing.io/docs/intro/). Documentation is currently in-progress. Feedback welcome!
 
-Case is a next-generation consumer-driven contract testing framework, building
+ContractCase is a next-generation consumer-driven contract testing framework, building
 on many of the lessons from maintaining the excellent [Pact](pact.io) contract testing
 framework. It is our belief that contract testing is the best way to get
 deployment confidence for your applications and services.
 
-Case releases follow [semantic versioning](https://semver.org/), with two additional restrictions:
+ContractCase releases follow [semantic versioning](https://semver.org/), with two additional restrictions:
 
-1. Before 1.0.0, Case is in Beta, and the API is considered unstable. Breaking changes will be indicated in minor
+1. Before 1.0.0, ContractContractCase is in Beta, and the API is considered unstable. Breaking changes will be indicated in minor
    version bumps- that is, 0.2.0 and 0.3.0 are not entirely compatible.
 2. Patch versions will always be backwards compatible.
 
@@ -35,14 +35,14 @@ Incomplete [documentation is here](https://case.contract-testing.io/docs/intro/)
 
 **WARNING: THE API IS UNSTABLE AND MAY CHANGE BETWEEN MINOR VERSIONS**
 
-Case is now available and should work for both client and server driven http/https
-contracts. Feedback on the Case API / DSL and (especially) naming
+ContractCase is now available and should work for both client and server driven http/https
+contracts. Feedback on the ContractCase API / DSL and (especially) naming
 conventions very welcome. However, the following caveats should be kept in mind:
 
-1. Case is currently only available in Javascript / Typescript. At a later date, support for Python, Java, C# and Go will be added, using [JSii](https://aws.github.io/jsii/). There are no plans to add other languages at this time.
-1. Case doesn't yet support merging of contracts. This means that your whole contract must be defined in one test file.
-1. Case currently is only compatible with Jest. At a later date, the jest support will be extracted, and the peer-dependency removed.
-1. Case currently only has rudimentary broker support - it works but it's not very configurable.
+1. ContractCase is currently only available in Javascript / Typescript. At a later date, support for Python, Java, C# and Go will be added, using [JSii](https://aws.github.io/jsii/). There are no plans to add other languages at this time.
+1. ContractCase doesn't yet support merging of contracts. This means that your whole contract must be defined in one test file.
+1. ContractCase currently is only compatible with Jest. At a later date, the jest support will be extracted, and the peer-dependency removed.
+1. ContractCase currently only has rudimentary broker support - it works but it's not very configurable.
 
 Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
 
@@ -66,23 +66,23 @@ npm install --save-dev jest@^29.4.3
 
 > _TODO: Pull this section out and expand into detailed documentation_
 
-Case is intended to solve some of the pain points when using Pact - if
-you are not hitting those pain points, there is no need to switch to using Case (unless
+ContractCase is intended to solve some of the pain points when using Pact - if
+you are not hitting those pain points, there is no need to switch to using ContractCase (unless
 you want to or something).
 
-Case has a very similar philosophy to Pact. You write your pacts as a contract, which is a series of examples.
+ContractCase has a very similar philosophy to Pact. You write your pacts as a contract, which is a series of examples.
 
-Like Pact, Case requires a broker to operate. To maximise Pact compatibility, Case works with the Pact broker. We
+Like Pact, ContractCase requires a broker to operate. To maximise Pact compatibility, ContractCase works with the Pact broker. We
 recommend either:
 
 - The [Pact Broker](https://github.com/pact-foundation/pact_broker) for users wanting to host their own broke
 - The excellent [Pactflow Broker](https://pactflow.io) for those needing SaaS and enterprise features
 
-We plan for Case to always be compatible with both of these brokers.
+We plan for ContractCase to always be compatible with both of these brokers.
 
 ## Feature differences from Pact
 
-- Drive contracts from the client or the server. Case is always consumer-driven, but what you are consuming might be a request, instead of a response.
+- Drive contracts from the client or the server. ContractCase is always consumer-driven, but what you are consuming might be a request, instead of a response.
   - Example [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts)
   - Example [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts)
 - Contract verification is an individual test in your test suite per interaction, rather than one test for all interactions. This provides much more granular feedback
@@ -92,7 +92,7 @@ We plan for Case to always be compatible with both of these brokers.
 ## Planned differences
 
 - Native message formats - actually invoke SQS queues / kafka messages etc during verification
-- Easy user extensions - write extensions for Case just by extending a class in JS, Python, Go or Java
+- Easy user extensions - write extensions for ContractCase just by extending a class in JS, Python, Go or Java
 
 ## Roadmap
 
