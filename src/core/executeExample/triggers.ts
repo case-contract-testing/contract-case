@@ -115,14 +115,14 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
       context.logger.maintainerDebug(
         'Was provided the request trigger; now finding the result trigger'
       );
-      const res = req.testResponses[names.responseName];
+      const res = req.testResponses?.[names.responseName];
       if (res !== undefined) {
         context.logger.debug(
           `Invoking provided trigger for '${names.requestName}', and verification for a successful '${names.responseName}'`
         );
         return invokeTrigger(req.trigger, res, assertable.config);
       }
-      const errRes = req.testErrorResponses[names.responseName];
+      const errRes = req.testErrorResponses?.[names.responseName];
       if (errRes !== undefined) {
         context.logger.debug(
           `Invoking provided trigger for '${names.requestName}', and verification for an error '${names.responseName}'`

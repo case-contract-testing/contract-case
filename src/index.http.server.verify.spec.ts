@@ -44,7 +44,6 @@ verifyContract(
                   expect(health).toEqual('up');
                 },
             },
-            testErrorResponses: {},
           },
         'an http "GET" request to "/users"?id={{userId}} without a body': {
           trigger: (config: HttpRequestConfig) =>
@@ -68,7 +67,6 @@ verifyContract(
         'an http "GET" request to "/users/123" without a body': {
           trigger: (config: HttpRequestConfig) =>
             api(config.baseUrl).getUserByPath('123'),
-          testResponses: {},
           testErrorResponses: {
             'a (404) response without a body': (e) => {
               expect(e).toBeInstanceOf(UserNotFoundConsumerError);
