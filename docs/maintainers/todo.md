@@ -1,7 +1,7 @@
 ## Release roadmap
 
-- [ ] Broker verification - read and publish result
-- [ ] Initial docs
+- [x] Broker verification - read and publish result
+- [x] Initial docs
 - [x] Query string, probably
 - [x] Note about stability
 - [ ] Determine how package structure will work
