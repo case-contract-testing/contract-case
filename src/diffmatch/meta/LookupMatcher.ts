@@ -11,7 +11,10 @@ import type {
 } from '../../entities/types';
 
 const getMatcher = (matcher: LookupableMatcher, matchContext: MatchContext) => {
-  if ('case:matcher:child' in matcher) {
+  if (
+    'case:matcher:child' in matcher &&
+    matcher['case:matcher:child'] !== undefined
+  ) {
     matchContext.saveLookupableMatcher(matcher);
   }
   return matchContext.lookupMatcher(matcher['case:matcher:uniqueName']);
