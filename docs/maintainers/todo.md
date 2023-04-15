@@ -3,12 +3,30 @@
 - [x] Broker verification - read and publish result
 - [x] Initial docs
 - [x] Query string, probably
+- [x] Refactor to make Jest DSL extractable
 - [x] Note about stability
-- [ ] Determine how package structure will work
-- [x] Extract Jest DSL
-- [ ] Maybe pull out Jest package?
-- [ ] Maybe pull out core?
-- [ ] Spike translation to C# etc
+- [x] Spike translation to C# etc
+- [x] Determine how package structure will work
+- [ ] Release Java + Python
+- [ ] Extract Jest
+- [ ] Release C# ?
+
+## Package structure
+
+- ${LANGUAGE}-DSL - The layer that users will actually use. Contains no features except for making Case idiomatic for that language. Mostly just a wrapper for Case-Boundaries to make error handling nice.
+  - depends on case-boundary-internal
+
+### Monorepo contains:
+
+- Case-Boundary-Internal (the JSii layer that is the exported interface)
+  - depends on case-core
+- Case-CLI (Compiles to a cross platform CLI for contract manipulation with the broker)
+  - depends on case-core
+- Case-Test-Equivalence-Matchers (the JSii layer that just describes the matcher contents - separate because otherwise people might call the wrong thing in the boundaries layer)
+  - depends on case-entities and case-core
+- Case-Core (implements the actual matching + core)
+  - depends on case-entities
+- Case-entities (typescript types and helpers imported by both core and boundaries. Separate to avoid a circular dependency)
 
 ## Todo list
 
@@ -16,23 +34,25 @@ Next:
 
 - [x] Fix Broker download contracts
 - [x] Do upload for verification results
-- [ ] Spike JSii - support list
+- [x] Spike JSii - support list
   - [x] Errors from JS to host
   - [x] Errors from host's provided functions
   - [x] Passing values between host's functions
-    - [ ] Need to implement triggerAndVerify
   - [x] Standard out
-    - [ ] Need to pass in core printer to Logger
-  - [ ] core calls a host callback that calls back to core
-  - [ ] Arbitrary JSON
-  - [ ] Arbitrary JSON with Case Matchers
-- [ ] Flatten types at the boundary?
-  - [ ] Classes for matchers
+  - [x] core calls a host callback that calls back to core
+  - [x] Arbitrary JSON
+  - [x] Arbitrary JSON with Case Matchers
+- [ ] Spike monorepo
+- [ ] Flatten types at the boundary
+  - [x] Classes for matchers
   - [ ] Classes for mocks
-  - [ ] Types for Logger
-  - [ ] Types for Result Printer
-  - [ ] Types for State Handlers
-  - [ ] Types for Triggers
+  - [ ] Types for contract definition
+    - [ ] Types for Triggers
+      - [ ] Implement triggerAndVerify
+    - [ ] Types for State Handlers
+    - [ ] Pass in core printer to Logger
+    - [ ] Types for Logger
+    - [ ] Types for Result Printer
   - [ ] Types for extensions
     - [ ] Refactor context
   - [x] Figure out types for the triggers
@@ -43,10 +63,13 @@ Next:
 - [x] Documentation for config object
 - [x] Documentation for states
 - [ ] Documentation for verification
+- [ ] Auto-generate matcher documentation
 
 Notes from refactor:
 
+- [ ] Rename case:matcher to \_case:matcher
 - [ ] Rename all case:matcher:matcher to case:matcher:child
+  - But not the ones where it's not a child
 - [ ] Make ending of matcher interfaces consistent
   - Some are:
     - Matches
