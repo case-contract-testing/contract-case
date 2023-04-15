@@ -16,15 +16,56 @@ Next:
 
 - [x] Fix Broker download contracts
 - [x] Do upload for verification results
-- [ ] Flatten types at the boundary
+- [ ] Spike JSii - support list
+  - [x] Errors from JS to host
+  - [x] Errors from host's provided functions
+  - [x] Passing values between host's functions
+    - [ ] Need to implement triggerAndVerify
+  - [x] Standard out
+    - [ ] Need to pass in core printer to Logger
+  - [ ] core calls a host callback that calls back to core
+  - [ ] Arbitrary JSON
+  - [ ] Arbitrary JSON with Case Matchers
+- [ ] Flatten types at the boundary?
   - [ ] Classes for matchers
   - [ ] Classes for mocks
-  - [ ] Refactor context
-  - [ ] Figure out types for the triggers
-  - [ ] Figure out types for the check functions
-- [ ] Documentation for config object
-- [ ] Documentation for states
+  - [ ] Types for Logger
+  - [ ] Types for Result Printer
+  - [ ] Types for State Handlers
+  - [ ] Types for Triggers
+  - [ ] Types for extensions
+    - [ ] Refactor context
+  - [x] Figure out types for the triggers
+  - [x] Figure out types for the check functions
+  - Make DSL
+  - [ ] Error handling boundary
+- [ ] Documentation pipeline for Matchers
+- [x] Documentation for config object
+- [x] Documentation for states
 - [ ] Documentation for verification
+
+Notes from refactor:
+
+- [ ] Rename all case:matcher:matcher to case:matcher:child
+- [ ] Make ending of matcher interfaces consistent
+  - Some are:
+    - Matches
+    - Matcher
+    - Match
+    - Matchers / Children
+- [ ] Make list of all resolvesTo
+  - string
+  - number
+  - null
+  - boolean
+  - should there be "array" ?
+- [ ] Properly use accepts or some other property to use resolvesTo
+- [ ] Validators need to move
+  - [ ] Array length (including checking that it's sensible)
+  - [ ] Array length sensible
+  - [ ] Array contains with an empty array
+  - [ ] Array starts with with an empty array
+  - [ ] String prefix with an empty string?
 
 Pact Parity
 
