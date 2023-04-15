@@ -38,7 +38,11 @@ export const and = (
 export const withExample = <T extends AnyCaseMatcher>(
   matcher: T,
   example: AnyData
-): HasExample<T> => ({ ...matcher, 'case:matcher:example': example });
+): HasExample<CoreCascadingMatcher> => ({
+  'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+  'case:matcher:child': matcher,
+  'case:matcher:example': example,
+});
 
 /**
  * Meta matcher that gives the matcher below it a unique name that can be reused in tests after this one.

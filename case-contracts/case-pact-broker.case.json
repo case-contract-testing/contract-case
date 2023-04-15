@@ -281,37 +281,40 @@
       "status": 200,
       "body": {
         "notices": {
-          "case:matcher:type": "case:And",
-          "case:matcher:children": [
-            {
-              "case:matcher:type": "case:ArrayContains",
-              "case:matcher:matchers": [
-                {
-                  "type": "debug",
-                  "text": {
-                    "case:matcher:type": "case:MatchString",
-                    "case:matcher:example": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main",
-                    "case:matcher:resolvesTo": "string",
-                    "case:context:matchBy": "type"
+          "case:matcher:type": "case:CascadingContext",
+          "case:matcher:child": {
+            "case:matcher:type": "case:And",
+            "case:matcher:children": [
+              {
+                "case:matcher:type": "case:ArrayContains",
+                "case:matcher:matchers": [
+                  {
+                    "type": "debug",
+                    "text": {
+                      "case:matcher:type": "case:MatchString",
+                      "case:matcher:example": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main",
+                      "case:matcher:resolvesTo": "string",
+                      "case:context:matchBy": "type"
+                    }
                   }
-                }
-              ]
-            },
-            {
-              "case:matcher:type": "case:ArrayContains",
-              "case:matcher:matchers": [
-                {
-                  "type": "info",
-                  "text": {
-                    "case:matcher:type": "case:MatchString",
-                    "case:matcher:example": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.",
-                    "case:matcher:resolvesTo": "string",
-                    "case:context:matchBy": "type"
+                ]
+              },
+              {
+                "case:matcher:type": "case:ArrayContains",
+                "case:matcher:matchers": [
+                  {
+                    "type": "info",
+                    "text": {
+                      "case:matcher:type": "case:MatchString",
+                      "case:matcher:example": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.",
+                      "case:matcher:resolvesTo": "string",
+                      "case:context:matchBy": "type"
+                    }
                   }
-                }
-              ]
-            }
-          ],
+                ]
+              }
+            ]
+          },
           "case:matcher:example": {
             "notices": [
               {
@@ -1030,37 +1033,40 @@
             "status": 200,
             "body": {
               "notices": {
-                "case:matcher:type": "case:And",
-                "case:matcher:children": [
-                  {
-                    "case:matcher:type": "case:ArrayContains",
-                    "case:matcher:matchers": [
-                      {
-                        "type": "debug",
-                        "text": {
-                          "case:matcher:type": "case:MatchString",
-                          "case:matcher:example": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main",
-                          "case:matcher:resolvesTo": "string",
-                          "case:context:matchBy": "type"
+                "case:matcher:type": "case:CascadingContext",
+                "case:matcher:child": {
+                  "case:matcher:type": "case:And",
+                  "case:matcher:children": [
+                    {
+                      "case:matcher:type": "case:ArrayContains",
+                      "case:matcher:matchers": [
+                        {
+                          "type": "debug",
+                          "text": {
+                            "case:matcher:type": "case:MatchString",
+                            "case:matcher:example": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main",
+                            "case:matcher:resolvesTo": "string",
+                            "case:context:matchBy": "type"
+                          }
                         }
-                      }
-                    ]
-                  },
-                  {
-                    "case:matcher:type": "case:ArrayContains",
-                    "case:matcher:matchers": [
-                      {
-                        "type": "info",
-                        "text": {
-                          "case:matcher:type": "case:MatchString",
-                          "case:matcher:example": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.",
-                          "case:matcher:resolvesTo": "string",
-                          "case:context:matchBy": "type"
+                      ]
+                    },
+                    {
+                      "case:matcher:type": "case:ArrayContains",
+                      "case:matcher:matchers": [
+                        {
+                          "type": "info",
+                          "text": {
+                            "case:matcher:type": "case:MatchString",
+                            "case:matcher:example": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.",
+                            "case:matcher:resolvesTo": "string",
+                            "case:context:matchBy": "type"
+                          }
                         }
-                      }
-                    ]
-                  }
-                ],
+                      ]
+                    }
+                  ]
+                },
                 "case:matcher:example": {
                   "notices": [
                     {
