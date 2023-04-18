@@ -1,6 +1,6 @@
 import { OBJECT_KEYS_MATCH_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
-import { AnyMatcherOrData } from '../../../types';
+import { AnyMatcherOrData } from '../../types';
 
 /**
  * Matches an object where each key matches the provided matcher.

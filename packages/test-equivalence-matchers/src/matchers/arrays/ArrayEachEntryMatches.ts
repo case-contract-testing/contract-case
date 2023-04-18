@@ -1,27 +1,24 @@
 import { ARRAY_EACH_ENTRY_MATCHES_TYPE } from '@contract-case/case-entities-internal';
-import { AnyMatcherWithExample } from '../base';
-import { AnyMatcherOrData } from '../../../types';
+import { AnyMatcher } from '../base';
+import { AnyMatcherOrData } from '../../types';
 
 /**
  * Matches an array where each element matches the provided matcher.
  *
  */
-export class ArrayEachEntryMatchesWithExample extends AnyMatcherWithExample {
+export class ArrayEachEntryMatches extends AnyMatcher {
   /** @internal */
   readonly '_case:matcher:type': typeof ARRAY_EACH_ENTRY_MATCHES_TYPE;
 
   /** @internal */
   readonly '_case:matcher:matcher': AnyMatcherOrData;
 
-  /** @internal */
-  readonly '_case:matcher:example': Array<AnyMatcherOrData>;
-
   /**
    * @param matcher - The matcher for each entry in the array
    * @param example - An optional example of the whole array to return
    */
-  constructor(matcher: AnyMatcherOrData, example: Array<AnyMatcherOrData>) {
-    super(ARRAY_EACH_ENTRY_MATCHES_TYPE, example);
+  constructor(matcher: AnyMatcherOrData) {
+    super(ARRAY_EACH_ENTRY_MATCHES_TYPE);
     this['_case:matcher:matcher'] = matcher;
   }
 

@@ -1,7 +1,7 @@
 import { STRING_SUFFIX_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 import { AnyString } from './AnyString';
-import { AnyStringMatcher } from '../../../types';
+import { AnyStringMatcher } from '../../types';
 
 /**
  * Matches any string that ends with the given constant string suffix

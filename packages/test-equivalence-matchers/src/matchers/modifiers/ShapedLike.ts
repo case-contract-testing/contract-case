@@ -1,4 +1,4 @@
-import { AnyMatcherOrData } from '../../../types';
+import { AnyMatcherOrData } from '../../types';
 import { CascadingContextMatcher } from '../base';
 
 /**

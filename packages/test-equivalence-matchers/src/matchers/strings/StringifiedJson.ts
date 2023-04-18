@@ -1,16 +1,35 @@
-import { BASE64_ENCODED_TYPE } from '@contract-case/case-entities-internal';
+import { JSON_STRINGIFIED_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
-import { AnyMatcherOrData } from '../../../types';
+import { AnyMatcherOrData } from '../../types';
 
 /**
- * Transformation matcher that matches a base64 encoded version of the given string or string matcher
+ * Transformation matcher that matches a JSON.stringify()ed version of the given
+ * object. For example, if the actual data is the string:
  *
- * WARNING: Since many strings are accidentally decodable as base64, this matcher is
- * best combined with a more restrictive string matcher (eg `StringifiedJson`).
+ * ```
+ * "{\"foo\":2}"
+ * ```
+ *
+ * then you could match it with:
+ *
+ * ```
+ * StringifiedJson({
+ *   "foo": 2
+ * })
+ * ```
+ *
+ * or
+ *
+ * ```
+ * StringifiedJson({
+ *   "foo": AnyNumber(2)
+ * })
+ * ```
+ *
  */
-export class Base64Encoded extends AnyMatcher {
+export class StringifiedJson extends AnyMatcher {
   /** @internal */
-  readonly '_case:matcher:type': typeof BASE64_ENCODED_TYPE;
+  readonly '_case:matcher:type': typeof JSON_STRINGIFIED_TYPE;
 
   /** @internal */
   readonly '_case:matcher:child': AnyMatcherOrData;
@@ -19,13 +38,11 @@ export class Base64Encoded extends AnyMatcher {
   readonly '_case:matcher:resolvesTo' = 'string';
 
   /**
-   * WARNING: Since many strings are accidentally decodable as base64, this matcher is
-   * best combined with a more restrictive string matcher (eg `StringifiedJson`).
    *
-   * @param child - The string or string matcher that would match the decoded string
+   * @param child - The object or matcher that matches the decoded
    */
   constructor(child: AnyMatcherOrData) {
-    super(BASE64_ENCODED_TYPE);
+    super(JSON_STRINGIFIED_TYPE);
     this['_case:matcher:child'] = child;
   }
 

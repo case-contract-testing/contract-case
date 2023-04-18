@@ -1,26 +1,22 @@
-import { COMBINE_MATCHERS_TYPE } from '@contract-case/case-entities-internal';
+import { SHAPED_ARRAY_MATCHER_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
-import { AnyMatcherOrData } from '../../../types';
+import { AnyMatcherOrData } from '../../types';
 
 /**
- * Matches the content of a variable that comes from a state. See [state
- * definitions](https://case.contract-testing.io/docs/defining-contracts/state-definitions)
- * and [state
- * handlers](https://case.contract-testing.io/docs/reference/state-handlers) for
- * more details.
+ * Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored.
  */
-export class And extends AnyMatcher {
+export class ArrayStartsWith extends AnyMatcher {
   /** @internal */
-  readonly '_case:matcher:type': typeof COMBINE_MATCHERS_TYPE;
+  readonly '_case:matcher:type': typeof SHAPED_ARRAY_MATCHER_TYPE;
 
   /** @internal */
   readonly '_case:matcher:children': Array<AnyMatcherOrData>;
 
   /**
-   * @param matchers - An array of the matchers to run against this particular spot in the tree
+   * @param matchers -  An array of matchers that describes the start of the array. Additional elements in the actual array are ignored.
    */
-  constructor(matchers: AnyMatcherOrData[]) {
-    super(COMBINE_MATCHERS_TYPE);
+  constructor(matchers: Array<AnyMatcherOrData>) {
+    super(SHAPED_ARRAY_MATCHER_TYPE);
     this['_case:matcher:children'] = matchers;
   }
 

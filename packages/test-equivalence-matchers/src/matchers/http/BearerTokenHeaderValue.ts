@@ -1,4 +1,4 @@
-import { AnyStringMatcher } from '../../../types';
+import { AnyStringMatcher } from '../../types';
 import { StringPrefix } from '../strings';
 
 /**
