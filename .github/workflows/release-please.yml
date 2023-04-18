@@ -1,45 +1,41 @@
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
-
-permissions:
-  contents: write
-  pull-requests: write      
-
-name: release-please
+name: Run Release Please
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v3
+      - uses: google-github-actions/release-please-action@v2
         id: release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
-          package-name: '@case-contract-testing/case'
-          bump-minor-pre-major: true
+          command: manifest
+          token: ${{secrets.GITHUB_TOKEN}}
+          default-branch: main
+          bump-minor-pre-major: true          
+
       # The logic below handles the npm publication:
-      - uses: actions/checkout@v3
-        with: 
-          fetch-depth: 0      
-        # these if statements ensure that a publication only occurs when
-        # a new release is created:
-        if: ${{ steps.release.outputs.release_created }}
-      - uses: actions/setup-node@v3
+      - name: Checkout Repository
+        if: ${{ steps.release.outputs.releases_created }}
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        if: ${{ steps.release.outputs.releases_created }}
         with:
-          node-version: 16
+          node-version: 14
           registry-url: 'https://registry.npmjs.org'
-        if: ${{ steps.release.outputs.release_created }}
-      - run: ci/build-and-test.sh
-        if: ${{ steps.release.outputs.release_created }}
-        env:
-          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-          NODE_VERSION: ${{ matrix.node-version }}
-          FORCE_COLOR: true 
-      - run: npm publish --access public
+      - name: Build Packages
+        if: ${{ steps.release.outputs.releases_created }}
+        run: |
+          npm install
+          npx lerna bootstrap
+
+      # Release Please has already incremented versions and published tags, so we just
+      # need to publish all unpublished versions to NPM here
+      # See: https://github.com/lerna/lerna/tree/main/commands/publish#bump-from-package
+      - name: Publish to NPM
+        if: ${{ steps.release.outputs.releases_created }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        if: ${{ steps.release.outputs.release_created }}
+        run: npx lerna publish from-package --no-push --no-private --yes          

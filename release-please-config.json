@@ -1,0 +1,7 @@
+{
+    "packages": {
+      "packages/case-core": {},
+      "packages/test-equivalence-matchers": {}
+    }
+  }
+  
