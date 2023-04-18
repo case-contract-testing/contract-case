@@ -8,6 +8,6 @@ npm ci
 npx lerna bootstrap
 
 npx lerna run format:check
-npx lerna run lint
 npx lerna run build
+npx lerna run lint
 npx lerna run test
