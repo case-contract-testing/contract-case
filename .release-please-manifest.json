@@ -1,1 +1,9 @@
-{}
+{
+    "bootstrap-sha": "63017480c8f1f81bca43a6f6123d764a4163233b",
+      "packages": {
+        "packages/case-boundary": {},
+        "packages/case-core": {},
+        "packages/case-entities": {},
+        "packages/test-equivalence-matchers": {}
+    }
+}
