@@ -1,8 +1,6 @@
-import {
-  BASE64_ENCODED_TYPE,
-  AnyMatcherOrData,
-} from '@contract-case/case-entities-internal';
+import { BASE64_ENCODED_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
+import { AnyMatcherOrData } from '../../../types';
 
 /**
  * Transformation matcher that matches a base64 encoded version of the given string or string matcher

@@ -1,8 +1,6 @@
-import {
-  ARRAY_EACH_ENTRY_MATCHES_TYPE,
-  AnyMatcherOrData,
-} from '@contract-case/case-entities-internal';
+import { ARRAY_EACH_ENTRY_MATCHES_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
+import { AnyMatcherOrData } from '../../../types';
 
 /**
  * Matches an array where each element matches the provided matcher.

@@ -1,8 +1,6 @@
-import {
-  AnyMatcherOrData,
-  CASCADING_CONTEXT_MATCHER_TYPE,
-} from '@contract-case/case-entities-internal';
+import { CASCADING_CONTEXT_MATCHER_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from './AnyMatcher';
+import { AnyMatcherOrData } from '../../../types';
 
 /**
  * This is a passthrough matcher that does nothing except call the child matcher

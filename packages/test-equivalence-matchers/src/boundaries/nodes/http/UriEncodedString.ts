@@ -1,8 +1,6 @@
-import {
-  URL_ENCODED_STRING_TYPE,
-  AnyStringMatcher,
-} from '@contract-case/case-entities-internal';
+import { URL_ENCODED_STRING_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
+import { AnyStringMatcher } from '../../../types';
 
 /**
  * Convenience matcher to treat the string as a uri encoded string - useful in `path` segments.

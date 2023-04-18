@@ -1,8 +1,6 @@
-import {
-  JSON_STRINGIFIED_TYPE,
-  AnyMatcherOrData,
-} from '@contract-case/case-entities-internal';
+import { JSON_STRINGIFIED_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
+import { AnyMatcherOrData } from '../../../types';
 
 /**
  * Transformation matcher that matches a JSON.stringify()ed version of the given

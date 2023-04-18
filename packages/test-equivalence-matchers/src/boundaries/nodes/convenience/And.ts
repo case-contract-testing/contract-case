@@ -1,8 +1,6 @@
-import {
-  AnyMatcherOrData,
-  COMBINE_MATCHERS_TYPE,
-} from '@contract-case/case-entities-internal';
+import { COMBINE_MATCHERS_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
+import { AnyMatcherOrData } from '../../../types';
 
 /**
  * Matches the content of a variable that comes from a state. See [state

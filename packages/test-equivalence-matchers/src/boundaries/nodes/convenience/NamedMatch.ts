@@ -1,8 +1,6 @@
-import {
-  AnyMatcherOrData,
-  LOOKUP_MATCHER_TYPE,
-} from '@contract-case/case-entities-internal';
+import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
+import { AnyMatcherOrData } from '../../../types';
 
 /**
  * Saves the matcher below it with a unique name that can be used with lookups

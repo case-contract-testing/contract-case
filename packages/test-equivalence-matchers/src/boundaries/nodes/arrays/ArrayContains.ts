@@ -1,8 +1,6 @@
-import {
-  ARRAY_CONTAINS_TYPE,
-  AnyMatcherOrData,
-} from '@contract-case/case-entities-internal';
+import { ARRAY_CONTAINS_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
+import { AnyMatcherOrData } from '../../../types';
 
 /**
  * Matches an Array which contains elements that match the given matchers -

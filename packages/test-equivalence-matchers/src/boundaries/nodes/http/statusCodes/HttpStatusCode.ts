@@ -1,7 +1,4 @@
-import {
-  AnyData,
-  HTTP_STATUS_CODE_MATCHER_TYPE,
-} from '@contract-case/case-entities-internal';
+import { HTTP_STATUS_CODE_MATCHER_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcherWithExample } from '../../base';
 import { codesToExample } from './codeToExample';
 
@@ -34,7 +31,7 @@ export class HttpStatusCode extends AnyMatcherWithExample {
    * are intended to be different. For more context, see [the section on optional values
    * in the documentation](https://case.contract-testing.io/docs/faq#how-do-i-tell-contractcase-that-a-field-is-optional) for more details.
    */
-  constructor(statusCode: AnyData) {
+  constructor(statusCode: string | string[]) {
     super(HTTP_STATUS_CODE_MATCHER_TYPE, codesToExample(statusCode));
     this['_case:matcher:rule'] = Array.isArray(statusCode)
       ? statusCode.map((r) => `${r}`)

@@ -1,8 +1,6 @@
-import {
-  AnyMatcherOrData,
-  SHAPED_ARRAY_MATCHER_TYPE,
-} from '@contract-case/case-entities-internal';
+import { SHAPED_ARRAY_MATCHER_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
+import { AnyMatcherOrData } from '../../../types';
 
 /**
  * Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored.

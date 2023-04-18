@@ -1,8 +1,6 @@
-import {
-  AnyStringMatcher,
-  coreBasicAuthValue,
-} from '@contract-case/case-entities-internal';
+import { coreBasicAuthValue } from '@contract-case/case-entities-internal';
 import { StringPrefix } from '../strings';
+import { AnyStringMatcher } from '../../../types';
 
 /**
  * Matches the value part of a basic auth header with the supplied username and password - useful in conjunction with the StateVariable matcher

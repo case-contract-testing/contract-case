@@ -1,8 +1,6 @@
-import {
-  OBJECT_VALUES_MATCH_TYPE,
-  AnyMatcherOrData,
-} from '@contract-case/case-entities-internal';
+import { OBJECT_VALUES_MATCH_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
+import { AnyMatcherOrData } from '../../../types';
 
 /**
  * Matches an object where each value matches the provided matcher.

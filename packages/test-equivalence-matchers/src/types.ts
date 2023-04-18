@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export type AnyMatcherOrData = any;
+export type AnyStringMatcher = any;
+
 /* 
 
 import {

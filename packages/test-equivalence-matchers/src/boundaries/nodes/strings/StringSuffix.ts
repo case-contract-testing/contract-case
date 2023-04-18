@@ -1,10 +1,7 @@
-import {
-  STRING_SUFFIX_TYPE,
-  AnyStringMatcher,
-  AnyMatcherOrData,
-} from '@contract-case/case-entities-internal';
+import { STRING_SUFFIX_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 import { AnyString } from './AnyString';
+import { AnyStringMatcher } from '../../../types';
 
 /**
  * Matches any string that ends with the given constant string suffix
@@ -26,7 +23,7 @@ export class StringSuffix extends AnyMatcher {
    * @param prefix - A string or matcher to match against the prefix. If you don't mind what the prefix is, pass null / undefined
    * @param suffix - The suffix for the matched string. Must be a string and not a matcher
    */
-  constructor(prefix: AnyMatcherOrData, suffix: string) {
+  constructor(prefix: AnyStringMatcher, suffix: string) {
     super(STRING_SUFFIX_TYPE);
 
     this['_case:matcher:suffix'] = suffix;

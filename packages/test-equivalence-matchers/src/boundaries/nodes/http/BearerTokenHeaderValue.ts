@@ -1,4 +1,4 @@
-import { AnyStringMatcher } from '@contract-case/case-entities-internal';
+import { AnyStringMatcher } from '../../../types';
 import { StringPrefix } from '../strings';
 
 /**

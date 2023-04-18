@@ -1,9 +1,7 @@
-import {
-  STRING_PREFIX_TYPE,
-  AnyMatcherOrData,
-} from '@contract-case/case-entities-internal';
+import { STRING_PREFIX_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 import { AnyString } from './AnyString';
+import { AnyStringMatcher } from '../../../types';
 
 /**
  * Matches any string that begins with the given constant string prefix
@@ -16,7 +14,7 @@ export class StringPrefix extends AnyMatcher {
   readonly '_case:matcher:prefix': string;
 
   /** @internal */
-  readonly '_case:matcher:suffix': AnyMatcherOrData;
+  readonly '_case:matcher:suffix': AnyStringMatcher;
 
   /** @internal */
   readonly '_case:matcher:resolvesTo': 'string';
@@ -25,7 +23,7 @@ export class StringPrefix extends AnyMatcher {
    * @param prefix - The prefix string. Must be a string and not a matcher
    * @param suffix - A string or matcher to match against the suffix.
    */
-  constructor(prefix: string, suffix: AnyMatcherOrData) {
+  constructor(prefix: string, suffix: AnyStringMatcher) {
     super(STRING_PREFIX_TYPE);
 
     this['_case:matcher:prefix'] = prefix;
