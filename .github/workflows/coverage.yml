@@ -30,7 +30,8 @@ jobs:
         CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
         FORCE_COLOR: true
 
-    - name: Coveralls
+    - name: Coveralls Core
       uses: coverallsapp/github-action@master
       with:
+        base-path: 'packages/case-core'
         github-token: ${{ secrets.GITHUB_TOKEN }}
