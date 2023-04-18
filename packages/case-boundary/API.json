@@ -1,0 +1,313 @@
+{
+  "version": "0.1",
+  "language": "typescript",
+  "metadata": {
+    "packageName": "@case-contract-testing/test-equivalence-matchers",
+    "packageVersion": "0.0.1",
+    "submodule": "strings"
+  },
+  "apiReference": {
+    "constructs": [],
+    "classes": [
+      {
+        "initializer": {
+          "fqn": "@case-contract-testing/test-equivalence-matchers.strings.AnyString.Initializer",
+          "displayName": "Initializer",
+          "id": "@case-contract-testing/test-equivalence-matchers.strings.AnyString.Initializer",
+          "parameters": [
+            {
+              "fqn": "@case-contract-testing/test-equivalence-matchers.strings.AnyString.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@case-contract-testing/test-equivalence-matchers.strings.AnyString.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "string"
+              },
+              "docs": {
+                "summary": "- An example string."
+              }
+            }
+          ],
+          "usage": "import { strings } from '@case-contract-testing/test-equivalence-matchers'\n\nnew strings.AnyString(example: string)"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "@case-contract-testing/test-equivalence-matchers.strings.AnyString.toJSON",
+            "displayName": "toJSON",
+            "id": "@case-contract-testing/test-equivalence-matchers.strings.AnyString.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON))."
+            },
+            "usage": "public toJSON(): any"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "@case-contract-testing/test-equivalence-matchers.strings.AnyString",
+        "displayName": "AnyString",
+        "id": "@case-contract-testing/test-equivalence-matchers.strings.AnyString",
+        "docs": {
+          "summary": "Matches any string."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "@case-contract-testing/test-equivalence-matchers.strings.Base64Encoded.Initializer",
+          "displayName": "Initializer",
+          "id": "@case-contract-testing/test-equivalence-matchers.strings.Base64Encoded.Initializer",
+          "parameters": [
+            {
+              "fqn": "@case-contract-testing/test-equivalence-matchers.strings.Base64Encoded.Initializer.parameter.child",
+              "displayName": "child",
+              "id": "@case-contract-testing/test-equivalence-matchers.strings.Base64Encoded.Initializer.parameter.child",
+              "type": {
+                "formattingPattern": "any"
+              },
+              "docs": {
+                "summary": "- The string or string matcher that would match the decoded string."
+              }
+            }
+          ],
+          "usage": "import { strings } from '@case-contract-testing/test-equivalence-matchers'\n\nnew strings.Base64Encoded(child: any)"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "@case-contract-testing/test-equivalence-matchers.strings.Base64Encoded.toJSON",
+            "displayName": "toJSON",
+            "id": "@case-contract-testing/test-equivalence-matchers.strings.Base64Encoded.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON))."
+            },
+            "usage": "public toJSON(): any"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "@case-contract-testing/test-equivalence-matchers.strings.Base64Encoded",
+        "displayName": "Base64Encoded",
+        "id": "@case-contract-testing/test-equivalence-matchers.strings.Base64Encoded",
+        "docs": {
+          "summary": "Transformation matcher that matches a base64 encoded version of the given string or string matcher.",
+          "remarks": "WARNING: Since many strings are accidentally decodable as base64, this matcher is\nbest combined with a more restrictive string matcher (eg `StringifiedJson`)."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringContaining.Initializer",
+          "displayName": "Initializer",
+          "id": "@case-contract-testing/test-equivalence-matchers.strings.StringContaining.Initializer",
+          "parameters": [
+            {
+              "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringContaining.Initializer.parameter.substring",
+              "displayName": "substring",
+              "id": "@case-contract-testing/test-equivalence-matchers.strings.StringContaining.Initializer.parameter.substring",
+              "type": {
+                "formattingPattern": "string"
+              },
+              "docs": {
+                "summary": "- The substring that the matcher must contain."
+              }
+            },
+            {
+              "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringContaining.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@case-contract-testing/test-equivalence-matchers.strings.StringContaining.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "string"
+              },
+              "docs": {
+                "summary": "- An example string that passes this matcher."
+              }
+            }
+          ],
+          "usage": "import { strings } from '@case-contract-testing/test-equivalence-matchers'\n\nnew strings.StringContaining(substring: string, example: string)"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringContaining.toJSON",
+            "displayName": "toJSON",
+            "id": "@case-contract-testing/test-equivalence-matchers.strings.StringContaining.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON))."
+            },
+            "usage": "public toJSON(): any"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringContaining",
+        "displayName": "StringContaining",
+        "id": "@case-contract-testing/test-equivalence-matchers.strings.StringContaining",
+        "docs": {
+          "summary": "Matches any string that contains the given substring."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringifiedJson.Initializer",
+          "displayName": "Initializer",
+          "id": "@case-contract-testing/test-equivalence-matchers.strings.StringifiedJson.Initializer",
+          "parameters": [
+            {
+              "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringifiedJson.Initializer.parameter.child",
+              "displayName": "child",
+              "id": "@case-contract-testing/test-equivalence-matchers.strings.StringifiedJson.Initializer.parameter.child",
+              "type": {
+                "formattingPattern": "any"
+              },
+              "docs": {
+                "summary": "- The object or matcher that matches the decoded."
+              }
+            }
+          ],
+          "usage": "import { strings } from '@case-contract-testing/test-equivalence-matchers'\n\nnew strings.StringifiedJson(child: any)"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringifiedJson.toJSON",
+            "displayName": "toJSON",
+            "id": "@case-contract-testing/test-equivalence-matchers.strings.StringifiedJson.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON))."
+            },
+            "usage": "public toJSON(): any"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringifiedJson",
+        "displayName": "StringifiedJson",
+        "id": "@case-contract-testing/test-equivalence-matchers.strings.StringifiedJson",
+        "docs": {
+          "summary": "Transformation matcher that matches a JSON.stringify()ed version of the given object. For example, if the actual data is the string:.",
+          "remarks": "```\n\"{\\\"foo\\\":2}\"\n```\n\nthen you could match it with:\n\n```\nStringifiedJson({\n  \"foo\": 2\n})\n```\n\nor\n\n```\nStringifiedJson({\n  \"foo\": AnyNumber(2)\n})\n```"
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringPrefix.Initializer",
+          "displayName": "Initializer",
+          "id": "@case-contract-testing/test-equivalence-matchers.strings.StringPrefix.Initializer",
+          "parameters": [
+            {
+              "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringPrefix.Initializer.parameter.prefix",
+              "displayName": "prefix",
+              "id": "@case-contract-testing/test-equivalence-matchers.strings.StringPrefix.Initializer.parameter.prefix",
+              "type": {
+                "formattingPattern": "string"
+              },
+              "docs": {
+                "summary": "- The prefix string.",
+                "remarks": "Must be a string and not a matcher"
+              }
+            },
+            {
+              "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringPrefix.Initializer.parameter.suffix",
+              "displayName": "suffix",
+              "id": "@case-contract-testing/test-equivalence-matchers.strings.StringPrefix.Initializer.parameter.suffix",
+              "type": {
+                "formattingPattern": "any"
+              },
+              "docs": {
+                "summary": "- A string or matcher to match against the suffix."
+              }
+            }
+          ],
+          "usage": "import { strings } from '@case-contract-testing/test-equivalence-matchers'\n\nnew strings.StringPrefix(prefix: string, suffix: any)"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringPrefix.toJSON",
+            "displayName": "toJSON",
+            "id": "@case-contract-testing/test-equivalence-matchers.strings.StringPrefix.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON))."
+            },
+            "usage": "public toJSON(): any"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringPrefix",
+        "displayName": "StringPrefix",
+        "id": "@case-contract-testing/test-equivalence-matchers.strings.StringPrefix",
+        "docs": {
+          "summary": "Matches any string that begins with the given constant string prefix."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringSuffix.Initializer",
+          "displayName": "Initializer",
+          "id": "@case-contract-testing/test-equivalence-matchers.strings.StringSuffix.Initializer",
+          "parameters": [
+            {
+              "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringSuffix.Initializer.parameter.prefix",
+              "displayName": "prefix",
+              "id": "@case-contract-testing/test-equivalence-matchers.strings.StringSuffix.Initializer.parameter.prefix",
+              "type": {
+                "formattingPattern": "any"
+              },
+              "docs": {
+                "summary": "- A string or matcher to match against the prefix.",
+                "remarks": "If you don't mind what the prefix is, pass null / undefined"
+              }
+            },
+            {
+              "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringSuffix.Initializer.parameter.suffix",
+              "displayName": "suffix",
+              "id": "@case-contract-testing/test-equivalence-matchers.strings.StringSuffix.Initializer.parameter.suffix",
+              "type": {
+                "formattingPattern": "string"
+              },
+              "docs": {
+                "summary": "- The suffix for the matched string.",
+                "remarks": "Must be a string and not a matcher"
+              }
+            }
+          ],
+          "usage": "import { strings } from '@case-contract-testing/test-equivalence-matchers'\n\nnew strings.StringSuffix(prefix: any, suffix: string)"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringSuffix.toJSON",
+            "displayName": "toJSON",
+            "id": "@case-contract-testing/test-equivalence-matchers.strings.StringSuffix.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON))."
+            },
+            "usage": "public toJSON(): any"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "@case-contract-testing/test-equivalence-matchers.strings.StringSuffix",
+        "displayName": "StringSuffix",
+        "id": "@case-contract-testing/test-equivalence-matchers.strings.StringSuffix",
+        "docs": {
+          "summary": "Matches any string that ends with the given constant string suffix."
+        }
+      }
+    ],
+    "structs": [],
+    "interfaces": [],
+    "enums": []
+  }
+}
