@@ -1,4 +1,7 @@
-import { AnyMatcherOrData, OBJECT_VALUES_MATCH_TYPE } from '../../../entities';
+import {
+  OBJECT_VALUES_MATCH_TYPE,
+  AnyMatcherOrData,
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**

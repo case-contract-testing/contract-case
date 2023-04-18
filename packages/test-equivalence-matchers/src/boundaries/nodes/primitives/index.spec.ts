@@ -1,10 +1,10 @@
-import { AnyNumber, AnyBoolean, AnyInteger, AnyNull } from '.';
 import {
   BooleanMatcher,
+  NumberMatcher,
   CoreIntegerMatch,
   NullMatcher,
-  NumberMatcher,
-} from '../../../entities';
+} from '@contract-case/case-entities-internal';
+import { AnyNumber, AnyBoolean, AnyInteger, AnyNull } from '.';
 
 describe('primitive matchers', () => {
   it('boolean matcher compiles', () => {

@@ -8,6 +8,7 @@
     "lerna": "^6.6.1"
   },
   "scripts": {
+    "build": "lerna run build",
     "test": "lerna run test"
   }
 }

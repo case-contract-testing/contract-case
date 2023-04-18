@@ -1,4 +1,7 @@
-import { AnyMatcherOrData, SHAPED_ARRAY_MATCHER_TYPE } from '../../../entities';
+import {
+  AnyMatcherOrData,
+  SHAPED_ARRAY_MATCHER_TYPE,
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**

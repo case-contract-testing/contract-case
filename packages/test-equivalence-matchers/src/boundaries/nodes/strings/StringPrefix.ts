@@ -1,4 +1,7 @@
-import { AnyMatcherOrData, STRING_PREFIX_TYPE } from '../../../entities';
+import {
+  STRING_PREFIX_TYPE,
+  AnyMatcherOrData,
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 import { AnyString } from './AnyString';
 

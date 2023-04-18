@@ -1,4 +1,4 @@
-import { CONTEXT_VARIABLE_TYPE } from '../../../entities';
+import { CONTEXT_VARIABLE_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**

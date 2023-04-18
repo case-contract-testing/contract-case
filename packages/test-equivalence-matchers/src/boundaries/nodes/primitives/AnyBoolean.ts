@@ -1,4 +1,4 @@
-import { BOOLEAN_MATCHER_TYPE } from '../../../entities/matchers.types';
+import { BOOLEAN_MATCHER_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcherWithExample } from '../base/AnyMatcherWithExample';
 
 /**

@@ -1,4 +1,7 @@
-import { AnyMatcherOrData, JSON_STRINGIFIED_TYPE } from '../../../entities';
+import {
+  JSON_STRINGIFIED_TYPE,
+  AnyMatcherOrData,
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**

@@ -1,8 +1,8 @@
 import {
-  AnyMatcherOrData,
-  AnyStringMatcher,
   STRING_SUFFIX_TYPE,
-} from '../../../entities';
+  AnyStringMatcher,
+  AnyMatcherOrData,
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 import { AnyString } from './AnyString';
 

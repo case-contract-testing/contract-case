@@ -1,4 +1,7 @@
-import { AnyStringMatcher, coreBasicAuthValue } from '../../../entities';
+import {
+  AnyStringMatcher,
+  coreBasicAuthValue,
+} from '@contract-case/case-entities-internal';
 import { StringPrefix } from '../strings';
 
 /**

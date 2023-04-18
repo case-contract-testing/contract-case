@@ -1,4 +1,4 @@
-import { INTEGER_MATCH_TYPE } from '../../../entities/matchers.types';
+import { INTEGER_MATCH_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcherWithExample } from '../base/AnyMatcherWithExample';
 
 /**

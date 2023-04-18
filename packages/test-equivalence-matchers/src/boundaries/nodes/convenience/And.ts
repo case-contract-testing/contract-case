@@ -1,4 +1,7 @@
-import { AnyMatcherOrData, COMBINE_MATCHERS_TYPE } from '../../../entities';
+import {
+  AnyMatcherOrData,
+  COMBINE_MATCHERS_TYPE,
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**

@@ -1,7 +1,7 @@
 import {
-  CoreObjectKeysMatcher,
   CoreObjectValuesMatch,
-} from '../../../entities';
+  CoreObjectKeysMatcher,
+} from '@contract-case/case-entities-internal';
 import { ObjectEachKeyMatches, ObjectEachValueMatches } from '.';
 
 describe('http matchers', () => {

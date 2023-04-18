@@ -1,4 +1,7 @@
-import { AnyData, HTTP_STATUS_CODE_MATCHER_TYPE } from '../../../../entities';
+import {
+  AnyData,
+  HTTP_STATUS_CODE_MATCHER_TYPE,
+} from '@contract-case/case-entities-internal';
 import { AnyMatcherWithExample } from '../../base';
 import { codesToExample } from './codeToExample';
 

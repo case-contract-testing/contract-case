@@ -1,4 +1,4 @@
-import { AnyMatcherOrData } from '../../../entities';
+import { AnyMatcherOrData } from '@contract-case/case-entities-internal';
 import { CascadingContextMatcher } from '../base';
 
 /**

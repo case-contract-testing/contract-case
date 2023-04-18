@@ -1,4 +1,4 @@
-import { STRING_CONTAINS_TYPE } from '../../../entities';
+import { STRING_CONTAINS_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcherWithExample } from '../base';
 
 /**

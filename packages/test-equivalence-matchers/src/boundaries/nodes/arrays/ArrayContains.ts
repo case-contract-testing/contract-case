@@ -1,4 +1,7 @@
-import { ARRAY_CONTAINS_TYPE, AnyMatcherOrData } from '../../../entities';
+import {
+  ARRAY_CONTAINS_TYPE,
+  AnyMatcherOrData,
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**

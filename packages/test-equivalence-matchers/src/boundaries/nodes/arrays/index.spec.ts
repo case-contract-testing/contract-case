@@ -1,16 +1,16 @@
 import {
+  CoreArrayContainsMatch,
+  CoreArrayEachEntryMatches,
+  CoreArrayLengthMatcher,
+  CoreShapedArrayMatcher,
+} from '@contract-case/case-entities-internal';
+import {
   ArrayContains,
   ArrayEachEntryMatches,
   ArrayEachEntryMatchesWithExample,
   ArrayLength,
   ArrayStartsWith,
 } from '.';
-import {
-  CoreArrayContainsMatch,
-  CoreArrayEachEntryMatches,
-  CoreArrayLengthMatcher,
-  CoreShapedArrayMatcher,
-} from '../../../entities';
 
 describe('array matchers', () => {
   it('array entry with examples matcher compiles', () => {

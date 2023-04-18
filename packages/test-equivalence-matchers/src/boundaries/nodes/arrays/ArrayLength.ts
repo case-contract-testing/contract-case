@@ -1,7 +1,7 @@
 import {
   ARRAY_LENGTH_MATCHER_TYPE,
   ARRAY_LENGTH_PARAMETER_INFINITE,
-} from '../../../entities/matchers.types';
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**

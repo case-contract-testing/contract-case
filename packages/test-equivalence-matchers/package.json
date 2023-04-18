@@ -88,6 +88,12 @@
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1"
   },
+  "dependencies": {
+    "@contract-case/case-entities-internal": "*"
+  },
+  "bundledDependencies": [
+    "@contract-case/case-entities-internal"
+  ],
   "stability": "stable",
   "types": "build/index.d.ts"
 }

@@ -1,4 +1,12 @@
 import {
+  StringMatcher,
+  CoreStringPrefixMatcher,
+  CoreStringSuffixMatcher,
+  CoreStringContainsMatcher,
+  CoreBase64Encoded,
+  CoreJsonStringified,
+} from '@contract-case/case-entities-internal';
+import {
   StringPrefix,
   AnyString,
   StringSuffix,
@@ -6,14 +14,6 @@ import {
   StringContaining,
   StringifiedJson,
 } from '.';
-import {
-  CoreBase64Encoded,
-  CoreJsonStringified,
-  CoreStringContainsMatcher,
-  CoreStringPrefixMatcher,
-  CoreStringSuffixMatcher,
-  StringMatcher,
-} from '../../../entities';
 
 describe('primitive matchers', () => {
   it('any string matcher compiles', () => {

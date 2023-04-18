@@ -42,7 +42,7 @@ Next:
   - [x] core calls a host callback that calls back to core
   - [x] Arbitrary JSON
   - [x] Arbitrary JSON with Case Matchers
-- [ ] Spike monorepo
+- [x] Spike monorepo
 - [ ] Flatten types at the boundary
   - [x] Classes for matchers
   - [ ] Classes for mocks

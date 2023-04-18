@@ -1,7 +1,7 @@
 import {
   AnyMatcherOrData,
   CASCADING_CONTEXT_MATCHER_TYPE,
-} from '../../../entities';
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from './AnyMatcher';
 
 /**

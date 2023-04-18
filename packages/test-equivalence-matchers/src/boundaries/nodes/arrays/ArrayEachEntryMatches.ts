@@ -1,7 +1,7 @@
 import {
   ARRAY_EACH_ENTRY_MATCHES_TYPE,
   AnyMatcherOrData,
-} from '../../../entities';
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**

@@ -1,8 +1,8 @@
 import {
-  CoreHttpStatusCodeMatcher,
   CoreStringPrefixMatcher,
+  CoreHttpStatusCodeMatcher,
   CoreUrlEncodedStringMatcher,
-} from '../../../entities';
+} from '@contract-case/case-entities-internal';
 import {
   BasicAuthHeaderValue,
   BearerTokenHeaderValue,

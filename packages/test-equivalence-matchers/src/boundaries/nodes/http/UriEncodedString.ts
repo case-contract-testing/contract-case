@@ -1,4 +1,7 @@
-import { AnyStringMatcher, URL_ENCODED_STRING_TYPE } from '../../../entities';
+import {
+  URL_ENCODED_STRING_TYPE,
+  AnyStringMatcher,
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**

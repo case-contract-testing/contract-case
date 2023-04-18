@@ -1,4 +1,7 @@
-import { AnyMatcherOrData, BASE64_ENCODED_TYPE } from '../../../entities';
+import {
+  BASE64_ENCODED_TYPE,
+  AnyMatcherOrData,
+} from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**

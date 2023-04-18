@@ -1,5 +1,5 @@
+import { CASCADING_CONTEXT_MATCHER_TYPE } from '@contract-case/case-entities-internal';
 import { ExactlyLike, ShapedLike } from '.';
-import { CASCADING_CONTEXT_MATCHER_TYPE } from '../../../entities';
 import { AnyString } from '../strings';
 
 describe('modifying matchers', () => {

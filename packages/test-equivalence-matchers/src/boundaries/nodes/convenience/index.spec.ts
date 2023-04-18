@@ -1,4 +1,11 @@
 import {
+  CASCADING_CONTEXT_MATCHER_TYPE,
+  CONTEXT_VARIABLE_TYPE,
+  CoreAndCombinationMatcher,
+  CoreContextVariableMatcher,
+  LookupableMatcher,
+} from '@contract-case/case-entities-internal';
+import {
   And,
   ChangeLogLevel,
   NamedMatch,
@@ -6,13 +13,6 @@ import {
   StateVariable,
   WithExample,
 } from '.';
-import {
-  CASCADING_CONTEXT_MATCHER_TYPE,
-  CONTEXT_VARIABLE_TYPE,
-  CoreAndCombinationMatcher,
-  CoreContextVariableMatcher,
-  LookupableMatcher,
-} from '../../../entities';
 import { AnyString } from '../strings';
 
 describe('convenience matchers', () => {

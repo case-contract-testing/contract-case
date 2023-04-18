@@ -1,11 +1,7 @@
-# `@contract-case/test-equivalence-matchers`
+# Case-Boundary-Internal
 
-> TODO: description
+This is the [JSii](https://aws.github.io/jsii/user-guides/lib-author/toolchain/jsii/) layer that is the exported interface for ContractCase.
 
-## Usage
+Don't depend on this directly unless you are writing a custom wrapper for ContractCase.
 
-```
-const testEquivalenceMatchers = require('@contract-case/test-equivalence-matchers');
-
-// TODO: DEMONSTRATE API
-```
+[Start here instead](https://case.contract-testing.io/docs/intro)
