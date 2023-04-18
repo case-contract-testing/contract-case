@@ -20,14 +20,14 @@ const strip: StripMatcherFn<typeof OBJECT_VALUES_MATCH_TYPE> = (
   matcher: CoreObjectValuesMatch,
   matchContext: MatchContext
 ): AnyData =>
-  'case:matcher:example' in matcher
+  '_case:matcher:example' in matcher
     ? matchContext.descendAndStrip(
-        matcher['case:matcher:example'],
+        matcher['_case:matcher:example'],
         addLocation(`:objectEachValueLike[example]`, matchContext)
       )
     : {
         someKey: matchContext.descendAndStrip(
-          matcher['case:matcher:matcher'],
+          matcher['_case:matcher:matcher'],
           addLocation(`:objectEachValueLike[matcher]`, matchContext)
         ),
       };
@@ -54,7 +54,7 @@ const check: CheckMatchFn<typeof OBJECT_VALUES_MATCH_TYPE> = async (
                   ([actualKey, actualValue]): Promise<MatchResult> =>
                     Promise.resolve(
                       matchContext.descendAndCheck(
-                        matcher['case:matcher:matcher'],
+                        matcher['_case:matcher:matcher'],
                         addLocation(actualKey, matchContext),
                         actualValue
                       )
@@ -73,7 +73,7 @@ export const ObjectEachValueMatches: MatcherExecutor<
 > = {
   describe: (matcher, context) =>
     `an object where each value is ${context.descendAndDescribe(
-      matcher['case:matcher:matcher'],
+      matcher['_case:matcher:matcher'],
       addLocation(':eachValueLike', context)
     )}`,
   check,

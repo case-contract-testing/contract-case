@@ -40,8 +40,8 @@ export class ContractDownloader {
           this.context.logger.debug(`Writing contract '${c.name}'`);
           return this.writeContract(c.contractData, {
             ...this.context,
-            'case:currentRun:context:overwriteFile': true,
-            'case:currentRun:context:testRunId':
+            '_case:currentRun:context:overwriteFile': true,
+            '_case:currentRun:context:testRunId':
               c.contractData._links['pb:pact-version'].name,
           });
         })

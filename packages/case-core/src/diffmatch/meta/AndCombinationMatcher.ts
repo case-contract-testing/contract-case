@@ -16,7 +16,7 @@ const strip: StripMatcherFn<typeof COMBINE_MATCHERS_TYPE> = (
   matcher: CoreAndCombinationMatcher,
   matchContext: MatchContext
 ): AnyData => {
-  const firstStrippedResult = matcher['case:matcher:children']
+  const firstStrippedResult = matcher['_case:matcher:children']
     .map((additionalMatcher, index) => {
       try {
         return matchContext.descendAndStrip(
@@ -28,7 +28,7 @@ const strip: StripMatcherFn<typeof COMBINE_MATCHERS_TYPE> = (
           matchContext.logger.maintainerDebug(
             `AndCombinationMatcher is ignoring StripUnsupportedError from ${
               isCaseNode(additionalMatcher)
-                ? additionalMatcher['case:matcher:type']
+                ? additionalMatcher['_case:matcher:type']
                 : additionalMatcher
             }`
           );
@@ -58,7 +58,7 @@ const check: CheckMatchFn<typeof COMBINE_MATCHERS_TYPE> = async (
 ): Promise<MatchResult> =>
   (
     await Promise.all(
-      matcher['case:matcher:children']
+      matcher['_case:matcher:children']
         .map((expectedChild, index) =>
           matchContext.descendAndCheck(
             expectedChild,
@@ -74,7 +74,7 @@ export const AndCombinationMatcher: MatcherExecutor<
   typeof COMBINE_MATCHERS_TYPE
 > = {
   describe: (matcher, matchContext) =>
-    matcher['case:matcher:children']
+    matcher['_case:matcher:children']
       .map((child, index) =>
         matchContext.descendAndDescribe(
           child,

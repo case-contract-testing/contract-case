@@ -9,12 +9,12 @@ export const exampleToNames = (
   const stateNames = states.map((state) => state.stateName).join(' and ');
 
   const requestName =
-    'case:matcher:uniqueName' in mock.request
-      ? mock.request['case:matcher:uniqueName']
+    '_case:matcher:uniqueName' in mock.request
+      ? mock.request['_case:matcher:uniqueName']
       : `Mock ${index}'s request`;
   const responseName =
-    'case:matcher:uniqueName' in mock.response
-      ? mock.response['case:matcher:uniqueName']
+    '_case:matcher:uniqueName' in mock.response
+      ? mock.response['_case:matcher:uniqueName']
       : `Mock ${index}'s response`;
 
   return {

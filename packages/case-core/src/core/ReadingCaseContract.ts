@@ -74,9 +74,9 @@ export class ReadingCaseContract extends BaseCaseContract {
             { stateHandlers, names, triggers },
             this,
             applyNodeToContext(example.mock, this.initialContext, {
-              'case:currentRun:context:testName': `${index}`,
-              'case:currentRun:context:contractMode': 'read',
-              'case:currentRun:context:location': [
+              '_case:currentRun:context:testName': `${index}`,
+              '_case:currentRun:context:contractMode': 'read',
+              '_case:currentRun:context:location': [
                 'verification',
                 `mock[${index}]`,
               ],
@@ -118,7 +118,7 @@ export class ReadingCaseContract extends BaseCaseContract {
       this.initialContext.logger.maintainerDebug('Verification successful');
     }
 
-    if (!this.initialContext['case:currentRun:context:brokerCiAccessToken']) {
+    if (!this.initialContext['_case:currentRun:context:brokerCiAccessToken']) {
       this.initialContext.logger.warn(
         'Not publishing verification results, as there is no brokerCiAccessToken set'
       );

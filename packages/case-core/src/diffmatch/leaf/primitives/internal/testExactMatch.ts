@@ -15,14 +15,14 @@ export const testExactMatch = (
   actual: unknown
 ): Array<CaseError> =>
   errorWhen(
-    actual !== matcher['case:matcher:example'],
+    actual !== matcher['_case:matcher:example'],
     matchingError(
       matcher,
       `${actualToString(
         actual
       )} (${typeof actual}) is not exactly equal to ${actualToString(
-        matcher['case:matcher:example']
-      )} (${typeof matcher['case:matcher:example']})`,
+        matcher['_case:matcher:example']
+      )} (${typeof matcher['_case:matcher:example']})`,
       actual,
       matchContext
     )

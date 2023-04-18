@@ -67,17 +67,17 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
   context: MatchContext
 ): Promise<unknown> => {
   context.logger.maintainerDebug(
-    `In this mock (${mock['case:mock:type']}), in '${
-      context['case:currentRun:context:contractMode']
+    `In this mock (${mock['_case:mock:type']}), in '${
+      context['_case:currentRun:context:contractMode']
     }' mode, the triggers are ${
-      mock['case:run:context:setup'][
-        context['case:currentRun:context:contractMode']
+      mock['_case:run:context:setup'][
+        context['_case:currentRun:context:contractMode']
       ].triggers
     }`
   );
   if (
-    mock['case:run:context:setup'][
-      context['case:currentRun:context:contractMode']
+    mock['_case:run:context:setup'][
+      context['_case:currentRun:context:contractMode']
     ].triggers === 'generated'
   ) {
     context.logger.maintainerDebug(

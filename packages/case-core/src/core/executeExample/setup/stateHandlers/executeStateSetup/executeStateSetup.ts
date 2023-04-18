@@ -63,11 +63,11 @@ export const executeStateSetup = (
   Promise.resolve(addLocation(`:stateSetup`, parentContext))
     .then((context) => {
       const variableSource =
-        example.mock['case:run:context:setup'][
-          context['case:currentRun:context:contractMode']
+        example.mock['_case:run:context:setup'][
+          context['_case:currentRun:context:contractMode']
         ].stateVariables;
       context.logger.maintainerDebug(
-        `Executing state setup handlers in '${context['case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`
+        `Executing state setup handlers in '${context['_case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`
       );
       if (variableSource === 'default') {
         return Promise.resolve(
@@ -76,7 +76,7 @@ export const executeStateSetup = (
               context.logger.debug(
                 `Setting up state '${state.stateName}' with default values`
               );
-              if (state['case:state:type'] === SETUP_VARIABLE_STATE) {
+              if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
                 return Object.entries(state.variables).map(([key, value]) =>
                   context.addDefaultVariable(key, state.stateName, value)
                 );
@@ -130,7 +130,7 @@ export const executeStateSetup = (
     })
     .then((variables) => ({
       ...parentContext,
-      'case:currentRun:context:variables': variables.reduce(
+      '_case:currentRun:context:variables': variables.reduce(
         (acc, [name, value]) => ({
           ...acc,
           [name]: parentContext.descendAndStrip(

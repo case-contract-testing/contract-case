@@ -25,7 +25,7 @@ describe('string matchers', () => {
 
   describe('json stringified matcher', () => {
     const matcher = stringifiedJson({
-      contractType: 'case::contract',
+      contractType: '_case::contract',
       description: {
         consumerName: anyString('Case'),
         providerName: anyString('Pact Broker'),
@@ -64,7 +64,7 @@ describe('string matchers', () => {
         },
       };
 
-      it('fails onmatches an exact object', async () => {
+      it('matches an exact object', async () => {
         await expect(
           contract.checkMatch(matcher, {
             body: {

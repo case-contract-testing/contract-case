@@ -19,7 +19,7 @@ const check = (
 ): Array<CaseError> =>
   combineResults(
     errorWhen(
-      matchContext['case:context:matchBy'] === 'exact',
+      matchContext['_case:context:matchBy'] === 'exact',
       testExactMatch(matcher, matchContext, actual)
     ),
     errorWhen(
@@ -35,9 +35,9 @@ const check = (
 
 export const StringMatcher: MatcherExecutor<typeof STRING_MATCHER_TYPE> = {
   describe: (matcher, matchContext) =>
-    matchContext['case:context:matchBy'] === 'exact'
-      ? `"${matcher['case:matcher:example']}"`
+    matchContext['_case:context:matchBy'] === 'exact'
+      ? `"${matcher['_case:matcher:example']}"`
       : '<any string>',
   check,
-  strip: (matcher: CoreStringMatcher) => matcher['case:matcher:example'],
+  strip: (matcher: CoreStringMatcher) => matcher['_case:matcher:example'],
 };

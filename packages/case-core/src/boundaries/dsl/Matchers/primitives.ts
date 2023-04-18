@@ -24,7 +24,7 @@ import type {
  */
 export const anyNumber = (example = 1.1): NumberMatcher => ({
   ...coreNumberMatcher(example),
-  'case:context:matchBy': 'type',
+  '_case:context:matchBy': 'type',
 });
 
 /**
@@ -42,7 +42,7 @@ export const anyInteger = (example = 1): CoreAndCombinationMatcher =>
  */
 export const anyString = (example = 'someString'): StringMatcher => ({
   ...coreStringMatcher(example),
-  'case:context:matchBy': 'type',
+  '_case:context:matchBy': 'type',
 });
 
 /**
@@ -51,10 +51,10 @@ export const anyString = (example = 'someString'): StringMatcher => ({
  * @param example - An example boolean
  */
 export const anyBoolean = (example = true): BooleanMatcher => ({
-  'case:matcher:type': BOOLEAN_MATCHER_TYPE,
-  'case:matcher:example': example,
-  'case:context:matchBy': 'type',
-  'case:matcher:resolvesTo': 'boolean',
+  '_case:matcher:type': BOOLEAN_MATCHER_TYPE,
+  '_case:matcher:example': example,
+  '_case:context:matchBy': 'type',
+  '_case:matcher:resolvesTo': 'boolean',
 });
 
 /**
@@ -65,8 +65,8 @@ export const anyBoolean = (example = true): BooleanMatcher => ({
  * @param example - An example null
  */
 export const anyNull = (example = null): NullMatcher => ({
-  'case:matcher:type': NULL_MATCHER_TYPE,
-  'case:matcher:example': example,
-  'case:context:matchBy': 'type',
-  'case:matcher:resolvesTo': 'null',
+  '_case:matcher:type': NULL_MATCHER_TYPE,
+  '_case:matcher:example': example,
+  '_case:context:matchBy': 'type',
+  '_case:matcher:resolvesTo': 'null',
 });

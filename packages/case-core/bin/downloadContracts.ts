@@ -21,8 +21,8 @@ new ContractDownloader({
     },
     (e) => {
       makeLogger({
-        'case:currentRun:context:logLevel': logLevel,
-        'case:currentRun:context:location': ['CLI'],
+        '_case:currentRun:context:logLevel': logLevel,
+        '_case:currentRun:context:location': ['CLI'],
       }).error(e.message);
       process.exit(1);
     }

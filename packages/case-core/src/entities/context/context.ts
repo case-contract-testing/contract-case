@@ -20,17 +20,17 @@ import type {
 import { shouldLog } from '../../entities/logger/shouldLog';
 
 /**
- * `case:currentRun:context:*` is not clobberable by child matchers
- *  (with the exception of case:currentRun:context:logLevel).
- * `case:context:*` is clobberable by child matchers
+ * `_case:currentRun:context:*` is not clobberable by child matchers
+ *  (with the exception of _case:currentRun:context:logLevel).
+ * `_case:context:*` is clobberable by child matchers
  */
 const DEFAULT_CONTEXT: DefaultContext = {
-  'case:currentRun:context:location': [],
-  'case:currentRun:context:contractMode': 'write',
-  'case:currentRun:context:logLevel': 'warn',
-  'case:currentRun:context:printResults': true,
-  'case:context:matchBy': 'exact',
-  'case:context:serialisableTo': 'json',
+  '_case:currentRun:context:location': [],
+  '_case:currentRun:context:contractMode': 'write',
+  '_case:currentRun:context:logLevel': 'warn',
+  '_case:currentRun:context:printResults': true,
+  '_case:context:matchBy': 'exact',
+  '_case:context:serialisableTo': 'json',
 };
 
 const contextProperties = (
@@ -39,7 +39,8 @@ const contextProperties = (
   Object.entries(caseNode)
     .filter(
       ([k]) =>
-        k.startsWith('case:context') || k === 'case:currentRun:context:logLevel'
+        k.startsWith('_case:context') ||
+        k === '_case:currentRun:context:logLevel'
     )
     .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {} as MatchContext);
 
@@ -72,8 +73,8 @@ const combineWithRoot = (
       ? foldIntoContext(caseNodeOrData, context)
       : context),
     ...runConfig,
-    'case:currentRun:context:location': [
-      ...context['case:currentRun:context:location'],
+    '_case:currentRun:context:location': [
+      ...context['_case:currentRun:context:location'],
       `Example[${exampleId}]`,
     ],
   };
@@ -90,10 +91,10 @@ export const constructDataContext = (
   const context = {
     makeLogger,
     ...DEFAULT_CONTEXT,
-    'case:currentRun:context:defaultConfig': defaults,
-    'case:currentRun:context:location': [],
-    'case:currentRun:context:testName': 'OUTSIDE_TESTS' as const,
-    'case:currentRun:context:variables': {},
+    '_case:currentRun:context:defaultConfig': defaults,
+    '_case:currentRun:context:location': [],
+    '_case:currentRun:context:testName': 'OUTSIDE_TESTS' as const,
+    '_case:currentRun:context:variables': {},
     ...runConfig,
   };
 
@@ -140,13 +141,13 @@ export const addLocation = (
 ): MatchContext =>
   updateFunctions({
     ...context,
-    'case:currentRun:context:location': context[
-      'case:currentRun:context:location'
+    '_case:currentRun:context:location': context[
+      '_case:currentRun:context:location'
     ].concat([location]),
   });
 
 export const locationString = (matchContext: LogLevelContext): string =>
-  matchContext['case:currentRun:context:location']
+  matchContext['_case:currentRun:context:location']
     .filter(
       (locationItem) =>
         (locationItem.startsWith(':') &&

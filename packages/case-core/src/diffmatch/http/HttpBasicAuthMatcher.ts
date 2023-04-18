@@ -72,12 +72,12 @@ const check = async (
 
   return combineResultPromises(
     matchContext.descendAndCheck(
-      matcher['case:matcher:username'],
+      matcher['_case:matcher:username'],
       addLocation('username', matchContext),
       actualUsername
     ),
     matchContext.descendAndCheck(
-      matcher['case:matcher:password'],
+      matcher['_case:matcher:password'],
       addLocation('password', matchContext),
       actualPassword
     )
@@ -89,11 +89,11 @@ const strip = (
   matchContext: MatchContext
 ): AnyData => {
   const username = matchContext.descendAndStrip(
-    matcher['case:matcher:username'],
+    matcher['_case:matcher:username'],
     matchContext
   );
   const password = matchContext.descendAndStrip(
-    matcher['case:matcher:password'],
+    matcher['_case:matcher:password'],
     matchContext
   );
   if (typeof username !== 'string') {
@@ -116,10 +116,10 @@ export const HttpBasicAuthMatcher: MatcherExecutor<
 > = {
   describe: (matcher, matchContext) =>
     `http basic auth with username='${matchContext.descendAndDescribe(
-      matcher['case:matcher:username'],
+      matcher['_case:matcher:username'],
       addLocation('username', matchContext)
     )}' and password=${matchContext.descendAndDescribe(
-      matcher['case:matcher:password'],
+      matcher['_case:matcher:password'],
       addLocation('password', matchContext)
     )}`,
   check,

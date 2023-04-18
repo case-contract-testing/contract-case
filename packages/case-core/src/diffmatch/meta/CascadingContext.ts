@@ -13,7 +13,7 @@ const check = (
   actual: unknown
 ): Promise<MatchResult> | MatchResult =>
   matchContext.descendAndCheck(
-    matcher['case:matcher:child'],
+    matcher['_case:matcher:child'],
     matchContext,
     actual
   );
@@ -22,14 +22,14 @@ const strip = (
   matcher: CoreCascadingMatcher,
   matchContext: MatchContext
 ): AnyData =>
-  matchContext.descendAndStrip(matcher['case:matcher:child'], matchContext);
+  matchContext.descendAndStrip(matcher['_case:matcher:child'], matchContext);
 
 export const CascadingContext: MatcherExecutor<
   typeof CASCADING_CONTEXT_MATCHER_TYPE
 > = {
   describe: (matcher, matchContext) =>
     matchContext.descendAndDescribe(
-      matcher['case:matcher:child'],
+      matcher['_case:matcher:child'],
       matchContext
     ),
   check,

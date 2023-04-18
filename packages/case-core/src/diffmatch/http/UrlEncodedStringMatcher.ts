@@ -21,7 +21,7 @@ const check = (
 ): Promise<MatchResult> | MatchResult =>
   typeof actual === 'string'
     ? matchContext.descendAndCheck(
-        matcher['case:matcher:child'],
+        matcher['_case:matcher:child'],
         addLocation(':urlEncoded', matchContext),
         decodeURIComponent(actual)
       )
@@ -41,7 +41,7 @@ const strip = (
   matchContext: MatchContext
 ): AnyData => {
   const result = matchContext.descendAndStrip(
-    matcher['case:matcher:child'],
+    matcher['_case:matcher:child'],
     addLocation(':urlEncoded', matchContext)
   );
   if (typeof result === 'string') return encodeURIComponent(result);
@@ -55,7 +55,7 @@ export const UrlEncodedStringMatcher: MatcherExecutor<
 > = {
   describe: (matcher, matchContext) =>
     `uriEncoded string '${matchContext.descendAndDescribe(
-      matcher['case:matcher:child'],
+      matcher['_case:matcher:child'],
       addLocation(':urlEncoded', matchContext)
     )}'`,
   check,

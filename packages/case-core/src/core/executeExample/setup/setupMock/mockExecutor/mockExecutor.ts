@@ -16,21 +16,21 @@ const inferMock = <T extends AnyMockDescriptorType>(
   context.logger.maintainerDebug('Raw mockDescriptor is', mock);
 
   const invertedType =
-    mock['case:run:context:setup'][
-      context['case:currentRun:context:contractMode']
+    mock['_case:run:context:setup'][
+      context['_case:currentRun:context:contractMode']
     ].type;
 
-  if (invertedType !== mock['case:mock:type']) {
+  if (invertedType !== mock['_case:mock:type']) {
     context.logger.maintainerDebug(
-      `Inverting mock from '${mock['case:mock:type']}' to '${invertedType}'`
+      `Inverting mock from '${mock['_case:mock:type']}' to '${invertedType}'`
     );
     return {
       ...mock,
-      'case:mock:type': invertedType,
+      '_case:mock:type': invertedType,
     };
   }
   context.logger.maintainerDebug(
-    `Mock type left at '${mock['case:mock:type']}'`
+    `Mock type left at '${mock['_case:mock:type']}'`
   );
   return mock;
 };
@@ -40,7 +40,7 @@ const executeMock = <T extends AnyMockDescriptorType>(
   MockSetup: MockSetupFns,
   context: MatchContext
 ) => {
-  const mockType: T = mock['case:mock:type'];
+  const mockType: T = mock['_case:mock:type'];
   if (!mockType) {
     throw new CaseCoreError(
       `Missing type for mock setup. You must pass a MockDescriptor to setup`,
@@ -52,7 +52,7 @@ const executeMock = <T extends AnyMockDescriptorType>(
   if (!executor) {
     throw new CaseCoreError(`Missing setup for mock type '${mockType}'`);
   }
-  context.logger.debug(`Initialising a ${mock['case:mock:type']}`);
+  context.logger.debug(`Initialising a ${mock['_case:mock:type']}`);
   return executor(mock, addLocation(mockType, context));
 };
 

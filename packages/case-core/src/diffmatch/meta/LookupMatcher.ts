@@ -12,12 +12,12 @@ import type {
 
 const getMatcher = (matcher: LookupableMatcher, matchContext: MatchContext) => {
   if (
-    'case:matcher:child' in matcher &&
-    matcher['case:matcher:child'] !== undefined
+    '_case:matcher:child' in matcher &&
+    matcher['_case:matcher:child'] !== undefined
   ) {
     matchContext.saveLookupableMatcher(matcher);
   }
-  return matchContext.lookupMatcher(matcher['case:matcher:uniqueName']);
+  return matchContext.lookupMatcher(matcher['_case:matcher:uniqueName']);
 };
 
 const strip: StripMatcherFn<typeof LOOKUP_MATCHER_TYPE> = (
@@ -26,7 +26,7 @@ const strip: StripMatcherFn<typeof LOOKUP_MATCHER_TYPE> = (
 ): AnyData =>
   matchContext.descendAndStrip(
     getMatcher(matcher, matchContext),
-    addLocation(`:lookup[${matcher['case:matcher:uniqueName']}]`, matchContext)
+    addLocation(`:lookup[${matcher['_case:matcher:uniqueName']}]`, matchContext)
   );
 
 const check: CheckMatchFn<typeof LOOKUP_MATCHER_TYPE> = async (
@@ -36,7 +36,10 @@ const check: CheckMatchFn<typeof LOOKUP_MATCHER_TYPE> = async (
 ): Promise<MatchResult> =>
   matchContext.descendAndCheck(
     getMatcher(matcher, matchContext),
-    addLocation(`:lookup[${matcher['case:matcher:uniqueName']}]`, matchContext),
+    addLocation(
+      `:lookup[${matcher['_case:matcher:uniqueName']}]`,
+      matchContext
+    ),
     actual
   );
 
@@ -45,7 +48,7 @@ export const LookupMatcher: MatcherExecutor<typeof LOOKUP_MATCHER_TYPE> = {
     matchContext.descendAndDescribe(
       getMatcher(matcher, matchContext),
       addLocation(
-        `:lookup[${matcher['case:matcher:uniqueName']}]`,
+        `:lookup[${matcher['_case:matcher:uniqueName']}]`,
         matchContext
       )
     ),

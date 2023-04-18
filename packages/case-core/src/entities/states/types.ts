@@ -1,7 +1,7 @@
 import type { AnyCaseNodeOrData } from '../../entities/types';
 
-export const SETUP_NAMED_STATE = 'case:NamedState' as const;
-export const SETUP_VARIABLE_STATE = 'case:StateWithVariables' as const;
+export const SETUP_NAMED_STATE = '_case:NamedState' as const;
+export const SETUP_VARIABLE_STATE = '_case:StateWithVariables' as const;
 
 export type NameOnlyState = HasTypeForState<typeof SETUP_NAMED_STATE> & {
   stateName: string;
@@ -21,7 +21,7 @@ export type AnyStateType =
 export type AnyState = NameOnlyState | StateWithVariables;
 
 export type HasTypeForState<T extends AnyStateType> = {
-  'case:state:type': T;
+  '_case:state:type': T;
 };
 
 export type PromiseOrRaw<T> = Promise<T> | T;

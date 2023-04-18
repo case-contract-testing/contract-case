@@ -20,14 +20,14 @@ const strip: StripMatcherFn<typeof OBJECT_KEYS_MATCH_TYPE> = (
   matcher: CoreObjectKeysMatcher,
   matchContext: MatchContext
 ): AnyData =>
-  'case:matcher:exampleKey' in matcher
+  '_case:matcher:exampleKey' in matcher
     ? matchContext.descendAndStrip(
-        matcher['case:matcher:exampleKey'],
+        matcher['_case:matcher:exampleKey'],
         addLocation(`:objectEachKeyLike[example]`, matchContext)
       )
     : {
         [`${matchContext.descendAndStrip(
-          matcher['case:matcher:matcher'],
+          matcher['_case:matcher:matcher'],
           addLocation(`:objectEachKeyLike[matcher]`, matchContext)
         )}`]: 'someValue',
       };
@@ -54,7 +54,7 @@ const check: CheckMatchFn<typeof OBJECT_KEYS_MATCH_TYPE> = async (
                   (actualKey): Promise<MatchResult> =>
                     Promise.resolve(
                       matchContext.descendAndCheck(
-                        matcher['case:matcher:matcher'],
+                        matcher['_case:matcher:matcher'],
                         addLocation(actualKey, matchContext),
                         actualKey
                       )
@@ -73,7 +73,7 @@ export const ObjectEachKeyMatches: MatcherExecutor<
 > = {
   describe: (matcher, context) =>
     `an object where each key is ${context.descendAndDescribe(
-      matcher['case:matcher:matcher'],
+      matcher['_case:matcher:matcher'],
       addLocation(':eachKeyLike', context)
     )}`,
   check,

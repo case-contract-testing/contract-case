@@ -1,7 +1,7 @@
 import type { DataContext } from '../../entities/context/types';
 
 const locationString = (matchContext: DataContext) =>
-  `(at ${matchContext['case:currentRun:context:location'].join('.')})`;
+  `(at ${matchContext['_case:currentRun:context:location'].join('.')})`;
 
 export class CaseCoreError extends Error {
   constructor(message: string, context?: DataContext) {

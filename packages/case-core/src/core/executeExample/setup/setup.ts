@@ -35,7 +35,7 @@ export const setupExample = <T extends AnyMockDescriptorType>(
 ): Promise<Assertable<T>> => {
   const exampleName = exampleToNames(
     example,
-    parentContext['case:currentRun:context:testName']
+    parentContext['_case:currentRun:context:testName']
   );
 
   parentContext.logger.debug(

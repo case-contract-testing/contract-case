@@ -35,9 +35,9 @@ export const makeBrokerApi: MakeBrokerApi = (
   configContext: DataContext
 ): BrokerApi => {
   const authToken =
-    configContext['case:currentRun:context:brokerCiAccessToken'];
-  const baseUrl = configContext['case:currentRun:context:brokerBaseUrl'];
-  const basicAuth = configContext['case:currentRun:context:brokerBasicAuth'];
+    configContext['_case:currentRun:context:brokerCiAccessToken'];
+  const baseUrl = configContext['_case:currentRun:context:brokerBaseUrl'];
+  const basicAuth = configContext['_case:currentRun:context:brokerBasicAuth'];
 
   if (baseUrl === undefined || baseUrl === '') {
     throw new CaseConfigurationError(
@@ -131,7 +131,7 @@ export const makeBrokerApi: MakeBrokerApi = (
             {
               consumerName: contract.description.consumerName,
               providerName: contract.description.providerName,
-              specification: 'pact', // TODO: Replace this with 'case::contract' when the broker supports it
+              specification: 'pact', // TODO: Replace this with '_case::contract' when the broker supports it
               contentType: 'application/json',
               content: Buffer.from(JSON.stringify(contract)).toString('base64'),
             },

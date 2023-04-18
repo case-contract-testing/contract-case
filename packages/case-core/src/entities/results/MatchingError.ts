@@ -39,13 +39,13 @@ export const matchingError = (
   message,
   expected:
     expected ||
-    ('case:matcher:example' in matcher
-      ? matcher['case:matcher:example']
+    ('_case:matcher:example' in matcher
+      ? matcher['_case:matcher:example']
       : context.descendAndStrip(matcher, context)),
   actual,
-  location: context['case:currentRun:context:location'],
+  location: context['_case:currentRun:context:location'],
   toString: () =>
-    `${locationString(context)}: ${message} (${matcher['case:matcher:type']})`,
+    `${locationString(context)}: ${message} (${matcher['_case:matcher:type']})`,
 });
 
 /**
@@ -72,7 +72,7 @@ export const failedExpectationError = (
   expected,
   actual,
   code,
-  location: context['case:currentRun:context:location'],
+  location: context['_case:currentRun:context:location'],
   toString: () => `${locationString(context)}: ${message}`,
 });
 
@@ -91,7 +91,7 @@ export const executionError = (
   type: ERROR_TYPE_EXECUTION,
   message: error.message,
   code: error.name,
-  location: context['case:currentRun:context:location'],
+  location: context['_case:currentRun:context:location'],
 });
 
 /**
@@ -110,5 +110,5 @@ export const verificationError = (
   message: error.message,
   code: error.name,
   error,
-  location: context['case:currentRun:context:location'],
+  location: context['_case:currentRun:context:location'],
 });

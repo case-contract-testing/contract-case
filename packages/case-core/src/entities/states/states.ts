@@ -15,20 +15,20 @@ export const state = (
 ): NameOnlyState | StateWithVariables =>
   variables
     ? {
-        'case:state:type': SETUP_VARIABLE_STATE,
+        '_case:state:type': SETUP_VARIABLE_STATE,
         stateName: name,
         variables: Object.entries(variables)
           .map(([key, value]) => ({
             [key]: {
               // TODO: Move this somethingLike from hard coded to a function that is DRYed
-              'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-              'case:matcher:child': value,
-              'case:context:matchBy': 'type',
+              '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+              '_case:matcher:child': value,
+              '_case:context:matchBy': 'type',
             },
           }))
           .reduce((acc, curr) => ({ ...acc, ...curr }), {}),
       }
     : {
-        'case:state:type': SETUP_NAMED_STATE,
+        '_case:state:type': SETUP_NAMED_STATE,
         stateName: name,
       };

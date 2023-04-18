@@ -7,8 +7,8 @@ describe('location string function', () => {
       ({
         // This is a little dirty, as the test really shouldn't know the structure
         // This should be fixed later
-        'case:currentRun:context:logLevel': 'maintainerDebug',
-        'case:currentRun:context:location': location,
+        '_case:currentRun:context:logLevel': 'maintainerDebug',
+        '_case:currentRun:context:location': location,
       } as DataContext);
     it.each([
       [[], ''],
@@ -37,8 +37,8 @@ describe('location string function', () => {
       ({
         // This is a little dirty, as the test really shouldn't know the structure
         // This should be fixed later
-        'case:currentRun:context:logLevel': 'debug',
-        'case:currentRun:context:location': location,
+        '_case:currentRun:context:logLevel': 'debug',
+        '_case:currentRun:context:location': location,
       } as DataContext);
     it.each([
       [[], ''],

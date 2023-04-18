@@ -25,8 +25,8 @@ export class BrokerService {
     context: MatchContext
   ): Promise<void> {
     if (
-      context['case:currentRun:context:publish'] === false ||
-      context['case:currentRun:context:publish'] === 'NEVER'
+      context['_case:currentRun:context:publish'] === false ||
+      context['_case:currentRun:context:publish'] === 'NEVER'
     ) {
       context.logger.debug(
         `Not publishing verification results for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'NEVER' is set (or false)`
@@ -34,7 +34,7 @@ export class BrokerService {
       return Promise.resolve();
     }
     if (
-      context['case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
+      context['_case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
       !this.environment.isCi()
     ) {
       context.logger.debug(
@@ -43,9 +43,9 @@ export class BrokerService {
       return Promise.resolve();
     }
     if (
-      context['case:currentRun:context:publish'] === true ||
-      context['case:currentRun:context:publish'] === 'ALWAYS' ||
-      (context['case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
+      context['_case:currentRun:context:publish'] === true ||
+      context['_case:currentRun:context:publish'] === 'ALWAYS' ||
+      (context['_case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
         this.environment.isCi())
     ) {
       return this.broker
@@ -58,7 +58,7 @@ export class BrokerService {
         )
         .then(() => {});
     }
-    const message = `Configuration property 'publish' was set to the unexpected value '${context['case:currentRun:context:publish']}'`;
+    const message = `Configuration property 'publish' was set to the unexpected value '${context['_case:currentRun:context:publish']}'`;
     context.logger.error(message);
 
     return Promise.reject(new CaseConfigurationError(message));
@@ -69,8 +69,8 @@ export class BrokerService {
     context: MatchContext
   ): Promise<void> {
     if (
-      context['case:currentRun:context:publish'] === false ||
-      context['case:currentRun:context:publish'] === 'NEVER'
+      context['_case:currentRun:context:publish'] === false ||
+      context['_case:currentRun:context:publish'] === 'NEVER'
     ) {
       context.logger.debug(
         `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'NEVER' is set (or false)`
@@ -78,7 +78,7 @@ export class BrokerService {
       return Promise.resolve();
     }
     if (
-      context['case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
+      context['_case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
       !this.environment.isCi()
     ) {
       context.logger.debug(
@@ -87,9 +87,9 @@ export class BrokerService {
       return Promise.resolve();
     }
     if (
-      context['case:currentRun:context:publish'] === true ||
-      context['case:currentRun:context:publish'] === 'ALWAYS' ||
-      (context['case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
+      context['_case:currentRun:context:publish'] === true ||
+      context['_case:currentRun:context:publish'] === 'ALWAYS' ||
+      (context['_case:currentRun:context:publish'] === 'ONLY_IN_CI' &&
         this.environment.isCi())
     ) {
       return this.broker
@@ -138,7 +138,7 @@ export class BrokerService {
           });
         });
     }
-    const message = `Configuration property 'publish' was set to the unexpected value '${context['case:currentRun:context:publish']}'`;
+    const message = `Configuration property 'publish' was set to the unexpected value '${context['_case:currentRun:context:publish']}'`;
     context.logger.error(message);
 
     return Promise.reject(new CaseConfigurationError(message));

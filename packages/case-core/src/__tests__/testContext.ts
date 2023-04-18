@@ -13,15 +13,15 @@ const EMPTY_LOGGER: Logger = {
 };
 
 export const EMPTY_DATA_CONTEXT: DataContext = {
-  'case:currentRun:context:logLevel': 'none',
-  'case:currentRun:context:location': [],
-  'case:context:matchBy': 'type',
-  'case:context:serialisableTo': 'json',
-  'case:currentRun:context:contractMode': 'write',
-  'case:currentRun:context:printResults': false,
-  'case:currentRun:context:testName': '',
-  'case:currentRun:context:variables': {},
-  'case:currentRun:context:defaultConfig': {},
+  '_case:currentRun:context:logLevel': 'none',
+  '_case:currentRun:context:location': [],
+  '_case:context:matchBy': 'type',
+  '_case:context:serialisableTo': 'json',
+  '_case:currentRun:context:contractMode': 'write',
+  '_case:currentRun:context:printResults': false,
+  '_case:currentRun:context:testName': '',
+  '_case:currentRun:context:variables': {},
+  '_case:currentRun:context:defaultConfig': {},
   logger: EMPTY_LOGGER,
   resultPrinter: {
     printError(): void {},

@@ -9,6 +9,7 @@ verifyContract(
     providerName: 'http request provider',
     contractDir: './temp-contracts',
     printResults: false,
+    logLevel: 'maintainerDebug',
   },
   (verifier) => {
     verifier.runVerification({

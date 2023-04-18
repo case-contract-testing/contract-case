@@ -20,7 +20,7 @@ const strip: StripMatcherFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = (
   matcher: CoreShapedArrayMatcher,
   matchContext: MatchContext
 ): AnyData =>
-  matcher['case:matcher:children'].map((expectedChild, index) =>
+  matcher['_case:matcher:children'].map((expectedChild, index) =>
     matchContext.descendAndStrip(
       expectedChild,
       addLocation(`[${index}]`, matchContext)
@@ -35,10 +35,10 @@ const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
   combineResults(
     Array.isArray(actual)
       ? combineResults(
-          actual.length >= matcher['case:matcher:children'].length
+          actual.length >= matcher['_case:matcher:children'].length
             ? (
                 await Promise.all(
-                  matcher['case:matcher:children']
+                  matcher['_case:matcher:children']
                     .map((expectedChild, index) =>
                       matchContext.descendAndCheck(
                         expectedChild,
@@ -52,12 +52,12 @@ const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
             : makeResults(
                 matchingError(
                   matcher,
-                  `Array has different lengths - expected at least '${matcher['case:matcher:children'].length}' elements, but found only '${actual.length} elements`,
+                  `Array has different lengths - expected at least '${matcher['_case:matcher:children'].length}' elements, but found only '${actual.length} elements`,
                   actual,
                   matchContext
                 )
               ),
-          matcher['case:matcher:children'].length === 0 && actual.length !== 0
+          matcher['_case:matcher:children'].length === 0 && actual.length !== 0
             ? makeResults(
                 matchingError(
                   matcher,
@@ -82,7 +82,7 @@ export const ShapedArrayExecutor: MatcherExecutor<
   typeof SHAPED_ARRAY_MATCHER_TYPE
 > = {
   describe: (matcher, context) =>
-    `an array shaped like [${matcher['case:matcher:children']
+    `an array shaped like [${matcher['_case:matcher:children']
       .map((child, index) =>
         context.descendAndDescribe(child, addLocation(`[${index}]`, context))
       )

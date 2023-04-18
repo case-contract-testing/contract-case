@@ -25,9 +25,9 @@ const check = (
 
 export const IntegerMatcher: MatcherExecutor<typeof INTEGER_MATCH_TYPE> = {
   describe: (matcher: CoreIntegerMatch, matchContext: MatchContext) =>
-    matchContext['case:context:matchBy'] === 'exact'
-      ? `${matcher['case:matcher:example']}`
+    matchContext['_case:context:matchBy'] === 'exact'
+      ? `${matcher['_case:matcher:example']}`
       : '<any integer>',
   check,
-  strip: (matcher: CoreIntegerMatch) => matcher['case:matcher:example'],
+  strip: (matcher: CoreIntegerMatch) => matcher['_case:matcher:example'],
 };

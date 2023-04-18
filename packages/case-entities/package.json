@@ -35,8 +35,7 @@
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
-    "format:fix": "npm run format:base -- --write ",
-    "test": "jest"
+    "format:fix": "npm run format:base -- --write "
   },
   "funding": {
     "type": "individual",

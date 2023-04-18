@@ -14,27 +14,28 @@ import type {
 
 export * from './http/types';
 
-export const NUMBER_MATCHER_TYPE = 'case:MatchNumber' as const;
-export const STRING_MATCHER_TYPE = 'case:MatchString' as const;
-export const NULL_MATCHER_TYPE = 'case:MatchNull' as const;
-export const BOOLEAN_MATCHER_TYPE = 'case:MatchBoolean' as const;
-export const CASCADING_CONTEXT_MATCHER_TYPE = 'case:CascadingContext' as const;
-export const SHAPED_ARRAY_MATCHER_TYPE = 'case:ArrayShape' as const;
-export const SHAPED_OBJECT_MATCHER_TYPE = 'case:ObjectShape' as const;
-export const LOOKUP_MATCHER_TYPE = 'case:Lookup' as const;
-export const ARRAY_LENGTH_MATCHER_TYPE = 'case:ArrayLength' as const;
-export const ARRAY_EACH_ENTRY_MATCHES_TYPE = 'case:ArrayEachEntryLike' as const;
-export const ARRAY_CONTAINS_TYPE = 'case:ArrayContains' as const;
-export const COMBINE_MATCHERS_TYPE = 'case:And' as const;
-export const OBJECT_VALUES_MATCH_TYPE = 'case:ObjectValuesMatch' as const;
-export const OBJECT_KEYS_MATCH_TYPE = 'case:ObjectKeysMatch' as const;
-export const INTEGER_MATCH_TYPE = 'case:Integer' as const;
-export const STRING_CONTAINS_TYPE = 'case:StringContains' as const;
-export const STRING_PREFIX_TYPE = 'case:StringPrefix' as const;
-export const STRING_SUFFIX_TYPE = 'case:StringSuffix' as const;
-export const CONTEXT_VARIABLE_TYPE = 'case:ContextVariable' as const;
-export const BASE64_ENCODED_TYPE = 'case:Base64Encoded' as const;
-export const JSON_STRINGIFIED_TYPE = 'case:JsonEncoded' as const;
+export const NUMBER_MATCHER_TYPE = '_case:MatchNumber' as const;
+export const STRING_MATCHER_TYPE = '_case:MatchString' as const;
+export const NULL_MATCHER_TYPE = '_case:MatchNull' as const;
+export const BOOLEAN_MATCHER_TYPE = '_case:MatchBoolean' as const;
+export const CASCADING_CONTEXT_MATCHER_TYPE = '_case:CascadingContext' as const;
+export const SHAPED_ARRAY_MATCHER_TYPE = '_case:ArrayShape' as const;
+export const SHAPED_OBJECT_MATCHER_TYPE = '_case:ObjectShape' as const;
+export const LOOKUP_MATCHER_TYPE = '_case:Lookup' as const;
+export const ARRAY_LENGTH_MATCHER_TYPE = '_case:ArrayLength' as const;
+export const ARRAY_EACH_ENTRY_MATCHES_TYPE =
+  '_case:ArrayEachEntryLike' as const;
+export const ARRAY_CONTAINS_TYPE = '_case:ArrayContains' as const;
+export const COMBINE_MATCHERS_TYPE = '_case:And' as const;
+export const OBJECT_VALUES_MATCH_TYPE = '_case:ObjectValuesMatch' as const;
+export const OBJECT_KEYS_MATCH_TYPE = '_case:ObjectKeysMatch' as const;
+export const INTEGER_MATCH_TYPE = '_case:Integer' as const;
+export const STRING_CONTAINS_TYPE = '_case:StringContains' as const;
+export const STRING_PREFIX_TYPE = '_case:StringPrefix' as const;
+export const STRING_SUFFIX_TYPE = '_case:StringSuffix' as const;
+export const CONTEXT_VARIABLE_TYPE = '_case:ContextVariable' as const;
+export const BASE64_ENCODED_TYPE = '_case:Base64Encoded' as const;
+export const JSON_STRINGIFIED_TYPE = '_case:JsonEncoded' as const;
 
 export type AnyCaseNodeType =
   | typeof NUMBER_MATCHER_TYPE
@@ -69,16 +70,16 @@ export const isCaseNode = (
 ): maybeMatcher is AnyCaseMatcher =>
   typeof maybeMatcher === 'object' &&
   maybeMatcher != null &&
-  'case:matcher:type' in (maybeMatcher as AnyCaseMatcher);
+  '_case:matcher:type' in (maybeMatcher as AnyCaseMatcher);
 
 export const isLookupableMatcher = (
   maybeMatcher: unknown
 ): maybeMatcher is LookupableMatcher => {
   const matcher = maybeMatcher as LookupableMatcher;
   return (
-    'case:matcher:uniqueName' in matcher &&
-    typeof 'case:matcher:uniqueName' === 'string' &&
-    matcher['case:matcher:type'] === LOOKUP_MATCHER_TYPE
+    '_case:matcher:uniqueName' in matcher &&
+    typeof '_case:matcher:uniqueName' === 'string' &&
+    matcher['_case:matcher:type'] === LOOKUP_MATCHER_TYPE
   );
 };
 
@@ -100,15 +101,15 @@ type JsonArray = Array<AnyData>;
 export type AnyData = JsonSerialisablePrimitive | JsonMap | JsonArray;
 
 export interface LookupableMatcher {
-  'case:matcher:type': typeof LOOKUP_MATCHER_TYPE;
-  'case:matcher:uniqueName': string;
-  'case:matcher:child'?: AnyCaseNodeOrData;
+  '_case:matcher:type': typeof LOOKUP_MATCHER_TYPE;
+  '_case:matcher:uniqueName': string;
+  '_case:matcher:child'?: AnyCaseNodeOrData;
 }
 
 export type AnyCaseNodeOrData = AnyCaseMatcher | AnyLeafOrStructure;
 
 interface IsCaseNodeForType<T extends AnyCaseNodeType> {
-  'case:matcher:type': T;
+  '_case:matcher:type': T;
 }
 
 export type DataOrCaseNodeFor<T extends AnyCaseNodeType> =
@@ -116,7 +117,7 @@ export type DataOrCaseNodeFor<T extends AnyCaseNodeType> =
   | AnyLeafOrStructure;
 
 export type ResolvesTo<T extends string> = {
-  'case:matcher:resolvesTo': T;
+  '_case:matcher:resolvesTo': T;
 };
 
 export type AnyStringMatcher =
@@ -129,127 +130,127 @@ export type CaseNodeFor<T extends AnyCaseNodeType> = Extract<
 >;
 
 interface CaseMatcherWithExample {
-  'case:matcher:type': AnyCaseNodeType;
-  'case:matcher:example': unknown;
+  '_case:matcher:type': AnyCaseNodeType;
+  '_case:matcher:example': unknown;
 }
 
 export interface CoreNumberMatcher extends CaseMatcherWithExample {
-  'case:matcher:type': typeof NUMBER_MATCHER_TYPE;
-  'case:matcher:example': number;
-  'case:matcher:resolvesTo': 'number';
+  '_case:matcher:type': typeof NUMBER_MATCHER_TYPE;
+  '_case:matcher:example': number;
+  '_case:matcher:resolvesTo': 'number';
 }
 
 export interface CoreStringMatcher extends CaseMatcherWithExample {
-  'case:matcher:type': typeof STRING_MATCHER_TYPE;
-  'case:matcher:example': string;
-  'case:matcher:resolvesTo': 'string';
+  '_case:matcher:type': typeof STRING_MATCHER_TYPE;
+  '_case:matcher:example': string;
+  '_case:matcher:resolvesTo': 'string';
 }
 
 export interface CoreBooleanMatcher extends CaseMatcherWithExample {
-  'case:matcher:type': typeof BOOLEAN_MATCHER_TYPE;
-  'case:matcher:example': boolean;
-  'case:matcher:resolvesTo': 'boolean';
+  '_case:matcher:type': typeof BOOLEAN_MATCHER_TYPE;
+  '_case:matcher:example': boolean;
+  '_case:matcher:resolvesTo': 'boolean';
 }
 
 export interface CoreCascadingMatcher extends Partial<MatchContext> {
-  'case:matcher:type': typeof CASCADING_CONTEXT_MATCHER_TYPE;
-  'case:matcher:child': AnyCaseNodeOrData;
+  '_case:matcher:type': typeof CASCADING_CONTEXT_MATCHER_TYPE;
+  '_case:matcher:child': AnyCaseNodeOrData;
 }
 
 export interface CoreNullMatcher extends CaseMatcherWithExample {
-  'case:matcher:type': typeof NULL_MATCHER_TYPE;
-  'case:matcher:example': null;
-  'case:matcher:resolvesTo': 'null';
+  '_case:matcher:type': typeof NULL_MATCHER_TYPE;
+  '_case:matcher:example': null;
+  '_case:matcher:resolvesTo': 'null';
 }
 
 export interface CoreShapedArrayMatcher {
-  'case:matcher:type': typeof SHAPED_ARRAY_MATCHER_TYPE;
-  'case:matcher:children': Array<AnyCaseNodeOrData>;
+  '_case:matcher:type': typeof SHAPED_ARRAY_MATCHER_TYPE;
+  '_case:matcher:children': Array<AnyCaseNodeOrData>;
 }
 
 export interface CoreShapedObjectMatcher {
-  'case:matcher:type': typeof SHAPED_OBJECT_MATCHER_TYPE;
-  'case:matcher:children': JsonOrMatcherMap;
+  '_case:matcher:type': typeof SHAPED_OBJECT_MATCHER_TYPE;
+  '_case:matcher:children': JsonOrMatcherMap;
 }
 
 export const ARRAY_LENGTH_PARAMETER_INFINITE = 'unlimited' as const;
 
 export interface CoreArrayLengthMatcher {
-  'case:matcher:type': typeof ARRAY_LENGTH_MATCHER_TYPE;
-  'case:matcher:minLength': number;
-  'case:matcher:maxLength': number | typeof ARRAY_LENGTH_PARAMETER_INFINITE;
+  '_case:matcher:type': typeof ARRAY_LENGTH_MATCHER_TYPE;
+  '_case:matcher:minLength': number;
+  '_case:matcher:maxLength': number | typeof ARRAY_LENGTH_PARAMETER_INFINITE;
 }
 
 export interface CoreAndCombinationMatcher {
-  'case:matcher:type': typeof COMBINE_MATCHERS_TYPE;
-  'case:matcher:children': Array<AnyCaseNodeOrData>;
+  '_case:matcher:type': typeof COMBINE_MATCHERS_TYPE;
+  '_case:matcher:children': Array<AnyCaseNodeOrData>;
 }
 
 export interface CoreArrayEachEntryMatches {
-  'case:matcher:type': typeof ARRAY_EACH_ENTRY_MATCHES_TYPE;
-  'case:matcher:matcher': AnyCaseNodeOrData;
-  'case:matcher:example'?: AnyCaseNodeOrData[];
+  '_case:matcher:type': typeof ARRAY_EACH_ENTRY_MATCHES_TYPE;
+  '_case:matcher:matcher': AnyCaseNodeOrData;
+  '_case:matcher:example'?: AnyCaseNodeOrData[];
 }
 
 export interface CoreObjectValuesMatch {
-  'case:matcher:type': typeof OBJECT_VALUES_MATCH_TYPE;
-  'case:matcher:matcher': AnyCaseNodeOrData;
-  'case:matcher:example'?: Record<string, AnyCaseNodeOrData>;
+  '_case:matcher:type': typeof OBJECT_VALUES_MATCH_TYPE;
+  '_case:matcher:matcher': AnyCaseNodeOrData;
+  '_case:matcher:example'?: Record<string, AnyCaseNodeOrData>;
 }
 
 export interface CoreObjectKeysMatcher {
-  'case:matcher:type': typeof OBJECT_KEYS_MATCH_TYPE;
-  'case:matcher:matcher': AnyCaseNodeOrData;
-  'case:matcher:exampleKey'?: string;
+  '_case:matcher:type': typeof OBJECT_KEYS_MATCH_TYPE;
+  '_case:matcher:matcher': AnyCaseNodeOrData;
+  '_case:matcher:exampleKey'?: string;
 }
 
 export interface CoreArrayContainsMatch {
-  'case:matcher:type': typeof ARRAY_CONTAINS_TYPE;
-  'case:matcher:matchers': AnyCaseNodeOrData[];
+  '_case:matcher:type': typeof ARRAY_CONTAINS_TYPE;
+  '_case:matcher:matchers': AnyCaseNodeOrData[];
 }
 
 export interface CoreIntegerMatch {
-  'case:matcher:type': typeof INTEGER_MATCH_TYPE;
-  'case:matcher:example': number;
-  'case:matcher:resolvesTo': 'number';
+  '_case:matcher:type': typeof INTEGER_MATCH_TYPE;
+  '_case:matcher:example': number;
+  '_case:matcher:resolvesTo': 'number';
 }
 
 export interface CoreStringContainsMatcher {
-  'case:matcher:type': typeof STRING_CONTAINS_TYPE;
-  'case:matcher:contains': string | AnyCaseMatcher;
-  'case:matcher:resolvesTo': 'string';
-  'case:matcher:example'?: string;
+  '_case:matcher:type': typeof STRING_CONTAINS_TYPE;
+  '_case:matcher:contains': string | AnyCaseMatcher;
+  '_case:matcher:resolvesTo': 'string';
+  '_case:matcher:example'?: string;
 }
 
 export interface CoreStringPrefixMatcher {
-  'case:matcher:type': typeof STRING_PREFIX_TYPE;
-  'case:matcher:prefix': string;
-  'case:matcher:suffix': string | AnyCaseMatcher;
-  'case:matcher:resolvesTo': 'string';
+  '_case:matcher:type': typeof STRING_PREFIX_TYPE;
+  '_case:matcher:prefix': string;
+  '_case:matcher:suffix': string | AnyCaseMatcher;
+  '_case:matcher:resolvesTo': 'string';
 }
 
 export interface CoreStringSuffixMatcher {
-  'case:matcher:type': typeof STRING_SUFFIX_TYPE;
-  'case:matcher:prefix': string | AnyCaseMatcher;
-  'case:matcher:suffix': string;
-  'case:matcher:resolvesTo': 'string';
+  '_case:matcher:type': typeof STRING_SUFFIX_TYPE;
+  '_case:matcher:prefix': string | AnyCaseMatcher;
+  '_case:matcher:suffix': string;
+  '_case:matcher:resolvesTo': 'string';
 }
 
 export interface CoreContextVariableMatcher {
-  'case:matcher:type': typeof CONTEXT_VARIABLE_TYPE;
-  'case:matcher:variableName': string;
+  '_case:matcher:type': typeof CONTEXT_VARIABLE_TYPE;
+  '_case:matcher:variableName': string;
 }
 
 export interface CoreBase64Encoded {
-  'case:matcher:type': typeof BASE64_ENCODED_TYPE;
-  'case:matcher:child': AnyStringMatcher;
-  'case:matcher:resolvesTo': 'string';
+  '_case:matcher:type': typeof BASE64_ENCODED_TYPE;
+  '_case:matcher:child': AnyStringMatcher;
+  '_case:matcher:resolvesTo': 'string';
 }
 
 export interface CoreJsonStringified {
-  'case:matcher:type': typeof JSON_STRINGIFIED_TYPE;
-  'case:matcher:child': AnyCaseNodeOrData;
-  'case:matcher:resolvesTo': 'string';
+  '_case:matcher:type': typeof JSON_STRINGIFIED_TYPE;
+  '_case:matcher:child': AnyCaseNodeOrData;
+  '_case:matcher:resolvesTo': 'string';
 }
 
 /** Leaf matchers are any type where === would match in an exact context */
@@ -285,5 +286,5 @@ export type AnyCaseMatcher =
   | CoreJsonStringified;
 
 export type HasExample<T extends AnyCaseMatcher> = T & {
-  'case:matcher:example': unknown;
+  '_case:matcher:example': unknown;
 };

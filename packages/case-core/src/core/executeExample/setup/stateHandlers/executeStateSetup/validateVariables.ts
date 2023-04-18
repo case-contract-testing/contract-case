@@ -15,7 +15,7 @@ export const validateVariables = async (
   ) => Promise<void | Record<string, AnyCaseNodeOrData>>
 ): Promise<Record<string, AnyCaseNodeOrData>> =>
   stateHandler(state).then(async (variables) => {
-    if (state['case:state:type'] === SETUP_VARIABLE_STATE) {
+    if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
       if (typeof variables === 'undefined') {
         throw new CaseConfigurationError(
           `The state setup for '${

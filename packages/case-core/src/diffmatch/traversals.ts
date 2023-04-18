@@ -20,10 +20,10 @@ const getExecutor = <T extends AnyCaseNodeType>(
   const matchContext = foldIntoContext(matcher, parentMatchContext);
 
   const executor: MatcherExecutor<T> =
-    MatcherExecutors[matcher['case:matcher:type'] as T];
+    MatcherExecutors[matcher['_case:matcher:type'] as T];
   if (!executor) {
     throw new CaseCoreError(
-      `Missing executor for matcher type '${matcher['case:matcher:type']}'`
+      `Missing executor for matcher type '${matcher['_case:matcher:type']}'`
     );
   }
 
@@ -31,12 +31,12 @@ const getExecutor = <T extends AnyCaseNodeType>(
     name: () => executor.describe(matcher, matchContext),
     check: async (actual: unknown) => {
       parentMatchContext.logger.deepMaintainerDebug(
-        `Entering ${matcher['case:matcher:type']}, actual is:`,
+        `Entering ${matcher['_case:matcher:type']}, actual is:`,
         actual
       );
       const result = await executor.check(matcher, matchContext, actual);
       parentMatchContext.logger.deepMaintainerDebug(
-        `Exiting ${matcher['case:matcher:type']}, with ${result.length} errors`
+        `Exiting ${matcher['_case:matcher:type']}, with ${result.length} errors`
       );
       return result;
     },
@@ -63,13 +63,13 @@ const descendAndStrip = <T extends AnyCaseNodeType>(
   if (
     typeof matcherOrData === 'object' &&
     matcherOrData !== null &&
-    'case:matcher:example' in matcherOrData
+    '_case:matcher:example' in matcherOrData
   ) {
     parentMatchContext.logger.deepMaintainerDebug(
-      `Executing strip with matcher type: ${matcherOrData['case:matcher:type']} and specific example`
+      `Executing strip with matcher type: ${matcherOrData['_case:matcher:type']} and specific example`
     );
     return getExecutor(
-      matcherOrData['case:matcher:example'],
+      matcherOrData['_case:matcher:example'],
       parentMatchContext
     ).strip();
   }
@@ -77,8 +77,8 @@ const descendAndStrip = <T extends AnyCaseNodeType>(
     `Executing strip with matcher ${
       typeof matcherOrData === 'object' &&
       matcherOrData !== null &&
-      'case:matcher:type' in matcherOrData
-        ? `type: ${matcherOrData['case:matcher:type']}`
+      '_case:matcher:type' in matcherOrData
+        ? `type: ${matcherOrData['_case:matcher:type']}`
         : `inferred from ${typeof matcherOrData}`
     }`
   );

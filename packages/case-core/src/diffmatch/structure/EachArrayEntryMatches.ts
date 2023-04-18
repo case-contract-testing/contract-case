@@ -19,14 +19,14 @@ const strip: StripMatcherFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = (
   matcher: CoreArrayEachEntryMatches,
   matchContext: MatchContext
 ): AnyData =>
-  'case:matcher:example' in matcher
+  '_case:matcher:example' in matcher
     ? matchContext.descendAndStrip(
-        matcher['case:matcher:example'],
+        matcher['_case:matcher:example'],
         addLocation(`:eachEntryLike[example]`, matchContext)
       )
     : [
         matchContext.descendAndStrip(
-          matcher['case:matcher:matcher'],
+          matcher['_case:matcher:matcher'],
           addLocation(`:eachEntryLike[matcher]`, matchContext)
         ),
       ];
@@ -45,7 +45,7 @@ const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = async (
                   actual
                     .map((actualEntry, index) =>
                       matchContext.descendAndCheck(
-                        matcher['case:matcher:matcher'],
+                        matcher['_case:matcher:matcher'],
                         addLocation(`:eachEntryLike[${index}]`, matchContext),
                         actualEntry
                       )
@@ -77,7 +77,7 @@ export const EachArrayEntryMatches: MatcherExecutor<
 > = {
   describe: (matcher, context) =>
     `an array where each entry matches ${context.descendAndDescribe(
-      matcher['case:matcher:matcher'],
+      matcher['_case:matcher:matcher'],
       addLocation(`:eachEntryLike`, context)
     )}`,
   check,

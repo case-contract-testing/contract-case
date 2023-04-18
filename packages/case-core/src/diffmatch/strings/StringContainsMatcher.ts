@@ -19,7 +19,7 @@ const check = async (
   actual: unknown
 ): Promise<MatchResult> => {
   const expectedInclusion = mustResolveToString(
-    matcher['case:matcher:contains'],
+    matcher['_case:matcher:contains'],
     matchContext
   );
   return combineResults(
@@ -49,13 +49,13 @@ export const StringContainsMatcher: MatcherExecutor<
 > = {
   describe: (matcher: CoreStringContainsMatcher, matchContext) =>
     `a string containing "${mustResolveToString(
-      matcher['case:matcher:contains'],
+      matcher['_case:matcher:contains'],
       matchContext
     ).replace(/^"+|"+$/g, '')}"`,
   check,
   strip: (matcher: CoreStringContainsMatcher, matchContext) => {
-    if ('case:matcher:example' in matcher) {
-      return matcher['case:matcher:example'];
+    if ('_case:matcher:example' in matcher) {
+      return matcher['_case:matcher:example'];
     }
     throw new StripUnsupportedError(matcher, matchContext);
   },

@@ -31,8 +31,8 @@ import { makeContractStore } from '../contractStore/contractReader';
 
 const emptyContext: DataContext = {
   logger: makeLogger({
-    'case:currentRun:context:location': ['DURING_TESTING'],
-    'case:currentRun:context:logLevel': 'none',
+    '_case:currentRun:context:location': ['DURING_TESTING'],
+    '_case:currentRun:context:logLevel': 'none',
   }),
   resultPrinter: {
     printError(): void {},
@@ -43,15 +43,15 @@ const emptyContext: DataContext = {
     },
   },
   makeLogger,
-  'case:currentRun:context:location': ['DURING_TESTING'],
-  'case:currentRun:context:testName': 'mock in broker tests',
-  'case:currentRun:context:logLevel': 'none',
-  'case:context:matchBy': 'type',
-  'case:context:serialisableTo': 'json',
-  'case:currentRun:context:contractMode': 'read',
-  'case:currentRun:context:printResults': false,
-  'case:currentRun:context:variables': {},
-  'case:currentRun:context:defaultConfig': {},
+  '_case:currentRun:context:location': ['DURING_TESTING'],
+  '_case:currentRun:context:testName': 'mock in broker tests',
+  '_case:currentRun:context:logLevel': 'none',
+  '_case:context:matchBy': 'type',
+  '_case:context:serialisableTo': 'json',
+  '_case:currentRun:context:contractMode': 'read',
+  '_case:currentRun:context:printResults': false,
+  '_case:currentRun:context:variables': {},
+  '_case:currentRun:context:defaultConfig': {},
 };
 
 const contractFilename = 'case-contracts/case-pact-broker.case.json';
@@ -64,8 +64,8 @@ const makeBrokerApiForTest = (
   token: string | undefined
 ) =>
   makeBrokerApi({
-    'case:currentRun:context:brokerCiAccessToken': token,
-    'case:currentRun:context:brokerBaseUrl': url,
+    '_case:currentRun:context:brokerCiAccessToken': token,
+    '_case:currentRun:context:brokerBaseUrl': url,
   } as MatchContext);
 
 describe('broker client', () => {
@@ -247,11 +247,11 @@ describe('broker client', () => {
                 }),
                 trigger: (config) =>
                   makeBrokerApi({
-                    'case:currentRun:context:brokerBasicAuth': {
+                    '_case:currentRun:context:brokerBasicAuth': {
                       username: config.variables['username'] as string,
                       password: config.variables['password'] as string,
                     },
-                    'case:currentRun:context:brokerBaseUrl': config.baseUrl,
+                    '_case:currentRun:context:brokerBaseUrl': config.baseUrl,
                   } as DataContext).urlsForVerification(
                     config.variables['providerName'] as string,
                     emptyContext
@@ -374,7 +374,7 @@ describe('broker client', () => {
                           contentType: 'application/json',
                           content: encodedStringBase64(
                             stringifiedJson({
-                              contractType: 'case::contract',
+                              contractType: '_case::contract',
                               description: {
                                 consumerName: anyString('Case'),
                                 providerName: anyString('Pact Broker'),

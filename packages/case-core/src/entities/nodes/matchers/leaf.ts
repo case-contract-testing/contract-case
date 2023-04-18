@@ -18,31 +18,31 @@ import {
  * @returns
  */
 export const coreNumberMatcher = (example: number): CoreNumberMatcher => ({
-  'case:matcher:type': NUMBER_MATCHER_TYPE,
-  'case:matcher:example': example,
-  'case:matcher:resolvesTo': 'number',
+  '_case:matcher:type': NUMBER_MATCHER_TYPE,
+  '_case:matcher:example': example,
+  '_case:matcher:resolvesTo': 'number',
 });
 
 export const coreIntegerMatcher = (example: number): CoreIntegerMatch => ({
-  'case:matcher:type': INTEGER_MATCH_TYPE,
-  'case:matcher:example': example,
-  'case:matcher:resolvesTo': 'number',
+  '_case:matcher:type': INTEGER_MATCH_TYPE,
+  '_case:matcher:example': example,
+  '_case:matcher:resolvesTo': 'number',
 });
 
 export const coreStringMatcher = (example: string): CoreStringMatcher => ({
-  'case:matcher:type': STRING_MATCHER_TYPE,
-  'case:matcher:example': example,
-  'case:matcher:resolvesTo': 'string',
+  '_case:matcher:type': STRING_MATCHER_TYPE,
+  '_case:matcher:example': example,
+  '_case:matcher:resolvesTo': 'string',
 });
 
 export const coreBooleanMatcher = (example: boolean): CoreBooleanMatcher => ({
-  'case:matcher:type': BOOLEAN_MATCHER_TYPE,
-  'case:matcher:example': example,
-  'case:matcher:resolvesTo': 'boolean',
+  '_case:matcher:type': BOOLEAN_MATCHER_TYPE,
+  '_case:matcher:example': example,
+  '_case:matcher:resolvesTo': 'boolean',
 });
 
 export const coreNullMatcher = (example = null): CoreNullMatcher => ({
-  'case:matcher:type': NULL_MATCHER_TYPE,
-  'case:matcher:example': example,
-  'case:matcher:resolvesTo': 'null',
+  '_case:matcher:type': NULL_MATCHER_TYPE,
+  '_case:matcher:example': example,
+  '_case:matcher:resolvesTo': 'null',
 });

@@ -62,21 +62,21 @@ export class WritingCaseContract extends BaseCaseContract {
       mockDescription,
       this.initialContext,
       {
-        'case:currentRun:context:throwOnFail': true,
-        'case:currentRun:context:contractMode': 'write',
-        'case:currentRun:context:testName': `${thisIndex}`,
+        '_case:currentRun:context:throwOnFail': true,
+        '_case:currentRun:context:contractMode': 'write',
+        '_case:currentRun:context:testName': `${thisIndex}`,
         ...configToRunContext(runConfig),
       }
     );
 
-    if (runContext['case:currentRun:context:contractMode'] !== 'write') {
+    if (runContext['_case:currentRun:context:contractMode'] !== 'write') {
       runContext.logger.warn(
-        `The contractMode is expected to be 'write', but it was '${runContext['case:currentRun:context:contractMode']}'. If you are not expecting this message, this is almost certainly a misconfiguration`
+        `The contractMode is expected to be 'write', but it was '${runContext['_case:currentRun:context:contractMode']}'. If you are not expecting this message, this is almost certainly a misconfiguration`
       );
     }
     return this.mutex.runExclusive(() => {
       states.forEach((state) => {
-        if (state['case:state:type'] === SETUP_VARIABLE_STATE) {
+        if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
           Object.entries(state.variables).forEach(([key, value]) =>
             runContext.addDefaultVariable(key, state.stateName, value)
           );
@@ -151,7 +151,7 @@ export class WritingCaseContract extends BaseCaseContract {
     );
     writingContext.logger.debug(`Wrote contract file: ${fileName}`);
 
-    if (!this.initialContext['case:currentRun:context:brokerCiAccessToken']) {
+    if (!this.initialContext['_case:currentRun:context:brokerCiAccessToken']) {
       this.initialContext.logger.warn(
         'Not publishing a contract, as there is no brokerCiAccessToken set'
       );

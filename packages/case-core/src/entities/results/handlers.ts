@@ -30,7 +30,7 @@ export const handleResult = (
       )
     ) {
       context.logger.debug(`Matching errors present`);
-      if (context['case:currentRun:context:throwOnFail']) {
+      if (context['_case:currentRun:context:throwOnFail']) {
         throw new CaseFailedAssertionError(example.errors);
       }
     }
@@ -38,7 +38,7 @@ export const handleResult = (
       example.errors.find((i) => i.type === ERROR_TYPE_TEST_RESPONSE) as
         | VerificationError
         | undefined;
-    if (verificationError && context['case:currentRun:context:throwOnFail']) {
+    if (verificationError && context['_case:currentRun:context:throwOnFail']) {
       throw verificationError.error;
     }
 

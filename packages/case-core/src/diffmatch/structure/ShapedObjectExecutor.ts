@@ -21,7 +21,7 @@ const strip: StripMatcherFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = (
   matcher: CoreShapedObjectMatcher,
   matchContext: MatchContext
 ): AnyData =>
-  Object.entries<AnyCaseNodeOrData>(matcher['case:matcher:children'])
+  Object.entries<AnyCaseNodeOrData>(matcher['_case:matcher:children'])
     .map(
       ([expectedKey, expectedValueMatcher]: [
         string,
@@ -75,7 +75,7 @@ const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
         (
           await Promise.all(
             Object.entries<AnyCaseNodeOrData>(
-              matcher['case:matcher:children']
+              matcher['_case:matcher:children']
             ).map(
               ([expectedKey, expectedValueMatcher]: [
                 string,
@@ -114,7 +114,7 @@ export const ShapedObjectExecutor: MatcherExecutor<
   typeof SHAPED_OBJECT_MATCHER_TYPE
 > = {
   describe: (matcher, context) =>
-    `an object shaped like {${Object.entries(matcher['case:matcher:children'])
+    `an object shaped like {${Object.entries(matcher['_case:matcher:children'])
       .map(
         ([key, child]) =>
           `${key}: ${context.descendAndDescribe(

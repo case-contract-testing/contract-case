@@ -22,8 +22,8 @@ export const willSendHttpRequest = ({
 }: HttpRequestResponseDescription): ConsumeHttpResponse => ({
   request: httpRequestMatcher(request),
   response: httpResponseMatcher(response),
-  'case:mock:type': MOCK_HTTP_SERVER,
-  'case:run:context:setup': {
+  '_case:mock:type': MOCK_HTTP_SERVER,
+  '_case:run:context:setup': {
     write: {
       type: MOCK_HTTP_SERVER,
       stateVariables: 'default',
@@ -43,8 +43,8 @@ export const willReceiveHttpRequest = ({
 }: HttpRequestResponseDescription): ProduceHttpResponse => ({
   request: httpRequestMatcher(request),
   response: httpResponseMatcher(response),
-  'case:mock:type': MOCK_HTTP_CLIENT,
-  'case:run:context:setup': {
+  '_case:mock:type': MOCK_HTTP_CLIENT,
+  '_case:run:context:setup': {
     write: {
       type: MOCK_HTTP_CLIENT,
       stateVariables: 'state',

@@ -6,8 +6,8 @@ describe('console logger', () => {
    * These tests don't strictly test anything, they're just here to put examples of the log lines in CI
    */
   const logger = makeLogger({
-    'case:currentRun:context:location': ['UnitTest', '[logger]', ':printing'],
-    'case:currentRun:context:logLevel': 'deepMaintainerDebug',
+    '_case:currentRun:context:location': ['UnitTest', '[logger]', ':printing'],
+    '_case:currentRun:context:logLevel': 'deepMaintainerDebug',
   });
 
   it('logs at each log level', () => {

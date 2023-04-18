@@ -51,18 +51,18 @@ export const executeStateTeardown = (
   Promise.resolve(addLocation(':stateTeardown', parentContext)).then(
     (context) => {
       const variableSource =
-        example.mock['case:run:context:setup'][
-          context['case:currentRun:context:contractMode']
+        example.mock['_case:run:context:setup'][
+          context['_case:currentRun:context:contractMode']
         ].stateVariables;
 
       if (variableSource === 'default') {
         context.logger.maintainerDebug(
-          `Not executing state teardown handlers, since run mode is '${context['case:currentRun:context:contractMode']}'. Variables obtained from ${variableSource}`
+          `Not executing state teardown handlers, since run mode is '${context['_case:currentRun:context:contractMode']}'. Variables obtained from ${variableSource}`
         );
         return Promise.resolve();
       }
       context.logger.maintainerDebug(
-        `Executing state teardown handlers in '${context['case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`
+        `Executing state teardown handlers in '${context['_case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`
       );
 
       return Promise.resolve()

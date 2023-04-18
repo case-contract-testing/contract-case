@@ -18,7 +18,7 @@ const configFromEnv = (): CaseConfig =>
 const transformConfig = (config: CaseConfig): RunContext =>
   Object.entries(config)
     .map(([k, v]) => ({
-      [`case:currentRun:context:${k}`]: v,
+      [`_case:currentRun:context:${k}`]: v,
     }))
     .reduce((acc, curr) => ({ ...acc, ...curr }), {} as RunContext);
 

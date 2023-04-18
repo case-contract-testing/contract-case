@@ -75,8 +75,8 @@ const check: CheckMatchFn<typeof HTTP_STATUS_CODE_MATCHER_TYPE> = (
 ): MatchResult => {
   const makeError = (message: string) =>
     matchingError(matcher, message, actual, matchContext);
-  if (Array.isArray(matcher['case:matcher:rule'])) {
-    const result = matcher['case:matcher:rule']
+  if (Array.isArray(matcher['_case:matcher:rule'])) {
+    const result = matcher['_case:matcher:rule']
       .map((e) => checkExample(e, actual, makeError))
       .find(hasNoErrors);
 
@@ -88,14 +88,14 @@ const check: CheckMatchFn<typeof HTTP_STATUS_CODE_MATCHER_TYPE> = (
             `The returned http status code (${actualToString(
               actual
             )}) did not match any of the following status codes: ${matcher[
-              'case:matcher:rule'
+              '_case:matcher:rule'
             ].join(', ')}`,
             actual,
             matchContext
           )
         );
   }
-  return checkExample(matcher['case:matcher:rule'], actual, makeError);
+  return checkExample(matcher['_case:matcher:rule'], actual, makeError);
 };
 
 export const HttpStatusCodeMatcher: MatcherExecutor<
@@ -103,11 +103,11 @@ export const HttpStatusCodeMatcher: MatcherExecutor<
 > = {
   describe: (matcher: CoreHttpStatusCodeMatcher) =>
     `httpStatus ${
-      Array.isArray(matcher['case:matcher:rule'])
-        ? matcher['case:matcher:rule'].map((r) => `${r}`).join(' | ')
-        : matcher['case:matcher:rule']
+      Array.isArray(matcher['_case:matcher:rule'])
+        ? matcher['_case:matcher:rule'].map((r) => `${r}`).join(' | ')
+        : matcher['_case:matcher:rule']
     }`,
   check,
   strip: (matcher: CoreHttpStatusCodeMatcher) =>
-    matcher['case:matcher:example'],
+    matcher['_case:matcher:example'],
 };

@@ -5,105 +5,105 @@
     "providerName": "Pact Broker"
   },
   "metadata": {
-    "case": {
+    "_case": {
       "version": "0.7.0"
     }
   },
   "matcherLookup": {
     "variable:default:token": {
-      "case:matcher:type": "case:CascadingContext",
-      "case:matcher:child": {
-        "case:matcher:type": "case:CascadingContext",
-        "case:matcher:child": "TOKEN",
-        "case:context:matchBy": "type"
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "TOKEN",
+        "_case:context:matchBy": "type"
       },
-      "case:context:matchBy": "type"
+      "_case:context:matchBy": "type"
     },
     "variable:default:providerName": {
-      "case:matcher:type": "case:CascadingContext",
-      "case:matcher:child": {
-        "case:matcher:type": "case:CascadingContext",
-        "case:matcher:child": "http request provider",
-        "case:context:matchBy": "type"
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "http request provider",
+        "_case:context:matchBy": "type"
       },
-      "case:context:matchBy": "type"
+      "_case:context:matchBy": "type"
     },
     "matcher:a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array where each entry matches an object shaped like {verificationProperties: an object shaped like {notices: an array where each entry matches an object shaped like {text: <any string>}},_links: an object shaped like {self: an object shaped like {href: <any string>,name: <any string>}}}},_links: an object shaped like {self: an object shaped like {href: <any string>,title: <any string>}}}": {
       "status": 200,
       "body": {
         "_embedded": {
           "pacts": {
-            "case:matcher:type": "case:ArrayEachEntryLike",
-            "case:matcher:matcher": {
+            "_case:matcher:type": "_case:ArrayEachEntryLike",
+            "_case:matcher:matcher": {
               "verificationProperties": {
                 "notices": {
-                  "case:matcher:type": "case:ArrayEachEntryLike",
-                  "case:matcher:matcher": {
-                    "case:matcher:type": "case:CascadingContext",
-                    "case:matcher:child": {
+                  "_case:matcher:type": "_case:ArrayEachEntryLike",
+                  "_case:matcher:matcher": {
+                    "_case:matcher:type": "_case:CascadingContext",
+                    "_case:matcher:child": {
                       "text": "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'"
                     },
-                    "case:context:matchBy": "type"
+                    "_case:context:matchBy": "type"
                   }
                 }
               },
               "_links": {
-                "case:matcher:type": "case:CascadingContext",
-                "case:matcher:child": {
+                "_case:matcher:type": "_case:CascadingContext",
+                "_case:matcher:child": {
                   "self": {
                     "href": "http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a",
                     "name": "Pact between Foo (v1.0.0) and Bar"
                   }
                 },
-                "case:context:matchBy": "type"
+                "_case:context:matchBy": "type"
               }
             }
           }
         },
         "_links": {
-          "case:matcher:type": "case:CascadingContext",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:CascadingContext",
+          "_case:matcher:child": {
             "self": {
               "href": "http://localhost:9292/pacts/provider/Bar/for-verification",
               "title": "Pacts to be verified"
             }
           },
-          "case:context:matchBy": "type"
+          "_case:context:matchBy": "type"
         }
       },
-      "case:matcher:type": "case:HttpResponseMatcher"
+      "_case:matcher:type": "_case:HttpResponseMatcher"
     },
     "matcher:an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] and an array of length min: 1, max: 1;}": {
       "method": "POST",
       "path": {
-        "case:matcher:type": "case:UrlEncodedString",
-        "case:matcher:child": {
-          "case:matcher:type": "case:StringPrefix",
-          "case:matcher:prefix": "/pacts/provider/",
-          "case:matcher:suffix": {
-            "case:matcher:type": "case:StringSuffix",
-            "case:matcher:prefix": {
-              "case:matcher:type": "case:ContextVariable",
-              "case:matcher:variableName": "providerName"
+        "_case:matcher:type": "_case:UrlEncodedString",
+        "_case:matcher:child": {
+          "_case:matcher:type": "_case:StringPrefix",
+          "_case:matcher:prefix": "/pacts/provider/",
+          "_case:matcher:suffix": {
+            "_case:matcher:type": "_case:StringSuffix",
+            "_case:matcher:prefix": {
+              "_case:matcher:type": "_case:ContextVariable",
+              "_case:matcher:variableName": "providerName"
             },
-            "case:matcher:suffix": "/for-verification",
-            "case:matcher:resolvesTo": "string"
+            "_case:matcher:suffix": "/for-verification",
+            "_case:matcher:resolvesTo": "string"
           },
-          "case:matcher:resolvesTo": "string"
+          "_case:matcher:resolvesTo": "string"
         },
-        "case:matcher:accepts": "string",
-        "case:matcher:resolvesTo": "string"
+        "_case:matcher:accepts": "string",
+        "_case:matcher:resolvesTo": "string"
       },
       "body": {
         "consumerVersionSelectors": {
-          "case:matcher:type": "case:ArrayEachEntryLike",
-          "case:matcher:matcher": {
-            "case:matcher:type": "case:ObjectValuesMatch",
-            "case:matcher:matcher": {
-              "case:matcher:type": "case:MatchBoolean",
-              "case:matcher:example": true,
-              "case:context:matchBy": "type",
-              "case:matcher:resolvesTo": "boolean"
+          "_case:matcher:type": "_case:ArrayEachEntryLike",
+          "_case:matcher:matcher": {
+            "_case:matcher:type": "_case:ObjectValuesMatch",
+            "_case:matcher:matcher": {
+              "_case:matcher:type": "_case:MatchBoolean",
+              "_case:matcher:example": true,
+              "_case:context:matchBy": "type",
+              "_case:matcher:resolvesTo": "boolean"
             }
           }
         },
@@ -114,67 +114,67 @@
       "headers": {
         "accept": "application/hal+json",
         "authorization": {
-          "case:matcher:type": "case:StringPrefix",
-          "case:matcher:prefix": "Bearer ",
-          "case:matcher:suffix": {
-            "case:matcher:type": "case:ContextVariable",
-            "case:matcher:variableName": "token",
-            "case:matcher:resolvesTo": "string"
+          "_case:matcher:type": "_case:StringPrefix",
+          "_case:matcher:prefix": "Bearer ",
+          "_case:matcher:suffix": {
+            "_case:matcher:type": "_case:ContextVariable",
+            "_case:matcher:variableName": "token",
+            "_case:matcher:resolvesTo": "string"
           },
-          "case:matcher:resolvesTo": "string"
+          "_case:matcher:resolvesTo": "string"
         }
       },
-      "case:matcher:type": "case:HttpRequestMatcher"
+      "_case:matcher:type": "_case:HttpRequestMatcher"
     },
     "variable:default:username": {
-      "case:matcher:type": "case:CascadingContext",
-      "case:matcher:child": {
-        "case:matcher:type": "case:CascadingContext",
-        "case:matcher:child": "someUsername",
-        "case:context:matchBy": "type"
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "someUsername",
+        "_case:context:matchBy": "type"
       },
-      "case:context:matchBy": "type"
+      "_case:context:matchBy": "type"
     },
     "variable:default:password": {
-      "case:matcher:type": "case:CascadingContext",
-      "case:matcher:child": {
-        "case:matcher:type": "case:CascadingContext",
-        "case:matcher:child": "somePassword",
-        "case:context:matchBy": "type"
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "somePassword",
+        "_case:context:matchBy": "type"
       },
-      "case:context:matchBy": "type"
+      "_case:context:matchBy": "type"
     },
     "matcher:an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Basic http basic auth with username='{{username}}' and password={{password}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] and an array of length min: 1, max: 1;}": {
       "method": "POST",
       "path": {
-        "case:matcher:type": "case:UrlEncodedString",
-        "case:matcher:child": {
-          "case:matcher:type": "case:StringPrefix",
-          "case:matcher:prefix": "/pacts/provider/",
-          "case:matcher:suffix": {
-            "case:matcher:type": "case:StringSuffix",
-            "case:matcher:prefix": {
-              "case:matcher:type": "case:ContextVariable",
-              "case:matcher:variableName": "providerName"
+        "_case:matcher:type": "_case:UrlEncodedString",
+        "_case:matcher:child": {
+          "_case:matcher:type": "_case:StringPrefix",
+          "_case:matcher:prefix": "/pacts/provider/",
+          "_case:matcher:suffix": {
+            "_case:matcher:type": "_case:StringSuffix",
+            "_case:matcher:prefix": {
+              "_case:matcher:type": "_case:ContextVariable",
+              "_case:matcher:variableName": "providerName"
             },
-            "case:matcher:suffix": "/for-verification",
-            "case:matcher:resolvesTo": "string"
+            "_case:matcher:suffix": "/for-verification",
+            "_case:matcher:resolvesTo": "string"
           },
-          "case:matcher:resolvesTo": "string"
+          "_case:matcher:resolvesTo": "string"
         },
-        "case:matcher:accepts": "string",
-        "case:matcher:resolvesTo": "string"
+        "_case:matcher:accepts": "string",
+        "_case:matcher:resolvesTo": "string"
       },
       "body": {
         "consumerVersionSelectors": {
-          "case:matcher:type": "case:ArrayEachEntryLike",
-          "case:matcher:matcher": {
-            "case:matcher:type": "case:ObjectValuesMatch",
-            "case:matcher:matcher": {
-              "case:matcher:type": "case:MatchBoolean",
-              "case:matcher:example": true,
-              "case:context:matchBy": "type",
-              "case:matcher:resolvesTo": "boolean"
+          "_case:matcher:type": "_case:ArrayEachEntryLike",
+          "_case:matcher:matcher": {
+            "_case:matcher:type": "_case:ObjectValuesMatch",
+            "_case:matcher:matcher": {
+              "_case:matcher:type": "_case:MatchBoolean",
+              "_case:matcher:example": true,
+              "_case:context:matchBy": "type",
+              "_case:matcher:resolvesTo": "boolean"
             }
           }
         },
@@ -185,137 +185,137 @@
       "headers": {
         "accept": "application/hal+json",
         "authorization": {
-          "case:matcher:type": "case:StringPrefix",
-          "case:matcher:prefix": "Basic ",
-          "case:matcher:suffix": {
-            "case:matcher:type": "case:HttpBasicAuth",
-            "case:matcher:username": {
-              "case:matcher:type": "case:ContextVariable",
-              "case:matcher:variableName": "username",
-              "case:matcher:resolvesTo": "string"
+          "_case:matcher:type": "_case:StringPrefix",
+          "_case:matcher:prefix": "Basic ",
+          "_case:matcher:suffix": {
+            "_case:matcher:type": "_case:HttpBasicAuth",
+            "_case:matcher:username": {
+              "_case:matcher:type": "_case:ContextVariable",
+              "_case:matcher:variableName": "username",
+              "_case:matcher:resolvesTo": "string"
             },
-            "case:matcher:password": {
-              "case:matcher:type": "case:ContextVariable",
-              "case:matcher:variableName": "password",
-              "case:matcher:resolvesTo": "string"
+            "_case:matcher:password": {
+              "_case:matcher:type": "_case:ContextVariable",
+              "_case:matcher:variableName": "password",
+              "_case:matcher:resolvesTo": "string"
             },
-            "case:matcher:resolvesTo": "string"
+            "_case:matcher:resolvesTo": "string"
           },
-          "case:matcher:resolvesTo": "string"
+          "_case:matcher:resolvesTo": "string"
         }
       },
-      "case:matcher:type": "case:HttpRequestMatcher"
+      "_case:matcher:type": "_case:HttpRequestMatcher"
     },
     "matcher:a (200) response without a body": {
       "status": 200,
-      "case:matcher:type": "case:HttpResponseMatcher"
+      "_case:matcher:type": "_case:HttpResponseMatcher"
     },
     "matcher:an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"} without a body": {
       "method": "PUT",
       "path": {
-        "case:matcher:type": "case:StringPrefix",
-        "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
-        "case:matcher:suffix": {
-          "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "1.2.3",
-          "case:matcher:resolvesTo": "string",
-          "case:context:matchBy": "type"
+        "_case:matcher:type": "_case:StringPrefix",
+        "_case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
+        "_case:matcher:suffix": {
+          "_case:matcher:type": "_case:MatchString",
+          "_case:matcher:example": "1.2.3",
+          "_case:matcher:resolvesTo": "string",
+          "_case:context:matchBy": "type"
         },
-        "case:matcher:resolvesTo": "string"
+        "_case:matcher:resolvesTo": "string"
       },
       "headers": {
         "accept": "application/json",
         "authorization": {
-          "case:matcher:type": "case:StringPrefix",
-          "case:matcher:prefix": "Bearer ",
-          "case:matcher:suffix": {
-            "case:matcher:type": "case:ContextVariable",
-            "case:matcher:variableName": "token"
+          "_case:matcher:type": "_case:StringPrefix",
+          "_case:matcher:prefix": "Bearer ",
+          "_case:matcher:suffix": {
+            "_case:matcher:type": "_case:ContextVariable",
+            "_case:matcher:variableName": "token"
           },
-          "case:matcher:resolvesTo": "string"
+          "_case:matcher:resolvesTo": "string"
         }
       },
-      "case:matcher:type": "case:HttpRequestMatcher"
+      "_case:matcher:type": "_case:HttpRequestMatcher"
     },
     "variable:default:invalidToken": {
-      "case:matcher:type": "case:CascadingContext",
-      "case:matcher:child": {
-        "case:matcher:type": "case:CascadingContext",
-        "case:matcher:child": "TOKEN",
-        "case:context:matchBy": "type"
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "TOKEN",
+        "_case:context:matchBy": "type"
       },
-      "case:context:matchBy": "type"
+      "_case:context:matchBy": "type"
     },
     "matcher:a (403) response without a body": {
       "status": 403,
-      "case:matcher:type": "case:HttpResponseMatcher"
+      "_case:matcher:type": "_case:HttpResponseMatcher"
     },
     "matcher:an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"} without a body": {
       "method": "PUT",
       "path": {
-        "case:matcher:type": "case:StringPrefix",
-        "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
-        "case:matcher:suffix": {
-          "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "1.2.3",
-          "case:matcher:resolvesTo": "string",
-          "case:context:matchBy": "type"
+        "_case:matcher:type": "_case:StringPrefix",
+        "_case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
+        "_case:matcher:suffix": {
+          "_case:matcher:type": "_case:MatchString",
+          "_case:matcher:example": "1.2.3",
+          "_case:matcher:resolvesTo": "string",
+          "_case:context:matchBy": "type"
         },
-        "case:matcher:resolvesTo": "string"
+        "_case:matcher:resolvesTo": "string"
       },
       "headers": {
         "accept": "application/json",
         "authorization": {
-          "case:matcher:type": "case:StringPrefix",
-          "case:matcher:prefix": "Bearer ",
-          "case:matcher:suffix": {
-            "case:matcher:type": "case:ContextVariable",
-            "case:matcher:variableName": "invalidToken"
+          "_case:matcher:type": "_case:StringPrefix",
+          "_case:matcher:prefix": "Bearer ",
+          "_case:matcher:suffix": {
+            "_case:matcher:type": "_case:ContextVariable",
+            "_case:matcher:variableName": "invalidToken"
           },
-          "case:matcher:resolvesTo": "string"
+          "_case:matcher:resolvesTo": "string"
         }
       },
-      "case:matcher:type": "case:HttpRequestMatcher"
+      "_case:matcher:type": "_case:HttpRequestMatcher"
     },
     "matcher:a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, and an array containing an object shaped like {type: \"info\",text: <any string>},}": {
       "status": 200,
       "body": {
         "notices": {
-          "case:matcher:type": "case:CascadingContext",
-          "case:matcher:child": {
-            "case:matcher:type": "case:And",
-            "case:matcher:children": [
+          "_case:matcher:type": "_case:CascadingContext",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:And",
+            "_case:matcher:children": [
               {
-                "case:matcher:type": "case:ArrayContains",
-                "case:matcher:matchers": [
+                "_case:matcher:type": "_case:ArrayContains",
+                "_case:matcher:matchers": [
                   {
                     "type": "debug",
                     "text": {
-                      "case:matcher:type": "case:MatchString",
-                      "case:matcher:example": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main",
-                      "case:matcher:resolvesTo": "string",
-                      "case:context:matchBy": "type"
+                      "_case:matcher:type": "_case:MatchString",
+                      "_case:matcher:example": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main",
+                      "_case:matcher:resolvesTo": "string",
+                      "_case:context:matchBy": "type"
                     }
                   }
                 ]
               },
               {
-                "case:matcher:type": "case:ArrayContains",
-                "case:matcher:matchers": [
+                "_case:matcher:type": "_case:ArrayContains",
+                "_case:matcher:matchers": [
                   {
                     "type": "info",
                     "text": {
-                      "case:matcher:type": "case:MatchString",
-                      "case:matcher:example": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.",
-                      "case:matcher:resolvesTo": "string",
-                      "case:context:matchBy": "type"
+                      "_case:matcher:type": "_case:MatchString",
+                      "_case:matcher:example": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.",
+                      "_case:matcher:resolvesTo": "string",
+                      "_case:context:matchBy": "type"
                     }
                   }
                 ]
               }
             ]
           },
-          "case:matcher:example": {
+          "_case:matcher:example": {
             "notices": [
               {
                 "type": "debug",
@@ -329,88 +329,88 @@
           }
         }
       },
-      "case:matcher:type": "case:HttpResponseMatcher"
+      "_case:matcher:type": "_case:HttpResponseMatcher"
     },
-    "matcher:an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: base64 encoded string 'json stringified 'an object shaped like {contractType: \"case::contract\",description: an object shaped like {consumerName: <any string>,providerName: <any string>}}''}] and an array of length min: 1, max: 1;}": {
+    "matcher:an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: base64 encoded string 'json stringified 'an object shaped like {contractType: \"_case::contract\",description: an object shaped like {consumerName: <any string>,providerName: <any string>}}''}] and an array of length min: 1, max: 1;}": {
       "method": "POST",
       "path": "/contracts/publish",
       "headers": {
         "accept": "application/hal+json",
         "authorization": {
-          "case:matcher:type": "case:StringPrefix",
-          "case:matcher:prefix": "Bearer ",
-          "case:matcher:suffix": {
-            "case:matcher:type": "case:ContextVariable",
-            "case:matcher:variableName": "token"
+          "_case:matcher:type": "_case:StringPrefix",
+          "_case:matcher:prefix": "Bearer ",
+          "_case:matcher:suffix": {
+            "_case:matcher:type": "_case:ContextVariable",
+            "_case:matcher:variableName": "token"
           },
-          "case:matcher:resolvesTo": "string"
+          "_case:matcher:resolvesTo": "string"
         }
       },
       "body": {
         "pacticipantName": {
-          "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "someString",
-          "case:matcher:resolvesTo": "string",
-          "case:context:matchBy": "type"
+          "_case:matcher:type": "_case:MatchString",
+          "_case:matcher:example": "someString",
+          "_case:matcher:resolvesTo": "string",
+          "_case:context:matchBy": "type"
         },
         "pacticipantVersionNumber": {
-          "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "1.2.3",
-          "case:matcher:resolvesTo": "string",
-          "case:context:matchBy": "type"
+          "_case:matcher:type": "_case:MatchString",
+          "_case:matcher:example": "1.2.3",
+          "_case:matcher:resolvesTo": "string",
+          "_case:context:matchBy": "type"
         },
         "branch": {
-          "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "main",
-          "case:matcher:resolvesTo": "string",
-          "case:context:matchBy": "type"
+          "_case:matcher:type": "_case:MatchString",
+          "_case:matcher:example": "main",
+          "_case:matcher:resolvesTo": "string",
+          "_case:context:matchBy": "type"
         },
         "tags": [],
         "contracts": [
           {
             "consumerName": {
-              "case:matcher:type": "case:MatchString",
-              "case:matcher:example": "someString",
-              "case:matcher:resolvesTo": "string",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:MatchString",
+              "_case:matcher:example": "someString",
+              "_case:matcher:resolvesTo": "string",
+              "_case:context:matchBy": "type"
             },
             "providerName": {
-              "case:matcher:type": "case:MatchString",
-              "case:matcher:example": "someString",
-              "case:matcher:resolvesTo": "string",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:MatchString",
+              "_case:matcher:example": "someString",
+              "_case:matcher:resolvesTo": "string",
+              "_case:context:matchBy": "type"
             },
             "specification": "pact",
             "contentType": "application/json",
             "content": {
-              "case:matcher:type": "case:Base64Encoded",
-              "case:matcher:child": {
-                "case:matcher:type": "case:JsonEncoded",
-                "case:matcher:child": {
-                  "contractType": "case::contract",
+              "_case:matcher:type": "_case:Base64Encoded",
+              "_case:matcher:child": {
+                "_case:matcher:type": "_case:JsonEncoded",
+                "_case:matcher:child": {
+                  "contractType": "_case::contract",
                   "description": {
                     "consumerName": {
-                      "case:matcher:type": "case:MatchString",
-                      "case:matcher:example": "Case",
-                      "case:matcher:resolvesTo": "string",
-                      "case:context:matchBy": "type"
+                      "_case:matcher:type": "_case:MatchString",
+                      "_case:matcher:example": "Case",
+                      "_case:matcher:resolvesTo": "string",
+                      "_case:context:matchBy": "type"
                     },
                     "providerName": {
-                      "case:matcher:type": "case:MatchString",
-                      "case:matcher:example": "Pact Broker",
-                      "case:matcher:resolvesTo": "string",
-                      "case:context:matchBy": "type"
+                      "_case:matcher:type": "_case:MatchString",
+                      "_case:matcher:example": "Pact Broker",
+                      "_case:matcher:resolvesTo": "string",
+                      "_case:context:matchBy": "type"
                     }
                   }
                 },
-                "case:matcher:resolvesTo": "string"
+                "_case:matcher:resolvesTo": "string"
               },
-              "case:matcher:resolvesTo": "string"
+              "_case:matcher:resolvesTo": "string"
             }
           }
         ]
       },
-      "case:matcher:type": "case:HttpRequestMatcher"
+      "_case:matcher:type": "_case:HttpRequestMatcher"
     },
     "matcher:an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: <any string>}] and an array of length min: 1, max: 1;}": {
       "method": "POST",
@@ -418,124 +418,124 @@
       "headers": {
         "accept": "application/hal+json",
         "authorization": {
-          "case:matcher:type": "case:StringPrefix",
-          "case:matcher:prefix": "Bearer ",
-          "case:matcher:suffix": {
-            "case:matcher:type": "case:ContextVariable",
-            "case:matcher:variableName": "token"
+          "_case:matcher:type": "_case:StringPrefix",
+          "_case:matcher:prefix": "Bearer ",
+          "_case:matcher:suffix": {
+            "_case:matcher:type": "_case:ContextVariable",
+            "_case:matcher:variableName": "token"
           },
-          "case:matcher:resolvesTo": "string"
+          "_case:matcher:resolvesTo": "string"
         }
       },
       "body": {
         "pacticipantName": {
-          "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "someString",
-          "case:matcher:resolvesTo": "string",
-          "case:context:matchBy": "type"
+          "_case:matcher:type": "_case:MatchString",
+          "_case:matcher:example": "someString",
+          "_case:matcher:resolvesTo": "string",
+          "_case:context:matchBy": "type"
         },
         "pacticipantVersionNumber": {
-          "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "1.2.3",
-          "case:matcher:resolvesTo": "string",
-          "case:context:matchBy": "type"
+          "_case:matcher:type": "_case:MatchString",
+          "_case:matcher:example": "1.2.3",
+          "_case:matcher:resolvesTo": "string",
+          "_case:context:matchBy": "type"
         },
         "branch": {
-          "case:matcher:type": "case:MatchString",
-          "case:matcher:example": "main",
-          "case:matcher:resolvesTo": "string",
-          "case:context:matchBy": "type"
+          "_case:matcher:type": "_case:MatchString",
+          "_case:matcher:example": "main",
+          "_case:matcher:resolvesTo": "string",
+          "_case:context:matchBy": "type"
         },
         "tags": [],
         "contracts": [
           {
             "consumerName": {
-              "case:matcher:type": "case:MatchString",
-              "case:matcher:example": "someString",
-              "case:matcher:resolvesTo": "string",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:MatchString",
+              "_case:matcher:example": "someString",
+              "_case:matcher:resolvesTo": "string",
+              "_case:context:matchBy": "type"
             },
             "providerName": {
-              "case:matcher:type": "case:MatchString",
-              "case:matcher:example": "someString",
-              "case:matcher:resolvesTo": "string",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:MatchString",
+              "_case:matcher:example": "someString",
+              "_case:matcher:resolvesTo": "string",
+              "_case:context:matchBy": "type"
             },
             "specification": "pact",
             "contentType": "application/json",
             "content": {
-              "case:matcher:type": "case:MatchString",
-              "case:matcher:example": "eyJjb250cmFjdFR5cGUiOiJjYXNlOjpjb250cmFjdCIsImRlc2NyaXB0aW9uIjp7ImNvbnN1bWVyTmFtZSI6Imh0dHAgcmVxdWVzdCBjb25zdW1lciIsInByb3ZpZGVyTmFtZSI6Imh0dHAgcmVxdWVzdCBwcm92aWRlciJ9LCJtZXRhZGF0YSI6eyJjYXNlIjp7InZlcnNpb24iOiIwLjYuMSJ9fSwibWF0Y2hlckxvb2t1cCI6eyJtYXRjaGVyOmFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL2hlYWx0aFwiIHdpdGggdGhlIGZvbGxvd2luZyBoZWFkZXJzIGFuIG9iamVjdCBzaGFwZWQgbGlrZSB7YWNjZXB0OiBcImFwcGxpY2F0aW9uL2pzb25cIn0gd2l0aG91dCBhIGJvZHkiOnsibWV0aG9kIjoiR0VUIiwicGF0aCI6Ii9oZWFsdGgiLCJoZWFkZXJzIjp7ImFjY2VwdCI6ImFwcGxpY2F0aW9uL2pzb24ifSwiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifSwibWF0Y2hlcjphICgyMDApIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3N0YXR1czogXCJ1cFwifSI6eyJzdGF0dXMiOjIwMCwiYm9keSI6eyJzdGF0dXMiOiJ1cCJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifSwibWF0Y2hlcjphbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRob3V0IGEgYm9keSI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn0sIm1hdGNoZXI6YSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IDxhbnkgc3RyaW5nPn0iOnsic3RhdHVzIjoyMDAsImJvZHkiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDYXNjYWRpbmdDb250ZXh0IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6IndoYXRldmVyIn0sImNhc2U6Y29udGV4dDptYXRjaEJ5IjoidHlwZSJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifSwibWF0Y2hlcjphIChodHRwU3RhdHVzIDRYWCB8IDVYWCkgcmVzcG9uc2Ugd2l0aG91dCBhIGJvZHkiOnsic3RhdHVzIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFN0YXR1c0NvZGUiLCJjYXNlOm1hdGNoZXI6ZXhhbXBsZSI6NDAwLCJjYXNlOm1hdGNoZXI6cnVsZSI6WyI0WFgiLCI1WFgiXSwiY2FzZTptYXRjaGVyOnJlc29sdmVzVG8iOiJIdHRwU3RhdHVzQ29kZSJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifSwibWF0Y2hlcjphICg1MDMpIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3N0YXR1czogXCJkb3duXCJ9Ijp7InN0YXR1cyI6NTAzLCJib2R5Ijp7InN0YXR1cyI6ImRvd24ifSwiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn0sInZhcmlhYmxlOmRlZmF1bHQ6dXNlcklkIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiQ2FzY2FkaW5nQ29udGV4dCIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6IkNhc2NhZGluZ0NvbnRleHQiLCJjYXNlOm1hdGNoZXI6Y2hpbGQiOiIxMjMiLCJjYXNlOmNvbnRleHQ6bWF0Y2hCeSI6InR5cGUifSwiY2FzZTpjb250ZXh0Om1hdGNoQnkiOiJ0eXBlIn0sIm1hdGNoZXI6YW4gaHR0cCBcIkdFVFwiIHJlcXVlc3QgdG8gXCIvdXNlcnNcIj9pZD17e3VzZXJJZH19IHdpdGhvdXQgYSBib2R5Ijp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvdXNlcnMiLCJxdWVyeSI6eyJpZCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsImNhc2U6bWF0Y2hlcjp2YXJpYWJsZU5hbWUiOiJ1c2VySWQifX0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn0sIm1hdGNoZXI6YSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHt1c2VySWQ6IHt7dXNlcklkfX19Ijp7InN0YXR1cyI6MjAwLCJib2R5Ijp7InVzZXJJZCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsImNhc2U6bWF0Y2hlcjp2YXJpYWJsZU5hbWUiOiJ1c2VySWQifX0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9LCJtYXRjaGVyOmEgKDQwNCkgcmVzcG9uc2Ugd2l0aG91dCBhIGJvZHkiOnsic3RhdHVzIjo0MDQsImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9LCJtYXRjaGVyOmFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL3VzZXJzL3t7dXNlcklkfX1cIiB3aXRob3V0IGEgYm9keSI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiU3RyaW5nUHJlZml4IiwiY2FzZTptYXRjaGVyOnByZWZpeCI6Ii91c2Vycy8iLCJjYXNlOm1hdGNoZXI6c3VmZml4Ijp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiQ29udGV4dFZhcmlhYmxlIiwiY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9LCJjYXNlOm1hdGNoZXI6cmVzb2x2ZXNUbyI6InN0cmluZyJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9LCJtYXRjaGVyOmFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL3VzZXJzLzEyM1wiIHdpdGhvdXQgYSBib2R5Ijp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJTdHJpbmdQcmVmaXgiLCJjYXNlOm1hdGNoZXI6cHJlZml4IjoiL3VzZXJzLyIsImNhc2U6bWF0Y2hlcjpzdWZmaXgiOiIxMjMiLCJjYXNlOm1hdGNoZXI6cmVzb2x2ZXNUbyI6InN0cmluZyJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwiZXhhbXBsZXMiOlt7InN0YXRlcyI6W3siY2FzZTpzdGF0ZTp0eXBlIjoiTmFtZWRTdGF0ZSIsInN0YXRlTmFtZSI6IlNlcnZlciBpcyB1cCJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRoIHRoZSBmb2xsb3dpbmcgaGVhZGVycyBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge2FjY2VwdDogXCJhcHBsaWNhdGlvbi9qc29uXCJ9IHdpdGhvdXQgYSBib2R5IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvaGVhbHRoIiwiaGVhZGVycyI6eyJhY2NlcHQiOiJhcHBsaWNhdGlvbi9qc29uIn0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IFwidXBcIn0iLCJjYXNlOm1hdGNoZXI6Y2hpbGQiOnsic3RhdHVzIjoyMDAsImJvZHkiOnsic3RhdHVzIjoidXAifSwiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn19LCJjYXNlOm1vY2s6dHlwZSI6Ik1vY2tIdHRwQ2xpZW50IiwiY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siY2FzZTpzdGF0ZTp0eXBlIjoiTmFtZWRTdGF0ZSIsInN0YXRlTmFtZSI6IlNlcnZlciBpcyB1cCJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IDxhbnkgc3RyaW5nPn0iLCJjYXNlOm1hdGNoZXI6Y2hpbGQiOnsic3RhdHVzIjoyMDAsImJvZHkiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDYXNjYWRpbmdDb250ZXh0IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6IndoYXRldmVyIn0sImNhc2U6Y29udGV4dDptYXRjaEJ5IjoidHlwZSJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifX0sImNhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJjYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9LHsic3RhdGVzIjpbeyJjYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiU2VydmVyIGlzIGRvd24ifV0sIm1vY2siOnsicmVxdWVzdCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYW4gaHR0cCBcIkdFVFwiIHJlcXVlc3QgdG8gXCIvaGVhbHRoXCIgd2l0aG91dCBhIGJvZHkiLCJjYXNlOm1hdGNoZXI6Y2hpbGQiOnsibWV0aG9kIjoiR0VUIiwicGF0aCI6Ii9oZWFsdGgiLCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwicmVzcG9uc2UiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJjYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImEgKGh0dHBTdGF0dXMgNFhYIHwgNVhYKSByZXNwb25zZSB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwU3RhdHVzQ29kZSIsImNhc2U6bWF0Y2hlcjpleGFtcGxlIjo0MDAsImNhc2U6bWF0Y2hlcjpydWxlIjpbIjRYWCIsIjVYWCJdLCJjYXNlOm1hdGNoZXI6cmVzb2x2ZXNUbyI6Ikh0dHBTdGF0dXNDb2RlIn0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsImNhc2U6cnVuOmNvbnRleHQ6c2V0dXAiOnsid3JpdGUiOnsidHlwZSI6Ik1vY2tIdHRwQ2xpZW50Iiwic3RhdGVWYXJpYWJsZXMiOiJzdGF0ZSIsInRyaWdnZXJzIjoiZ2VuZXJhdGVkIn0sInJlYWQiOnsidHlwZSI6Ik1vY2tIdHRwU2VydmVyIiwic3RhdGVWYXJpYWJsZXMiOiJkZWZhdWx0IiwidHJpZ2dlcnMiOiJwcm92aWRlZCJ9fX0sInJlc3VsdCI6IlZFUklGSUVEIn0seyJzdGF0ZXMiOlt7ImNhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgZG93biJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoNTAzKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IFwiZG93blwifSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjUwMywiYm9keSI6eyJzdGF0dXMiOiJkb3duIn0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsImNhc2U6cnVuOmNvbnRleHQ6c2V0dXAiOnsid3JpdGUiOnsidHlwZSI6Ik1vY2tIdHRwQ2xpZW50Iiwic3RhdGVWYXJpYWJsZXMiOiJzdGF0ZSIsInRyaWdnZXJzIjoiZ2VuZXJhdGVkIn0sInJlYWQiOnsidHlwZSI6Ik1vY2tIdHRwU2VydmVyIiwic3RhdGVWYXJpYWJsZXMiOiJkZWZhdWx0IiwidHJpZ2dlcnMiOiJwcm92aWRlZCJ9fX0sInJlc3VsdCI6IlZFUklGSUVEIn0seyJzdGF0ZXMiOlt7ImNhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifSx7ImNhc2U6c3RhdGU6dHlwZSI6IlN0YXRlV2l0aFZhcmlhYmxlcyIsInN0YXRlTmFtZSI6IkEgdXNlciBleGlzdHMiLCJ2YXJpYWJsZXMiOnsidXNlcklkIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiQ2FzY2FkaW5nQ29udGV4dCIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6IjEyMyIsImNhc2U6Y29udGV4dDptYXRjaEJ5IjoidHlwZSJ9fX1dLCJtb2NrIjp7InJlcXVlc3QiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJjYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL3VzZXJzXCI/aWQ9e3t1c2VySWR9fSB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL3VzZXJzIiwicXVlcnkiOnsiaWQiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJjYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn19LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwicmVzcG9uc2UiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJjYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImEgKDIwMCkgcmVzcG9uc2Ugd2l0aCBib2R5IGFuIG9iamVjdCBzaGFwZWQgbGlrZSB7dXNlcklkOiB7e3VzZXJJZH19fSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjIwMCwiYm9keSI6eyJ1c2VySWQiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJjYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn19LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifX0sImNhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJjYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9LHsic3RhdGVzIjpbeyJjYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiU2VydmVyIGlzIHVwIn0seyJjYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiTm8gdXNlcnMgZXhpc3QifV0sIm1vY2siOnsicmVxdWVzdCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYW4gaHR0cCBcIkdFVFwiIHJlcXVlc3QgdG8gXCIvdXNlcnNcIj9pZD17e3VzZXJJZH19IHdpdGhvdXQgYSBib2R5IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvdXNlcnMiLCJxdWVyeSI6eyJpZCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsImNhc2U6bWF0Y2hlcjp2YXJpYWJsZU5hbWUiOiJ1c2VySWQifX0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoNDA0KSByZXNwb25zZSB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjQwNCwiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn19LCJjYXNlOm1vY2s6dHlwZSI6Ik1vY2tIdHRwQ2xpZW50IiwiY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siY2FzZTpzdGF0ZTp0eXBlIjoiTmFtZWRTdGF0ZSIsInN0YXRlTmFtZSI6IlNlcnZlciBpcyB1cCJ9LHsiY2FzZTpzdGF0ZTp0eXBlIjoiU3RhdGVXaXRoVmFyaWFibGVzIiwic3RhdGVOYW1lIjoiQSB1c2VyIGV4aXN0cyIsInZhcmlhYmxlcyI6eyJ1c2VySWQiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDYXNjYWRpbmdDb250ZXh0IiwiY2FzZTptYXRjaGVyOmNoaWxkIjoiMTIzIiwiY2FzZTpjb250ZXh0Om1hdGNoQnkiOiJ0eXBlIn19fV0sIm1vY2siOnsicmVxdWVzdCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYW4gaHR0cCBcIkdFVFwiIHJlcXVlc3QgdG8gXCIvdXNlcnMve3t1c2VySWR9fVwiIHdpdGhvdXQgYSBib2R5IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJTdHJpbmdQcmVmaXgiLCJjYXNlOm1hdGNoZXI6cHJlZml4IjoiL3VzZXJzLyIsImNhc2U6bWF0Y2hlcjpzdWZmaXgiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJjYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn0sImNhc2U6bWF0Y2hlcjpyZXNvbHZlc1RvIjoic3RyaW5nIn0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHt1c2VySWQ6IHt7dXNlcklkfX19IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6MjAwLCJib2R5Ijp7InVzZXJJZCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsImNhc2U6bWF0Y2hlcjp2YXJpYWJsZU5hbWUiOiJ1c2VySWQifX0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsImNhc2U6cnVuOmNvbnRleHQ6c2V0dXAiOnsid3JpdGUiOnsidHlwZSI6Ik1vY2tIdHRwQ2xpZW50Iiwic3RhdGVWYXJpYWJsZXMiOiJzdGF0ZSIsInRyaWdnZXJzIjoiZ2VuZXJhdGVkIn0sInJlYWQiOnsidHlwZSI6Ik1vY2tIdHRwU2VydmVyIiwic3RhdGVWYXJpYWJsZXMiOiJkZWZhdWx0IiwidHJpZ2dlcnMiOiJwcm92aWRlZCJ9fX0sInJlc3VsdCI6IlZFUklGSUVEIn0seyJzdGF0ZXMiOlt7ImNhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifSx7ImNhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJObyB1c2VycyBleGlzdCJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vycy8xMjNcIiB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiU3RyaW5nUHJlZml4IiwiY2FzZTptYXRjaGVyOnByZWZpeCI6Ii91c2Vycy8iLCJjYXNlOm1hdGNoZXI6c3VmZml4IjoiMTIzIiwiY2FzZTptYXRjaGVyOnJlc29sdmVzVG8iOiJzdHJpbmcifSwiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifX0sInJlc3BvbnNlIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhICg0MDQpIHJlc3BvbnNlIHdpdGhvdXQgYSBib2R5IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6NDA0LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifX0sImNhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJjYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9XX0=",
-              "case:matcher:resolvesTo": "string",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:MatchString",
+              "_case:matcher:example": "eyJjb250cmFjdFR5cGUiOiJfY2FzZTo6Y29udHJhY3QiLCJkZXNjcmlwdGlvbiI6eyJjb25zdW1lck5hbWUiOiJodHRwIHJlcXVlc3QgY29uc3VtZXIiLCJwcm92aWRlck5hbWUiOiJodHRwIHJlcXVlc3QgcHJvdmlkZXIifSwibWV0YWRhdGEiOnsiY2FzZSI6eyJ2ZXJzaW9uIjoiMC42LjEifX0sIm1hdGNoZXJMb29rdXAiOnsibWF0Y2hlcjphbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRoIHRoZSBmb2xsb3dpbmcgaGVhZGVycyBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge2FjY2VwdDogXCJhcHBsaWNhdGlvbi9qc29uXCJ9IHdpdGhvdXQgYSBib2R5Ijp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvaGVhbHRoIiwiaGVhZGVycyI6eyJhY2NlcHQiOiJhcHBsaWNhdGlvbi9qc29uIn0sIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9LCJtYXRjaGVyOmEgKDIwMCkgcmVzcG9uc2Ugd2l0aCBib2R5IGFuIG9iamVjdCBzaGFwZWQgbGlrZSB7c3RhdHVzOiBcInVwXCJ9Ijp7InN0YXR1cyI6MjAwLCJib2R5Ijp7InN0YXR1cyI6InVwIn0sIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifSwibWF0Y2hlcjphbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRob3V0IGEgYm9keSI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9LCJtYXRjaGVyOmEgKDIwMCkgcmVzcG9uc2Ugd2l0aCBib2R5IGFuIG9iamVjdCBzaGFwZWQgbGlrZSB7c3RhdHVzOiA8YW55IHN0cmluZz59Ijp7InN0YXR1cyI6MjAwLCJib2R5Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IkNhc2NhZGluZ0NvbnRleHQiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6IndoYXRldmVyIn0sIl9jYXNlOmNvbnRleHQ6bWF0Y2hCeSI6InR5cGUifSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9LCJtYXRjaGVyOmEgKGh0dHBTdGF0dXMgNFhYIHwgNVhYKSByZXNwb25zZSB3aXRob3V0IGEgYm9keSI6eyJzdGF0dXMiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFN0YXR1c0NvZGUiLCJfY2FzZTptYXRjaGVyOmV4YW1wbGUiOjQwMCwiX2Nhc2U6bWF0Y2hlcjpydWxlIjpbIjRYWCIsIjVYWCJdLCJfY2FzZTptYXRjaGVyOnJlc29sdmVzVG8iOiJIdHRwU3RhdHVzQ29kZSJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn0sIm1hdGNoZXI6YSAoNTAzKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IFwiZG93blwifSI6eyJzdGF0dXMiOjUwMywiYm9keSI6eyJzdGF0dXMiOiJkb3duIn0sIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifSwidmFyaWFibGU6ZGVmYXVsdDp1c2VySWQiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiQ2FzY2FkaW5nQ29udGV4dCIsIl9jYXNlOm1hdGNoZXI6Y2hpbGQiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiQ2FzY2FkaW5nQ29udGV4dCIsIl9jYXNlOm1hdGNoZXI6Y2hpbGQiOiIxMjMiLCJfY2FzZTpjb250ZXh0Om1hdGNoQnkiOiJ0eXBlIn0sIl9jYXNlOmNvbnRleHQ6bWF0Y2hCeSI6InR5cGUifSwibWF0Y2hlcjphbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vyc1wiP2lkPXt7dXNlcklkfX0gd2l0aG91dCBhIGJvZHkiOnsibWV0aG9kIjoiR0VUIiwicGF0aCI6Ii91c2VycyIsInF1ZXJ5Ijp7ImlkIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsIl9jYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn19LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifSwibWF0Y2hlcjphICgyMDApIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3VzZXJJZDoge3t1c2VySWR9fX0iOnsic3RhdHVzIjoyMDAsImJvZHkiOnsidXNlcklkIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsIl9jYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn19LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn0sIm1hdGNoZXI6YSAoNDA0KSByZXNwb25zZSB3aXRob3V0IGEgYm9keSI6eyJzdGF0dXMiOjQwNCwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9LCJtYXRjaGVyOmFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL3VzZXJzL3t7dXNlcklkfX1cIiB3aXRob3V0IGEgYm9keSI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IlN0cmluZ1ByZWZpeCIsIl9jYXNlOm1hdGNoZXI6cHJlZml4IjoiL3VzZXJzLyIsIl9jYXNlOm1hdGNoZXI6c3VmZml4Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsIl9jYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn0sIl9jYXNlOm1hdGNoZXI6cmVzb2x2ZXNUbyI6InN0cmluZyJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifSwibWF0Y2hlcjphbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vycy8xMjNcIiB3aXRob3V0IGEgYm9keSI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IlN0cmluZ1ByZWZpeCIsIl9jYXNlOm1hdGNoZXI6cHJlZml4IjoiL3VzZXJzLyIsIl9jYXNlOm1hdGNoZXI6c3VmZml4IjoiMTIzIiwiX2Nhc2U6bWF0Y2hlcjpyZXNvbHZlc1RvIjoic3RyaW5nIn0sIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwiZXhhbXBsZXMiOlt7InN0YXRlcyI6W3siX2Nhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifV0sIm1vY2siOnsicmVxdWVzdCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRoIHRoZSBmb2xsb3dpbmcgaGVhZGVycyBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge2FjY2VwdDogXCJhcHBsaWNhdGlvbi9qc29uXCJ9IHdpdGhvdXQgYSBib2R5IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsImhlYWRlcnMiOnsiYWNjZXB0IjoiYXBwbGljYXRpb24vanNvbiJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifX0sInJlc3BvbnNlIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsIl9jYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImEgKDIwMCkgcmVzcG9uc2Ugd2l0aCBib2R5IGFuIG9iamVjdCBzaGFwZWQgbGlrZSB7c3RhdHVzOiBcInVwXCJ9IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjIwMCwiYm9keSI6eyJzdGF0dXMiOiJ1cCJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn19LCJfY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsIl9jYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9LHsic3RhdGVzIjpbeyJfY2FzZTpzdGF0ZTp0eXBlIjoiTmFtZWRTdGF0ZSIsInN0YXRlTmFtZSI6IlNlcnZlciBpcyB1cCJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsIl9jYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL2hlYWx0aFwiIHdpdGhvdXQgYSBib2R5IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwicmVzcG9uc2UiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiX2Nhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IDxhbnkgc3RyaW5nPn0iLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6MjAwLCJib2R5Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IkNhc2NhZGluZ0NvbnRleHQiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6IndoYXRldmVyIn0sIl9jYXNlOmNvbnRleHQ6bWF0Y2hCeSI6InR5cGUifSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiX2Nhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJfY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siX2Nhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgZG93biJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsIl9jYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL2hlYWx0aFwiIHdpdGhvdXQgYSBib2R5IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwicmVzcG9uc2UiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiX2Nhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoaHR0cFN0YXR1cyA0WFggfCA1WFgpIHJlc3BvbnNlIHdpdGhvdXQgYSBib2R5IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFN0YXR1c0NvZGUiLCJfY2FzZTptYXRjaGVyOmV4YW1wbGUiOjQwMCwiX2Nhc2U6bWF0Y2hlcjpydWxlIjpbIjRYWCIsIjVYWCJdLCJfY2FzZTptYXRjaGVyOnJlc29sdmVzVG8iOiJIdHRwU3RhdHVzQ29kZSJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn19LCJfY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsIl9jYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9LHsic3RhdGVzIjpbeyJfY2FzZTpzdGF0ZTp0eXBlIjoiTmFtZWRTdGF0ZSIsInN0YXRlTmFtZSI6IlNlcnZlciBpcyBkb3duIn1dLCJtb2NrIjp7InJlcXVlc3QiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiX2Nhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYW4gaHR0cCBcIkdFVFwiIHJlcXVlc3QgdG8gXCIvaGVhbHRoXCIgd2l0aG91dCBhIGJvZHkiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvaGVhbHRoIiwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhICg1MDMpIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3N0YXR1czogXCJkb3duXCJ9IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjUwMywiYm9keSI6eyJzdGF0dXMiOiJkb3duIn0sIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifX0sIl9jYXNlOm1vY2s6dHlwZSI6Ik1vY2tIdHRwQ2xpZW50IiwiX2Nhc2U6cnVuOmNvbnRleHQ6c2V0dXAiOnsid3JpdGUiOnsidHlwZSI6Ik1vY2tIdHRwQ2xpZW50Iiwic3RhdGVWYXJpYWJsZXMiOiJzdGF0ZSIsInRyaWdnZXJzIjoiZ2VuZXJhdGVkIn0sInJlYWQiOnsidHlwZSI6Ik1vY2tIdHRwU2VydmVyIiwic3RhdGVWYXJpYWJsZXMiOiJkZWZhdWx0IiwidHJpZ2dlcnMiOiJwcm92aWRlZCJ9fX0sInJlc3VsdCI6IlZFUklGSUVEIn0seyJzdGF0ZXMiOlt7Il9jYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiU2VydmVyIGlzIHVwIn0seyJfY2FzZTpzdGF0ZTp0eXBlIjoiU3RhdGVXaXRoVmFyaWFibGVzIiwic3RhdGVOYW1lIjoiQSB1c2VyIGV4aXN0cyIsInZhcmlhYmxlcyI6eyJ1c2VySWQiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiQ2FzY2FkaW5nQ29udGV4dCIsIl9jYXNlOm1hdGNoZXI6Y2hpbGQiOiIxMjMiLCJfY2FzZTpjb250ZXh0Om1hdGNoQnkiOiJ0eXBlIn19fV0sIm1vY2siOnsicmVxdWVzdCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vyc1wiP2lkPXt7dXNlcklkfX0gd2l0aG91dCBhIGJvZHkiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvdXNlcnMiLCJxdWVyeSI6eyJpZCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJfY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9fSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhICgyMDApIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3VzZXJJZDoge3t1c2VySWR9fX0iLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6MjAwLCJib2R5Ijp7InVzZXJJZCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJfY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9fSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiX2Nhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJfY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siX2Nhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifSx7Il9jYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiTm8gdXNlcnMgZXhpc3QifV0sIm1vY2siOnsicmVxdWVzdCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vyc1wiP2lkPXt7dXNlcklkfX0gd2l0aG91dCBhIGJvZHkiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvdXNlcnMiLCJxdWVyeSI6eyJpZCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJfY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9fSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhICg0MDQpIHJlc3BvbnNlIHdpdGhvdXQgYSBib2R5IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjQwNCwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiX2Nhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJfY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siX2Nhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifSx7Il9jYXNlOnN0YXRlOnR5cGUiOiJTdGF0ZVdpdGhWYXJpYWJsZXMiLCJzdGF0ZU5hbWUiOiJBIHVzZXIgZXhpc3RzIiwidmFyaWFibGVzIjp7InVzZXJJZCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDYXNjYWRpbmdDb250ZXh0IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6IjEyMyIsIl9jYXNlOmNvbnRleHQ6bWF0Y2hCeSI6InR5cGUifX19XSwibW9jayI6eyJyZXF1ZXN0Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsIl9jYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL3VzZXJzL3t7dXNlcklkfX1cIiB3aXRob3V0IGEgYm9keSIsIl9jYXNlOm1hdGNoZXI6Y2hpbGQiOnsibWV0aG9kIjoiR0VUIiwicGF0aCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJTdHJpbmdQcmVmaXgiLCJfY2FzZTptYXRjaGVyOnByZWZpeCI6Ii91c2Vycy8iLCJfY2FzZTptYXRjaGVyOnN1ZmZpeCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJfY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9LCJfY2FzZTptYXRjaGVyOnJlc29sdmVzVG8iOiJzdHJpbmcifSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhICgyMDApIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3VzZXJJZDoge3t1c2VySWR9fX0iLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6MjAwLCJib2R5Ijp7InVzZXJJZCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJfY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9fSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiX2Nhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJfY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siX2Nhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifSx7Il9jYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiTm8gdXNlcnMgZXhpc3QifV0sIm1vY2siOnsicmVxdWVzdCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vycy8xMjNcIiB3aXRob3V0IGEgYm9keSIsIl9jYXNlOm1hdGNoZXI6Y2hpbGQiOnsibWV0aG9kIjoiR0VUIiwicGF0aCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJTdHJpbmdQcmVmaXgiLCJfY2FzZTptYXRjaGVyOnByZWZpeCI6Ii91c2Vycy8iLCJfY2FzZTptYXRjaGVyOnN1ZmZpeCI6IjEyMyIsIl9jYXNlOm1hdGNoZXI6cmVzb2x2ZXNUbyI6InN0cmluZyJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifX0sInJlc3BvbnNlIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsIl9jYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImEgKDQwNCkgcmVzcG9uc2Ugd2l0aG91dCBhIGJvZHkiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6NDA0LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn19LCJfY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsIl9jYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9XX0=",
+              "_case:matcher:resolvesTo": "string",
+              "_case:context:matchBy": "type"
             }
           }
         ]
       },
-      "case:matcher:type": "case:HttpRequestMatcher"
+      "_case:matcher:type": "_case:HttpRequestMatcher"
     }
   },
   "examples": [
     {
       "states": [
         {
-          "case:state:type": "case:StateWithVariables",
+          "_case:state:type": "_case:StateWithVariables",
           "stateName": "auth token is valid",
           "variables": {
             "token": {
-              "case:matcher:type": "case:CascadingContext",
-              "case:matcher:child": "TOKEN",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "TOKEN",
+              "_case:context:matchBy": "type"
             }
           }
         },
         {
-          "case:state:type": "case:StateWithVariables",
+          "_case:state:type": "_case:StateWithVariables",
           "stateName": "with provider name",
           "variables": {
             "providerName": {
-              "case:matcher:type": "case:CascadingContext",
-              "case:matcher:child": "http request provider",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "http request provider",
+              "_case:context:matchBy": "type"
             }
           }
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] and an array of length min: 1, max: 1;}",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] and an array of length min: 1, max: 1;}",
+          "_case:matcher:child": {
             "method": "POST",
             "path": {
-              "case:matcher:type": "case:UrlEncodedString",
-              "case:matcher:child": {
-                "case:matcher:type": "case:StringPrefix",
-                "case:matcher:prefix": "/pacts/provider/",
-                "case:matcher:suffix": {
-                  "case:matcher:type": "case:StringSuffix",
-                  "case:matcher:prefix": {
-                    "case:matcher:type": "case:ContextVariable",
-                    "case:matcher:variableName": "providerName"
+              "_case:matcher:type": "_case:UrlEncodedString",
+              "_case:matcher:child": {
+                "_case:matcher:type": "_case:StringPrefix",
+                "_case:matcher:prefix": "/pacts/provider/",
+                "_case:matcher:suffix": {
+                  "_case:matcher:type": "_case:StringSuffix",
+                  "_case:matcher:prefix": {
+                    "_case:matcher:type": "_case:ContextVariable",
+                    "_case:matcher:variableName": "providerName"
                   },
-                  "case:matcher:suffix": "/for-verification",
-                  "case:matcher:resolvesTo": "string"
+                  "_case:matcher:suffix": "/for-verification",
+                  "_case:matcher:resolvesTo": "string"
                 },
-                "case:matcher:resolvesTo": "string"
+                "_case:matcher:resolvesTo": "string"
               },
-              "case:matcher:accepts": "string",
-              "case:matcher:resolvesTo": "string"
+              "_case:matcher:accepts": "string",
+              "_case:matcher:resolvesTo": "string"
             },
             "body": {
               "consumerVersionSelectors": {
-                "case:matcher:type": "case:ArrayEachEntryLike",
-                "case:matcher:matcher": {
-                  "case:matcher:type": "case:ObjectValuesMatch",
-                  "case:matcher:matcher": {
-                    "case:matcher:type": "case:MatchBoolean",
-                    "case:matcher:example": true,
-                    "case:context:matchBy": "type",
-                    "case:matcher:resolvesTo": "boolean"
+                "_case:matcher:type": "_case:ArrayEachEntryLike",
+                "_case:matcher:matcher": {
+                  "_case:matcher:type": "_case:ObjectValuesMatch",
+                  "_case:matcher:matcher": {
+                    "_case:matcher:type": "_case:MatchBoolean",
+                    "_case:matcher:example": true,
+                    "_case:context:matchBy": "type",
+                    "_case:matcher:resolvesTo": "boolean"
                   }
                 }
               },
@@ -546,77 +546,77 @@
             "headers": {
               "accept": "application/hal+json",
               "authorization": {
-                "case:matcher:type": "case:StringPrefix",
-                "case:matcher:prefix": "Bearer ",
-                "case:matcher:suffix": {
-                  "case:matcher:type": "case:ContextVariable",
-                  "case:matcher:variableName": "token",
-                  "case:matcher:resolvesTo": "string"
+                "_case:matcher:type": "_case:StringPrefix",
+                "_case:matcher:prefix": "Bearer ",
+                "_case:matcher:suffix": {
+                  "_case:matcher:type": "_case:ContextVariable",
+                  "_case:matcher:variableName": "token",
+                  "_case:matcher:resolvesTo": "string"
                 },
-                "case:matcher:resolvesTo": "string"
+                "_case:matcher:resolvesTo": "string"
               }
             },
-            "case:matcher:type": "case:HttpRequestMatcher"
+            "_case:matcher:type": "_case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array where each entry matches an object shaped like {verificationProperties: an object shaped like {notices: an array where each entry matches an object shaped like {text: <any string>}},_links: an object shaped like {self: an object shaped like {href: <any string>,name: <any string>}}}},_links: an object shaped like {self: an object shaped like {href: <any string>,title: <any string>}}}",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array where each entry matches an object shaped like {verificationProperties: an object shaped like {notices: an array where each entry matches an object shaped like {text: <any string>}},_links: an object shaped like {self: an object shaped like {href: <any string>,name: <any string>}}}},_links: an object shaped like {self: an object shaped like {href: <any string>,title: <any string>}}}",
+          "_case:matcher:child": {
             "status": 200,
             "body": {
               "_embedded": {
                 "pacts": {
-                  "case:matcher:type": "case:ArrayEachEntryLike",
-                  "case:matcher:matcher": {
+                  "_case:matcher:type": "_case:ArrayEachEntryLike",
+                  "_case:matcher:matcher": {
                     "verificationProperties": {
                       "notices": {
-                        "case:matcher:type": "case:ArrayEachEntryLike",
-                        "case:matcher:matcher": {
-                          "case:matcher:type": "case:CascadingContext",
-                          "case:matcher:child": {
+                        "_case:matcher:type": "_case:ArrayEachEntryLike",
+                        "_case:matcher:matcher": {
+                          "_case:matcher:type": "_case:CascadingContext",
+                          "_case:matcher:child": {
                             "text": "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'"
                           },
-                          "case:context:matchBy": "type"
+                          "_case:context:matchBy": "type"
                         }
                       }
                     },
                     "_links": {
-                      "case:matcher:type": "case:CascadingContext",
-                      "case:matcher:child": {
+                      "_case:matcher:type": "_case:CascadingContext",
+                      "_case:matcher:child": {
                         "self": {
                           "href": "http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a",
                           "name": "Pact between Foo (v1.0.0) and Bar"
                         }
                       },
-                      "case:context:matchBy": "type"
+                      "_case:context:matchBy": "type"
                     }
                   }
                 }
               },
               "_links": {
-                "case:matcher:type": "case:CascadingContext",
-                "case:matcher:child": {
+                "_case:matcher:type": "_case:CascadingContext",
+                "_case:matcher:child": {
                   "self": {
                     "href": "http://localhost:9292/pacts/provider/Bar/for-verification",
                     "title": "Pacts to be verified"
                   }
                 },
-                "case:context:matchBy": "type"
+                "_case:context:matchBy": "type"
               }
             },
-            "case:matcher:type": "case:HttpResponseMatcher"
+            "_case:matcher:type": "_case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "case:MockHttpServer",
-        "case:run:context:setup": {
+        "_case:mock:type": "_case:MockHttpServer",
+        "_case:run:context:setup": {
           "write": {
-            "type": "case:MockHttpServer",
+            "type": "_case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "case:MockHttpClient",
+            "type": "_case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }
@@ -627,68 +627,68 @@
     {
       "states": [
         {
-          "case:state:type": "case:StateWithVariables",
+          "_case:state:type": "_case:StateWithVariables",
           "stateName": "valid basic auth credentials",
           "variables": {
             "username": {
-              "case:matcher:type": "case:CascadingContext",
-              "case:matcher:child": "someUsername",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "someUsername",
+              "_case:context:matchBy": "type"
             },
             "password": {
-              "case:matcher:type": "case:CascadingContext",
-              "case:matcher:child": "somePassword",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "somePassword",
+              "_case:context:matchBy": "type"
             }
           }
         },
         {
-          "case:state:type": "case:StateWithVariables",
+          "_case:state:type": "_case:StateWithVariables",
           "stateName": "with provider name",
           "variables": {
             "providerName": {
-              "case:matcher:type": "case:CascadingContext",
-              "case:matcher:child": "http request provider",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "http request provider",
+              "_case:context:matchBy": "type"
             }
           }
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Basic http basic auth with username='{{username}}' and password={{password}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] and an array of length min: 1, max: 1;}",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Basic http basic auth with username='{{username}}' and password={{password}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] and an array of length min: 1, max: 1;}",
+          "_case:matcher:child": {
             "method": "POST",
             "path": {
-              "case:matcher:type": "case:UrlEncodedString",
-              "case:matcher:child": {
-                "case:matcher:type": "case:StringPrefix",
-                "case:matcher:prefix": "/pacts/provider/",
-                "case:matcher:suffix": {
-                  "case:matcher:type": "case:StringSuffix",
-                  "case:matcher:prefix": {
-                    "case:matcher:type": "case:ContextVariable",
-                    "case:matcher:variableName": "providerName"
+              "_case:matcher:type": "_case:UrlEncodedString",
+              "_case:matcher:child": {
+                "_case:matcher:type": "_case:StringPrefix",
+                "_case:matcher:prefix": "/pacts/provider/",
+                "_case:matcher:suffix": {
+                  "_case:matcher:type": "_case:StringSuffix",
+                  "_case:matcher:prefix": {
+                    "_case:matcher:type": "_case:ContextVariable",
+                    "_case:matcher:variableName": "providerName"
                   },
-                  "case:matcher:suffix": "/for-verification",
-                  "case:matcher:resolvesTo": "string"
+                  "_case:matcher:suffix": "/for-verification",
+                  "_case:matcher:resolvesTo": "string"
                 },
-                "case:matcher:resolvesTo": "string"
+                "_case:matcher:resolvesTo": "string"
               },
-              "case:matcher:accepts": "string",
-              "case:matcher:resolvesTo": "string"
+              "_case:matcher:accepts": "string",
+              "_case:matcher:resolvesTo": "string"
             },
             "body": {
               "consumerVersionSelectors": {
-                "case:matcher:type": "case:ArrayEachEntryLike",
-                "case:matcher:matcher": {
-                  "case:matcher:type": "case:ObjectValuesMatch",
-                  "case:matcher:matcher": {
-                    "case:matcher:type": "case:MatchBoolean",
-                    "case:matcher:example": true,
-                    "case:context:matchBy": "type",
-                    "case:matcher:resolvesTo": "boolean"
+                "_case:matcher:type": "_case:ArrayEachEntryLike",
+                "_case:matcher:matcher": {
+                  "_case:matcher:type": "_case:ObjectValuesMatch",
+                  "_case:matcher:matcher": {
+                    "_case:matcher:type": "_case:MatchBoolean",
+                    "_case:matcher:example": true,
+                    "_case:context:matchBy": "type",
+                    "_case:matcher:resolvesTo": "boolean"
                   }
                 }
               },
@@ -699,86 +699,86 @@
             "headers": {
               "accept": "application/hal+json",
               "authorization": {
-                "case:matcher:type": "case:StringPrefix",
-                "case:matcher:prefix": "Basic ",
-                "case:matcher:suffix": {
-                  "case:matcher:type": "case:HttpBasicAuth",
-                  "case:matcher:username": {
-                    "case:matcher:type": "case:ContextVariable",
-                    "case:matcher:variableName": "username",
-                    "case:matcher:resolvesTo": "string"
+                "_case:matcher:type": "_case:StringPrefix",
+                "_case:matcher:prefix": "Basic ",
+                "_case:matcher:suffix": {
+                  "_case:matcher:type": "_case:HttpBasicAuth",
+                  "_case:matcher:username": {
+                    "_case:matcher:type": "_case:ContextVariable",
+                    "_case:matcher:variableName": "username",
+                    "_case:matcher:resolvesTo": "string"
                   },
-                  "case:matcher:password": {
-                    "case:matcher:type": "case:ContextVariable",
-                    "case:matcher:variableName": "password",
-                    "case:matcher:resolvesTo": "string"
+                  "_case:matcher:password": {
+                    "_case:matcher:type": "_case:ContextVariable",
+                    "_case:matcher:variableName": "password",
+                    "_case:matcher:resolvesTo": "string"
                   },
-                  "case:matcher:resolvesTo": "string"
+                  "_case:matcher:resolvesTo": "string"
                 },
-                "case:matcher:resolvesTo": "string"
+                "_case:matcher:resolvesTo": "string"
               }
             },
-            "case:matcher:type": "case:HttpRequestMatcher"
+            "_case:matcher:type": "_case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array where each entry matches an object shaped like {verificationProperties: an object shaped like {notices: an array where each entry matches an object shaped like {text: <any string>}},_links: an object shaped like {self: an object shaped like {href: <any string>,name: <any string>}}}},_links: an object shaped like {self: an object shaped like {href: <any string>,title: <any string>}}}",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {_embedded: an object shaped like {pacts: an array where each entry matches an object shaped like {verificationProperties: an object shaped like {notices: an array where each entry matches an object shaped like {text: <any string>}},_links: an object shaped like {self: an object shaped like {href: <any string>,name: <any string>}}}},_links: an object shaped like {self: an object shaped like {href: <any string>,title: <any string>}}}",
+          "_case:matcher:child": {
             "status": 200,
             "body": {
               "_embedded": {
                 "pacts": {
-                  "case:matcher:type": "case:ArrayEachEntryLike",
-                  "case:matcher:matcher": {
+                  "_case:matcher:type": "_case:ArrayEachEntryLike",
+                  "_case:matcher:matcher": {
                     "verificationProperties": {
                       "notices": {
-                        "case:matcher:type": "case:ArrayEachEntryLike",
-                        "case:matcher:matcher": {
-                          "case:matcher:type": "case:CascadingContext",
-                          "case:matcher:child": {
+                        "_case:matcher:type": "_case:ArrayEachEntryLike",
+                        "_case:matcher:matcher": {
+                          "_case:matcher:type": "_case:CascadingContext",
+                          "_case:matcher:child": {
                             "text": "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'"
                           },
-                          "case:context:matchBy": "type"
+                          "_case:context:matchBy": "type"
                         }
                       }
                     },
                     "_links": {
-                      "case:matcher:type": "case:CascadingContext",
-                      "case:matcher:child": {
+                      "_case:matcher:type": "_case:CascadingContext",
+                      "_case:matcher:child": {
                         "self": {
                           "href": "http://localhost:9292/pacts/provider/Bar/consumer/Foo/pact-version/0e3369199f4008231946e0245474537443ccda2a",
                           "name": "Pact between Foo (v1.0.0) and Bar"
                         }
                       },
-                      "case:context:matchBy": "type"
+                      "_case:context:matchBy": "type"
                     }
                   }
                 }
               },
               "_links": {
-                "case:matcher:type": "case:CascadingContext",
-                "case:matcher:child": {
+                "_case:matcher:type": "_case:CascadingContext",
+                "_case:matcher:child": {
                   "self": {
                     "href": "http://localhost:9292/pacts/provider/Bar/for-verification",
                     "title": "Pacts to be verified"
                   }
                 },
-                "case:context:matchBy": "type"
+                "_case:context:matchBy": "type"
               }
             },
-            "case:matcher:type": "case:HttpResponseMatcher"
+            "_case:matcher:type": "_case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "case:MockHttpServer",
-        "case:run:context:setup": {
+        "_case:mock:type": "_case:MockHttpServer",
+        "_case:run:context:setup": {
           "write": {
-            "type": "case:MockHttpServer",
+            "type": "_case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "case:MockHttpClient",
+            "type": "_case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }
@@ -789,66 +789,66 @@
     {
       "states": [
         {
-          "case:state:type": "case:StateWithVariables",
+          "_case:state:type": "_case:StateWithVariables",
           "stateName": "auth token is valid",
           "variables": {
             "token": {
-              "case:matcher:type": "case:CascadingContext",
-              "case:matcher:child": "TOKEN",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "TOKEN",
+              "_case:context:matchBy": "type"
             }
           }
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"} without a body",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"} without a body",
+          "_case:matcher:child": {
             "method": "PUT",
             "path": {
-              "case:matcher:type": "case:StringPrefix",
-              "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
-              "case:matcher:suffix": {
-                "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "1.2.3",
-                "case:matcher:resolvesTo": "string",
-                "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:StringPrefix",
+              "_case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
+              "_case:matcher:suffix": {
+                "_case:matcher:type": "_case:MatchString",
+                "_case:matcher:example": "1.2.3",
+                "_case:matcher:resolvesTo": "string",
+                "_case:context:matchBy": "type"
               },
-              "case:matcher:resolvesTo": "string"
+              "_case:matcher:resolvesTo": "string"
             },
             "headers": {
               "accept": "application/json",
               "authorization": {
-                "case:matcher:type": "case:StringPrefix",
-                "case:matcher:prefix": "Bearer ",
-                "case:matcher:suffix": {
-                  "case:matcher:type": "case:ContextVariable",
-                  "case:matcher:variableName": "token"
+                "_case:matcher:type": "_case:StringPrefix",
+                "_case:matcher:prefix": "Bearer ",
+                "_case:matcher:suffix": {
+                  "_case:matcher:type": "_case:ContextVariable",
+                  "_case:matcher:variableName": "token"
                 },
-                "case:matcher:resolvesTo": "string"
+                "_case:matcher:resolvesTo": "string"
               }
             },
-            "case:matcher:type": "case:HttpRequestMatcher"
+            "_case:matcher:type": "_case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "a (200) response without a body",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a (200) response without a body",
+          "_case:matcher:child": {
             "status": 200,
-            "case:matcher:type": "case:HttpResponseMatcher"
+            "_case:matcher:type": "_case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "case:MockHttpServer",
-        "case:run:context:setup": {
+        "_case:mock:type": "_case:MockHttpServer",
+        "_case:run:context:setup": {
           "write": {
-            "type": "case:MockHttpServer",
+            "type": "_case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "case:MockHttpClient",
+            "type": "_case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }
@@ -859,66 +859,66 @@
     {
       "states": [
         {
-          "case:state:type": "case:StateWithVariables",
+          "_case:state:type": "_case:StateWithVariables",
           "stateName": "auth token is not valid",
           "variables": {
             "invalidToken": {
-              "case:matcher:type": "case:CascadingContext",
-              "case:matcher:child": "TOKEN",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "TOKEN",
+              "_case:context:matchBy": "type"
             }
           }
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"} without a body",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"} without a body",
+          "_case:matcher:child": {
             "method": "PUT",
             "path": {
-              "case:matcher:type": "case:StringPrefix",
-              "case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
-              "case:matcher:suffix": {
-                "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "1.2.3",
-                "case:matcher:resolvesTo": "string",
-                "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:StringPrefix",
+              "_case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
+              "_case:matcher:suffix": {
+                "_case:matcher:type": "_case:MatchString",
+                "_case:matcher:example": "1.2.3",
+                "_case:matcher:resolvesTo": "string",
+                "_case:context:matchBy": "type"
               },
-              "case:matcher:resolvesTo": "string"
+              "_case:matcher:resolvesTo": "string"
             },
             "headers": {
               "accept": "application/json",
               "authorization": {
-                "case:matcher:type": "case:StringPrefix",
-                "case:matcher:prefix": "Bearer ",
-                "case:matcher:suffix": {
-                  "case:matcher:type": "case:ContextVariable",
-                  "case:matcher:variableName": "invalidToken"
+                "_case:matcher:type": "_case:StringPrefix",
+                "_case:matcher:prefix": "Bearer ",
+                "_case:matcher:suffix": {
+                  "_case:matcher:type": "_case:ContextVariable",
+                  "_case:matcher:variableName": "invalidToken"
                 },
-                "case:matcher:resolvesTo": "string"
+                "_case:matcher:resolvesTo": "string"
               }
             },
-            "case:matcher:type": "case:HttpRequestMatcher"
+            "_case:matcher:type": "_case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "a (403) response without a body",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a (403) response without a body",
+          "_case:matcher:child": {
             "status": 403,
-            "case:matcher:type": "case:HttpResponseMatcher"
+            "_case:matcher:type": "_case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "case:MockHttpServer",
-        "case:run:context:setup": {
+        "_case:mock:type": "_case:MockHttpServer",
+        "_case:run:context:setup": {
           "write": {
-            "type": "case:MockHttpServer",
+            "type": "_case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "case:MockHttpClient",
+            "type": "_case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }
@@ -929,145 +929,145 @@
     {
       "states": [
         {
-          "case:state:type": "case:StateWithVariables",
+          "_case:state:type": "_case:StateWithVariables",
           "stateName": "auth token is valid",
           "variables": {
             "token": {
-              "case:matcher:type": "case:CascadingContext",
-              "case:matcher:child": "TOKEN",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "TOKEN",
+              "_case:context:matchBy": "type"
             }
           }
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: base64 encoded string 'json stringified 'an object shaped like {contractType: \"case::contract\",description: an object shaped like {consumerName: <any string>,providerName: <any string>}}''}] and an array of length min: 1, max: 1;}",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: base64 encoded string 'json stringified 'an object shaped like {contractType: \"_case::contract\",description: an object shaped like {consumerName: <any string>,providerName: <any string>}}''}] and an array of length min: 1, max: 1;}",
+          "_case:matcher:child": {
             "method": "POST",
             "path": "/contracts/publish",
             "headers": {
               "accept": "application/hal+json",
               "authorization": {
-                "case:matcher:type": "case:StringPrefix",
-                "case:matcher:prefix": "Bearer ",
-                "case:matcher:suffix": {
-                  "case:matcher:type": "case:ContextVariable",
-                  "case:matcher:variableName": "token"
+                "_case:matcher:type": "_case:StringPrefix",
+                "_case:matcher:prefix": "Bearer ",
+                "_case:matcher:suffix": {
+                  "_case:matcher:type": "_case:ContextVariable",
+                  "_case:matcher:variableName": "token"
                 },
-                "case:matcher:resolvesTo": "string"
+                "_case:matcher:resolvesTo": "string"
               }
             },
             "body": {
               "pacticipantName": {
-                "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "someString",
-                "case:matcher:resolvesTo": "string",
-                "case:context:matchBy": "type"
+                "_case:matcher:type": "_case:MatchString",
+                "_case:matcher:example": "someString",
+                "_case:matcher:resolvesTo": "string",
+                "_case:context:matchBy": "type"
               },
               "pacticipantVersionNumber": {
-                "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "1.2.3",
-                "case:matcher:resolvesTo": "string",
-                "case:context:matchBy": "type"
+                "_case:matcher:type": "_case:MatchString",
+                "_case:matcher:example": "1.2.3",
+                "_case:matcher:resolvesTo": "string",
+                "_case:context:matchBy": "type"
               },
               "branch": {
-                "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "main",
-                "case:matcher:resolvesTo": "string",
-                "case:context:matchBy": "type"
+                "_case:matcher:type": "_case:MatchString",
+                "_case:matcher:example": "main",
+                "_case:matcher:resolvesTo": "string",
+                "_case:context:matchBy": "type"
               },
               "tags": [],
               "contracts": [
                 {
                   "consumerName": {
-                    "case:matcher:type": "case:MatchString",
-                    "case:matcher:example": "someString",
-                    "case:matcher:resolvesTo": "string",
-                    "case:context:matchBy": "type"
+                    "_case:matcher:type": "_case:MatchString",
+                    "_case:matcher:example": "someString",
+                    "_case:matcher:resolvesTo": "string",
+                    "_case:context:matchBy": "type"
                   },
                   "providerName": {
-                    "case:matcher:type": "case:MatchString",
-                    "case:matcher:example": "someString",
-                    "case:matcher:resolvesTo": "string",
-                    "case:context:matchBy": "type"
+                    "_case:matcher:type": "_case:MatchString",
+                    "_case:matcher:example": "someString",
+                    "_case:matcher:resolvesTo": "string",
+                    "_case:context:matchBy": "type"
                   },
                   "specification": "pact",
                   "contentType": "application/json",
                   "content": {
-                    "case:matcher:type": "case:Base64Encoded",
-                    "case:matcher:child": {
-                      "case:matcher:type": "case:JsonEncoded",
-                      "case:matcher:child": {
-                        "contractType": "case::contract",
+                    "_case:matcher:type": "_case:Base64Encoded",
+                    "_case:matcher:child": {
+                      "_case:matcher:type": "_case:JsonEncoded",
+                      "_case:matcher:child": {
+                        "contractType": "_case::contract",
                         "description": {
                           "consumerName": {
-                            "case:matcher:type": "case:MatchString",
-                            "case:matcher:example": "Case",
-                            "case:matcher:resolvesTo": "string",
-                            "case:context:matchBy": "type"
+                            "_case:matcher:type": "_case:MatchString",
+                            "_case:matcher:example": "Case",
+                            "_case:matcher:resolvesTo": "string",
+                            "_case:context:matchBy": "type"
                           },
                           "providerName": {
-                            "case:matcher:type": "case:MatchString",
-                            "case:matcher:example": "Pact Broker",
-                            "case:matcher:resolvesTo": "string",
-                            "case:context:matchBy": "type"
+                            "_case:matcher:type": "_case:MatchString",
+                            "_case:matcher:example": "Pact Broker",
+                            "_case:matcher:resolvesTo": "string",
+                            "_case:context:matchBy": "type"
                           }
                         }
                       },
-                      "case:matcher:resolvesTo": "string"
+                      "_case:matcher:resolvesTo": "string"
                     },
-                    "case:matcher:resolvesTo": "string"
+                    "_case:matcher:resolvesTo": "string"
                   }
                 }
               ]
             },
-            "case:matcher:type": "case:HttpRequestMatcher"
+            "_case:matcher:type": "_case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, and an array containing an object shaped like {type: \"info\",text: <any string>},}",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, and an array containing an object shaped like {type: \"info\",text: <any string>},}",
+          "_case:matcher:child": {
             "status": 200,
             "body": {
               "notices": {
-                "case:matcher:type": "case:CascadingContext",
-                "case:matcher:child": {
-                  "case:matcher:type": "case:And",
-                  "case:matcher:children": [
+                "_case:matcher:type": "_case:CascadingContext",
+                "_case:matcher:child": {
+                  "_case:matcher:type": "_case:And",
+                  "_case:matcher:children": [
                     {
-                      "case:matcher:type": "case:ArrayContains",
-                      "case:matcher:matchers": [
+                      "_case:matcher:type": "_case:ArrayContains",
+                      "_case:matcher:matchers": [
                         {
                           "type": "debug",
                           "text": {
-                            "case:matcher:type": "case:MatchString",
-                            "case:matcher:example": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main",
-                            "case:matcher:resolvesTo": "string",
-                            "case:context:matchBy": "type"
+                            "_case:matcher:type": "_case:MatchString",
+                            "_case:matcher:example": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main",
+                            "_case:matcher:resolvesTo": "string",
+                            "_case:context:matchBy": "type"
                           }
                         }
                       ]
                     },
                     {
-                      "case:matcher:type": "case:ArrayContains",
-                      "case:matcher:matchers": [
+                      "_case:matcher:type": "_case:ArrayContains",
+                      "_case:matcher:matchers": [
                         {
                           "type": "info",
                           "text": {
-                            "case:matcher:type": "case:MatchString",
-                            "case:matcher:example": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.",
-                            "case:matcher:resolvesTo": "string",
-                            "case:context:matchBy": "type"
+                            "_case:matcher:type": "_case:MatchString",
+                            "_case:matcher:example": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.",
+                            "_case:matcher:resolvesTo": "string",
+                            "_case:context:matchBy": "type"
                           }
                         }
                       ]
                     }
                   ]
                 },
-                "case:matcher:example": {
+                "_case:matcher:example": {
                   "notices": [
                     {
                       "type": "debug",
@@ -1081,18 +1081,18 @@
                 }
               }
             },
-            "case:matcher:type": "case:HttpResponseMatcher"
+            "_case:matcher:type": "_case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "case:MockHttpServer",
-        "case:run:context:setup": {
+        "_case:mock:type": "_case:MockHttpServer",
+        "_case:run:context:setup": {
           "write": {
-            "type": "case:MockHttpServer",
+            "type": "_case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "case:MockHttpClient",
+            "type": "_case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }
@@ -1103,101 +1103,101 @@
     {
       "states": [
         {
-          "case:state:type": "case:StateWithVariables",
+          "_case:state:type": "_case:StateWithVariables",
           "stateName": "auth token is not valid",
           "variables": {
             "invalidToken": {
-              "case:matcher:type": "case:CascadingContext",
-              "case:matcher:child": "TOKEN",
-              "case:context:matchBy": "type"
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "TOKEN",
+              "_case:context:matchBy": "type"
             }
           }
         }
       ],
       "mock": {
         "request": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: <any string>}] and an array of length min: 1, max: 1;}",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: <any string>}] and an array of length min: 1, max: 1;}",
+          "_case:matcher:child": {
             "method": "POST",
             "path": "/contracts/publish",
             "headers": {
               "accept": "application/hal+json",
               "authorization": {
-                "case:matcher:type": "case:StringPrefix",
-                "case:matcher:prefix": "Bearer ",
-                "case:matcher:suffix": {
-                  "case:matcher:type": "case:ContextVariable",
-                  "case:matcher:variableName": "token"
+                "_case:matcher:type": "_case:StringPrefix",
+                "_case:matcher:prefix": "Bearer ",
+                "_case:matcher:suffix": {
+                  "_case:matcher:type": "_case:ContextVariable",
+                  "_case:matcher:variableName": "token"
                 },
-                "case:matcher:resolvesTo": "string"
+                "_case:matcher:resolvesTo": "string"
               }
             },
             "body": {
               "pacticipantName": {
-                "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "someString",
-                "case:matcher:resolvesTo": "string",
-                "case:context:matchBy": "type"
+                "_case:matcher:type": "_case:MatchString",
+                "_case:matcher:example": "someString",
+                "_case:matcher:resolvesTo": "string",
+                "_case:context:matchBy": "type"
               },
               "pacticipantVersionNumber": {
-                "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "1.2.3",
-                "case:matcher:resolvesTo": "string",
-                "case:context:matchBy": "type"
+                "_case:matcher:type": "_case:MatchString",
+                "_case:matcher:example": "1.2.3",
+                "_case:matcher:resolvesTo": "string",
+                "_case:context:matchBy": "type"
               },
               "branch": {
-                "case:matcher:type": "case:MatchString",
-                "case:matcher:example": "main",
-                "case:matcher:resolvesTo": "string",
-                "case:context:matchBy": "type"
+                "_case:matcher:type": "_case:MatchString",
+                "_case:matcher:example": "main",
+                "_case:matcher:resolvesTo": "string",
+                "_case:context:matchBy": "type"
               },
               "tags": [],
               "contracts": [
                 {
                   "consumerName": {
-                    "case:matcher:type": "case:MatchString",
-                    "case:matcher:example": "someString",
-                    "case:matcher:resolvesTo": "string",
-                    "case:context:matchBy": "type"
+                    "_case:matcher:type": "_case:MatchString",
+                    "_case:matcher:example": "someString",
+                    "_case:matcher:resolvesTo": "string",
+                    "_case:context:matchBy": "type"
                   },
                   "providerName": {
-                    "case:matcher:type": "case:MatchString",
-                    "case:matcher:example": "someString",
-                    "case:matcher:resolvesTo": "string",
-                    "case:context:matchBy": "type"
+                    "_case:matcher:type": "_case:MatchString",
+                    "_case:matcher:example": "someString",
+                    "_case:matcher:resolvesTo": "string",
+                    "_case:context:matchBy": "type"
                   },
                   "specification": "pact",
                   "contentType": "application/json",
                   "content": {
-                    "case:matcher:type": "case:MatchString",
-                    "case:matcher:example": "eyJjb250cmFjdFR5cGUiOiJjYXNlOjpjb250cmFjdCIsImRlc2NyaXB0aW9uIjp7ImNvbnN1bWVyTmFtZSI6Imh0dHAgcmVxdWVzdCBjb25zdW1lciIsInByb3ZpZGVyTmFtZSI6Imh0dHAgcmVxdWVzdCBwcm92aWRlciJ9LCJtZXRhZGF0YSI6eyJjYXNlIjp7InZlcnNpb24iOiIwLjYuMSJ9fSwibWF0Y2hlckxvb2t1cCI6eyJtYXRjaGVyOmFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL2hlYWx0aFwiIHdpdGggdGhlIGZvbGxvd2luZyBoZWFkZXJzIGFuIG9iamVjdCBzaGFwZWQgbGlrZSB7YWNjZXB0OiBcImFwcGxpY2F0aW9uL2pzb25cIn0gd2l0aG91dCBhIGJvZHkiOnsibWV0aG9kIjoiR0VUIiwicGF0aCI6Ii9oZWFsdGgiLCJoZWFkZXJzIjp7ImFjY2VwdCI6ImFwcGxpY2F0aW9uL2pzb24ifSwiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifSwibWF0Y2hlcjphICgyMDApIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3N0YXR1czogXCJ1cFwifSI6eyJzdGF0dXMiOjIwMCwiYm9keSI6eyJzdGF0dXMiOiJ1cCJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifSwibWF0Y2hlcjphbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRob3V0IGEgYm9keSI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn0sIm1hdGNoZXI6YSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IDxhbnkgc3RyaW5nPn0iOnsic3RhdHVzIjoyMDAsImJvZHkiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDYXNjYWRpbmdDb250ZXh0IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6IndoYXRldmVyIn0sImNhc2U6Y29udGV4dDptYXRjaEJ5IjoidHlwZSJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifSwibWF0Y2hlcjphIChodHRwU3RhdHVzIDRYWCB8IDVYWCkgcmVzcG9uc2Ugd2l0aG91dCBhIGJvZHkiOnsic3RhdHVzIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFN0YXR1c0NvZGUiLCJjYXNlOm1hdGNoZXI6ZXhhbXBsZSI6NDAwLCJjYXNlOm1hdGNoZXI6cnVsZSI6WyI0WFgiLCI1WFgiXSwiY2FzZTptYXRjaGVyOnJlc29sdmVzVG8iOiJIdHRwU3RhdHVzQ29kZSJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifSwibWF0Y2hlcjphICg1MDMpIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3N0YXR1czogXCJkb3duXCJ9Ijp7InN0YXR1cyI6NTAzLCJib2R5Ijp7InN0YXR1cyI6ImRvd24ifSwiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn0sInZhcmlhYmxlOmRlZmF1bHQ6dXNlcklkIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiQ2FzY2FkaW5nQ29udGV4dCIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6IkNhc2NhZGluZ0NvbnRleHQiLCJjYXNlOm1hdGNoZXI6Y2hpbGQiOiIxMjMiLCJjYXNlOmNvbnRleHQ6bWF0Y2hCeSI6InR5cGUifSwiY2FzZTpjb250ZXh0Om1hdGNoQnkiOiJ0eXBlIn0sIm1hdGNoZXI6YW4gaHR0cCBcIkdFVFwiIHJlcXVlc3QgdG8gXCIvdXNlcnNcIj9pZD17e3VzZXJJZH19IHdpdGhvdXQgYSBib2R5Ijp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvdXNlcnMiLCJxdWVyeSI6eyJpZCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsImNhc2U6bWF0Y2hlcjp2YXJpYWJsZU5hbWUiOiJ1c2VySWQifX0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn0sIm1hdGNoZXI6YSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHt1c2VySWQ6IHt7dXNlcklkfX19Ijp7InN0YXR1cyI6MjAwLCJib2R5Ijp7InVzZXJJZCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsImNhc2U6bWF0Y2hlcjp2YXJpYWJsZU5hbWUiOiJ1c2VySWQifX0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9LCJtYXRjaGVyOmEgKDQwNCkgcmVzcG9uc2Ugd2l0aG91dCBhIGJvZHkiOnsic3RhdHVzIjo0MDQsImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9LCJtYXRjaGVyOmFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL3VzZXJzL3t7dXNlcklkfX1cIiB3aXRob3V0IGEgYm9keSI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiU3RyaW5nUHJlZml4IiwiY2FzZTptYXRjaGVyOnByZWZpeCI6Ii91c2Vycy8iLCJjYXNlOm1hdGNoZXI6c3VmZml4Ijp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiQ29udGV4dFZhcmlhYmxlIiwiY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9LCJjYXNlOm1hdGNoZXI6cmVzb2x2ZXNUbyI6InN0cmluZyJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9LCJtYXRjaGVyOmFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL3VzZXJzLzEyM1wiIHdpdGhvdXQgYSBib2R5Ijp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJTdHJpbmdQcmVmaXgiLCJjYXNlOm1hdGNoZXI6cHJlZml4IjoiL3VzZXJzLyIsImNhc2U6bWF0Y2hlcjpzdWZmaXgiOiIxMjMiLCJjYXNlOm1hdGNoZXI6cmVzb2x2ZXNUbyI6InN0cmluZyJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwiZXhhbXBsZXMiOlt7InN0YXRlcyI6W3siY2FzZTpzdGF0ZTp0eXBlIjoiTmFtZWRTdGF0ZSIsInN0YXRlTmFtZSI6IlNlcnZlciBpcyB1cCJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRoIHRoZSBmb2xsb3dpbmcgaGVhZGVycyBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge2FjY2VwdDogXCJhcHBsaWNhdGlvbi9qc29uXCJ9IHdpdGhvdXQgYSBib2R5IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvaGVhbHRoIiwiaGVhZGVycyI6eyJhY2NlcHQiOiJhcHBsaWNhdGlvbi9qc29uIn0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IFwidXBcIn0iLCJjYXNlOm1hdGNoZXI6Y2hpbGQiOnsic3RhdHVzIjoyMDAsImJvZHkiOnsic3RhdHVzIjoidXAifSwiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn19LCJjYXNlOm1vY2s6dHlwZSI6Ik1vY2tIdHRwQ2xpZW50IiwiY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siY2FzZTpzdGF0ZTp0eXBlIjoiTmFtZWRTdGF0ZSIsInN0YXRlTmFtZSI6IlNlcnZlciBpcyB1cCJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IDxhbnkgc3RyaW5nPn0iLCJjYXNlOm1hdGNoZXI6Y2hpbGQiOnsic3RhdHVzIjoyMDAsImJvZHkiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDYXNjYWRpbmdDb250ZXh0IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6IndoYXRldmVyIn0sImNhc2U6Y29udGV4dDptYXRjaEJ5IjoidHlwZSJ9LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifX0sImNhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJjYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9LHsic3RhdGVzIjpbeyJjYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiU2VydmVyIGlzIGRvd24ifV0sIm1vY2siOnsicmVxdWVzdCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYW4gaHR0cCBcIkdFVFwiIHJlcXVlc3QgdG8gXCIvaGVhbHRoXCIgd2l0aG91dCBhIGJvZHkiLCJjYXNlOm1hdGNoZXI6Y2hpbGQiOnsibWV0aG9kIjoiR0VUIiwicGF0aCI6Ii9oZWFsdGgiLCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwicmVzcG9uc2UiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJjYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImEgKGh0dHBTdGF0dXMgNFhYIHwgNVhYKSByZXNwb25zZSB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwU3RhdHVzQ29kZSIsImNhc2U6bWF0Y2hlcjpleGFtcGxlIjo0MDAsImNhc2U6bWF0Y2hlcjpydWxlIjpbIjRYWCIsIjVYWCJdLCJjYXNlOm1hdGNoZXI6cmVzb2x2ZXNUbyI6Ikh0dHBTdGF0dXNDb2RlIn0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsImNhc2U6cnVuOmNvbnRleHQ6c2V0dXAiOnsid3JpdGUiOnsidHlwZSI6Ik1vY2tIdHRwQ2xpZW50Iiwic3RhdGVWYXJpYWJsZXMiOiJzdGF0ZSIsInRyaWdnZXJzIjoiZ2VuZXJhdGVkIn0sInJlYWQiOnsidHlwZSI6Ik1vY2tIdHRwU2VydmVyIiwic3RhdGVWYXJpYWJsZXMiOiJkZWZhdWx0IiwidHJpZ2dlcnMiOiJwcm92aWRlZCJ9fX0sInJlc3VsdCI6IlZFUklGSUVEIn0seyJzdGF0ZXMiOlt7ImNhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgZG93biJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoNTAzKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IFwiZG93blwifSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjUwMywiYm9keSI6eyJzdGF0dXMiOiJkb3duIn0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsImNhc2U6cnVuOmNvbnRleHQ6c2V0dXAiOnsid3JpdGUiOnsidHlwZSI6Ik1vY2tIdHRwQ2xpZW50Iiwic3RhdGVWYXJpYWJsZXMiOiJzdGF0ZSIsInRyaWdnZXJzIjoiZ2VuZXJhdGVkIn0sInJlYWQiOnsidHlwZSI6Ik1vY2tIdHRwU2VydmVyIiwic3RhdGVWYXJpYWJsZXMiOiJkZWZhdWx0IiwidHJpZ2dlcnMiOiJwcm92aWRlZCJ9fX0sInJlc3VsdCI6IlZFUklGSUVEIn0seyJzdGF0ZXMiOlt7ImNhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifSx7ImNhc2U6c3RhdGU6dHlwZSI6IlN0YXRlV2l0aFZhcmlhYmxlcyIsInN0YXRlTmFtZSI6IkEgdXNlciBleGlzdHMiLCJ2YXJpYWJsZXMiOnsidXNlcklkIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiQ2FzY2FkaW5nQ29udGV4dCIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6IjEyMyIsImNhc2U6Y29udGV4dDptYXRjaEJ5IjoidHlwZSJ9fX1dLCJtb2NrIjp7InJlcXVlc3QiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJjYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL3VzZXJzXCI/aWQ9e3t1c2VySWR9fSB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL3VzZXJzIiwicXVlcnkiOnsiaWQiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJjYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn19LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwicmVzcG9uc2UiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJjYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImEgKDIwMCkgcmVzcG9uc2Ugd2l0aCBib2R5IGFuIG9iamVjdCBzaGFwZWQgbGlrZSB7dXNlcklkOiB7e3VzZXJJZH19fSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjIwMCwiYm9keSI6eyJ1c2VySWQiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJjYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn19LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifX0sImNhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJjYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9LHsic3RhdGVzIjpbeyJjYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiU2VydmVyIGlzIHVwIn0seyJjYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiTm8gdXNlcnMgZXhpc3QifV0sIm1vY2siOnsicmVxdWVzdCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYW4gaHR0cCBcIkdFVFwiIHJlcXVlc3QgdG8gXCIvdXNlcnNcIj9pZD17e3VzZXJJZH19IHdpdGhvdXQgYSBib2R5IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvdXNlcnMiLCJxdWVyeSI6eyJpZCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsImNhc2U6bWF0Y2hlcjp2YXJpYWJsZU5hbWUiOiJ1c2VySWQifX0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoNDA0KSByZXNwb25zZSB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjQwNCwiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn19LCJjYXNlOm1vY2s6dHlwZSI6Ik1vY2tIdHRwQ2xpZW50IiwiY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siY2FzZTpzdGF0ZTp0eXBlIjoiTmFtZWRTdGF0ZSIsInN0YXRlTmFtZSI6IlNlcnZlciBpcyB1cCJ9LHsiY2FzZTpzdGF0ZTp0eXBlIjoiU3RhdGVXaXRoVmFyaWFibGVzIiwic3RhdGVOYW1lIjoiQSB1c2VyIGV4aXN0cyIsInZhcmlhYmxlcyI6eyJ1c2VySWQiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDYXNjYWRpbmdDb250ZXh0IiwiY2FzZTptYXRjaGVyOmNoaWxkIjoiMTIzIiwiY2FzZTpjb250ZXh0Om1hdGNoQnkiOiJ0eXBlIn19fV0sIm1vY2siOnsicmVxdWVzdCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYW4gaHR0cCBcIkdFVFwiIHJlcXVlc3QgdG8gXCIvdXNlcnMve3t1c2VySWR9fVwiIHdpdGhvdXQgYSBib2R5IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJTdHJpbmdQcmVmaXgiLCJjYXNlOm1hdGNoZXI6cHJlZml4IjoiL3VzZXJzLyIsImNhc2U6bWF0Y2hlcjpzdWZmaXgiOnsiY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJjYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn0sImNhc2U6bWF0Y2hlcjpyZXNvbHZlc1RvIjoic3RyaW5nIn0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsImNhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHt1c2VySWQ6IHt7dXNlcklkfX19IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6MjAwLCJib2R5Ijp7InVzZXJJZCI6eyJjYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsImNhc2U6bWF0Y2hlcjp2YXJpYWJsZU5hbWUiOiJ1c2VySWQifX0sImNhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsImNhc2U6cnVuOmNvbnRleHQ6c2V0dXAiOnsid3JpdGUiOnsidHlwZSI6Ik1vY2tIdHRwQ2xpZW50Iiwic3RhdGVWYXJpYWJsZXMiOiJzdGF0ZSIsInRyaWdnZXJzIjoiZ2VuZXJhdGVkIn0sInJlYWQiOnsidHlwZSI6Ik1vY2tIdHRwU2VydmVyIiwic3RhdGVWYXJpYWJsZXMiOiJkZWZhdWx0IiwidHJpZ2dlcnMiOiJwcm92aWRlZCJ9fX0sInJlc3VsdCI6IlZFUklGSUVEIn0seyJzdGF0ZXMiOlt7ImNhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifSx7ImNhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJObyB1c2VycyBleGlzdCJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vycy8xMjNcIiB3aXRob3V0IGEgYm9keSIsImNhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiU3RyaW5nUHJlZml4IiwiY2FzZTptYXRjaGVyOnByZWZpeCI6Ii91c2Vycy8iLCJjYXNlOm1hdGNoZXI6c3VmZml4IjoiMTIzIiwiY2FzZTptYXRjaGVyOnJlc29sdmVzVG8iOiJzdHJpbmcifSwiY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifX0sInJlc3BvbnNlIjp7ImNhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhICg0MDQpIHJlc3BvbnNlIHdpdGhvdXQgYSBib2R5IiwiY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6NDA0LCJjYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifX0sImNhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJjYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9XX0=",
-                    "case:matcher:resolvesTo": "string",
-                    "case:context:matchBy": "type"
+                    "_case:matcher:type": "_case:MatchString",
+                    "_case:matcher:example": "eyJjb250cmFjdFR5cGUiOiJfY2FzZTo6Y29udHJhY3QiLCJkZXNjcmlwdGlvbiI6eyJjb25zdW1lck5hbWUiOiJodHRwIHJlcXVlc3QgY29uc3VtZXIiLCJwcm92aWRlck5hbWUiOiJodHRwIHJlcXVlc3QgcHJvdmlkZXIifSwibWV0YWRhdGEiOnsiY2FzZSI6eyJ2ZXJzaW9uIjoiMC42LjEifX0sIm1hdGNoZXJMb29rdXAiOnsibWF0Y2hlcjphbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRoIHRoZSBmb2xsb3dpbmcgaGVhZGVycyBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge2FjY2VwdDogXCJhcHBsaWNhdGlvbi9qc29uXCJ9IHdpdGhvdXQgYSBib2R5Ijp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvaGVhbHRoIiwiaGVhZGVycyI6eyJhY2NlcHQiOiJhcHBsaWNhdGlvbi9qc29uIn0sIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9LCJtYXRjaGVyOmEgKDIwMCkgcmVzcG9uc2Ugd2l0aCBib2R5IGFuIG9iamVjdCBzaGFwZWQgbGlrZSB7c3RhdHVzOiBcInVwXCJ9Ijp7InN0YXR1cyI6MjAwLCJib2R5Ijp7InN0YXR1cyI6InVwIn0sIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifSwibWF0Y2hlcjphbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRob3V0IGEgYm9keSI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9LCJtYXRjaGVyOmEgKDIwMCkgcmVzcG9uc2Ugd2l0aCBib2R5IGFuIG9iamVjdCBzaGFwZWQgbGlrZSB7c3RhdHVzOiA8YW55IHN0cmluZz59Ijp7InN0YXR1cyI6MjAwLCJib2R5Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IkNhc2NhZGluZ0NvbnRleHQiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6IndoYXRldmVyIn0sIl9jYXNlOmNvbnRleHQ6bWF0Y2hCeSI6InR5cGUifSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9LCJtYXRjaGVyOmEgKGh0dHBTdGF0dXMgNFhYIHwgNVhYKSByZXNwb25zZSB3aXRob3V0IGEgYm9keSI6eyJzdGF0dXMiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFN0YXR1c0NvZGUiLCJfY2FzZTptYXRjaGVyOmV4YW1wbGUiOjQwMCwiX2Nhc2U6bWF0Y2hlcjpydWxlIjpbIjRYWCIsIjVYWCJdLCJfY2FzZTptYXRjaGVyOnJlc29sdmVzVG8iOiJIdHRwU3RhdHVzQ29kZSJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn0sIm1hdGNoZXI6YSAoNTAzKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IFwiZG93blwifSI6eyJzdGF0dXMiOjUwMywiYm9keSI6eyJzdGF0dXMiOiJkb3duIn0sIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifSwidmFyaWFibGU6ZGVmYXVsdDp1c2VySWQiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiQ2FzY2FkaW5nQ29udGV4dCIsIl9jYXNlOm1hdGNoZXI6Y2hpbGQiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiQ2FzY2FkaW5nQ29udGV4dCIsIl9jYXNlOm1hdGNoZXI6Y2hpbGQiOiIxMjMiLCJfY2FzZTpjb250ZXh0Om1hdGNoQnkiOiJ0eXBlIn0sIl9jYXNlOmNvbnRleHQ6bWF0Y2hCeSI6InR5cGUifSwibWF0Y2hlcjphbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vyc1wiP2lkPXt7dXNlcklkfX0gd2l0aG91dCBhIGJvZHkiOnsibWV0aG9kIjoiR0VUIiwicGF0aCI6Ii91c2VycyIsInF1ZXJ5Ijp7ImlkIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsIl9jYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn19LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifSwibWF0Y2hlcjphICgyMDApIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3VzZXJJZDoge3t1c2VySWR9fX0iOnsic3RhdHVzIjoyMDAsImJvZHkiOnsidXNlcklkIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsIl9jYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn19LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn0sIm1hdGNoZXI6YSAoNDA0KSByZXNwb25zZSB3aXRob3V0IGEgYm9keSI6eyJzdGF0dXMiOjQwNCwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9LCJtYXRjaGVyOmFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL3VzZXJzL3t7dXNlcklkfX1cIiB3aXRob3V0IGEgYm9keSI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IlN0cmluZ1ByZWZpeCIsIl9jYXNlOm1hdGNoZXI6cHJlZml4IjoiL3VzZXJzLyIsIl9jYXNlOm1hdGNoZXI6c3VmZml4Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IkNvbnRleHRWYXJpYWJsZSIsIl9jYXNlOm1hdGNoZXI6dmFyaWFibGVOYW1lIjoidXNlcklkIn0sIl9jYXNlOm1hdGNoZXI6cmVzb2x2ZXNUbyI6InN0cmluZyJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifSwibWF0Y2hlcjphbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vycy8xMjNcIiB3aXRob3V0IGEgYm9keSI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IlN0cmluZ1ByZWZpeCIsIl9jYXNlOm1hdGNoZXI6cHJlZml4IjoiL3VzZXJzLyIsIl9jYXNlOm1hdGNoZXI6c3VmZml4IjoiMTIzIiwiX2Nhc2U6bWF0Y2hlcjpyZXNvbHZlc1RvIjoic3RyaW5nIn0sIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwiZXhhbXBsZXMiOlt7InN0YXRlcyI6W3siX2Nhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifV0sIm1vY2siOnsicmVxdWVzdCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi9oZWFsdGhcIiB3aXRoIHRoZSBmb2xsb3dpbmcgaGVhZGVycyBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge2FjY2VwdDogXCJhcHBsaWNhdGlvbi9qc29uXCJ9IHdpdGhvdXQgYSBib2R5IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsImhlYWRlcnMiOnsiYWNjZXB0IjoiYXBwbGljYXRpb24vanNvbiJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifX0sInJlc3BvbnNlIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsIl9jYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImEgKDIwMCkgcmVzcG9uc2Ugd2l0aCBib2R5IGFuIG9iamVjdCBzaGFwZWQgbGlrZSB7c3RhdHVzOiBcInVwXCJ9IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjIwMCwiYm9keSI6eyJzdGF0dXMiOiJ1cCJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn19LCJfY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsIl9jYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9LHsic3RhdGVzIjpbeyJfY2FzZTpzdGF0ZTp0eXBlIjoiTmFtZWRTdGF0ZSIsInN0YXRlTmFtZSI6IlNlcnZlciBpcyB1cCJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsIl9jYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL2hlYWx0aFwiIHdpdGhvdXQgYSBib2R5IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwicmVzcG9uc2UiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiX2Nhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoMjAwKSByZXNwb25zZSB3aXRoIGJvZHkgYW4gb2JqZWN0IHNoYXBlZCBsaWtlIHtzdGF0dXM6IDxhbnkgc3RyaW5nPn0iLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6MjAwLCJib2R5Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6IkNhc2NhZGluZ0NvbnRleHQiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6IndoYXRldmVyIn0sIl9jYXNlOmNvbnRleHQ6bWF0Y2hCeSI6InR5cGUifSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiX2Nhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJfY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siX2Nhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgZG93biJ9XSwibW9jayI6eyJyZXF1ZXN0Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsIl9jYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL2hlYWx0aFwiIHdpdGhvdXQgYSBib2R5IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJtZXRob2QiOiJHRVQiLCJwYXRoIjoiL2hlYWx0aCIsIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXF1ZXN0TWF0Y2hlciJ9fSwicmVzcG9uc2UiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiX2Nhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYSAoaHR0cFN0YXR1cyA0WFggfCA1WFgpIHJlc3BvbnNlIHdpdGhvdXQgYSBib2R5IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFN0YXR1c0NvZGUiLCJfY2FzZTptYXRjaGVyOmV4YW1wbGUiOjQwMCwiX2Nhc2U6bWF0Y2hlcjpydWxlIjpbIjRYWCIsIjVYWCJdLCJfY2FzZTptYXRjaGVyOnJlc29sdmVzVG8iOiJIdHRwU3RhdHVzQ29kZSJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn19LCJfY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsIl9jYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9LHsic3RhdGVzIjpbeyJfY2FzZTpzdGF0ZTp0eXBlIjoiTmFtZWRTdGF0ZSIsInN0YXRlTmFtZSI6IlNlcnZlciBpcyBkb3duIn1dLCJtb2NrIjp7InJlcXVlc3QiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiTG9va3VwIiwiX2Nhc2U6bWF0Y2hlcjp1bmlxdWVOYW1lIjoiYW4gaHR0cCBcIkdFVFwiIHJlcXVlc3QgdG8gXCIvaGVhbHRoXCIgd2l0aG91dCBhIGJvZHkiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvaGVhbHRoIiwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhICg1MDMpIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3N0YXR1czogXCJkb3duXCJ9IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjUwMywiYm9keSI6eyJzdGF0dXMiOiJkb3duIn0sIl9jYXNlOm1hdGNoZXI6dHlwZSI6Ikh0dHBSZXNwb25zZU1hdGNoZXIifX0sIl9jYXNlOm1vY2s6dHlwZSI6Ik1vY2tIdHRwQ2xpZW50IiwiX2Nhc2U6cnVuOmNvbnRleHQ6c2V0dXAiOnsid3JpdGUiOnsidHlwZSI6Ik1vY2tIdHRwQ2xpZW50Iiwic3RhdGVWYXJpYWJsZXMiOiJzdGF0ZSIsInRyaWdnZXJzIjoiZ2VuZXJhdGVkIn0sInJlYWQiOnsidHlwZSI6Ik1vY2tIdHRwU2VydmVyIiwic3RhdGVWYXJpYWJsZXMiOiJkZWZhdWx0IiwidHJpZ2dlcnMiOiJwcm92aWRlZCJ9fX0sInJlc3VsdCI6IlZFUklGSUVEIn0seyJzdGF0ZXMiOlt7Il9jYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiU2VydmVyIGlzIHVwIn0seyJfY2FzZTpzdGF0ZTp0eXBlIjoiU3RhdGVXaXRoVmFyaWFibGVzIiwic3RhdGVOYW1lIjoiQSB1c2VyIGV4aXN0cyIsInZhcmlhYmxlcyI6eyJ1c2VySWQiOnsiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiQ2FzY2FkaW5nQ29udGV4dCIsIl9jYXNlOm1hdGNoZXI6Y2hpbGQiOiIxMjMiLCJfY2FzZTpjb250ZXh0Om1hdGNoQnkiOiJ0eXBlIn19fV0sIm1vY2siOnsicmVxdWVzdCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vyc1wiP2lkPXt7dXNlcklkfX0gd2l0aG91dCBhIGJvZHkiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvdXNlcnMiLCJxdWVyeSI6eyJpZCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJfY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9fSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhICgyMDApIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3VzZXJJZDoge3t1c2VySWR9fX0iLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6MjAwLCJib2R5Ijp7InVzZXJJZCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJfY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9fSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiX2Nhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJfY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siX2Nhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifSx7Il9jYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiTm8gdXNlcnMgZXhpc3QifV0sIm1vY2siOnsicmVxdWVzdCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vyc1wiP2lkPXt7dXNlcklkfX0gd2l0aG91dCBhIGJvZHkiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7Im1ldGhvZCI6IkdFVCIsInBhdGgiOiIvdXNlcnMiLCJxdWVyeSI6eyJpZCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJfY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9fSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhICg0MDQpIHJlc3BvbnNlIHdpdGhvdXQgYSBib2R5IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6eyJzdGF0dXMiOjQwNCwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiX2Nhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJfY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siX2Nhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifSx7Il9jYXNlOnN0YXRlOnR5cGUiOiJTdGF0ZVdpdGhWYXJpYWJsZXMiLCJzdGF0ZU5hbWUiOiJBIHVzZXIgZXhpc3RzIiwidmFyaWFibGVzIjp7InVzZXJJZCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDYXNjYWRpbmdDb250ZXh0IiwiX2Nhc2U6bWF0Y2hlcjpjaGlsZCI6IjEyMyIsIl9jYXNlOmNvbnRleHQ6bWF0Y2hCeSI6InR5cGUifX19XSwibW9jayI6eyJyZXF1ZXN0Ijp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsIl9jYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImFuIGh0dHAgXCJHRVRcIiByZXF1ZXN0IHRvIFwiL3VzZXJzL3t7dXNlcklkfX1cIiB3aXRob3V0IGEgYm9keSIsIl9jYXNlOm1hdGNoZXI6Y2hpbGQiOnsibWV0aG9kIjoiR0VUIiwicGF0aCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJTdHJpbmdQcmVmaXgiLCJfY2FzZTptYXRjaGVyOnByZWZpeCI6Ii91c2Vycy8iLCJfY2FzZTptYXRjaGVyOnN1ZmZpeCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJfY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9LCJfY2FzZTptYXRjaGVyOnJlc29sdmVzVG8iOiJzdHJpbmcifSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlcXVlc3RNYXRjaGVyIn19LCJyZXNwb25zZSI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhICgyMDApIHJlc3BvbnNlIHdpdGggYm9keSBhbiBvYmplY3Qgc2hhcGVkIGxpa2Uge3VzZXJJZDoge3t1c2VySWR9fX0iLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6MjAwLCJib2R5Ijp7InVzZXJJZCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJDb250ZXh0VmFyaWFibGUiLCJfY2FzZTptYXRjaGVyOnZhcmlhYmxlTmFtZSI6InVzZXJJZCJ9fSwiX2Nhc2U6bWF0Y2hlcjp0eXBlIjoiSHR0cFJlc3BvbnNlTWF0Y2hlciJ9fSwiX2Nhc2U6bW9jazp0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJfY2FzZTpydW46Y29udGV4dDpzZXR1cCI6eyJ3cml0ZSI6eyJ0eXBlIjoiTW9ja0h0dHBDbGllbnQiLCJzdGF0ZVZhcmlhYmxlcyI6InN0YXRlIiwidHJpZ2dlcnMiOiJnZW5lcmF0ZWQifSwicmVhZCI6eyJ0eXBlIjoiTW9ja0h0dHBTZXJ2ZXIiLCJzdGF0ZVZhcmlhYmxlcyI6ImRlZmF1bHQiLCJ0cmlnZ2VycyI6InByb3ZpZGVkIn19fSwicmVzdWx0IjoiVkVSSUZJRUQifSx7InN0YXRlcyI6W3siX2Nhc2U6c3RhdGU6dHlwZSI6Ik5hbWVkU3RhdGUiLCJzdGF0ZU5hbWUiOiJTZXJ2ZXIgaXMgdXAifSx7Il9jYXNlOnN0YXRlOnR5cGUiOiJOYW1lZFN0YXRlIiwic3RhdGVOYW1lIjoiTm8gdXNlcnMgZXhpc3QifV0sIm1vY2siOnsicmVxdWVzdCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJMb29rdXAiLCJfY2FzZTptYXRjaGVyOnVuaXF1ZU5hbWUiOiJhbiBodHRwIFwiR0VUXCIgcmVxdWVzdCB0byBcIi91c2Vycy8xMjNcIiB3aXRob3V0IGEgYm9keSIsIl9jYXNlOm1hdGNoZXI6Y2hpbGQiOnsibWV0aG9kIjoiR0VUIiwicGF0aCI6eyJfY2FzZTptYXRjaGVyOnR5cGUiOiJTdHJpbmdQcmVmaXgiLCJfY2FzZTptYXRjaGVyOnByZWZpeCI6Ii91c2Vycy8iLCJfY2FzZTptYXRjaGVyOnN1ZmZpeCI6IjEyMyIsIl9jYXNlOm1hdGNoZXI6cmVzb2x2ZXNUbyI6InN0cmluZyJ9LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVxdWVzdE1hdGNoZXIifX0sInJlc3BvbnNlIjp7Il9jYXNlOm1hdGNoZXI6dHlwZSI6Ikxvb2t1cCIsIl9jYXNlOm1hdGNoZXI6dW5pcXVlTmFtZSI6ImEgKDQwNCkgcmVzcG9uc2Ugd2l0aG91dCBhIGJvZHkiLCJfY2FzZTptYXRjaGVyOmNoaWxkIjp7InN0YXR1cyI6NDA0LCJfY2FzZTptYXRjaGVyOnR5cGUiOiJIdHRwUmVzcG9uc2VNYXRjaGVyIn19LCJfY2FzZTptb2NrOnR5cGUiOiJNb2NrSHR0cENsaWVudCIsIl9jYXNlOnJ1bjpjb250ZXh0OnNldHVwIjp7IndyaXRlIjp7InR5cGUiOiJNb2NrSHR0cENsaWVudCIsInN0YXRlVmFyaWFibGVzIjoic3RhdGUiLCJ0cmlnZ2VycyI6ImdlbmVyYXRlZCJ9LCJyZWFkIjp7InR5cGUiOiJNb2NrSHR0cFNlcnZlciIsInN0YXRlVmFyaWFibGVzIjoiZGVmYXVsdCIsInRyaWdnZXJzIjoicHJvdmlkZWQifX19LCJyZXN1bHQiOiJWRVJJRklFRCJ9XX0=",
+                    "_case:matcher:resolvesTo": "string",
+                    "_case:context:matchBy": "type"
                   }
                 }
               ]
             },
-            "case:matcher:type": "case:HttpRequestMatcher"
+            "_case:matcher:type": "_case:HttpRequestMatcher"
           }
         },
         "response": {
-          "case:matcher:type": "case:Lookup",
-          "case:matcher:uniqueName": "a (403) response without a body",
-          "case:matcher:child": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a (403) response without a body",
+          "_case:matcher:child": {
             "status": 403,
-            "case:matcher:type": "case:HttpResponseMatcher"
+            "_case:matcher:type": "_case:HttpResponseMatcher"
           }
         },
-        "case:mock:type": "case:MockHttpServer",
-        "case:run:context:setup": {
+        "_case:mock:type": "_case:MockHttpServer",
+        "_case:run:context:setup": {
           "write": {
-            "type": "case:MockHttpServer",
+            "type": "_case:MockHttpServer",
             "stateVariables": "default",
             "triggers": "provided"
           },
           "read": {
-            "type": "case:MockHttpClient",
+            "type": "_case:MockHttpClient",
             "stateVariables": "state",
             "triggers": "generated"
           }

@@ -51,7 +51,7 @@ const check = (
   }
 
   return matchContext.descendAndCheck(
-    matcher['case:matcher:child'],
+    matcher['_case:matcher:child'],
     addLocation(':jsonStringify', matchContext),
     decodedActual
   );
@@ -62,7 +62,7 @@ const strip = (
   matchContext: MatchContext
 ): AnyData => {
   const result = matchContext.descendAndStrip(
-    matcher['case:matcher:child'],
+    matcher['_case:matcher:child'],
     addLocation(':jsonStringify', matchContext)
   );
 
@@ -84,7 +84,7 @@ export const JsonStringifiedString: MatcherExecutor<
 > = {
   describe: (matcher, matchContext) =>
     `json stringified '${matchContext.descendAndDescribe(
-      matcher['case:matcher:child'],
+      matcher['_case:matcher:child'],
       addLocation(':jsonStringify', matchContext)
     )}'`,
   check,

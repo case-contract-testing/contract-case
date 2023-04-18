@@ -25,16 +25,16 @@ const check = async (
     );
   }
 
-  return actual.startsWith(matcher['case:matcher:prefix'])
+  return actual.startsWith(matcher['_case:matcher:prefix'])
     ? matchContext.descendAndCheck(
-        matcher['case:matcher:suffix'],
+        matcher['_case:matcher:suffix'],
         addLocation(':prefix', matchContext),
-        actual.slice(matcher['case:matcher:prefix'].length)
+        actual.slice(matcher['_case:matcher:prefix'].length)
       )
     : makeResults(
         matchingError(
           matcher,
-          `The string '${actual}' did not start with the expected prefix '${matcher['case:matcher:prefix']}'`,
+          `The string '${actual}' did not start with the expected prefix '${matcher['_case:matcher:prefix']}'`,
           actual,
           matchContext
         )
@@ -43,16 +43,16 @@ const check = async (
 
 export const StringPrefixMatcher: MatcherExecutor<typeof STRING_PREFIX_TYPE> = {
   describe: (matcher: CoreStringPrefixMatcher, matchContext) =>
-    `"${matcher['case:matcher:prefix']}${matchContext
+    `"${matcher['_case:matcher:prefix']}${matchContext
       .descendAndDescribe(
-        matcher['case:matcher:suffix'],
+        matcher['_case:matcher:suffix'],
         addLocation(':prefix', matchContext)
       )
       .replace(/^"+|"+$/g, '')}"`,
   check,
   strip: (matcher: CoreStringPrefixMatcher, matchContext) =>
-    `${matcher['case:matcher:prefix']}${mustResolveToString(
-      matcher['case:matcher:suffix'],
+    `${matcher['_case:matcher:prefix']}${mustResolveToString(
+      matcher['_case:matcher:suffix'],
       addLocation(':prefix', matchContext)
     )}`,
 };

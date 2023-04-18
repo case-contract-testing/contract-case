@@ -25,10 +25,10 @@ export const stringContaining = (
   substring: string,
   example: string
 ): CoreStringContainsMatcher => ({
-  'case:matcher:type': STRING_CONTAINS_TYPE,
-  'case:matcher:contains': substring,
-  'case:matcher:resolvesTo': 'string',
-  'case:matcher:example': example,
+  '_case:matcher:type': STRING_CONTAINS_TYPE,
+  '_case:matcher:contains': substring,
+  '_case:matcher:resolvesTo': 'string',
+  '_case:matcher:example': example,
 });
 
 /**
@@ -41,10 +41,10 @@ export const stringPrefix = (
   prefix: string,
   suffix: AnyCaseMatcher | string = anyString()
 ): CoreStringPrefixMatcher => ({
-  'case:matcher:type': STRING_PREFIX_TYPE,
-  'case:matcher:prefix': prefix,
-  'case:matcher:suffix': suffix,
-  'case:matcher:resolvesTo': 'string',
+  '_case:matcher:type': STRING_PREFIX_TYPE,
+  '_case:matcher:prefix': prefix,
+  '_case:matcher:suffix': suffix,
+  '_case:matcher:resolvesTo': 'string',
 });
 
 /**
@@ -57,10 +57,10 @@ export const stringSuffix = (
   prefix: AnyCaseMatcher | string,
   suffix: string
 ): CoreStringSuffixMatcher => ({
-  'case:matcher:type': STRING_SUFFIX_TYPE,
-  'case:matcher:prefix': prefix !== undefined ? prefix : anyString(),
-  'case:matcher:suffix': suffix,
-  'case:matcher:resolvesTo': 'string',
+  '_case:matcher:type': STRING_SUFFIX_TYPE,
+  '_case:matcher:prefix': prefix !== undefined ? prefix : anyString(),
+  '_case:matcher:suffix': suffix,
+  '_case:matcher:resolvesTo': 'string',
 });
 
 /**
@@ -74,9 +74,9 @@ export const stringSuffix = (
 export const encodedStringBase64 = (
   child: AnyStringMatcher
 ): CoreBase64Encoded => ({
-  'case:matcher:type': BASE64_ENCODED_TYPE,
-  'case:matcher:child': child,
-  'case:matcher:resolvesTo': 'string',
+  '_case:matcher:type': BASE64_ENCODED_TYPE,
+  '_case:matcher:child': child,
+  '_case:matcher:resolvesTo': 'string',
 });
 
 /**
@@ -87,7 +87,7 @@ export const encodedStringBase64 = (
 export const stringifiedJson = (
   child: AnyCaseNodeOrData
 ): CoreJsonStringified => ({
-  'case:matcher:type': JSON_STRINGIFIED_TYPE,
-  'case:matcher:child': child,
-  'case:matcher:resolvesTo': 'string',
+  '_case:matcher:type': JSON_STRINGIFIED_TYPE,
+  '_case:matcher:child': child,
+  '_case:matcher:resolvesTo': 'string',
 });

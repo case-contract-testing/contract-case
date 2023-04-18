@@ -23,7 +23,7 @@ const strip: StripMatcherFn<typeof ARRAY_CONTAINS_TYPE> = (
   matcher: CoreArrayContainsMatch,
   matchContext: MatchContext
 ): AnyData =>
-  matcher['case:matcher:matchers'].map((childMatcher, index) =>
+  matcher['_case:matcher:matchers'].map((childMatcher, index) =>
     matchContext.descendAndStrip(
       childMatcher,
       addLocation(`:arrayContainsExample[${index}]`, matchContext)
@@ -54,7 +54,7 @@ const checkMatch = async (
                 parentMatcher,
                 `Expected an array that contained an element that matched '${
                   isCaseNode(matcher)
-                    ? matcher['case:matcher:type']
+                    ? matcher['_case:matcher:type']
                     : matcherToString(matcher)
                 }', but no elements matched. All matching errors follow; this list may be long if there are many elements in the array`,
                 actual,
@@ -71,7 +71,7 @@ const checkMatch = async (
           parentMatcher,
           `Expected an array that contained an element that matched '${
             isCaseNode(matcher)
-              ? matcher['case:matcher:type']
+              ? matcher['_case:matcher:type']
               : matcherToString(matcher)
           }', but the array was empty`,
           actual,
@@ -88,7 +88,7 @@ const check: CheckMatchFn<typeof ARRAY_CONTAINS_TYPE> = async (
     Array.isArray(actual)
       ? combineResults(
           ...(await Promise.all(
-            matcher['case:matcher:matchers'].map((childMatcher, index) =>
+            matcher['_case:matcher:matchers'].map((childMatcher, index) =>
               checkMatch(
                 matcher,
                 childMatcher,
@@ -110,7 +110,7 @@ const check: CheckMatchFn<typeof ARRAY_CONTAINS_TYPE> = async (
 
 export const ArrayContains: MatcherExecutor<typeof ARRAY_CONTAINS_TYPE> = {
   describe: (matcher, matchContext) =>
-    `an array containing ${matcher['case:matcher:matchers']
+    `an array containing ${matcher['_case:matcher:matchers']
       .map((childMatcher, index) =>
         matchContext.descendAndDescribe(
           childMatcher,

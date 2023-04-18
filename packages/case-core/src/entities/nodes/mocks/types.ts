@@ -4,11 +4,11 @@ export type AnyMockDescriptorType =
   | typeof MOCK_HTTP_SERVER
   | typeof MOCK_HTTP_CLIENT;
 
-export const MOCK_HTTP_SERVER = 'case:MockHttpServer' as const;
-export const MOCK_HTTP_CLIENT = 'case:MockHttpClient' as const;
+export const MOCK_HTTP_SERVER = '_case:MockHttpServer' as const;
+export const MOCK_HTTP_CLIENT = '_case:MockHttpClient' as const;
 
 export interface HasTypeForMockDescriptor<T extends AnyMockDescriptorType> {
-  'case:mock:type': T;
+  '_case:mock:type': T;
 }
 
 export const isCaseMock = (
@@ -16,7 +16,7 @@ export const isCaseMock = (
 ): maybeMock is AnyMockDescriptor =>
   typeof maybeMock === 'object' &&
   maybeMock != null &&
-  'case:mock:type' in (maybeMock as AnyMockDescriptor);
+  '_case:mock:type' in (maybeMock as AnyMockDescriptor);
 
 export type AnyMockDescriptor = ConsumeHttpResponse | ProduceHttpResponse;
 
@@ -33,7 +33,7 @@ export interface CoreHttpRequestResponseMatcherPair {
 export interface ConsumeHttpResponse
   extends HasTypeForMockDescriptor<typeof MOCK_HTTP_SERVER>,
     CoreHttpRequestResponseMatcherPair {
-  'case:run:context:setup': {
+  '_case:run:context:setup': {
     write: {
       type: typeof MOCK_HTTP_SERVER;
       stateVariables: 'default';
@@ -50,7 +50,7 @@ export interface ConsumeHttpResponse
 export interface ProduceHttpResponse
   extends HasTypeForMockDescriptor<typeof MOCK_HTTP_CLIENT>,
     CoreHttpRequestResponseMatcherPair {
-  'case:run:context:setup': {
+  '_case:run:context:setup': {
     write: {
       type: typeof MOCK_HTTP_CLIENT;
       stateVariables: 'state';

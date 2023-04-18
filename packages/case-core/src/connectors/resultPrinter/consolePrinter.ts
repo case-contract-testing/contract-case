@@ -33,7 +33,7 @@ const locationTitleLine = (location: Array<string>, context: LogLevelContext) =>
   Array.isArray(location) && location.length > 3
     ? ` ${locationString({
         ...context,
-        'case:currentRun:context:location': location.slice(2),
+        '_case:currentRun:context:location': location.slice(2),
       })}: `
     : '';
 
@@ -74,16 +74,16 @@ const printError = (error: CaseError, context: MatchContext): void => {
       `${chalk.gray(
         ` - ${locationString({
           ...context,
-          'case:currentRun:context:location': Array.isArray(error.location)
+          '_case:currentRun:context:location': Array.isArray(error.location)
             ? error.location
             : [],
         })} [${
-          'matcher' in error ? error.matcher['case:matcher:type'] : error.code
+          'matcher' in error ? error.matcher['_case:matcher:type'] : error.code
         }]`
       )}`
     );
 
-  if (context['case:currentRun:context:printResults']) {
+  if (context['_case:currentRun:context:printResults']) {
     switch (error.type) {
       // This is done as one line to prevent it splitting when multiple tests are running
       case ERROR_TYPE_MATCHING:
@@ -143,7 +143,7 @@ const printFailureTitle = (
   index: string,
   context: MatchContext
 ): void => {
-  if (context['case:currentRun:context:printResults']) {
+  if (context['_case:currentRun:context:printResults']) {
     // This is done as one line to prevent it splitting when multiple tests are running
     stdout.log(
       spaces(
@@ -161,7 +161,7 @@ const printSuccessTitle = (
   index: string,
   context: MatchContext
 ): void => {
-  if (context['case:currentRun:context:printResults']) {
+  if (context['_case:currentRun:context:printResults']) {
     // This is done as one line to prevent it splitting when multiple tests are running
     stdout.log(
       spaces(
@@ -178,7 +178,7 @@ const printDownloadedContract = (
   filename: string,
   context: DataContext
 ): void => {
-  if (context['case:currentRun:context:printResults']) {
+  if (context['_case:currentRun:context:printResults']) {
     // This is done as one line to prevent it splitting when multiple tests are running
     stdout.log(
       spaces(

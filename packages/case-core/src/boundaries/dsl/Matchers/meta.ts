@@ -39,9 +39,9 @@ export const withExample = <T extends AnyCaseMatcher>(
   matcher: T,
   example: AnyData
 ): HasExample<CoreCascadingMatcher> => ({
-  'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-  'case:matcher:child': matcher,
-  'case:matcher:example': example,
+  '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+  '_case:matcher:child': matcher,
+  '_case:matcher:example': example,
 });
 
 /**
@@ -68,9 +68,9 @@ export const namedMatch = (
 export const exactlyLike = (
   content: AnyCaseNodeOrData
 ): CoreCascadingMatcher => ({
-  'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-  'case:matcher:child': content,
-  'case:context:matchBy': 'exact',
+  '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+  '_case:matcher:child': content,
+  '_case:context:matchBy': 'exact',
 });
 
 /**
@@ -89,8 +89,8 @@ export const shapedLike = (content: AnyCaseNodeOrData): CoreCascadingMatcher =>
  * @param name - The name of the variable
  */
 export const stateVariable = (name: string): CoreContextVariableMatcher => ({
-  'case:matcher:type': CONTEXT_VARIABLE_TYPE,
-  'case:matcher:variableName': name,
+  '_case:matcher:type': CONTEXT_VARIABLE_TYPE,
+  '_case:matcher:variableName': name,
 });
 
 /**
@@ -101,9 +101,9 @@ export const stateVariable = (name: string): CoreContextVariableMatcher => ({
 export const stringStateVariable = (
   name: string
 ): CoreContextVariableMatcher & ResolvesTo<'string'> => ({
-  'case:matcher:type': CONTEXT_VARIABLE_TYPE,
-  'case:matcher:variableName': name,
-  'case:matcher:resolvesTo': 'string',
+  '_case:matcher:type': CONTEXT_VARIABLE_TYPE,
+  '_case:matcher:variableName': name,
+  '_case:matcher:resolvesTo': 'string',
 });
 
 /**
@@ -120,7 +120,7 @@ export const logLevel = (
   level: LogLevel,
   child: AnyCaseNodeOrData
 ): CoreCascadingMatcher => ({
-  'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-  'case:matcher:child': child,
-  'case:currentRun:context:logLevel': level,
+  '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+  '_case:matcher:child': child,
+  '_case:currentRun:context:logLevel': level,
 });

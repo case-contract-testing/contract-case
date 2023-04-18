@@ -19,7 +19,7 @@ interface WireContractForVerification {
 interface ContractForPublication {
   consumerName: string;
   providerName: string;
-  specification: 'case::contract' | 'pact';
+  specification: '_case::contract' | 'pact';
   contentType: 'application/json';
   content: string; // Base64 encoded contract content
 }

@@ -24,9 +24,9 @@ export const arrayEachEntryMatches = (
   matcher: AnyCaseNodeOrData,
   example?: Array<AnyCaseNodeOrData>
 ): CoreArrayEachEntryMatches => ({
-  'case:matcher:type': ARRAY_EACH_ENTRY_MATCHES_TYPE,
-  'case:matcher:matcher': matcher,
-  ...(example !== undefined ? { 'case:matcher:example': example } : {}),
+  '_case:matcher:type': ARRAY_EACH_ENTRY_MATCHES_TYPE,
+  '_case:matcher:matcher': matcher,
+  ...(example !== undefined ? { '_case:matcher:example': example } : {}),
 });
 
 /**
@@ -39,8 +39,8 @@ export const arrayLength = (
 ): CoreArrayLengthMatcher => {
   const matcher = coreArrayLengthMatcher(options);
   if (
-    matcher['case:matcher:minLength'] === 0 &&
-    matcher['case:matcher:maxLength'] !== 0
+    matcher['_case:matcher:minLength'] === 0 &&
+    matcher['_case:matcher:maxLength'] !== 0
   ) {
     throw new CaseConfigurationError(
       "Can't create an arrayLength matcher with minimum size 0 and maximum size not 0. Use a raw empty array instead. See the documentation for details."
@@ -60,8 +60,8 @@ export const arrayLength = (
 export const arrayContains = (
   ...matchers: AnyCaseNodeOrData[]
 ): CoreArrayContainsMatch => ({
-  'case:matcher:type': ARRAY_CONTAINS_TYPE,
-  'case:matcher:matchers': matchers,
+  '_case:matcher:type': ARRAY_CONTAINS_TYPE,
+  '_case:matcher:matchers': matchers,
 });
 
 /**

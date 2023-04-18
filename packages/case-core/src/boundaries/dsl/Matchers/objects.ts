@@ -16,9 +16,9 @@ export const objectEachValueMatches = (
   matcher: AnyCaseNodeOrData,
   example?: Record<string, AnyCaseNodeOrData>
 ): CoreObjectValuesMatch => ({
-  'case:matcher:type': OBJECT_VALUES_MATCH_TYPE,
-  'case:matcher:matcher': matcher,
-  ...(example !== undefined ? { 'case:matcher:example': example } : {}),
+  '_case:matcher:type': OBJECT_VALUES_MATCH_TYPE,
+  '_case:matcher:matcher': matcher,
+  ...(example !== undefined ? { '_case:matcher:example': example } : {}),
 });
 
 /**
@@ -31,7 +31,7 @@ export const objectEachKeyMatches = (
   matcher: AnyCaseNodeOrData,
   exampleKey?: string
 ): CoreObjectKeysMatcher => ({
-  'case:matcher:type': OBJECT_KEYS_MATCH_TYPE,
-  'case:matcher:matcher': matcher,
-  ...(exampleKey !== undefined ? { 'case:matcher:example': exampleKey } : {}),
+  '_case:matcher:type': OBJECT_KEYS_MATCH_TYPE,
+  '_case:matcher:matcher': matcher,
+  ...(exampleKey !== undefined ? { '_case:matcher:example': exampleKey } : {}),
 });

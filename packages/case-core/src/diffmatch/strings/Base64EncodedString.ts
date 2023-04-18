@@ -26,7 +26,7 @@ const check = (
       ) !== null
     ) {
       return matchContext.descendAndCheck(
-        matcher['case:matcher:child'],
+        matcher['_case:matcher:child'],
         addLocation(':base64', matchContext),
         Buffer.from(actual, 'base64').toString()
       );
@@ -57,7 +57,7 @@ const strip = (
   matchContext: MatchContext
 ): AnyData => {
   const result = matchContext.descendAndStrip(
-    matcher['case:matcher:child'],
+    matcher['_case:matcher:child'],
     addLocation(':base64', matchContext)
   );
   if (typeof result === 'string') return Buffer.from(result).toString('base64');
@@ -71,7 +71,7 @@ export const Base64EncodedStringMatcher: MatcherExecutor<
 > = {
   describe: (matcher, matchContext) =>
     `base64 encoded string '${matchContext.descendAndDescribe(
-      matcher['case:matcher:child'],
+      matcher['_case:matcher:child'],
       addLocation(':base64', matchContext)
     )}'`,
   check,

@@ -12,12 +12,12 @@ export const addMatcher = (
   matcher: AnyCaseNodeOrData,
   context: MatchContextWithoutLookup
 ): LookupMap => {
-  if (isLookupableMatcher(matcher) && 'case:matcher:child' in matcher) {
+  if (isLookupableMatcher(matcher) && '_case:matcher:child' in matcher) {
     return addLookup(
       matcherLookup,
       'matcher',
-      matcher['case:matcher:uniqueName'],
-      matcher['case:matcher:child'],
+      matcher['_case:matcher:uniqueName'],
+      matcher['_case:matcher:child'],
       context
     );
   }

@@ -78,8 +78,8 @@ export interface TraversalFns {
 }
 
 export type LogLevelContext = {
-  'case:currentRun:context:logLevel': LogLevel;
-  'case:currentRun:context:location': Array<string>;
+  '_case:currentRun:context:logLevel': LogLevel;
+  '_case:currentRun:context:location': Array<string>;
 };
 
 export type MatchContextWithoutLookup = Omit<
@@ -88,28 +88,28 @@ export type MatchContextWithoutLookup = Omit<
 >;
 
 export interface ContractFileConfig {
-  'case:currentRun:context:testRunId': string;
-  'case:currentRun:context:contractDir': string;
-  'case:currentRun:context:contractFilename'?: string;
-  'case:currentRun:context:overwriteFile'?: boolean;
+  '_case:currentRun:context:testRunId': string;
+  '_case:currentRun:context:contractDir': string;
+  '_case:currentRun:context:contractFilename'?: string;
+  '_case:currentRun:context:overwriteFile'?: boolean;
 }
 
 export type HasContractFileConfig = DataContext & ContractFileConfig;
 
 export type DefaultContext = LogLevelContext & {
-  'case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
-  'case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
-  'case:currentRun:context:contractMode': 'write' | 'read';
-  'case:currentRun:context:printResults': boolean;
+  '_case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
+  '_case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
+  '_case:currentRun:context:contractMode': 'write' | 'read';
+  '_case:currentRun:context:printResults': boolean;
 };
 
 interface InjectableContext {
-  'case:currentRun:context:baseUrlUnderTest'?: string;
-  'case:currentRun:context:contractMode': 'write' | 'read';
+  '_case:currentRun:context:baseUrlUnderTest'?: string;
+  '_case:currentRun:context:contractMode': 'write' | 'read';
 }
 
 export interface HasBaseUrlUnderTest {
-  'case:currentRun:context:baseUrlUnderTest': string;
+  '_case:currentRun:context:baseUrlUnderTest': string;
 }
 
 /**
@@ -124,32 +124,32 @@ export interface RunContext
       HasBaseUrlUnderTest &
       ContractFileConfig
   > {
-  'case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
-  'case:currentRun:context:printResults': boolean;
-  'case:currentRun:context:variables': Record<string, AnyCaseNodeOrData>;
-  'case:currentRun:context:defaultConfig': Record<string, AnyData>;
+  '_case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
+  '_case:currentRun:context:printResults': boolean;
+  '_case:currentRun:context:variables': Record<string, AnyCaseNodeOrData>;
+  '_case:currentRun:context:defaultConfig': Record<string, AnyData>;
   // TODO: These are from CaseConfig and should be auto generated
-  'case:currentRun:context:throwOnFail'?: boolean;
-  'case:currentRun:context:brokerCiAccessToken'?: string;
-  'case:currentRun:context:publish'?:
+  '_case:currentRun:context:throwOnFail'?: boolean;
+  '_case:currentRun:context:brokerCiAccessToken'?: string;
+  '_case:currentRun:context:publish'?:
     | false
     | true
     | 'ONLY_IN_CI'
     | 'NEVER'
     | 'ALWAYS';
-  'case:currentRun:context:brokerBasicAuth'?: {
+  '_case:currentRun:context:brokerBasicAuth'?: {
     username: string;
     password: string;
   };
-  'case:currentRun:context:brokerBaseUrl'?: string;
+  '_case:currentRun:context:brokerBaseUrl'?: string;
 }
 
 export interface MatchContextByType {
-  'case:context:matchBy': 'type';
+  '_case:context:matchBy': 'type';
 }
 
 export interface MatchContextByExact {
-  'case:context:matchBy': 'exact';
+  '_case:context:matchBy': 'exact';
 }
 
 export interface HttpTestContext {

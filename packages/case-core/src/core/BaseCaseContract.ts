@@ -85,7 +85,7 @@ export class BaseCaseContract {
     );
 
     if (
-      this.initialContext['case:currentRun:context:testRunId'] ===
+      this.initialContext['_case:currentRun:context:testRunId'] ===
       DEFAULT_TEST_ID
     ) {
       this.initialContext.logger.warn(

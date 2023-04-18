@@ -7,7 +7,7 @@ export const shouldLog = (
   context: LogLevelContext,
   logLevel: LogLevel
 ): boolean => {
-  switch (context['case:currentRun:context:logLevel']) {
+  switch (context['_case:currentRun:context:logLevel']) {
     case 'none':
       return false;
     case 'error':
@@ -28,11 +28,11 @@ export const shouldLog = (
       return true;
     case undefined:
       throw new CaseCoreError(
-        `The run context had no log level, but this should never happen. (context[case:currentRun:context:logLevel] is ${context['case:currentRun:context:logLevel']})`
+        `The run context had no log level, but this should never happen. (context[_case:currentRun:context:logLevel] is ${context['_case:currentRun:context:logLevel']})`
       );
     default:
       throw new CaseConfigurationError(
-        `Unknown log level '${context['case:currentRun:context:logLevel']}'`
+        `Unknown log level '${context['_case:currentRun:context:logLevel']}'`
       );
   }
 };

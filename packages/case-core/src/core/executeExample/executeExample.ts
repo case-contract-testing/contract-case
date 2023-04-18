@@ -85,7 +85,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
         context.logger.debug(
           `Invoking trigger with`,
           assertable.config,
-          context['case:currentRun:context:location']
+          context['_case:currentRun:context:location']
         );
         return findAndCallTrigger(
           example.mock as CaseMockDescriptorFor<T>,
@@ -133,7 +133,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
     .then((resultingExample) => {
       handleResult(
         contract.recordExample(resultingExample, context),
-        context['case:currentRun:context:testName'],
+        context['_case:currentRun:context:testName'],
         context
       );
     });

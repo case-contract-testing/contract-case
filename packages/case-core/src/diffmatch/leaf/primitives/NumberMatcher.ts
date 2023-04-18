@@ -19,7 +19,7 @@ const check = (
 ): Array<CaseError> =>
   combineResults(
     errorWhen(
-      matchContext['case:context:matchBy'] === 'exact',
+      matchContext['_case:context:matchBy'] === 'exact',
       testExactMatch(matcher, matchContext, actual)
     ),
     errorWhen(
@@ -32,7 +32,7 @@ const check = (
       )
     ),
     errorWhen(
-      matchContext['case:context:serialisableTo'] === 'json' &&
+      matchContext['_case:context:serialisableTo'] === 'json' &&
         Number.isNaN(actual),
       matchingError(
         matcher,
@@ -42,7 +42,7 @@ const check = (
       )
     ),
     errorWhen(
-      matchContext['case:context:serialisableTo'] === 'json' &&
+      matchContext['_case:context:serialisableTo'] === 'json' &&
         typeof actual === 'number' &&
         !Number.isFinite(actual),
       matchingError(
@@ -56,9 +56,9 @@ const check = (
 
 export const NumberMatcher: MatcherExecutor<typeof NUMBER_MATCHER_TYPE> = {
   describe: (matcher, matchContext) =>
-    matchContext['case:context:matchBy'] === 'exact'
-      ? `${matcher['case:matcher:example']}`
+    matchContext['_case:context:matchBy'] === 'exact'
+      ? `${matcher['_case:matcher:example']}`
       : '<any number>',
   check,
-  strip: (matcher: CoreNumberMatcher) => matcher['case:matcher:example'],
+  strip: (matcher: CoreNumberMatcher) => matcher['_case:matcher:example'],
 };

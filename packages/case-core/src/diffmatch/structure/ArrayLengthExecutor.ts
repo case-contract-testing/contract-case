@@ -32,25 +32,25 @@ const check: CheckMatchFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
   Array.isArray(actual)
     ? combineResults(
         errorWhen(
-          matcher['case:matcher:maxLength'] !==
+          matcher['_case:matcher:maxLength'] !==
             ARRAY_LENGTH_PARAMETER_INFINITE &&
-            actual.length > matcher['case:matcher:maxLength'],
+            actual.length > matcher['_case:matcher:maxLength'],
           matchingError(
             matcher,
-            `Array length of '${actual.length}' is over the maximum length of ${matcher['case:matcher:maxLength']}`,
+            `Array length of '${actual.length}' is over the maximum length of ${matcher['_case:matcher:maxLength']}`,
             actual,
             matchContext,
-            `Array length <= ${matcher['case:matcher:maxLength']}`
+            `Array length <= ${matcher['_case:matcher:maxLength']}`
           )
         ),
         errorWhen(
-          actual.length < matcher['case:matcher:minLength'],
+          actual.length < matcher['_case:matcher:minLength'],
           matchingError(
             matcher,
-            `Array length of '${actual.length}' is under the minimum length of ${matcher['case:matcher:minLength']}`,
+            `Array length of '${actual.length}' is under the minimum length of ${matcher['_case:matcher:minLength']}`,
             actual,
             matchContext,
-            `Array length >= ${matcher['case:matcher:minLength']}`
+            `Array length >= ${matcher['_case:matcher:minLength']}`
           )
         )
       )
@@ -70,7 +70,7 @@ export const ArrayLengthExecutor: MatcherExecutor<
   typeof ARRAY_LENGTH_MATCHER_TYPE
 > = {
   describe: (matcher) =>
-    `an array of length min: ${matcher['case:matcher:minLength']}, max: ${matcher['case:matcher:maxLength']};`,
+    `an array of length min: ${matcher['_case:matcher:minLength']}, max: ${matcher['_case:matcher:maxLength']};`,
   check,
   strip,
 };

@@ -17,9 +17,9 @@ import { makeAssertionsOn } from './assert/assert';
 const isHasBaseUrl = (
   context: Partial<DataContext>
 ): context is HasBaseUrlUnderTest =>
-  'case:currentRun:context:baseUrlUnderTest' in context &&
-  context['case:currentRun:context:baseUrlUnderTest'] !== undefined &&
-  typeof context['case:currentRun:context:baseUrlUnderTest'] === 'string';
+  '_case:currentRun:context:baseUrlUnderTest' in context &&
+  context['_case:currentRun:context:baseUrlUnderTest'] !== undefined &&
+  typeof context['_case:currentRun:context:baseUrlUnderTest'] === 'string';
 
 const validateConfig = (
   context: MatchContext
@@ -82,8 +82,8 @@ export const setupHttpResponseConsumer = (
     return validateConfig(parentContext).then(
       (run: DataContext & HasBaseUrlUnderTest) => ({
         config: {
-          'case:mock:type': MOCK_HTTP_CLIENT,
-          variables: parentContext['case:currentRun:context:variables'],
+          '_case:mock:type': MOCK_HTTP_CLIENT,
+          variables: parentContext['_case:currentRun:context:variables'],
         },
         assertableData: () =>
           axios
@@ -91,7 +91,7 @@ export const setupHttpResponseConsumer = (
               validateStatus: () => true, // This means that all status codes resolve the promise
               method,
               httpAgent,
-              url: `${run['case:currentRun:context:baseUrlUnderTest']}${path}`,
+              url: `${run['_case:currentRun:context:baseUrlUnderTest']}${path}`,
               ...(body
                 ? {
                     body,
@@ -110,7 +110,7 @@ export const setupHttpResponseConsumer = (
                         `[${
                           err.code ? err.code : 'HTTP_FAIL'
                         }]\n\nRequest was made to '${
-                          run['case:currentRun:context:baseUrlUnderTest']
+                          run['_case:currentRun:context:baseUrlUnderTest']
                         }', but no response. \n\nConfirm that you have:\n 1) Started the real server\n 2) Provided the correct URL to the running server\n\nUnderlying Error: ${
                           err.message
                         }`,

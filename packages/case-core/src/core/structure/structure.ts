@@ -16,7 +16,7 @@ export const makeContract = (
 ): ContractData => ({
   contractType: 'case::contract',
   description,
-  metadata: { case: { version: caseVersion } },
+  metadata: { _case: { version: caseVersion } },
   matcherLookup: {} as Record<string, AnyCaseNodeOrData>,
   examples: new Array<CaseExample>(),
 });
