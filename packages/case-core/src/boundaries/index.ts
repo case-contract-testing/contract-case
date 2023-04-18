@@ -2,6 +2,9 @@ export * from './dsl/states';
 export * from './dsl/Matchers';
 export * from './dsl/Mocks';
 
+export { ContractDefiner } from './ContractDefiner';
+export { ContractVerifier } from './ContractVerifier';
+
 // TODO Move these into boundaries
 
 export type { RunTestCallback } from '../core/executeExample/types';
