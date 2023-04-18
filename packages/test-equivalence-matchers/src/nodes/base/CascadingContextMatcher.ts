@@ -40,13 +40,13 @@ export abstract class CascadingContextMatcher extends AnyMatcher {
     super(CASCADING_CONTEXT_MATCHER_TYPE);
     this['_case:matcher:child'] = child;
     this.contextModifiers = Object.entries(contextModifiers).reduce(
-      (acc, [key, value]) => ({ ...acc, [`case:context:${key}`]: value }),
+      (acc, [key, value]) => ({ ...acc, [`_case:context:${key}`]: value }),
       {}
     );
     this.currentRunModifiers = Object.entries(currentRunModifiers).reduce(
       (acc, [key, value]) => ({
         ...acc,
-        [`case:currentRun:context:${key}`]: value,
+        [`_case:currentRun:context:${key}`]: value,
       }),
       {}
     );
@@ -63,7 +63,7 @@ export abstract class CascadingContextMatcher extends AnyMatcher {
         key !== 'contextModifiers' && key !== 'currentRunModifiers'
           ? {
               ...acc,
-              [key.startsWith('_') ? key.substring(1) : key]: value,
+              [key.startsWith('_') ? key : key]: value,
             }
           : acc,
       { ...this.contextModifiers, ...this.currentRunModifiers }

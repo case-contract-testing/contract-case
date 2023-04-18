@@ -20,9 +20,9 @@ describe('convenience matchers', () => {
     expect(
       JSON.parse(JSON.stringify(new ChangeLogLevel('warn', true)))
     ).toEqual({
-      'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-      'case:matcher:child': true,
-      'case:currentRun:context:logLevel': 'warn',
+      '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+      '_case:matcher:child': true,
+      '_case:currentRun:context:logLevel': 'warn',
     });
   });
 
@@ -34,8 +34,8 @@ describe('convenience matchers', () => {
 
   it('state variable matcher serialises', () => {
     expect(JSON.parse(JSON.stringify(new StateVariable('someName')))).toEqual({
-      'case:matcher:type': CONTEXT_VARIABLE_TYPE,
-      'case:matcher:variableName': 'someName',
+      '_case:matcher:type': CONTEXT_VARIABLE_TYPE,
+      '_case:matcher:variableName': 'someName',
     });
   });
 
@@ -43,14 +43,14 @@ describe('convenience matchers', () => {
     expect(
       JSON.parse(JSON.stringify(new WithExample(new AnyString('bar'), 'foo')))
     ).toEqual({
-      'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-      'case:matcher:child': {
-        'case:context:matchBy': 'type',
-        'case:matcher:example': 'bar',
-        'case:matcher:resolvesTo': 'string',
-        'case:matcher:type': 'case:MatchString',
+      '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+      '_case:matcher:child': {
+        '_case:context:matchBy': 'type',
+        '_case:matcher:example': 'bar',
+        '_case:matcher:resolvesTo': 'string',
+        '_case:matcher:type': 'case:MatchString',
       },
-      'case:matcher:example': 'foo',
+      '_case:matcher:example': 'foo',
     });
   });
 

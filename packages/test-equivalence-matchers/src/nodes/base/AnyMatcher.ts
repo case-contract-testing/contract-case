@@ -32,7 +32,7 @@ export abstract class AnyMatcher {
     return Object.entries(this).reduce(
       (acc, [key, value]) => ({
         ...acc,
-        [key.startsWith('_') ? key.substring(1) : key]: value,
+        [key.startsWith('_') ? key : key]: value,
       }),
       {}
     );

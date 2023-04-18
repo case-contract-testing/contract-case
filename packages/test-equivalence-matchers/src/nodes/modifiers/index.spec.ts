@@ -5,43 +5,43 @@ import { AnyString } from '../strings';
 describe('modifying matchers', () => {
   it('shaped-like matcher serialises', () => {
     expect(JSON.parse(JSON.stringify(new ShapedLike(true)))).toEqual({
-      'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-      'case:matcher:child': true,
-      'case:context:matchBy': 'type',
+      '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+      '_case:matcher:child': true,
+      '_case:context:matchBy': 'type',
     });
 
     expect(
       JSON.parse(JSON.stringify(new ShapedLike(new AnyString('foo'))))
     ).toEqual({
-      'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-      'case:matcher:child': {
-        'case:context:matchBy': 'type',
-        'case:matcher:example': 'foo',
-        'case:matcher:resolvesTo': 'string',
-        'case:matcher:type': 'case:MatchString',
+      '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+      '_case:matcher:child': {
+        '_case:context:matchBy': 'type',
+        '_case:matcher:example': 'foo',
+        '_case:matcher:resolvesTo': 'string',
+        '_case:matcher:type': 'case:MatchString',
       },
-      'case:context:matchBy': 'type',
+      '_case:context:matchBy': 'type',
     });
   });
 
   it('exactly-like matcher serialises', () => {
     expect(JSON.parse(JSON.stringify(new ExactlyLike(true)))).toEqual({
-      'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-      'case:matcher:child': true,
-      'case:context:matchBy': 'exact',
+      '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+      '_case:matcher:child': true,
+      '_case:context:matchBy': 'exact',
     });
 
     expect(
       JSON.parse(JSON.stringify(new ExactlyLike(new AnyString('foo'))))
     ).toEqual({
-      'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-      'case:matcher:child': {
-        'case:context:matchBy': 'type',
-        'case:matcher:example': 'foo',
-        'case:matcher:resolvesTo': 'string',
-        'case:matcher:type': 'case:MatchString',
+      '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
+      '_case:matcher:child': {
+        '_case:context:matchBy': 'type',
+        '_case:matcher:example': 'foo',
+        '_case:matcher:resolvesTo': 'string',
+        '_case:matcher:type': 'case:MatchString',
       },
-      'case:context:matchBy': 'exact',
+      '_case:context:matchBy': 'exact',
     });
   });
 });
