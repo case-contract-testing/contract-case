@@ -1,6 +1,8 @@
 {
     "packages": {
+      "packages/case-boundary": {},
       "packages/case-core": {},
+      "packages/case-entities": {},
       "packages/test-equivalence-matchers": {}
     }
   }
