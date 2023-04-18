@@ -1,9 +1,6 @@
 {
-  "bootstrap-sha": "63017480c8f1f81bca43a6f6123d764a4163233b",
-  "packages": {
-    "packages/case-boundary": {},
-    "packages/case-core": {},
-    "packages/case-entities": {},
-    "packages/test-equivalence-matchers": {}
-  }
+  "packages/case-boundary": "0.0.1",
+  "packages/case-core": "0.7.0",
+  "packages/case-entities": "0.7.0",
+  "packages/test-equivalence-matchers": "0.0.1"
 }

@@ -1,9 +1,20 @@
 {
   "bootstrap-sha": "63017480c8f1f81bca43a6f6123d764a4163233b",
+  "plugins": ["node-workspace"],
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
   "packages": {
-    "packages/case-boundary": {},
-    "packages/case-core": {},
-    "packages/case-entities": {},
-    "packages/test-equivalence-matchers": {}
+    "packages/case-boundary": {
+      "changelog-path": "packages/case-boundary/CHANGELOG.md"
+    },
+    "packages/case-core": {
+      "changelog-path": "packages/case-core/CHANGELOG.md"
+    },
+    "packages/case-entities": {
+      "changelog-path": "packages/case-entities/CHANGELOG.md"
+    },
+    "packages/test-equivalence-matchers": {
+      "changelog-path": "packages/test-equivalence-matchers/CHANGELOG.md"
+    }
   }
 }
