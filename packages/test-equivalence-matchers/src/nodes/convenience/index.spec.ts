@@ -48,7 +48,7 @@ describe('convenience matchers', () => {
         '_case:context:matchBy': 'type',
         '_case:matcher:example': 'bar',
         '_case:matcher:resolvesTo': 'string',
-        '_case:matcher:type': 'case:MatchString',
+        '_case:matcher:type': '_case:MatchString',
       },
       '_case:matcher:example': 'foo',
     });
