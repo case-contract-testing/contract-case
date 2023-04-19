@@ -170,8 +170,8 @@ export const makeBrokerApi: MakeBrokerApi = (
         )
         .then((t) => t),
 
-    downloadContract: (url: string) =>
-      makeAxiosConnector(url, auth).authedGet(),
+    downloadContract: (url: string, logContext: LogContext) =>
+      makeAxiosConnector(url, auth).authedGet('', logContext),
 
     urlsForVerification: (serviceName: string, logContext: LogContext) => {
       logContext.logger.debug(

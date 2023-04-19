@@ -8,7 +8,9 @@
     "lerna": "^6.6.1"
   },
   "optionalDependencies": {
-    "@nrwl/nx-linux-x64-gnu": "^15.9.2"
+    "@nrwl/nx-linux-x64-gnu": "^15.9.2",
+    "@nrwl/nx-darwin-x64": "^15.9.2",
+    "@nrwl/nx-win32-x64-msvc": "^15.9.2"
   },
   "scripts": {
     "build": "lerna run build",

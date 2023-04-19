@@ -5,7 +5,7 @@ import { unmarshallSuccess, unmarshallFailure } from './marshaller';
 import { BasicAuth } from './types';
 
 type HttpConnector = {
-  authedGet: <T>(path?: string) => Promise<T>;
+  authedGet: <T>(path: string, context: LogContext) => Promise<T>;
   authedPut: <T, R>(
     path: string,
     content: T,
@@ -34,9 +34,11 @@ export const makeAxiosConnector = (
   baseurl: string,
   auth: string | BasicAuth
 ): HttpConnector => ({
-  authedGet: (path = '') =>
-    axios
-      .get(`${baseurl}${path}`, {
+  authedGet: (path: string, context: LogContext) => {
+    const url = `${baseurl}${path}`;
+    context.logger.deepMaintainerDebug(`GET:`, url);
+    return axios
+      .get(url, {
         ...(typeof auth !== 'string' ? { auth } : {}),
         headers: withAuthHeaders(
           {
@@ -45,10 +47,15 @@ export const makeAxiosConnector = (
           auth
         ),
       })
-      .then(unmarshallSuccess, unmarshallFailure),
+      .then(unmarshallSuccess, unmarshallFailure)
+      .then((response) => {
+        context.logger.deepMaintainerDebug(`RESPONSE(GET):`, response);
+        return response;
+      });
+  },
 
   authedPut: (path, content, context: LogContext) => {
-    context.logger.maintainerDebug(`PUT: ${baseurl}${path}`, content);
+    context.logger.deepMaintainerDebug(`PUT: ${baseurl}${path}`, content);
     return axios
       .put(`${baseurl}${path}`, content, {
         ...(typeof auth !== 'string' ? { auth } : {}),
@@ -59,11 +66,15 @@ export const makeAxiosConnector = (
           auth
         ),
       })
-      .then(unmarshallSuccess, unmarshallFailure);
+      .then(unmarshallSuccess, unmarshallFailure)
+      .then((response) => {
+        context.logger.deepMaintainerDebug(`RESPONSE(PUT):`, response);
+        return response;
+      });
   },
 
   authedPost: (path, content, context: LogContext) => {
-    context.logger.maintainerDebug(`POST: ${baseurl}${path}`, content);
+    context.logger.deepMaintainerDebug(`POST: ${baseurl}${path}`, content);
     return axios
       .post(`${baseurl}${path}`, content, {
         ...(typeof auth !== 'string' ? { auth } : {}),
@@ -74,6 +85,10 @@ export const makeAxiosConnector = (
           auth
         ),
       })
-      .then(unmarshallSuccess, unmarshallFailure);
+      .then(unmarshallSuccess, unmarshallFailure)
+      .then((response) => {
+        context.logger.deepMaintainerDebug(`RESPONSE(POST):`, response);
+        return response;
+      });
   },
 });
