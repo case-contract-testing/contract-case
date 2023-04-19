@@ -15,7 +15,7 @@ import {
   wrapLogPrinter,
 } from './mappers';
 import { MockDefinition } from './types';
-import { ILogPrinter, Result, Success } from './boundary';
+import { ILogPrinter, Result, Success, SuccessWithAny } from './boundary';
 
 export class ContractDefiner {
   private readonly constructorConfig: ContractCaseConfig;
@@ -105,7 +105,7 @@ export class ContractDefiner {
     }
   }
 
-  stripMatchers(matcherOrData: AnyMatcher): any {
+  stripMatchers(matcherOrData: AnyMatcher): Result {
     try {
       this.initialiseDefiner();
       if (this.definer === undefined) {
@@ -114,8 +114,8 @@ export class ContractDefiner {
         );
       }
 
-      return this.definer.stripMatchers(
-        JSON.parse(JSON.stringify(matcherOrData))
+      return new SuccessWithAny(
+        this.definer.stripMatchers(JSON.parse(JSON.stringify(matcherOrData)))
       );
     } catch (e) {
       return jsErrorToFailure(e);
