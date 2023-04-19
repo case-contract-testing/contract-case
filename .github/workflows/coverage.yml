@@ -1,6 +1,5 @@
 on:
   push:
-  pull_request:
     branches: [main]
 
 name: Test Coveralls
@@ -34,4 +33,4 @@ jobs:
       with:
         path-to-lcov: 'packages/case-core/coverage/lcov.info'
         base-path: 'packages/case-core'
-        github-token: ${{ secrets.OLD_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
