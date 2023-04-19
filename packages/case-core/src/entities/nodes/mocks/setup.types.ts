@@ -1,4 +1,5 @@
-import type { MatchContext, AnyCaseNodeOrData } from '../../../entities/types';
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
+import type { MatchContext } from '../../../entities/types';
 import type {
   AnyMockDescriptorType,
   CaseMockDescriptorFor,
@@ -9,7 +10,7 @@ import type {
 
 type MockOutput = {
   actual: unknown;
-  expected: AnyCaseNodeOrData;
+  expected: AnyCaseMatcherOrData;
   context: MatchContext;
 };
 

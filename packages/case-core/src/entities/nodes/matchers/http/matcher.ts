@@ -1,18 +1,18 @@
-import type { AnyCaseNodeOrData, AnyStringMatcher } from '../types';
 import {
+  AnyCaseMatcherOrData,
+  AnyCaseStringMatcher,
   CoreHttpBasicAuthValue,
   CoreHttpRequestMatcher,
   CoreHttpResponseMatcher,
   CoreHttpStatusCodeMatcher,
   CoreUrlEncodedStringMatcher,
-  HttpMockRequest,
-  HttpMockResponse,
   HTTP_BASIC_AUTH_TYPE,
   HTTP_REQUEST_MATCHER_TYPE,
   HTTP_RESPONSE_MATCHER_TYPE,
   HTTP_STATUS_CODE_MATCHER_TYPE,
   URL_ENCODED_STRING_TYPE,
-} from './types';
+} from '@contract-case/case-entities-internal';
+import { HttpMockRequest, HttpMockResponse } from './types';
 import { validateCodes } from './validator';
 
 export const httpStatusCodeMatcher = (
@@ -43,7 +43,7 @@ export const httpResponseMatcher = (
 });
 
 export const coreUrlEncodedString = (
-  child: AnyCaseNodeOrData
+  child: AnyCaseMatcherOrData
 ): CoreUrlEncodedStringMatcher => ({
   '_case:matcher:type': URL_ENCODED_STRING_TYPE,
   '_case:matcher:child': child,
@@ -52,8 +52,8 @@ export const coreUrlEncodedString = (
 });
 
 export const coreBasicAuthValue = (
-  username: AnyStringMatcher,
-  password: AnyStringMatcher
+  username: AnyCaseStringMatcher,
+  password: AnyCaseStringMatcher
 ): CoreHttpBasicAuthValue => ({
   '_case:matcher:type': HTTP_BASIC_AUTH_TYPE,
   '_case:matcher:username': username,

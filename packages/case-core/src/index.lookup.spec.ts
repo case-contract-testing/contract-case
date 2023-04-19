@@ -1,7 +1,7 @@
 import { anyNumber, anyString, namedMatch } from './boundaries/dsl/Matchers';
 
 import { CaseConfigurationError } from './entities';
-import type { AnyCaseNodeOrData } from './entities/types';
+import type { AnyCaseMatcherOrData } from './entities/types';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';
@@ -76,7 +76,7 @@ describe('named matches', () => {
   });
 
   describe('object matcher with named matchers introduced earlier', () => {
-    const repeatTests = (matcher: AnyCaseNodeOrData) => {
+    const repeatTests = (matcher: AnyCaseMatcherOrData) => {
       it('accepts a matching object with different values', async () => {
         expect(
           await contract.checkMatch(matcher, {

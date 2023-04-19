@@ -1,15 +1,15 @@
 import {
-  CoreBooleanMatcher,
-  CoreNullMatcher,
   CoreNumberMatcher,
-  CoreStringMatcher,
-  BOOLEAN_MATCHER_TYPE,
-  NULL_MATCHER_TYPE,
   NUMBER_MATCHER_TYPE,
-  STRING_MATCHER_TYPE,
-  INTEGER_MATCH_TYPE,
   CoreIntegerMatch,
-} from './types';
+  INTEGER_MATCH_TYPE,
+  CoreStringMatcher,
+  STRING_MATCHER_TYPE,
+  CoreBooleanMatcher,
+  BOOLEAN_MATCHER_TYPE,
+  CoreNullMatcher,
+  NULL_MATCHER_TYPE,
+} from '@contract-case/case-entities-internal';
 
 /**
  * Matches a number following [RFC 8259 JSON](https://www.rfc-editor.org/rfc/rfc8259).

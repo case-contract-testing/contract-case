@@ -1,3 +1,8 @@
+import {
+  AnyCaseMatcherOrData,
+  LookupableMatcher,
+  AnyData,
+} from '@contract-case/case-entities-internal';
 import { traversals } from '../diffmatch';
 
 import { CaseConfigurationError, CaseCoreError } from '../entities';
@@ -13,11 +18,6 @@ import type {
   RawLookupFns,
   MatchContextWithoutLookup,
   ContractLookupFns,
-  AnyCaseNodeOrData,
-  LookupableMatcher,
-  AnyCaseNodeType,
-  DataOrCaseNodeFor,
-  AnyData,
   MatchResult,
   ResultPrinter,
 } from '../entities/types';
@@ -64,12 +64,12 @@ export class BaseCaseContract {
       addDefaultVariable: (
         name: string,
         stateName: string,
-        value: AnyCaseNodeOrData
+        value: AnyCaseMatcherOrData
       ) => contractFns.addVariable(name, 'default', stateName, value, context),
       addStateVariable: (
         name: string,
         stateName: string,
-        value: AnyCaseNodeOrData
+        value: AnyCaseMatcherOrData
       ) => contractFns.addVariable(name, 'state', stateName, value, context),
       lookupVariable: (name: string) =>
         contractFns.lookupVariable(name, context),
@@ -98,7 +98,7 @@ export class BaseCaseContract {
   lookupVariable(
     name: string,
     context: MatchContextWithoutLookup
-  ): AnyCaseNodeOrData {
+  ): AnyCaseMatcherOrData {
     if (this.currentContract === undefined) {
       context.logger.error(
         `lookupVariable was called without initialising the contract file. This should not be possible.`
@@ -122,9 +122,9 @@ export class BaseCaseContract {
     name: string,
     type: 'default' | 'state',
     stateName: string,
-    value: AnyCaseNodeOrData,
+    value: AnyCaseMatcherOrData,
     context: MatchContextWithoutLookup
-  ): [name: string, value: AnyCaseNodeOrData] {
+  ): [name: string, value: AnyCaseMatcherOrData] {
     if (this.currentContract === undefined) {
       context.logger.error(
         `addVariable was called by state '${stateName}' without initialising the contract file. This should not be possible.`
@@ -170,7 +170,7 @@ export class BaseCaseContract {
   lookupMatcher(
     uniqueName: string,
     context: MatchContextWithoutLookup
-  ): AnyCaseNodeOrData {
+  ): AnyCaseMatcherOrData {
     if (!this.currentContract) {
       context.logger.error(
         'lookupMatcher was called without initialising the contract file. This should not be possible.'
@@ -190,17 +190,15 @@ export class BaseCaseContract {
     );
   }
 
-  stripMatchers<T extends AnyCaseNodeType>(
-    matcherOrData: DataOrCaseNodeFor<T>
-  ): AnyData {
+  stripMatchers(matcherOrData: AnyCaseMatcherOrData): AnyData {
     return traversals.descendAndStrip(
       matcherOrData,
       applyNodeToContext(matcherOrData, this.initialContext)
     );
   }
 
-  checkMatch<T extends AnyCaseNodeType>(
-    matcherOrData: DataOrCaseNodeFor<T>,
+  checkMatch(
+    matcherOrData: AnyCaseMatcherOrData,
     actual: unknown
   ): Promise<MatchResult> {
     return Promise.resolve()

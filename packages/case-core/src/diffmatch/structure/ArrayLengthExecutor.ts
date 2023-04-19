@@ -1,3 +1,9 @@
+import {
+  ARRAY_LENGTH_MATCHER_TYPE,
+  CoreArrayLengthMatcher,
+  AnyData,
+  ARRAY_LENGTH_PARAMETER_INFINITE,
+} from '@contract-case/case-entities-internal';
 import { StripUnsupportedError } from '../../entities/errors';
 import {
   combineResults,
@@ -6,15 +12,11 @@ import {
   matchingError,
 } from '../../entities/results';
 import {
-  AnyData,
   MatchContext,
   MatchResult,
   StripMatcherFn,
   CheckMatchFn,
   MatcherExecutor,
-  ARRAY_LENGTH_MATCHER_TYPE,
-  CoreArrayLengthMatcher,
-  ARRAY_LENGTH_PARAMETER_INFINITE,
 } from '../../entities/types';
 
 const strip: StripMatcherFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (

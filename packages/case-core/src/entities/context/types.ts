@@ -1,12 +1,12 @@
-import type {
-  MatcherExecutor,
-  AnyCaseNodeOrData,
-  AnyCaseNodeType,
-  AnyLeafOrStructure,
-  CaseNodeFor,
+import {
+  AnyCaseMatcherOrData,
   LookupableMatcher,
+  AnyCaseNodeType,
+  CaseNodeFor,
+  AnyLeafOrStructure,
   AnyData,
-} from '../../entities/nodes/types';
+} from '@contract-case/case-entities-internal';
+import type { MatcherExecutor } from '../../entities/nodes/types';
 import type { Logger, LogLevel } from '../../entities/logger/types';
 import type { ResultPrinter } from '../../entities/results/types';
 
@@ -19,7 +19,7 @@ export interface RawLookupFns {
   lookupMatcher: (
     uniqueName: string,
     context: MatchContextWithoutLookup
-  ) => AnyCaseNodeOrData;
+  ) => AnyCaseMatcherOrData;
   saveLookupableMatcher: (
     matcher: LookupableMatcher,
     context: MatchContextWithoutLookup
@@ -28,29 +28,29 @@ export interface RawLookupFns {
     name: string,
     type: 'default' | 'state',
     stateName: string,
-    value: AnyCaseNodeOrData,
+    value: AnyCaseMatcherOrData,
     context: MatchContextWithoutLookup
-  ) => [name: string, value: AnyCaseNodeOrData];
+  ) => [name: string, value: AnyCaseMatcherOrData];
   lookupVariable: (
     name: string,
     context: MatchContextWithoutLookup
-  ) => AnyCaseNodeOrData;
+  ) => AnyCaseMatcherOrData;
 }
 
 export interface ContractLookupFns {
-  lookupMatcher: (uniqueName: string) => AnyCaseNodeOrData;
+  lookupMatcher: (uniqueName: string) => AnyCaseMatcherOrData;
   saveLookupableMatcher: (matcher: LookupableMatcher) => void;
   addDefaultVariable: (
     name: string,
     stateName: string,
-    value: AnyCaseNodeOrData
-  ) => [name: string, value: AnyCaseNodeOrData];
+    value: AnyCaseMatcherOrData
+  ) => [name: string, value: AnyCaseMatcherOrData];
   addStateVariable: (
     name: string,
     stateName: string,
-    value: AnyCaseNodeOrData
-  ) => [name: string, value: AnyCaseNodeOrData];
-  lookupVariable: (name: string) => AnyCaseNodeOrData;
+    value: AnyCaseMatcherOrData
+  ) => [name: string, value: AnyCaseMatcherOrData];
+  lookupVariable: (name: string) => AnyCaseMatcherOrData;
 }
 
 interface HasMakeLookupFn {
@@ -126,7 +126,7 @@ export interface RunContext
   > {
   '_case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
   '_case:currentRun:context:printResults': boolean;
-  '_case:currentRun:context:variables': Record<string, AnyCaseNodeOrData>;
+  '_case:currentRun:context:variables': Record<string, AnyCaseMatcherOrData>;
   '_case:currentRun:context:defaultConfig': Record<string, AnyData>;
   // TODO: These are from CaseConfig and should be auto generated
   '_case:currentRun:context:throwOnFail'?: boolean;

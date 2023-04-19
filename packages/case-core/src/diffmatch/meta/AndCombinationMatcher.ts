@@ -1,12 +1,14 @@
+import {
+  COMBINE_MATCHERS_TYPE,
+  CoreAndCombinationMatcher,
+  AnyData,
+  isCaseNode,
+} from '@contract-case/case-entities-internal';
 import { StripUnsupportedError } from '../../entities';
 import { addLocation } from '../../entities/context';
 import {
   type StripMatcherFn,
-  type COMBINE_MATCHERS_TYPE,
-  type CoreAndCombinationMatcher,
   type MatchContext,
-  type AnyData,
-  isCaseNode,
   type CheckMatchFn,
   type MatchResult,
   type MatcherExecutor,

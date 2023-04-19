@@ -1,14 +1,16 @@
 import {
+  BOOLEAN_MATCHER_TYPE,
+  CoreBooleanMatcher,
+} from '@contract-case/case-entities-internal';
+import {
   combineResults,
   makeResults,
   matchingError,
   actualToString,
 } from '../../../entities/results';
 import type {
-  BOOLEAN_MATCHER_TYPE,
   CaseError,
   CheckMatchFn,
-  CoreBooleanMatcher,
   MatchContext,
   MatcherExecutor,
 } from '../../../entities/types';

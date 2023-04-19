@@ -1,14 +1,16 @@
 import {
+  CoreIntegerMatch,
+  INTEGER_MATCH_TYPE,
+} from '@contract-case/case-entities-internal';
+import {
   combineResults,
   errorWhen,
   matchingError,
 } from '../../../entities/results';
 import type {
-  CoreIntegerMatch,
   MatchContext,
   CaseError,
   MatcherExecutor,
-  INTEGER_MATCH_TYPE,
 } from '../../../entities/types';
 
 const check = (

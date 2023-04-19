@@ -1,3 +1,7 @@
+import {
+  AnyData,
+  AnyCaseMatcherOrData,
+} from '@contract-case/case-entities-internal';
 import { WritingCaseContract } from '../../core';
 
 import type {
@@ -8,13 +12,10 @@ import type { CaseConfig } from '../../core/types';
 
 import { CaseConfigurationError } from '../../entities';
 import type {
-  AnyCaseNodeType,
-  AnyData,
   AnyMockDescriptorType,
   AnyState,
   CaseMockDescriptorFor,
   ContractDescription,
-  DataOrCaseNodeFor,
   SetupInfoFor,
 } from '../../entities/types';
 import { writerDependencies } from '../dependencies';
@@ -139,9 +140,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     return this.contract.endRecord();
   }
 
-  stripMatchers<T extends AnyCaseNodeType>(
-    matcherOrData: DataOrCaseNodeFor<T>
-  ): AnyData {
+  stripMatchers(matcherOrData: AnyCaseMatcherOrData): AnyData {
     return this.contract.stripMatchers(matcherOrData);
   }
 }

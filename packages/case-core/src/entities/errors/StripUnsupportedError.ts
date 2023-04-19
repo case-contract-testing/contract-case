@@ -1,5 +1,5 @@
+import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
 import type { DataContext } from '../../entities/context/types';
-import type { AnyCaseMatcher } from '../../entities/types';
 
 const locationString = (matchContext: DataContext) =>
   `(at ${matchContext['_case:currentRun:context:location'].join('.')})`;

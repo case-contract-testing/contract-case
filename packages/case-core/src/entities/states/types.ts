@@ -1,4 +1,4 @@
-import type { AnyCaseNodeOrData } from '../../entities/types';
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 
 export const SETUP_NAMED_STATE = '_case:NamedState' as const;
 export const SETUP_VARIABLE_STATE = '_case:StateWithVariables' as const;
@@ -11,7 +11,7 @@ export type StateWithVariables = HasTypeForState<
   typeof SETUP_VARIABLE_STATE
 > & {
   stateName: string;
-  variables: Record<string, AnyCaseNodeOrData>;
+  variables: Record<string, AnyCaseMatcherOrData>;
 };
 
 export type AnyStateType =
@@ -28,7 +28,7 @@ export type PromiseOrRaw<T> = Promise<T> | T;
 
 type SetupFunction = () => PromiseOrRaw<Record<
   string,
-  AnyCaseNodeOrData
+  AnyCaseMatcherOrData
 > | void>;
 type TeardownFunction = () => PromiseOrRaw<void>;
 type SetupTeardown = {

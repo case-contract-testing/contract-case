@@ -1,8 +1,8 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { CaseConfigurationError } from '../../../../../entities';
 import { hasErrors } from '../../../../../entities/results';
 import {
   type MatchContext,
-  type AnyCaseNodeOrData,
   SETUP_VARIABLE_STATE,
   AnyState,
 } from '../../../../../entities/types';
@@ -12,8 +12,8 @@ export const validateVariables = async (
   context: MatchContext,
   stateHandler: (
     state: AnyState
-  ) => Promise<void | Record<string, AnyCaseNodeOrData>>
-): Promise<Record<string, AnyCaseNodeOrData>> =>
+  ) => Promise<void | Record<string, AnyCaseMatcherOrData>>
+): Promise<Record<string, AnyCaseMatcherOrData>> =>
   stateHandler(state).then(async (variables) => {
     if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
       if (typeof variables === 'undefined') {

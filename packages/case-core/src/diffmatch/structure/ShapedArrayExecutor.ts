@@ -1,3 +1,8 @@
+import {
+  SHAPED_ARRAY_MATCHER_TYPE,
+  CoreShapedArrayMatcher,
+  AnyData,
+} from '@contract-case/case-entities-internal';
 import { addLocation } from '../../entities/context';
 import {
   combineResults,
@@ -7,10 +12,7 @@ import {
 } from '../../entities/results';
 import type {
   StripMatcherFn,
-  SHAPED_ARRAY_MATCHER_TYPE,
-  CoreShapedArrayMatcher,
   MatchContext,
-  AnyData,
   CheckMatchFn,
   MatchResult,
   MatcherExecutor,

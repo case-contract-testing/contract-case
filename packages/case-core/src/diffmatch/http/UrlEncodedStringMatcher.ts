@@ -1,3 +1,8 @@
+import {
+  AnyData,
+  CoreUrlEncodedStringMatcher,
+  URL_ENCODED_STRING_TYPE,
+} from '@contract-case/case-entities-internal';
 import { CaseConfigurationError } from '../../entities';
 import { addLocation } from '../../entities/context';
 import {
@@ -8,10 +13,7 @@ import {
 import type {
   MatchContext,
   MatchResult,
-  AnyData,
   MatcherExecutor,
-  URL_ENCODED_STRING_TYPE,
-  CoreUrlEncodedStringMatcher,
 } from '../../entities/types';
 
 const check = (

@@ -1,12 +1,14 @@
+import {
+  CoreStringSuffixMatcher,
+  STRING_SUFFIX_TYPE,
+} from '@contract-case/case-entities-internal';
 import { mustResolveToString } from '../../entities';
 import { addLocation } from '../../entities/context';
 import { makeResults, matchingError } from '../../entities/results';
 import type {
-  CoreStringSuffixMatcher,
   MatchContext,
   MatchResult,
   MatcherExecutor,
-  STRING_SUFFIX_TYPE,
 } from '../../entities/types';
 
 const check = async (

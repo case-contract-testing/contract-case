@@ -1,13 +1,13 @@
 import {
+  CoreAndCombinationMatcher,
+  BOOLEAN_MATCHER_TYPE,
+  NULL_MATCHER_TYPE,
+} from '@contract-case/case-entities-internal';
+import {
   coreNumberMatcher,
   coreIntegerMatcher,
   coreStringMatcher,
 } from '../../../entities';
-import {
-  type CoreAndCombinationMatcher,
-  BOOLEAN_MATCHER_TYPE,
-  NULL_MATCHER_TYPE,
-} from '../../../entities/types';
 import { and } from './meta';
 import type {
   BooleanMatcher,

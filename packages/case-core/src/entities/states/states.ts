@@ -1,7 +1,7 @@
 import {
-  AnyCaseNodeOrData,
+  AnyCaseMatcherOrData,
   CASCADING_CONTEXT_MATCHER_TYPE,
-} from '../../entities/types';
+} from '@contract-case/case-entities-internal';
 import {
   NameOnlyState,
   SETUP_NAMED_STATE,
@@ -11,7 +11,7 @@ import {
 
 export const state = (
   name: string,
-  variables?: Record<string, AnyCaseNodeOrData>
+  variables?: Record<string, AnyCaseMatcherOrData>
 ): NameOnlyState | StateWithVariables =>
   variables
     ? {

@@ -1,4 +1,10 @@
 import qs from 'qs';
+import {
+  CoreHttpRequestMatcher,
+  AnyData,
+  AnyCaseMatcherOrData,
+  HTTP_REQUEST_MATCHER_TYPE,
+} from '@contract-case/case-entities-internal';
 
 import { CaseConfigurationError, CaseCoreError } from '../../entities';
 import { addLocation } from '../../entities/context';
@@ -6,14 +12,10 @@ import { mustResolveToString } from '../../entities/nodes/matchers/resolve';
 import { combineResults, makeResults } from '../../entities/results';
 import type {
   HttpRequestData,
-  CoreHttpRequestMatcher,
   MatchContext,
-  AnyData,
   MatchResult,
   MatcherExecutor,
-  HTTP_REQUEST_MATCHER_TYPE,
   CaseError,
-  AnyCaseNodeOrData,
 } from '../../entities/types';
 
 const isHttpRequestData = (data: unknown): data is HttpRequestData => {
@@ -126,7 +128,7 @@ const name = (request: CoreHttpRequestMatcher, context: MatchContext): string =>
         request.query !== undefined
           ? `?${qs.stringify(
               Object.entries(
-                request.query as Record<string, AnyCaseNodeOrData>
+                request.query as Record<string, AnyCaseMatcherOrData>
               ).reduce<Record<string, string>>(
                 (acc, [key, value]) => ({
                   ...acc,

@@ -1,14 +1,16 @@
 import {
+  CoreNumberMatcher,
+  NUMBER_MATCHER_TYPE,
+} from '@contract-case/case-entities-internal';
+import {
   combineResults,
   errorWhen,
   matchingError,
 } from '../../../entities/results';
 import type {
-  CoreNumberMatcher,
   MatchContext,
   CaseError,
   MatcherExecutor,
-  NUMBER_MATCHER_TYPE,
 } from '../../../entities/types';
 import { testExactMatch } from './internal/testExactMatch';
 

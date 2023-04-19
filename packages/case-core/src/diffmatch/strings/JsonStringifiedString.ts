@@ -1,3 +1,8 @@
+import {
+  CoreJsonStringified,
+  AnyData,
+  JSON_STRINGIFIED_TYPE,
+} from '@contract-case/case-entities-internal';
 import { CaseConfigurationError } from '../../entities';
 import { addLocation } from '../../entities/context';
 import {
@@ -8,10 +13,7 @@ import {
 import type {
   MatchContext,
   MatchResult,
-  AnyData,
   MatcherExecutor,
-  JSON_STRINGIFIED_TYPE,
-  CoreJsonStringified,
 } from '../../entities/types';
 
 const check = (

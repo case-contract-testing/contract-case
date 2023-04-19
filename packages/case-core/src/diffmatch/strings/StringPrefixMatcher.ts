@@ -1,12 +1,14 @@
+import {
+  CoreStringPrefixMatcher,
+  STRING_PREFIX_TYPE,
+} from '@contract-case/case-entities-internal';
 import { mustResolveToString } from '../../entities';
 import { addLocation } from '../../entities/context';
 import { makeResults, matchingError } from '../../entities/results';
 import type {
-  CoreStringPrefixMatcher,
   MatchContext,
   MatchResult,
   MatcherExecutor,
-  STRING_PREFIX_TYPE,
 } from '../../entities/types';
 
 const check = async (

@@ -1,14 +1,16 @@
 import {
+  CoreStringMatcher,
+  STRING_MATCHER_TYPE,
+} from '@contract-case/case-entities-internal';
+import {
   combineResults,
   errorWhen,
   matchingError,
 } from '../../../entities/results';
 import type {
-  CoreStringMatcher,
   MatchContext,
   CaseError,
   MatcherExecutor,
-  STRING_MATCHER_TYPE,
 } from '../../../entities/types';
 import { testExactMatch } from './internal/testExactMatch';
 

@@ -1,10 +1,10 @@
 import {
-  type AnyCaseNodeOrData,
-  type CoreObjectValuesMatch,
+  AnyCaseMatcherOrData,
+  CoreObjectValuesMatch,
   OBJECT_VALUES_MATCH_TYPE,
-  type CoreObjectKeysMatcher,
+  CoreObjectKeysMatcher,
   OBJECT_KEYS_MATCH_TYPE,
-} from '../../../entities/types';
+} from '@contract-case/case-entities-internal';
 
 /**
  * Matches an object where each value matches the provided matcher.
@@ -13,8 +13,8 @@ import {
  * @param example - An example object that passes this matcher
  */
 export const objectEachValueMatches = (
-  matcher: AnyCaseNodeOrData,
-  example?: Record<string, AnyCaseNodeOrData>
+  matcher: AnyCaseMatcherOrData,
+  example?: Record<string, AnyCaseMatcherOrData>
 ): CoreObjectValuesMatch => ({
   '_case:matcher:type': OBJECT_VALUES_MATCH_TYPE,
   '_case:matcher:matcher': matcher,
@@ -28,7 +28,7 @@ export const objectEachValueMatches = (
  * @param exampleKey - An example key that passes this matcher
  */
 export const objectEachKeyMatches = (
-  matcher: AnyCaseNodeOrData,
+  matcher: AnyCaseMatcherOrData,
   exampleKey?: string
 ): CoreObjectKeysMatcher => ({
   '_case:matcher:type': OBJECT_KEYS_MATCH_TYPE,

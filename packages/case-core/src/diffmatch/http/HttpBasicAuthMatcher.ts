@@ -1,3 +1,8 @@
+import {
+  CoreHttpBasicAuthValue,
+  AnyData,
+  HTTP_BASIC_AUTH_TYPE,
+} from '@contract-case/case-entities-internal';
 import { CaseConfigurationError } from '../../entities';
 import { addLocation } from '../../entities/context';
 import {
@@ -9,10 +14,7 @@ import {
 import type {
   MatchContext,
   MatchResult,
-  AnyData,
   MatcherExecutor,
-  CoreHttpBasicAuthValue,
-  HTTP_BASIC_AUTH_TYPE,
 } from '../../entities/types';
 
 const encode = (username: string, password: string) => {

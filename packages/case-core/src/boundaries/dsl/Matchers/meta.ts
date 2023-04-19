@@ -1,23 +1,23 @@
 import {
+  AnyCaseMatcherOrData,
+  CoreAndCombinationMatcher,
+  AnyCaseMatcher,
+  AnyData,
+  HasExample,
+  CoreCascadingMatcher,
+  CASCADING_CONTEXT_MATCHER_TYPE,
+  LookupableMatcher,
+  CoreContextVariableMatcher,
+  CONTEXT_VARIABLE_TYPE,
+  ResolvesTo,
+} from '@contract-case/case-entities-internal';
+import {
   coreAndMatcher,
   coreLookupMatcherRequest,
   coreLookupMatcher,
   coreShapedLike,
 } from '../../../entities';
-import {
-  type AnyCaseNodeOrData,
-  type CoreAndCombinationMatcher,
-  type AnyCaseMatcher,
-  type AnyData,
-  type HasExample,
-  type LookupableMatcher,
-  type CoreCascadingMatcher,
-  CASCADING_CONTEXT_MATCHER_TYPE,
-  type CoreContextVariableMatcher,
-  CONTEXT_VARIABLE_TYPE,
-  type LogLevel,
-  ResolvesTo,
-} from '../../../entities/types';
+import { LogLevel, MatchContextByExact } from '../../../entities/types';
 
 /**
  * Meta matcher that matches all matchers provided. Use this to combine matching rules for the same element
@@ -25,7 +25,7 @@ import {
  * @param matchers - All of the matchers to run against this particular spot
  */
 export const and = (
-  ...matchers: AnyCaseNodeOrData[]
+  ...matchers: AnyCaseMatcherOrData[]
 ): CoreAndCombinationMatcher => coreAndMatcher(...matchers);
 
 /**
@@ -52,7 +52,7 @@ export const withExample = <T extends AnyCaseMatcher>(
  */
 export const namedMatch = (
   uniqueName: string,
-  matcherOrData?: AnyCaseNodeOrData | undefined
+  matcherOrData?: AnyCaseMatcherOrData | undefined
 ): LookupableMatcher =>
   matcherOrData === undefined
     ? coreLookupMatcherRequest(uniqueName)
@@ -66,8 +66,8 @@ export const namedMatch = (
  * @param content - The example object, array, primitive or matcher to match exactly against
  */
 export const exactlyLike = (
-  content: AnyCaseNodeOrData
-): CoreCascadingMatcher => ({
+  content: AnyCaseMatcherOrData
+): CoreCascadingMatcher & MatchContextByExact => ({
   '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   '_case:matcher:child': content,
   '_case:context:matchBy': 'exact',
@@ -80,8 +80,9 @@ export const exactlyLike = (
  *
  * @param content - The example object, array, primitive or matcher to match against, ignoring content
  */
-export const shapedLike = (content: AnyCaseNodeOrData): CoreCascadingMatcher =>
-  coreShapedLike(content);
+export const shapedLike = (
+  content: AnyCaseMatcherOrData
+): CoreCascadingMatcher => coreShapedLike(content);
 
 /**
  * Matches the content of a variable from a provider state.
@@ -118,8 +119,10 @@ export const stringStateVariable = (
  */
 export const logLevel = (
   level: LogLevel,
-  child: AnyCaseNodeOrData
-): CoreCascadingMatcher => ({
+  child: AnyCaseMatcherOrData
+): CoreCascadingMatcher & {
+  '_case:currentRun:context:logLevel': LogLevel;
+} => ({
   '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   '_case:matcher:child': child,
   '_case:currentRun:context:logLevel': level,

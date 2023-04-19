@@ -1,10 +1,9 @@
-import type {
-  MatchContext,
-  MatcherExecutor,
+import {
   AnyCaseNodeType,
   CaseNodeFor,
   AnyLeafOrStructure,
-} from '../entities/types';
+} from '@contract-case/case-entities-internal';
+import type { MatchContext, MatcherExecutor } from '../entities/types';
 import { CaseCoreError } from '../entities';
 import { foldIntoContext } from '../entities/context';
 

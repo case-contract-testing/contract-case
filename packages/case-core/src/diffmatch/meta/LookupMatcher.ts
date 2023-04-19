@@ -1,10 +1,12 @@
-import { addLocation } from '../../entities/context';
-import type {
+import {
   LookupableMatcher,
-  MatchContext,
-  StripMatcherFn,
   LOOKUP_MATCHER_TYPE,
   AnyData,
+} from '@contract-case/case-entities-internal';
+import { addLocation } from '../../entities/context';
+import type {
+  MatchContext,
+  StripMatcherFn,
   CheckMatchFn,
   MatchResult,
   MatcherExecutor,

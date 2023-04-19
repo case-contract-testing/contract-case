@@ -1,7 +1,9 @@
 import {
-  type AnyCaseNodeOrData,
-  type MatchContextWithoutLookup,
+  AnyCaseMatcherOrData,
   isLookupableMatcher,
+} from '@contract-case/case-entities-internal';
+import {
+  type MatchContextWithoutLookup,
   type AnyMockDescriptor,
 } from '../../../entities/types';
 import { addLookup } from './internals';
@@ -9,7 +11,7 @@ import type { LookupMap } from './types';
 
 export const addMatcher = (
   matcherLookup: LookupMap,
-  matcher: AnyCaseNodeOrData,
+  matcher: AnyCaseMatcherOrData,
   context: MatchContextWithoutLookup
 ): LookupMap => {
   if (isLookupableMatcher(matcher) && '_case:matcher:child' in matcher) {

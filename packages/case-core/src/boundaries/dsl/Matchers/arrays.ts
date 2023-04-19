@@ -1,17 +1,17 @@
 import {
+  AnyCaseMatcherOrData,
+  CoreArrayEachEntryMatches,
+  ARRAY_EACH_ENTRY_MATCHES_TYPE,
+  CoreArrayLengthMatcher,
+  CoreArrayContainsMatch,
+  ARRAY_CONTAINS_TYPE,
+  CoreShapedArrayMatcher,
+} from '@contract-case/case-entities-internal';
+import {
   CaseConfigurationError,
   coreArrayLengthMatcher,
   coreShapedArrayMatcher,
 } from '../../../entities';
-import {
-  type AnyCaseNodeOrData,
-  type CoreArrayEachEntryMatches,
-  ARRAY_EACH_ENTRY_MATCHES_TYPE,
-  type CoreArrayLengthMatcher,
-  type CoreArrayContainsMatch,
-  ARRAY_CONTAINS_TYPE,
-  type CoreShapedArrayMatcher,
-} from '../../../entities/types';
 
 type ArrayLengthOptions = { minLength?: number; maxLength?: number };
 
@@ -21,8 +21,8 @@ type ArrayLengthOptions = { minLength?: number; maxLength?: number };
  * @param matcher - The example object, array, primitive or matcher to match against
  */
 export const arrayEachEntryMatches = (
-  matcher: AnyCaseNodeOrData,
-  example?: Array<AnyCaseNodeOrData>
+  matcher: AnyCaseMatcherOrData,
+  example?: Array<AnyCaseMatcherOrData>
 ): CoreArrayEachEntryMatches => ({
   '_case:matcher:type': ARRAY_EACH_ENTRY_MATCHES_TYPE,
   '_case:matcher:matcher': matcher,
@@ -58,7 +58,7 @@ export const arrayLength = (
  * @param matchers - any number of matchers, each of which must be found inside the array.
  */
 export const arrayContains = (
-  ...matchers: AnyCaseNodeOrData[]
+  ...matchers: AnyCaseMatcherOrData[]
 ): CoreArrayContainsMatch => ({
   '_case:matcher:type': ARRAY_CONTAINS_TYPE,
   '_case:matcher:matchers': matchers,
@@ -70,5 +70,5 @@ export const arrayContains = (
  * @param matchers - An array of matchers that describes the start of the array
  */
 export const arrayStartsWith = (
-  matchers: AnyCaseNodeOrData[]
+  matchers: AnyCaseMatcherOrData[]
 ): CoreShapedArrayMatcher => coreShapedArrayMatcher(matchers);

@@ -1,10 +1,10 @@
-import type {
+import {
   CoreNumberMatcher,
-  MatchContextByType,
   CoreStringMatcher,
   CoreBooleanMatcher,
   CoreNullMatcher,
-} from '../../../entities/types';
+} from '@contract-case/case-entities-internal';
+import type { MatchContextByType } from '../../../entities/types';
 
 export type NumberMatcher = CoreNumberMatcher & MatchContextByType;
 export type StringMatcher = CoreStringMatcher & MatchContextByType;

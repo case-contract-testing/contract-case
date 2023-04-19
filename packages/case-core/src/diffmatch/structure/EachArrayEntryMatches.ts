@@ -1,3 +1,8 @@
+import {
+  ARRAY_EACH_ENTRY_MATCHES_TYPE,
+  CoreArrayEachEntryMatches,
+  AnyData,
+} from '@contract-case/case-entities-internal';
 import { addLocation } from '../../entities/context';
 import {
   matchingError,
@@ -5,14 +10,11 @@ import {
   makeResults,
 } from '../../entities/results';
 import type {
-  AnyData,
   MatchContext,
   MatchResult,
   StripMatcherFn,
   CheckMatchFn,
   MatcherExecutor,
-  ARRAY_EACH_ENTRY_MATCHES_TYPE,
-  CoreArrayEachEntryMatches,
 } from '../../entities/types';
 
 const strip: StripMatcherFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = (

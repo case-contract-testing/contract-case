@@ -1,9 +1,9 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { CaseConfigurationError } from '../../../../../entities';
 import { addLocation } from '../../../../../entities/context';
 import {
   type StateHandlers,
   type MatchContext,
-  type AnyCaseNodeOrData,
   isSetupFunction,
   type CaseExample,
   SETUP_VARIABLE_STATE,
@@ -15,7 +15,9 @@ const stateSetupHandler =
   (
     stateSetups: StateHandlers,
     context: MatchContext
-  ): ((state: AnyState) => Promise<void | Record<string, AnyCaseNodeOrData>>) =>
+  ): ((
+    state: AnyState
+  ) => Promise<void | Record<string, AnyCaseMatcherOrData>>) =>
   (state: AnyState) => {
     const setupState = stateSetups[state.stateName];
     if (setupState === undefined) {
@@ -45,14 +47,14 @@ const stateSetupHandler =
           `Please check the implementation of the '${state.stateName}' state setup handler`
         );
         throw new CaseConfigurationError(
-          `State setup '${state.stateName}' failed with the following error: "${e.message}". Please check the implementation of your state setup handler`
+          `State setup '${state.stateName}' failed with the following error: ${e.message}\n\nPlease check the implementation of your state setup handler`
         );
       });
   };
 
 type StateSetupResult = {
   stateName: string;
-  variables: Record<string, AnyCaseNodeOrData>;
+  variables: Record<string, AnyCaseMatcherOrData>;
 };
 
 export const executeStateSetup = (
@@ -138,6 +140,6 @@ export const executeStateSetup = (
             addLocation(':contextVariables', parentContext)
           ),
         }),
-        {} as Record<string, AnyCaseNodeOrData>
+        {} as Record<string, AnyCaseMatcherOrData>
       ),
     }));

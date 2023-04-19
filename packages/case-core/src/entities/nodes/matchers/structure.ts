@@ -1,16 +1,16 @@
 import {
-  AnyCaseNodeOrData,
+  AnyCaseMatcherOrData,
   CoreShapedArrayMatcher,
-  CoreShapedObjectMatcher,
+  SHAPED_ARRAY_MATCHER_TYPE,
   JsonOrMatcherMap,
+  CoreShapedObjectMatcher,
+  SHAPED_OBJECT_MATCHER_TYPE,
   LookupableMatcher,
   LOOKUP_MATCHER_TYPE,
-  SHAPED_ARRAY_MATCHER_TYPE,
-  SHAPED_OBJECT_MATCHER_TYPE,
-} from './types';
+} from '@contract-case/case-entities-internal';
 
 export const coreShapedArrayMatcher = (
-  example: Array<AnyCaseNodeOrData>
+  example: Array<AnyCaseMatcherOrData>
 ): CoreShapedArrayMatcher => ({
   '_case:matcher:type': SHAPED_ARRAY_MATCHER_TYPE,
   '_case:matcher:children': example,
@@ -25,7 +25,7 @@ export const coreShapedObjectMatcher = (
 
 export const coreLookupMatcher = (
   uniqueName: string,
-  child: AnyCaseNodeOrData
+  child: AnyCaseMatcherOrData
 ): LookupableMatcher => ({
   '_case:matcher:type': LOOKUP_MATCHER_TYPE,
   '_case:matcher:uniqueName': uniqueName,

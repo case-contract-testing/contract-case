@@ -1,6 +1,6 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import type {
   AnyState,
-  AnyCaseNodeOrData,
   AnyMockDescriptor,
   CaseError,
 } from '../../entities/types';
@@ -43,6 +43,6 @@ export interface ContractData {
   contractType: 'case::contract';
   description: ContractDescription;
   metadata: Record<string, string | Record<string, string>>;
-  matcherLookup: Record<string, AnyCaseNodeOrData>;
+  matcherLookup: Record<string, AnyCaseMatcherOrData>;
   examples: Array<CaseExample>;
 }

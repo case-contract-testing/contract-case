@@ -1,13 +1,14 @@
 import {
-  type AnyCaseNodeOrData,
-  type CoreAndCombinationMatcher,
-  type CoreArrayLengthMatcher,
-  COMBINE_MATCHERS_TYPE,
+  CoreArrayLengthMatcher,
   ARRAY_LENGTH_MATCHER_TYPE,
   ARRAY_LENGTH_PARAMETER_INFINITE,
+  AnyCaseMatcherOrData,
+  CoreAndCombinationMatcher,
+  COMBINE_MATCHERS_TYPE,
   CoreCascadingMatcher,
   CASCADING_CONTEXT_MATCHER_TYPE,
-} from './types';
+} from '@contract-case/case-entities-internal';
+import { MatchContextByType } from '../../types';
 
 type ArrayLengthOptions = { minLength?: number; maxLength?: number };
 
@@ -22,7 +23,7 @@ export const coreArrayLengthMatcher = ({
 });
 
 export const coreAndMatcher = (
-  ...matchers: AnyCaseNodeOrData[]
+  ...matchers: AnyCaseMatcherOrData[]
 ): CoreAndCombinationMatcher => ({
   '_case:matcher:type': COMBINE_MATCHERS_TYPE,
   '_case:matcher:children': [...matchers],
@@ -36,8 +37,8 @@ export const coreAndMatcher = (
  * @param content - The example object, array, primitive or matcher to match against
  */
 export const coreShapedLike = (
-  content: AnyCaseNodeOrData
-): CoreCascadingMatcher => ({
+  content: AnyCaseMatcherOrData
+): CoreCascadingMatcher & MatchContextByType => ({
   '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   '_case:matcher:child': content,
   '_case:context:matchBy': 'type',

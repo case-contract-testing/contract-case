@@ -1,3 +1,8 @@
+import {
+  CoreBase64Encoded,
+  AnyData,
+  BASE64_ENCODED_TYPE,
+} from '@contract-case/case-entities-internal';
 import { CaseConfigurationError } from '../../entities';
 import { addLocation } from '../../entities/context';
 import {
@@ -8,10 +13,7 @@ import {
 import type {
   MatchContext,
   MatchResult,
-  AnyData,
   MatcherExecutor,
-  CoreBase64Encoded,
-  BASE64_ENCODED_TYPE,
 } from '../../entities/types';
 
 const check = (

@@ -1,10 +1,13 @@
+import {
+  AnyCaseMatcher,
+  AnyCaseMatcherOrData,
+  AnyData,
+  isCaseNode,
+} from '@contract-case/case-entities-internal';
 import type { Logger } from '../../entities/logger/types';
 import { isCaseMock } from '../../entities/nodes/mocks/types';
-import { AnyData, isCaseNode } from '../../entities/nodes/matchers/types';
 import type {
   AnyMockDescriptor,
-  AnyCaseNodeOrData,
-  AnyCaseMatcher,
   ContractLookupFns,
   MatchContextWithoutLookup,
   ResultPrinter,
@@ -64,7 +67,7 @@ export const foldIntoContext = (
 let exampleId = 0;
 
 const combineWithRoot = (
-  caseNodeOrData: AnyCaseNodeOrData | AnyMockDescriptor,
+  caseNodeOrData: AnyCaseMatcherOrData | AnyMockDescriptor,
   context: MatchContext,
   runConfig: Partial<RunContext>
 ) => {
@@ -130,7 +133,7 @@ export const constructMatchContext = (
 };
 
 export const applyNodeToContext = (
-  caseNodeOrData: AnyCaseNodeOrData | AnyMockDescriptor,
+  caseNodeOrData: AnyCaseMatcherOrData | AnyMockDescriptor,
   context: MatchContext,
   runConfig: Partial<RunContext> = {}
 ): MatchContext => combineWithRoot(caseNodeOrData, context, runConfig);

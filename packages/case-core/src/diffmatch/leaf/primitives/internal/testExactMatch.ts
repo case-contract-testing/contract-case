@@ -1,13 +1,10 @@
+import { AnyLeafMatcher } from '@contract-case/case-entities-internal';
 import {
   errorWhen,
   matchingError,
   actualToString,
 } from '../../../../entities/results';
-import type {
-  AnyLeafMatcher,
-  MatchContext,
-  CaseError,
-} from '../../../../entities/types';
+import type { MatchContext, CaseError } from '../../../../entities/types';
 
 export const testExactMatch = (
   matcher: AnyLeafMatcher,

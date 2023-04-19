@@ -1,12 +1,14 @@
+import {
+  CoreContextVariableMatcher,
+  AnyData,
+  CONTEXT_VARIABLE_TYPE,
+} from '@contract-case/case-entities-internal';
 import { CaseConfigurationError } from '../../entities';
 import { addLocation } from '../../entities/context';
 import type {
-  CoreContextVariableMatcher,
   MatchContext,
   MatchResult,
-  AnyData,
   MatcherExecutor,
-  CONTEXT_VARIABLE_TYPE,
 } from '../../entities/types';
 
 const check = (

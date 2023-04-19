@@ -1,3 +1,7 @@
+import {
+  CoreStringContainsMatcher,
+  STRING_CONTAINS_TYPE,
+} from '@contract-case/case-entities-internal';
 import { mustResolveToString, StripUnsupportedError } from '../../entities';
 import {
   combineResults,
@@ -6,11 +10,9 @@ import {
   makeResults,
 } from '../../entities/results';
 import type {
-  CoreStringContainsMatcher,
   MatchContext,
   MatchResult,
   MatcherExecutor,
-  STRING_CONTAINS_TYPE,
 } from '../../entities/types';
 
 const check = async (

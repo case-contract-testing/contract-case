@@ -1,10 +1,10 @@
+import {
+  CoreHttpStatusCodeMatcher,
+  AnyCaseMatcherOrData,
+  CoreUrlEncodedStringMatcher,
+} from '@contract-case/case-entities-internal';
 import { httpStatusCodeMatcher } from '../../../entities';
 import { coreUrlEncodedString } from '../../../entities/nodes/matchers/http/matcher';
-import type {
-  AnyCaseNodeOrData,
-  CoreHttpStatusCodeMatcher,
-  CoreUrlEncodedStringMatcher,
-} from '../../../entities/types';
 
 /**
  * Matches http status codes. Matches may be provided as a string, eg '4XX' or '401', or a number.
@@ -35,7 +35,7 @@ export const httpStatus = (
  * @param child - Any string matcher or literal string
  */
 export const uriEncodedString = (
-  child: AnyCaseNodeOrData
+  child: AnyCaseMatcherOrData
 ): CoreUrlEncodedStringMatcher =>
   // TODO: Check here that the child matcher will accept a string
   coreUrlEncodedString(child);

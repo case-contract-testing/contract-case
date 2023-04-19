@@ -1,8 +1,6 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { CaseConfigurationError } from '../../../../entities';
-import type {
-  AnyCaseNodeOrData,
-  MatchContextWithoutLookup,
-} from '../../../../entities/types';
+import type { MatchContextWithoutLookup } from '../../../../entities/types';
 import { rawEquality } from './rawEquals';
 import type { LookupMap, LookupType } from './types';
 
@@ -10,9 +8,9 @@ export const addLookup = (
   matcherLookup: LookupMap,
   lookupType: LookupType,
   uniqueName: string,
-  matcher: AnyCaseNodeOrData,
+  matcher: AnyCaseMatcherOrData,
   context: MatchContextWithoutLookup
-): Record<string, AnyCaseNodeOrData> => {
+): Record<string, AnyCaseMatcherOrData> => {
   const lookupName = `${lookupType}:${uniqueName}`;
   context.logger.maintainerDebug(`Saving lookup ${lookupType}:`, matcher);
   if (matcherLookup[lookupName]) {
@@ -43,5 +41,5 @@ export const findLookup = (
   matcherLookup: LookupMap,
   lookupType: LookupType,
   uniqueName: string
-): AnyCaseNodeOrData | undefined =>
+): AnyCaseMatcherOrData | undefined =>
   matcherLookup[`${lookupType}:${uniqueName}`];

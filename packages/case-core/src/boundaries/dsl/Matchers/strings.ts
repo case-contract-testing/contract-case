@@ -1,18 +1,18 @@
 import {
-  type CoreStringContainsMatcher,
+  CoreStringContainsMatcher,
   STRING_CONTAINS_TYPE,
-  type AnyCaseMatcher,
-  type CoreStringPrefixMatcher,
+  AnyCaseMatcher,
+  CoreStringPrefixMatcher,
   STRING_PREFIX_TYPE,
-  type CoreStringSuffixMatcher,
+  CoreStringSuffixMatcher,
   STRING_SUFFIX_TYPE,
+  AnyCaseStringMatcher,
   CoreBase64Encoded,
   BASE64_ENCODED_TYPE,
-  AnyStringMatcher,
-  AnyCaseNodeOrData,
+  AnyCaseMatcherOrData,
   CoreJsonStringified,
   JSON_STRINGIFIED_TYPE,
-} from '../../../entities/types';
+} from '@contract-case/case-entities-internal';
 import { anyString } from './primitives';
 
 /**
@@ -58,7 +58,8 @@ export const stringSuffix = (
   suffix: string
 ): CoreStringSuffixMatcher => ({
   '_case:matcher:type': STRING_SUFFIX_TYPE,
-  '_case:matcher:prefix': prefix !== undefined ? prefix : anyString(),
+  '_case:matcher:prefix':
+    prefix !== undefined ? (prefix as AnyCaseStringMatcher) : anyString(),
   '_case:matcher:suffix': suffix,
   '_case:matcher:resolvesTo': 'string',
 });
@@ -72,7 +73,7 @@ export const stringSuffix = (
  * @param child - The string or string matcher to match against
  */
 export const encodedStringBase64 = (
-  child: AnyStringMatcher
+  child: AnyCaseStringMatcher
 ): CoreBase64Encoded => ({
   '_case:matcher:type': BASE64_ENCODED_TYPE,
   '_case:matcher:child': child,
@@ -85,7 +86,7 @@ export const encodedStringBase64 = (
  * @param child - The string or string matcher to match against
  */
 export const stringifiedJson = (
-  child: AnyCaseNodeOrData
+  child: AnyCaseMatcherOrData
 ): CoreJsonStringified => ({
   '_case:matcher:type': JSON_STRINGIFIED_TYPE,
   '_case:matcher:child': child,

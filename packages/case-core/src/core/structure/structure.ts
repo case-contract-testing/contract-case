@@ -1,11 +1,13 @@
+import {
+  AnyCaseMatcherOrData,
+  LookupableMatcher,
+} from '@contract-case/case-entities-internal';
 import { caseVersion } from '../../entities/caseVersion';
 import type {
   ContractDescription,
   ContractData,
-  AnyCaseNodeOrData,
   CaseExample,
   MatchContextWithoutLookup,
-  LookupableMatcher,
 } from '../../entities/types';
 import { addMock, addMatcher } from './lookup';
 
@@ -17,7 +19,7 @@ export const makeContract = (
   contractType: 'case::contract',
   description,
   metadata: { _case: { version: caseVersion } },
-  matcherLookup: {} as Record<string, AnyCaseNodeOrData>,
+  matcherLookup: {} as Record<string, AnyCaseMatcherOrData>,
   examples: new Array<CaseExample>(),
 });
 
@@ -38,13 +40,13 @@ export const hasFailure = (contract: ContractData): boolean =>
 export const findMatcher = (
   contract: ContractData,
   uniqueName: string
-): AnyCaseNodeOrData | undefined =>
+): AnyCaseMatcherOrData | undefined =>
   findLookup(contract.matcherLookup, 'matcher', uniqueName);
 
 export const addVariable = (
   contract: ContractData,
   uniqueName: string,
-  variable: AnyCaseNodeOrData,
+  variable: AnyCaseMatcherOrData,
   context: MatchContextWithoutLookup
 ): ContractData => ({
   ...contract,
@@ -61,7 +63,7 @@ export const addVariable = (
 export const findVariable = (
   contract: ContractData,
   uniqueName: string
-): AnyCaseNodeOrData | undefined => {
+): AnyCaseMatcherOrData | undefined => {
   const stateVariable = findLookup(
     contract.matcherLookup,
     'variable:state',

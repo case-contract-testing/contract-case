@@ -1,6 +1,10 @@
+import {
+  AnyCaseNodeType,
+  CaseNodeFor,
+  AnyData,
+} from '@contract-case/case-entities-internal';
 import type { MatchContext } from '../../entities/context/types';
 import type { MatchResult } from '../../entities/results/types';
-import type { AnyCaseNodeType, CaseNodeFor, AnyData } from './matchers/types';
 
 export * from './mocks/types';
 export * from './mocks/setup.types';

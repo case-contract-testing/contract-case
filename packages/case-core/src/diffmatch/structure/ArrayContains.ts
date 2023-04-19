@@ -1,3 +1,10 @@
+import {
+  ARRAY_CONTAINS_TYPE,
+  AnyCaseMatcherOrData,
+  AnyData,
+  CoreArrayContainsMatch,
+  isCaseNode,
+} from '@contract-case/case-entities-internal';
 import { addLocation } from '../../entities/context';
 import {
   matcherToString,
@@ -7,16 +14,11 @@ import {
   makeResults,
 } from '../../entities/results';
 import {
-  AnyData,
   MatchContext,
   MatchResult,
   StripMatcherFn,
   CheckMatchFn,
   MatcherExecutor,
-  ARRAY_CONTAINS_TYPE,
-  CoreArrayContainsMatch,
-  isCaseNode,
-  AnyCaseNodeOrData,
 } from '../../entities/types';
 
 const strip: StripMatcherFn<typeof ARRAY_CONTAINS_TYPE> = (
@@ -32,7 +34,7 @@ const strip: StripMatcherFn<typeof ARRAY_CONTAINS_TYPE> = (
 
 const checkMatch = async (
   parentMatcher: CoreArrayContainsMatch,
-  matcher: AnyCaseNodeOrData,
+  matcher: AnyCaseMatcherOrData,
   matchContext: MatchContext,
   actual: unknown[]
 ) =>

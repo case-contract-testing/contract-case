@@ -1,9 +1,9 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { CaseConfigurationError } from '../../../../entities';
-import type { AnyCaseNodeOrData } from '../../../../entities/types';
 
 export const rawEquality = (
-  a: AnyCaseNodeOrData | undefined,
-  b: AnyCaseNodeOrData | undefined
+  a: AnyCaseMatcherOrData | undefined,
+  b: AnyCaseMatcherOrData | undefined
 ): boolean => {
   if (
     typeof a === 'function' ||
@@ -51,7 +51,7 @@ export const rawEquality = (
     if (aEntries.length !== bEntries.length) return false;
     return aEntries
       .map(([key, value]) =>
-        rawEquality(value, (b as Record<string, AnyCaseNodeOrData>)[key])
+        rawEquality(value, (b as Record<string, AnyCaseMatcherOrData>)[key])
       )
       .reduce((acc, curr) => acc && curr, true);
   }

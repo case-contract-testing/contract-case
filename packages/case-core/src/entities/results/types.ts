@@ -1,10 +1,7 @@
+import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
 import type { CaseExample } from '../../entities/contract/types';
 import type { VerifyTriggerReturnObjectError } from '../../entities/errors';
-import type {
-  AnyCaseMatcher,
-  DataContext,
-  MatchContext,
-} from '../../entities/types';
+import type { DataContext, MatchContext } from '../../entities/types';
 
 // Warning: **ALL** error types must be listed in the function in handlers.ts
 

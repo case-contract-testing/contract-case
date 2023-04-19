@@ -1,10 +1,12 @@
-import type {
+import {
   CoreCascadingMatcher,
+  AnyData,
+  CASCADING_CONTEXT_MATCHER_TYPE,
+} from '@contract-case/case-entities-internal';
+import type {
   MatchContext,
   MatchResult,
-  AnyData,
   MatcherExecutor,
-  CASCADING_CONTEXT_MATCHER_TYPE,
 } from '../../entities/types';
 
 const check = (

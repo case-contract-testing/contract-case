@@ -1,3 +1,8 @@
+import {
+  OBJECT_VALUES_MATCH_TYPE,
+  CoreObjectValuesMatch,
+  AnyData,
+} from '@contract-case/case-entities-internal';
 import { addLocation } from '../../entities/context';
 import {
   combineResults,
@@ -6,10 +11,7 @@ import {
 } from '../../entities/results';
 import type {
   StripMatcherFn,
-  OBJECT_VALUES_MATCH_TYPE,
-  CoreObjectValuesMatch,
   MatchContext,
-  AnyData,
   CheckMatchFn,
   MatchResult,
   MatcherExecutor,

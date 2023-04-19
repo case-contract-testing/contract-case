@@ -1,12 +1,17 @@
+import {
+  AnyCaseStringMatcher,
+  AnyCaseMatcherOrData,
+} from '@contract-case/case-entities-internal';
 import { coreBasicAuthValue } from '../../../entities/nodes/matchers/http/matcher';
-import { AnyCaseNodeOrData, AnyStringMatcher } from '../../../entities/types';
+
 import { stringPrefix } from './strings';
 
-export const bearerToken = (token: AnyStringMatcher): AnyCaseNodeOrData =>
-  stringPrefix('Bearer ', token);
+export const bearerToken = (
+  token: AnyCaseStringMatcher
+): AnyCaseMatcherOrData => stringPrefix('Bearer ', token);
 
 export const basicAuth = (
-  username: AnyStringMatcher,
-  password: AnyStringMatcher
-): AnyCaseNodeOrData =>
+  username: AnyCaseStringMatcher,
+  password: AnyCaseStringMatcher
+): AnyCaseMatcherOrData =>
   stringPrefix('Basic ', coreBasicAuthValue(username, password));

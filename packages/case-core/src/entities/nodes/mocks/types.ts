@@ -1,4 +1,4 @@
-import type { AnyCaseMatcher } from '../../../entities/types';
+import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
 
 export type AnyMockDescriptorType =
   | typeof MOCK_HTTP_SERVER

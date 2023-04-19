@@ -1,14 +1,16 @@
+import {
+  CoreHttpResponseMatcher,
+  AnyData,
+  HTTP_RESPONSE_MATCHER_TYPE,
+} from '@contract-case/case-entities-internal';
 import { CaseCoreError } from '../../entities';
 import { addLocation } from '../../entities/context';
 import { mustResolveToNumber } from '../../entities/nodes/matchers/resolve';
 import { combineResults, makeNoErrorResult } from '../../entities/results';
 import type {
-  CoreHttpResponseMatcher,
   MatchContext,
-  AnyData,
   MatchResult,
   MatcherExecutor,
-  HTTP_RESPONSE_MATCHER_TYPE,
 } from '../../entities/types';
 
 type HttpResponseData = {

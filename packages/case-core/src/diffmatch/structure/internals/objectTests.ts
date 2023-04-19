@@ -1,9 +1,9 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { actualToString } from '../../../entities/results';
-import type { AnyCaseNodeOrData } from '../../../entities/types';
 
 export const isObject = (
   actual: unknown
-): actual is Record<string, AnyCaseNodeOrData> => // the return type here is technically not correct
+): actual is Record<string, AnyCaseMatcherOrData> => // the return type here is technically not correct
   typeof actual === 'object' &&
   actual === Object(actual) &&
   !Array.isArray(actual) &&

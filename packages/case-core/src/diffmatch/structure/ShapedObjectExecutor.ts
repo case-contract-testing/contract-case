@@ -1,3 +1,9 @@
+import {
+  SHAPED_OBJECT_MATCHER_TYPE,
+  CoreShapedObjectMatcher,
+  AnyData,
+  AnyCaseMatcherOrData,
+} from '@contract-case/case-entities-internal';
 import { addLocation } from '../../entities/context';
 import {
   actualToString,
@@ -7,11 +13,7 @@ import {
 } from '../../entities/results';
 import type {
   StripMatcherFn,
-  SHAPED_OBJECT_MATCHER_TYPE,
-  CoreShapedObjectMatcher,
   MatchContext,
-  AnyData,
-  AnyCaseNodeOrData,
   CheckMatchFn,
   MatchResult,
   MatcherExecutor,
@@ -21,11 +23,11 @@ const strip: StripMatcherFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = (
   matcher: CoreShapedObjectMatcher,
   matchContext: MatchContext
 ): AnyData =>
-  Object.entries<AnyCaseNodeOrData>(matcher['_case:matcher:children'])
+  Object.entries<AnyCaseMatcherOrData>(matcher['_case:matcher:children'])
     .map(
       ([expectedKey, expectedValueMatcher]: [
         string,
-        AnyCaseNodeOrData
+        AnyCaseMatcherOrData
       ]): Record<string, AnyData> => ({
         [expectedKey]: matchContext.descendAndStrip(
           expectedValueMatcher,
@@ -74,12 +76,12 @@ const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
     ? combineResults(
         (
           await Promise.all(
-            Object.entries<AnyCaseNodeOrData>(
+            Object.entries<AnyCaseMatcherOrData>(
               matcher['_case:matcher:children']
             ).map(
               ([expectedKey, expectedValueMatcher]: [
                 string,
-                AnyCaseNodeOrData
+                AnyCaseMatcherOrData
               ]): Promise<MatchResult> =>
                 expectedKey in actual
                   ? Promise.resolve(

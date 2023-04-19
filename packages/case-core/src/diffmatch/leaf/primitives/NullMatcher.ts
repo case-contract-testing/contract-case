@@ -1,12 +1,14 @@
 import {
+  NULL_MATCHER_TYPE,
+  CoreNullMatcher,
+} from '@contract-case/case-entities-internal';
+import {
   errorWhen,
   matchingError,
   actualToString,
 } from '../../../entities/results';
 import type {
   CheckMatchFn,
-  NULL_MATCHER_TYPE,
-  CoreNullMatcher,
   MatchContext,
   CaseError,
   MatcherExecutor,

@@ -1,3 +1,7 @@
+import {
+  HTTP_STATUS_CODE_MATCHER_TYPE,
+  CoreHttpStatusCodeMatcher,
+} from '@contract-case/case-entities-internal';
 import { CaseCoreError } from '../../entities';
 import {
   makeResults,
@@ -10,8 +14,6 @@ import type {
   CaseError,
   MatchResult,
   CheckMatchFn,
-  HTTP_STATUS_CODE_MATCHER_TYPE,
-  CoreHttpStatusCodeMatcher,
   MatchContext,
   MatcherExecutor,
 } from '../../entities/types';

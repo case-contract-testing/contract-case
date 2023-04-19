@@ -1,17 +1,15 @@
 import {
+  AnyData,
+  AnyCaseMatcherOrData,
+} from '@contract-case/case-entities-internal';
+import {
   ContractDefinerConnector,
   DefinitionFailingExample,
   DefinitionSuccessExample,
 } from '../connectors';
 import { MultiTestInvoker } from '../core/executeExample/types';
 import { CaseConfig } from '../core/types';
-import {
-  AnyCaseNodeType,
-  AnyData,
-  AnyMockDescriptorType,
-  ContractDescription,
-  DataOrCaseNodeFor,
-} from '../entities/types';
+import { AnyMockDescriptorType, ContractDescription } from '../entities/types';
 
 export class ContractDefiner<M extends AnyMockDescriptorType> {
   coreDefiner: ContractDefinerConnector<M>;
@@ -46,9 +44,7 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
     return this.coreDefiner.endRecord();
   }
 
-  stripMatchers<T extends AnyCaseNodeType>(
-    matcherOrData: DataOrCaseNodeFor<T>
-  ): AnyData {
+  stripMatchers(matcherOrData: AnyCaseMatcherOrData): AnyData {
     return this.coreDefiner.stripMatchers(matcherOrData);
   }
 }

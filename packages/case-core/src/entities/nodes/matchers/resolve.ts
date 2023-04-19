@@ -1,8 +1,9 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { CaseCoreError } from '../../../entities/errors';
-import type { AnyCaseNodeOrData, MatchContext } from '../../../entities/types';
+import type { MatchContext } from '../../../entities/types';
 
 export const mustResolveToString = (
-  matcher: AnyCaseNodeOrData,
+  matcher: AnyCaseMatcherOrData,
   context: MatchContext
 ): string => {
   const stripped = context.descendAndStrip(matcher, context);
@@ -16,7 +17,7 @@ export const mustResolveToString = (
 };
 
 export const mustResolveToNumber = (
-  matcher: AnyCaseNodeOrData,
+  matcher: AnyCaseMatcherOrData,
   context: MatchContext
 ): number => {
   const stripped = context.descendAndStrip(matcher, context);
