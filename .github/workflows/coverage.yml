@@ -34,4 +34,4 @@ jobs:
       with:
         path-to-lcov: 'packages/case-core/coverage/lcov.info'
         base-path: 'packages/case-core'
-        github-token: ${{ secrets.RATE_TOKEN_GH }}
+        github-token: ${{ secrets.OLD_TOKEN }}
