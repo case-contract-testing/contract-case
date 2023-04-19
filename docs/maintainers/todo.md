@@ -56,6 +56,7 @@ Next:
     - [ ] Types for Result Printer
   - [ ] Types for extensions
     - [ ] Refactor context
+  - [ ] Types for contract verification
   - [x] Figure out types for the triggers
   - [x] Figure out types for the check functions
   - Jest DSL
