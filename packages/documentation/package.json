@@ -43,5 +43,41 @@
   },
   "engines": {
     "node": ">=16.14"
+  },
+  "nx": {
+    "tasksRunnerOptions": {
+      "default": {
+        "runner": "nx/tasks-runners/default",
+        "options": {
+          "cacheableOperations": [
+            "build",
+            "package",
+            "lint",
+            "format:check",
+            "test"
+          ]
+        }
+      }
+    },
+    "targetDefaults": {
+      "prebuild": {
+        "dependsOn": [
+          "^prebuild"
+        ]
+      },
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "{projectRoot}/build"
+        ]
+      },
+      "package": {
+        "outputs": [
+          "{projectRoot}/dist"
+        ]
+      }
+    }
   }
 }

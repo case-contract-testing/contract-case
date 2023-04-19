@@ -96,5 +96,41 @@
     "@contract-case/case-entities-internal"
   ],
   "stability": "stable",
-  "types": "build/index.d.ts"
+  "types": "build/index.d.ts",
+  "nx": {
+    "tasksRunnerOptions": {
+      "default": {
+        "runner": "nx/tasks-runners/default",
+        "options": {
+          "cacheableOperations": [
+            "build",
+            "package",
+            "lint",
+            "format:check",
+            "test"
+          ]
+        }
+      }
+    },
+    "targetDefaults": {
+      "prebuild": {
+        "dependsOn": [
+          "^prebuild"
+        ]
+      },
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "{projectRoot}/build"
+        ]
+      },
+      "package": {
+        "outputs": [
+          "{projectRoot}/dist"
+        ]
+      }
+    }
+  }
 }

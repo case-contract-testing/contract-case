@@ -1,0 +1,36 @@
+{
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "package",
+          "lint",
+          "format:check",
+          "test"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {
+    "prebuild": {
+      "dependsOn": [
+        "^prebuild"
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    },
+    "package": {
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    }
+  }
+}
