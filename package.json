@@ -7,6 +7,9 @@
   "devDependencies": {
     "lerna": "^6.6.1"
   },
+  "optionalDependencies": {
+    "@nrwl/nx-linux-x64-gnu": "^15.9.2"
+  },
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test"
