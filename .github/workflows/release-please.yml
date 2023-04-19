@@ -16,7 +16,7 @@ jobs:
         id: release
         with:
           command: manifest
-          token: ${{secrets.GITHUB_TOKEN}}
+          token: ${{secrets.RATE_TOKEN_GH}}
           default-branch: main
           bump-minor-pre-major: true          
 
