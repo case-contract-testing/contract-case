@@ -50,8 +50,8 @@ Next:
     - [ ] Types for Triggers
       - [ ] Implement triggerAndVerify
     - [x] Types for State Handlers
-    - [ ] Pass in core printer to Logger
-    - [ ] Types for Logger
+    - [x] Pass in core printer to Logger
+    - [x] Types for Logger
     - [ ] Types for Result Printer
   - [ ] Types for extensions
     - [ ] Refactor context

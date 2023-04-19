@@ -3,7 +3,7 @@ import {
   AnyMockDescriptorType,
   CaseConfigurationError,
   CaseCoreError,
-  ContractDefiner as CoreContractDefiner,
+  ContractDefinerConnector,
 } from '@contract-case/case-core';
 import { AnyMatcher } from '@contract-case/test-equivalence-matchers';
 
@@ -11,16 +11,19 @@ import { ContractCaseConfig } from './boundary/types';
 import { convertConfig, jsErrorToFailure } from './internal';
 import { MockDefinition } from './types';
 import { mapStateHandlers } from './internal/stateHandlers/mappers';
-import { Result, Success } from './boundary';
+import { ILogPrinter, Result, Success } from './boundary';
 
 export class ContractDefiner {
   private readonly constructorConfig: ContractCaseConfig;
 
-  private definer: CoreContractDefiner<AnyMockDescriptorType> | undefined;
+  private readonly printer: ILogPrinter;
 
-  constructor(config: ContractCaseConfig) {
+  private definer: ContractDefinerConnector<AnyMockDescriptorType> | undefined;
+
+  constructor(config: ContractCaseConfig, printer: ILogPrinter) {
     this.constructorConfig = config;
     this.definer = undefined;
+    this.printer = printer;
   }
 
   private initialiseDefiner() {
@@ -39,7 +42,7 @@ export class ContractDefiner {
         );
       }
 
-      this.definer = new CoreContractDefiner(
+      this.definer = new ContractDefinerConnector(
         {
           consumerName: config.consumerName,
           providerName: config.providerName,
@@ -53,7 +56,8 @@ export class ContractDefiner {
                 ),
               }
             : undefined),
-        }
+        },
+        this.printer
       );
     }
   }

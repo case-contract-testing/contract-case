@@ -1,7 +1,7 @@
 import { CaseConfigurationError } from '@contract-case/case-core';
 import { Result } from './Result';
 
-export abstract class StateHandler {
+export class StateHandler {
   /**
    * @returns Either a `Failure` or a `SuccessWithMap`
    */
