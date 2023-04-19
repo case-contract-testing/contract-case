@@ -11,7 +11,8 @@
     "build": "build"
   },
   "files": [
-    "build"
+    "build",
+    "jsii"
   ],
   "publishConfig": {
     "access": "public"
