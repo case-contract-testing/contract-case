@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/test-equivalence-matchers",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Test equivalence matchers component for the ContractCase contract testing suite",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs/reference/matchers",
