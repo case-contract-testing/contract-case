@@ -245,7 +245,11 @@ export type ResolvesTo<T extends string> = {
   '_case:matcher:resolvesTo': T;
 };
 
-export type AnyCaseMatcherOrData = AnyCaseMatcher | AnyData;
+export type AnyCaseMatcherOrData =
+  | AnyCaseMatcher
+  | AnyData
+  | AnyLeafOrStructure;
+
 export type AnyCaseStringMatcher =
   | Extract<AnyCaseMatcher, ResolvesTo<'string'>>
   | (AnyCaseMatcher & ResolvesTo<'string'>);
