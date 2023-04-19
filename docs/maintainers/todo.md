@@ -44,6 +44,7 @@ Next:
   - [x] Arbitrary JSON with Case Matchers
 - [x] Spike monorepo
 - [ ] Flatten types at the boundary
+
   - [x] Classes for matchers
   - [ ] Classes for mocks
   - [ ] Types for contract definition
@@ -57,8 +58,15 @@ Next:
     - [ ] Refactor context
   - [x] Figure out types for the triggers
   - [x] Figure out types for the check functions
-  - Make DSL
+  - Jest DSL
   - [ ] Error handling boundary
+  - [ ] Crash messages
+  - [ ] Case Matcher functions
+  - Java DSL
+  - [ ] Error handling boundary
+  - [ ] Crash messages
+  - [ ] Case Matcher functions
+
 - [ ] Documentation pipeline for Matchers
 - [x] Documentation for config object
 - [x] Documentation for states

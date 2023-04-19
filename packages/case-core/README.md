@@ -2,7 +2,7 @@
 
 [![Build and test](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/case-contract-testing/case/badge.svg?branch=main)](https://coveralls.io/github/case-contract-testing/case?branch=main)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=package.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/case-core/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/case-core/package.json)
 
 [![npm](https://img.shields.io/npm/v/@case-contract-testing/case.svg)](https://www.npmjs.com/package/@case-contract-testing/case)
 
