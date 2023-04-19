@@ -1,7 +1,7 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { anyNumber, anyString, namedMatch } from './boundaries/dsl/Matchers';
 
 import { CaseConfigurationError } from './entities';
-import type { AnyCaseMatcherOrData } from './entities/types';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';

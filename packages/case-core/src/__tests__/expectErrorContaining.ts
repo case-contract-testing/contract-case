@@ -1,5 +1,5 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { WritingCaseContract } from '../core';
-import type { AnyCaseMatcherOrData } from '../entities/types';
 
 export const makeExpectErrorContaining =
   (contract: WritingCaseContract) =>
