@@ -32,7 +32,7 @@ import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { makeBrokerApi } from './broker';
 import { makeLogger } from '../logger';
 import { makeContractStore } from '../contractStore/contractReader';
-import { defaultPrinter } from '../../boundaries/console';
+import { defaultPrinter } from '../../boundaries/defaultPrinter';
 
 const emptyContext: DataContext = {
   logger: makeLogger(

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { defaultPrinter } from '../src/boundaries/console';
+import { defaultPrinter } from '../src/boundaries/defaultPrinter';
 import { ContractDownloader } from '../src/connectors/contract/ContractDownloader';
 import { makeLogger } from '../src/connectors/logger';
 

@@ -11,7 +11,7 @@ import { MultiTestInvoker } from '../core/executeExample/types';
 import { CaseConfig } from '../core/types';
 import { AnyMockDescriptorType, ContractDescription } from '../entities/types';
 import { Printer } from '../connectors/logger/types';
-import { defaultPrinter } from './console';
+import { defaultPrinter } from './defaultPrinter';
 
 export class ContractDefiner<M extends AnyMockDescriptorType> {
   coreDefiner: ContractDefinerConnector<M>;

@@ -31,13 +31,13 @@ export const defaultPrinter: Printer = {
     }
 
     if (level === 'maintainerDebug') {
-      typeColour = chalk.bgBlueBright.black;
-      messageColour = chalk.blueBright;
+      typeColour = chalk.bgMagentaBright.black;
+      messageColour = chalk.magentaBright;
     }
 
     if (level === 'deepMaintainerDebug') {
-      typeColour = chalk.bgMagentaBright.black;
-      messageColour = chalk.magentaBright;
+      typeColour = chalk.bgBlueBright.black;
+      messageColour = chalk.blueBright;
     }
 
     stdoutLogger.log(

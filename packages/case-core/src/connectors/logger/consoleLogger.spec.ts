@@ -1,5 +1,5 @@
 /* eslint-disable jest/expect-expect */
-import { defaultPrinter } from '../../boundaries/console';
+import { defaultPrinter } from '../../boundaries/defaultPrinter';
 import { makeLogger } from './consoleLogger';
 
 describe('console logger', () => {

@@ -2,7 +2,7 @@ import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';
 import { writerDependencies } from './connectors/dependencies';
-import { defaultPrinter } from './boundaries/console';
+import { defaultPrinter } from './boundaries/defaultPrinter';
 
 describe('basic types and structure checks', () => {
   const contract = new WritingCaseContract(

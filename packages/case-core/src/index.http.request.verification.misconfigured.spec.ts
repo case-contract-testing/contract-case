@@ -13,7 +13,7 @@ import type { Dependencies } from './__tests__/server/http/domain/types';
 import { ReadingCaseContract } from './core';
 import { readerDependencies } from './connectors/dependencies';
 import { readContract } from './connectors/contractStore/contractReader';
-import { defaultPrinter } from './boundaries/console';
+import { defaultPrinter } from './boundaries/defaultPrinter';
 
 describe('Server verification', () => {
   let server: http.Server;
