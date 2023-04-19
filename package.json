@@ -15,5 +15,12 @@
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test"
+  },
+  "overrides": {
+    "jsii-docgen": {
+      "glob-promise": {
+        "glob": "8.0.1"
+      }
+    }
   }
 }
