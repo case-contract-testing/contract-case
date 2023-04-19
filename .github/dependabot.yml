@@ -10,6 +10,22 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/packages/case-boundary" # Location of package manifests
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/packages/case-core" # Location of package manifests
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/packages/case-entities" # Location of package manifests
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/packages/test-equivalence-matchers" # Location of package manifest
+    schedule:
+      interval: "weekly"      
       
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"

@@ -32,9 +32,13 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Build Packages
         if: ${{ steps.release.outputs.releases_created }}
-        run: |
-          npm install
-          npx lerna bootstrap
+        run: ci/build-and-test.sh
+        env:
+          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
+          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
+          NODE_VERSION: ${{ matrix.node-version }}
+          FORCE_COLOR: true
+  
 
       # Release Please has already incremented versions and published tags, so we just
       # need to publish all unpublished versions to NPM here
@@ -42,5 +46,5 @@ jobs:
       - name: Publish to NPM
         if: ${{ steps.release.outputs.releases_created }}
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.CONTRACT_CASE_NPM}}
         run: npx lerna publish from-package --no-push --no-private --yes          
