@@ -1,6 +1,6 @@
 {
-  "packages/case-boundary": "0.0.1",
-  "packages/case-core": "0.7.0",
-  "packages/case-entities": "0.7.0",
-  "packages/test-equivalence-matchers": "0.0.1"
+  "packages/case-boundary": "0.1.0",
+  "packages/case-core": "0.8.0",
+  "packages/case-entities": "0.8.0",
+  "packages/test-equivalence-matchers": "0.0.2"
 }
