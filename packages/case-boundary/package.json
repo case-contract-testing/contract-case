@@ -92,9 +92,9 @@
     "@contract-case/case-entities-internal"
   ],
   "dependencies": {
-    "@contract-case/case-core": "*",
-    "@contract-case/case-entities-internal": "*",
-    "@contract-case/test-equivalence-matchers": "*"
+    "@contract-case/case-core": "0.8.0",
+    "@contract-case/case-entities-internal": "0.8.0",
+    "@contract-case/test-equivalence-matchers": "0.0.2"
   },
   "peerDependencies": {
     "@contract-case/test-equivalence-matchers": "*"
