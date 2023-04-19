@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-boundary",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Exported interface JSii layer for ContractCase. Don't depend on it directly unless you're writing a wrapper for a new language",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs/reference/matchers",
@@ -95,7 +95,7 @@
   "dependencies": {
     "@contract-case/case-core": "0.8.0",
     "@contract-case/case-entities-internal": "0.8.0",
-    "@contract-case/test-equivalence-matchers": "0.0.3"
+    "@contract-case/test-equivalence-matchers": "0.0.4"
   },
   "peerDependencies": {
     "@contract-case/test-equivalence-matchers": "0.0.3"
