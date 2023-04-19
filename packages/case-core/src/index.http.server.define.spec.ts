@@ -107,7 +107,6 @@ describe('e2e http provider driven', () => {
           // remove the following lines for your own tests
           publish: 'ALWAYS', // Remove this for your own tests
           printResults: false, // Remove this for your own tests
-          logLevel: 'deepMaintainerDebug',
           testRunId: TEST_RUN_ID, // Remove this for your own tests
         },
       },
