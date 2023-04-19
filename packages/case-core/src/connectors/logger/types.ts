@@ -1,6 +1,6 @@
 import { LogLevel } from '../../entities/types';
 
-export interface Printer {
+export interface LogPrinter {
   log: (
     level: LogLevel,
     timestamp: string,

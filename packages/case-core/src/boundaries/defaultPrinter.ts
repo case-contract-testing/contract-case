@@ -1,11 +1,11 @@
 import chalk from 'chalk';
 import { Console } from 'node:console';
-import { Printer } from '../connectors/logger/types';
+import { LogPrinter } from '../connectors/logger/types';
 import { LogLevel } from '../entities/types';
 
 const stdoutLogger = new Console({ stdout: process.stdout });
 
-export const defaultPrinter: Printer = {
+export const defaultPrinter: LogPrinter = {
   log: (
     level: LogLevel,
     timestamp: string,

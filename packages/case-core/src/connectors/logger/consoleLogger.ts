@@ -4,7 +4,7 @@ import { caseVersion } from '../../entities/caseVersion';
 import { shouldLog } from '../../entities/logger/shouldLog';
 import { locationString } from '../../entities/context';
 import type { LogLevelContext, Logger } from '../../entities/types';
-import { Printer } from './types';
+import { LogPrinter } from './types';
 
 const caseVersionString = `(case@${caseVersion})`;
 
@@ -28,7 +28,7 @@ const mapAdditional = (additional: unknown[]) =>
 
 export const makeLogger: (
   context: LogLevelContext,
-  printer: Printer
+  printer: LogPrinter
 ) => Logger = (matchContext: LogLevelContext, printer) => ({
   warn(message: string, ...additional: unknown[]): void {
     if (shouldLog(matchContext, 'warn')) {

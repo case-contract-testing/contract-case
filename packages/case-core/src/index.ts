@@ -9,6 +9,6 @@ export { LogLevel } from './entities/types';
 export {
   ContractDefinerConnector,
   ContractVerifierConnector,
+  LogPrinter,
 } from './connectors';
-
 export type HttpRequestConfig = Assertable<typeof MOCK_HTTP_SERVER>['config'];

@@ -7,7 +7,7 @@ import { constructDataContext } from '../../entities/context';
 import { configToRunContext } from '../../core/config';
 import { writerDependencies } from '../dependencies';
 import { BrokerService } from '../../core/BrokerService';
-import { Printer } from '../logger/types';
+import { LogPrinter } from '../logger/types';
 
 export class ContractDownloader {
   context: DataContext;
@@ -20,7 +20,7 @@ export class ContractDownloader {
 
   constructor(
     config: CaseConfig,
-    printer: Printer,
+    printer: LogPrinter,
     dependencies = writerDependencies(printer)
   ) {
     this.context = constructDataContext(

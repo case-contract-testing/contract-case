@@ -12,7 +12,7 @@ import { makeLogger } from './logger';
 import { resultPrinter } from './resultPrinter';
 import { DEFAULT_TEST_ID } from '../core';
 import { makeContractStore } from './contractStore/contractReader';
-import { Printer } from './logger/types';
+import { LogPrinter } from './logger/types';
 
 const DEFAULT_CONFIG: CaseConfig = {
   logLevel: 'warn',
@@ -22,7 +22,7 @@ const DEFAULT_CONFIG: CaseConfig = {
   testRunId: DEFAULT_TEST_ID,
 };
 
-export const writerDependencies: (printer: Printer) => WriterDependencies = (
+export const writerDependencies: (printer: LogPrinter) => WriterDependencies = (
   printer
 ) => ({
   defaultConfig: { ...DEFAULT_CONFIG, throwOnFail: true },
@@ -34,7 +34,7 @@ export const writerDependencies: (printer: Printer) => WriterDependencies = (
     new BrokerService(makeBrokerApi(context), makeEnvironment()),
 });
 
-export const readerDependencies: (printer: Printer) => ReaderDependencies = (
+export const readerDependencies: (printer: LogPrinter) => ReaderDependencies = (
   printer
 ) => ({
   defaultConfig: { ...DEFAULT_CONFIG, throwOnFail: false },
