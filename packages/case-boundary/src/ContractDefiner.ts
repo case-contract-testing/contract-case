@@ -7,11 +7,11 @@ import {
 } from '@contract-case/case-core';
 import { AnyMatcher } from '@contract-case/test-equivalence-matchers';
 
-import { convertConfig } from './config/config';
-import { ContractCaseConfig } from './config/types';
-import { handleError } from './boundary/errorHandler';
-import { Result, Success } from './boundary/types';
+import { ContractCaseConfig } from './boundary/types';
+import { convertConfig, handleError } from './internal';
 import { MockDefinition } from './types';
+import { mapStateHandlers } from './internal/stateHandlers/mappers';
+import { Result, Success } from './boundary';
 
 export class ContractDefiner {
   private readonly constructorConfig: ContractCaseConfig;
@@ -45,7 +45,15 @@ export class ContractDefiner {
           providerName: config.providerName,
         },
         config,
-        {}
+        {
+          ...(this.constructorConfig.stateHandlers
+            ? {
+                stateHandlers: mapStateHandlers(
+                  this.constructorConfig.stateHandlers
+                ),
+              }
+            : undefined),
+        }
       );
     }
   }
@@ -58,7 +66,7 @@ export class ContractDefiner {
       this.initialiseDefiner();
       if (this.definer === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised'
+          'Definer was undefined after it was initialised (runExample)'
         );
       }
       await this.definer.runExample(definition, convertConfig(runConfig));
@@ -76,7 +84,7 @@ export class ContractDefiner {
       this.initialiseDefiner();
       if (this.definer === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised'
+          'Definer was undefined after it was initialised (runRejectingExample)'
         );
       }
       await this.definer.runRejectingExample(
@@ -94,7 +102,7 @@ export class ContractDefiner {
       this.initialiseDefiner();
       if (this.definer === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised'
+          'Definer was undefined after it was initialised (stripMatchers)'
         );
       }
 
@@ -104,5 +112,20 @@ export class ContractDefiner {
     } catch (e) {
       return handleError(e);
     }
+  }
+
+  endRecord(): Promise<Result> {
+    return Promise.resolve()
+      .then(() => {
+        this.initialiseDefiner();
+        if (this.definer === undefined) {
+          throw new CaseCoreError(
+            'Definer was undefined after it was initialised (endRecord)'
+          );
+        }
+        return this.definer.endRecord();
+      })
+      .then(() => new Success())
+      .catch((e) => handleError(e));
   }
 }

@@ -1,3 +1,5 @@
+import { StateHandler } from './StateHandler';
+
 export interface UserNamePassword {
   /**
    * The username for basic auth
@@ -92,4 +94,11 @@ export interface ContractCaseConfig {
    * If this is specified along with brokerCiAccessToken, the basic auth is ignored.
    */
   readonly brokerBasicAuth?: UserNamePassword;
+
+  /**
+   * State setup and teardown handlers for any states this test requires (see
+   * [writing state handlers](https://case.contract-testing.io/docs/reference/state-handlers/))
+   * for more details
+   */
+  readonly stateHandlers?: Record<string, StateHandler>;
 }

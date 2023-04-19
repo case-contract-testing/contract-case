@@ -3,7 +3,7 @@ import {
   CaseConfigurationError,
   LogLevel,
 } from '@contract-case/case-core';
-import { ContractCaseConfig } from './types';
+import { ContractCaseConfig } from '../boundary/config.types';
 
 const mapLogLevel = (levelString: string | undefined): LogLevel | undefined => {
   switch (levelString) {

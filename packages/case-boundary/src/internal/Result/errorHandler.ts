@@ -1,4 +1,4 @@
-import { Failure } from './types';
+import { Failure } from '../../boundary/Result';
 
 export const handleError = (e: unknown): Failure => {
   if (e instanceof Error) {

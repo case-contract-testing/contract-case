@@ -88,10 +88,12 @@
     "ts-node": "^10.9.1"
   },
   "bundledDependencies": [
-    "@contract-case/case-core"
+    "@contract-case/case-core",
+    "@contract-case/case-entities-internal"
   ],
   "dependencies": {
     "@contract-case/case-core": "*",
+    "@contract-case/case-entities-internal": "*",
     "@contract-case/test-equivalence-matchers": "*"
   },
   "peerDependencies": {
