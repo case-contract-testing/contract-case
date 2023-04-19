@@ -1,5 +1,5 @@
 import { AnyCaseNodeType } from './constants.types';
-import { AnyCaseMatcher } from './definitions.types';
+import { AnyCaseMatcher, AnyLeafOrStructure } from './definitions.types';
 
 export type HasExample<T extends AnyCaseMatcher> = T & {
   '_case:matcher:example': unknown;
@@ -13,3 +13,7 @@ export type CaseNodeFor<T extends AnyCaseNodeType> = Extract<
   AnyCaseMatcher,
   IsCaseNodeForType<T>
 >;
+
+export type DataOrCaseNodeFor<T extends AnyCaseNodeType> =
+  | CaseNodeFor<T>
+  | AnyLeafOrStructure;

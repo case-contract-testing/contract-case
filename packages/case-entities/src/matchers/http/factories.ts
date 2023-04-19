@@ -1,6 +1,8 @@
-import { AnyCaseStringMatcher } from '../definitions.types';
+import {
+  AnyCaseStringMatcher,
+  CoreHttpBasicAuthValue,
+} from '../definitions.types';
 import { HTTP_BASIC_AUTH_TYPE } from './constants.types';
-import { CoreHttpBasicAuthValue } from './definitions.types';
 
 export const coreBasicAuthValue = (
   username: AnyCaseStringMatcher,

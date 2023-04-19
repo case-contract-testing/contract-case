@@ -23,8 +23,15 @@ import {
   LOOKUP_MATCHER_TYPE,
   ARRAY_LENGTH_PARAMETER_INFINITE,
 } from './constants.types';
+import {
+  HTTP_BASIC_AUTH_TYPE,
+  HTTP_REQUEST_MATCHER_TYPE,
+  HTTP_RESPONSE_MATCHER_TYPE,
+  HTTP_STATUS_CODE_MATCHER_TYPE,
+  URL_ENCODED_STRING_TYPE,
+} from './http/constants.types';
 
-interface MatchContextByType {
+export interface MatchContextByType {
   '_case:context:matchBy': 'type';
 }
 
@@ -156,6 +163,47 @@ export interface LookupableMatcher {
   '_case:matcher:child'?: AnyCaseMatcherOrData;
 }
 
+export interface CoreUrlEncodedStringMatcher {
+  '_case:matcher:type': typeof URL_ENCODED_STRING_TYPE;
+  '_case:matcher:child': AnyCaseMatcherOrData;
+  '_case:matcher:accepts': 'string';
+  '_case:matcher:resolvesTo': 'string';
+}
+
+export interface CoreHttpStatusCodeMatcher {
+  '_case:matcher:type': typeof HTTP_STATUS_CODE_MATCHER_TYPE;
+  '_case:matcher:rule': string | Array<string>;
+  '_case:matcher:example': number;
+  '_case:matcher:resolvesTo': 'HttpStatusCode';
+}
+
+export interface CoreHttpBasicAuthValue {
+  '_case:matcher:type': typeof HTTP_BASIC_AUTH_TYPE;
+  '_case:matcher:username': AnyCaseMatcherOrData;
+  '_case:matcher:password': AnyCaseMatcherOrData;
+  '_case:matcher:resolvesTo': 'string';
+}
+
+export interface CoreHttpRequestMatcher {
+  '_case:matcher:type': typeof HTTP_REQUEST_MATCHER_TYPE;
+  '_case:matcher:uniqueName'?: string;
+  uniqueName?: string;
+  path: AnyCaseStringMatcher | string;
+  method: AnyCaseStringMatcher | string;
+  body?: AnyCaseMatcherOrData;
+  headers?: AnyCaseMatcherOrData | Record<string, AnyCaseMatcherOrData>;
+  query?: AnyCaseMatcherOrData;
+}
+
+export interface CoreHttpResponseMatcher {
+  '_case:matcher:type': typeof HTTP_RESPONSE_MATCHER_TYPE;
+  '_case:matcher:uniqueName'?: string;
+  uniqueName?: string;
+  status: number | CoreHttpStatusCodeMatcher;
+  body?: AnyCaseMatcherOrData;
+  headers?: AnyCaseMatcherOrData | Record<string, AnyCaseMatcherOrData>;
+}
+
 export type NumberMatcher = CoreNumberMatcher & MatchContextByType;
 export type StringMatcher = CoreStringMatcher & MatchContextByType;
 export type BooleanMatcher = CoreBooleanMatcher & MatchContextByType;
@@ -180,6 +228,11 @@ export type AnyCaseMatcher =
   | CoreAndCombinationMatcher
   | CoreArrayEachEntryMatches
   | CoreObjectValuesMatch
+  | CoreHttpStatusCodeMatcher
+  | CoreUrlEncodedStringMatcher
+  | CoreHttpBasicAuthValue
+  | CoreHttpRequestMatcher
+  | CoreHttpResponseMatcher
   | CoreObjectKeysMatcher
   | CoreArrayContainsMatch
   | CoreStringSuffixMatcher

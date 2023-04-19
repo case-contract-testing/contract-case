@@ -1,4 +1,4 @@
-import { AnyCaseMatcher } from '../matchers/types';
+import { AnyCaseMatcher } from '../matchers/definitions.types';
 
 export type AnyMockDescriptorType =
   | typeof MOCK_HTTP_SERVER
