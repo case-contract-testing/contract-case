@@ -10,6 +10,7 @@ import start from './__tests__/server/http/index';
 
 import { WritingCaseContract } from './core';
 import { writerDependencies } from './connectors/dependencies';
+import { defaultPrinter } from './boundaries/console';
 
 const expectErrorContaining = async (
   context: Promise<unknown>,
@@ -39,7 +40,7 @@ describe('simple get endpoint', () => {
       consumerName: 'http request consumer',
       providerName: 'http request provider',
     },
-    writerDependencies,
+    writerDependencies(defaultPrinter),
     {
       testRunId: 'REQUEST',
       printResults: false,

@@ -23,17 +23,25 @@ import {
 } from '../../boundaries';
 import { defineContract } from '../../boundaries/jest/jest';
 import { CaseConfigurationError } from '../../entities';
-import type { DataContext, MatchContext } from '../../entities/types';
+import type {
+  DataContext,
+  LogLevelContext,
+  MatchContext,
+} from '../../entities/types';
 import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { makeBrokerApi } from './broker';
 import { makeLogger } from '../logger';
 import { makeContractStore } from '../contractStore/contractReader';
+import { defaultPrinter } from '../../boundaries/console';
 
 const emptyContext: DataContext = {
-  logger: makeLogger({
-    '_case:currentRun:context:location': ['DURING_TESTING'],
-    '_case:currentRun:context:logLevel': 'none',
-  }),
+  logger: makeLogger(
+    {
+      '_case:currentRun:context:location': ['DURING_TESTING'],
+      '_case:currentRun:context:logLevel': 'none',
+    },
+    defaultPrinter
+  ),
   resultPrinter: {
     printError(): void {},
     printSuccessTitle(): void {},
@@ -42,7 +50,7 @@ const emptyContext: DataContext = {
       return [];
     },
   },
-  makeLogger,
+  makeLogger: (context: LogLevelContext) => makeLogger(context, defaultPrinter),
   '_case:currentRun:context:location': ['DURING_TESTING'],
   '_case:currentRun:context:testName': 'mock in broker tests',
   '_case:currentRun:context:logLevel': 'none',

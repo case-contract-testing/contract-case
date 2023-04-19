@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { defaultPrinter } from '../src/boundaries/console';
 import { ContractDownloader } from '../src/connectors/contract/ContractDownloader';
 import { makeLogger } from '../src/connectors/logger';
 
@@ -10,20 +11,26 @@ if (serviceName === '' || serviceName === undefined) {
 
 const logLevel = 'warn';
 
-new ContractDownloader({
-  logLevel,
-  contractDir: 'temp-contracts',
-})
+new ContractDownloader(
+  {
+    logLevel,
+    contractDir: 'temp-contracts',
+  },
+  defaultPrinter
+)
   .download(serviceName)
   .then(
     () => {
       process.exit(0);
     },
     (e) => {
-      makeLogger({
-        '_case:currentRun:context:logLevel': logLevel,
-        '_case:currentRun:context:location': ['CLI'],
-      }).error(e.message);
+      makeLogger(
+        {
+          '_case:currentRun:context:logLevel': logLevel,
+          '_case:currentRun:context:location': ['CLI'],
+        },
+        defaultPrinter
+      ).error(e.message);
       process.exit(1);
     }
   );

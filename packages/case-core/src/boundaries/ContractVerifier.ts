@@ -5,15 +5,24 @@ import {
 } from '../core/executeExample/types';
 import { CaseConfig } from '../core/types';
 import { AnyMockDescriptorType, ContractDescription } from '../entities/types';
+import { defaultPrinter } from './console';
 
 export class ContractVerifier {
   coreVerifier: ContractVerifierConnector;
 
   config: CaseConfig;
 
-  constructor(config: CaseConfig, callback: RunTestCallback) {
+  constructor(
+    config: CaseConfig,
+    callback: RunTestCallback,
+    printer = defaultPrinter
+  ) {
     this.config = config;
-    this.coreVerifier = new ContractVerifierConnector(config, callback);
+    this.coreVerifier = new ContractVerifierConnector(
+      config,
+      callback,
+      printer
+    );
   }
 
   getAvailableContractDescriptions(): ContractDescription[] {

@@ -19,6 +19,7 @@ import { configToRunContext } from '../../core/config';
 import { constructDataContext } from '../../entities/context';
 import { ContractStore } from '../../core/types.ContractReader';
 import { CaseConfigurationError } from '../../entities';
+import { Printer } from '../logger/types';
 
 const readContractFromStore = (
   config: CaseConfig,
@@ -55,7 +56,8 @@ export class ContractVerifierConnector {
   constructor(
     userConfig: CaseConfig,
     callback: RunTestCallback,
-    dependencies = readerDependencies
+    printer: Printer,
+    dependencies = readerDependencies(printer)
   ) {
     this.dependencies = dependencies;
     this.config = {

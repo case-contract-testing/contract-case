@@ -10,6 +10,7 @@ import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';
 import { writerDependencies } from './connectors/dependencies';
+import { defaultPrinter } from './boundaries/console';
 
 describe('string matchers', () => {
   const contract = new WritingCaseContract(
@@ -17,7 +18,7 @@ describe('string matchers', () => {
       consumerName: 'test string consumer',
       providerName: 'test string provider',
     },
-    writerDependencies,
+    writerDependencies(defaultPrinter),
     MAINTAINER_TEST_CONTEXT
   );
 

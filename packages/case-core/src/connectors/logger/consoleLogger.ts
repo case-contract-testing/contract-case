@@ -1,13 +1,10 @@
-import chalk from 'chalk';
 import { format } from 'pretty-format';
 
-import { Console } from 'node:console';
 import { caseVersion } from '../../entities/caseVersion';
 import { shouldLog } from '../../entities/logger/shouldLog';
 import { locationString } from '../../entities/context';
-import type { LogLevel, LogLevelContext, Logger } from '../../entities/types';
-
-const stdoutLogger = new Console({ stdout: process.stdout });
+import type { LogLevelContext, Logger } from '../../entities/types';
+import { Printer } from './types';
 
 const caseVersionString = `(case@${caseVersion})`;
 
@@ -24,63 +21,6 @@ const timestampString = (): string =>
     fractionalSecondDigits: 3,
   });
 
-const defaultPrinter: Printer = {
-  log: (
-    level: LogLevel,
-    timestamp: string,
-    version: string,
-    typeString: string,
-    location: string,
-    message: string,
-    additional: string
-  ) => {
-    let typeColour = chalk.redBright;
-    let messageColour = chalk.white;
-    if (level === 'warn') {
-      typeColour = chalk.yellowBright;
-      messageColour = chalk.yellowBright;
-    }
-    if (level === 'error') {
-      typeColour = chalk.redBright;
-      messageColour = chalk.redBright;
-    }
-    if (level === 'debug') {
-      typeColour = chalk.cyan;
-      messageColour = chalk.cyan;
-    }
-
-    if (level === 'maintainerDebug') {
-      typeColour = chalk.bgBlueBright.black;
-      messageColour = chalk.blueBright;
-    }
-
-    if (level === 'deepMaintainerDebug') {
-      typeColour = chalk.bgMagentaBright.black;
-      messageColour = chalk.magentaBright;
-    }
-
-    stdoutLogger.log(
-      `${timestamp} ${chalk.whiteBright(version)} ${typeColour(
-        typeString
-      )} ${chalk.blueBright(location)}: ${messageColour(message)}${
-        additional !== '' ? `\n${messageColour(additional)}` : ''
-      }`
-    );
-  },
-};
-
-interface Printer {
-  log: (
-    level: LogLevel,
-    timestamp: string,
-    version: string,
-    typeString: string,
-    location: string,
-    message: string,
-    additional: string
-  ) => void;
-}
-
 const mapAdditional = (additional: unknown[]) =>
   additional
     .map((value) => format(value, { indent: 2, printBasicPrototype: false }))
@@ -88,8 +28,8 @@ const mapAdditional = (additional: unknown[]) =>
 
 export const makeLogger: (
   context: LogLevelContext,
-  printer?: Printer
-) => Logger = (matchContext: LogLevelContext, printer = defaultPrinter) => ({
+  printer: Printer
+) => Logger = (matchContext: LogLevelContext, printer) => ({
   warn(message: string, ...additional: unknown[]): void {
     if (shouldLog(matchContext, 'warn')) {
       printer.log(

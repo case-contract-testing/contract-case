@@ -10,6 +10,8 @@ import {
 import { MultiTestInvoker } from '../core/executeExample/types';
 import { CaseConfig } from '../core/types';
 import { AnyMockDescriptorType, ContractDescription } from '../entities/types';
+import { Printer } from '../connectors/logger/types';
+import { defaultPrinter } from './console';
 
 export class ContractDefiner<M extends AnyMockDescriptorType> {
   coreDefiner: ContractDefinerConnector<M>;
@@ -17,12 +19,14 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
   constructor(
     description: ContractDescription,
     config: CaseConfig,
-    invoker: MultiTestInvoker<M>
+    invoker: MultiTestInvoker<M>,
+    printer: Printer = defaultPrinter
   ) {
     this.coreDefiner = new ContractDefinerConnector(
       description,
       config,
-      invoker
+      invoker,
+      printer
     );
   }
 

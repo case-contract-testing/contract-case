@@ -13,6 +13,7 @@ import type { Dependencies } from './__tests__/server/http/domain/types';
 import { ReadingCaseContract } from './core';
 import { readerDependencies } from './connectors/dependencies';
 import { readContract } from './connectors/contractStore/contractReader';
+import { defaultPrinter } from './boundaries/console';
 
 describe('Server verification', () => {
   let server: http.Server;
@@ -31,12 +32,16 @@ describe('Server verification', () => {
     'case-contracts/contract-for-incorrectly-configured-examples.json'
   );
 
-  const verifier = new ReadingCaseContract(contract, readerDependencies, {
-    baseUrlUnderTest: `http://localhost:${port}`,
-    logLevel: 'none',
-    printResults: false,
-    publish: false,
-  });
+  const verifier = new ReadingCaseContract(
+    contract,
+    readerDependencies(defaultPrinter),
+    {
+      baseUrlUnderTest: `http://localhost:${port}`,
+      logLevel: 'none',
+      printResults: false,
+      publish: false,
+    }
+  );
   beforeAll(async () => {
     server = await start(port, serverDependencies);
   });
