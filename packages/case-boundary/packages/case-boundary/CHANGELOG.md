@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.1](https://github.com/case-contract-testing/case/compare/case-boundary-v0.1.0...case-boundary-v0.1.1) (2023-04-19)
+
+
+### Bug Fixes
+
+* Include .jsii manifest in release ([cce31c0](https://github.com/case-contract-testing/case/commit/cce31c0f89f55e45579a3c8aa7b20a143f7bf5a4))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.0.2 to 0.0.3
+
 ## [0.1.0](https://github.com/case-contract-testing/case/compare/case-boundary-v0.0.1...case-boundary-v0.1.0) (2023-04-19)
 
 
