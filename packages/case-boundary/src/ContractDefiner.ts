@@ -8,9 +8,13 @@ import {
 import { AnyMatcher } from '@contract-case/test-equivalence-matchers';
 
 import { ContractCaseConfig } from './boundary/types';
-import { convertConfig, jsErrorToFailure } from './internal';
+import {
+  mapStateHandlers,
+  convertConfig,
+  jsErrorToFailure,
+  wrapLogPrinter,
+} from './mappers';
 import { MockDefinition } from './types';
-import { mapStateHandlers } from './internal/stateHandlers/mappers';
 import { ILogPrinter, Result, Success } from './boundary';
 
 export class ContractDefiner {
@@ -55,9 +59,9 @@ export class ContractDefiner {
                   this.constructorConfig.stateHandlers
                 ),
               }
-            : undefined),
+            : {}),
         },
-        this.printer
+        wrapLogPrinter(this.printer)
       );
     }
   }

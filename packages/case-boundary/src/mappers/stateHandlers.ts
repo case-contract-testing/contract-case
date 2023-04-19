@@ -7,8 +7,8 @@ import {
   SuccessWithMap,
   StateHandler,
   StateHandlerWithTeardown,
-} from '../../boundary';
-import { failureToJsError } from '../Result';
+} from '../boundary';
+import { failureToJsError } from './Result';
 
 const wrapSetup =
   (boundaryHandler: StateHandler) =>

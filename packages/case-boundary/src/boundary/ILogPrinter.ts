@@ -1,3 +1,5 @@
+import { Result } from './Result';
+
 export interface ILogPrinter {
   /**
    * Called by ContractCase to ask the DSL to print a log line. You do not need
@@ -23,5 +25,5 @@ export interface ILogPrinter {
     location: string,
     message: string,
     additional: string
-  ): void;
+  ): Result;
 }
