@@ -68,7 +68,7 @@
     }
   },
   "devDependencies": {
-    "@contract-case/test-equivalence-matchers": "0.0.0",
+    "@contract-case/test-equivalence-matchers": "*",
     "@types/jest": "^29.5.0",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
