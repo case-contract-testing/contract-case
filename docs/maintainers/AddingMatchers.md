@@ -5,7 +5,7 @@ Adding a new matcher as a plugin will be a subset of these steps.
 
 ### Creating the types
 
-First create the types in `entities/nodes/matchers/types.ts`. These describe
+First create the types in `packages/case-entities`. These describe
 the raw data (mostly parameters if your matcher has any)
 
 1.  All matchers much have a constant for the type of the matcher. The
@@ -47,7 +47,8 @@ the raw data (mostly parameters if your matcher has any)
 
 ### Creating the MatcherExecutor
 
-Next, we will add the behaviour of the matcher, both for matching, and for stripping the matchers.
+Next, we will add the behaviour of the matcher, both for matching, and for
+stripping the matchers. This goes in `packages/case-core`
 
 1. Add a new `MatcherExecutor<typeof YOUR_NEW_TYPE>` in an appropriate place in `diffmatch`. For example:
 
@@ -92,7 +93,37 @@ Next, we will add the behaviour of the matcher, both for matching, and for strip
 
 ### Create the matcher DSL
 
-Create a DSL function that creates your matcher type, for example:
+Create a DSL class in `packages/test-equivalence-matchers` that creates your matcher type, for example:
+
+```ts
+/**
+ * Everything inside this matcher will be matched exactly, unless overridden
+ * with a generic matcher (eg `AnyString` or` ShapedLike`). Use this to switch
+ * out of `shapedLike` and back to the default exact matching.
+ */
+export class ExactlyLike extends CascadingContextMatcher {
+  /**
+   * @param content - The object, array, primitive or matcher to match exactly
+   */
+  constructor(content: AnyMatcherOrData) {
+    super(content, { matchBy: 'exact' }, {});
+  }
+
+  /**
+   * For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON))
+   *
+   * @privateRemarks
+   * This comment and the implementation is boilerplate on all matchers to avoid
+   * outputting duplicate unimportant documentation on all matcher classes of
+   * the docs. Only modify this comment or the implementation via search and replace.
+   */
+  override toJSON(): unknown {
+    return super.toJSON();
+  }
+}
+```
+
+You can also add a DSL function to the Jest boundary, for example:
 
 ```ts
 /**
