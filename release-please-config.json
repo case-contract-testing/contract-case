@@ -5,16 +5,16 @@
   "bump-patch-for-minor-pre-major": true,
   "packages": {
     "packages/case-boundary": {
-      "changelog-path": "packages/case-boundary/CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md"
     },
     "packages/case-core": {
-      "changelog-path": "packages/case-core/CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md"
     },
     "packages/case-entities": {
-      "changelog-path": "packages/case-entities/CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md"
     },
     "packages/test-equivalence-matchers": {
-      "changelog-path": "packages/test-equivalence-matchers/CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md"
     }
   }
 }
