@@ -52,7 +52,13 @@ const executeMock = <T extends AnyMockDescriptorType>(
   if (!executor) {
     throw new CaseCoreError(`Missing setup for mock type '${mockType}'`);
   }
-  context.logger.debug(`Initialising a ${mock['_case:mock:type']}`);
+  context.logger.debug(
+    `Initialising a ${
+      mock['_case:mock:type'].startsWith('_case:')
+        ? mock['_case:mock:type'].replace('_case:', 'ContractCase ')
+        : mock['_case:mock:type']
+    }`
+  );
   return executor(mock, addLocation(mockType, context));
 };
 

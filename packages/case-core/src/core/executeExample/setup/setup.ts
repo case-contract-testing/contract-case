@@ -43,7 +43,7 @@ export const setupExample = <T extends AnyMockDescriptorType>(
   );
   parentContext.logger.maintainerDebug(
     'Context is',
-    JSON.stringify(parentContext, null, 2)
+    JSON.parse(JSON.stringify(parentContext))
   );
   return executeStateSetup(example, stateSetups, parentContext).then(
     setupWithTeardown(example, stateSetups)

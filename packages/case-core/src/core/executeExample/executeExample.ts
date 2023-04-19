@@ -82,11 +82,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
   setupExample<T>(example, stateHandlers, context)
     .then(
       (assertable: Assertable<T>) => {
-        context.logger.debug(
-          `Invoking trigger with`,
-          assertable.config,
-          context['_case:currentRun:context:location']
-        );
+        context.logger.debug(`Invoking trigger with`, assertable.config);
         return findAndCallTrigger(
           example.mock as CaseMockDescriptorFor<T>,
           { trigger, triggers, names, testErrorResponse, testResponse },
