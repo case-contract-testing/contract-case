@@ -8,7 +8,7 @@ import {
 import { AnyMatcher } from '@contract-case/test-equivalence-matchers';
 
 import { ContractCaseConfig } from './boundary/types';
-import { convertConfig, handleError } from './internal';
+import { convertConfig, jsErrorToFailure } from './internal';
 import { MockDefinition } from './types';
 import { mapStateHandlers } from './internal/stateHandlers/mappers';
 import { Result, Success } from './boundary';
@@ -72,7 +72,7 @@ export class ContractDefiner {
       await this.definer.runExample(definition, convertConfig(runConfig));
       return new Success();
     } catch (e) {
-      return handleError(e);
+      return jsErrorToFailure(e);
     }
   }
 
@@ -93,7 +93,7 @@ export class ContractDefiner {
       );
       return new Success();
     } catch (e) {
-      return handleError(e);
+      return jsErrorToFailure(e);
     }
   }
 
@@ -110,7 +110,7 @@ export class ContractDefiner {
         JSON.parse(JSON.stringify(matcherOrData))
       );
     } catch (e) {
-      return handleError(e);
+      return jsErrorToFailure(e);
     }
   }
 
@@ -126,6 +126,6 @@ export class ContractDefiner {
         return this.definer.endRecord();
       })
       .then(() => new Success())
-      .catch((e) => handleError(e));
+      .catch((e) => jsErrorToFailure(e));
   }
 }

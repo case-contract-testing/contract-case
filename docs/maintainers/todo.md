@@ -49,7 +49,7 @@ Next:
   - [ ] Types for contract definition
     - [ ] Types for Triggers
       - [ ] Implement triggerAndVerify
-    - [ ] Types for State Handlers
+    - [x] Types for State Handlers
     - [ ] Pass in core printer to Logger
     - [ ] Types for Logger
     - [ ] Types for Result Printer

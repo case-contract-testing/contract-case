@@ -1,6 +1,6 @@
 import { Failure } from '../../boundary/Result';
 
-export const handleError = (e: unknown): Failure => {
+export const jsErrorToFailure = (e: unknown): Failure => {
   if (e instanceof Error) {
     return new Failure(e.name, e.message, e.stack ?? 'unknown location');
   }

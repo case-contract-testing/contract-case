@@ -1,11 +1,6 @@
-import {
-  CaseCoreError,
-  CaseConfigurationError,
-} from '@contract-case/case-core';
+import { CaseCoreError } from '@contract-case/case-core';
 import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import {
-  Result,
-  Failure,
   RESULT_SUCCESS,
   RESULT_FAILURE,
   RESULT_SUCCESS_HAS_MAP_PAYLOAD,
@@ -13,29 +8,7 @@ import {
   StateHandler,
   StateHandlerWithTeardown,
 } from '../../boundary';
-
-const errorMessage = (message: string, location: string) =>
-  `${message}\n    - at ${location}`;
-
-const mapError = (result: Result): never => {
-  if (result instanceof Failure) {
-    switch (result.kind) {
-      case 'CaseCoreError':
-        throw new CaseCoreError(result.message);
-      default:
-        throw new CaseConfigurationError(
-          errorMessage(`[${result.kind}]: ${result.message}`, result.location)
-        );
-    }
-  }
-  throw new CaseCoreError(
-    `Encountered a failure that wasn't. It was:  ${JSON.stringify(
-      result,
-      null,
-      2
-    )}`
-  );
-};
+import { failureToJsError } from '../Result';
 
 const wrapSetup =
   (boundaryHandler: StateHandler) =>
@@ -45,8 +18,7 @@ const wrapSetup =
         case RESULT_SUCCESS:
           return;
         case RESULT_FAILURE:
-          // eslint-disable-next-line consistent-return
-          return mapError(result); // This will throw
+          throw failureToJsError(result);
         case RESULT_SUCCESS_HAS_MAP_PAYLOAD:
           if (result instanceof SuccessWithMap) {
             // eslint-disable-next-line consistent-return
@@ -78,7 +50,7 @@ const mapHandlerClass = (
             case RESULT_SUCCESS:
               return;
             case RESULT_FAILURE:
-              mapError(result);
+              failureToJsError(result);
               break;
             case RESULT_SUCCESS_HAS_MAP_PAYLOAD:
               throw new CaseCoreError(
