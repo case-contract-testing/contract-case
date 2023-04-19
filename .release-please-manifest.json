@@ -2,5 +2,6 @@
   "packages/case-boundary": "0.1.1",
   "packages/case-core": "0.8.0",
   "packages/case-entities": "0.8.0",
-  "packages/test-equivalence-matchers": "0.0.3"
+  "packages/test-equivalence-matchers": "0.0.3",
+  "packages/documentation": "0.0.0"
 }

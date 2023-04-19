@@ -25,6 +25,10 @@ updates:
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/packages/test-equivalence-matchers" # Location of package manifest
     schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/packages/documentation" # Location of package manifest
+    schedule:
       interval: "weekly"      
       
   # Maintain dependencies for GitHub Actions

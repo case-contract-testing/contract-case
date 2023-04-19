@@ -15,6 +15,9 @@
     },
     "packages/test-equivalence-matchers": {
       "changelog-path": "CHANGELOG.md"
+    },
+    "packages/documentation": {
+      "changelog-path": "CHANGELOG.md"
     }
   }
 }

@@ -1,0 +1,11 @@
+{
+    "position": 9,
+    "label": "Advanced topics",
+    "collapsible": true,
+    "collapsed": false,
+    "link": {
+      "type": "generated-index",
+      "title": "Advanced topics",
+      "description": "This section contains advanced topics or unusual use cases that most people won't need."
+    }
+  }
