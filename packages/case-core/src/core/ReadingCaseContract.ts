@@ -131,7 +131,10 @@ export class ReadingCaseContract extends BaseCaseContract {
     await this.makeBrokerService(publishingContext).publishVerificationResults(
       this.links,
       this.status === 'SUCCESS',
-      addLocation('PublishingContract', this.initialContext)
+      addLocation(
+        `PublishingVerification(${this.currentContract.description.consumerName} -> ${this.currentContract.description.providerName})`,
+        this.initialContext
+      )
     );
   }
 }

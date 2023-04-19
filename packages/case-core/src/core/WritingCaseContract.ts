@@ -161,7 +161,10 @@ export class WritingCaseContract extends BaseCaseContract {
       .makeBrokerService(writingContext)
       .publishContract(
         this.currentContract,
-        addLocation('PublishingContract', this.initialContext)
+        addLocation(
+          `PublishingContract(${this.currentContract.description.consumerName} -> ${this.currentContract.description.providerName})`,
+          this.initialContext
+        )
       );
   }
 }
