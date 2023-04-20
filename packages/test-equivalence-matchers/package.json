@@ -21,7 +21,6 @@
     "prebuild": "rimraf build",
     "build": "jsii && jsii-docgen",
     "watch": "jsii -w",
-    "prepackage": "rimraf dist && npm run build",
     "package": "jsii-pacmak",
     "test": "jest",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
@@ -49,10 +48,10 @@
     },
     "targets": {
       "java": {
-        "package": "io.contracttesting.contractcase",
+        "package": "io.contract-testing.contractcase",
         "maven": {
-          "groupId": "io.contracttesting.contractcase",
-          "artifactId": "testequivalencematchers"
+          "groupId": "io.contract-testing.contractcase",
+          "artifactId": "test-equivalence-matchers"
         }
       },
       "python": {

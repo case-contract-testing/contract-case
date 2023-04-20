@@ -25,7 +25,6 @@
     "prebuild": "rimraf build",
     "build": "jsii --project-references",
     "watch": "jsii -w",
-    "prepackage": "rimraf dist && npm run build",
     "package": "jsii-pacmak",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
@@ -52,9 +51,9 @@
     },
     "targets": {
       "java": {
-        "package": "io.contracttesting.contractcase",
+        "package": "io.contract-testing.contractcase",
         "maven": {
-          "groupId": "io.contracttesting.contractcase",
+          "groupId": "io.contract-testing.contractcase",
           "artifactId": "case-boundary"
         }
       },

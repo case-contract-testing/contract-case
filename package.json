@@ -13,6 +13,7 @@
     "@nrwl/nx-win32-x64-msvc": "^15.9.2"
   },
   "scripts": {
+    "package": "lerna run package",
     "build": "lerna run build",
     "test": "lerna run test"
   },
