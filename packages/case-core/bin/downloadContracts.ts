@@ -19,6 +19,11 @@ const logger = makeLogger(
   defaultPrinter
 );
 
+if (process.env['CASE_BROKER_BASEURL'] === undefined) {
+  logger.warn('Not downloading contracts as there is no broker baseUrl');
+  process.exit(0);
+}
+
 Promise.resolve()
   .then(() =>
     new ContractDownloader(
