@@ -3,6 +3,26 @@ import type { LogLevel } from '../../entities/logger/types';
 // TODO figure out a better way to get all the config in here
 import type { HttpResponseProviderConfig } from '../executeExample/setup/setupMock/mockConnectors/types';
 
+type IsStringArg<K> = K extends keyof Required<BaseCaseConfig>
+  ? [Required<BaseCaseConfig>[K]] extends [string | boolean]
+    ? K
+    : never
+  : never;
+
+export const stringConfigArgs: Array<IsStringArg<keyof BaseCaseConfig>> = [
+  'providerName',
+  'consumerName',
+  'logLevel',
+  'contractDir',
+  'contractFilename',
+  'testRunId',
+  'printResults',
+  'throwOnFail',
+  'publish',
+  'brokerCiAccessToken',
+  'brokerBaseUrl',
+];
+
 export interface BaseCaseConfig {
   /**
    * The name of the provider for this contract.
