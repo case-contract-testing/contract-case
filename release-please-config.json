@@ -5,18 +5,23 @@
   "bump-patch-for-minor-pre-major": true,
   "packages": {
     "packages/case-boundary": {
+      "component": "@contract-case/case-boundary",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-core": {
+      "component": "@contract-case/case-core",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-entities": {
+      "component": "@contract-case/case-entities-internal",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/test-equivalence-matchers": {
+      "component": "@contract-case/test-equivalence-matchers",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/documentation": {
+      "component": "documentation",
       "changelog-path": "CHANGELOG.md"
     },
     ".": {
