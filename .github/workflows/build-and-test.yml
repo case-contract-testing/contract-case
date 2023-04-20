@@ -28,7 +28,7 @@ jobs:
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
       - run: ci/build-and-test.sh
-        if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'`
+        if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'
         env:
           CASE_publish: false
           NODE_VERSION: ${{ matrix.node-version }}
