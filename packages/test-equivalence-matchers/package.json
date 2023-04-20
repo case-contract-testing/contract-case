@@ -51,7 +51,7 @@
         "package": "io.contract-testing.contractcase",
         "maven": {
           "groupId": "io.contract-testing.contractcase",
-          "artifactId": "test-equivalence-matchers"
+          "artifactId": "testequivalencematchers"
         }
       },
       "python": {

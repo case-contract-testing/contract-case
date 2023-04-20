@@ -54,7 +54,7 @@
         "package": "io.contract-testing.contractcase",
         "maven": {
           "groupId": "io.contract-testing.contractcase",
-          "artifactId": "case-boundary"
+          "artifactId": "caseboundary"
         }
       },
       "python": {
