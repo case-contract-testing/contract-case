@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: ci/build-and-test.sh
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'`
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         env:
           CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
           CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
@@ -48,14 +48,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: ci/build-and-test.sh
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'`
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         env:
           CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
           CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
       - run: ci/build-and-test.sh
-        if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'`
+        if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'
         env:
           CASE_publish: false
           NODE_VERSION: ${{ matrix.node-version }}
@@ -75,7 +75,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: bash ci/build-and-test.sh
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'`
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         shell: bash
         env:
           CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
@@ -83,7 +83,7 @@ jobs:
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
       - run: bash ci/build-and-test.sh
-        if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'`
+        if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'
         shell: bash
         env:
           CASE_publish: false
