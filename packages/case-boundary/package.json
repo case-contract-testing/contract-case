@@ -50,13 +50,6 @@
       "inlineSources": true
     },
     "targets": {
-      "java": {
-        "package": "io.contract-testing.contractcase",
-        "maven": {
-          "groupId": "io.contract-testing.contractcase",
-          "artifactId": "caseboundary"
-        }
-      },
       "python": {
         "distName": "contractcase.contractcase",
         "module": "contractcase.contractcase.caseboundary"

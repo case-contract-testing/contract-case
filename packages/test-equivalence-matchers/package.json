@@ -47,13 +47,6 @@
       "inlineSources": true
     },
     "targets": {
-      "java": {
-        "package": "io.contract-testing.contractcase",
-        "maven": {
-          "groupId": "io.contract-testing.contractcase",
-          "artifactId": "testequivalencematchers"
-        }
-      },
       "python": {
         "distName": "contractcase.contractcase.testequivalencematchers",
         "module": "contractcase.contractcase.testequivalencematchers"
