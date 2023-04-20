@@ -18,6 +18,9 @@
     },
     "packages/documentation": {
       "changelog-path": "CHANGELOG.md"
+    },
+    ".": {
+      "changelog-path": "CHANGELOG.md"
     }
   }
 }

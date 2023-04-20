@@ -3,5 +3,6 @@
   "packages/case-core": "0.8.0",
   "packages/case-entities": "0.8.0",
   "packages/test-equivalence-matchers": "0.0.4",
-  "packages/documentation": "0.0.2"
+  "packages/documentation": "0.0.2",
+  ".": "0.0.1"
 }
