@@ -23,7 +23,7 @@
   },
   "scripts": {
     "prebuild": "rimraf build",
-    "build": "jsii",
+    "build": "jsii --project-references",
     "watch": "jsii -w",
     "prepackage": "rimraf dist && npm run build",
     "package": "jsii-pacmak",

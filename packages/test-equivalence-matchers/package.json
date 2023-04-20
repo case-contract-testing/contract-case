@@ -10,10 +10,6 @@
     "src": "src",
     "build": "build"
   },
-  "files": [
-    "build",
-    ".jsii"
-  ],
   "publishConfig": {
     "access": "public"
   },
