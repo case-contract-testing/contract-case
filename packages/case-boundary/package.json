@@ -49,16 +49,7 @@
       "inlineSourceMap": true,
       "inlineSources": true
     },
-    "targets": {
-      "python": {
-        "distName": "contractcase.contractcase",
-        "module": "contractcase.contractcase.caseboundary"
-      },
-      "dotnet": {
-        "namespace": "ContractTestingIo.ContractCase",
-        "packageId": "ContractTestingIo.ContractCase.CaseBoundary"
-      }
-    }
+    "targets": {}
   },
   "devDependencies": {
     "@contract-case/test-equivalence-matchers": "0.0.4",

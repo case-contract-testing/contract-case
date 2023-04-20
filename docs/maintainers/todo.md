@@ -178,7 +178,7 @@ Cool features
 - [x] Matcher content verification
 - [ ] Matcher argument verification
 - [x] Options + config
-  - [ ] Options and config from environment variables
+  - [x] Options and config from environment variables
   - [ ] Options and config from .rc files
 - [x] Logging matchers
 - [ ] JS Matchers - Loading plugins from a JS module
