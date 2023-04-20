@@ -11,26 +11,30 @@ if (serviceName === '' || serviceName === undefined) {
 
 const logLevel = 'warn';
 
-new ContractDownloader(
+const logger = makeLogger(
   {
-    logLevel,
-    contractDir: 'temp-contracts',
+    '_case:currentRun:context:logLevel': logLevel,
+    '_case:currentRun:context:location': ['CLI'],
   },
   defaultPrinter
-)
-  .download(serviceName)
+);
+
+Promise.resolve()
+  .then(() =>
+    new ContractDownloader(
+      {
+        logLevel,
+        contractDir: 'temp-contracts',
+      },
+      defaultPrinter
+    ).download(serviceName)
+  )
   .then(
     () => {
       process.exit(0);
     },
     (e) => {
-      makeLogger(
-        {
-          '_case:currentRun:context:logLevel': logLevel,
-          '_case:currentRun:context:location': ['CLI'],
-        },
-        defaultPrinter
-      ).error(e.message);
+      logger.error(e.message);
       process.exit(1);
     }
   );
