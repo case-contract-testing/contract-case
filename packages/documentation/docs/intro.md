@@ -2,13 +2,13 @@
 sidebar_label: 'Introduction'
 sidebar_position: 1
 ---
+
 # ContractCase Contract Testing Suite
 
 ContractCase is a next-generation consumer-driven contract testing framework, building
 on many of the lessons from maintaining the excellent [Pact](https://pact.io) contract testing
 framework. Contract testing an effective way to get
 deployment confidence for your applications and services, giving much faster and more actionable feedback than any of the [other approaches](./Alternatives).
-
 
 <div style={{textAlign: 'center'}}>
     <div>
@@ -58,16 +58,15 @@ These caveats will be updated as progress is made. You can follow the detailed
 progress by reading the [maintainer todo
 list](https://github.com/case-contract-testing/case/blob/main/docs/maintainers/todo.md).
 
-
 :::danger
 **THE API IS UNSTABLE AND BREAKING CHANGES WILL HAPPEN IN MINOR VERSIONS BEFORE 1.0.0 IS RELEASED**
 :::
 
-
 ### I'm fine with all the caveats, how do I get started?
 
 ```
-npm install --save-dev @case-contract-testing/case
+# Note that in a future release, this import will change to a DSL package
+npm install --save-dev @contract-case/case-core
 ```
 
 You may also need the peer dependencies:
@@ -78,11 +77,11 @@ npm install --save-dev jest@^29.4.3
 
 If you just want to jump in to some examples, you can have a read of:
 
-* The [client-driven contract definition](https://github.com/case-contract-testing/case/blob/main/src/index.http.client.define.spec.ts)
-* The [client-driven contract verification](https://github.com/case-contract-testing/case/blob/main/src/index.http.client.verify.spec.ts) 
-* The [server-driven contract definition](https://github.com/case-contract-testing/case/blob/main/src/index.http.server.define.ts)
-* The [server-driven contract verification](https://github.com/case-contract-testing/case/blob/main/src/index.http.server.verify.spec.ts).
+- The [client-driven contract definition](https://github.com/case-contract-testing/case/blob/main/packages/case-core/src/index.http.client.define.spec.ts)
+- The [client-driven contract verification](https://github.com/case-contract-testing/case/blob/main//packages/case-core/src/index.http.client.verify.spec.ts)
+- The [server-driven contract definition](https://github.com/case-contract-testing/case/blob/main/packages/case-core/src/index.http.server.define.ts)
+- The [server-driven contract verification](https://github.com/case-contract-testing/case/blob/main/packages/case-core/src/index.http.server.verify.spec.ts).
 
-If you build on those examples, make sure you remove `printResults: false` and `logLevel: none`. 
+If you build on those examples, make sure you remove `printResults: false` and `logLevel: none`.
 
 You will probably have a better time if you read the documentation on [what is contract testing](./what-is-contract-testing) and [defining contracts](./defining-contracts) first, though.
