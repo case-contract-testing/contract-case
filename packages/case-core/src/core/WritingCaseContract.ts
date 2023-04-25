@@ -9,7 +9,7 @@ import {
   SETUP_VARIABLE_STATE,
   type CaseExample,
   type MatchContext,
-  ERROR_TYPE_EXECUTION,
+  ERROR_TYPE_CONFIGURATION,
   AnyMockDescriptorType,
 } from '../entities/types';
 
@@ -136,7 +136,7 @@ export class WritingCaseContract extends BaseCaseContract {
       // TODO: Print all failures
       throw new CaseFailedAssertionError(
         makeResults({
-          type: ERROR_TYPE_EXECUTION,
+          type: ERROR_TYPE_CONFIGURATION,
           message: 'There were contract failures',
           code: 'FAIL',
           location: ['Writing Contract'],

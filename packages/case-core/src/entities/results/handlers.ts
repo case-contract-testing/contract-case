@@ -5,7 +5,7 @@ import {
 import type { MatchContext } from '../../entities/context/types';
 import type { CaseExample } from '../../entities/contract/types';
 import {
-  ERROR_TYPE_EXECUTION,
+  ERROR_TYPE_CONFIGURATION,
   ERROR_TYPE_MATCHING,
   ERROR_TYPE_RAW_MATCH,
   ERROR_TYPE_TEST_RESPONSE,
@@ -42,7 +42,7 @@ export const handleResult = (
       throw verificationError.error;
     }
 
-    if (example.errors.some((i) => i.type === ERROR_TYPE_EXECUTION)) {
+    if (example.errors.some((i) => i.type === ERROR_TYPE_CONFIGURATION)) {
       throw new CaseConfigurationError(
         example.errors.map((e) => e.message).join()
       );

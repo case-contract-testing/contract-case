@@ -15,9 +15,14 @@ export const ERROR_TYPE_MATCHING = 'MATCHING_ERROR' as const;
 export const ERROR_TYPE_RAW_MATCH = 'RAW_MATCH_ERROR' as const;
 
 /**
- * Represents an error executing the test (usually the trigger function)
+ * Represents an error because of configuration during test execution
  */
-export const ERROR_TYPE_EXECUTION = 'EXECUTION_ERROR' as const;
+export const ERROR_TYPE_CONFIGURATION = 'CONFIGURATION_ERROR' as const;
+
+/**
+ * Represents an error because of the user supplied trigger
+ */
+export const ERROR_TYPE_TRIGGER = 'TRIGGER_FUNCTION_ERROR' as const;
 
 /**
  * Represents an error during the testResponse or testErrorResponse function
@@ -53,8 +58,16 @@ export interface VerificationError {
   toString: () => string;
 }
 
-export interface ExecutionError {
-  type: typeof ERROR_TYPE_EXECUTION;
+export interface ConfigurationError {
+  type: typeof ERROR_TYPE_CONFIGURATION;
+  message: string;
+  code: string;
+  location: Array<string>;
+  toString: () => string;
+}
+
+export interface TriggerError {
+  type: typeof ERROR_TYPE_TRIGGER;
   message: string;
   code: string;
   location: Array<string>;
@@ -63,7 +76,8 @@ export interface ExecutionError {
 
 export type CaseError =
   | MatchingError
-  | ExecutionError
+  | ConfigurationError
+  | TriggerError
   | VerificationError
   | RawMatchError;
 

@@ -8,7 +8,7 @@ import {
   type CaseError,
   type MatchContext,
   ERROR_TYPE_MATCHING,
-  ERROR_TYPE_EXECUTION,
+  ERROR_TYPE_CONFIGURATION,
   ERROR_TYPE_TEST_RESPONSE,
   type CaseExample,
   type ResultPrinter,
@@ -16,6 +16,7 @@ import {
   RawMatchError,
   LogLevelContext,
   DataContext,
+  ERROR_TYPE_TRIGGER,
 } from '../../entities/types';
 import { locationString as formatLocationString } from '../../entities/context';
 
@@ -108,7 +109,8 @@ const printError = (error: CaseError, context: MatchContext): void => {
           )}\n\n${locationTagLine()}\n\n`
         );
         break;
-      case ERROR_TYPE_EXECUTION:
+      case ERROR_TYPE_CONFIGURATION:
+      case ERROR_TYPE_TRIGGER:
         stdout.log(
           `${errorTitleLine(
             camelToCapital(error.code),

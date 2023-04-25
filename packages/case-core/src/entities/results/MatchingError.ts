@@ -5,11 +5,13 @@ import type { VerifyTriggerReturnObjectError } from '../../entities/errors';
 import {
   ERROR_TYPE_MATCHING,
   CaseError,
-  ExecutionError,
-  ERROR_TYPE_EXECUTION,
+  ConfigurationError,
+  ERROR_TYPE_CONFIGURATION,
   ERROR_TYPE_TEST_RESPONSE,
   VerificationError,
   ERROR_TYPE_RAW_MATCH,
+  ERROR_TYPE_TRIGGER,
+  TriggerError,
 } from './types';
 
 export const errorWhen = (
@@ -77,18 +79,34 @@ export const failedExpectationError = (
 });
 
 /**
- * This represents an error thrown by user code during execution of an example
- * (eg, when a user's trigger is called)
+ * This represents an error during execution of an example due to user configuration.
  *
  * @param error - The error thrown
  * @param context - the context that the error was in
  * @returns ExecutionError
  */
-export const executionError = (
+export const configurationError = (
   error: Error,
   context: MatchContext
-): ExecutionError => ({
-  type: ERROR_TYPE_EXECUTION,
+): ConfigurationError => ({
+  type: ERROR_TYPE_CONFIGURATION,
+  message: error.message,
+  code: error.name,
+  location: context['_case:currentRun:context:location'],
+});
+
+/**
+ *This represents an error thrown by user code during execution of an example
+ * (eg, when a user's trigger is called)
+ * @param error - The error thrown
+ * @param context - the context that the error was in
+ * @returns ExecutionError
+ */
+export const triggerError = (
+  error: Error,
+  context: MatchContext
+): TriggerError => ({
+  type: ERROR_TYPE_TRIGGER,
   message: error.message,
   code: error.name,
   location: context['_case:currentRun:context:location'],

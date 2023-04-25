@@ -3,16 +3,19 @@ import { setupExample } from './setup';
 
 import {
   CaseConfigurationError,
+  CaseCoreError,
   CaseFailedAssertionError,
+  StripUnsupportedError,
   VerifyTriggerReturnObjectError,
 } from '../../entities';
 import { makeFailedExample, makeSuccessExample } from '../../entities/contract';
 import {
   hasErrors,
   makeResults,
-  executionError,
+  configurationError,
   verificationError,
   handleResult,
+  triggerError,
 } from '../../entities/results';
 import type {
   AnyMockDescriptorType,
@@ -24,8 +27,49 @@ import type {
 import type { WritingCaseContract } from '../WritingCaseContract';
 import type { ReadingCaseContract } from '../ReadingCaseContract';
 import type { InvokingScaffold } from './types';
+import { CaseTriggerError } from '../../entities/errors/CaseTriggerError';
 
-const toResultingExample = <T extends AnyMockDescriptorType>(
+const errorToFailedExample = (
+  error: Error,
+  example: CaseExample,
+  context: MatchContext
+) => {
+  if (error instanceof VerifyTriggerReturnObjectError) {
+    return makeFailedExample(
+      example,
+      makeResults(verificationError(error, context))
+    );
+  }
+  if (
+    error instanceof CaseConfigurationError ||
+    error instanceof StripUnsupportedError
+  ) {
+    return makeFailedExample(
+      example,
+      makeResults(configurationError(error, context))
+    );
+  }
+  if (error instanceof CaseTriggerError) {
+    return makeFailedExample(
+      example,
+      makeResults(triggerError(error, context))
+    );
+  }
+  if (error instanceof CaseFailedAssertionError) {
+    return makeFailedExample(example, error.matchResult);
+  }
+
+  if (error instanceof CaseCoreError) {
+    throw error;
+  }
+
+  return makeFailedExample(
+    example,
+    makeResults(configurationError(error, context))
+  );
+};
+
+const assertableToExample = <T extends AnyMockDescriptorType>(
   assertable: Assertable<T>,
   example: CaseExample,
   context: MatchContext
@@ -43,26 +87,8 @@ const toResultingExample = <T extends AnyMockDescriptorType>(
       context.logger.debug(
         `This example failed while trying to run the assertion`
       );
-      if (error instanceof CaseConfigurationError) {
-        return makeFailedExample(
-          example,
-          makeResults(executionError(error, context))
-        );
-      }
-      if (error instanceof CaseFailedAssertionError) {
-        return makeFailedExample(example, error.matchResult);
-      }
 
-      return makeFailedExample(
-        example,
-        makeResults(
-          executionError(
-            new CaseConfigurationError('Failed during case assertion'),
-            context
-          ),
-          executionError(error, context)
-        )
-      );
+      return errorToFailedExample(error, example, context);
     }
   );
 
@@ -91,7 +117,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
         ).then(
           () => {
             context.logger.maintainerDebug(`Asserting result`);
-            return toResultingExample(assertable, example, context);
+            return assertableToExample(assertable, example, context);
           },
           async (error) => {
             context.logger.debug(
@@ -104,27 +130,15 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
             );
             await assertable.assert().catch();
 
-            if (error instanceof VerifyTriggerReturnObjectError) {
-              return makeFailedExample(
-                example,
-                makeResults(verificationError(error, context))
-              );
-            }
-            return makeFailedExample(
-              example,
-              makeResults(
-                executionError(
-                  new CaseConfigurationError('Failed during trigger function'),
-                  context
-                ),
-                executionError(error, context)
-              )
-            );
+            return errorToFailedExample(error, example, context);
           }
         );
       },
       (error) =>
-        makeFailedExample(example, makeResults(executionError(error, context)))
+        makeFailedExample(
+          example,
+          makeResults(configurationError(error, context))
+        )
     )
     .then((resultingExample) => {
       handleResult(
