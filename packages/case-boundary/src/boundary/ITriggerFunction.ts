@@ -1,5 +1,5 @@
 import { Result } from './Result';
 
 export interface ITriggerFunction {
-  trigger: () => Promise<Result>;
+  trigger(): Promise<Result>;
 }
