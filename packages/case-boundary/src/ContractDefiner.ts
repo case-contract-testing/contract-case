@@ -16,6 +16,7 @@ import {
 } from './mappers';
 import { MockDefinition } from './types';
 import { ILogPrinter, Result, Success, SuccessWithAny } from './boundary';
+import { mapTriggers } from './mappers/triggers';
 
 export class ContractDefiner {
   private readonly constructorConfig: ContractCaseConfig;
@@ -57,6 +58,14 @@ export class ContractDefiner {
             ? {
                 stateHandlers: mapStateHandlers(
                   this.constructorConfig.stateHandlers
+                ),
+              }
+            : {}),
+
+          ...(this.constructorConfig.triggerAndTests
+            ? {
+                triggerAndTests: mapTriggers(
+                  this.constructorConfig.triggerAndTests
                 ),
               }
             : {}),

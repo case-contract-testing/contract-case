@@ -48,8 +48,8 @@ Next:
   - [x] Classes for matchers
   - [ ] Classes for mocks
   - [ ] Types for contract definition
-    - [ ] Types for Triggers
-      - [ ] Implement triggerAndVerify
+    - [x] Types for Triggers
+      - [x] Implement triggerAndVerify
     - [x] Types for State Handlers
     - [x] Pass in core printer to Logger
     - [x] Types for Logger
@@ -76,7 +76,7 @@ Next:
 
 Notes from refactor:
 
-- [ ] Rename case:matcher to \_case:matcher
+- [x] Rename case:matcher to \_case:matcher
 - [ ] Rename all case:matcher:matcher to case:matcher:child
   - But not the ones where it's not a child
 - [ ] Make ending of matcher interfaces consistent

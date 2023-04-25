@@ -1,1 +1,5 @@
-export type ErrorType = 'CaseCoreError' | 'CaseConfigurationError';
+export type ErrorType =
+  | 'CaseCoreError'
+  | 'CaseConfigurationError'
+  | 'CaseTriggerError'
+  | 'VerifyTriggerReturnObjectError';

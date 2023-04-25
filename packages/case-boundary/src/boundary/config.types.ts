@@ -1,3 +1,4 @@
+import { ITriggerFunction } from './ITriggerFunction';
 import { StateHandler } from './StateHandler';
 
 export interface UserNamePassword {
@@ -101,4 +102,10 @@ export interface ContractCaseConfig {
    * for more details
    */
   readonly stateHandlers?: Record<string, StateHandler>;
+
+  /**
+   * Call the native trigger and test function (if any) for this interaction pair.
+   * Keyed by `${requestName}::${responseName}`
+   */
+  readonly triggerAndTests?: Record<string, ITriggerFunction>;
 }
