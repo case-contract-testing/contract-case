@@ -13,6 +13,19 @@ export type RunTestCallback = (
   verify: () => Promise<unknown>
 ) => void;
 
+/**
+ * Do both the trigger and the assertion on the response (this type exists
+ * because we can't pass around native response objects)
+ *
+ * @throws CaseTriggerError for any errors during execution of the trigger,
+ * VerifyTriggerReturnObject for any errors during the test,
+ * CaseConfigurationError for any configuration issues, and CaseCoreError for
+ * any errors in the boundary
+ */
+export type TriggerAndTest<T extends AnyMockDescriptorType> = (
+  config: SetupInfoFor<T>
+) => Promise<unknown>;
+
 export type Trigger<T extends AnyMockDescriptorType, R = unknown> = (
   config: SetupInfoFor<T>
 ) => Promise<R>;
@@ -31,6 +44,7 @@ type TriggerPair<T extends AnyMockDescriptorType, R> = {
 
 export type MultiTestInvoker<T extends AnyMockDescriptorType, R = unknown> = {
   stateHandlers?: StateHandlers | undefined;
+  triggerAndTests?: Record<string, TriggerAndTest<T>> | undefined;
   triggers?: Record<string, TriggerPair<T, R>> | undefined;
 };
 
@@ -40,6 +54,7 @@ export type TestInvoker<
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
   mockDescription: CaseMockDescriptorFor<T>;
+  triggerAndTest?: TriggerAndTest<T>;
   trigger?: Trigger<T, R> | undefined;
   testResponse?:
     | ((data: R, config: Assertable<T>['config']) => unknown)

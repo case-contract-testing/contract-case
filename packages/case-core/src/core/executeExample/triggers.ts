@@ -4,6 +4,7 @@ import {
   CaseCoreError,
   CaseFailedAssertionError,
 } from '../../entities';
+import { CaseTriggerError } from '../../entities/errors/CaseTriggerError';
 import { failedExpectationError, makeResults } from '../../entities/results';
 import type {
   AnyMockDescriptorType,
@@ -16,15 +17,35 @@ import type { InvokingScaffold, Trigger } from './types';
 const invokeTrigger = <T extends AnyMockDescriptorType, R>(
   trigger: Trigger<T, R>,
   testResponse: (data: R, config: Assertable<T>['config']) => unknown,
-  config: Assertable<T>['config']
+  config: Assertable<T>['config'],
+  context: MatchContext
 ) =>
-  trigger(config).then((response) => {
-    try {
-      return testResponse(response, config);
-    } catch (e) {
-      throw new VerifyTriggerReturnObjectError(e);
+  trigger(config).then(
+    (response) => {
+      try {
+        return testResponse(response, config);
+      } catch (e) {
+        throw new VerifyTriggerReturnObjectError(e);
+      }
+    },
+    (e) => {
+      if (
+        e instanceof CaseTriggerError ||
+        e instanceof CaseConfigurationError ||
+        e instanceof CaseCoreError ||
+        e instanceof VerifyTriggerReturnObjectError
+      ) {
+        context.logger.maintainerDebug(
+          `Trigger function received a case error (${e.name})`
+        );
+        throw e;
+      }
+      context.logger.maintainerDebug(
+        `Trigger function received a non-case error (${e.name})`
+      );
+      throw new CaseTriggerError(e.message, context);
     }
-  });
+  );
 
 const invokeFailingTrigger = <T extends AnyMockDescriptorType, R>(
   trigger: Trigger<T, R>,
@@ -58,6 +79,8 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
   mock: CaseMockDescriptorFor<T>,
   {
     trigger,
+    triggerAndTest,
+    triggerAndTests,
     triggers,
     names,
     testErrorResponse,
@@ -85,6 +108,12 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
     );
     return Promise.resolve();
   }
+  if (triggerAndTest !== undefined) {
+    context.logger.debug(
+      `Invoking provided trigger / test for '${names.requestName}'`
+    );
+    return invokeTrigger(triggerAndTest, () => {}, assertable.config, context);
+  }
   if (trigger !== undefined) {
     if (testErrorResponse === undefined && testResponse === undefined) {
       throw new CaseCoreError(
@@ -95,7 +124,7 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
       context.logger.debug(
         `Invoking provided trigger for '${names.requestName}', and testing a successful response`
       );
-      return invokeTrigger(trigger, testResponse, assertable.config);
+      return invokeTrigger(trigger, testResponse, assertable.config, context);
     }
     if (testErrorResponse !== undefined) {
       context.logger.debug(
@@ -109,6 +138,16 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
       );
     }
   }
+  if (triggerAndTests !== undefined) {
+    const fun = triggerAndTests[`${names.requestName}::${names.responseName}`];
+    if (fun !== undefined) {
+      context.logger.debug(
+        `Invoking provided trigger for '${names.requestName}', and verification for a successful '${names.responseName}'`
+      );
+      context.logger.maintainerDebug(`Trigger is from triggersAndTests`);
+      return invokeTrigger(fun, () => {}, assertable.config, context);
+    }
+  }
   if (triggers !== undefined) {
     const req = triggers[names.requestName];
     if (req !== undefined) {
@@ -120,7 +159,7 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
         context.logger.debug(
           `Invoking provided trigger for '${names.requestName}', and verification for a successful '${names.responseName}'`
         );
-        return invokeTrigger(req.trigger, res, assertable.config);
+        return invokeTrigger(req.trigger, res, assertable.config, context);
       }
       const errRes = req.testErrorResponses?.[names.responseName];
       if (errRes !== undefined) {
