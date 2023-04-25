@@ -64,6 +64,7 @@ Next:
   - [ ] Crash messages
   - [ ] Case Matcher functions
   - Java DSL
+  - [ ] Set up maven publish
   - [ ] Error handling boundary
   - [ ] Crash messages
   - [ ] Case Matcher functions
