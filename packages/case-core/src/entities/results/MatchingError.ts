@@ -1,7 +1,10 @@
 import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
 import { locationString } from '../../entities/context';
 import type { MatchContext } from '../../entities/context/types';
-import type { VerifyTriggerReturnObjectError } from '../../entities/errors';
+import type {
+  CaseTriggerError,
+  VerifyTriggerReturnObjectError,
+} from '../../entities/errors';
 import {
   ERROR_TYPE_MATCHING,
   CaseError,
@@ -91,7 +94,7 @@ export const configurationError = (
 ): ConfigurationError => ({
   type: ERROR_TYPE_CONFIGURATION,
   message: error.message,
-  code: error.name,
+  code: 'ConfigurationError',
   location: context['_case:currentRun:context:location'],
 });
 
@@ -103,12 +106,12 @@ export const configurationError = (
  * @returns ExecutionError
  */
 export const triggerError = (
-  error: Error,
+  error: CaseTriggerError,
   context: MatchContext
 ): TriggerError => ({
   type: ERROR_TYPE_TRIGGER,
   message: error.message,
-  code: error.name,
+  code: 'TriggerFunctionError',
   location: context['_case:currentRun:context:location'],
 });
 

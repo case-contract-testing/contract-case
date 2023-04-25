@@ -4,14 +4,14 @@ export const SETUP_NAMED_STATE = '_case:NamedState' as const;
 export const SETUP_VARIABLE_STATE = '_case:StateWithVariables' as const;
 
 export type NameOnlyState = HasTypeForState<typeof SETUP_NAMED_STATE> & {
-  stateName: string;
+  readonly stateName: string;
 };
 
 export type StateWithVariables = HasTypeForState<
   typeof SETUP_VARIABLE_STATE
 > & {
-  stateName: string;
-  variables: Record<string, AnyCaseMatcherOrData>;
+  readonly stateName: string;
+  readonly variables: Record<string, AnyCaseMatcherOrData>;
 };
 
 export type AnyStateType =

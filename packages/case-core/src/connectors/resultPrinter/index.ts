@@ -1,1 +1,1 @@
-export * from './consolePrinter';
+export * from './resultPrinter';

@@ -11,21 +11,21 @@ export interface ContractDescription {
 }
 
 interface BaseCaseExample {
-  states: AnyState[];
-  mock: AnyMockDescriptor;
+  readonly states: AnyState[];
+  readonly mock: AnyMockDescriptor;
 }
 
 interface SuccessfulCaseExample extends BaseCaseExample {
-  result: 'VERIFIED';
+  readonly result: 'VERIFIED';
 }
 
 interface PendingCaseExample extends BaseCaseExample {
-  result: 'PENDING';
+  readonly result: 'PENDING';
 }
 
 interface FailedCaseExample extends BaseCaseExample {
-  result: 'FAILED';
-  errors: CaseError[];
+  readonly result: 'FAILED';
+  readonly errors: CaseError[];
 }
 
 export type CaseExample =
