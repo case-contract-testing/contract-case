@@ -1,7 +1,7 @@
 import { CaseConfigurationError } from '@contract-case/case-core';
 import { Result } from './Result';
 
-export class BoundaryStateHandler {
+export abstract class BoundaryStateHandler {
   /**
    * @returns Either a `Failure` or a `SuccessWithMap`
    */

@@ -24,7 +24,7 @@ import {
 } from './boundary';
 import { mapTriggers } from './mappers/triggers';
 
-export class ContractDefiner {
+export class BoundaryContractDefiner {
   private readonly constructorConfig: ContractCaseBoundaryConfig;
 
   private readonly logPrinter: ILogPrinter;
