@@ -27,7 +27,7 @@
     "composite": false,
     "tsBuildInfoFile": "build/tsconfig.tsbuildinfo"
   },
-  "include": ["**/*.spec.ts"],
+  "include": ["**/*.spec.ts", "**/*.spec.verify.ts"],
   "exclude": [
     "node_modules",
     "/Users/home/office/maintainer/contractcase-test-equivalence-matchers/build/.types-compat",
