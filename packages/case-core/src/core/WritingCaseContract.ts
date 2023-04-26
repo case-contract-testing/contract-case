@@ -36,7 +36,7 @@ export class WritingCaseContract extends BaseCaseContract {
       description,
       config,
       dependencies.defaultConfig,
-      dependencies.resultPrinter,
+      dependencies.resultFormatter,
       dependencies.makeLogger
     );
     this.mutex = new Mutex();

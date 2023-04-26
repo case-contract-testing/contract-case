@@ -4,6 +4,7 @@ import {
   EMPTY_MATCH_CONTEXT,
 } from '../../__tests__/testContext';
 import { anyString } from '../../boundaries';
+import { defaultPrinter } from '../../boundaries/defaultTestPrinter';
 import { VerifyTriggerReturnObjectError } from '../../entities';
 import {
   configurationError,
@@ -13,7 +14,7 @@ import {
   verificationError,
 } from '../../entities/results';
 import { AnyState } from '../../entities/types';
-import { resultPrinter } from './resultPrinter';
+import { makeResultFormatter } from './resultFormatter';
 
 const MOCK_EXAMPLE = {
   result: 'VERIFIED',
@@ -56,6 +57,8 @@ const MOCK_EXAMPLE = {
     },
   },
 } as const;
+
+const resultPrinter = makeResultFormatter(defaultPrinter);
 
 describe('result printer', () => {
   it('prints success', () => {

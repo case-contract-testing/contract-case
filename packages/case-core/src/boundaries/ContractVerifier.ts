@@ -5,7 +5,7 @@ import {
 } from '../core/executeExample/types';
 import { CaseConfig } from '../core/types';
 import { AnyMockDescriptorType, ContractDescription } from '../entities/types';
-import { defaultPrinter } from './defaultPrinter';
+import { defaultPrinter } from './defaultTestPrinter';
 
 export class ContractVerifier {
   coreVerifier: ContractVerifierConnector;

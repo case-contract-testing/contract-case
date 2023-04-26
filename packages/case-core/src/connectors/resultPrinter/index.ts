@@ -1,1 +1,1 @@
-export * from './resultPrinter';
+export * from './resultFormatter';

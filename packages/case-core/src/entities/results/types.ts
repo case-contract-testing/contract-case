@@ -83,7 +83,7 @@ export type CaseError =
 
 export type MatchResult = Array<CaseError>;
 
-export type ResultPrinter = {
+export type ResultFormatter = {
   printError: (e: CaseError, context: DataContext) => void;
   printSuccessTitle: (
     example: CaseExample,

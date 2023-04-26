@@ -6,7 +6,7 @@ import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';
 import { writerDependencies } from './connectors/dependencies';
-import { defaultPrinter } from './boundaries/defaultPrinter';
+import { defaultPrinter } from './boundaries/defaultTestPrinter';
 
 describe('named matches', () => {
   const contract = new WritingCaseContract(

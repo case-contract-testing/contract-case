@@ -9,10 +9,11 @@ import { makeBrokerApi } from './broker';
 import { writeContract } from './contractStore';
 import { makeEnvironment } from './BuildEnvironment/BuildEnvironment';
 import { makeLogger } from './logger';
-import { resultPrinter } from './resultPrinter';
+import { makeResultFormatter } from './resultPrinter';
 import { DEFAULT_TEST_ID } from '../core';
 import { makeContractStore } from './contractStore/contractReader';
 import { LogPrinter } from './logger/types';
+import { ResultPrinter } from './resultPrinter/types';
 
 const DEFAULT_CONFIG: CaseConfig = {
   logLevel: 'warn',
@@ -22,11 +23,11 @@ const DEFAULT_CONFIG: CaseConfig = {
   testRunId: DEFAULT_TEST_ID,
 };
 
-export const writerDependencies: (printer: LogPrinter) => WriterDependencies = (
-  printer
-) => ({
+export const writerDependencies: (
+  printer: LogPrinter & ResultPrinter
+) => WriterDependencies = (printer) => ({
   defaultConfig: { ...DEFAULT_CONFIG, throwOnFail: true },
-  resultPrinter,
+  resultFormatter: makeResultFormatter(printer),
   makeLogger: (context: LogLevelContext) => makeLogger(context, printer),
   writeContract,
   makeEnvironment,
@@ -34,11 +35,11 @@ export const writerDependencies: (printer: LogPrinter) => WriterDependencies = (
     new BrokerService(makeBrokerApi(context), makeEnvironment()),
 });
 
-export const readerDependencies: (printer: LogPrinter) => ReaderDependencies = (
-  printer
-) => ({
+export const readerDependencies: (
+  printer: LogPrinter & ResultPrinter
+) => ReaderDependencies = (printer) => ({
   defaultConfig: { ...DEFAULT_CONFIG, throwOnFail: false },
-  resultPrinter,
+  resultFormatter: makeResultFormatter(printer),
   makeLogger: (context: LogLevelContext) => makeLogger(context, printer),
   makeBrokerApi,
   makeEnvironment,

@@ -8,7 +8,7 @@ import {
 } from '@contract-case/case-entities-internal';
 import type { MatcherExecutor } from '../../entities/nodes/types';
 import type { Logger, LogLevel } from '../../entities/logger/types';
-import type { ResultPrinter } from '../../entities/results/types';
+import type { ResultFormatter } from '../../entities/results/types';
 
 export const MATCH_BY_TYPE = 'type' as const;
 export const MATCH_BY_EXACT = 'exact' as const;
@@ -158,7 +158,7 @@ export interface HttpTestContext {
 
 export interface LogContext {
   logger: Logger;
-  resultPrinter: ResultPrinter;
+  resultPrinter: ResultFormatter;
   makeLogger: (m: LogLevelContext) => Logger;
 }
 

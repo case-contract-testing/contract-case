@@ -32,7 +32,7 @@ export class ReadingCaseContract extends BaseCaseContract {
   constructor(
     contractFile: DownloadedContract,
     {
-      resultPrinter,
+      resultFormatter: resultPrinter,
       makeLogger,
       defaultConfig,
       makeBrokerService,

@@ -10,7 +10,7 @@ import type {
   AnyMockDescriptor,
   ContractLookupFns,
   MatchContextWithoutLookup,
-  ResultPrinter,
+  ResultFormatter,
   DataContext,
 } from '../../entities/types';
 import type {
@@ -87,7 +87,7 @@ const combineWithRoot = (
 
 export const constructDataContext = (
   makeLogger: (c: LogLevelContext) => Logger,
-  resultPrinter: ResultPrinter,
+  resultPrinter: ResultFormatter,
   runConfig: Partial<RunContext>,
   defaults: Record<string, AnyData>
 ): DataContext => {
@@ -116,7 +116,7 @@ export const constructMatchContext = (
   traversals: TraversalFns,
   makeLogger: (c: LogLevelContext) => Logger,
   makeLookup: (c: MatchContextWithoutLookup) => ContractLookupFns,
-  resultPrinter: ResultPrinter,
+  resultPrinter: ResultFormatter,
   runConfig: Partial<RunContext>,
   defaults: Record<string, AnyData>
 ): MatchContext => {

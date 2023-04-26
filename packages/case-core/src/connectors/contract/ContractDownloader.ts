@@ -2,12 +2,12 @@
 
 import type { CaseConfig, WriteContract } from '../../core/types';
 
-import type { DataContext, ResultPrinter } from '../../entities/types';
+import type { DataContext, ResultFormatter } from '../../entities/types';
 import { constructDataContext } from '../../entities/context';
 import { configToRunContext } from '../../core/config';
 import { writerDependencies } from '../dependencies';
 import { BrokerService } from '../../core/BrokerService';
-import { LogPrinter } from '../logger/types';
+import { TestPrinter } from './types';
 
 export class ContractDownloader {
   context: DataContext;
@@ -16,16 +16,16 @@ export class ContractDownloader {
 
   writeContract: WriteContract;
 
-  resultPrinter: ResultPrinter;
+  resultPrinter: ResultFormatter;
 
   constructor(
     config: CaseConfig,
-    printer: LogPrinter,
+    printer: TestPrinter,
     dependencies = writerDependencies(printer)
   ) {
     this.context = constructDataContext(
       dependencies.makeLogger,
-      dependencies.resultPrinter,
+      dependencies.resultFormatter,
       {
         ...configToRunContext({ ...dependencies.defaultConfig, ...config }),
       },
@@ -34,7 +34,7 @@ export class ContractDownloader {
 
     this.broker = dependencies.makeBrokerService(this.context);
     this.writeContract = dependencies.writeContract;
-    this.resultPrinter = dependencies.resultPrinter;
+    this.resultPrinter = dependencies.resultFormatter;
   }
 
   async download(serviceName: string): Promise<void> {

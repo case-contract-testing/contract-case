@@ -2,7 +2,7 @@ import type {
   DataContext,
   LogLevelContext,
   Logger,
-  ResultPrinter,
+  ResultFormatter,
 } from '../entities/types';
 import { BrokerService } from './BrokerService';
 import { CaseConfig } from './config/types';
@@ -21,7 +21,7 @@ export type MakeBrokerService = (context: DataContext) => BrokerService;
 
 export interface ReaderDependencies {
   defaultConfig: CaseConfig;
-  resultPrinter: ResultPrinter;
+  resultFormatter: ResultFormatter;
   makeLogger: (context: LogLevelContext) => Logger;
   makeBrokerApi: MakeBrokerApi;
   makeEnvironment: MakeEnvironment;
@@ -31,7 +31,7 @@ export interface ReaderDependencies {
 
 export interface WriterDependencies {
   defaultConfig: CaseConfig;
-  resultPrinter: ResultPrinter;
+  resultFormatter: ResultFormatter;
   makeLogger: (context: LogLevelContext) => Logger;
   writeContract: WriteContract;
   makeEnvironment: MakeEnvironment;

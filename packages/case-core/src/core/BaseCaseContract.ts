@@ -19,7 +19,7 @@ import type {
   MatchContextWithoutLookup,
   ContractLookupFns,
   MatchResult,
-  ResultPrinter,
+  ResultFormatter,
 } from '../entities/types';
 
 import {
@@ -42,7 +42,7 @@ export class BaseCaseContract {
     description: ContractDescription,
     config: CaseConfig,
     defaultConfig: CaseConfig,
-    resultPrinter: ResultPrinter,
+    resultPrinter: ResultFormatter,
     makeLogger: (context: LogLevelContext) => Logger
   ) {
     this.currentContract = makeContract(description);

@@ -19,7 +19,7 @@ import type {
   SetupInfoFor,
 } from '../../entities/types';
 import { writerDependencies } from '../dependencies';
-import { LogPrinter } from '../logger/types';
+import { TestPrinter } from './types';
 
 export type DefinitionSuccessExample<
   T extends AnyMockDescriptorType,
@@ -52,7 +52,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     description: ContractDescription,
     config: CaseConfig,
     invoker: MultiTestInvoker<M>,
-    printer: LogPrinter,
+    printer: TestPrinter,
     dependencies = writerDependencies(printer)
   ) {
     this.contract = new WritingCaseContract(description, dependencies, config);

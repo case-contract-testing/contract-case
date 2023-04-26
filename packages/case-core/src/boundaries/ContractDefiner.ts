@@ -6,12 +6,12 @@ import {
   ContractDefinerConnector,
   DefinitionFailingExample,
   DefinitionSuccessExample,
+  TestPrinter,
 } from '../connectors';
 import { MultiTestInvoker } from '../core/executeExample/types';
 import { CaseConfig } from '../core/types';
 import { AnyMockDescriptorType, ContractDescription } from '../entities/types';
-import { LogPrinter } from '../connectors/logger/types';
-import { defaultPrinter } from './defaultPrinter';
+import { defaultPrinter } from './defaultTestPrinter';
 
 export class ContractDefiner<M extends AnyMockDescriptorType> {
   coreDefiner: ContractDefinerConnector<M>;
@@ -20,7 +20,7 @@ export class ContractDefiner<M extends AnyMockDescriptorType> {
     description: ContractDescription,
     config: CaseConfig,
     invoker: MultiTestInvoker<M>,
-    printer: LogPrinter = defaultPrinter
+    printer: TestPrinter = defaultPrinter
   ) {
     this.coreDefiner = new ContractDefinerConnector(
       description,
