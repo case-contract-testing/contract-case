@@ -23,6 +23,7 @@
     "watch": "jsii -w",
     "package": "jsii-pacmak",
     "test": "jest",
+    "test:local": "jest",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "format:base": "prettier --parser typescript \"src/**/*.ts\"",

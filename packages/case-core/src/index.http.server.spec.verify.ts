@@ -7,7 +7,6 @@ import { verifyContract } from './boundaries/jest/jest';
 verifyContract(
   {
     providerName: 'http request provider',
-    contractDir: './temp-contracts',
     printResults: false,
   },
   (verifier) => {

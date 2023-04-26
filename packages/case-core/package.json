@@ -34,13 +34,17 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "coverage": "lcov-result-merger '*/lcov.info' combined-coverage.info",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write ",
     "pretest": "rimraf temp-contracts && ts-node ./bin/downloadContracts.ts \"http request provider\" && ts-node ./bin/downloadContracts.ts \"http response provider\"",
-    "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest"
+    "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
+    "posttest": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_contractDir=./temp-contracts jest --testMatch '**/?(*.)+(spec|test).verify.[tj]s?(x)' --coverageDirectory=./coverage-verify/",
+    "test:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
+    "posttest:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_contractDir=./case-contracts jest --testMatch '**/?(*.)+(spec|test).verify.[tj]s?(x)' --coverageDirectory=./coverage-verify/"
   },
   "funding": {
     "type": "individual",
@@ -72,6 +76,7 @@
     "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-tsdoc": "^0.2.17",
     "jest": "^29.5.0",
+    "lcov-result-merger": "^4.1.0",
     "prettier": "^2.8.4",
     "rimraf": "^5.0.0",
     "ts-jest": "^29.0.5",

@@ -1,10 +1,8 @@
-name: Build, test, package
+name:  Build, test, package (pull request)
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  pull_request:
+    branches: [main]
 
 jobs:
   build-and-test-osx:
@@ -20,13 +18,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: ci/build-and-test.sh
+      - run: ci/build-and-test-pr.sh
         env:
-          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
+          CASE_publish: false
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
-
 
   build-and-test-ubuntu:
     runs-on: ubuntu-latest
@@ -41,13 +37,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: ci/build-and-test.sh
+      - run: ci/build-and-test-pr.sh
         env:
-          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
+          CASE_publish: false
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
-
 
   build-and-test-windows:
     runs-on: windows-latest
@@ -62,11 +56,9 @@ jobs:
         uses: actions/setup-node@v3 
         with:
           node-version: ${{ matrix.node-version }}
-      - run: bash ci/build-and-test.sh
+      - run: bash ci/build-and-test-pr.sh
         shell: bash
         env:
-          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/ 
+          CASE_publish: false
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
-
