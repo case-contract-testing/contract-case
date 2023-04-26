@@ -18,7 +18,13 @@ export const makeContract = (
 ): ContractData => ({
   contractType: 'case::contract',
   description,
-  metadata: { _case: { version: caseVersion } },
+  metadata: {
+    _case: {
+      version: process.env['CASE_MAINTAINER_TESTING_VERSION_OVERRIDE']
+        ? 'case-internal-tests'
+        : caseVersion,
+    },
+  },
   matcherLookup: {} as Record<string, AnyCaseMatcherOrData>,
   examples: new Array<CaseExample>(),
 });
