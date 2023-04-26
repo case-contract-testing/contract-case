@@ -42,9 +42,9 @@
     "format:fix": "npm run format:base -- --write ",
     "pretest": "rimraf temp-contracts && ts-node ./bin/downloadContracts.ts \"http request provider\" && ts-node ./bin/downloadContracts.ts \"http response provider\"",
     "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
-    "posttest": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_contractDir=./temp-contracts jest --testMatch '**/?(*.)+(spec|test).verify.[tj]s?(x)' --coverageDirectory=./coverage-verify/",
+    "posttest": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_contractDir=./temp-contracts jest --testMatch '**/?(*.)+spec.verify.[tj]s' --coverageDirectory=./coverage-verify/",
     "test:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
-    "posttest:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_contractDir=./case-contracts jest --testMatch '**/?(*.)+(spec|test).verify.[tj]s?(x)' --coverageDirectory=./coverage-verify/"
+    "posttest:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_contractDir=./case-contracts jest --testMatch '**/?(*.)+spec.verify.[tj]s' --coverageDirectory=./coverage-verify/"
   },
   "funding": {
     "type": "individual",
