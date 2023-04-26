@@ -5,13 +5,13 @@ import {
   RESULT_FAILURE,
   RESULT_SUCCESS_HAS_MAP_PAYLOAD,
   SuccessWithMap,
-  StateHandler,
-  StateHandlerWithTeardown,
+  BoundaryStateHandler,
+  BoundaryStateHandlerWithTeardown,
 } from '../boundary';
 import { failureToJsError } from './Result';
 
 const wrapSetup =
-  (boundaryHandler: StateHandler) =>
+  (boundaryHandler: BoundaryStateHandler) =>
   (): Promise<void | Record<string, AnyCaseMatcherOrData>> =>
     boundaryHandler.setup().then((result) => {
       switch (result._result) {
@@ -39,9 +39,9 @@ const wrapSetup =
     });
 
 const mapHandlerClass = (
-  boundaryHandler: StateHandler | StateHandlerWithTeardown
+  boundaryHandler: BoundaryStateHandler | BoundaryStateHandlerWithTeardown
 ): StateHandlerFunction => {
-  if (boundaryHandler instanceof StateHandlerWithTeardown) {
+  if (boundaryHandler instanceof BoundaryStateHandlerWithTeardown) {
     return {
       setup: wrapSetup(boundaryHandler),
       teardown: () =>
@@ -75,7 +75,10 @@ type StateHandlerFunction =
     };
 
 export const mapStateHandlers = (
-  boundaryHandlers: Record<string, StateHandler | StateHandlerWithTeardown>
+  boundaryHandlers: Record<
+    string,
+    BoundaryStateHandler | BoundaryStateHandlerWithTeardown
+  >
 ): Record<string, StateHandlerFunction> =>
   Object.entries(boundaryHandlers)
     .map(([key, boundaryHandler]) => ({

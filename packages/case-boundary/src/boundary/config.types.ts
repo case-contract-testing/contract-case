@@ -1,5 +1,5 @@
 import { ITriggerFunction } from './ITriggerFunction';
-import { StateHandler } from './StateHandler';
+import { BoundaryStateHandler } from './StateHandler';
 
 export interface UserNamePassword {
   /**
@@ -101,7 +101,7 @@ export interface ContractCaseBoundaryConfig {
    * [writing state handlers](https://case.contract-testing.io/docs/reference/state-handlers/))
    * for more details
    */
-  readonly stateHandlers?: Record<string, StateHandler>;
+  readonly stateHandlers?: Record<string, BoundaryStateHandler>;
 
   /**
    * Call the native trigger and test function (if any) for this interaction pair.
