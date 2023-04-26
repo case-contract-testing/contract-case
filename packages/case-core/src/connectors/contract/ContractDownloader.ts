@@ -4,7 +4,7 @@ import type { CaseConfig, WriteContract } from '../../core/types';
 
 import type { DataContext, ResultFormatter } from '../../entities/types';
 import { constructDataContext } from '../../entities/context';
-import { configToRunContext } from '../../core/config';
+import { configFromEnv, configToRunContext } from '../../core/config';
 import { writerDependencies } from '../dependencies';
 import { BrokerService } from '../../core/BrokerService';
 import { TestPrinter } from './types';
@@ -27,7 +27,11 @@ export class ContractDownloader {
       dependencies.makeLogger,
       dependencies.resultFormatter,
       {
-        ...configToRunContext({ ...dependencies.defaultConfig, ...config }),
+        ...configToRunContext({
+          ...dependencies.defaultConfig,
+          ...configFromEnv(),
+          ...config,
+        }),
       },
       dependencies.defaultConfig
     );

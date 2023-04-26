@@ -20,6 +20,7 @@ import type {
 } from '../../entities/types';
 import { writerDependencies } from '../dependencies';
 import { TestPrinter } from './types';
+import { configFromEnv } from '../../core/config';
 
 export type DefinitionSuccessExample<
   T extends AnyMockDescriptorType,
@@ -55,8 +56,17 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     printer: TestPrinter,
     dependencies = writerDependencies(printer)
   ) {
-    this.contract = new WritingCaseContract(description, dependencies, config);
-    this.config = config;
+    this.config = {
+      ...dependencies.defaultConfig,
+      ...configFromEnv,
+      ...config,
+    };
+    this.contract = new WritingCaseContract(
+      description,
+      dependencies,
+      this.config
+    );
+
     this.invoker = invoker;
   }
 
