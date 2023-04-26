@@ -46,8 +46,10 @@
     "tsc": {
       "outDir": "build",
       "forceConsistentCasingInFileNames": true,
-      "inlineSourceMap": true,
-      "inlineSources": true
+      "composite": true,
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true
     },
     "targets": {}
   },

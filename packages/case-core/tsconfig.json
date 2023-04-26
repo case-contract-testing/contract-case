@@ -1,6 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "composite": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "declaration": true,
