@@ -23,7 +23,7 @@ const value = (s: string | undefined) => {
   }
 };
 
-const configFromEnv = (): CaseConfig =>
+export const configFromEnv = (): CaseConfig =>
   Object.entries(ENV_TO_CONFIG_KEY)
     .filter(([envKey]) => process.env[envKey] !== undefined)
     .map(([envKey, configKey]) => ({
@@ -31,16 +31,9 @@ const configFromEnv = (): CaseConfig =>
     }))
     .reduce((acc, curr) => ({ ...acc, ...curr }), {});
 
-const transformConfig = (config: CaseConfig): RunContext =>
+export const configToRunContext = (config: CaseConfig): Partial<RunContext> =>
   Object.entries(config)
     .map(([k, v]) => ({
       [`_case:currentRun:context:${k}`]: v,
     }))
-    .reduce((acc, curr) => ({ ...acc, ...curr }), {} as RunContext);
-
-export const configToRunContext = (
-  config: CaseConfig
-): Partial<RunContext> => ({
-  ...transformConfig(configFromEnv()),
-  ...transformConfig(config),
-});
+    .reduce((acc, curr) => ({ ...acc, ...curr }), {} as Partial<RunContext>);

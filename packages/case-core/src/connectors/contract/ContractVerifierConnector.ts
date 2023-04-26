@@ -15,7 +15,7 @@ import type {
   DataContext,
 } from '../../entities/types';
 import { readerDependencies } from '../dependencies';
-import { configToRunContext } from '../../core/config';
+import { configFromEnv, configToRunContext } from '../../core/config';
 import { constructDataContext } from '../../entities/context';
 import { ContractStore } from '../../core/types.ContractReader';
 import { CaseConfigurationError } from '../../entities';
@@ -62,8 +62,10 @@ export class ContractVerifierConnector {
     this.dependencies = dependencies;
     this.config = {
       ...dependencies.defaultConfig,
+      ...configFromEnv(),
       ...userConfig,
     };
+
     this.context = // TODO: Extract constructDataContext to somewhere more DRY
       constructDataContext(
         this.dependencies.makeLogger,
