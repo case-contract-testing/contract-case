@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+/** Represents any matcher, or any json data */
 export type AnyMatcherOrData = any;
+
+/** Represents any matcher that resolves to a string, or any string */
 export type AnyStringMatcher = any;
 
 /* 

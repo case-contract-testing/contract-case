@@ -431,7 +431,7 @@ for a matching behaviour that is already provided by a core ContractCase matcher
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.AnyMatcher.toJSON">toJSON</a></code> | Only override this method if you are writing a matcher from a language other than TypeScript. |
+| <code><a href="#@contract-case/test-equivalence-matchers.AnyMatcher.toJSON">toJSON</a></code> | Only override this method if you are writing a matcher in a language other than TypeScript. |
 
 ---
 
@@ -441,12 +441,12 @@ for a matching behaviour that is already provided by a core ContractCase matcher
 public toJSON(): any
 ```
 
-Only override this method if you are writing a matcher from a language other than TypeScript.
+Only override this method if you are writing a matcher in a language other than TypeScript.
 
 It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.
 
 WARNING: Do not return a string from this method. You must instead return
-an object that can be serialised to JSON following  matcher format
+an object that can be serialised to JSON following the matcher format
 described in [Extending ContractCase](https://case.contract-testing.io/docs/advanced-topics/extending-case).
 
 
@@ -489,7 +489,7 @@ for a matching behaviour that is already provided by a core ContractCase matcher
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcher.toJSON">toJSON</a></code> | Only override this method if you are writing a matcher from a language other than TypeScript. |
+| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcher.toJSON">toJSON</a></code> | Only override this method if you are writing a matcher in a language other than TypeScript. |
 
 ---
 
@@ -499,12 +499,12 @@ for a matching behaviour that is already provided by a core ContractCase matcher
 public toJSON(): any
 ```
 
-Only override this method if you are writing a matcher from a language other than TypeScript.
+Only override this method if you are writing a matcher in a language other than TypeScript.
 
 It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.
 
 WARNING: Do not return a string from this method. You must instead return
-an object that can be serialised to JSON following  matcher format
+an object that can be serialised to JSON following the matcher format
 described in [Extending ContractCase](https://case.contract-testing.io/docs/advanced-topics/extending-case).
 
 
