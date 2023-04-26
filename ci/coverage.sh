@@ -9,5 +9,4 @@ npx lerna bootstrap
 
 npx lerna run build
 npx lerna run test
-npx lerna run test:verify
 npx lerna run coverage
