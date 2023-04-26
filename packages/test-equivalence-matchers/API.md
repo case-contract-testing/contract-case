@@ -110,6 +110,366 @@ Default 1.
 
 ---
 
+### HttpRequestExample <a name="HttpRequestExample" id="@contract-case/test-equivalence-matchers.HttpRequestExample"></a>
+
+#### Initializer <a name="Initializer" id="@contract-case/test-equivalence-matchers.HttpRequestExample.Initializer"></a>
+
+```typescript
+import { HttpRequestExample } from '@contract-case/test-equivalence-matchers'
+
+const httpRequestExample: HttpRequestExample = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequestExample.property.method">method</a></code> | <code>any</code> | A string or string matcher that matches the method used for this example (eg `"GET"` or `"POST"`). |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequestExample.property.path">path</a></code> | <code>any</code> | A string or string matcher that matches the path of this example. |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequestExample.property.body">body</a></code> | <code>any</code> | A test equivalence matcher or json object that describes the body for this response. |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequestExample.property.headers">headers</a></code> | <code>any</code> | A Map of header names and associated test-equivalence matcher values accepted by this example. |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequestExample.property.query">query</a></code> | <code>any</code> | A test-equivalence matcher for the query. |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequestExample.property.uniqueName">uniqueName</a></code> | <code>string</code> | What unique name, if any, to give to this request. |
+
+---
+
+##### `method`<sup>Required</sup> <a name="method" id="@contract-case/test-equivalence-matchers.HttpRequestExample.property.method"></a>
+
+```typescript
+public readonly method: any;
+```
+
+- *Type:* any
+
+A string or string matcher that matches the method used for this example (eg `"GET"` or `"POST"`).
+
+Case insensitive. Note that DELETE, GET and HEAD
+requests should not have bodies - see the HTTP RFCs for details.
+
+---
+
+##### `path`<sup>Required</sup> <a name="path" id="@contract-case/test-equivalence-matchers.HttpRequestExample.property.path"></a>
+
+```typescript
+public readonly path: any;
+```
+
+- *Type:* any
+
+A string or string matcher that matches the path of this example.
+
+Note that any query parameters must be in the query, not in the path.
+
+---
+
+##### `body`<sup>Optional</sup> <a name="body" id="@contract-case/test-equivalence-matchers.HttpRequestExample.property.body"></a>
+
+```typescript
+public readonly body: any;
+```
+
+- *Type:* any
+
+A test equivalence matcher or json object that describes the body for this response.
+
+If not provided, no body matching is performed.
+
+---
+
+##### `headers`<sup>Optional</sup> <a name="headers" id="@contract-case/test-equivalence-matchers.HttpRequestExample.property.headers"></a>
+
+```typescript
+public readonly headers: any;
+```
+
+- *Type:* any
+
+A Map of header names and associated test-equivalence matcher values accepted by this example.
+
+If not provided, no header matching is performed
+
+---
+
+##### `query`<sup>Optional</sup> <a name="query" id="@contract-case/test-equivalence-matchers.HttpRequestExample.property.query"></a>
+
+```typescript
+public readonly query: any;
+```
+
+- *Type:* any
+
+A test-equivalence matcher for the query.
+
+Usually this is a Map of
+test-equivalence matchers to match the parsed query string, keyed by
+parameter name. Repeated parameters are collated and put in an
+array in this map.
+
+---
+
+##### `uniqueName`<sup>Optional</sup> <a name="uniqueName" id="@contract-case/test-equivalence-matchers.HttpRequestExample.property.uniqueName"></a>
+
+```typescript
+public readonly uniqueName: string;
+```
+
+- *Type:* string
+
+What unique name, if any, to give to this request.
+
+---
+
+### HttpRequestExample <a name="HttpRequestExample" id="@contract-case/test-equivalence-matchers.http.HttpRequestExample"></a>
+
+#### Initializer <a name="Initializer" id="@contract-case/test-equivalence-matchers.http.HttpRequestExample.Initializer"></a>
+
+```typescript
+import { http } from '@contract-case/test-equivalence-matchers'
+
+const httpRequestExample: http.HttpRequestExample = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.method">method</a></code> | <code>any</code> | A string or string matcher that matches the method used for this example (eg `"GET"` or `"POST"`). |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.path">path</a></code> | <code>any</code> | A string or string matcher that matches the path of this example. |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.body">body</a></code> | <code>any</code> | A test equivalence matcher or json object that describes the body for this response. |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.headers">headers</a></code> | <code>any</code> | A Map of header names and associated test-equivalence matcher values accepted by this example. |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.query">query</a></code> | <code>any</code> | A test-equivalence matcher for the query. |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.uniqueName">uniqueName</a></code> | <code>string</code> | What unique name, if any, to give to this request. |
+
+---
+
+##### `method`<sup>Required</sup> <a name="method" id="@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.method"></a>
+
+```typescript
+public readonly method: any;
+```
+
+- *Type:* any
+
+A string or string matcher that matches the method used for this example (eg `"GET"` or `"POST"`).
+
+Case insensitive. Note that DELETE, GET and HEAD
+requests should not have bodies - see the HTTP RFCs for details.
+
+---
+
+##### `path`<sup>Required</sup> <a name="path" id="@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.path"></a>
+
+```typescript
+public readonly path: any;
+```
+
+- *Type:* any
+
+A string or string matcher that matches the path of this example.
+
+Note that any query parameters must be in the query, not in the path.
+
+---
+
+##### `body`<sup>Optional</sup> <a name="body" id="@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.body"></a>
+
+```typescript
+public readonly body: any;
+```
+
+- *Type:* any
+
+A test equivalence matcher or json object that describes the body for this response.
+
+If not provided, no body matching is performed.
+
+---
+
+##### `headers`<sup>Optional</sup> <a name="headers" id="@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.headers"></a>
+
+```typescript
+public readonly headers: any;
+```
+
+- *Type:* any
+
+A Map of header names and associated test-equivalence matcher values accepted by this example.
+
+If not provided, no header matching is performed
+
+---
+
+##### `query`<sup>Optional</sup> <a name="query" id="@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.query"></a>
+
+```typescript
+public readonly query: any;
+```
+
+- *Type:* any
+
+A test-equivalence matcher for the query.
+
+Usually this is a Map of
+test-equivalence matchers to match the parsed query string, keyed by
+parameter name. Repeated parameters are collated and put in an
+array in this map.
+
+---
+
+##### `uniqueName`<sup>Optional</sup> <a name="uniqueName" id="@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.uniqueName"></a>
+
+```typescript
+public readonly uniqueName: string;
+```
+
+- *Type:* string
+
+What unique name, if any, to give to this request.
+
+---
+
+### HttpResponseExample <a name="HttpResponseExample" id="@contract-case/test-equivalence-matchers.HttpResponseExample"></a>
+
+#### Initializer <a name="Initializer" id="@contract-case/test-equivalence-matchers.HttpResponseExample.Initializer"></a>
+
+```typescript
+import { HttpResponseExample } from '@contract-case/test-equivalence-matchers'
+
+const httpResponseExample: HttpResponseExample = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpResponseExample.property.status">status</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpResponseExample.property.body">body</a></code> | <code>any</code> | A test equivalence matcher or json object that describes the body for this response. |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpResponseExample.property.headers">headers</a></code> | <code>any</code> | A Map of header names and associated test-equivalence matcher values accepted by this example. |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpResponseExample.property.uniqueName">uniqueName</a></code> | <code>string</code> | What unique name, if any, to give to this response. |
+
+---
+
+##### `status`<sup>Required</sup> <a name="status" id="@contract-case/test-equivalence-matchers.HttpResponseExample.property.status"></a>
+
+```typescript
+public readonly status: any;
+```
+
+- *Type:* any
+
+---
+
+##### `body`<sup>Optional</sup> <a name="body" id="@contract-case/test-equivalence-matchers.HttpResponseExample.property.body"></a>
+
+```typescript
+public readonly body: any;
+```
+
+- *Type:* any
+
+A test equivalence matcher or json object that describes the body for this response.
+
+If not provided, no body matching is performed.
+
+---
+
+##### `headers`<sup>Optional</sup> <a name="headers" id="@contract-case/test-equivalence-matchers.HttpResponseExample.property.headers"></a>
+
+```typescript
+public readonly headers: any;
+```
+
+- *Type:* any
+
+A Map of header names and associated test-equivalence matcher values accepted by this example.
+
+If not provided, no header matching is performed
+
+---
+
+##### `uniqueName`<sup>Optional</sup> <a name="uniqueName" id="@contract-case/test-equivalence-matchers.HttpResponseExample.property.uniqueName"></a>
+
+```typescript
+public readonly uniqueName: string;
+```
+
+- *Type:* string
+
+What unique name, if any, to give to this response.
+
+---
+
+### HttpResponseExample <a name="HttpResponseExample" id="@contract-case/test-equivalence-matchers.http.HttpResponseExample"></a>
+
+#### Initializer <a name="Initializer" id="@contract-case/test-equivalence-matchers.http.HttpResponseExample.Initializer"></a>
+
+```typescript
+import { http } from '@contract-case/test-equivalence-matchers'
+
+const httpResponseExample: http.HttpResponseExample = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.status">status</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.body">body</a></code> | <code>any</code> | A test equivalence matcher or json object that describes the body for this response. |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.headers">headers</a></code> | <code>any</code> | A Map of header names and associated test-equivalence matcher values accepted by this example. |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.uniqueName">uniqueName</a></code> | <code>string</code> | What unique name, if any, to give to this response. |
+
+---
+
+##### `status`<sup>Required</sup> <a name="status" id="@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.status"></a>
+
+```typescript
+public readonly status: any;
+```
+
+- *Type:* any
+
+---
+
+##### `body`<sup>Optional</sup> <a name="body" id="@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.body"></a>
+
+```typescript
+public readonly body: any;
+```
+
+- *Type:* any
+
+A test equivalence matcher or json object that describes the body for this response.
+
+If not provided, no body matching is performed.
+
+---
+
+##### `headers`<sup>Optional</sup> <a name="headers" id="@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.headers"></a>
+
+```typescript
+public readonly headers: any;
+```
+
+- *Type:* any
+
+A Map of header names and associated test-equivalence matcher values accepted by this example.
+
+If not provided, no header matching is performed
+
+---
+
+##### `uniqueName`<sup>Optional</sup> <a name="uniqueName" id="@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.uniqueName"></a>
+
+```typescript
+public readonly uniqueName: string;
+```
+
+- *Type:* string
+
+What unique name, if any, to give to this response.
+
+---
+
 ## Classes <a name="Classes" id="Classes"></a>
 
 ### And <a name="And" id="@contract-case/test-equivalence-matchers.And"></a>
@@ -1994,6 +2354,430 @@ public toJSON(): any
 For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 
+
+
+### HttpRequest <a name="HttpRequest" id="@contract-case/test-equivalence-matchers.HttpRequest"></a>
+
+Matches any HTTP Request with the provided properties.
+
+#### Initializers <a name="Initializers" id="@contract-case/test-equivalence-matchers.HttpRequest.Initializer"></a>
+
+```typescript
+import { HttpRequest } from '@contract-case/test-equivalence-matchers'
+
+new HttpRequest(requestExample: HttpRequestExample)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequest.Initializer.parameter.requestExample">requestExample</a></code> | <code>@contract-case/test-equivalence-matchers.http.HttpRequestExample</code> | - An HttpResponseExample that describes the response. |
+
+---
+
+##### `requestExample`<sup>Required</sup> <a name="requestExample" id="@contract-case/test-equivalence-matchers.HttpRequest.Initializer.parameter.requestExample"></a>
+
+- *Type:* @contract-case/test-equivalence-matchers.http.HttpRequestExample
+
+An HttpResponseExample that describes the response.
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequest.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+
+---
+
+##### `toJSON` <a name="toJSON" id="@contract-case/test-equivalence-matchers.HttpRequest.toJSON"></a>
+
+```typescript
+public toJSON(): any
+```
+
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequest.property.method">method</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequest.property.path">path</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequest.property.body">body</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequest.property.headers">headers</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequest.property.query">query</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpRequest.property.uniqueName">uniqueName</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `method`<sup>Required</sup> <a name="method" id="@contract-case/test-equivalence-matchers.HttpRequest.property.method"></a>
+
+```typescript
+public readonly method: any;
+```
+
+- *Type:* any
+
+---
+
+##### `path`<sup>Required</sup> <a name="path" id="@contract-case/test-equivalence-matchers.HttpRequest.property.path"></a>
+
+```typescript
+public readonly path: any;
+```
+
+- *Type:* any
+
+---
+
+##### `body`<sup>Optional</sup> <a name="body" id="@contract-case/test-equivalence-matchers.HttpRequest.property.body"></a>
+
+```typescript
+public readonly body: any;
+```
+
+- *Type:* any
+
+---
+
+##### `headers`<sup>Optional</sup> <a name="headers" id="@contract-case/test-equivalence-matchers.HttpRequest.property.headers"></a>
+
+```typescript
+public readonly headers: any;
+```
+
+- *Type:* any
+
+---
+
+##### `query`<sup>Optional</sup> <a name="query" id="@contract-case/test-equivalence-matchers.HttpRequest.property.query"></a>
+
+```typescript
+public readonly query: any;
+```
+
+- *Type:* any
+
+---
+
+##### `uniqueName`<sup>Optional</sup> <a name="uniqueName" id="@contract-case/test-equivalence-matchers.HttpRequest.property.uniqueName"></a>
+
+```typescript
+public readonly uniqueName: string;
+```
+
+- *Type:* string
+
+---
+
+
+### HttpRequest <a name="HttpRequest" id="@contract-case/test-equivalence-matchers.http.HttpRequest"></a>
+
+Matches any HTTP Request with the provided properties.
+
+#### Initializers <a name="Initializers" id="@contract-case/test-equivalence-matchers.http.HttpRequest.Initializer"></a>
+
+```typescript
+import { http } from '@contract-case/test-equivalence-matchers'
+
+new http.HttpRequest(requestExample: HttpRequestExample)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.Initializer.parameter.requestExample">requestExample</a></code> | <code>@contract-case/test-equivalence-matchers.http.HttpRequestExample</code> | - An HttpResponseExample that describes the response. |
+
+---
+
+##### `requestExample`<sup>Required</sup> <a name="requestExample" id="@contract-case/test-equivalence-matchers.http.HttpRequest.Initializer.parameter.requestExample"></a>
+
+- *Type:* @contract-case/test-equivalence-matchers.http.HttpRequestExample
+
+An HttpResponseExample that describes the response.
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+
+---
+
+##### `toJSON` <a name="toJSON" id="@contract-case/test-equivalence-matchers.http.HttpRequest.toJSON"></a>
+
+```typescript
+public toJSON(): any
+```
+
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.method">method</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.path">path</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.body">body</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.headers">headers</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.query">query</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.uniqueName">uniqueName</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `method`<sup>Required</sup> <a name="method" id="@contract-case/test-equivalence-matchers.http.HttpRequest.property.method"></a>
+
+```typescript
+public readonly method: any;
+```
+
+- *Type:* any
+
+---
+
+##### `path`<sup>Required</sup> <a name="path" id="@contract-case/test-equivalence-matchers.http.HttpRequest.property.path"></a>
+
+```typescript
+public readonly path: any;
+```
+
+- *Type:* any
+
+---
+
+##### `body`<sup>Optional</sup> <a name="body" id="@contract-case/test-equivalence-matchers.http.HttpRequest.property.body"></a>
+
+```typescript
+public readonly body: any;
+```
+
+- *Type:* any
+
+---
+
+##### `headers`<sup>Optional</sup> <a name="headers" id="@contract-case/test-equivalence-matchers.http.HttpRequest.property.headers"></a>
+
+```typescript
+public readonly headers: any;
+```
+
+- *Type:* any
+
+---
+
+##### `query`<sup>Optional</sup> <a name="query" id="@contract-case/test-equivalence-matchers.http.HttpRequest.property.query"></a>
+
+```typescript
+public readonly query: any;
+```
+
+- *Type:* any
+
+---
+
+##### `uniqueName`<sup>Optional</sup> <a name="uniqueName" id="@contract-case/test-equivalence-matchers.http.HttpRequest.property.uniqueName"></a>
+
+```typescript
+public readonly uniqueName: string;
+```
+
+- *Type:* string
+
+---
+
+
+### HttpResponse <a name="HttpResponse" id="@contract-case/test-equivalence-matchers.HttpResponse"></a>
+
+Matches any HTTP Response with the provided properties.
+
+#### Initializers <a name="Initializers" id="@contract-case/test-equivalence-matchers.HttpResponse.Initializer"></a>
+
+```typescript
+import { HttpResponse } from '@contract-case/test-equivalence-matchers'
+
+new HttpResponse(responseExample: HttpResponseExample)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpResponse.Initializer.parameter.responseExample">responseExample</a></code> | <code>@contract-case/test-equivalence-matchers.http.HttpResponseExample</code> | - An HttpResponseExample that describes the response. |
+
+---
+
+##### `responseExample`<sup>Required</sup> <a name="responseExample" id="@contract-case/test-equivalence-matchers.HttpResponse.Initializer.parameter.responseExample"></a>
+
+- *Type:* @contract-case/test-equivalence-matchers.http.HttpResponseExample
+
+An HttpResponseExample that describes the response.
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpResponse.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+
+---
+
+##### `toJSON` <a name="toJSON" id="@contract-case/test-equivalence-matchers.HttpResponse.toJSON"></a>
+
+```typescript
+public toJSON(): any
+```
+
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpResponse.property.status">status</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpResponse.property.body">body</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpResponse.property.headers">headers</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.HttpResponse.property.uniqueName">uniqueName</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `status`<sup>Required</sup> <a name="status" id="@contract-case/test-equivalence-matchers.HttpResponse.property.status"></a>
+
+```typescript
+public readonly status: any;
+```
+
+- *Type:* any
+
+---
+
+##### `body`<sup>Optional</sup> <a name="body" id="@contract-case/test-equivalence-matchers.HttpResponse.property.body"></a>
+
+```typescript
+public readonly body: any;
+```
+
+- *Type:* any
+
+---
+
+##### `headers`<sup>Optional</sup> <a name="headers" id="@contract-case/test-equivalence-matchers.HttpResponse.property.headers"></a>
+
+```typescript
+public readonly headers: any;
+```
+
+- *Type:* any
+
+---
+
+##### `uniqueName`<sup>Optional</sup> <a name="uniqueName" id="@contract-case/test-equivalence-matchers.HttpResponse.property.uniqueName"></a>
+
+```typescript
+public readonly uniqueName: string;
+```
+
+- *Type:* string
+
+---
+
+
+### HttpResponse <a name="HttpResponse" id="@contract-case/test-equivalence-matchers.http.HttpResponse"></a>
+
+Matches any HTTP Response with the provided properties.
+
+#### Initializers <a name="Initializers" id="@contract-case/test-equivalence-matchers.http.HttpResponse.Initializer"></a>
+
+```typescript
+import { http } from '@contract-case/test-equivalence-matchers'
+
+new http.HttpResponse(responseExample: HttpResponseExample)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.Initializer.parameter.responseExample">responseExample</a></code> | <code>@contract-case/test-equivalence-matchers.http.HttpResponseExample</code> | - An HttpResponseExample that describes the response. |
+
+---
+
+##### `responseExample`<sup>Required</sup> <a name="responseExample" id="@contract-case/test-equivalence-matchers.http.HttpResponse.Initializer.parameter.responseExample"></a>
+
+- *Type:* @contract-case/test-equivalence-matchers.http.HttpResponseExample
+
+An HttpResponseExample that describes the response.
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+
+---
+
+##### `toJSON` <a name="toJSON" id="@contract-case/test-equivalence-matchers.http.HttpResponse.toJSON"></a>
+
+```typescript
+public toJSON(): any
+```
+
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.status">status</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.body">body</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.headers">headers</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.uniqueName">uniqueName</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `status`<sup>Required</sup> <a name="status" id="@contract-case/test-equivalence-matchers.http.HttpResponse.property.status"></a>
+
+```typescript
+public readonly status: any;
+```
+
+- *Type:* any
+
+---
+
+##### `body`<sup>Optional</sup> <a name="body" id="@contract-case/test-equivalence-matchers.http.HttpResponse.property.body"></a>
+
+```typescript
+public readonly body: any;
+```
+
+- *Type:* any
+
+---
+
+##### `headers`<sup>Optional</sup> <a name="headers" id="@contract-case/test-equivalence-matchers.http.HttpResponse.property.headers"></a>
+
+```typescript
+public readonly headers: any;
+```
+
+- *Type:* any
+
+---
+
+##### `uniqueName`<sup>Optional</sup> <a name="uniqueName" id="@contract-case/test-equivalence-matchers.http.HttpResponse.property.uniqueName"></a>
+
+```typescript
+public readonly uniqueName: string;
+```
+
+- *Type:* string
+
+---
 
 
 ### HttpStatusCode <a name="HttpStatusCode" id="@contract-case/test-equivalence-matchers.HttpStatusCode"></a>
