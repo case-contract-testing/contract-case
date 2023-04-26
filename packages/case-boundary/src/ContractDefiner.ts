@@ -15,20 +15,33 @@ import {
   wrapLogPrinter,
 } from './mappers';
 import { MockDefinition } from './types';
-import { ILogPrinter, Result, Success, SuccessWithAny } from './boundary';
+import {
+  ILogPrinter,
+  IResultPrinter,
+  Result,
+  Success,
+  SuccessWithAny,
+} from './boundary';
 import { mapTriggers } from './mappers/triggers';
 
 export class ContractDefiner {
   private readonly constructorConfig: ContractCaseConfig;
 
-  private readonly printer: ILogPrinter;
+  private readonly logPrinter: ILogPrinter;
+
+  private readonly resultPrinter: IResultPrinter;
 
   private definer: ContractDefinerConnector<AnyMockDescriptorType> | undefined;
 
-  constructor(config: ContractCaseConfig, printer: ILogPrinter) {
+  constructor(
+    config: ContractCaseConfig,
+    logPrinter: ILogPrinter,
+    resultPrinter: IResultPrinter
+  ) {
     this.constructorConfig = config;
     this.definer = undefined;
-    this.printer = printer;
+    this.logPrinter = logPrinter;
+    this.resultPrinter = resultPrinter;
   }
 
   private initialiseDefiner() {
@@ -70,7 +83,7 @@ export class ContractDefiner {
               }
             : {}),
         },
-        wrapLogPrinter(this.printer)
+        wrapLogPrinter(this.logPrinter, this.resultPrinter)
       );
     }
   }

@@ -1,8 +1,11 @@
-import { LogPrinter } from '@contract-case/case-core';
-import { ILogPrinter } from '../boundary';
+import { TestPrinter } from '@contract-case/case-core';
+import { ILogPrinter, IResultPrinter } from '../boundary';
 import { handleVoidResult } from './Result';
 
-export const wrapLogPrinter = (printer: ILogPrinter): LogPrinter => ({
+export const wrapLogPrinter = (
+  externalLogger: ILogPrinter,
+  externalPrinter: IResultPrinter
+): TestPrinter => ({
   log: (
     level: string,
     timestamp: string,
@@ -13,7 +16,7 @@ export const wrapLogPrinter = (printer: ILogPrinter): LogPrinter => ({
     additional: string
   ) =>
     handleVoidResult(
-      printer.log(
+      externalLogger.log(
         level,
         timestamp,
         version,
@@ -24,4 +27,14 @@ export const wrapLogPrinter = (printer: ILogPrinter): LogPrinter => ({
       ),
       'CaseCoreError'
     ),
+
+  printMatchError: (details) =>
+    handleVoidResult(externalPrinter.printMatchError(details), 'CaseCoreError'),
+  printMessageError: (details) =>
+    handleVoidResult(
+      externalPrinter.printMessageError(details),
+      'CaseCoreError'
+    ),
+  printTestTitle: (details) =>
+    handleVoidResult(externalPrinter.printTestTitle(details), 'CaseCoreError'),
 });
