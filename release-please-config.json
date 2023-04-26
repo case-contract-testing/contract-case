@@ -1,6 +1,25 @@
 {
   "bootstrap-sha": "63017480c8f1f81bca43a6f6123d764a4163233b",
-  "plugins": ["node-workspace"],
+  "plugins": [
+    { "type": "node-workspace", "merge": false },
+    {
+      "type": "linked-versions",
+      "group-name": "case-core",
+      "components": [
+        "@contract-case/case-core",
+        "@contract-case/case-entities-internal"
+      ]
+    },
+    {
+      "type": "linked-versions",
+      "group-name": "case-boundary",
+      "components": [
+        "@contract-case/case-boundary",
+        "@contract-case/case-example-mock-types",
+        "@contract-case/test-equivalence-matchers"
+      ]
+    }
+  ],
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
   "packages": {
