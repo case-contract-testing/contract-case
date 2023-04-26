@@ -11,4 +11,5 @@ npx lerna run format:check
 npx lerna run build
 npx lerna run lint
 npx lerna run test:local
+npx lerna run test:local:verify
 npx lerna run package
