@@ -7,14 +7,7 @@
       "group-name": "case-core",
       "components": [
         "@contract-case/case-core",
-        "@contract-case/case-entities-internal"
-      ]
-    },
-    {
-      "type": "linked-versions",
-      "group-name": "case-boundary",
-      "components": [
-        "@contract-case/case-boundary",
+        "@contract-case/case-entities-internal",
         "@contract-case/case-example-mock-types",
         "@contract-case/test-equivalence-matchers"
       ]
