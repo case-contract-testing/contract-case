@@ -46,16 +46,7 @@
       "inlineSourceMap": true,
       "inlineSources": true
     },
-    "targets": {
-      "python": {
-        "distName": "contractcase.contractcase.examplemocktypes",
-        "module": "contractcase.contractcase.examplemocktypes"
-      },
-      "dotnet": {
-        "namespace": "ContractTestingIo.ContractCase",
-        "packageId": "ContractTestingIo.ContractCase.CaseExampleTypes"
-      }
-    }
+    "targets": {}
   },
   "devDependencies": {
     "@contract-case/test-equivalence-matchers": "0.0.4",
