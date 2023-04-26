@@ -148,27 +148,52 @@ export const makeBrokerApi: MakeBrokerApi = (
       branch: string | false,
       logContext: LogContext
     ) =>
-      makeAxiosConnector(
-        contract._links['pb:publish-verification-results'].href,
-        auth
-      )
-        .authedPost<
-          WireRequestPublishVerificationResults,
-          PublishVerificationResult
-        >(
-          '',
-          {
-            providerApplicationVersion: providerVersion,
-            success,
-            ...(branch !== false ? { branch } : {}),
-            verifiedByImplementation: 'ContractCase',
-            verifiedByVersion: caseVersion,
-            executionDate: new Date(Date.now()).toISOString(),
-            tags: [],
-          },
-          logContext
-        )
-        .then((t) => t),
+      Promise.resolve()
+        .then(() => {
+          if (contract._links === undefined) {
+            logContext.logger.maintainerDebug(
+              'No links section in the following contract:',
+              contract
+            );
+            throw new CaseConfigurationError(
+              `The contract between ${contract.description.consumerName} and ${contract.description.providerName} does not appear to have a links section. Was it downloaded from a broker?`
+            );
+          }
+          if (
+            contract._links['pb:publish-verification-results'] === undefined
+          ) {
+            logContext.logger.maintainerDebug(
+              'No pb:publish-verification-result section in the following contract:',
+              contract
+            );
+            throw new CaseConfigurationError(
+              `The contract between ${contract.description.consumerName} and ${contract.description.providerName} does not appear to have a publish verification results URL`
+            );
+          }
+        })
+        .then(() =>
+          makeAxiosConnector(
+            contract._links['pb:publish-verification-results'].href,
+            auth
+          )
+            .authedPost<
+              WireRequestPublishVerificationResults,
+              PublishVerificationResult
+            >(
+              '',
+              {
+                providerApplicationVersion: providerVersion,
+                success,
+                ...(branch !== false ? { branch } : {}),
+                verifiedByImplementation: 'ContractCase',
+                verifiedByVersion: caseVersion,
+                executionDate: new Date(Date.now()).toISOString(),
+                tags: [],
+              },
+              logContext
+            )
+            .then((t) => t)
+        ),
 
     downloadContract: (url: string, logContext: LogContext) =>
       makeAxiosConnector(url, auth).authedGet('', logContext),
