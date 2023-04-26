@@ -28,9 +28,8 @@
       "component": "@contract-case/test-equivalence-matchers",
       "changelog-path": "CHANGELOG.md"
     },
-
     ".": {
-      "changelog-path": "CHANGELOG.md"
+      "changelog-path": "docs/maintainers/FULL-CHANGELOG.md"
     }
   }
 }
