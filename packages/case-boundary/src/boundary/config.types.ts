@@ -15,7 +15,7 @@ export interface UserNamePassword {
 /**
  * Configure a ContractCase run. See the [configuration documentation](https://case.contract-testing.io/docs/reference/configuring) for more details.
  */
-export interface ContractCaseConfig {
+export interface ContractCaseBoundaryConfig {
   /**
    * The name of the provider for this contract.
    */
@@ -75,7 +75,7 @@ export interface ContractCaseConfig {
    *
    * Default: `"ONLY_IN_CI"`
    */
-  readonly publish?: string;
+  readonly publish?: string | undefined;
 
   /**
    * The access token to use for the contract broker. Must have CI scope.

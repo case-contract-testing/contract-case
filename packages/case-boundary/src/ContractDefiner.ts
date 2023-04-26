@@ -7,7 +7,7 @@ import {
 } from '@contract-case/case-core';
 import { AnyMatcher } from '@contract-case/test-equivalence-matchers';
 
-import { ContractCaseConfig } from './boundary/types';
+import { ContractCaseBoundaryConfig } from './boundary/types';
 import {
   mapStateHandlers,
   convertConfig,
@@ -25,7 +25,7 @@ import {
 import { mapTriggers } from './mappers/triggers';
 
 export class ContractDefiner {
-  private readonly constructorConfig: ContractCaseConfig;
+  private readonly constructorConfig: ContractCaseBoundaryConfig;
 
   private readonly logPrinter: ILogPrinter;
 
@@ -34,7 +34,7 @@ export class ContractDefiner {
   private definer: ContractDefinerConnector<AnyMockDescriptorType> | undefined;
 
   constructor(
-    config: ContractCaseConfig,
+    config: ContractCaseBoundaryConfig,
     logPrinter: ILogPrinter,
     resultPrinter: IResultPrinter
   ) {
@@ -90,7 +90,7 @@ export class ContractDefiner {
 
   async runExample(
     definition: MockDefinition,
-    runConfig: ContractCaseConfig
+    runConfig: ContractCaseBoundaryConfig
   ): Promise<Result> {
     try {
       this.initialiseDefiner();
@@ -108,7 +108,7 @@ export class ContractDefiner {
 
   async runRejectingExample(
     definition: MockDefinition,
-    runConfig: ContractCaseConfig
+    runConfig: ContractCaseBoundaryConfig
   ): Promise<Result> {
     try {
       this.initialiseDefiner();
