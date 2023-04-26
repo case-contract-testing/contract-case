@@ -16,14 +16,19 @@
       "component": "@contract-case/case-entities-internal",
       "changelog-path": "CHANGELOG.md"
     },
-    "packages/test-equivalence-matchers": {
-      "component": "@contract-case/test-equivalence-matchers",
+    "packages/case-example-mock-types": {
+      "component": "@contract-case/case-example-mock-types",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/documentation": {
       "component": "documentation",
       "changelog-path": "CHANGELOG.md"
     },
+    "packages/test-equivalence-matchers": {
+      "component": "@contract-case/test-equivalence-matchers",
+      "changelog-path": "CHANGELOG.md"
+    },
+
     ".": {
       "changelog-path": "CHANGELOG.md"
     }

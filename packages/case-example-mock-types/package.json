@@ -1,0 +1,128 @@
+{
+  "name": "@contract-case/case-example-mock-types",
+  "version": "0.0.1",
+  "description": "CaseExample mock types component for the ContractCase contract testing suite",
+  "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
+  "homepage": "https://case.contract-testing.io/docs/reference/example-types",
+  "license": "BSD-3-Clause",
+  "main": "build/index.js",
+  "directories": {
+    "src": "src",
+    "build": "build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/case-contract-testing/case.git"
+  },
+  "scripts": {
+    "prebuild": "rimraf build",
+    "build": "jsii && jsii-docgen",
+    "watch": "jsii -w",
+    "package": "jsii-pacmak",
+    "test": "jest",
+    "lint": "eslint src --ext .ts --config .eslintrc.json",
+    "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
+    "format:base": "prettier --parser typescript \"src/**/*.ts\"",
+    "format:check": "npm run format:base -- --list-different",
+    "format:fix": "npm run format:base -- --write "
+  },
+  "bugs": {
+    "url": "https://github.com/case-contract-testing/case/issues"
+  },
+  "jsii": {
+    "excludeTypescript": [
+      "_incoming/**/*",
+      "**/*.spec.ts",
+      "jest.config.ts"
+    ],
+    "outdir": "dist",
+    "versionFormat": "full",
+    "tsc": {
+      "outDir": "build",
+      "forceConsistentCasingInFileNames": true,
+      "inlineSourceMap": true,
+      "inlineSources": true
+    },
+    "targets": {
+      "python": {
+        "distName": "contractcase.contractcase.examplemocktypes",
+        "module": "contractcase.contractcase.examplemocktypes"
+      },
+      "dotnet": {
+        "namespace": "ContractTestingIo.ContractCase",
+        "packageId": "ContractTestingIo.ContractCase.CaseExampleTypes"
+      }
+    }
+  },
+  "devDependencies": {
+    "@contract-case/test-equivalence-matchers": "0.0.4",
+    "@types/jest": "^29.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "jest": "^29.5.0",
+    "jsii": "^5.0.6",
+    "jsii-docgen": "7.2.1",
+    "jsii-pacmak": "^1.80.0",
+    "prettier": "^2.8.7",
+    "rimraf": "^5.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "@contract-case/case-entities-internal": "0.8.0"
+  },
+  "bundledDependencies": [
+    "@contract-case/case-entities-internal"
+  ],
+  "peerDependencies": {
+    "@contract-case/test-equivalence-matchers": "0.0.4"
+  },
+  "stability": "stable",
+  "types": "build/index.d.ts",
+  "nx": {
+    "tasksRunnerOptions": {
+      "default": {
+        "runner": "nx/tasks-runners/default",
+        "options": {
+          "cacheableOperations": [
+            "build",
+            "package",
+            "lint",
+            "format:check",
+            "test"
+          ]
+        }
+      }
+    },
+    "targetDefaults": {
+      "prebuild": {
+        "dependsOn": [
+          "^prebuild"
+        ]
+      },
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "{projectRoot}/build"
+        ]
+      },
+      "package": {
+        "outputs": [
+          "{projectRoot}/dist"
+        ]
+      }
+    }
+  }
+}

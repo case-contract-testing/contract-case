@@ -46,14 +46,14 @@ Next:
 - [ ] Flatten types at the boundary
 
   - [x] Classes for matchers
-  - [ ] Classes for mocks
+  - [x] Classes for mocks
   - [ ] Types for contract definition
     - [x] Types for Triggers
       - [x] Implement triggerAndVerify
     - [x] Types for State Handlers
     - [x] Pass in core printer to Logger
     - [x] Types for Logger
-    - [ ] Types for Result Printer
+    - [x] Types for Result Printer
   - [ ] Types for extensions
     - [ ] Refactor context
   - [ ] Types for contract verification
