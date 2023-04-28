@@ -22,12 +22,12 @@ export type RunTestCallback = (
  * CaseConfigurationError for any configuration issues, and CaseCoreError for
  * any errors in the boundary
  */
-export type TriggerAndTest<T extends AnyMockDescriptorType> = (
-  config: SetupInfoFor<T>
+export type TriggerAndTest = (
+  config: Record<string, unknown>
 ) => Promise<unknown>;
 
 export type Trigger<T extends AnyMockDescriptorType, R = unknown> = (
-  config: SetupInfoFor<T>
+  config: SetupInfoFor<T> | Record<string, unknown>
 ) => Promise<R>;
 
 type TriggerPair<T extends AnyMockDescriptorType, R> = {
@@ -44,7 +44,7 @@ type TriggerPair<T extends AnyMockDescriptorType, R> = {
 
 export type MultiTestInvoker<T extends AnyMockDescriptorType, R = unknown> = {
   stateHandlers?: StateHandlers | undefined;
-  triggerAndTests?: Record<string, TriggerAndTest<T>> | undefined;
+  triggerAndTests?: Record<string, TriggerAndTest> | undefined;
   triggers?: Record<string, TriggerPair<T, R>> | undefined;
 };
 
@@ -54,7 +54,7 @@ export type TestInvoker<
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
   mockDescription: CaseMockDescriptorFor<T>;
-  triggerAndTest?: TriggerAndTest<T>;
+  triggerAndTest?: TriggerAndTest;
   trigger?: Trigger<T, R> | undefined;
   testResponse?:
     | ((data: R, config: Assertable<T>['config']) => unknown)

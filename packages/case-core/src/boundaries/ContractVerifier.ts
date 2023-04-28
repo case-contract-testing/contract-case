@@ -4,7 +4,10 @@ import {
   RunTestCallback,
 } from '../core/executeExample/types';
 import { CaseConfig } from '../core/types';
-import { AnyMockDescriptorType, ContractDescription } from '../entities/types';
+import {
+  AnyMockDescriptorType,
+  CaseContractDescription,
+} from '../entities/types';
 import { defaultPrinter } from './defaultTestPrinter';
 
 export class ContractVerifier {
@@ -25,7 +28,7 @@ export class ContractVerifier {
     );
   }
 
-  getAvailableContractDescriptions(): ContractDescription[] {
+  getAvailableContractDescriptions(): CaseContractDescription[] {
     return this.coreVerifier.getAvailableContractDescriptions();
   }
 

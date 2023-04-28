@@ -112,7 +112,12 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
     context.logger.debug(
       `Invoking provided trigger / test for '${names.requestName}'`
     );
-    return invokeTrigger(triggerAndTest, () => {}, assertable.config, context);
+    return invokeTrigger(
+      triggerAndTest as Trigger<T>,
+      () => {},
+      assertable.config,
+      context
+    );
   }
   if (trigger !== undefined) {
     if (testErrorResponse === undefined && testResponse === undefined) {
@@ -145,7 +150,12 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
         `Invoking provided trigger for '${names.requestName}', and verification for a successful '${names.responseName}'`
       );
       context.logger.maintainerDebug(`Trigger is from triggersAndTests`);
-      return invokeTrigger(fun, () => {}, assertable.config, context);
+      return invokeTrigger(
+        fun as Trigger<T>,
+        () => {},
+        assertable.config,
+        context
+      );
     }
   }
   if (triggers !== undefined) {

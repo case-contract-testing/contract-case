@@ -10,7 +10,7 @@ import type { WriteContract } from '../../core/types';
 import { CaseConfigurationError } from '../../entities';
 import type {
   HasContractFileConfig,
-  ContractDescription,
+  CaseContractDescription,
   ContractData,
   DataContext,
 } from '../../entities/types';
@@ -58,7 +58,7 @@ const EXTENSION = '.case.json';
 const escapeFileName = (pathString: string) => filenamify(pathString);
 
 const makeFilename = (
-  description: ContractDescription,
+  description: CaseContractDescription,
   config: HasContractFileConfig
 ) =>
   escapeFileName(
@@ -68,7 +68,7 @@ const makeFilename = (
   );
 
 const makePath = (
-  description: ContractDescription,
+  description: CaseContractDescription,
   config: HasContractFileConfig
 ) =>
   path.join(

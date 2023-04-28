@@ -15,7 +15,7 @@ import type {
   AnyMockDescriptorType,
   AnyState,
   CaseMockDescriptorFor,
-  ContractDescription,
+  CaseContractDescription,
   SetupInfoFor,
 } from '../../entities/types';
 import { writerDependencies } from '../dependencies';
@@ -50,7 +50,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
   config: CaseConfig;
 
   constructor(
-    description: ContractDescription,
+    description: CaseContractDescription,
     config: CaseConfig,
     invoker: MultiTestInvoker<M>,
     printer: TestPrinter,

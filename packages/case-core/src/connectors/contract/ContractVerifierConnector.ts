@@ -11,7 +11,7 @@ import { ReadingCaseContract } from '../../core/ReadingCaseContract';
 
 import type {
   AnyMockDescriptorType,
-  ContractDescription,
+  CaseContractDescription,
   DataContext,
 } from '../../entities/types';
 import { readerDependencies } from '../dependencies';
@@ -83,7 +83,7 @@ export class ContractVerifierConnector {
     this.callback = callback;
   }
 
-  getAvailableContractDescriptions(): ContractDescription[] {
+  getAvailableContractDescriptions(): CaseContractDescription[] {
     return this.contracts.map((link) => link.contents.description);
   }
 

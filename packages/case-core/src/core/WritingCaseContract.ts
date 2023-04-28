@@ -5,7 +5,7 @@ import { applyNodeToContext, addLocation } from '../entities/context';
 import { nameMock, exampleToNames } from '../entities/contract';
 import { makeResults } from '../entities/results';
 import {
-  type ContractDescription,
+  type CaseContractDescription,
   SETUP_VARIABLE_STATE,
   type CaseExample,
   type MatchContext,
@@ -28,7 +28,7 @@ export class WritingCaseContract extends BaseCaseContract {
   private dependencies: WriterDependencies;
 
   constructor(
-    description: ContractDescription,
+    description: CaseContractDescription,
     dependencies: WriterDependencies,
     config: CaseConfig
   ) {

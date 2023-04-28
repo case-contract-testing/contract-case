@@ -5,7 +5,7 @@ import type {
   CaseError,
 } from '../../entities/types';
 
-export interface ContractDescription {
+export interface CaseContractDescription {
   consumerName: string;
   providerName: string;
 }
@@ -41,7 +41,7 @@ export type ExampleNames = {
 
 export interface ContractData {
   contractType: 'case::contract';
-  description: ContractDescription;
+  description: CaseContractDescription;
   metadata: Record<string, string | Record<string, string>>;
   matcherLookup: Record<string, AnyCaseMatcherOrData>;
   examples: Array<CaseExample>;

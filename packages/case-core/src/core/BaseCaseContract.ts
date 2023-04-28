@@ -12,7 +12,7 @@ import { hasErrors } from '../entities/results';
 import type {
   ContractData,
   MatchContext,
-  ContractDescription,
+  CaseContractDescription,
   LogLevelContext,
   Logger,
   RawLookupFns,
@@ -39,7 +39,7 @@ export class BaseCaseContract {
   initialContext: MatchContext;
 
   constructor(
-    description: ContractDescription,
+    description: CaseContractDescription,
     config: CaseConfig,
     defaultConfig: CaseConfig,
     resultPrinter: ResultFormatter,

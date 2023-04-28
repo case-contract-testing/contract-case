@@ -4,7 +4,7 @@ import {
 } from '@contract-case/case-entities-internal';
 import { caseVersion } from '../../entities/caseVersion';
 import type {
-  ContractDescription,
+  CaseContractDescription,
   ContractData,
   CaseExample,
   MatchContextWithoutLookup,
@@ -14,7 +14,7 @@ import { addMock, addMatcher } from './lookup';
 import { addLookup, findLookup } from './lookup/internals';
 
 export const makeContract = (
-  description: ContractDescription
+  description: CaseContractDescription
 ): ContractData => ({
   contractType: 'case::contract',
   description,

@@ -2,13 +2,13 @@ import type { MultiTestInvoker } from '../../core/executeExample/types';
 import type { CaseConfig } from '../../core/types';
 import type {
   AnyMockDescriptorType,
-  ContractDescription,
+  CaseContractDescription,
 } from '../../entities/types';
 import { ContractDefiner } from '../ContractDefiner';
 import { ContractVerifier } from '../ContractVerifier';
 
 export type CaseJestConfig<T extends AnyMockDescriptorType> =
-  ContractDescription & {
+  CaseContractDescription & {
     config?: CaseConfig & MultiTestInvoker<T>;
   };
 
