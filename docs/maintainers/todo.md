@@ -11,23 +11,6 @@
 - [ ] Extract Jest
 - [ ] Release C# ?
 
-## Package structure
-
-- ${LANGUAGE}-DSL - The layer that users will actually use. Contains no features except for making Case idiomatic for that language. Mostly just a wrapper for Case-Boundaries to make error handling nice.
-  - depends on case-boundary-internal
-
-### Monorepo contains:
-
-- Case-Boundary-Internal (the JSii layer that is the exported interface)
-  - depends on case-core
-- Case-CLI (Compiles to a cross platform CLI for contract manipulation with the broker)
-  - depends on case-core
-- Case-Test-Equivalence-Matchers (the JSii layer that just describes the matcher contents - separate because otherwise people might call the wrong thing in the boundaries layer)
-  - depends on case-entities and case-core
-- Case-Core (implements the actual matching + core)
-  - depends on case-entities
-- Case-entities (typescript types and helpers imported by both core and boundaries. Separate to avoid a circular dependency)
-
 ## Todo list
 
 Next:
@@ -68,6 +51,8 @@ Next:
   - [ ] Error handling boundary
   - [ ] Crash messages
   - [ ] Case Matcher functions
+
+- [ ] Add @subclassable tags
 
 - [ ] Documentation pipeline for Matchers
 - [x] Documentation for config object
