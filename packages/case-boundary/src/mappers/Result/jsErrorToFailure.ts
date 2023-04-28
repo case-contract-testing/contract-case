@@ -1,13 +1,17 @@
-import { Failure } from '../../boundary';
+import { BoundaryFailure } from '../../boundary';
 
-export const jsErrorToFailure = (e: unknown): Failure => {
+export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
   if (e instanceof Error) {
-    return new Failure(e.name, e.message, e.stack ?? 'unknown location');
+    return new BoundaryFailure(
+      e.name,
+      e.message,
+      e.stack ?? 'unknown location'
+    );
   }
 
   const target = { stack: '' };
   Error.captureStackTrace(target);
-  return new Failure(
+  return new BoundaryFailure(
     'CaseCoreError',
     `Caught something that doesn't seem to be an error: ${e}`,
     target.stack

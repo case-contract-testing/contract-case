@@ -4,7 +4,7 @@ import {
   RESULT_SUCCESS,
   RESULT_FAILURE,
   RESULT_SUCCESS_HAS_MAP_PAYLOAD,
-  SuccessWithMap,
+  BoundarySuccessWithMap,
   BoundaryStateHandler,
   BoundaryStateHandlerWithTeardown,
 } from '../boundary';
@@ -20,7 +20,7 @@ const wrapSetup =
         case RESULT_FAILURE:
           throw failureToJsError(result);
         case RESULT_SUCCESS_HAS_MAP_PAYLOAD:
-          if (result instanceof SuccessWithMap) {
+          if (result instanceof BoundarySuccessWithMap) {
             // eslint-disable-next-line consistent-return
             return result.payload as Record<string, AnyCaseMatcherOrData>;
           }

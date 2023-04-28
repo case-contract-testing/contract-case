@@ -3,18 +3,18 @@ export const RESULT_SUCCESS_HAS_MAP_PAYLOAD = 'SuccessMap';
 export const RESULT_SUCCESS_HAS_ANY_PAYLOAD = 'SuccessAny';
 export const RESULT_FAILURE = 'Failure';
 
-type ResultType =
+type BoundaryResultType =
   | typeof RESULT_SUCCESS
   | typeof RESULT_SUCCESS_HAS_MAP_PAYLOAD
   | typeof RESULT_SUCCESS_HAS_ANY_PAYLOAD
   | typeof RESULT_FAILURE;
 
 /** Supertype for all methods that return results */
-export abstract class Result {
+export abstract class BoundaryResult {
   /** @internal */
-  readonly _result: ResultType;
+  readonly _result: BoundaryResultType;
 
-  constructor(result: ResultType) {
+  constructor(result: BoundaryResultType) {
     this._result = result;
   }
 }

@@ -1,6 +1,9 @@
-import { Result, RESULT_SUCCESS_HAS_ANY_PAYLOAD } from './Result';
+import {
+  BoundaryResult,
+  RESULT_SUCCESS_HAS_ANY_PAYLOAD,
+} from './BoundaryResult';
 
-export class SuccessWithAny extends Result {
+export class BoundarySuccessWithAny extends BoundaryResult {
   /** @internal */
   readonly _result: typeof RESULT_SUCCESS_HAS_ANY_PAYLOAD;
 

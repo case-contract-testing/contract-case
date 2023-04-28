@@ -1,6 +1,9 @@
-import { Result, RESULT_SUCCESS_HAS_MAP_PAYLOAD } from './Result';
+import {
+  BoundaryResult,
+  RESULT_SUCCESS_HAS_MAP_PAYLOAD,
+} from './BoundaryResult';
 
-export class SuccessWithMap extends Result {
+export class BoundarySuccessWithMap extends BoundaryResult {
   /** @internal */
   readonly _result: typeof RESULT_SUCCESS_HAS_MAP_PAYLOAD;
 

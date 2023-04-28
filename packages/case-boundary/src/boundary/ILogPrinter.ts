@@ -1,4 +1,4 @@
-import { Result } from './Result';
+import { BoundaryResult } from './Result';
 
 /**
  * Data class to hold data to print a message error during matching
@@ -86,17 +86,17 @@ export interface IResultPrinter {
   /**
    * Called by ContractCase to ask the DSL to print an individual match error line.
    */
-  printMatchError(MatchErrorDescription: PrintableMatchError): Result;
+  printMatchError(MatchErrorDescription: PrintableMatchError): BoundaryResult;
 
   /**
    * Called by ContractCase to ask the DSL to print an error during testing that doesn't have an expected / actual value
    */
-  printMessageError(messageErrorDetails: PrintableMessageError): Result;
+  printMessageError(messageErrorDetails: PrintableMessageError): BoundaryResult;
 
   /**
    * Called by ContractCase to ask the DSL to print a test title or main execution details (eg for contract downloading).
    */
-  printTestTitle(titleDetails: PrintableTestTitle): Result;
+  printTestTitle(titleDetails: PrintableTestTitle): BoundaryResult;
 }
 
 export interface ILogPrinter {
@@ -126,7 +126,7 @@ export interface ILogPrinter {
     location: string,
     message: string,
     additional: string
-  ): Result;
+  ): BoundaryResult;
 }
 
 export interface ICombinedPrinter extends IResultPrinter, ILogPrinter {}

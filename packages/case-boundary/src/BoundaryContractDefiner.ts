@@ -18,9 +18,9 @@ import { MockDefinition } from './types';
 import {
   ILogPrinter,
   IResultPrinter,
-  Result,
-  Success,
-  SuccessWithAny,
+  BoundaryResult,
+  BoundarySuccess,
+  BoundarySuccessWithAny,
 } from './boundary';
 import { mapTriggers } from './mappers/triggers';
 
@@ -91,7 +91,7 @@ export class BoundaryContractDefiner {
   async runExample(
     definition: MockDefinition,
     runConfig: ContractCaseBoundaryConfig
-  ): Promise<Result> {
+  ): Promise<BoundaryResult> {
     try {
       this.initialiseDefiner();
       if (this.definer === undefined) {
@@ -100,7 +100,7 @@ export class BoundaryContractDefiner {
         );
       }
       await this.definer.runExample(definition, convertConfig(runConfig));
-      return new Success();
+      return new BoundarySuccess();
     } catch (e) {
       return jsErrorToFailure(e);
     }
@@ -109,7 +109,7 @@ export class BoundaryContractDefiner {
   async runRejectingExample(
     definition: MockDefinition,
     runConfig: ContractCaseBoundaryConfig
-  ): Promise<Result> {
+  ): Promise<BoundaryResult> {
     try {
       this.initialiseDefiner();
       if (this.definer === undefined) {
@@ -121,13 +121,13 @@ export class BoundaryContractDefiner {
         definition,
         convertConfig(runConfig)
       );
-      return new Success();
+      return new BoundarySuccess();
     } catch (e) {
       return jsErrorToFailure(e);
     }
   }
 
-  stripMatchers(matcherOrData: AnyMatcher): Result {
+  stripMatchers(matcherOrData: AnyMatcher): BoundaryResult {
     try {
       this.initialiseDefiner();
       if (this.definer === undefined) {
@@ -136,7 +136,7 @@ export class BoundaryContractDefiner {
         );
       }
 
-      return new SuccessWithAny(
+      return new BoundarySuccessWithAny(
         this.definer.stripMatchers(JSON.parse(JSON.stringify(matcherOrData)))
       );
     } catch (e) {
@@ -144,7 +144,7 @@ export class BoundaryContractDefiner {
     }
   }
 
-  endRecord(): Promise<Result> {
+  endRecord(): Promise<BoundaryResult> {
     return Promise.resolve()
       .then(() => {
         this.initialiseDefiner();
@@ -155,7 +155,7 @@ export class BoundaryContractDefiner {
         }
         return this.definer.endRecord();
       })
-      .then(() => new Success())
+      .then(() => new BoundarySuccess())
       .catch((e) => jsErrorToFailure(e));
   }
 }

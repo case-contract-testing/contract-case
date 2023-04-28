@@ -1,6 +1,6 @@
-import { RESULT_FAILURE, Result } from './Result';
+import { RESULT_FAILURE, BoundaryResult } from './BoundaryResult';
 
-export class Failure extends Result {
+export class BoundaryFailure extends BoundaryResult {
   /** @internal */
   readonly _result: typeof RESULT_FAILURE;
 

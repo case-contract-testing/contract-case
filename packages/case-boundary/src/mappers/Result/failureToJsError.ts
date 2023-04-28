@@ -4,7 +4,7 @@ import {
   CaseTriggerError,
   VerifyTriggerReturnObjectError,
 } from '@contract-case/case-core';
-import { Failure, Result } from '../../boundary';
+import { BoundaryFailure, BoundaryResult } from '../../boundary';
 import { ErrorType } from './types';
 
 const errorMessage = (message: string, location: string) =>
@@ -28,10 +28,10 @@ const makeError = (kind: ErrorType, message: string) => {
 };
 
 export const failureToJsError = (
-  result: Result,
+  result: BoundaryResult,
   defaultError: ErrorType = 'CaseConfigurationError'
 ): Error => {
-  if (result instanceof Failure) {
+  if (result instanceof BoundaryFailure) {
     switch (result.kind) {
       case 'CaseCoreError':
       case 'CaseTriggerError':

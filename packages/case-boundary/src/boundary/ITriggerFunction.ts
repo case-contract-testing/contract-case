@@ -1,5 +1,5 @@
-import { Result } from './Result';
+import { BoundaryResult } from './Result';
 
 export interface ITriggerFunction {
-  trigger(config: Record<string, unknown>): Promise<Result>;
+  trigger(config: Record<string, unknown>): Promise<BoundaryResult>;
 }
