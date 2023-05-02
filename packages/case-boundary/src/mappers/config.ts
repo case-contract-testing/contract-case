@@ -56,12 +56,15 @@ export const convertConfig = ({
   stateHandlers,
   triggerAndTest,
   triggerAndTests,
+  logLevel,
+  publish,
   ...incoming
 }: ContractCaseBoundaryConfig): SeparateConfig => ({
   config: {
     ...incoming,
-    logLevel: mapLogLevel(incoming.logLevel),
-    publish: mapPublish(incoming.publish),
+    ...(logLevel ? { logLevel: mapLogLevel(logLevel) } : {}),
+    ...(publish ? { publish: mapPublish(publish) } : {}),
+    baseUrlUnderTest: `http://localhost:${8084}`,
   },
   partialInvoker: {
     ...(stateHandlers
