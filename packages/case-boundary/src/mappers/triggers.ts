@@ -9,9 +9,10 @@ import { failureToJsError } from './Result';
 
 export const mapTrigger =
   (trigger: ITriggerFunction) =>
-  (config: Record<string, unknown>): Promise<void> =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (config: Record<string, any>): Promise<void> =>
     trigger.trigger(config).then((result) => {
-      switch (result._result) {
+      switch (result.resultType) {
         case RESULT_SUCCESS:
         case RESULT_SUCCESS_HAS_MAP_PAYLOAD:
           return;
@@ -19,14 +20,15 @@ export const mapTrigger =
           throw failureToJsError(result);
         default:
           throw new CaseCoreError(
-            `Unknown result type '${result._result}' during trigger handler`
+            `Unknown result type '${result.resultType}' during trigger handler`
           );
       }
     });
 
 export const mapTriggers = (
   triggers: Record<string, ITriggerFunction>
-): Record<string, (config: Record<string, unknown>) => Promise<void>> =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Record<string, (config: Record<string, any>) => Promise<void>> =>
   Object.entries(triggers)
     .map(([key, value]) => ({ [`${key}`]: mapTrigger(value) }))
     .reduce(

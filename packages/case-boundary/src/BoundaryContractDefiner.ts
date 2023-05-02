@@ -1,20 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   AnyMockDescriptorType,
+  AnyState,
+  CaseConfig,
   CaseConfigurationError,
   CaseCoreError,
   ContractDefinerConnector,
 } from '@contract-case/case-core';
 import { AnyMatcher } from '@contract-case/test-equivalence-matchers';
+import { TestInvoker } from '@contract-case/case-core/dist/src/core/executeExample/types';
+import { AnyMockDescriptor } from '@contract-case/case-core/dist/src/entities/types';
 
 import { ContractCaseBoundaryConfig } from './boundary/types';
-import {
-  mapStateHandlers,
-  convertConfig,
-  jsErrorToFailure,
-  wrapLogPrinter,
-} from './mappers';
-import { MockDefinition } from './types';
+import { convertConfig, jsErrorToFailure, wrapLogPrinter } from './mappers';
+import { BoundaryMockDefinition } from './types';
 import {
   ILogPrinter,
   IResultPrinter,
@@ -22,16 +21,47 @@ import {
   BoundarySuccess,
   BoundarySuccessWithAny,
 } from './boundary';
-import { mapTriggers } from './mappers/triggers';
+
+type Definition = {
+  states: Array<AnyState>;
+  definition: AnyMockDescriptor;
+};
+
+const mapDefinitionPart = (matcherOrData: unknown): Definition =>
+  JSON.parse(JSON.stringify(matcherOrData));
+
+const mapDefinition = (
+  definition: BoundaryMockDefinition,
+  {
+    stateHandlers,
+    triggerAndTests,
+    triggerAndTest,
+  }: Partial<TestInvoker<AnyMockDescriptorType>>,
+  config: CaseConfig
+) => ({
+  ...mapDefinitionPart(definition),
+  ...(stateHandlers
+    ? {
+        stateHandlers,
+      }
+    : {}),
+  ...(triggerAndTests
+    ? {
+        triggerAndTests,
+      }
+    : {}),
+  ...(triggerAndTest ? { triggerAndTest } : {}),
+  config,
+});
 
 export class BoundaryContractDefiner {
+  private definer: ContractDefinerConnector<AnyMockDescriptorType> | undefined;
+
   private readonly constructorConfig: ContractCaseBoundaryConfig;
 
   private readonly logPrinter: ILogPrinter;
 
   private readonly resultPrinter: IResultPrinter;
-
-  private definer: ContractDefinerConnector<AnyMockDescriptorType> | undefined;
 
   constructor(
     config: ContractCaseBoundaryConfig,
@@ -46,7 +76,7 @@ export class BoundaryContractDefiner {
 
   private initialiseDefiner() {
     if (this.definer === undefined) {
-      const config = convertConfig(this.constructorConfig);
+      const { config, partialInvoker } = convertConfig(this.constructorConfig);
 
       if (config.consumerName === undefined || config.consumerName === '') {
         throw new CaseConfigurationError(
@@ -66,30 +96,14 @@ export class BoundaryContractDefiner {
           providerName: config.providerName,
         },
         config,
-        {
-          ...(this.constructorConfig.stateHandlers
-            ? {
-                stateHandlers: mapStateHandlers(
-                  this.constructorConfig.stateHandlers
-                ),
-              }
-            : {}),
-
-          ...(this.constructorConfig.triggerAndTests
-            ? {
-                triggerAndTests: mapTriggers(
-                  this.constructorConfig.triggerAndTests
-                ),
-              }
-            : {}),
-        },
+        partialInvoker,
         wrapLogPrinter(this.logPrinter, this.resultPrinter)
       );
     }
   }
 
   async runExample(
-    definition: MockDefinition,
+    definition: BoundaryMockDefinition,
     runConfig: ContractCaseBoundaryConfig
   ): Promise<BoundaryResult> {
     try {
@@ -99,7 +113,12 @@ export class BoundaryContractDefiner {
           'Definer was undefined after it was initialised (runExample)'
         );
       }
-      await this.definer.runExample(definition, convertConfig(runConfig));
+
+      const { config, partialInvoker } = convertConfig(runConfig);
+      await this.definer.runExample(
+        mapDefinition(definition, partialInvoker, config),
+        config
+      );
       return new BoundarySuccess();
     } catch (e) {
       return jsErrorToFailure(e);
@@ -107,7 +126,7 @@ export class BoundaryContractDefiner {
   }
 
   async runRejectingExample(
-    definition: MockDefinition,
+    definition: BoundaryMockDefinition,
     runConfig: ContractCaseBoundaryConfig
   ): Promise<BoundaryResult> {
     try {
@@ -117,9 +136,10 @@ export class BoundaryContractDefiner {
           'Definer was undefined after it was initialised (runRejectingExample)'
         );
       }
+      const { config, partialInvoker } = convertConfig(runConfig);
       await this.definer.runRejectingExample(
-        definition,
-        convertConfig(runConfig)
+        { ...mapDefinition(definition, partialInvoker, config) },
+        config
       );
       return new BoundarySuccess();
     } catch (e) {

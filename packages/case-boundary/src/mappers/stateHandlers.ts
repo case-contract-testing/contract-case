@@ -14,7 +14,7 @@ const wrapSetup =
   (boundaryHandler: BoundaryStateHandler) =>
   (): Promise<void | Record<string, AnyCaseMatcherOrData>> =>
     boundaryHandler.setup().then((result) => {
-      switch (result._result) {
+      switch (result.resultType) {
         case RESULT_SUCCESS:
           return;
         case RESULT_FAILURE:
@@ -33,7 +33,7 @@ const wrapSetup =
           );
         default:
           throw new CaseCoreError(
-            `Unknown result type '${result._result}' during setup handler`
+            `Unknown result type '${result.resultType}' during setup handler`
           );
       }
     });
@@ -46,7 +46,7 @@ const mapHandlerClass = (
       setup: wrapSetup(boundaryHandler),
       teardown: () =>
         boundaryHandler.teardown().then((result) => {
-          switch (result._result) {
+          switch (result.resultType) {
             case RESULT_SUCCESS:
               return;
             case RESULT_FAILURE:
@@ -58,7 +58,7 @@ const mapHandlerClass = (
               );
             default:
               throw new CaseCoreError(
-                `Unknown result type '${result._result}' during setup handler`
+                `Unknown result type '${result.resultType}' during setup handler`
               );
           }
         }),

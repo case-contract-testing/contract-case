@@ -9,12 +9,25 @@ type BoundaryResultType =
   | typeof RESULT_SUCCESS_HAS_ANY_PAYLOAD
   | typeof RESULT_FAILURE;
 
+export class ResultTypeConstants {
+  static readonly RESULT_SUCCESS = RESULT_SUCCESS;
+
+  static readonly RESULT_SUCCESS_HAS_MAP_PAYLOAD =
+    RESULT_SUCCESS_HAS_MAP_PAYLOAD;
+
+  static readonly RESULT_SUCCESS_HAS_ANY_PAYLOAD =
+    RESULT_SUCCESS_HAS_ANY_PAYLOAD;
+
+  static readonly RESULT_FAILURE = RESULT_FAILURE;
+}
+
 /** Supertype for all methods that return results */
 export abstract class BoundaryResult {
-  /** @internal */
-  readonly _result: BoundaryResultType;
+  /* One of the constants from ResultTypeConstants indicating what the type of
+   * this result is */
+  readonly resultType: BoundaryResultType;
 
   constructor(result: BoundaryResultType) {
-    this._result = result;
+    this.resultType = result;
   }
 }

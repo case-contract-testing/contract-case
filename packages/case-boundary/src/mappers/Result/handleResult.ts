@@ -7,13 +7,13 @@ export const handleVoidResult = (
   result: BoundaryResult,
   defaultError: ErrorType
 ): void => {
-  if (result._result === RESULT_SUCCESS) {
+  if (result.resultType === RESULT_SUCCESS) {
     return;
   }
-  if (result._result === RESULT_FAILURE) {
+  if (result.resultType === RESULT_FAILURE) {
     throw failureToJsError(result, defaultError);
   }
   throw new CaseCoreError(
-    `Encountered an unexpected result type: ${result._result}`
+    `Encountered an unexpected result type: ${result.resultType}`
   );
 };

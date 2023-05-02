@@ -1,9 +1,13 @@
 import {
+  AnyMockDescriptorType,
   CaseConfig,
   CaseConfigurationError,
   LogLevel,
 } from '@contract-case/case-core';
+import { TestInvoker } from '@contract-case/case-core/dist/src/core/executeExample/types';
 import { ContractCaseBoundaryConfig } from '../boundary/config.types';
+import { mapStateHandlers } from './stateHandlers';
+import { mapTrigger, mapTriggers } from './triggers';
 
 const mapLogLevel = (levelString: string | undefined): LogLevel | undefined => {
   switch (levelString) {
@@ -43,10 +47,37 @@ const mapPublish = (
   }
 };
 
-export const convertConfig = (
-  incoming: ContractCaseBoundaryConfig
-): CaseConfig => ({
-  ...incoming,
-  logLevel: mapLogLevel(incoming.logLevel),
-  publish: mapPublish(incoming.publish),
+type SeparateConfig = {
+  config: CaseConfig;
+  partialInvoker: Partial<TestInvoker<AnyMockDescriptorType, unknown>>;
+};
+
+export const convertConfig = ({
+  stateHandlers,
+  triggerAndTest,
+  triggerAndTests,
+  ...incoming
+}: ContractCaseBoundaryConfig): SeparateConfig => ({
+  config: {
+    ...incoming,
+    logLevel: mapLogLevel(incoming.logLevel),
+    publish: mapPublish(incoming.publish),
+  },
+  partialInvoker: {
+    ...(stateHandlers
+      ? {
+          stateHandlers: mapStateHandlers(stateHandlers),
+        }
+      : {}),
+    ...(triggerAndTest
+      ? {
+          triggerAndTest: mapTrigger(triggerAndTest),
+        }
+      : {}),
+    ...(triggerAndTests
+      ? {
+          triggerAndTests: mapTriggers(triggerAndTests),
+        }
+      : {}),
+  },
 });

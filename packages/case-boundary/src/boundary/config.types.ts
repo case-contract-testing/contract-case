@@ -45,7 +45,7 @@ export interface ContractCaseBoundaryConfig {
    * will generate the filename for you (unless `contractFilename` is specified,
    * in which case this setting is ignored)
    */
-  readonly contractDir: string;
+  readonly contractDir?: string;
   /**
    * The filename where the contract will be written. If you
    * provide this, `contractDir` is ignored
@@ -53,7 +53,8 @@ export interface ContractCaseBoundaryConfig {
   readonly contractFilename?: string;
 
   readonly testRunId: string;
-  readonly printResults: boolean;
+
+  readonly printResults?: boolean;
 
   /**
    * Whether or not the test should throw an error if the matching fails.
@@ -108,4 +109,10 @@ export interface ContractCaseBoundaryConfig {
    * Keyed by `${requestName}::${responseName}`
    */
   readonly triggerAndTests?: Record<string, ITriggerFunction>;
+
+  /**
+   * Call the native trigger and test function (if any) for this interaction pair.
+   * Keyed by `${requestName}::${responseName}`
+   */
+  readonly triggerAndTest?: ITriggerFunction;
 }
