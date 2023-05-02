@@ -35,6 +35,10 @@ export interface MatchContextByType {
   '_case:context:matchBy': 'type';
 }
 
+export interface MatchContextByExact {
+  '_case:context:matchBy': 'exact';
+}
+
 interface CaseMatcherWithExample {
   '_case:matcher:type': AnyCaseNodeType;
   '_case:matcher:example': unknown;
