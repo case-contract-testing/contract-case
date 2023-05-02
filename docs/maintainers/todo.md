@@ -62,6 +62,8 @@ Next:
 
 Notes from refactor:
 
+- [ ] Add a way to configure individual mocks
+
 - [x] Rename case:matcher to \_case:matcher
 - [ ] Rename all case:matcher:matcher to case:matcher:child
   - But not the ones where it's not a child
@@ -79,11 +81,14 @@ Notes from refactor:
   - should there be "array" ?
 - [ ] Properly use accepts or some other property to use resolvesTo
 - [ ] Validators need to move
+
   - [ ] Array length (including checking that it's sensible)
   - [ ] Array length sensible
   - [ ] Array contains with an empty array
   - [ ] Array starts with with an empty array
   - [ ] String prefix with an empty string?
+
+- [ ] Remove MatchContextByType from core
 
 Pact Parity
 
@@ -265,6 +270,7 @@ Potential issues:
 - [x] Need to allow multiple values for variables
 - [ ] Dangling promises when 'No verifier or errorVerifier provided' CaseConfigurationError happens
 - [ ] Make teardowns run for successful state setup functions when one of the setups (or other teardowns) fails.
+- [ ] Worker process still running when the triggers aren't found
 
 ### Implementation notebook
 

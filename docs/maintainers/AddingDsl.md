@@ -29,6 +29,14 @@ break these rules won't be accepted.
 - **Your DSL may depend on other DSLs.** For example, a Gradle DSL can depend on the
   Java DSL. Or a Jest DSL can depend on the TypeScript DSL.
 
+## Naming
+
+There are some repeated types through the layers. Generally:
+
+1. Types in the core layer are prefixed with Case, eg `CaseConfigurationError` and `CaseConfig`.
+2. Types in the boundary are prefixed with `Boundary`, eg `BoundaryResult` and `BoundaryCaseConfig`.
+3. Types in the DSLs are prefixed with `ContractCase`, eg `ContractCaseConfigurationError` and `ContractCaseConfig`. Please follow this naming convention in your DSL.
+
 ## Steps
 
 1. Create a `ContractCaseConfig` type that appears idiomatic in your language.
@@ -42,7 +50,7 @@ break these rules won't be accepted.
    ContractCase only calls these methods when necessary - you do not need to filter the
    results or logs based on the value of config. You will need to format the
    output, and print it (eg to standard out), unless your language doesn't
-   support this.
+   support this. Return a `Result` as described below.
 3. Create a `ContractDefiner` class. It must:
    - Expose the methods `runExample` and `runRejectingExample`. You may change the name of `runRejectingExample` to
      `runXXXExample` where `XXX` is an idiomatic word for `rejecting` in your
@@ -51,7 +59,20 @@ break these rules won't be accepted.
 4. In the constructor for your `ContractDefiner` you should instantiate a
    `BoundaryContractDefiner`, with a mapped version of the config. See the boundary
    mappings section below.
+5. Implement state handler mappings TODO describe
+6. Implement trigger mappings TODO describe
+7. Implement DSL for matchers, mocks and states (TODO describe)
 
 TODO: More steps
 
 ## Boundary Mappings
+
+TODO: Describe BoundaryResult mappings
+
+### Triggers
+
+Triggers need to be mapped into combined triggers before being passed to the boundary. TODO: Describe this.
+
+### State handlers
+
+Mapping the state handlers is straightforward. TODO: Describe this.

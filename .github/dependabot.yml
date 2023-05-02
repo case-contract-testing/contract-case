@@ -25,6 +25,10 @@ updates:
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/packages/case-example-mock-types" # Location of package manifest
     schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/packages/contract-case-jest" # Location of package manifest
+    schedule:
       interval: "weekly"      
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/packages/test-equivalence-matchers" # Location of package manifest
@@ -33,7 +37,7 @@ updates:
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/packages/documentation" # Location of package manifest
     schedule:
-      interval: "weekly"      
+      interval: "weekly"
       
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
