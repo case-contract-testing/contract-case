@@ -115,4 +115,11 @@ export interface ContractCaseBoundaryConfig {
    * Keyed by `${requestName}::${responseName}`
    */
   readonly triggerAndTest?: ITriggerFunction;
+
+  /**
+   * The base URL for your real server, if you are testing an http server.
+   *
+   * @deprecated This will be moved to a config property that allows configuration for arbitrary mocks
+   */
+  readonly baseUrlUnderTest?: string;
 }

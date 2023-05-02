@@ -64,7 +64,7 @@ export const convertConfig = ({
     ...incoming,
     ...(logLevel ? { logLevel: mapLogLevel(logLevel) } : {}),
     ...(publish ? { publish: mapPublish(publish) } : {}),
-    baseUrlUnderTest: `http://localhost:${8084}`,
+    // baseUrlUnderTest: `http://localhost:${8084}`,
   },
   partialInvoker: {
     ...(stateHandlers
