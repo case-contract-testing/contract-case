@@ -50,3 +50,10 @@ export type SetupInfoFor<T extends AnyMockDescriptorType> = Extract<
   HasTypeForMockDescriptor<T>
 > &
   BaseConfig;
+
+export type ArbitraryConfig<T extends AnyMockDescriptorType> = BaseConfig & {
+  '_case:mock:type': T;
+  // TODO don't use any here
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [k: string]: any;
+};

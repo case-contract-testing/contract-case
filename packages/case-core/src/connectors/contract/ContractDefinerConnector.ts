@@ -30,6 +30,7 @@ export type DefinitionSuccessExample<
   definition: CaseMockDescriptorFor<T>;
   trigger?: Trigger<T, R>;
   testResponse?: (data: R, config: SetupInfoFor<T>) => unknown;
+  triggerAndTest?: Trigger<T>;
 };
 
 export type DefinitionFailingExample<
@@ -39,6 +40,7 @@ export type DefinitionFailingExample<
   states?: Array<AnyState>;
   definition: CaseMockDescriptorFor<T>;
   trigger?: Trigger<T, R>;
+  triggerAndTest?: Trigger<T>;
   testErrorResponse?: (err: Error, config: SetupInfoFor<T>) => unknown;
 };
 
@@ -76,6 +78,8 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
       definition,
       trigger,
       triggers,
+      triggerAndTest,
+      triggerAndTests,
       testResponse,
       stateHandlers,
     }: DefinitionSuccessExample<T, R>,
@@ -97,11 +101,13 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
         states,
         mockDescription: definition,
         trigger,
-        testResponse,
         triggers:
           triggers ||
           (this.invoker as unknown as MultiTestInvoker<T, R>).triggers ||
           {},
+        testResponse,
+        triggerAndTest,
+        triggerAndTests,
         stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
       },
       runConfig
@@ -114,6 +120,8 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
       definition,
       trigger,
       triggers,
+      triggerAndTest,
+      triggerAndTests,
       testErrorResponse,
       stateHandlers,
     }: DefinitionFailingExample<T, R>,
@@ -137,6 +145,8 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
         mockDescription: definition,
         trigger,
         testResponse: undefined,
+        triggerAndTest,
+        triggerAndTests,
         testErrorResponse,
         triggers:
           triggers ||

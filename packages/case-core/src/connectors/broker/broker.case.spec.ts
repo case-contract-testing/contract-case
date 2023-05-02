@@ -195,7 +195,7 @@ describe('broker client', () => {
                 }),
                 trigger: (config) =>
                   makeBrokerApiForTest(
-                    config.baseUrl,
+                    config.baseUrl as string,
                     config.variables['token'] as string
                   ).urlsForVerification(
                     config.variables['providerName'] as string,

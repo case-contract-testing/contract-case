@@ -1,4 +1,7 @@
-import type { SetupInfoFor } from '../../entities/nodes/mocks/setup.types';
+import type {
+  ArbitraryConfig,
+  SetupInfoFor,
+} from '../../entities/nodes/mocks/setup.types';
 import type {
   StateHandlers,
   ExampleNames,
@@ -6,6 +9,7 @@ import type {
   AnyState,
   CaseMockDescriptorFor,
   Assertable,
+  MOCK_HTTP_SERVER,
 } from '../../entities/types';
 
 export type RunTestCallback = (
@@ -13,21 +17,10 @@ export type RunTestCallback = (
   verify: () => Promise<unknown>
 ) => void;
 
-/**
- * Do both the trigger and the assertion on the response (this type exists
- * because we can't pass around native response objects)
- *
- * @throws CaseTriggerError for any errors during execution of the trigger,
- * VerifyTriggerReturnObject for any errors during the test,
- * CaseConfigurationError for any configuration issues, and CaseCoreError for
- * any errors in the boundary
- */
-export type TriggerAndTest = (
-  config: Record<string, unknown>
-) => Promise<unknown>;
+export type HttpRequestConfig = Assertable<typeof MOCK_HTTP_SERVER>['config'];
 
 export type Trigger<T extends AnyMockDescriptorType, R = unknown> = (
-  config: SetupInfoFor<T> | Record<string, unknown>
+  config: SetupInfoFor<T> | ArbitraryConfig<T> | HttpRequestConfig
 ) => Promise<R>;
 
 type TriggerPair<T extends AnyMockDescriptorType, R> = {
@@ -44,7 +37,7 @@ type TriggerPair<T extends AnyMockDescriptorType, R> = {
 
 export type MultiTestInvoker<T extends AnyMockDescriptorType, R = unknown> = {
   stateHandlers?: StateHandlers | undefined;
-  triggerAndTests?: Record<string, TriggerAndTest> | undefined;
+  triggerAndTests?: Record<string, Trigger<T>> | undefined;
   triggers?: Record<string, TriggerPair<T, R>> | undefined;
 };
 
@@ -54,7 +47,16 @@ export type TestInvoker<
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
   mockDescription: CaseMockDescriptorFor<T>;
-  triggerAndTest?: TriggerAndTest;
+  /**
+   * Do both the trigger and the assertion on the response (this type exists
+   * because we can't pass around native response objects)
+   *
+   * @throws CaseTriggerError for any errors during execution of the trigger,
+   * VerifyTriggerReturnObject for any errors during the test,
+   * CaseConfigurationError for any configuration issues, and CaseCoreError for
+   * any errors in the boundary
+   */
+  triggerAndTest?: Trigger<T> | undefined;
   trigger?: Trigger<T, R> | undefined;
   testResponse?:
     | ((data: R, config: Assertable<T>['config']) => unknown)

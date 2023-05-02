@@ -51,6 +51,7 @@ export class WritingCaseContract extends BaseCaseContract {
       testResponse,
       triggers,
       testErrorResponse,
+      triggerAndTest,
       stateHandlers = {},
     }: TestInvoker<T, R>,
     runConfig: CaseConfig
@@ -96,6 +97,7 @@ export class WritingCaseContract extends BaseCaseContract {
           trigger,
           triggers,
           testResponse,
+          triggerAndTest,
           testErrorResponse,
           names: exampleToNames(example, `${this.testIndex}`),
         },
