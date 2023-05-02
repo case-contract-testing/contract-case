@@ -52,6 +52,7 @@ export class WritingCaseContract extends BaseCaseContract {
       triggers,
       testErrorResponse,
       triggerAndTest,
+      triggerAndTests,
       stateHandlers = {},
     }: TestInvoker<T, R>,
     runConfig: CaseConfig
@@ -69,6 +70,23 @@ export class WritingCaseContract extends BaseCaseContract {
         ...configToRunContext(runConfig),
       }
     );
+
+    runContext.logger.deepMaintainerDebug(
+      'The full context object:',
+      runContext
+    );
+    // TODO: Tidy up the testinvokers so we don't have to pass around individual things
+    runContext.logger.deepMaintainerDebug('TestInvoker: ', {
+      states,
+      mockDescription,
+      trigger,
+      testResponse,
+      triggers,
+      testErrorResponse,
+      triggerAndTest,
+      triggerAndTests,
+      stateHandlers,
+    });
 
     if (runContext['_case:currentRun:context:contractMode'] !== 'write') {
       runContext.logger.warn(
@@ -98,6 +116,7 @@ export class WritingCaseContract extends BaseCaseContract {
           triggers,
           testResponse,
           triggerAndTest,
+          triggerAndTests,
           testErrorResponse,
           names: exampleToNames(example, `${this.testIndex}`),
         },

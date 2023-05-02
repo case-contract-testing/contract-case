@@ -108,6 +108,18 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
     );
     return Promise.resolve();
   }
+  context.logger.deepMaintainerDebug(
+    'The provided triggers at this point are',
+    {
+      trigger,
+      triggerAndTest,
+      triggerAndTests,
+      triggers,
+      names,
+      testErrorResponse,
+      testResponse,
+    }
+  );
   if (triggerAndTest !== undefined) {
     context.logger.debug(
       `Invoking provided trigger / test for '${names.requestName}'`

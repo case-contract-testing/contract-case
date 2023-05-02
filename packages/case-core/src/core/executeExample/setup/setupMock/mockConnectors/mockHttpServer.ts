@@ -94,11 +94,6 @@ export const setupHttpResponseProducer = (
               requestData
             );
 
-            context.logger.deepMaintainerDebug(
-              `Full request object received`,
-              req
-            );
-
             res.status(expectedResponse.status);
 
             if (expectedResponse.body) {

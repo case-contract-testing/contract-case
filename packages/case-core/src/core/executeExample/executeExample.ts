@@ -100,6 +100,8 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
     triggers,
     names,
     testErrorResponse,
+    triggerAndTest,
+    triggerAndTests,
     testResponse,
   }: InvokingScaffold<T, R>,
   contract: WritingCaseContract | ReadingCaseContract,
@@ -111,7 +113,15 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
         context.logger.debug(`Invoking trigger with`, assertable.config);
         return findAndCallTrigger(
           example.mock as CaseMockDescriptorFor<T>,
-          { trigger, triggers, names, testErrorResponse, testResponse },
+          {
+            trigger,
+            triggers,
+            names,
+            testErrorResponse,
+            triggerAndTest,
+            triggerAndTests,
+            testResponse,
+          },
           assertable,
           context
         ).then(

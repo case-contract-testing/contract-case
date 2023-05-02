@@ -96,6 +96,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
         'There was a trigger supplied, but without a corresponding `testResponse` function'
       );
     }
+
     return this.contract.executeTest(
       {
         states,
