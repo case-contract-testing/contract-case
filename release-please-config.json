@@ -1,11 +1,13 @@
 {
   "bootstrap-sha": "63017480c8f1f81bca43a6f6123d764a4163233b",
+  "group-pull-request-title-pattern": "chore: Release ContractCase ${version}",
   "plugins": [
     { "type": "node-workspace", "merge": false },
     {
       "type": "linked-versions",
       "group-name": "case-core",
       "components": [
+        ".",
         "@contract-case/case-core",
         "@contract-case/case-entities-internal",
         "@contract-case/case-example-mock-types",
