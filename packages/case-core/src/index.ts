@@ -7,8 +7,13 @@ import type {
 export * from './boundaries';
 export * from './boundaries/types';
 export { CaseConfig } from './core/types';
+export { TestInvoker, MultiTestInvoker } from './core/executeExample/types';
 export * from './entities/errors';
-export { LogLevel, AnyMockDescriptor } from './entities/types';
+export {
+  LogLevel,
+  AnyMockDescriptor,
+  CaseContractDescription,
+} from './entities/types';
 
 export * from './connectors';
 
