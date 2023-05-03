@@ -5,7 +5,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)" # Figure out where the 
 . "$SCRIPT_DIR"/lib/robust-bash.sh 
 
 npm install # We can't do npm ci because lerna has optional dependencies :(
-npx lerna --ci bootstrap
 
 npx lerna --ci run format:check
 npx lerna --ci run build

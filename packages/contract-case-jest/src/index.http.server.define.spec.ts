@@ -37,7 +37,7 @@ describe('e2e http provider driven', () => {
     let server: http.Server;
     let mockHealthStatus = true;
     let mockGetUser: (id: string) => User | undefined = () => undefined;
-    const port = 8084;
+    const port = 8094;
     const serverDependencies: Dependencies = {
       healthService: {
         ready: () => mockHealthStatus,

@@ -1,11 +1,13 @@
 {
   "bootstrap-sha": "63017480c8f1f81bca43a6f6123d764a4163233b",
+  "group-pull-request-title-pattern": "chore: Release ContractCase ${version}",
   "plugins": [
     { "type": "node-workspace", "merge": false },
     {
       "type": "linked-versions",
-      "group-name": "case-core",
+      "groupName": "ContractCase Core",
       "components": [
+        ".",
         "@contract-case/case-core",
         "@contract-case/case-entities-internal",
         "@contract-case/case-example-mock-types",
@@ -33,7 +35,7 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/contract-case-jest": {
-      "component": "@contract-case/contract-case",
+      "component": "@contract-case/contract-case-jest",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/documentation": {
@@ -45,6 +47,10 @@
       "changelog-path": "CHANGELOG.md"
     },
     ".": {
+      "exclude-paths": [
+        "packages/case-boundary",
+        "packages/contract-case-jest"
+      ],
       "changelog-path": "docs/maintainers/FULL-CHANGELOG.md"
     }
   }

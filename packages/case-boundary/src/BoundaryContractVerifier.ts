@@ -43,7 +43,7 @@ const wrapCallback =
     );
   };
 
-export class ContractVerifier {
+export class BoundaryContractVerifier {
   private verifier: ContractVerifierConnector | undefined;
 
   private readonly constructorConfig: ContractCaseBoundaryConfig;
@@ -84,7 +84,7 @@ export class ContractVerifier {
     );
   }
 
-  getAvailableContractDescriptions(): BoundaryResult {
+  availableContractDescriptions(): BoundaryResult {
     try {
       this.initialiseVerifier();
       if (this.verifier === undefined) {

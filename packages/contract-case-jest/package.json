@@ -1,5 +1,5 @@
 {
-  "name": "@contract-case/contract-case",
+  "name": "@contract-case/contract-case-jest",
   "version": "0.9.0",
   "description": "Core functionality for the ContractCase contract testing suite",
   "keywords": [
@@ -38,9 +38,7 @@
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write ",
     "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
-    "test:verify": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_contractDir=./temp-contracts jest --testMatch '**/?(*.)+(spec.verify).[tj]s' --coverageDirectory=./coverage-verify/",
-    "test:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
-    "test:local:verify": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_publish=false CASE_contractDir=./case-contracts jest --testMatch '**/?(*.)+(spec.verify).[tj]s' --coverageDirectory=./coverage-verify/"
+    "test:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest"
   },
   "funding": {
     "type": "individual",
@@ -53,9 +51,13 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/express": "^4.17.14",
     "@types/jest": "^29.5.0",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
+    "axios": "^1.3.4",
+    "body-parser": "^1.20.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.23.1",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -65,6 +67,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-tsdoc": "^0.2.17",
+    "express": "^4.18.2",
     "jest": "^29.5.0",
     "prettier": "^2.8.4",
     "rimraf": "^5.0.0",
@@ -76,9 +79,9 @@
     "jest": "^29.4.3"
   },
   "dependencies": {
-    "chalk": "^4.1.2",
     "@contract-case/case-boundary": "0.2.0",
     "@contract-case/case-entities-internal": "0.9.0",
-    "@contract-case/case-example-mock-types": "0.9.0"
+    "@contract-case/case-example-mock-types": "0.9.0",
+    "chalk": "^4.1.2"
   }
 }
