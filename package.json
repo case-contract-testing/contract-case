@@ -8,8 +8,7 @@
   "devDependencies": {
     "jsii-docgen": "7.2.9",
     "glob": "^8.0.1",
-    "lerna": "^6.6.1",
-    "@contract-case/test-equivalence-matchers": "0.9.0"
+    "lerna": "^6.6.1"
   },
   "optionalDependencies": {
     "@nrwl/nx-darwin-arm64": "15.9.2",
