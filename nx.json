@@ -24,6 +24,10 @@
       "dependsOn": ["^build"],
       "outputs": ["{projectRoot}/dist"]
     },
+    "build:docs": {
+      "dependsOn": ["^build", "^build:docs", "build"],
+      "outputs": ["{projectRoot}/dist"]
+    },
     "package": {
       "outputs": ["{projectRoot}/dist"]
     }

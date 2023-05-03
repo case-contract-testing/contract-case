@@ -19,7 +19,8 @@
   },
   "scripts": {
     "prebuild": "rimraf build",
-    "build": "jsii && jsii-docgen",
+    "build": "jsii --project-references",
+    "build:docs": "jsii-docgen",
     "watch": "jsii -w",
     "package": "jsii-pacmak",
     "test": "jest",

@@ -24,6 +24,7 @@
   "scripts": {
     "package": "lerna run package",
     "build": "lerna run build",
+    "build:docs": "lerna run build:docs",
     "test": "lerna run test"
   },
   "overrides": {

@@ -206,7 +206,6 @@ describe('e2e http consumer driven', () => {
                 },
                 {
                   trigger: sendUserRequest,
-                  logLevel: 'deepMaintainerDebug',
                   testErrorResponse: (e) => {
                     expect(e).toBeInstanceOf(UserNotFoundConsumerError);
                   },
