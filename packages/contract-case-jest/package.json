@@ -84,6 +84,6 @@
     "@contract-case/case-boundary": "0.2.0",
     "@contract-case/case-entities-internal": "0.9.0",
     "@contract-case/case-example-mock-types": "0.9.0",
-    "chalk": "^4.1.2"
+    "chalk": "^5.2.0"
   }
 }
