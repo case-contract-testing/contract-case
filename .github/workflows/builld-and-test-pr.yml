@@ -1,6 +1,9 @@
-name:  Build, test, package (pull request)
+name:  Build, test, package (no download)
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches: [main]
 
