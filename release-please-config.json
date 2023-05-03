@@ -47,6 +47,10 @@
       "changelog-path": "CHANGELOG.md"
     },
     ".": {
+      "exclude-paths": [
+        "packages/case-boundary",
+        "packages/contract-case-jest"
+      ],
       "changelog-path": "docs/maintainers/FULL-CHANGELOG.md"
     }
   }
