@@ -84,7 +84,7 @@ export class ContractVerifier {
     );
   }
 
-  getAvailableContractDescriptions(): BoundaryResult {
+  availableContractDescriptions(): BoundaryResult {
     try {
       this.initialiseVerifier();
       if (this.verifier === undefined) {
