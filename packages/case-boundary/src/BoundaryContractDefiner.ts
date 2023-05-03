@@ -11,10 +11,10 @@ import { AnyMatcher } from '@contract-case/test-equivalence-matchers';
 import { TestInvoker } from '@contract-case/case-core/dist/src/core/executeExample/types';
 import { AnyMockDescriptor } from '@contract-case/case-core/dist/src/entities/types';
 
-import { ContractCaseBoundaryConfig } from './boundary/types';
 import { convertConfig, jsErrorToFailure, wrapLogPrinter } from './mappers';
 import { BoundaryMockDefinition } from './types';
 import {
+  ContractCaseBoundaryConfig,
   ILogPrinter,
   IResultPrinter,
   BoundaryResult,
