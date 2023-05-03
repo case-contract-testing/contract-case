@@ -1,5 +1,3 @@
-/* 
-
 import { ContractVerifierConnector } from '../connectors';
 import {
   MultiTestInvoker,
@@ -10,7 +8,7 @@ import { AnyMockDescriptorType, ContractDescription } from '../entities/types';
 import { defaultPrinter } from './defaultTestPrinter';
 
 export class ContractVerifier {
-  coreVerifier: ContractVerifierConnector;
+  private boundaryVerifier: BoundaryContractVerifier;
 
   config: CaseConfig;
 
@@ -38,4 +36,3 @@ export class ContractVerifier {
     this.coreVerifier.verifyContract(invoker, configOverrides);
   }
 }
-*/
