@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.9.1](https://github.com/case-contract-testing/case/compare/@contract-case/case-core-v0.9.0...@contract-case/case-core-v0.9.1) (2023-05-03)
+
+
+### Features
+
+* Add triggerAndTest function to the connectors layer ([fd9f1f2](https://github.com/case-contract-testing/case/commit/fd9f1f255919a53e22a52de295738b41aba721f0))
+* Export  TestInvoker, MultiTestInvoker and CaseContractDescription ([4818aa8](https://github.com/case-contract-testing/case/commit/4818aa8d2400517ef6ef21fc16f1536b04e99962))
+
+
+### Bug Fixes
+
+* Correct an issue where combined triggers were not passed through to the test runner ([0dfe32f](https://github.com/case-contract-testing/case/commit/0dfe32f03a8d4ae60a58cd82e9a7e3307e6227f0))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.9.0 to 0.9.1
+
 ## [0.9.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-core-v0.8.0...@contract-case/case-core-v0.9.0) (2023-04-26)
 
 

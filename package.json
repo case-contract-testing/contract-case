@@ -4,7 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "devDependencies": {
     "jsii-docgen": "7.2.9",
     "glob": "^8.0.1",
