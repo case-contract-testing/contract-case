@@ -1,3 +1,5 @@
+/*
+
 import { ContractVerifierConnector } from '../connectors';
 import {
   MultiTestInvoker,
@@ -36,3 +38,4 @@ export class ContractVerifier {
     this.coreVerifier.verifyContract(invoker, configOverrides);
   }
 }
+*/
