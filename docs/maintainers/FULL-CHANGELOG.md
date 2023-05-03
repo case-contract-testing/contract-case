@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.1.1](https://github.com/case-contract-testing/case/compare/contract-case-v0.1.0...contract-case-v0.1.1) (2023-05-03)
+
+
+### Features
+
+* Add separate package for jest + javascript DSL ([e175bf7](https://github.com/case-contract-testing/case/commit/e175bf7befd9c6a9e1be96f490845289ca248aaf))
+* Add triggerAndTest function to the connectors layer ([fd9f1f2](https://github.com/case-contract-testing/case/commit/fd9f1f255919a53e22a52de295738b41aba721f0))
+* Add types for states ([55048e1](https://github.com/case-contract-testing/case/commit/55048e1041f73f0edfede8ca2cf605ae6be138f6))
+* Export  TestInvoker, MultiTestInvoker and CaseContractDescription ([4818aa8](https://github.com/case-contract-testing/case/commit/4818aa8d2400517ef6ef21fc16f1536b04e99962))
+
+
+### Bug Fixes
+
+* Correct an issue where combined triggers were not passed through to the test runner ([0dfe32f](https://github.com/case-contract-testing/case/commit/0dfe32f03a8d4ae60a58cd82e9a7e3307e6227f0))
+* Export MatchContextByExact ([88cc4ae](https://github.com/case-contract-testing/case/commit/88cc4aef1e99eaee1102bba39c29d1c5aeeae208))
+
 ## [0.1.0](https://github.com/case-contract-testing/case/compare/contract-case-v0.0.1...contract-case-v0.1.0) (2023-04-26)
 
 

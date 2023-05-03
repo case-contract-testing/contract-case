@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.9.1](https://github.com/case-contract-testing/case/compare/@contract-case/contract-case-jest-v0.9.0...@contract-case/contract-case-jest-v0.9.1) (2023-05-03)
+
+
+### Features
+
+* Add separate package for jest + javascript DSL ([e175bf7](https://github.com/case-contract-testing/case/commit/e175bf7befd9c6a9e1be96f490845289ca248aaf))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.2.0 to 0.3.0
+    * @contract-case/case-entities-internal bumped from 0.9.0 to 0.9.1
+    * @contract-case/case-example-mock-types bumped from 0.9.0 to 0.9.1
+
 ## [0.9.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-core-v0.8.0...@contract-case/case-core-v0.9.0) (2023-04-26)
 
 

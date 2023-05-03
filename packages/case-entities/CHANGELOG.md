@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.9.1](https://github.com/case-contract-testing/case/compare/@contract-case/case-entities-internal-v0.9.0...@contract-case/case-entities-internal-v0.9.1) (2023-05-03)
+
+
+### Features
+
+* Add types for states ([55048e1](https://github.com/case-contract-testing/case/commit/55048e1041f73f0edfede8ca2cf605ae6be138f6))
+
+
+### Bug Fixes
+
+* Export MatchContextByExact ([88cc4ae](https://github.com/case-contract-testing/case/commit/88cc4aef1e99eaee1102bba39c29d1c5aeeae208))
+
 ## [0.9.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-entities-internal-v0.8.0...@contract-case/case-entities-internal-v0.9.0) (2023-04-26)
 
 

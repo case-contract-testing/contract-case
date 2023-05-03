@@ -6,6 +6,46 @@
   * dependencies
     * @contract-case/test-equivalence-matchers bumped from 0.0.3 to 0.0.4
 
+## [0.3.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-boundary-v0.2.0...@contract-case/case-boundary-v0.3.0) (2023-05-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* Prefix Result Success/Failure etc classes with Boundary
+* Rename ContractDefiner -> BoundaryContractDefiner
+* Rename StateHandler -> BoundaryStateHandler and StateHandlerWithTeardown -> BoundaryStateHandlerWithTeardown
+* Rename ContractCaseConfig -> ContractCaseBoundaryConfig
+
+### Features
+
+* Add classes for ContractVerifier boundary ([b2a48e5](https://github.com/case-contract-testing/case/commit/b2a48e51b4b7424e351ad15d3eb1870f686000af))
+* Rename exposed types to better reflect their purpose. See the documentation for details. ([6198a77](https://github.com/case-contract-testing/case/commit/6198a77b681ca3aa579037d10ea788dd342a4e98))
+
+
+### Bug Fixes
+
+* Correct issue where triggers wouldn't get the configuration information ([d5e789c](https://github.com/case-contract-testing/case/commit/d5e789cbc1f7d8e5dba8468152bf19bb57a3f1ba))
+* Correct problem where logLevel: undefined would be passed down if none was specified ([42cd0e2](https://github.com/case-contract-testing/case/commit/42cd0e2d1a558b6ce2f1c0439df8da3d523dfacc))
+* Temporarily poke through the server under test baseURL in config. Later on this will be a generic mock config path ([84d8ad0](https://github.com/case-contract-testing/case/commit/84d8ad017cbdd251fc506530125e5fc73eb7eebc))
+
+
+### Code Refactoring
+
+* Prefix Result Success/Failure etc classes with Boundary ([4610bb6](https://github.com/case-contract-testing/case/commit/4610bb6fc600e5350f4d365d2ea0063ae4658157))
+* Rename ContractCaseConfig -&gt; ContractCaseBoundaryConfig ([b334ab0](https://github.com/case-contract-testing/case/commit/b334ab0812b5bfabe104dcb991f43d5ad50063ba))
+* Rename ContractDefiner -&gt; BoundaryContractDefiner ([a04d74e](https://github.com/case-contract-testing/case/commit/a04d74e5e63d0035af9522b2eee64b9e2a0bbf5e))
+* Rename StateHandler -&gt; BoundaryStateHandler and StateHandlerWithTeardown -> BoundaryStateHandlerWithTeardown ([e888fc6](https://github.com/case-contract-testing/case/commit/e888fc6e2828dea261c73385acbc5888b29fc649))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.9.0 to 0.9.1
+    * @contract-case/case-entities-internal bumped from 0.9.0 to 0.9.1
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.9.0 to 0.9.1
+
 ## [0.2.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-boundary-v0.1.2...@contract-case/case-boundary-v0.2.0) (2023-04-26)
 
 
