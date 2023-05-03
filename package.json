@@ -8,7 +8,8 @@
   "devDependencies": {
     "jsii-docgen": "7.2.9",
     "glob": "^8.0.1",
-    "lerna": "^6.6.1"
+    "lerna": "^6.6.1",
+    "@contract-case/test-equivalence-matchers": "0.9.0"
   },
   "optionalDependencies": {
     "@nrwl/nx-darwin-arm64": "15.9.2",
@@ -24,6 +25,7 @@
   "scripts": {
     "package": "lerna run package",
     "build": "lerna run build",
+    "build:docs": "lerna run build:docs",
     "test": "lerna run test"
   },
   "overrides": {

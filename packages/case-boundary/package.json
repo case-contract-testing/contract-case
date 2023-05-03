@@ -24,6 +24,7 @@
   "scripts": {
     "prebuild": "rimraf build",
     "build": "jsii --project-references",
+    "build:docs": "jsii-docgen",
     "watch": "jsii -w",
     "package": "jsii-pacmak",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
@@ -66,6 +67,7 @@
     "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-tsdoc": "^0.2.17",
     "jsii": "^5.0.6",
+    "jsii-docgen": "^7.0.2",
     "jsii-pacmak": "^1.80.0",
     "prettier": "^2.8.7",
     "rimraf": "^5.0.0",
@@ -78,8 +80,7 @@
   ],
   "dependencies": {
     "@contract-case/case-core": "0.9.0",
-    "@contract-case/case-entities-internal": "0.9.0",
-    "@contract-case/test-equivalence-matchers": "0.9.0"
+    "@contract-case/case-entities-internal": "0.9.0"
   },
   "peerDependencies": {
     "@contract-case/test-equivalence-matchers": "0.9.0"
