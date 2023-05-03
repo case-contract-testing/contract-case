@@ -43,7 +43,6 @@ describe('Server verification', () => {
   verifyContract(
     {
       providerName: 'http response provider',
-      contractDir: 'temp-contracts',
       baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
       printResults: false, // Remove this / set to true if you are copying this example
     },
