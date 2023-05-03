@@ -19,7 +19,7 @@
     "@nrwl/nx-linux-x64-gnu": "15.9.2",
     "@nrwl/nx-linux-x64-musl": "15.9.2",
     "@nrwl/nx-win32-arm64-msvc": "15.9.2",
-    "@nrwl/nx-win32-x64-msvc": "15.9.2"
+    "@nrwl/nx-win32-x64-msvc": "15.9.3"
   },
   "scripts": {
     "package": "lerna run package",
