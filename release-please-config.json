@@ -5,7 +5,7 @@
     { "type": "node-workspace", "merge": false },
     {
       "type": "linked-versions",
-      "group-name": "case-core",
+      "groupName": "ContractCase Core",
       "components": [
         ".",
         "@contract-case/case-core",
