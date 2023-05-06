@@ -191,6 +191,7 @@ Cool features
 - [ ] "Is this interaction the same as that"?
 - [ ] Combine files for upload (does the broker support multiple contracts between the same two services?)
 - [ ] Parametrised matchers
+- [ ] Ability to change the default version strategy
 
 Contract file access patterns
 
