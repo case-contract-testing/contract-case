@@ -60,9 +60,10 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
   ) {
     this.config = {
       ...dependencies.defaultConfig,
-      ...configFromEnv,
+      ...configFromEnv(),
       ...config,
     };
+    console.log(this.config);
     this.contract = new WritingCaseContract(
       description,
       dependencies,
