@@ -1,8 +1,8 @@
-import { TriggerConfig } from './entities/types';
+import { TriggerConfig } from './entities';
 
 export * from './boundaries';
-export * from './jest';
 export * as dsl from './boundaries/dsl';
+export * as TestEquivalenceMatchers from './boundaries/dsl/Matchers';
 export * from './entities/types';
 
 // TODO remove this hack type and do it properly

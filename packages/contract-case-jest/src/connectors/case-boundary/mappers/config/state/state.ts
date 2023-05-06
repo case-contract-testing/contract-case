@@ -2,7 +2,7 @@ import {
   BoundaryStateHandler,
   BoundaryStateHandlerWithTeardown,
 } from '@contract-case/case-boundary';
-import { StateHandler, StateHandlers } from '../../../entities/types';
+import { StateHandler, StateHandlers } from '../../../../../entities/types';
 import { MappedStateHandler } from './MappedStateHandler';
 import { MappedStateHandlerWithTeardown } from './MappedStateHandlerWithTeardown';
 

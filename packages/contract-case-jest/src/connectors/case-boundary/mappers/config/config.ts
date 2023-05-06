@@ -1,10 +1,11 @@
 import { ContractCaseBoundaryConfig } from '@contract-case/case-boundary';
 import {
   ContractCaseConfig,
+  ContractCaseVerifierConfig,
   IndividualFailedTestConfig,
   IndividualSuccessTestConfig,
-} from '../../../entities/config';
-import { mapStateHandlers } from './state';
+} from '../../../../entities/config';
+import { mapStateHandlers } from './state/state';
 import { mapTriggers, mapSuccessTrigger, mapFailingTrigger } from './triggers';
 
 const mapPublish = (publish: ContractCaseConfig['publish']) => {
@@ -19,7 +20,7 @@ export const mapConfig = ({
   triggers,
   testRunId,
   ...rest
-}: ContractCaseConfig): ContractCaseBoundaryConfig => ({
+}: ContractCaseVerifierConfig): ContractCaseBoundaryConfig => ({
   ...(publish !== undefined ? { publish: mapPublish(publish) } : {}),
   ...(stateHandlers !== undefined
     ? { stateHandlers: mapStateHandlers(stateHandlers) }
@@ -31,7 +32,7 @@ export const mapConfig = ({
   ...rest,
 });
 
-export const mapSuccessConfig = <R, C>({
+export const mapSuccessConfig = <R, C extends Record<string, unknown>>({
   trigger,
   testResponse,
   ...config
@@ -47,7 +48,7 @@ export const mapSuccessConfig = <R, C>({
     : {}),
 });
 
-export const mapFailingConfig = <R, C>({
+export const mapFailingConfig = <R, C extends Record<string, unknown>>({
   trigger,
   testErrorResponse,
   ...config

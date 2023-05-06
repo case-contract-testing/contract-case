@@ -1,41 +1,68 @@
-/*
-
-import { ContractVerifierConnector } from '../connectors';
 import {
-  MultiTestInvoker,
-  RunTestCallback,
-} from '../core/executeExample/types';
-import { CaseConfig } from '../core/types';
-import { AnyMockDescriptorType, ContractDescription } from '../entities/types';
+  BoundaryContractVerifier,
+  BoundaryResult,
+  BoundarySuccess,
+  IInvokeCoreTest,
+  IRunTestCallback,
+} from '@contract-case/case-boundary';
 import { defaultPrinter } from './defaultTestPrinter';
+
+import {
+  mapSuccess,
+  mapConfig,
+  mapSuccessWithAny,
+  makeBoundaryFailure,
+} from './case-boundary';
+import {
+  ContractCaseVerifierConfig,
+  ContractDescription,
+  RunTestCallback,
+} from '../entities';
+
+const mapCallback = (callback: RunTestCallback): IRunTestCallback => ({
+  runTest: (testName: string, invoker: IInvokeCoreTest): BoundaryResult => {
+    try {
+      callback(testName, () => invoker.verify().then(mapSuccess));
+    } catch (e) {
+      return makeBoundaryFailure(e as Error);
+    }
+    return new BoundarySuccess();
+  },
+});
 
 export class ContractVerifier {
   private boundaryVerifier: BoundaryContractVerifier;
 
-  config: CaseConfig;
+  private config: ContractCaseVerifierConfig;
 
   constructor(
-    config: CaseConfig,
+    config: ContractCaseVerifierConfig,
     callback: RunTestCallback,
     printer = defaultPrinter
   ) {
     this.config = config;
-    this.coreVerifier = new ContractVerifierConnector(
-      config,
-      callback,
+    this.boundaryVerifier = new BoundaryContractVerifier(
+      mapConfig(config),
+      mapCallback(callback),
+      printer,
       printer
     );
   }
 
-  getAvailableContractDescriptions(): ContractDescription[] {
-    return this.coreVerifier.getAvailableContractDescriptions();
+  availableContractDescriptions(): ContractDescription[] {
+    return mapSuccessWithAny(
+      this.boundaryVerifier.availableContractDescriptions()
+    );
   }
 
-  runVerification<T extends AnyMockDescriptorType>(
-    invoker: MultiTestInvoker<T>,
-    configOverrides = this.config
-  ): void {
-    this.coreVerifier.verifyContract(invoker, configOverrides);
+  runVerification(configOverrides: Partial<ContractCaseVerifierConfig>): void {
+    mapSuccess(
+      this.boundaryVerifier.runVerification(
+        mapConfig({
+          ...this.config,
+          ...configOverrides,
+        } as ContractCaseVerifierConfig)
+      )
+    );
   }
 }
-*/

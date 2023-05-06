@@ -8,12 +8,12 @@ import {
   Trigger,
   TestErrorResponseFunction,
   TestResponseFunction,
-  TriggerPair,
   TriggerConfig,
-} from '../../../entities/types';
+  ITriggerGroups,
+} from '../../../../entities';
 
 export const mapFailingTrigger =
-  <R, C>(
+  <R, C extends Record<string, unknown>>(
     trigger: Trigger<R, C>,
     testErrorFunction: TestErrorResponseFunction
   ) =>
@@ -44,9 +44,9 @@ export const mapFailingTrigger =
       );
 
 export const mapSuccessTrigger =
-  <R, C>(
+  <R, C extends Record<string, unknown>>(
     trigger: Trigger<R, C>,
-    testResponseFunction: TestResponseFunction<R>
+    testResponseFunction: TestResponseFunction<R, C>
   ) =>
   (config: TriggerConfig<C>): Promise<BoundaryResult> =>
     trigger(config)
@@ -66,9 +66,9 @@ export const mapSuccessTrigger =
       );
 
 export const mapTriggers = (
-  triggers: Record<string, TriggerPair<unknown>>
+  triggers: ITriggerGroups
 ): Record<string, ITriggerFunction> =>
-  Object.entries(triggers)
+  Object.entries(triggers.groups)
     .map(([requestName, triggerPairings]) => [
       ...(triggerPairings.testErrorResponses
         ? Object.entries(triggerPairings.testErrorResponses)

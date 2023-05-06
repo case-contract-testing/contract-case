@@ -1,4 +1,5 @@
-import { StateHandlers, Trigger, TriggerPair } from './types';
+import { StateHandlers } from './types';
+import { ITriggerGroups, Trigger } from './types.triggers';
 
 export interface UserNamePassword {
   /**
@@ -129,7 +130,7 @@ export interface ContractCaseConfig {
    * Call the native trigger and test function (if any) for this interaction pair.
    * Keyed by `${requestName}::${responseName}`
    */
-  readonly triggers?: Record<string, TriggerPair<unknown>>;
+  readonly triggers?: ITriggerGroups;
 
   /**
    * The base URL for your real server, if you are testing an http server.
@@ -139,8 +140,16 @@ export interface ContractCaseConfig {
   readonly baseUrlUnderTest?: string;
 }
 
-export interface IndividualSuccessTestConfig<R, C>
-  extends Partial<ContractCaseConfig> {
+export type ContractCaseVerifierConfig = Omit<
+  ContractCaseConfig,
+  'consumerName'
+> &
+  Partial<Pick<ContractCaseConfig, 'consumerName'>>;
+
+export interface IndividualSuccessTestConfig<
+  R,
+  C extends Record<string, unknown>
+> extends Partial<ContractCaseConfig> {
   readonly trigger?: Trigger<R, C>;
   readonly testResponse?: (
     data: R,
@@ -148,8 +157,10 @@ export interface IndividualSuccessTestConfig<R, C>
   ) => Promise<unknown> | void;
 }
 
-export interface IndividualFailedTestConfig<R, C>
-  extends Partial<ContractCaseConfig> {
+export interface IndividualFailedTestConfig<
+  R,
+  C extends Record<string, unknown>
+> extends Partial<ContractCaseConfig> {
   readonly trigger?: Trigger<R, C>;
   readonly testErrorResponse?: (
     err: Error,

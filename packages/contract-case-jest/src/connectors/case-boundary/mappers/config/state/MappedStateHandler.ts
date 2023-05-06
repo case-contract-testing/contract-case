@@ -4,8 +4,8 @@ import {
   BoundarySuccess,
   BoundarySuccessWithMap,
 } from '@contract-case/case-boundary';
-import { SetupFunction } from '../../../entities/types';
-import { makeBoundaryFailure } from './jsErrorToBoundary';
+import { SetupFunction } from '../../../../../entities/types';
+import { makeBoundaryFailure } from '../../jsErrorToBoundary';
 
 export class MappedStateHandler extends BoundaryStateHandler {
   private setupFn: SetupFunction;

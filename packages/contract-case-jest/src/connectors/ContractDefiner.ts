@@ -1,11 +1,7 @@
 import {
   BoundaryAnyMatcher,
   BoundaryContractDefiner,
-  BoundaryFailure,
   BoundaryMockDefinition,
-  BoundaryResult,
-  BoundarySuccessWithAny,
-  ResultTypeConstants,
 } from '@contract-case/case-boundary';
 import { AnyMockDescriptor } from '@contract-case/case-example-mock-types';
 
@@ -15,11 +11,14 @@ import {
   ContractCaseConfig,
   IndividualFailedTestConfig,
   IndividualSuccessTestConfig,
-} from '../entities/config';
-import { mapConfig, mapSuccessConfig, mapFailingConfig } from './case-boundary';
-
-const mapFailureToJsError = (failure: BoundaryFailure) =>
-  new Error(failure.message);
+} from '../entities';
+import {
+  mapSuccess,
+  mapConfig,
+  mapSuccessConfig,
+  mapFailingConfig,
+  mapSuccessWithAny,
+} from './case-boundary';
 
 const mapDefinition = (
   definition: ExampleDefinition
@@ -27,20 +26,6 @@ const mapDefinition = (
   states: Array.isArray(definition.states) ? definition.states : [],
   definition: definition.definition,
 });
-
-const handleSuccess = (result: BoundaryResult) => {
-  switch (result.resultType) {
-    case ResultTypeConstants.RESULT_FAILURE:
-      throw mapFailureToJsError(result as BoundaryFailure);
-    case ResultTypeConstants.RESULT_SUCCESS:
-      return;
-    case ResultTypeConstants.RESULT_SUCCESS_HAS_MAP_PAYLOAD:
-    case ResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD:
-      throw new Error("TODO: This shouldn't happen");
-    default:
-      throw new Error(`TODO: unexpected result type ${result.resultType}`);
-  }
-};
 
 export type ExampleDefinition = {
   // TODO types for states
@@ -62,49 +47,37 @@ export class ContractCaseDefiner {
     );
   }
 
-  runExample<R, C>(
+  runExample<OtherR, OtherC extends Record<string, unknown>>(
     definition: ExampleDefinition,
-    runConfig: IndividualSuccessTestConfig<R, C> = {}
+    runConfig: IndividualSuccessTestConfig<OtherR, OtherC> = {}
   ): Promise<unknown> {
     return this.boundaryDefiner
       .runExample(
         mapDefinition(definition),
         mapSuccessConfig({ ...this.config, ...runConfig })
       )
-      .then(handleSuccess);
+      .then(mapSuccess);
   }
 
-  runRejectingExample<R, C>(
+  runRejectingExample<OtherR, OtherC extends Record<string, unknown>>(
     definition: ExampleDefinition,
-    runConfig: IndividualFailedTestConfig<R, C> = {}
+    runConfig: IndividualFailedTestConfig<OtherR, OtherC> = {}
   ): Promise<unknown> {
     return this.boundaryDefiner
       .runRejectingExample(
         mapDefinition(definition),
         mapFailingConfig({ ...this.config, ...runConfig })
       )
-      .then(handleSuccess);
+      .then(mapSuccess);
   }
 
   endRecord(): Promise<unknown> {
-    return this.boundaryDefiner.endRecord().then(handleSuccess);
+    return this.boundaryDefiner.endRecord().then(mapSuccess);
   }
 
   stripMatchers<T>(matcherOrData: unknown): T {
-    const result = this.boundaryDefiner.stripMatchers(
-      matcherOrData as BoundaryAnyMatcher
+    return mapSuccessWithAny(
+      this.boundaryDefiner.stripMatchers(matcherOrData as BoundaryAnyMatcher)
     );
-
-    switch (result.resultType) {
-      case ResultTypeConstants.RESULT_FAILURE:
-        throw mapFailureToJsError(result as BoundaryFailure);
-      case ResultTypeConstants.RESULT_SUCCESS:
-      case ResultTypeConstants.RESULT_SUCCESS_HAS_MAP_PAYLOAD:
-        throw new Error("TODO: This shouldn't happen");
-      case ResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD:
-        return (result as BoundarySuccessWithAny).payload as T;
-      default:
-        throw new Error(`TODO: unexpected result type ${result.resultType}`);
-    }
   }
 }

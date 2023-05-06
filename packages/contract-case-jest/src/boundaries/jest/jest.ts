@@ -1,8 +1,15 @@
-import { ContractCaseDefiner } from '../connectors/ContractDefiner';
-import type { ContractCaseJestConfig, DefineCaseJestCallback } from './types';
+import { ContractCaseDefiner } from '../../connectors/ContractDefiner';
+import { ContractVerifier } from '../../connectors/ContractVerifier';
+import { RunTestCallback } from '../../entities';
+import type {
+  ContractCaseJestConfig,
+  ContractCaseJestVerifierConfig,
+  DefineCaseJestCallback,
+  VerifyCaseJestCallback,
+} from './types';
 
 const TIMEOUT = 30000;
-/*
+
 const runJestTest: RunTestCallback = (
   testName: string,
   verify: () => Promise<unknown>
@@ -10,8 +17,6 @@ const runJestTest: RunTestCallback = (
   // eslint-disable-next-line jest/expect-expect
   it(`${testName}`, () => verify(), TIMEOUT);
 };
-
-*/
 
 export const defineContract = (
   config: ContractCaseJestConfig,
@@ -33,9 +38,8 @@ export const defineContract = (
     });
   });
 
-/* 
 export const verifyContract = (
-  config: CaseConfig,
+  config: ContractCaseJestVerifierConfig,
   callback: VerifyCaseJestCallback
 ): void => {
   if (!config.providerName) {
@@ -45,4 +49,3 @@ export const verifyContract = (
     callback(new ContractVerifier(config, runJestTest));
   });
 };
-*/
