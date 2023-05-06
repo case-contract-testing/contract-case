@@ -65,7 +65,6 @@ list](https://github.com/case-contract-testing/case/blob/main/docs/maintainers/t
 ### I'm fine with all the caveats, how do I get started?
 
 ```
-# Note that in a future release, this import will change to a DSL package
 npm install --save-dev @contract-case/contract-case-jest
 ```
 
