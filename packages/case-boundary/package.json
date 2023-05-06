@@ -83,7 +83,7 @@
     "@contract-case/case-entities-internal": "0.10.0"
   },
   "peerDependencies": {
-    "@contract-case/test-equivalence-matchers": "0.9.1"
+    "@contract-case/test-equivalence-matchers": "0.10.0"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
