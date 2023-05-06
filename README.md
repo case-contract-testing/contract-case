@@ -2,9 +2,16 @@
 
 [![Build and test](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/case-contract-testing/case/badge.svg?branch=main)](https://coveralls.io/github/case-contract-testing/case?branch=main)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=package.json)
 
-[![npm](https://img.shields.io/npm/v/@case-contract-testing/case.svg)](https://www.npmjs.com/package/@case-contract-testing/case)
+DSL:
+
+[![npm](https://img.shields.io/npm/v/@contract-case/contract-case-jest.svg)](https://www.npmjs.com/package/@contract-case/contract-case-jest)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/contract-case-jest/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/contract-case-jest//package.json)
+
+Core Package:
+
+[![npm](https://img.shields.io/npm/v/@contract-case/case-core.svg)](https://www.npmjs.com/package/@contract-case/case-core)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/case-core/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/case-core/package.json)
 
 <span align="center">
 
@@ -53,7 +60,7 @@ You can follow the detailed progress by reading the [maintainer todo list](./doc
 ### I'm fine with all the caveats, how do I get started?
 
 ```
-npm install --save-dev @case-contract-testing/case
+npm install --save-dev @contract-case/contract-case-jest
 ```
 
 You may also need the peer dependencies:
