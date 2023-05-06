@@ -66,7 +66,7 @@ list](https://github.com/case-contract-testing/case/blob/main/docs/maintainers/t
 
 ```
 # Note that in a future release, this import will change to a DSL package
-npm install --save-dev @contract-case/case-core
+npm install --save-dev @contract-case/contract-case-jest
 ```
 
 You may also need the peer dependencies:

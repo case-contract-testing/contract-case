@@ -111,16 +111,16 @@ Default: None
 The basic auth to use when contacting the contract broker. If you're using a
 `brokerCiAccessToken`, this option is ignored. Expects an object with the following structure:
 
-```json
+```ts
 {
-    /**
-     * The username for basic auth
-     */
-    username: string;
-    /**
-     * The password for basic auth
-     */
-    password: string;
+  /**
+   * The username for basic auth
+   */
+  username: string;
+  /**
+   * The password for basic auth
+   */
+  password: string;
 }
 ```
 

@@ -2,7 +2,6 @@
 sidebar_position: 6
 ---
 
-
 # Introduction to Test Equivalence Matchers
 
 When the contract is run against the provider, it's nice if the test data
@@ -46,7 +45,7 @@ keyed by the variable name:
 
 ```ts
         // inState(
-        //    stateName: string, 
+        //    stateName: string,
         //    defaultValues: Record<string, AnyConstraintOrData>
         // )
         inState('A user exists', { userId: '123' }),
@@ -73,15 +72,16 @@ await contract.runExample({
       body: responseBody,
     },
   }),
+  {
+    trigger: (config: HttpRequestConfig) =>
+      new YourApi(config.baseUrl).getUser(config.variables['userId']),
 
-  trigger: (config: HttpRequestConfig) =>
-    new YourApi(config.baseUrl).getUser(config.variables['userId']),
-
-  testResponse: (user, config) => {
-    expect(user).toEqual({
-      userId: config.variables['userId'],
-    });
-  },
+    testResponse: (user, config) => {
+      expect(user).toEqual({
+        userId: config.variables['userId'],
+      });
+    },
+  }
 });
 ```
 
@@ -100,7 +100,6 @@ This would prevent the state handler from returning any `userScore` value that d
 As a convenience, all default values passed to state variables are automatically
 wrapped in a `shapedLike()` constraint. This means that `userId: 'foo'` will
 accept any `string` value, and not just the exact string `'foo'`.
-
 
 ### Improving your contract
 

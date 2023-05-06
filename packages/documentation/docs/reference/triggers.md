@@ -20,10 +20,9 @@ here, and return the response that your client returns. The `MockConfig` object
 contains the details of the mock that ContractCase has set up. `TriggerReturnType` is an
 implicit type parameter, and is only used to type `testResponse`
 
-
 ```ts
-testResponse = 
-    (response: TriggerReturnType, config: MockConfig) 
+testResponse =
+    (response: TriggerReturnType, config: MockConfig)
        => Promise<unknown> | void
 ```
 
@@ -71,6 +70,8 @@ await contract.runExample({
             },
         },
     }),
+  },
+  {
     // The trigger is the invocation of your client code
     // It receives some configuration with details of how to contact the mock
     // This function should return the business object that your API returns
@@ -93,54 +94,55 @@ await contract.runExample({
 If your API is expected to throw an error during the invocation, then you should use `runRejectingExample` instead of `runExample`, and use `testErrorResponse` instead of `testResponse`:
 
 ```ts
-await contract.runRejectingExample({
-  states: [inState('Server is up'), inState('No users exist')],
-  definition: willSendHttpRequest({
-    request: {
-      method: 'GET',
-      path: '/users/foo',
-    },
-    response: {
-      status: 404,
-    },
-  }),
-  // The trigger is the invocation of your client code
-  // It receives some configuration with details of how to contact the mock
-  // This function should return the business object that your API returns
-  trigger: (config: HttpRequestConfig) =>
-    new YourApi(config.baseUrl).getUser('foo'),
-  // The testErrorResponse function is used to check the business object.
-  // This is an important step, as without it, ContractCase can't be sure that your
-  // calling code can understand the objects that your code is generating.
-  //
-  // It receives the object that was thrown by your trigger.
-  // If your trigger does not throw an error, the test will fail
-  testErrorResponse: (e) => {
-    expect(e).toBeInstanceOf(UserNotFoundError);
+await contract.runRejectingExample(
+  {
+    states: [inState('Server is up'), inState('No users exist')],
+    definition: willSendHttpRequest({
+      request: {
+        method: 'GET',
+        path: '/users/foo',
+      },
+      response: {
+        status: 404,
+      },
+    }),
   },
-});
+  {
+    // The trigger is the invocation of your client code
+    // It receives some configuration with details of how to contact the mock
+    // This function should return the business object that your API returns
+    trigger: (config: HttpRequestConfig) =>
+      new YourApi(config.baseUrl).getUser('foo'),
+    // The testErrorResponse function is used to check the business object.
+    // This is an important step, as without it, ContractCase can't be sure that your
+    // calling code can understand the objects that your code is generating.
+    //
+    // It receives the object that was thrown by your trigger.
+    // If your trigger does not throw an error, the test will fail
+    testErrorResponse: (e) => {
+      expect(e).toBeInstanceOf(UserNotFoundError);
+    },
+  }
+);
 ```
 
 Triggers and `testResponse`/`testErrorResponse` functions are not written to the contract.
 
 ## Providing triggers in contract verification
 
-
-
 ### In CaseConfig
 
-In both contract definition and contract verification, you can provide a `triggers` object to your `CaseConfig`.
+In both contract definition and contract verification, you can provide a `TriggerGroupMap` object to your `CaseConfig`, under the key `triggers`.
 
-This is an object keyed by request name, where each value is of type:
+Each `TriggerGroup` is an object keyed by request name, where each value is of type:
 
 ```ts
 {
-   trigger: TriggerFunction;
-   testResponses: Record<string, TestResponseFunction>;
-   testErrorResponses: Record<string, TestErrorResponseFunction>
+  trigger: TriggerFunction;
+  testResponses: Record<string, TestResponseFunction>;
+  testErrorResponses: Record<string, TestErrorResponseFunction>;
 }
 ```
-
 
 If you provide this `triggers` object, ContractCase will first find the request trigger,
 then find the matching `testResponse` or `testErrorResponse` function associated
@@ -149,38 +151,42 @@ sometimes the same response needs to be tested differently when it is received b
 different triggers.
 
 ```ts
-    triggers: {
-        'an http "GET" request to "/health" without a body': {
-          trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
-          testResponses: {
-            'a (200) response with body an object shaped like {status: "up"}': (
-              health
-            ) => {
-              expect(health).toEqual('up');
-            },
-            'a (200) response with body an object shaped like {status: <any string>}':
-              (health) => expect(typeof health).toBe('string'),
-          },
-          testErrorResponses: {
-            'a (httpStatus 4XX | 5XX) response without a body': (e) => {
-              expect(e).toBeInstanceOf(ApiError);
-            },
-            'a (503) response with body an object shaped like {status: "down"}':
-              (e) => {
-                expect(e).toBeInstanceOf(ApiError);
-              },
+{
+  triggers: new TriggerGroupMap()
+    .addTriggerGroup('an http "GET" request to "/health" without a body', {
+      trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
+      testResponses: {
+        'a (200) response with body an object shaped like {status: "up"}': (
+          health
+        ) => {
+          expect(health).toEqual('up');
+        },
+        'a (200) response with body an object shaped like {status: <any string>}':
+          (health) => expect(typeof health).toBe('string'),
+      },
+      testErrorResponses: {
+        'a (httpStatus 4XX | 5XX) response without a body': (e) => {
+          expect(e).toBeInstanceOf(ApiError);
+        },
+        'a (503) response with body an object shaped like {status: "down"}': (
+          e
+        ) => {
+          expect(e).toBeInstanceOf(ApiError);
+        },
+      },
+    })
+    .addTriggerGroup(
+      'an http "GET" request to "/health" with the following headers {accept: "application/json"} without a body',
+      {
+        trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
+        testResponses: {
+          'a (200) response with body an object shaped like {status: "up"}': (
+            health
+          ) => {
+            expect(health).toEqual('up');
           },
         },
-        'an http "GET" request to "/health" with the following headers {accept: "application/json"} without a body':
-          {
-            trigger: (config: HttpRequestConfig) =>
-              api(config.baseUrl).health(),
-            testResponses: {
-              'a (200) response with body an object shaped like {status: "up"}':
-                (health) => {
-                  expect(health).toEqual('up');
-                },
-            },
-          },
-    },
+      }
+    );
+}
 ```

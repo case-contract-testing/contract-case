@@ -5,8 +5,8 @@ sidebar_position: 1
 # Creating a contract
 
 A contract starts with a `defineContract` call. This can be configured with a
-`CaseConfig` object (see [the configuration options reference
-here](/docs/reference//configuring)).
+`ContractCaseConfig` object (see [the configuration options reference
+here](/docs/reference/configuring)).
 
 For example, in Jest, defining a contract might look like:
 
@@ -15,21 +15,20 @@ defineContract(
   {
     consumerName /* The name of the service writing the contract */,
     providerName /* The name of the service that will verify the contract */,
-    config: {
-      /* Any additional CaseConfig */
-    },
+
+    /* Any additional ContractCaseConfig */
   },
   (contract: ContractDefiner) => {
     describe('some API method', () => {
       describe('with a valid access token', () => {
         it('behaves as expected', async () => {
-          await contract.runExample(/* described below */);
+          await contract.runExample(/* described later in this chapter */);
         });
       });
 
       describe('with no access token', () => {
         it('throws an error', async () => {
-          await contract.runRejectingExample(/* described below */);
+          await contract.runRejectingExample(/* described later in this chapter */);
         });
       });
     });
@@ -51,4 +50,3 @@ the consumer of HTTP requests, not the consumer of responses.
 :::
 
 Next, we will discuss the [ContractCase Example Lifecycle](./lifecycle).
-

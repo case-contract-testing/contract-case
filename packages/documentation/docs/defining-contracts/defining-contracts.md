@@ -28,7 +28,6 @@ ContractCase has two main modes of running tests:
   examples (the contract file) written by a service that your service communicates
   with, and you confirm that it meets the expectations laid out in the contract.
 
-
 Together, these form two halves of the same test. With an HTTP client
 defining the contract, in contract _definition_ you confirm that the client can
 generate a specific request, and understand a particular response. In contract
