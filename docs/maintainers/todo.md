@@ -13,6 +13,8 @@
 
 - [ ] Broker docs
 - [ ] Broker configurability in CLI
+  - [ ] Selectors on download
+  - [ ] Publish selectors
 - [ ] Auto docs on Matchers
 - [ ] Auto docs on Mock types
 - [ ] Fix bug where it's not finding the CI token
