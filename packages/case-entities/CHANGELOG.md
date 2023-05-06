@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.10.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-entities-internal-v0.9.1...@contract-case/case-entities-internal-v0.10.0) (2023-05-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rename all internal fields from "case:*" to "_case:*" for compatibility with JSii. Contract files written before this change will need to be regenerated
+
+### Features
+
+* Add types for states ([55048e1](https://github.com/case-contract-testing/case/commit/55048e1041f73f0edfede8ca2cf605ae6be138f6))
+* Export MatchContextByType, DataOrCaseNodeFor and add the HTTP matcher types to the Any* lists ([0ce1ee3](https://github.com/case-contract-testing/case/commit/0ce1ee384017516d3107e8c45e8d308ea6cba4dd))
+
+
+### Bug Fixes
+
+* Add AnyLeafOrStructure to AnyCaseMatcherOrData, preventing type errors in tests ([b0d3cf0](https://github.com/case-contract-testing/case/commit/b0d3cf0a8a6f1020777ecc53837f1764ccdeb2d3))
+* Export MatchContextByExact ([88cc4ae](https://github.com/case-contract-testing/case/commit/88cc4aef1e99eaee1102bba39c29d1c5aeeae208))
+* Update previously unused mock definitions to match the prefixed format ([bf693d7](https://github.com/case-contract-testing/case/commit/bf693d7be0fc0ef6fd3c218d72e420086228f030))
+
+
+### Code Refactoring
+
+* Rename all internal fields from "case:*" to "_case:*" for compatibility with JSii. Contract files written before this change will need to be regenerated ([438fac4](https://github.com/case-contract-testing/case/commit/438fac472f9d58686a705bd57d58696a0499f226))
+
 ## [0.9.1](https://github.com/case-contract-testing/case/compare/@contract-case/case-entities-internal-v0.9.0...@contract-case/case-entities-internal-v0.9.1) (2023-05-03)
 
 
