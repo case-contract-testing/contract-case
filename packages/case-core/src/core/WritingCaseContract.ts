@@ -172,12 +172,6 @@ export class WritingCaseContract extends BaseCaseContract {
     );
     writingContext.logger.debug(`Wrote contract file: ${fileName}`);
 
-    if (!this.initialContext['_case:currentRun:context:brokerCiAccessToken']) {
-      this.initialContext.logger.warn(
-        'Not publishing a contract, as there is no brokerCiAccessToken set'
-      );
-      return;
-    }
     await this.dependencies
       .makeBrokerService(writingContext)
       .publishContract(
