@@ -11,6 +11,12 @@
 - [ ] Extract Jest
 - [ ] Release C# ?
 
+- [ ] Broker docs
+- [ ] Broker configurability in CLI
+- [ ] Auto docs on Matchers
+- [ ] Auto docs on Mock types
+- [ ] Fix bug where it's not finding the CI token
+
 ## Todo list
 
 Next:
@@ -26,7 +32,7 @@ Next:
   - [x] Arbitrary JSON
   - [x] Arbitrary JSON with Case Matchers
 - [x] Spike monorepo
-- [ ] Flatten types at the boundary
+- [x] Flatten types at the boundary
 
   - [x] Classes for matchers
   - [x] Classes for mocks
@@ -89,6 +95,7 @@ Notes from refactor:
   - [ ] String prefix with an empty string?
 
 - [ ] Remove MatchContextByType from core
+- [ ] Make it an error to not have broker tokens or URLs when trying to publish
 
 Pact Parity
 
