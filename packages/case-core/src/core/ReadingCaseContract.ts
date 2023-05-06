@@ -55,7 +55,7 @@ export class ReadingCaseContract extends BaseCaseContract {
   }
 
   verifyContract<T extends AnyMockDescriptorType>(
-    { stateHandlers = {}, triggers }: MultiTestInvoker<T>,
+    invoker: MultiTestInvoker<T>,
     runTestCb: RunTestCallback
   ): void {
     this.currentContract.examples.forEach((example, index) => {
@@ -71,7 +71,10 @@ export class ReadingCaseContract extends BaseCaseContract {
         this.mutex.runExclusive(() =>
           executeExample(
             { ...example, result: 'PENDING' },
-            { stateHandlers, names, triggers },
+            {
+              ...invoker,
+              names,
+            },
             this,
             applyNodeToContext(example.mock, this.initialContext, {
               '_case:currentRun:context:testName': `${index}`,
