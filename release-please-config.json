@@ -23,6 +23,8 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-core": {
+      "include-component-in-tag": false,
+      "include-v-in-tag": true,
       "component": "@contract-case/case-core",
       "changelog-path": "CHANGELOG.md"
     },
