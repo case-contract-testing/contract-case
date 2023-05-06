@@ -6,8 +6,6 @@
   ],
   "version": "0.1.1",
   "devDependencies": {
-    "jsii-docgen": "7.2.9",
-    "glob": "^8.0.1",
     "lerna": "^6.6.1"
   },
   "optionalDependencies": {
@@ -28,10 +26,5 @@
     "lint:fix": "lerna run lint:fix",
     "build:docs": "lerna run build:docs",
     "test": "lerna run test"
-  },
-  "overrides": {
-    "jsii-docgen": {
-      "glob": "8.0.1"
-    }
   }
 }
