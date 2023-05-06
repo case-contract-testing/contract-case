@@ -69,10 +69,6 @@ export class BoundaryContractVerifier {
   private initialiseVerifier() {
     const { config } = convertConfig(this.constructorConfig);
 
-    if (config.consumerName === undefined || config.consumerName === '') {
-      throw new CaseConfigurationError('Must provide a non-empty consumerName');
-    }
-
     if (config.providerName === undefined || config.providerName === '') {
       throw new CaseConfigurationError('Must provide a non-empty providerName');
     }

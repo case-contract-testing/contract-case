@@ -24,7 +24,7 @@ export interface ContractCaseBoundaryConfig {
   /**
    * The name of the consumer for this contract.
    */
-  readonly consumerName: string;
+  readonly consumerName?: string;
 
   /**
    * logLevel - one of:
