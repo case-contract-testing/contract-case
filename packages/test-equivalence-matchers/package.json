@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/test-equivalence-matchers",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "Test equivalence matchers component for the ContractCase contract testing suite",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs/reference/matchers",
@@ -82,7 +82,7 @@
     "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "@contract-case/case-entities-internal": "0.9.1"
+    "@contract-case/case-entities-internal": "0.10.0"
   },
   "bundledDependencies": [
     "@contract-case/case-entities-internal"
