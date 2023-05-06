@@ -24,6 +24,8 @@
   "scripts": {
     "package": "lerna run package",
     "build": "lerna run build",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
     "build:docs": "lerna run build:docs",
     "test": "lerna run test"
   },
