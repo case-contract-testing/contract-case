@@ -61,7 +61,10 @@ There are some repeated types through the layers. Generally:
    mappings section below.
 5. Implement state handler mappings TODO describe
 6. Implement trigger mappings TODO describe
-7. Implement DSL for matchers, mocks and states (TODO describe)
+7. Create a `ContractVerifier` class. It must:
+   - Expose the `runVerification` method.
+8. Create a class or type for `RunTestCallback`
+9. Implement DSL for matchers, mocks and states (TODO describe)
 
 TODO: More steps
 

@@ -30,7 +30,7 @@ Next:
 
   - [x] Classes for matchers
   - [x] Classes for mocks
-  - [ ] Types for contract definition
+  - [x] Types for contract definition
     - [x] Types for Triggers
       - [x] Implement triggerAndVerify
     - [x] Types for State Handlers
@@ -63,7 +63,7 @@ Next:
 Notes from refactor:
 
 - [ ] Add a way to configure individual mocks
-
+- [ ] Rename all the repeated types so they're not confusing
 - [x] Rename case:matcher to \_case:matcher
 - [ ] Rename all case:matcher:matcher to case:matcher:child
   - But not the ones where it's not a child
@@ -123,6 +123,7 @@ Pact Parity
   - [x] Publish contract
   - [x] Get contract from broker
   - [x] Publish verification result
+  - [ ] Publish branch in verification (PUT /pacticipants/<name>/branches/<branchname>/versions/<version>)
   - [ ] Choose version selectors for upload
   - [ ] Choose version selectors for download
   - [ ] Make download actually a nice CLI
