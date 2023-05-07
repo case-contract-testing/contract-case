@@ -33,6 +33,7 @@ import { makeBrokerApi } from './broker';
 import { makeLogger } from '../logger';
 import { makeContractStore } from '../contractStore/contractReader';
 import { defaultPrinter } from '../../boundaries/defaultTestPrinter';
+import { EMPTY_DATA_CONTEXT } from '../../__tests__/testContext';
 
 const emptyContext: DataContext = {
   logger: makeLogger(
@@ -89,26 +90,38 @@ describe('broker client', () => {
 
   describe('with missing configuration', () => {
     it('fails with no token', () => {
-      expect(() => makeBrokerApiForTest('http://localhost', '')).toThrow(
-        CaseConfigurationError
-      );
+      expect(() =>
+        makeBrokerApiForTest('http://localhost', '').downloadContract(
+          'example.com',
+          EMPTY_DATA_CONTEXT
+        )
+      ).toThrow(CaseConfigurationError);
     });
     it('fails with no baseUrl', () => {
-      expect(() => makeBrokerApiForTest('', 'TOKEN')).toThrow(
-        CaseConfigurationError
-      );
+      expect(() =>
+        makeBrokerApiForTest('', 'TOKEN').downloadContract(
+          'example.com',
+          EMPTY_DATA_CONTEXT
+        )
+      ).toThrow(CaseConfigurationError);
     });
 
     it('fails with a non-string baseUrl', () => {
       expect(() =>
-        makeBrokerApiForTest(3 as unknown as string, 'TOKEN')
+        makeBrokerApiForTest(3 as unknown as string, 'TOKEN').downloadContract(
+          'example.com',
+          EMPTY_DATA_CONTEXT
+        )
       ).toThrow(CaseConfigurationError);
     });
 
     it('fails with a non-string token', () => {
-      expect(() => makeBrokerApiForTest('s', 3 as unknown as string)).toThrow(
-        CaseConfigurationError
-      );
+      expect(() =>
+        makeBrokerApiForTest('s', 3 as unknown as string).downloadContract(
+          'example.com',
+          EMPTY_DATA_CONTEXT
+        )
+      ).toThrow(CaseConfigurationError);
     });
   });
 

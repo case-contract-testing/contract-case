@@ -24,11 +24,55 @@ import {
 } from '../../core/types';
 import { caseVersion } from '../../entities/caseVersion';
 
-const trimSlash = (str: string): string => {
+const trimSlash = (str: string | undefined): string => {
+  if (typeof str !== 'string') return '';
   if (str.endsWith('/')) {
     return trimSlash(str.substring(0, str.length - 1));
   }
   return str;
+};
+
+const validatePrecondition = (
+  baseUrl: string | undefined,
+  authToken: string | undefined,
+  basicAuth: unknown | undefined
+) => {
+  if (baseUrl === undefined || baseUrl === '') {
+    return new CaseConfigurationError(
+      "Can't access a broker without specifying the base URL. Set the environment variable CASE_BROKER_BASEURL or the config property brokerBaseUrl"
+    );
+  }
+  if (typeof baseUrl !== 'string') {
+    return new CaseConfigurationError(
+      `Expected the baseurl to be a string, but it was '${typeof authToken}'`
+    );
+  }
+
+  if (authToken === undefined && basicAuth === undefined) {
+    return new CaseConfigurationError(
+      "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN"
+    );
+  }
+
+  if (authToken !== undefined) {
+    if (authToken === '') {
+      return new CaseConfigurationError(
+        "Can't access a broker without an authorization token. Set the environment variable CASE_BROKER_CI_TOKEN"
+      );
+    }
+    if (typeof authToken !== 'string') {
+      return new CaseConfigurationError(
+        `Expected the authToken to be a string, but it was '${typeof authToken}'`
+      );
+    }
+  }
+
+  if (authToken === undefined && basicAuth === undefined) {
+    return new CaseConfigurationError(
+      "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN"
+    );
+  }
+  return undefined;
 };
 
 export const makeBrokerApi: MakeBrokerApi = (
@@ -39,45 +83,11 @@ export const makeBrokerApi: MakeBrokerApi = (
   const baseUrl = configContext['_case:currentRun:context:brokerBaseUrl'];
   const basicAuth = configContext['_case:currentRun:context:brokerBasicAuth'];
 
-  if (baseUrl === undefined || baseUrl === '') {
-    throw new CaseConfigurationError(
-      "Can't access a broker without specifying the base URL. Set the environment variable CASE_BROKER_BASEURL or the config property brokerBaseUrl"
-    );
-  }
-  if (typeof baseUrl !== 'string') {
-    throw new CaseConfigurationError(
-      `Expected the baseurl to be a string, but it was '${typeof authToken}'`
-    );
-  }
-
-  if (authToken === undefined && basicAuth === undefined) {
-    throw new CaseConfigurationError(
-      "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN"
-    );
-  }
-
-  if (authToken !== undefined) {
-    if (authToken === '') {
-      throw new CaseConfigurationError(
-        "Can't access a broker without an authorization token. Set the environment variable CASE_BROKER_CI_TOKEN"
-      );
-    }
-    if (typeof authToken !== 'string') {
-      throw new CaseConfigurationError(
-        `Expected the authToken to be a string, but it was '${typeof authToken}'`
-      );
-    }
-  }
-
-  if (authToken === undefined && basicAuth === undefined) {
-    throw new CaseConfigurationError(
-      "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN"
-    );
-  }
-
   const auth = (authToken ?? basicAuth) as string | BasicAuth;
 
   const server = makeAxiosConnector(trimSlash(baseUrl), auth);
+
+  const err = validatePrecondition(baseUrl, authToken, basicAuth);
 
   return {
     publishContract: (
@@ -85,6 +95,7 @@ export const makeBrokerApi: MakeBrokerApi = (
       version: string,
       logContext: LogContext
     ) => {
+      if (err !== undefined) throw err;
       // TODO: Make this a first class object
       logContext.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
@@ -113,6 +124,7 @@ export const makeBrokerApi: MakeBrokerApi = (
       branch: string | false,
       logContext: LogContext
     ) => {
+      if (err !== undefined) throw err;
       logContext.logger.debug(
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
       );
@@ -150,6 +162,7 @@ export const makeBrokerApi: MakeBrokerApi = (
     ) =>
       Promise.resolve()
         .then(() => {
+          if (err !== undefined) throw err;
           if (contract._links === undefined) {
             logContext.logger.maintainerDebug(
               'No links section in the following contract:',
@@ -195,10 +208,13 @@ export const makeBrokerApi: MakeBrokerApi = (
             .then((t) => t)
         ),
 
-    downloadContract: (url: string, logContext: LogContext) =>
-      makeAxiosConnector(url, auth).authedGet('', logContext),
+    downloadContract: (url: string, logContext: LogContext) => {
+      if (err !== undefined) throw err;
+      return makeAxiosConnector(url, auth).authedGet('', logContext);
+    },
 
     urlsForVerification: (serviceName: string, logContext: LogContext) => {
+      if (err !== undefined) throw err;
       logContext.logger.debug(
         `Finding contracts to verify for service '${serviceName}' on broker at ${baseUrl}`
       );
