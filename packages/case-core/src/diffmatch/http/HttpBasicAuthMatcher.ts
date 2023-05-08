@@ -1,5 +1,5 @@
 import {
-  CoreHttpBasicAuthValue,
+  CoreHttpBasicAuthValueMatcher,
   AnyData,
   HTTP_BASIC_AUTH_TYPE,
 } from '@contract-case/case-entities-internal';
@@ -26,7 +26,7 @@ const encode = (username: string, password: string) => {
   return Buffer.from(`${username}:${password}`).toString('base64');
 };
 const check = async (
-  matcher: CoreHttpBasicAuthValue,
+  matcher: CoreHttpBasicAuthValueMatcher,
   matchContext: MatchContext,
   actual: unknown
 ): Promise<MatchResult> => {
@@ -87,7 +87,7 @@ const check = async (
 };
 
 const strip = (
-  matcher: CoreHttpBasicAuthValue,
+  matcher: CoreHttpBasicAuthValueMatcher,
   matchContext: MatchContext
 ): AnyData => {
   const username = matchContext.descendAndStrip(

@@ -2,7 +2,7 @@ import {
   ARRAY_CONTAINS_TYPE,
   AnyCaseMatcherOrData,
   AnyData,
-  CoreArrayContainsMatch,
+  CoreArrayContainsMatcher,
   isCaseNode,
 } from '@contract-case/case-entities-internal';
 import { addLocation } from '../../entities/context';
@@ -22,7 +22,7 @@ import {
 } from '../../entities/types';
 
 const strip: StripMatcherFn<typeof ARRAY_CONTAINS_TYPE> = (
-  matcher: CoreArrayContainsMatch,
+  matcher: CoreArrayContainsMatcher,
   matchContext: MatchContext
 ): AnyData =>
   matcher['_case:matcher:matchers'].map((childMatcher, index) =>
@@ -33,7 +33,7 @@ const strip: StripMatcherFn<typeof ARRAY_CONTAINS_TYPE> = (
   );
 
 const checkMatch = async (
-  parentMatcher: CoreArrayContainsMatch,
+  parentMatcher: CoreArrayContainsMatcher,
   matcher: AnyCaseMatcherOrData,
   matchContext: MatchContext,
   actual: unknown[]
@@ -82,7 +82,7 @@ const checkMatch = async (
       );
 
 const check: CheckMatchFn<typeof ARRAY_CONTAINS_TYPE> = async (
-  matcher: CoreArrayContainsMatch,
+  matcher: CoreArrayContainsMatcher,
   matchContext: MatchContext,
   actual: unknown
 ): Promise<MatchResult> =>

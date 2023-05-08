@@ -7,10 +7,10 @@ import {
   CoreStringSuffixMatcher,
   STRING_SUFFIX_TYPE,
   AnyCaseStringMatcher,
-  CoreBase64Encoded,
+  CoreBase64EncodedMatcher,
   BASE64_ENCODED_TYPE,
   AnyCaseMatcherOrData,
-  CoreJsonStringified,
+  CoreJsonStringifiedMatcher,
   JSON_STRINGIFIED_TYPE,
 } from '@contract-case/case-entities-internal';
 import { anyString } from './primitives';
@@ -74,7 +74,7 @@ export const stringSuffix = (
  */
 export const encodedStringBase64 = (
   child: AnyCaseStringMatcher
-): CoreBase64Encoded => ({
+): CoreBase64EncodedMatcher => ({
   '_case:matcher:type': BASE64_ENCODED_TYPE,
   '_case:matcher:child': child,
   '_case:matcher:resolvesTo': 'string',
@@ -87,7 +87,7 @@ export const encodedStringBase64 = (
  */
 export const stringifiedJson = (
   child: AnyCaseMatcherOrData
-): CoreJsonStringified => ({
+): CoreJsonStringifiedMatcher => ({
   '_case:matcher:type': JSON_STRINGIFIED_TYPE,
   '_case:matcher:child': child,
   '_case:matcher:resolvesTo': 'string',

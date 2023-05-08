@@ -1,5 +1,5 @@
 import {
-  CoreBase64Encoded,
+  CoreBase64EncodedMatcher,
   AnyData,
   BASE64_ENCODED_TYPE,
 } from '@contract-case/case-entities-internal';
@@ -17,7 +17,7 @@ import type {
 } from '../../entities/types';
 
 const check = (
-  matcher: CoreBase64Encoded,
+  matcher: CoreBase64EncodedMatcher,
   matchContext: MatchContext,
   actual: unknown
 ): Promise<MatchResult> | MatchResult => {
@@ -55,7 +55,7 @@ const check = (
 };
 
 const strip = (
-  matcher: CoreBase64Encoded,
+  matcher: CoreBase64EncodedMatcher,
   matchContext: MatchContext
 ): AnyData => {
   const result = matchContext.descendAndStrip(

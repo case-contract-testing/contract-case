@@ -73,15 +73,15 @@ Notes from refactor:
 - [ ] Add a way to configure individual mocks
 - [ ] Rename all the repeated types so they're not confusing
 - [x] Rename case:matcher to \_case:matcher
-- [ ] Rename all case:matcher:matcher to case:matcher:child
+- [x] Rename all case:matcher:matcher to case:matcher:child
   - But not the ones where it's not a child
-- [ ] Make ending of matcher interfaces consistent
+- [x] Make ending of matcher interfaces consistent
   - Some are:
     - Matches
     - Matcher
     - Match
     - Matchers / Children
-- [ ] Make list of all resolvesTo
+- [x] Make list of all resolvesTo
   - string
   - number
   - null
@@ -274,6 +274,8 @@ Documentation
 - [x] Why there's no optional
 - [ ] How log levels work
 - [ ] Maintainer documentation
+- [ ] Correct coverage information
+- [ ] Package versioning strategy
 
 Potential issues:
 

@@ -1,5 +1,5 @@
 import {
-  CoreJsonStringified,
+  CoreJsonStringifiedMatcher,
   AnyData,
   JSON_STRINGIFIED_TYPE,
 } from '@contract-case/case-entities-internal';
@@ -17,7 +17,7 @@ import type {
 } from '../../entities/types';
 
 const check = (
-  matcher: CoreJsonStringified,
+  matcher: CoreJsonStringifiedMatcher,
   matchContext: MatchContext,
   actual: unknown
 ): Promise<MatchResult> | MatchResult => {
@@ -60,7 +60,7 @@ const check = (
 };
 
 const strip = (
-  matcher: CoreJsonStringified,
+  matcher: CoreJsonStringifiedMatcher,
   matchContext: MatchContext
 ): AnyData => {
   const result = matchContext.descendAndStrip(

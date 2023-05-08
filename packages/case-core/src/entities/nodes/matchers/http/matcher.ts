@@ -1,7 +1,7 @@
 import {
   AnyCaseMatcherOrData,
   AnyCaseStringMatcher,
-  CoreHttpBasicAuthValue,
+  CoreHttpBasicAuthValueMatcher,
   CoreHttpRequestMatcher,
   CoreHttpResponseMatcher,
   CoreHttpStatusCodeMatcher,
@@ -54,7 +54,7 @@ export const coreUrlEncodedString = (
 export const coreBasicAuthValue = (
   username: AnyCaseStringMatcher,
   password: AnyCaseStringMatcher
-): CoreHttpBasicAuthValue => ({
+): CoreHttpBasicAuthValueMatcher => ({
   '_case:matcher:type': HTTP_BASIC_AUTH_TYPE,
   '_case:matcher:username': username,
   '_case:matcher:password': password,

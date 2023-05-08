@@ -3,7 +3,7 @@ import {
   CoreArrayEachEntryMatches,
   ARRAY_EACH_ENTRY_MATCHES_TYPE,
   CoreArrayLengthMatcher,
-  CoreArrayContainsMatch,
+  CoreArrayContainsMatcher,
   ARRAY_CONTAINS_TYPE,
   CoreShapedArrayMatcher,
 } from '@contract-case/case-entities-internal';
@@ -59,7 +59,7 @@ export const arrayLength = (
  */
 export const arrayContains = (
   ...matchers: AnyCaseMatcherOrData[]
-): CoreArrayContainsMatch => ({
+): CoreArrayContainsMatcher => ({
   '_case:matcher:type': ARRAY_CONTAINS_TYPE,
   '_case:matcher:matchers': matchers,
 });

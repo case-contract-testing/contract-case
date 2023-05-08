@@ -1,5 +1,5 @@
 import {
-  CoreIntegerMatch,
+  CoreIntegerMatcher,
   INTEGER_MATCH_TYPE,
 } from '@contract-case/case-entities-internal';
 import {
@@ -14,7 +14,7 @@ import type {
 } from '../../../entities/types';
 
 const check = (
-  matcher: CoreIntegerMatch,
+  matcher: CoreIntegerMatcher,
   matchContext: MatchContext,
   actual: unknown
 ): Array<CaseError> =>
@@ -26,10 +26,10 @@ const check = (
   );
 
 export const IntegerMatcher: MatcherExecutor<typeof INTEGER_MATCH_TYPE> = {
-  describe: (matcher: CoreIntegerMatch, matchContext: MatchContext) =>
+  describe: (matcher: CoreIntegerMatcher, matchContext: MatchContext) =>
     matchContext['_case:context:matchBy'] === 'exact'
       ? `${matcher['_case:matcher:example']}`
       : '<any integer>',
   check,
-  strip: (matcher: CoreIntegerMatch) => matcher['_case:matcher:example'],
+  strip: (matcher: CoreIntegerMatcher) => matcher['_case:matcher:example'],
 };

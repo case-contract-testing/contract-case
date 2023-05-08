@@ -1,7 +1,7 @@
 import {
   CoreNumberMatcher,
   NUMBER_MATCHER_TYPE,
-  CoreIntegerMatch,
+  CoreIntegerMatcher,
   INTEGER_MATCH_TYPE,
   CoreStringMatcher,
   STRING_MATCHER_TYPE,
@@ -23,7 +23,7 @@ export const coreNumberMatcher = (example: number): CoreNumberMatcher => ({
   '_case:matcher:resolvesTo': 'number',
 });
 
-export const coreIntegerMatcher = (example: number): CoreIntegerMatch => ({
+export const coreIntegerMatcher = (example: number): CoreIntegerMatcher => ({
   '_case:matcher:type': INTEGER_MATCH_TYPE,
   '_case:matcher:example': example,
   '_case:matcher:resolvesTo': 'number',
