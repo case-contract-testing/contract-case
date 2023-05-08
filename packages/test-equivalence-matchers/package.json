@@ -51,13 +51,20 @@
       "sourceMap": true
     },
     "targets": {
+      "java": {
+        "package": "io.contract_testing.contractcase.test_equivalence_matchers",
+        "maven": {
+          "groupId": "io.contract-testing.contractcase",
+          "artifactId": "test-equivalence-matchers"
+        }
+      },
       "python": {
         "distName": "contractcase.contractcase.testequivalencematchers",
         "module": "contractcase.contractcase.testequivalencematchers"
       },
       "dotnet": {
-        "namespace": "ContractTestingIo.ContractCase",
-        "packageId": "ContractTestingIo.ContractCase.TestEquivalenceMatchers"
+        "namespace": "ContractCase.TestEquivalenceMatchers",
+        "packageId": "ContractCase.TestEquivalenceMatchers"
       }
     }
   },
