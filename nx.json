@@ -29,6 +29,7 @@
       "outputs": ["{projectRoot}/dist"]
     },
     "package": {
+      "dependsOn": ["build", "^package"],
       "outputs": ["{projectRoot}/dist"]
     }
   }
