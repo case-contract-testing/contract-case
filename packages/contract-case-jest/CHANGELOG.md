@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.9.3](https://github.com/case-contract-testing/case/compare/@contract-case/contract-case-jest-v0.9.2...@contract-case/contract-case-jest-v0.9.3) (2023-05-08)
+
+
+### Features
+
+* Add crash messages when the core fails ([8147c9d](https://github.com/case-contract-testing/case/commit/8147c9d59183d31c212fbba31f468f2b0b2c4a58))
+* Map errors appropriately at the boundary ([c9df9ff](https://github.com/case-contract-testing/case/commit/c9df9ffa16aa68183b8410b25c37e6cc03f36182))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.4.0 to 0.5.0
+    * @contract-case/case-entities-internal bumped from 0.10.0 to 0.11.0
+    * @contract-case/case-example-mock-types bumped from 0.10.0 to 0.11.0
+
 ## [0.9.2](https://github.com/case-contract-testing/case/compare/@contract-case/contract-case-jest-v0.9.1...@contract-case/contract-case-jest-v0.9.2) (2023-05-06)
 
 

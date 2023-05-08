@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.11.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-entities-internal-v0.10.0...@contract-case/case-entities-internal-v0.11.0) (2023-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Make names of matcher interfaces consistently end in Matcher. This change has no effect on non-typescript consumers of the case-entities-internal package
+
+### Code Refactoring
+
+* Make names of matcher interfaces consistently end in Matcher. This change has no effect on non-typescript consumers of the case-entities-internal package ([d6bc4dd](https://github.com/case-contract-testing/case/commit/d6bc4dda780f1836b18640b49882115edee19c42))
+
 ## [0.10.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-entities-internal-v0.9.1...@contract-case/case-entities-internal-v0.10.0) (2023-05-06)
 
 
