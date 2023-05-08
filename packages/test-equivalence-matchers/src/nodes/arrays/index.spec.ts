@@ -1,5 +1,5 @@
 import {
-  CoreArrayContainsMatch,
+  CoreArrayContainsMatcher,
   CoreArrayEachEntryMatches,
   CoreArrayLengthMatcher,
   CoreShapedArrayMatcher,
@@ -38,7 +38,7 @@ describe('array matchers', () => {
   });
 
   it('array contains matcher compiles', () => {
-    const a: CoreArrayContainsMatch = new ArrayContains([]);
+    const a: CoreArrayContainsMatcher = new ArrayContains([]);
 
     expect(a).not.toBeNull();
   });
