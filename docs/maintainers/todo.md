@@ -51,8 +51,8 @@ Next:
   - [x] Figure out types for the triggers
   - [x] Figure out types for the check functions
   - Jest DSL
-  - [ ] Error handling boundary
-  - [ ] Crash messages
+  - [x] Error handling boundary
+  - [x] Crash messages
   - [ ] Case Matcher functions
   - Java DSL
   - [ ] Set up maven publish
@@ -142,7 +142,7 @@ Pact Parity
   - [x] Error handling when the files don't exist
 - [x] Http Headers
 - [x] Query strings
-- [ ] Crash messages
+- [x] Crash messages
 - [ ] Helpers for setting up tests
 - [ ] Timeouts
 
