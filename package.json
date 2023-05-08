@@ -11,7 +11,7 @@
   "optionalDependencies": {
     "@nrwl/nx-darwin-arm64": "15.9.2",
     "@nrwl/nx-darwin-x64": "15.9.3",
-    "@nrwl/nx-linux-arm-gnueabihf": "15.9.2",
+    "@nrwl/nx-linux-arm-gnueabihf": "15.9.3",
     "@nrwl/nx-linux-arm64-gnu": "15.9.3",
     "@nrwl/nx-linux-arm64-musl": "15.9.3",
     "@nrwl/nx-linux-x64-gnu": "15.9.3",
