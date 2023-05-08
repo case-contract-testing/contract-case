@@ -1,5 +1,8 @@
 const MESSAGE = 'Failed while verifying object returned by trigger:';
 
+/**
+ * The user-provided verification function failed
+ */
 export class VerifyTriggerReturnObjectError extends Error {
   override cause: unknown;
 

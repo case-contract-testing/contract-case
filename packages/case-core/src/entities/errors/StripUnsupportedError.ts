@@ -4,6 +4,9 @@ import type { DataContext } from '../../entities/context/types';
 const locationString = (matchContext: DataContext) =>
   `(at ${matchContext['_case:currentRun:context:location'].join('.')})`;
 
+/**
+ * Tried to strip matchers from something that doesn't have an example
+ */
 export class StripUnsupportedError extends Error {
   constructor(matcher: AnyCaseMatcher, context: DataContext) {
     super(

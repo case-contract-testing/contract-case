@@ -1,5 +1,8 @@
 import type { MatchResult } from '../../entities/types';
 
+/**
+ * Use this when expectations set up in the test were not met
+ */
 export class CaseFailedAssertionError extends Error {
   matchResult: MatchResult;
 
