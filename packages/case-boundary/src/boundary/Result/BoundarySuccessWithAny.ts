@@ -1,7 +1,5 @@
-import {
-  BoundaryResult,
-  RESULT_SUCCESS_HAS_ANY_PAYLOAD,
-} from './BoundaryResult';
+import { BoundaryResult } from './BoundaryResult';
+import { RESULT_SUCCESS_HAS_ANY_PAYLOAD } from './BoundaryResultTypeConstants';
 
 export class BoundarySuccessWithAny extends BoundaryResult {
   readonly resultType: typeof RESULT_SUCCESS_HAS_ANY_PAYLOAD;

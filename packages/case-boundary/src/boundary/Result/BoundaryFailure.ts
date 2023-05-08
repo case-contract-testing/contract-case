@@ -1,4 +1,5 @@
-import { RESULT_FAILURE, BoundaryResult } from './BoundaryResult';
+import { BoundaryResult } from './BoundaryResult';
+import { RESULT_FAILURE } from './BoundaryResultTypeConstants';
 
 export class BoundaryFailure extends BoundaryResult {
   readonly resultType: typeof RESULT_FAILURE;

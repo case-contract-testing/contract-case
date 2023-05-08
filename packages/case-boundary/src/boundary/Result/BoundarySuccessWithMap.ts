@@ -1,7 +1,5 @@
-import {
-  BoundaryResult,
-  RESULT_SUCCESS_HAS_MAP_PAYLOAD,
-} from './BoundaryResult';
+import { BoundaryResult } from './BoundaryResult';
+import { RESULT_SUCCESS_HAS_MAP_PAYLOAD } from './BoundaryResultTypeConstants';
 
 export class BoundarySuccessWithMap extends BoundaryResult {
   readonly resultType: typeof RESULT_SUCCESS_HAS_MAP_PAYLOAD;
