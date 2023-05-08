@@ -3,8 +3,8 @@ import {
   CoreStringPrefixMatcher,
   CoreStringSuffixMatcher,
   CoreStringContainsMatcher,
-  CoreBase64Encoded,
-  CoreJsonStringified,
+  CoreBase64EncodedMatcher,
+  CoreJsonStringifiedMatcher,
 } from '@contract-case/case-entities-internal';
 import {
   StringPrefix,
@@ -41,13 +41,13 @@ describe('primitive matchers', () => {
   });
 
   it('base64Encoded matcher compiles', () => {
-    const a: CoreBase64Encoded = new Base64Encoded('someString');
+    const a: CoreBase64EncodedMatcher = new Base64Encoded('someString');
 
     expect(a).not.toBeNull();
   });
 
   it('stringifiedJson matcher compiles', () => {
-    const a: CoreJsonStringified = new StringifiedJson('"someString"');
+    const a: CoreJsonStringifiedMatcher = new StringifiedJson('"someString"');
 
     expect(a).not.toBeNull();
   });

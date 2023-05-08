@@ -1,7 +1,7 @@
 import {
   BooleanMatcher,
   NumberMatcher,
-  CoreIntegerMatch,
+  CoreIntegerMatcher,
   NullMatcher,
 } from '@contract-case/case-entities-internal';
 import { AnyNumber, AnyBoolean, AnyInteger, AnyNull } from '.';
@@ -20,7 +20,7 @@ describe('primitive matchers', () => {
   });
 
   it('integer matcher compiles', () => {
-    const a: CoreIntegerMatch = new AnyInteger(1);
+    const a: CoreIntegerMatcher = new AnyInteger(1);
 
     expect(a).not.toBeNull();
   });
