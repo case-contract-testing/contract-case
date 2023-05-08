@@ -3,7 +3,7 @@ export const RESULT_SUCCESS_HAS_MAP_PAYLOAD = 'SuccessMap';
 export const RESULT_SUCCESS_HAS_ANY_PAYLOAD = 'SuccessAny';
 export const RESULT_FAILURE = 'Failure';
 
-export class ResultTypeConstants {
+export class BoundaryResultTypeConstants {
   static readonly RESULT_SUCCESS = RESULT_SUCCESS;
 
   static readonly RESULT_SUCCESS_HAS_MAP_PAYLOAD =
