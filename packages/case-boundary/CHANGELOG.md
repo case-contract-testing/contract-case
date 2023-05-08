@@ -6,6 +6,33 @@
   * dependencies
     * @contract-case/test-equivalence-matchers bumped from 0.0.3 to 0.0.4
 
+## [0.5.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-boundary-v0.4.0...@contract-case/case-boundary-v0.5.0) (2023-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rename ResultTypeConstants to BoundaryResultTypeConstants for consistency
+
+### Features
+
+* Add crash messages when the core fails ([8147c9d](https://github.com/case-contract-testing/case/commit/8147c9d59183d31c212fbba31f468f2b0b2c4a58))
+* Expose FailureKindConstants so consumers can tell the difference between different types of failures that ContractCase emits ([e15507d](https://github.com/case-contract-testing/case/commit/e15507d432fb83de4bf19c7f2738727dcd803767))
+
+
+### Code Refactoring
+
+* Rename ResultTypeConstants to BoundaryResultTypeConstants for consistency ([29fd4d3](https://github.com/case-contract-testing/case/commit/29fd4d37e54c73256ab9d48e4e4ff5c67955c661))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.10.0 to 0.10.1
+    * @contract-case/case-entities-internal bumped from 0.10.0 to 0.11.0
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.10.0 to 0.11.0
+
 ## [0.4.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-boundary-v0.3.0...@contract-case/case-boundary-v0.4.0) (2023-05-06)
 
 

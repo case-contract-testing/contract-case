@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/contract-case-jest",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Core functionality for the ContractCase contract testing suite",
   "keywords": [
     "testing",
@@ -81,9 +81,9 @@
     "jest": "^29.4.3"
   },
   "dependencies": {
-    "@contract-case/case-boundary": "0.4.0",
-    "@contract-case/case-entities-internal": "0.10.0",
-    "@contract-case/case-example-mock-types": "0.10.0",
+    "@contract-case/case-boundary": "0.5.0",
+    "@contract-case/case-entities-internal": "0.11.0",
+    "@contract-case/case-example-mock-types": "0.11.0",
     "chalk": "^4.1.2"
   }
 }

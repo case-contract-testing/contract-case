@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.10.1](https://github.com/case-contract-testing/case/compare/v0.10.0...v0.10.1) (2023-05-08)
+
+
+### Bug Fixes
+
+* Correct problem where not having a broker CI token would not fail the publish ([b22d956](https://github.com/case-contract-testing/case/commit/b22d9565f60a474890aa9fd7962294e87f88d23d))
+* Don't throw configuration errors for missing broker details when publish=NEVER ([4893bc3](https://github.com/case-contract-testing/case/commit/4893bc306fb4d4943d4f7be9b9baab76313b5a2e))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.10.0 to 0.11.0
+
 ## [0.10.0](https://github.com/case-contract-testing/case/compare/v0.9.1...v0.10.0) (2023-05-06)
 
 

@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.3.0](https://github.com/case-contract-testing/case/compare/contract-case-v0.2.0...contract-case-v0.3.0) (2023-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Make names of matcher interfaces consistently end in Matcher. This change has no effect on non-typescript consumers of the case-entities-internal package
+
+### Features
+
+* Add crash messages when the core fails ([8147c9d](https://github.com/case-contract-testing/case/commit/8147c9d59183d31c212fbba31f468f2b0b2c4a58))
+* Map errors appropriately at the boundary ([c9df9ff](https://github.com/case-contract-testing/case/commit/c9df9ffa16aa68183b8410b25c37e6cc03f36182))
+
+
+### Bug Fixes
+
+* Correct problem where not having a broker CI token would not fail the publish ([b22d956](https://github.com/case-contract-testing/case/commit/b22d9565f60a474890aa9fd7962294e87f88d23d))
+* Don't throw configuration errors for missing broker details when publish=NEVER ([4893bc3](https://github.com/case-contract-testing/case/commit/4893bc306fb4d4943d4f7be9b9baab76313b5a2e))
+
+
+### Code Refactoring
+
+* Make names of matcher interfaces consistently end in Matcher. This change has no effect on non-typescript consumers of the case-entities-internal package ([d6bc4dd](https://github.com/case-contract-testing/case/commit/d6bc4dda780f1836b18640b49882115edee19c42))
+
 ## [0.2.0](https://github.com/case-contract-testing/case/compare/contract-case-v0.1.1...contract-case-v0.2.0) (2023-05-06)
 
 
