@@ -5,6 +5,7 @@ import {
 import { StateHandler, StateHandlers } from '../../../../../entities/types';
 import { MappedStateHandler } from './MappedStateHandler';
 import { MappedStateHandlerWithTeardown } from './MappedStateHandlerWithTeardown';
+import { ContractCaseConfigurationError } from '../../../../../entities';
 
 const mapStateHandler = (
   name: string,
@@ -22,8 +23,7 @@ const mapStateHandler = (
   if (typeof stateHandler.setup === 'function') {
     return new MappedStateHandler(stateHandler.setup);
   }
-  // TODO change this to be a CaseConfigurationError
-  throw new Error(
+  throw new ContractCaseConfigurationError(
     `The stateHandler '${name}' wasn't a function, or didn't have a setup / teardown property. Please check that it is the correct type.`
   );
 };

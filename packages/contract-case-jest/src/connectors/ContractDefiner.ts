@@ -19,6 +19,7 @@ import {
   mapFailingConfig,
   mapSuccessWithAny,
 } from './case-boundary';
+import { errorHandler } from './handler';
 
 const mapDefinition = (
   definition: ExampleDefinition
@@ -40,11 +41,17 @@ export class ContractCaseDefiner {
 
   constructor(config: ContractCaseConfig) {
     this.config = config;
-    this.boundaryDefiner = new BoundaryContractDefiner(
-      mapConfig({ ...config }),
-      defaultPrinter,
-      defaultPrinter
-    );
+    try {
+      this.boundaryDefiner = new BoundaryContractDefiner(
+        mapConfig({ ...config }),
+        defaultPrinter,
+        defaultPrinter
+      );
+    } catch (e) {
+      // Hack since this object isn't constructed anyway
+      this.boundaryDefiner = 'UNASSIGNED' as unknown as BoundaryContractDefiner;
+      errorHandler(e as Error);
+    }
   }
 
   runExample<OtherR, OtherC extends Record<string, unknown>>(
@@ -56,7 +63,8 @@ export class ContractCaseDefiner {
         mapDefinition(definition),
         mapSuccessConfig({ ...this.config, ...runConfig })
       )
-      .then(mapSuccess);
+      .then(mapSuccess)
+      .catch(errorHandler);
   }
 
   runRejectingExample<OtherR, OtherC extends Record<string, unknown>>(
@@ -68,16 +76,24 @@ export class ContractCaseDefiner {
         mapDefinition(definition),
         mapFailingConfig({ ...this.config, ...runConfig })
       )
-      .then(mapSuccess);
+      .then(mapSuccess)
+      .catch(errorHandler);
   }
 
   endRecord(): Promise<unknown> {
-    return this.boundaryDefiner.endRecord().then(mapSuccess);
+    return this.boundaryDefiner
+      .endRecord()
+      .then(mapSuccess)
+      .catch(errorHandler);
   }
 
   stripMatchers<T>(matcherOrData: unknown): T {
-    return mapSuccessWithAny(
-      this.boundaryDefiner.stripMatchers(matcherOrData as BoundaryAnyMatcher)
-    );
+    try {
+      return mapSuccessWithAny(
+        this.boundaryDefiner.stripMatchers(matcherOrData as BoundaryAnyMatcher)
+      );
+    } catch (e) {
+      return errorHandler(e as Error);
+    }
   }
 }

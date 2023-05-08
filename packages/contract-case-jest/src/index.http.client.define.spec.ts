@@ -38,7 +38,6 @@ describe('e2e http consumer driven', () => {
   defineContract(
     {
       ...contractDetails,
-      logLevel: 'maintainerDebug',
       printResults: false, // Set this to true for you own tests
       contractFilename: FILENAME, // Usually you will not need to provide a filename
     },

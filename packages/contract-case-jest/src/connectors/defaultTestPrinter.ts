@@ -161,3 +161,7 @@ export const defaultPrinter = {
   ...defaultResultPrinter,
   ...defaultLogPrinter,
 };
+
+export const crashPrinter = (start: string, e: Error, end: string): void => {
+  stdout.log(chalk.red(`${start}${e.stack}${end}`));
+};

@@ -65,6 +65,7 @@ There are some repeated types through the layers. Generally:
    - Expose the `runVerification` method.
 8. Create a class or type for `RunTestCallback`
 9. Implement DSL for matchers, mocks and states (TODO describe)
+10. Implement crash message printing TODO describe
 
 TODO: More steps
 
