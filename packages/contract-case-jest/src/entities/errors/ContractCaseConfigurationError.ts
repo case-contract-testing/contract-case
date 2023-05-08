@@ -7,5 +7,8 @@ export class ContractCaseConfigurationError extends Error {
 
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = ContractCaseConfigurationError.name;
+    this.stack = this.location.startsWith('CaseConfigurationError')
+      ? `Contract${this.location}`
+      : this.location;
   }
 }

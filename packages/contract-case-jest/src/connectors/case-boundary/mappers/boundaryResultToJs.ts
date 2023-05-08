@@ -2,20 +2,47 @@ import {
   BoundaryFailure,
   BoundaryResult,
   BoundarySuccessWithAny,
-  ResultTypeConstants,
+  BoundaryFailureKindConstants,
+  BoundaryResultTypeConstants,
 } from '@contract-case/case-boundary';
+import {
+  ContractCaseConfigurationError,
+  ContractCaseCoreError,
+  ContractCaseExpectationsNotMet,
+} from '../../../entities';
 
-export const mapFailureToJsError = (failure: BoundaryFailure): Error =>
-  new Error(failure.message);
+export const mapFailureToJsError = (failure: BoundaryFailure): Error => {
+  switch (failure.kind) {
+    case BoundaryFailureKindConstants.CASE_CONFIGURATION_ERROR:
+    case BoundaryFailureKindConstants.CASE_TRIGGER_ERROR:
+      return new ContractCaseConfigurationError(
+        failure.message,
+        failure.location
+      );
+    case BoundaryFailureKindConstants.CASE_FAILED_ASSERTION_ERROR:
+    case BoundaryFailureKindConstants.CASE_VERIFY_RETURN_ERROR:
+      return new ContractCaseExpectationsNotMet(
+        failure.message,
+        failure.location
+      );
+    case BoundaryFailureKindConstants.CASE_CORE_ERROR:
+      return new ContractCaseCoreError(failure.message, failure.location);
+    default:
+      return new ContractCaseCoreError(
+        `Unexpected error(${failure.kind}) : ${failure.message}.`,
+        failure.location
+      );
+  }
+};
 
 export const mapSuccess = (result: BoundaryResult): void => {
   switch (result.resultType) {
-    case ResultTypeConstants.RESULT_FAILURE:
+    case BoundaryResultTypeConstants.RESULT_FAILURE:
       throw mapFailureToJsError(result as BoundaryFailure);
-    case ResultTypeConstants.RESULT_SUCCESS:
+    case BoundaryResultTypeConstants.RESULT_SUCCESS:
       return;
-    case ResultTypeConstants.RESULT_SUCCESS_HAS_MAP_PAYLOAD:
-    case ResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD:
+    case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_MAP_PAYLOAD:
+    case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD:
       throw new Error("TODO: This shouldn't happen");
     default:
       throw new Error(`TODO: unexpected result type ${result.resultType}`);
@@ -24,12 +51,12 @@ export const mapSuccess = (result: BoundaryResult): void => {
 
 export const mapSuccessWithAny = <T>(result: BoundaryResult): T => {
   switch (result.resultType) {
-    case ResultTypeConstants.RESULT_FAILURE:
+    case BoundaryResultTypeConstants.RESULT_FAILURE:
       throw mapFailureToJsError(result as BoundaryFailure);
-    case ResultTypeConstants.RESULT_SUCCESS:
-    case ResultTypeConstants.RESULT_SUCCESS_HAS_MAP_PAYLOAD:
+    case BoundaryResultTypeConstants.RESULT_SUCCESS:
+    case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_MAP_PAYLOAD:
       throw new Error("TODO: This shouldn't happen");
-    case ResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD:
+    case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD:
       return (result as BoundarySuccessWithAny).payload as T;
     default:
       throw new Error(`TODO: unexpected result type ${result.resultType}`);

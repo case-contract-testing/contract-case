@@ -47,7 +47,7 @@ Next:
     - [x] Types for Result Printer
   - [ ] Types for extensions
     - [ ] Refactor context
-  - [ ] Types for contract verification
+  - [x] Types for contract verification
   - [x] Figure out types for the triggers
   - [x] Figure out types for the check functions
   - Jest DSL
@@ -288,3 +288,5 @@ Potential issues:
 ### Implementation notebook
 
 Here I write notes to myself to make sure I don't miss anything
+
+- [ ] Check error types that case can actually emit - do all of them make it to the boundary? Maybe we can remove some from ResultKindConstants
