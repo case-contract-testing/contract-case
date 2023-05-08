@@ -112,12 +112,12 @@ export interface CoreObjectKeysMatcher {
   '_case:matcher:exampleKey'?: string;
 }
 
-export interface CoreArrayContainsMatch {
+export interface CoreArrayContainsMatcher {
   '_case:matcher:type': typeof ARRAY_CONTAINS_TYPE;
   '_case:matcher:matchers': AnyCaseMatcherOrData[];
 }
 
-export interface CoreIntegerMatch {
+export interface CoreIntegerMatcher {
   '_case:matcher:type': typeof INTEGER_MATCH_TYPE;
   '_case:matcher:example': number;
   '_case:matcher:resolvesTo': 'number';
@@ -149,13 +149,13 @@ export interface CoreContextVariableMatcher {
   '_case:matcher:variableName': string;
 }
 
-export interface CoreBase64Encoded {
+export interface CoreBase64EncodedMatcher {
   '_case:matcher:type': typeof BASE64_ENCODED_TYPE;
   '_case:matcher:child': AnyCaseStringMatcher;
   '_case:matcher:resolvesTo': 'string';
 }
 
-export interface CoreJsonStringified {
+export interface CoreJsonStringifiedMatcher {
   '_case:matcher:type': typeof JSON_STRINGIFIED_TYPE;
   '_case:matcher:child': AnyCaseMatcherOrData;
   '_case:matcher:resolvesTo': 'string';
@@ -181,7 +181,7 @@ export interface CoreHttpStatusCodeMatcher {
   '_case:matcher:resolvesTo': 'HttpStatusCode';
 }
 
-export interface CoreHttpBasicAuthValue {
+export interface CoreHttpBasicAuthValueMatcher {
   '_case:matcher:type': typeof HTTP_BASIC_AUTH_TYPE;
   '_case:matcher:username': AnyCaseMatcherOrData;
   '_case:matcher:password': AnyCaseMatcherOrData;
@@ -219,7 +219,7 @@ export type AnyLeafMatcher =
   | CoreStringMatcher
   | CoreNullMatcher
   | CoreBooleanMatcher
-  | CoreIntegerMatch
+  | CoreIntegerMatcher
   | CoreStringContainsMatcher;
 
 export type AnyCaseMatcher =
@@ -234,16 +234,16 @@ export type AnyCaseMatcher =
   | CoreObjectValuesMatch
   | CoreHttpStatusCodeMatcher
   | CoreUrlEncodedStringMatcher
-  | CoreHttpBasicAuthValue
+  | CoreHttpBasicAuthValueMatcher
   | CoreHttpRequestMatcher
   | CoreHttpResponseMatcher
   | CoreObjectKeysMatcher
-  | CoreArrayContainsMatch
+  | CoreArrayContainsMatcher
   | CoreStringSuffixMatcher
   | CoreStringPrefixMatcher
   | CoreContextVariableMatcher
-  | CoreBase64Encoded
-  | CoreJsonStringified;
+  | CoreBase64EncodedMatcher
+  | CoreJsonStringifiedMatcher;
 
 export type ResolvesTo<T extends string> = {
   '_case:matcher:resolvesTo': T;
