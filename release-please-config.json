@@ -11,7 +11,7 @@
         "@contract-case/case-core",
         "@contract-case/case-example-mock-types",
         "@contract-case/test-equivalence-matchers",
-        "ContractCase (All Core Packages)"
+        "ContractCase-All-Core-Packages"
       ]
     }
   ],
@@ -52,7 +52,7 @@
       "changelog-path": "CHANGELOG.md"
     },
     ".": {
-      "component": "ContractCase (All Core Packages)",
+      "component": "ContractCase-All-Core-Packages",
       "exclude-paths": [
         "packages/case-boundary",
         "packages/contract-case-cli",
