@@ -35,6 +35,7 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/contract-case-cli": {
+      "release-as": "0.1.0",
       "component": "@contract-case/cli",
       "changelog-path": "CHANGELOG.md"
     },
