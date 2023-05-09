@@ -21,7 +21,7 @@ import {
   willSendHttpRequest,
   withExample,
 } from '../../boundaries';
-import { defineContract } from '../../boundaries/jest/jest';
+import { defineContract } from '../../__tests__/jest/jest';
 import { CaseConfigurationError } from '../../entities';
 import type {
   DataContext,

@@ -4,8 +4,8 @@ import type {
   AnyMockDescriptorType,
   CaseContractDescription,
 } from '../../entities/types';
-import { ContractDefiner } from '../ContractDefiner';
-import { ContractVerifier } from '../ContractVerifier';
+import { ContractDefiner } from '../../boundaries/ContractDefiner';
+import { ContractVerifier } from '../../boundaries/ContractVerifier';
 
 export type CaseJestConfig<T extends AnyMockDescriptorType> =
   CaseContractDescription & {

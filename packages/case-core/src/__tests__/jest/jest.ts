@@ -6,8 +6,8 @@ import type {
   DefineCaseJestCallback,
   VerifyCaseJestCallback,
 } from './types';
-import { ContractDefiner } from '../ContractDefiner';
-import { ContractVerifier } from '../ContractVerifier';
+import { ContractDefiner } from '../../boundaries/ContractDefiner';
+import { ContractVerifier } from '../../boundaries/ContractVerifier';
 
 const TIMEOUT = 30000;
 

@@ -2,7 +2,7 @@ import { HttpRequestConfig } from '.';
 import api from './__tests__/client/http/connector';
 import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';
 import { ApiError } from './__tests__/client/http/connector/internals/apiErrors';
-import { verifyContract } from './boundaries/jest/jest';
+import { verifyContract } from './__tests__/jest/jest';
 
 verifyContract(
   {

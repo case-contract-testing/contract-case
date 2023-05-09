@@ -4,7 +4,7 @@ import start from './__tests__/server/http/connectors/web';
 import { baseService } from './__tests__/server/http/domain/baseService';
 import { Dependencies } from './__tests__/server/http/domain/types';
 import { User } from './__tests__/server/http/model/responses';
-import { verifyContract } from './boundaries/jest/jest';
+import { verifyContract } from './__tests__/jest/jest';
 import { StateHandlers } from './entities/types';
 
 describe('Server verification', () => {

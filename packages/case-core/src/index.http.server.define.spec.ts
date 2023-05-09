@@ -9,7 +9,7 @@ import type { Dependencies } from './__tests__/server/http/domain/types';
 import { baseService } from './__tests__/server/http/domain/baseService';
 
 // This import is our Jest DSL
-import { defineContract } from './boundaries/jest/jest';
+import { defineContract } from './__tests__/jest/jest';
 
 import {
   inState,

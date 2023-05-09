@@ -5,7 +5,7 @@ import { ApiError } from './__tests__/client/http/connector/internals/apiErrors'
 import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';
 
 // This import is our Jest DSL
-import { defineContract } from './boundaries/jest/jest';
+import { defineContract } from './__tests__/jest/jest';
 
 // These imports are from Case
 import {
