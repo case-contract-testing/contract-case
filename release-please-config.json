@@ -10,8 +10,7 @@
         "@contract-case/case-entities-internal",
         "@contract-case/case-core",
         "@contract-case/case-example-mock-types",
-        "@contract-case/test-equivalence-matchers",
-        "ContractCase-All-Core-Packages"
+        "@contract-case/test-equivalence-matchers"
       ]
     }
   ],
@@ -53,6 +52,7 @@
     },
     ".": {
       "component": "ContractCase-All-Core-Packages",
+      "release-as": "0.11.0",
       "exclude-paths": [
         "packages/case-boundary",
         "packages/contract-case-cli",
