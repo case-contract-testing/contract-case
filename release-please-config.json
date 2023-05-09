@@ -23,8 +23,6 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-core": {
-      "include-component-in-tag": false,
-      "include-v-in-tag": true,
       "component": "@contract-case/case-core",
       "changelog-path": "CHANGELOG.md"
     },
@@ -53,6 +51,9 @@
       "changelog-path": "CHANGELOG.md"
     },
     ".": {
+      "include-component-in-tag": false,
+      "include-v-in-tag": true,
+      "release-as": "0.12.0",
       "component": "ContractCase",
       "exclude-paths": [
         "packages/case-boundary",
