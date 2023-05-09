@@ -19,7 +19,7 @@
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "bin": {
-    "download-contracts": "./dist/src/boundaries/bin/downloadContracts.js"
+    "download-contracts": "./dist/bin/downloadContracts.js"
   },
   "directories": {
     "src": "src",

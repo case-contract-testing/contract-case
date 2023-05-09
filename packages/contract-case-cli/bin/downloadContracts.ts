@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { downloadContracts } from '../../connectors/DownloadContracts';
+import { downloadContracts } from '../src/connectors/DownloadContracts';
 
 const serviceName = process.argv[2];
 if (serviceName === '' || serviceName === undefined) {
