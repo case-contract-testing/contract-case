@@ -1,4 +1,5 @@
 import {
+  BrokerError,
   CaseConfigurationError,
   CaseCoreError,
   CaseFailedAssertionError,
@@ -32,4 +33,9 @@ export class BoundaryFailureKindConstants {
    */
   static readonly CASE_VERIFY_RETURN_ERROR =
     VerifyTriggerReturnObjectError.name;
+
+  /**
+   * An error while contacting a contract broker
+   */
+  static readonly CASE_BROKER_ERROR = BrokerError.name;
 }
