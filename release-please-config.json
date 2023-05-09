@@ -7,7 +7,7 @@
       "type": "linked-versions",
       "groupName": "ContractCase Core",
       "components": [
-        "ContractCase",
+        "ContractCase (All Core Packages)",
         "@contract-case/case-core",
         "@contract-case/case-entities-internal",
         "@contract-case/case-example-mock-types",
@@ -23,14 +23,17 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-core": {
+      "release-as": "0.12.0",
       "component": "@contract-case/case-core",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-entities": {
+      "release-as": "0.12.0",
       "component": "@contract-case/case-entities-internal",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-example-mock-types": {
+      "release-as": "0.12.0",
       "component": "@contract-case/case-example-mock-types",
       "changelog-path": "CHANGELOG.md"
     },
@@ -47,14 +50,13 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/test-equivalence-matchers": {
+      "release-as": "0.12.0",
       "component": "@contract-case/test-equivalence-matchers",
       "changelog-path": "CHANGELOG.md"
     },
     ".": {
-      "include-component-in-tag": false,
-      "include-v-in-tag": true,
       "release-as": "0.12.0",
-      "component": "ContractCase",
+      "component": "ContractCase (All Core Packages)",
       "exclude-paths": [
         "packages/case-boundary",
         "packages/contract-case-cli",
