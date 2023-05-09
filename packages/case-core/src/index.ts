@@ -8,6 +8,7 @@ export * from './boundaries';
 export * from './boundaries/types';
 export { CaseConfig } from './core/types';
 export { TestInvoker, MultiTestInvoker } from './core/executeExample/types';
+export { BrokerError } from './core';
 export * from './entities/errors';
 export {
   LogLevel,

@@ -28,12 +28,13 @@ import type {
   LogLevelContext,
   MatchContext,
 } from '../../entities/types';
-import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { makeBrokerApi } from './broker';
 import { makeLogger } from '../logger';
 import { makeContractStore } from '../contractStore/contractReader';
 import { defaultPrinter } from '../../__tests__/jest/defaultTestPrinter';
 import { EMPTY_DATA_CONTEXT } from '../../__tests__/testContext';
+import { API_NOT_AUTHORISED } from './axios/apiErrors';
+import { BrokerError } from '../../core/BrokerService/BrokerError';
 
 const emptyContext: DataContext = {
   logger: makeLogger(
@@ -360,7 +361,7 @@ describe('broker client', () => {
                     emptyContext
                   ),
                 testErrorResponse: (error) => {
-                  expect(error.name).toBe(API_NOT_AUTHORISED);
+                  expect((error as BrokerError).code).toBe(API_NOT_AUTHORISED);
                 },
               }));
           });
@@ -507,7 +508,7 @@ describe('broker client', () => {
                     emptyContext
                   ),
                 testErrorResponse: (error) => {
-                  expect(error.name).toBe(API_NOT_AUTHORISED);
+                  expect((error as BrokerError).code).toBe(API_NOT_AUTHORISED);
                 },
               }));
           });

@@ -2,12 +2,9 @@
 // the relevant response objects or errors
 
 import axios, { AxiosResponse } from 'axios';
-import {
-  BrokerError,
-  API_ERROR,
-  API_NOT_AUTHORISED,
-  API_NO_RESPONSE,
-} from './apiErrors';
+import { BrokerError } from '../../../core';
+import { CaseCoreError } from '../../../entities';
+import { API_ERROR, API_NOT_AUTHORISED, API_NO_RESPONSE } from './apiErrors';
 
 export const unmarshallSuccess = <T>(response: AxiosResponse<T>): T =>
   response.data;
@@ -39,7 +36,7 @@ export const unmarshallFailure = (error: Error): never => {
         } catch {
           errorMessage = `The broker returned an error code (${error.response.status}), and failed to parse the error response`;
         }
-        throw new BrokerError(errorMessage);
+        throw new BrokerError(errorMessage, API_ERROR);
       }
 
       throw new BrokerError(
@@ -56,5 +53,7 @@ export const unmarshallFailure = (error: Error): never => {
       );
     }
   }
-  throw new Error(`[API Failed] ${error.message}`);
+  throw new CaseCoreError(
+    `Broker API Failed with: ${error.message}\n--Original stack trace:${error.stack}`
+  );
 };
