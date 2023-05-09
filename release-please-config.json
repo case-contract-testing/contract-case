@@ -37,7 +37,7 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/contract-case-cli": {
-      "component": "@contract-case/contract-case-cli",
+      "component": "@contract-case/cli",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/contract-case-jest": {

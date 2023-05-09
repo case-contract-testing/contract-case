@@ -3,7 +3,6 @@
   "packages/case-core": "0.10.1",
   "packages/case-entities": "0.11.0",
   "packages/case-example-mock-types": "0.11.0",
-  "packages/contract-case-cli": "0.0.1",
   "packages/contract-case-jest": "0.9.3",
   "packages/test-equivalence-matchers": "0.11.0",
   "packages/documentation": "0.0.3",
