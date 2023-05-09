@@ -1,1 +1,1 @@
-export { downloadContracts } from './connectors';
+import './boundaries/cli';
