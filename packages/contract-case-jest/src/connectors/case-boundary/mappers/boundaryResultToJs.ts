@@ -15,6 +15,7 @@ export const mapFailureToJsError = (failure: BoundaryFailure): Error => {
   switch (failure.kind) {
     case BoundaryFailureKindConstants.CASE_CONFIGURATION_ERROR:
     case BoundaryFailureKindConstants.CASE_TRIGGER_ERROR:
+    case BoundaryFailureKindConstants.CASE_BROKER_ERROR:
       return new ContractCaseConfigurationError(
         failure.message,
         failure.location
