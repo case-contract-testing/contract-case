@@ -7,7 +7,7 @@
       "type": "linked-versions",
       "groupName": "ContractCase Core",
       "components": [
-        ".",
+        "ContractCase",
         "@contract-case/case-core",
         "@contract-case/case-entities-internal",
         "@contract-case/case-example-mock-types",
@@ -53,9 +53,12 @@
       "changelog-path": "CHANGELOG.md"
     },
     ".": {
+      "component": "ContractCase",
       "exclude-paths": [
         "packages/case-boundary",
-        "packages/contract-case-jest"
+        "packages/contract-case-cli",
+        "packages/contract-case-jest",
+        "packages/documentation"
       ],
       "changelog-path": "docs/maintainers/FULL-CHANGELOG.md"
     }
