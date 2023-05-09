@@ -44,11 +44,7 @@
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
-    "format:fix": "npm run format:base -- --write ",
-    "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
-    "test:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_publish=false jest",
-    "test:verify": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true  CASE_publish=NEVER jest --testMatch '**/?(*.)+(spec.verify).[tj]s' --coverageDirectory=./coverage-verify/",
-    "test:local:verify": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_publish=NEVER jest --testMatch '**/?(*.)+(spec.verify).[tj]s' --coverageDirectory=./coverage-verify/"
+    "format:fix": "npm run format:base -- --write "
   },
   "funding": {
     "type": "individual",
