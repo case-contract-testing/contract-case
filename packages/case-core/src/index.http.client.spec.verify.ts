@@ -77,7 +77,7 @@ describe('Server verification', () => {
         },
       };
 
-      verifier.runVerification({ stateHandlers });
+      verifier.verifyContract({ stateHandlers });
     }
   );
 });

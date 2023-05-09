@@ -10,7 +10,7 @@ import start from './__tests__/server/http/index';
 
 import { WritingCaseContract } from './core';
 import { writerDependencies } from './connectors/dependencies';
-import { defaultPrinter } from './boundaries/defaultTestPrinter';
+import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
 
 const expectErrorContaining = async (
   context: Promise<unknown>,

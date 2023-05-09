@@ -13,7 +13,7 @@ import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';
 import { writerDependencies } from './connectors/dependencies';
-import { defaultPrinter } from './boundaries/defaultTestPrinter';
+import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
 
 describe('basic matchers', () => {
   const contract = new WritingCaseContract(

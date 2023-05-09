@@ -6,8 +6,12 @@ import type {
   DefineCaseJestCallback,
   VerifyCaseJestCallback,
 } from './types';
-import { ContractDefiner } from '../../boundaries/ContractDefiner';
-import { ContractVerifier } from '../../boundaries/ContractVerifier';
+
+import {
+  ContractDefinerConnector,
+  ContractVerifierConnector,
+} from '../../connectors';
+import { defaultPrinter } from './defaultTestPrinter';
 
 const TIMEOUT = 30000;
 
@@ -26,14 +30,15 @@ export const defineContract = <T extends AnyMockDescriptorType>(
   describe(`Case contract definition`, () => {
     const { stateHandlers, triggers, ...contextConfig } = config || {};
 
-    const contract = new ContractDefiner(
+    const contract = new ContractDefinerConnector(
       contractConfig,
       {
         testRunId:
           process.env['JEST_WORKER_ID'] || 'JEST_WORKER_ID_WAS_UNDEFINED',
         ...contextConfig,
       },
-      { stateHandlers, triggers }
+      { stateHandlers, triggers },
+      defaultPrinter
     );
 
     afterAll(() => contract.endRecord(), TIMEOUT);
@@ -53,6 +58,8 @@ export const verifyContract = (
     throw new Error('Must specify a providerName to verify');
   }
   describe(`Provider verification for ${config.providerName}`, () => {
-    callback(new ContractVerifier(config, runJestTest));
+    callback(
+      new ContractVerifierConnector(config, runJestTest, defaultPrinter)
+    );
   });
 };

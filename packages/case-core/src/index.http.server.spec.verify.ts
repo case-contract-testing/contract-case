@@ -10,7 +10,7 @@ verifyContract(
     printResults: false,
   },
   (verifier) => {
-    verifier.runVerification({
+    verifier.verifyContract({
       triggers: {
         'an http "GET" request to "/health" without a body': {
           trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),

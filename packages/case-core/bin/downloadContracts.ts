@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { defaultPrinter } from '../src/boundaries/defaultTestPrinter';
+import { defaultPrinter } from '../src/__tests__/jest/defaultTestPrinter';
 import { ContractDownloader } from '../src/connectors/contract/ContractDownloader';
 import { makeLogger } from '../src/connectors/logger';
 

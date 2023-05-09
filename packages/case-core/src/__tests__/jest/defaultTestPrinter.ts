@@ -1,14 +1,14 @@
 import chalk from 'chalk';
 import { Console } from 'node:console';
-import { LogPrinter } from '../connectors/logger/types';
-import { LogLevel } from '../entities/types';
+import { LogPrinter } from '../../connectors/logger/types';
+import { LogLevel } from '../../entities/types';
 import {
   PrintableMatchError,
   PrintableMessageError,
   PrintableTestTitle,
   ResultPrinter,
   TestPrinter,
-} from '../connectors';
+} from '../../connectors';
 
 const stdout = new Console({ stdout: process.stdout });
 

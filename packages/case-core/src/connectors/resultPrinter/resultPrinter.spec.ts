@@ -4,7 +4,7 @@ import {
   EMPTY_MATCH_CONTEXT,
 } from '../../__tests__/testContext';
 import { anyString } from '../../boundaries';
-import { defaultPrinter } from '../../boundaries/defaultTestPrinter';
+import { defaultPrinter } from '../../__tests__/jest/defaultTestPrinter';
 import { VerifyTriggerReturnObjectError } from '../../entities';
 import {
   configurationError,
