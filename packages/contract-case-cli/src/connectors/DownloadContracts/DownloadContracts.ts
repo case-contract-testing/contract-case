@@ -1,16 +1,10 @@
-import { ContractDownloader, LogLevel } from '@contract-case/case-core';
+import { CaseConfig, ContractDownloader } from '@contract-case/case-core';
 import { defaultPrinter } from './defaultResultPrinter';
 
 export const downloadContracts = (
   serviceName: string,
-  logLevel: LogLevel
+  config: CaseConfig
 ): Promise<unknown> =>
   Promise.resolve().then(() =>
-    new ContractDownloader(
-      {
-        logLevel,
-        contractDir: 'temp-contracts',
-      },
-      defaultPrinter
-    ).download(serviceName)
+    new ContractDownloader(config, defaultPrinter).download(serviceName)
   );

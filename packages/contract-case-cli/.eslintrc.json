@@ -23,13 +23,13 @@
   },
   "ignorePatterns": ["jest.config.ts"],
   "rules": {
+    "no-console": "off",
     "tsdoc/syntax": "error",
     "@typescript-eslint/dot-notation": [
       "error",
       { "allowIndexSignaturePropertyAccess": true }
     ],
     "camelcase": "off",
-    "no-console": "error",
     "import/prefer-default-export": "off",
     "import/no-useless-path-segments": "off",
     "@typescript-eslint/no-explicit-any": "error",
