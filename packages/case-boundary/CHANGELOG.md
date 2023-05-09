@@ -6,6 +6,20 @@
   * dependencies
     * @contract-case/test-equivalence-matchers bumped from 0.0.3 to 0.0.4
 
+## [0.5.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.5.0...@contract-case/case-boundary-v0.5.1) (2023-05-09)
+
+
+### Features
+
+* Expose BrokerError on the BoundaryFailureKindConstants object ([f1869d3](https://github.com/case-contract-testing/contract-case/commit/f1869d38e96182edb912ce6c98b028239e8469cd))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.10.1 to 0.11.0
+
 ## [0.5.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-boundary-v0.4.0...@contract-case/case-boundary-v0.5.0) (2023-05-08)
 
 
