@@ -1,0 +1,1 @@
+export { downloadContracts } from './connectors';

@@ -2,13 +2,13 @@
 
 - contract-case-${LANGUAGE} - The layer that users will actually use. Contains no features except for making Case idiomatic for that language. Mostly just a wrapper for Case-Boundaries to make error handling nice.
   - depends on case-boundary-internal and possibly the other JSii layers
-  - does NOT depend on case-core
+  - generally does NOT depend on case-core, see [adding DSLs](./AddingDsl.md) for details. Contract-case-cli is one exception, as it does not need to be translated.
 
 ### Monorepo contains:
 
 - Case-Boundary (the JSii layer that is the exported interface)
   - depends on case-core
-- Case-CLI (Compiles to a cross platform CLI for contract manipulation with the broker)
+- Contract-Case-CLI (Compiles to a cross platform CLI for contract manipulation with the broker)
   - depends on case-core
 - Case-Example-Mock-types (the JSii layer that just describes the mock descriptions - separate because otherwise people might call the wrong thing in the boundaries layer)
 - Case-Test-Equivalence-Matchers (the JSii layer that just describes the matcher contents - separate because otherwise people might call the wrong thing in the boundaries layer)

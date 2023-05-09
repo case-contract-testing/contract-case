@@ -36,6 +36,10 @@
       "component": "@contract-case/case-example-mock-types",
       "changelog-path": "CHANGELOG.md"
     },
+    "packages/contract-case-cli": {
+      "component": "@contract-case/contract-case-cli",
+      "changelog-path": "CHANGELOG.md"
+    },
     "packages/contract-case-jest": {
       "component": "@contract-case/contract-case-jest",
       "changelog-path": "CHANGELOG.md"
