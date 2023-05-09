@@ -7,11 +7,11 @@
       "type": "linked-versions",
       "groupName": "ContractCase Core",
       "components": [
-        "ContractCase (All Core Packages)",
-        "@contract-case/case-core",
         "@contract-case/case-entities-internal",
+        "@contract-case/case-core",
         "@contract-case/case-example-mock-types",
-        "@contract-case/test-equivalence-matchers"
+        "@contract-case/test-equivalence-matchers",
+        "ContractCase (All Core Packages)"
       ]
     }
   ],
@@ -23,17 +23,14 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-core": {
-      "release-as": "0.12.0",
       "component": "@contract-case/case-core",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-entities": {
-      "release-as": "0.12.0",
       "component": "@contract-case/case-entities-internal",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-example-mock-types": {
-      "release-as": "0.12.0",
       "component": "@contract-case/case-example-mock-types",
       "changelog-path": "CHANGELOG.md"
     },
@@ -50,12 +47,10 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/test-equivalence-matchers": {
-      "release-as": "0.12.0",
       "component": "@contract-case/test-equivalence-matchers",
       "changelog-path": "CHANGELOG.md"
     },
     ".": {
-      "release-as": "0.12.0",
       "component": "ContractCase (All Core Packages)",
       "exclude-paths": [
         "packages/case-boundary",
