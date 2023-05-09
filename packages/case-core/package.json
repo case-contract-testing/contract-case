@@ -13,9 +13,6 @@
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io",
   "license": "BSD-3-Clause",
-  "bin": {
-    "download-contracts": "./dist/bin/downloadContracts.js"
-  },
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "directories": {
