@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-core",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "description": "Core functionality for the ContractCase contract testing suite",
   "keywords": [
     "testing",

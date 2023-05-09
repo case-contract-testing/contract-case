@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.11.0...@contract-case/case-entities-internal-v0.11.0) (2023-05-09)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-entities-internal:** Synchronize ContractCase Core versions
+
 ## [0.11.0](https://github.com/case-contract-testing/case/compare/@contract-case/case-entities-internal-v0.10.0...@contract-case/case-entities-internal-v0.11.0) (2023-05-08)
 
 

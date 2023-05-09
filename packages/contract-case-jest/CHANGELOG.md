@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.9.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.9.3...@contract-case/contract-case-jest-v0.9.4) (2023-05-09)
+
+
+### Features
+
+* Handle BrokerErrors as if they were ConfigurationErrors ([0e17b3e](https://github.com/case-contract-testing/contract-case/commit/0e17b3e508eff23294dba0eee38eec3274d7073a))
+
+
+### Bug Fixes
+
+* Correct package description ([7c030b8](https://github.com/case-contract-testing/contract-case/commit/7c030b8708c390a84ff208c8fcf342ab629d29d5))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.5.0 to 0.5.1
+
 ## [0.9.3](https://github.com/case-contract-testing/case/compare/@contract-case/contract-case-jest-v0.9.2...@contract-case/contract-case-jest-v0.9.3) (2023-05-08)
 
 
