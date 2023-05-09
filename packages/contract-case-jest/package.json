@@ -1,7 +1,7 @@
 {
   "name": "@contract-case/contract-case-jest",
   "version": "0.9.3",
-  "description": "Core functionality for the ContractCase contract testing suite",
+  "description": "ContractCase contract testing suite",
   "keywords": [
     "testing",
     "api",
