@@ -22,7 +22,9 @@
     "build": "jsii --project-references",
     "build:docs": "jsii-docgen",
     "watch": "jsii -w",
+    "prepackage": "rimraf dist",
     "package": "jsii-pacmak",
+    "publish:maven": "publib-maven",
     "test": "jest",
     "test:local": "jest",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
@@ -84,6 +86,7 @@
     "jsii-docgen": "^8.0.9",
     "jsii-pacmak": "^1.80.0",
     "prettier": "^2.8.7",
+    "publib": "^0.2.688",
     "rimraf": "^5.0.0",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1"
@@ -131,5 +134,8 @@
         ]
       }
     }
-  }
+  },
+  "bundleDependencies": [
+    "@contract-case/case-entities-internal"
+  ]
 }

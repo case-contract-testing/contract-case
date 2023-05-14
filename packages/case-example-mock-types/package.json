@@ -22,7 +22,9 @@
     "build": "jsii --project-references",
     "build:docs": "jsii-docgen",
     "watch": "jsii -w",
+    "prepackage": "rimraf dist",
     "package": "jsii-pacmak",
+    "publish:maven": "publib-maven",
     "test": "jest",
     "test:local": "jest",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
@@ -50,9 +52,18 @@
       "declarationMap": true,
       "sourceMap": true
     },
-    "targets": {}
+    "targets": {
+      "java": {
+        "package": "io.contract_testing.contractcase.case_example_mock_types",
+        "maven": {
+          "groupId": "io.contract-testing.contractcase",
+          "artifactId": "case_example_mock_types"
+        }
+      }
+    }
   },
   "devDependencies": {
+    "publib": "^0.2.688",
     "@contract-case/test-equivalence-matchers": "0.11.0",
     "@types/jest": "^29.5.0",
     "@typescript-eslint/eslint-plugin": "^5.54.0",

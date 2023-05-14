@@ -26,7 +26,9 @@
     "build": "jsii --project-references",
     "build:docs": "jsii-docgen",
     "watch": "jsii -w",
+    "prepackage": "rimraf dist",
     "package": "jsii-pacmak",
+    "publish:maven": "publib-maven",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "format:base": "prettier --parser typescript \"src/**/*.ts\"",
@@ -52,7 +54,15 @@
       "declarationMap": true,
       "sourceMap": true
     },
-    "targets": {}
+    "targets": {
+      "java": {
+        "package": "io.contract_testing.contractcase.case_boundary",
+        "maven": {
+          "groupId": "io.contract-testing.contractcase",
+          "artifactId": "case_boundary"
+        }
+      }
+    }
   },
   "devDependencies": {
     "@contract-case/test-equivalence-matchers": "0.11.0",
