@@ -16,7 +16,7 @@
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "bin": {
-    "ContractCase": "./dist/bin/ContractCase.js"
+    "ContractCase": "./bin/ContractCase.ts"
   },
   "directories": {
     "src": "src",
@@ -77,17 +77,17 @@
     "prettier": "^2.8.4",
     "rimraf": "^5.0.0",
     "ts-jest": "^29.0.5",
-    "ts-node": "^10.9.1",
     "typescript": "5.0.4"
   },
   "peerDependencies": {
     "jest": "^29.4.3"
   },
   "dependencies": {
-    "@contract-case/cli": "0.1.0",
     "@contract-case/case-boundary": "0.5.1",
     "@contract-case/case-entities-internal": "0.11.0",
     "@contract-case/case-example-mock-types": "0.11.0",
-    "chalk": "^4.1.2"
+    "@contract-case/cli": "0.1.0",
+    "chalk": "^4.1.2",
+    "ts-node": "^10.9.1"
   }
 }
