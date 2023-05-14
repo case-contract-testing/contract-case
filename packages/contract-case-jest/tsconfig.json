@@ -29,5 +29,6 @@
     "target": "es2022"
   },
   "display": "Node LTS + Strictest",
+  "include": ["package.json", "src/**/*.ts", "bin"],
   "exclude": ["jest.config.ts", "dist/**/*.js", "example/*", "coverage", "dist"]
 }
