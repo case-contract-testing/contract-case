@@ -17,6 +17,18 @@
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
   "packages": {
+    ".": {
+      "component": "ContractCase-All-Core-Packages",
+      "include-component-in-tag": false,
+      "pull-request-title-pattern": "chore: release v${version}",
+      "exclude-paths": [
+        "packages/case-boundary",
+        "packages/contract-case-cli",
+        "packages/contract-case-jest",
+        "packages/documentation"
+      ],
+      "changelog-path": "docs/maintainers/FULL-CHANGELOG.md"
+    },
     "packages/case-boundary": {
       "component": "@contract-case/case-boundary",
       "changelog-path": "CHANGELOG.md"
@@ -48,18 +60,6 @@
     "packages/test-equivalence-matchers": {
       "component": "@contract-case/test-equivalence-matchers",
       "changelog-path": "CHANGELOG.md"
-    },
-    ".": {
-      "component": "ContractCase-All-Core-Packages",
-      "include-component-in-tag": false,
-      "pull-request-title-pattern": "chore: release v${version}",
-      "exclude-paths": [
-        "packages/case-boundary",
-        "packages/contract-case-cli",
-        "packages/contract-case-jest",
-        "packages/documentation"
-      ],
-      "changelog-path": "docs/maintainers/FULL-CHANGELOG.md"
     }
   }
 }
