@@ -51,6 +51,8 @@
     },
     ".": {
       "component": "ContractCase-All-Core-Packages",
+      "include-component-in-tag": false,
+      "pull-request-title-pattern": "chore: release v${version}",
       "exclude-paths": [
         "packages/case-boundary",
         "packages/contract-case-cli",
