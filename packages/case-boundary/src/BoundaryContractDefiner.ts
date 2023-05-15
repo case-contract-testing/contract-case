@@ -21,6 +21,7 @@ import {
   BoundarySuccess,
   BoundarySuccessWithAny,
 } from './boundary';
+import { versionString } from './versionString';
 
 type Definition = {
   states: Array<AnyState>;
@@ -63,15 +64,19 @@ export class BoundaryContractDefiner {
 
   private readonly resultPrinter: IResultPrinter;
 
+  private readonly parentVersions: string[];
+
   constructor(
     config: ContractCaseBoundaryConfig,
     logPrinter: ILogPrinter,
-    resultPrinter: IResultPrinter
+    resultPrinter: IResultPrinter,
+    parentVersions: string[]
   ) {
     this.constructorConfig = config;
     this.definer = undefined;
     this.logPrinter = logPrinter;
     this.resultPrinter = resultPrinter;
+    this.parentVersions = parentVersions;
   }
 
   private initialiseDefiner() {
@@ -97,7 +102,8 @@ export class BoundaryContractDefiner {
         },
         config,
         partialInvoker,
-        wrapLogPrinter(this.logPrinter, this.resultPrinter)
+        wrapLogPrinter(this.logPrinter, this.resultPrinter),
+        [...this.parentVersions, versionString]
       );
     }
   }

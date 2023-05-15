@@ -11,6 +11,7 @@ import {
   ContractCaseConfig,
   IndividualFailedTestConfig,
   IndividualSuccessTestConfig,
+  versionString,
 } from '../entities';
 import {
   mapSuccess,
@@ -45,7 +46,8 @@ export class ContractCaseDefiner {
       this.boundaryDefiner = new BoundaryContractDefiner(
         mapConfig({ ...config }),
         defaultPrinter,
-        defaultPrinter
+        defaultPrinter,
+        [versionString]
       );
     } catch (e) {
       // Hack since this object isn't constructed anyway

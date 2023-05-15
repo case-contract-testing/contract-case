@@ -86,11 +86,13 @@
   },
   "bundledDependencies": [
     "@contract-case/case-core",
-    "@contract-case/case-entities-internal"
+    "@contract-case/case-entities-internal",
+    "read-pkg-up"
   ],
   "dependencies": {
     "@contract-case/case-core": "0.11.0",
-    "@contract-case/case-entities-internal": "0.11.0"
+    "@contract-case/case-entities-internal": "0.11.0",
+    "read-pkg-up": "^7.0.1"
   },
   "peerDependencies": {
     "@contract-case/test-equivalence-matchers": "0.11.0"

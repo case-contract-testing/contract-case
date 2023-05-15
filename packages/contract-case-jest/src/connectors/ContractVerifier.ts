@@ -17,6 +17,7 @@ import {
   ContractCaseVerifierConfig,
   ContractDescription,
   RunTestCallback,
+  versionString,
 } from '../entities';
 import { errorHandler } from './handler';
 
@@ -48,7 +49,8 @@ export class ContractVerifier {
         mapConfig(config),
         mapCallback(callback),
         printer,
-        printer
+        printer,
+        [versionString]
       );
     } catch (e) {
       // Hack since this object isn't constructed anyway
