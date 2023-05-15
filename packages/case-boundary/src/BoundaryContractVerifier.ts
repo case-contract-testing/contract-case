@@ -57,6 +57,17 @@ export class BoundaryContractVerifier {
 
   private readonly parentVersions: string[];
 
+  /**
+   * Construct a BoundaryContractVerifier to allow verifying pre-written contracts.
+   *
+   * @param config - A ContractCaseBoundaryConfig object for the configuration
+   * @param IRunTestCallback - The callback to tell the test runner that it is running a test
+   * @param logPrinter - An ILogPrinter to enable printing logs
+   * @param resultPrinter - An IResultPrinter to enable printing results
+   * @param parentVersions - The names version(s) of the package(s) calling
+   * this, where each entry in the array contains a name and version, with the
+   * first entry in the array being the furthest package up the call stack.
+   */
   constructor(
     config: ContractCaseBoundaryConfig,
     callback: IRunTestCallback,
