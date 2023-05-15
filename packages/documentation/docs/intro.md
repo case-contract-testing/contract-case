@@ -78,7 +78,7 @@ If you just want to jump in to some examples, you can have a read of:
 
 - The [client-driven contract definition](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.client.define.spec.ts)
 - The [client-driven contract verification](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.client.spec.verify.ts)
-- The [server-driven contract definition](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.define.ts)
+- The [server-driven contract definition](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.define.spec.ts)
 - The [server-driven contract verification](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.spec.verify.ts).
 
 If you build on those examples, make sure you remove `printResults: false` and `logLevel: none`.
