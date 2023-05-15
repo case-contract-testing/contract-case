@@ -28,6 +28,7 @@ import { shouldLog } from '../../entities/logger/shouldLog';
  * `_case:context:*` is clobberable by child matchers
  */
 const DEFAULT_CONTEXT: DefaultContext = {
+  '_case:currentRun:context:parentVersions': [],
   '_case:currentRun:context:location': [],
   '_case:currentRun:context:contractMode': 'write',
   '_case:currentRun:context:logLevel': 'warn',
@@ -89,7 +90,8 @@ export const constructDataContext = (
   makeLogger: (c: LogLevelContext) => Logger,
   resultPrinter: ResultFormatter,
   runConfig: Partial<RunContext>,
-  defaults: Record<string, AnyData>
+  defaults: Record<string, AnyData>,
+  parentVersions: Array<string>
 ): DataContext => {
   const context = {
     makeLogger,
@@ -98,6 +100,7 @@ export const constructDataContext = (
     '_case:currentRun:context:location': [],
     '_case:currentRun:context:testName': 'OUTSIDE_TESTS' as const,
     '_case:currentRun:context:variables': {},
+    '_case:currentRun:context:parentVersions': parentVersions,
     ...runConfig,
   };
 
@@ -118,11 +121,18 @@ export const constructMatchContext = (
   makeLookup: (c: MatchContextWithoutLookup) => ContractLookupFns,
   resultPrinter: ResultFormatter,
   runConfig: Partial<RunContext>,
-  defaults: Record<string, AnyData>
+  defaults: Record<string, AnyData>,
+  parentVersions: Array<string>
 ): MatchContext => {
   const context = {
     ...traversals,
-    ...constructDataContext(makeLogger, resultPrinter, runConfig, defaults),
+    ...constructDataContext(
+      makeLogger,
+      resultPrinter,
+      runConfig,
+      defaults,
+      parentVersions
+    ),
     makeLookup,
   };
 

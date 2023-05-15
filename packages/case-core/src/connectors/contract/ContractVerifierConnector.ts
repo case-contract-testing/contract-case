@@ -53,13 +53,17 @@ export class ContractVerifierConnector {
 
   context: DataContext;
 
+  parentVersions: string[];
+
   constructor(
     userConfig: CaseConfig,
     callback: RunTestCallback,
     printer: TestPrinter,
+    parentVersions: string[],
     dependencies = readerDependencies(printer)
   ) {
     this.dependencies = dependencies;
+    this.parentVersions = parentVersions;
     this.config = {
       ...dependencies.defaultConfig,
       ...configFromEnv(),
@@ -73,7 +77,8 @@ export class ContractVerifierConnector {
         {
           ...configToRunContext(this.config),
         },
-        dependencies.defaultConfig
+        dependencies.defaultConfig,
+        parentVersions
       );
 
     const store = this.dependencies.makeContractStore(this.context);
@@ -148,7 +153,8 @@ export class ContractVerifierConnector {
       return new ReadingCaseContract(
         contractLink.contents,
         this.dependencies,
-        mergedConfig
+        mergedConfig,
+        this.parentVersions
       ).verifyContract(invoker, this.callback);
     });
   }

@@ -15,7 +15,8 @@ describe('named matches', () => {
       providerName: 'test lookup provider',
     },
     writerDependencies(defaultPrinter),
-    MAINTAINER_TEST_CONTEXT
+    MAINTAINER_TEST_CONTEXT,
+    ['tests']
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);

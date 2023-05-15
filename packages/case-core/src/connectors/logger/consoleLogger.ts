@@ -6,7 +6,8 @@ import { locationString } from '../../entities/context';
 import type { LogLevelContext, Logger } from '../../entities/types';
 import { LogPrinter } from './types';
 
-const caseVersionString = `(case@${caseVersion})`;
+const caseVersionString = (parentVersions: string[] = []) =>
+  `(${parentVersions.concat([`ContractCasee@${caseVersion}`]).join('->')})`;
 
 const timestampString = (): string =>
   new Date().toLocaleString(Intl.DateTimeFormat().resolvedOptions().locale, {
@@ -35,7 +36,7 @@ export const makeLogger: (
       printer.log(
         'warn',
         timestampString(),
-        caseVersionString,
+        caseVersionString(),
         '[WARNING]',
         locationString(matchContext),
         message,
@@ -48,7 +49,7 @@ export const makeLogger: (
       printer.log(
         'error',
         timestampString(),
-        caseVersionString,
+        caseVersionString(),
         '[ERROR]',
         locationString(matchContext),
         message,
@@ -61,7 +62,7 @@ export const makeLogger: (
       printer.log(
         'debug',
         timestampString(),
-        caseVersionString,
+        caseVersionString(),
         '[DEBUG]',
         locationString(matchContext),
         message,
@@ -74,7 +75,9 @@ export const makeLogger: (
       printer.log(
         'maintainerDebug',
         timestampString(),
-        caseVersionString,
+        caseVersionString(
+          matchContext['_case:currentRun:context:parentVersions']
+        ),
         '[MAINTAINER-DEBUG]',
         locationString(matchContext),
         message,
@@ -88,7 +91,9 @@ export const makeLogger: (
       printer.log(
         'deepMaintainerDebug',
         timestampString(),
-        caseVersionString,
+        caseVersionString(
+          matchContext['_case:currentRun:context:parentVersions']
+        ),
         '[DEEP-MAINTAINER-DEBUG]',
         locationString(matchContext),
         message,

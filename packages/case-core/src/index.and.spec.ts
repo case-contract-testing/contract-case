@@ -14,7 +14,8 @@ describe('and matchers', () => {
       providerName: 'test and provider',
     },
     writerDependencies(defaultPrinter),
-    MAINTAINER_TEST_CONTEXT
+    MAINTAINER_TEST_CONTEXT,
+    ['tests']
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);

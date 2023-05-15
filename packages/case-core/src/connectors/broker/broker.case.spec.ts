@@ -39,6 +39,7 @@ import { BrokerError } from '../../core/BrokerService/BrokerError';
 const emptyContext: DataContext = {
   logger: makeLogger(
     {
+      '_case:currentRun:context:parentVersions': ['broker-test'],
       '_case:currentRun:context:location': ['DURING_TESTING'],
       '_case:currentRun:context:logLevel': 'none',
     },
@@ -61,6 +62,7 @@ const emptyContext: DataContext = {
   '_case:currentRun:context:contractMode': 'read',
   '_case:currentRun:context:printResults': false,
   '_case:currentRun:context:variables': {},
+  '_case:currentRun:context:parentVersions': ['broker-test'],
   '_case:currentRun:context:defaultConfig': {},
 };
 

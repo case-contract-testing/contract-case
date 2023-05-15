@@ -11,8 +11,11 @@ if (serviceName === '' || serviceName === undefined) {
 
 const logLevel = 'warn';
 
+const parentVersions: string[] = [];
+
 const logger = makeLogger(
   {
+    '_case:currentRun:context:parentVersions': parentVersions,
     '_case:currentRun:context:logLevel': logLevel,
     '_case:currentRun:context:location': ['CLI'],
   },
@@ -31,7 +34,8 @@ Promise.resolve()
         logLevel,
         contractDir: 'temp-contracts',
       },
-      defaultPrinter
+      defaultPrinter,
+      parentVersions
     ).download(serviceName)
   )
   .then(

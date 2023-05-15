@@ -22,7 +22,8 @@ describe('basic matchers', () => {
       providerName: 'test like provider',
     },
     writerDependencies(defaultPrinter),
-    MAINTAINER_TEST_CONTEXT
+    MAINTAINER_TEST_CONTEXT,
+    ['tests']
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);

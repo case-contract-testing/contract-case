@@ -45,7 +45,8 @@ describe('simple get endpoint', () => {
       testRunId: 'REQUEST',
       printResults: false,
       logLevel: 'error',
-    }
+    },
+    ['tests']
   );
 
   const mock = willSendHttpRequest({

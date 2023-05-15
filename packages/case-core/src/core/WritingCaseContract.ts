@@ -30,14 +30,16 @@ export class WritingCaseContract extends BaseCaseContract {
   constructor(
     description: CaseContractDescription,
     dependencies: WriterDependencies,
-    config: CaseConfig
+    config: CaseConfig,
+    parentVersions: Array<string>
   ) {
     super(
       description,
       config,
       dependencies.defaultConfig,
       dependencies.resultFormatter,
-      dependencies.makeLogger
+      dependencies.makeLogger,
+      parentVersions
     );
     this.mutex = new Mutex();
     this.dependencies = dependencies;

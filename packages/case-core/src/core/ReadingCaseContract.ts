@@ -37,14 +37,16 @@ export class ReadingCaseContract extends BaseCaseContract {
       defaultConfig,
       makeBrokerService,
     }: ReaderDependencies,
-    config: CaseConfig
+    config: CaseConfig,
+    parentVersions: string[]
   ) {
     super(
       contractFile.description,
       { throwOnFail: false, testRunId: 'VERIFIER', ...config },
       defaultConfig,
       resultPrinter,
-      makeLogger
+      makeLogger,
+      parentVersions
     );
     this.currentContract = contractFile;
     this.makeBrokerService = makeBrokerService;

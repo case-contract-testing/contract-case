@@ -25,7 +25,8 @@ describe('basic types and structure checks', () => {
       providerName: 'test array provider',
     },
     writerDependencies(defaultPrinter),
-    MAINTAINER_TEST_CONTEXT
+    MAINTAINER_TEST_CONTEXT,
+    ['tests']
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);

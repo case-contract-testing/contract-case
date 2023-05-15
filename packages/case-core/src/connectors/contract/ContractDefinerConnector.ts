@@ -56,6 +56,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     config: CaseConfig,
     invoker: MultiTestInvoker<M>,
     printer: TestPrinter,
+    parentVersions: string[],
     dependencies = writerDependencies(printer)
   ) {
     this.config = {
@@ -66,7 +67,8 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     this.contract = new WritingCaseContract(
       description,
       dependencies,
-      this.config
+      this.config,
+      parentVersions
     );
 
     this.invoker = invoker;

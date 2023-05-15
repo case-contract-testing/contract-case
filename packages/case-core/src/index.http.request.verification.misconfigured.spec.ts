@@ -40,7 +40,8 @@ describe('Server verification', () => {
       logLevel: 'none',
       printResults: false,
       publish: false,
-    }
+    },
+    ['tests']
   );
   beforeAll(async () => {
     server = await start(port, serverDependencies);

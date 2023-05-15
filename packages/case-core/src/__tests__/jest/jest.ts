@@ -38,7 +38,8 @@ export const defineContract = <T extends AnyMockDescriptorType>(
         ...contextConfig,
       },
       { stateHandlers, triggers },
-      defaultPrinter
+      defaultPrinter,
+      ['local-jest-wrapper']
     );
 
     afterAll(() => contract.endRecord(), TIMEOUT);
@@ -59,7 +60,9 @@ export const verifyContract = (
   }
   describe(`Provider verification for ${config.providerName}`, () => {
     callback(
-      new ContractVerifierConnector(config, runJestTest, defaultPrinter)
+      new ContractVerifierConnector(config, runJestTest, defaultPrinter, [
+        'local-jest-wrapper',
+      ])
     );
   });
 };

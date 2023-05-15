@@ -13,6 +13,7 @@ describe('console logger', () => {
         '[logger]',
         ':printing',
       ],
+      '_case:currentRun:context:parentVersions': ['logger-tests'],
       '_case:currentRun:context:logLevel': 'deepMaintainerDebug',
     },
     defaultPrinter

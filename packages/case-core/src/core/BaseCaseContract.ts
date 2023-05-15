@@ -43,7 +43,8 @@ export class BaseCaseContract {
     config: CaseConfig,
     defaultConfig: CaseConfig,
     resultPrinter: ResultFormatter,
-    makeLogger: (context: LogLevelContext) => Logger
+    makeLogger: (context: LogLevelContext) => Logger,
+    parentVersions: Array<string>
   ) {
     this.currentContract = makeContract(description);
 
@@ -81,7 +82,8 @@ export class BaseCaseContract {
       makeLookup,
       resultPrinter,
       { ...configToRunContext({ ...defaultConfig, ...config }) },
-      defaultConfig
+      defaultConfig,
+      parentVersions
     );
 
     if (

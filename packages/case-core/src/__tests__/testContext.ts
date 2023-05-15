@@ -14,6 +14,7 @@ const EMPTY_LOGGER: Logger = {
 
 export const EMPTY_DATA_CONTEXT: DataContext = {
   '_case:currentRun:context:logLevel': 'none',
+  '_case:currentRun:context:parentVersions': [],
   '_case:currentRun:context:location': ['DURING_TESTS'],
   '_case:context:matchBy': 'type',
   '_case:context:serialisableTo': 'json',

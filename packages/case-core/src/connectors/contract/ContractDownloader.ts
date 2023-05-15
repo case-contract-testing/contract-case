@@ -21,6 +21,7 @@ export class ContractDownloader {
   constructor(
     config: CaseConfig,
     printer: TestPrinter,
+    parentVersions: Array<string>,
     dependencies = writerDependencies(printer)
   ) {
     this.context = constructDataContext(
@@ -33,7 +34,8 @@ export class ContractDownloader {
           ...config,
         }),
       },
-      dependencies.defaultConfig
+      dependencies.defaultConfig,
+      parentVersions
     );
 
     this.broker = dependencies.makeBrokerService(this.context);

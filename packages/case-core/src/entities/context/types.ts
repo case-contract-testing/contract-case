@@ -78,6 +78,7 @@ export interface TraversalFns {
 }
 
 export type LogLevelContext = {
+  '_case:currentRun:context:parentVersions': Array<string>;
   '_case:currentRun:context:logLevel': LogLevel;
   '_case:currentRun:context:location': Array<string>;
 };
