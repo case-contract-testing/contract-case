@@ -19,7 +19,13 @@ To verify a contract, you will need to download contracts first:
 export CASE_BROKER_CI_TOKEN="$YOUR_BROKER_CI_TOKEN"
 export CASE_BROKER_BASEURL="https://$YOUR_BROKER_BASE_URL"
 
-npx download-contracts "$YOUR_SERVICE_NAME"
+npx @contract-case/cli download-contracts "$YOUR_SERVICE_NAME"
+```
+
+Alternatively, it can be used directly in a script in your package.json:
+
+```
+  "pretest": "ContractCase download-contracts \"$YOUR_SERVICE_NAME\""
 ```
 
 Note that currently the downloader only downloads contracts with the following selectors:
