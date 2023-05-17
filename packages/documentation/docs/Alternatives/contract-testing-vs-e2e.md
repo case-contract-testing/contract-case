@@ -2,7 +2,7 @@
 
 :::caution INCOMPLETE DOCUMENT
 
-While case is in beta, some of the documentation is incomplete or bullet points only. 
+While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
 
 Each breaking change during the beta, one more document will be completed. If this notice is present in a document, it is not yet considered complete. If you are having trouble using ContractCase or you would like a particular document prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new)
 :::
@@ -28,4 +28,3 @@ End to end testing provides the following advantages over contract testing:
 - (in some circumstances) Ability to test configuration errors (eg, an incorrect base URL for a dependency)
 
 Contract testing doesn't obviate the need for end-to-end tests, but it can make them significantly cheaper, as you can do light touch feature tests instead of needing to exercise the entire contract.
- 

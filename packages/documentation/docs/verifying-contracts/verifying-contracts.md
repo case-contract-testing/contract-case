@@ -6,11 +6,10 @@ sidebar_position: 5
 
 :::caution INCOMPLETE DRAFT
 
-While case is in beta, some of the documentation is incomplete or bullet points only. 
+While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
 
 Each breaking change during the beta, one more document will be completed. If this notice is present in a document, it is not yet considered complete. If you are having trouble using ContractCase or you would like a particular document prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new)
 :::
-
 
 ## Downloading contracts to verify
 
@@ -45,18 +44,17 @@ Depending on what is in your contract, you may need to set [triggers](/docs/refe
 verifyContract(
   {
     providerName: YOUR_SERVICE_NAME,
-    contractDir: './temp-contracts',  // The downloader can currently only download contracts to `temp-contracts`
+    contractDir: './temp-contracts', // The downloader can currently only download contracts to `temp-contracts`
   },
   (verifier) => {
     // perform any setup
     // Start your service here (if necessary)
-
 
     verifier.runVerification(/* any additional config eg triggers or state handlers goes in here */);
   }
 );
 ```
 
-* By default, verification results are uploaded to a broker if the broker access tokens and baseUrl are set and the run is in CI. Set the option `publish: true` or `publish: false` to override this
-* By default, verification failures will not throw errors. This can be overridden with `throwOnFail: true` in the options.
-* You will need to add [deployment checks](./deploy-checks) before you get the deployment safety
+- By default, verification results are uploaded to a broker if the broker access tokens and baseUrl are set and the run is in CI. Set the option `publish: true` or `publish: false` to override this
+- By default, verification failures will not throw errors. This can be overridden with `throwOnFail: true` in the options.
+- You will need to add [deployment checks](./deploy-checks) before you get the deployment safety

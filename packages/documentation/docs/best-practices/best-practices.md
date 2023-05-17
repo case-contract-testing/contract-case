@@ -6,7 +6,7 @@ sidebar_position: 6
 
 :::caution INCOMPLETE DOCUMENT
 
-While case is in beta, some of the documentation is incomplete or bullet points only. 
+While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
 
 Each breaking change during the beta, one more document will be completed. If this notice is present in a document, it is not yet considered complete. If you are having trouble using ContractCase or you would like a particular document prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new)
 :::
@@ -17,7 +17,7 @@ Each breaking change during the beta, one more document will be completed. If th
   - You can comfortably call it from tests.
   - You can inject configuration parameters (eg baseURL for http APIs)
   - Don't emit API specific types (eg http Response objects from your API).
-  your API should unbox and handle the response object, and return a business object instead.
+    your API should unbox and handle the response object, and return a business object instead.
 
 ## Use of ContractCase
 

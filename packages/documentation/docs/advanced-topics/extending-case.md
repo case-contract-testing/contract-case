@@ -4,14 +4,12 @@ sidebar_position: 1
 
 # Extending ContractCase
 
-
 :::caution INCOMPLETE DOCUMENT
 
-While case is in beta, some of the documentation is incomplete or bullet points only. 
+While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
 
 Each breaking change during the beta, one more document will be completed. If this notice is present in a document, it is not yet considered complete. If you are having trouble using ContractCase or you would like a particular document prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new)
 :::
-
 
 The best way at present to extend case is to submit a PR adding the matcher for the core. There are [instructions for adding matchers](https://github.com/case-contract-testing/case/blob/main/docs/maintainers/AddingMatchers.md) in the maintainer documentation.
 
@@ -37,7 +35,6 @@ To extend case with a new Matcher type:
 1. Implement the description object. This is the object that will be produced by the DSL, and the content that will be written to the contract file.
 2. Implement the corresponding `MatcherExecutor`
 
-
 ### Designing the description object
 
 All matchers much have a constant for the type of the matcher. The
@@ -45,9 +42,8 @@ type must have an exported constant for its type. This is used to
 determine what type of matcher it is and to run the associated matching
 functions. For example:
 
-
 ```ts
-    export const YOUR_CUSTOM_MATCHER_TYPE = 'yourName:yourMatcher' as const;
+export const YOUR_CUSTOM_MATCHER_TYPE = 'yourName:yourMatcher' as const;
 ```
 
 Note that all matchers that Case provides are prefixed with `case:`. To avoid
@@ -60,11 +56,11 @@ It must include `case:matcher:type`, set to the exact type constant string you c
 All parameter fields must be prefixed with `case:matcher:`. For example:
 
 ```ts
-    export interface CoreArrayLengthMatcher {
-      'case:matcher:type': typeof CORE_ARRAY_LENGTH_MATCHER;
-      'case:matcher:minLength': number;
-      'case:matcher:maxLength': number;
-    }
+export interface CoreArrayLengthMatcher {
+  'case:matcher:type': typeof CORE_ARRAY_LENGTH_MATCHER;
+  'case:matcher:minLength': number;
+  'case:matcher:maxLength': number;
+}
 ```
 
 If your matcher modifies the [context object](./case-context), add fields prefixed with
@@ -94,6 +90,7 @@ export const exactlyLike = (
 ```
 
 ### Implementing the MatcherExecutor
+
 Next, we will add the behaviour of the matcher, both for matching, and for stripping the matchers.
 
 Implement a type that satisfies `MatcherExecutor<typeof YOUR_NEW_TYPE_STRING>`. For example:
@@ -128,11 +125,9 @@ Note that matcher executors are not allowed to call other matcher executors -
 only `descendAndCheck(...)`. If you need to combine matchers, do it at the DSL
 layer with `and(...)`
 
-
 ## Extending with a new mock type
 
 To extend case with a new Mock type:
 
 1. Implement a function that matches the `MockSetupFn` interface to give ContractCase the behaviour
 1. Implement a function that returns a json-serialisable object that the function you created in the previous step would expect.
-
