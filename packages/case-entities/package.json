@@ -72,9 +72,6 @@
     "ts-node": "^10.9.1",
     "typescript": "5.0.4"
   },
-  "peerDependencies": {
-    "jest": "^29.4.3"
-  },
   "dependencies": {
     "absolute-version": "^1.0.2",
     "async-mutex": "^0.4.0",
