@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.0.4](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.3...documentation-v0.0.4) (2023-05-17)
+
+
+### Features
+
+* Add ability for CLI to accept broker configuration as an option ([0565927](https://github.com/case-contract-testing/contract-case/commit/05659279746423b4fb1d2e6fa0df57aa14356c6f))
+
+
+### Documentation
+
+* Add CLI documentation page ([dc05756](https://github.com/case-contract-testing/contract-case/commit/dc05756aa6e554fb3076b72b86af8c5de845ca6e))
+* Correct CLI instructions for verification ([a629bd4](https://github.com/case-contract-testing/contract-case/commit/a629bd46cb5f590454ac8382852fff285561b1b6))
+* Correct link to examples ([cc173b6](https://github.com/case-contract-testing/contract-case/commit/cc173b68f9e5ef481bf0e40a3189ef85f66c5dcc))
+* Correct several places where the name still showed as 'Case' ([d188f8f](https://github.com/case-contract-testing/contract-case/commit/d188f8f24d74c0172c1cae85284d4cec365b9af7))
+* Correct typo ([85fc7b4](https://github.com/case-contract-testing/contract-case/commit/85fc7b4ba1eb19efa433e0e6dc9a3562c24b79d4))
+* Correct URL to example ([8fe8982](https://github.com/case-contract-testing/contract-case/commit/8fe89829ba83f3d596c4048e75391b14ff556b46))
+* Remove caveat about it not being the right package, because it is ([66905fb](https://github.com/case-contract-testing/contract-case/commit/66905fbde40b2e955fc1543a638d60c42eaf7358))
+* Update documentation to match new format ([3c78016](https://github.com/case-contract-testing/contract-case/commit/3c780162ae66befede0904a26ff8ffb47975e8b6))
+
 ## [0.0.3](https://github.com/case-contract-testing/case/compare/documentation-v0.0.2...documentation-v0.0.3) (2023-04-26)
 
 

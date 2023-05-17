@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.12.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/test-equivalence-matchers-v0.11.0...@contract-case/test-equivalence-matchers-v0.12.0) (2023-05-17)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/test-equivalence-matchers:** Synchronize ContractCase Core versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.11.0 to 0.12.0
+
 ## [0.11.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/test-equivalence-matchers-v0.11.0...@contract-case/test-equivalence-matchers-v0.11.0) (2023-05-09)
 
 
