@@ -42,8 +42,21 @@ npx @contract-case/cli download-contracts [options] <SERVICE NAME>
 }
 ```
 
+Additional options can be specified via the following options, or using any of
+the environment variables or other configuration files described in the [the
+configuration reference](./configuring). For additional information on any of
+the options, see the configuration reference for the option of the same name.
+
 Options:
 
-- `-l, --log-level <level>`: Sets the log level (string). See the [the
-  configuration reference](./configuring#loglevel-none--error--warn--debug--maintainerdebug) for possible log level options and the
+- `--broker-ci-access-token`: Access token for connecting to the broker. This is
+  recommended over the basic authentication (username + password), and cannot be
+  specified along with a username and password. You can also specify this with the environment variable `CASE_BROKER_CI_TOKEN`.
+  (note, if you are only downloading the contracts, you could supply a non-CI token here).
+- `--broker-base-url`: The base URL (including `https://`) for connecting to your broker instance. You can also specify this with the environment variable `CASE_BROKER_CI_TOKEN`
+- `--broker-username`: Broker username for basic authentication. Don't supply this if you are also using a broker CI token. If you supply a username, you also have to supply a password. See `--broker-password`
+- `--broker-password`: 'Broker password for basic authentication. Don't supply this if you are also using a broker CI token. You also have to specify a username too (see `--broker-username` above).
+
+* `-l, --log-level <level>`: Sets the log level (string). See the [the
+  log level option](./configuring#loglevel-none--error--warn--debug--maintainerdebug) for possible log level options and the
   default values.
