@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.12.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.11.0...@contract-case/case-core-v0.12.0) (2023-05-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add new constructor parameter to allow parents to pass in their version number for debugging. Any uses of the Contract* classes will need to be updated to provide an array of parent package version strings
+
+### Features
+
+* Add new constructor parameter to allow parents to pass in their version number for debugging. Any uses of the Contract* classes will need to be updated to provide an array of parent package version strings ([93485eb](https://github.com/case-contract-testing/contract-case/commit/93485eb9c2cd4f83f5119a3283ea8b4ac8dbdf99))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.11.0 to 0.12.0
+
 ## [0.11.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.10.1...@contract-case/case-core-v0.11.0) (2023-05-09)
 
 

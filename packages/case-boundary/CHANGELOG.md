@@ -6,6 +6,32 @@
   * dependencies
     * @contract-case/test-equivalence-matchers bumped from 0.0.3 to 0.0.4
 
+## [0.6.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.5.1...@contract-case/case-boundary-v0.6.0) (2023-05-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add parentVersions array to the constructor to allow consuming packages to tell the core what their versions are (useful in logs). Callers will need to be updated to provide this array.
+
+### Features
+
+* Pass version info through to logger ([a6dc4f7](https://github.com/case-contract-testing/contract-case/commit/a6dc4f73a176552d779eabba9273e78f0979b5af))
+
+
+### Code Refactoring
+
+* Add parentVersions array to the constructor to allow consuming packages to tell the core what their versions are (useful in logs). Callers will need to be updated to provide this array. ([e2875d4](https://github.com/case-contract-testing/contract-case/commit/e2875d47337daaabe63500cc63bee8a15ebeebbd))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.11.0 to 0.12.0
+    * @contract-case/case-entities-internal bumped from 0.11.0 to 0.12.0
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.11.0 to 0.12.0
+
 ## [0.5.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.5.0...@contract-case/case-boundary-v0.5.1) (2023-05-09)
 
 

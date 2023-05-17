@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.9.5](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.9.4...@contract-case/contract-case-jest-v0.9.5) (2023-05-17)
+
+
+### Features
+
+* Add ContractCase binary ([062c7b7](https://github.com/case-contract-testing/contract-case/commit/062c7b7bbdd7459384fcdfcfea59cb1cdc8b07d0))
+* Pass version info through to logger ([a6dc4f7](https://github.com/case-contract-testing/contract-case/commit/a6dc4f73a176552d779eabba9273e78f0979b5af))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.5.1 to 0.6.0
+    * @contract-case/case-entities-internal bumped from 0.11.0 to 0.12.0
+    * @contract-case/case-example-mock-types bumped from 0.11.0 to 0.12.0
+    * @contract-case/cli bumped from 0.1.0 to 0.1.1
+
 ## [0.9.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.9.3...@contract-case/contract-case-jest-v0.9.4) (2023-05-09)
 
 
