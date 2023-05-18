@@ -16,6 +16,6 @@ This is the core functionality for the [ContractCase Contract testing framework]
 
 </span>
 
-Read the [documentation here](https://case.contract-testing.io/docs/intro/). Documentation is currently in-progress. Feedback welcome!
+Read the [documentation here](https://case.contract-testing.io/docs/intro/).
 
-This is the
+You almost certainly want to install [this package](https://www.npmjs.com/package/@contract-case/contract-case-jest) instead.
