@@ -69,7 +69,10 @@ await contract.runExample({
     },
     response: {
       status: 200,
-      body: responseBody,
+      body: {
+        userId: stateVariable('userId'),
+        name: anyString('John Smith')
+      },
     },
   }),
   {
@@ -79,6 +82,7 @@ await contract.runExample({
     testResponse: (user, config) => {
       expect(user).toEqual({
         userId: config.variables['userId'],
+        name: 'John Smith'
       });
     },
   }
