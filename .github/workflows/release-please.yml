@@ -16,9 +16,8 @@ jobs:
         id: release
         with:
           command: manifest
-          token: ${{secrets.OLD_TOKEN}}
           default-branch: main
-          bump-minor-pre-major: true          
+          bump-minor-pre-major: true
 
       # The logic below handles the npm publication:
       - name: Checkout Repository
@@ -38,13 +37,12 @@ jobs:
   #        CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
   #        NODE_VERSION: ${{ matrix.node-version }}
   #        FORCE_COLOR: true
-  
 
-      # Release Please has already incremented versions and published tags, so we just
-      # need to publish all unpublished versions to NPM here
-      # See: https://github.com/lerna/lerna/tree/main/commands/publish#bump-from-package
-    #  - name: Publish to NPM
-    #    if: ${{ steps.release.outputs.releases_created }}
-    #    env:
-    #      NODE_AUTH_TOKEN: ${{secrets.CONTRACT_CASE_NPM}}
-    #    run: npx lerna publish from-package --no-push --no-private --yes
+  # Release Please has already incremented versions and published tags, so we just
+  # need to publish all unpublished versions to NPM here
+  # See: https://github.com/lerna/lerna/tree/main/commands/publish#bump-from-package
+  #  - name: Publish to NPM
+  #    if: ${{ steps.release.outputs.releases_created }}
+  #    env:
+  #      NODE_AUTH_TOKEN: ${{secrets.CONTRACT_CASE_NPM}}
+  #    run: npx lerna publish from-package --no-push --no-private --yes
