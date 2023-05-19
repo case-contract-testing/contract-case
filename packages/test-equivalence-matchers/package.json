@@ -94,9 +94,6 @@
   "dependencies": {
     "@contract-case/case-entities-internal": "0.12.1"
   },
-  "bundledDependencies": [
-    "@contract-case/case-entities-internal"
-  ],
   "stability": "stable",
   "types": "build/index.d.ts",
   "nx": {
