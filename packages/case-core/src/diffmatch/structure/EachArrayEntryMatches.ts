@@ -57,8 +57,8 @@ const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = async (
               ).flat()
             : makeResults(
                 matchingError(
-                  matcher, // TODO: Documentation links
-                  `Expected a non-empty array. It's not valid to use eachArrayEntryMatches for empty arrays. See the documentation for more details`,
+                  matcher,
+                  `Expected a non-empty array. It's not valid to use eachArrayEntryMatches for empty arrays. See the documentation for more details:\n\n   https://case.contract-testing.io/docs/faq#how-do-i-test-an-array-field-that-might-have-zero-items-in-it`,
                   actual,
                   matchContext
                 )
