@@ -31,6 +31,10 @@
     "package": {
       "dependsOn": ["build", "^package"],
       "outputs": ["{projectRoot}/dist"]
+    },
+    "publish:maven": {
+      "dependsOn": ["package", "^publish:maven"],
+      "outputs": ["{projectRoot}/dist"]
     }
   }
 }
