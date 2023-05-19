@@ -6,6 +6,15 @@
   * dependencies
     * @contract-case/test-equivalence-matchers bumped from 0.0.3 to 0.0.4
 
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.12.0 to 0.12.1
+    * @contract-case/case-entities-internal bumped from 0.12.0 to 0.12.1
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.12.0 to 0.12.1
+
 ## [0.6.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.5.1...@contract-case/case-boundary-v0.6.0) (2023-05-17)
 
 

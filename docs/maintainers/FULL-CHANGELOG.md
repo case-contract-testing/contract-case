@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.1](https://github.com/TimothyJones/ContractCaseTest/compare/v0.12.0...v0.12.1) (2023-05-19)
+
+
+### Bug Fixes
+
+* Add link to documentation in warning message about zero-length arrays ([54dd26d](https://github.com/TimothyJones/ContractCaseTest/commit/54dd26dd1d534b6c71f0c9a8655b4a264439b8e2))
+
 ## [0.12.0](https://github.com/case-contract-testing/contract-case/compare/v0.11.0...v0.12.0) (2023-05-17)
 
 

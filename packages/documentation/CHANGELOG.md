@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.5](https://github.com/TimothyJones/ContractCaseTest/compare/documentation-v0.0.4...documentation-v0.0.5) (2023-05-19)
+
+
+### Documentation
+
+* Add missing data in relaxing tests and state definition code examples ([be57cab](https://github.com/TimothyJones/ContractCaseTest/commit/be57cab1bc31f86e461e1cf63e7a1883c87b817f))
+
 ## [0.0.4](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.3...documentation-v0.0.4) (2023-05-17)
 
 
