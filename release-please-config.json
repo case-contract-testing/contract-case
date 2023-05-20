@@ -1,4 +1,5 @@
 {
+  "bootstrap-sha": "4caa29631e09fc1bd1a94fff6c79632ddf4c7fa0",
   "group-pull-request-title-pattern": "chore: release all packages",
   "plugins": [
     { "type": "node-workspace", "merge": false },
