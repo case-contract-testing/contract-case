@@ -4,7 +4,7 @@
     { "type": "node-workspace", "merge": false },
     {
       "type": "linked-versions",
-      "groupName": "ContractCaseCore",
+      "groupName": "ContractCase",
       "components": [
         "@contract-case/case-entities-internal",
         "@contract-case/case-core",
@@ -27,28 +27,24 @@
       ],
       "changelog-path": "docs/maintainers/FULL-CHANGELOG.md"
     },
-    "packages/case-boundary": {
-      "component": "@contract-case/case-boundary",
+    "packages/case-entities": {
+      "component": "@contract-case/case-entities-internal",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-core": {
       "component": "@contract-case/case-core",
       "changelog-path": "CHANGELOG.md"
     },
-    "packages/case-entities": {
-      "component": "@contract-case/case-entities-internal",
-      "changelog-path": "CHANGELOG.md"
-    },
     "packages/case-example-mock-types": {
       "component": "@contract-case/case-example-mock-types",
       "changelog-path": "CHANGELOG.md"
     },
-    "packages/contract-case-cli": {
-      "component": "@contract-case/cli",
+    "packages/test-equivalence-matchers": {
+      "component": "@contract-case/test-equivalence-matchers",
       "changelog-path": "CHANGELOG.md"
     },
-    "packages/contract-case-jest": {
-      "component": "@contract-case/contract-case-jest",
+    "packages/contract-case-cli": {
+      "component": "@contract-case/cli",
       "changelog-path": "CHANGELOG.md"
     },
     "packages/documentation": {
@@ -69,8 +65,12 @@
         { "type": "ci", "section": "Continuous Integration", "hidden": true }
       ]
     },
-    "packages/test-equivalence-matchers": {
-      "component": "@contract-case/test-equivalence-matchers",
+    "packages/case-boundary": {
+      "component": "@contract-case/case-boundary",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/contract-case-jest": {
+      "component": "@contract-case/contract-case-jest",
       "changelog-path": "CHANGELOG.md"
     }
   }
