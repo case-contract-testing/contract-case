@@ -86,7 +86,7 @@
     "jsii-docgen": "^8.0.25",
     "jsii-pacmak": "^1.80.0",
     "prettier": "^2.8.7",
-    "publib": "^0.2.688",
+    "publib": "^0.2.695",
     "rimraf": "^5.0.0",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1"
