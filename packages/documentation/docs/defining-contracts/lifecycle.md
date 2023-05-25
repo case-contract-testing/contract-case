@@ -2,9 +2,24 @@
 sidebar_position: 2
 ---
 
-# Lifecycle of a ContractCase Example
+# Lifecycle for examples
 
-The general lifecycle for all ContractCase Examples is:
+The overall lifecycle of a contract test is:
+
+1. Define a contract
+
+   1. You are here --> Define the examples <-- You are here
+   1. Run tests to confirm the examples are correct
+   1. Upload contracts to a broker
+
+1. Verify the contract:
+   1. Download contract from the broker
+   1. Verify the contract
+   1. Publish verification result to the broker
+
+## Zooming in on the run tests step
+
+In order to define examples, it's useful to understand how the examples will be run. The general lifecycle for all ContractCase Examples is:
 
 1. Define example
 2. Set up mock

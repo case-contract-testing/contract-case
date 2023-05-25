@@ -46,7 +46,7 @@ Next:
     - [x] Types for Logger
     - [x] Types for Result Printer
   - [ ] Types for extensions
-    - [ ] Refactor context
+    - [ ] Refactor context to separate functions and data to make it easier to expose
   - [x] Types for contract verification
   - [x] Figure out types for the triggers
   - [x] Figure out types for the check functions
@@ -60,16 +60,31 @@ Next:
   - [ ] Crash messages
   - [ ] Case Matcher functions
 
-- [ ] Add @subclassable tags
+## Documentation todos
 
-- [ ] Documentation pipeline for Matchers
+- [ ] case-context ? Maybe move this out
+- [ ] case-contract format ? maybe move this out too
+- [ ] Extending case
+- [ ] Vs e2e
+- [ ] Vs schema
+- [ ] Vs pact
+- [ ] API coverage
+- [ ] Confirm understood client
+- [ ] Ways to write contracts easily
+- [ ] Where to mock
+- [ ] Write specific responses
+- [ ] Brokers
+- [ ] Example types
+- [ ] Matchers: Auto-generate matcher documentation
+- [ ] Verifying contracts
+- [ ] Deployment checks
 - [x] Documentation for config object
 - [x] Documentation for states
 - [ ] Documentation for verification
-- [ ] Auto-generate matcher documentation
 
-Notes from refactor:
+## Notes from refactor:
 
+- [ ] Add @subclassable tags
 - [ ] Add a way to configure individual mocks
 - [ ] Rename all the repeated types so they're not confusing
 - [x] Rename case:matcher to \_case:matcher

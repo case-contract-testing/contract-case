@@ -1,8 +1,62 @@
 # Uploading your contract to a broker
 
-:::caution DRAFT
+Here's the defining contract lifecycle again:
 
-While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
+1. Define a contract:
+   1. [Define examples](./defining-example)
+   1. Run tests to confirm the examples are correct
+   1. You are here --> Upload contracts to a broker <-- You are here
 
-Each breaking change during the beta, one more document will be completed. If this notice is present in a document, it is not yet considered complete. If you are having trouble using ContractCase or you would like a particular document prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new)
-:::
+The last step in the defining contracts lifecycle is to upload the contract to the broker. This is important, because otherwise the other side of your contract can't be verified:
+
+## ContractCase Case Files
+
+The Case File is the description of the contract, containing all of the examples
+you've defined. It can only be written or published if the tests pass. This file is the source for the examples run during contract verification.
+
+## What is the broker for
+
+The broker records:
+
+- The contract files for each version of each consumer application
+- The verification status for each version of each provider application
+- The environments and other information about which versions are deployed and released
+
+It's necessary to use a broker to get the deployment confidence we promised you in the introduction. However, if you're just getting started or spiking a deploy, you can try sharing the contracts directory (see the end of this section for details).
+
+## Setting up a broker
+
+ContractCase is compatible with the Pact contract broker ([see here](https://docs.pact.io/pact_broker), which has a [docker image](https://hub.docker.com/r/pactfoundation/pact-broker) you can use to get started). Alternatively, if you prefer a fully supported SaaS solution, you can use the excellent [Pactflow](https://pactflow.io/).
+
+Everywhere in the broker documentation that refers to Pact flies or Contracts equally applies to ContractCase Case File contracts too.
+
+## Publishing a ContractCase Case File
+
+By default, ContractCase publishes all contracts that are defined in CI. This means you'll need to configure:
+
+- The broker base URL
+- Either broker basic auth, or a broker access token
+
+See the [configuration options](../reference/configuring) for details.
+
+If you need to override this behaviour, you can set `publish` to either `"ALWAYS"` or `"NEVER"`.
+
+## Case File directory
+
+In addition to publishing contracts, ContractCase writes a contract file (a Case File) to the
+contract directory. By default this is
+`${CURRENT_WORKING_DIRECTORY}/case-contracts`, but you can change this with the
+`contractDir` [configuration option](../reference/configuring).
+
+Make sure you clear out this directory before each run.
+
+This directory is useful if you are spiking a
+
+## Next steps
+
+Next, you'll want to verify the contract:
+
+1. Verify the contract ([start here](../verifying-contracts))
+   1. Download contract from the broker
+   1. Verify the contract
+   1. Publish verification result to the broker

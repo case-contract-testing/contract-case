@@ -25,15 +25,16 @@ New to contract testing? Have a read of [what is contract testing](./what-is-con
 
 If you're already familiar with Pact, you might be interested in the section written [for users coming from Pact](./Alternatives/differences-to-pact).
 
-## Versioning
+## Contract testing lifecycle
 
-ContractCase releases follow [semantic versioning](https://semver.org/), with two additional restrictions:
-
-1. Before 1.0.0, ContractCase is in Beta, and the API is considered unstable. Breaking changes will be indicated in minor
-   version bumps- that is, 0.2.0 and 0.3.0 are not entirely compatible.
-2. Patch versions will always be backwards compatible.
-
-Breaking changes will always be detailed in the [changelog](https://github.com/case-contract-testing/case/blob/main/CHANGELOG.md).
+1. Define a contract ([start here](./defining-contracts))
+   1. Define examples
+   1. Run tests to confirm the examples are correct
+   1. Upload contracts to a broker
+1. Verify the contract ([start here](./verifying-contracts))
+   1. Download contract from the broker
+   1. Verify the contract
+   1. Publish verification result to the broker
 
 Incomplete documentation is in the sidebar on your left (or at the bottom on
 mobile). By way of apology for any breaking changes, at least one new page of

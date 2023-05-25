@@ -33,11 +33,18 @@ Like Pact, ContractCase requires a broker to operate. To maximise Pact compatibi
 
 ContractCase plans to always be compatible with both of these brokers.
 
+## Behavioural differences to Pact
+
+- By default, contract files are published in CI, and not published locally.
+- By default, a verification failure does not fail the tests
+
 ## Improvements over Pact
 
 - Drive contracts from the client or the server. ContractCase is always consumer-driven, but what you are consuming might be a request, instead of a response.
-  - Example [client-driven end-to-end test](https://github.com/case-contract-testing/case/blob/main/src/index.http.requestingCDC.spec.ts)
-  - Example [server-driven end-to-end test](https://github.com/case-contract-testing/case/blob/main/src/index.http.respondingPDC.spec.ts)
+  - Example [client-driven contract definition](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.client.define.spec.ts)
+  - Example [client-driven contract verification](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.client.spec.verify.ts)
+  - Example [server-driven contract definition](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.define.spec.ts)
+  - Example [server-driven contract verification](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.spec.verify.ts).
 - Contract verification is an individual test in your test suite per interaction, rather than one test for all interactions. This provides much more granular feedback and better integration with your testing suite.
 - Matchers are recursive, which means that you can much more easily combine matchers. No more remembering which matchers were valid outside the body and which aren't. Additionally, many new matchers can be created by simply combining
 - Extending case is significantly easier - to add new mock types, implement one function and one DSL object. To add new matcher type, there are three functions, and one DSL object to implement. At the moment, these extensions must be added to the core code. See the documentation on [extending case](/docs/advanced-topics//extending-case) for details.
@@ -52,10 +59,9 @@ ContractCase plans to always be compatible with both of these brokers.
 
 - Currently ContractCase only supports Javascript / Typescript, with Jest
 - ContractCase does not yet support any message types
-- ContractCase does not yet support publishing verification results
 - ContractCase does not yet have date convenience matchers
 - ContractCase does not yet have XML or gRPC support
-- ContractCase cannot yet read Pact files during verification.
+- ContractCase cannot yet read Pact files during verification (it reads its own contract file format).
 
 ## Things Pact supports that ContractCase will not support
 
@@ -63,4 +69,4 @@ ContractCase plans to always be compatible with both of these brokers.
   understand the rationale, see the section on [writing specific
   contracts](/docs/best-practices/write-specific-contracts) in the best practices
   section.
-- Because of several differences in how examples are modelled, ContractCase cannot support writing a Pact file
+- Because of several differences in how examples are modelled, ContractCase cannot support writing a Pact file (it does write its own format of contract files).

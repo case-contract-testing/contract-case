@@ -4,7 +4,22 @@ sidebar_position: 1
 
 # Creating a contract
 
-A contract starts with a `defineContract` call. This can be configured with a
+Here's the contract testing lifecycle:
+
+1. You are here ---> Define a contract <--- You are here
+
+   1. Define examples
+   1. Run tests to confirm the examples are correct
+   1. Upload contracts to a broker
+
+1. Verify the contract:
+   1. Download contract from the broker
+   1. Verify the contract
+   1. Publish verification result to the broker
+
+## To create a contract
+
+In ContractCase, a contract starts with a `defineContract` call. This can be configured with a
 `ContractCaseConfig` object (see [the configuration options reference
 here](/docs/reference/configuring)).
 
