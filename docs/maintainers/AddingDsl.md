@@ -37,7 +37,12 @@ There are some repeated types through the layers. Generally:
 2. Types in the boundary are prefixed with `Boundary`, eg `BoundaryResult` and `BoundaryCaseConfig`.
 3. Types in the DSLs are prefixed with `ContractCase`, eg `ContractCaseConfigurationError` and `ContractCaseConfig`. Please follow this naming convention in your DSL.
 
-## Steps
+## Implementing the DSL
+
+Here are some steps you can follow to implement a new DSL. During implementation, you might find it useful to refer to the
+[latest API documentation for the case boundary package](./reference/case-boundary-API.md)
+
+### Steps
 
 1. Create a `ContractCaseConfig` type that appears idiomatic in your language.
    See the contract-case-jest example, and the [configuration
