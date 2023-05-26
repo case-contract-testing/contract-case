@@ -99,6 +99,11 @@ export interface IResultPrinter {
   printTestTitle(titleDetails: PrintableTestTitle): BoundaryResult;
 }
 
+/**
+ * Implement this interface to give ContractCase a way to print logs in your
+ * target language. Most platforms will want to print to standard out, but some
+ * might need to log to a file or otherwise collate the logs.
+ */
 export interface ILogPrinter {
   /**
    * Called by ContractCase to ask the DSL to print a log line. You do not need
@@ -116,7 +121,9 @@ export interface ILogPrinter {
    * @param message - The main message of this log line
    * @param additional - Any additional output to print on extra lines (you may want to indent this when printing)
    *
-   * @returns A `Result` type indicating whether there were errors during printing. See the documentation for Result.
+   * @returns A `BoundaryResult` type indicating whether there were errors
+   * during printing. Either a BoundarySuccess for no errors, or BoundaryFailure
+   * (with error details) in the event of a failure.
    */
   log(
     level: string,

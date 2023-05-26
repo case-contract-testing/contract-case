@@ -42,15 +42,20 @@ There are some repeated types through the layers. Generally:
 1. Create a `ContractCaseConfig` type that appears idiomatic in your language.
    See the contract-case-jest example, and the [configuration
    documentation](https://case.contract-testing.io/docs/reference/configuring).
-   Try to use your language's idioms and type system to make this config object
-   nice to use and well-documented.
+   - Try to use your language's idioms and type system to make this config
+     object nice to use and well-documented.
+   - A good way to start is to implement a mapper that takes your
+     ContractCaseConfig type and produces a `ContractCaseBoundaryConfig` object.
+   - Don't check for invalid values or incompatible configuration states, as the
+     core will do this for you.
 2. Implement a class for both `ILogPrinter` and `IResultPrinter` (depending on
    your language, these could be the same class). These are wrappers for result
    printing and logging.
-   ContractCase only calls these methods when necessary - you do not need to filter the
-   results or logs based on the value of config. You will need to format the
-   output, and print it (eg to standard out), unless your language doesn't
-   support this. Return a `Result` as described below.
+   - ContractCase only calls these methods when necessary - you do not need to
+     filter the results or logs based on the value of config.
+   - You will need to
+     format the output, and print it (eg to standard out), unless your language
+     doesn't support this. Return a `Result` as described below.
 3. Create a `ContractDefiner` class. It must:
    - Expose the methods `runExample` and `runRejectingExample`. You may change the name of `runRejectingExample` to
      `runXXXExample` where `XXX` is an idiomatic word for `rejecting` in your
@@ -71,7 +76,38 @@ TODO: More steps
 
 ## Boundary Mappings
 
-TODO: Describe BoundaryResult mappings
+Because the ContractCase core and boundary are written in Typescript and exposed via a JSii boundary, it's not possible to throw exceptions into the core natively. This means that we need to map any exception types into `BoundaryResult` types. The general rules are:
+
+- Methods that are defined to return a `BoundaryResult` are called by ContractCase. In these methods:
+  - firewall any exceptions and marshall into a `BoundaryFailure`
+  - marshal any success into `BoundarySuccess` (for a void return) or an appropriate `BoundarySuccessWith*` type. You can tell what types are valid for the method you are implementing from the TSDoc documentation on that method (which should be available in the Case Boundary intellisense documentation in your language).
+    - Don't instantiate a `BoundaryResult` directly as this is a subclass. instead use either `BoundarySuccess`, `BoundaryFailure` or one of the specific successes.
+- All return values from ContractCase are also `BoundaryResult` types.
+  - Any `BoundaryFailure`s returned must be unmarshalled into exceptions which you then throw.
+
+### Unmarshalling a BoundaryFailure
+
+The BoundaryFailure's `kind` field tells you what type of exception to throw. instead of hard coding possible values of the `kind` field, you should use the constants exposed in `BoundaryFailureKindConstants`.
+
+Create three error types:
+
+- `ContractCaseConfigurationError`
+- `ContractCaseCoreError`
+- `ContractCaseExpectationsNotMet`
+
+(or equivalent names that match the idioms of your language, eg replacing `Error` with `Exception`).
+
+- `BoundaryFailureKindConstants.CASE_CONFIGURATION_ERROR` - this is returned when ContractCase believes that the user has configured it incorrectly. You should unmarshall this into a `ContractCaseConfigurationError`
+- `BoundaryFailureKindConstants.CASE_CORE_ERROR` - this is returned when something broke inside ContractCase (either a bug such as a programmer error or a situation it doesn't know how to handle, or an internal problem inside a plugin). You should marshall this into a `ContractCaseCoreError`. You should unmarshall this into a `ContractCaseConfigurationError`
+- `BoundaryFailureKindConstants.CASE_FAILED_ASSERTION_ERROR` - this is returned when the tests have failed and ContractCase wants the DSL to fail the currently running test suite. You should unmarshall this into a `ContractCaseExpectationsNotMet` error.
+
+Additionally, these types might have alternative representations in the future:
+
+- `BoundaryFailureKindConstants.CASE_VERIFY_RETURN_ERROR` - The user-provided verification function (testResponse or testErrorResponse) failed. This should be unmarshalled into a `ContractCaseExpectationsNotMet`.
+- `BoundaryFailureKindConstants.CASE_TRIGGER_ERROR` - The user-provided trigger failed when it was not expected to do so. Currently this should be unmarshalled into a `ContractCaseConfigurationError`
+- Any other types are an error, and you should marshall them into a `ContractCaseCoreError`
+
+TODO: Describe how to handle `location`
 
 ### Triggers
 

@@ -46,14 +46,24 @@ export interface ContractCaseBoundaryConfig {
    * in which case this setting is ignored)
    */
   readonly contractDir?: string;
+
   /**
    * The filename where the contract will be written. If you
    * provide this, `contractDir` is ignored
    */
   readonly contractFilename?: string;
 
+  /**
+   * Unique ID for this segment of the test run - it must be unique within a
+   * run, but need not be unique between test runs. This is an internal
+   * implementation detail, and authors of DSL layers shouldn't expose it to
+   * clients.
+   */
   readonly testRunId: string;
 
+  /**
+   * Whether results should be printed on standard out
+   */
   readonly printResults?: boolean;
 
   /**
