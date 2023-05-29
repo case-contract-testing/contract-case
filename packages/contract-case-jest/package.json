@@ -88,7 +88,7 @@
     "@contract-case/case-example-mock-types": "0.12.1",
     "@contract-case/cli": "0.1.2",
     "chalk": "^4.1.2",
-    "read-pkg-up": "^7.0.1",
+    "read-pkg-up": "^9.1.0",
     "ts-node": "^10.9.1"
   }
 }

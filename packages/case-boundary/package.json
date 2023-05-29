@@ -90,7 +90,7 @@
   "dependencies": {
     "@contract-case/case-core": "0.12.1",
     "@contract-case/case-entities-internal": "0.12.1",
-    "read-pkg-up": "^7.0.1"
+    "read-pkg-up": "^9.1.0"
   },
   "peerDependencies": {
     "@contract-case/test-equivalence-matchers": "0.12.1"

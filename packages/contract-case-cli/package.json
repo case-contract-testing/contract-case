@@ -86,6 +86,6 @@
     "@contract-case/case-core": "0.12.1",
     "chalk": "^4.1.2",
     "commander": "^10.0.1",
-    "read-pkg-up": "^7.0.1"
+    "read-pkg-up": "^9.1.0"
   }
 }
