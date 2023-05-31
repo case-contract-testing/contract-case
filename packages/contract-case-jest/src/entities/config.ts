@@ -127,8 +127,11 @@ export interface ContractCaseConfig {
   readonly stateHandlers?: StateHandlers;
 
   /**
-   * Call the native trigger and test function (if any) for this interaction pair.
+   * Define the trigger and test function (if any) for this interaction pair.
+   *
    * Keyed by `${requestName}::${responseName}`
+   *
+   * Use a `TriggerGroupMap` to construct this
    */
   readonly triggers?: TriggerGroups;
 

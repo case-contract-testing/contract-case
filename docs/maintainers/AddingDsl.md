@@ -109,6 +109,7 @@ Create three error types:
 Additionally, these types might have alternative representations in the future:
 
 - `BoundaryFailureKindConstants.CASE_VERIFY_RETURN_ERROR` - The user-provided verification function (testResponse or testErrorResponse) failed. This should be unmarshalled into a `ContractCaseExpectationsNotMet`.
+- `BoundaryFailureKindConstants.CASE_BROKER_ERROR` - There was an error contacting the broker. Currently this should be unmarshalled into a `ContractCaseConfigurationError`
 - `BoundaryFailureKindConstants.CASE_TRIGGER_ERROR` - The user-provided trigger failed when it was not expected to do so. Currently this should be unmarshalled into a `ContractCaseConfigurationError`
 - Any other types are an error, and you should marshall them into a `ContractCaseCoreError`
 
