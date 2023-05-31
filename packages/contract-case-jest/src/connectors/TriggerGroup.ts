@@ -1,12 +1,12 @@
-import { Groups, ITriggerGroups, TriggerGroup } from '../entities';
+import { Groups, TriggerGroups, TriggerGroup } from '../entities';
 
-export class TriggerGroupMap implements ITriggerGroups {
+export class TriggerGroupMap implements TriggerGroups {
   groups: Groups = {};
 
   addTriggerGroup<R, C extends Record<string, unknown>>(
     name: string,
     group: TriggerGroup<R, C>
-  ): ITriggerGroups {
+  ): TriggerGroups {
     this.groups[name] = group as TriggerGroup<unknown, Record<string, unknown>>;
     return this;
   }

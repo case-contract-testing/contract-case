@@ -9,7 +9,7 @@ import {
   TestErrorResponseFunction,
   TestResponseFunction,
   TriggerConfig,
-  ITriggerGroups,
+  TriggerGroups,
 } from '../../../../entities';
 
 export const mapFailingTrigger =
@@ -66,7 +66,7 @@ export const mapSuccessTrigger =
       );
 
 export const mapTriggers = (
-  triggers: ITriggerGroups
+  triggers: TriggerGroups
 ): Record<string, ITriggerFunction> =>
   Object.entries(triggers.groups)
     .map(([requestName, triggerPairings]) => [

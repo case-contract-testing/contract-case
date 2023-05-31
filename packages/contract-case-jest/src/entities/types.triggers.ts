@@ -33,11 +33,11 @@ export type Groups = {
   [x: string]: TriggerGroup<unknown, Record<string, unknown>>;
 };
 
-export type ITriggerGroups = {
+export type TriggerGroups = {
   groups: Groups;
 
   addTriggerGroup<R, C extends Record<string, unknown>>(
     name: string,
     group: TriggerGroup<R, C>
-  ): ITriggerGroups;
+  ): TriggerGroups;
 };

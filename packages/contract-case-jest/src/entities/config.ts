@@ -1,5 +1,5 @@
 import { StateHandlers } from './types';
-import { ITriggerGroups, Trigger } from './types.triggers';
+import { TriggerGroups, Trigger } from './types.triggers';
 
 export interface UserNamePassword {
   /**
@@ -130,7 +130,7 @@ export interface ContractCaseConfig {
    * Call the native trigger and test function (if any) for this interaction pair.
    * Keyed by `${requestName}::${responseName}`
    */
-  readonly triggers?: ITriggerGroups;
+  readonly triggers?: TriggerGroups;
 
   /**
    * The base URL for your real server, if you are testing an http server.
