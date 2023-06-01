@@ -153,7 +153,27 @@ export interface IndividualSuccessTestConfig<
   R,
   C extends Record<string, unknown>
 > extends Partial<ContractCaseConfig> {
+  /**
+   * A trigger that will send the request (if appropriate)
+   *
+   * Must be specified along with `testResponse`
+   *
+   * See the documentation for examples
+   *
+   * @param config - any configuration from the mock setup
+   *
+   * @returns The business object from your request
+   */
   readonly trigger?: Trigger<R, C>;
+
+  /**
+   * A test function that will assert that the value returned from a trigger (`data`) is correct
+   *
+   * @param data - the return value from the `trigger`
+   * @param config - any configuration from the mock setup
+   *
+   * @throws Any exception if the data object does not match the expectations
+   */
   readonly testResponse?: (
     data: R,
     config: Record<string, unknown>
@@ -164,7 +184,25 @@ export interface IndividualFailedTestConfig<
   R,
   C extends Record<string, unknown>
 > extends Partial<ContractCaseConfig> {
+  /**
+   * A trigger that will send the request (if appropriate)
+   *
+   * Must be specified along with `testErrorResponse`
+   *
+   * See the documentation for examples
+   *
+   * @param config - any configuration from the mock setup
+   */
   readonly trigger?: Trigger<R, C>;
+
+  /**
+   * A test function that will take the error thrown by the trigger and assert that it is correct.
+   *
+   * @param err - the error thrown by the trigger
+   * @param config - any configuration from the mock setup
+   *
+   * @throws Any exception if the error does not match the expectations
+   */
   readonly testErrorResponse?: (
     err: Error,
     config: Record<string, unknown>
