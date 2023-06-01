@@ -92,13 +92,7 @@ export interface ContractCaseConfig {
    *
    * Default: `"ONLY_IN_CI"`
    */
-  readonly publish?:
-    | 'ONLY_IN_CI'
-    | 'NEVER'
-    | 'ALWAYS'
-    | false
-    | true
-    | undefined;
+  readonly publish?: 'ONLY_IN_CI' | 'NEVER' | 'ALWAYS' | false | true;
 
   /**
    * The access token to use for the contract broker. Must have CI scope.
