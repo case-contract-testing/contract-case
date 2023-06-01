@@ -1,6 +1,7 @@
 export * from './Result';
 export * from './BoundaryCrashMessage';
 export * from './ConfigLogLevelConstants';
+export * from './ConfigPublishConstants';
 export * from './config.types';
 export * from './ILogPrinter';
 export * from './IRunTestCallback';
