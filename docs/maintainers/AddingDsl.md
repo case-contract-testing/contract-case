@@ -45,55 +45,90 @@ Here are some steps you can follow to implement a new DSL. During implementation
 
 ### Steps
 
-1. Create a `ContractCaseConfig` type that appears idiomatic in your language.
-   See the contract-case-jest example, and the [configuration
-   documentation](https://case.contract-testing.io/docs/reference/configuring).
-   - Try to use your language's idioms and type system to make this config
-     object nice to use and well-documented.
-   - A good way to start is to implement a mapper that takes your
-     ContractCaseConfig type and produces a `ContractCaseBoundaryConfig` object.
-   - Don't check for invalid values or incompatible configuration states, as the
-     core will do this for you.
-   - Implement state handler mappings TODO describe
-   - Implement trigger mappings TODO describe
-2. Implement a class for both `ILogPrinter` and `IResultPrinter` (depending on
-   your language, these could be the same class). These are wrappers for result
-   printing and logging.
-   - ContractCase only calls these methods when necessary - you do not need to
-     filter the results or logs based on the value of config.
-   - You will need to
-     format the output, and print it (eg to standard out), unless your language
-     doesn't support this. Return a `Result` as described below.
-3. Create a `ContractDefiner` class. It must:
-   - Have a constructor that takes a `ContractCaseConfig`, and instantiates a private
-     `BoundaryContractDefiner`, with a mapped version of the config. See the boundary
-     mappings section below.
-   - Expose a `runExample` method that delegates to the BoundaryContractDefiner.runExample, and maps the `BoundaryResult` returned into an error (if appropriate). See the error mappings section below.
-   - Expose a `runRejectingExample` method. You may change the name of `runRejectingExample` to
-     `runXXXExample` where `XXX` is an idiomatic word for `rejecting` in your
-     language. It also delegates to the `BoundaryContractDefiner.runRejectingExample`, and you must map the `BoundaryResult` the same way as the `runExample` method.
-4. Create a `ContractVerifier` class. It must:
-   - Expose the `runVerification` method.
-5. Create a class or type for `RunTestCallback`
-6. Implement DSL for matchers, mocks and states (TODO describe)
-7. Implement crash message printing TODO describe
+Here's an overview of the steps to create the DSL. Detailed description follows in the subsequent sections.
 
-TODO: More steps
+1. Implement a mapper from exceptions to `BoundaryFailure`
+1. Create and map a `ContractCaseConfig` object
+1. Map exceptions from your language into a `BoundaryResult` type (this mapper will be necessary during the next two steps)
+1. Create a `StateHandler` type and map it to `BoundaryStateHandlerWithTeardown`
+1. Create a `TriggerGroups` type and map it to a `Record<string, ITriggerFunction>` (or equivalent type in your language, eg `Map<string, ITriggerFunction>` for Java)
+1. Create a `ContractDefiner` class
+1. Implement `ILogPrinter` and `IResultPrinter`
+1. Implement the `ContractDefiner` class
+1. Implement a mapper for `BoundaryFailure`s to exceptions
+1. Implement the `ContractVerifier` class
 
-## Boundary Mappings
+##### Mapping `ContractCaseConfig`
 
-Because the ContractCase core and boundary are written in Typescript and exposed via a JSii boundary, it's not possible to throw exceptions into the core natively. This means that we need to map any exception types into `BoundaryResult` types. The general rules are:
+Create a `ContractCaseConfig` type that appears idiomatic in your language.
+See the contract-case-jest example, and the [configuration
+documentation](https://case.contract-testing.io/docs/reference/configuring).
+
+- Try to use your language's idioms and type system to make this config
+  object nice to use and well-documented.
+- A good way to start is to implement a mapper that takes your
+  ContractCaseConfig type and produces a `ContractCaseBoundaryConfig` object.
+- Don't check for invalid values or incompatible configuration states, as the
+  core will do this for you.
+
+You will need to map state handlers and trigger groups - these are described in the next sections.
+
+## Mapping exceptions and callback return types.
+
+Because the ContractCase core and boundary are written in Typescript and exposed via a JSii boundary, it's not possible to throw exceptions into the core natively. This means that we need to map any exceptions that happen in callbacks into `BoundaryResult` types. The general rules are:
 
 - Methods that are defined to return a `BoundaryResult` are called by ContractCase. In these methods:
   - firewall any exceptions and marshall into a `BoundaryFailure`
+  - The failure should contain the message from your exception, and stringify the stack trace (in the way you'd want to present it to users) as the `location` property.
   - marshal any success into `BoundarySuccess` (for a void return) or an appropriate `BoundarySuccessWith*` type. You can tell what types are valid for the method you are implementing from the TSDoc documentation on that method (which should be available in the Case Boundary intellisense documentation in your language).
-    - Don't instantiate a `BoundaryResult` directly as this is a subclass. instead use either `BoundarySuccess`, `BoundaryFailure` or one of the specific successes.
+    - Don't instantiate a `BoundaryResult` directly as this is an abstract class. instead use either `BoundarySuccess`, `BoundaryFailure` or one of the specific successes.
 - All return values from ContractCase are also `BoundaryResult` types.
   - Any `BoundaryFailure`s returned must be unmarshalled into exceptions which you then throw.
 
-### Unmarshalling a BoundaryFailure
+##### Mapping `StateHandlers`
 
-The BoundaryFailure's `kind` field tells you what type of exception to throw. instead of hard coding possible values of the `kind` field, you should use the constants exposed in `BoundaryFailureKindConstants`.
+TODO describe (for now see the implementation in the jest DSL)
+
+##### Mapping `TriggerGroups`
+
+Triggers need to be mapped into combined triggers before being passed to the boundary. TODO: Describe this.
+
+TODO describe (for now see the implementation in the jest DSL)
+
+##### Implementing `ILogPrinter` and `IResultPrinter`
+
+Implement a class that satisfies `ILogPrinter` and `IResultPrinter` (depending on
+your language, these could be the same class). These are wrappers for result
+printing and logging.
+
+- ContractCase only calls these methods when necessary - you do not need to
+  filter the results or logs based on the value of config.
+- You will need to
+  format the output, and print it (eg to standard out), unless your language
+  doesn't support this. Return a `Result` as described below.
+
+##### Implementing the `ContractDefiner` class
+
+Create a `ContractDefiner` class. It must:
+
+1. Have a constructor that takes a `ContractCaseConfig`, and instantiates a private
+   `BoundaryContractDefiner`, with a mapped version of the config. See the boundary
+   mappings section below.
+2. Expose a `runExample` method that delegates to the BoundaryContractDefiner.runExample, and maps the `BoundaryResult` returned into an error (if appropriate). See the error mappings section below.
+3. Expose a `runRejectingExample` method. You may change the name of `runRejectingExample` to
+   `runXXXExample` where `XXX` is an idiomatic word for `rejecting` in your
+   language. It also delegates to the `BoundaryContractDefiner.runRejectingExample`, and you must map the `BoundaryResult` the same way as the `runExample` method.
+
+### Unmarshalling a `BoundaryFailure`
+
+Just as the ContractCase Boundary expects callbacks to return a
+`BoundaryFailure`, it will pass back `BoundaryFailure` objects instead of
+throwing exceptions. You should unmarshall these into exceptions or equivalents
+in your language.
+
+The BoundaryFailure's `kind` field tells you what type of exception to throw.
+instead of hard coding possible values of the `kind` field, you should use the
+constants exposed in `BoundaryFailureKindConstants`.
 
 Create three error types:
 
@@ -101,7 +136,10 @@ Create three error types:
 - `ContractCaseCoreError`
 - `ContractCaseExpectationsNotMet`
 
-(or equivalent names that match the idioms of your language, eg replacing `Error` with `Exception`).
+(or equivalent names that match the idioms of your language, eg replacing
+`Error` with `Exception`). These must all take a message property (for the
+message) and a `location` property, which is a string representation of the
+stack trace.
 
 - `BoundaryFailureKindConstants.CASE_CONFIGURATION_ERROR` - this is returned when ContractCase believes that the user has configured it incorrectly. You should unmarshall this into a `ContractCaseConfigurationError`
 - `BoundaryFailureKindConstants.CASE_CORE_ERROR` - this is returned when something broke inside ContractCase (either a bug such as a programmer error or a situation it doesn't know how to handle, or an internal problem inside a plugin). You should marshall this into a `ContractCaseCoreError`. You should unmarshall this into a `ContractCaseConfigurationError`
@@ -114,12 +152,30 @@ Additionally, these types might have alternative representations in the future:
 - `BoundaryFailureKindConstants.CASE_TRIGGER_ERROR` - The user-provided trigger failed when it was not expected to do so. Currently this should be unmarshalled into a `ContractCaseConfigurationError`
 - Any other types are an error, and you should marshall them into a `ContractCaseCoreError`
 
-TODO: Describe how to handle `location`
+Now update the exception mapper you created earlier to map your
+`ContractCaseConfigurationError` and `ContractCaseCoreError` and
+`ContractCaseExpectationsNotMet` into equivalent `BoundaryFailure` types. Make
+sure you respect and pass along the `location` property.
 
-### Triggers
+##### Implementing the `ContractVerifier` class
 
-Triggers need to be mapped into combined triggers before being passed to the boundary. TODO: Describe this.
+Create a `ContractVerifier` class. It must:
 
-### State handlers
+1. Have a constructor that takes a `ContractCaseConfig`, and instantiates a private
+   `BoundaryContractVerifier`, with a mapped version of the config.
+2. Create a class or type for `RunTestCallback`. This is called when ContractCase wants to run a test during the verifier. In this callback, you should:
+   - (if possible) Tell your test framework it is running a test with the name from the parameter
+   - Call the callback passed in, and map any `BoundaryFailure` or `BoundarySuccess` appropriately
+3. Expose the `runVerification` method. In this method:
+   - map the configOverrides, and call the boundary verifier `runVerification` method.
+   - Parse the returned `BoundaryResult` type and map to an exception if appropriate
+4. Expose the `availableContractDescriptions` method.
+   - Parse the returned `BoundaryResult` type and map to an exception if appropriate, otherwise map to an object that matches `ContractDescription` objects.
 
-Mapping the state handlers is straightforward. TODO: Describe this.
+##### Implement or expose the DSL for matchers, mocks and states
+
+TODO describe
+
+##### Implement crash message printing
+
+Implement crash message printing TODO describe
