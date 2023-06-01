@@ -22,6 +22,7 @@ break these rules won't be accepted.
 - **Any new functionality goes in to Case-Core.** If you're wanting to build new
   functionality, it should go there instead. See the other pages in the
   maintainers section for more on extending case-core.
+- **No validation goes in your DSL.** The ContractCase core performs all validation and returns appropriately (one exception - if your language supports it, use the type system to avoid the need for validation, eg use enums where ContractCase expects a few different specific values of strings, like LogLevel).
 - **No JSON definitions go in your DSL.** The pure-json example and matcher definitions are already exposed by
   other packages. You should not be creating JSON for Examples or Matchers in your
   DSL, unless you are depending on those other translated boundary packages to do so. Long term, if a non-JSii language were to be supported, it would need its own JSON definitions (ideally, parsed from `@contract-case/case-entities-internal`).
@@ -53,6 +54,8 @@ Here are some steps you can follow to implement a new DSL. During implementation
      ContractCaseConfig type and produces a `ContractCaseBoundaryConfig` object.
    - Don't check for invalid values or incompatible configuration states, as the
      core will do this for you.
+   - Implement state handler mappings TODO describe
+   - Implement trigger mappings TODO describe
 2. Implement a class for both `ILogPrinter` and `IResultPrinter` (depending on
    your language, these could be the same class). These are wrappers for result
    printing and logging.
@@ -62,20 +65,18 @@ Here are some steps you can follow to implement a new DSL. During implementation
      format the output, and print it (eg to standard out), unless your language
      doesn't support this. Return a `Result` as described below.
 3. Create a `ContractDefiner` class. It must:
-   - Expose the methods `runExample` and `runRejectingExample`. You may change the name of `runRejectingExample` to
+   - Have a constructor that takes a `ContractCaseConfig`, and instantiates a private
+     `BoundaryContractDefiner`, with a mapped version of the config. See the boundary
+     mappings section below.
+   - Expose a `runExample` method that delegates to the BoundaryContractDefiner.runExample, and maps the `BoundaryResult` returned into an error (if appropriate). See the error mappings section below.
+   - Expose a `runRejectingExample` method. You may change the name of `runRejectingExample` to
      `runXXXExample` where `XXX` is an idiomatic word for `rejecting` in your
-     language.
-   - Have a constructor that takes your `ContractCaseConfig` object from step 1.
-4. In the constructor for your `ContractDefiner` you should instantiate a
-   `BoundaryContractDefiner`, with a mapped version of the config. See the boundary
-   mappings section below.
-5. Implement state handler mappings TODO describe
-6. Implement trigger mappings TODO describe
-7. Create a `ContractVerifier` class. It must:
+     language. It also delegates to the `BoundaryContractDefiner.runRejectingExample`, and you must map the `BoundaryResult` the same way as the `runExample` method.
+4. Create a `ContractVerifier` class. It must:
    - Expose the `runVerification` method.
-8. Create a class or type for `RunTestCallback`
-9. Implement DSL for matchers, mocks and states (TODO describe)
-10. Implement crash message printing TODO describe
+5. Create a class or type for `RunTestCallback`
+6. Implement DSL for matchers, mocks and states (TODO describe)
+7. Implement crash message printing TODO describe
 
 TODO: More steps
 
