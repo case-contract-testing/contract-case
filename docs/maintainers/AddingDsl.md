@@ -69,7 +69,14 @@ documentation](https://case.contract-testing.io/docs/reference/configuring).
 - A good way to start is to implement a mapper that takes your
   ContractCaseConfig type and produces a `ContractCaseBoundaryConfig` object.
 - Don't check for invalid values or incompatible configuration states, as the
-  core will do this for you.
+  core will do this for you
+- Map all fields except `testRunId`. For the complex types `StateHandler` and `TriggerGroups`, see the next section.
+- Don't expose `testRunId` on the `ContractCaseConfig`. This should be (ideally)
+  generated from your test framework so that it is different for each
+  concurrently-running test. This is used by ContractCase so that concurrently
+  running tests can't interfere. It is ok if the `testRunId` is the same across
+  multiple subsequent test runs, but it is not ok if the ID is the same during a
+  single run.
 
 You will need to map state handlers and trigger groups - these are described in the next sections.
 
@@ -114,10 +121,15 @@ Create a `ContractDefiner` class. It must:
 1. Have a constructor that takes a `ContractCaseConfig`, and instantiates a private
    `BoundaryContractDefiner`, with a mapped version of the config. See the boundary
    mappings section below.
-2. Expose a `runExample` method that delegates to the BoundaryContractDefiner.runExample, and maps the `BoundaryResult` returned into an error (if appropriate). See the error mappings section below.
-3. Expose a `runRejectingExample` method. You may change the name of `runRejectingExample` to
-   `runXXXExample` where `XXX` is an idiomatic word for `rejecting` in your
-   language. It also delegates to the `BoundaryContractDefiner.runRejectingExample`, and you must map the `BoundaryResult` the same way as the `runExample` method.
+2. Expose a `runExample` method
+   - This method delegates to the BoundaryContractDefiner.runExample
+   - Map the returned `BoundaryResult` into an error (if appropriate). See the error mappings section below.
+   - TODO: Describe how to map trigger / testResponse - this is the only place where you may throw a `CaseConfigurationError`
+3. Expose a `runRejectingExample` method.
+   -You may change the name of `runRejectingExample` to `runXXXExample` where `XXX` is an idiomatic word for `rejecting` in your language.
+   - This method delegates to the `BoundaryContractDefiner.runRejectingExample`
+   - Map the `BoundaryResult` the same way as the `runExample` method.
+   - TODO: Describe how to map trigger / testErrorResponse - this is the only place where you may throw a `CaseConfigurationError`
 
 ### Unmarshalling a `BoundaryFailure`
 
@@ -163,16 +175,18 @@ Create a `ContractVerifier` class. It must:
 
 1. Have a constructor that takes a `ContractCaseConfig`, and instantiates a private
    `BoundaryContractVerifier`, with a mapped version of the config.
-2. Create a class or type for `RunTestCallback`. This is called when ContractCase wants to run a test during the verifier. In this callback, you should:
+2. Create a class or type for `RunTestCallback`. This is called when ContractCase wants to run a single example during the verification. In this callback, you should:
    - (if possible) Tell your test framework it is running a test with the name from the parameter
-   - Call the callback passed in, and map any `BoundaryFailure` or `BoundarySuccess` appropriately
+   - Call the `invoker` passed in, this will run the test. Map any `BoundaryFailure` or `BoundarySuccess` appropriately. A `BoundaryFailure` should fail the running test.
+   - Map any further exceptions (there should be none possible, but map them anyway to catch a programmer error in your DSL) to a `BoundaryFailure`
+   - Return `BoundarySuccess` on success.
 3. Expose the `runVerification` method. In this method:
    - map the configOverrides, and call the boundary verifier `runVerification` method.
    - Parse the returned `BoundaryResult` type and map to an exception if appropriate
 4. Expose the `availableContractDescriptions` method.
    - Parse the returned `BoundaryResult` type and map to an exception if appropriate, otherwise map to an object that matches `ContractDescription` objects.
 
-##### Implement or expose the DSL for matchers, mocks and states
+##### Expose the DSL for matchers, mocks and states
 
 TODO describe
 
