@@ -97,6 +97,17 @@ export class BoundaryContractVerifier {
     );
   }
 
+  /**
+   * Returns a description of all of the contracts that can be found by the configuration.
+   *
+   * @returns either a `BoundaryFailure`, or a `BoundarySuccessWithAny` which contains an array of:
+   * ```
+   * CaseContractDescription {
+   *     consumerName: string;
+   *     providerName: string;
+   * }
+   * ```
+   */
   availableContractDescriptions(): BoundaryResult {
     try {
       this.initialiseVerifier();
@@ -114,6 +125,14 @@ export class BoundaryContractVerifier {
     }
   }
 
+  /**
+   * Run the verification of the contract(s) that can be found using the configuration provided.
+   * If you want to filter the contract(s), use the configOverrides to specify a Consumer or Provider name.
+   *
+   * @param configOverrides - A `ContractCaseBoundaryConfig` that defines any config options to override (after the ones provided in the constructor are applied)
+   *
+   * @returns `BoundarySuccess` if verification was successful, otherwise a `BoundaryFailure`
+   */
   runVerification(configOverrides: ContractCaseBoundaryConfig): BoundaryResult {
     try {
       this.initialiseVerifier();

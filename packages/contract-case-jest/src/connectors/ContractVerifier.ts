@@ -60,6 +60,11 @@ export class ContractVerifier {
     }
   }
 
+  /**
+   * Get a list of the contract descriptions that are available for verification given the provided configuration.
+   *
+   * @returns An array of `ContractDescription` objects.
+   */
   availableContractDescriptions(): ContractDescription[] {
     try {
       return mapSuccessWithAny(
@@ -70,6 +75,12 @@ export class ContractVerifier {
     }
   }
 
+  /**
+   * Run the verification of the contract(s) that can be found using the configuration provided.
+   * If you want to filter the contract(s), use the configOverrides to specify a Consumer or Provider name.
+   *
+   * @param configOverrides - A `ContractCaseVerifierConfig` that defines any config options to override (after the ones provided in the constructor are applied)
+   */
   runVerification(configOverrides: Partial<ContractCaseVerifierConfig>): void {
     try {
       mapSuccess(
