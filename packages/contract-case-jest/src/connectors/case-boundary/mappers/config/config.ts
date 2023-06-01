@@ -7,6 +7,7 @@ import {
 } from '../../../../entities/config';
 import { mapStateHandlers } from './state/state';
 import { mapTriggers, mapSuccessTrigger, mapFailingTrigger } from './triggers';
+import { ContractCaseConfigurationError } from '../../../../entities';
 
 const mapPublish = (publish: ContractCaseConfig['publish']) => {
   if (publish === true) return 'ALWAYS';
@@ -37,16 +38,29 @@ export const mapSuccessConfig = <R, C extends Record<string, unknown>>({
   testResponse,
   ...config
 }: ContractCaseConfig &
-  IndividualSuccessTestConfig<R, C>): ContractCaseBoundaryConfig => ({
-  ...mapConfig(config),
-  ...(trigger && testResponse
-    ? {
-        triggerAndTest: {
-          trigger: mapSuccessTrigger<R, C>(trigger, testResponse),
-        },
-      }
-    : {}),
-});
+  IndividualSuccessTestConfig<R, C>): ContractCaseBoundaryConfig => {
+  if (trigger && testResponse === undefined) {
+    throw new ContractCaseConfigurationError(
+      'If specifying a trigger function, you must also specify a testResponse function'
+    );
+  }
+
+  if (trigger === undefined && testResponse !== undefined) {
+    throw new ContractCaseConfigurationError(
+      'If specifying a testResponse function, you must also specify a trigger function'
+    );
+  }
+  return {
+    ...mapConfig(config),
+    ...(trigger && testResponse
+      ? {
+          triggerAndTest: {
+            trigger: mapSuccessTrigger<R, C>(trigger, testResponse),
+          },
+        }
+      : {}),
+  };
+};
 
 export const mapFailingConfig = <R, C extends Record<string, unknown>>({
   trigger,
