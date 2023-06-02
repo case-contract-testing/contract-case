@@ -3,15 +3,10 @@
 [![Build and test](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/case-contract-testing/case/badge.svg?branch=main)](https://coveralls.io/github/case-contract-testing/case?branch=main)
 
-DSL:
+DSL (these are the packages you want to install):
 
 [![npm](https://img.shields.io/npm/v/@contract-case/contract-case-jest.svg)](https://www.npmjs.com/package/@contract-case/contract-case-jest)
 [![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/contract-case-jest/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/contract-case-jest//package.json)
-
-Core Package:
-
-[![npm](https://img.shields.io/npm/v/@contract-case/case-core.svg)](https://www.npmjs.com/package/@contract-case/case-core)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/case-core/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/case-core/package.json)
 
 <span align="center">
 
@@ -20,6 +15,16 @@ Core Package:
 <sub>[Briefcase sticker created by Gohsantosadrive on Flaticon](https://www.flaticon.com/free-stickers/law)</sub>
 
 </span>
+
+Boundary Packages:
+
+![Maven Central](https://img.shields.io/maven-central/v/io.contract-testing.contractcase/case_boundary)
+[![npm](https://img.shields.io/npm/v/@contract-case/case-boundary.svg)](https://www.npmjs.com/package/@contract-case/case-boundary)
+
+Core Package:
+
+[![npm](https://img.shields.io/npm/v/@contract-case/case-core.svg)](https://www.npmjs.com/package/@contract-case/case-core)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/case-core/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/case-core/package.json)
 
 Read the [documentation here](https://case.contract-testing.io/docs/intro/). Documentation is currently in-progress. Feedback welcome!
 
