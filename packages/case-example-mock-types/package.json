@@ -91,7 +91,7 @@
     "@contract-case/case-entities-internal"
   ],
   "peerDependencies": {
-    "@contract-case/test-equivalence-matchers": "0.12.1"
+    "@contract-case/test-equivalence-matchers": "0.12.2"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
