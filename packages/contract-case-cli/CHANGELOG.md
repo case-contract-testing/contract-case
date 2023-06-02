@@ -14,6 +14,13 @@
     * @contract-case/case-boundary bumped from 0.6.1 to 0.6.2
     * @contract-case/case-core bumped from 0.12.1 to 0.12.2
 
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.6.2 to 0.6.3
+    * @contract-case/case-core bumped from 0.12.2 to 0.12.3
+
 ## [0.1.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.0...@contract-case/cli-v0.1.1) (2023-05-17)
 
 

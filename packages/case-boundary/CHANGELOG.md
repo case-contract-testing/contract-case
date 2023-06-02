@@ -15,6 +15,31 @@
   * devDependencies
     * @contract-case/test-equivalence-matchers bumped from 0.12.0 to 0.12.1
 
+## [0.6.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.6.2...@contract-case/case-boundary-v0.6.3) (2023-06-02)
+
+
+### Features
+
+* Add `ConfigLogLevelConstants` to expose log levels ([71bad6d](https://github.com/case-contract-testing/contract-case/commit/71bad6d936ebbcd0560850783ab2526ca8fcf2f9))
+* Add `ConfigPublishConstants` to expose possible values for the publish config option ([3c2953e](https://github.com/case-contract-testing/contract-case/commit/3c2953e3d0cb63c40bd8fe73a1679ba9b55abcfb))
+
+
+### Bug Fixes
+
+* Add documentation for the ContractVerifier class ([3c5bea3](https://github.com/case-contract-testing/contract-case/commit/3c5bea326d890c9619aab595998a813bc921f83f))
+* Improve intellisense documentation ([aebaac8](https://github.com/case-contract-testing/contract-case/commit/aebaac83c859a47e85ea2f2ceadbd5aaa70e416a))
+* Update documentation for boundary classes ([bffd21b](https://github.com/case-contract-testing/contract-case/commit/bffd21b5dc338046a89e881d708ed4c5fa771aea))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.12.2 to 0.12.3
+    * @contract-case/case-entities-internal bumped from 0.12.2 to 0.12.3
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.12.2 to 0.12.3
+
 ## [0.6.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.6.1...@contract-case/case-boundary-v0.6.2) (2023-06-01)
 
 

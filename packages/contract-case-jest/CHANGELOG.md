@@ -9,6 +9,35 @@
     * @contract-case/case-example-mock-types bumped from 0.12.0 to 0.12.1
     * @contract-case/cli bumped from 0.1.1 to 0.1.2
 
+## [0.11.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.10.0...@contract-case/contract-case-jest-v0.11.0) (2023-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rename ITriggerGroups to TriggerGroups for consistency with case-boundary
+
+### Bug Fixes
+
+* Add documentation for the ContractVerifier class ([3c5bea3](https://github.com/case-contract-testing/contract-case/commit/3c5bea326d890c9619aab595998a813bc921f83f))
+* ContractCase will now throw errors if a trigger is provided but there is no matching testResponse / testErrorResponse ([205e974](https://github.com/case-contract-testing/contract-case/commit/205e974cf4857646344b0cc5ff76feec084de033))
+* Document trigger, testResponse and testErrorResponse config items ([92e1fdc](https://github.com/case-contract-testing/contract-case/commit/92e1fdcbce6820598eedcccfc5986243bc54ce51))
+* Improve intellisense documentation ([aebaac8](https://github.com/case-contract-testing/contract-case/commit/aebaac83c859a47e85ea2f2ceadbd5aaa70e416a))
+
+
+### Code Refactoring
+
+* Rename ITriggerGroups to TriggerGroups for consistency with case-boundary ([9d742a4](https://github.com/case-contract-testing/contract-case/commit/9d742a4f2b8df13d2dd9b2f2803d56ce2e6ddd5a))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.6.2 to 0.6.3
+    * @contract-case/case-entities-internal bumped from 0.12.2 to 0.12.3
+    * @contract-case/case-example-mock-types bumped from 0.12.2 to 0.12.3
+    * @contract-case/cli bumped from 0.1.3 to 0.1.4
+
 ## [0.10.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.9.6...@contract-case/contract-case-jest-v0.10.0) (2023-06-01)
 
 

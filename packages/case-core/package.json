@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-core",
-  "version": "0.12.2",
+  "version": "0.12.3",
   "description": "Core functionality for the ContractCase contract testing suite",
   "keywords": [
     "testing",
@@ -81,7 +81,7 @@
     "typescript": "5.0.4"
   },
   "dependencies": {
-    "@contract-case/case-entities-internal": "0.12.2",
+    "@contract-case/case-entities-internal": "0.12.3",
     "absolute-version": "^1.0.2",
     "async-mutex": "^0.4.0",
     "axios": "^1.3.4",
