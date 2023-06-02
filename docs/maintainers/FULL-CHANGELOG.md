@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.12.2](https://github.com/case-contract-testing/contract-case/compare/v0.12.1...v0.12.2) (2023-06-01)
+
+
+### Bug Fixes
+
+* Add link to documentation in warning message about zero-length arrays ([54dd26d](https://github.com/case-contract-testing/contract-case/commit/54dd26dd1d534b6c71f0c9a8655b4a264439b8e2))
+* Improve intellisense documentation ([aebaac8](https://github.com/case-contract-testing/contract-case/commit/aebaac83c859a47e85ea2f2ceadbd5aaa70e416a))
+* Update documentation for boundary classes ([bffd21b](https://github.com/case-contract-testing/contract-case/commit/bffd21b5dc338046a89e881d708ed4c5fa771aea))
+
 ## [0.12.1](https://github.com/TimothyJones/ContractCaseTest/compare/v0.12.0...v0.12.1) (2023-05-19)
 
 

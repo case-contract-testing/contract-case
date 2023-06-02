@@ -1,11 +1,11 @@
 {
-  "packages/case-boundary": "0.6.1",
-  "packages/case-core": "0.12.1",
-  "packages/case-entities": "0.12.1",
-  "packages/case-example-mock-types": "0.12.1",
-  "packages/contract-case-jest": "0.9.6",
-  "packages/test-equivalence-matchers": "0.12.1",
-  "packages/documentation": "0.0.5",
-  ".": "0.12.1",
-  "packages/contract-case-cli": "0.1.2"
+  "packages/case-boundary": "0.6.2",
+  "packages/case-core": "0.12.2",
+  "packages/case-entities": "0.12.2",
+  "packages/case-example-mock-types": "0.12.2",
+  "packages/contract-case-jest": "0.10.0",
+  "packages/test-equivalence-matchers": "0.12.2",
+  "packages/documentation": "0.0.6",
+  ".": "0.12.2",
+  "packages/contract-case-cli": "0.1.3"
 }
