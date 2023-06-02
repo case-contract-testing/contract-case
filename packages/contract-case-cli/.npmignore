@@ -16,3 +16,5 @@ jest.config.ts
 out
 tsconfig.json
 tsconfig.build.json
+
+coverage-verify

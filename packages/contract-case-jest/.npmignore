@@ -3,6 +3,7 @@
 case-contracts/
 ci/
 coverage/
+coverage-verify
 example/
 src/
 temp-contracts/
