@@ -3,7 +3,7 @@
 [![Build and test](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/case-contract-testing/case/badge.svg?branch=main)](https://coveralls.io/github/case-contract-testing/case?branch=main)
 
-DSL (these are the packages you want to install):
+DSL (this is the package you want to install):
 
 [![npm](https://img.shields.io/npm/v/@contract-case/contract-case-jest.svg)](https://www.npmjs.com/package/@contract-case/contract-case-jest)
 [![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/contract-case-jest/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/contract-case-jest//package.json)
@@ -15,16 +15,6 @@ DSL (these are the packages you want to install):
 <sub>[Briefcase sticker created by Gohsantosadrive on Flaticon](https://www.flaticon.com/free-stickers/law)</sub>
 
 </span>
-
-Boundary Packages:
-
-![Maven Central](https://img.shields.io/maven-central/v/io.contract-testing.contractcase/case_boundary)
-[![npm](https://img.shields.io/npm/v/@contract-case/case-boundary.svg)](https://www.npmjs.com/package/@contract-case/case-boundary)
-
-Core Package:
-
-[![npm](https://img.shields.io/npm/v/@contract-case/case-core.svg)](https://www.npmjs.com/package/@contract-case/case-core)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/case-core/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/case-core/package.json)
 
 Read the [documentation here](https://case.contract-testing.io/docs/intro/). Documentation is currently in-progress. Feedback welcome!
 
@@ -101,10 +91,40 @@ We plan for ContractCase to always be compatible with both of these brokers.
 - All matchers are valid in all contexts
 - Currently it only supports Javascript / Typescript, with Jest
 
-## Planned differences
+### Planned differences
 
 - Native message formats - actually invoke SQS queues / kafka messages etc during verification
 - Easy user extensions - write extensions for ContractCase just by extending a class in JS, Python, Go or Java
+
+## Internal package versions:
+
+Command line interface::
+
+[![npm](https://img.shields.io/npm/v/@contract-case/cli.svg?label=cli%3A%20npm)](https://www.npmjs.com/package/@contract-case/cli)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/contract-case-cli/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/contract-case-cli/package.json)
+
+Test Equivalence Matchers packages:
+
+[![npm](https://img.shields.io/npm/v/@contract-case/test-equivalence-matchers.svg?label=test-equivalence-matchers%3A%20npm)](https://www.npmjs.com/package/@contract-case/test-equivalence-matchers)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/test-equivalence-matchers/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/test-equivalence-matchers/package.json)
+![Maven Central](https://img.shields.io/maven-central/v/io.contract-testing.contractcase/test-equivalence-matchers?label=test-equivalence-matchers%3A%20maven)
+
+Mock types packages:
+
+[![npm](https://img.shields.io/npm/v/@contract-case/case-example-mock-types.svg?label=case-example-mock-types%3A%20npm)](https://www.npmjs.com/package/@contract-case/case-example-mock-types)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-example-mock-types/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/case-example-mock-types/package.json)
+![Maven Central](https://img.shields.io/maven-central/v/io.contract-testing.contractcase/case_example_mock_types?label=case_example_mock_types%3A%20maven)
+
+Boundary Packages:
+
+[![npm](https://img.shields.io/npm/v/@contract-case/case-boundary.svg?label=case-boundary%3A%20npm)](https://www.npmjs.com/package/@contract-case/case-boundary)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-boundary/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case?targetFile=packages/case-boundary/package.json)
+![Maven Central](https://img.shields.io/maven-central/v/io.contract-testing.contractcase/case_boundary?label=case_boundary%3A%20maven)
+
+Core Package:
+
+[![npm](https://img.shields.io/npm/v/@contract-case/case-core.svg)](https://www.npmjs.com/package/@contract-case/case-core)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/case-core/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/case-core/package.json)
 
 ## Roadmap
 
