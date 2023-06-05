@@ -16,33 +16,39 @@ jobs:
         id: release
         with:
           command: manifest
-          default-branch: main
-          bump-minor-pre-major: true
 
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+
+  publish:
+    needs: [release-please]
+    runs-on: ubuntu-latest
+    steps:
       # The logic below handles the npm publication:
       - name: Checkout Repository
-        if: ${{ steps.release.outputs.releases_created }}
+        if: ${{ needs.release-please.outputs.releases_created }}
         uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
-        if: ${{ steps.release.outputs.releases_created }}
+        if: ${{ needs.release-please.outputs.releases_created }}
         with:
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
-  #    - name: Build Packages
-  #      if: ${{ steps.release.outputs.releases_created }}
-  #      run: ci/build-and-test.sh
-  #      env:
-  #        CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-  #        CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-  #        NODE_VERSION: ${{ matrix.node-version }}
-  #        FORCE_COLOR: true
+    #    - name: Build Packages
+    #      if: ${{ steps.release.outputs.releases_created }}
+    #      run: ci/build-and-test.sh
+    #      env:
+    #        CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
+    #        CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
+    #        NODE_VERSION: ${{ matrix.node-version }}
+    #        FORCE_COLOR: true
 
-  # Release Please has already incremented versions and published tags, so we just
-  # need to publish all unpublished versions to NPM here
-  # See: https://github.com/lerna/lerna/tree/main/commands/publish#bump-from-package
-  #  - name: Publish to NPM
-  #    if: ${{ steps.release.outputs.releases_created }}
-  #    env:
-  #      NODE_AUTH_TOKEN: ${{secrets.CONTRACT_CASE_NPM}}
-  #    run: npx lerna publish from-package --no-push --no-private --yes
+    # Release Please has already incremented versions and published tags, so we just
+    # need to publish all unpublished versions to NPM here
+    # See: https://github.com/lerna/lerna/tree/main/commands/publish#bump-from-package
+    #  - name: Publish to NPM
+    #    if: ${{ steps.release.outputs.releases_created }}
+    #    env:
+    #      NODE_AUTH_TOKEN: ${{secrets.CONTRACT_CASE_NPM}}
+    #    run: npx lerna publish from-package --no-push --no-private --yes
