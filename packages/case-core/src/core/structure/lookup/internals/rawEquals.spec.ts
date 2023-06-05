@@ -44,26 +44,26 @@ describe('raw equals', () => {
   it('handles matchers', () => {
     const matcher = {
       status: {
-        '_case:matcher:type': 'HttpStatusCode',
+        '_case:matcher:type': '_case:HttpStatusCode',
         '_case:matcher:example': 200,
         '_case:matcher:rule': 200,
         '_case:matcher:resolvesTo': 'HttpStatusCode',
       },
       body: { status: 'up' },
-      '_case:matcher:type': 'HttpResponseMatcher',
+      '_case:matcher:type': '_case:HttpResponseMatcher',
     };
 
     expect(rawEquality(matcher, matcher)).toBe(true);
     expect(
       rawEquality(matcher, {
         status: {
-          '_case:matcher:type': 'HttpStatusCode',
+          '_case:matcher:type': '_case:HttpStatusCode',
           '_case:matcher:example': 200,
           '_case:matcher:rule': '200',
           '_case:matcher:resolvesTo': 'HttpStatusCode',
         },
         body: { status: 'up' },
-        '_case:matcher:type': 'HttpResponseMatcher',
+        '_case:matcher:type': '_case:HttpResponseMatcher',
       })
     ).toBe(false);
   });
