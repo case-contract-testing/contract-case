@@ -6,11 +6,11 @@
 DSL (this is the package you want to install):
 
 [![npm](https://img.shields.io/npm/v/@contract-case/contract-case-jest.svg)](https://www.npmjs.com/package/@contract-case/contract-case-jest)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/contract-case-jest/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/contract-case-jest//package.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/contract-case-jest/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/contract-case-jest//package.json)
 
 <span align="center">
 
-![Case](https://github.com/case-contract-testing/case/raw/main/docs/suitcase.png)
+![Case](https://github.com/case-contract-testing/contract-case/raw/main/docs/suitcase.png)
 
 <sub>[Briefcase sticker created by Gohsantosadrive on Flaticon](https://www.flaticon.com/free-stickers/law)</sub>
 
@@ -124,7 +124,7 @@ Boundary Packages:
 Core Package:
 
 [![npm](https://img.shields.io/npm/v/@contract-case/case-core.svg)](https://www.npmjs.com/package/@contract-case/case-core)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/case-core/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/case-core/package.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-core/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/case-core/package.json)
 
 ## Roadmap
 
