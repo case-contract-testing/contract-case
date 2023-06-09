@@ -115,7 +115,7 @@ export interface ContractCaseBoundaryConfig {
   readonly stateHandlers?: Record<string, BoundaryStateHandler>;
 
   /**
-   * A Map of native trigger and test functions (if any) for several interaction pairs. 
+   * A Map of native trigger and test functions (if any) for several interaction pairs.
    * Most useful during verification, but also valid during definition
    *
    * Keyed by `${requestName}::${responseName}`
