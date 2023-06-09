@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.13.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.12.2...@contract-case/case-core-v0.13.0) (2023-06-09)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-core:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.12.2 to 0.13.0
+
 ## [0.12.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.12.1...@contract-case/case-core-v0.12.2) (2023-06-01)
 
 
