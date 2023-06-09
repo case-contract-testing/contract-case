@@ -3,7 +3,7 @@ import {
   BoundaryContractDefiner,
   BoundaryMockDefinition,
 } from '@contract-case/case-boundary';
-import { AnyMockDescriptor } from '@contract-case/case-example-mock-types';
+import { base } from '@contract-case/case-example-mock-types';
 
 import { defaultPrinter } from './defaultTestPrinter';
 
@@ -32,7 +32,7 @@ const mapDefinition = (
 export type ExampleDefinition = {
   // TODO types for states
   states?: Array<unknown>;
-  definition: AnyMockDescriptor;
+  definition: base.AnyMockDescriptor;
 };
 
 export class ContractCaseDefiner {

@@ -9,7 +9,7 @@ import {
   AnyMockDescriptor,
   ContractDefinerConnector,
 } from '@contract-case/case-core';
-import { AnyMatcher } from '@contract-case/test-equivalence-matchers';
+import { base } from '@contract-case/test-equivalence-matchers';
 
 import { convertConfig, jsErrorToFailure, wrapLogPrinter } from './mappers';
 import { BoundaryMockDefinition } from './types';
@@ -163,7 +163,7 @@ export class BoundaryContractDefiner {
     }
   }
 
-  stripMatchers(matcherOrData: AnyMatcher): BoundaryResult {
+  stripMatchers(matcherOrData: base.AnyMatcher): BoundaryResult {
     try {
       this.initialiseDefiner();
       if (this.definer === undefined) {

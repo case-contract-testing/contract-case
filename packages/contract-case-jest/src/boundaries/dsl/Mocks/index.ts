@@ -2,10 +2,7 @@ import {
   MOCK_HTTP_CLIENT,
   MOCK_HTTP_SERVER,
 } from '@contract-case/case-entities-internal';
-import {
-  WillReceiveHttpRequest,
-  WillSendHttpRequest,
-} from '@contract-case/case-example-mock-types';
+import { http } from '@contract-case/case-example-mock-types';
 import { httpRequestMatcher, httpResponseMatcher } from '../Matchers/core';
 import { HttpMockRequest, HttpMockResponse } from '../Matchers/core/http/types';
 
@@ -17,7 +14,7 @@ type HttpRequestResponseDescription = {
 export const willSendHttpRequest = ({
   request,
   response,
-}: HttpRequestResponseDescription): WillSendHttpRequest =>
+}: HttpRequestResponseDescription): http.WillSendHttpRequest =>
   ({
     request: httpRequestMatcher(request),
     response: httpResponseMatcher(response),
@@ -34,12 +31,12 @@ export const willSendHttpRequest = ({
         triggers: 'generated',
       },
     },
-  } as unknown as WillSendHttpRequest);
+  } as unknown as http.WillSendHttpRequest);
 
 export const willReceiveHttpRequest = ({
   request,
   response,
-}: HttpRequestResponseDescription): WillReceiveHttpRequest =>
+}: HttpRequestResponseDescription): http.WillReceiveHttpRequest =>
   ({
     request: httpRequestMatcher(request),
     response: httpResponseMatcher(response),
@@ -56,4 +53,4 @@ export const willReceiveHttpRequest = ({
         triggers: 'provided',
       },
     },
-  } as unknown as WillReceiveHttpRequest);
+  } as unknown as http.WillReceiveHttpRequest);
