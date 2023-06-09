@@ -9,6 +9,23 @@
     * @contract-case/case-example-mock-types bumped from 0.12.0 to 0.12.1
     * @contract-case/cli bumped from 0.1.1 to 0.1.2
 
+## [0.10.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.10.0...@contract-case/contract-case-jest-v0.10.1) (2023-06-09)
+
+
+### Bug Fixes
+
+* No longer include coverage directories in package ([b5f42a0](https://github.com/case-contract-testing/contract-case/commit/b5f42a039b966c0fe908231adcc0154a1403846c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.6.2 to 0.6.3
+    * @contract-case/case-entities-internal bumped from 0.12.2 to 0.13.0
+    * @contract-case/case-example-mock-types bumped from 0.12.2 to 0.13.0
+    * @contract-case/cli bumped from 0.1.3 to 0.1.4
+
 ## [0.10.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.9.6...@contract-case/contract-case-jest-v0.10.0) (2023-06-01)
 
 

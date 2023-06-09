@@ -15,6 +15,25 @@
   * devDependencies
     * @contract-case/test-equivalence-matchers bumped from 0.12.0 to 0.12.1
 
+## [0.6.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.6.2...@contract-case/case-boundary-v0.6.3) (2023-06-09)
+
+
+### Bug Fixes
+
+* Correct boundary config tsdoc documentation ([8d64490](https://github.com/case-contract-testing/contract-case/commit/8d64490578cd1035dbc9643e0740e5d2a8cd4221))
+* Correct issue where core code wasn't included in package ([7f70b3c](https://github.com/case-contract-testing/contract-case/commit/7f70b3c41cfab833dbeca56567bfda075275ac79))
+* No longer include coverage directories in package ([b5f42a0](https://github.com/case-contract-testing/contract-case/commit/b5f42a039b966c0fe908231adcc0154a1403846c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.12.2 to 0.13.0
+    * @contract-case/case-entities-internal bumped from 0.12.2 to 0.13.0
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.12.2 to 0.13.0
+
 ## [0.6.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.6.1...@contract-case/case-boundary-v0.6.2) (2023-06-01)
 
 

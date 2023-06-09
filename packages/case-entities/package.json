@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-entities-internal",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "description": "Shared types for ContractCase modules",
   "keywords": [
     "testing",
