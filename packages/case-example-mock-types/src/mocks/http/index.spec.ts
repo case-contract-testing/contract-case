@@ -1,5 +1,5 @@
 /* eslint-disable jest/expect-expect */
-import { HttpRequest } from '@contract-case/test-equivalence-matchers';
+import { http } from '@contract-case/test-equivalence-matchers';
 import {
   ConsumeHttpResponse,
   ProduceHttpResponse,
@@ -10,7 +10,7 @@ describe('http mocks', () => {
   describe('will receive http request', () => {
     it('compiles', () => {
       const a: ProduceHttpResponse = new WillReceiveHttpRequest({
-        request: new HttpRequest({ path: '/', method: 'get' }),
+        request: new http.HttpRequest({ path: '/', method: 'get' }),
         response: { status: '200' },
       });
       expect(a).not.toBe(null);
@@ -20,7 +20,7 @@ describe('http mocks', () => {
   describe('will send http request', () => {
     it('compiles', () => {
       const a: ConsumeHttpResponse = new WillSendHttpRequest({
-        request: new HttpRequest({ path: '/', method: 'get' }),
+        request: new http.HttpRequest({ path: '/', method: 'get' }),
         response: { status: '200' },
       });
       expect(a).not.toBe(null);
