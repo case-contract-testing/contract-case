@@ -22,6 +22,8 @@
     "build": "jsii --project-references",
     "build:docs": "jsii-docgen",
     "watch": "jsii -w",
+    "prepack": "mkdirp node_modules/@contract-case && ln -sf ${PWD}/../case-entities node_modules/@contract-case/case-entities-internal",
+    "postpack": "rimraf node_modules",
     "prepackage": "rimraf dist",
     "package": "jsii-pacmak",
     "publish:maven": "publib-maven",

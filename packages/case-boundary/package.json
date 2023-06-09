@@ -26,6 +26,8 @@
     "build": "jsii --project-references",
     "watch": "jsii -w",
     "prepackage": "rimraf dist",
+    "prepack": "rimraf node_modules && mkdirp node_modules && cp -r ${PWD}/../../node_modules/* node_modules",
+    "pstpack": "rimraf node_modules",
     "package": "jsii-pacmak",
     "publish:maven": "publib-maven",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
@@ -82,7 +84,7 @@
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1"
   },
-  "bundledDependencies": [
+  "bundleDependencies": [
     "@contract-case/case-core",
     "@contract-case/case-entities-internal",
     "read-pkg-up"

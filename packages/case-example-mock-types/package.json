@@ -6,10 +6,6 @@
   "homepage": "https://case.contract-testing.io/docs/reference/example-types",
   "license": "BSD-3-Clause",
   "main": "build/index.js",
-  "directories": {
-    "src": "src",
-    "build": "build"
-  },
   "publishConfig": {
     "access": "public"
   },
@@ -19,10 +15,12 @@
   },
   "scripts": {
     "prebuild": "rimraf build",
-    "build": "jsii --project-references",
+    "build": "jsii",
     "build:docs": "jsii-docgen",
     "watch": "jsii -w",
     "prepackage": "rimraf dist",
+    "prepack": "mkdirp node_modules/@contract-case && ln -sf ${PWD}/../case-entities node_modules/@contract-case/case-entities-internal",
+    "postpack": "rimraf node_modules",
     "package": "jsii-pacmak",
     "publish:maven": "publib-maven",
     "test": "jest",
@@ -63,7 +61,6 @@
     }
   },
   "devDependencies": {
-    "publib": "^0.2.695",
     "@contract-case/test-equivalence-matchers": "0.12.2",
     "@types/jest": "^29.5.2",
     "@typescript-eslint/eslint-plugin": "^5.59.7",
@@ -79,7 +76,9 @@
     "jsii": "^5.0.9",
     "jsii-docgen": "^8.0.39",
     "jsii-pacmak": "^1.82.0",
+    "mkdirp": "^3.0.1",
     "prettier": "^2.8.7",
+    "publib": "^0.2.695",
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1"
@@ -87,9 +86,6 @@
   "dependencies": {
     "@contract-case/case-entities-internal": "0.12.2"
   },
-  "bundledDependencies": [
-    "@contract-case/case-entities-internal"
-  ],
   "peerDependencies": {
     "@contract-case/test-equivalence-matchers": "0.12.2"
   },
@@ -130,5 +126,8 @@
         ]
       }
     }
-  }
+  },
+  "bundleDependencies": [
+    "@contract-case/case-entities-internal"
+  ]
 }
