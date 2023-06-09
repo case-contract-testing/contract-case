@@ -115,14 +115,15 @@ export interface ContractCaseBoundaryConfig {
   readonly stateHandlers?: Record<string, BoundaryStateHandler>;
 
   /**
-   * Call the native trigger and test function (if any) for this interaction pair.
+   * A Map of native trigger and test functions (if any) for several interaction pairs. 
+   * Most useful during verification, but also valid during definition
+   *
    * Keyed by `${requestName}::${responseName}`
    */
   readonly triggerAndTests?: Record<string, ITriggerFunction>;
 
   /**
    * Call the native trigger and test function (if any) for this interaction pair.
-   * Keyed by `${requestName}::${responseName}`
    */
   readonly triggerAndTest?: ITriggerFunction;
 
