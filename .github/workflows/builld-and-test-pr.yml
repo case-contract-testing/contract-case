@@ -1,4 +1,4 @@
-name:  Build, test, package (no download)
+name: Build + test (no download)
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
         node-version: [16.x, 18.x, 20.x]
     steps:
       - uses: actions/checkout@v3
-        with: 
+        with:
           fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -34,8 +34,8 @@ jobs:
         node-version: [16.x, 18.x, 20.x]
     steps:
       - uses: actions/checkout@v3
-        with: 
-          fetch-depth: 0      
+        with:
+          fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -53,10 +53,10 @@ jobs:
         node-version: [16.x, 18.x, 20.x]
     steps:
       - uses: actions/checkout@v3
-        with: 
+        with:
           fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3 
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: bash ci/build-and-test-pr.sh

@@ -1,4 +1,4 @@
-name: Build, test, package
+name: Build + test
 
 on:
   push:
@@ -41,12 +41,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: ci/build-and-test.sh
-        env:
-          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-          NODE_VERSION: ${{ matrix.node-version }}
-          FORCE_COLOR: true
-      - run: ci/package.sh
         env:
           CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
           CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
