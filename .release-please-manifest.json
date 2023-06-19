@@ -6,6 +6,6 @@
   "packages/contract-case-jest": "0.10.1",
   "packages/test-equivalence-matchers": "0.13.0",
   "packages/documentation": "0.0.6",
-  ".": "0.13.0",
+  ".": "0.14.0",
   "packages/contract-case-cli": "0.1.4"
 }

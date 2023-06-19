@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.14.0](https://github.com/case-contract-testing/contract-case/compare/v0.13.0...v0.14.0) (2023-06-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* Only expose types in modules. Root imports will need to be updated to include the module name
+
+### Bug Fixes
+
+* Add link to documentation in warning message about zero-length arrays ([54dd26d](https://github.com/case-contract-testing/contract-case/commit/54dd26dd1d534b6c71f0c9a8655b4a264439b8e2))
+* Correct issue where core code wasn't included in package ([7f70b3c](https://github.com/case-contract-testing/contract-case/commit/7f70b3c41cfab833dbeca56567bfda075275ac79))
+* Improve intellisense documentation ([aebaac8](https://github.com/case-contract-testing/contract-case/commit/aebaac83c859a47e85ea2f2ceadbd5aaa70e416a))
+* No longer include coverage directories in package ([b5f42a0](https://github.com/case-contract-testing/contract-case/commit/b5f42a039b966c0fe908231adcc0154a1403846c))
+* Remove unused dependencies ([7e51170](https://github.com/case-contract-testing/contract-case/commit/7e511705f71ecb4697375c13d394ba88701441f0))
+* Update documentation for boundary classes ([bffd21b](https://github.com/case-contract-testing/contract-case/commit/bffd21b5dc338046a89e881d708ed4c5fa771aea))
+
+
+### Code Refactoring
+
+* Only expose types in modules. Root imports will need to be updated to include the module name ([015dc7a](https://github.com/case-contract-testing/contract-case/commit/015dc7a449805920a5c08cc54ca486ec8bcbc888))
+
 ## [0.13.0](https://github.com/case-contract-testing/contract-case/compare/v0.12.2...v0.13.0) (2023-06-09)
 
 
