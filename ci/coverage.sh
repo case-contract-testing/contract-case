@@ -5,7 +5,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)" # Figure out where the 
 . "$SCRIPT_DIR"/lib/robust-bash.sh 
 
 npm install
-npx lerna bootstrap
 
 npx lerna run build
 npx lerna run test
