@@ -15,26 +15,62 @@
   },
   "targetDefaults": {
     "prebuild": {
-      "dependsOn": ["^prebuild"]
+      "dependsOn": [
+        "^prebuild"
+      ]
     },
     "test": {
-      "dependsOn": ["downloadContracts", "build"]
+      "dependsOn": [
+        "downloadContracts",
+        "build"
+      ]
     },
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["{projectRoot}/dist"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
     },
     "build:docs": {
-      "dependsOn": ["^build", "^build:docs", "build"],
-      "outputs": ["{projectRoot}/dist"]
+      "dependsOn": [
+        "^build",
+        "^build:docs",
+        "build"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
     },
     "package": {
-      "dependsOn": ["build", "^package"],
-      "outputs": ["{projectRoot}/dist"]
+      "dependsOn": [
+        "build",
+        "^package"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
     },
     "publish:maven": {
-      "dependsOn": ["package", "^publish:maven"],
-      "outputs": ["{projectRoot}/dist"]
+      "dependsOn": [
+        "package",
+        "^publish:maven"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
     }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "sharedGlobals": [],
+    "production": [
+      "default"
+    ]
   }
 }
