@@ -72,7 +72,7 @@ const contractCaseBoundaryConfig: ContractCaseBoundaryConfig = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.providerName">providerName</a></code> | <code>string</code> | The name of the provider for this contract. |
-| <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.testRunId">testRunId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.testRunId">testRunId</a></code> | <code>string</code> | Unique ID for this segment of the test run - it must be unique within a run, but need not be unique between test runs. |
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.baseUrlUnderTest">baseUrlUnderTest</a></code> | <code>string</code> | The base URL for your real server, if you are testing an http server. |
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.brokerBaseUrl">brokerBaseUrl</a></code> | <code>string</code> | The base URL for the contract broker. |
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.brokerBasicAuth">brokerBasicAuth</a></code> | <code><a href="#@contract-case/case-boundary.UserNamePassword">UserNamePassword</a></code> | The basic authentication username and password to access the contract broker. |
@@ -81,12 +81,12 @@ const contractCaseBoundaryConfig: ContractCaseBoundaryConfig = { ... }
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.contractDir">contractDir</a></code> | <code>string</code> | The directory where the contract will be written. |
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.contractFilename">contractFilename</a></code> | <code>string</code> | The filename where the contract will be written. |
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.logLevel">logLevel</a></code> | <code>string</code> | logLevel - one of:. |
-| <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.printResults">printResults</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.printResults">printResults</a></code> | <code>boolean</code> | Whether results should be printed on standard out. |
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.publish">publish</a></code> | <code>string</code> | Whether to publish contracts or verification results to the broker. |
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.stateHandlers">stateHandlers</a></code> | <code>{[ key: string ]: <a href="#@contract-case/case-boundary.BoundaryStateHandler">BoundaryStateHandler</a>}</code> | State setup and teardown handlers for any states this test requires (see [writing state handlers](https://case.contract-testing.io/docs/reference/state-handlers/)) for more details. |
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.throwOnFail">throwOnFail</a></code> | <code>boolean</code> | Whether or not the test should throw an error if the matching fails. |
 | <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.triggerAndTest">triggerAndTest</a></code> | <code><a href="#@contract-case/case-boundary.ITriggerFunction">ITriggerFunction</a></code> | Call the native trigger and test function (if any) for this interaction pair. |
-| <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.triggerAndTests">triggerAndTests</a></code> | <code>{[ key: string ]: <a href="#@contract-case/case-boundary.ITriggerFunction">ITriggerFunction</a>}</code> | Call the native trigger and test function (if any) for this interaction pair. |
+| <code><a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig.property.triggerAndTests">triggerAndTests</a></code> | <code>{[ key: string ]: <a href="#@contract-case/case-boundary.ITriggerFunction">ITriggerFunction</a>}</code> | A Map of native trigger and test functions (if any) for several interaction pairs. |
 
 ---
 
@@ -109,6 +109,12 @@ public readonly testRunId: string;
 ```
 
 - *Type:* string
+
+Unique ID for this segment of the test run - it must be unique within a run, but need not be unique between test runs.
+
+This is an internal
+implementation detail, and authors of DSL layers shouldn't expose it to
+clients.
 
 ---
 
@@ -239,6 +245,8 @@ public readonly printResults: boolean;
 
 - *Type:* boolean
 
+Whether results should be printed on standard out.
+
 ---
 
 ##### `publish`<sup>Optional</sup> <a name="publish" id="@contract-case/case-boundary.ContractCaseBoundaryConfig.property.publish"></a>
@@ -299,8 +307,6 @@ public readonly triggerAndTest: ITriggerFunction;
 
 Call the native trigger and test function (if any) for this interaction pair.
 
-Keyed by `${requestName}::${responseName}`
-
 ---
 
 ##### `triggerAndTests`<sup>Optional</sup> <a name="triggerAndTests" id="@contract-case/case-boundary.ContractCaseBoundaryConfig.property.triggerAndTests"></a>
@@ -311,7 +317,9 @@ public readonly triggerAndTests: {[ key: string ]: ITriggerFunction};
 
 - *Type:* {[ key: string ]: <a href="#@contract-case/case-boundary.ITriggerFunction">ITriggerFunction</a>}
 
-Call the native trigger and test function (if any) for this interaction pair.
+A Map of native trigger and test functions (if any) for several interaction pairs.
+
+Most useful during verification, but also valid during definition
 
 Keyed by `${requestName}::${responseName}`
 
@@ -820,8 +828,8 @@ The names version(s) of the package(s) calling this, where each entry in the arr
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@contract-case/case-boundary.BoundaryContractVerifier.availableContractDescriptions">availableContractDescriptions</a></code> | *No description.* |
-| <code><a href="#@contract-case/case-boundary.BoundaryContractVerifier.runVerification">runVerification</a></code> | *No description.* |
+| <code><a href="#@contract-case/case-boundary.BoundaryContractVerifier.availableContractDescriptions">availableContractDescriptions</a></code> | Returns a description of all of the contracts that can be found by the configuration. |
+| <code><a href="#@contract-case/case-boundary.BoundaryContractVerifier.runVerification">runVerification</a></code> | Run the verification of the contract(s) that can be found using the configuration provided. |
 
 ---
 
@@ -831,15 +839,23 @@ The names version(s) of the package(s) calling this, where each entry in the arr
 public availableContractDescriptions(): BoundaryResult
 ```
 
+Returns a description of all of the contracts that can be found by the configuration.
+
 ##### `runVerification` <a name="runVerification" id="@contract-case/case-boundary.BoundaryContractVerifier.runVerification"></a>
 
 ```typescript
 public runVerification(configOverrides: ContractCaseBoundaryConfig): BoundaryResult
 ```
 
+Run the verification of the contract(s) that can be found using the configuration provided.
+
+If you want to filter the contract(s), use the configOverrides to specify a Consumer or Provider name.
+
 ###### `configOverrides`<sup>Required</sup> <a name="configOverrides" id="@contract-case/case-boundary.BoundaryContractVerifier.runVerification.parameter.configOverrides"></a>
 
 - *Type:* <a href="#@contract-case/case-boundary.ContractCaseBoundaryConfig">ContractCaseBoundaryConfig</a>
+
+A `ContractCaseBoundaryConfig` that defines any config options to override (after the ones provided in the constructor are applied).
 
 ---
 
@@ -1094,6 +1110,10 @@ The user-provided verification function (testResponse or testErrorResponse) fail
 
 Supertype for all methods that return results.
 
+Use one of `BoundarySuccess`,
+`BoundaryFailure`, or one of the specialised `BoundarySuccessWith*` return
+types as appropriate. See the documentation for the method you're implementing for more information.
+
 #### Initializers <a name="Initializers" id="@contract-case/case-boundary.BoundaryResult.Initializer"></a>
 
 ```typescript
@@ -1223,7 +1243,7 @@ new BoundaryStateHandler()
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@contract-case/case-boundary.BoundaryStateHandler.setup">setup</a></code> | *No description.* |
+| <code><a href="#@contract-case/case-boundary.BoundaryStateHandler.setup">setup</a></code> | Call the user's state setup function. |
 
 ---
 
@@ -1232,6 +1252,8 @@ new BoundaryStateHandler()
 ```typescript
 public setup(): BoundaryResult
 ```
+
+Call the user's state setup function.
 
 
 
@@ -1255,8 +1277,8 @@ new BoundaryStateHandlerWithTeardown()
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@contract-case/case-boundary.BoundaryStateHandlerWithTeardown.setup">setup</a></code> | *No description.* |
-| <code><a href="#@contract-case/case-boundary.BoundaryStateHandlerWithTeardown.teardown">teardown</a></code> | *No description.* |
+| <code><a href="#@contract-case/case-boundary.BoundaryStateHandlerWithTeardown.setup">setup</a></code> | Call the user's state setup function. |
+| <code><a href="#@contract-case/case-boundary.BoundaryStateHandlerWithTeardown.teardown">teardown</a></code> | Call the user's state teardown function. |
 
 ---
 
@@ -1266,11 +1288,15 @@ new BoundaryStateHandlerWithTeardown()
 public setup(): BoundaryResult
 ```
 
+Call the user's state setup function.
+
 ##### `teardown` <a name="teardown" id="@contract-case/case-boundary.BoundaryStateHandlerWithTeardown.teardown"></a>
 
 ```typescript
 public teardown(): BoundaryResult
 ```
+
+Call the user's state teardown function.
 
 
 
@@ -1419,6 +1445,177 @@ public readonly payload: {[ key: string ]: any};
 ---
 
 
+### ConfigLogLevelConstants <a name="ConfigLogLevelConstants" id="@contract-case/case-boundary.ConfigLogLevelConstants"></a>
+
+Convenience class to hold the values for LogLevel so that DSL layers don't need to know the actual value.
+
+#### Initializers <a name="Initializers" id="@contract-case/case-boundary.ConfigLogLevelConstants.Initializer"></a>
+
+```typescript
+import { ConfigLogLevelConstants } from '@contract-case/case-boundary'
+
+new ConfigLogLevelConstants()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+
+
+
+#### Constants <a name="Constants" id="Constants"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/case-boundary.ConfigLogLevelConstants.property.DEBUG">DEBUG</a></code> | <code>string</code> | Log information to help users find out what is happening during their tests (and warnings, and errors). |
+| <code><a href="#@contract-case/case-boundary.ConfigLogLevelConstants.property.DEEP_MAINTAINER_DEBUG">DEEP_MAINTAINER_DEBUG</a></code> | <code>string</code> | Log detailed debugging information for ContractCase maintainers (and debug, warn and errors). |
+| <code><a href="#@contract-case/case-boundary.ConfigLogLevelConstants.property.ERROR">ERROR</a></code> | <code>string</code> | Log when something has gone wrong during the execution of the test framework. |
+| <code><a href="#@contract-case/case-boundary.ConfigLogLevelConstants.property.MAINTAINER_DEBUG">MAINTAINER_DEBUG</a></code> | <code>string</code> | Log debugging information for ContractCase maintainers (and debug, warn and errors). |
+| <code><a href="#@contract-case/case-boundary.ConfigLogLevelConstants.property.NONE">NONE</a></code> | <code>string</code> | Print no logs (note, results may still be printed - see `printResults`). |
+| <code><a href="#@contract-case/case-boundary.ConfigLogLevelConstants.property.WARN">WARN</a></code> | <code>string</code> | Log when it seems likely that there is a misconfiguration, or an error. |
+
+---
+
+##### `DEBUG`<sup>Required</sup> <a name="DEBUG" id="@contract-case/case-boundary.ConfigLogLevelConstants.property.DEBUG"></a>
+
+```typescript
+public readonly DEBUG: string;
+```
+
+- *Type:* string
+
+Log information to help users find out what is happening during their tests (and warnings, and errors).
+
+---
+
+##### `DEEP_MAINTAINER_DEBUG`<sup>Required</sup> <a name="DEEP_MAINTAINER_DEBUG" id="@contract-case/case-boundary.ConfigLogLevelConstants.property.DEEP_MAINTAINER_DEBUG"></a>
+
+```typescript
+public readonly DEEP_MAINTAINER_DEBUG: string;
+```
+
+- *Type:* string
+
+Log detailed debugging information for ContractCase maintainers (and debug, warn and errors).
+
+---
+
+##### `ERROR`<sup>Required</sup> <a name="ERROR" id="@contract-case/case-boundary.ConfigLogLevelConstants.property.ERROR"></a>
+
+```typescript
+public readonly ERROR: string;
+```
+
+- *Type:* string
+
+Log when something has gone wrong during the execution of the test framework.
+
+---
+
+##### `MAINTAINER_DEBUG`<sup>Required</sup> <a name="MAINTAINER_DEBUG" id="@contract-case/case-boundary.ConfigLogLevelConstants.property.MAINTAINER_DEBUG"></a>
+
+```typescript
+public readonly MAINTAINER_DEBUG: string;
+```
+
+- *Type:* string
+
+Log debugging information for ContractCase maintainers (and debug, warn and errors).
+
+---
+
+##### `NONE`<sup>Required</sup> <a name="NONE" id="@contract-case/case-boundary.ConfigLogLevelConstants.property.NONE"></a>
+
+```typescript
+public readonly NONE: string;
+```
+
+- *Type:* string
+
+Print no logs (note, results may still be printed - see `printResults`).
+
+---
+
+##### `WARN`<sup>Required</sup> <a name="WARN" id="@contract-case/case-boundary.ConfigLogLevelConstants.property.WARN"></a>
+
+```typescript
+public readonly WARN: string;
+```
+
+- *Type:* string
+
+Log when it seems likely that there is a misconfiguration, or an error.
+
+---
+
+### ConfigPublishConstants <a name="ConfigPublishConstants" id="@contract-case/case-boundary.ConfigPublishConstants"></a>
+
+Convenience class to hold the values for the publish setting so that clients don't need to know the strings.
+
+#### Initializers <a name="Initializers" id="@contract-case/case-boundary.ConfigPublishConstants.Initializer"></a>
+
+```typescript
+import { ConfigPublishConstants } from '@contract-case/case-boundary'
+
+new ConfigPublishConstants()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+
+
+
+#### Constants <a name="Constants" id="Constants"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@contract-case/case-boundary.ConfigPublishConstants.property.ALWAYS">ALWAYS</a></code> | <code>string</code> | Always publish contracts and verification results. |
+| <code><a href="#@contract-case/case-boundary.ConfigPublishConstants.property.NEVER">NEVER</a></code> | <code>string</code> | Never publish contracts or verification results. |
+| <code><a href="#@contract-case/case-boundary.ConfigPublishConstants.property.ONLY_IN_CI">ONLY_IN_CI</a></code> | <code>string</code> | Only publish contracts and verification results when in in CI according to https://github.com/watson/ci-info#supported-ci-tools. |
+
+---
+
+##### `ALWAYS`<sup>Required</sup> <a name="ALWAYS" id="@contract-case/case-boundary.ConfigPublishConstants.property.ALWAYS"></a>
+
+```typescript
+public readonly ALWAYS: string;
+```
+
+- *Type:* string
+
+Always publish contracts and verification results.
+
+---
+
+##### `NEVER`<sup>Required</sup> <a name="NEVER" id="@contract-case/case-boundary.ConfigPublishConstants.property.NEVER"></a>
+
+```typescript
+public readonly NEVER: string;
+```
+
+- *Type:* string
+
+Never publish contracts or verification results.
+
+---
+
+##### `ONLY_IN_CI`<sup>Required</sup> <a name="ONLY_IN_CI" id="@contract-case/case-boundary.ConfigPublishConstants.property.ONLY_IN_CI"></a>
+
+```typescript
+public readonly ONLY_IN_CI: string;
+```
+
+- *Type:* string
+
+Only publish contracts and verification results when in in CI according to https://github.com/watson/ci-info#supported-ci-tools.
+
+---
+
 ## Protocols <a name="Protocols" id="Protocols"></a>
 
 ### ICombinedPrinter <a name="ICombinedPrinter" id="@contract-case/case-boundary.ICombinedPrinter"></a>
@@ -1459,6 +1656,11 @@ Result, but failed configuration or core bugs will.
 ### ILogPrinter <a name="ILogPrinter" id="@contract-case/case-boundary.ILogPrinter"></a>
 
 - *Implemented By:* <a href="#@contract-case/case-boundary.ICombinedPrinter">ICombinedPrinter</a>, <a href="#@contract-case/case-boundary.ILogPrinter">ILogPrinter</a>
+
+Implement this interface to give ContractCase a way to print logs in your target language.
+
+Most platforms will want to print to standard out, but some
+might need to log to a file or otherwise collate the logs.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
@@ -1647,11 +1849,13 @@ an IInvokeCoreTest to tell the ContractCase core that you'd like it to run the t
 
 - *Implemented By:* <a href="#@contract-case/case-boundary.ITriggerFunction">ITriggerFunction</a>
 
+Interface called by ContractCase to invoke user's test code.
+
 #### Methods <a name="Methods" id="Methods"></a>
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@contract-case/case-boundary.ITriggerFunction.trigger">trigger</a></code> | *No description.* |
+| <code><a href="#@contract-case/case-boundary.ITriggerFunction.trigger">trigger</a></code> | Trigger the user's test code and test the response from it. |
 
 ---
 
@@ -1660,6 +1864,8 @@ an IInvokeCoreTest to tell the ContractCase core that you'd like it to run the t
 ```typescript
 public trigger(config: {[ key: string ]: any}): BoundaryResult
 ```
+
+Trigger the user's test code and test the response from it.
 
 ###### `config`<sup>Required</sup> <a name="config" id="@contract-case/case-boundary.ITriggerFunction.trigger.parameter.config"></a>
 
