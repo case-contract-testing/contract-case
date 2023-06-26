@@ -7,7 +7,7 @@
   "version": "0.13.0",
   "devDependencies": {
     "jsii-docgen": "^9.0.10",
-    "lerna": "^6.6.1"
+    "lerna": "^7.0.2"
   },
   "optionalDependencies": {
     "@nrwl/nx-darwin-arm64": "15.9.3",
