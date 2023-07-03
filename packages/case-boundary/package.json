@@ -81,7 +81,7 @@
     "jsii-pacmak": "^1.84.0",
     "prettier": "^2.8.7",
     "rimraf": "^5.0.1",
-    "ts-jest": "^29.1.0",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1"
   },
   "bundleDependencies": [
