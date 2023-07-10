@@ -91,7 +91,7 @@
     "filenamify": "^4.3.0",
     "is-ci": "^3.0.1",
     "mkdirp": "^3.0.1",
-    "pretty-format": "^29.5.0",
+    "pretty-format": "^29.6.1",
     "qs": "^6.11.2",
     "slug": "^8.2.2"
   }
