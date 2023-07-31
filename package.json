@@ -6,7 +6,7 @@
   ],
   "version": "0.13.0",
   "devDependencies": {
-    "jsii-docgen": "^9.1.1",
+    "jsii-docgen": "^9.1.2",
     "lerna": "^7.1.4"
   },
   "optionalDependencies": {
