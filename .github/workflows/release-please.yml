@@ -28,7 +28,7 @@ jobs:
       # The logic below handles the npm publication:
       - name: Checkout Repository
         if: ${{ needs.release-please.outputs.releases_created }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Node
         uses: actions/setup-node@v3
         if: ${{ needs.release-please.outputs.releases_created }}
