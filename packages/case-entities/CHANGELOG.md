@@ -1,5 +1,12 @@
 # Changelog
 
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.3 to 0.0.4
+    * @contract-case/case-maintainer-config bumped from 0.0.3 to 0.0.4
+
 ## [0.14.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.13.1...@contract-case/case-entities-internal-v0.14.0) (2023-10-11)
 
 

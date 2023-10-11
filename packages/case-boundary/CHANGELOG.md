@@ -15,6 +15,42 @@
   * devDependencies
     * @contract-case/test-equivalence-matchers bumped from 0.12.0 to 0.12.1
 
+## [0.9.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.8.0...@contract-case/case-boundary-v0.9.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove JSii from case-boundary since it blocks the node thread, and was causing complle errors
+
+### Features
+
+* Add `ConfigLogLevelConstants` to expose log levels ([71bad6d](https://github.com/case-contract-testing/contract-case/commit/71bad6d936ebbcd0560850783ab2526ca8fcf2f9))
+* Add `ConfigPublishConstants` to expose possible values for the publish config option ([3c2953e](https://github.com/case-contract-testing/contract-case/commit/3c2953e3d0cb63c40bd8fe73a1679ba9b55abcfb))
+* Add developer documentation ([e855d61](https://github.com/case-contract-testing/contract-case/commit/e855d61f9615ca31f02762e780fe3dfa592b07e3))
+
+
+### Bug Fixes
+
+* Add documentation for the ContractVerifier class ([3c5bea3](https://github.com/case-contract-testing/contract-case/commit/3c5bea326d890c9619aab595998a813bc921f83f))
+* Correct boundary config tsdoc documentation ([8d64490](https://github.com/case-contract-testing/contract-case/commit/8d64490578cd1035dbc9643e0740e5d2a8cd4221))
+* Correct issue where core code wasn't included in package ([7f70b3c](https://github.com/case-contract-testing/contract-case/commit/7f70b3c41cfab833dbeca56567bfda075275ac79))
+* Improve intellisense documentation ([aebaac8](https://github.com/case-contract-testing/contract-case/commit/aebaac83c859a47e85ea2f2ceadbd5aaa70e416a))
+* No longer include coverage directories in package ([b5f42a0](https://github.com/case-contract-testing/contract-case/commit/b5f42a039b966c0fe908231adcc0154a1403846c))
+* Remove JSii from case-boundary since it blocks the node thread, and was causing complle errors ([a81a5d3](https://github.com/case-contract-testing/contract-case/commit/a81a5d3939b962cb1ef5dd4f98e973b4fc84987a))
+* Update documentation for boundary classes ([bffd21b](https://github.com/case-contract-testing/contract-case/commit/bffd21b5dc338046a89e881d708ed4c5fa771aea))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.14.0 to 0.14.1
+    * @contract-case/case-entities-internal bumped from 0.14.0 to 0.14.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.0.3 to 0.0.4
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.3 to 0.0.4
+    * @contract-case/test-equivalence-matchers bumped from 0.14.0 to 0.14.1
+
 ## [0.8.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.7.0...@contract-case/case-boundary-v0.8.0) (2023-10-11)
 
 
