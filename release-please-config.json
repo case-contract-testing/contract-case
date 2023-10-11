@@ -27,7 +27,10 @@
         "packages/contract-case-jest",
         "packages/case-maintainer-config",
         "packages/eslint-config-case-maintainer",
-        "packages/documentation"
+        "packages/documentation",
+        ".release-please-config.json",
+        ".release-please-manifest.json",
+        "package-lock.json"
       ],
       "changelog-path": "docs/maintainers/FULL-CHANGELOG.md"
     },
