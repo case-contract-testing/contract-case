@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-boundary",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Exported interface layer for ContractCase. Don't depend on it directly unless you're writing a wrapper for a new language",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs/reference/matchers",
@@ -37,9 +37,9 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "@contract-case/case-maintainer-config": "0.0.2",
-    "@contract-case/eslint-config-case-maintainer": "0.0.2",
-    "@contract-case/test-equivalence-matchers": "0.13.1",
+    "@contract-case/case-maintainer-config": "0.0.3",
+    "@contract-case/eslint-config-case-maintainer": "0.0.3",
+    "@contract-case/test-equivalence-matchers": "0.14.0",
     "@microsoft/api-documenter": "^7.23.9",
     "@microsoft/api-extractor": "^7.38.0",
     "@types/jest": "^29.5.3",
@@ -58,8 +58,8 @@
     "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "@contract-case/case-core": "0.13.1",
-    "@contract-case/case-entities-internal": "0.13.1",
+    "@contract-case/case-core": "0.14.0",
+    "@contract-case/case-entities-internal": "0.14.0",
     "read-pkg-up": "^7.0.1"
   },
   "peerDependencies": {

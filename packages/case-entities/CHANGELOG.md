@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.14.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.13.1...@contract-case/case-entities-internal-v0.14.0) (2023-10-11)
+
+
+### Bug Fixes
+
+* Remove unused dependencies ([7e51170](https://github.com/case-contract-testing/contract-case/commit/7e511705f71ecb4697375c13d394ba88701441f0))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.2 to 0.0.3
+    * @contract-case/case-maintainer-config bumped from 0.0.2 to 0.0.3
+
 ## [0.13.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.13.0...@contract-case/case-entities-internal-v0.13.1) (2023-10-11)
 
 
