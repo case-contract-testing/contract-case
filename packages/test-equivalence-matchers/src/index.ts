@@ -9,13 +9,11 @@ import * as strings from './nodes/strings';
 
 export * from './types';
 
-export {
-  arrays,
-  base,
-  convenience,
-  http,
-  modifiers,
-  objects,
-  primitives,
-  strings,
-};
+export { arrays };
+export { base };
+export { convenience };
+export { http };
+export { modifiers };
+export { objects };
+export { primitives };
+export { strings };
