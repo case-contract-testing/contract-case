@@ -14,6 +14,15 @@
     * @contract-case/case-boundary bumped from 0.6.1 to 0.6.2
     * @contract-case/case-core bumped from 0.12.1 to 0.12.2
 
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.6.3 to 0.7.0
+    * @contract-case/case-core bumped from 0.13.0 to 0.13.1
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
+
 ## [0.1.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.3...@contract-case/cli-v0.1.4) (2023-06-09)
 
 

@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.13.1](https://github.com/case-contract-testing/contract-case/compare/v0.13.0...v0.13.1) (2023-10-11)
+
+
+### Features
+
+* Add developer config package for api-extractor, prettier, eslint, tsconfig ([9588334](https://github.com/case-contract-testing/contract-case/commit/95883341698eb0f3f66812a1add0cb1ea85974ca))
+* Add developer documentation ([6d2c52d](https://github.com/case-contract-testing/contract-case/commit/6d2c52d8134339aebeadfdd84e6bfe540afdca04))
+* Add developer documentation ([8524363](https://github.com/case-contract-testing/contract-case/commit/85243632ef5f93c0d0fe639256ffdb5edbfb612c))
+* Add developer documentation ([e855d61](https://github.com/case-contract-testing/contract-case/commit/e855d61f9615ca31f02762e780fe3dfa592b07e3))
+* Add eslint config package ([f1659fa](https://github.com/case-contract-testing/contract-case/commit/f1659fa0035e69d64f7f7ecb49c977c377d3fceb))
+
+
+### Bug Fixes
+
+* Make loglevel config option optional ([f6c18d9](https://github.com/case-contract-testing/contract-case/commit/f6c18d97434aebbff054c368b5929251935b41ea))
+
 ## [0.13.0](https://github.com/case-contract-testing/contract-case/compare/v0.12.2...v0.13.0) (2023-06-09)
 
 

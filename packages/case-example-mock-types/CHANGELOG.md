@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.13.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.13.0...@contract-case/case-example-mock-types-v0.13.1) (2023-10-11)
+
+
+### Features
+
+* Add developer documentation ([8524363](https://github.com/case-contract-testing/contract-case/commit/85243632ef5f93c0d0fe639256ffdb5edbfb612c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.13.0 to 0.13.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.0.1 to 0.0.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
+    * @contract-case/test-equivalence-matchers bumped from 0.13.0 to 0.13.1
+
 ## [0.13.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.12.2...@contract-case/case-example-mock-types-v0.13.0) (2023-06-09)
 
 
