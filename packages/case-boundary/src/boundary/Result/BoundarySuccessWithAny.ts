@@ -9,7 +9,7 @@ import { RESULT_SUCCESS_HAS_ANY_PAYLOAD } from './BoundaryResultTypeConstants';
  * @public
  */
 export class BoundarySuccessWithAny extends BoundaryResult {
-  readonly resultType: typeof RESULT_SUCCESS_HAS_ANY_PAYLOAD;
+  override readonly resultType: typeof RESULT_SUCCESS_HAS_ANY_PAYLOAD;
 
   readonly payload: unknown;
 

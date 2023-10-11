@@ -7,7 +7,7 @@ import { RESULT_FAILURE } from './BoundaryResultTypeConstants';
  * @public
  */
 export class BoundaryFailure extends BoundaryResult {
-  readonly resultType: typeof RESULT_FAILURE;
+  override readonly resultType: typeof RESULT_FAILURE;
 
   readonly kind: string;
 

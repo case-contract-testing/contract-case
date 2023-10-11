@@ -7,7 +7,7 @@ import { RESULT_SUCCESS_HAS_MAP_PAYLOAD } from './BoundaryResultTypeConstants';
  * @public
  */
 export class BoundarySuccessWithMap extends BoundaryResult {
-  readonly resultType: typeof RESULT_SUCCESS_HAS_MAP_PAYLOAD;
+  override readonly resultType: typeof RESULT_SUCCESS_HAS_MAP_PAYLOAD;
 
   readonly payload: Record<string, unknown>;
 

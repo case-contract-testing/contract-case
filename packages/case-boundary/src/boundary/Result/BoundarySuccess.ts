@@ -7,7 +7,7 @@ import { BoundaryResult } from './BoundaryResult';
  * @public
  */
 export class BoundarySuccess extends BoundaryResult {
-  readonly resultType: typeof RESULT_SUCCESS;
+  override readonly resultType: typeof RESULT_SUCCESS;
 
   constructor() {
     super(RESULT_SUCCESS);
