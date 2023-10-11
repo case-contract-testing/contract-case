@@ -7,6 +7,7 @@ import { AnyMatcher } from '../base';
  * and [state
  * handlers](https://case.contract-testing.io/docs/reference/state-handlers) for
  * more details.
+ * @public
  */
 export class StateVariable extends AnyMatcher {
   /** @internal */

@@ -4,7 +4,10 @@ import { AnyMatcherOrData } from '../../types';
 
 /**
  * Transformation matcher that matches a JSON.stringify()ed version of the given
- * object. For example, if the actual data is the string:
+ * object.
+ *
+ * @example
+ * For example, if the actual data is the string:
  *
  * ```
  * "{\"foo\":2}"
@@ -25,7 +28,7 @@ import { AnyMatcherOrData } from '../../types';
  *   "foo": AnyNumber(2)
  * })
  * ```
- *
+ * @public
  */
 export class StringifiedJson extends AnyMatcher {
   /** @internal */

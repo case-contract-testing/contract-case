@@ -9,6 +9,7 @@ import { CascadingContextMatcher } from '../base';
  * Note that this log level matcher will be saved into the contract, so it will
  * also affect the log level during verification. Usually you will want to
  * remove the use of this matcher before saving the contract.
+ * @public
  */
 export class ChangeLogLevel extends CascadingContextMatcher {
   /**

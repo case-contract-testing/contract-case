@@ -6,6 +6,7 @@ import { AnyStringMatcher } from '../../types';
  * Convenience matcher to treat the string as a uri encoded string - useful in `path` segments.
  *
  * During matching, the actual value is decoded with `decodeUriComponent()` and passed to the child matcher.
+ * @public
  */
 export class UriEncodedString extends AnyMatcher {
   /** @internal */

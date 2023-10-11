@@ -1,8 +1,9 @@
 import { NUMBER_MATCHER_TYPE } from '@contract-case/case-entities-internal';
-import { AnyMatcherWithExample } from '../base/AnyMatcherWithExample';
+import { AnyMatcherWithExample } from '../base';
 
 /**
  * Matches a number following [RFC 8259 JSON](https://www.rfc-editor.org/rfc/rfc8259).
+ * @public
  */
 export class AnyNumber extends AnyMatcherWithExample {
   /** @internal */

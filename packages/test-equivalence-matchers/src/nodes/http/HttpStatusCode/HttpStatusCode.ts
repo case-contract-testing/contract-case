@@ -4,7 +4,7 @@ import { codesToExample } from './codeToExample';
 
 /**
  * Matches an HTTP status code
- *
+ * @public
  */
 export class HttpStatusCode extends AnyMatcherWithExample {
   /** @internal */

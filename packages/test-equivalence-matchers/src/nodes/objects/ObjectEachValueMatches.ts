@@ -4,6 +4,7 @@ import { AnyMatcherOrData } from '../../types';
 
 /**
  * Matches an object where each value matches the provided matcher.
+ * @public
  */
 export class ObjectEachValueMatches extends AnyMatcher {
   /** @internal */

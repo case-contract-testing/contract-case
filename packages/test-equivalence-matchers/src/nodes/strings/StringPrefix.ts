@@ -5,6 +5,7 @@ import { AnyStringMatcher } from '../../types';
 
 /**
  * Matches any string that begins with the given constant string prefix
+ * @public
  */
 export class StringPrefix extends AnyMatcher {
   /** @internal */

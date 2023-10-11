@@ -1,8 +1,9 @@
 import { INTEGER_MATCH_TYPE } from '@contract-case/case-entities-internal';
-import { AnyMatcherWithExample } from '../base/AnyMatcherWithExample';
+import { AnyMatcherWithExample } from '../base';
 
 /**
  * Matches any whole integer number.
+ * @public
  */
 export class AnyInteger extends AnyMatcherWithExample {
   /** @internal */

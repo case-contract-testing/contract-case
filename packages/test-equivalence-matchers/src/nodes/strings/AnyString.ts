@@ -1,8 +1,9 @@
 import { STRING_MATCHER_TYPE } from '@contract-case/case-entities-internal';
-import { AnyMatcherWithExample } from '../base/AnyMatcherWithExample';
+import { AnyMatcherWithExample } from '../base';
 
 /**
  * Matches any string.
+ * @public
  */
 export class AnyString extends AnyMatcherWithExample {
   /** @internal */

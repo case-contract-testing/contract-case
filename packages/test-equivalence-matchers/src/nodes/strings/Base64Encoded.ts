@@ -7,6 +7,7 @@ import { AnyMatcherOrData } from '../../types';
  *
  * WARNING: Since many strings are accidentally decodable as base64, this matcher is
  * best combined with a more restrictive string matcher (eg `StringifiedJson`).
+ * @public
  */
 export class Base64Encoded extends AnyMatcher {
   /** @internal */

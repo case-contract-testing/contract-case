@@ -24,6 +24,13 @@ const validateCode = (code: number | string | unknown): number => {
       );
   }
 };
+/**
+ * Converts a description of an HTTP code into a specific example. If a class of
+ * codes (eg 2XX) is specified, the X's are converted to 0. If an array is passed, the first entry is used.
+ * @param codes - Either a number, string, or an array of numbers or strings for
+ * HTTP status codes. 401, '404' and '4XX' are all valid.
+ * @returns A single example as a number
+ */
 
 export const codesToExample = (
   codes: number | string | Array<number | string> | unknown,

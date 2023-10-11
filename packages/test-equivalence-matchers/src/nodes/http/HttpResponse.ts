@@ -2,6 +2,9 @@ import { HTTP_RESPONSE_MATCHER_TYPE } from '@contract-case/case-entities-interna
 import { AnyMatcher } from '../base';
 import { AnyMatcherOrData } from '../../types';
 
+/**
+ * @public
+ */
 export interface HttpResponseExample {
   /* Any test-equivalence matcher or string or number for the HTTP status code accepted by this example (Recommended: `HttpStatusCode`) */
   readonly status: AnyMatcherOrData;
@@ -21,6 +24,7 @@ export interface HttpResponseExample {
 
 /**
  * Matches any HTTP Response with the provided properties
+ * @public
  */
 export class HttpResponse extends AnyMatcher {
   /** @internal */

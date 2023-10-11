@@ -3,7 +3,7 @@ import { StringPrefix } from '../strings';
 
 /**
  * Matches the value part of a OIDC or OAuth header with the supplied token - useful in conjunction with the StateVariable matcher
- *
+ * @public
  */
 export class BearerTokenHeaderValue extends StringPrefix {
   /**

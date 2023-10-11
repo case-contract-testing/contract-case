@@ -6,6 +6,7 @@ import { AnyMatcher } from '../base';
 
 /**
  * Options for the `ArrayLength` matcher
+ * @public
  */
 export interface ArrayLengthOptions {
   /**
@@ -25,7 +26,7 @@ export interface ArrayLengthOptions {
 
 /**
  * Matches an Array whose length is within the specified range (or 1-infinity if not specified).
- *
+ * @public
  */
 export class ArrayLength extends AnyMatcher {
   /** @internal */

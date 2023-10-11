@@ -5,6 +5,7 @@ import { CascadingContextMatcher } from '../base';
  * Everything inside this matcher will be matched on the shape of the data (ie,
  * type alone), unless overridden with other matchers.  Use this to switch out
  * of the default `exactlyLike` matching.
+ * @public
  */
 export class ShapedLike extends CascadingContextMatcher {
   /**

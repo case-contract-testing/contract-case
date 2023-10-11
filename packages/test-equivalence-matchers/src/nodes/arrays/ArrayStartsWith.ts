@@ -4,6 +4,7 @@ import { AnyMatcherOrData } from '../../types';
 
 /**
  * Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored.
+ * @public
  */
 export class ArrayStartsWith extends AnyMatcher {
   /** @internal */

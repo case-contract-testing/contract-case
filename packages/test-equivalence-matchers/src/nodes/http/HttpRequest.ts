@@ -2,6 +2,9 @@ import { HTTP_REQUEST_MATCHER_TYPE } from '@contract-case/case-entities-internal
 import { AnyMatcher } from '../base';
 import { AnyMatcherOrData, AnyStringMatcher } from '../../types';
 
+/**
+ * @public
+ */
 export interface HttpRequestExample {
   /**
    * A string or string matcher that matches the method used for this example
@@ -39,6 +42,7 @@ export interface HttpRequestExample {
 
 /**
  * Matches any HTTP Request with the provided properties
+ * @public
  */
 export class HttpRequest extends AnyMatcher {
   /** @internal */

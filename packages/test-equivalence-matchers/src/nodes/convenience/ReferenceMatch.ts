@@ -3,6 +3,7 @@ import { AnyMatcher } from '../base';
 
 /**
  * Matches a named matcher created with `NamedMatch`.
+ * @public
  */
 export class ReferenceMatch extends AnyMatcher {
   /** @internal */

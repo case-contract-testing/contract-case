@@ -3,6 +3,7 @@ import { AnyMatcherWithExample } from '../base';
 
 /**
  * Matches any string that contains the given substring.
+ * @public
  */
 export class StringContaining extends AnyMatcherWithExample {
   /** @internal */

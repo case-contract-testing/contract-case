@@ -14,7 +14,7 @@ import { AnyMatcherOrData } from '../../types';
  * Due to limitations with JSii, extending implementations MUST NOT override
  * `toJSON`, or MUST return the result of `super.toJSON()` as part of their
  * toJSON method.
- *
+ * @public
  */
 export abstract class CascadingContextMatcher extends AnyMatcher {
   /** @internal */

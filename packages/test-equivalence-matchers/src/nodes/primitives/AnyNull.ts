@@ -1,9 +1,10 @@
 import { NULL_MATCHER_TYPE } from '@contract-case/case-entities-internal';
-import { AnyMatcherWithExample } from '../base/AnyMatcherWithExample';
+import { AnyMatcherWithExample } from '../base';
 
 /**
  * Matches `null` (useful for languages like Java where `body: null` means no
  * body, but you want to match a eg a json document that has the body `"null"`).
+ * @public
  */
 export class AnyNull extends AnyMatcherWithExample {
   /** @internal */

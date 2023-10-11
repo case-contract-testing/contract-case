@@ -5,6 +5,7 @@ import { AnyMatcherOrData } from '../../types';
 /**
  * Saves the matcher below it with a unique name that can be used with lookups
  * in tests after this one.
+ * @public
  */
 export class NamedMatch extends AnyMatcher {
   /** @internal */

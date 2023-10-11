@@ -6,6 +6,7 @@ import { CascadingContextMatcher } from '../base';
  * set of constraints and ContractCase can't figure out what the best example should be.
  *
  * Note that providing any example will override examples provided further down the tree.
+ * @public
  */
 export class WithExample extends CascadingContextMatcher {
   /** @internal */

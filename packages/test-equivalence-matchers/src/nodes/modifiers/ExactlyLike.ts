@@ -5,6 +5,7 @@ import { CascadingContextMatcher } from '../base';
  * Everything inside this matcher will be matched exactly, unless overridden
  * with a generic matcher (eg `AnyString` or` ShapedLike`). Use this to switch
  * out of `shapedLike` and back to the default exact matching.
+ * @public
  */
 export class ExactlyLike extends CascadingContextMatcher {
   /**

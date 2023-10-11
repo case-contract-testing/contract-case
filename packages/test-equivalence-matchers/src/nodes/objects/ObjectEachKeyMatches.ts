@@ -4,6 +4,7 @@ import { AnyMatcherOrData } from '../../types';
 
 /**
  * Matches an object where each key matches the provided matcher.
+ * @public
  */
 export class ObjectEachKeyMatches extends AnyMatcher {
   /** @internal */

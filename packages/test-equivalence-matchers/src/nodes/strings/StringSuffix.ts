@@ -5,6 +5,7 @@ import { AnyStringMatcher } from '../../types';
 
 /**
  * Matches any string that ends with the given constant string suffix
+ * @public
  */
 export class StringSuffix extends AnyMatcher {
   /** @internal */

@@ -8,6 +8,7 @@ import { AnyMatcherOrData } from '../../types';
  * and [state
  * handlers](https://case.contract-testing.io/docs/reference/state-handlers) for
  * more details.
+ * @public
  */
 export class And extends AnyMatcher {
   /** @internal */
