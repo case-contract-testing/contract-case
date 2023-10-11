@@ -16,7 +16,7 @@
     "url": "git@github.com:case-contract-testing/contract-case.git"
   },
   "scripts": {
-    "format:base": "prettier \"{docs,src}/**/*.{ts,md}\"",
+    "format:base": "prettier \"*.{ts,md,json}\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write "
   },
