@@ -63,7 +63,7 @@
     "read-pkg-up": "^7.0.1"
   },
   "peerDependencies": {
-    "@contract-case/test-equivalence-matchers": "0.13.0"
+    "@contract-case/test-equivalence-matchers": "0.14.0"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
