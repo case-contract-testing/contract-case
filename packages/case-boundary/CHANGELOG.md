@@ -15,6 +15,34 @@
   * devDependencies
     * @contract-case/test-equivalence-matchers bumped from 0.12.0 to 0.12.1
 
+## [0.7.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.6.3...@contract-case/case-boundary-v0.7.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove JSii from case-boundary since it blocks the node thread, and was causing complle errors
+
+### Features
+
+* Add developer documentation ([e855d61](https://github.com/case-contract-testing/contract-case/commit/e855d61f9615ca31f02762e780fe3dfa592b07e3))
+
+
+### Bug Fixes
+
+* Remove JSii from case-boundary since it blocks the node thread, and was causing complle errors ([a81a5d3](https://github.com/case-contract-testing/contract-case/commit/a81a5d3939b962cb1ef5dd4f98e973b4fc84987a))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.13.0 to 0.13.1
+    * @contract-case/case-entities-internal bumped from 0.13.0 to 0.13.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.0.1 to 0.0.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
+    * @contract-case/test-equivalence-matchers bumped from 0.13.0 to 0.13.1
+
 ## [0.6.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.6.2...@contract-case/case-boundary-v0.6.3) (2023-06-09)
 
 

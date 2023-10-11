@@ -1,14 +1,14 @@
 {
-  "packages/case-boundary": "0.6.3",
-  "packages/case-core": "0.13.0",
-  "packages/case-entities": "0.13.0",
-  "packages/case-example-mock-types": "0.13.0",
-  "packages/contract-case-jest": "0.10.1",
-  "packages/test-equivalence-matchers": "0.13.0",
+  "packages/case-boundary": "0.7.0",
+  "packages/case-core": "0.13.1",
+  "packages/case-entities": "0.13.1",
+  "packages/case-example-mock-types": "0.13.1",
+  "packages/contract-case-jest": "0.10.2",
+  "packages/test-equivalence-matchers": "0.13.1",
   "packages/documentation": "0.0.6",
-  ".": "0.13.0",
-  "packages/contract-case-cli": "0.1.4",
-  "packages/case-maintainer-config": "0.0.1",
-  "packages/eslint-config-case-maintainer": "0.0.1",
-  "packages/case-connector": "0.6.3"
+  ".": "0.13.1",
+  "packages/contract-case-cli": "0.1.5",
+  "packages/case-maintainer-config": "0.0.2",
+  "packages/eslint-config-case-maintainer": "0.0.2",
+  "packages/case-connector": "0.6.4"
 }

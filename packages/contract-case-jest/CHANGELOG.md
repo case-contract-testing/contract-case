@@ -9,6 +9,17 @@
     * @contract-case/case-example-mock-types bumped from 0.12.0 to 0.12.1
     * @contract-case/cli bumped from 0.1.1 to 0.1.2
 
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.6.3 to 0.7.0
+    * @contract-case/case-entities-internal bumped from 0.13.0 to 0.13.1
+    * @contract-case/case-example-mock-types bumped from 0.13.0 to 0.13.1
+    * @contract-case/cli bumped from 0.1.4 to 0.1.5
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
+
 ## [0.10.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.10.0...@contract-case/contract-case-jest-v0.10.1) (2023-06-09)
 
 
