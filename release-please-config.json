@@ -102,6 +102,12 @@
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
+    },
+    "packages/eslint-config-case-maintainer": {
+      "component": "@contract-case/eslint-config-case-maintainer",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
     }
   }
 }
