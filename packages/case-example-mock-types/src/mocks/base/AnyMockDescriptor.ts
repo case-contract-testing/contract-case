@@ -12,6 +12,7 @@ import {
  * documentation).
  *
  * See the definitions in the case-entities-internal package for more details.
+ * @public
  */
 export interface ContractCaseCoreBehaviour {
   /**
@@ -46,6 +47,9 @@ export interface ContractCaseCoreBehaviour {
   readonly triggers: string;
 }
 
+/**
+ * @public
+ */
 export interface ContractCaseCoreSetup {
   /**
    * Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type.
@@ -59,6 +63,7 @@ export interface ContractCaseCoreSetup {
 
 /**
  * This is mostly a type assertion - the case-core does its own validation of the types.
+ * @internal
  */
 const mapBehaviour = (
   behaviour: ContractCaseCoreBehaviour,
@@ -77,6 +82,7 @@ const mapBehaviour = (
  * If you are using the included example types from ContractCase (or any
  * extension libraries), you do not need to read the documentation for this
  * class.
+ * @public
  */
 export abstract class AnyMockDescriptor {
   /** @internal */

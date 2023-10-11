@@ -16,7 +16,8 @@
   "scripts": {
     "prebuild": "rimraf build",
     "build": "jsii",
-    "build:docs": "jsii-docgen",
+    "build:docs": "api-extractor run --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
+    "build:docs:local": "api-extractor run --local --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "watch": "jsii -w",
     "prepackage": "rimraf dist",
     "prepack": "mkdirp node_modules/@contract-case && ln -sf ${PWD}/../case-entities node_modules/@contract-case/case-entities-internal",
@@ -27,9 +28,9 @@
     "test:local": "jest",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
-    "format:base": "prettier --parser typescript \"src/**/*.ts\"",
+    "format:base": "prettier \"{docs,src}/**/*.{ts,md}\"",
     "format:check": "npm run format:base -- --list-different",
-    "format:fix": "npm run format:base -- --write "
+    "format:fix": "npm run format:base -- --write --log-level warn"
   },
   "bugs": {
     "url": "https://github.com/case-contract-testing/case/issues"
@@ -61,8 +62,11 @@
     }
   },
   "devDependencies": {
+    "@contract-case/case-maintainer-config": "0.0.1",
     "@contract-case/eslint-config-case-maintainer": "0.0.1",
     "@contract-case/test-equivalence-matchers": "0.13.0",
+    "@microsoft/api-documenter": "^7.23.9",
+    "@microsoft/api-extractor": "^7.38.0",
     "@types/jest": "^29.5.3",
     "jsii": "^5.2.0",
     "jsii-docgen": "^9.1.2",

@@ -7,6 +7,10 @@ import { AnyMatcherOrData } from '@contract-case/test-equivalence-matchers';
 import { AnyMockDescriptor } from '../base/AnyMockDescriptor';
 import { HttpExample } from './types';
 
+/**
+ * Defines an example that expects to receive an HTTP request. Use this to test HTTP clients.
+ * @public
+ */
 export class WillReceiveHttpRequest extends AnyMockDescriptor {
   /** @internal */
   readonly '_case:mock:type': typeof MOCK_HTTP_CLIENT;

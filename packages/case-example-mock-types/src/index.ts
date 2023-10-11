@@ -1,2 +1,5 @@
-export * as base from './mocks/base';
-export * as http from './mocks/http';
+import * as base from './mocks/base';
+import * as http from './mocks/http';
+
+export { base };
+export { http };
