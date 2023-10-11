@@ -15,6 +15,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
+          release-type: node
           command: manifest
           token: ${{ secrets.RATE_TOKEN_GH }}
 
@@ -40,10 +41,10 @@ jobs:
         if: ${{ needs.release-please.outputs.release_created }}
         run: ci/build-and-test.sh
         env:
-            CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-            CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-            NODE_VERSION: 18
-            FORCE_COLOR: true
+          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
+          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
+          NODE_VERSION: 18
+          FORCE_COLOR: true
 
     # Release Please has already incremented versions and published tags, so we just
     # need to publish all unpublished versions to NPM here
