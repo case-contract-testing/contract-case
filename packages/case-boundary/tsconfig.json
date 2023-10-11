@@ -1,33 +1,7 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@contract-case/case-maintainer-config/tsconfig.json",
   "compilerOptions": {
-    "composite": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "declaration": true,
-    "esModuleInterop": true,
-    "exactOptionalPropertyTypes": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["es2022"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "outDir": "./dist/",
-    "resolveJsonModule": true,
-    "rootDir": ".",
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "es2022"
+    "outDir": "dist/"
   },
-  "display": "Node LTS + Strictest",
-  "exclude": ["jest.config.ts", "dist/**/*.js", "example/*", "coverage", "dist"]
+  "exclude": ["jest.config.ts", "dist/**/*.js", "coverage", "dist"]
 }
