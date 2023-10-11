@@ -23,6 +23,23 @@
   * devDependencies
     * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
 
+## [0.1.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.5...@contract-case/cli-v0.1.6) (2023-10-11)
+
+
+### Bug Fixes
+
+* No longer include coverage directories in package ([b5f42a0](https://github.com/case-contract-testing/contract-case/commit/b5f42a039b966c0fe908231adcc0154a1403846c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.7.0 to 0.8.0
+    * @contract-case/case-core bumped from 0.13.1 to 0.14.0
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.2 to 0.0.3
+
 ## [0.1.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.3...@contract-case/cli-v0.1.4) (2023-06-09)
 
 

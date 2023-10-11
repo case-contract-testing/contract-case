@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.14.0](https://github.com/case-contract-testing/contract-case/compare/v0.13.1...v0.14.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Only expose types in modules. Root imports will need to be updated to include the module name
+
+### Features
+
+* Add developer config package for api-extractor, prettier, eslint, tsconfig ([9588334](https://github.com/case-contract-testing/contract-case/commit/95883341698eb0f3f66812a1add0cb1ea85974ca))
+* Add developer documentation ([6d2c52d](https://github.com/case-contract-testing/contract-case/commit/6d2c52d8134339aebeadfdd84e6bfe540afdca04))
+* Add developer documentation ([8524363](https://github.com/case-contract-testing/contract-case/commit/85243632ef5f93c0d0fe639256ffdb5edbfb612c))
+* Add developer documentation ([e855d61](https://github.com/case-contract-testing/contract-case/commit/e855d61f9615ca31f02762e780fe3dfa592b07e3))
+* Add eslint config package ([f1659fa](https://github.com/case-contract-testing/contract-case/commit/f1659fa0035e69d64f7f7ecb49c977c377d3fceb))
+
+
+### Bug Fixes
+
+* Add link to documentation in warning message about zero-length arrays ([54dd26d](https://github.com/case-contract-testing/contract-case/commit/54dd26dd1d534b6c71f0c9a8655b4a264439b8e2))
+* Correct issue where core code wasn't included in package ([7f70b3c](https://github.com/case-contract-testing/contract-case/commit/7f70b3c41cfab833dbeca56567bfda075275ac79))
+* Improve intellisense documentation ([aebaac8](https://github.com/case-contract-testing/contract-case/commit/aebaac83c859a47e85ea2f2ceadbd5aaa70e416a))
+* Make loglevel config option optional ([f6c18d9](https://github.com/case-contract-testing/contract-case/commit/f6c18d97434aebbff054c368b5929251935b41ea))
+* No longer include coverage directories in package ([b5f42a0](https://github.com/case-contract-testing/contract-case/commit/b5f42a039b966c0fe908231adcc0154a1403846c))
+* Remove unused dependencies ([7e51170](https://github.com/case-contract-testing/contract-case/commit/7e511705f71ecb4697375c13d394ba88701441f0))
+* Update documentation for boundary classes ([bffd21b](https://github.com/case-contract-testing/contract-case/commit/bffd21b5dc338046a89e881d708ed4c5fa771aea))
+
+
+### Code Refactoring
+
+* Only expose types in modules. Root imports will need to be updated to include the module name ([015dc7a](https://github.com/case-contract-testing/contract-case/commit/015dc7a449805920a5c08cc54ca486ec8bcbc888))
+
 ## [0.13.1](https://github.com/case-contract-testing/contract-case/compare/v0.13.0...v0.13.1) (2023-10-11)
 
 

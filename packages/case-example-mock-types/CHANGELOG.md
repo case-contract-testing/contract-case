@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.14.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.13.1...@contract-case/case-example-mock-types-v0.14.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Only expose types in modules. Root imports will need to be updated to include the module name
+
+### Features
+
+* Add developer documentation ([8524363](https://github.com/case-contract-testing/contract-case/commit/85243632ef5f93c0d0fe639256ffdb5edbfb612c))
+
+
+### Bug Fixes
+
+* Correct issue where core code wasn't included in package ([7f70b3c](https://github.com/case-contract-testing/contract-case/commit/7f70b3c41cfab833dbeca56567bfda075275ac79))
+* No longer include coverage directories in package ([b5f42a0](https://github.com/case-contract-testing/contract-case/commit/b5f42a039b966c0fe908231adcc0154a1403846c))
+
+
+### Code Refactoring
+
+* Only expose types in modules. Root imports will need to be updated to include the module name ([015dc7a](https://github.com/case-contract-testing/contract-case/commit/015dc7a449805920a5c08cc54ca486ec8bcbc888))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.13.1 to 0.14.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.0.2 to 0.0.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.2 to 0.0.3
+    * @contract-case/test-equivalence-matchers bumped from 0.13.1 to 0.14.0
+
 ## [0.13.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.13.0...@contract-case/case-example-mock-types-v0.13.1) (2023-10-11)
 
 
