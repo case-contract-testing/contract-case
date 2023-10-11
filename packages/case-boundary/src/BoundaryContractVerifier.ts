@@ -40,7 +40,7 @@ const wrapCallback =
   (testName: string, verify: () => Promise<unknown>) => {
     handleVoidResult(
       callback.runTest(testName, new CoreInvoker(verify)),
-      'CaseCoreError'
+      'CaseCoreError',
     );
   };
 
@@ -73,7 +73,7 @@ export class BoundaryContractVerifier {
     callback: IRunTestCallback,
     logPrinter: ILogPrinter,
     resultPrinter: IResultPrinter,
-    parentVersions: string[]
+    parentVersions: string[],
   ) {
     this.constructorConfig = config;
     this.callback = callback;
@@ -93,7 +93,7 @@ export class BoundaryContractVerifier {
       config,
       wrapCallback(this.callback),
       wrapLogPrinter(this.logPrinter, this.resultPrinter),
-      [...this.parentVersions, versionString]
+      [...this.parentVersions, versionString],
     );
   }
 
@@ -113,12 +113,12 @@ export class BoundaryContractVerifier {
       this.initialiseVerifier();
       if (this.verifier === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised (getAvailableContractDescriptions)'
+          'Definer was undefined after it was initialised (getAvailableContractDescriptions)',
         );
       }
 
       return new BoundarySuccessWithAny(
-        this.verifier.getAvailableContractDescriptions()
+        this.verifier.getAvailableContractDescriptions(),
       );
     } catch (e) {
       return jsErrorToFailure(e);
@@ -138,7 +138,7 @@ export class BoundaryContractVerifier {
       this.initialiseVerifier();
       if (this.verifier === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised (getAvailableContractDescriptions)'
+          'Definer was undefined after it was initialised (getAvailableContractDescriptions)',
         );
       }
 
@@ -148,7 +148,7 @@ export class BoundaryContractVerifier {
 
       this.verifier.verifyContract(
         { ...initialInvoker, ...partialInvoker },
-        { ...initialConfig, ...config }
+        { ...initialConfig, ...config },
       );
       return new BoundarySuccess();
     } catch (e) {

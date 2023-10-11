@@ -15,7 +15,7 @@ describe('and matchers', () => {
     },
     writerDependencies(defaultPrinter),
     MAINTAINER_TEST_CONTEXT,
-    ['tests']
+    ['tests'],
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);
@@ -25,7 +25,7 @@ describe('and matchers', () => {
 
     it('matches an array of length 1', async () => {
       await expect(contract.checkMatch(matcher, [2])).resolves.toEqual(
-        makeNoErrorResult()
+        makeNoErrorResult(),
       );
     });
     it('can strip matchers', () => {

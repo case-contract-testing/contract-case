@@ -20,18 +20,18 @@ export const mapTrigger =
           throw failureToJsError(result);
         default:
           throw new CaseCoreError(
-            `Unknown result type '${result.resultType}' during trigger handler`
+            `Unknown result type '${result.resultType}' during trigger handler`,
           );
       }
     });
 
 export const mapTriggers = (
-  triggers: Record<string, ITriggerFunction>
+  triggers: Record<string, ITriggerFunction>,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Record<string, (config: Record<string, any>) => Promise<void>> =>
   Object.entries(triggers)
     .map(([key, value]) => ({ [`${key}`]: mapTrigger(value) }))
     .reduce(
       (acc, curr) => ({ ...acc, ...curr }),
-      {} as Record<string, () => Promise<void>>
+      {} as Record<string, () => Promise<void>>,
     );

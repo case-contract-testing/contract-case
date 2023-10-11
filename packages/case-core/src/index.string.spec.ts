@@ -19,7 +19,7 @@ describe('string matchers', () => {
     },
     writerDependencies(defaultPrinter),
     MAINTAINER_TEST_CONTEXT,
-    ['tests']
+    ['tests'],
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);
@@ -29,24 +29,24 @@ describe('string matchers', () => {
 
     it('matches an exact string', async () => {
       await expect(contract.checkMatch(matcher, 'foo')).resolves.toEqual(
-        makeNoErrorResult()
+        makeNoErrorResult(),
       );
     });
     it('matches at the start of the string', async () => {
       await expect(contract.checkMatch(matcher, 'foobar')).resolves.toEqual(
-        makeNoErrorResult()
+        makeNoErrorResult(),
       );
     });
 
     it('matches at the end of the string', async () => {
       await expect(contract.checkMatch(matcher, 'barfoo')).resolves.toEqual(
-        makeNoErrorResult()
+        makeNoErrorResult(),
       );
     });
 
     it('matches in the middle of the string', async () => {
       await expect(contract.checkMatch(matcher, 'barfoobar')).resolves.toEqual(
-        makeNoErrorResult()
+        makeNoErrorResult(),
       );
     });
     it('can strip matchers', () => {
@@ -57,7 +57,7 @@ describe('string matchers', () => {
     expectErrorContaining(
       matcher,
       'barbaroof',
-      "did not include the expected substring 'foo'"
+      "did not include the expected substring 'foo'",
     );
   });
 
@@ -67,13 +67,13 @@ describe('string matchers', () => {
 
       it('matches an exact string', async () => {
         await expect(contract.checkMatch(matcher, 'foo')).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
       expectErrorContaining(
         matcher,
         'barfoo',
-        "did not start with the expected prefix 'foo'"
+        "did not start with the expected prefix 'foo'",
       );
       expectErrorContaining(matcher, 'foobar', 'not exactly equal to ""');
     });
@@ -83,19 +83,19 @@ describe('string matchers', () => {
 
       it('matches an exact string', async () => {
         await expect(contract.checkMatch(matcher, 'foo')).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
       it('matches a string with extra at the end', async () => {
         await expect(contract.checkMatch(matcher, 'foobar')).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
       expectErrorContaining(
         matcher,
         'barfoo',
-        "did not start with the expected prefix 'foo'"
+        "did not start with the expected prefix 'foo'",
       );
     });
 
@@ -105,23 +105,23 @@ describe('string matchers', () => {
       expectErrorContaining(
         matcher,
         'bar',
-        "did not start with the expected prefix 'foo'"
+        "did not start with the expected prefix 'foo'",
       );
 
       it('matches an exact string', async () => {
         await expect(contract.checkMatch(matcher, 'foobar')).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
       expectErrorContaining(
         matcher,
         'foobaz',
-        "did not start with the expected prefix 'bar'"
+        "did not start with the expected prefix 'bar'",
       );
       it('matches a string with extra at the end', async () => {
         await expect(
-          contract.checkMatch(matcher, 'foobarbaz')
+          contract.checkMatch(matcher, 'foobarbaz'),
         ).resolves.toEqual(makeNoErrorResult());
       });
     });
@@ -133,13 +133,13 @@ describe('string matchers', () => {
 
       it('matches an exact string', async () => {
         await expect(contract.checkMatch(matcher, 'foo')).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
       expectErrorContaining(
         matcher,
         'foobar',
-        "did not end with the expected suffix 'foo'"
+        "did not end with the expected suffix 'foo'",
       );
       expectErrorContaining(matcher, 'barfoo', 'not exactly equal to ""');
     });
@@ -149,19 +149,19 @@ describe('string matchers', () => {
 
       it('matches an exact string', async () => {
         await expect(contract.checkMatch(matcher, 'foo')).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
       it('matches a string with extra at the start', async () => {
         await expect(contract.checkMatch(matcher, 'barfoo')).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
       expectErrorContaining(
         matcher,
         'foobar',
-        "did not end with the expected suffix 'foo'"
+        "did not end with the expected suffix 'foo'",
       );
     });
 
@@ -171,23 +171,23 @@ describe('string matchers', () => {
       expectErrorContaining(
         matcher,
         'bar',
-        "did not end with the expected suffix 'foo'"
+        "did not end with the expected suffix 'foo'",
       );
 
       it('matches an exact string', async () => {
         await expect(contract.checkMatch(matcher, 'barfoo')).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
       expectErrorContaining(
         matcher,
         'foobazfoo',
-        "did not end with the expected suffix 'bar'"
+        "did not end with the expected suffix 'bar'",
       );
       it('matches a string with extra at the end', async () => {
         await expect(
-          contract.checkMatch(matcher, 'bazbarfoo')
+          contract.checkMatch(matcher, 'bazbarfoo'),
         ).resolves.toEqual(makeNoErrorResult());
       });
     });

@@ -63,7 +63,7 @@ describe('e2e http provider driven', () => {
           } else {
             resolve();
           }
-        })
+        }),
     );
     // END CODE UNDER TEST SETUP BOILERPLATE
 
@@ -257,7 +257,7 @@ describe('e2e http provider driven', () => {
             });
           });
         });
-      }
+      },
     );
   });
 });

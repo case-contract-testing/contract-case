@@ -4,7 +4,7 @@ import { handleVoidResult } from './Result';
 
 export const wrapLogPrinter = (
   externalLogger: ILogPrinter,
-  externalPrinter: IResultPrinter
+  externalPrinter: IResultPrinter,
 ): TestPrinter => ({
   log: (
     level: string,
@@ -13,7 +13,7 @@ export const wrapLogPrinter = (
     typeString: string,
     location: string,
     message: string,
-    additional: string
+    additional: string,
   ) =>
     handleVoidResult(
       externalLogger.log(
@@ -23,9 +23,9 @@ export const wrapLogPrinter = (
         typeString,
         location,
         message,
-        additional
+        additional,
       ),
-      'CaseCoreError'
+      'CaseCoreError',
     ),
 
   printMatchError: (details) =>
@@ -33,7 +33,7 @@ export const wrapLogPrinter = (
   printMessageError: (details) =>
     handleVoidResult(
       externalPrinter.printMessageError(details),
-      'CaseCoreError'
+      'CaseCoreError',
     ),
   printTestTitle: (details) =>
     handleVoidResult(externalPrinter.printTestTitle(details), 'CaseCoreError'),

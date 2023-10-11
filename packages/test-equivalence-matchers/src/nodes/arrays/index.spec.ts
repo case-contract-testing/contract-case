@@ -16,7 +16,7 @@ describe('array matchers', () => {
   it('array entry with examples matcher compiles', () => {
     const a: CoreArrayEachEntryMatches = new ArrayEachEntryMatchesWithExample(
       '1',
-      ['2']
+      ['2'],
     );
 
     expect(a).not.toBeNull();

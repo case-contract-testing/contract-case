@@ -71,14 +71,14 @@ const DEFINING_CONTRACTS: Record<string, DefinitionContainer> = {};
 
 const mapConfig = (
   config: ContractCaseConnectorConfig,
-  testRunId: string
+  testRunId: string,
 ): Required<ContractCaseBoundaryConfig> => ({ ...config, testRunId });
 
 export const beginDefinition = (
   config: ContractCaseConnectorConfig,
   callbackPrinter: ILogPrinter,
   resultPrinter: IResultPrinter,
-  callerVersions: string[]
+  callerVersions: string[],
 ): DefinitionId => {
   const id = uuid4();
   const definer = {
@@ -87,7 +87,7 @@ export const beginDefinition = (
       mapConfig(config, id),
       callbackPrinter,
       resultPrinter,
-      [...callerVersions, versionString]
+      [...callerVersions, versionString],
     ),
   };
   DEFINING_CONTRACTS[id] = definer;
@@ -98,14 +98,14 @@ const makeCoreError = (message: string, location: string) =>
   new BoundaryFailure(
     BoundaryFailureKindConstants.CASE_CORE_ERROR,
     message,
-    location
+    location,
   );
 
 const makeConfigurationError = (message: string, location: string) =>
   new BoundaryFailure(
     BoundaryFailureKindConstants.CASE_CONFIGURATION_ERROR,
     message,
-    location
+    location,
   );
 
 const getDefiner = (defineId: DefinitionId, methodName: string) => {
@@ -113,13 +113,13 @@ const getDefiner = (defineId: DefinitionId, methodName: string) => {
   if (definerHandle === undefined) {
     return makeCoreError(
       `The defineId '${defineId}' doesn't have an associated handle.\n\nThis might happen if the case-connector methods are called out of order, or the wrong connector is contacted`,
-      `case-connector::${methodName}`
+      `case-connector::${methodName}`,
     );
   }
   if (definerHandle === ENDED_DEFINER) {
     return makeConfigurationError(
       'runRejectingExample was called after endRecord was called',
-      `case-connector::${methodName}`
+      `case-connector::${methodName}`,
     );
   }
   return definerHandle;
@@ -128,7 +128,7 @@ const getDefiner = (defineId: DefinitionId, methodName: string) => {
 export const runExample = (
   defineId: string,
   definition: ExampleDefinition,
-  config: ContractCaseConnectorConfig
+  config: ContractCaseConnectorConfig,
 ): Promise<BoundaryResult> =>
   Promise.resolve().then(() => {
     const definerHandle = getDefiner(defineId, 'runExample');
@@ -137,14 +137,14 @@ export const runExample = (
     }
     return definerHandle.definer.runExample(
       definition,
-      mapConfig(config, defineId)
+      mapConfig(config, defineId),
     );
   });
 
 export const runRejectingExample = (
   defineId: string,
   definition: ExampleDefinition,
-  config: ContractCaseConnectorConfig
+  config: ContractCaseConnectorConfig,
 ): Promise<BoundaryResult> =>
   Promise.resolve().then(() => {
     const definerHandle = getDefiner(defineId, 'runRejectingExample');
@@ -153,7 +153,7 @@ export const runRejectingExample = (
     }
     return definerHandle.definer.runRejectingExample(
       definition,
-      mapConfig(config, defineId)
+      mapConfig(config, defineId),
     );
   });
 

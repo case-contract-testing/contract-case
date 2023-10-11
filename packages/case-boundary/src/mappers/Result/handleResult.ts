@@ -5,7 +5,7 @@ import { ErrorType } from './types';
 
 export const handleVoidResult = (
   result: BoundaryResult,
-  defaultError: ErrorType
+  defaultError: ErrorType,
 ): void => {
   if (result.resultType === RESULT_SUCCESS) {
     return;
@@ -14,6 +14,6 @@ export const handleVoidResult = (
     throw failureToJsError(result, defaultError);
   }
   throw new CaseCoreError(
-    `Encountered an unexpected result type: ${result.resultType}`
+    `Encountered an unexpected result type: ${result.resultType}`,
   );
 };

@@ -5,7 +5,7 @@ export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
     return new BoundaryFailure(
       e.name,
       e.message,
-      e.stack ?? 'unknown location'
+      e.stack ?? 'unknown location',
     );
   }
 
@@ -14,6 +14,6 @@ export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
   return new BoundaryFailure(
     'CaseCoreError',
     `Caught something that doesn't seem to be an error: ${e}`,
-    target.stack
+    target.stack,
   );
 };

@@ -19,7 +19,7 @@ describe('basic types and structure checks', () => {
     },
     writerDependencies(defaultPrinter),
     MAINTAINER_TEST_CONTEXT,
-    ['tests']
+    ['tests'],
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);
@@ -28,7 +28,7 @@ describe('basic types and structure checks', () => {
     const matcher = objectEachValueMatches('exact string');
     it('accepts an object with one value', async () => {
       expect(
-        await contract.checkMatch(matcher, { someKey: 'exact string' })
+        await contract.checkMatch(matcher, { someKey: 'exact string' }),
       ).toStrictEqual(makeNoErrorResult());
     });
 
@@ -37,7 +37,7 @@ describe('basic types and structure checks', () => {
         await contract.checkMatch(matcher, {
           someKey: 'exact string',
           someOtherKey: 'exact string',
-        })
+        }),
       ).toStrictEqual(makeNoErrorResult());
     });
 
@@ -56,7 +56,7 @@ describe('basic types and structure checks', () => {
       const matcher = objectEachKeyMatches('exactString');
       it('accepts an object with one value', async () => {
         expect(
-          await contract.checkMatch(matcher, { exactString: 'whatever' })
+          await contract.checkMatch(matcher, { exactString: 'whatever' }),
         ).toStrictEqual(makeNoErrorResult());
       });
 
@@ -64,7 +64,7 @@ describe('basic types and structure checks', () => {
       expectErrorContaining(
         matcher,
         { otherString: 'whatever' },
-        'is not exactly equal'
+        'is not exactly equal',
       );
       expectErrorContaining(
         matcher,
@@ -72,7 +72,7 @@ describe('basic types and structure checks', () => {
           exactString: 'exact string',
           someOtherKey: 'exact string',
         },
-        'is not exactly equal'
+        'is not exactly equal',
       );
 
       it('strips to the expected example', () => {
@@ -87,7 +87,7 @@ describe('basic types and structure checks', () => {
         expect(
           await contract.checkMatch(matcher, {
             '::': 'whatever',
-          })
+          }),
         ).toStrictEqual(makeNoErrorResult());
       });
 
@@ -98,7 +98,7 @@ describe('basic types and structure checks', () => {
             'foo::': 'whatever',
             'foo::bar': 'something',
             '::foo': 'else',
-          })
+          }),
         ).toStrictEqual(makeNoErrorResult());
       });
 
@@ -106,7 +106,7 @@ describe('basic types and structure checks', () => {
       expectErrorContaining(
         matcher,
         { otherString: 'whatever' },
-        "did not include the expected substring '::'"
+        "did not include the expected substring '::'",
       );
       expectErrorContaining(
         matcher,
@@ -117,7 +117,7 @@ describe('basic types and structure checks', () => {
           '::foo': 'else',
           sjsjs: 'oh no',
         },
-        "did not include the expected substring '::'"
+        "did not include the expected substring '::'",
       );
       it('strips to the expected example', () => {
         expect(contract.stripMatchers(matcher)).toEqual({

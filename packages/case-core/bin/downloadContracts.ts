@@ -19,7 +19,7 @@ const logger = makeLogger(
     '_case:currentRun:context:logLevel': logLevel,
     '_case:currentRun:context:location': ['CLI'],
   },
-  defaultPrinter
+  defaultPrinter,
 );
 
 if (process.env['CASE_BROKER_BASEURL'] === undefined) {
@@ -35,8 +35,8 @@ Promise.resolve()
         contractDir: 'temp-contracts',
       },
       defaultPrinter,
-      parentVersions
-    ).download(serviceName)
+      parentVersions,
+    ).download(serviceName),
   )
   .then(
     () => {
@@ -45,5 +45,5 @@ Promise.resolve()
     (e) => {
       logger.error(e.message);
       process.exit(1);
-    }
+    },
   );

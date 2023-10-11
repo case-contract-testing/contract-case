@@ -12,7 +12,7 @@ describe('basic types and structure checks', () => {
     },
     writerDependencies(defaultPrinter),
     MAINTAINER_TEST_CONTEXT,
-    ['tests']
+    ['tests'],
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);
@@ -36,7 +36,7 @@ describe('basic types and structure checks', () => {
         const matcher = 'example string';
         it('accepts exactly the string', async () => {
           expect(
-            await contract.checkMatch(matcher, 'example string')
+            await contract.checkMatch(matcher, 'example string'),
           ).toStrictEqual([]);
         });
 
@@ -44,7 +44,7 @@ describe('basic types and structure checks', () => {
         expectErrorContaining(
           matcher,
           'some other string',
-          'not exactly equal'
+          'not exactly equal',
         );
         expectErrorContaining(matcher, NaN, 'not exactly equal');
         expectErrorContaining(matcher, Infinity, 'not exactly equal');
@@ -64,7 +64,7 @@ describe('basic types and structure checks', () => {
         expectErrorContaining(
           matcher,
           'some other string',
-          'not exactly equal'
+          'not exactly equal',
         );
         expectErrorContaining(matcher, NaN, 'not exactly equal');
         expectErrorContaining(matcher, Infinity, 'not exactly equal');
@@ -114,81 +114,81 @@ describe('basic types and structure checks', () => {
         expect(
           await contract.checkMatch(
             [1, 'string', null, true, {}, [], { a: '1' }, [1]],
-            [1, 'string', null, true, {}, [], { a: '1' }, [1]]
-          )
+            [1, 'string', null, true, {}, [], { a: '1' }, [1]],
+          ),
         ).toStrictEqual([]);
       });
 
       expectErrorContaining(
         [1, 'string', null],
         [1, 'string', null, true],
-        'over the maximum length'
+        'over the maximum length',
       );
 
       expectErrorContaining(
         [1, 'string', null, true],
         [1, 'string', null],
-        'under the minimum length'
+        'under the minimum length',
       );
 
       expectErrorContaining(
         [1, 'string', null, true],
         ['1', 'string', null, true],
-        'not exactly equal'
+        'not exactly equal',
       );
 
       expectErrorContaining(
         [1, 'string', null, true],
         [1, 'other string', null, true],
-        'not exactly equal'
+        'not exactly equal',
       );
 
       expectErrorContaining(
         [1, 'string', null, true],
         [1, 'string', false, true],
-        'not null'
+        'not null',
       );
 
       expectErrorContaining(
         [1, 'string', null, true],
         [1, 'string', false, false],
-        'not exactly equal'
+        'not exactly equal',
       );
 
       expectErrorContaining(
         [1, 'string', null, true, {}, [], { a: '1' }, [1]],
         [1, 'string', null, true, [], [], { a: '1' }, [1]],
-        'Expected an object'
+        'Expected an object',
       );
 
       expectErrorContaining(
         [1, 'string', null, true, {}, [], { a: '1' }, [1]],
         [1, 'string', null, true, {}, [], { a: '2' }, [1]],
-        'not exactly equal'
+        'not exactly equal',
       );
 
       expectErrorContaining(
         [1, 'string', null, true, { a: '1' }, [], { a: '1' }, [1]],
         [1, 'string', null, true, {}, [], { a: '1' }, [1]],
-        "missing key 'a'"
+        "missing key 'a'",
       );
 
       expectErrorContaining(
         [1, 'string', null, true, {}, [1], { a: '1' }, [1]],
         [1, 'string', null, true, {}, [], { a: '1' }, [1]],
-        'different lengths'
+        'different lengths',
       );
 
       expectErrorContaining(
         [1, 'string', null, true, {}, [], { a: '1' }, [1]],
         [1, 'string', null, true, {}, [], { a: '1' }, [2]],
-        'not exactly equal'
+        'not exactly equal',
       );
 
       expectErrorContaining(
         [1, 'string', true, true],
         [1, 'string', true],
-        'different lengths'
+        'different lengths',
       );
       expectErrorContaining([1], [], 'different lengths');
       expectErrorContaining([], [1], 'empty array');
@@ -217,8 +217,8 @@ describe('basic types and structure checks', () => {
         expect(
           await contract.checkMatch(
             { a: 1, b: 'string', c: null, d: true },
-            { a: 1, b: 'string', c: null, d: true }
-          )
+            { a: 1, b: 'string', c: null, d: true },
+          ),
         ).toStrictEqual([]);
       });
 
@@ -226,39 +226,39 @@ describe('basic types and structure checks', () => {
         expect(
           await contract.checkMatch(
             { a: 1, b: 'string', c: null, d: true },
-            { a: 1, b: 'string', c: null, d: true, f: 'extra', g: 0, h: 1 }
-          )
+            { a: 1, b: 'string', c: null, d: true, f: 'extra', g: 0, h: 1 },
+          ),
         ).toStrictEqual([]);
       });
 
       expectErrorContaining(
         { a: 1, b: 'string', c: null, d: true },
         { a: '1', b: 'string', c: null, d: true },
-        'not exactly equal'
+        'not exactly equal',
       );
 
       expectErrorContaining(
         { a: 1, b: 'string', c: null, d: true },
         { a: '1', b: 'string', c: null, d: true },
-        'not exactly equal'
+        'not exactly equal',
       );
 
       expectErrorContaining(
         { a: 1, b: 'string', c: null, d: true },
         { a: 1, b: 'string', c: false, d: true },
-        'is not null'
+        'is not null',
       );
 
       expectErrorContaining(
         { a: 1, b: 'string', c: null, d: true },
         { a: 1, b: 'string', c: undefined, d: true },
-        'is not null'
+        'is not null',
       );
 
       expectErrorContaining(
         { a: 1, b: 'string', c: null, d: true },
         { a: 1, b: 'string', c: null, d: false },
-        'not exactly equal'
+        'not exactly equal',
       );
 
       describe('with a deeply nested object', () => {
@@ -285,14 +285,14 @@ describe('basic types and structure checks', () => {
 
         it('accepts an equal object', async () => {
           expect(
-            await contract.checkMatch(deepObject, deepObject)
+            await contract.checkMatch(deepObject, deepObject),
           ).toStrictEqual([]);
         });
 
         expectErrorContaining(
           deepObject,
           { a: 1, b: 'string', c: null, d: false },
-          "missing key 'f'"
+          "missing key 'f'",
         );
 
         expectErrorContaining(
@@ -317,7 +317,7 @@ describe('basic types and structure checks', () => {
               },
             ],
           },
-          'not exactly equal'
+          'not exactly equal',
         );
 
         expectErrorContaining(
@@ -338,7 +338,7 @@ describe('basic types and structure checks', () => {
               },
             ],
           },
-          "missing key 'succeed'"
+          "missing key 'succeed'",
         );
       });
     });

@@ -20,7 +20,7 @@ describe('string matchers', () => {
     },
     writerDependencies(defaultPrinter),
     MAINTAINER_TEST_CONTEXT,
-    ['tests']
+    ['tests'],
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);
@@ -43,7 +43,7 @@ describe('string matchers', () => {
           providerName: 'It works',
         },
       },
-      "is not a string; so it can't match a json stringified string"
+      "is not a string; so it can't match a json stringified string",
     );
 
     expectErrorContaining(matcher, '{', 'failed to parse as json');
@@ -60,7 +60,7 @@ describe('string matchers', () => {
                   consumerName: anyString('Case'),
                   providerName: anyString('Pact Broker'),
                 },
-              })
+              }),
             ),
           }),
         },
@@ -77,7 +77,7 @@ describe('string matchers', () => {
                 },
               ],
             },
-          })
+          }),
         ).resolves.toEqual(makeNoErrorResult());
       });
 
@@ -92,7 +92,7 @@ describe('string matchers', () => {
                 },
               ],
             },
-          })
+          }),
         ).resolves.toEqual(makeNoErrorResult());
       });
 
@@ -107,7 +107,7 @@ describe('string matchers', () => {
                 },
               ],
             },
-          })
+          }),
         ).resolves.toEqual(makeNoErrorResult());
       });
 
@@ -116,14 +116,14 @@ describe('string matchers', () => {
         {
           body: { contracts: [{ content: 'bad string' }] },
         },
-        'is not a base64 encoded string'
+        'is not a base64 encoded string',
       );
       expectErrorContaining(
         matcher,
         {
           body: { contracts: [{ content: 2 }] },
         },
-        "is not a string; so it can't match a base64 encoded string"
+        "is not a string; so it can't match a base64 encoded string",
       );
     });
   });

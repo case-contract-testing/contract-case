@@ -28,18 +28,18 @@ const wrapSetup =
             `Encountered a success-with-map that wasn't. It was:  ${JSON.stringify(
               result,
               null,
-              2
-            )}`
+              2,
+            )}`,
           );
         default:
           throw new CaseCoreError(
-            `Unknown result type '${result.resultType}' during setup handler`
+            `Unknown result type '${result.resultType}' during setup handler`,
           );
       }
     });
 
 const mapHandlerClass = (
-  boundaryHandler: BoundaryStateHandler | BoundaryStateHandlerWithTeardown
+  boundaryHandler: BoundaryStateHandler | BoundaryStateHandlerWithTeardown,
 ): StateHandlerFunction => {
   if (boundaryHandler instanceof BoundaryStateHandlerWithTeardown) {
     return {
@@ -54,11 +54,11 @@ const mapHandlerClass = (
               break;
             case RESULT_SUCCESS_HAS_MAP_PAYLOAD:
               throw new CaseCoreError(
-                `Teardown function is not supposed to return SuccessWithMap`
+                `Teardown function is not supposed to return SuccessWithMap`,
               );
             default:
               throw new CaseCoreError(
-                `Unknown result type '${result.resultType}' during setup handler`
+                `Unknown result type '${result.resultType}' during setup handler`,
               );
           }
         }),
@@ -78,7 +78,7 @@ export const mapStateHandlers = (
   boundaryHandlers: Record<
     string,
     BoundaryStateHandler | BoundaryStateHandlerWithTeardown
-  >
+  >,
 ): Record<string, StateHandlerFunction> =>
   Object.entries(boundaryHandlers)
     .map(([key, boundaryHandler]) => ({
@@ -87,5 +87,5 @@ export const mapStateHandlers = (
     }))
     .reduce(
       (acc, { key, value }) => ({ ...acc, [`${key}`]: value }),
-      {} as Record<string, StateHandlerFunction>
+      {} as Record<string, StateHandlerFunction>,
     );

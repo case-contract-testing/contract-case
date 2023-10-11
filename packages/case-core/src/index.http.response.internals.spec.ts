@@ -14,12 +14,12 @@ import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
 
 const expectErrorContaining = async (
   context: Promise<unknown>,
-  expectedContent: string
+  expectedContent: string,
 ) => {
   await context.then(
     () => {
       throw new Error(
-        "This unit test expected a failure, but there wasn't one"
+        "This unit test expected a failure, but there wasn't one",
       );
     },
     (e) => {
@@ -28,9 +28,9 @@ const expectErrorContaining = async (
       expect(
         (e.matchResult as MatchResult)
           .map((m) => m.toString())
-          .reduce((acc, m) => `${acc} ${m}`)
+          .reduce((acc, m) => `${acc} ${m}`),
       ).toContain(expectedContent);
-    }
+    },
   );
 };
 
@@ -46,7 +46,7 @@ describe('simple get endpoint', () => {
       printResults: false,
       logLevel: 'error',
     },
-    ['tests']
+    ['tests'],
   );
 
   const mock = willSendHttpRequest({
@@ -69,8 +69,8 @@ describe('simple get endpoint', () => {
           {
             mockDescription: mock,
           },
-          config
-        )
+          config,
+        ),
       ).rejects.toBeInstanceOf(CaseConfigurationError));
   });
 
@@ -92,8 +92,8 @@ describe('simple get endpoint', () => {
             {
               ...config,
               baseUrlUnderTest: 'http://localhost:8081',
-            }
-          )
+            },
+          ),
         ).rejects.toBeInstanceOf(CaseConfigurationError));
     });
     describe('with a running server', () => {
@@ -118,8 +118,8 @@ describe('simple get endpoint', () => {
               {
                 mockDescription: mock,
               },
-              config
-            )
+              config,
+            ),
           ).resolves.toBe(undefined));
       });
 
@@ -141,8 +141,8 @@ describe('simple get endpoint', () => {
                   },
                 }),
               },
-              config
-            )
+              config,
+            ),
           ).resolves.toBe(undefined));
       });
 
@@ -164,8 +164,8 @@ describe('simple get endpoint', () => {
                   },
                 }),
               },
-              config
-            )
+              config,
+            ),
           ).resolves.toBe(undefined));
       });
 
@@ -184,10 +184,10 @@ describe('simple get endpoint', () => {
                     response: { status: 200, body: { status: 'down' } },
                   }),
                 },
-                config
-              )
+                config,
+              ),
             ),
-            '"up" (string) is not exactly equal to "down" (string)'
+            '"up" (string) is not exactly equal to "down" (string)',
           ));
       });
 
@@ -208,10 +208,10 @@ describe('simple get endpoint', () => {
                     },
                   }),
                 },
-                config
-              )
+                config,
+              ),
             ),
-            'The returned http status code (200) did not match'
+            'The returned http status code (200) did not match',
           ));
       });
       describe('and a non-matching method', () => {
@@ -231,9 +231,9 @@ describe('simple get endpoint', () => {
                     },
                   }),
                 },
-                config
-              )
-            )
+                config,
+              ),
+            ),
           ).rejects.not.toEqual(makeNoErrorResult()));
       });
 
@@ -254,9 +254,9 @@ describe('simple get endpoint', () => {
                     },
                   }),
                 },
-                config
-              )
-            )
+                config,
+              ),
+            ),
           ).rejects.not.toEqual(makeNoErrorResult()));
       });
     });

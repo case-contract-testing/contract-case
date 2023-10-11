@@ -16,7 +16,7 @@ describe('named matches', () => {
     },
     writerDependencies(defaultPrinter),
     MAINTAINER_TEST_CONTEXT,
-    ['tests']
+    ['tests'],
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);
@@ -29,7 +29,7 @@ describe('named matches', () => {
       await expect(
         contract.checkMatch(matcher, {
           a: 'other string',
-        })
+        }),
       ).rejects.toBeInstanceOf(CaseConfigurationError);
     });
   });
@@ -41,7 +41,7 @@ describe('named matches', () => {
       expect(
         await contract.checkMatch(matcher, {
           a: 'other string',
-        })
+        }),
       ).toStrictEqual([]);
     });
     it('strips to the expected example', () => {
@@ -59,18 +59,18 @@ describe('named matches', () => {
         await contract.checkMatch(matcher, {
           a: 34,
           b: 2,
-        })
+        }),
       ).toStrictEqual([]);
     });
     expectErrorContaining(
       matcher,
       { a: 'some string', b: 'other string' },
-      'is not a number'
+      'is not a number',
     );
     expectErrorContaining(
       matcher,
       { a: 1, b: 'other string' },
-      'is not a number'
+      'is not a number',
     );
     it('strips to the expected example', () => {
       expect(contract.stripMatchers(matcher)).toEqual({ a: 1, b: 1 });
@@ -84,28 +84,28 @@ describe('named matches', () => {
           await contract.checkMatch(matcher, {
             a: '1',
             b: 2,
-          })
+          }),
         ).toStrictEqual([]);
       });
       expectErrorContaining(
         matcher,
         { a: 'some string', b: 'other string' },
-        'is not a number'
+        'is not a number',
       );
       expectErrorContaining(
         matcher,
         { a: 1, b: 'other string' },
-        'is not a string'
+        'is not a string',
       );
       expectErrorContaining(
         matcher,
         { a: 1, b: 'other string' },
-        'is not a number'
+        'is not a number',
       );
       expectErrorContaining(
         matcher,
         { a: '1', b: 'other string' },
-        'is not a number'
+        'is not a number',
       );
       it('strips to the expected example', () => {
         expect(contract.stripMatchers(matcher)).toEqual({ a: 'string', b: 1 });
@@ -123,7 +123,7 @@ describe('named matches', () => {
         namedMatch('object example', {
           a: namedMatch('some string'),
           b: namedMatch('some number'),
-        })
+        }),
       );
     });
     describe('when named without content', () => {

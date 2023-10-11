@@ -36,7 +36,7 @@ describe('Server verification', () => {
         } else {
           resolve();
         }
-      })
+      }),
   );
   // END SERVER SETUP BOILERPLATE
 
@@ -78,6 +78,6 @@ describe('Server verification', () => {
       };
 
       verifier.runVerification({ stateHandlers });
-    }
+    },
   );
 });

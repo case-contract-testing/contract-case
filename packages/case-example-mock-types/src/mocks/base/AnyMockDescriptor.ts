@@ -61,7 +61,7 @@ export interface ContractCaseCoreSetup {
  * This is mostly a type assertion - the case-core does its own validation of the types.
  */
 const mapBehaviour = (
-  behaviour: ContractCaseCoreBehaviour
+  behaviour: ContractCaseCoreBehaviour,
 ): InternalContractCaseCoreBehaviour => ({
   // Note that mockType -> type - this conversion is because `type` is a reserved word in JSii.
   type: behaviour.mockType as AnyMockDescriptorType,
@@ -117,7 +117,7 @@ export abstract class AnyMockDescriptor {
         ...acc,
         [key.startsWith('_') ? key : key]: value,
       }),
-      {}
+      {},
     );
   }
 }

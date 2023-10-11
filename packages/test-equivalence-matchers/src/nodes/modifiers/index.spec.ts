@@ -11,7 +11,7 @@ describe('modifying matchers', () => {
     });
 
     expect(
-      JSON.parse(JSON.stringify(new ShapedLike(new AnyString('foo'))))
+      JSON.parse(JSON.stringify(new ShapedLike(new AnyString('foo')))),
     ).toEqual({
       '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
       '_case:matcher:child': {
@@ -32,7 +32,7 @@ describe('modifying matchers', () => {
     });
 
     expect(
-      JSON.parse(JSON.stringify(new ExactlyLike(new AnyString('foo'))))
+      JSON.parse(JSON.stringify(new ExactlyLike(new AnyString('foo')))),
     ).toEqual({
       '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
       '_case:matcher:child': {

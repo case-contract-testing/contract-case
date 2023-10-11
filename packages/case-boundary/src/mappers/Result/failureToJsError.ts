@@ -22,14 +22,14 @@ const makeError = (kind: ErrorType, message: string) => {
       return new VerifyTriggerReturnObjectError(message);
     default:
       return new CaseCoreError(
-        `Unknown message kind '${kind}': Need to update makeError\nOriginal message: ${message}`
+        `Unknown message kind '${kind}': Need to update makeError\nOriginal message: ${message}`,
       );
   }
 };
 
 export const failureToJsError = (
   result: BoundaryResult,
-  defaultError: ErrorType = 'CaseConfigurationError'
+  defaultError: ErrorType = 'CaseConfigurationError',
 ): Error => {
   if (result instanceof BoundaryFailure) {
     switch (result.kind) {
@@ -41,7 +41,7 @@ export const failureToJsError = (
       default:
         return makeError(
           defaultError,
-          errorMessage(`[${result.kind}]: ${result.message}`, result.location)
+          errorMessage(`[${result.kind}]: ${result.message}`, result.location),
         );
     }
   }
@@ -49,7 +49,7 @@ export const failureToJsError = (
     `Encountered a failure that wasn't structured as expected. It was:\n\n${JSON.stringify(
       result,
       null,
-      2
-    )}`
+      2,
+    )}`,
   );
 };

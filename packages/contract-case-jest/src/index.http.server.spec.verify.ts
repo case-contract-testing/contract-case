@@ -17,7 +17,7 @@ verifyContract(
           trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
           testResponses: {
             'a (200) response with body an object shaped like {status: "up"}': (
-              health
+              health,
             ) => {
               expect(health).toEqual('up');
             },
@@ -45,14 +45,14 @@ verifyContract(
                   expect(health).toEqual('up');
                 },
             },
-          }
+          },
         )
         .addTriggerGroup(
           'an http "GET" request to "/users"?id={{userId}} without a body',
           {
             trigger: (config: HttpRequestConfig) =>
               api(config.baseUrl).getUserByQuery(
-                (config.variables['userId'] as string) || '123'
+                (config.variables['userId'] as string) || '123',
               ),
             testResponses: {
               'a (200) response with body an object shaped like {userId: {{userId}}}':
@@ -67,7 +67,7 @@ verifyContract(
                 expect(e).toBeInstanceOf(UserNotFoundConsumerError);
               },
             },
-          }
+          },
         )
         .addTriggerGroup(
           'an http "GET" request to "/users/123" without a body',
@@ -79,14 +79,14 @@ verifyContract(
                 expect(e).toBeInstanceOf(UserNotFoundConsumerError);
               },
             },
-          }
+          },
         )
         .addTriggerGroup(
           'an http "GET" request to "/users/{{userId}}" without a body',
           {
             trigger: (config: HttpRequestConfig) =>
               api(config.baseUrl).getUserByPath(
-                config.variables['userId'] as string
+                config.variables['userId'] as string,
               ),
             testResponses: {
               'a (200) response with body an object shaped like {userId: {{userId}}}':
@@ -101,8 +101,8 @@ verifyContract(
                 expect(e).toBeInstanceOf(UserNotFoundConsumerError);
               },
             },
-          }
+          },
         ),
     });
-  }
+  },
 );

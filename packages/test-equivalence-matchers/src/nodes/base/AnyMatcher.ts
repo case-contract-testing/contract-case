@@ -34,7 +34,7 @@ export abstract class AnyMatcher {
         ...acc,
         [key.startsWith('_') ? key : key]: value,
       }),
-      {}
+      {},
     );
   }
 }

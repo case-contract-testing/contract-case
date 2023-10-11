@@ -18,7 +18,7 @@ import { AnyString } from '../strings';
 describe('convenience matchers', () => {
   it('LogLevel matcher serialises', () => {
     expect(
-      JSON.parse(JSON.stringify(new ChangeLogLevel('warn', true)))
+      JSON.parse(JSON.stringify(new ChangeLogLevel('warn', true))),
     ).toEqual({
       '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
       '_case:matcher:child': true,
@@ -41,7 +41,7 @@ describe('convenience matchers', () => {
 
   it('with example matcher serialises', () => {
     expect(
-      JSON.parse(JSON.stringify(new WithExample(new AnyString('bar'), 'foo')))
+      JSON.parse(JSON.stringify(new WithExample(new AnyString('bar'), 'foo'))),
     ).toEqual({
       '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
       '_case:matcher:child': {

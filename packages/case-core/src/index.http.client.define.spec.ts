@@ -135,7 +135,7 @@ describe('e2e http consumer driven', () => {
         describe('With query variables', () => {
           const sendUserRequest = (config: HttpRequestConfig) =>
             api(config.baseUrl).getUserByQuery(
-              config.variables['userId'] as string
+              config.variables['userId'] as string,
             );
           describe('when the user exists', () => {
             const responseBody = { userId: stateVariable('userId') };
@@ -249,6 +249,6 @@ describe('e2e http consumer driven', () => {
           });
         });
       });
-    }
+    },
   );
 });

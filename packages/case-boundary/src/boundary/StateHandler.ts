@@ -12,7 +12,7 @@ export abstract class BoundaryStateHandler {
    */
   setup(): Promise<BoundaryResult> {
     throw new CaseConfigurationError(
-      `${this}: State handler setup function not overridden`
+      `${this}: State handler setup function not overridden`,
     );
   }
 }
@@ -25,7 +25,7 @@ export abstract class BoundaryStateHandlerWithTeardown extends BoundaryStateHand
    */
   teardown(): Promise<BoundaryResult> {
     throw new CaseConfigurationError(
-      `${this}: State handler teardown function not overridden`
+      `${this}: State handler teardown function not overridden`,
     );
   }
 }

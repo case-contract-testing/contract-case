@@ -29,7 +29,7 @@ describe('Server verification', () => {
   };
 
   const contract = readContract(
-    'case-contracts/contract-for-incorrectly-configured-examples.json'
+    'case-contracts/contract-for-incorrectly-configured-examples.json',
   );
 
   const verifier = new ReadingCaseContract(
@@ -41,7 +41,7 @@ describe('Server verification', () => {
       printResults: false,
       publish: false,
     },
-    ['tests']
+    ['tests'],
   );
   beforeAll(async () => {
     server = await start(port, serverDependencies);
@@ -57,7 +57,7 @@ describe('Server verification', () => {
         } else {
           resolve();
         }
-      })
+      }),
   );
 
   describe('with a file contract', () => {
@@ -70,7 +70,7 @@ describe('Server verification', () => {
             () => {
               if (errors[testName] !== undefined) {
                 throw new Error(
-                  `Expected to throw a ${errors[testName]?.name}, but it didn't`
+                  `Expected to throw a ${errors[testName]?.name}, but it didn't`,
                 );
               }
             },
@@ -81,7 +81,7 @@ describe('Server verification', () => {
               } else {
                 throw e;
               }
-            }
+            },
           ));
       };
 
@@ -121,7 +121,7 @@ describe('Server verification', () => {
             CaseConfigurationError,
           'When Server is down, then an http "GET" request to "/health" without a body -> a (503) response with body an object shaped like {status: "down"}':
             CaseConfigurationError,
-        })
+        }),
       );
     });
 
@@ -166,7 +166,7 @@ describe('Server verification', () => {
             CaseConfigurationError,
           'When Server is up and No users exist, then an http "GET" request to "/users/123" without a body -> a (404) response without a body':
             CaseConfigurationError,
-        })
+        }),
       );
     });
 
@@ -216,7 +216,7 @@ describe('Server verification', () => {
             CaseConfigurationError,
           'When Server is up and No users exist, then an http "GET" request to "/users/123" without a body -> a (404) response without a body':
             CaseConfigurationError,
-        })
+        }),
       );
     });
 
@@ -254,7 +254,7 @@ describe('Server verification', () => {
         runJestTestExpectingErrors({
           [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
-        })
+        }),
       );
     });
 
@@ -293,7 +293,7 @@ describe('Server verification', () => {
         runJestTestExpectingErrors({
           [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
-        })
+        }),
       );
     });
 
@@ -330,7 +330,7 @@ describe('Server verification', () => {
       };
       verifier.verifyContract(
         { stateHandlers },
-        runJestTestExpectingErrors({})
+        runJestTestExpectingErrors({}),
       );
     });
 
@@ -370,7 +370,7 @@ describe('Server verification', () => {
         runJestTestExpectingErrors({
           [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
-        })
+        }),
       );
     });
 
@@ -407,7 +407,7 @@ describe('Server verification', () => {
       };
       verifier.verifyContract(
         { stateHandlers },
-        runJestTestExpectingErrors({})
+        runJestTestExpectingErrors({}),
       );
     });
   });

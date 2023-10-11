@@ -26,7 +26,7 @@ describe('basic types and structure checks', () => {
     },
     writerDependencies(defaultPrinter),
     MAINTAINER_TEST_CONTEXT,
-    ['tests']
+    ['tests'],
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);
@@ -36,13 +36,13 @@ describe('basic types and structure checks', () => {
       const matcher = arrayEachEntryMatches(1);
       it('accepts an array with extra values', async () => {
         expect(await contract.checkMatch(matcher, [1, 1, 1, 1])).toStrictEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
       it('accepts an array with one value', async () => {
         expect(await contract.checkMatch(matcher, [1, 1, 1, 1])).toStrictEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
       expectErrorContaining(matcher, [], 'Expected a non-empty array');
@@ -58,13 +58,13 @@ describe('basic types and structure checks', () => {
       const matcher = arrayEachEntryMatches(1, [1, 1, 1]);
       it('accepts an array with extra values', async () => {
         expect(await contract.checkMatch(matcher, [1, 1, 1, 1])).toStrictEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
       it('accepts an array with one value', async () => {
         expect(await contract.checkMatch(matcher, [1, 1, 1, 1])).toStrictEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
       expectErrorContaining(matcher, [], 'Expected a non-empty array');
@@ -77,7 +77,7 @@ describe('basic types and structure checks', () => {
     });
     describe('with a complex matcher and an example', () => {
       const matcher = arrayEachEntryMatches(
-        shapedLike({ someString: anyString(), someNumber: anyNumber() })
+        shapedLike({ someString: anyString(), someNumber: anyNumber() }),
       );
       it('accepts an array with extra values', async () => {
         expect(
@@ -85,7 +85,7 @@ describe('basic types and structure checks', () => {
             { someString: 'a', someNumber: 1 },
             { someString: 'b', someNumber: 3 },
             { someString: 'b', someNumber: 3, someOtherProperty: 'foo' },
-          ])
+          ]),
         ).toStrictEqual(makeNoErrorResult());
       });
 
@@ -93,7 +93,7 @@ describe('basic types and structure checks', () => {
         expect(
           await contract.checkMatch(matcher, [
             { someString: 'a', someNumber: 1 },
-          ])
+          ]),
         ).toStrictEqual(makeNoErrorResult());
       });
       expectErrorContaining(matcher, [], 'Expected a non-empty array');
@@ -101,7 +101,7 @@ describe('basic types and structure checks', () => {
       expectErrorContaining(
         matcher,
         [{ someString: 'a', someNumber: '1' }],
-        'not a number'
+        'not a number',
       );
 
       it('strips matchers with the provided example', () => {
@@ -120,14 +120,14 @@ describe('basic types and structure checks', () => {
           'string',
           null,
           true,
-        ])
+        ]),
       ).toStrictEqual([]);
     });
 
     expectErrorContaining(
       arrayStartsWith([1, 'string', null]),
       [1, 'other string'],
-      'Array has different lengths'
+      'Array has different lengths',
     );
   });
 
@@ -136,19 +136,19 @@ describe('basic types and structure checks', () => {
       const matcher = arrayContains(1);
       it('accepts an array with extra matching values', async () => {
         expect(await contract.checkMatch(matcher, [1, 1, 1, 1])).toStrictEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
       it('accepts an array with extra non matching values', async () => {
         expect(
-          await contract.checkMatch(matcher, ['1', 1, 3, 4])
+          await contract.checkMatch(matcher, ['1', 1, 3, 4]),
         ).toStrictEqual(makeNoErrorResult());
       });
 
       it('accepts an array with one value', async () => {
         expect(await contract.checkMatch(matcher, [1])).toStrictEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
       expectErrorContaining(matcher, [], 'the array was empty');
@@ -169,13 +169,13 @@ describe('basic types and structure checks', () => {
             [1, 2, 3],
             1,
             '',
-          ])
+          ]),
         ).toStrictEqual(makeNoErrorResult());
       });
 
       it('accepts an array with one value', async () => {
         expect(
-          await contract.checkMatch(matcher, [1, [1, 2, 3]])
+          await contract.checkMatch(matcher, [1, [1, 2, 3]]),
         ).toStrictEqual(makeNoErrorResult());
       });
       expectErrorContaining(matcher, [], 'array was empty');
@@ -188,7 +188,7 @@ describe('basic types and structure checks', () => {
     });
     describe('with a complex matcher and an example', () => {
       const matcher = arrayContains(
-        shapedLike({ someString: anyString(), someNumber: anyNumber() })
+        shapedLike({ someString: anyString(), someNumber: anyNumber() }),
       );
       it('accepts an array with extra values', async () => {
         expect(
@@ -196,7 +196,7 @@ describe('basic types and structure checks', () => {
             { someString: 'a', someNumber: 1 },
             { someString: 'b', someNumber: 3 },
             { someString: 'b', someNumber: 3, someOtherProperty: 'foo' },
-          ])
+          ]),
         ).toStrictEqual(makeNoErrorResult());
       });
 
@@ -204,7 +204,7 @@ describe('basic types and structure checks', () => {
         expect(
           await contract.checkMatch(matcher, [
             { someString: 'a', someNumber: 1 },
-          ])
+          ]),
         ).toStrictEqual(makeNoErrorResult());
       });
       expectErrorContaining(matcher, [], 'the array was empty');
@@ -212,7 +212,7 @@ describe('basic types and structure checks', () => {
       expectErrorContaining(
         matcher,
         [{ someString: 'a', someNumber: '1' }],
-        'not a number'
+        'not a number',
       );
 
       it('strips matchers with the provided example', () => {
@@ -229,7 +229,7 @@ describe('basic types and structure checks', () => {
 
       it('matches an array of length 1', async () => {
         await expect(contract.checkMatch(matcher, [1])).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
@@ -243,7 +243,7 @@ describe('basic types and structure checks', () => {
         await expect(
           contract.checkMatch(withExample(arrayLength({ maxLength: 2 }), []), [
             1,
-          ])
+          ]),
         ).rejects.toBeInstanceOf(CaseConfigurationError);
       });
 
@@ -251,8 +251,8 @@ describe('basic types and structure checks', () => {
         await expect(
           contract.checkMatch(
             withExample(arrayLength({ maxLength: 2 }), [1, 2, 3]),
-            [1]
-          )
+            [1],
+          ),
         ).rejects.toBeInstanceOf(CaseConfigurationError);
       });
 
@@ -260,7 +260,7 @@ describe('basic types and structure checks', () => {
         await expect(
           contract.checkMatch(withExample(arrayLength({ minLength: 2 }), [1]), [
             1,
-          ])
+          ]),
         ).rejects.toBeInstanceOf(CaseConfigurationError);
       });
 
@@ -275,13 +275,13 @@ describe('basic types and structure checks', () => {
 
       it('matches an array of length 1', async () => {
         await expect(contract.checkMatch(matcher, [1])).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
       it('matches an array of length 2', async () => {
         await expect(contract.checkMatch(matcher, [1, 2])).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
@@ -302,13 +302,13 @@ describe('basic types and structure checks', () => {
 
       it('matches an array of length 3', async () => {
         await expect(contract.checkMatch(matcher, [1, 2, 3])).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
       it('matches an array of length 2', async () => {
         await expect(contract.checkMatch(matcher, [1, 2])).resolves.toEqual(
-          makeNoErrorResult()
+          makeNoErrorResult(),
         );
       });
 
@@ -330,7 +330,7 @@ describe('basic types and structure checks', () => {
     const matcher = objectEachValueMatches('exact string');
     it('accepts an object with one value', async () => {
       expect(
-        await contract.checkMatch(matcher, { someKey: 'exact string' })
+        await contract.checkMatch(matcher, { someKey: 'exact string' }),
       ).toStrictEqual(makeNoErrorResult());
     });
 
@@ -339,7 +339,7 @@ describe('basic types and structure checks', () => {
         await contract.checkMatch(matcher, {
           someKey: 'exact string',
           someOtherKey: 'exact string',
-        })
+        }),
       ).toStrictEqual(makeNoErrorResult());
     });
 

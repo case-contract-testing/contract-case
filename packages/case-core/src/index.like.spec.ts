@@ -23,7 +23,7 @@ describe('basic matchers', () => {
     },
     writerDependencies(defaultPrinter),
     MAINTAINER_TEST_CONTEXT,
-    ['tests']
+    ['tests'],
   );
 
   const expectErrorContaining = makeExpectErrorContaining(contract);
@@ -46,8 +46,8 @@ describe('basic matchers', () => {
       await expect(
         contract.checkMatch(
           anyNumber(Number.POSITIVE_INFINITY),
-          Number.POSITIVE_INFINITY
-        )
+          Number.POSITIVE_INFINITY,
+        ),
       ).rejects.toBeInstanceOf(CaseConfigurationError);
     });
   });
@@ -73,8 +73,8 @@ describe('basic matchers', () => {
       await expect(
         contract.checkMatch(
           anyNumber(Number.POSITIVE_INFINITY),
-          Number.POSITIVE_INFINITY
-        )
+          Number.POSITIVE_INFINITY,
+        ),
       ).rejects.toBeInstanceOf(CaseConfigurationError);
     });
   });
@@ -89,7 +89,7 @@ describe('basic matchers', () => {
     });
     it('accepts strings that are not numbers', async () => {
       expect(
-        await contract.checkMatch(matcher, 'example string')
+        await contract.checkMatch(matcher, 'example string'),
       ).toStrictEqual([]);
     });
     expectErrorContaining(matcher, NaN, 'not a string');
@@ -165,7 +165,7 @@ describe('basic matchers', () => {
       });
       it('accepts strings that are not numbers', async () => {
         expect(
-          await contract.checkMatch(matcher, 'example string')
+          await contract.checkMatch(matcher, 'example string'),
         ).toStrictEqual([]);
       });
       expectErrorContaining(matcher, NaN, 'not a string');
@@ -239,7 +239,7 @@ describe('basic matchers', () => {
           [],
           { a: '2' },
           [3],
-        ])
+        ]),
       ).toStrictEqual([]);
     });
     it('returns correctly when stripped', () => {
@@ -258,7 +258,7 @@ describe('basic matchers', () => {
       expectErrorContaining(
         matcher,
         [2, 'other string', null, false, { a: 'example' }, [], { b: '2' }, [3]],
-        "missing key 'a'"
+        "missing key 'a'",
       );
     });
     describe('with array of generally matched types that been made explicit again', () => {
@@ -274,7 +274,7 @@ describe('basic matchers', () => {
           [1],
         ]),
         [2, 'other string', null, false, { a: 'example' }, [], { a: '2' }, [3]],
-        'not exactly equal'
+        'not exactly equal',
       );
     });
   });
@@ -293,7 +293,7 @@ describe('basic matchers', () => {
           b: 'other string',
           c: null,
           d: true,
-        })
+        }),
       ).toStrictEqual([]);
     });
     it('returns the correct object when stripped', () => {
@@ -320,7 +320,7 @@ describe('basic matchers', () => {
           b: 'other string',
           c: null,
           d: true,
-        })
+        }),
       ).toStrictEqual([]);
     });
     it('returns the correct object when stripped', () => {
@@ -344,17 +344,17 @@ describe('basic matchers', () => {
     expectErrorContaining(
       matcher,
       actual,
-      '1 (number) is not exactly equal to 2 (number)'
+      '1 (number) is not exactly equal to 2 (number)',
     );
     expectErrorContaining(
       matcher,
       actual,
-      '"other string" (string) is not exactly equal to "string" (string)'
+      '"other string" (string) is not exactly equal to "string" (string)',
     );
     expectErrorContaining(
       matcher,
       actual,
-      'true (boolean) is not exactly equal to false (boolean)'
+      'true (boolean) is not exactly equal to false (boolean)',
     );
     it('returns the correct object when stripped', () => {
       expect(contract.stripMatchers(matcher)).toEqual({

@@ -38,7 +38,7 @@ const mapDefinition = (
     triggerAndTests,
     triggerAndTest,
   }: Partial<TestInvoker<AnyMockDescriptorType>>,
-  config: CaseConfig
+  config: CaseConfig,
 ) => ({
   ...mapDefinitionPart(definition),
   ...(stateHandlers
@@ -80,7 +80,7 @@ export class BoundaryContractDefiner {
     config: ContractCaseBoundaryConfig,
     logPrinter: ILogPrinter,
     resultPrinter: IResultPrinter,
-    parentVersions: string[]
+    parentVersions: string[],
   ) {
     this.constructorConfig = config;
     this.definer = undefined;
@@ -95,13 +95,13 @@ export class BoundaryContractDefiner {
 
       if (config.consumerName === undefined || config.consumerName === '') {
         throw new CaseConfigurationError(
-          'Must provide a non-empty consumerName'
+          'Must provide a non-empty consumerName',
         );
       }
 
       if (config.providerName === undefined || config.providerName === '') {
         throw new CaseConfigurationError(
-          'Must provide a non-empty providerName'
+          'Must provide a non-empty providerName',
         );
       }
 
@@ -113,27 +113,27 @@ export class BoundaryContractDefiner {
         config,
         partialInvoker,
         wrapLogPrinter(this.logPrinter, this.resultPrinter),
-        [...this.parentVersions, versionString]
+        [...this.parentVersions, versionString],
       );
     }
   }
 
   async runExample(
     definition: BoundaryMockDefinition,
-    runConfig: ContractCaseBoundaryConfig
+    runConfig: ContractCaseBoundaryConfig,
   ): Promise<BoundaryResult> {
     try {
       this.initialiseDefiner();
       if (this.definer === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised (runExample)'
+          'Definer was undefined after it was initialised (runExample)',
         );
       }
 
       const { config, partialInvoker } = convertConfig(runConfig);
       await this.definer.runExample(
         mapDefinition(definition, partialInvoker, config),
-        config
+        config,
       );
       return new BoundarySuccess();
     } catch (e) {
@@ -143,19 +143,19 @@ export class BoundaryContractDefiner {
 
   async runRejectingExample(
     definition: BoundaryMockDefinition,
-    runConfig: ContractCaseBoundaryConfig
+    runConfig: ContractCaseBoundaryConfig,
   ): Promise<BoundaryResult> {
     try {
       this.initialiseDefiner();
       if (this.definer === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised (runRejectingExample)'
+          'Definer was undefined after it was initialised (runRejectingExample)',
         );
       }
       const { config, partialInvoker } = convertConfig(runConfig);
       await this.definer.runRejectingExample(
         { ...mapDefinition(definition, partialInvoker, config) },
-        config
+        config,
       );
       return new BoundarySuccess();
     } catch (e) {
@@ -168,12 +168,12 @@ export class BoundaryContractDefiner {
       this.initialiseDefiner();
       if (this.definer === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised (stripMatchers)'
+          'Definer was undefined after it was initialised (stripMatchers)',
         );
       }
 
       return new BoundarySuccessWithAny(
-        this.definer.stripMatchers(JSON.parse(JSON.stringify(matcherOrData)))
+        this.definer.stripMatchers(JSON.parse(JSON.stringify(matcherOrData))),
       );
     } catch (e) {
       return jsErrorToFailure(e);
@@ -186,7 +186,7 @@ export class BoundaryContractDefiner {
         this.initialiseDefiner();
         if (this.definer === undefined) {
           throw new CaseCoreError(
-            'Definer was undefined after it was initialised (endRecord)'
+            'Definer was undefined after it was initialised (endRecord)',
           );
         }
         return this.definer.endRecord();

@@ -68,7 +68,7 @@ describe('e2e http consumer driven', () => {
                   testResponse: (health) => {
                     expect(health).toEqual('up');
                   },
-                }
+                },
               ));
 
             describe('arbitrary status response string', () => {
@@ -92,7 +92,7 @@ describe('e2e http consumer driven', () => {
                     testResponse: (health) => {
                       expect(health).toEqual('whatever');
                     },
-                  }
+                  },
                 ));
             });
           });
@@ -117,7 +117,7 @@ describe('e2e http consumer driven', () => {
                   testErrorResponse: (e) => {
                     expect(e).toBeInstanceOf(ApiError);
                   },
-                }
+                },
               ));
           });
 
@@ -139,7 +139,7 @@ describe('e2e http consumer driven', () => {
                   testErrorResponse: (e) => {
                     expect(e).toBeInstanceOf(ApiError);
                   },
-                }
+                },
               ));
           });
         });
@@ -148,7 +148,7 @@ describe('e2e http consumer driven', () => {
         describe('With query variables', () => {
           const sendUserRequest = (config: HttpRequestConfig) =>
             api(config.baseUrl).getUserByQuery(
-              config.variables['userId'] as string
+              config.variables['userId'] as string,
             );
           describe('when the user exists', () => {
             const responseBody = { userId: stateVariable('userId') };
@@ -180,7 +180,7 @@ describe('e2e http consumer driven', () => {
                     });
                     expect(user).toEqual(contract.stripMatchers(responseBody));
                   },
-                }
+                },
               ));
           });
           describe("when the user doesn't exist", () => {
@@ -207,7 +207,7 @@ describe('e2e http consumer driven', () => {
                   testErrorResponse: (e) => {
                     expect(e).toBeInstanceOf(UserNotFoundConsumerError);
                   },
-                }
+                },
               ));
           });
         });
@@ -247,7 +247,7 @@ describe('e2e http consumer driven', () => {
                     });
                     expect(user).toEqual(contract.stripMatchers(responseBody));
                   },
-                }
+                },
               ));
           });
           describe("when the user doesn't exist", () => {
@@ -273,11 +273,11 @@ describe('e2e http consumer driven', () => {
                   testErrorResponse: (e) => {
                     expect(e).toBeInstanceOf(UserNotFoundConsumerError);
                   },
-                }
+                },
               ));
           });
         });
       });
-    }
+    },
   );
 });
