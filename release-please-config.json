@@ -31,26 +31,38 @@
     },
     "packages/case-entities": {
       "component": "@contract-case/case-entities-internal",
-      "changelog-path": "CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true
     },
     "packages/case-core": {
       "component": "@contract-case/case-core",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-example-mock-types": {
       "component": "@contract-case/case-example-mock-types",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     },
     "packages/test-equivalence-matchers": {
       "component": "@contract-case/test-equivalence-matchers",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     },
     "packages/contract-case-cli": {
       "component": "@contract-case/cli",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     },
     "packages/documentation": {
       "component": "documentation",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md",
       "changelog-sections": [
         { "type": "feat", "section": "Features" },
@@ -69,14 +81,20 @@
     },
     "packages/case-boundary": {
       "component": "@contract-case/case-boundary",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     },
     "packages/contract-case-jest": {
       "component": "@contract-case/contract-case-jest",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-connector": {
       "component": "@contract-case/case-connector",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     }
   }
