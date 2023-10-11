@@ -3,6 +3,8 @@ import { BoundaryResult } from './Result';
 /**
  * Interface to tell ContractCase to run the test indicated in a call to an
  * IRunTestCallback
+ *
+ * @public
  */
 export interface IInvokeCoreTest {
   /**
@@ -17,6 +19,8 @@ export interface IInvokeCoreTest {
  * This interface allows the DSL layer to invoke the test. If your test runner
  * supports programmatically running different tests, then use this interface to
  * tell a BoundaryContractVerifier how to call back to your DSL with a test name
+ *
+ * @public
  */
 export interface IRunTestCallback {
   /**

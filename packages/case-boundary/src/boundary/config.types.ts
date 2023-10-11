@@ -1,6 +1,11 @@
 import { ITriggerFunction } from './ITriggerFunction';
 import { BoundaryStateHandler } from './StateHandler';
 
+/**
+ * Describes a username and password
+ *
+ * @public
+ */
 export interface UserNamePassword {
   /**
    * The username for basic auth
@@ -14,6 +19,8 @@ export interface UserNamePassword {
 
 /**
  * Configure a ContractCase run. See the [configuration documentation](https://case.contract-testing.io/docs/reference/configuring) for more details.
+ *
+ * @public
  */
 export interface ContractCaseBoundaryConfig {
   /**

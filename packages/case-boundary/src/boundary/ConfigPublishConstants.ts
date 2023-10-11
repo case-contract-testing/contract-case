@@ -1,5 +1,7 @@
 /**
  * Convenience class to hold the values for the publish setting so that clients don't need to know the strings
+ *
+ * @public
  */
 export class ConfigPublishConstants {
   /**

@@ -44,6 +44,11 @@ const wrapCallback =
     );
   };
 
+/**
+ * A BoundaryContractDefiner allows verifying contracts
+ *
+ * @public
+ */
 export class BoundaryContractVerifier {
   private verifier: ContractVerifierConnector | undefined;
 

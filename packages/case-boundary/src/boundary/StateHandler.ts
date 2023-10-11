@@ -1,6 +1,11 @@
 import { CaseConfigurationError } from '@contract-case/case-core';
 import { BoundaryResult } from './Result';
 
+/**
+ * An interface for a state handler that only has setup
+ *
+ * @public
+ */
 export abstract class BoundaryStateHandler {
   /**
    * Call the user's state setup function
@@ -17,6 +22,11 @@ export abstract class BoundaryStateHandler {
   }
 }
 
+/**
+ * An interface for a state handler with setup and teardown
+ *
+ * @public
+ */
 export abstract class BoundaryStateHandlerWithTeardown extends BoundaryStateHandler {
   /**
    * Call the user's state teardown function

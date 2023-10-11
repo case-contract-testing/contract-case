@@ -12,6 +12,8 @@
   },
   "files": [
     "build",
+    "docs",
+    "api-extractor",
     ".jsii"
   ],
   "publishConfig": {
@@ -24,6 +26,8 @@
   "scripts": {
     "prebuild": "rimraf build",
     "build": "jsii --project-references",
+    "build:docs": "api-extractor run --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs",
+    "build:docs:local": "api-extractor run --local --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "watch": "jsii -w",
     "prepackage": "rimraf dist",
     "prepack": "rimraf node_modules && mkdirp node_modules && cp -r ${PWD}/../../node_modules/* node_modules",
@@ -32,7 +36,7 @@
     "publish:maven": "publib-maven",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
-    "format:base": "prettier --parser typescript \"src/**/*.ts\"",
+    "format:base": "prettier \"{docs,src}/**/*.{ts,md}\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write "
   },
@@ -67,6 +71,8 @@
   },
   "devDependencies": {
     "@contract-case/test-equivalence-matchers": "0.13.0",
+    "@microsoft/api-documenter": "^7.23.9",
+    "@microsoft/api-extractor": "^7.38.0",
     "@types/jest": "^29.5.3",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
@@ -127,6 +133,12 @@
         "outputs": [
           "{projectRoot}/build"
         ]
+      },
+      "build:docs": {
+        "dependsOn": [
+          "build"
+        ],
+        "outputs": "{projectRoot}/docs"
       },
       "package": {
         "outputs": [

@@ -2,6 +2,8 @@ import { BoundaryResult } from './Result';
 
 /**
  * Data class to hold data to print a message error during matching
+ *
+ * @public
  */
 export interface PrintableMatchError {
   /**
@@ -36,6 +38,8 @@ export interface PrintableMatchError {
 
 /**
  * Data class to hold data to print a message error
+ *
+ * @public
  */
 export interface PrintableMessageError {
   /**
@@ -62,6 +66,8 @@ export interface PrintableMessageError {
 
 /**
  * Data class to hold data for a test title print line
+ *
+ * @public
  */
 export interface PrintableTestTitle {
   /**
@@ -82,6 +88,11 @@ export interface PrintableTestTitle {
   readonly additionalText: string;
 }
 
+/**
+ * Interface for printing results
+ *
+ * @public
+ */
 export interface IResultPrinter {
   /**
    * Called by ContractCase to ask the DSL to print an individual match error line.
@@ -103,6 +114,8 @@ export interface IResultPrinter {
  * Implement this interface to give ContractCase a way to print logs in your
  * target language. Most platforms will want to print to standard out, but some
  * might need to log to a file or otherwise collate the logs.
+ *
+ * @public
  */
 export interface ILogPrinter {
   /**
@@ -135,5 +148,9 @@ export interface ILogPrinter {
     additional: string,
   ): BoundaryResult;
 }
-
+/**
+ * A convenience interface that combines result printing and log printing
+ *
+ * @public
+ */
 export interface ICombinedPrinter extends IResultPrinter, ILogPrinter {}

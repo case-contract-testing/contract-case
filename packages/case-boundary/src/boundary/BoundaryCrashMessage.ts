@@ -1,5 +1,7 @@
 /**
  * Contains constants for the crash messages
+ *
+ * @public
  */
 export class BoundaryCrashMessage {
   static readonly CRASH_MESSAGE_START = `

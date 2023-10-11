@@ -1,6 +1,13 @@
 import { BoundaryResult } from './BoundaryResult';
 import { RESULT_SUCCESS_HAS_ANY_PAYLOAD } from './BoundaryResultTypeConstants';
 
+/**
+ * This indicates a success with any arbitrary payload
+ *
+ * The calling method usually expects only one type of payload
+ *
+ * @public
+ */
 export class BoundarySuccessWithAny extends BoundaryResult {
   readonly resultType: typeof RESULT_SUCCESS_HAS_ANY_PAYLOAD;
 

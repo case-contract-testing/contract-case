@@ -1,6 +1,11 @@
 import { BoundaryResult } from './BoundaryResult';
 import { RESULT_FAILURE } from './BoundaryResultTypeConstants';
 
+/**
+ * This indicates a failure. Use `BoundaryFailureKindConstants` to determine what type of failure it is.
+ *
+ * @public
+ */
 export class BoundaryFailure extends BoundaryResult {
   readonly resultType: typeof RESULT_FAILURE;
 

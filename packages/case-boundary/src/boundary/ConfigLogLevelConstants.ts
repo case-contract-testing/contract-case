@@ -1,5 +1,7 @@
 /**
  * Convenience class to hold the values for LogLevel so that DSL layers don't need to know the actual value
+ *
+ * @public
  */
 export class ConfigLogLevelConstants {
   /**

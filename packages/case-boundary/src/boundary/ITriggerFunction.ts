@@ -2,6 +2,8 @@ import { BoundaryResult } from './Result';
 
 /**
  * Interface called by ContractCase to invoke user's test code.
+ *
+ * @public
  */
 export interface ITriggerFunction {
   /**

@@ -7,6 +7,11 @@ import {
   VerifyTriggerReturnObjectError,
 } from '@contract-case/case-core';
 
+/**
+ * Constants to use for determining what kind of failure you have
+ *
+ * @public
+ */
 export class BoundaryFailureKindConstants {
   /**
    * Something went wrong in ContractCase internals. Almost certainly a bug.

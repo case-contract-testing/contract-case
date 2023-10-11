@@ -55,6 +55,11 @@ const mapDefinition = (
   config,
 });
 
+/**
+ * A BoundaryContractDefiner allows defining contracts
+ *
+ * @public
+ */
 export class BoundaryContractDefiner {
   private definer: ContractDefinerConnector<AnyMockDescriptorType> | undefined;
 
@@ -67,6 +72,7 @@ export class BoundaryContractDefiner {
   private readonly parentVersions: string[];
 
   /**
+   * @public
    * Construct a BoundaryContractDefiner to allow defining contracts.
    *
    * @param config - A ContractCaseBoundaryConfig object for the configuration
