@@ -70,6 +70,7 @@
     }
   },
   "devDependencies": {
+    "@contract-case/eslint-config-case-maintainer": "0.0.1",
     "@contract-case/test-equivalence-matchers": "0.13.0",
     "@contract-case/case-maintainer-config": "0.0.1",
     "@microsoft/api-documenter": "^7.23.9",

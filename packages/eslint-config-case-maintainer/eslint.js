@@ -24,6 +24,10 @@ module.exports = {
   ignorePatterns: ['jest.config.ts'],
   rules: {
     'tsdoc/syntax': 'error',
+    '@typescript-eslint/dot-notation': [
+      'error',
+      { allowIndexSignaturePropertyAccess: true },
+    ],
     camelcase: 'off',
     'no-console': 'error',
     'import/prefer-default-export': 'off',

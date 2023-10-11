@@ -16,8 +16,6 @@
     "url": "git@github.com:case-contract-testing/contract-case.git"
   },
   "scripts": {
-    "lint": "eslint src --ext .ts --config .eslintrc.json",
-    "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "format:base": "prettier \"{docs,src}/**/*.{ts,md}\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write "
