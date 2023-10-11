@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-example-mock-types",
-  "version": "0.13.0",
+  "version": "1.0.0",
   "description": "CaseExample mock types component for the ContractCase contract testing suite",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs/reference/example-types",
@@ -61,9 +61,9 @@
     }
   },
   "devDependencies": {
-    "@contract-case/test-equivalence-matchers": "0.13.0",
+    "@contract-case/test-equivalence-matchers": "1.0.0",
     "@types/jest": "^29.5.3",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
@@ -84,7 +84,7 @@
     "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "@contract-case/case-entities-internal": "0.13.0"
+    "@contract-case/case-entities-internal": "1.0.0"
   },
   "peerDependencies": {
     "@contract-case/test-equivalence-matchers": "0.13.0"

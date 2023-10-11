@@ -8,5 +8,14 @@
   "@contract-case/documentation": "0.0.6",
   ".": "0.13.0",
   "@contract-case/contract-case-cli": "0.1.4",
-  "@contract-case/case-connector": "0.6.3"
+  "@contract-case/case-connector": "0.6.3",
+  "packages/case-boundary": "1.0.0",
+  "packages/case-connector": "0.6.4",
+  "packages/contract-case-cli": "1.0.0",
+  "packages/contract-case-jest": "1.0.0",
+  "packages/documentation": "1.0.0",
+  "packages/case-core": "1.0.0",
+  "packages/case-entities": "1.0.0",
+  "packages/case-example-mock-types": "1.0.0",
+  "packages/test-equivalence-matchers": "1.0.0"
 }

@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0 (2023-10-11)
+
+
+### Bug Fixes
+
+* Add link to documentation in warning message about zero-length arrays ([54dd26d](https://github.com/case-contract-testing/contract-case/commit/54dd26dd1d534b6c71f0c9a8655b4a264439b8e2))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.13.0 to 1.0.0
+
 ## [0.13.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.12.2...@contract-case/case-core-v0.13.0) (2023-06-09)
 
 

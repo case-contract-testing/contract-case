@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2023-10-11)
+
+
+### Documentation
+
+* Add missing data in relaxing tests and state definition code examples ([be57cab](https://github.com/case-contract-testing/contract-case/commit/be57cab1bc31f86e461e1cf63e7a1883c87b817f))
+* Update brokers page, and add package versioning information ([4c025a7](https://github.com/case-contract-testing/contract-case/commit/4c025a7aae7badd9d91e51288e5d5a4f99c5c43b))
+
 ## [0.0.6](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.5...documentation-v0.0.6) (2023-06-01)
 
 

@@ -15,6 +15,34 @@
   * devDependencies
     * @contract-case/test-equivalence-matchers bumped from 0.12.0 to 0.12.1
 
+## 1.0.0 (2023-10-11)
+
+
+### Features
+
+* Add `ConfigLogLevelConstants` to expose log levels ([71bad6d](https://github.com/case-contract-testing/contract-case/commit/71bad6d936ebbcd0560850783ab2526ca8fcf2f9))
+* Add `ConfigPublishConstants` to expose possible values for the publish config option ([3c2953e](https://github.com/case-contract-testing/contract-case/commit/3c2953e3d0cb63c40bd8fe73a1679ba9b55abcfb))
+
+
+### Bug Fixes
+
+* Add documentation for the ContractVerifier class ([3c5bea3](https://github.com/case-contract-testing/contract-case/commit/3c5bea326d890c9619aab595998a813bc921f83f))
+* Correct boundary config tsdoc documentation ([8d64490](https://github.com/case-contract-testing/contract-case/commit/8d64490578cd1035dbc9643e0740e5d2a8cd4221))
+* Correct issue where core code wasn't included in package ([7f70b3c](https://github.com/case-contract-testing/contract-case/commit/7f70b3c41cfab833dbeca56567bfda075275ac79))
+* Improve intellisense documentation ([aebaac8](https://github.com/case-contract-testing/contract-case/commit/aebaac83c859a47e85ea2f2ceadbd5aaa70e416a))
+* No longer include coverage directories in package ([b5f42a0](https://github.com/case-contract-testing/contract-case/commit/b5f42a039b966c0fe908231adcc0154a1403846c))
+* Update documentation for boundary classes ([bffd21b](https://github.com/case-contract-testing/contract-case/commit/bffd21b5dc338046a89e881d708ed4c5fa771aea))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.13.0 to 1.0.0
+    * @contract-case/case-entities-internal bumped from 0.13.0 to 1.0.0
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.13.0 to 1.0.0
+
 ## [0.6.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.6.2...@contract-case/case-boundary-v0.6.3) (2023-06-09)
 
 

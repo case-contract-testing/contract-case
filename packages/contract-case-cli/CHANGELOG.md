@@ -14,6 +14,21 @@
     * @contract-case/case-boundary bumped from 0.6.1 to 0.6.2
     * @contract-case/case-core bumped from 0.12.1 to 0.12.2
 
+## 1.0.0 (2023-10-11)
+
+
+### Bug Fixes
+
+* No longer include coverage directories in package ([b5f42a0](https://github.com/case-contract-testing/contract-case/commit/b5f42a039b966c0fe908231adcc0154a1403846c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.6.3 to 1.0.0
+    * @contract-case/case-core bumped from 0.13.0 to 1.0.0
+
 ## [0.1.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.3...@contract-case/cli-v0.1.4) (2023-06-09)
 
 

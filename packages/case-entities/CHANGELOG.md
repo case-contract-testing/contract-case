@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2023-10-11)
+
+
+### Bug Fixes
+
+* Remove unused dependencies ([7e51170](https://github.com/case-contract-testing/contract-case/commit/7e511705f71ecb4697375c13d394ba88701441f0))
+
 ## [0.13.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.12.2...@contract-case/case-entities-internal-v0.13.0) (2023-06-09)
 
 

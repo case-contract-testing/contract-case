@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-core",
-  "version": "0.13.0",
+  "version": "1.0.0",
   "description": "Core functionality for the ContractCase contract testing suite",
   "keywords": [
     "testing",
@@ -60,7 +60,7 @@
     "@types/jest": "^29.5.3",
     "@types/qs": "^6.9.7",
     "@types/slug": "^5.0.3",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "body-parser": "^1.20.2",
     "cross-env": "^7.0.3",
@@ -81,7 +81,7 @@
     "typescript": "5.1.6"
   },
   "dependencies": {
-    "@contract-case/case-entities-internal": "0.13.0",
+    "@contract-case/case-entities-internal": "1.0.0",
     "absolute-version": "^1.0.2",
     "async-mutex": "^0.4.0",
     "axios": "^1.5.0",
