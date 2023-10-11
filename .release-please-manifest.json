@@ -8,5 +8,6 @@
   "packages/documentation": "0.0.6",
   ".": "0.13.0",
   "packages/contract-case-cli": "0.1.4",
+  "packages/case-maintainer-config": "0.0.1",
   "packages/case-connector": "0.6.3"
 }

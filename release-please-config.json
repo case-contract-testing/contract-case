@@ -96,6 +96,12 @@
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
+    },
+    "packages/case-maintainer-config": {
+      "component": "@contract-case/case-maintainer-config",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
     }
   }
 }

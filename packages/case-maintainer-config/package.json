@@ -1,0 +1,49 @@
+{
+  "name": "@contract-case/case-maintainer-config",
+  "version": "0.0.1",
+  "description": "Shared configuration for ContractCase modules",
+  "keywords": [
+    "contractcase"
+  ],
+  "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
+  "homepage": "https://case.contract-testing.io",
+  "license": "BSD-3-Clause",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:case-contract-testing/contract-case.git"
+  },
+  "scripts": {
+    "lint": "eslint src --ext .ts --config .eslintrc.json",
+    "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
+    "format:base": "prettier \"{docs,src}/**/*.{ts,md}\"",
+    "format:check": "npm run format:base -- --list-different",
+    "format:fix": "npm run format:base -- --write "
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/TimothyJones"
+  },
+  "engines": {
+    "node": ">=14.21.2"
+  },
+  "bugs": {
+    "url": "https://github.com/case-contract-testing/case/issues"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jest": "^27.2.3",
+    "eslint-plugin-tsdoc": "^0.2.17"
+  }
+}
