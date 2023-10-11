@@ -22,6 +22,7 @@
       "include-component-in-tag": false,
       "exclude-paths": [
         "packages/case-boundary",
+        "packages/case-connector",
         "packages/contract-case-cli",
         "packages/contract-case-jest",
         "packages/documentation"
@@ -72,6 +73,10 @@
     },
     "packages/contract-case-jest": {
       "component": "@contract-case/contract-case-jest",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/case-connector": {
+      "component": "@contract-case/case-connector",
       "changelog-path": "CHANGELOG.md"
     }
   }
