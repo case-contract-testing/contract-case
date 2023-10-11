@@ -1,12 +1,12 @@
 {
-  "packages/case-boundary": "0.6.3",
-  "packages/case-core": "0.13.0",
-  "packages/case-entities": "0.13.0",
-  "packages/case-example-mock-types": "0.13.0",
-  "packages/contract-case-jest": "0.10.1",
-  "packages/test-equivalence-matchers": "0.13.0",
-  "packages/documentation": "0.0.6",
+  "@contract-case/case-boundary": "0.6.3",
+  "@contract-case/case-core": "0.13.0",
+  "@contract-case/case-entities": "0.13.0",
+  "@contract-case/case-example-mock-types": "0.13.0",
+  "@contract-case/contract-case-jest": "0.10.1",
+  "@contract-case/test-equivalence-matchers": "0.13.0",
+  "@contract-case/documentation": "0.0.6",
   ".": "0.13.0",
-  "packages/contract-case-cli": "0.1.4",
-  "packages/case-connector": "0.6.3"
+  "@contract-case/contract-case-cli": "0.1.4",
+  "@contract-case/case-connector": "0.6.3"
 }
