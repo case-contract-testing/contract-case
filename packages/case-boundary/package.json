@@ -26,7 +26,7 @@
   "scripts": {
     "prebuild": "rimraf build",
     "build": "jsii --project-references",
-    "build:docs": "api-extractor run --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs",
+    "build:docs": "api-extractor run --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "build:docs:local": "api-extractor run --local --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "watch": "jsii -w",
     "prepackage": "rimraf dist",
@@ -71,6 +71,7 @@
   },
   "devDependencies": {
     "@contract-case/test-equivalence-matchers": "0.13.0",
+    "@contract-case/case-maintainer-config": "0.0.1",
     "@microsoft/api-documenter": "^7.23.9",
     "@microsoft/api-extractor": "^7.38.0",
     "@types/jest": "^29.5.3",
