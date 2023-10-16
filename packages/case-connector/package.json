@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-connector",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "Connector to allow ContractCase to run as a server. Use only if you're creating a custom wrapper for a new language",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs",
@@ -35,7 +35,7 @@
     "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "@contract-case/case-boundary": "0.8.0",
+    "@contract-case/case-boundary": "0.9.0",
     "read-pkg-up": "^7.0.1",
     "uuid": "^9.0.0"
   },

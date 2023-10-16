@@ -4,6 +4,14 @@
 
 * The following workspace dependencies were updated
   * dependencies
+    * @contract-case/case-boundary bumped from 0.8.0 to 0.9.0
+
+## Changelog
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
     * @contract-case/case-boundary bumped from 0.7.0 to 0.8.0
   * devDependencies
     * @contract-case/case-maintainer-config bumped from 0.0.2 to 0.0.3
