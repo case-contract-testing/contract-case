@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/eslint-config-case-maintainer-v0.0.3...@contract-case/eslint-config-case-maintainer-v0.0.4) (2023-10-16)
+
+
+### Features
+
+* Add eslint config package ([f1659fa](https://github.com/case-contract-testing/contract-case/commit/f1659fa0035e69d64f7f7ecb49c977c377d3fceb))
+
 ## [0.0.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/eslint-config-case-maintainer-v0.0.2...@contract-case/eslint-config-case-maintainer-v0.0.3) (2023-10-11)
 
 
