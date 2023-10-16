@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-boundary",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Exported interface layer for ContractCase. Don't depend on it directly unless you're writing a wrapper for a new language",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs/reference/matchers",
