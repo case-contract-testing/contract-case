@@ -28,7 +28,7 @@
     "@contract-case/case-maintainer-config": "0.0.3",
     "@contract-case/eslint-config-case-maintainer": "0.0.3",
     "@types/jest": "^29.5.2",
-    "@types/uuid": "^9.0.2",
+    "@types/uuid": "^9.0.6",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.0",
@@ -37,7 +37,7 @@
   "dependencies": {
     "@contract-case/case-boundary": "0.8.0",
     "read-pkg-up": "^7.0.1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.1"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
