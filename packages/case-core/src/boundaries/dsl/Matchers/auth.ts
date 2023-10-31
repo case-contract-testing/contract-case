@@ -7,11 +7,11 @@ import { coreBasicAuthValue } from '../../../entities/nodes/matchers/http/matche
 import { stringPrefix } from './strings';
 
 export const bearerToken = (
-  token: AnyCaseStringMatcher
+  token: AnyCaseStringMatcher,
 ): AnyCaseMatcherOrData => stringPrefix('Bearer ', token);
 
 export const basicAuth = (
   username: AnyCaseStringMatcher,
-  password: AnyCaseStringMatcher
+  password: AnyCaseStringMatcher,
 ): AnyCaseMatcherOrData =>
   stringPrefix('Basic ', coreBasicAuthValue(username, password));

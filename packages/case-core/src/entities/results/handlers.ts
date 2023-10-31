@@ -15,7 +15,7 @@ import {
 export const handleResult = (
   example: CaseExample,
   exampleIndex: string,
-  context: MatchContext
+  context: MatchContext,
 ): void => {
   if (example.result === 'FAILED') {
     context.resultPrinter.printFailureTitle(example, exampleIndex, context);
@@ -26,7 +26,8 @@ export const handleResult = (
 
     if (
       example.errors.some(
-        (i) => i.type === ERROR_TYPE_MATCHING || i.type === ERROR_TYPE_RAW_MATCH
+        (i) =>
+          i.type === ERROR_TYPE_MATCHING || i.type === ERROR_TYPE_RAW_MATCH,
       )
     ) {
       context.logger.debug(`Matching errors present`);
@@ -44,7 +45,7 @@ export const handleResult = (
 
     if (example.errors.some((i) => i.type === ERROR_TYPE_CONFIGURATION)) {
       throw new CaseConfigurationError(
-        example.errors.map((e) => e.message).join()
+        example.errors.map((e) => e.message).join(),
       );
     }
   } else {

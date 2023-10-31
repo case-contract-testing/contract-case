@@ -23,7 +23,7 @@ import { anyString } from './primitives';
  */
 export const stringContaining = (
   substring: string,
-  example: string
+  example: string,
 ): CoreStringContainsMatcher => ({
   '_case:matcher:type': STRING_CONTAINS_TYPE,
   '_case:matcher:contains': substring,
@@ -39,7 +39,7 @@ export const stringContaining = (
  */
 export const stringPrefix = (
   prefix: string,
-  suffix: AnyCaseMatcher | string = anyString()
+  suffix: AnyCaseMatcher | string = anyString(),
 ): CoreStringPrefixMatcher => ({
   '_case:matcher:type': STRING_PREFIX_TYPE,
   '_case:matcher:prefix': prefix,
@@ -55,7 +55,7 @@ export const stringPrefix = (
  */
 export const stringSuffix = (
   prefix: AnyCaseMatcher | string,
-  suffix: string
+  suffix: string,
 ): CoreStringSuffixMatcher => ({
   '_case:matcher:type': STRING_SUFFIX_TYPE,
   '_case:matcher:prefix':
@@ -73,7 +73,7 @@ export const stringSuffix = (
  * @param child - The string or string matcher to match against
  */
 export const encodedStringBase64 = (
-  child: AnyCaseStringMatcher
+  child: AnyCaseStringMatcher,
 ): CoreBase64EncodedMatcher => ({
   '_case:matcher:type': BASE64_ENCODED_TYPE,
   '_case:matcher:child': child,
@@ -86,7 +86,7 @@ export const encodedStringBase64 = (
  * @param child - The string or string matcher to match against
  */
 export const stringifiedJson = (
-  child: AnyCaseMatcherOrData
+  child: AnyCaseMatcherOrData,
 ): CoreJsonStringifiedMatcher => ({
   '_case:matcher:type': JSON_STRINGIFIED_TYPE,
   '_case:matcher:child': child,

@@ -15,9 +15,9 @@ export type CaseJestConfig<T extends AnyMockDescriptorType> =
   };
 
 export type DefineCaseJestCallback = <T extends AnyMockDescriptorType>(
-  contract: ContractDefinerConnector<T>
+  contract: ContractDefinerConnector<T>,
 ) => void;
 
 export type VerifyCaseJestCallback = (
-  contract: ContractVerifierConnector
+  contract: ContractVerifierConnector,
 ) => void;

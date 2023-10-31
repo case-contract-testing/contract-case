@@ -18,7 +18,7 @@ const defaultDependencies: Dependencies = {
 
 const start = (
   port = PORT,
-  dependencies = defaultDependencies
+  dependencies = defaultDependencies,
 ): Promise<http.Server> =>
   new Promise((resolve, reject) => {
     try {

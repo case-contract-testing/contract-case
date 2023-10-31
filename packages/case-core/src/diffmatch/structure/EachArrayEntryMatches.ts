@@ -19,24 +19,24 @@ import type {
 
 const strip: StripMatcherFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = (
   matcher: CoreArrayEachEntryMatches,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData =>
   '_case:matcher:example' in matcher
     ? matchContext.descendAndStrip(
         matcher['_case:matcher:example'],
-        addLocation(`:eachEntryLike[example]`, matchContext)
+        addLocation(`:eachEntryLike[example]`, matchContext),
       )
     : [
         matchContext.descendAndStrip(
           matcher['_case:matcher:matcher'],
-          addLocation(`:eachEntryLike[matcher]`, matchContext)
+          addLocation(`:eachEntryLike[matcher]`, matchContext),
         ),
       ];
 
 const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = async (
   matcher: CoreArrayEachEntryMatches,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> =>
   combineResults(
     Array.isArray(actual)
@@ -49,10 +49,10 @@ const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = async (
                       matchContext.descendAndCheck(
                         matcher['_case:matcher:matcher'],
                         addLocation(`:eachEntryLike[${index}]`, matchContext),
-                        actualEntry
-                      )
+                        actualEntry,
+                      ),
                     )
-                    .flat()
+                    .flat(),
                 )
               ).flat()
             : makeResults(
@@ -60,18 +60,18 @@ const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = async (
                   matcher,
                   `Expected a non-empty array. It's not valid to use eachArrayEntryMatches for empty arrays. See the documentation for more details:\n\n   https://case.contract-testing.io/docs/faq#how-do-i-test-an-array-field-that-might-have-zero-items-in-it`,
                   actual,
-                  matchContext
-                )
-              )
+                  matchContext,
+                ),
+              ),
         )
       : makeResults(
           matchingError(
             matcher,
             `'${typeof actual}' is not an array`,
             actual,
-            matchContext
-          )
-        )
+            matchContext,
+          ),
+        ),
   );
 
 export const EachArrayEntryMatches: MatcherExecutor<
@@ -80,7 +80,7 @@ export const EachArrayEntryMatches: MatcherExecutor<
   describe: (matcher, context) =>
     `an array where each entry matches ${context.descendAndDescribe(
       matcher['_case:matcher:matcher'],
-      addLocation(`:eachEntryLike`, context)
+      addLocation(`:eachEntryLike`, context),
     )}`,
   check,
   strip,

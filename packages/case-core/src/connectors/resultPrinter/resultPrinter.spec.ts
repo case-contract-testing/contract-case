@@ -72,7 +72,7 @@ describe('result printer', () => {
   it('prints downloaded contract', () => {
     resultPrinter.printDownloadedContract(
       'testing-the-printing-of-this-message-filename.json',
-      EMPTY_DATA_CONTEXT
+      EMPTY_DATA_CONTEXT,
     );
   });
 
@@ -84,9 +84,9 @@ describe('result printer', () => {
           'Example error message details',
           "really, this isn't an error",
           EMPTY_MATCH_CONTEXT,
-          'this was expected to happen'
+          'this was expected to happen',
         ),
-        EMPTY_DATA_CONTEXT
+        EMPTY_DATA_CONTEXT,
       );
     });
   });
@@ -99,9 +99,9 @@ describe('result printer', () => {
           'Example error message details',
           'SomeExampleFailure',
           EMPTY_MATCH_CONTEXT,
-          'this was expected to happen'
+          'this was expected to happen',
         ),
-        EMPTY_DATA_CONTEXT
+        EMPTY_DATA_CONTEXT,
       );
     });
   });
@@ -110,9 +110,9 @@ describe('result printer', () => {
       resultPrinter.printError(
         triggerError(
           new Error('This error is expected to happen'),
-          EMPTY_MATCH_CONTEXT
+          EMPTY_MATCH_CONTEXT,
         ),
-        EMPTY_DATA_CONTEXT
+        EMPTY_DATA_CONTEXT,
       );
     });
   });
@@ -122,9 +122,9 @@ describe('result printer', () => {
       resultPrinter.printError(
         configurationError(
           new Error('This error is also expected to happen'),
-          EMPTY_MATCH_CONTEXT
+          EMPTY_MATCH_CONTEXT,
         ),
-        EMPTY_DATA_CONTEXT
+        EMPTY_DATA_CONTEXT,
       );
     });
   });
@@ -134,11 +134,11 @@ describe('result printer', () => {
       resultPrinter.printError(
         verificationError(
           new VerifyTriggerReturnObjectError(
-            new Error('This error, too, is expected to happen')
+            new Error('This error, too, is expected to happen'),
           ),
-          EMPTY_MATCH_CONTEXT
+          EMPTY_MATCH_CONTEXT,
         ),
-        EMPTY_DATA_CONTEXT
+        EMPTY_DATA_CONTEXT,
       );
     });
   });

@@ -19,18 +19,18 @@ import type {
 const check = (
   matcher: CoreBase64EncodedMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> | MatchResult => {
   if (typeof actual === 'string') {
     if (
       actual.match(
-        /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$/
+        /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$/,
       ) !== null
     ) {
       return matchContext.descendAndCheck(
         matcher['_case:matcher:child'],
         addLocation(':base64', matchContext),
-        Buffer.from(actual, 'base64').toString()
+        Buffer.from(actual, 'base64').toString(),
       );
     }
     return makeResults(
@@ -38,33 +38,33 @@ const check = (
         matcher,
         `${actualToString(actual)} is not a base64 encoded string`,
         actual,
-        matchContext
-      )
+        matchContext,
+      ),
     );
   }
   return makeResults(
     matchingError(
       matcher,
       `${actualToString(
-        actual
+        actual,
       )} is not a string; so it can't match a base64 encoded string`,
       actual,
-      matchContext
-    )
+      matchContext,
+    ),
   );
 };
 
 const strip = (
   matcher: CoreBase64EncodedMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData => {
   const result = matchContext.descendAndStrip(
     matcher['_case:matcher:child'],
-    addLocation(':base64', matchContext)
+    addLocation(':base64', matchContext),
   );
   if (typeof result === 'string') return Buffer.from(result).toString('base64');
   throw new CaseConfigurationError(
-    `Unable to base64 encode '${result}' during stripMatchers, as it's not a string and therefore can't be base64 encoded`
+    `Unable to base64 encode '${result}' during stripMatchers, as it's not a string and therefore can't be base64 encoded`,
   );
 };
 
@@ -74,7 +74,7 @@ export const Base64EncodedStringMatcher: MatcherExecutor<
   describe: (matcher, matchContext) =>
     `base64 encoded string '${matchContext.descendAndDescribe(
       matcher['_case:matcher:child'],
-      addLocation(':base64', matchContext)
+      addLocation(':base64', matchContext),
     )}'`,
   check,
   strip,

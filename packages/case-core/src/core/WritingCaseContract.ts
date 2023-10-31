@@ -31,7 +31,7 @@ export class WritingCaseContract extends BaseCaseContract {
     description: CaseContractDescription,
     dependencies: WriterDependencies,
     config: CaseConfig,
-    parentVersions: Array<string>
+    parentVersions: Array<string>,
   ) {
     super(
       description,
@@ -39,7 +39,7 @@ export class WritingCaseContract extends BaseCaseContract {
       dependencies.defaultConfig,
       dependencies.resultFormatter,
       dependencies.makeLogger,
-      parentVersions
+      parentVersions,
     );
     this.mutex = new Mutex();
     this.dependencies = dependencies;
@@ -57,7 +57,7 @@ export class WritingCaseContract extends BaseCaseContract {
       triggerAndTests,
       stateHandlers = {},
     }: TestInvoker<T, R>,
-    runConfig: CaseConfig
+    runConfig: CaseConfig,
   ): Promise<unknown> {
     const thisIndex = this.testIndex;
     this.testIndex += 1;
@@ -70,12 +70,12 @@ export class WritingCaseContract extends BaseCaseContract {
         '_case:currentRun:context:contractMode': 'write',
         '_case:currentRun:context:testName': `${thisIndex}`,
         ...configToRunContext(runConfig),
-      }
+      },
     );
 
     runContext.logger.deepMaintainerDebug(
       'The full context object:',
-      runContext
+      runContext,
     );
     // TODO: Tidy up the testinvokers so we don't have to pass around individual things
     runContext.logger.deepMaintainerDebug('TestInvoker: ', {
@@ -92,14 +92,14 @@ export class WritingCaseContract extends BaseCaseContract {
 
     if (runContext['_case:currentRun:context:contractMode'] !== 'write') {
       runContext.logger.warn(
-        `The contractMode is expected to be 'write', but it was '${runContext['_case:currentRun:context:contractMode']}'. If you are not expecting this message, this is almost certainly a misconfiguration`
+        `The contractMode is expected to be 'write', but it was '${runContext['_case:currentRun:context:contractMode']}'. If you are not expecting this message, this is almost certainly a misconfiguration`,
       );
     }
     return this.mutex.runExclusive(() => {
       states.forEach((state) => {
         if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
           Object.entries(state.variables).forEach(([key, value]) =>
-            runContext.addDefaultVariable(key, state.stateName, value)
+            runContext.addDefaultVariable(key, state.stateName, value),
           );
         }
       });
@@ -123,32 +123,32 @@ export class WritingCaseContract extends BaseCaseContract {
           names: exampleToNames(example, `${this.testIndex}`),
         },
         this,
-        runContext
+        runContext,
       );
     });
   }
 
   recordExample(
     example: CaseExample,
-    currentContext: MatchContext
+    currentContext: MatchContext,
   ): CaseExample {
     if (!this.currentContract) {
       currentContext.logger.error(
-        'recordSuccess was called without initialising the contract file. This should not be possible.'
+        'recordSuccess was called without initialising the contract file. This should not be possible.',
       );
       throw new CaseCoreError(
-        'Contract was not initialised at the time that recordSuccess was called'
+        'Contract was not initialised at the time that recordSuccess was called',
       );
     }
     if (example.result === 'PENDING') {
       throw new CaseCoreError(
-        'Trying to record a pending example. This should never happen.'
+        'Trying to record a pending example. This should never happen.',
       );
     }
     this.currentContract = addExample(
       this.currentContract,
       example,
-      currentContext
+      currentContext,
     );
     return example;
   }
@@ -164,13 +164,13 @@ export class WritingCaseContract extends BaseCaseContract {
           code: 'FAIL',
           location: ['Writing Contract'],
           toString: () => 'There were contract failures',
-        })
+        }),
       );
     }
     //  - if success, write contract
     const fileName = this.dependencies.writeContract(
       this.currentContract,
-      writingContext
+      writingContext,
     );
     writingContext.logger.debug(`Wrote contract file: ${fileName}`);
 
@@ -180,8 +180,8 @@ export class WritingCaseContract extends BaseCaseContract {
         this.currentContract,
         addLocation(
           `PublishingContract(${this.currentContract.description.consumerName} -> ${this.currentContract.description.providerName})`,
-          this.initialContext
-        )
+          this.initialContext,
+        ),
       );
   }
 }

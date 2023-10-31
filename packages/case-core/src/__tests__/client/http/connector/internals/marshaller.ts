@@ -28,7 +28,7 @@ export const unmarshallFailure = (error: Error): never => {
       if (error.response.status === 401) {
         throw new ApiError(
           "The server says that you're not authorised.",
-          API_NOT_AUTHORISED
+          API_NOT_AUTHORISED,
         );
       }
 
@@ -40,13 +40,13 @@ export const unmarshallFailure = (error: Error): never => {
         error.response.data && isWireErrorResponse(error.response.data)
           ? error.response.data.message
           : `The server returned an error code (${error.response.status})`,
-        API_ERROR
+        API_ERROR,
       );
     }
     if (error.request) {
       throw new ApiError(
         `The server didn't respond: ${error.message} `,
-        API_NO_RESPONSE
+        API_NO_RESPONSE,
       );
     }
   }

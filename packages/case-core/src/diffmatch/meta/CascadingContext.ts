@@ -12,17 +12,17 @@ import type {
 const check = (
   matcher: CoreCascadingMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> | MatchResult =>
   matchContext.descendAndCheck(
     matcher['_case:matcher:child'],
     matchContext,
-    actual
+    actual,
   );
 
 const strip = (
   matcher: CoreCascadingMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData =>
   matchContext.descendAndStrip(matcher['_case:matcher:child'], matchContext);
 
@@ -32,7 +32,7 @@ export const CascadingContext: MatcherExecutor<
   describe: (matcher, matchContext) =>
     matchContext.descendAndDescribe(
       matcher['_case:matcher:child'],
-      matchContext
+      matchContext,
     ),
   check,
   strip,

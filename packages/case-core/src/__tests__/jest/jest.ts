@@ -17,7 +17,7 @@ const TIMEOUT = 30000;
 
 const runJestTest: RunTestCallback = (
   testName: string,
-  verify: () => Promise<unknown>
+  verify: () => Promise<unknown>,
 ): void => {
   // eslint-disable-next-line jest/expect-expect
   it(`${testName}`, () => verify(), TIMEOUT);
@@ -25,7 +25,7 @@ const runJestTest: RunTestCallback = (
 
 export const defineContract = <T extends AnyMockDescriptorType>(
   { config, ...contractConfig }: CaseJestConfig<T>,
-  callback: DefineCaseJestCallback
+  callback: DefineCaseJestCallback,
 ): void =>
   describe(`Case contract definition`, () => {
     const { stateHandlers, triggers, ...contextConfig } = config || {};
@@ -39,7 +39,7 @@ export const defineContract = <T extends AnyMockDescriptorType>(
       },
       { stateHandlers, triggers },
       defaultPrinter,
-      ['local-jest-wrapper']
+      ['local-jest-wrapper'],
     );
 
     afterAll(() => contract.endRecord(), TIMEOUT);
@@ -53,7 +53,7 @@ export const defineContract = <T extends AnyMockDescriptorType>(
 
 export const verifyContract = (
   config: CaseConfig,
-  callback: VerifyCaseJestCallback
+  callback: VerifyCaseJestCallback,
 ): void => {
   if (!config.providerName) {
     throw new Error('Must specify a providerName to verify');
@@ -62,7 +62,7 @@ export const verifyContract = (
     callback(
       new ContractVerifierConnector(config, runJestTest, defaultPrinter, [
         'local-jest-wrapper',
-      ])
+      ]),
     );
   });
 };

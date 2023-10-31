@@ -34,14 +34,14 @@ export interface BrokerApi {
   publishContract: (
     contract: ContractData,
     version: string,
-    context: LogContext
+    context: LogContext,
   ) => Promise<void>;
 
   publishContractAdvanced: (
     contract: ContractData,
     version: string,
     branch: string | false,
-    logContext: LogContext
+    logContext: LogContext,
   ) => Promise<PublishContractResult>;
 
   publishVerificationResults: (
@@ -49,17 +49,17 @@ export interface BrokerApi {
     success: boolean,
     version: string,
     branch: string | false,
-    logContext: LogContext
+    logContext: LogContext,
   ) => Promise<PublishVerificationResult>;
 
   downloadContract: (
     url: string,
-    context: LogContext
+    context: LogContext,
   ) => Promise<DownloadedContract>;
 
   urlsForVerification: (
     serviceName: string,
-    context: LogContext
+    context: LogContext,
   ) => Promise<ContractLink[]>;
 }
 

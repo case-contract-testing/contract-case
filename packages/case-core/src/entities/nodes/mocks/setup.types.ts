@@ -21,7 +21,7 @@ export type MockData<T extends AnyMockDescriptorType> = {
 
 export type MockSetupFn<T extends AnyMockDescriptorType> = (
   mock: CaseMockDescriptorFor<T>,
-  context: MatchContext
+  context: MatchContext,
 ) => Promise<MockData<T>>;
 
 type BaseConfig = {

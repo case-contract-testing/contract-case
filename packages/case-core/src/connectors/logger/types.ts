@@ -8,6 +8,6 @@ export interface LogPrinter {
     typeString: string,
     location: string,
     message: string,
-    additional: string
+    additional: string,
   ) => void;
 }

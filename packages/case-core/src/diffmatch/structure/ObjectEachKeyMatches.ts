@@ -20,24 +20,24 @@ import { isObject, whyNotAnObject } from './internals/objectTests';
 
 const strip: StripMatcherFn<typeof OBJECT_KEYS_MATCH_TYPE> = (
   matcher: CoreObjectKeysMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData =>
   '_case:matcher:exampleKey' in matcher
     ? matchContext.descendAndStrip(
         matcher['_case:matcher:exampleKey'],
-        addLocation(`:objectEachKeyLike[example]`, matchContext)
+        addLocation(`:objectEachKeyLike[example]`, matchContext),
       )
     : {
         [`${matchContext.descendAndStrip(
           matcher['_case:matcher:matcher'],
-          addLocation(`:objectEachKeyLike[matcher]`, matchContext)
+          addLocation(`:objectEachKeyLike[matcher]`, matchContext),
         )}`]: 'someValue',
       };
 
 const check: CheckMatchFn<typeof OBJECT_KEYS_MATCH_TYPE> = async (
   matcher: CoreObjectKeysMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> => [
   ...(isObject(actual)
     ? combineResults(
@@ -47,8 +47,8 @@ const check: CheckMatchFn<typeof OBJECT_KEYS_MATCH_TYPE> = async (
                 matcher, // TODO: Add documentation
                 `Expected an object with at least one key property. It's not valid to use objectEachKeyMatches for empty objects. See the documentation for more details`,
                 actual,
-                matchContext
-              )
+                matchContext,
+              ),
             )
           : (
               await Promise.all(
@@ -58,15 +58,15 @@ const check: CheckMatchFn<typeof OBJECT_KEYS_MATCH_TYPE> = async (
                       matchContext.descendAndCheck(
                         matcher['_case:matcher:matcher'],
                         addLocation(actualKey, matchContext),
-                        actualKey
-                      )
-                    )
-                )
+                        actualKey,
+                      ),
+                    ),
+                ),
               )
-            ).flat()
+            ).flat(),
       )
     : makeResults(
-        matchingError(matcher, whyNotAnObject(actual), actual, matchContext)
+        matchingError(matcher, whyNotAnObject(actual), actual, matchContext),
       )),
 ];
 
@@ -76,7 +76,7 @@ export const ObjectEachKeyMatches: MatcherExecutor<
   describe: (matcher, context) =>
     `an object where each key is ${context.descendAndDescribe(
       matcher['_case:matcher:matcher'],
-      addLocation(':eachKeyLike', context)
+      addLocation(':eachKeyLike', context),
     )}`,
   check,
   strip,

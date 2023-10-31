@@ -3,7 +3,7 @@ import { CaseConfigurationError } from '../../../../entities';
 
 export const rawEquality = (
   a: AnyCaseMatcherOrData | undefined,
-  b: AnyCaseMatcherOrData | undefined
+  b: AnyCaseMatcherOrData | undefined,
 ): boolean => {
   if (
     typeof a === 'function' ||
@@ -11,7 +11,7 @@ export const rawEquality = (
     typeof a === 'symbol'
   ) {
     throw new CaseConfigurationError(
-      `It looks like an object of type '${typeof a}' was attempted to be serialised in the contract. This is unsupported`
+      `It looks like an object of type '${typeof a}' was attempted to be serialised in the contract. This is unsupported`,
     );
   }
   if (
@@ -20,7 +20,7 @@ export const rawEquality = (
     typeof b === 'symbol'
   ) {
     throw new CaseConfigurationError(
-      `It looks like an object of type '${typeof b}' was attempted to be serialised in the contract. This is unsupported`
+      `It looks like an object of type '${typeof b}' was attempted to be serialised in the contract. This is unsupported`,
     );
   }
   if (typeof a !== typeof b) return false;
@@ -51,7 +51,7 @@ export const rawEquality = (
     if (aEntries.length !== bEntries.length) return false;
     return aEntries
       .map(([key, value]) =>
-        rawEquality(value, (b as Record<string, AnyCaseMatcherOrData>)[key])
+        rawEquality(value, (b as Record<string, AnyCaseMatcherOrData>)[key]),
       )
       .reduce((acc, curr) => acc && curr, true);
   }

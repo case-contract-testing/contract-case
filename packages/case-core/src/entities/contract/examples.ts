@@ -4,7 +4,7 @@ import type { CaseExample, ExampleNames } from './types';
 
 export const exampleToNames = (
   { states, mock }: CaseExample,
-  index: string
+  index: string,
 ): ExampleNames => {
   const stateNames = states.map((state) => state.stateName).join(' and ');
 
@@ -29,7 +29,7 @@ export const exampleToNames = (
 export const makeSuccessExample = (example: CaseExample): CaseExample => {
   if (example.result !== 'PENDING') {
     throw new CaseCoreError(
-      `Trying to make a successful example from one that wasn't pending (was ${example.result})`
+      `Trying to make a successful example from one that wasn't pending (was ${example.result})`,
     );
   }
   return { ...example, result: 'VERIFIED' };
@@ -37,11 +37,11 @@ export const makeSuccessExample = (example: CaseExample): CaseExample => {
 
 export const makeFailedExample = (
   example: CaseExample,
-  errors: Array<CaseError>
+  errors: Array<CaseError>,
 ): CaseExample => {
   if (example.result !== 'PENDING') {
     throw new CaseCoreError(
-      `Trying to make a failed example from one that wasn't pending (was ${example.result})`
+      `Trying to make a failed example from one that wasn't pending (was ${example.result})`,
     );
   }
   return { ...example, result: 'FAILED', errors };

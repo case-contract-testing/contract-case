@@ -34,7 +34,7 @@ export const usersByPath: (deps: UserServiceDependencies) => RequestHandler =
     const { userId } = req.params;
     if (typeof userId !== 'string') throw new Error('No userID provided');
     responder(res).success<User>(
-      makeUserService({ userRepository }).getUser(userId)
+      makeUserService({ userRepository }).getUser(userId),
     );
   };
 
@@ -44,6 +44,6 @@ export const usersByQuery: (deps: UserServiceDependencies) => RequestHandler =
     const { id } = req.query;
     if (typeof id !== 'string') throw new Error('No userID provided');
     responder(res).success<User>(
-      makeUserService({ userRepository }).getUser(id)
+      makeUserService({ userRepository }).getUser(id),
     );
   };

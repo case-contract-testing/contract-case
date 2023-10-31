@@ -16,13 +16,13 @@ import type {
 const check = (
   matcher: CoreIntegerMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Array<CaseError> =>
   combineResults(
     errorWhen(
       !Number.isInteger(actual),
-      matchingError(matcher, 'Expected an integer', actual, matchContext)
-    )
+      matchingError(matcher, 'Expected an integer', actual, matchContext),
+    ),
   );
 
 export const IntegerMatcher: MatcherExecutor<typeof INTEGER_MATCH_TYPE> = {

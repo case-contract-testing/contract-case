@@ -15,14 +15,14 @@ import {
 import { makeAssertionsOn } from './assert/assert';
 
 const isHasBaseUrl = (
-  context: Partial<DataContext>
+  context: Partial<DataContext>,
 ): context is HasBaseUrlUnderTest =>
   '_case:currentRun:context:baseUrlUnderTest' in context &&
   context['_case:currentRun:context:baseUrlUnderTest'] !== undefined &&
   typeof context['_case:currentRun:context:baseUrlUnderTest'] === 'string';
 
 const validateConfig = (
-  context: MatchContext
+  context: MatchContext,
 ): Promise<MatchContext & HasBaseUrlUnderTest> => {
   if (isHasBaseUrl(context)) {
     return Promise.resolve(context);
@@ -30,8 +30,8 @@ const validateConfig = (
   return Promise.reject(
     new CaseConfigurationError(
       `Must provide a URL Under Test in order to validate HTTP response providers`,
-      context
-    )
+      context,
+    ),
   );
 };
 
@@ -40,18 +40,18 @@ const httpAgent = new http.Agent({
 });
 
 const validateHttpRequestData = (
-  maybeHttpRequestData: unknown
+  maybeHttpRequestData: unknown,
 ): HttpRequestData => {
   const data = maybeHttpRequestData as HttpRequestData;
   if (data === null || typeof data !== 'object') {
     throw new CaseConfigurationError(
-      "Expected request description didn't resolve to a object"
+      "Expected request description didn't resolve to a object",
     );
   }
 
   const { assertFieldPresent, assertIfFieldPresent } = makeAssertionsOn(
     data,
-    'Expected request description'
+    'Expected request description',
   );
   assertFieldPresent({ field: 'method', type: 'string' });
   assertFieldPresent({ field: 'path', type: 'string' });
@@ -67,14 +67,14 @@ export const setupHttpResponseConsumer = (
     request: requestMatcher,
     response: expectedResponse,
   }: CoreHttpRequestResponseMatcherPair,
-  parentContext: MatchContext
+  parentContext: MatchContext,
 ): Promise<MockData<typeof MOCK_HTTP_CLIENT>> =>
   Promise.resolve().then(() => {
     const expectedRequest = validateHttpRequestData(
       parentContext.descendAndStrip(
         requestMatcher,
-        addLocation('expectedRequest', parentContext)
-      )
+        addLocation('expectedRequest', parentContext),
+      ),
     );
 
     const { body, method, path, headers, query } = expectedRequest;
@@ -114,26 +114,26 @@ export const setupHttpResponseConsumer = (
                         }', but no response. \n\nConfirm that you have:\n 1) Started the real server\n 2) Provided the correct URL to the running server\n\nUnderlying Error: ${
                           err.message
                         }`,
-                        run
-                      )
+                        run,
+                      ),
                     );
                   }
                   throw new CaseConfigurationError(
                     `Unable to send request to http server - did you start the server and provide the URL? (${err.message})`,
-                    run
+                    run,
                   );
                 }
                 throw new CaseCoreError(
                   `Something went wrong while creating the http request: ${err.message}`,
-                  run
+                  run,
                 );
-              }
+              },
             )
             .then(async (result) => ({
               actual: result,
               context: addLocation('response', parentContext),
               expected: expectedResponse,
             })),
-      })
+      }),
     );
   });

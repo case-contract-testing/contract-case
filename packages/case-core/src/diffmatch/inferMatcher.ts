@@ -16,7 +16,7 @@ import {
 } from '../entities/nodes/matchers/structure';
 
 export const inferMatcher = <T extends AnyCaseNodeType>(
-  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure
+  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
 ): AnyCaseMatcher => {
   if (matcherOrData == null) {
     return leafMatchers.coreNullMatcher();
@@ -37,7 +37,7 @@ export const inferMatcher = <T extends AnyCaseNodeType>(
       coreArrayLengthMatcher({
         minLength: matcherOrData.length,
         maxLength: matcherOrData.length,
-      })
+      }),
     );
   }
 

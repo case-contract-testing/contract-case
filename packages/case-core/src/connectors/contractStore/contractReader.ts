@@ -15,7 +15,7 @@ export const readContract = (pathToContract: string): DownloadedContract => {
     throw new CaseConfigurationError(
       `Unable to load contract file from disk at '${pathToContract}': ${
         (e as Error).message
-      }`
+      }`,
     );
   }
 
@@ -26,7 +26,7 @@ export const readContract = (pathToContract: string): DownloadedContract => {
     throw new CaseConfigurationError(
       `Unable to parse contract file from disk at '${pathToContract}': ${
         (e as Error).message
-      }`
+      }`,
     );
   }
   return contract;
@@ -34,16 +34,16 @@ export const readContract = (pathToContract: string): DownloadedContract => {
 
 const readContractsFromDir = (
   pathToDir: string,
-  context: DataContext
+  context: DataContext,
 ): Contents<DownloadedContract>[] => {
   if (!fs.existsSync(pathToDir)) {
     throw new CaseConfigurationError(
-      `The directory '${pathToDir}' does not seem to exist, so can't read contracts from it`
+      `The directory '${pathToDir}' does not seem to exist, so can't read contracts from it`,
     );
   }
   if (!fs.statSync(pathToDir).isDirectory()) {
     throw new CaseConfigurationError(
-      `'${pathToDir}' exists but is a not a directory, so can't read contracts from it`
+      `'${pathToDir}' exists but is a not a directory, so can't read contracts from it`,
     );
   }
 
@@ -63,7 +63,7 @@ const readContractsFromDir = (
         throw new CaseConfigurationError(
           `Unable to load contract file from disk at '${filePath}': ${
             (e as Error).message
-          }\n\n.This is almost certainly a race condition where the files were deleted during the directory read.`
+          }\n\n.This is almost certainly a race condition where the files were deleted during the directory read.`,
         );
       }
       return { contents, filePath };
@@ -80,7 +80,7 @@ const readContractsFromDir = (
         context.logger.warn(
           `Failed (${(e as Error).message}) while parsing '${
             s.filePath
-          }' as json.\n\nThis may be a configuration error. The best practice is to:\n\n  * Keep the contract directory clear of non-contract files\n  * Remove all files in this directory before downloading contracts`
+          }' as json.\n\nThis may be a configuration error. The best practice is to:\n\n  * Keep the contract directory clear of non-contract files\n  * Remove all files in this directory before downloading contracts`,
         );
         return { contents: null, filePath: s.filePath };
       }
@@ -91,30 +91,30 @@ const readContractsFromDir = (
     .filter((item) => item.contents.contractType !== 'case::contract')
     .forEach((item) => {
       context.logger.debug(
-        `Skipping ${item.filePath} because it is not a case contract (incorrect contractType value of '${item.contents.contractType}')`
+        `Skipping ${item.filePath} because it is not a case contract (incorrect contractType value of '${item.contents.contractType}')`,
       );
     });
 
   const caseContracts = jsonContracts.filter(
-    (item) => item.contents.contractType === 'case::contract'
+    (item) => item.contents.contractType === 'case::contract',
   );
 
   caseContracts
     .filter(
       (item) =>
         typeof item.contents.description?.providerName !== 'string' ||
-        typeof item.contents.description?.consumerName !== 'string'
+        typeof item.contents.description?.consumerName !== 'string',
     )
     .forEach((item) => {
       context.logger.warn(
-        `Skipping ${item.filePath} because it must have a description.consumerName and description.providerName (was '${item.contents.description?.consumerName}' and '${item.contents.description?.providerName}' respectively)`
+        `Skipping ${item.filePath} because it must have a description.consumerName and description.providerName (was '${item.contents.description?.consumerName}' and '${item.contents.description?.providerName}' respectively)`,
       );
     });
 
   return caseContracts.filter(
     (item) =>
       typeof item.contents.description?.providerName === 'string' &&
-      typeof item.contents.description?.consumerName === 'string'
+      typeof item.contents.description?.consumerName === 'string',
   );
 };
 

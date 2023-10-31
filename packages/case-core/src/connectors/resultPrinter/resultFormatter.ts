@@ -16,7 +16,10 @@ import {
 import { locationString } from '../../entities/context';
 import { ResultPrinter } from './types';
 
-const locationTitleLine = (location: Array<string>, context: LogLevelContext) =>
+const locationTitleLine = (
+  location: Array<string>,
+  context: LogLevelContext,
+) =>
   Array.isArray(location) && location.length > 3
     ? ` ${locationString({
         ...context,
@@ -83,7 +86,7 @@ const makePrintError =
               Array.isArray((error as ConfigurationError).location)
                 ? locationTitleLine(
                     (error as ConfigurationError).location,
-                    context
+                    context,
                   )
                 : locationTitleLine([], context),
             locationTag,
@@ -133,7 +136,7 @@ const makePrintDownloadedContract =
   };
 
 export const makeResultFormatter: (p: ResultPrinter) => ResultFormatter = (
-  printer
+  printer,
 ) => ({
   printError: makePrintError(printer),
   printFailureTitle: makePrintFailureTitle(printer),

@@ -26,13 +26,13 @@ const isHttpResponseData = (data: unknown): data is HttpResponseData => {
 
 const strip = (
   matcher: CoreHttpResponseMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData => ({
   ...(matcher.body
     ? {
         body: matchContext.descendAndStrip(
           matcher.body,
-          addLocation('body', matchContext)
+          addLocation('body', matchContext),
         ),
       }
     : {}),
@@ -40,24 +40,24 @@ const strip = (
     ? {
         headers: matchContext.descendAndStrip(
           matcher.headers,
-          addLocation('headers', matchContext)
+          addLocation('headers', matchContext),
         ),
       }
     : {}),
   status: mustResolveToNumber(
     matcher.status,
-    addLocation('status', matchContext)
+    addLocation('status', matchContext),
   ),
 });
 
 const check = async (
   matcher: CoreHttpResponseMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> => {
   if (!isHttpResponseData(actual)) {
     throw new CaseCoreError(
-      "The HttpResponseMatcher was called with an actual that wasn't an http response"
+      "The HttpResponseMatcher was called with an actual that wasn't an http response",
     );
   }
 
@@ -66,47 +66,47 @@ const check = async (
       matchContext.descendAndCheck(
         matcher.status,
         addLocation('status', matchContext),
-        actual.status
+        actual.status,
       ),
       matcher.headers !== undefined
         ? await matchContext.descendAndCheck(
             matcher.headers,
             addLocation('headers', matchContext),
-            actual.headers
+            actual.headers,
           )
         : makeNoErrorResult(),
       matcher.body !== undefined
         ? matchContext.descendAndCheck(
             matcher.body,
             addLocation('body', matchContext),
-            actual.body
+            actual.body,
           )
         : makeNoErrorResult(),
-    ]))
+    ])),
   );
 };
 
 const name = (
   response: CoreHttpResponseMatcher,
-  context: MatchContext
+  context: MatchContext,
 ): string =>
   response.uniqueName
     ? response.uniqueName
     : `a (${context.descendAndDescribe(
         response.status,
-        addLocation('status', context)
+        addLocation('status', context),
       )}) response ${
         response.body
           ? `with body ${context.descendAndDescribe(
               response.body,
-              addLocation('body', context)
+              addLocation('body', context),
             )}`
           : 'without a body'
       }${
         response.headers
           ? ` with the following headers ${context.descendAndDescribe(
               response.headers,
-              addLocation('headers', context)
+              addLocation('headers', context),
             )}`
           : ''
       }`;

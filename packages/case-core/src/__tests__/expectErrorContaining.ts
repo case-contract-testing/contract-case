@@ -6,7 +6,7 @@ export const makeExpectErrorContaining =
   (
     matcher: AnyCaseMatcherOrData,
     example: unknown,
-    expectedContent: string
+    expectedContent: string,
   ): void => {
     describe(`when given ${example}`, () => {
       it(`returns an error containing '${expectedContent}'`, async () => {
@@ -15,7 +15,7 @@ export const makeExpectErrorContaining =
         expect(
           matchResult
             .map((m) => m.toString())
-            .reduce((acc, m) => `${acc} ${m}`, '')
+            .reduce((acc, m) => `${acc} ${m}`, ''),
         ).toContain(expectedContent);
       });
     });

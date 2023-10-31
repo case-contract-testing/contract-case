@@ -11,7 +11,7 @@ import type { MockSetupFns } from './types';
 
 const inferMock = <T extends AnyMockDescriptorType>(
   mock: CaseMockDescriptorFor<T>,
-  context: MatchContext
+  context: MatchContext,
 ) => {
   context.logger.maintainerDebug('Raw mockDescriptor is', mock);
 
@@ -22,7 +22,7 @@ const inferMock = <T extends AnyMockDescriptorType>(
 
   if (invertedType !== mock['_case:mock:type']) {
     context.logger.maintainerDebug(
-      `Inverting mock from '${mock['_case:mock:type']}' to '${invertedType}'`
+      `Inverting mock from '${mock['_case:mock:type']}' to '${invertedType}'`,
     );
     return {
       ...mock,
@@ -30,7 +30,7 @@ const inferMock = <T extends AnyMockDescriptorType>(
     };
   }
   context.logger.maintainerDebug(
-    `Mock type left at '${mock['_case:mock:type']}'`
+    `Mock type left at '${mock['_case:mock:type']}'`,
   );
   return mock;
 };
@@ -38,13 +38,13 @@ const inferMock = <T extends AnyMockDescriptorType>(
 const executeMock = <T extends AnyMockDescriptorType>(
   mock: CaseMockDescriptorFor<T>,
   MockSetup: MockSetupFns,
-  context: MatchContext
+  context: MatchContext,
 ) => {
   const mockType: T = mock['_case:mock:type'];
   if (!mockType) {
     throw new CaseCoreError(
       `Missing type for mock setup. You must pass a MockDescriptor to setup`,
-      context
+      context,
     );
   }
 
@@ -57,7 +57,7 @@ const executeMock = <T extends AnyMockDescriptorType>(
       mock['_case:mock:type'].startsWith('_case:')
         ? mock['_case:mock:type'].replace('_case:', 'ContractCase ')
         : mock['_case:mock:type']
-    }`
+    }`,
   );
   return executor(mock, addLocation(mockType, context));
 };
@@ -65,10 +65,10 @@ const executeMock = <T extends AnyMockDescriptorType>(
 export const mockExecutor = <T extends AnyMockDescriptorType>(
   mock: CaseMockDescriptorFor<T>,
   MockSetup: MockSetupFns,
-  context: MatchContext
+  context: MatchContext,
 ): Promise<MockData<T>> =>
   executeMock(
     inferMock(mock, addLocation('inference', context)),
     MockSetup,
-    context
+    context,
   );

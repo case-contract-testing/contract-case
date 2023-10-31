@@ -24,7 +24,7 @@ import { configFromEnv } from '../../core/config';
 
 export type DefinitionSuccessExample<
   T extends AnyMockDescriptorType,
-  R = unknown
+  R = unknown,
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
   definition: CaseMockDescriptorFor<T>;
@@ -35,7 +35,7 @@ export type DefinitionSuccessExample<
 
 export type DefinitionFailingExample<
   T extends AnyMockDescriptorType,
-  R = unknown
+  R = unknown,
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
   definition: CaseMockDescriptorFor<T>;
@@ -57,7 +57,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     invoker: MultiTestInvoker<M>,
     printer: TestPrinter,
     parentVersions: string[],
-    dependencies = writerDependencies(printer)
+    dependencies = writerDependencies(printer),
   ) {
     this.config = {
       ...dependencies.defaultConfig,
@@ -68,7 +68,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
       description,
       dependencies,
       this.config,
-      parentVersions
+      parentVersions,
     );
 
     this.invoker = invoker;
@@ -85,17 +85,17 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
       testResponse,
       stateHandlers,
     }: DefinitionSuccessExample<T, R>,
-    runConfig: CaseConfig = {}
+    runConfig: CaseConfig = {},
   ): Promise<unknown> {
     if (trigger === undefined && testResponse !== undefined) {
       throw new CaseConfigurationError(
-        'The testResponse function was supplied, but this is not valid without also supplying `trigger`'
+        'The testResponse function was supplied, but this is not valid without also supplying `trigger`',
       );
     }
 
     if (trigger !== undefined && testResponse === undefined) {
       throw new CaseConfigurationError(
-        'There was a trigger supplied, but without a corresponding `testResponse` function'
+        'There was a trigger supplied, but without a corresponding `testResponse` function',
       );
     }
 
@@ -113,7 +113,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
         triggerAndTests,
         stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
       },
-      runConfig
+      runConfig,
     );
   }
 
@@ -128,17 +128,17 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
       testErrorResponse,
       stateHandlers,
     }: DefinitionFailingExample<T, R>,
-    runConfig: CaseConfig = {}
+    runConfig: CaseConfig = {},
   ): Promise<unknown> {
     if (trigger === undefined && testErrorResponse !== undefined) {
       throw new CaseConfigurationError(
-        'The testErrorResponse function was supplied, but this is not valid without also supplying `trigger`'
+        'The testErrorResponse function was supplied, but this is not valid without also supplying `trigger`',
       );
     }
 
     if (trigger !== undefined && testErrorResponse === undefined) {
       throw new CaseConfigurationError(
-        'There was a trigger supplied, but without a corresponding `testErrorResponse` function'
+        'There was a trigger supplied, but without a corresponding `testErrorResponse` function',
       );
     }
 
@@ -157,7 +157,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
           {},
         stateHandlers: stateHandlers || this.invoker.stateHandlers || {},
       },
-      runConfig
+      runConfig,
     );
   }
 

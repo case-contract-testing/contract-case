@@ -14,7 +14,7 @@ import type {
 const check = async (
   matcher: CoreStringSuffixMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> => {
   if (typeof actual !== 'string') {
     return makeResults(
@@ -22,8 +22,8 @@ const check = async (
         matcher,
         `'${typeof actual}' is not a string`,
         actual,
-        matchContext
-      )
+        matchContext,
+      ),
     );
   }
 
@@ -33,16 +33,16 @@ const check = async (
         addLocation(':suffix', matchContext),
         actual.substring(
           0,
-          actual.length - matcher['_case:matcher:suffix'].length
-        )
+          actual.length - matcher['_case:matcher:suffix'].length,
+        ),
       )
     : makeResults(
         matchingError(
           matcher,
           `The string '${actual}' did not end with the expected suffix '${matcher['_case:matcher:suffix']}'`,
           actual,
-          matchContext
-        )
+          matchContext,
+        ),
       );
 };
 
@@ -51,13 +51,13 @@ export const StringSuffixMatcher: MatcherExecutor<typeof STRING_SUFFIX_TYPE> = {
     `"${matchContext
       .descendAndDescribe(
         matcher['_case:matcher:prefix'],
-        addLocation(':suffix', matchContext)
+        addLocation(':suffix', matchContext),
       )
       .replace(/^"+|"+$/g, '')}${matcher['_case:matcher:suffix']}"`,
   check,
   strip: (matcher: CoreStringSuffixMatcher, matchContext) =>
     `${mustResolveToString(
       matcher['_case:matcher:prefix'],
-      addLocation(':suffix', matchContext)
+      addLocation(':suffix', matchContext),
     )}${matcher['_case:matcher:suffix']}`,
 };

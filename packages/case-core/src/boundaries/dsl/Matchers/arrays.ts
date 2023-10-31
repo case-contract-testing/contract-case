@@ -22,7 +22,7 @@ type ArrayLengthOptions = { minLength?: number; maxLength?: number };
  */
 export const arrayEachEntryMatches = (
   matcher: AnyCaseMatcherOrData,
-  example?: Array<AnyCaseMatcherOrData>
+  example?: Array<AnyCaseMatcherOrData>,
 ): CoreArrayEachEntryMatches => ({
   '_case:matcher:type': ARRAY_EACH_ENTRY_MATCHES_TYPE,
   '_case:matcher:matcher': matcher,
@@ -35,7 +35,7 @@ export const arrayEachEntryMatches = (
  * @param options - `ArrayLengthOptions { minLength?: number; maxLength?: number }`
  */
 export const arrayLength = (
-  options: ArrayLengthOptions
+  options: ArrayLengthOptions,
 ): CoreArrayLengthMatcher => {
   const matcher = coreArrayLengthMatcher(options);
   if (
@@ -43,7 +43,7 @@ export const arrayLength = (
     matcher['_case:matcher:maxLength'] !== 0
   ) {
     throw new CaseConfigurationError(
-      "Can't create an arrayLength matcher with minimum size 0 and maximum size not 0. Use a raw empty array instead. See the documentation for details."
+      "Can't create an arrayLength matcher with minimum size 0 and maximum size not 0. Use a raw empty array instead. See the documentation for details.",
     );
     // TODO write documentation for this
   }
@@ -70,5 +70,5 @@ export const arrayContains = (
  * @param matchers - An array of matchers that describes the start of the array
  */
 export const arrayStartsWith = (
-  matchers: AnyCaseMatcherOrData[]
+  matchers: AnyCaseMatcherOrData[],
 ): CoreShapedArrayMatcher => coreShapedArrayMatcher(matchers);

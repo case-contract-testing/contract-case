@@ -29,7 +29,7 @@ const mapAdditional = (additional: unknown[]) =>
 
 export const makeLogger: (
   context: LogLevelContext,
-  printer: LogPrinter
+  printer: LogPrinter,
 ) => Logger = (matchContext: LogLevelContext, printer) => ({
   warn(message: string, ...additional: unknown[]): void {
     if (shouldLog(matchContext, 'warn')) {
@@ -40,7 +40,7 @@ export const makeLogger: (
         '[WARNING]',
         locationString(matchContext),
         message,
-        mapAdditional(additional)
+        mapAdditional(additional),
       );
     }
   },
@@ -53,7 +53,7 @@ export const makeLogger: (
         '[ERROR]',
         locationString(matchContext),
         message,
-        mapAdditional(additional)
+        mapAdditional(additional),
       );
     }
   },
@@ -66,7 +66,7 @@ export const makeLogger: (
         '[DEBUG]',
         locationString(matchContext),
         message,
-        mapAdditional(additional)
+        mapAdditional(additional),
       );
     }
   },
@@ -76,12 +76,12 @@ export const makeLogger: (
         'maintainerDebug',
         timestampString(),
         caseVersionString(
-          matchContext['_case:currentRun:context:parentVersions']
+          matchContext['_case:currentRun:context:parentVersions'],
         ),
         '[MAINTAINER-DEBUG]',
         locationString(matchContext),
         message,
-        mapAdditional(additional)
+        mapAdditional(additional),
       );
     }
   },
@@ -92,12 +92,12 @@ export const makeLogger: (
         'deepMaintainerDebug',
         timestampString(),
         caseVersionString(
-          matchContext['_case:currentRun:context:parentVersions']
+          matchContext['_case:currentRun:context:parentVersions'],
         ),
         '[DEEP-MAINTAINER-DEBUG]',
         locationString(matchContext),
         message,
-        mapAdditional(additional)
+        mapAdditional(additional),
       );
     }
   },

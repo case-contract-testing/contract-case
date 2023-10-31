@@ -21,7 +21,7 @@ import {
 
 const strip: StripMatcherFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
   matcher: CoreArrayLengthMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData => {
   throw new StripUnsupportedError(matcher, matchContext);
 };
@@ -29,7 +29,7 @@ const strip: StripMatcherFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
 const check: CheckMatchFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
   matcher: CoreArrayLengthMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> | MatchResult =>
   Array.isArray(actual)
     ? combineResults(
@@ -42,8 +42,8 @@ const check: CheckMatchFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
             `Array length of '${actual.length}' is over the maximum length of ${matcher['_case:matcher:maxLength']}`,
             actual,
             matchContext,
-            `Array length <= ${matcher['_case:matcher:maxLength']}`
-          )
+            `Array length <= ${matcher['_case:matcher:maxLength']}`,
+          ),
         ),
         errorWhen(
           actual.length < matcher['_case:matcher:minLength'],
@@ -52,9 +52,9 @@ const check: CheckMatchFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
             `Array length of '${actual.length}' is under the minimum length of ${matcher['_case:matcher:minLength']}`,
             actual,
             matchContext,
-            `Array length >= ${matcher['_case:matcher:minLength']}`
-          )
-        )
+            `Array length >= ${matcher['_case:matcher:minLength']}`,
+          ),
+        ),
       )
     : combineResults(
         makeResults(
@@ -63,9 +63,9 @@ const check: CheckMatchFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
             `'${typeof actual}' is not an array`,
             actual,
             matchContext,
-            `An array`
-          )
-        )
+            `An array`,
+          ),
+        ),
       );
 
 export const ArrayLengthExecutor: MatcherExecutor<

@@ -21,21 +21,21 @@ import type {
 const checkExample = (
   rule: number | string,
   actual: unknown,
-  makeError: (message: string) => CaseError
+  makeError: (message: string) => CaseError,
 ): MatchResult => {
   if (typeof actual !== 'number')
     return makeResults(
       makeError(
-        `Inappropriate type '${typeof actual}' for HTTP status code - must be a number`
-      )
+        `Inappropriate type '${typeof actual}' for HTTP status code - must be a number`,
+      ),
     );
   switch (typeof rule) {
     case 'number':
       return errorWhen(
         actual !== rule,
         makeError(
-          `Status code ${actualToString(actual)} is not equal to '${rule}'`
-        )
+          `Status code ${actualToString(actual)} is not equal to '${rule}'`,
+        ),
       );
     case 'string': {
       const actualAsString = `${actual}`;
@@ -43,9 +43,9 @@ const checkExample = (
         return makeResults(
           makeError(
             `Status code ${actualToString(
-              actual
-            )} does not appear to be the right length`
-          )
+              actual,
+            )} does not appear to be the right length`,
+          ),
         );
       }
       for (let i = 0; i < rule.length; i += 1) {
@@ -56,8 +56,8 @@ const checkExample = (
         ) {
           return makeResults(
             makeError(
-              `Status code ${actualToString(actual)} does not match '${rule}'`
-            )
+              `Status code ${actualToString(actual)} does not match '${rule}'`,
+            ),
           );
         }
       }
@@ -65,7 +65,7 @@ const checkExample = (
     }
     default:
       throw new CaseCoreError(
-        `Inappropriate type '${typeof rule}' for HTTP status code matching rule.`
+        `Inappropriate type '${typeof rule}' for HTTP status code matching rule.`,
       );
   }
 };
@@ -73,7 +73,7 @@ const checkExample = (
 const check: CheckMatchFn<typeof HTTP_STATUS_CODE_MATCHER_TYPE> = (
   matcher: CoreHttpStatusCodeMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): MatchResult => {
   const makeError = (message: string) =>
     matchingError(matcher, message, actual, matchContext);
@@ -88,13 +88,13 @@ const check: CheckMatchFn<typeof HTTP_STATUS_CODE_MATCHER_TYPE> = (
           matchingError(
             matcher,
             `The returned http status code (${actualToString(
-              actual
+              actual,
             )}) did not match any of the following status codes: ${matcher[
               '_case:matcher:rule'
             ].join(', ')}`,
             actual,
-            matchContext
-          )
+            matchContext,
+          ),
         );
   }
   return checkExample(matcher['_case:matcher:rule'], actual, makeError);

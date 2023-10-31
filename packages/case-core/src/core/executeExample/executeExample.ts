@@ -32,12 +32,12 @@ import { CaseTriggerError } from '../../entities/errors/CaseTriggerError';
 const errorToFailedExample = (
   error: Error,
   example: CaseExample,
-  context: MatchContext
+  context: MatchContext,
 ) => {
   if (error instanceof VerifyTriggerReturnObjectError) {
     return makeFailedExample(
       example,
-      makeResults(verificationError(error, context))
+      makeResults(verificationError(error, context)),
     );
   }
   if (
@@ -46,13 +46,13 @@ const errorToFailedExample = (
   ) {
     return makeFailedExample(
       example,
-      makeResults(configurationError(error, context))
+      makeResults(configurationError(error, context)),
     );
   }
   if (error instanceof CaseTriggerError) {
     return makeFailedExample(
       example,
-      makeResults(triggerError(error, context))
+      makeResults(triggerError(error, context)),
     );
   }
   if (error instanceof CaseFailedAssertionError) {
@@ -65,14 +65,14 @@ const errorToFailedExample = (
 
   return makeFailedExample(
     example,
-    makeResults(configurationError(error, context))
+    makeResults(configurationError(error, context)),
   );
 };
 
 const assertableToExample = <T extends AnyMockDescriptorType>(
   assertable: Assertable<T>,
   example: CaseExample,
-  context: MatchContext
+  context: MatchContext,
 ) =>
   assertable.assert().then(
     (matchResult) => {
@@ -85,11 +85,11 @@ const assertableToExample = <T extends AnyMockDescriptorType>(
     },
     (error) => {
       context.logger.debug(
-        `This example failed while trying to run the assertion`
+        `This example failed while trying to run the assertion`,
       );
 
       return errorToFailedExample(error, example, context);
-    }
+    },
   );
 
 export const executeExample = <T extends AnyMockDescriptorType, R>(
@@ -105,7 +105,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
     testResponse,
   }: InvokingScaffold<T, R>,
   contract: WritingCaseContract | ReadingCaseContract,
-  context: MatchContext
+  context: MatchContext,
 ): Promise<unknown> =>
   setupExample<T>(example, stateHandlers, context)
     .then(
@@ -123,7 +123,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
             testResponse,
           },
           assertable,
-          context
+          context,
         ).then(
           () => {
             context.logger.maintainerDebug(`Asserting result`);
@@ -131,29 +131,29 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
           },
           async (error) => {
             context.logger.debug(
-              `This example failed while trying to invoke the trigger function`
+              `This example failed while trying to invoke the trigger function`,
             );
             // We still need to drain the assertable
 
             context.logger.maintainerDebug(
-              `Draining assertable and ignoring the result`
+              `Draining assertable and ignoring the result`,
             );
             await assertable.assert().catch();
 
             return errorToFailedExample(error, example, context);
-          }
+          },
         );
       },
       (error) =>
         makeFailedExample(
           example,
-          makeResults(configurationError(error, context))
-        )
+          makeResults(configurationError(error, context)),
+        ),
     )
     .then((resultingExample) => {
       handleResult(
         contract.recordExample(resultingExample, context),
         context['_case:currentRun:context:testName'],
-        context
+        context,
       );
     });

@@ -13,17 +13,17 @@ export * from './matchers/types';
 export type CheckMatchFn<T extends AnyCaseNodeType> = (
   matcher: CaseNodeFor<T>,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ) => Promise<MatchResult> | MatchResult;
 
 export type StripMatcherFn<T extends AnyCaseNodeType> = (
   matcher: CaseNodeFor<T>,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ) => AnyData;
 
 export type NameMatcherFn<T extends AnyCaseNodeType> = (
   matcher: CaseNodeFor<T>,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ) => string;
 export interface MatcherExecutor<T extends AnyCaseNodeType> {
   describe: NameMatcherFn<T>;

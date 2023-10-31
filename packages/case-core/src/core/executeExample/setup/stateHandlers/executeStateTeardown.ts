@@ -11,7 +11,7 @@ import {
 const stateTeardownHandler = (
   stateSetups: StateHandlers,
   state: AnyState,
-  parentContext: MatchContext
+  parentContext: MatchContext,
 ) =>
   Promise.resolve(addLocation(`[${state.stateName}]`, parentContext)).then(
     (context) =>
@@ -20,33 +20,33 @@ const stateTeardownHandler = (
           const stateFn = stateSetups[state.stateName];
           if (stateFn !== undefined && !isSetupFunction(stateFn)) {
             context.logger.maintainerDebug(
-              `Calling state teardown for '${state.stateName}'`
+              `Calling state teardown for '${state.stateName}'`,
             );
             await stateFn.teardown();
           } else {
             context.logger.maintainerDebug(
-              `No state teardown exists for '${state.stateName}'`
+              `No state teardown exists for '${state.stateName}'`,
             );
           }
         })
         .catch((e) => {
           context.logger.error(
             `State teardown for '${state.stateName}' failed with: ${e.message}`,
-            e
+            e,
           );
           context.logger.error(
-            `Please check the implementation of the '${state.stateName}' state teardown function`
+            `Please check the implementation of the '${state.stateName}' state teardown function`,
           );
           throw new CaseConfigurationError(
-            `State teardown '${state.stateName}' failed: ${e.message}. Please check the implementation of your state teardown handler`
+            `State teardown '${state.stateName}' failed: ${e.message}. Please check the implementation of your state teardown handler`,
           );
-        })
+        }),
   );
 
 export const executeStateTeardown = (
   example: CaseExample,
   stateSetups: StateHandlers,
-  parentContext: MatchContext
+  parentContext: MatchContext,
 ): Promise<unknown> =>
   Promise.resolve(addLocation(':stateTeardown', parentContext)).then(
     (context) => {
@@ -57,12 +57,12 @@ export const executeStateTeardown = (
 
       if (variableSource === 'default') {
         context.logger.maintainerDebug(
-          `Not executing state teardown handlers, since run mode is '${context['_case:currentRun:context:contractMode']}'. Variables obtained from ${variableSource}`
+          `Not executing state teardown handlers, since run mode is '${context['_case:currentRun:context:contractMode']}'. Variables obtained from ${variableSource}`,
         );
         return Promise.resolve();
       }
       context.logger.maintainerDebug(
-        `Executing state teardown handlers in '${context['_case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`
+        `Executing state teardown handlers in '${context['_case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`,
       );
 
       return Promise.resolve()
@@ -79,11 +79,11 @@ export const executeStateTeardown = (
         .catch((e) => {
           context.logger.error(
             `Test may have passed, but at least one state teardown failed`,
-            e.message
+            e.message,
           );
           throw new CaseConfigurationError(
-            `State teardown errored: ${e.message}`
+            `State teardown errored: ${e.message}`,
           );
         });
-    }
+    },
   );

@@ -39,5 +39,5 @@ type SetupTeardown = {
 export type StateHandlers = Record<string, SetupFunction | SetupTeardown>;
 
 export const isSetupFunction = (
-  f: SetupFunction | SetupTeardown | undefined
+  f: SetupFunction | SetupTeardown | undefined,
 ): f is SetupFunction => typeof (f as SetupFunction) === 'function';

@@ -5,6 +5,6 @@ describe('render actual', () => {
     'renders %s as %s',
     (input, expected) => {
       expect(actualToString(input)).toBe(expected);
-    }
+    },
   );
 });

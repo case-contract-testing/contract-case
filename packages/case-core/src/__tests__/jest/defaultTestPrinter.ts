@@ -31,18 +31,18 @@ const printMatchError = ({
     `${spaces(
       6,
       `${chalk.bgRed.white(` ${kind} `)} ${chalk.whiteBright(
-        location
-      )} ${chalk.whiteBright(message)}`
+        location,
+      )} ${chalk.whiteBright(message)}`,
     )}\n${spaces(
       9,
-      `Expected something like:\n${spaces(3, chalk.green(expected))}`
+      `Expected something like:\n${spaces(3, chalk.green(expected))}`,
     )}\n${spaces(
       9,
       `Actual:\n${spaces(3, chalk.red(actual))}\n\n${spaces(
         12,
-        `${chalk.gray(` - ${locationTag} [${errorTypeTag}]`)}`
-      )}`
-    )}\n\n`
+        `${chalk.gray(` - ${locationTag} [${errorTypeTag}]`)}`,
+      )}`,
+    )}\n\n`,
   );
 };
 
@@ -58,12 +58,12 @@ const printMessageError = ({
     `${spaces(
       6,
       `${chalk.bgRed.white(` ${kind} `)} ${chalk.whiteBright(
-        location
-      )} ${chalk.whiteBright(message)}`
+        location,
+      )} ${chalk.whiteBright(message)}`,
     )}\n\n${spaces(
       12,
-      `${chalk.gray(` - ${locationTag} [${errorTypeTag}]`)}`
-    )}\n\n`
+      `${chalk.gray(` - ${locationTag} [${errorTypeTag}]`)}`,
+    )}\n\n`,
   );
 };
 
@@ -78,8 +78,8 @@ const printTestTitle = ({
   stdout.log(
     spaces(
       3,
-      `\n${colourIcon(icon)} ${chalk.whiteBright(title)}\n${additionalText}`
-    )
+      `\n${colourIcon(icon)} ${chalk.whiteBright(title)}\n${additionalText}`,
+    ),
   );
 };
 
@@ -97,7 +97,7 @@ const defaultLogPrinter: LogPrinter = {
     typeString: string,
     location: string,
     message: string,
-    additional: string
+    additional: string,
   ) => {
     let typeColour = chalk.redBright;
     let messageColour = chalk.white;
@@ -126,10 +126,10 @@ const defaultLogPrinter: LogPrinter = {
 
     stdout.log(
       `${timestamp} ${chalk.whiteBright(version)} ${typeColour(
-        typeString
+        typeString,
       )} ${chalk.blueBright(location)}: ${messageColour(message)}${
         additional !== '' ? `\n${messageColour(additional)}` : ''
-      }`
+      }`,
     );
   },
 };

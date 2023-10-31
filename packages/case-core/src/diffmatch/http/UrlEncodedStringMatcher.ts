@@ -19,36 +19,36 @@ import type {
 const check = (
   matcher: CoreUrlEncodedStringMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> | MatchResult =>
   typeof actual === 'string'
     ? matchContext.descendAndCheck(
         matcher['_case:matcher:child'],
         addLocation(':urlEncoded', matchContext),
-        decodeURIComponent(actual)
+        decodeURIComponent(actual),
       )
     : makeResults(
         matchingError(
           matcher,
           `${actualToString(
-            actual
+            actual,
           )} is not a string; so can't treat it as an encoded URL component`,
           actual,
-          matchContext
-        )
+          matchContext,
+        ),
       );
 
 const strip = (
   matcher: CoreUrlEncodedStringMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData => {
   const result = matchContext.descendAndStrip(
     matcher['_case:matcher:child'],
-    addLocation(':urlEncoded', matchContext)
+    addLocation(':urlEncoded', matchContext),
   );
   if (typeof result === 'string') return encodeURIComponent(result);
   throw new CaseConfigurationError(
-    `Unable to URL encode '${result}' during stripMatchers, as it's not a string and therefore can't be URL encoded`
+    `Unable to URL encode '${result}' during stripMatchers, as it's not a string and therefore can't be URL encoded`,
   );
 };
 
@@ -58,7 +58,7 @@ export const UrlEncodedStringMatcher: MatcherExecutor<
   describe: (matcher, matchContext) =>
     `uriEncoded string '${matchContext.descendAndDescribe(
       matcher['_case:matcher:child'],
-      addLocation(':urlEncoded', matchContext)
+      addLocation(':urlEncoded', matchContext),
     )}'`,
   check,
   strip,

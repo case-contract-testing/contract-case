@@ -23,20 +23,20 @@ import {
 
 const strip: StripMatcherFn<typeof ARRAY_CONTAINS_TYPE> = (
   matcher: CoreArrayContainsMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData =>
   matcher['_case:matcher:matchers'].map((childMatcher, index) =>
     matchContext.descendAndStrip(
       childMatcher,
-      addLocation(`:arrayContainsExample[${index}]`, matchContext)
-    )
+      addLocation(`:arrayContainsExample[${index}]`, matchContext),
+    ),
   );
 
 const checkMatch = async (
   parentMatcher: CoreArrayContainsMatcher,
   matcher: AnyCaseMatcherOrData,
   matchContext: MatchContext,
-  actual: unknown[]
+  actual: unknown[],
 ) =>
   actual.length !== 0
     ? Promise.all(
@@ -44,9 +44,9 @@ const checkMatch = async (
           matchContext.descendAndCheck(
             matcher,
             addLocation(`:actual[${index}]`, matchContext),
-            actualEntry
-          )
-        )
+            actualEntry,
+          ),
+        ),
       ).then((matchResult) => {
         const matched = matchResult.find((result) => !hasErrors(result));
         if (matched === undefined) {
@@ -60,10 +60,10 @@ const checkMatch = async (
                     : matcherToString(matcher)
                 }', but no elements matched. All matching errors follow; this list may be long if there are many elements in the array`,
                 actual,
-                matchContext
-              )
+                matchContext,
+              ),
             ),
-            ...matchResult
+            ...matchResult,
           );
         }
         return matched;
@@ -77,14 +77,14 @@ const checkMatch = async (
               : matcherToString(matcher)
           }', but the array was empty`,
           actual,
-          matchContext
-        )
+          matchContext,
+        ),
       );
 
 const check: CheckMatchFn<typeof ARRAY_CONTAINS_TYPE> = async (
   matcher: CoreArrayContainsMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> =>
   combineResults(
     Array.isArray(actual)
@@ -95,19 +95,19 @@ const check: CheckMatchFn<typeof ARRAY_CONTAINS_TYPE> = async (
                 matcher,
                 childMatcher,
                 addLocation(`:arrayContainsExample[${index}]`, matchContext),
-                actual
-              )
-            )
-          ))
+                actual,
+              ),
+            ),
+          )),
         )
       : makeResults(
           matchingError(
             matcher,
             `'${typeof actual}' is not an array`,
             actual,
-            matchContext
-          )
-        )
+            matchContext,
+          ),
+        ),
   );
 
 export const ArrayContains: MatcherExecutor<typeof ARRAY_CONTAINS_TYPE> = {
@@ -116,8 +116,8 @@ export const ArrayContains: MatcherExecutor<typeof ARRAY_CONTAINS_TYPE> = {
       .map((childMatcher, index) =>
         matchContext.descendAndDescribe(
           childMatcher,
-          addLocation(`:arrayContains[${index}]`, matchContext)
-        )
+          addLocation(`:arrayContains[${index}]`, matchContext),
+        ),
       )
       .join(' and ')},`,
   check,

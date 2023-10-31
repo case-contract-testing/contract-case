@@ -38,7 +38,7 @@ export class ReadingCaseContract extends BaseCaseContract {
       makeBrokerService,
     }: ReaderDependencies,
     config: CaseConfig,
-    parentVersions: string[]
+    parentVersions: string[],
   ) {
     super(
       contractFile.description,
@@ -46,7 +46,7 @@ export class ReadingCaseContract extends BaseCaseContract {
       defaultConfig,
       resultPrinter,
       makeLogger,
-      parentVersions
+      parentVersions,
     );
     this.currentContract = contractFile;
     this.makeBrokerService = makeBrokerService;
@@ -58,12 +58,12 @@ export class ReadingCaseContract extends BaseCaseContract {
 
   verifyContract<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
-    runTestCb: RunTestCallback
+    runTestCb: RunTestCallback,
   ): void {
     this.currentContract.examples.forEach((example, index) => {
       if (example.result !== 'VERIFIED') {
         throw new CaseCoreError(
-          `Attempting to verify an example which was '${example.result}'. This should never happen in normal operation, and might be the result of a corrupted ContractCase file, a file that was not written by ContractCase, or a bug.`
+          `Attempting to verify an example which was '${example.result}'. This should never happen in normal operation, and might be the result of a corrupted ContractCase file, a file that was not written by ContractCase, or a bug.`,
         );
       }
 
@@ -85,9 +85,9 @@ export class ReadingCaseContract extends BaseCaseContract {
                 'verification',
                 `mock[${index}]`,
               ],
-            })
-          )
-        )
+            }),
+          ),
+        ),
       );
     });
     runTestCb('Publishing verification results', () => {
@@ -99,7 +99,7 @@ export class ReadingCaseContract extends BaseCaseContract {
   // eslint-disable-next-line class-methods-use-this
   recordExample(
     example: CaseExample,
-    currentContext: MatchContext
+    currentContext: MatchContext,
   ): CaseExample {
     if (example.result === 'FAILED') {
       this.status = 'FAILED';
@@ -111,7 +111,7 @@ export class ReadingCaseContract extends BaseCaseContract {
   async endRecord(): Promise<void> {
     const publishingContext = addLocation(
       'PublishingResults',
-      this.initialContext
+      this.initialContext,
     );
     if (this.status === 'UNKNOWN') {
       this.status = 'SUCCESS';
@@ -125,21 +125,21 @@ export class ReadingCaseContract extends BaseCaseContract {
 
     if (!this.initialContext['_case:currentRun:context:brokerCiAccessToken']) {
       this.initialContext.logger.warn(
-        'Not publishing verification results, as there is no brokerCiAccessToken set'
+        'Not publishing verification results, as there is no brokerCiAccessToken set',
       );
       return;
     }
 
     this.initialContext.logger.maintainerDebug(
-      'Calling publishVerificationResults'
+      'Calling publishVerificationResults',
     );
     await this.makeBrokerService(publishingContext).publishVerificationResults(
       this.links,
       this.status === 'SUCCESS',
       addLocation(
         `PublishingVerification(${this.currentContract.description.consumerName} -> ${this.currentContract.description.providerName})`,
-        this.initialContext
-      )
+        this.initialContext,
+      ),
     );
   }
 }

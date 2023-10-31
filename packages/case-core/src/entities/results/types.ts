@@ -88,12 +88,12 @@ export type ResultFormatter = {
   printSuccessTitle: (
     example: CaseExample,
     index: string,
-    context: DataContext
+    context: DataContext,
   ) => void;
   printFailureTitle: (
     example: CaseExample,
     index: string,
-    context: DataContext
+    context: DataContext,
   ) => void;
   printDownloadedContract: (filename: string, context: DataContext) => void;
 };

@@ -17,7 +17,7 @@ import type {
 const check: CheckMatchFn<typeof NULL_MATCHER_TYPE> = (
   matcher: CoreNullMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Array<CaseError> =>
   errorWhen(
     actual !== null,
@@ -25,8 +25,8 @@ const check: CheckMatchFn<typeof NULL_MATCHER_TYPE> = (
       matcher,
       `${actualToString(actual)} is not null`,
       actual,
-      matchContext
-    )
+      matchContext,
+    ),
   );
 
 export const NullMatcher: MatcherExecutor<typeof NULL_MATCHER_TYPE> = {

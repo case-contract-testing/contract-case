@@ -12,7 +12,7 @@ import type { LookupMap } from './types';
 export const addMatcher = (
   matcherLookup: LookupMap,
   matcher: AnyCaseMatcherOrData,
-  context: MatchContextWithoutLookup
+  context: MatchContextWithoutLookup,
 ): LookupMap => {
   if (isLookupableMatcher(matcher) && '_case:matcher:child' in matcher) {
     return addLookup(
@@ -20,7 +20,7 @@ export const addMatcher = (
       'matcher',
       matcher['_case:matcher:uniqueName'],
       matcher['_case:matcher:child'],
-      context
+      context,
     );
   }
   return matcherLookup;
@@ -29,9 +29,9 @@ export const addMatcher = (
 export const addMock = (
   matcherLookup: LookupMap,
   mock: AnyMockDescriptor,
-  context: MatchContextWithoutLookup
+  context: MatchContextWithoutLookup,
 ): LookupMap =>
   [mock.request, mock.response].reduce(
     (acc, curr) => addMatcher(acc, curr, context),
-    matcherLookup
+    matcherLookup,
   );

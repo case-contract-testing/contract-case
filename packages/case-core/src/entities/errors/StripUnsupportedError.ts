@@ -13,8 +13,8 @@ export class StripUnsupportedError extends Error {
       `Matchers of type '${
         matcher['_case:matcher:type']
       }' do not support stripMatchers() without an example. This is an auxiliary matcher designed to be used with \`and()\`, and must be combined with a matcher that can be stripped. At: ${locationString(
-        context
-      )}`
+        context,
+      )}`,
     );
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = StripUnsupportedError.name;

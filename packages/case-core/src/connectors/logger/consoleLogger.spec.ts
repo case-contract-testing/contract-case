@@ -16,7 +16,7 @@ describe('console logger', () => {
       '_case:currentRun:context:parentVersions': ['logger-tests'],
       '_case:currentRun:context:logLevel': 'deepMaintainerDebug',
     },
-    defaultPrinter
+    defaultPrinter,
   );
 
   it('logs at each log level', () => {

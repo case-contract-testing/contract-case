@@ -2,7 +2,7 @@ import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { actualToString } from '../../../entities/results';
 
 export const isObject = (
-  actual: unknown
+  actual: unknown,
 ): actual is Record<string, AnyCaseMatcherOrData> => // the return type here is technically not correct
   typeof actual === 'object' &&
   actual === Object(actual) &&
@@ -21,6 +21,6 @@ export const whyNotAnObject = (actual: unknown): string => {
   }
 
   return `If you are seeing this message, there is a bug in whyNotAnObject, where it can't see a reason that '${actualToString(
-    actual
+    actual,
   )}' is not an Object, or it is inappropriately called.`;
 };

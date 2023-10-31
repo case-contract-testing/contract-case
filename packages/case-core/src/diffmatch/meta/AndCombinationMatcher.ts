@@ -16,14 +16,14 @@ import {
 
 const strip: StripMatcherFn<typeof COMBINE_MATCHERS_TYPE> = (
   matcher: CoreAndCombinationMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData => {
   const firstStrippedResult = matcher['_case:matcher:children']
     .map((additionalMatcher, index) => {
       try {
         return matchContext.descendAndStrip(
           additionalMatcher,
-          addLocation(`:and[${index}]`, matchContext)
+          addLocation(`:and[${index}]`, matchContext),
         );
       } catch (e) {
         if (e instanceof StripUnsupportedError) {
@@ -32,7 +32,7 @@ const strip: StripMatcherFn<typeof COMBINE_MATCHERS_TYPE> = (
               isCaseNode(additionalMatcher)
                 ? additionalMatcher['_case:matcher:type']
                 : additionalMatcher
-            }`
+            }`,
           );
           return e;
         }
@@ -46,7 +46,7 @@ const strip: StripMatcherFn<typeof COMBINE_MATCHERS_TYPE> = (
     firstStrippedResult instanceof StripUnsupportedError // This check isn't necessary, but the compiler now knows that it's not returning an error
   ) {
     matchContext.logger.maintainerDebug(
-      `AndCombinationMatcher had no matchers that supported strip`
+      `AndCombinationMatcher had no matchers that supported strip`,
     );
     throw new StripUnsupportedError(matcher, matchContext);
   }
@@ -56,7 +56,7 @@ const strip: StripMatcherFn<typeof COMBINE_MATCHERS_TYPE> = (
 const check: CheckMatchFn<typeof COMBINE_MATCHERS_TYPE> = async (
   matcher: CoreAndCombinationMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> =>
   (
     await Promise.all(
@@ -65,10 +65,10 @@ const check: CheckMatchFn<typeof COMBINE_MATCHERS_TYPE> = async (
           matchContext.descendAndCheck(
             expectedChild,
             addLocation(`:and[${index}]`, matchContext),
-            actual
-          )
+            actual,
+          ),
         )
-        .flat()
+        .flat(),
     )
   ).flat();
 
@@ -80,8 +80,8 @@ export const AndCombinationMatcher: MatcherExecutor<
       .map((child, index) =>
         matchContext.descendAndDescribe(
           child,
-          addLocation(`:and[${index}]`, matchContext)
-        )
+          addLocation(`:and[${index}]`, matchContext),
+        ),
       )
       .join(' and '),
   check,

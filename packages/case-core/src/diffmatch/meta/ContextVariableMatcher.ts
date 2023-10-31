@@ -14,7 +14,7 @@ import type {
 const check = (
   matcher: CoreContextVariableMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> | MatchResult => {
   if (
     matcher['_case:matcher:variableName'] in
@@ -27,31 +27,31 @@ const check = (
     if (value === undefined) {
       throw new CaseConfigurationError(
         `The variable '${matcher['_case:matcher:variableName']}' was undefined, which is not a valid variable value`,
-        matchContext
+        matchContext,
       );
     }
     return matchContext.descendAndCheck(
       value,
       addLocation(
         `:stateVariable[${matcher['_case:matcher:variableName']}]`,
-        matchContext
+        matchContext,
       ),
-      actual
+      actual,
     );
   }
   return matchContext.descendAndCheck(
     matchContext.lookupVariable(matcher['_case:matcher:variableName']),
     addLocation(
       `:contractVariable[${matcher['_case:matcher:variableName']}]`,
-      matchContext
+      matchContext,
     ),
-    actual
+    actual,
   );
 };
 
 const strip = (
   matcher: CoreContextVariableMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData => {
   if (
     matcher['_case:matcher:variableName'] in
@@ -64,23 +64,23 @@ const strip = (
     if (value === undefined) {
       throw new CaseConfigurationError(
         `The variable '${matcher['_case:matcher:variableName']}' was undefined, which is not a valid variable value`,
-        matchContext
+        matchContext,
       );
     }
     return matchContext.descendAndStrip(
       value,
       addLocation(
         `:stateVariable[${matcher['_case:matcher:variableName']}]`,
-        matchContext
-      )
+        matchContext,
+      ),
     );
   }
   return matchContext.descendAndStrip(
     matchContext.lookupVariable(matcher['_case:matcher:variableName']),
     addLocation(
       `:contractVariable[${matcher['_case:matcher:variableName']}]`,
-      matchContext
-    )
+      matchContext,
+    ),
   );
 };
 

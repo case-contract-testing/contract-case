@@ -17,12 +17,12 @@ import { testExactMatch } from './internal/testExactMatch';
 const check = (
   matcher: CoreNumberMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Array<CaseError> =>
   combineResults(
     errorWhen(
       matchContext['_case:context:matchBy'] === 'exact',
-      testExactMatch(matcher, matchContext, actual)
+      testExactMatch(matcher, matchContext, actual),
     ),
     errorWhen(
       typeof actual !== 'number',
@@ -30,8 +30,8 @@ const check = (
         matcher,
         `'${typeof actual}' is not a number`,
         actual,
-        matchContext
-      )
+        matchContext,
+      ),
     ),
     errorWhen(
       matchContext['_case:context:serialisableTo'] === 'json' &&
@@ -40,8 +40,8 @@ const check = (
         matcher,
         'NaN is not a valid JSON number',
         actual,
-        matchContext
-      )
+        matchContext,
+      ),
     ),
     errorWhen(
       matchContext['_case:context:serialisableTo'] === 'json' &&
@@ -51,9 +51,9 @@ const check = (
         matcher,
         'JSON numbers must be finite',
         actual,
-        matchContext
-      )
-    )
+        matchContext,
+      ),
+    ),
   );
 
 export const NumberMatcher: MatcherExecutor<typeof NUMBER_MATCHER_TYPE> = {

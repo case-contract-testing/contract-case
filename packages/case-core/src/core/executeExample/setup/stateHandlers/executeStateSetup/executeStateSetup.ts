@@ -14,40 +14,40 @@ import { validateVariables } from './validateVariables';
 const stateSetupHandler =
   (
     stateSetups: StateHandlers,
-    context: MatchContext
+    context: MatchContext,
   ): ((
-    state: AnyState
+    state: AnyState,
   ) => Promise<void | Record<string, AnyCaseMatcherOrData>>) =>
   (state: AnyState) => {
     const setupState = stateSetups[state.stateName];
     if (setupState === undefined) {
       context.logger.error(
-        `No state handler for '${state.stateName}' was defined`
+        `No state handler for '${state.stateName}' was defined`,
       );
       return Promise.reject(
         new CaseConfigurationError(
-          `Missing state setup for '${state.stateName}'`
-        )
+          `Missing state setup for '${state.stateName}'`,
+        ),
       );
     }
 
     return Promise.resolve()
       .then(() => {
         context.logger.maintainerDebug(
-          `Calling state setup for '${state.stateName}'`
+          `Calling state setup for '${state.stateName}'`,
         );
         return isSetupFunction(setupState) ? setupState() : setupState.setup();
       })
       .catch((e) => {
         context.logger.error(
           `State setup '${state.stateName}' failed with the following error: "${e.message}"`,
-          e
+          e,
         );
         context.logger.error(
-          `Please check the implementation of the '${state.stateName}' state setup handler`
+          `Please check the implementation of the '${state.stateName}' state setup handler`,
         );
         throw new CaseConfigurationError(
-          `State setup '${state.stateName}' failed with the following error: ${e.message}\n\nPlease check the implementation of your state setup handler`
+          `State setup '${state.stateName}' failed with the following error: ${e.message}\n\nPlease check the implementation of your state setup handler`,
         );
       });
   };
@@ -60,7 +60,7 @@ type StateSetupResult = {
 export const executeStateSetup = (
   example: CaseExample,
   stateSetups: StateHandlers,
-  parentContext: MatchContext
+  parentContext: MatchContext,
 ): Promise<MatchContext> =>
   Promise.resolve(addLocation(`:stateSetup`, parentContext))
     .then((context) => {
@@ -69,23 +69,23 @@ export const executeStateSetup = (
           context['_case:currentRun:context:contractMode']
         ].stateVariables;
       context.logger.maintainerDebug(
-        `Executing state setup handlers in '${context['_case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`
+        `Executing state setup handlers in '${context['_case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`,
       );
       if (variableSource === 'default') {
         return Promise.resolve(
           example.states
             .map((state) => {
               context.logger.debug(
-                `Setting up state '${state.stateName}' with default values`
+                `Setting up state '${state.stateName}' with default values`,
               );
               if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
                 return Object.entries(state.variables).map(([key, value]) =>
-                  context.addDefaultVariable(key, state.stateName, value)
+                  context.addDefaultVariable(key, state.stateName, value),
                 );
               }
               return [];
             })
-            .flat()
+            .flat(),
         );
       }
       return Promise.resolve()
@@ -97,14 +97,14 @@ export const executeStateSetup = (
           // eslint-disable-next-line no-restricted-syntax
           for (const state of example.states) {
             context.logger.maintainerDebug(
-              `Setting up state '${state.stateName}' with the provided handler`
+              `Setting up state '${state.stateName}' with the provided handler`,
             );
             const stateContext = addLocation(`[${state.stateName}]`, context);
             // eslint-disable-next-line no-await-in-loop
             const variables = await validateVariables(
               state,
               stateContext,
-              stateSetupHandler(stateSetups, stateContext)
+              stateSetupHandler(stateSetups, stateContext),
             );
 
             result.push({
@@ -118,14 +118,14 @@ export const executeStateSetup = (
           stateSetupResults
             .map((state) =>
               Object.entries(state.variables).map(([key, value]) =>
-                context.addStateVariable(key, state.stateName, value)
-              )
+                context.addStateVariable(key, state.stateName, value),
+              ),
             )
-            .flat()
+            .flat(),
         )
         .catch((e) => {
           context.logger.error(
-            `Failed to execute state setup before test, not running test. See the logs above for more information`
+            `Failed to execute state setup before test, not running test. See the logs above for more information`,
           );
           throw e;
         });
@@ -137,9 +137,9 @@ export const executeStateSetup = (
           ...acc,
           [name]: parentContext.descendAndStrip(
             value,
-            addLocation(':contextVariables', parentContext)
+            addLocation(':contextVariables', parentContext),
           ),
         }),
-        {} as Record<string, AnyCaseMatcherOrData>
+        {} as Record<string, AnyCaseMatcherOrData>,
       ),
     }));

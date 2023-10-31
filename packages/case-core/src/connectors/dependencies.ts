@@ -24,7 +24,7 @@ const DEFAULT_CONFIG: CaseConfig = {
 };
 
 export const writerDependencies: (
-  printer: LogPrinter & ResultPrinter
+  printer: LogPrinter & ResultPrinter,
 ) => WriterDependencies = (printer) => ({
   defaultConfig: { ...DEFAULT_CONFIG, throwOnFail: true },
   resultFormatter: makeResultFormatter(printer),
@@ -36,7 +36,7 @@ export const writerDependencies: (
 });
 
 export const readerDependencies: (
-  printer: LogPrinter & ResultPrinter
+  printer: LogPrinter & ResultPrinter,
 ) => ReaderDependencies = (printer) => ({
   defaultConfig: { ...DEFAULT_CONFIG, throwOnFail: false },
   resultFormatter: makeResultFormatter(printer),

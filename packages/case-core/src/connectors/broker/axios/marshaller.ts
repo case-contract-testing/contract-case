@@ -15,7 +15,7 @@ export const unmarshallFailure = (error: Error): never => {
       if (error.response.status === 403) {
         throw new BrokerError(
           `The access token you provided was rejected by the broker`,
-          API_NOT_AUTHORISED
+          API_NOT_AUTHORISED,
         );
       }
 
@@ -28,9 +28,9 @@ export const unmarshallFailure = (error: Error): never => {
             .concat(
               Object.entries<string[]>(error.response.data.errors)
                 .map(([k, v]: [string, string[]]) =>
-                  v.map((message) => `Error in field '${k}': ${message}`)
+                  v.map((message) => `Error in field '${k}': ${message}`),
                 )
-                .flat()
+                .flat(),
             )
             .join('\n');
         } catch {
@@ -43,17 +43,17 @@ export const unmarshallFailure = (error: Error): never => {
         `The broker returned an error code (${
           error.response.status
         }): ${JSON.stringify(error.response.data)}`,
-        API_ERROR
+        API_ERROR,
       );
     }
     if (error.request) {
       throw new BrokerError(
         `The server didn't respond: ${error.message} `,
-        API_NO_RESPONSE
+        API_NO_RESPONSE,
       );
     }
   }
   throw new CaseCoreError(
-    `Broker API Failed with: ${error.message}\n--Original stack trace:${error.stack}`
+    `Broker API Failed with: ${error.message}\n--Original stack trace:${error.stack}`,
   );
 };

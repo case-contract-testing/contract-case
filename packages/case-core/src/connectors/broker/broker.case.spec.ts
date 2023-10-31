@@ -43,7 +43,7 @@ const emptyContext: DataContext = {
       '_case:currentRun:context:location': ['DURING_TESTING'],
       '_case:currentRun:context:logLevel': 'none',
     },
-    defaultPrinter
+    defaultPrinter,
   ),
   resultPrinter: {
     printError(): void {},
@@ -68,12 +68,12 @@ const emptyContext: DataContext = {
 
 const contractFilename = 'case-contracts/case-pact-broker.case.json';
 const uploadingContract = makeContractStore(emptyContext).readContract(
-  'case-contracts/contract-for-broker-upload-test.json'
+  'case-contracts/contract-for-broker-upload-test.json',
 ).contents;
 
 const makeBrokerApiForTest = (
   url: string | undefined,
-  token: string | undefined
+  token: string | undefined,
 ) =>
   makeBrokerApi({
     '_case:currentRun:context:brokerCiAccessToken': token,
@@ -96,16 +96,16 @@ describe('broker client', () => {
       expect(() =>
         makeBrokerApiForTest('http://localhost', '').downloadContract(
           'example.com',
-          EMPTY_DATA_CONTEXT
-        )
+          EMPTY_DATA_CONTEXT,
+        ),
       ).toThrow(CaseConfigurationError);
     });
     it('fails with no baseUrl', () => {
       expect(() =>
         makeBrokerApiForTest('', 'TOKEN').downloadContract(
           'example.com',
-          EMPTY_DATA_CONTEXT
-        )
+          EMPTY_DATA_CONTEXT,
+        ),
       ).toThrow(CaseConfigurationError);
     });
 
@@ -113,8 +113,8 @@ describe('broker client', () => {
       expect(() =>
         makeBrokerApiForTest(3 as unknown as string, 'TOKEN').downloadContract(
           'example.com',
-          EMPTY_DATA_CONTEXT
-        )
+          EMPTY_DATA_CONTEXT,
+        ),
       ).toThrow(CaseConfigurationError);
     });
 
@@ -122,8 +122,8 @@ describe('broker client', () => {
       expect(() =>
         makeBrokerApiForTest('s', 3 as unknown as string).downloadContract(
           'example.com',
-          EMPTY_DATA_CONTEXT
-        )
+          EMPTY_DATA_CONTEXT,
+        ),
       ).toThrow(CaseConfigurationError);
     });
   });
@@ -156,12 +156,12 @@ describe('broker client', () => {
           path: uriEncodedString(
             stringPrefix(
               `/pacts/provider/`,
-              stringSuffix(stateVariable('providerName'), '/for-verification')
-            )
+              stringSuffix(stateVariable('providerName'), '/for-verification'),
+            ),
           ),
           body: {
             consumerVersionSelectors: arrayEachEntryMatches(
-              objectEachValueMatches(anyBoolean())
+              objectEachValueMatches(anyBoolean()),
             ),
             providerVersionTags: ['main'],
           },
@@ -189,7 +189,7 @@ describe('broker client', () => {
                             notices: arrayEachEntryMatches(
                               shapedLike({
                                 text: "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'",
-                              })
+                              }),
                             ),
                           },
                           _links: shapedLike({
@@ -212,10 +212,10 @@ describe('broker client', () => {
                 trigger: (config) =>
                   makeBrokerApiForTest(
                     config.baseUrl as string,
-                    config.variables['token'] as string
+                    config.variables['token'] as string,
                   ).urlsForVerification(
                     config.variables['providerName'] as string,
-                    emptyContext
+                    emptyContext,
                   ),
                 testResponse: (data) => {
                   expect(data).not.toBeNull();
@@ -236,7 +236,7 @@ describe('broker client', () => {
                       accept: 'application/hal+json',
                       authorization: basicAuth(
                         stringStateVariable('username'),
-                        stringStateVariable('password')
+                        stringStateVariable('password'),
                       ),
                     },
                   },
@@ -249,7 +249,7 @@ describe('broker client', () => {
                             notices: arrayEachEntryMatches(
                               shapedLike({
                                 text: "This pact is being verified because it is the pact for the latest version of Foo tagged with 'dev'",
-                              })
+                              }),
                             ),
                           },
                           _links: shapedLike({
@@ -278,7 +278,7 @@ describe('broker client', () => {
                     '_case:currentRun:context:brokerBaseUrl': config.baseUrl,
                   } as DataContext).urlsForVerification(
                     config.variables['providerName'] as string,
-                    emptyContext
+                    emptyContext,
                   ),
                 testResponse: (data) => {
                   expect(data).not.toBeNull();
@@ -301,13 +301,13 @@ describe('broker client', () => {
                     method: 'PUT',
                     path: stringPrefix(
                       `/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/`,
-                      anyString(someVersion)
+                      anyString(someVersion),
                     ),
                     headers: {
                       accept: 'application/json',
                       authorization: stringPrefix(
                         'Bearer ',
-                        stateVariable('token')
+                        stateVariable('token'),
                       ),
                     },
                   },
@@ -316,11 +316,11 @@ describe('broker client', () => {
                 trigger: (config) =>
                   makeBrokerApiForTest(
                     config.baseUrl,
-                    config.variables['token'] as string
+                    config.variables['token'] as string,
                   ).publishContract(
                     uploadingContract,
                     someVersion,
-                    emptyContext
+                    emptyContext,
                   ),
                 testResponse: (data) => {
                   expect(data).not.toBeNull();
@@ -341,13 +341,13 @@ describe('broker client', () => {
                     method: 'PUT',
                     path: stringPrefix(
                       `/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/`,
-                      anyString(someVersion)
+                      anyString(someVersion),
                     ),
                     headers: {
                       accept: 'application/json',
                       authorization: stringPrefix(
                         'Bearer ',
-                        stateVariable('invalidToken')
+                        stateVariable('invalidToken'),
                       ),
                     },
                   },
@@ -356,11 +356,11 @@ describe('broker client', () => {
                 trigger: (config) =>
                   makeBrokerApiForTest(
                     config.baseUrl,
-                    config.variables['invalidToken'] as string
+                    config.variables['invalidToken'] as string,
                   ).publishContract(
                     uploadingContract,
                     someVersion,
-                    emptyContext
+                    emptyContext,
                   ),
                 testErrorResponse: (error) => {
                   expect((error as BrokerError).code).toBe(API_NOT_AUTHORISED);
@@ -382,7 +382,7 @@ describe('broker client', () => {
                       accept: 'application/hal+json',
                       authorization: stringPrefix(
                         'Bearer ',
-                        stateVariable('token')
+                        stateVariable('token'),
                       ),
                     },
                     body: {
@@ -403,7 +403,7 @@ describe('broker client', () => {
                                 consumerName: anyString('Case'),
                                 providerName: anyString('Pact Broker'),
                               },
-                            })
+                            }),
                           ),
                         },
                       ],
@@ -417,15 +417,15 @@ describe('broker client', () => {
                           arrayContains({
                             type: 'debug',
                             text: anyString(
-                              'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main'
+                              'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main',
                             ),
                           }),
                           arrayContains({
                             type: 'info',
                             text: anyString(
-                              'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.'
+                              'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.',
                             ),
-                          })
+                          }),
                         ),
                         {
                           notices: [
@@ -438,7 +438,7 @@ describe('broker client', () => {
                               text: 'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.',
                             },
                           ],
-                        }
+                        },
                       ),
                     },
                   },
@@ -446,12 +446,12 @@ describe('broker client', () => {
                 trigger: (config) =>
                   makeBrokerApiForTest(
                     config.baseUrl,
-                    config.variables['token'] as string
+                    config.variables['token'] as string,
                   ).publishContractAdvanced(
                     uploadingContract,
                     someVersion,
                     branchName,
-                    emptyContext
+                    emptyContext,
                   ),
                 testResponse: (data) => {
                   expect(data).not.toBeNull();
@@ -474,7 +474,7 @@ describe('broker client', () => {
                       accept: 'application/hal+json',
                       authorization: stringPrefix(
                         'Bearer ',
-                        stateVariable('token')
+                        stateVariable('token'),
                       ),
                     },
                     body: {
@@ -490,8 +490,8 @@ describe('broker client', () => {
                           contentType: 'application/json',
                           content: anyString(
                             Buffer.from(
-                              JSON.stringify(uploadingContract)
-                            ).toString('base64')
+                              JSON.stringify(uploadingContract),
+                            ).toString('base64'),
                           ),
                         },
                       ],
@@ -502,12 +502,12 @@ describe('broker client', () => {
                 trigger: (config) =>
                   makeBrokerApiForTest(
                     config.baseUrl,
-                    config.variables['invalidToken'] as string
+                    config.variables['invalidToken'] as string,
                   ).publishContractAdvanced(
                     uploadingContract,
                     someVersion,
                     branchName,
-                    emptyContext
+                    emptyContext,
                   ),
                 testErrorResponse: (error) => {
                   expect((error as BrokerError).code).toBe(API_NOT_AUTHORISED);
@@ -516,7 +516,7 @@ describe('broker client', () => {
           });
         });
       });
-    }
+    },
   );
 
   describe('Broker contract', () => {});

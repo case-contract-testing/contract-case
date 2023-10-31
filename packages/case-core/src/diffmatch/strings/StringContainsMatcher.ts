@@ -18,11 +18,11 @@ import type {
 const check = async (
   matcher: CoreStringContainsMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> => {
   const expectedInclusion = mustResolveToString(
     matcher['_case:matcher:contains'],
-    matchContext
+    matchContext,
   );
   return combineResults(
     typeof actual === 'string'
@@ -32,17 +32,17 @@ const check = async (
             matcher,
             `The string '${actual}' did not include the expected substring '${expectedInclusion}'`,
             actual,
-            matchContext
-          )
+            matchContext,
+          ),
         )
       : makeResults(
           matchingError(
             matcher,
             `'${typeof actual}' is not a string`,
             actual,
-            matchContext
-          )
-        )
+            matchContext,
+          ),
+        ),
   );
 };
 
@@ -52,7 +52,7 @@ export const StringContainsMatcher: MatcherExecutor<
   describe: (matcher: CoreStringContainsMatcher, matchContext) =>
     `a string containing "${mustResolveToString(
       matcher['_case:matcher:contains'],
-      matchContext
+      matchContext,
     ).replace(/^"+|"+$/g, '')}"`,
   check,
   strip: (matcher: CoreStringContainsMatcher, matchContext) => {

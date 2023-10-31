@@ -22,7 +22,7 @@ export class ContractDownloader {
     config: CaseConfig,
     printer: TestPrinter,
     parentVersions: Array<string>,
-    dependencies = writerDependencies(printer)
+    dependencies = writerDependencies(printer),
   ) {
     this.context = constructDataContext(
       dependencies.makeLogger,
@@ -35,7 +35,7 @@ export class ContractDownloader {
         }),
       },
       dependencies.defaultConfig,
-      parentVersions
+      parentVersions,
     );
 
     this.broker = dependencies.makeBrokerService(this.context);
@@ -55,11 +55,11 @@ export class ContractDownloader {
             '_case:currentRun:context:testRunId':
               c.contractData._links['pb:pact-version'].name,
           });
-        })
+        }),
       )
       .then((filenames) => {
         filenames.forEach((filename) =>
-          this.resultPrinter.printDownloadedContract(filename, this.context)
+          this.resultPrinter.printDownloadedContract(filename, this.context),
         );
       });
   }

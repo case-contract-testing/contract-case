@@ -20,19 +20,19 @@ import type {
 
 const strip: StripMatcherFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = (
   matcher: CoreShapedArrayMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData =>
   matcher['_case:matcher:children'].map((expectedChild, index) =>
     matchContext.descendAndStrip(
       expectedChild,
-      addLocation(`[${index}]`, matchContext)
-    )
+      addLocation(`[${index}]`, matchContext),
+    ),
   );
 
 const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
   matcher: CoreShapedArrayMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> =>
   combineResults(
     Array.isArray(actual)
@@ -45,10 +45,10 @@ const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
                       matchContext.descendAndCheck(
                         expectedChild,
                         addLocation(`[${index}]`, matchContext),
-                        actual[index]
-                      )
+                        actual[index],
+                      ),
                     )
-                    .flat()
+                    .flat(),
                 )
               ).flat()
             : makeResults(
@@ -56,8 +56,8 @@ const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
                   matcher,
                   `Array has different lengths - expected at least '${matcher['_case:matcher:children'].length}' elements, but found only '${actual.length} elements`,
                   actual,
-                  matchContext
-                )
+                  matchContext,
+                ),
               ),
           matcher['_case:matcher:children'].length === 0 && actual.length !== 0
             ? makeResults(
@@ -65,19 +65,19 @@ const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
                   matcher,
                   `Expected an empty array, but instead found ${actual.length} elements`,
                   actual,
-                  matchContext
-                )
+                  matchContext,
+                ),
               )
-            : makeNoErrorResult()
+            : makeNoErrorResult(),
         )
       : makeResults(
           matchingError(
             matcher,
             `'${typeof actual}' is not an array`,
             actual,
-            matchContext
-          )
-        )
+            matchContext,
+          ),
+        ),
   );
 
 export const ShapedArrayExecutor: MatcherExecutor<
@@ -86,7 +86,7 @@ export const ShapedArrayExecutor: MatcherExecutor<
   describe: (matcher, context) =>
     `an array shaped like [${matcher['_case:matcher:children']
       .map((child, index) =>
-        context.descendAndDescribe(child, addLocation(`[${index}]`, context))
+        context.descendAndDescribe(child, addLocation(`[${index}]`, context)),
       )
       .join(',')}]`,
   check,

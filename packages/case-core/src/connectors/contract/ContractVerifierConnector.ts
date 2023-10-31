@@ -23,7 +23,7 @@ import { TestPrinter } from './types';
 
 const readContractFromStore = (
   config: CaseConfig,
-  reader: ContractStore
+  reader: ContractStore,
 ): ContractFileFromDisk[] => {
   if (
     config.contractFilename !== undefined &&
@@ -38,7 +38,7 @@ const readContractFromStore = (
     return reader.readContractsFromDir(config.contractDir);
   }
   throw new CaseConfigurationError(
-    'No contractFilename or contractDir specified. Must provide one of these so that Case can find the contract(s) to verify'
+    'No contractFilename or contractDir specified. Must provide one of these so that Case can find the contract(s) to verify',
   );
 };
 
@@ -60,7 +60,7 @@ export class ContractVerifierConnector {
     callback: RunTestCallback,
     printer: TestPrinter,
     parentVersions: string[],
-    dependencies = readerDependencies(printer)
+    dependencies = readerDependencies(printer),
   ) {
     this.dependencies = dependencies;
     this.parentVersions = parentVersions;
@@ -78,7 +78,7 @@ export class ContractVerifierConnector {
           ...configToRunContext(this.config),
         },
         dependencies.defaultConfig,
-        parentVersions
+        parentVersions,
       );
 
     const store = this.dependencies.makeContractStore(this.context);
@@ -94,67 +94,67 @@ export class ContractVerifierConnector {
 
   verifyContract<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
-    configOverride = {}
+    configOverride = {},
   ): void {
     const mergedConfig = { ...this.config, ...configOverride };
 
     if (typeof mergedConfig.providerName !== 'string') {
       throw new CaseConfigurationError(
-        `Must provide a providerName to verify (received '${mergedConfig.providerName}').`
+        `Must provide a providerName to verify (received '${mergedConfig.providerName}').`,
       );
     }
     this.context.logger.debug(
-      `There are ${this.contracts.length} contracts loaded (this may include contracts that don't belong to this run)`
+      `There are ${this.contracts.length} contracts loaded (this may include contracts that don't belong to this run)`,
     );
     this.contracts
       .filter(
         (item) =>
-          item.contents.description?.providerName !== mergedConfig.providerName
+          item.contents.description?.providerName !== mergedConfig.providerName,
       )
       .forEach((item) => {
         this.context.logger.debug(
-          `Skipping ${item.filePath} because it is not for the provider '${mergedConfig.providerName}' (It was for '${item.contents.description?.providerName}' instead)`
+          `Skipping ${item.filePath} because it is not for the provider '${mergedConfig.providerName}' (It was for '${item.contents.description?.providerName}' instead)`,
         );
       });
 
     const caseContractsForProvider = this.contracts.filter(
       (item) =>
-        item.contents.description?.providerName === mergedConfig.providerName
+        item.contents.description?.providerName === mergedConfig.providerName,
     );
 
     caseContractsForProvider
       .filter(
         (item) =>
           typeof mergedConfig.consumerName !== 'undefined' &&
-          item.contents.description?.consumerName !== mergedConfig.consumerName
+          item.contents.description?.consumerName !== mergedConfig.consumerName,
       )
       .forEach((item) => {
         this.context.logger.debug(
-          `Skipping ${item.filePath} because it is not for the consumer '${mergedConfig.consumerName}' (It was for '${item.contents.description?.consumerName}' instead)`
+          `Skipping ${item.filePath} because it is not for the consumer '${mergedConfig.consumerName}' (It was for '${item.contents.description?.consumerName}' instead)`,
         );
       });
 
     const contractsToVerify = caseContractsForProvider.filter(
       (item) =>
         typeof mergedConfig.consumerName === 'undefined' ||
-        item.contents.description?.consumerName === mergedConfig.consumerName
+        item.contents.description?.consumerName === mergedConfig.consumerName,
     );
 
     if (contractsToVerify.length === 0) {
       throw new CaseConfigurationError(
-        "No contracts were matched for verification. Try this run again with logLevel: 'debug' to find out more"
+        "No contracts were matched for verification. Try this run again with logLevel: 'debug' to find out more",
       );
     }
 
     contractsToVerify.map((contractLink) => {
       this.context.logger.debug(
-        `Verifying contract from file '${contractLink.filePath}'`
+        `Verifying contract from file '${contractLink.filePath}'`,
       );
       return new ReadingCaseContract(
         contractLink.contents,
         this.dependencies,
         mergedConfig,
-        this.parentVersions
+        this.parentVersions,
       ).verifyContract(invoker, this.callback);
     });
   }

@@ -12,7 +12,7 @@ export interface HasTypeForMockDescriptor<T extends AnyMockDescriptorType> {
 }
 
 export const isCaseMock = (
-  maybeMock: unknown
+  maybeMock: unknown,
 ): maybeMock is AnyMockDescriptor =>
   typeof maybeMock === 'object' &&
   maybeMock != null &&

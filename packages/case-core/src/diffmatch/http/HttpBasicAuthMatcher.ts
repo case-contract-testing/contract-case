@@ -20,7 +20,7 @@ import type {
 const encode = (username: string, password: string) => {
   if (username.includes(':')) {
     throw new CaseConfigurationError(
-      `The username for basic auth was: '${username}', but it must not contain a ':' (See RFC 7617)`
+      `The username for basic auth was: '${username}', but it must not contain a ':' (See RFC 7617)`,
     );
   }
   return Buffer.from(`${username}:${password}`).toString('base64');
@@ -28,18 +28,18 @@ const encode = (username: string, password: string) => {
 const check = async (
   matcher: CoreHttpBasicAuthValueMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> => {
   if (typeof actual !== 'string') {
     return makeResults(
       matchingError(
         matcher,
         `${actualToString(
-          actual
+          actual,
         )} is not a string; so can't use it as basic auth`,
         actual,
-        matchContext
-      )
+        matchContext,
+      ),
     );
   }
 
@@ -52,8 +52,8 @@ const check = async (
         matcher,
         `${actualToString(actual)} failed to decode from base64 to utf8`,
         actual,
-        matchContext
-      )
+        matchContext,
+      ),
     );
   }
 
@@ -63,8 +63,8 @@ const check = async (
         matcher,
         `Basic auth value decoded to ${decoded}, which doesn't contain a ':'`,
         actual,
-        matchContext
-      )
+        matchContext,
+      ),
     );
   }
 
@@ -76,37 +76,37 @@ const check = async (
     matchContext.descendAndCheck(
       matcher['_case:matcher:username'],
       addLocation('username', matchContext),
-      actualUsername
+      actualUsername,
     ),
     matchContext.descendAndCheck(
       matcher['_case:matcher:password'],
       addLocation('password', matchContext),
-      actualPassword
-    )
+      actualPassword,
+    ),
   );
 };
 
 const strip = (
   matcher: CoreHttpBasicAuthValueMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData => {
   const username = matchContext.descendAndStrip(
     matcher['_case:matcher:username'],
-    matchContext
+    matchContext,
   );
   const password = matchContext.descendAndStrip(
     matcher['_case:matcher:password'],
-    matchContext
+    matchContext,
   );
   if (typeof username !== 'string') {
     throw new CaseConfigurationError(
-      "The username for basic auth didn't resolve to a string, please check the definition"
+      "The username for basic auth didn't resolve to a string, please check the definition",
     );
   }
 
   if (typeof password !== 'string') {
     throw new CaseConfigurationError(
-      "The password for basic auth didn't resolve to a string, please check the definition"
+      "The password for basic auth didn't resolve to a string, please check the definition",
     );
   }
 
@@ -119,10 +119,10 @@ export const HttpBasicAuthMatcher: MatcherExecutor<
   describe: (matcher, matchContext) =>
     `http basic auth with username='${matchContext.descendAndDescribe(
       matcher['_case:matcher:username'],
-      addLocation('username', matchContext)
+      addLocation('username', matchContext),
     )}' and password=${matchContext.descendAndDescribe(
       matcher['_case:matcher:password'],
-      addLocation('password', matchContext)
+      addLocation('password', matchContext),
     )}`,
   check,
   strip,

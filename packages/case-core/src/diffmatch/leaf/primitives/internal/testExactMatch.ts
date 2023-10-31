@@ -9,18 +9,18 @@ import type { MatchContext, CaseError } from '../../../../entities/types';
 export const testExactMatch = (
   matcher: AnyLeafMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Array<CaseError> =>
   errorWhen(
     actual !== matcher['_case:matcher:example'],
     matchingError(
       matcher,
       `${actualToString(
-        actual
+        actual,
       )} (${typeof actual}) is not exactly equal to ${actualToString(
-        matcher['_case:matcher:example']
+        matcher['_case:matcher:example'],
       )} (${typeof matcher['_case:matcher:example']})`,
       actual,
-      matchContext
-    )
+      matchContext,
+    ),
   );

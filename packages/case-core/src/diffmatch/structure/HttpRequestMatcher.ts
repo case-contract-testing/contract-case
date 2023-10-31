@@ -28,13 +28,13 @@ const isHttpRequestData = (data: unknown): data is HttpRequestData => {
 
 const strip = (
   matcher: CoreHttpRequestMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData => ({
   ...(matcher.body
     ? {
         body: matchContext.descendAndStrip(
           matcher.body,
-          addLocation('body', matchContext)
+          addLocation('body', matchContext),
         ),
       }
     : {}),
@@ -42,7 +42,7 @@ const strip = (
     ? {
         query: matchContext.descendAndStrip(
           matcher.query,
-          addLocation('query', matchContext)
+          addLocation('query', matchContext),
         ),
       }
     : {}),
@@ -50,13 +50,13 @@ const strip = (
     ? {
         headers: matchContext.descendAndStrip(
           matcher.headers,
-          addLocation('headers', matchContext)
+          addLocation('headers', matchContext),
         ),
       }
     : {}),
   method: mustResolveToString(
     matcher.method,
-    addLocation('method', matchContext)
+    addLocation('method', matchContext),
   ),
   path: mustResolveToString(matcher.path, addLocation('path', matchContext)),
 });
@@ -64,18 +64,18 @@ const strip = (
 const check = async (
   matcher: CoreHttpRequestMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> => {
   if (!actual) {
     throw new CaseConfigurationError(
       'The server was never called. Please confirm that you are calling the mock server, and not your real server',
-      matchContext
+      matchContext,
     );
   }
   if (!isHttpRequestData(actual)) {
     throw new CaseCoreError(
       "The HttpRequestMatcher was invoked with something that isn't http request data.",
-      matchContext
+      matchContext,
     );
   }
   return combineResults(
@@ -83,77 +83,80 @@ const check = async (
       matchContext.descendAndCheck(
         matcher.method,
         addLocation('method', matchContext),
-        actual.method
+        actual.method,
       ),
       matchContext.descendAndCheck(
         matcher.path,
         addLocation('path', matchContext),
-        actual.path
+        actual.path,
       ),
       matcher.query !== undefined
         ? matchContext.descendAndCheck(
             matcher.query,
             addLocation('query', matchContext),
-            actual.query
+            actual.query,
           )
         : Promise.resolve(makeResults()),
       matcher.headers !== undefined
         ? matchContext.descendAndCheck(
             matcher.headers,
             addLocation('headers', matchContext),
-            actual.headers
+            actual.headers,
           )
         : Promise.resolve(makeResults()),
       matcher.body !== undefined
         ? matchContext.descendAndCheck(
             matcher.body,
             addLocation('body', matchContext),
-            actual.body
+            actual.body,
           )
         : Promise.resolve(makeResults()),
-    ]))
+    ])),
   );
 };
 
-const name = (request: CoreHttpRequestMatcher, context: MatchContext): string =>
+const name = (
+  request: CoreHttpRequestMatcher,
+  context: MatchContext,
+): string =>
   request.uniqueName
     ? request.uniqueName
     : `an http ${context.descendAndDescribe(
         request.method,
-        addLocation('method', context)
+        addLocation('method', context),
       )} request to ${context.descendAndDescribe(
         request.path,
-        addLocation('path', context)
+        addLocation('path', context),
       )}${
         request.query !== undefined
           ? `?${qs.stringify(
               Object.entries(
-                request.query as Record<string, AnyCaseMatcherOrData>
+                request.query as Record<string, AnyCaseMatcherOrData>,
               ).reduce<Record<string, string>>(
                 (acc, [key, value]) => ({
                   ...acc,
                   [key]: context.descendAndDescribe(
                     value,
-                    addLocation(`query[${key}]`, context)
+                    addLocation(`query[${key}]`, context),
                   ),
                 }),
-                {} as Record<string, string>
+                {} as Record<string, string>,
               ),
-              { encode: false }
+              { encode: false },
             )}`
           : ''
       }${
         request.headers
           ? ` with the following headers ${context.descendAndDescribe(
               request.headers,
-              addLocation('headers', context)
+              addLocation('headers', context),
             )}`
           : ''
       }${
         request.body
           ? ` and body ${context.descendAndDescribe(
               request.body,
-              addLocation('body', context)
+              addLocation('body', context),
             )}`
           : ' without a body'
       }`;

@@ -34,7 +34,7 @@
     "coverage": "lcov-result-merger '*/lcov.info' combined-coverage.info",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
-    "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
+    "format:base": "prettier --parser typescript \"{src,bin}/**/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write ",
     "pretest": "rimraf temp-contracts && ts-node ./bin/downloadContracts.ts \"http request provider\" && ts-node ./bin/downloadContracts.ts \"http response provider\"",

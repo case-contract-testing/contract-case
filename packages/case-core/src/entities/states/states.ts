@@ -11,7 +11,7 @@ import {
 
 export const state = (
   name: string,
-  variables?: Record<string, AnyCaseMatcherOrData>
+  variables?: Record<string, AnyCaseMatcherOrData>,
 ): NameOnlyState | StateWithVariables =>
   variables
     ? {

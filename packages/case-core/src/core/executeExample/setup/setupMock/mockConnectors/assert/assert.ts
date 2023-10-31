@@ -14,22 +14,22 @@ type DataAssertions<T extends object> = {
 const assertPresentInternal = <T extends object>(
   data: T,
   { field, type, notNull }: FieldDescriptor<T>,
-  name: string
+  name: string,
 ) => {
   if (!(field in data)) {
     throw new CaseConfigurationError(
-      `${name} must contain a '${String(field)}' key`
+      `${name} must contain a '${String(field)}' key`,
     );
   }
 
   if (typeof data[field] !== type) {
     throw new CaseConfigurationError(
-      `${name}'s ${String(field)} must be a ${type}`
+      `${name}'s ${String(field)} must be a ${type}`,
     );
   }
   if (notNull && data[field] === null) {
     throw new CaseConfigurationError(
-      `${name}'s ${String(field)} must not be null`
+      `${name}'s ${String(field)} must not be null`,
     );
   }
 };
@@ -37,17 +37,17 @@ const assertPresentInternal = <T extends object>(
 const ifPresentInternal = <T extends object>(
   data: T,
   { field, type, notNull }: FieldDescriptor<T>,
-  name: string
+  name: string,
 ) => {
   if (field in data) {
     if (typeof data[field] !== type) {
       throw new CaseConfigurationError(
-        `${name}'s ${String(field)} must be a ${type}`
+        `${name}'s ${String(field)} must be a ${type}`,
       );
     }
     if (notNull && data[field] === null) {
       throw new CaseConfigurationError(
-        `${name}'s ${String(field)} must not be null`
+        `${name}'s ${String(field)} must not be null`,
       );
     }
   }
@@ -55,7 +55,7 @@ const ifPresentInternal = <T extends object>(
 
 export const makeAssertionsOn = <T extends object>(
   data: T,
-  name: string
+  name: string,
 ): DataAssertions<T> => ({
   assertFieldPresent: ({ field, type }: FieldDescriptor<T>) =>
     assertPresentInternal(data, { field, type }, name),

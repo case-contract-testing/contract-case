@@ -38,13 +38,13 @@ const DEFAULT_CONTEXT: DefaultContext = {
 };
 
 const contextProperties = (
-  caseNode: AnyCaseMatcher | AnyMockDescriptor
+  caseNode: AnyCaseMatcher | AnyMockDescriptor,
 ): MatchContext =>
   Object.entries(caseNode)
     .filter(
       ([k]) =>
         k.startsWith('_case:context') ||
-        k === '_case:currentRun:context:logLevel'
+        k === '_case:currentRun:context:logLevel',
     )
     .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {} as MatchContext);
 
@@ -59,7 +59,7 @@ const updateFunctions = (context: MatchContext) => {
 
 export const foldIntoContext = (
   caseNode: AnyCaseMatcher | AnyMockDescriptor,
-  context: MatchContext
+  context: MatchContext,
 ): MatchContext => ({
   ...context,
   ...contextProperties(caseNode),
@@ -70,7 +70,7 @@ let exampleId = 0;
 const combineWithRoot = (
   caseNodeOrData: AnyCaseMatcherOrData | AnyMockDescriptor,
   context: MatchContext,
-  runConfig: Partial<RunContext>
+  runConfig: Partial<RunContext>,
 ) => {
   const newContext = {
     ...(isCaseNode(caseNodeOrData) || isCaseMock(caseNodeOrData)
@@ -91,7 +91,7 @@ export const constructDataContext = (
   resultPrinter: ResultFormatter,
   runConfig: Partial<RunContext>,
   defaults: Record<string, AnyData>,
-  parentVersions: Array<string>
+  parentVersions: Array<string>,
 ): DataContext => {
   const context = {
     makeLogger,
@@ -122,7 +122,7 @@ export const constructMatchContext = (
   resultPrinter: ResultFormatter,
   runConfig: Partial<RunContext>,
   defaults: Record<string, AnyData>,
-  parentVersions: Array<string>
+  parentVersions: Array<string>,
 ): MatchContext => {
   const context = {
     ...traversals,
@@ -131,7 +131,7 @@ export const constructMatchContext = (
       resultPrinter,
       runConfig,
       defaults,
-      parentVersions
+      parentVersions,
     ),
     makeLookup,
   };
@@ -145,12 +145,12 @@ export const constructMatchContext = (
 export const applyNodeToContext = (
   caseNodeOrData: AnyCaseMatcherOrData | AnyMockDescriptor,
   context: MatchContext,
-  runConfig: Partial<RunContext> = {}
+  runConfig: Partial<RunContext> = {},
 ): MatchContext => combineWithRoot(caseNodeOrData, context, runConfig);
 
 export const addLocation = (
   location: string,
-  context: MatchContext
+  context: MatchContext,
 ): MatchContext =>
   updateFunctions({
     ...context,
@@ -165,12 +165,12 @@ export const locationString = (matchContext: LogLevelContext): string =>
       (locationItem) =>
         (locationItem.startsWith(':') &&
           shouldLog(matchContext, 'maintainerDebug')) ||
-        !locationItem.startsWith(':')
+        !locationItem.startsWith(':'),
     )
     .reduce<string>(
       (acc: string, curr: string) =>
         curr.startsWith('[') || curr.startsWith(':') || acc === ''
           ? `${acc}${curr}`
           : `${acc}.${curr}`,
-      ''
+      '',
     );

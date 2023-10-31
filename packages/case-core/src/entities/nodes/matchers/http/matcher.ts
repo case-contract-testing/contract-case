@@ -17,7 +17,7 @@ import { validateCodes } from './validator';
 
 export const httpStatusCodeMatcher = (
   codes: string | Array<string>,
-  example?: number
+  example?: number,
 ): CoreHttpStatusCodeMatcher => {
   const impliedExample = validateCodes(codes);
   return {
@@ -29,21 +29,21 @@ export const httpStatusCodeMatcher = (
 };
 
 export const httpRequestMatcher = (
-  request: HttpMockRequest
+  request: HttpMockRequest,
 ): CoreHttpRequestMatcher => ({
   ...request,
   '_case:matcher:type': HTTP_REQUEST_MATCHER_TYPE,
 });
 
 export const httpResponseMatcher = (
-  response: HttpMockResponse
+  response: HttpMockResponse,
 ): CoreHttpResponseMatcher => ({
   ...response,
   '_case:matcher:type': HTTP_RESPONSE_MATCHER_TYPE,
 });
 
 export const coreUrlEncodedString = (
-  child: AnyCaseMatcherOrData
+  child: AnyCaseMatcherOrData,
 ): CoreUrlEncodedStringMatcher => ({
   '_case:matcher:type': URL_ENCODED_STRING_TYPE,
   '_case:matcher:child': child,
@@ -53,7 +53,7 @@ export const coreUrlEncodedString = (
 
 export const coreBasicAuthValue = (
   username: AnyCaseStringMatcher,
-  password: AnyCaseStringMatcher
+  password: AnyCaseStringMatcher,
 ): CoreHttpBasicAuthValueMatcher => ({
   '_case:matcher:type': HTTP_BASIC_AUTH_TYPE,
   '_case:matcher:username': username,

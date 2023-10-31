@@ -9,24 +9,24 @@ export const addLookup = (
   lookupType: LookupType,
   uniqueName: string,
   matcher: AnyCaseMatcherOrData,
-  context: MatchContextWithoutLookup
+  context: MatchContextWithoutLookup,
 ): Record<string, AnyCaseMatcherOrData> => {
   const lookupName = `${lookupType}:${uniqueName}`;
   context.logger.maintainerDebug(`Saving lookup ${lookupType}:`, matcher);
   if (matcherLookup[lookupName]) {
     if (!rawEquality(matcher, matcherLookup[lookupName])) {
       context.logger.error(
-        `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`
+        `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`,
       );
       context.logger.error('New matcher is', matcher);
       context.logger.error('Existing matcher is', matcherLookup[lookupName]);
 
       throw new CaseConfigurationError(
-        `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`
+        `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`,
       );
     } else {
       context.logger.maintainerDebug(
-        `The ${lookupType} with the name '${lookupName}' is already stored exactly as given`
+        `The ${lookupType} with the name '${lookupName}' is already stored exactly as given`,
       );
     }
   }
@@ -40,6 +40,6 @@ export const addLookup = (
 export const findLookup = (
   matcherLookup: LookupMap,
   lookupType: LookupType,
-  uniqueName: string
+  uniqueName: string,
 ): AnyCaseMatcherOrData | undefined =>
   matcherLookup[`${lookupType}:${uniqueName}`];

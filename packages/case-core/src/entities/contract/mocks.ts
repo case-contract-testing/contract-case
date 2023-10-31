@@ -11,7 +11,7 @@ const nameMatcher = (matcher: AnyCaseMatcherOrData, context: MatchContext) =>
 
 export const nameMock = <T extends AnyMockDescriptorType>(
   mock: CaseMockDescriptorFor<T>,
-  context: MatchContext
+  context: MatchContext,
 ): CaseMockDescriptorFor<T> => ({
   ...mock,
   request: nameMatcher(mock.request, context),

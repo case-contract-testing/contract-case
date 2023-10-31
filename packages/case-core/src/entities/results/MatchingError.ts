@@ -19,7 +19,7 @@ import {
 
 export const errorWhen = (
   test: boolean,
-  err: CaseError | Array<CaseError>
+  err: CaseError | Array<CaseError>,
 ): Array<CaseError> => (test ? [err].flat() : []);
 
 /**
@@ -37,7 +37,7 @@ export const matchingError = (
   message: string,
   actual: unknown,
   context: MatchContext,
-  expected?: unknown
+  expected?: unknown,
 ): CaseError => ({
   type: ERROR_TYPE_MATCHING,
   matcher,
@@ -70,7 +70,7 @@ export const failedExpectationError = (
   actual: unknown,
   code: string,
   context: MatchContext,
-  expected: unknown
+  expected: unknown,
 ): CaseError => ({
   type: ERROR_TYPE_RAW_MATCH,
   message,
@@ -90,7 +90,7 @@ export const failedExpectationError = (
  */
 export const configurationError = (
   error: Error,
-  context: MatchContext
+  context: MatchContext,
 ): ConfigurationError => ({
   type: ERROR_TYPE_CONFIGURATION,
   message: error.message,
@@ -107,7 +107,7 @@ export const configurationError = (
  */
 export const triggerError = (
   error: CaseTriggerError,
-  context: MatchContext
+  context: MatchContext,
 ): TriggerError => ({
   type: ERROR_TYPE_TRIGGER,
   message: error.message,
@@ -125,7 +125,7 @@ export const triggerError = (
  */
 export const verificationError = (
   error: VerifyTriggerReturnObjectError,
-  context: MatchContext
+  context: MatchContext,
 ): VerificationError => ({
   type: ERROR_TYPE_TEST_RESPONSE,
   message: error.message,

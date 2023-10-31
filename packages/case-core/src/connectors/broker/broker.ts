@@ -35,48 +35,48 @@ const trimSlash = (str: string | undefined): string => {
 const validatePrecondition = (
   baseUrl: string | undefined,
   authToken: string | undefined,
-  basicAuth: unknown | undefined
+  basicAuth: unknown | undefined,
 ) => {
   if (baseUrl === undefined || baseUrl === '') {
     return new CaseConfigurationError(
-      "Can't access a broker without specifying the base URL. Set the environment variable CASE_BROKER_BASEURL or the config property brokerBaseUrl"
+      "Can't access a broker without specifying the base URL. Set the environment variable CASE_BROKER_BASEURL or the config property brokerBaseUrl",
     );
   }
   if (typeof baseUrl !== 'string') {
     return new CaseConfigurationError(
-      `Expected the baseurl to be a string, but it was '${typeof authToken}'`
+      `Expected the baseurl to be a string, but it was '${typeof authToken}'`,
     );
   }
 
   if (authToken === undefined && basicAuth === undefined) {
     return new CaseConfigurationError(
-      "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN"
+      "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN",
     );
   }
 
   if (authToken !== undefined) {
     if (authToken === '') {
       return new CaseConfigurationError(
-        "Can't access a broker without an authorization token. Set the environment variable CASE_BROKER_CI_TOKEN"
+        "Can't access a broker without an authorization token. Set the environment variable CASE_BROKER_CI_TOKEN",
       );
     }
     if (typeof authToken !== 'string') {
       return new CaseConfigurationError(
-        `Expected the authToken to be a string, but it was '${typeof authToken}'`
+        `Expected the authToken to be a string, but it was '${typeof authToken}'`,
       );
     }
   }
 
   if (authToken === undefined && basicAuth === undefined) {
     return new CaseConfigurationError(
-      "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN"
+      "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN",
     );
   }
   return undefined;
 };
 
 export const makeBrokerApi: MakeBrokerApi = (
-  configContext: DataContext
+  configContext: DataContext,
 ): BrokerApi => {
   const authToken =
     configContext['_case:currentRun:context:brokerCiAccessToken'];
@@ -93,18 +93,18 @@ export const makeBrokerApi: MakeBrokerApi = (
     publishContract: (
       contract: ContractData,
       version: string,
-      logContext: LogContext
+      logContext: LogContext,
     ) => {
       if (err !== undefined) throw err;
       // TODO: Make this a first class object
       logContext.logger.debug(
-        `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
+        `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`,
       );
 
       const path = `/pacts/provider/${encodeURIComponent(
-        contract.description.providerName
+        contract.description.providerName,
       )}/consumer/${encodeURIComponent(
-        contract.description.consumerName
+        contract.description.consumerName,
       )}/version/${encodeURIComponent(version)}`;
 
       logContext.logger.maintainerDebug(`Publish path is: ${path}`);
@@ -113,7 +113,7 @@ export const makeBrokerApi: MakeBrokerApi = (
         logContext.logger.debug(`Published successfully`);
         logContext.logger.deepMaintainerDebug(
           `Published result was`,
-          JSON.stringify(d)
+          JSON.stringify(d),
         );
       });
     },
@@ -122,11 +122,11 @@ export const makeBrokerApi: MakeBrokerApi = (
       contract: ContractData,
       version: string,
       branch: string | false,
-      logContext: LogContext
+      logContext: LogContext,
     ) => {
       if (err !== undefined) throw err;
       logContext.logger.debug(
-        `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`
+        `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`,
       );
 
       return server.authedPost<
@@ -149,7 +149,7 @@ export const makeBrokerApi: MakeBrokerApi = (
             },
           ],
         },
-        logContext
+        logContext,
       );
     },
 
@@ -158,7 +158,7 @@ export const makeBrokerApi: MakeBrokerApi = (
       success: boolean,
       providerVersion: string,
       branch: string | false,
-      logContext: LogContext
+      logContext: LogContext,
     ) =>
       Promise.resolve()
         .then(() => {
@@ -166,10 +166,10 @@ export const makeBrokerApi: MakeBrokerApi = (
           if (contract._links === undefined) {
             logContext.logger.maintainerDebug(
               'No links section in the following contract:',
-              contract
+              contract,
             );
             throw new CaseConfigurationError(
-              `The contract between ${contract.description.consumerName} and ${contract.description.providerName} does not appear to have a links section. Was it downloaded from a broker?`
+              `The contract between ${contract.description.consumerName} and ${contract.description.providerName} does not appear to have a links section. Was it downloaded from a broker?`,
             );
           }
           if (
@@ -177,17 +177,17 @@ export const makeBrokerApi: MakeBrokerApi = (
           ) {
             logContext.logger.maintainerDebug(
               'No pb:publish-verification-result section in the following contract:',
-              contract
+              contract,
             );
             throw new CaseConfigurationError(
-              `The contract between ${contract.description.consumerName} and ${contract.description.providerName} does not appear to have a publish verification results URL`
+              `The contract between ${contract.description.consumerName} and ${contract.description.providerName} does not appear to have a publish verification results URL`,
             );
           }
         })
         .then(() =>
           makeAxiosConnector(
             contract._links['pb:publish-verification-results'].href,
-            auth
+            auth,
           )
             .authedPost<
               WireRequestPublishVerificationResults,
@@ -203,9 +203,9 @@ export const makeBrokerApi: MakeBrokerApi = (
                 executionDate: new Date(Date.now()).toISOString(),
                 tags: [],
               },
-              logContext
+              logContext,
             )
-            .then((t) => t)
+            .then((t) => t),
         ),
 
     downloadContract: (url: string, logContext: LogContext) => {
@@ -216,11 +216,11 @@ export const makeBrokerApi: MakeBrokerApi = (
     urlsForVerification: (serviceName: string, logContext: LogContext) => {
       if (err !== undefined) throw err;
       logContext.logger.debug(
-        `Finding contracts to verify for service '${serviceName}' on broker at ${baseUrl}`
+        `Finding contracts to verify for service '${serviceName}' on broker at ${baseUrl}`,
       );
 
       const path = `/pacts/provider/${encodeURIComponent(
-        serviceName
+        serviceName,
       )}/for-verification`;
 
       logContext.logger.maintainerDebug(`forVerification path is: ${path}`);
@@ -239,18 +239,18 @@ export const makeBrokerApi: MakeBrokerApi = (
             ],
             providerVersionTags: ['main'],
           },
-          logContext
+          logContext,
         )
         .then((d) => {
           logContext.logger.deepMaintainerDebug(
             `Pacts for verification responded with`,
-            JSON.stringify(d, undefined, 2)
+            JSON.stringify(d, undefined, 2),
           );
 
           const numPacts = d._embedded.pacts.length;
 
           logContext.logger.debug(
-            `Broker returned ${numPacts} URLs to possible contracts for verification`
+            `Broker returned ${numPacts} URLs to possible contracts for verification`,
           );
 
           return d._embedded.pacts.map((contract) => contract._links.self);

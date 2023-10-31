@@ -17,12 +17,12 @@ import { testExactMatch } from './internal/testExactMatch';
 const check = (
   matcher: CoreStringMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Array<CaseError> =>
   combineResults(
     errorWhen(
       matchContext['_case:context:matchBy'] === 'exact',
-      testExactMatch(matcher, matchContext, actual)
+      testExactMatch(matcher, matchContext, actual),
     ),
     errorWhen(
       typeof actual !== 'string',
@@ -30,9 +30,9 @@ const check = (
         matcher,
         `'${typeof actual}' is not a string`,
         actual,
-        matchContext
-      )
-    )
+        matchContext,
+      ),
+    ),
   );
 
 export const StringMatcher: MatcherExecutor<typeof STRING_MATCHER_TYPE> = {

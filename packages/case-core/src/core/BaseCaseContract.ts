@@ -44,7 +44,7 @@ export class BaseCaseContract {
     defaultConfig: CaseConfig,
     resultPrinter: ResultFormatter,
     makeLogger: (context: LogLevelContext) => Logger,
-    parentVersions: Array<string>
+    parentVersions: Array<string>,
   ) {
     this.currentContract = makeContract(description);
 
@@ -56,7 +56,7 @@ export class BaseCaseContract {
     };
 
     const makeLookup = (
-      context: MatchContextWithoutLookup
+      context: MatchContextWithoutLookup,
     ): ContractLookupFns => ({
       lookupMatcher: (uniqueName: string) =>
         contractFns.lookupMatcher(uniqueName, context),
@@ -65,12 +65,12 @@ export class BaseCaseContract {
       addDefaultVariable: (
         name: string,
         stateName: string,
-        value: AnyCaseMatcherOrData
+        value: AnyCaseMatcherOrData,
       ) => contractFns.addVariable(name, 'default', stateName, value, context),
       addStateVariable: (
         name: string,
         stateName: string,
-        value: AnyCaseMatcherOrData
+        value: AnyCaseMatcherOrData,
       ) => contractFns.addVariable(name, 'state', stateName, value, context),
       lookupVariable: (name: string) =>
         contractFns.lookupVariable(name, context),
@@ -83,7 +83,7 @@ export class BaseCaseContract {
       resultPrinter,
       { ...configToRunContext({ ...defaultConfig, ...config }) },
       defaultConfig,
-      parentVersions
+      parentVersions,
     );
 
     if (
@@ -91,7 +91,7 @@ export class BaseCaseContract {
       DEFAULT_TEST_ID
     ) {
       this.initialContext.logger.warn(
-        "The 'testRunId' config property has not been set for this run. It is recommended to set it for each CaseContract() or CaseVerifier() invocation."
+        "The 'testRunId' config property has not been set for this run. It is recommended to set it for each CaseContract() or CaseVerifier() invocation.",
         // TODO: put in a URL to the documentation here
       );
     }
@@ -99,14 +99,14 @@ export class BaseCaseContract {
 
   lookupVariable(
     name: string,
-    context: MatchContextWithoutLookup
+    context: MatchContextWithoutLookup,
   ): AnyCaseMatcherOrData {
     if (this.currentContract === undefined) {
       context.logger.error(
-        `lookupVariable was called without initialising the contract file. This should not be possible.`
+        `lookupVariable was called without initialising the contract file. This should not be possible.`,
       );
       throw new CaseConfigurationError(
-        'Contract was not initialised at the time that lookupVariable was called'
+        'Contract was not initialised at the time that lookupVariable was called',
       );
     }
 
@@ -114,7 +114,7 @@ export class BaseCaseContract {
 
     if (defaultVariable === undefined) {
       throw new CaseConfigurationError(
-        `Variable '${name}' was requested but appears not to be set. Is the variable spelt correctly, and the states for this mock are correctly set`
+        `Variable '${name}' was requested but appears not to be set. Is the variable spelt correctly, and the states for this mock are correctly set`,
       );
     }
     return coreShapedLike(defaultVariable);
@@ -125,14 +125,14 @@ export class BaseCaseContract {
     type: 'default' | 'state',
     stateName: string,
     value: AnyCaseMatcherOrData,
-    context: MatchContextWithoutLookup
+    context: MatchContextWithoutLookup,
   ): [name: string, value: AnyCaseMatcherOrData] {
     if (this.currentContract === undefined) {
       context.logger.error(
-        `addVariable was called by state '${stateName}' without initialising the contract file. This should not be possible.`
+        `addVariable was called by state '${stateName}' without initialising the contract file. This should not be possible.`,
       );
       throw new CaseConfigurationError(
-        'Contract was not initialised at the time that addVariable was called'
+        'Contract was not initialised at the time that addVariable was called',
       );
     }
 
@@ -141,7 +141,7 @@ export class BaseCaseContract {
         this.currentContract,
         name,
         coreShapedLike(value),
-        context
+        context,
       );
     }
 
@@ -150,35 +150,35 @@ export class BaseCaseContract {
 
   saveLookupableMatcher(
     namedMatcher: LookupableMatcher,
-    context: MatchContextWithoutLookup
+    context: MatchContextWithoutLookup,
   ): ContractData {
     if (this.currentContract === undefined) {
       context.logger.error(
-        'saveNamedMatcher was called without initialising the contract file. This should not be possible.'
+        'saveNamedMatcher was called without initialising the contract file. This should not be possible.',
       );
       throw new CaseConfigurationError(
-        'Contract was not initialised at the time that saveNamedMatcher was called'
+        'Contract was not initialised at the time that saveNamedMatcher was called',
       );
     }
 
     this.currentContract = addLookupableMatcher(
       this.currentContract,
       namedMatcher,
-      context
+      context,
     );
     return this.currentContract;
   }
 
   lookupMatcher(
     uniqueName: string,
-    context: MatchContextWithoutLookup
+    context: MatchContextWithoutLookup,
   ): AnyCaseMatcherOrData {
     if (!this.currentContract) {
       context.logger.error(
-        'lookupMatcher was called without initialising the contract file. This should not be possible.'
+        'lookupMatcher was called without initialising the contract file. This should not be possible.',
       );
       throw new CaseCoreError(
-        'Contract was not initialised at the time that lookupMatcher was called'
+        'Contract was not initialised at the time that lookupMatcher was called',
       );
     }
 
@@ -188,33 +188,33 @@ export class BaseCaseContract {
       return possibleMatch;
     }
     throw new CaseConfigurationError(
-      `Contract did not contain a matcher with the name '${uniqueName}'. Did you ask for it before it was defined?`
+      `Contract did not contain a matcher with the name '${uniqueName}'. Did you ask for it before it was defined?`,
     );
   }
 
   stripMatchers(matcherOrData: AnyCaseMatcherOrData): AnyData {
     return traversals.descendAndStrip(
       matcherOrData,
-      applyNodeToContext(matcherOrData, this.initialContext)
+      applyNodeToContext(matcherOrData, this.initialContext),
     );
   }
 
   checkMatch(
     matcherOrData: AnyCaseMatcherOrData,
-    actual: unknown
+    actual: unknown,
   ): Promise<MatchResult> {
     return Promise.resolve()
       .then(() =>
         traversals.selfVerify(
           matcherOrData,
-          applyNodeToContext(matcherOrData, this.initialContext)
-        )
+          applyNodeToContext(matcherOrData, this.initialContext),
+        ),
       )
       .then((selfVerification) => {
         if (hasErrors(selfVerification)) {
           throw new CaseConfigurationError(
             // TODO document this extensively.
-            `The matchers used have been given an example that doesn't pass the matcher: ${selfVerification[0]?.message} (at ${selfVerification[0]?.location})`
+            `The matchers used have been given an example that doesn't pass the matcher: ${selfVerification[0]?.message} (at ${selfVerification[0]?.location})`,
           );
         }
       })
@@ -222,8 +222,8 @@ export class BaseCaseContract {
         traversals.descendAndCheck(
           matcherOrData,
           applyNodeToContext(matcherOrData, this.initialContext),
-          actual
-        )
+          actual,
+        ),
       );
   }
 }

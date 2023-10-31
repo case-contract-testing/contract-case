@@ -28,21 +28,21 @@ const addressToString = (address: string | net.AddressInfo | null) => {
 };
 
 const validateHttpResponseData = (
-  maybeHttpResponseData: unknown
+  maybeHttpResponseData: unknown,
 ): HttpResponseData => {
   if (
     maybeHttpResponseData === null ||
     typeof maybeHttpResponseData !== 'object'
   ) {
     throw new CaseConfigurationError(
-      "Expected response description didn't resolve to a object"
+      "Expected response description didn't resolve to a object",
     );
   }
   const data = maybeHttpResponseData as HttpResponseData;
 
   if (!('status' in data)) {
     throw new CaseConfigurationError(
-      "Expected response description didn't contain a 'status' key"
+      "Expected response description didn't contain a 'status' key",
     );
   }
 
@@ -58,7 +58,7 @@ export const setupHttpResponseProducer = (
     request: expectedRequest,
     response: responseMatcher,
   }: CoreHttpRequestResponseMatcherPair,
-  context: MatchContext
+  context: MatchContext,
 ): Promise<MockData<typeof MOCK_HTTP_SERVER>> => {
   let requestData: HttpRequestData;
   let server: http.Server;
@@ -68,9 +68,9 @@ export const setupHttpResponseProducer = (
       validateHttpResponseData(
         context.descendAndStrip(
           responseMatcher,
-          addLocation('expectedRequest', context)
-        )
-      )
+          addLocation('expectedRequest', context),
+        ),
+      ),
     )
     .then(
       (expectedResponse) =>
@@ -91,7 +91,7 @@ export const setupHttpResponseProducer = (
 
             context.logger.debug(
               `Mock server at '${addressToString(server?.address())}' received`,
-              requestData
+              requestData,
             );
 
             res.status(expectedResponse.status);
@@ -109,21 +109,21 @@ export const setupHttpResponseProducer = (
 
           context.logger.maintainerDebug(
             `Mock server setup on address`,
-            address
+            address,
           );
           context.logger.debug(
-            `Mock server now listening on ${addressToString(address)}`
+            `Mock server now listening on ${addressToString(address)}`,
           );
 
           if (address == null) {
             context.logger.error(
-              `Server address was null or undefined. This shouldn't happen, and is a bug`
+              `Server address was null or undefined. This shouldn't happen, and is a bug`,
             );
             reject(
               new CaseCoreError(
                 'Server address was null after startup',
-                context
-              )
+                context,
+              ),
             );
             return;
           }
@@ -136,7 +136,7 @@ export const setupHttpResponseProducer = (
             `Mock listening and ready to accept ${
               typeof address === 'object' ? address.family : 'no-family'
             } connections: `,
-            mock
+            mock,
           );
           resolve({
             config: mock,
@@ -145,16 +145,16 @@ export const setupHttpResponseProducer = (
                 server.close((err?: Error) => {
                   context.logger.maintainerDebug(
                     `Closing server from ${mock.baseUrl}`,
-                    mock
+                    mock,
                   );
                   if (err) {
                     context.logger.error(
-                      `There was an error shutting down the mock server. This shouldn't happen, and might be a bug`
+                      `There was an error shutting down the mock server. This shouldn't happen, and might be a bug`,
                     );
                     closeReject(
                       new CaseCoreError(
-                        `The server at ${mock.baseUrl} was not running when it was asserted: ${err}`
-                      )
+                        `The server at ${mock.baseUrl} was not running when it was asserted: ${err}`,
+                      ),
                     );
                   } else {
                     startVerify();
@@ -162,7 +162,7 @@ export const setupHttpResponseProducer = (
                 });
               }).then(async () => {
                 context.logger.maintainerDebug(
-                  `Asserting that the expected request for the mock at ${mock.baseUrl} happened correctly`
+                  `Asserting that the expected request for the mock at ${mock.baseUrl} happened correctly`,
                 );
 
                 return {
@@ -172,6 +172,6 @@ export const setupHttpResponseProducer = (
                 };
               }),
           });
-        })
+        }),
     );
 };

@@ -8,8 +8,8 @@ describe('raw equals', () => {
     expect(
       rawEquality(
         [false, 0, { a: '', b: 12 }, [1]],
-        [false, 0, { a: '', b: 12 }, [1]]
-      )
+        [false, 0, { a: '', b: 12 }, [1]],
+      ),
     ).toBe(true);
     expect(rawEquality([1, 2, 3, 4], [1, 2, 3, 4])).toBe(true);
   });
@@ -21,14 +21,14 @@ describe('raw equals', () => {
     expect(
       rawEquality(
         [false, 0, { a: '', b: 1 }, [1]],
-        [false, 0, { a: '', b: 12 }, [1]]
-      )
+        [false, 0, { a: '', b: 12 }, [1]],
+      ),
     ).toBe(false);
     expect(
       rawEquality(
         [false, 0, { a: 0, b: 12 }, [1]],
-        [false, 0, { a: '', b: 12 }, [1]]
-      )
+        [false, 0, { a: '', b: 12 }, [1]],
+      ),
     ).toBe(false);
   });
 
@@ -64,7 +64,7 @@ describe('raw equals', () => {
         },
         body: { status: 'up' },
         '_case:matcher:type': '_case:HttpResponseMatcher',
-      })
+      }),
     ).toBe(false);
   });
 });

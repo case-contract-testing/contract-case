@@ -19,19 +19,19 @@ import type {
 const check = (
   matcher: CoreJsonStringifiedMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> | MatchResult => {
   if (typeof actual !== 'string') {
     return makeResults(
       matchingError(
         matcher,
         `${actualToString(
-          actual
+          actual,
         )} is not a string; so it can't match a json stringified string`,
         actual,
         matchContext,
-        '<A string that would parse as json>'
-      )
+        '<A string that would parse as json>',
+      ),
     );
   }
 
@@ -47,25 +47,25 @@ const check = (
         })`,
         actual,
         matchContext,
-        '<A string that would parse as json>'
-      )
+        '<A string that would parse as json>',
+      ),
     );
   }
 
   return matchContext.descendAndCheck(
     matcher['_case:matcher:child'],
     addLocation(':jsonStringify', matchContext),
-    decodedActual
+    decodedActual,
   );
 };
 
 const strip = (
   matcher: CoreJsonStringifiedMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData => {
   const result = matchContext.descendAndStrip(
     matcher['_case:matcher:child'],
-    addLocation(':jsonStringify', matchContext)
+    addLocation(':jsonStringify', matchContext),
   );
 
   let encoded: string;
@@ -75,7 +75,7 @@ const strip = (
     throw new CaseConfigurationError(
       `Unable to json stringify '${result}' during stripMatchers (${
         (parseError as Error).message
-      })`
+      })`,
     );
   }
   return encoded;
@@ -87,7 +87,7 @@ export const JsonStringifiedString: MatcherExecutor<
   describe: (matcher, matchContext) =>
     `json stringified '${matchContext.descendAndDescribe(
       matcher['_case:matcher:child'],
-      addLocation(':jsonStringify', matchContext)
+      addLocation(':jsonStringify', matchContext),
     )}'`,
   check,
   strip,

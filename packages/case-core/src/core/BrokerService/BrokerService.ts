@@ -22,14 +22,14 @@ export class BrokerService {
   publishVerificationResults(
     contract: DownloadedContract,
     success: boolean,
-    context: MatchContext
+    context: MatchContext,
   ): Promise<void> {
     if (
       context['_case:currentRun:context:publish'] === false ||
       context['_case:currentRun:context:publish'] === 'NEVER'
     ) {
       context.logger.debug(
-        `Not publishing verification results for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'NEVER' is set (or false)`
+        `Not publishing verification results for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'NEVER' is set (or false)`,
       );
       return Promise.resolve();
     }
@@ -38,7 +38,7 @@ export class BrokerService {
       !this.environment.isCi()
     ) {
       context.logger.debug(
-        `Not publishing verification results for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'ONLY_IN_CI' is set, and this is not a detected CI environment`
+        `Not publishing verification results for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'ONLY_IN_CI' is set, and this is not a detected CI environment`,
       );
       return Promise.resolve();
     }
@@ -54,7 +54,7 @@ export class BrokerService {
           success,
           this.environment.version(),
           this.environment.branch(),
-          addLocation(':PublishingContractAdvanced', context)
+          addLocation(':PublishingContractAdvanced', context),
         )
         .then(() => {});
     }
@@ -66,14 +66,14 @@ export class BrokerService {
 
   publishContract(
     contract: ContractData,
-    context: MatchContext
+    context: MatchContext,
   ): Promise<void> {
     if (
       context['_case:currentRun:context:publish'] === false ||
       context['_case:currentRun:context:publish'] === 'NEVER'
     ) {
       context.logger.debug(
-        `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'NEVER' is set (or false)`
+        `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'NEVER' is set (or false)`,
       );
       return Promise.resolve();
     }
@@ -82,7 +82,7 @@ export class BrokerService {
       !this.environment.isCi()
     ) {
       context.logger.debug(
-        `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'ONLY_IN_CI' is set, and this is not a detected CI environment`
+        `Not publishing contract for ${contract.description.consumerName} -> ${contract.description.providerName} as publish: 'ONLY_IN_CI' is set, and this is not a detected CI environment`,
       );
       return Promise.resolve();
     }
@@ -97,7 +97,7 @@ export class BrokerService {
           contract,
           this.environment.version(),
           this.environment.branch(),
-          addLocation(':PublishingContractAdvanced', context)
+          addLocation(':PublishingContractAdvanced', context),
         )
         .then((publishResults) => {
           const brokerResponse = addLocation('Response', context);
@@ -120,7 +120,7 @@ export class BrokerService {
                 break;
               case 'danger':
                 brokerResponse.logger.error(
-                  `From-Broker] [DANGER] ${notice.text}`
+                  `From-Broker] [DANGER] ${notice.text}`,
                 );
                 break;
               case 'warning':
@@ -131,8 +131,8 @@ export class BrokerService {
                   `The broker returned a log level ('${
                     notice.type
                   }') that Case doesn't know how to handle.\n\nThe problem is in the following notice object:\n\n${JSON.stringify(
-                    notice
-                  )}`
+                    notice,
+                  )}`,
                 );
             }
           });
@@ -146,17 +146,17 @@ export class BrokerService {
 
   async downloadContracts(
     serviceName: string,
-    context: DataContext
+    context: DataContext,
   ): Promise<DownloadedContracts> {
     const contractUrls = await this.broker.urlsForVerification(
       serviceName,
-      context
+      context,
     );
     context.logger.maintainerDebug('URLs are:', contractUrls);
 
     if (contractUrls.length === 0) {
       context.logger.warn(
-        'No contracts to verify. This may be normal if there is nothing to verify for this service'
+        'No contracts to verify. This may be normal if there is nothing to verify for this service',
       );
       return [];
     }

@@ -9,7 +9,7 @@ describe('location string function', () => {
         // This should be fixed later
         '_case:currentRun:context:logLevel': 'maintainerDebug',
         '_case:currentRun:context:location': location,
-      } as DataContext);
+      }) as DataContext;
     it.each([
       [[], ''],
       [['test', '[1]'], 'test[1]'],
@@ -26,9 +26,9 @@ describe('location string function', () => {
       "given the location '%p' it produces %s",
       (location: string[], expected: string) => {
         expect(locationString(mockContextWithLocation(location))).toBe(
-          expected
+          expected,
         );
-      }
+      },
     );
   });
 
@@ -39,7 +39,7 @@ describe('location string function', () => {
         // This should be fixed later
         '_case:currentRun:context:logLevel': 'debug',
         '_case:currentRun:context:location': location,
-      } as DataContext);
+      }) as DataContext;
     it.each([
       [[], ''],
       [['test', '[1]'], 'test[1]'],
@@ -53,9 +53,9 @@ describe('location string function', () => {
       "given the location '%p' it produces %s",
       (location: string[], expected: string) => {
         expect(locationString(mockContextWithLocation(location))).toBe(
-          expected
+          expected,
         );
-      }
+      },
     );
   });
 });

@@ -9,13 +9,13 @@ type HttpConnector = {
   authedPut: <T, R>(
     path: string,
     content: T,
-    context: LogContext
+    context: LogContext,
   ) => Promise<R>;
 
   authedPost: <T, R>(
     path: string,
     content: T,
-    context: LogContext
+    context: LogContext,
   ) => Promise<R>;
 };
 
@@ -24,7 +24,7 @@ type HttpConnector = {
 
 const withAuthHeaders = (
   headers: Record<string, string>,
-  auth: string | BasicAuth
+  auth: string | BasicAuth,
 ) => ({
   ...headers,
   ...(typeof auth === 'string' ? { Authorization: `Bearer ${auth}` } : {}),
@@ -32,7 +32,7 @@ const withAuthHeaders = (
 
 export const makeAxiosConnector = (
   baseurl: string,
-  auth: string | BasicAuth
+  auth: string | BasicAuth,
 ): HttpConnector => ({
   authedGet: (path: string, context: LogContext) => {
     const url = `${baseurl}${path}`;
@@ -44,7 +44,7 @@ export const makeAxiosConnector = (
           {
             //   Accept: 'application/json',
           },
-          auth
+          auth,
         ),
       })
       .then(unmarshallSuccess, unmarshallFailure)
@@ -63,7 +63,7 @@ export const makeAxiosConnector = (
           {
             Accept: 'application/json',
           },
-          auth
+          auth,
         ),
       })
       .then(unmarshallSuccess, unmarshallFailure)
@@ -82,7 +82,7 @@ export const makeAxiosConnector = (
           {
             Accept: 'application/hal+json',
           },
-          auth
+          auth,
         ),
       })
       .then(unmarshallSuccess, unmarshallFailure)

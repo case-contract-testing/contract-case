@@ -21,26 +21,26 @@ import type {
 
 const strip: StripMatcherFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = (
   matcher: CoreShapedObjectMatcher,
-  matchContext: MatchContext
+  matchContext: MatchContext,
 ): AnyData =>
   Object.entries<AnyCaseMatcherOrData>(matcher['_case:matcher:children'])
     .map(
       ([expectedKey, expectedValueMatcher]: [
         string,
-        AnyCaseMatcherOrData
+        AnyCaseMatcherOrData,
       ]): Record<string, AnyData> => ({
         [expectedKey]: matchContext.descendAndStrip(
           expectedValueMatcher,
-          addLocation(expectedKey, matchContext)
+          addLocation(expectedKey, matchContext),
         ),
-      })
+      }),
     )
     .reduce(
       (acc: Record<string, AnyData>, entry: Record<string, AnyData>) => ({
         ...acc,
         ...entry,
       }),
-      {}
+      {},
     );
 
 const whyNotAnObject = (actual: unknown) => {
@@ -55,19 +55,19 @@ const whyNotAnObject = (actual: unknown) => {
   }
   if (actual !== Object(actual)) {
     return `Expected an object, but '${actualToString(
-      actual
+      actual,
     )}' is not an object because the Object constructor doesn't return a reference to it`;
   }
 
   return `If you are seeing this message, there is a bug in whyNotAnObject, where it can't see a reason that '${actualToString(
-    actual
+    actual,
   )} is not an Object.`;
 };
 
 const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
   matcher: CoreShapedObjectMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Promise<MatchResult> => [
   ...(typeof actual === 'object' &&
   actual === Object(actual) &&
@@ -77,38 +77,38 @@ const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
         (
           await Promise.all(
             Object.entries<AnyCaseMatcherOrData>(
-              matcher['_case:matcher:children']
+              matcher['_case:matcher:children'],
             ).map(
               ([expectedKey, expectedValueMatcher]: [
                 string,
-                AnyCaseMatcherOrData
+                AnyCaseMatcherOrData,
               ]): Promise<MatchResult> =>
                 expectedKey in actual
                   ? Promise.resolve(
                       matchContext.descendAndCheck(
                         expectedValueMatcher,
                         addLocation(expectedKey, matchContext),
-                        (actual as { [k: string]: unknown })[expectedKey]
-                      )
+                        (actual as { [k: string]: unknown })[expectedKey],
+                      ),
                     )
                   : Promise.resolve(
                       makeResults(
                         matchingError(
                           matcher,
                           `missing key '${expectedKey}' in object: ${actualToString(
-                            actual
+                            actual,
                           )}`,
                           actual,
-                          matchContext
-                        )
-                      )
-                    )
-            )
+                          matchContext,
+                        ),
+                      ),
+                    ),
+            ),
           )
-        ).flat()
+        ).flat(),
       )
     : makeResults(
-        matchingError(matcher, whyNotAnObject(actual), actual, matchContext)
+        matchingError(matcher, whyNotAnObject(actual), actual, matchContext),
       )),
 ];
 
@@ -121,8 +121,8 @@ export const ShapedObjectExecutor: MatcherExecutor<
         ([key, child]) =>
           `${key}: ${context.descendAndDescribe(
             child,
-            addLocation(key, context)
-          )}`
+            addLocation(key, context),
+          )}`,
       )
       .join(',')}}`,
   check,

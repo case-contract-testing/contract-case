@@ -14,13 +14,13 @@ import type {
 
 export type RunTestCallback = (
   testName: string,
-  verify: () => Promise<unknown>
+  verify: () => Promise<unknown>,
 ) => void;
 
 export type HttpRequestConfig = Assertable<typeof MOCK_HTTP_SERVER>['config'];
 
 export type Trigger<T extends AnyMockDescriptorType, R = unknown> = (
-  config: SetupInfoFor<T> | ArbitraryConfig<T> | HttpRequestConfig
+  config: SetupInfoFor<T> | ArbitraryConfig<T> | HttpRequestConfig,
 ) => Promise<R>;
 
 type TriggerPair<T extends AnyMockDescriptorType, R> = {
@@ -43,7 +43,7 @@ export type MultiTestInvoker<T extends AnyMockDescriptorType, R = unknown> = {
 
 export type TestInvoker<
   T extends AnyMockDescriptorType,
-  R = unknown
+  R = unknown,
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
   mockDescription: CaseMockDescriptorFor<T>;

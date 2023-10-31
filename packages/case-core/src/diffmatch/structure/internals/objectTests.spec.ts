@@ -9,7 +9,7 @@ describe('isObject', () => {
 
     it('has the appropriate message', () => {
       expect(whyNotAnObject(f)).toBe(
-        "Expected an object, but the type was 'function' instead"
+        "Expected an object, but the type was 'function' instead",
       );
     });
   });
@@ -21,7 +21,7 @@ describe('isObject', () => {
 
     it('has the appropriate message', () => {
       expect(whyNotAnObject(e)).toBe(
-        'Expected an object, but it was null or undefined'
+        'Expected an object, but it was null or undefined',
       );
     });
   });
@@ -34,7 +34,7 @@ describe('isObject', () => {
 
     it('has the appropriate message', () => {
       expect(whyNotAnObject(e)).toBe(
-        'Expected an object, but it was null or undefined'
+        'Expected an object, but it was null or undefined',
       );
     });
   });
@@ -70,8 +70,8 @@ describe('isObject', () => {
     it('has the appropriate message', () => {
       expect(
         whyNotAnObject(e).startsWith(
-          'If you are seeing this message, there is a bug'
-        )
+          'If you are seeing this message, there is a bug',
+        ),
       ).toBeTruthy();
     });
   });

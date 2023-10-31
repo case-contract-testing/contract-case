@@ -18,22 +18,22 @@ export const SERIALISABLE_TO_JSON = 'json' as const;
 export interface RawLookupFns {
   lookupMatcher: (
     uniqueName: string,
-    context: MatchContextWithoutLookup
+    context: MatchContextWithoutLookup,
   ) => AnyCaseMatcherOrData;
   saveLookupableMatcher: (
     matcher: LookupableMatcher,
-    context: MatchContextWithoutLookup
+    context: MatchContextWithoutLookup,
   ) => void;
   addVariable: (
     name: string,
     type: 'default' | 'state',
     stateName: string,
     value: AnyCaseMatcherOrData,
-    context: MatchContextWithoutLookup
+    context: MatchContextWithoutLookup,
   ) => [name: string, value: AnyCaseMatcherOrData];
   lookupVariable: (
     name: string,
-    context: MatchContextWithoutLookup
+    context: MatchContextWithoutLookup,
   ) => AnyCaseMatcherOrData;
 }
 
@@ -43,12 +43,12 @@ export interface ContractLookupFns {
   addDefaultVariable: (
     name: string,
     stateName: string,
-    value: AnyCaseMatcherOrData
+    value: AnyCaseMatcherOrData,
   ) => [name: string, value: AnyCaseMatcherOrData];
   addStateVariable: (
     name: string,
     stateName: string,
-    value: AnyCaseMatcherOrData
+    value: AnyCaseMatcherOrData,
   ) => [name: string, value: AnyCaseMatcherOrData];
   lookupVariable: (name: string) => AnyCaseMatcherOrData;
 }
@@ -61,19 +61,19 @@ export interface TraversalFns {
   descendAndCheck: <T extends AnyCaseNodeType>(
     matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
     parentMatchContext: MatchContext,
-    actual: unknown
+    actual: unknown,
   ) => ReturnType<MatcherExecutor<T>['check']>;
   descendAndStrip: <T extends AnyCaseNodeType>(
     matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
-    parentMatchContext: MatchContext
+    parentMatchContext: MatchContext,
   ) => ReturnType<MatcherExecutor<T>['strip']>;
   descendAndDescribe: <T extends AnyCaseNodeType>(
     matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
-    parentMatchContext: MatchContext
+    parentMatchContext: MatchContext,
   ) => string;
   selfVerify: <T extends AnyCaseNodeType>(
     matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
-    parentMatchContext: MatchContext
+    parentMatchContext: MatchContext,
   ) => ReturnType<MatcherExecutor<T>['check']>;
 }
 

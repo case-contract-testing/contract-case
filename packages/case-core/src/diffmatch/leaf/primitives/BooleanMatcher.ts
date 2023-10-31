@@ -19,7 +19,7 @@ import { testExactMatch } from './internal/testExactMatch';
 const check: CheckMatchFn<typeof BOOLEAN_MATCHER_TYPE> = (
   matcher: CoreBooleanMatcher,
   matchContext: MatchContext,
-  actual: unknown
+  actual: unknown,
 ): Array<CaseError> =>
   combineResults(
     matchContext['_case:context:matchBy'] === 'exact'
@@ -31,10 +31,10 @@ const check: CheckMatchFn<typeof BOOLEAN_MATCHER_TYPE> = (
             matcher,
             `${actualToString(actual)} is not a boolean`,
             actual,
-            matchContext
-          )
+            matchContext,
+          ),
         )
-      : makeResults()
+      : makeResults(),
   );
 
 export const BooleanMatcher: MatcherExecutor<typeof BOOLEAN_MATCHER_TYPE> = {

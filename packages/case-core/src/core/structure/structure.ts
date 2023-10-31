@@ -14,7 +14,7 @@ import { addMock, addMatcher } from './lookup';
 import { addLookup, findLookup } from './lookup/internals';
 
 export const makeContract = (
-  description: CaseContractDescription
+  description: CaseContractDescription,
 ): ContractData => ({
   contractType: 'case::contract',
   description,
@@ -32,7 +32,7 @@ export const makeContract = (
 export const addExample = (
   contract: ContractData,
   example: CaseExample,
-  context: MatchContextWithoutLookup
+  context: MatchContextWithoutLookup,
 ): ContractData => ({
   ...contract,
   matcherLookup: addMock(contract.matcherLookup, example.mock, context),
@@ -45,7 +45,7 @@ export const hasFailure = (contract: ContractData): boolean =>
 
 export const findMatcher = (
   contract: ContractData,
-  uniqueName: string
+  uniqueName: string,
 ): AnyCaseMatcherOrData | undefined =>
   findLookup(contract.matcherLookup, 'matcher', uniqueName);
 
@@ -53,7 +53,7 @@ export const addVariable = (
   contract: ContractData,
   uniqueName: string,
   variable: AnyCaseMatcherOrData,
-  context: MatchContextWithoutLookup
+  context: MatchContextWithoutLookup,
 ): ContractData => ({
   ...contract,
   matcherLookup: addLookup(
@@ -61,19 +61,19 @@ export const addVariable = (
     `variable:default`,
     uniqueName,
     variable,
-    context
+    context,
   ),
   examples: [...contract.examples],
 });
 
 export const findVariable = (
   contract: ContractData,
-  uniqueName: string
+  uniqueName: string,
 ): AnyCaseMatcherOrData | undefined => {
   const stateVariable = findLookup(
     contract.matcherLookup,
     'variable:state',
-    uniqueName
+    uniqueName,
   );
   if (stateVariable !== undefined) {
     return stateVariable;
@@ -84,7 +84,7 @@ export const findVariable = (
 export const addLookupableMatcher = (
   contract: ContractData,
   matcher: LookupableMatcher,
-  context: MatchContextWithoutLookup
+  context: MatchContextWithoutLookup,
 ): ContractData => ({
   ...contract,
   matcherLookup: addMatcher(contract.matcherLookup, matcher, context),

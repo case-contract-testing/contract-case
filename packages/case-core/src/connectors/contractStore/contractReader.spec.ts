@@ -6,7 +6,7 @@ describe('readContract', () => {
   describe("when given a file that doesn't exist", () => {
     it('fails', () => {
       expect(() => readContract('this-no-existy.json')).toThrow(
-        CaseConfigurationError
+        CaseConfigurationError,
       );
     });
   });
@@ -22,7 +22,7 @@ describe('contractStore', () => {
   describe("when given a directory that doesn't exist", () => {
     it('fails', () => {
       expect(() => store.readContractsFromDir('this-no-existy-either')).toThrow(
-        CaseConfigurationError
+        CaseConfigurationError,
       );
     });
   });
