@@ -15,6 +15,17 @@
   * devDependencies
     * @contract-case/test-equivalence-matchers bumped from 0.12.0 to 0.12.1
 
+## [0.9.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.8.0...@contract-case/case-boundary-v0.9.0) (2023-10-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* Tighten boundary types now that this module is no longer translated with jsii
+
+### Code Refactoring
+
+* Tighten boundary types now that this module is no longer translated with jsii ([53ef989](https://github.com/case-contract-testing/contract-case/commit/53ef989e8d8bac1f2acdb1c13a8f88545ff82038))
+
 ## [0.8.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.7.0...@contract-case/case-boundary-v0.8.0) (2023-10-11)
 
 
