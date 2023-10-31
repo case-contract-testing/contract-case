@@ -5,7 +5,8 @@
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs/reference/matchers",
   "license": "BSD-3-Clause",
-  "main": "dist/src/index.js",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "directories": {
     "src": "src",
     "build": "build"
@@ -62,7 +63,6 @@
     "read-pkg-up": "^7.0.1"
   },
   "stability": "stable",
-  "types": "build/index.d.ts",
   "nx": {
     "tasksRunnerOptions": {
       "default": {
