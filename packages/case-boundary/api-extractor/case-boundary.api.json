@@ -176,7 +176,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-boundary!BoundaryAnyMatcher:type",
-          "docComment": "/**\n * This type is used for any matcher\n *\n * @public\n */\n",
+          "docComment": "/**\n * This type is used for any matcher, when viewing through jsii\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -191,9 +191,61 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "src/types.ts",
+          "fileUrlPath": "src/types.jsii-boundary.ts",
           "releaseTag": "Public",
           "name": "BoundaryAnyMatcher",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-boundary!BoundaryAnyMockDescriptor:type",
+          "docComment": "/**\n * This type is used for any matcher, when viewing through jsii\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type BoundaryAnyMockDescriptor = "
+            },
+            {
+              "kind": "Content",
+              "text": "any"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types.jsii-boundary.ts",
+          "releaseTag": "Public",
+          "name": "BoundaryAnyMockDescriptor",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-boundary!BoundaryAnyState:type",
+          "docComment": "/**\n * This type is used for any matcher, when viewing through jsii\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type BoundaryAnyState = "
+            },
+            {
+              "kind": "Content",
+              "text": "any"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types.jsii-boundary.ts",
+          "releaseTag": "Public",
+          "name": "BoundaryAnyState",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -354,8 +406,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "BoundaryMockDefinition",
-                  "canonicalReference": "@contract-case/case-boundary!BoundaryMockDefinition:interface"
+                  "text": "TsBoundaryMockDefinition",
+                  "canonicalReference": "@contract-case/case-boundary!TsBoundaryMockDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -434,8 +486,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "BoundaryMockDefinition",
-                  "canonicalReference": "@contract-case/case-boundary!BoundaryMockDefinition:interface"
+                  "text": "TsBoundaryMockDefinition",
+                  "canonicalReference": "@contract-case/case-boundary!TsBoundaryMockDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -514,8 +566,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "base.AnyMatcher",
-                  "canonicalReference": "@contract-case/test-equivalence-matchers!AnyMatcher:class"
+                  "text": "TsBoundaryAnyMatcher",
+                  "canonicalReference": "@contract-case/case-boundary!TsBoundaryAnyMatcher:type"
                 },
                 {
                   "kind": "Content",
@@ -1267,14 +1319,14 @@
         {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-boundary!BoundaryMockDefinition:interface",
-          "docComment": "/**\n * This interface describes a Mock Definition as seen by the boundary\n *\n * @public\n */\n",
+          "docComment": "/**\n * This interface describes a Mock Definition, when viewing through jsii\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
               "text": "export interface BoundaryMockDefinition "
             }
           ],
-          "fileUrlPath": "src/types.ts",
+          "fileUrlPath": "src/types.jsii-boundary.ts",
           "releaseTag": "Public",
           "name": "BoundaryMockDefinition",
           "preserveMemberOrder": false,
@@ -1289,8 +1341,9 @@
                   "text": "readonly definition: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "any"
+                  "kind": "Reference",
+                  "text": "BoundaryAnyMockDescriptor",
+                  "canonicalReference": "@contract-case/case-boundary!BoundaryAnyMockDescriptor:type"
                 },
                 {
                   "kind": "Content",
@@ -1322,7 +1375,16 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<any>"
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BoundaryAnyState",
+                  "canonicalReference": "@contract-case/case-boundary!BoundaryAnyState:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -1335,7 +1397,7 @@
               "name": "states",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 3
+                "endIndex": 5
               }
             }
           ],
@@ -3961,6 +4023,174 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-boundary!TsBoundaryAnyMatcher:type",
+          "docComment": "/**\n * This type is used for any matcher\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type TsBoundaryAnyMatcher = "
+            },
+            {
+              "kind": "Reference",
+              "text": "AnyCaseMatcherOrData",
+              "canonicalReference": "@contract-case/case-entities-internal!AnyCaseMatcherOrData:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types.ts-boundary.ts",
+          "releaseTag": "Public",
+          "name": "TsBoundaryAnyMatcher",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-boundary!TsBoundaryAnyMockDescriptor:type",
+          "docComment": "/**\n * This type is used for any matcher\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type TsBoundaryAnyMockDescriptor = "
+            },
+            {
+              "kind": "Reference",
+              "text": "AnyMockDescriptor",
+              "canonicalReference": "@contract-case/case-core!AnyMockDescriptor:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types.ts-boundary.ts",
+          "releaseTag": "Public",
+          "name": "TsBoundaryAnyMockDescriptor",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-boundary!TsBoundaryAnyState:type",
+          "docComment": "/**\n * This type is used for any matcher\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type TsBoundaryAnyState = "
+            },
+            {
+              "kind": "Reference",
+              "text": "AnyState",
+              "canonicalReference": "@contract-case/case-core!AnyState:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types.ts-boundary.ts",
+          "releaseTag": "Public",
+          "name": "TsBoundaryAnyState",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@contract-case/case-boundary!TsBoundaryMockDefinition:interface",
+          "docComment": "/**\n * This interface describes a Mock Definition, when viewing through jsii\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TsBoundaryMockDefinition "
+            }
+          ],
+          "fileUrlPath": "src/types.ts-boundary.ts",
+          "releaseTag": "Public",
+          "name": "TsBoundaryMockDefinition",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-boundary!TsBoundaryMockDefinition#definition:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly definition: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TsBoundaryAnyMockDescriptor",
+                  "canonicalReference": "@contract-case/case-boundary!TsBoundaryAnyMockDescriptor:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "definition",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-boundary!TsBoundaryMockDefinition#states:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly states: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TsBoundaryAnyState",
+                  "canonicalReference": "@contract-case/case-boundary!TsBoundaryAnyState:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "states",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
               }
             }
           ],

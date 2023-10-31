@@ -4,7 +4,7 @@
 
 ## BoundaryMockDefinition interface
 
-This interface describes a Mock Definition as seen by the boundary
+This interface describes a Mock Definition, when viewing through jsii
 
 **Signature:**
 
@@ -14,7 +14,7 @@ export interface BoundaryMockDefinition
 
 ## Properties
 
-| Property                                                           | Modifiers             | Type             | Description |
-| ------------------------------------------------------------------ | --------------------- | ---------------- | ----------- |
-| [definition](./case-boundary.boundarymockdefinition.definition.md) | <code>readonly</code> | any              |             |
-| [states](./case-boundary.boundarymockdefinition.states.md)         | <code>readonly</code> | Array&lt;any&gt; |             |
+| Property                                                           | Modifiers             | Type                                                                         | Description |
+| ------------------------------------------------------------------ | --------------------- | ---------------------------------------------------------------------------- | ----------- |
+| [definition](./case-boundary.boundarymockdefinition.definition.md) | <code>readonly</code> | [BoundaryAnyMockDescriptor](./case-boundary.boundaryanymockdescriptor.md)    |             |
+| [states](./case-boundary.boundarymockdefinition.states.md)         | <code>readonly</code> | Array&lt;[BoundaryAnyState](./case-boundary.boundaryanystate.md)<!-- -->&gt; |             |

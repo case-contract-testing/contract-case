@@ -4,10 +4,18 @@
 
 ```ts
 
-import { base } from '@contract-case/test-equivalence-matchers';
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
+import { AnyMockDescriptor } from '@contract-case/case-core';
+import { AnyState } from '@contract-case/case-core';
 
 // @public
 export type BoundaryAnyMatcher = any;
+
+// @public
+export type BoundaryAnyMockDescriptor = any;
+
+// @public
+export type BoundaryAnyState = any;
 
 // @public
 export class BoundaryContractDefiner {
@@ -15,11 +23,11 @@ export class BoundaryContractDefiner {
     // (undocumented)
     endRecord(): Promise<BoundaryResult>;
     // (undocumented)
-    runExample(definition: BoundaryMockDefinition, runConfig: ContractCaseBoundaryConfig): Promise<BoundaryResult>;
+    runExample(definition: TsBoundaryMockDefinition, runConfig: ContractCaseBoundaryConfig): Promise<BoundaryResult>;
     // (undocumented)
-    runRejectingExample(definition: BoundaryMockDefinition, runConfig: ContractCaseBoundaryConfig): Promise<BoundaryResult>;
+    runRejectingExample(definition: TsBoundaryMockDefinition, runConfig: ContractCaseBoundaryConfig): Promise<BoundaryResult>;
     // (undocumented)
-    stripMatchers(matcherOrData: base.AnyMatcher): BoundaryResult;
+    stripMatchers(matcherOrData: TsBoundaryAnyMatcher): BoundaryResult;
 }
 
 // @public
@@ -65,9 +73,9 @@ export class BoundaryFailureKindConstants {
 // @public
 export interface BoundaryMockDefinition {
     // (undocumented)
-    readonly definition: any;
+    readonly definition: BoundaryAnyMockDescriptor;
     // (undocumented)
-    readonly states: Array<any>;
+    readonly states: Array<BoundaryAnyState>;
 }
 
 // @public
@@ -244,6 +252,23 @@ export const RESULT_SUCCESS_HAS_ANY_PAYLOAD = "SuccessAny";
 //
 // @internal
 export const RESULT_SUCCESS_HAS_MAP_PAYLOAD = "SuccessMap";
+
+// @public
+export type TsBoundaryAnyMatcher = AnyCaseMatcherOrData;
+
+// @public
+export type TsBoundaryAnyMockDescriptor = AnyMockDescriptor;
+
+// @public
+export type TsBoundaryAnyState = AnyState;
+
+// @public
+export interface TsBoundaryMockDefinition {
+    // (undocumented)
+    readonly definition: TsBoundaryAnyMockDescriptor;
+    // (undocumented)
+    readonly states: Array<TsBoundaryAnyState>;
+}
 
 // @public
 export interface UserNamePassword {

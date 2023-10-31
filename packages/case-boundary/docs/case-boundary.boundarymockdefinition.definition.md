@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-readonly definition: any;
+readonly definition: BoundaryAnyMockDescriptor;
 ```

@@ -4,7 +4,7 @@
 
 ## BoundaryAnyMatcher type
 
-This type is used for any matcher
+This type is used for any matcher, when viewing through jsii
 
 **Signature:**
 

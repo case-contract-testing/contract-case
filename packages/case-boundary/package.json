@@ -5,7 +5,7 @@
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs/reference/matchers",
   "license": "BSD-3-Clause",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "directories": {
     "src": "src",
     "build": "build"

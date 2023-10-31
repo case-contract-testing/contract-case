@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-readonly states: Array<any>;
+readonly states: Array<BoundaryAnyState>;
 ```

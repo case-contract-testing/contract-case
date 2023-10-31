@@ -7,14 +7,14 @@
 **Signature:**
 
 ```typescript
-runRejectingExample(definition: BoundaryMockDefinition, runConfig: ContractCaseBoundaryConfig): Promise<BoundaryResult>;
+runRejectingExample(definition: TsBoundaryMockDefinition, runConfig: ContractCaseBoundaryConfig): Promise<BoundaryResult>;
 ```
 
 ## Parameters
 
 | Parameter  | Type                                                                        | Description |
 | ---------- | --------------------------------------------------------------------------- | ----------- |
-| definition | [BoundaryMockDefinition](./case-boundary.boundarymockdefinition.md)         |             |
+| definition | [TsBoundaryMockDefinition](./case-boundary.tsboundarymockdefinition.md)     |             |
 | runConfig  | [ContractCaseBoundaryConfig](./case-boundary.contractcaseboundaryconfig.md) |             |
 
 **Returns:**
