@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.6.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.6.5...@contract-case/case-connector-v0.6.6) (2023-10-31)
+
+
+### Features
+
+* Add full connector layer for the case-boundary ([651d55d](https://github.com/case-contract-testing/contract-case/commit/651d55dd2641aa3ebaea5cd4f998b7871271ccdf))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.8.0 to 0.9.0
+
+## Changelog
+
 ### Dependencies
 
 * The following workspace dependencies were updated
