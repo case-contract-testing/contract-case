@@ -10,11 +10,12 @@
         "@contract-case/case-core",
         "@contract-case/case-example-mock-types",
         "@contract-case/test-equivalence-matchers"
-      ]
+      ],
+      "merge": false
     }
   ],
   "group-pull-request-title-pattern": "chore: release ${version}",
-  "pull-request-title-pattern": "chore: release${component} ${version}",
+  "pull-request-title-pattern": "chore: release ${component} ${version}",
   "separate-pull-requests": true,
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
