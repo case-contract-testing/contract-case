@@ -5,32 +5,30 @@ on:
 name: Test Coveralls
 
 jobs:
-
   build:
     name: Coverage
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - uses: actions/checkout@v4
-      with: 
-        fetch-depth: 0
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
 
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18.x
+      - name: test
+        run: |
+          ./ci/coverage.sh
+        env:
+          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
+          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
+          FORCE_COLOR: true
 
-    - name: test
-      run: |
-        ./ci/coverage.sh
-      env:
-        CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-        CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-        FORCE_COLOR: true
-
-    - name: Coveralls Core
-      uses: coverallsapp/github-action@master
-      with:
-        path-to-lcov: 'packages/case-core/combined-coverage.info'
-        base-path: 'packages/case-core'
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Coveralls Core
+        uses: coverallsapp/github-action@master
+        with:
+          path-to-lcov: 'packages/case-core/combined-coverage.info'
+          base-path: 'packages/case-core'
+          github-token: ${{ secrets.GITHUB_TOKEN }}

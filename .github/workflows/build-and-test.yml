@@ -7,51 +7,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-test-osx:
-    runs-on: macos-latest
+  build-and-test:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node-version: [18.x, 20.x]
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: ci/build-and-test.sh
-        env:
-          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-          NODE_VERSION: ${{ matrix.node-version }}
-          FORCE_COLOR: true
-
-  build-and-test-ubuntu:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: ci/build-and-test.sh
-        env:
-          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-          NODE_VERSION: ${{ matrix.node-version }}
-          FORCE_COLOR: true
-
-  build-and-test-windows:
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
+        os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
       - uses: actions/checkout@v4
         with:
