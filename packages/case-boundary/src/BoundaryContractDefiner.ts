@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   AnyMockDescriptorType,
   AnyState,
@@ -9,10 +8,9 @@ import {
   AnyMockDescriptor,
   ContractDefinerConnector,
 } from '@contract-case/case-core';
-import { base } from '@contract-case/test-equivalence-matchers';
 
 import { convertConfig, jsErrorToFailure, wrapLogPrinter } from './mappers';
-import { BoundaryMockDefinition } from './types';
+import { TsBoundaryAnyMatcher, TsBoundaryMockDefinition } from './types';
 import {
   ContractCaseBoundaryConfig,
   ILogPrinter,
@@ -32,7 +30,7 @@ const mapDefinitionPart = (matcherOrData: unknown): Definition =>
   JSON.parse(JSON.stringify(matcherOrData));
 
 const mapDefinition = (
-  definition: BoundaryMockDefinition,
+  definition: TsBoundaryMockDefinition,
   {
     stateHandlers,
     triggerAndTests,
@@ -125,7 +123,7 @@ export class BoundaryContractDefiner {
   }
 
   async runExample(
-    definition: BoundaryMockDefinition,
+    definition: TsBoundaryMockDefinition,
     runConfig: ContractCaseBoundaryConfig,
   ): Promise<BoundaryResult> {
     try {
@@ -148,7 +146,7 @@ export class BoundaryContractDefiner {
   }
 
   async runRejectingExample(
-    definition: BoundaryMockDefinition,
+    definition: TsBoundaryMockDefinition,
     runConfig: ContractCaseBoundaryConfig,
   ): Promise<BoundaryResult> {
     try {
@@ -169,7 +167,7 @@ export class BoundaryContractDefiner {
     }
   }
 
-  stripMatchers(matcherOrData: base.AnyMatcher): BoundaryResult {
+  stripMatchers(matcherOrData: TsBoundaryAnyMatcher): BoundaryResult {
     try {
       this.initialiseDefiner();
       if (this.definer === undefined) {
