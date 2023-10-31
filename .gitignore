@@ -67,6 +67,7 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+build
 
 # Docusaurus cache and generated files
 .docusaurus
