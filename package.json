@@ -10,7 +10,7 @@
     "lerna": "^7.3.1"
   },
   "optionalDependencies": {
-    "@nx/nx-darwin-arm64": "16.10.0",
+    "@nx/nx-darwin-arm64": "17.0.3",
     "@nx/nx-darwin-x64": "17.0.3",
     "@nx/nx-linux-arm-gnueabihf": "16.10.0",
     "@nx/nx-linux-arm64-gnu": "16.10.0",
