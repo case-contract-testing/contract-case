@@ -42,7 +42,7 @@
     "@contract-case/eslint-config-case-maintainer": "0.0.3",
     "@microsoft/api-documenter": "^7.23.9",
     "@microsoft/api-extractor": "^7.38.0",
-    "@types/jest": "^29.5.3",
+    "@types/jest": "^29.5.7",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "eslint-config-airbnb-base": "^15.0.0",

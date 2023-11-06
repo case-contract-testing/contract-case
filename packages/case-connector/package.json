@@ -27,7 +27,7 @@
   "devDependencies": {
     "@contract-case/case-maintainer-config": "0.0.3",
     "@contract-case/eslint-config-case-maintainer": "0.0.3",
-    "@types/jest": "^29.5.2",
+    "@types/jest": "^29.5.7",
     "@types/uuid": "^9.0.6",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.1",
