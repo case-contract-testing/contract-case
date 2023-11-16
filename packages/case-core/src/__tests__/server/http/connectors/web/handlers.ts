@@ -11,7 +11,7 @@ import responder from './responder';
 export const base: (deps: BaseServiceDependencies) => RequestHandler =
   ({ baseService }: BaseServiceDependencies) =>
   (req: Request, res: Response) => {
-    responder(res).success(baseService(req.ip));
+    responder(res).success(baseService(typeof req.ip === 'string' ? req.ip : 'no clear ip'));
   };
 
 type HealthStatus = 'up' | 'down' | 'starting';
