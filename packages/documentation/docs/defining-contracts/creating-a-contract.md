@@ -6,7 +6,7 @@ sidebar_position: 1
 
 Here's the contract testing lifecycle:
 
-1. You are here ---> Define a contract <--- You are here
+1. You are here `--->` Define a contract `<---` You are here
 
    1. Define examples
    1. Run tests to confirm the examples are correct
@@ -48,7 +48,7 @@ defineContract(
       });
     });
     /* arbitrary other contract examples */
-  }
+  },
 );
 ```
 

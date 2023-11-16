@@ -13,7 +13,7 @@ When setting up a state handler, you may need to mock some of your service state
 
 - If you mock at the controller, you only know that the service might produce the response you want, not that it actually does in at least one case
 - If you insert into the database, your state setup knows too much about the database structure (which will be a pain to maintain, and you have the reverse problem, where you don’t know if that data ever gets in to the database).
-- If you mock at the repository layer, then your mock is simple as it is expressed in domain concepts when "user '10' exists" then repo.getUser('10') returns {....} etc, robust to implementation changes of the repository layer, and also those mocks can be used to check the contract tests for that layer too.
+- If you mock at the repository layer, then your mock is simple as it is expressed in domain concepts: when `"user '10' exists"` then `repo.getUser('10')` returns `<whatever>` etc, robust to implementation changes of the repository layer, and also those mocks can be used to check the contract tests for that layer too.
 
 The argument for mocking at the controller is so that you don’t start driving
 functional tests with your contract tests. Functional tests shouldn’t be driven

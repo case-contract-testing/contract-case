@@ -5,7 +5,7 @@ Here's the defining contract lifecycle again:
 1. Define a contract:
    1. [Define examples](./defining-example)
    1. Run tests to confirm the examples are correct
-   1. You are here --> Upload contracts to a broker <-- You are here
+   1. You are here `-->` Upload contracts to a broker `<--` You are here
 
 The last step in the defining contracts lifecycle is to upload the contract to the broker. This is important, because otherwise the other side of your contract can't be verified:
 

@@ -8,7 +8,7 @@ The overall lifecycle of a contract test is:
 
 1. Define a contract
 
-   1. You are here --> Define the examples <-- You are here
+   1. You are here `-->` Define the examples `<--` You are here
    1. Run tests to confirm the examples are correct
    1. Upload contracts to a broker
 

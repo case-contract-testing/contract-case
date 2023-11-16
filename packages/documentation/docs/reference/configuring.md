@@ -104,7 +104,7 @@ Default: None
 
 The base URL for the contract broker. Required if `publish` is set to `true`, required in CI if `publish` is set to `ONLY_IN_CI`.
 
-### `brokerBasicAuth` \[{ username: string, password: string }\]
+### `brokerBasicAuth` \[`{ username: string, password: string }`\]
 
 Default: None
 
