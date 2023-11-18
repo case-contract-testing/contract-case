@@ -25,7 +25,6 @@ jobs:
           CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
           CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
           FORCE_COLOR: true
-          NODE_OPTIONS: --no-network-family-autoselection
 
       - name: Coveralls Core
         uses: coverallsapp/github-action@master
