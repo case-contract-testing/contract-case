@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+      - run: npm install -g npm@latest
       - run: bash ci/build-and-test-pr.sh
         shell: bash
         env:
