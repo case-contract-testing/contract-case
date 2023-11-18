@@ -28,3 +28,4 @@ jobs:
           CASE_publish: false
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
+          NODE_OPTIONS: --no-network-family-autoselection
