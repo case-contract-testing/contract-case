@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.38.0",
+    "toolVersion": "7.38.3",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -956,7 +956,7 @@
                   "text": " "
                 }
               ],
-              "fileUrlPath": "src/nodes/base/AnyMatcher.ts",
+              "fileUrlPath": "src/nodes/base/AnyMatcherWithExample.ts",
               "releaseTag": "Public",
               "isAbstract": true,
               "name": "AnyMatcherWithExample",
