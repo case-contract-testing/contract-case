@@ -68,7 +68,7 @@
     "@microsoft/api-documenter": "^7.23.9",
     "@microsoft/api-extractor": "^7.38.3",
     "@types/jest": "^29.5.7",
-    "jsii": "^5.2.21",
+    "jsii": "^5.2.30",
     "jsii-docgen": "^10.1.0",
     "jsii-pacmak": "^1.91.0",
     "mkdirp": "^3.0.1",
