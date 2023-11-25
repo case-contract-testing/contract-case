@@ -14,7 +14,7 @@
     "@nx/nx-darwin-x64": "17.0.3",
     "@nx/nx-linux-arm-gnueabihf": "16.10.0",
     "@nx/nx-linux-arm64-gnu": "16.10.0",
-    "@nx/nx-linux-arm64-musl": "17.0.2",
+    "@nx/nx-linux-arm64-musl": "17.1.3",
     "@nx/nx-linux-x64-gnu": "16.10.0",
     "@nx/nx-linux-x64-musl": "17.0.1",
     "@nx/nx-win32-arm64-msvc": "16.10.0",
