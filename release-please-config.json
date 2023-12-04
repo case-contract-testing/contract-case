@@ -35,6 +35,8 @@
         ".release-please-manifest.json",
         "package-lock.json"
       ],
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
       "changelog-path": "docs/maintainers/FULL-CHANGELOG.md"
     },
     "packages/case-entities": {
