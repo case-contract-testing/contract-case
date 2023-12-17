@@ -18,7 +18,7 @@ const spaces = (size: number, str: string) => {
   return `${space}${str.replace(/\n/g, `\n${space}`)}`;
 };
 
-const printMatchError = ({
+const printMatchError = async ({
   kind,
   message,
   location,
@@ -26,61 +26,61 @@ const printMatchError = ({
   actual,
   locationTag,
   errorTypeTag,
-}: PrintableMatchError): void => {
+}: PrintableMatchError): Promise<void> => {
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
     `${spaces(
       6,
       `${chalk.bgRed.white(` ${kind} `)} ${chalk.whiteBright(
-        location
-      )} ${chalk.whiteBright(message)}`
+        location,
+      )} ${chalk.whiteBright(message)}`,
     )}\n${spaces(
       9,
-      `Expected something like:\n${spaces(3, chalk.green(expected))}`
+      `Expected something like:\n${spaces(3, chalk.green(expected))}`,
     )}\n${spaces(
       9,
       `Actual:\n${spaces(3, chalk.red(actual))}\n\n${spaces(
         12,
-        `${chalk.gray(` - ${locationTag} [${errorTypeTag}]`)}`
-      )}`
-    )}\n\n`
+        `${chalk.gray(` - ${locationTag} [${errorTypeTag}]`)}`,
+      )}`,
+    )}\n\n`,
   );
 };
 
-const printMessageError = ({
+const printMessageError = async ({
   kind,
   location,
   message,
   locationTag,
   errorTypeTag,
-}: PrintableMessageError): void => {
+}: PrintableMessageError): Promise<void> => {
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
     `${spaces(
       6,
       `${chalk.bgRed.white(` ${kind} `)} ${chalk.whiteBright(
-        location
-      )} ${chalk.whiteBright(message)}`
+        location,
+      )} ${chalk.whiteBright(message)}`,
     )}\n\n${spaces(
       12,
-      `${chalk.gray(` - ${locationTag} [${errorTypeTag}]`)}`
-    )}\n\n`
+      `${chalk.gray(` - ${locationTag} [${errorTypeTag}]`)}`,
+    )}\n\n`,
   );
 };
 
-const printTestTitle = ({
+const printTestTitle = async ({
   kind,
   icon,
   title,
   additionalText,
-}: PrintableTestTitle): void => {
+}: PrintableTestTitle): Promise<void> => {
   const colourIcon = kind === 'success' ? chalk.greenBright : chalk.red;
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
     spaces(
       3,
-      `\n${colourIcon(icon)} ${chalk.whiteBright(title)}\n${additionalText}`
-    )
+      `\n${colourIcon(icon)} ${chalk.whiteBright(title)}\n${additionalText}`,
+    ),
   );
 };
 
@@ -91,14 +91,14 @@ const defaultResultPrinter: ResultPrinter = {
 };
 
 const defaultLogPrinter: LogPrinter = {
-  log: (
+  log: async (
     level: LogLevel,
     timestamp: string,
     version: string,
     typeString: string,
     location: string,
     message: string,
-    additional: string
+    additional: string,
   ) => {
     let typeColour = chalk.redBright;
     let messageColour = chalk.white;
@@ -127,10 +127,10 @@ const defaultLogPrinter: LogPrinter = {
 
     stdout.log(
       `${timestamp} ${chalk.whiteBright(version)} ${typeColour(
-        typeString
+        typeString,
       )} ${chalk.blueBright(location)}: ${messageColour(message)}${
         additional !== '' ? `\n${messageColour(additional)}` : ''
-      }`
+      }`,
     );
   },
 };
