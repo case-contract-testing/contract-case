@@ -97,17 +97,21 @@ export interface IResultPrinter {
   /**
    * Called by ContractCase to ask the DSL to print an individual match error line.
    */
-  printMatchError(MatchErrorDescription: PrintableMatchError): BoundaryResult;
+  printMatchError(
+    MatchErrorDescription: PrintableMatchError,
+  ): Promise<BoundaryResult>;
 
   /**
    * Called by ContractCase to ask the DSL to print an error during testing that doesn't have an expected / actual value
    */
-  printMessageError(messageErrorDetails: PrintableMessageError): BoundaryResult;
+  printMessageError(
+    messageErrorDetails: PrintableMessageError,
+  ): Promise<BoundaryResult>;
 
   /**
    * Called by ContractCase to ask the DSL to print a test title or main execution details (eg for contract downloading).
    */
-  printTestTitle(titleDetails: PrintableTestTitle): BoundaryResult;
+  printTestTitle(titleDetails: PrintableTestTitle): Promise<BoundaryResult>;
 }
 
 /**
@@ -148,7 +152,7 @@ export interface ILogPrinter {
     location: string,
     message: string,
     additional: string,
-  ): BoundaryResult;
+  ): Promise<BoundaryResult>;
 }
 /**
  * A convenience interface that combines result printing and log printing

@@ -1,4 +1,4 @@
-import { TestPrinter } from '@contract-case/case-core';
+import { CaseCoreError, TestPrinter } from '@contract-case/case-core';
 import { ILogPrinter, IResultPrinter } from '../boundary';
 import { handleVoidResult } from './Result';
 
@@ -15,26 +15,43 @@ export const wrapLogPrinter = (
     message: string,
     additional: string,
   ) =>
-    handleVoidResult(
-      externalLogger.log(
-        level,
-        timestamp,
-        version,
-        typeString,
-        location,
-        message,
-        additional,
+    externalLogger
+      .log(level, timestamp, version, typeString, location, message, additional)
+      .then(
+        (result) => handleVoidResult(result, 'CaseCoreError'),
+        (error) => {
+          throw new CaseCoreError(
+            `Error contacting external logger: ${error.message}`,
+          );
+        },
       ),
-      'CaseCoreError',
-    ),
 
   printMatchError: (details) =>
-    handleVoidResult(externalPrinter.printMatchError(details), 'CaseCoreError'),
+    externalPrinter.printMatchError(details).then(
+      (result) => handleVoidResult(result, 'CaseCoreError'),
+      (error) => {
+        throw new CaseCoreError(
+          `Error contacting external match error printer: ${error.message}`,
+        );
+      },
+    ),
+
   printMessageError: (details) =>
-    handleVoidResult(
-      externalPrinter.printMessageError(details),
-      'CaseCoreError',
+    externalPrinter.printMessageError(details).then(
+      (result) => handleVoidResult(result, 'CaseCoreError'),
+      (error) => {
+        throw new CaseCoreError(
+          `Error contacting external message error printer: ${error.message}`,
+        );
+      },
     ),
   printTestTitle: (details) =>
-    handleVoidResult(externalPrinter.printTestTitle(details), 'CaseCoreError'),
+    externalPrinter.printTestTitle(details).then(
+      (result) => handleVoidResult(result, 'CaseCoreError'),
+      (error) => {
+        throw new CaseCoreError(
+          `Error contacting external title printer: ${error.message}`,
+        );
+      },
+    ),
 });

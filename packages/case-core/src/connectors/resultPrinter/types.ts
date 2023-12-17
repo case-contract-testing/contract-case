@@ -24,7 +24,7 @@ export interface PrintableTestTitle {
 }
 
 export interface ResultPrinter {
-  printMatchError(MatchErrorDescription: PrintableMatchError): void;
-  printMessageError(messageErrorDetails: PrintableMessageError): void;
-  printTestTitle(titleDetails: PrintableTestTitle): void;
+  printMatchError(MatchErrorDescription: PrintableMatchError): Promise<void>;
+  printMessageError(messageErrorDetails: PrintableMessageError): Promise<void>;
+  printTestTitle(titleDetails: PrintableTestTitle): Promise<void>;
 }

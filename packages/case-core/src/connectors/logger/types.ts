@@ -9,5 +9,5 @@ export interface LogPrinter {
     location: string,
     message: string,
     additional: string,
-  ) => void;
+  ) => Promise<void>;
 }

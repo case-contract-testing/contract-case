@@ -31,9 +31,9 @@ export const makeLogger: (
   context: LogLevelContext,
   printer: LogPrinter,
 ) => Logger = (matchContext: LogLevelContext, printer) => ({
-  warn(message: string, ...additional: unknown[]): void {
+  warn(message: string, ...additional: unknown[]): Promise<void> {
     if (shouldLog(matchContext, 'warn')) {
-      printer.log(
+      return printer.log(
         'warn',
         timestampString(),
         caseVersionString(),
@@ -43,10 +43,11 @@ export const makeLogger: (
         mapAdditional(additional),
       );
     }
+    return Promise.resolve();
   },
-  error(message: string, ...additional: unknown[]): void {
+  error(message: string, ...additional: unknown[]): Promise<void> {
     if (shouldLog(matchContext, 'error')) {
-      printer.log(
+      return printer.log(
         'error',
         timestampString(),
         caseVersionString(),
@@ -56,10 +57,11 @@ export const makeLogger: (
         mapAdditional(additional),
       );
     }
+    return Promise.resolve();
   },
-  debug(message: string, ...additional: unknown[]): void {
+  debug(message: string, ...additional: unknown[]): Promise<void> {
     if (shouldLog(matchContext, 'debug')) {
-      printer.log(
+      return printer.log(
         'debug',
         timestampString(),
         caseVersionString(),
@@ -69,10 +71,11 @@ export const makeLogger: (
         mapAdditional(additional),
       );
     }
+    return Promise.resolve();
   },
-  maintainerDebug(message: string, ...additional: unknown[]): void {
+  maintainerDebug(message: string, ...additional: unknown[]): Promise<void> {
     if (shouldLog(matchContext, 'maintainerDebug')) {
-      printer.log(
+      return printer.log(
         'maintainerDebug',
         timestampString(),
         caseVersionString(
@@ -84,11 +87,15 @@ export const makeLogger: (
         mapAdditional(additional),
       );
     }
+    return Promise.resolve();
   },
 
-  deepMaintainerDebug(message: string, ...additional: unknown[]): void {
+  deepMaintainerDebug(
+    message: string,
+    ...additional: unknown[]
+  ): Promise<void> {
     if (shouldLog(matchContext, 'deepMaintainerDebug')) {
-      printer.log(
+      return printer.log(
         'deepMaintainerDebug',
         timestampString(),
         caseVersionString(
@@ -100,5 +107,6 @@ export const makeLogger: (
         mapAdditional(additional),
       );
     }
+    return Promise.resolve();
   },
 });
