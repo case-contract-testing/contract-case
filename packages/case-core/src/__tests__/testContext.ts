@@ -5,11 +5,21 @@ export const MAINTAINER_TEST_CONTEXT = {
 };
 
 const EMPTY_LOGGER: Logger = {
-  error(): void {},
-  warn(): void {},
-  debug(): void {},
-  maintainerDebug(): void {},
-  deepMaintainerDebug(): void {},
+  error(): Promise<void> {
+    return Promise.resolve();
+  },
+  warn(): Promise<void> {
+    return Promise.resolve();
+  },
+  debug(): Promise<void> {
+    return Promise.resolve();
+  },
+  maintainerDebug(): Promise<void> {
+    return Promise.resolve();
+  },
+  deepMaintainerDebug(): Promise<void> {
+    return Promise.resolve();
+  },
 };
 
 export const EMPTY_DATA_CONTEXT: DataContext = {

@@ -17,7 +17,7 @@ const spaces = (size: number, str: string) => {
   return `${space}${str.replace(/\n/g, `\n${space}`)}`;
 };
 
-const printMatchError = ({
+const printMatchError = async ({
   kind,
   message,
   location,
@@ -25,7 +25,7 @@ const printMatchError = ({
   actual,
   locationTag,
   errorTypeTag,
-}: PrintableMatchError): void => {
+}: PrintableMatchError): Promise<void> => {
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
     `${spaces(
@@ -46,13 +46,13 @@ const printMatchError = ({
   );
 };
 
-const printMessageError = ({
+const printMessageError = async ({
   kind,
   location,
   message,
   locationTag,
   errorTypeTag,
-}: PrintableMessageError): void => {
+}: PrintableMessageError): Promise<void> => {
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
     `${spaces(
@@ -67,12 +67,12 @@ const printMessageError = ({
   );
 };
 
-const printTestTitle = ({
+const printTestTitle = async ({
   kind,
   icon,
   title,
   additionalText,
-}: PrintableTestTitle): void => {
+}: PrintableTestTitle): Promise<void> => {
   const colourIcon = kind === 'success' ? chalk.greenBright : chalk.red;
   // This is done as one line to prevent it splitting when multiple tests are running
   stdout.log(
@@ -90,7 +90,7 @@ const defaultResultPrinter: ResultPrinter = {
 };
 
 const defaultLogPrinter: LogPrinter = {
-  log: (
+  log: async (
     level: LogLevel,
     timestamp: string,
     version: string,
