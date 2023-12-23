@@ -14,6 +14,7 @@
     "url": "git+ssh://git@github.com/case-contract-testing/case.git"
   },
   "scripts": {
+    "prebuild": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./proto --grpc_out=grpc_js:./proto --plugin=protoc-gen-grpc=../../node_modules/grpc_tools_node_protoc_ts/bin/protoc-gen-ts ./proto/contract_case_stream.proto",
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
@@ -29,6 +30,8 @@
     "@contract-case/eslint-config-case-maintainer": "0.0.3",
     "@types/jest": "^29.5.11",
     "@types/uuid": "^9.0.6",
+    "grpc_tools_node_protoc_ts": "^5.3.3",
+    "grpc-tools": "^1.12.4",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.0",
@@ -36,6 +39,8 @@
   },
   "dependencies": {
     "@contract-case/case-boundary": "0.8.0",
+    "@grpc/grpc-js": "^1.9.13",
+    "@grpc/proto-loader": "^0.7.10",
     "read-pkg-up": "^7.0.1",
     "uuid": "^9.0.1"
   },

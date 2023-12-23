@@ -4,7 +4,7 @@ import {
   TsBoundaryMockDefinition,
 } from '@contract-case/case-boundary';
 
-type ConnectorStateHandler = BoundaryStateHandler;
+export type ConnectorStateHandler = BoundaryStateHandler;
 
 type ConnectorTriggerFunction = ITriggerFunction;
 
@@ -18,7 +18,7 @@ export type ContractCaseConnectorConfig = {
   publish: string;
   brokerCiAccessToken: string;
   brokerBaseUrl: string;
-  brokerBasicAuth: { username: string; password: string };
+  brokerBasicAuth?: { username: string; password: string };
 
   baseUrlUnderTest: string;
   printResults: boolean;

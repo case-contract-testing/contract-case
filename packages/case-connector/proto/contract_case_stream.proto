@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package contractcase;
+
 import "google/protobuf/struct.proto";
 
 message ContractCaseConfig {
@@ -8,33 +10,40 @@ message ContractCaseConfig {
     string password = 2;
   }
 
-  string providerName = 1;
-  string consumerName = 2;
-  string logLevel = 3;
-  string contractDir = 4;
-  string contractFilename = 5;
+  string provider_name = 1;
+  string consumer_name = 2;
+  string log_level = 3;
+  string contract_dir = 4;
+  string contract_filename = 5;
   string publish = 6;
-  string brokerCiAccessToken = 7;
-  string brokerBaseUrl = 8;
-  UsernamePassword brokerBasicAuth = 9;
+  string broker_ci_access_token = 7;
+  string broker_base_url = 8;
+  UsernamePassword broker_basic_auth = 9;
 
-  bool printResults = 10;
-  bool throwOnFail = 11;
+  bool print_results = 10;
+  bool throw_on_fail = 11;
 
-  repeated StateHandlerHandle stateHandlers = 12;
-  map<string, TriggerFunctionHandle> triggerFunction = 13;
+  repeated StateHandlerHandle state_handlers = 12;
+  map<string, TriggerFunctionHandle> trigger_function = 13;
 
-  TriggerFunctionHandle triggerAndTest = 14;
+  TriggerFunctionHandle trigger_and_test = 14;
 
-  string baseUrlUnderTest = 15; // Long term, this will be moved
+  string base_url_under_test = 15; // Long term, this will be moved
 }
 
 // Shared communication types
-message DefinitionHandle { string definitionId = 1; }
+message DefinitionHandle {
+  string definition_id = 1;
+}
 
-message ResultSuccess {}
-message ResultSuccessHasMapPayload { google.protobuf.Struct map = 1; }
-message ResultSuccessHasAnyPayload { google.protobuf.Value payload = 1; }
+message ResultSuccess {
+}
+message ResultSuccessHasMapPayload {
+  google.protobuf.Struct map = 1;
+}
+message ResultSuccessHasAnyPayload {
+  google.protobuf.Value payload = 1;
+}
 message ResultFailure {
   string kind = 1;
   string message = 2;
@@ -44,56 +53,70 @@ message ResultFailure {
 message BoundaryResult {
   oneof value {
     ResultSuccess success = 1;
-    ResultSuccessHasMapPayload succesHasMap = 2;
-    ResultSuccessHasAnyPayload successHasAny = 3;
+    ResultSuccessHasMapPayload succes_has_map = 2;
+    ResultSuccessHasAnyPayload success_has_any = 3;
     ResultFailure failure = 4;
   }
 }
 
 message StateHandlerHandle {
   enum Stage {
-    SETUP = 0;
-    TEARDOWN = 1;
+    STAGE_SETUP_UNSPECIFIED = 0;
+    STAGE_TEARDOWN = 1;
   }
+  // The name of the state
   string handle = 1;
+  // Whether this is a setup or a teardown handler
   Stage stage = 2;
 }
 
-message TriggerFunctionHandle { string handle = 1; }
+message TriggerFunctionHandle {
+  string handle = 1;
+}
 
 // Requests from client
 message BeginDefinitionRequest {
   ContractCaseConfig config = 1;
-  repeated string callerVersions = 4;
+  repeated string caller_versions = 4;
 }
 
 message RunExampleRequest {
-  google.protobuf.Struct exampleDefinition = 2;
+  google.protobuf.Struct example_definition = 2;
   ContractCaseConfig config = 3;
 }
 
 message RunRejectingExampleRequest {
-  google.protobuf.Struct exampleDefinition = 2;
+  google.protobuf.Struct example_definition = 2;
   ContractCaseConfig config = 3;
 }
 
-message StripMatchersRequest { google.protobuf.Struct matcherOrData = 2; }
+message StripMatchersRequest {
+  google.protobuf.Struct matcher_or_data = 2;
+}
 
-message EndDefinitionRequest { DefinitionHandle handle = 1; }
+message EndDefinitionRequest {
+  DefinitionHandle handle = 1;
+}
 
 message StateHandlerResponse {
-  StateHandlerHandle stateHandlerHandle = 1;
+  StateHandlerHandle state_handler_handle = 1;
   BoundaryResult result = 2;
 }
 
-message LogPrinterResponse { BoundaryResult result = 1; }
-message ResultPrinterResponse { BoundaryResult result = 1; }
+message LogPrinterResponse {
+  BoundaryResult result = 1;
+}
+message ResultPrinterResponse {
+  BoundaryResult result = 1;
+}
 
 // Responses from server
 
-message RunStateHandlerRequest { StateHandlerHandle stateHandlerHandle = 1; }
+message RunStateHandlerRequest {
+  StateHandlerHandle state_handler_handle = 1;
+}
 message TriggerFunctionRequest {
-  TriggerFunctionHandle triggerFunction = 1;
+  TriggerFunctionHandle trigger_function = 1;
   google.protobuf.Struct config = 2;
 }
 
@@ -119,7 +142,7 @@ message LogRequest {
    * A rendered version of the LogLevel. Do not rely on this value
    * programmatically, use the `level` parameter instead.
    */
-  string typeString = 4;
+  string type_string = 4;
   /**
    * A string that represents the location that this log came from
    */
@@ -154,12 +177,12 @@ message PrintMatchErrorRequest {
    * The tag line for the location the error happened, for printing after the
    * error message. This might have more information than the `location` above.
    */
-  string locationTag = 4;
+  string location_tag = 4;
   /**
    * The machine-readable type for the cause of this error, for printing after
    * the error message to make it easy to search for.
    */
-  string errorTypeTag = 5;
+  string error_type_tag = 5;
   /**
    * A string representation of the expected data (may contain newlines)
    */
@@ -189,12 +212,12 @@ message PrintMessageErrorRequest {
    * The tag line for the location the error happened, for printing after the
    * error message. This might have more information than the `location` above.
    */
-  string locationTag = 4;
+  string location_tag = 4;
   /**
    * The machine-readable type for the cause of this error, for printing after
    * the error message to make it easy to search for.
    */
-  string errorTypeTag = 5;
+  string error_type_tag = 5;
 }
 
 message PrintTestTitleRequest {
@@ -214,30 +237,42 @@ message PrintTestTitleRequest {
   /**
    * Any additional text to print after the title (may include newlines)
    */
-  string additionalText = 4;
+  string additional_text = 4;
 }
 
-message BeginDefinitionResponse { BoundaryResult result = 1; }
-message RunExampleResponse { BoundaryResult result = 1; }
-message RunRejectingExampleResponse { BoundaryResult result = 1; }
-message StripMatchersResponse { BoundaryResult result = 1; }
-message EndDefinitionResponse { BoundaryResult result = 1; }
-message TriggerFunctionResponse { BoundaryResult result = 1; }
+message BeginDefinitionResponse {
+  BoundaryResult result = 1;
+}
+message RunExampleResponse {
+  BoundaryResult result = 1;
+}
+message RunRejectingExampleResponse {
+  BoundaryResult result = 1;
+}
+message StripMatchersResponse {
+  BoundaryResult result = 1;
+}
+message EndDefinitionResponse {
+  BoundaryResult result = 1;
+}
+message TriggerFunctionResponse {
+  BoundaryResult result = 1;
+}
 
 message DefinitionRequest {
   string id = 1;
   oneof kind {
     // From user calls
-    BeginDefinitionRequest beginDefinition = 2;
-    RunExampleRequest runExample = 3;
-    RunRejectingExampleRequest runRejectingExample = 4;
-    StripMatchersRequest stripMatchers = 5;
-    EndDefinitionRequest endDefinition = 6;
+    BeginDefinitionRequest begin_definition = 2;
+    RunExampleRequest run_example = 3;
+    RunRejectingExampleRequest run_rejecting_example = 4;
+    StripMatchersRequest strip_matchers = 5;
+    EndDefinitionRequest end_definition = 6;
     // Answering server questions
-    StateHandlerResponse stateHandlerResponse = 7;
-    LogPrinterResponse logPrinterResponse = 8;
-    ResultPrinterResponse resultPrinterResponse = 9;
-    TriggerFunctionResponse triggerFunctionResponse = 10;
+    StateHandlerResponse state_handler_response = 7;
+    LogPrinterResponse log_printer_response = 8;
+    ResultPrinterResponse result_printer_response = 9;
+    TriggerFunctionResponse trigger_function_response = 10;
   }
 }
 
@@ -245,18 +280,18 @@ message DefinitionResponse {
   string id = 1;
   oneof kind {
     // These could come at any time
-    RunStateHandlerRequest runStateHandler = 2;
-    LogRequest logRequest = 3;
-    PrintMatchErrorRequest printMatchErrorRequest = 4;
-    PrintMessageErrorRequest printMessageErrorRequest = 5;
-    PrintTestTitleRequest printTestTitleRequest = 6;
-    TriggerFunctionRequest triggerFunctionRequest = 12;
+    RunStateHandlerRequest run_state_handler = 2;
+    LogRequest log_request = 3;
+    PrintMatchErrorRequest print_match_error_request = 4;
+    PrintMessageErrorRequest print_message_error_request = 5;
+    PrintTestTitleRequest print_test_title_request = 6;
+    TriggerFunctionRequest trigger_function_request = 12;
     // These indicate the end of an RPC call
-    BeginDefinitionResponse beginDefinitionResponse = 7;
-    RunExampleResponse runExampleResponse = 8;
-    RunRejectingExampleResponse runRejectingExampleResponse = 9;
-    StripMatchersResponse stripMatchersResponse = 10;
-    EndDefinitionResponse endDefinitionResponse = 11;
+    BeginDefinitionResponse begin_definition_response = 7;
+    RunExampleResponse run_example_response = 8;
+    RunRejectingExampleResponse run_rejecting_example_response = 9;
+    StripMatchersResponse strip_matchers_response = 10;
+    EndDefinitionResponse end_definition_response = 11;
   }
 }
 
