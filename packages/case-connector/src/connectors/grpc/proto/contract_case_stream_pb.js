@@ -2256,7 +2256,7 @@ proto.contractcase.BoundaryResult.oneofGroups_ = [[1,2,3,4]];
 proto.contractcase.BoundaryResult.ValueCase = {
   VALUE_NOT_SET: 0,
   SUCCESS: 1,
-  SUCCES_HAS_MAP: 2,
+  SUCCESS_HAS_MAP: 2,
   SUCCESS_HAS_ANY: 3,
   FAILURE: 4
 };
@@ -2300,7 +2300,7 @@ proto.contractcase.BoundaryResult.prototype.toObject = function(opt_includeInsta
 proto.contractcase.BoundaryResult.toObject = function(includeInstance, msg) {
   var f, obj = {
     success: (f = msg.getSuccess()) && proto.contractcase.ResultSuccess.toObject(includeInstance, f),
-    succesHasMap: (f = msg.getSuccesHasMap()) && proto.contractcase.ResultSuccessHasMapPayload.toObject(includeInstance, f),
+    successHasMap: (f = msg.getSuccessHasMap()) && proto.contractcase.ResultSuccessHasMapPayload.toObject(includeInstance, f),
     successHasAny: (f = msg.getSuccessHasAny()) && proto.contractcase.ResultSuccessHasAnyPayload.toObject(includeInstance, f),
     failure: (f = msg.getFailure()) && proto.contractcase.ResultFailure.toObject(includeInstance, f)
   };
@@ -2347,7 +2347,7 @@ proto.contractcase.BoundaryResult.deserializeBinaryFromReader = function(msg, re
     case 2:
       var value = new proto.contractcase.ResultSuccessHasMapPayload;
       reader.readMessage(value,proto.contractcase.ResultSuccessHasMapPayload.deserializeBinaryFromReader);
-      msg.setSuccesHasMap(value);
+      msg.setSuccessHasMap(value);
       break;
     case 3:
       var value = new proto.contractcase.ResultSuccessHasAnyPayload;
@@ -2396,7 +2396,7 @@ proto.contractcase.BoundaryResult.serializeBinaryToWriter = function(message, wr
       proto.contractcase.ResultSuccess.serializeBinaryToWriter
     );
   }
-  f = message.getSuccesHasMap();
+  f = message.getSuccessHasMap();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -2461,10 +2461,10 @@ proto.contractcase.BoundaryResult.prototype.hasSuccess = function() {
 
 
 /**
- * optional ResultSuccessHasMapPayload succes_has_map = 2;
+ * optional ResultSuccessHasMapPayload success_has_map = 2;
  * @return {?proto.contractcase.ResultSuccessHasMapPayload}
  */
-proto.contractcase.BoundaryResult.prototype.getSuccesHasMap = function() {
+proto.contractcase.BoundaryResult.prototype.getSuccessHasMap = function() {
   return /** @type{?proto.contractcase.ResultSuccessHasMapPayload} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.ResultSuccessHasMapPayload, 2));
 };
@@ -2474,7 +2474,7 @@ proto.contractcase.BoundaryResult.prototype.getSuccesHasMap = function() {
  * @param {?proto.contractcase.ResultSuccessHasMapPayload|undefined} value
  * @return {!proto.contractcase.BoundaryResult} returns this
 */
-proto.contractcase.BoundaryResult.prototype.setSuccesHasMap = function(value) {
+proto.contractcase.BoundaryResult.prototype.setSuccessHasMap = function(value) {
   return jspb.Message.setOneofWrapperField(this, 2, proto.contractcase.BoundaryResult.oneofGroups_[0], value);
 };
 
@@ -2483,8 +2483,8 @@ proto.contractcase.BoundaryResult.prototype.setSuccesHasMap = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.BoundaryResult} returns this
  */
-proto.contractcase.BoundaryResult.prototype.clearSuccesHasMap = function() {
-  return this.setSuccesHasMap(undefined);
+proto.contractcase.BoundaryResult.prototype.clearSuccessHasMap = function() {
+  return this.setSuccessHasMap(undefined);
 };
 
 
@@ -2492,7 +2492,7 @@ proto.contractcase.BoundaryResult.prototype.clearSuccesHasMap = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.BoundaryResult.prototype.hasSuccesHasMap = function() {
+proto.contractcase.BoundaryResult.prototype.hasSuccessHasMap = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 

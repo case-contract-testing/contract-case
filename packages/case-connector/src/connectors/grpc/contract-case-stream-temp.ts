@@ -165,8 +165,8 @@ function main() {
                 case WireBoundaryResult.ValueCase.SUCCESS:
                   return new BoundarySuccess();
 
-                case WireBoundaryResult.ValueCase.SUCCES_HAS_MAP: {
-                  const wireWithMap = wireBoundaryResult.getSuccesHasMap();
+                case WireBoundaryResult.ValueCase.SUCCESS_HAS_MAP: {
+                  const wireWithMap = wireBoundaryResult.getSuccessHasMap();
                   if (wireWithMap == null) {
                     throw new ConnectorError(
                       'undefined wire with map in a boundary result. This is probably an error in the wrapper library.',

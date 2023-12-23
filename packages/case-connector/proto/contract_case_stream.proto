@@ -53,7 +53,7 @@ message ResultFailure {
 message BoundaryResult {
   oneof value {
     ResultSuccess success = 1;
-    ResultSuccessHasMapPayload succes_has_map = 2;
+    ResultSuccessHasMapPayload success_has_map = 2;
     ResultSuccessHasAnyPayload success_has_any = 3;
     ResultFailure failure = 4;
   }

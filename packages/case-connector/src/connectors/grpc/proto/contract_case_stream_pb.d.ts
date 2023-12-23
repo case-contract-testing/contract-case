@@ -220,10 +220,10 @@ export class BoundaryResult extends jspb.Message {
     getSuccess(): ResultSuccess | undefined;
     setSuccess(value?: ResultSuccess): BoundaryResult;
 
-    hasSuccesHasMap(): boolean;
-    clearSuccesHasMap(): void;
-    getSuccesHasMap(): ResultSuccessHasMapPayload | undefined;
-    setSuccesHasMap(value?: ResultSuccessHasMapPayload): BoundaryResult;
+    hasSuccessHasMap(): boolean;
+    clearSuccessHasMap(): void;
+    getSuccessHasMap(): ResultSuccessHasMapPayload | undefined;
+    setSuccessHasMap(value?: ResultSuccessHasMapPayload): BoundaryResult;
 
     hasSuccessHasAny(): boolean;
     clearSuccessHasAny(): void;
@@ -250,7 +250,7 @@ export class BoundaryResult extends jspb.Message {
 export namespace BoundaryResult {
     export type AsObject = {
         success?: ResultSuccess.AsObject,
-        succesHasMap?: ResultSuccessHasMapPayload.AsObject,
+        successHasMap?: ResultSuccessHasMapPayload.AsObject,
         successHasAny?: ResultSuccessHasAnyPayload.AsObject,
         failure?: ResultFailure.AsObject,
     }
@@ -258,7 +258,7 @@ export namespace BoundaryResult {
     export enum ValueCase {
         VALUE_NOT_SET = 0,
         SUCCESS = 1,
-        SUCCES_HAS_MAP = 2,
+        SUCCESS_HAS_MAP = 2,
         SUCCESS_HAS_ANY = 3,
         FAILURE = 4,
     }
