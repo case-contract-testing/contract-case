@@ -23,61 +23,11 @@ import { UnreachableError } from './UnreachableError';
 import { ConnectorError } from '../../domain/errors/ConnectorError';
 import { beginDefinition } from '../define';
 import { mapConfig } from './mappers';
-
-const promises: Record<
-  string,
-  { r: (value: BoundaryResult) => void; p: Promise<BoundaryResult> } | undefined
-> = {};
-
-/**
- *
- * @param executeCall - the call to execute immediately. Should be a function that takes an ID.
- * @returns an ID that can be used to resolve the promise returned by `waitForResolution`
- */
-const makeResolvableId = (
-  executeCall: (id: string) => Promise<void>,
-): string => {
-  const id = 'someID'; // TODO: Make this a uuid
-
-  let r: (value: BoundaryResult) => void = () => {
-    // This promise should be immediately overwritten by
-    // the resolution function in `immediatePromise` directly below
-    throw new ConnectorError(
-      "An uninitialised promise resolver was called. This isn't supposed to be possible, as promises that don't do any read/write execute immediately",
-    );
-  };
-  const immediatePromise = new Promise<BoundaryResult>((resolve) => {
-    r = (v: BoundaryResult) => {
-      promises[id] = undefined;
-      resolve(v);
-    };
-  });
-
-  promises[id] = { r, p: executeCall(id).then(() => immediatePromise) };
-  return id;
-};
-
-const waitForResolution = (id: string): Promise<BoundaryResult> => {
-  const resolvable = promises[id];
-  if (resolvable === undefined) {
-    return Promise.reject(
-      new ConnectorError(
-        `When waiting, the promise resolver for a promise with ID '${id}' was missing. This is a programmer error in case-connector.`,
-      ),
-    );
-  }
-  return resolvable.p;
-};
-
-const resolveById = (id: string, result: BoundaryResult) => {
-  const resolvable = promises[id];
-  if (resolvable === undefined) {
-    throw new ConnectorError(
-      `When resolving, the promise resolver for a promise with ID '${id}' was missing. This can happen if a wrapper library misbehaves and responds to the same message more than once`,
-    );
-  }
-  resolvable.r(result);
-};
+import {
+  makeResolvableId,
+  resolveById,
+  waitForResolution,
+} from './promiseHandler/promiseHandler';
 
 /**
  * Starts an RPC server that receives requests for the Greeter service at the
