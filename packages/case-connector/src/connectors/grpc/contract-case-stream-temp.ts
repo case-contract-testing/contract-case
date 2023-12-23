@@ -11,14 +11,14 @@ import {
 } from '@contract-case/case-boundary';
 import {
   BoundaryResult as WireBoundaryResult,
-  ContractCaseConfig,
-  DefinitionRequest,
-  DefinitionResponse,
-  LogRequest,
-  PrintMatchErrorRequest,
-  PrintMessageErrorRequest,
-  PrintTestTitleRequest,
-  StateHandlerHandle,
+  ContractCaseConfig as WireContractCaseConfig,
+  DefinitionRequest as WireDefinitionRequest,
+  DefinitionResponse as WireDefinitionResponse,
+  LogRequest as WireLogRequest,
+  PrintMatchErrorRequest as WirePrintMatchErrorRequest,
+  PrintMessageErrorRequest as WirePrintMessageErrorRequest,
+  PrintTestTitleRequest as WirePrintTestTitleRequest,
+  StateHandlerHandle as WireStateHandlerHandle,
 } from './proto/contract_case_stream_pb';
 import service from './proto/contract_case_stream_grpc_pb';
 import { UnreachableError } from './UnreachableError';
@@ -85,12 +85,12 @@ const resolveById = (id: string, result: BoundaryResult) => {
 };
 
 const makeStateHandlerCall =
-  (_handle: StateHandlerHandle): (() => Promise<BoundaryResult>) =>
+  (_handle: WireStateHandlerHandle): (() => Promise<BoundaryResult>) =>
   () =>
     Promise.reject(new Error(`Not implemented: ${_handle}`));
 
 const mapStateHandlers = (
-  stateHandlers: StateHandlerHandle[],
+  stateHandlers: WireStateHandlerHandle[],
 ): Record<string, ConnectorStateHandler> =>
   stateHandlers.reduce<Record<string, ConnectorStateHandler>>(
     (acc: Record<string, ConnectorStateHandler>, handler) => ({
@@ -98,7 +98,7 @@ const mapStateHandlers = (
       [handler.getHandle()]: {
         ...(acc[handler.getHandle()] ? acc[handler.getHandle()] : {}),
         ...(handler.getStage() ===
-        StateHandlerHandle.Stage.STAGE_SETUP_UNSPECIFIED
+        WireStateHandlerHandle.Stage.STAGE_SETUP_UNSPECIFIED
           ? { setup: makeStateHandlerCall(handler) }
           : {
               setup: makeStateHandlerCall(handler),
@@ -110,7 +110,7 @@ const mapStateHandlers = (
   );
 
 const mapBasicAuth = (
-  basicAuth: ContractCaseConfig.UsernamePassword | undefined,
+  basicAuth: WireContractCaseConfig.UsernamePassword | undefined,
 ): { username: string; password: string } | undefined => {
   if (basicAuth == null) {
     return undefined;
@@ -127,7 +127,7 @@ type WithUndefined<T> = {
 };
 
 const mapAllConfigFields = (
-  config: ContractCaseConfig,
+  config: WireContractCaseConfig,
 ): WithUndefined<ContractCaseConnectorConfig> => ({
   providerName: config.getProviderName(),
   consumerName: config.getConsumerName(),
@@ -152,7 +152,7 @@ const mapAllConfigFields = (
 });
 
 const mapConfig = (
-  config: ContractCaseConfig | undefined,
+  config: WireContractCaseConfig | undefined,
 ): ContractCaseConnectorConfig => {
   if (config === undefined) {
     throw new ConnectorError('Config object must be provided');
@@ -179,16 +179,16 @@ function main() {
 
   server.addService(service.ContractCaseService, {
     ContractDefinition: (
-      call: ServerDuplexStream<DefinitionRequest, DefinitionResponse>,
+      call: ServerDuplexStream<WireDefinitionRequest, WireDefinitionResponse>,
     ) => {
-      call.on('data', (request: DefinitionRequest) => {
+      call.on('data', (request: WireDefinitionRequest) => {
         const type = request.getKindCase();
         switch (type) {
-          case DefinitionRequest.KindCase.KIND_NOT_SET:
+          case WireDefinitionRequest.KindCase.KIND_NOT_SET:
             throw new ConnectorError(
               "Create contract was called with a request type it didn't understand",
             );
-          case DefinitionRequest.KindCase.BEGIN_DEFINITION:
+          case WireDefinitionRequest.KindCase.BEGIN_DEFINITION:
             {
               const beginDefinitionRequest = request.getBeginDefinition();
               if (beginDefinitionRequest == null) {
@@ -213,9 +213,9 @@ function main() {
                         (id: string) =>
                           new Promise((resolve) => {
                             call.write(
-                              new DefinitionResponse()
+                              new WireDefinitionResponse()
                                 .setLogRequest(
-                                  new LogRequest()
+                                  new WireLogRequest()
                                     .setLevel(level)
                                     .setTimestamp(timestamp)
                                     .setVersion(version)
@@ -248,9 +248,9 @@ function main() {
                         (id: string) =>
                           new Promise((resolve) => {
                             call.write(
-                              new DefinitionResponse()
+                              new WireDefinitionResponse()
                                 .setPrintMatchErrorRequest(
-                                  new PrintMatchErrorRequest()
+                                  new WirePrintMatchErrorRequest()
                                     .setActual(actual)
                                     .setKind(kind)
                                     .setLocationTag(locationTag)
@@ -279,9 +279,9 @@ function main() {
                         (id: string) =>
                           new Promise((resolve) => {
                             call.write(
-                              new DefinitionResponse()
+                              new WireDefinitionResponse()
                                 .setPrintMessageErrorRequest(
-                                  new PrintMessageErrorRequest()
+                                  new WirePrintMessageErrorRequest()
                                     .setErrorTypeTag(errorTypeTag)
                                     .setKind(kind)
                                     .setLocation(location)
@@ -307,9 +307,9 @@ function main() {
                         (id: string) =>
                           new Promise((resolve) => {
                             call.write(
-                              new DefinitionResponse()
+                              new WireDefinitionResponse()
                                 .setPrintTestTitleRequest(
-                                  new PrintTestTitleRequest()
+                                  new WirePrintTestTitleRequest()
                                     .setKind(kind)
                                     .setIcon(icon)
                                     .setTitle(title)
@@ -331,13 +331,22 @@ function main() {
               console.log(definition);
             }
             break;
-          case DefinitionRequest.KindCase.END_DEFINITION:
-          case DefinitionRequest.KindCase.RUN_EXAMPLE:
-          case DefinitionRequest.KindCase.RUN_REJECTING_EXAMPLE:
-          case DefinitionRequest.KindCase.STRIP_MATCHERS:
-          case DefinitionRequest.KindCase.STATE_HANDLER_RESPONSE:
+          case WireDefinitionRequest.KindCase.END_DEFINITION:
+            // TODO
             break;
-          case DefinitionRequest.KindCase.LOG_PRINTER_RESPONSE: {
+          case WireDefinitionRequest.KindCase.RUN_EXAMPLE:
+            // TODO
+            break;
+          case WireDefinitionRequest.KindCase.RUN_REJECTING_EXAMPLE:
+            // TODO
+            break;
+          case WireDefinitionRequest.KindCase.STRIP_MATCHERS:
+            // TODO
+            break;
+          case WireDefinitionRequest.KindCase.STATE_HANDLER_RESPONSE:
+            // TODO
+            break;
+          case WireDefinitionRequest.KindCase.LOG_PRINTER_RESPONSE: {
             const logPrinterResponse = request.getLogPrinterResponse();
             if (logPrinterResponse == null) {
               throw new ConnectorError(
@@ -406,8 +415,8 @@ function main() {
             break;
           }
 
-          case DefinitionRequest.KindCase.RESULT_PRINTER_RESPONSE:
-          case DefinitionRequest.KindCase.TRIGGER_FUNCTION_RESPONSE:
+          case WireDefinitionRequest.KindCase.RESULT_PRINTER_RESPONSE:
+          case WireDefinitionRequest.KindCase.TRIGGER_FUNCTION_RESPONSE:
             break;
           default:
             throw new UnreachableError(type);
