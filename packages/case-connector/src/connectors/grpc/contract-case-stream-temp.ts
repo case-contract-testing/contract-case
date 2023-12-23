@@ -19,8 +19,8 @@ import {
   PrintMessageErrorRequest,
   PrintTestTitleRequest,
   StateHandlerHandle,
-} from './generated/contract-case-stream_pb';
-import service from './generated/contract-case-stream_grpc_pb';
+} from './proto/contract_case_stream_pb';
+import service from './proto/contract_case_stream_grpc_pb';
 import { UnreachableError } from './UnreachableError';
 import { ConnectorError } from './ConnectorError';
 import { beginDefinition } from '../define';
@@ -97,7 +97,8 @@ const mapStateHandlers = (
       ...acc,
       [handler.getHandle()]: {
         ...(acc[handler.getHandle()] ? acc[handler.getHandle()] : {}),
-        ...(handler.getStage() === StateHandlerHandle.Stage.SETUP
+        ...(handler.getStage() ===
+        StateHandlerHandle.Stage.STAGE_SETUP_UNSPECIFIED
           ? { setup: makeStateHandlerCall(handler) }
           : {
               setup: makeStateHandlerCall(handler),
@@ -128,22 +129,22 @@ type WithUndefined<T> = {
 const mapAllConfigFields = (
   config: ContractCaseConfig,
 ): WithUndefined<ContractCaseConnectorConfig> => ({
-  providerName: config.getProvidername(),
-  consumerName: config.getConsumername(),
-  logLevel: config.getLoglevel(),
-  contractDir: config.getContractdir(),
-  contractFilename: config.getContractfilename(),
+  providerName: config.getProviderName(),
+  consumerName: config.getConsumerName(),
+  logLevel: config.getLogLevel(),
+  contractDir: config.getContractDir(),
+  contractFilename: config.getContractFilename(),
 
   publish: config.getPublish(),
-  brokerCiAccessToken: config.getBrokerciaccesstoken(),
-  brokerBaseUrl: config.getBrokerbaseurl(),
-  brokerBasicAuth: mapBasicAuth(config.getBrokerbasicauth()),
+  brokerCiAccessToken: config.getBrokerCiAccessToken(),
+  brokerBaseUrl: config.getBrokerBaseUrl(),
+  brokerBasicAuth: mapBasicAuth(config.getBrokerBasicAuth()),
 
-  baseUrlUnderTest: config.getBaseurlundertest(),
-  printResults: config.getPrintresults(),
-  throwOnFail: config.getThrowonfail(),
+  baseUrlUnderTest: config.getBaseUrlUnderTest(),
+  printResults: config.getPrintResults(),
+  throwOnFail: config.getThrowOnFail(),
 
-  stateHandlers: mapStateHandlers(config.getStatehandlersList()),
+  stateHandlers: mapStateHandlers(config.getStateHandlersList()),
   triggerAndTests: {}, // Record<string, ConnectorTriggerFunction>;
   triggerAndTest: {
     trigger: () => Promise.reject(new Error('Not implemented')),
@@ -187,9 +188,9 @@ function main() {
             throw new ConnectorError(
               "Create contract was called with a request type it didn't understand",
             );
-          case DefinitionRequest.KindCase.BEGINDEFINITION:
+          case DefinitionRequest.KindCase.BEGIN_DEFINITION:
             {
-              const beginDefinitionRequest = request.getBegindefinition();
+              const beginDefinitionRequest = request.getBeginDefinition();
               if (beginDefinitionRequest == null) {
                 throw new ConnectorError(
                   'Begin definition was called with something that returned an undefined getBeginDefinition',
@@ -213,12 +214,12 @@ function main() {
                           new Promise((resolve) => {
                             call.write(
                               new DefinitionResponse()
-                                .setLogrequest(
+                                .setLogRequest(
                                   new LogRequest()
                                     .setLevel(level)
                                     .setTimestamp(timestamp)
                                     .setVersion(version)
-                                    .setTypestring(typeString)
+                                    .setTypeString(typeString)
                                     .setLocation(location)
                                     .setMessage(message)
                                     .setAdditional(additional),
@@ -248,15 +249,15 @@ function main() {
                           new Promise((resolve) => {
                             call.write(
                               new DefinitionResponse()
-                                .setPrintmatcherrorrequest(
+                                .setPrintMatchErrorRequest(
                                   new PrintMatchErrorRequest()
                                     .setActual(actual)
                                     .setKind(kind)
-                                    .setLocationtag(locationTag)
+                                    .setLocationTag(locationTag)
                                     .setExpected(expected)
                                     .setLocation(location)
                                     .setMessage(message)
-                                    .setErrortypetag(errorTypeTag),
+                                    .setErrorTypeTag(errorTypeTag),
                                 )
                                 .setId(id),
                               () => {
@@ -279,12 +280,12 @@ function main() {
                           new Promise((resolve) => {
                             call.write(
                               new DefinitionResponse()
-                                .setPrintmessageerrorrequest(
+                                .setPrintMessageErrorRequest(
                                   new PrintMessageErrorRequest()
-                                    .setErrortypetag(errorTypeTag)
+                                    .setErrorTypeTag(errorTypeTag)
                                     .setKind(kind)
                                     .setLocation(location)
-                                    .setLocationtag(locationTag)
+                                    .setLocationTag(locationTag)
                                     .setMessage(message),
                                 )
                                 .setId(id),
@@ -307,12 +308,12 @@ function main() {
                           new Promise((resolve) => {
                             call.write(
                               new DefinitionResponse()
-                                .setPrinttesttitlerequest(
+                                .setPrintTestTitleRequest(
                                   new PrintTestTitleRequest()
                                     .setKind(kind)
                                     .setIcon(icon)
                                     .setTitle(title)
-                                    .setAdditionaltext(additionalText),
+                                    .setAdditionalText(additionalText),
                                 )
                                 .setId(id),
                               () => {
@@ -323,20 +324,21 @@ function main() {
                       ),
                     ),
                 },
-                beginDefinitionRequest.getCallerversionsList(),
+                beginDefinitionRequest.getCallerVersionsList(),
               );
 
               // eslint-disable-next-line no-console
               console.log(definition);
             }
             break;
-          case DefinitionRequest.KindCase.RUNEXAMPLE:
-          case DefinitionRequest.KindCase.RUNREJECTINGEXAMPLE:
-          case DefinitionRequest.KindCase.STRIPMATCHERS:
-          case DefinitionRequest.KindCase.DEFINITION:
-          case DefinitionRequest.KindCase.STATEHANDLERRESPONSE:
-          case DefinitionRequest.KindCase.LOGPRINTERRESPONSE: {
-            const logPrinterResponse = request.getLogprinterresponse();
+          case DefinitionRequest.KindCase.END_DEFINITION:
+          case DefinitionRequest.KindCase.RUN_EXAMPLE:
+          case DefinitionRequest.KindCase.RUN_REJECTING_EXAMPLE:
+          case DefinitionRequest.KindCase.STRIP_MATCHERS:
+          case DefinitionRequest.KindCase.STATE_HANDLER_RESPONSE:
+            break;
+          case DefinitionRequest.KindCase.LOG_PRINTER_RESPONSE: {
+            const logPrinterResponse = request.getLogPrinterResponse();
             if (logPrinterResponse == null) {
               throw new ConnectorError(
                 'Log printer response was called with something that returned an undefined logPrinterResponse',
@@ -359,8 +361,8 @@ function main() {
                 case WireBoundaryResult.ValueCase.SUCCESS:
                   return new BoundarySuccess();
 
-                case WireBoundaryResult.ValueCase.SUCCESHASMAP: {
-                  const wireWithMap = wireBoundaryResult.getSucceshasmap();
+                case WireBoundaryResult.ValueCase.SUCCES_HAS_MAP: {
+                  const wireWithMap = wireBoundaryResult.getSuccesHasMap();
                   if (wireWithMap == null) {
                     throw new ConnectorError(
                       'undefined wire with map in a boundary result. This is probably an error in the wrapper library.',
@@ -369,8 +371,8 @@ function main() {
                   // TOOD: Map this map
                   return new BoundarySuccessWithMap(wireWithMap.getMap());
                 }
-                case WireBoundaryResult.ValueCase.SUCCESSHASANY: {
-                  const wireWithAny = wireBoundaryResult.getSuccesshasany();
+                case WireBoundaryResult.ValueCase.SUCCESS_HAS_ANY: {
+                  const wireWithAny = wireBoundaryResult.getSuccessHasAny();
                   if (wireWithAny == null) {
                     throw new ConnectorError(
                       'undefined wire with any p in a boundary result. This is probably an error in the wrapper library.',
@@ -404,8 +406,8 @@ function main() {
             break;
           }
 
-          case DefinitionRequest.KindCase.RESULTPRINTERRESPONSE:
-          case DefinitionRequest.KindCase.TRIGGERFUNCTIONRESPONSE:
+          case DefinitionRequest.KindCase.RESULT_PRINTER_RESPONSE:
+          case DefinitionRequest.KindCase.TRIGGER_FUNCTION_RESPONSE:
             break;
           default:
             throw new UnreachableError(type);

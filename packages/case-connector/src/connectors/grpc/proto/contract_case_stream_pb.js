@@ -1,4 +1,4 @@
-// source: proto/contract-case-stream.proto
+// source: proto/contract_case_stream.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -770,22 +770,22 @@ proto.contractcase.ContractCaseConfig.prototype.toObject = function(opt_includeI
  */
 proto.contractcase.ContractCaseConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    providername: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    consumername: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    loglevel: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    contractdir: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    contractfilename: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    providerName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    consumerName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    logLevel: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    contractDir: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    contractFilename: jspb.Message.getFieldWithDefault(msg, 5, ""),
     publish: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    brokerciaccesstoken: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    brokerbaseurl: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    brokerbasicauth: (f = msg.getBrokerbasicauth()) && proto.contractcase.ContractCaseConfig.UsernamePassword.toObject(includeInstance, f),
-    printresults: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
-    throwonfail: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
-    statehandlersList: jspb.Message.toObjectList(msg.getStatehandlersList(),
+    brokerCiAccessToken: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    brokerBaseUrl: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    brokerBasicAuth: (f = msg.getBrokerBasicAuth()) && proto.contractcase.ContractCaseConfig.UsernamePassword.toObject(includeInstance, f),
+    printResults: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+    throwOnFail: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    stateHandlersList: jspb.Message.toObjectList(msg.getStateHandlersList(),
     proto.contractcase.StateHandlerHandle.toObject, includeInstance),
-    triggerfunctionMap: (f = msg.getTriggerfunctionMap()) ? f.toObject(includeInstance, proto.contractcase.TriggerFunctionHandle.toObject) : [],
-    triggerandtest: (f = msg.getTriggerandtest()) && proto.contractcase.TriggerFunctionHandle.toObject(includeInstance, f),
-    baseurlundertest: jspb.Message.getFieldWithDefault(msg, 15, "")
+    triggerFunctionMap: (f = msg.getTriggerFunctionMap()) ? f.toObject(includeInstance, proto.contractcase.TriggerFunctionHandle.toObject) : [],
+    triggerAndTest: (f = msg.getTriggerAndTest()) && proto.contractcase.TriggerFunctionHandle.toObject(includeInstance, f),
+    baseUrlUnderTest: jspb.Message.getFieldWithDefault(msg, 15, "")
   };
 
   if (includeInstance) {
@@ -824,23 +824,23 @@ proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader = function(msg
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setProvidername(value);
+      msg.setProviderName(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setConsumername(value);
+      msg.setConsumerName(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLoglevel(value);
+      msg.setLogLevel(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContractdir(value);
+      msg.setContractDir(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContractfilename(value);
+      msg.setContractFilename(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
@@ -848,32 +848,32 @@ proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader = function(msg
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setBrokerciaccesstoken(value);
+      msg.setBrokerCiAccessToken(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setBrokerbaseurl(value);
+      msg.setBrokerBaseUrl(value);
       break;
     case 9:
       var value = new proto.contractcase.ContractCaseConfig.UsernamePassword;
       reader.readMessage(value,proto.contractcase.ContractCaseConfig.UsernamePassword.deserializeBinaryFromReader);
-      msg.setBrokerbasicauth(value);
+      msg.setBrokerBasicAuth(value);
       break;
     case 10:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setPrintresults(value);
+      msg.setPrintResults(value);
       break;
     case 11:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setThrowonfail(value);
+      msg.setThrowOnFail(value);
       break;
     case 12:
       var value = new proto.contractcase.StateHandlerHandle;
       reader.readMessage(value,proto.contractcase.StateHandlerHandle.deserializeBinaryFromReader);
-      msg.addStatehandlers(value);
+      msg.addStateHandlers(value);
       break;
     case 13:
-      var value = msg.getTriggerfunctionMap();
+      var value = msg.getTriggerFunctionMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.contractcase.TriggerFunctionHandle.deserializeBinaryFromReader, "", new proto.contractcase.TriggerFunctionHandle());
          });
@@ -881,11 +881,11 @@ proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader = function(msg
     case 14:
       var value = new proto.contractcase.TriggerFunctionHandle;
       reader.readMessage(value,proto.contractcase.TriggerFunctionHandle.deserializeBinaryFromReader);
-      msg.setTriggerandtest(value);
+      msg.setTriggerAndTest(value);
       break;
     case 15:
       var value = /** @type {string} */ (reader.readString());
-      msg.setBaseurlundertest(value);
+      msg.setBaseUrlUnderTest(value);
       break;
     default:
       reader.skipField();
@@ -916,35 +916,35 @@ proto.contractcase.ContractCaseConfig.prototype.serializeBinary = function() {
  */
 proto.contractcase.ContractCaseConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getProvidername();
+  f = message.getProviderName();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getConsumername();
+  f = message.getConsumerName();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getLoglevel();
+  f = message.getLogLevel();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getContractdir();
+  f = message.getContractDir();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getContractfilename();
+  f = message.getContractFilename();
   if (f.length > 0) {
     writer.writeString(
       5,
@@ -958,21 +958,21 @@ proto.contractcase.ContractCaseConfig.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getBrokerciaccesstoken();
+  f = message.getBrokerCiAccessToken();
   if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
-  f = message.getBrokerbaseurl();
+  f = message.getBrokerBaseUrl();
   if (f.length > 0) {
     writer.writeString(
       8,
       f
     );
   }
-  f = message.getBrokerbasicauth();
+  f = message.getBrokerBasicAuth();
   if (f != null) {
     writer.writeMessage(
       9,
@@ -980,21 +980,21 @@ proto.contractcase.ContractCaseConfig.serializeBinaryToWriter = function(message
       proto.contractcase.ContractCaseConfig.UsernamePassword.serializeBinaryToWriter
     );
   }
-  f = message.getPrintresults();
+  f = message.getPrintResults();
   if (f) {
     writer.writeBool(
       10,
       f
     );
   }
-  f = message.getThrowonfail();
+  f = message.getThrowOnFail();
   if (f) {
     writer.writeBool(
       11,
       f
     );
   }
-  f = message.getStatehandlersList();
+  f = message.getStateHandlersList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       12,
@@ -1002,11 +1002,11 @@ proto.contractcase.ContractCaseConfig.serializeBinaryToWriter = function(message
       proto.contractcase.StateHandlerHandle.serializeBinaryToWriter
     );
   }
-  f = message.getTriggerfunctionMap(true);
+  f = message.getTriggerFunctionMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(13, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.contractcase.TriggerFunctionHandle.serializeBinaryToWriter);
   }
-  f = message.getTriggerandtest();
+  f = message.getTriggerAndTest();
   if (f != null) {
     writer.writeMessage(
       14,
@@ -1014,7 +1014,7 @@ proto.contractcase.ContractCaseConfig.serializeBinaryToWriter = function(message
       proto.contractcase.TriggerFunctionHandle.serializeBinaryToWriter
     );
   }
-  f = message.getBaseurlundertest();
+  f = message.getBaseUrlUnderTest();
   if (f.length > 0) {
     writer.writeString(
       15,
@@ -1185,10 +1185,10 @@ proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.setPassword = f
 
 
 /**
- * optional string providerName = 1;
+ * optional string provider_name = 1;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getProvidername = function() {
+proto.contractcase.ContractCaseConfig.prototype.getProviderName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1197,16 +1197,16 @@ proto.contractcase.ContractCaseConfig.prototype.getProvidername = function() {
  * @param {string} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setProvidername = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setProviderName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string consumerName = 2;
+ * optional string consumer_name = 2;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getConsumername = function() {
+proto.contractcase.ContractCaseConfig.prototype.getConsumerName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1215,16 +1215,16 @@ proto.contractcase.ContractCaseConfig.prototype.getConsumername = function() {
  * @param {string} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setConsumername = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setConsumerName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string logLevel = 3;
+ * optional string log_level = 3;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getLoglevel = function() {
+proto.contractcase.ContractCaseConfig.prototype.getLogLevel = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -1233,16 +1233,16 @@ proto.contractcase.ContractCaseConfig.prototype.getLoglevel = function() {
  * @param {string} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setLoglevel = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setLogLevel = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string contractDir = 4;
+ * optional string contract_dir = 4;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getContractdir = function() {
+proto.contractcase.ContractCaseConfig.prototype.getContractDir = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -1251,16 +1251,16 @@ proto.contractcase.ContractCaseConfig.prototype.getContractdir = function() {
  * @param {string} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setContractdir = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setContractDir = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string contractFilename = 5;
+ * optional string contract_filename = 5;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getContractfilename = function() {
+proto.contractcase.ContractCaseConfig.prototype.getContractFilename = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -1269,7 +1269,7 @@ proto.contractcase.ContractCaseConfig.prototype.getContractfilename = function()
  * @param {string} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setContractfilename = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setContractFilename = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -1293,10 +1293,10 @@ proto.contractcase.ContractCaseConfig.prototype.setPublish = function(value) {
 
 
 /**
- * optional string brokerCiAccessToken = 7;
+ * optional string broker_ci_access_token = 7;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getBrokerciaccesstoken = function() {
+proto.contractcase.ContractCaseConfig.prototype.getBrokerCiAccessToken = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -1305,16 +1305,16 @@ proto.contractcase.ContractCaseConfig.prototype.getBrokerciaccesstoken = functio
  * @param {string} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setBrokerciaccesstoken = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setBrokerCiAccessToken = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional string brokerBaseUrl = 8;
+ * optional string broker_base_url = 8;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getBrokerbaseurl = function() {
+proto.contractcase.ContractCaseConfig.prototype.getBrokerBaseUrl = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -1323,16 +1323,16 @@ proto.contractcase.ContractCaseConfig.prototype.getBrokerbaseurl = function() {
  * @param {string} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setBrokerbaseurl = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setBrokerBaseUrl = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional UsernamePassword brokerBasicAuth = 9;
+ * optional UsernamePassword broker_basic_auth = 9;
  * @return {?proto.contractcase.ContractCaseConfig.UsernamePassword}
  */
-proto.contractcase.ContractCaseConfig.prototype.getBrokerbasicauth = function() {
+proto.contractcase.ContractCaseConfig.prototype.getBrokerBasicAuth = function() {
   return /** @type{?proto.contractcase.ContractCaseConfig.UsernamePassword} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.ContractCaseConfig.UsernamePassword, 9));
 };
@@ -1342,7 +1342,7 @@ proto.contractcase.ContractCaseConfig.prototype.getBrokerbasicauth = function() 
  * @param {?proto.contractcase.ContractCaseConfig.UsernamePassword|undefined} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
 */
-proto.contractcase.ContractCaseConfig.prototype.setBrokerbasicauth = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setBrokerBasicAuth = function(value) {
   return jspb.Message.setWrapperField(this, 9, value);
 };
 
@@ -1351,8 +1351,8 @@ proto.contractcase.ContractCaseConfig.prototype.setBrokerbasicauth = function(va
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.clearBrokerbasicauth = function() {
-  return this.setBrokerbasicauth(undefined);
+proto.contractcase.ContractCaseConfig.prototype.clearBrokerBasicAuth = function() {
+  return this.setBrokerBasicAuth(undefined);
 };
 
 
@@ -1360,16 +1360,16 @@ proto.contractcase.ContractCaseConfig.prototype.clearBrokerbasicauth = function(
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.ContractCaseConfig.prototype.hasBrokerbasicauth = function() {
+proto.contractcase.ContractCaseConfig.prototype.hasBrokerBasicAuth = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional bool printResults = 10;
+ * optional bool print_results = 10;
  * @return {boolean}
  */
-proto.contractcase.ContractCaseConfig.prototype.getPrintresults = function() {
+proto.contractcase.ContractCaseConfig.prototype.getPrintResults = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
 };
 
@@ -1378,16 +1378,16 @@ proto.contractcase.ContractCaseConfig.prototype.getPrintresults = function() {
  * @param {boolean} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setPrintresults = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setPrintResults = function(value) {
   return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 
 /**
- * optional bool throwOnFail = 11;
+ * optional bool throw_on_fail = 11;
  * @return {boolean}
  */
-proto.contractcase.ContractCaseConfig.prototype.getThrowonfail = function() {
+proto.contractcase.ContractCaseConfig.prototype.getThrowOnFail = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
 };
 
@@ -1396,16 +1396,16 @@ proto.contractcase.ContractCaseConfig.prototype.getThrowonfail = function() {
  * @param {boolean} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setThrowonfail = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setThrowOnFail = function(value) {
   return jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 
 /**
- * repeated StateHandlerHandle stateHandlers = 12;
+ * repeated StateHandlerHandle state_handlers = 12;
  * @return {!Array<!proto.contractcase.StateHandlerHandle>}
  */
-proto.contractcase.ContractCaseConfig.prototype.getStatehandlersList = function() {
+proto.contractcase.ContractCaseConfig.prototype.getStateHandlersList = function() {
   return /** @type{!Array<!proto.contractcase.StateHandlerHandle>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.contractcase.StateHandlerHandle, 12));
 };
@@ -1415,7 +1415,7 @@ proto.contractcase.ContractCaseConfig.prototype.getStatehandlersList = function(
  * @param {!Array<!proto.contractcase.StateHandlerHandle>} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
 */
-proto.contractcase.ContractCaseConfig.prototype.setStatehandlersList = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setStateHandlersList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 12, value);
 };
 
@@ -1425,7 +1425,7 @@ proto.contractcase.ContractCaseConfig.prototype.setStatehandlersList = function(
  * @param {number=} opt_index
  * @return {!proto.contractcase.StateHandlerHandle}
  */
-proto.contractcase.ContractCaseConfig.prototype.addStatehandlers = function(opt_value, opt_index) {
+proto.contractcase.ContractCaseConfig.prototype.addStateHandlers = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 12, opt_value, proto.contractcase.StateHandlerHandle, opt_index);
 };
 
@@ -1434,18 +1434,18 @@ proto.contractcase.ContractCaseConfig.prototype.addStatehandlers = function(opt_
  * Clears the list making it empty but non-null.
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.clearStatehandlersList = function() {
-  return this.setStatehandlersList([]);
+proto.contractcase.ContractCaseConfig.prototype.clearStateHandlersList = function() {
+  return this.setStateHandlersList([]);
 };
 
 
 /**
- * map<string, TriggerFunctionHandle> triggerFunction = 13;
+ * map<string, TriggerFunctionHandle> trigger_function = 13;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,!proto.contractcase.TriggerFunctionHandle>}
  */
-proto.contractcase.ContractCaseConfig.prototype.getTriggerfunctionMap = function(opt_noLazyCreate) {
+proto.contractcase.ContractCaseConfig.prototype.getTriggerFunctionMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,!proto.contractcase.TriggerFunctionHandle>} */ (
       jspb.Message.getMapField(this, 13, opt_noLazyCreate,
       proto.contractcase.TriggerFunctionHandle));
@@ -1456,16 +1456,16 @@ proto.contractcase.ContractCaseConfig.prototype.getTriggerfunctionMap = function
  * Clears values from the map. The map will be non-null.
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.clearTriggerfunctionMap = function() {
-  this.getTriggerfunctionMap().clear();
+proto.contractcase.ContractCaseConfig.prototype.clearTriggerFunctionMap = function() {
+  this.getTriggerFunctionMap().clear();
   return this;};
 
 
 /**
- * optional TriggerFunctionHandle triggerAndTest = 14;
+ * optional TriggerFunctionHandle trigger_and_test = 14;
  * @return {?proto.contractcase.TriggerFunctionHandle}
  */
-proto.contractcase.ContractCaseConfig.prototype.getTriggerandtest = function() {
+proto.contractcase.ContractCaseConfig.prototype.getTriggerAndTest = function() {
   return /** @type{?proto.contractcase.TriggerFunctionHandle} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.TriggerFunctionHandle, 14));
 };
@@ -1475,7 +1475,7 @@ proto.contractcase.ContractCaseConfig.prototype.getTriggerandtest = function() {
  * @param {?proto.contractcase.TriggerFunctionHandle|undefined} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
 */
-proto.contractcase.ContractCaseConfig.prototype.setTriggerandtest = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setTriggerAndTest = function(value) {
   return jspb.Message.setWrapperField(this, 14, value);
 };
 
@@ -1484,8 +1484,8 @@ proto.contractcase.ContractCaseConfig.prototype.setTriggerandtest = function(val
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.clearTriggerandtest = function() {
-  return this.setTriggerandtest(undefined);
+proto.contractcase.ContractCaseConfig.prototype.clearTriggerAndTest = function() {
+  return this.setTriggerAndTest(undefined);
 };
 
 
@@ -1493,16 +1493,16 @@ proto.contractcase.ContractCaseConfig.prototype.clearTriggerandtest = function()
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.ContractCaseConfig.prototype.hasTriggerandtest = function() {
+proto.contractcase.ContractCaseConfig.prototype.hasTriggerAndTest = function() {
   return jspb.Message.getField(this, 14) != null;
 };
 
 
 /**
- * optional string baseUrlUnderTest = 15;
+ * optional string base_url_under_test = 15;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getBaseurlundertest = function() {
+proto.contractcase.ContractCaseConfig.prototype.getBaseUrlUnderTest = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
 };
 
@@ -1511,7 +1511,7 @@ proto.contractcase.ContractCaseConfig.prototype.getBaseurlundertest = function()
  * @param {string} value
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setBaseurlundertest = function(value) {
+proto.contractcase.ContractCaseConfig.prototype.setBaseUrlUnderTest = function(value) {
   return jspb.Message.setProto3StringField(this, 15, value);
 };
 
@@ -1548,7 +1548,7 @@ proto.contractcase.DefinitionHandle.prototype.toObject = function(opt_includeIns
  */
 proto.contractcase.DefinitionHandle.toObject = function(includeInstance, msg) {
   var f, obj = {
-    definitionid: jspb.Message.getFieldWithDefault(msg, 1, "")
+    definitionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1587,7 +1587,7 @@ proto.contractcase.DefinitionHandle.deserializeBinaryFromReader = function(msg, 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDefinitionid(value);
+      msg.setDefinitionId(value);
       break;
     default:
       reader.skipField();
@@ -1618,7 +1618,7 @@ proto.contractcase.DefinitionHandle.prototype.serializeBinary = function() {
  */
 proto.contractcase.DefinitionHandle.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getDefinitionid();
+  f = message.getDefinitionId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1629,10 +1629,10 @@ proto.contractcase.DefinitionHandle.serializeBinaryToWriter = function(message, 
 
 
 /**
- * optional string definitionId = 1;
+ * optional string definition_id = 1;
  * @return {string}
  */
-proto.contractcase.DefinitionHandle.prototype.getDefinitionid = function() {
+proto.contractcase.DefinitionHandle.prototype.getDefinitionId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1641,7 +1641,7 @@ proto.contractcase.DefinitionHandle.prototype.getDefinitionid = function() {
  * @param {string} value
  * @return {!proto.contractcase.DefinitionHandle} returns this
  */
-proto.contractcase.DefinitionHandle.prototype.setDefinitionid = function(value) {
+proto.contractcase.DefinitionHandle.prototype.setDefinitionId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -2256,8 +2256,8 @@ proto.contractcase.BoundaryResult.oneofGroups_ = [[1,2,3,4]];
 proto.contractcase.BoundaryResult.ValueCase = {
   VALUE_NOT_SET: 0,
   SUCCESS: 1,
-  SUCCESHASMAP: 2,
-  SUCCESSHASANY: 3,
+  SUCCES_HAS_MAP: 2,
+  SUCCESS_HAS_ANY: 3,
   FAILURE: 4
 };
 
@@ -2300,8 +2300,8 @@ proto.contractcase.BoundaryResult.prototype.toObject = function(opt_includeInsta
 proto.contractcase.BoundaryResult.toObject = function(includeInstance, msg) {
   var f, obj = {
     success: (f = msg.getSuccess()) && proto.contractcase.ResultSuccess.toObject(includeInstance, f),
-    succeshasmap: (f = msg.getSucceshasmap()) && proto.contractcase.ResultSuccessHasMapPayload.toObject(includeInstance, f),
-    successhasany: (f = msg.getSuccesshasany()) && proto.contractcase.ResultSuccessHasAnyPayload.toObject(includeInstance, f),
+    succesHasMap: (f = msg.getSuccesHasMap()) && proto.contractcase.ResultSuccessHasMapPayload.toObject(includeInstance, f),
+    successHasAny: (f = msg.getSuccessHasAny()) && proto.contractcase.ResultSuccessHasAnyPayload.toObject(includeInstance, f),
     failure: (f = msg.getFailure()) && proto.contractcase.ResultFailure.toObject(includeInstance, f)
   };
 
@@ -2347,12 +2347,12 @@ proto.contractcase.BoundaryResult.deserializeBinaryFromReader = function(msg, re
     case 2:
       var value = new proto.contractcase.ResultSuccessHasMapPayload;
       reader.readMessage(value,proto.contractcase.ResultSuccessHasMapPayload.deserializeBinaryFromReader);
-      msg.setSucceshasmap(value);
+      msg.setSuccesHasMap(value);
       break;
     case 3:
       var value = new proto.contractcase.ResultSuccessHasAnyPayload;
       reader.readMessage(value,proto.contractcase.ResultSuccessHasAnyPayload.deserializeBinaryFromReader);
-      msg.setSuccesshasany(value);
+      msg.setSuccessHasAny(value);
       break;
     case 4:
       var value = new proto.contractcase.ResultFailure;
@@ -2396,7 +2396,7 @@ proto.contractcase.BoundaryResult.serializeBinaryToWriter = function(message, wr
       proto.contractcase.ResultSuccess.serializeBinaryToWriter
     );
   }
-  f = message.getSucceshasmap();
+  f = message.getSuccesHasMap();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -2404,7 +2404,7 @@ proto.contractcase.BoundaryResult.serializeBinaryToWriter = function(message, wr
       proto.contractcase.ResultSuccessHasMapPayload.serializeBinaryToWriter
     );
   }
-  f = message.getSuccesshasany();
+  f = message.getSuccessHasAny();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -2461,10 +2461,10 @@ proto.contractcase.BoundaryResult.prototype.hasSuccess = function() {
 
 
 /**
- * optional ResultSuccessHasMapPayload succesHasMap = 2;
+ * optional ResultSuccessHasMapPayload succes_has_map = 2;
  * @return {?proto.contractcase.ResultSuccessHasMapPayload}
  */
-proto.contractcase.BoundaryResult.prototype.getSucceshasmap = function() {
+proto.contractcase.BoundaryResult.prototype.getSuccesHasMap = function() {
   return /** @type{?proto.contractcase.ResultSuccessHasMapPayload} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.ResultSuccessHasMapPayload, 2));
 };
@@ -2474,7 +2474,7 @@ proto.contractcase.BoundaryResult.prototype.getSucceshasmap = function() {
  * @param {?proto.contractcase.ResultSuccessHasMapPayload|undefined} value
  * @return {!proto.contractcase.BoundaryResult} returns this
 */
-proto.contractcase.BoundaryResult.prototype.setSucceshasmap = function(value) {
+proto.contractcase.BoundaryResult.prototype.setSuccesHasMap = function(value) {
   return jspb.Message.setOneofWrapperField(this, 2, proto.contractcase.BoundaryResult.oneofGroups_[0], value);
 };
 
@@ -2483,8 +2483,8 @@ proto.contractcase.BoundaryResult.prototype.setSucceshasmap = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.BoundaryResult} returns this
  */
-proto.contractcase.BoundaryResult.prototype.clearSucceshasmap = function() {
-  return this.setSucceshasmap(undefined);
+proto.contractcase.BoundaryResult.prototype.clearSuccesHasMap = function() {
+  return this.setSuccesHasMap(undefined);
 };
 
 
@@ -2492,16 +2492,16 @@ proto.contractcase.BoundaryResult.prototype.clearSucceshasmap = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.BoundaryResult.prototype.hasSucceshasmap = function() {
+proto.contractcase.BoundaryResult.prototype.hasSuccesHasMap = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional ResultSuccessHasAnyPayload successHasAny = 3;
+ * optional ResultSuccessHasAnyPayload success_has_any = 3;
  * @return {?proto.contractcase.ResultSuccessHasAnyPayload}
  */
-proto.contractcase.BoundaryResult.prototype.getSuccesshasany = function() {
+proto.contractcase.BoundaryResult.prototype.getSuccessHasAny = function() {
   return /** @type{?proto.contractcase.ResultSuccessHasAnyPayload} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.ResultSuccessHasAnyPayload, 3));
 };
@@ -2511,7 +2511,7 @@ proto.contractcase.BoundaryResult.prototype.getSuccesshasany = function() {
  * @param {?proto.contractcase.ResultSuccessHasAnyPayload|undefined} value
  * @return {!proto.contractcase.BoundaryResult} returns this
 */
-proto.contractcase.BoundaryResult.prototype.setSuccesshasany = function(value) {
+proto.contractcase.BoundaryResult.prototype.setSuccessHasAny = function(value) {
   return jspb.Message.setOneofWrapperField(this, 3, proto.contractcase.BoundaryResult.oneofGroups_[0], value);
 };
 
@@ -2520,8 +2520,8 @@ proto.contractcase.BoundaryResult.prototype.setSuccesshasany = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.BoundaryResult} returns this
  */
-proto.contractcase.BoundaryResult.prototype.clearSuccesshasany = function() {
-  return this.setSuccesshasany(undefined);
+proto.contractcase.BoundaryResult.prototype.clearSuccessHasAny = function() {
+  return this.setSuccessHasAny(undefined);
 };
 
 
@@ -2529,7 +2529,7 @@ proto.contractcase.BoundaryResult.prototype.clearSuccesshasany = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.BoundaryResult.prototype.hasSuccesshasany = function() {
+proto.contractcase.BoundaryResult.prototype.hasSuccessHasAny = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -2699,8 +2699,8 @@ proto.contractcase.StateHandlerHandle.serializeBinaryToWriter = function(message
  * @enum {number}
  */
 proto.contractcase.StateHandlerHandle.Stage = {
-  SETUP: 0,
-  TEARDOWN: 1
+  STAGE_SETUP_UNSPECIFIED: 0,
+  STAGE_TEARDOWN: 1
 };
 
 /**
@@ -2909,7 +2909,7 @@ proto.contractcase.BeginDefinitionRequest.prototype.toObject = function(opt_incl
 proto.contractcase.BeginDefinitionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     config: (f = msg.getConfig()) && proto.contractcase.ContractCaseConfig.toObject(includeInstance, f),
-    callerversionsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    callerVersionsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2953,7 +2953,7 @@ proto.contractcase.BeginDefinitionRequest.deserializeBinaryFromReader = function
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.addCallerversions(value);
+      msg.addCallerVersions(value);
       break;
     default:
       reader.skipField();
@@ -2992,7 +2992,7 @@ proto.contractcase.BeginDefinitionRequest.serializeBinaryToWriter = function(mes
       proto.contractcase.ContractCaseConfig.serializeBinaryToWriter
     );
   }
-  f = message.getCallerversionsList();
+  f = message.getCallerVersionsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       4,
@@ -3040,10 +3040,10 @@ proto.contractcase.BeginDefinitionRequest.prototype.hasConfig = function() {
 
 
 /**
- * repeated string callerVersions = 4;
+ * repeated string caller_versions = 4;
  * @return {!Array<string>}
  */
-proto.contractcase.BeginDefinitionRequest.prototype.getCallerversionsList = function() {
+proto.contractcase.BeginDefinitionRequest.prototype.getCallerVersionsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
@@ -3052,7 +3052,7 @@ proto.contractcase.BeginDefinitionRequest.prototype.getCallerversionsList = func
  * @param {!Array<string>} value
  * @return {!proto.contractcase.BeginDefinitionRequest} returns this
  */
-proto.contractcase.BeginDefinitionRequest.prototype.setCallerversionsList = function(value) {
+proto.contractcase.BeginDefinitionRequest.prototype.setCallerVersionsList = function(value) {
   return jspb.Message.setField(this, 4, value || []);
 };
 
@@ -3062,7 +3062,7 @@ proto.contractcase.BeginDefinitionRequest.prototype.setCallerversionsList = func
  * @param {number=} opt_index
  * @return {!proto.contractcase.BeginDefinitionRequest} returns this
  */
-proto.contractcase.BeginDefinitionRequest.prototype.addCallerversions = function(value, opt_index) {
+proto.contractcase.BeginDefinitionRequest.prototype.addCallerVersions = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
@@ -3071,8 +3071,8 @@ proto.contractcase.BeginDefinitionRequest.prototype.addCallerversions = function
  * Clears the list making it empty but non-null.
  * @return {!proto.contractcase.BeginDefinitionRequest} returns this
  */
-proto.contractcase.BeginDefinitionRequest.prototype.clearCallerversionsList = function() {
-  return this.setCallerversionsList([]);
+proto.contractcase.BeginDefinitionRequest.prototype.clearCallerVersionsList = function() {
+  return this.setCallerVersionsList([]);
 };
 
 
@@ -3108,7 +3108,7 @@ proto.contractcase.RunExampleRequest.prototype.toObject = function(opt_includeIn
  */
 proto.contractcase.RunExampleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    exampledefinition: (f = msg.getExampledefinition()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    exampleDefinition: (f = msg.getExampleDefinition()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     config: (f = msg.getConfig()) && proto.contractcase.ContractCaseConfig.toObject(includeInstance, f)
   };
 
@@ -3149,7 +3149,7 @@ proto.contractcase.RunExampleRequest.deserializeBinaryFromReader = function(msg,
     case 2:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setExampledefinition(value);
+      msg.setExampleDefinition(value);
       break;
     case 3:
       var value = new proto.contractcase.ContractCaseConfig;
@@ -3185,7 +3185,7 @@ proto.contractcase.RunExampleRequest.prototype.serializeBinary = function() {
  */
 proto.contractcase.RunExampleRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getExampledefinition();
+  f = message.getExampleDefinition();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -3205,10 +3205,10 @@ proto.contractcase.RunExampleRequest.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional google.protobuf.Struct exampleDefinition = 2;
+ * optional google.protobuf.Struct example_definition = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.contractcase.RunExampleRequest.prototype.getExampledefinition = function() {
+proto.contractcase.RunExampleRequest.prototype.getExampleDefinition = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -3218,7 +3218,7 @@ proto.contractcase.RunExampleRequest.prototype.getExampledefinition = function()
  * @param {?proto.google.protobuf.Struct|undefined} value
  * @return {!proto.contractcase.RunExampleRequest} returns this
 */
-proto.contractcase.RunExampleRequest.prototype.setExampledefinition = function(value) {
+proto.contractcase.RunExampleRequest.prototype.setExampleDefinition = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -3227,8 +3227,8 @@ proto.contractcase.RunExampleRequest.prototype.setExampledefinition = function(v
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.RunExampleRequest} returns this
  */
-proto.contractcase.RunExampleRequest.prototype.clearExampledefinition = function() {
-  return this.setExampledefinition(undefined);
+proto.contractcase.RunExampleRequest.prototype.clearExampleDefinition = function() {
+  return this.setExampleDefinition(undefined);
 };
 
 
@@ -3236,7 +3236,7 @@ proto.contractcase.RunExampleRequest.prototype.clearExampledefinition = function
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.RunExampleRequest.prototype.hasExampledefinition = function() {
+proto.contractcase.RunExampleRequest.prototype.hasExampleDefinition = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -3310,7 +3310,7 @@ proto.contractcase.RunRejectingExampleRequest.prototype.toObject = function(opt_
  */
 proto.contractcase.RunRejectingExampleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    exampledefinition: (f = msg.getExampledefinition()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    exampleDefinition: (f = msg.getExampleDefinition()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     config: (f = msg.getConfig()) && proto.contractcase.ContractCaseConfig.toObject(includeInstance, f)
   };
 
@@ -3351,7 +3351,7 @@ proto.contractcase.RunRejectingExampleRequest.deserializeBinaryFromReader = func
     case 2:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setExampledefinition(value);
+      msg.setExampleDefinition(value);
       break;
     case 3:
       var value = new proto.contractcase.ContractCaseConfig;
@@ -3387,7 +3387,7 @@ proto.contractcase.RunRejectingExampleRequest.prototype.serializeBinary = functi
  */
 proto.contractcase.RunRejectingExampleRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getExampledefinition();
+  f = message.getExampleDefinition();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -3407,10 +3407,10 @@ proto.contractcase.RunRejectingExampleRequest.serializeBinaryToWriter = function
 
 
 /**
- * optional google.protobuf.Struct exampleDefinition = 2;
+ * optional google.protobuf.Struct example_definition = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.getExampledefinition = function() {
+proto.contractcase.RunRejectingExampleRequest.prototype.getExampleDefinition = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -3420,7 +3420,7 @@ proto.contractcase.RunRejectingExampleRequest.prototype.getExampledefinition = f
  * @param {?proto.google.protobuf.Struct|undefined} value
  * @return {!proto.contractcase.RunRejectingExampleRequest} returns this
 */
-proto.contractcase.RunRejectingExampleRequest.prototype.setExampledefinition = function(value) {
+proto.contractcase.RunRejectingExampleRequest.prototype.setExampleDefinition = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -3429,8 +3429,8 @@ proto.contractcase.RunRejectingExampleRequest.prototype.setExampledefinition = f
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.RunRejectingExampleRequest} returns this
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.clearExampledefinition = function() {
-  return this.setExampledefinition(undefined);
+proto.contractcase.RunRejectingExampleRequest.prototype.clearExampleDefinition = function() {
+  return this.setExampleDefinition(undefined);
 };
 
 
@@ -3438,7 +3438,7 @@ proto.contractcase.RunRejectingExampleRequest.prototype.clearExampledefinition =
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.hasExampledefinition = function() {
+proto.contractcase.RunRejectingExampleRequest.prototype.hasExampleDefinition = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -3512,7 +3512,7 @@ proto.contractcase.StripMatchersRequest.prototype.toObject = function(opt_includ
  */
 proto.contractcase.StripMatchersRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    matcherordata: (f = msg.getMatcherordata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    matcherOrData: (f = msg.getMatcherOrData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3552,7 +3552,7 @@ proto.contractcase.StripMatchersRequest.deserializeBinaryFromReader = function(m
     case 2:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setMatcherordata(value);
+      msg.setMatcherOrData(value);
       break;
     default:
       reader.skipField();
@@ -3583,7 +3583,7 @@ proto.contractcase.StripMatchersRequest.prototype.serializeBinary = function() {
  */
 proto.contractcase.StripMatchersRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMatcherordata();
+  f = message.getMatcherOrData();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -3595,10 +3595,10 @@ proto.contractcase.StripMatchersRequest.serializeBinaryToWriter = function(messa
 
 
 /**
- * optional google.protobuf.Struct matcherOrData = 2;
+ * optional google.protobuf.Struct matcher_or_data = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.contractcase.StripMatchersRequest.prototype.getMatcherordata = function() {
+proto.contractcase.StripMatchersRequest.prototype.getMatcherOrData = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -3608,7 +3608,7 @@ proto.contractcase.StripMatchersRequest.prototype.getMatcherordata = function() 
  * @param {?proto.google.protobuf.Struct|undefined} value
  * @return {!proto.contractcase.StripMatchersRequest} returns this
 */
-proto.contractcase.StripMatchersRequest.prototype.setMatcherordata = function(value) {
+proto.contractcase.StripMatchersRequest.prototype.setMatcherOrData = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -3617,8 +3617,8 @@ proto.contractcase.StripMatchersRequest.prototype.setMatcherordata = function(va
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.StripMatchersRequest} returns this
  */
-proto.contractcase.StripMatchersRequest.prototype.clearMatcherordata = function() {
-  return this.setMatcherordata(undefined);
+proto.contractcase.StripMatchersRequest.prototype.clearMatcherOrData = function() {
+  return this.setMatcherOrData(undefined);
 };
 
 
@@ -3626,7 +3626,7 @@ proto.contractcase.StripMatchersRequest.prototype.clearMatcherordata = function(
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.StripMatchersRequest.prototype.hasMatcherordata = function() {
+proto.contractcase.StripMatchersRequest.prototype.hasMatcherOrData = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -3814,7 +3814,7 @@ proto.contractcase.StateHandlerResponse.prototype.toObject = function(opt_includ
  */
 proto.contractcase.StateHandlerResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    statehandlerhandle: (f = msg.getStatehandlerhandle()) && proto.contractcase.StateHandlerHandle.toObject(includeInstance, f),
+    stateHandlerHandle: (f = msg.getStateHandlerHandle()) && proto.contractcase.StateHandlerHandle.toObject(includeInstance, f),
     result: (f = msg.getResult()) && proto.contractcase.BoundaryResult.toObject(includeInstance, f)
   };
 
@@ -3855,7 +3855,7 @@ proto.contractcase.StateHandlerResponse.deserializeBinaryFromReader = function(m
     case 1:
       var value = new proto.contractcase.StateHandlerHandle;
       reader.readMessage(value,proto.contractcase.StateHandlerHandle.deserializeBinaryFromReader);
-      msg.setStatehandlerhandle(value);
+      msg.setStateHandlerHandle(value);
       break;
     case 2:
       var value = new proto.contractcase.BoundaryResult;
@@ -3891,7 +3891,7 @@ proto.contractcase.StateHandlerResponse.prototype.serializeBinary = function() {
  */
 proto.contractcase.StateHandlerResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getStatehandlerhandle();
+  f = message.getStateHandlerHandle();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -3911,10 +3911,10 @@ proto.contractcase.StateHandlerResponse.serializeBinaryToWriter = function(messa
 
 
 /**
- * optional StateHandlerHandle stateHandlerHandle = 1;
+ * optional StateHandlerHandle state_handler_handle = 1;
  * @return {?proto.contractcase.StateHandlerHandle}
  */
-proto.contractcase.StateHandlerResponse.prototype.getStatehandlerhandle = function() {
+proto.contractcase.StateHandlerResponse.prototype.getStateHandlerHandle = function() {
   return /** @type{?proto.contractcase.StateHandlerHandle} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.StateHandlerHandle, 1));
 };
@@ -3924,7 +3924,7 @@ proto.contractcase.StateHandlerResponse.prototype.getStatehandlerhandle = functi
  * @param {?proto.contractcase.StateHandlerHandle|undefined} value
  * @return {!proto.contractcase.StateHandlerResponse} returns this
 */
-proto.contractcase.StateHandlerResponse.prototype.setStatehandlerhandle = function(value) {
+proto.contractcase.StateHandlerResponse.prototype.setStateHandlerHandle = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -3933,8 +3933,8 @@ proto.contractcase.StateHandlerResponse.prototype.setStatehandlerhandle = functi
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.StateHandlerResponse} returns this
  */
-proto.contractcase.StateHandlerResponse.prototype.clearStatehandlerhandle = function() {
-  return this.setStatehandlerhandle(undefined);
+proto.contractcase.StateHandlerResponse.prototype.clearStateHandlerHandle = function() {
+  return this.setStateHandlerHandle(undefined);
 };
 
 
@@ -3942,7 +3942,7 @@ proto.contractcase.StateHandlerResponse.prototype.clearStatehandlerhandle = func
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.StateHandlerResponse.prototype.hasStatehandlerhandle = function() {
+proto.contractcase.StateHandlerResponse.prototype.hasStateHandlerHandle = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -4318,7 +4318,7 @@ proto.contractcase.RunStateHandlerRequest.prototype.toObject = function(opt_incl
  */
 proto.contractcase.RunStateHandlerRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    statehandlerhandle: (f = msg.getStatehandlerhandle()) && proto.contractcase.StateHandlerHandle.toObject(includeInstance, f)
+    stateHandlerHandle: (f = msg.getStateHandlerHandle()) && proto.contractcase.StateHandlerHandle.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4358,7 +4358,7 @@ proto.contractcase.RunStateHandlerRequest.deserializeBinaryFromReader = function
     case 1:
       var value = new proto.contractcase.StateHandlerHandle;
       reader.readMessage(value,proto.contractcase.StateHandlerHandle.deserializeBinaryFromReader);
-      msg.setStatehandlerhandle(value);
+      msg.setStateHandlerHandle(value);
       break;
     default:
       reader.skipField();
@@ -4389,7 +4389,7 @@ proto.contractcase.RunStateHandlerRequest.prototype.serializeBinary = function()
  */
 proto.contractcase.RunStateHandlerRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getStatehandlerhandle();
+  f = message.getStateHandlerHandle();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -4401,10 +4401,10 @@ proto.contractcase.RunStateHandlerRequest.serializeBinaryToWriter = function(mes
 
 
 /**
- * optional StateHandlerHandle stateHandlerHandle = 1;
+ * optional StateHandlerHandle state_handler_handle = 1;
  * @return {?proto.contractcase.StateHandlerHandle}
  */
-proto.contractcase.RunStateHandlerRequest.prototype.getStatehandlerhandle = function() {
+proto.contractcase.RunStateHandlerRequest.prototype.getStateHandlerHandle = function() {
   return /** @type{?proto.contractcase.StateHandlerHandle} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.StateHandlerHandle, 1));
 };
@@ -4414,7 +4414,7 @@ proto.contractcase.RunStateHandlerRequest.prototype.getStatehandlerhandle = func
  * @param {?proto.contractcase.StateHandlerHandle|undefined} value
  * @return {!proto.contractcase.RunStateHandlerRequest} returns this
 */
-proto.contractcase.RunStateHandlerRequest.prototype.setStatehandlerhandle = function(value) {
+proto.contractcase.RunStateHandlerRequest.prototype.setStateHandlerHandle = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -4423,8 +4423,8 @@ proto.contractcase.RunStateHandlerRequest.prototype.setStatehandlerhandle = func
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.RunStateHandlerRequest} returns this
  */
-proto.contractcase.RunStateHandlerRequest.prototype.clearStatehandlerhandle = function() {
-  return this.setStatehandlerhandle(undefined);
+proto.contractcase.RunStateHandlerRequest.prototype.clearStateHandlerHandle = function() {
+  return this.setStateHandlerHandle(undefined);
 };
 
 
@@ -4432,7 +4432,7 @@ proto.contractcase.RunStateHandlerRequest.prototype.clearStatehandlerhandle = fu
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.RunStateHandlerRequest.prototype.hasStatehandlerhandle = function() {
+proto.contractcase.RunStateHandlerRequest.prototype.hasStateHandlerHandle = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -4469,7 +4469,7 @@ proto.contractcase.TriggerFunctionRequest.prototype.toObject = function(opt_incl
  */
 proto.contractcase.TriggerFunctionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    triggerfunction: (f = msg.getTriggerfunction()) && proto.contractcase.TriggerFunctionHandle.toObject(includeInstance, f),
+    triggerFunction: (f = msg.getTriggerFunction()) && proto.contractcase.TriggerFunctionHandle.toObject(includeInstance, f),
     config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -4510,7 +4510,7 @@ proto.contractcase.TriggerFunctionRequest.deserializeBinaryFromReader = function
     case 1:
       var value = new proto.contractcase.TriggerFunctionHandle;
       reader.readMessage(value,proto.contractcase.TriggerFunctionHandle.deserializeBinaryFromReader);
-      msg.setTriggerfunction(value);
+      msg.setTriggerFunction(value);
       break;
     case 2:
       var value = new google_protobuf_struct_pb.Struct;
@@ -4546,7 +4546,7 @@ proto.contractcase.TriggerFunctionRequest.prototype.serializeBinary = function()
  */
 proto.contractcase.TriggerFunctionRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTriggerfunction();
+  f = message.getTriggerFunction();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -4566,10 +4566,10 @@ proto.contractcase.TriggerFunctionRequest.serializeBinaryToWriter = function(mes
 
 
 /**
- * optional TriggerFunctionHandle triggerFunction = 1;
+ * optional TriggerFunctionHandle trigger_function = 1;
  * @return {?proto.contractcase.TriggerFunctionHandle}
  */
-proto.contractcase.TriggerFunctionRequest.prototype.getTriggerfunction = function() {
+proto.contractcase.TriggerFunctionRequest.prototype.getTriggerFunction = function() {
   return /** @type{?proto.contractcase.TriggerFunctionHandle} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.TriggerFunctionHandle, 1));
 };
@@ -4579,7 +4579,7 @@ proto.contractcase.TriggerFunctionRequest.prototype.getTriggerfunction = functio
  * @param {?proto.contractcase.TriggerFunctionHandle|undefined} value
  * @return {!proto.contractcase.TriggerFunctionRequest} returns this
 */
-proto.contractcase.TriggerFunctionRequest.prototype.setTriggerfunction = function(value) {
+proto.contractcase.TriggerFunctionRequest.prototype.setTriggerFunction = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -4588,8 +4588,8 @@ proto.contractcase.TriggerFunctionRequest.prototype.setTriggerfunction = functio
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.TriggerFunctionRequest} returns this
  */
-proto.contractcase.TriggerFunctionRequest.prototype.clearTriggerfunction = function() {
-  return this.setTriggerfunction(undefined);
+proto.contractcase.TriggerFunctionRequest.prototype.clearTriggerFunction = function() {
+  return this.setTriggerFunction(undefined);
 };
 
 
@@ -4597,7 +4597,7 @@ proto.contractcase.TriggerFunctionRequest.prototype.clearTriggerfunction = funct
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.TriggerFunctionRequest.prototype.hasTriggerfunction = function() {
+proto.contractcase.TriggerFunctionRequest.prototype.hasTriggerFunction = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -4674,7 +4674,7 @@ proto.contractcase.LogRequest.toObject = function(includeInstance, msg) {
     level: jspb.Message.getFieldWithDefault(msg, 1, ""),
     timestamp: jspb.Message.getFieldWithDefault(msg, 2, ""),
     version: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    typestring: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    typeString: jspb.Message.getFieldWithDefault(msg, 4, ""),
     location: jspb.Message.getFieldWithDefault(msg, 5, ""),
     message: jspb.Message.getFieldWithDefault(msg, 6, ""),
     additional: jspb.Message.getFieldWithDefault(msg, 7, "")
@@ -4728,7 +4728,7 @@ proto.contractcase.LogRequest.deserializeBinaryFromReader = function(msg, reader
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTypestring(value);
+      msg.setTypeString(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -4792,7 +4792,7 @@ proto.contractcase.LogRequest.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getTypestring();
+  f = message.getTypeString();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -4878,10 +4878,10 @@ proto.contractcase.LogRequest.prototype.setVersion = function(value) {
 
 
 /**
- * optional string typeString = 4;
+ * optional string type_string = 4;
  * @return {string}
  */
-proto.contractcase.LogRequest.prototype.getTypestring = function() {
+proto.contractcase.LogRequest.prototype.getTypeString = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -4890,7 +4890,7 @@ proto.contractcase.LogRequest.prototype.getTypestring = function() {
  * @param {string} value
  * @return {!proto.contractcase.LogRequest} returns this
  */
-proto.contractcase.LogRequest.prototype.setTypestring = function(value) {
+proto.contractcase.LogRequest.prototype.setTypeString = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -4984,8 +4984,8 @@ proto.contractcase.PrintMatchErrorRequest.toObject = function(includeInstance, m
     kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
     location: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    locationtag: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    errortypetag: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    locationTag: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    errorTypeTag: jspb.Message.getFieldWithDefault(msg, 5, ""),
     expected: jspb.Message.getFieldWithDefault(msg, 6, ""),
     actual: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
@@ -5038,11 +5038,11 @@ proto.contractcase.PrintMatchErrorRequest.deserializeBinaryFromReader = function
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLocationtag(value);
+      msg.setLocationTag(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setErrortypetag(value);
+      msg.setErrorTypeTag(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
@@ -5102,14 +5102,14 @@ proto.contractcase.PrintMatchErrorRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
-  f = message.getLocationtag();
+  f = message.getLocationTag();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getErrortypetag();
+  f = message.getErrorTypeTag();
   if (f.length > 0) {
     writer.writeString(
       5,
@@ -5188,10 +5188,10 @@ proto.contractcase.PrintMatchErrorRequest.prototype.setLocation = function(value
 
 
 /**
- * optional string locationTag = 4;
+ * optional string location_tag = 4;
  * @return {string}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.getLocationtag = function() {
+proto.contractcase.PrintMatchErrorRequest.prototype.getLocationTag = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -5200,16 +5200,16 @@ proto.contractcase.PrintMatchErrorRequest.prototype.getLocationtag = function() 
  * @param {string} value
  * @return {!proto.contractcase.PrintMatchErrorRequest} returns this
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.setLocationtag = function(value) {
+proto.contractcase.PrintMatchErrorRequest.prototype.setLocationTag = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string errorTypeTag = 5;
+ * optional string error_type_tag = 5;
  * @return {string}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.getErrortypetag = function() {
+proto.contractcase.PrintMatchErrorRequest.prototype.getErrorTypeTag = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -5218,7 +5218,7 @@ proto.contractcase.PrintMatchErrorRequest.prototype.getErrortypetag = function()
  * @param {string} value
  * @return {!proto.contractcase.PrintMatchErrorRequest} returns this
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.setErrortypetag = function(value) {
+proto.contractcase.PrintMatchErrorRequest.prototype.setErrorTypeTag = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -5294,8 +5294,8 @@ proto.contractcase.PrintMessageErrorRequest.toObject = function(includeInstance,
     kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
     location: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    locationtag: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    errortypetag: jspb.Message.getFieldWithDefault(msg, 5, "")
+    locationTag: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    errorTypeTag: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -5346,11 +5346,11 @@ proto.contractcase.PrintMessageErrorRequest.deserializeBinaryFromReader = functi
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLocationtag(value);
+      msg.setLocationTag(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setErrortypetag(value);
+      msg.setErrorTypeTag(value);
       break;
     default:
       reader.skipField();
@@ -5402,14 +5402,14 @@ proto.contractcase.PrintMessageErrorRequest.serializeBinaryToWriter = function(m
       f
     );
   }
-  f = message.getLocationtag();
+  f = message.getLocationTag();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getErrortypetag();
+  f = message.getErrorTypeTag();
   if (f.length > 0) {
     writer.writeString(
       5,
@@ -5474,10 +5474,10 @@ proto.contractcase.PrintMessageErrorRequest.prototype.setLocation = function(val
 
 
 /**
- * optional string locationTag = 4;
+ * optional string location_tag = 4;
  * @return {string}
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.getLocationtag = function() {
+proto.contractcase.PrintMessageErrorRequest.prototype.getLocationTag = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -5486,16 +5486,16 @@ proto.contractcase.PrintMessageErrorRequest.prototype.getLocationtag = function(
  * @param {string} value
  * @return {!proto.contractcase.PrintMessageErrorRequest} returns this
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.setLocationtag = function(value) {
+proto.contractcase.PrintMessageErrorRequest.prototype.setLocationTag = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string errorTypeTag = 5;
+ * optional string error_type_tag = 5;
  * @return {string}
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.getErrortypetag = function() {
+proto.contractcase.PrintMessageErrorRequest.prototype.getErrorTypeTag = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -5504,7 +5504,7 @@ proto.contractcase.PrintMessageErrorRequest.prototype.getErrortypetag = function
  * @param {string} value
  * @return {!proto.contractcase.PrintMessageErrorRequest} returns this
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.setErrortypetag = function(value) {
+proto.contractcase.PrintMessageErrorRequest.prototype.setErrorTypeTag = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -5544,7 +5544,7 @@ proto.contractcase.PrintTestTitleRequest.toObject = function(includeInstance, ms
     kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
     icon: jspb.Message.getFieldWithDefault(msg, 2, ""),
     title: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    additionaltext: jspb.Message.getFieldWithDefault(msg, 4, "")
+    additionalText: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -5595,7 +5595,7 @@ proto.contractcase.PrintTestTitleRequest.deserializeBinaryFromReader = function(
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAdditionaltext(value);
+      msg.setAdditionalText(value);
       break;
     default:
       reader.skipField();
@@ -5647,7 +5647,7 @@ proto.contractcase.PrintTestTitleRequest.serializeBinaryToWriter = function(mess
       f
     );
   }
-  f = message.getAdditionaltext();
+  f = message.getAdditionalText();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -5712,10 +5712,10 @@ proto.contractcase.PrintTestTitleRequest.prototype.setTitle = function(value) {
 
 
 /**
- * optional string additionalText = 4;
+ * optional string additional_text = 4;
  * @return {string}
  */
-proto.contractcase.PrintTestTitleRequest.prototype.getAdditionaltext = function() {
+proto.contractcase.PrintTestTitleRequest.prototype.getAdditionalText = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -5724,7 +5724,7 @@ proto.contractcase.PrintTestTitleRequest.prototype.getAdditionaltext = function(
  * @param {string} value
  * @return {!proto.contractcase.PrintTestTitleRequest} returns this
  */
-proto.contractcase.PrintTestTitleRequest.prototype.setAdditionaltext = function(value) {
+proto.contractcase.PrintTestTitleRequest.prototype.setAdditionalText = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -6651,15 +6651,15 @@ proto.contractcase.DefinitionRequest.oneofGroups_ = [[2,3,4,5,6,7,8,9,10]];
  */
 proto.contractcase.DefinitionRequest.KindCase = {
   KIND_NOT_SET: 0,
-  BEGINDEFINITION: 2,
-  RUNEXAMPLE: 3,
-  RUNREJECTINGEXAMPLE: 4,
-  STRIPMATCHERS: 5,
-  ENDDEFINITION: 6,
-  STATEHANDLERRESPONSE: 7,
-  LOGPRINTERRESPONSE: 8,
-  RESULTPRINTERRESPONSE: 9,
-  TRIGGERFUNCTIONRESPONSE: 10
+  BEGIN_DEFINITION: 2,
+  RUN_EXAMPLE: 3,
+  RUN_REJECTING_EXAMPLE: 4,
+  STRIP_MATCHERS: 5,
+  END_DEFINITION: 6,
+  STATE_HANDLER_RESPONSE: 7,
+  LOG_PRINTER_RESPONSE: 8,
+  RESULT_PRINTER_RESPONSE: 9,
+  TRIGGER_FUNCTION_RESPONSE: 10
 };
 
 /**
@@ -6701,15 +6701,15 @@ proto.contractcase.DefinitionRequest.prototype.toObject = function(opt_includeIn
 proto.contractcase.DefinitionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    begindefinition: (f = msg.getBegindefinition()) && proto.contractcase.BeginDefinitionRequest.toObject(includeInstance, f),
-    runexample: (f = msg.getRunexample()) && proto.contractcase.RunExampleRequest.toObject(includeInstance, f),
-    runrejectingexample: (f = msg.getRunrejectingexample()) && proto.contractcase.RunRejectingExampleRequest.toObject(includeInstance, f),
-    stripmatchers: (f = msg.getStripmatchers()) && proto.contractcase.StripMatchersRequest.toObject(includeInstance, f),
-    enddefinition: (f = msg.getEnddefinition()) && proto.contractcase.EndDefinitionRequest.toObject(includeInstance, f),
-    statehandlerresponse: (f = msg.getStatehandlerresponse()) && proto.contractcase.StateHandlerResponse.toObject(includeInstance, f),
-    logprinterresponse: (f = msg.getLogprinterresponse()) && proto.contractcase.LogPrinterResponse.toObject(includeInstance, f),
-    resultprinterresponse: (f = msg.getResultprinterresponse()) && proto.contractcase.ResultPrinterResponse.toObject(includeInstance, f),
-    triggerfunctionresponse: (f = msg.getTriggerfunctionresponse()) && proto.contractcase.TriggerFunctionResponse.toObject(includeInstance, f)
+    beginDefinition: (f = msg.getBeginDefinition()) && proto.contractcase.BeginDefinitionRequest.toObject(includeInstance, f),
+    runExample: (f = msg.getRunExample()) && proto.contractcase.RunExampleRequest.toObject(includeInstance, f),
+    runRejectingExample: (f = msg.getRunRejectingExample()) && proto.contractcase.RunRejectingExampleRequest.toObject(includeInstance, f),
+    stripMatchers: (f = msg.getStripMatchers()) && proto.contractcase.StripMatchersRequest.toObject(includeInstance, f),
+    endDefinition: (f = msg.getEndDefinition()) && proto.contractcase.EndDefinitionRequest.toObject(includeInstance, f),
+    stateHandlerResponse: (f = msg.getStateHandlerResponse()) && proto.contractcase.StateHandlerResponse.toObject(includeInstance, f),
+    logPrinterResponse: (f = msg.getLogPrinterResponse()) && proto.contractcase.LogPrinterResponse.toObject(includeInstance, f),
+    resultPrinterResponse: (f = msg.getResultPrinterResponse()) && proto.contractcase.ResultPrinterResponse.toObject(includeInstance, f),
+    triggerFunctionResponse: (f = msg.getTriggerFunctionResponse()) && proto.contractcase.TriggerFunctionResponse.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6753,47 +6753,47 @@ proto.contractcase.DefinitionRequest.deserializeBinaryFromReader = function(msg,
     case 2:
       var value = new proto.contractcase.BeginDefinitionRequest;
       reader.readMessage(value,proto.contractcase.BeginDefinitionRequest.deserializeBinaryFromReader);
-      msg.setBegindefinition(value);
+      msg.setBeginDefinition(value);
       break;
     case 3:
       var value = new proto.contractcase.RunExampleRequest;
       reader.readMessage(value,proto.contractcase.RunExampleRequest.deserializeBinaryFromReader);
-      msg.setRunexample(value);
+      msg.setRunExample(value);
       break;
     case 4:
       var value = new proto.contractcase.RunRejectingExampleRequest;
       reader.readMessage(value,proto.contractcase.RunRejectingExampleRequest.deserializeBinaryFromReader);
-      msg.setRunrejectingexample(value);
+      msg.setRunRejectingExample(value);
       break;
     case 5:
       var value = new proto.contractcase.StripMatchersRequest;
       reader.readMessage(value,proto.contractcase.StripMatchersRequest.deserializeBinaryFromReader);
-      msg.setStripmatchers(value);
+      msg.setStripMatchers(value);
       break;
     case 6:
       var value = new proto.contractcase.EndDefinitionRequest;
       reader.readMessage(value,proto.contractcase.EndDefinitionRequest.deserializeBinaryFromReader);
-      msg.setEnddefinition(value);
+      msg.setEndDefinition(value);
       break;
     case 7:
       var value = new proto.contractcase.StateHandlerResponse;
       reader.readMessage(value,proto.contractcase.StateHandlerResponse.deserializeBinaryFromReader);
-      msg.setStatehandlerresponse(value);
+      msg.setStateHandlerResponse(value);
       break;
     case 8:
       var value = new proto.contractcase.LogPrinterResponse;
       reader.readMessage(value,proto.contractcase.LogPrinterResponse.deserializeBinaryFromReader);
-      msg.setLogprinterresponse(value);
+      msg.setLogPrinterResponse(value);
       break;
     case 9:
       var value = new proto.contractcase.ResultPrinterResponse;
       reader.readMessage(value,proto.contractcase.ResultPrinterResponse.deserializeBinaryFromReader);
-      msg.setResultprinterresponse(value);
+      msg.setResultPrinterResponse(value);
       break;
     case 10:
       var value = new proto.contractcase.TriggerFunctionResponse;
       reader.readMessage(value,proto.contractcase.TriggerFunctionResponse.deserializeBinaryFromReader);
-      msg.setTriggerfunctionresponse(value);
+      msg.setTriggerFunctionResponse(value);
       break;
     default:
       reader.skipField();
@@ -6831,7 +6831,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
       f
     );
   }
-  f = message.getBegindefinition();
+  f = message.getBeginDefinition();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -6839,7 +6839,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
       proto.contractcase.BeginDefinitionRequest.serializeBinaryToWriter
     );
   }
-  f = message.getRunexample();
+  f = message.getRunExample();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -6847,7 +6847,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
       proto.contractcase.RunExampleRequest.serializeBinaryToWriter
     );
   }
-  f = message.getRunrejectingexample();
+  f = message.getRunRejectingExample();
   if (f != null) {
     writer.writeMessage(
       4,
@@ -6855,7 +6855,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
       proto.contractcase.RunRejectingExampleRequest.serializeBinaryToWriter
     );
   }
-  f = message.getStripmatchers();
+  f = message.getStripMatchers();
   if (f != null) {
     writer.writeMessage(
       5,
@@ -6863,7 +6863,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
       proto.contractcase.StripMatchersRequest.serializeBinaryToWriter
     );
   }
-  f = message.getEnddefinition();
+  f = message.getEndDefinition();
   if (f != null) {
     writer.writeMessage(
       6,
@@ -6871,7 +6871,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
       proto.contractcase.EndDefinitionRequest.serializeBinaryToWriter
     );
   }
-  f = message.getStatehandlerresponse();
+  f = message.getStateHandlerResponse();
   if (f != null) {
     writer.writeMessage(
       7,
@@ -6879,7 +6879,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
       proto.contractcase.StateHandlerResponse.serializeBinaryToWriter
     );
   }
-  f = message.getLogprinterresponse();
+  f = message.getLogPrinterResponse();
   if (f != null) {
     writer.writeMessage(
       8,
@@ -6887,7 +6887,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
       proto.contractcase.LogPrinterResponse.serializeBinaryToWriter
     );
   }
-  f = message.getResultprinterresponse();
+  f = message.getResultPrinterResponse();
   if (f != null) {
     writer.writeMessage(
       9,
@@ -6895,7 +6895,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
       proto.contractcase.ResultPrinterResponse.serializeBinaryToWriter
     );
   }
-  f = message.getTriggerfunctionresponse();
+  f = message.getTriggerFunctionResponse();
   if (f != null) {
     writer.writeMessage(
       10,
@@ -6925,10 +6925,10 @@ proto.contractcase.DefinitionRequest.prototype.setId = function(value) {
 
 
 /**
- * optional BeginDefinitionRequest beginDefinition = 2;
+ * optional BeginDefinitionRequest begin_definition = 2;
  * @return {?proto.contractcase.BeginDefinitionRequest}
  */
-proto.contractcase.DefinitionRequest.prototype.getBegindefinition = function() {
+proto.contractcase.DefinitionRequest.prototype.getBeginDefinition = function() {
   return /** @type{?proto.contractcase.BeginDefinitionRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.BeginDefinitionRequest, 2));
 };
@@ -6938,7 +6938,7 @@ proto.contractcase.DefinitionRequest.prototype.getBegindefinition = function() {
  * @param {?proto.contractcase.BeginDefinitionRequest|undefined} value
  * @return {!proto.contractcase.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setBegindefinition = function(value) {
+proto.contractcase.DefinitionRequest.prototype.setBeginDefinition = function(value) {
   return jspb.Message.setOneofWrapperField(this, 2, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
 };
 
@@ -6947,8 +6947,8 @@ proto.contractcase.DefinitionRequest.prototype.setBegindefinition = function(val
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearBegindefinition = function() {
-  return this.setBegindefinition(undefined);
+proto.contractcase.DefinitionRequest.prototype.clearBeginDefinition = function() {
+  return this.setBeginDefinition(undefined);
 };
 
 
@@ -6956,16 +6956,16 @@ proto.contractcase.DefinitionRequest.prototype.clearBegindefinition = function()
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasBegindefinition = function() {
+proto.contractcase.DefinitionRequest.prototype.hasBeginDefinition = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional RunExampleRequest runExample = 3;
+ * optional RunExampleRequest run_example = 3;
  * @return {?proto.contractcase.RunExampleRequest}
  */
-proto.contractcase.DefinitionRequest.prototype.getRunexample = function() {
+proto.contractcase.DefinitionRequest.prototype.getRunExample = function() {
   return /** @type{?proto.contractcase.RunExampleRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.RunExampleRequest, 3));
 };
@@ -6975,7 +6975,7 @@ proto.contractcase.DefinitionRequest.prototype.getRunexample = function() {
  * @param {?proto.contractcase.RunExampleRequest|undefined} value
  * @return {!proto.contractcase.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setRunexample = function(value) {
+proto.contractcase.DefinitionRequest.prototype.setRunExample = function(value) {
   return jspb.Message.setOneofWrapperField(this, 3, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
 };
 
@@ -6984,8 +6984,8 @@ proto.contractcase.DefinitionRequest.prototype.setRunexample = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearRunexample = function() {
-  return this.setRunexample(undefined);
+proto.contractcase.DefinitionRequest.prototype.clearRunExample = function() {
+  return this.setRunExample(undefined);
 };
 
 
@@ -6993,16 +6993,16 @@ proto.contractcase.DefinitionRequest.prototype.clearRunexample = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasRunexample = function() {
+proto.contractcase.DefinitionRequest.prototype.hasRunExample = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional RunRejectingExampleRequest runRejectingExample = 4;
+ * optional RunRejectingExampleRequest run_rejecting_example = 4;
  * @return {?proto.contractcase.RunRejectingExampleRequest}
  */
-proto.contractcase.DefinitionRequest.prototype.getRunrejectingexample = function() {
+proto.contractcase.DefinitionRequest.prototype.getRunRejectingExample = function() {
   return /** @type{?proto.contractcase.RunRejectingExampleRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.RunRejectingExampleRequest, 4));
 };
@@ -7012,7 +7012,7 @@ proto.contractcase.DefinitionRequest.prototype.getRunrejectingexample = function
  * @param {?proto.contractcase.RunRejectingExampleRequest|undefined} value
  * @return {!proto.contractcase.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setRunrejectingexample = function(value) {
+proto.contractcase.DefinitionRequest.prototype.setRunRejectingExample = function(value) {
   return jspb.Message.setOneofWrapperField(this, 4, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
 };
 
@@ -7021,8 +7021,8 @@ proto.contractcase.DefinitionRequest.prototype.setRunrejectingexample = function
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearRunrejectingexample = function() {
-  return this.setRunrejectingexample(undefined);
+proto.contractcase.DefinitionRequest.prototype.clearRunRejectingExample = function() {
+  return this.setRunRejectingExample(undefined);
 };
 
 
@@ -7030,16 +7030,16 @@ proto.contractcase.DefinitionRequest.prototype.clearRunrejectingexample = functi
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasRunrejectingexample = function() {
+proto.contractcase.DefinitionRequest.prototype.hasRunRejectingExample = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional StripMatchersRequest stripMatchers = 5;
+ * optional StripMatchersRequest strip_matchers = 5;
  * @return {?proto.contractcase.StripMatchersRequest}
  */
-proto.contractcase.DefinitionRequest.prototype.getStripmatchers = function() {
+proto.contractcase.DefinitionRequest.prototype.getStripMatchers = function() {
   return /** @type{?proto.contractcase.StripMatchersRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.StripMatchersRequest, 5));
 };
@@ -7049,7 +7049,7 @@ proto.contractcase.DefinitionRequest.prototype.getStripmatchers = function() {
  * @param {?proto.contractcase.StripMatchersRequest|undefined} value
  * @return {!proto.contractcase.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setStripmatchers = function(value) {
+proto.contractcase.DefinitionRequest.prototype.setStripMatchers = function(value) {
   return jspb.Message.setOneofWrapperField(this, 5, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
 };
 
@@ -7058,8 +7058,8 @@ proto.contractcase.DefinitionRequest.prototype.setStripmatchers = function(value
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearStripmatchers = function() {
-  return this.setStripmatchers(undefined);
+proto.contractcase.DefinitionRequest.prototype.clearStripMatchers = function() {
+  return this.setStripMatchers(undefined);
 };
 
 
@@ -7067,16 +7067,16 @@ proto.contractcase.DefinitionRequest.prototype.clearStripmatchers = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasStripmatchers = function() {
+proto.contractcase.DefinitionRequest.prototype.hasStripMatchers = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional EndDefinitionRequest endDefinition = 6;
+ * optional EndDefinitionRequest end_definition = 6;
  * @return {?proto.contractcase.EndDefinitionRequest}
  */
-proto.contractcase.DefinitionRequest.prototype.getEnddefinition = function() {
+proto.contractcase.DefinitionRequest.prototype.getEndDefinition = function() {
   return /** @type{?proto.contractcase.EndDefinitionRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.EndDefinitionRequest, 6));
 };
@@ -7086,7 +7086,7 @@ proto.contractcase.DefinitionRequest.prototype.getEnddefinition = function() {
  * @param {?proto.contractcase.EndDefinitionRequest|undefined} value
  * @return {!proto.contractcase.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setEnddefinition = function(value) {
+proto.contractcase.DefinitionRequest.prototype.setEndDefinition = function(value) {
   return jspb.Message.setOneofWrapperField(this, 6, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
 };
 
@@ -7095,8 +7095,8 @@ proto.contractcase.DefinitionRequest.prototype.setEnddefinition = function(value
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearEnddefinition = function() {
-  return this.setEnddefinition(undefined);
+proto.contractcase.DefinitionRequest.prototype.clearEndDefinition = function() {
+  return this.setEndDefinition(undefined);
 };
 
 
@@ -7104,16 +7104,16 @@ proto.contractcase.DefinitionRequest.prototype.clearEnddefinition = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasEnddefinition = function() {
+proto.contractcase.DefinitionRequest.prototype.hasEndDefinition = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional StateHandlerResponse stateHandlerResponse = 7;
+ * optional StateHandlerResponse state_handler_response = 7;
  * @return {?proto.contractcase.StateHandlerResponse}
  */
-proto.contractcase.DefinitionRequest.prototype.getStatehandlerresponse = function() {
+proto.contractcase.DefinitionRequest.prototype.getStateHandlerResponse = function() {
   return /** @type{?proto.contractcase.StateHandlerResponse} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.StateHandlerResponse, 7));
 };
@@ -7123,7 +7123,7 @@ proto.contractcase.DefinitionRequest.prototype.getStatehandlerresponse = functio
  * @param {?proto.contractcase.StateHandlerResponse|undefined} value
  * @return {!proto.contractcase.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setStatehandlerresponse = function(value) {
+proto.contractcase.DefinitionRequest.prototype.setStateHandlerResponse = function(value) {
   return jspb.Message.setOneofWrapperField(this, 7, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
 };
 
@@ -7132,8 +7132,8 @@ proto.contractcase.DefinitionRequest.prototype.setStatehandlerresponse = functio
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearStatehandlerresponse = function() {
-  return this.setStatehandlerresponse(undefined);
+proto.contractcase.DefinitionRequest.prototype.clearStateHandlerResponse = function() {
+  return this.setStateHandlerResponse(undefined);
 };
 
 
@@ -7141,16 +7141,16 @@ proto.contractcase.DefinitionRequest.prototype.clearStatehandlerresponse = funct
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasStatehandlerresponse = function() {
+proto.contractcase.DefinitionRequest.prototype.hasStateHandlerResponse = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional LogPrinterResponse logPrinterResponse = 8;
+ * optional LogPrinterResponse log_printer_response = 8;
  * @return {?proto.contractcase.LogPrinterResponse}
  */
-proto.contractcase.DefinitionRequest.prototype.getLogprinterresponse = function() {
+proto.contractcase.DefinitionRequest.prototype.getLogPrinterResponse = function() {
   return /** @type{?proto.contractcase.LogPrinterResponse} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.LogPrinterResponse, 8));
 };
@@ -7160,7 +7160,7 @@ proto.contractcase.DefinitionRequest.prototype.getLogprinterresponse = function(
  * @param {?proto.contractcase.LogPrinterResponse|undefined} value
  * @return {!proto.contractcase.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setLogprinterresponse = function(value) {
+proto.contractcase.DefinitionRequest.prototype.setLogPrinterResponse = function(value) {
   return jspb.Message.setOneofWrapperField(this, 8, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
 };
 
@@ -7169,8 +7169,8 @@ proto.contractcase.DefinitionRequest.prototype.setLogprinterresponse = function(
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearLogprinterresponse = function() {
-  return this.setLogprinterresponse(undefined);
+proto.contractcase.DefinitionRequest.prototype.clearLogPrinterResponse = function() {
+  return this.setLogPrinterResponse(undefined);
 };
 
 
@@ -7178,16 +7178,16 @@ proto.contractcase.DefinitionRequest.prototype.clearLogprinterresponse = functio
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasLogprinterresponse = function() {
+proto.contractcase.DefinitionRequest.prototype.hasLogPrinterResponse = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional ResultPrinterResponse resultPrinterResponse = 9;
+ * optional ResultPrinterResponse result_printer_response = 9;
  * @return {?proto.contractcase.ResultPrinterResponse}
  */
-proto.contractcase.DefinitionRequest.prototype.getResultprinterresponse = function() {
+proto.contractcase.DefinitionRequest.prototype.getResultPrinterResponse = function() {
   return /** @type{?proto.contractcase.ResultPrinterResponse} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.ResultPrinterResponse, 9));
 };
@@ -7197,7 +7197,7 @@ proto.contractcase.DefinitionRequest.prototype.getResultprinterresponse = functi
  * @param {?proto.contractcase.ResultPrinterResponse|undefined} value
  * @return {!proto.contractcase.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setResultprinterresponse = function(value) {
+proto.contractcase.DefinitionRequest.prototype.setResultPrinterResponse = function(value) {
   return jspb.Message.setOneofWrapperField(this, 9, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
 };
 
@@ -7206,8 +7206,8 @@ proto.contractcase.DefinitionRequest.prototype.setResultprinterresponse = functi
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearResultprinterresponse = function() {
-  return this.setResultprinterresponse(undefined);
+proto.contractcase.DefinitionRequest.prototype.clearResultPrinterResponse = function() {
+  return this.setResultPrinterResponse(undefined);
 };
 
 
@@ -7215,16 +7215,16 @@ proto.contractcase.DefinitionRequest.prototype.clearResultprinterresponse = func
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasResultprinterresponse = function() {
+proto.contractcase.DefinitionRequest.prototype.hasResultPrinterResponse = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional TriggerFunctionResponse triggerFunctionResponse = 10;
+ * optional TriggerFunctionResponse trigger_function_response = 10;
  * @return {?proto.contractcase.TriggerFunctionResponse}
  */
-proto.contractcase.DefinitionRequest.prototype.getTriggerfunctionresponse = function() {
+proto.contractcase.DefinitionRequest.prototype.getTriggerFunctionResponse = function() {
   return /** @type{?proto.contractcase.TriggerFunctionResponse} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.TriggerFunctionResponse, 10));
 };
@@ -7234,7 +7234,7 @@ proto.contractcase.DefinitionRequest.prototype.getTriggerfunctionresponse = func
  * @param {?proto.contractcase.TriggerFunctionResponse|undefined} value
  * @return {!proto.contractcase.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setTriggerfunctionresponse = function(value) {
+proto.contractcase.DefinitionRequest.prototype.setTriggerFunctionResponse = function(value) {
   return jspb.Message.setOneofWrapperField(this, 10, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
 };
 
@@ -7243,8 +7243,8 @@ proto.contractcase.DefinitionRequest.prototype.setTriggerfunctionresponse = func
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearTriggerfunctionresponse = function() {
-  return this.setTriggerfunctionresponse(undefined);
+proto.contractcase.DefinitionRequest.prototype.clearTriggerFunctionResponse = function() {
+  return this.setTriggerFunctionResponse(undefined);
 };
 
 
@@ -7252,7 +7252,7 @@ proto.contractcase.DefinitionRequest.prototype.clearTriggerfunctionresponse = fu
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasTriggerfunctionresponse = function() {
+proto.contractcase.DefinitionRequest.prototype.hasTriggerFunctionResponse = function() {
   return jspb.Message.getField(this, 10) != null;
 };
 
@@ -7273,17 +7273,17 @@ proto.contractcase.DefinitionResponse.oneofGroups_ = [[2,3,4,5,6,12,7,8,9,10,11]
  */
 proto.contractcase.DefinitionResponse.KindCase = {
   KIND_NOT_SET: 0,
-  RUNSTATEHANDLER: 2,
-  LOGREQUEST: 3,
-  PRINTMATCHERRORREQUEST: 4,
-  PRINTMESSAGEERRORREQUEST: 5,
-  PRINTTESTTITLEREQUEST: 6,
-  TRIGGERFUNCTIONREQUEST: 12,
-  BEGINDEFINITIONRESPONSE: 7,
-  RUNEXAMPLERESPONSE: 8,
-  RUNREJECTINGEXAMPLERESPONSE: 9,
-  STRIPMATCHERSRESPONSE: 10,
-  ENDDEFINITIONRESPONSE: 11
+  RUN_STATE_HANDLER: 2,
+  LOG_REQUEST: 3,
+  PRINT_MATCH_ERROR_REQUEST: 4,
+  PRINT_MESSAGE_ERROR_REQUEST: 5,
+  PRINT_TEST_TITLE_REQUEST: 6,
+  TRIGGER_FUNCTION_REQUEST: 12,
+  BEGIN_DEFINITION_RESPONSE: 7,
+  RUN_EXAMPLE_RESPONSE: 8,
+  RUN_REJECTING_EXAMPLE_RESPONSE: 9,
+  STRIP_MATCHERS_RESPONSE: 10,
+  END_DEFINITION_RESPONSE: 11
 };
 
 /**
@@ -7325,17 +7325,17 @@ proto.contractcase.DefinitionResponse.prototype.toObject = function(opt_includeI
 proto.contractcase.DefinitionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    runstatehandler: (f = msg.getRunstatehandler()) && proto.contractcase.RunStateHandlerRequest.toObject(includeInstance, f),
-    logrequest: (f = msg.getLogrequest()) && proto.contractcase.LogRequest.toObject(includeInstance, f),
-    printmatcherrorrequest: (f = msg.getPrintmatcherrorrequest()) && proto.contractcase.PrintMatchErrorRequest.toObject(includeInstance, f),
-    printmessageerrorrequest: (f = msg.getPrintmessageerrorrequest()) && proto.contractcase.PrintMessageErrorRequest.toObject(includeInstance, f),
-    printtesttitlerequest: (f = msg.getPrinttesttitlerequest()) && proto.contractcase.PrintTestTitleRequest.toObject(includeInstance, f),
-    triggerfunctionrequest: (f = msg.getTriggerfunctionrequest()) && proto.contractcase.TriggerFunctionRequest.toObject(includeInstance, f),
-    begindefinitionresponse: (f = msg.getBegindefinitionresponse()) && proto.contractcase.BeginDefinitionResponse.toObject(includeInstance, f),
-    runexampleresponse: (f = msg.getRunexampleresponse()) && proto.contractcase.RunExampleResponse.toObject(includeInstance, f),
-    runrejectingexampleresponse: (f = msg.getRunrejectingexampleresponse()) && proto.contractcase.RunRejectingExampleResponse.toObject(includeInstance, f),
-    stripmatchersresponse: (f = msg.getStripmatchersresponse()) && proto.contractcase.StripMatchersResponse.toObject(includeInstance, f),
-    enddefinitionresponse: (f = msg.getEnddefinitionresponse()) && proto.contractcase.EndDefinitionResponse.toObject(includeInstance, f)
+    runStateHandler: (f = msg.getRunStateHandler()) && proto.contractcase.RunStateHandlerRequest.toObject(includeInstance, f),
+    logRequest: (f = msg.getLogRequest()) && proto.contractcase.LogRequest.toObject(includeInstance, f),
+    printMatchErrorRequest: (f = msg.getPrintMatchErrorRequest()) && proto.contractcase.PrintMatchErrorRequest.toObject(includeInstance, f),
+    printMessageErrorRequest: (f = msg.getPrintMessageErrorRequest()) && proto.contractcase.PrintMessageErrorRequest.toObject(includeInstance, f),
+    printTestTitleRequest: (f = msg.getPrintTestTitleRequest()) && proto.contractcase.PrintTestTitleRequest.toObject(includeInstance, f),
+    triggerFunctionRequest: (f = msg.getTriggerFunctionRequest()) && proto.contractcase.TriggerFunctionRequest.toObject(includeInstance, f),
+    beginDefinitionResponse: (f = msg.getBeginDefinitionResponse()) && proto.contractcase.BeginDefinitionResponse.toObject(includeInstance, f),
+    runExampleResponse: (f = msg.getRunExampleResponse()) && proto.contractcase.RunExampleResponse.toObject(includeInstance, f),
+    runRejectingExampleResponse: (f = msg.getRunRejectingExampleResponse()) && proto.contractcase.RunRejectingExampleResponse.toObject(includeInstance, f),
+    stripMatchersResponse: (f = msg.getStripMatchersResponse()) && proto.contractcase.StripMatchersResponse.toObject(includeInstance, f),
+    endDefinitionResponse: (f = msg.getEndDefinitionResponse()) && proto.contractcase.EndDefinitionResponse.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7379,57 +7379,57 @@ proto.contractcase.DefinitionResponse.deserializeBinaryFromReader = function(msg
     case 2:
       var value = new proto.contractcase.RunStateHandlerRequest;
       reader.readMessage(value,proto.contractcase.RunStateHandlerRequest.deserializeBinaryFromReader);
-      msg.setRunstatehandler(value);
+      msg.setRunStateHandler(value);
       break;
     case 3:
       var value = new proto.contractcase.LogRequest;
       reader.readMessage(value,proto.contractcase.LogRequest.deserializeBinaryFromReader);
-      msg.setLogrequest(value);
+      msg.setLogRequest(value);
       break;
     case 4:
       var value = new proto.contractcase.PrintMatchErrorRequest;
       reader.readMessage(value,proto.contractcase.PrintMatchErrorRequest.deserializeBinaryFromReader);
-      msg.setPrintmatcherrorrequest(value);
+      msg.setPrintMatchErrorRequest(value);
       break;
     case 5:
       var value = new proto.contractcase.PrintMessageErrorRequest;
       reader.readMessage(value,proto.contractcase.PrintMessageErrorRequest.deserializeBinaryFromReader);
-      msg.setPrintmessageerrorrequest(value);
+      msg.setPrintMessageErrorRequest(value);
       break;
     case 6:
       var value = new proto.contractcase.PrintTestTitleRequest;
       reader.readMessage(value,proto.contractcase.PrintTestTitleRequest.deserializeBinaryFromReader);
-      msg.setPrinttesttitlerequest(value);
+      msg.setPrintTestTitleRequest(value);
       break;
     case 12:
       var value = new proto.contractcase.TriggerFunctionRequest;
       reader.readMessage(value,proto.contractcase.TriggerFunctionRequest.deserializeBinaryFromReader);
-      msg.setTriggerfunctionrequest(value);
+      msg.setTriggerFunctionRequest(value);
       break;
     case 7:
       var value = new proto.contractcase.BeginDefinitionResponse;
       reader.readMessage(value,proto.contractcase.BeginDefinitionResponse.deserializeBinaryFromReader);
-      msg.setBegindefinitionresponse(value);
+      msg.setBeginDefinitionResponse(value);
       break;
     case 8:
       var value = new proto.contractcase.RunExampleResponse;
       reader.readMessage(value,proto.contractcase.RunExampleResponse.deserializeBinaryFromReader);
-      msg.setRunexampleresponse(value);
+      msg.setRunExampleResponse(value);
       break;
     case 9:
       var value = new proto.contractcase.RunRejectingExampleResponse;
       reader.readMessage(value,proto.contractcase.RunRejectingExampleResponse.deserializeBinaryFromReader);
-      msg.setRunrejectingexampleresponse(value);
+      msg.setRunRejectingExampleResponse(value);
       break;
     case 10:
       var value = new proto.contractcase.StripMatchersResponse;
       reader.readMessage(value,proto.contractcase.StripMatchersResponse.deserializeBinaryFromReader);
-      msg.setStripmatchersresponse(value);
+      msg.setStripMatchersResponse(value);
       break;
     case 11:
       var value = new proto.contractcase.EndDefinitionResponse;
       reader.readMessage(value,proto.contractcase.EndDefinitionResponse.deserializeBinaryFromReader);
-      msg.setEnddefinitionresponse(value);
+      msg.setEndDefinitionResponse(value);
       break;
     default:
       reader.skipField();
@@ -7467,7 +7467,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getRunstatehandler();
+  f = message.getRunStateHandler();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -7475,7 +7475,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       proto.contractcase.RunStateHandlerRequest.serializeBinaryToWriter
     );
   }
-  f = message.getLogrequest();
+  f = message.getLogRequest();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -7483,7 +7483,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       proto.contractcase.LogRequest.serializeBinaryToWriter
     );
   }
-  f = message.getPrintmatcherrorrequest();
+  f = message.getPrintMatchErrorRequest();
   if (f != null) {
     writer.writeMessage(
       4,
@@ -7491,7 +7491,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       proto.contractcase.PrintMatchErrorRequest.serializeBinaryToWriter
     );
   }
-  f = message.getPrintmessageerrorrequest();
+  f = message.getPrintMessageErrorRequest();
   if (f != null) {
     writer.writeMessage(
       5,
@@ -7499,7 +7499,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       proto.contractcase.PrintMessageErrorRequest.serializeBinaryToWriter
     );
   }
-  f = message.getPrinttesttitlerequest();
+  f = message.getPrintTestTitleRequest();
   if (f != null) {
     writer.writeMessage(
       6,
@@ -7507,7 +7507,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       proto.contractcase.PrintTestTitleRequest.serializeBinaryToWriter
     );
   }
-  f = message.getTriggerfunctionrequest();
+  f = message.getTriggerFunctionRequest();
   if (f != null) {
     writer.writeMessage(
       12,
@@ -7515,7 +7515,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       proto.contractcase.TriggerFunctionRequest.serializeBinaryToWriter
     );
   }
-  f = message.getBegindefinitionresponse();
+  f = message.getBeginDefinitionResponse();
   if (f != null) {
     writer.writeMessage(
       7,
@@ -7523,7 +7523,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       proto.contractcase.BeginDefinitionResponse.serializeBinaryToWriter
     );
   }
-  f = message.getRunexampleresponse();
+  f = message.getRunExampleResponse();
   if (f != null) {
     writer.writeMessage(
       8,
@@ -7531,7 +7531,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       proto.contractcase.RunExampleResponse.serializeBinaryToWriter
     );
   }
-  f = message.getRunrejectingexampleresponse();
+  f = message.getRunRejectingExampleResponse();
   if (f != null) {
     writer.writeMessage(
       9,
@@ -7539,7 +7539,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       proto.contractcase.RunRejectingExampleResponse.serializeBinaryToWriter
     );
   }
-  f = message.getStripmatchersresponse();
+  f = message.getStripMatchersResponse();
   if (f != null) {
     writer.writeMessage(
       10,
@@ -7547,7 +7547,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
       proto.contractcase.StripMatchersResponse.serializeBinaryToWriter
     );
   }
-  f = message.getEnddefinitionresponse();
+  f = message.getEndDefinitionResponse();
   if (f != null) {
     writer.writeMessage(
       11,
@@ -7577,10 +7577,10 @@ proto.contractcase.DefinitionResponse.prototype.setId = function(value) {
 
 
 /**
- * optional RunStateHandlerRequest runStateHandler = 2;
+ * optional RunStateHandlerRequest run_state_handler = 2;
  * @return {?proto.contractcase.RunStateHandlerRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getRunstatehandler = function() {
+proto.contractcase.DefinitionResponse.prototype.getRunStateHandler = function() {
   return /** @type{?proto.contractcase.RunStateHandlerRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.RunStateHandlerRequest, 2));
 };
@@ -7590,7 +7590,7 @@ proto.contractcase.DefinitionResponse.prototype.getRunstatehandler = function() 
  * @param {?proto.contractcase.RunStateHandlerRequest|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setRunstatehandler = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setRunStateHandler = function(value) {
   return jspb.Message.setOneofWrapperField(this, 2, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7599,8 +7599,8 @@ proto.contractcase.DefinitionResponse.prototype.setRunstatehandler = function(va
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearRunstatehandler = function() {
-  return this.setRunstatehandler(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearRunStateHandler = function() {
+  return this.setRunStateHandler(undefined);
 };
 
 
@@ -7608,16 +7608,16 @@ proto.contractcase.DefinitionResponse.prototype.clearRunstatehandler = function(
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasRunstatehandler = function() {
+proto.contractcase.DefinitionResponse.prototype.hasRunStateHandler = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional LogRequest logRequest = 3;
+ * optional LogRequest log_request = 3;
  * @return {?proto.contractcase.LogRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getLogrequest = function() {
+proto.contractcase.DefinitionResponse.prototype.getLogRequest = function() {
   return /** @type{?proto.contractcase.LogRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.LogRequest, 3));
 };
@@ -7627,7 +7627,7 @@ proto.contractcase.DefinitionResponse.prototype.getLogrequest = function() {
  * @param {?proto.contractcase.LogRequest|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setLogrequest = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setLogRequest = function(value) {
   return jspb.Message.setOneofWrapperField(this, 3, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7636,8 +7636,8 @@ proto.contractcase.DefinitionResponse.prototype.setLogrequest = function(value) 
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearLogrequest = function() {
-  return this.setLogrequest(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearLogRequest = function() {
+  return this.setLogRequest(undefined);
 };
 
 
@@ -7645,16 +7645,16 @@ proto.contractcase.DefinitionResponse.prototype.clearLogrequest = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasLogrequest = function() {
+proto.contractcase.DefinitionResponse.prototype.hasLogRequest = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional PrintMatchErrorRequest printMatchErrorRequest = 4;
+ * optional PrintMatchErrorRequest print_match_error_request = 4;
  * @return {?proto.contractcase.PrintMatchErrorRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getPrintmatcherrorrequest = function() {
+proto.contractcase.DefinitionResponse.prototype.getPrintMatchErrorRequest = function() {
   return /** @type{?proto.contractcase.PrintMatchErrorRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.PrintMatchErrorRequest, 4));
 };
@@ -7664,7 +7664,7 @@ proto.contractcase.DefinitionResponse.prototype.getPrintmatcherrorrequest = func
  * @param {?proto.contractcase.PrintMatchErrorRequest|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setPrintmatcherrorrequest = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setPrintMatchErrorRequest = function(value) {
   return jspb.Message.setOneofWrapperField(this, 4, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7673,8 +7673,8 @@ proto.contractcase.DefinitionResponse.prototype.setPrintmatcherrorrequest = func
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearPrintmatcherrorrequest = function() {
-  return this.setPrintmatcherrorrequest(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearPrintMatchErrorRequest = function() {
+  return this.setPrintMatchErrorRequest(undefined);
 };
 
 
@@ -7682,16 +7682,16 @@ proto.contractcase.DefinitionResponse.prototype.clearPrintmatcherrorrequest = fu
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasPrintmatcherrorrequest = function() {
+proto.contractcase.DefinitionResponse.prototype.hasPrintMatchErrorRequest = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional PrintMessageErrorRequest printMessageErrorRequest = 5;
+ * optional PrintMessageErrorRequest print_message_error_request = 5;
  * @return {?proto.contractcase.PrintMessageErrorRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getPrintmessageerrorrequest = function() {
+proto.contractcase.DefinitionResponse.prototype.getPrintMessageErrorRequest = function() {
   return /** @type{?proto.contractcase.PrintMessageErrorRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.PrintMessageErrorRequest, 5));
 };
@@ -7701,7 +7701,7 @@ proto.contractcase.DefinitionResponse.prototype.getPrintmessageerrorrequest = fu
  * @param {?proto.contractcase.PrintMessageErrorRequest|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setPrintmessageerrorrequest = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setPrintMessageErrorRequest = function(value) {
   return jspb.Message.setOneofWrapperField(this, 5, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7710,8 +7710,8 @@ proto.contractcase.DefinitionResponse.prototype.setPrintmessageerrorrequest = fu
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearPrintmessageerrorrequest = function() {
-  return this.setPrintmessageerrorrequest(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearPrintMessageErrorRequest = function() {
+  return this.setPrintMessageErrorRequest(undefined);
 };
 
 
@@ -7719,16 +7719,16 @@ proto.contractcase.DefinitionResponse.prototype.clearPrintmessageerrorrequest = 
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasPrintmessageerrorrequest = function() {
+proto.contractcase.DefinitionResponse.prototype.hasPrintMessageErrorRequest = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional PrintTestTitleRequest printTestTitleRequest = 6;
+ * optional PrintTestTitleRequest print_test_title_request = 6;
  * @return {?proto.contractcase.PrintTestTitleRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getPrinttesttitlerequest = function() {
+proto.contractcase.DefinitionResponse.prototype.getPrintTestTitleRequest = function() {
   return /** @type{?proto.contractcase.PrintTestTitleRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.PrintTestTitleRequest, 6));
 };
@@ -7738,7 +7738,7 @@ proto.contractcase.DefinitionResponse.prototype.getPrinttesttitlerequest = funct
  * @param {?proto.contractcase.PrintTestTitleRequest|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setPrinttesttitlerequest = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setPrintTestTitleRequest = function(value) {
   return jspb.Message.setOneofWrapperField(this, 6, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7747,8 +7747,8 @@ proto.contractcase.DefinitionResponse.prototype.setPrinttesttitlerequest = funct
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearPrinttesttitlerequest = function() {
-  return this.setPrinttesttitlerequest(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearPrintTestTitleRequest = function() {
+  return this.setPrintTestTitleRequest(undefined);
 };
 
 
@@ -7756,16 +7756,16 @@ proto.contractcase.DefinitionResponse.prototype.clearPrinttesttitlerequest = fun
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasPrinttesttitlerequest = function() {
+proto.contractcase.DefinitionResponse.prototype.hasPrintTestTitleRequest = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional TriggerFunctionRequest triggerFunctionRequest = 12;
+ * optional TriggerFunctionRequest trigger_function_request = 12;
  * @return {?proto.contractcase.TriggerFunctionRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getTriggerfunctionrequest = function() {
+proto.contractcase.DefinitionResponse.prototype.getTriggerFunctionRequest = function() {
   return /** @type{?proto.contractcase.TriggerFunctionRequest} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.TriggerFunctionRequest, 12));
 };
@@ -7775,7 +7775,7 @@ proto.contractcase.DefinitionResponse.prototype.getTriggerfunctionrequest = func
  * @param {?proto.contractcase.TriggerFunctionRequest|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setTriggerfunctionrequest = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setTriggerFunctionRequest = function(value) {
   return jspb.Message.setOneofWrapperField(this, 12, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7784,8 +7784,8 @@ proto.contractcase.DefinitionResponse.prototype.setTriggerfunctionrequest = func
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearTriggerfunctionrequest = function() {
-  return this.setTriggerfunctionrequest(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearTriggerFunctionRequest = function() {
+  return this.setTriggerFunctionRequest(undefined);
 };
 
 
@@ -7793,16 +7793,16 @@ proto.contractcase.DefinitionResponse.prototype.clearTriggerfunctionrequest = fu
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasTriggerfunctionrequest = function() {
+proto.contractcase.DefinitionResponse.prototype.hasTriggerFunctionRequest = function() {
   return jspb.Message.getField(this, 12) != null;
 };
 
 
 /**
- * optional BeginDefinitionResponse beginDefinitionResponse = 7;
+ * optional BeginDefinitionResponse begin_definition_response = 7;
  * @return {?proto.contractcase.BeginDefinitionResponse}
  */
-proto.contractcase.DefinitionResponse.prototype.getBegindefinitionresponse = function() {
+proto.contractcase.DefinitionResponse.prototype.getBeginDefinitionResponse = function() {
   return /** @type{?proto.contractcase.BeginDefinitionResponse} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.BeginDefinitionResponse, 7));
 };
@@ -7812,7 +7812,7 @@ proto.contractcase.DefinitionResponse.prototype.getBegindefinitionresponse = fun
  * @param {?proto.contractcase.BeginDefinitionResponse|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setBegindefinitionresponse = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setBeginDefinitionResponse = function(value) {
   return jspb.Message.setOneofWrapperField(this, 7, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7821,8 +7821,8 @@ proto.contractcase.DefinitionResponse.prototype.setBegindefinitionresponse = fun
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearBegindefinitionresponse = function() {
-  return this.setBegindefinitionresponse(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearBeginDefinitionResponse = function() {
+  return this.setBeginDefinitionResponse(undefined);
 };
 
 
@@ -7830,16 +7830,16 @@ proto.contractcase.DefinitionResponse.prototype.clearBegindefinitionresponse = f
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasBegindefinitionresponse = function() {
+proto.contractcase.DefinitionResponse.prototype.hasBeginDefinitionResponse = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional RunExampleResponse runExampleResponse = 8;
+ * optional RunExampleResponse run_example_response = 8;
  * @return {?proto.contractcase.RunExampleResponse}
  */
-proto.contractcase.DefinitionResponse.prototype.getRunexampleresponse = function() {
+proto.contractcase.DefinitionResponse.prototype.getRunExampleResponse = function() {
   return /** @type{?proto.contractcase.RunExampleResponse} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.RunExampleResponse, 8));
 };
@@ -7849,7 +7849,7 @@ proto.contractcase.DefinitionResponse.prototype.getRunexampleresponse = function
  * @param {?proto.contractcase.RunExampleResponse|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setRunexampleresponse = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setRunExampleResponse = function(value) {
   return jspb.Message.setOneofWrapperField(this, 8, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7858,8 +7858,8 @@ proto.contractcase.DefinitionResponse.prototype.setRunexampleresponse = function
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearRunexampleresponse = function() {
-  return this.setRunexampleresponse(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearRunExampleResponse = function() {
+  return this.setRunExampleResponse(undefined);
 };
 
 
@@ -7867,16 +7867,16 @@ proto.contractcase.DefinitionResponse.prototype.clearRunexampleresponse = functi
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasRunexampleresponse = function() {
+proto.contractcase.DefinitionResponse.prototype.hasRunExampleResponse = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional RunRejectingExampleResponse runRejectingExampleResponse = 9;
+ * optional RunRejectingExampleResponse run_rejecting_example_response = 9;
  * @return {?proto.contractcase.RunRejectingExampleResponse}
  */
-proto.contractcase.DefinitionResponse.prototype.getRunrejectingexampleresponse = function() {
+proto.contractcase.DefinitionResponse.prototype.getRunRejectingExampleResponse = function() {
   return /** @type{?proto.contractcase.RunRejectingExampleResponse} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.RunRejectingExampleResponse, 9));
 };
@@ -7886,7 +7886,7 @@ proto.contractcase.DefinitionResponse.prototype.getRunrejectingexampleresponse =
  * @param {?proto.contractcase.RunRejectingExampleResponse|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setRunrejectingexampleresponse = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setRunRejectingExampleResponse = function(value) {
   return jspb.Message.setOneofWrapperField(this, 9, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7895,8 +7895,8 @@ proto.contractcase.DefinitionResponse.prototype.setRunrejectingexampleresponse =
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearRunrejectingexampleresponse = function() {
-  return this.setRunrejectingexampleresponse(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearRunRejectingExampleResponse = function() {
+  return this.setRunRejectingExampleResponse(undefined);
 };
 
 
@@ -7904,16 +7904,16 @@ proto.contractcase.DefinitionResponse.prototype.clearRunrejectingexampleresponse
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasRunrejectingexampleresponse = function() {
+proto.contractcase.DefinitionResponse.prototype.hasRunRejectingExampleResponse = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional StripMatchersResponse stripMatchersResponse = 10;
+ * optional StripMatchersResponse strip_matchers_response = 10;
  * @return {?proto.contractcase.StripMatchersResponse}
  */
-proto.contractcase.DefinitionResponse.prototype.getStripmatchersresponse = function() {
+proto.contractcase.DefinitionResponse.prototype.getStripMatchersResponse = function() {
   return /** @type{?proto.contractcase.StripMatchersResponse} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.StripMatchersResponse, 10));
 };
@@ -7923,7 +7923,7 @@ proto.contractcase.DefinitionResponse.prototype.getStripmatchersresponse = funct
  * @param {?proto.contractcase.StripMatchersResponse|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setStripmatchersresponse = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setStripMatchersResponse = function(value) {
   return jspb.Message.setOneofWrapperField(this, 10, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7932,8 +7932,8 @@ proto.contractcase.DefinitionResponse.prototype.setStripmatchersresponse = funct
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearStripmatchersresponse = function() {
-  return this.setStripmatchersresponse(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearStripMatchersResponse = function() {
+  return this.setStripMatchersResponse(undefined);
 };
 
 
@@ -7941,16 +7941,16 @@ proto.contractcase.DefinitionResponse.prototype.clearStripmatchersresponse = fun
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasStripmatchersresponse = function() {
+proto.contractcase.DefinitionResponse.prototype.hasStripMatchersResponse = function() {
   return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * optional EndDefinitionResponse endDefinitionResponse = 11;
+ * optional EndDefinitionResponse end_definition_response = 11;
  * @return {?proto.contractcase.EndDefinitionResponse}
  */
-proto.contractcase.DefinitionResponse.prototype.getEnddefinitionresponse = function() {
+proto.contractcase.DefinitionResponse.prototype.getEndDefinitionResponse = function() {
   return /** @type{?proto.contractcase.EndDefinitionResponse} */ (
     jspb.Message.getWrapperField(this, proto.contractcase.EndDefinitionResponse, 11));
 };
@@ -7960,7 +7960,7 @@ proto.contractcase.DefinitionResponse.prototype.getEnddefinitionresponse = funct
  * @param {?proto.contractcase.EndDefinitionResponse|undefined} value
  * @return {!proto.contractcase.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setEnddefinitionresponse = function(value) {
+proto.contractcase.DefinitionResponse.prototype.setEndDefinitionResponse = function(value) {
   return jspb.Message.setOneofWrapperField(this, 11, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
 };
 
@@ -7969,8 +7969,8 @@ proto.contractcase.DefinitionResponse.prototype.setEnddefinitionresponse = funct
  * Clears the message field making it undefined.
  * @return {!proto.contractcase.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearEnddefinitionresponse = function() {
-  return this.setEnddefinitionresponse(undefined);
+proto.contractcase.DefinitionResponse.prototype.clearEndDefinitionResponse = function() {
+  return this.setEndDefinitionResponse(undefined);
 };
 
 
@@ -7978,7 +7978,7 @@ proto.contractcase.DefinitionResponse.prototype.clearEnddefinitionresponse = fun
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasEnddefinitionresponse = function() {
+proto.contractcase.DefinitionResponse.prototype.hasEndDefinitionResponse = function() {
   return jspb.Message.getField(this, 11) != null;
 };
 
