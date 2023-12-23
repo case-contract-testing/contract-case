@@ -7,7 +7,10 @@ import {
   BoundaryFailure,
 } from '@contract-case/case-boundary';
 import { versionString } from '../../versionString';
-import { makeCoreError, makeConfigurationError } from '../../domain/errors';
+import {
+  makeCoreError,
+  makeConfigurationError,
+} from '../../domain/errors/errors';
 import { DefinitionId } from '../../domain/types';
 
 const ENDED_DEFINER = 'CLOSED' as const;

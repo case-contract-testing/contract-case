@@ -11,23 +11,18 @@ import {
 } from '@contract-case/case-boundary';
 import {
   BoundaryResult as WireBoundaryResult,
-  ContractCaseConfig as WireContractCaseConfig,
   DefinitionRequest as WireDefinitionRequest,
   DefinitionResponse as WireDefinitionResponse,
   LogRequest as WireLogRequest,
   PrintMatchErrorRequest as WirePrintMatchErrorRequest,
   PrintMessageErrorRequest as WirePrintMessageErrorRequest,
   PrintTestTitleRequest as WirePrintTestTitleRequest,
-  StateHandlerHandle as WireStateHandlerHandle,
 } from './proto/contract_case_stream_pb';
 import service from './proto/contract_case_stream_grpc_pb';
 import { UnreachableError } from './UnreachableError';
-import { ConnectorError } from './ConnectorError';
+import { ConnectorError } from '../../domain/errors/ConnectorError';
 import { beginDefinition } from '../define';
-import {
-  ConnectorStateHandler,
-  ContractCaseConnectorConfig,
-} from '../../domain/types';
+import { mapConfig } from './mappers';
 
 const promises: Record<
   string,
@@ -82,92 +77,6 @@ const resolveById = (id: string, result: BoundaryResult) => {
     );
   }
   resolvable.r(result);
-};
-
-const makeStateHandlerCall =
-  (_handle: WireStateHandlerHandle): (() => Promise<BoundaryResult>) =>
-  () =>
-    Promise.reject(new Error(`Not implemented: ${_handle}`));
-
-const mapStateHandlers = (
-  stateHandlers: WireStateHandlerHandle[],
-): Record<string, ConnectorStateHandler> =>
-  stateHandlers.reduce<Record<string, ConnectorStateHandler>>(
-    (acc: Record<string, ConnectorStateHandler>, handler) => ({
-      ...acc,
-      [handler.getHandle()]: {
-        ...(acc[handler.getHandle()] ? acc[handler.getHandle()] : {}),
-        ...(handler.getStage() ===
-        WireStateHandlerHandle.Stage.STAGE_SETUP_UNSPECIFIED
-          ? { setup: makeStateHandlerCall(handler) }
-          : {
-              setup: makeStateHandlerCall(handler),
-              teardown: makeStateHandlerCall(handler),
-            }),
-      },
-    }),
-    {} as Record<string, ConnectorStateHandler>,
-  );
-
-const mapBasicAuth = (
-  basicAuth: WireContractCaseConfig.UsernamePassword | undefined,
-): { username: string; password: string } | undefined => {
-  if (basicAuth == null) {
-    return undefined;
-  }
-
-  return {
-    username: basicAuth.getUsername(),
-    password: basicAuth.getPassword(),
-  };
-};
-
-type WithUndefined<T> = {
-  [P in keyof T]-?: T[P] | undefined;
-};
-
-const mapAllConfigFields = (
-  config: WireContractCaseConfig,
-): WithUndefined<ContractCaseConnectorConfig> => ({
-  providerName: config.getProviderName(),
-  consumerName: config.getConsumerName(),
-  logLevel: config.getLogLevel(),
-  contractDir: config.getContractDir(),
-  contractFilename: config.getContractFilename(),
-
-  publish: config.getPublish(),
-  brokerCiAccessToken: config.getBrokerCiAccessToken(),
-  brokerBaseUrl: config.getBrokerBaseUrl(),
-  brokerBasicAuth: mapBasicAuth(config.getBrokerBasicAuth()),
-
-  baseUrlUnderTest: config.getBaseUrlUnderTest(),
-  printResults: config.getPrintResults(),
-  throwOnFail: config.getThrowOnFail(),
-
-  stateHandlers: mapStateHandlers(config.getStateHandlersList()),
-  triggerAndTests: {}, // Record<string, ConnectorTriggerFunction>;
-  triggerAndTest: {
-    trigger: () => Promise.reject(new Error('Not implemented')),
-  }, // ConnectorTriggerFunction;
-});
-
-const mapConfig = (
-  config: WireContractCaseConfig | undefined,
-): ContractCaseConnectorConfig => {
-  if (config === undefined) {
-    throw new ConnectorError('Config object must be provided');
-  }
-
-  return Object.entries(
-    mapAllConfigFields(config),
-  ).reduce<ContractCaseConnectorConfig>(
-    // Kill any fields that are empty strings or otherwise undefined
-    (acc, [key, value]) => ({
-      ...acc,
-      ...(value !== '' && value !== undefined ? { [key]: value } : {}),
-    }),
-    {} as ContractCaseConnectorConfig,
-  );
 };
 
 /**

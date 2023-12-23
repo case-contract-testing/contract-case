@@ -7,7 +7,10 @@ import {
   IResultPrinter,
   BoundaryFailure,
 } from '@contract-case/case-boundary';
-import { makeCoreError, makeConfigurationError } from '../../domain/errors';
+import {
+  makeCoreError,
+  makeConfigurationError,
+} from '../../domain/errors/errors';
 import { versionString } from '../../versionString';
 
 const ENDED_VERIFIER = 'CLOSED' as const;
