@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+/*
+ *******************************************************************************
+ *******************************************************************************
+ *                              WARNING: UNUSED                                *
+ *******************************************************************************
+ *******************************************************************************
+ *
+ * This is a (currently) unused draft, where each message is an RPC call
+ *
+ * See contract_case_stream.proto for the current actual proto definition
+ */
+
+// Types
+message ContractCaseConfig {
+  message UsernamePassword {
+    string username = 1;
+    string password = 2;
+  }
+
+  message StateHandler {
+    // TODO
+  }
+
+  message TriggerFunction {
+    // TODO
+  }
+
+  string provider_name = 1;
+  string consumer_name = 2;
+  string log_level = 3;
+  string contract_dir = 4;
+  string contract_filename = 5;
+  string publish = 6;
+  string broker_ci_access_token = 7;
+  string broker_base_url = 8;
+  UsernamePassword broker_basic_auth = 9;
+
+  bool print_results = 10;
+  bool throw_on_fail = 11;
+
+  map<string, StateHandler> state_handlers = 12;
+  map<string, TriggerFunction> trigger_function = 13;
+
+  TriggerFunction trigger_and_test = 14;
+
+  string base_url_under_test = 15; // Long term, this will be moved
+}
+
+message ILogPrinter {
+  // TODO
+}
+
+message IResultPrinter {
+  // TODO
+}
+
+// Responses
+message DefinitionHandle {
+  string definition_id = 1;
+}
+
+message BoundaryResult {
+  // TODO
+}
+
+// Requests
+message BeginDefinitionRequest {
+  ContractCaseConfig config = 1;
+  ILogPrinter log_printer = 2;
+  IResultPrinter result_printer = 3;
+  repeated string caller_versions = 4;
+}
+
+message RunExampleRequest {
+  DefinitionHandle handle = 1;
+  google.protobuf.Struct example_definition = 2;
+  ContractCaseConfig config = 3;
+}
+
+message RunRejectingExampleRequest {
+  DefinitionHandle handle = 1;
+  google.protobuf.Struct example_definition = 2;
+  ContractCaseConfig config = 3;
+}
+
+message StripMatchersRequest {
+  DefinitionHandle handle = 1;
+  google.protobuf.Struct matcher_or_data = 2;
+}
+
+message EndDefinitionRequest {
+  DefinitionHandle handle = 1;
+}
+
+service ContractCaseDefiner {
+  rpc BeginDefinition(BeginDefinitionRequest) returns (DefinitionHandle) {}
+  rpc RunExample(RunExampleRequest) returns (BoundaryResult) {}
+  rpc RunRejectingExample(RunRejectingExampleRequest) returns (BoundaryResult) {
+  }
+  rpc StripMatchers(StripMatchersRequest) returns (BoundaryResult) {}
+  rpc EndDefinition(EndDefinitionRequest) returns (BoundaryResult) {}
+}
