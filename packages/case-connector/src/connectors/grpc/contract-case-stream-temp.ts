@@ -22,7 +22,7 @@ import service from './proto/contract_case_stream_grpc_pb';
 import { UnreachableError } from './UnreachableError';
 import { ConnectorError } from '../../domain/errors/ConnectorError';
 import { beginDefinition } from '../define';
-import { mapConfig } from './mappers';
+import { mapConfig } from './requestMappers';
 import {
   makeResolvableId,
   resolveById,
