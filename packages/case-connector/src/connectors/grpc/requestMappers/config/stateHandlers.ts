@@ -1,8 +1,8 @@
 import { BoundaryResult } from '@contract-case/case-boundary';
 
-import { StateHandlerHandle as WireStateHandlerHandle } from '../proto/contract_case_stream_pb';
+import { StateHandlerHandle as WireStateHandlerHandle } from '../../proto/contract_case_stream_pb';
 
-import { ConnectorStateHandler } from '../../../domain/types';
+import { ConnectorStateHandler } from '../../../../domain/types';
 
 const makeStateHandlerCall =
   (_handle: WireStateHandlerHandle): (() => Promise<BoundaryResult>) =>

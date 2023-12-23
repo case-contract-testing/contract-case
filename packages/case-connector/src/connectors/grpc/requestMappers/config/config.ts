@@ -1,8 +1,8 @@
-import { ContractCaseConfig as WireContractCaseConfig } from '../proto/contract_case_stream_pb';
+import { ContractCaseConfig as WireContractCaseConfig } from '../../proto/contract_case_stream_pb';
 
-import { ContractCaseConnectorConfig } from '../../../domain/types';
+import { ContractCaseConnectorConfig } from '../../../../domain/types';
 import { mapStateHandlers } from './stateHandlers';
-import { ConnectorError } from '../../../domain/errors';
+import { ConnectorError } from '../../../../domain/errors';
 
 const mapBasicAuth = (
   basicAuth: WireContractCaseConfig.UsernamePassword | undefined,
