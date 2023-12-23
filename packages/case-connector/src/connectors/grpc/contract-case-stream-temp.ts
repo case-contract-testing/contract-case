@@ -13,10 +13,6 @@ import {
   BoundaryResult as WireBoundaryResult,
   DefinitionRequest as WireDefinitionRequest,
   DefinitionResponse as WireDefinitionResponse,
-  LogRequest as WireLogRequest,
-  PrintMatchErrorRequest as WirePrintMatchErrorRequest,
-  PrintMessageErrorRequest as WirePrintMessageErrorRequest,
-  PrintTestTitleRequest as WirePrintTestTitleRequest,
 } from './proto/contract_case_stream_pb';
 import service from './proto/contract_case_stream_grpc_pb';
 import { UnreachableError } from './UnreachableError';
@@ -28,6 +24,13 @@ import {
   resolveById,
   waitForResolution,
 } from './promiseHandler/promiseHandler';
+import {
+  makeLogRequest,
+  makePrintMatchErrorRequest,
+  makePrintTestTitleRequest,
+  makePrintableMessageErrorRequest,
+} from './responseMappers';
+import { makeExecuteCall } from './executeCall';
 
 /**
  * Starts an RPC server that receives requests for the Greeter service at the
@@ -40,6 +43,8 @@ function main() {
     ContractDefinition: (
       call: ServerDuplexStream<WireDefinitionRequest, WireDefinitionResponse>,
     ) => {
+      const executeCall = makeExecuteCall(call);
+
       call.on('data', (request: WireDefinitionRequest) => {
         const type = request.getKindCase();
         switch (type) {
@@ -68,124 +73,55 @@ function main() {
                     additional: string,
                   ): Promise<BoundaryResult> =>
                     waitForResolution(
-                      makeResolvableId(
-                        (id: string) =>
-                          new Promise((resolve) => {
-                            call.write(
-                              new WireDefinitionResponse()
-                                .setLogRequest(
-                                  new WireLogRequest()
-                                    .setLevel(level)
-                                    .setTimestamp(timestamp)
-                                    .setVersion(version)
-                                    .setTypeString(typeString)
-                                    .setLocation(location)
-                                    .setMessage(message)
-                                    .setAdditional(additional),
-                                )
-                                .setId(id),
-                              () => {
-                                resolve();
-                              },
-                            );
+                      makeResolvableId((id: string) =>
+                        executeCall(
+                          id,
+                          makeLogRequest({
+                            level,
+                            timestamp,
+                            version,
+                            typeString,
+                            location,
+                            message,
+                            additional,
                           }),
+                        ),
                       ),
                     ),
                 },
                 {
-                  printMatchError: async ({
-                    kind,
-                    message,
-                    location,
-                    locationTag,
-                    errorTypeTag,
-                    expected,
-                    actual,
-                  }: PrintableMatchError): Promise<BoundaryResult> =>
+                  printMatchError: async (
+                    matchError: PrintableMatchError,
+                  ): Promise<BoundaryResult> =>
                     waitForResolution(
-                      makeResolvableId(
-                        (id: string) =>
-                          new Promise((resolve) => {
-                            call.write(
-                              new WireDefinitionResponse()
-                                .setPrintMatchErrorRequest(
-                                  new WirePrintMatchErrorRequest()
-                                    .setActual(actual)
-                                    .setKind(kind)
-                                    .setLocationTag(locationTag)
-                                    .setExpected(expected)
-                                    .setLocation(location)
-                                    .setMessage(message)
-                                    .setErrorTypeTag(errorTypeTag),
-                                )
-                                .setId(id),
-                              () => {
-                                resolve();
-                              },
-                            );
-                          }),
+                      makeResolvableId((id: string) =>
+                        executeCall(id, makePrintMatchErrorRequest(matchError)),
                       ),
                     ),
-                  printMessageError: async ({
-                    kind,
-                    message,
-                    location,
-                    locationTag,
-                    errorTypeTag,
-                  }: PrintableMessageError): Promise<BoundaryResult> =>
+                  printMessageError: async (
+                    messageError: PrintableMessageError,
+                  ): Promise<BoundaryResult> =>
                     waitForResolution(
-                      makeResolvableId(
-                        (id: string) =>
-                          new Promise((resolve) => {
-                            call.write(
-                              new WireDefinitionResponse()
-                                .setPrintMessageErrorRequest(
-                                  new WirePrintMessageErrorRequest()
-                                    .setErrorTypeTag(errorTypeTag)
-                                    .setKind(kind)
-                                    .setLocation(location)
-                                    .setLocationTag(locationTag)
-                                    .setMessage(message),
-                                )
-                                .setId(id),
-                              () => {
-                                resolve();
-                              },
-                            );
-                          }),
+                      makeResolvableId((id) =>
+                        executeCall(
+                          id,
+                          makePrintableMessageErrorRequest(messageError),
+                        ),
                       ),
                     ),
-                  printTestTitle: async ({
-                    kind,
-                    icon,
-                    title,
-                    additionalText,
-                  }: PrintableTestTitle): Promise<BoundaryResult> =>
+                  printTestTitle: async (
+                    testTitle: PrintableTestTitle,
+                  ): Promise<BoundaryResult> =>
                     waitForResolution(
-                      makeResolvableId(
-                        (id: string) =>
-                          new Promise((resolve) => {
-                            call.write(
-                              new WireDefinitionResponse()
-                                .setPrintTestTitleRequest(
-                                  new WirePrintTestTitleRequest()
-                                    .setKind(kind)
-                                    .setIcon(icon)
-                                    .setTitle(title)
-                                    .setAdditionalText(additionalText),
-                                )
-                                .setId(id),
-                              () => {
-                                resolve();
-                              },
-                            );
-                          }),
+                      makeResolvableId((id: string) =>
+                        executeCall(id, makePrintTestTitleRequest(testTitle)),
                       ),
                     ),
                 },
                 beginDefinitionRequest.getCallerVersionsList(),
               );
 
+              // TODO: Don't do this
               // eslint-disable-next-line no-console
               console.log(definition);
             }
