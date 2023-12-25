@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { BoundaryResult } from '@contract-case/case-boundary';
 import { ConnectorError } from '../../../domain/errors';
 
@@ -16,7 +17,7 @@ const promises: Record<
 export const makeResolvableId = (
   executeCall: (id: string) => Promise<void>,
 ): string => {
-  const id = 'someID'; // TODO: Make this a uuid
+  const id = uuidv4();
 
   let r: (value: BoundaryResult) => void = () => {
     // This promise should be immediately overwritten by
