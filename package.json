@@ -4,7 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.14.0",
+  "version": "0.15.0",
   "devDependencies": {
     "jsii-docgen": "^10.2.3",
     "lerna": "^8.0.0"
