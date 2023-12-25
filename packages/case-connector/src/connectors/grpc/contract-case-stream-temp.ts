@@ -1,6 +1,7 @@
 import grpc, { ServerDuplexStream } from '@grpc/grpc-js';
 
 import {
+  BoundaryFailure,
   BoundaryResult,
   PrintableMatchError,
   PrintableMessageError,
@@ -9,11 +10,15 @@ import {
 import {
   DefinitionRequest as WireDefinitionRequest,
   DefinitionResponse as WireDefinitionResponse,
+  EndDefinitionResponse as WireEndDefinitionResponse,
+  BoundaryResult as WireBoundaryResult,
+  ResultFailure,
+  ResultSuccess,
 } from './proto/contract_case_stream_pb';
 import service from './proto/contract_case_stream_grpc_pb';
 import { UnreachableError } from './UnreachableError';
 import { ConnectorError } from '../../domain/errors/ConnectorError';
-import { beginDefinition } from '../define';
+import { beginDefinition, endRecord } from '../define';
 import { mapConfig, mapResult } from './requestMappers';
 import {
   makeResolvableId,
@@ -41,6 +46,8 @@ function main() {
     ) => {
       const executeCall = makeExecuteCall(call);
 
+      let definitionId: string | undefined;
+
       call.on('data', (request: WireDefinitionRequest) => {
         const type = request.getKindCase();
         switch (type) {
@@ -56,7 +63,7 @@ function main() {
                   'Begin definition was called with something that returned an undefined getBeginDefinition',
                 );
               }
-              const definition = beginDefinition(
+              definitionId = beginDefinition(
                 mapConfig(beginDefinitionRequest.getConfig()),
                 {
                   log: async (
@@ -116,15 +123,56 @@ function main() {
                 },
                 beginDefinitionRequest.getCallerVersionsList(),
               );
-
-              // TODO: Don't do this
-              // eslint-disable-next-line no-console
-              console.log(definition);
             }
             break;
-          case WireDefinitionRequest.KindCase.END_DEFINITION:
-            // TODO
+          case WireDefinitionRequest.KindCase.END_DEFINITION: {
+            const endDefinitionRequest = request.getEndDefinition();
+            if (endDefinitionRequest == null) {
+              throw new ConnectorError(
+                'end definition was called with something that returned an undefined getBeginDefinition',
+              );
+            }
+            if (definitionId === undefined) {
+              throw new ConnectorError(
+                'end definition was called before begin definition',
+              );
+            }
+            const makeResult = (result: BoundaryResult): WireBoundaryResult => {
+              switch (result.resultType) {
+                case 'Success':
+                  return new WireBoundaryResult().setSuccess(
+                    new ResultSuccess(),
+                  );
+                case 'SuccessMap':
+                  // TODO implement this
+                  throw new ConnectorError('Not implemented');
+                case 'SuccessAny':
+                  // TODO implement this
+                  throw new ConnectorError('Not implemented');
+                case 'Failure': {
+                  const failure = result as BoundaryFailure;
+                  return new WireBoundaryResult().setFailure(
+                    new ResultFailure()
+                      .setKind(failure.kind)
+                      .setLocation(failure.location)
+                      .setMessage(failure.message),
+                  );
+                }
+                default:
+                  throw new UnreachableError(result.resultType);
+              }
+            };
+
+            const makeEndDefinitionResponse = (result: BoundaryResult) =>
+              new WireDefinitionResponse().setEndDefinitionResponse(
+                new WireEndDefinitionResponse().setResult(makeResult(result)),
+              );
+
+            endRecord(definitionId).then((result) =>
+              executeCall(request.getId(), makeEndDefinitionResponse(result)),
+            );
             break;
+          }
           case WireDefinitionRequest.KindCase.RUN_EXAMPLE:
             // TODO
             break;
