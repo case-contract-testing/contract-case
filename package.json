@@ -6,7 +6,7 @@
   ],
   "version": "0.14.0",
   "devDependencies": {
-    "jsii-docgen": "^10.2.3",
+    "jsii-docgen": "^10.3.2",
     "lerna": "^8.0.0"
   },
   "optionalDependencies": {
@@ -14,8 +14,8 @@
     "@nx/nx-darwin-x64": "17.2.0",
     "@nx/nx-linux-arm-gnueabihf": "16.10.0",
     "@nx/nx-linux-arm64-gnu": "17.2.5",
-    "@nx/nx-linux-arm64-musl": "17.2.0",
-    "@nx/nx-linux-x64-gnu": "17.2.5",
+    "@nx/nx-linux-arm64-musl": "17.2.7",
+    "@nx/nx-linux-x64-gnu": "17.2.7",
     "@nx/nx-linux-x64-musl": "17.0.1",
     "@nx/nx-win32-arm64-msvc": "17.2.5",
     "@nx/nx-win32-x64-msvc": "17.1.3"

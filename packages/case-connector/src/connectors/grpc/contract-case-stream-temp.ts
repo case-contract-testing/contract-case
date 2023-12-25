@@ -7,14 +7,24 @@ import {
   PrintableTestTitle,
 } from '@contract-case/case-boundary';
 import {
+  RunExampleResponse as WireRunExampleResponse,
+  RunRejectingExampleResponse as WireRunRejectingExampleResponse,
+  StripMatchersResponse as WireStripMatchersResponse,
   DefinitionRequest as WireDefinitionRequest,
   DefinitionResponse as WireDefinitionResponse,
+  EndDefinitionResponse as WireEndDefinitionResponse,
 } from './proto/contract_case_stream_pb';
 import service from './proto/contract_case_stream_grpc_pb';
 import { UnreachableError } from './UnreachableError';
 import { ConnectorError } from '../../domain/errors/ConnectorError';
-import { beginDefinition } from '../define';
-import { mapConfig, mapResult } from './requestMappers';
+import {
+  beginDefinition,
+  endRecord,
+  runExample,
+  runRejectingExample,
+  stripMatchers,
+} from '../define';
+import { mapConfig, mapJson, mapResult } from './requestMappers';
 import {
   makeResolvableId,
   resolveById,
@@ -25,6 +35,7 @@ import {
   makePrintMatchErrorRequest,
   makePrintTestTitleRequest,
   makePrintableMessageErrorRequest,
+  makeResult,
 } from './responseMappers';
 import { makeExecuteCall } from './executeCall';
 
@@ -41,6 +52,8 @@ function main() {
     ) => {
       const executeCall = makeExecuteCall(call);
 
+      let definitionId: string | undefined;
+
       call.on('data', (request: WireDefinitionRequest) => {
         const type = request.getKindCase();
         switch (type) {
@@ -56,8 +69,8 @@ function main() {
                   'Begin definition was called with something that returned an undefined getBeginDefinition',
                 );
               }
-              const definition = beginDefinition(
-                mapConfig(beginDefinitionRequest.getConfig()),
+              definitionId = beginDefinition(
+                mapConfig(beginDefinitionRequest.getConfig(), executeCall),
                 {
                   log: async (
                     level: string,
@@ -116,26 +129,162 @@ function main() {
                 },
                 beginDefinitionRequest.getCallerVersionsList(),
               );
-
-              // TODO: Don't do this
-              // eslint-disable-next-line no-console
-              console.log(definition);
             }
             break;
-          case WireDefinitionRequest.KindCase.END_DEFINITION:
-            // TODO
+          case WireDefinitionRequest.KindCase.END_DEFINITION: {
+            const endDefinitionRequest = request.getEndDefinition();
+            if (endDefinitionRequest == null) {
+              throw new ConnectorError(
+                'end definition was called with something that returned an undefined getBeginDefinition',
+              );
+            }
+            if (definitionId === undefined) {
+              throw new ConnectorError(
+                'end definition was called before begin definition',
+              );
+            }
+
+            const makeEndDefinitionResponse = (result: BoundaryResult) =>
+              new WireDefinitionResponse().setEndDefinitionResponse(
+                new WireEndDefinitionResponse().setResult(makeResult(result)),
+              );
+
+            endRecord(definitionId).then((result) =>
+              executeCall(request.getId(), makeEndDefinitionResponse(result)),
+            );
             break;
-          case WireDefinitionRequest.KindCase.RUN_EXAMPLE:
-            // TODO
+          }
+          case WireDefinitionRequest.KindCase.RUN_EXAMPLE: {
+            const runExampleRequest = request.getRunExample();
+            if (runExampleRequest == null) {
+              throw new ConnectorError(
+                'run example called with something that returned an undefined request',
+              );
+            }
+            if (definitionId === undefined) {
+              throw new ConnectorError(
+                'runExample was called before begin definition',
+              );
+            }
+
+            const makeRunExampleResponse = (result: BoundaryResult) =>
+              new WireDefinitionResponse().setRunExampleResponse(
+                new WireRunExampleResponse().setResult(makeResult(result)),
+              );
+
+            runExample(
+              request.getId(),
+              mapJson(runExampleRequest.getExampleDefinition()),
+              mapConfig(runExampleRequest.getConfig(), executeCall),
+            ).then((result) =>
+              executeCall(request.getId(), makeRunExampleResponse(result)),
+            );
             break;
-          case WireDefinitionRequest.KindCase.RUN_REJECTING_EXAMPLE:
-            // TODO
+          }
+          case WireDefinitionRequest.KindCase.RUN_REJECTING_EXAMPLE: {
+            const runRejectingExampleRequest = request.getRunRejectingExample();
+            if (runRejectingExampleRequest == null) {
+              throw new ConnectorError(
+                'run rejecting example called with something that returned an undefined request',
+              );
+            }
+            if (definitionId === undefined) {
+              throw new ConnectorError(
+                'runExample was called before begin definition',
+              );
+            }
+            const makeRunRejectingExampleResponse = (result: BoundaryResult) =>
+              new WireDefinitionResponse().setRunExampleResponse(
+                new WireRunRejectingExampleResponse().setResult(
+                  makeResult(result),
+                ),
+              );
+
+            runRejectingExample(
+              request.getId(),
+              mapJson(runRejectingExampleRequest.getExampleDefinition()),
+              mapConfig(runRejectingExampleRequest.getConfig(), executeCall),
+            ).then((result) =>
+              executeCall(
+                request.getId(),
+                makeRunRejectingExampleResponse(result),
+              ),
+            );
             break;
-          case WireDefinitionRequest.KindCase.STRIP_MATCHERS:
-            // TODO
+          }
+          case WireDefinitionRequest.KindCase.STRIP_MATCHERS: {
+            const stripMatchersRequest = request.getStripMatchers();
+            if (stripMatchersRequest == null) {
+              throw new ConnectorError(
+                'strip matchers called with something that returned an undefined request',
+              );
+            }
+            if (definitionId === undefined) {
+              throw new ConnectorError(
+                'stripMatchers was called before begin definition',
+              );
+            }
+            const makeStripMatchersResponse = (result: BoundaryResult) =>
+              new WireDefinitionResponse().setStripMatchersResponse(
+                new WireStripMatchersResponse().setResult(makeResult(result)),
+              );
+
+            executeCall(
+              request.getId(),
+              makeStripMatchersResponse(
+                stripMatchers(
+                  request.getId(),
+                  mapJson(stripMatchersRequest.getMatcherOrData()),
+                ),
+              ),
+            );
             break;
+          }
           case WireDefinitionRequest.KindCase.STATE_HANDLER_RESPONSE:
-            // TODO
+            {
+              const stateHandlerResponse = request.getStateHandlerResponse();
+              if (stateHandlerResponse == null) {
+                throw new ConnectorError(
+                  'Result printer response was called with an undefined request',
+                );
+              }
+
+              resolveById(
+                request.getId(),
+                mapResult(stateHandlerResponse.getResult()),
+              );
+            }
+            break;
+          case WireDefinitionRequest.KindCase.RESULT_PRINTER_RESPONSE:
+            {
+              const resultPrinterResponse = request.getResultPrinterResponse();
+              if (resultPrinterResponse == null) {
+                throw new ConnectorError(
+                  'Result printer response was called with an undefined request',
+                );
+              }
+
+              resolveById(
+                request.getId(),
+                mapResult(resultPrinterResponse.getResult()),
+              );
+            }
+            break;
+          case WireDefinitionRequest.KindCase.TRIGGER_FUNCTION_RESPONSE:
+            {
+              const triggerFunctionResponse =
+                request.getTriggerFunctionResponse();
+              if (triggerFunctionResponse == null) {
+                throw new ConnectorError(
+                  'Trigger function response was called with an undefined request',
+                );
+              }
+
+              resolveById(
+                request.getId(),
+                mapResult(triggerFunctionResponse.getResult()),
+              );
+            }
             break;
           case WireDefinitionRequest.KindCase.LOG_PRINTER_RESPONSE: {
             const logPrinterResponse = request.getLogPrinterResponse();
@@ -151,10 +300,6 @@ function main() {
             );
             break;
           }
-
-          case WireDefinitionRequest.KindCase.RESULT_PRINTER_RESPONSE:
-          case WireDefinitionRequest.KindCase.TRIGGER_FUNCTION_RESPONSE:
-            break;
           default:
             throw new UnreachableError(type);
         }
