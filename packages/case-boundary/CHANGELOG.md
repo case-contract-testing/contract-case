@@ -15,6 +15,24 @@
   * devDependencies
     * @contract-case/test-equivalence-matchers bumped from 0.12.0 to 0.12.1
 
+## [0.9.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.8.0...@contract-case/case-boundary-v0.9.0) (2023-12-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Now all loggers and printers return promises, to better reflect that there is a boundary crossed
+* Tighten boundary types now that this module is no longer translated with jsii
+
+### Bug Fixes
+
+* Slightly improve boundary documentation ([ccf8645](https://github.com/case-contract-testing/contract-case/commit/ccf8645a8442cb21fc167299d45f2623958c5048))
+
+
+### Code Refactoring
+
+* Now all loggers and printers return promises, to better reflect that there is a boundary crossed ([14a9365](https://github.com/case-contract-testing/contract-case/commit/14a9365d6f873c352dadff539b7d8b67946412d0))
+* Tighten boundary types now that this module is no longer translated with jsii ([53ef989](https://github.com/case-contract-testing/contract-case/commit/53ef989e8d8bac1f2acdb1c13a8f88545ff82038))
+
 ## [0.8.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.7.0...@contract-case/case-boundary-v0.8.0) (2023-10-11)
 
 
