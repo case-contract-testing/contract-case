@@ -7,6 +7,8 @@ import {
   PrintableTestTitle,
 } from '@contract-case/case-boundary';
 import {
+  RunExampleResponse,
+  RunRejectingExampleResponse,
   DefinitionRequest as WireDefinitionRequest,
   DefinitionResponse as WireDefinitionResponse,
   EndDefinitionResponse as WireEndDefinitionResponse,
@@ -14,8 +16,13 @@ import {
 import service from './proto/contract_case_stream_grpc_pb';
 import { UnreachableError } from './UnreachableError';
 import { ConnectorError } from '../../domain/errors/ConnectorError';
-import { beginDefinition, endRecord } from '../define';
-import { mapConfig, mapResult } from './requestMappers';
+import {
+  beginDefinition,
+  endRecord,
+  runExample,
+  runRejectingExample,
+} from '../define';
+import { mapConfig, mapJson, mapResult } from './requestMappers';
 import {
   makeResolvableId,
   resolveById,
@@ -145,16 +152,73 @@ function main() {
             );
             break;
           }
-          case WireDefinitionRequest.KindCase.RUN_EXAMPLE:
-            // TODO
+          case WireDefinitionRequest.KindCase.RUN_EXAMPLE: {
+            const runExampleRequest = request.getRunExample();
+            if (runExampleRequest == null) {
+              throw new ConnectorError(
+                'run example called with something that returned an undefined request',
+              );
+            }
+            if (definitionId === undefined) {
+              throw new ConnectorError(
+                'runExample was called before begin definition',
+              );
+            }
+
+            const makeRunExampleResponse = (result: BoundaryResult) =>
+              new WireDefinitionResponse().setRunExampleResponse(
+                new RunExampleResponse().setResult(makeResult(result)),
+              );
+
+            runExample(
+              request.getId(),
+              mapJson(runExampleRequest.getExampleDefinition()),
+              mapConfig(runExampleRequest.getConfig()),
+            ).then((result) =>
+              executeCall(request.getId(), makeRunExampleResponse(result)),
+            );
             break;
-          case WireDefinitionRequest.KindCase.RUN_REJECTING_EXAMPLE:
-            // TODO
+          }
+          case WireDefinitionRequest.KindCase.RUN_REJECTING_EXAMPLE: {
+            const runRejectingExampleRequest = request.getRunRejectingExample();
+            if (runRejectingExampleRequest == null) {
+              throw new ConnectorError(
+                'run rejecting example called with something that returned an undefined request',
+              );
+            }
+            if (definitionId === undefined) {
+              throw new ConnectorError(
+                'runExample was called before begin definition',
+              );
+            }
+            const makeRunRejectingExampleResponse = (result: BoundaryResult) =>
+              new WireDefinitionResponse().setRunExampleResponse(
+                new RunRejectingExampleResponse().setResult(makeResult(result)),
+              );
+
+            runRejectingExample(
+              request.getId(),
+              mapJson(runRejectingExampleRequest.getExampleDefinition()),
+              mapConfig(runRejectingExampleRequest.getConfig()),
+            ).then((result) =>
+              executeCall(
+                request.getId(),
+                makeRunRejectingExampleResponse(result),
+              ),
+            );
             break;
+          }
           case WireDefinitionRequest.KindCase.STRIP_MATCHERS:
             // TODO
             break;
           case WireDefinitionRequest.KindCase.STATE_HANDLER_RESPONSE:
+            // TODO
+            break;
+
+          case WireDefinitionRequest.KindCase.RESULT_PRINTER_RESPONSE:
+            // TODO
+            break;
+          case WireDefinitionRequest.KindCase.TRIGGER_FUNCTION_RESPONSE:
             // TODO
             break;
           case WireDefinitionRequest.KindCase.LOG_PRINTER_RESPONSE: {
@@ -171,10 +235,6 @@ function main() {
             );
             break;
           }
-
-          case WireDefinitionRequest.KindCase.RESULT_PRINTER_RESPONSE:
-          case WireDefinitionRequest.KindCase.TRIGGER_FUNCTION_RESPONSE:
-            break;
           default:
             throw new UnreachableError(type);
         }

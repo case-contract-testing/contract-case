@@ -7,7 +7,8 @@ export const mapJsonMap = (
   throw new Error(`Function not implemented ${arg0}`);
 };
 
-export const mapJson = (arg0: Value | undefined): Record<string, unknown> => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const mapJson = (arg0: Value | Struct | undefined): any => {
   // TODO Implement this
   throw new Error(`Function not implemented ${arg0}`);
 };
