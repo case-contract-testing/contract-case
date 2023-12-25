@@ -1,11 +1,23 @@
-import type { Struct, Value } from 'google-protobuf/google/protobuf/struct_pb';
+import {
+  JavaScriptValue,
+  Struct,
+  Value,
+} from 'google-protobuf/google/protobuf/struct_pb';
 
-export const makeGrpcStruct = (arg0: unknown): Struct => {
-  // TODO Implement this
-  throw new Error(`Function not implemented ${arg0}`);
-};
+export const makeGrpcStruct = (struct: Record<string, unknown>): Struct =>
+  Struct.fromJavaScript(struct as { [key: string]: JavaScriptValue });
 
-export const makeGrpcValue = (arg0: unknown): Value => {
-  // TODO Implement this
-  throw new Error(`Function not implemented ${arg0}`);
+export const makeGrpcValue = (value: unknown): Value => {
+  if (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'boolean' ||
+    value == null ||
+    Array.isArray(value)
+  ) {
+    return Value.fromJavaScript(value as JavaScriptValue);
+  }
+  return new Value().setStructValue(
+    Struct.fromJavaScript(value as Record<string, JavaScriptValue>),
+  );
 };
