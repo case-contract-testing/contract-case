@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.15.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.14.0...@contract-case/case-core-v0.15.0) (2023-12-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Now all loggers and printers return promises, to better reflect that there is a boundary crossed
+
+### Code Refactoring
+
+* Now all loggers and printers return promises, to better reflect that there is a boundary crossed ([14a9365](https://github.com/case-contract-testing/contract-case/commit/14a9365d6f873c352dadff539b7d8b67946412d0))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.14.0 to 0.15.0
+
 ## [0.14.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.13.1...@contract-case/case-core-v0.14.0) (2023-10-11)
 
 
