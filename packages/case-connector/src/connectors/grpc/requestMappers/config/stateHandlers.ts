@@ -1,17 +1,39 @@
 import { BoundaryResult } from '@contract-case/case-boundary';
 
-import { StateHandlerHandle as WireStateHandlerHandle } from '../../proto/contract_case_stream_pb';
+import {
+  DefinitionResponse as WireDefinitionResponse,
+  RunStateHandlerRequest as WireRunStateHandlerRequest,
+  StateHandlerHandle as WireStateHandlerHandle,
+} from '../../proto/contract_case_stream_pb';
 
 import { ConnectorStateHandler } from '../../../../domain/types';
+import { ExecuteCall } from '../../executeCall';
+
+import {
+  waitForResolution,
+  makeResolvableId,
+} from '../../promiseHandler/promiseHandler';
 
 const makeStateHandlerCall =
-  (_handle: WireStateHandlerHandle): (() => Promise<BoundaryResult>) =>
+  (
+    handle: WireStateHandlerHandle,
+    executeCall: ExecuteCall,
+  ): (() => Promise<BoundaryResult>) =>
   () =>
-    // TODO: Implement this
-    Promise.reject(new Error(`Not implemented: ${_handle}`));
+    waitForResolution(
+      makeResolvableId((id: string) =>
+        executeCall(
+          id,
+          new WireDefinitionResponse().setRunStateHandler(
+            new WireRunStateHandlerRequest().setStateHandlerHandle(handle),
+          ),
+        ),
+      ),
+    );
 
 export const mapStateHandlers = (
   stateHandlers: WireStateHandlerHandle[],
+  executeCall: ExecuteCall,
 ): Record<string, ConnectorStateHandler> =>
   stateHandlers.reduce<Record<string, ConnectorStateHandler>>(
     (acc: Record<string, ConnectorStateHandler>, handler) => ({
@@ -20,10 +42,10 @@ export const mapStateHandlers = (
         ...(acc[handler.getHandle()] ? acc[handler.getHandle()] : {}),
         ...(handler.getStage() ===
         WireStateHandlerHandle.Stage.STAGE_SETUP_UNSPECIFIED
-          ? { setup: makeStateHandlerCall(handler) }
+          ? { setup: makeStateHandlerCall(handler, executeCall) }
           : {
-              setup: makeStateHandlerCall(handler),
-              teardown: makeStateHandlerCall(handler),
+              setup: makeStateHandlerCall(handler, executeCall),
+              teardown: makeStateHandlerCall(handler, executeCall),
             }),
       },
     }),

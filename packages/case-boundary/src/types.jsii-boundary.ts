@@ -23,7 +23,6 @@ export type BoundaryAnyMockDescriptor = any;
  * @public
  */
 export interface BoundaryMockDefinition {
-  // TODO: Types for states
   readonly states: Array<BoundaryAnyState>;
   readonly definition: BoundaryAnyMockDescriptor;
 }
