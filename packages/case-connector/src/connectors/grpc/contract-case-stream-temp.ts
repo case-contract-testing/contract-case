@@ -7,8 +7,9 @@ import {
   PrintableTestTitle,
 } from '@contract-case/case-boundary';
 import {
-  RunExampleResponse,
-  RunRejectingExampleResponse,
+  RunExampleResponse as WireRunExampleResponse,
+  RunRejectingExampleResponse as WireRunRejectingExampleResponse,
+  StripMatchersResponse as WireStripMatchersResponse,
   DefinitionRequest as WireDefinitionRequest,
   DefinitionResponse as WireDefinitionResponse,
   EndDefinitionResponse as WireEndDefinitionResponse,
@@ -21,6 +22,7 @@ import {
   endRecord,
   runExample,
   runRejectingExample,
+  stripMatchers,
 } from '../define';
 import { mapConfig, mapJson, mapResult } from './requestMappers';
 import {
@@ -167,7 +169,7 @@ function main() {
 
             const makeRunExampleResponse = (result: BoundaryResult) =>
               new WireDefinitionResponse().setRunExampleResponse(
-                new RunExampleResponse().setResult(makeResult(result)),
+                new WireRunExampleResponse().setResult(makeResult(result)),
               );
 
             runExample(
@@ -193,7 +195,9 @@ function main() {
             }
             const makeRunRejectingExampleResponse = (result: BoundaryResult) =>
               new WireDefinitionResponse().setRunExampleResponse(
-                new RunRejectingExampleResponse().setResult(makeResult(result)),
+                new WireRunRejectingExampleResponse().setResult(
+                  makeResult(result),
+                ),
               );
 
             runRejectingExample(
@@ -208,18 +212,79 @@ function main() {
             );
             break;
           }
-          case WireDefinitionRequest.KindCase.STRIP_MATCHERS:
-            // TODO
-            break;
-          case WireDefinitionRequest.KindCase.STATE_HANDLER_RESPONSE:
-            // TODO
-            break;
+          case WireDefinitionRequest.KindCase.STRIP_MATCHERS: {
+            const stripMatchersRequest = request.getStripMatchers();
+            if (stripMatchersRequest == null) {
+              throw new ConnectorError(
+                'strip matchers called with something that returned an undefined request',
+              );
+            }
+            if (definitionId === undefined) {
+              throw new ConnectorError(
+                'stripMatchers was called before begin definition',
+              );
+            }
+            const makeStripMatchersResponse = (result: BoundaryResult) =>
+              new WireDefinitionResponse().setStripMatchersResponse(
+                new WireStripMatchersResponse().setResult(makeResult(result)),
+              );
 
+            executeCall(
+              request.getId(),
+              makeStripMatchersResponse(
+                stripMatchers(
+                  request.getId(),
+                  mapJson(stripMatchersRequest.getMatcherOrData()),
+                ),
+              ),
+            );
+            break;
+          }
+          case WireDefinitionRequest.KindCase.STATE_HANDLER_RESPONSE:
+            {
+              const stateHandlerResponse = request.getStateHandlerResponse();
+              if (stateHandlerResponse == null) {
+                throw new ConnectorError(
+                  'Result printer response was called with an undefined request',
+                );
+              }
+
+              resolveById(
+                request.getId(),
+                mapResult(stateHandlerResponse.getResult()),
+              );
+            }
+            break;
           case WireDefinitionRequest.KindCase.RESULT_PRINTER_RESPONSE:
-            // TODO
+            {
+              const resultPrinterResponse = request.getResultPrinterResponse();
+              if (resultPrinterResponse == null) {
+                throw new ConnectorError(
+                  'Result printer response was called with an undefined request',
+                );
+              }
+
+              resolveById(
+                request.getId(),
+                mapResult(resultPrinterResponse.getResult()),
+              );
+            }
             break;
           case WireDefinitionRequest.KindCase.TRIGGER_FUNCTION_RESPONSE:
-            // TODO
+            {
+              const triggerFunctionResponse =
+                request.getTriggerFunctionResponse();
+              if (triggerFunctionResponse == null) {
+                throw new ConnectorError(
+                  'Trigger function response was called with an undefined request',
+                );
+              }
+
+              resolveById(
+                request.getId(),
+                mapResult(triggerFunctionResponse.getResult()),
+              );
+            }
             break;
           case WireDefinitionRequest.KindCase.LOG_PRINTER_RESPONSE: {
             const logPrinterResponse = request.getLogPrinterResponse();
