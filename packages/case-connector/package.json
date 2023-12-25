@@ -14,9 +14,9 @@
     "url": "git+ssh://git@github.com/case-contract-testing/case.git"
   },
   "scripts": {
-    "prebuild": "npm run genproto && npm run genproto:ts && npm run format:fix",
-    "genproto": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/connectors/grpc --grpc_out=grpc_js:src/connectors/grpc ./proto/contract_case_stream.proto",
-    "genproto:ts": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/connectors/grpc --grpc_out=grpc_js:src/connectors/grpc --plugin=protoc-gen-grpc=../../node_modules/grpc_tools_node_protoc_ts/bin/protoc-gen-ts ./proto/contract_case_stream.proto",
+    "build:proto": "npm run build:proto:js && npm run build:proto:ts && npm run format:fix",
+    "build:proto:js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/connectors/grpc --grpc_out=grpc_js:src/connectors/grpc ./proto/contract_case_stream.proto",
+    "build:proto:ts": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/connectors/grpc --grpc_out=grpc_js:src/connectors/grpc --plugin=protoc-gen-grpc=../../node_modules/grpc_tools_node_protoc_ts/bin/protoc-gen-ts ./proto/contract_case_stream.proto",
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
