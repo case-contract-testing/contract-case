@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.15.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.14.0...@contract-case/case-example-mock-types-v0.15.0) (2023-12-25)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-example-mock-types:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.14.0 to 0.15.0
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.14.0 to 0.15.0
+  * peerDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.14.0 to 0.15.0
+
 ## [0.14.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.13.1...@contract-case/case-example-mock-types-v0.14.0) (2023-10-11)
 
 
