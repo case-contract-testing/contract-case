@@ -1,7 +1,6 @@
 import grpc, { ServerDuplexStream } from '@grpc/grpc-js';
 
 import {
-  BoundaryFailure,
   BoundaryResult,
   PrintableMatchError,
   PrintableMessageError,
@@ -11,9 +10,6 @@ import {
   DefinitionRequest as WireDefinitionRequest,
   DefinitionResponse as WireDefinitionResponse,
   EndDefinitionResponse as WireEndDefinitionResponse,
-  BoundaryResult as WireBoundaryResult,
-  ResultFailure,
-  ResultSuccess,
 } from './proto/contract_case_stream_pb';
 import service from './proto/contract_case_stream_grpc_pb';
 import { UnreachableError } from './UnreachableError';
@@ -30,6 +26,7 @@ import {
   makePrintMatchErrorRequest,
   makePrintTestTitleRequest,
   makePrintableMessageErrorRequest,
+  makeResult,
 } from './responseMappers';
 import { makeExecuteCall } from './executeCall';
 
@@ -137,31 +134,6 @@ function main() {
                 'end definition was called before begin definition',
               );
             }
-            const makeResult = (result: BoundaryResult): WireBoundaryResult => {
-              switch (result.resultType) {
-                case 'Success':
-                  return new WireBoundaryResult().setSuccess(
-                    new ResultSuccess(),
-                  );
-                case 'SuccessMap':
-                  // TODO implement this
-                  throw new ConnectorError('Not implemented');
-                case 'SuccessAny':
-                  // TODO implement this
-                  throw new ConnectorError('Not implemented');
-                case 'Failure': {
-                  const failure = result as BoundaryFailure;
-                  return new WireBoundaryResult().setFailure(
-                    new ResultFailure()
-                      .setKind(failure.kind)
-                      .setLocation(failure.location)
-                      .setMessage(failure.message),
-                  );
-                }
-                default:
-                  throw new UnreachableError(result.resultType);
-              }
-            };
 
             const makeEndDefinitionResponse = (result: BoundaryResult) =>
               new WireDefinitionResponse().setEndDefinitionResponse(
