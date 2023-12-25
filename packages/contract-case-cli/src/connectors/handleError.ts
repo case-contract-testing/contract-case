@@ -9,7 +9,7 @@ export const handleError = (e: Error): never => {
   switch (e.name) {
     case CaseConfigurationError.name:
       console.error(
-        `ContractCase was configured incorrectly: \n\n    ${e.message}\n\nThis is probably a misconfiguration.`
+        `ContractCase was configured incorrectly: \n\n    ${e.message}\n\nThis is a configuration problem, and probably not a bug with ContractCase.`,
       );
       break;
     case BrokerError.name:
@@ -18,7 +18,7 @@ export const handleError = (e: Error): never => {
     case CaseCoreError.name:
     default:
       console.error(
-        `${BoundaryCrashMessage.CRASH_MESSAGE_START}\n${e.message}\n${BoundaryCrashMessage.CRASH_MESSAGE_END}`
+        `${BoundaryCrashMessage.CRASH_MESSAGE_START}\n${e.message}\n${BoundaryCrashMessage.CRASH_MESSAGE_END}`,
       );
   }
   process.exit(1);

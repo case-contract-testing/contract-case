@@ -114,6 +114,13 @@ Next:
 - [ ] Remove MatchContextByType from core
 - [ ] Make it an error to not have broker tokens or URLs when trying to publish
 
+# Connector
+
+- [ ] Make loggers for the boundaries & glue
+- [ ] Extract controller from grpc, maybe
+- [ ] Confirm if the state handlers should have config / params?
+- [ ] Move the links to the promise handler out of the mappers
+
 Pact Parity
 
 - [ ] JVM / Python / Go / C# bindings

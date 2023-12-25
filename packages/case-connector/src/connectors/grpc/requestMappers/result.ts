@@ -7,6 +7,7 @@ import {
 import { BoundaryResult as WireBoundaryResult } from '../proto/contract_case_stream_pb';
 import { ConnectorError } from '../../../domain/errors';
 import { UnreachableError } from '../UnreachableError';
+import { mapJson, mapJsonMap } from './json';
 
 export const mapResult = (
   wireBoundaryResult: WireBoundaryResult | undefined,
@@ -32,8 +33,7 @@ export const mapResult = (
           'undefined wire with map in a boundary result. This is probably an error in the wrapper library.',
         );
       }
-      // TOOD: Map this map
-      return new BoundarySuccessWithMap(wireWithMap.getMap());
+      return new BoundarySuccessWithMap(mapJsonMap(wireWithMap.getMap()));
     }
     case WireBoundaryResult.ValueCase.SUCCESS_HAS_ANY: {
       const wireWithAny = wireBoundaryResult.getSuccessHasAny();
@@ -42,8 +42,7 @@ export const mapResult = (
           'undefined wire with any p in a boundary result. This is probably an error in the wrapper library.',
         );
       }
-      // TOOD: Map this object
-      return new BoundarySuccessWithMap(wireWithAny.getPayload());
+      return new BoundarySuccessWithMap(mapJson(wireWithAny.getPayload()));
     }
     case WireBoundaryResult.ValueCase.FAILURE: {
       const wireFailure = wireBoundaryResult.getFailure();
