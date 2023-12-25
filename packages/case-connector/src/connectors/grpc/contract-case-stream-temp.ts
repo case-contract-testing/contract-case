@@ -70,7 +70,7 @@ function main() {
                 );
               }
               definitionId = beginDefinition(
-                mapConfig(beginDefinitionRequest.getConfig()),
+                mapConfig(beginDefinitionRequest.getConfig(), executeCall),
                 {
                   log: async (
                     level: string,
@@ -175,7 +175,7 @@ function main() {
             runExample(
               request.getId(),
               mapJson(runExampleRequest.getExampleDefinition()),
-              mapConfig(runExampleRequest.getConfig()),
+              mapConfig(runExampleRequest.getConfig(), executeCall),
             ).then((result) =>
               executeCall(request.getId(), makeRunExampleResponse(result)),
             );
@@ -203,7 +203,7 @@ function main() {
             runRejectingExample(
               request.getId(),
               mapJson(runRejectingExampleRequest.getExampleDefinition()),
-              mapConfig(runRejectingExampleRequest.getConfig()),
+              mapConfig(runRejectingExampleRequest.getConfig(), executeCall),
             ).then((result) =>
               executeCall(
                 request.getId(),

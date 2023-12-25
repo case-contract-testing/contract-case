@@ -1,8 +1,21 @@
-import { ContractCaseConfig as WireContractCaseConfig } from '../../proto/contract_case_stream_pb';
+import {
+  JavaScriptValue,
+  Struct,
+} from 'google-protobuf/google/protobuf/struct_pb';
+import {
+  DefinitionResponse,
+  TriggerFunctionRequest,
+  ContractCaseConfig as WireContractCaseConfig,
+} from '../../proto/contract_case_stream_pb';
 
 import { ContractCaseConnectorConfig } from '../../../../domain/types';
 import { mapStateHandlers } from './stateHandlers';
 import { ConnectorError } from '../../../../domain/errors';
+import {
+  makeResolvableId,
+  waitForResolution,
+} from '../../promiseHandler/promiseHandler';
+import { ExecuteCall } from '../../executeCall';
 
 const mapBasicAuth = (
   basicAuth: WireContractCaseConfig.UsernamePassword | undefined,
@@ -23,6 +36,7 @@ type WithUndefined<T> = {
 
 const mapAllConfigFields = (
   config: WireContractCaseConfig,
+  executeCall: ExecuteCall,
 ): WithUndefined<ContractCaseConnectorConfig> => ({
   providerName: config.getProviderName(),
   consumerName: config.getConsumerName(),
@@ -39,22 +53,42 @@ const mapAllConfigFields = (
   printResults: config.getPrintResults(),
   throwOnFail: config.getThrowOnFail(),
 
-  stateHandlers: mapStateHandlers(config.getStateHandlersList()),
-  triggerAndTests: {}, // Record<string, ConnectorTriggerFunction>;
-  triggerAndTest: {
-    trigger: () => Promise.reject(new Error('Not implemented')),
-  }, // ConnectorTriggerFunction;
+  stateHandlers: mapStateHandlers(config.getStateHandlersList(), executeCall),
+  triggerAndTests: {}, // Record<string, ConnectorTriggerFunction>; // TODO implement this
+  triggerAndTest:
+    config.getTriggerAndTest() !== undefined
+      ? {
+          trigger: (withConfig: Record<string, unknown>) =>
+            waitForResolution(
+              makeResolvableId((id: string) =>
+                executeCall(
+                  id,
+                  new DefinitionResponse().setTriggerFunctionRequest(
+                    new TriggerFunctionRequest()
+                      .setTriggerFunction(config.getTriggerAndTest())
+                      .setConfig(
+                        Struct.fromJavaScript(
+                          withConfig as Record<string, JavaScriptValue>,
+                        ),
+                      ),
+                  ),
+                ),
+              ),
+            ),
+        }
+      : undefined, // ConnectorTriggerFunction;
 });
 
 export const mapConfig = (
   config: WireContractCaseConfig | undefined,
+  executeCall: ExecuteCall,
 ): ContractCaseConnectorConfig => {
   if (config === undefined) {
     throw new ConnectorError('Config object must be provided');
   }
 
   return Object.entries(
-    mapAllConfigFields(config),
+    mapAllConfigFields(config, executeCall),
   ).reduce<ContractCaseConnectorConfig>(
     // Kill any fields that are empty strings or otherwise undefined
     (acc, [key, value]) => ({
