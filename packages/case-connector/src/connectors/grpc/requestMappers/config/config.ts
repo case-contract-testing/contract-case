@@ -4,11 +4,15 @@ import {
 } from 'google-protobuf/google/protobuf/struct_pb';
 import {
   DefinitionResponse,
+  TriggerFunctionHandle,
   TriggerFunctionRequest,
   ContractCaseConfig as WireContractCaseConfig,
 } from '../../proto/contract_case_stream_pb';
 
-import { ContractCaseConnectorConfig } from '../../../../domain/types';
+import {
+  ConnectorTriggerFunction,
+  ContractCaseConnectorConfig,
+} from '../../../../domain/types';
 import { mapStateHandlers } from './stateHandlers';
 import { ConnectorError } from '../../../../domain/errors';
 import {
@@ -16,6 +20,39 @@ import {
   waitForResolution,
 } from '../../promiseHandler/promiseHandler';
 import { ExecuteCall } from '../../executeCall';
+
+const mapTriggerFunction = (
+  handle: TriggerFunctionHandle,
+  executeCall: ExecuteCall,
+) => ({
+  trigger: (withConfig: Record<string, unknown>) =>
+    waitForResolution(
+      makeResolvableId((id: string) =>
+        executeCall(
+          id,
+          new DefinitionResponse().setTriggerFunctionRequest(
+            new TriggerFunctionRequest()
+              .setTriggerFunction(handle)
+              .setConfig(
+                Struct.fromJavaScript(
+                  withConfig as Record<string, JavaScriptValue>,
+                ),
+              ),
+          ),
+        ),
+      ),
+    ),
+});
+
+const mapTriggerAndTest = (
+  config: WireContractCaseConfig,
+  executeCall: ExecuteCall,
+) => {
+  const trigger = config.getTriggerAndTest();
+  return trigger !== undefined
+    ? mapTriggerFunction(trigger, executeCall)
+    : undefined;
+};
 
 const mapBasicAuth = (
   basicAuth: WireContractCaseConfig.UsernamePassword | undefined,
@@ -54,29 +91,18 @@ const mapAllConfigFields = (
   throwOnFail: config.getThrowOnFail(),
 
   stateHandlers: mapStateHandlers(config.getStateHandlersList(), executeCall),
-  triggerAndTests: {}, // Record<string, ConnectorTriggerFunction>; // TODO implement this
-  triggerAndTest:
-    config.getTriggerAndTest() !== undefined
-      ? {
-          trigger: (withConfig: Record<string, unknown>) =>
-            waitForResolution(
-              makeResolvableId((id: string) =>
-                executeCall(
-                  id,
-                  new DefinitionResponse().setTriggerFunctionRequest(
-                    new TriggerFunctionRequest()
-                      .setTriggerFunction(config.getTriggerAndTest())
-                      .setConfig(
-                        Struct.fromJavaScript(
-                          withConfig as Record<string, JavaScriptValue>,
-                        ),
-                      ),
-                  ),
-                ),
-              ),
-            ),
-        }
-      : undefined, // ConnectorTriggerFunction;
+  triggerAndTests: config
+    .getTriggerAndTestsMap()
+    .toArray()
+    .reduce<Record<string, ConnectorTriggerFunction>>(
+      (acc: Record<string, ConnectorTriggerFunction>, [key, handler]) => ({
+        ...acc,
+        [key]: mapTriggerFunction(handler, executeCall),
+      }),
+      {} as Record<string, ConnectorTriggerFunction>,
+    ),
+  triggerAndTest: mapTriggerAndTest(config, executeCall),
+  // ConnectorTriggerFunction;
 });
 
 export const mapConfig = (

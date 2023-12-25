@@ -43,8 +43,8 @@ export class ContractCaseConfig extends jspb.Message {
     index?: number,
   ): StateHandlerHandle;
 
-  getTriggerFunctionMap(): jspb.Map<string, TriggerFunctionHandle>;
-  clearTriggerFunctionMap(): void;
+  getTriggerAndTestsMap(): jspb.Map<string, TriggerFunctionHandle>;
+  clearTriggerAndTestsMap(): void;
 
   hasTriggerAndTest(): boolean;
   clearTriggerAndTest(): void;
@@ -89,7 +89,7 @@ export namespace ContractCaseConfig {
     throwOnFail: boolean;
     stateHandlersList: Array<StateHandlerHandle.AsObject>;
 
-    triggerFunctionMap: Array<[string, TriggerFunctionHandle.AsObject]>;
+    triggerAndTestsMap: Array<[string, TriggerFunctionHandle.AsObject]>;
     triggerAndTest?: TriggerFunctionHandle.AsObject;
     baseUrlUnderTest: string;
   };
