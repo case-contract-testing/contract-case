@@ -6,7 +6,7 @@ import {
 
 export type ConnectorStateHandler = BoundaryStateHandler;
 
-type ConnectorTriggerFunction = ITriggerFunction;
+export type ConnectorTriggerFunction = ITriggerFunction;
 
 export type ContractCaseConnectorConfig = {
   providerName: string;

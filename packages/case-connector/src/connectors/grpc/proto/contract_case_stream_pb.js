@@ -783,7 +783,7 @@ proto.contractcase.ContractCaseConfig.toObject = function(includeInstance, msg) 
     throwOnFail: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
     stateHandlersList: jspb.Message.toObjectList(msg.getStateHandlersList(),
     proto.contractcase.StateHandlerHandle.toObject, includeInstance),
-    triggerFunctionMap: (f = msg.getTriggerFunctionMap()) ? f.toObject(includeInstance, proto.contractcase.TriggerFunctionHandle.toObject) : [],
+    triggerAndTestsMap: (f = msg.getTriggerAndTestsMap()) ? f.toObject(includeInstance, proto.contractcase.TriggerFunctionHandle.toObject) : [],
     triggerAndTest: (f = msg.getTriggerAndTest()) && proto.contractcase.TriggerFunctionHandle.toObject(includeInstance, f),
     baseUrlUnderTest: jspb.Message.getFieldWithDefault(msg, 15, "")
   };
@@ -873,7 +873,7 @@ proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader = function(msg
       msg.addStateHandlers(value);
       break;
     case 13:
-      var value = msg.getTriggerFunctionMap();
+      var value = msg.getTriggerAndTestsMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.contractcase.TriggerFunctionHandle.deserializeBinaryFromReader, "", new proto.contractcase.TriggerFunctionHandle());
          });
@@ -1002,7 +1002,7 @@ proto.contractcase.ContractCaseConfig.serializeBinaryToWriter = function(message
       proto.contractcase.StateHandlerHandle.serializeBinaryToWriter
     );
   }
-  f = message.getTriggerFunctionMap(true);
+  f = message.getTriggerAndTestsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(13, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.contractcase.TriggerFunctionHandle.serializeBinaryToWriter);
   }
@@ -1440,12 +1440,12 @@ proto.contractcase.ContractCaseConfig.prototype.clearStateHandlersList = functio
 
 
 /**
- * map<string, TriggerFunctionHandle> trigger_function = 13;
+ * map<string, TriggerFunctionHandle> trigger_and_tests = 13;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,!proto.contractcase.TriggerFunctionHandle>}
  */
-proto.contractcase.ContractCaseConfig.prototype.getTriggerFunctionMap = function(opt_noLazyCreate) {
+proto.contractcase.ContractCaseConfig.prototype.getTriggerAndTestsMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,!proto.contractcase.TriggerFunctionHandle>} */ (
       jspb.Message.getMapField(this, 13, opt_noLazyCreate,
       proto.contractcase.TriggerFunctionHandle));
@@ -1456,8 +1456,8 @@ proto.contractcase.ContractCaseConfig.prototype.getTriggerFunctionMap = function
  * Clears values from the map. The map will be non-null.
  * @return {!proto.contractcase.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.clearTriggerFunctionMap = function() {
-  this.getTriggerFunctionMap().clear();
+proto.contractcase.ContractCaseConfig.prototype.clearTriggerAndTestsMap = function() {
+  this.getTriggerAndTestsMap().clear();
   return this;};
 
 

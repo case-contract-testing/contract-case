@@ -24,7 +24,7 @@ message ContractCaseConfig {
   bool throw_on_fail = 11;
 
   repeated StateHandlerHandle state_handlers = 12;
-  map<string, TriggerFunctionHandle> trigger_function = 13;
+  map<string, TriggerFunctionHandle> trigger_and_tests = 13;
 
   TriggerFunctionHandle trigger_and_test = 14;
 

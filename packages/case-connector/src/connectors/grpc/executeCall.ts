@@ -15,7 +15,7 @@ const executeCall = (
     });
   });
 
-type ExecuteCall = (
+export type ExecuteCall = (
   id: string,
   response: WireDefinitionResponse,
 ) => Promise<void>;

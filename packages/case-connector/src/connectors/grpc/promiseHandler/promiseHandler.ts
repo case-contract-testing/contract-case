@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { BoundaryResult } from '@contract-case/case-boundary';
 import { ConnectorError } from '../../../domain/errors';
 
@@ -16,13 +17,14 @@ const promises: Record<
 export const makeResolvableId = (
   executeCall: (id: string) => Promise<void>,
 ): string => {
-  const id = 'someID'; // TODO: Make this a uuid
+  const id = uuidv4();
 
   let r: (value: BoundaryResult) => void = () => {
     // This promise should be immediately overwritten by
     // the resolution function in `immediatePromise` directly below
     throw new ConnectorError(
-      "An uninitialised promise resolver was called. This isn't supposed to be possible, as promises that don't do any read/write execute immediately",
+      'An uninitialised promise resolver was called.',
+      "This isn't supposed to be possible, as promises that don't do any read/write execute immediately",
     );
   };
   const immediatePromise = new Promise<BoundaryResult>((resolve) => {
@@ -48,7 +50,8 @@ export const waitForResolution = (id: string): Promise<BoundaryResult> => {
   if (resolvable === undefined) {
     return Promise.reject(
       new ConnectorError(
-        `When waiting, the promise resolver for a promise with ID '${id}' was missing. This is a programmer error in case-connector.`,
+        `When waiting, the promise resolver for a promise with ID '${id}' was missing.`,
+        'This is a programmer error in case-connector.',
       ),
     );
   }
@@ -65,7 +68,8 @@ export const resolveById = (id: string, result: BoundaryResult): void => {
   const resolvable = promises[id];
   if (resolvable === undefined) {
     throw new ConnectorError(
-      `When resolving, the promise resolver for a promise with ID '${id}' was missing. This can happen if a wrapper library misbehaves and responds to the same message more than once`,
+      `When resolving, the promise resolver for a promise with ID '${id}' was missing.`,
+      'This can happen if a wrapper library misbehaves and responds to the same message more than once',
     );
   }
   resolvable.r(result);
