@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.15.0](https://github.com/case-contract-testing/contract-case/compare/v0.14.0...v0.15.0) (2023-12-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Now all loggers and printers return promises, to better reflect that there is a boundary crossed
+
+### Code Refactoring
+
+* Now all loggers and printers return promises, to better reflect that there is a boundary crossed ([14a9365](https://github.com/case-contract-testing/contract-case/commit/14a9365d6f873c352dadff539b7d8b67946412d0))
+
 ## [0.14.0](https://github.com/case-contract-testing/contract-case/compare/v0.13.1...v0.14.0) (2023-10-11)
 
 
