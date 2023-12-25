@@ -2,7 +2,7 @@
   "packages/case-boundary": "0.8.0",
   "packages/case-core": "0.15.0",
   "packages/case-entities": "0.15.0",
-  "packages/case-example-mock-types": "0.14.0",
+  "packages/case-example-mock-types": "0.15.0",
   "packages/contract-case-jest": "0.11.0",
   "packages/test-equivalence-matchers": "0.14.0",
   "packages/documentation": "0.0.6",
