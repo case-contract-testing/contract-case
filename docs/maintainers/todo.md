@@ -120,6 +120,15 @@ Next:
 - [ ] Extract controller from grpc, maybe
 - [ ] Confirm if the state handlers should have config / params?
 - [ ] Move the links to the promise handler out of the mappers
+- [ ] Remove the unnecessary handles from the grpc
+- [ ] Tie the proto in the java to the proto in the typescript
+- [ ] Start the server from java
+- [ ] Redo JSii boundary for interface types
+- [ ] Expose teardown correctly on boundary
+
+# Java
+
+- [ ] Make junit wrapper
 
 Pact Parity
 
