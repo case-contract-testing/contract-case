@@ -31,11 +31,7 @@ message ContractCaseConfig {
   string base_url_under_test = 15; // Long term, this will be moved
 }
 
-// Shared communication types
-message DefinitionHandle {
-  string definition_id = 1;
-}
-
+// Indicates a successful response with no payload
 message ResultSuccess {
 }
 message ResultSuccessHasMapPayload {
@@ -95,7 +91,6 @@ message StripMatchersRequest {
 }
 
 message EndDefinitionRequest {
-  DefinitionHandle handle = 1;
 }
 
 message StateHandlerResponse {
