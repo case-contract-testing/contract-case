@@ -3,6 +3,7 @@ import {
   DefinitionRequest as WireDefinitionRequest,
   DefinitionResponse as WireDefinitionResponse,
 } from './proto/contract_case_stream_pb';
+import { maintainerLog } from '../../domain/maintainerLog';
 
 const executeCall = (
   call: ServerDuplexStream<WireDefinitionRequest, WireDefinitionResponse>,
@@ -10,6 +11,7 @@ const executeCall = (
   response: WireDefinitionResponse,
 ) =>
   new Promise<void>((resolve) => {
+    maintainerLog(`[SENDING] (${id})`, response.toObject());
     call.write(response.setId(id), () => {
       resolve();
     });

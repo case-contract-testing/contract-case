@@ -1,4 +1,4 @@
-// package: contractcase
+// package: io.contract_testing.contractcase.grpc
 // file: proto/contract_case_stream.proto
 
 /* tslint:disable */
@@ -127,37 +127,6 @@ export namespace ContractCaseConfig {
       password: string;
     };
   }
-}
-
-export class DefinitionHandle extends jspb.Message {
-  getDefinitionId(): string;
-  setDefinitionId(value: string): DefinitionHandle;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DefinitionHandle.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: DefinitionHandle,
-  ): DefinitionHandle.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: DefinitionHandle,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): DefinitionHandle;
-  static deserializeBinaryFromReader(
-    message: DefinitionHandle,
-    reader: jspb.BinaryReader,
-  ): DefinitionHandle;
-}
-
-export namespace DefinitionHandle {
-  export type AsObject = {
-    definitionId: string;
-  };
 }
 
 export class ResultSuccess extends jspb.Message {
@@ -578,11 +547,6 @@ export namespace StripMatchersRequest {
 }
 
 export class EndDefinitionRequest extends jspb.Message {
-  hasHandle(): boolean;
-  clearHandle(): void;
-  getHandle(): DefinitionHandle | undefined;
-  setHandle(value?: DefinitionHandle): EndDefinitionRequest;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): EndDefinitionRequest.AsObject;
   static toObject(
@@ -605,9 +569,7 @@ export class EndDefinitionRequest extends jspb.Message {
 }
 
 export namespace EndDefinitionRequest {
-  export type AsObject = {
-    handle?: DefinitionHandle.AsObject;
-  };
+  export type AsObject = {};
 }
 
 export class StateHandlerResponse extends jspb.Message {

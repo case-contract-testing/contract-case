@@ -23,42 +23,41 @@ var global = (function() {
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 goog.object.extend(proto, google_protobuf_struct_pb);
-goog.exportSymbol('proto.contractcase.BeginDefinitionRequest', null, global);
-goog.exportSymbol('proto.contractcase.BeginDefinitionResponse', null, global);
-goog.exportSymbol('proto.contractcase.BoundaryResult', null, global);
-goog.exportSymbol('proto.contractcase.BoundaryResult.ValueCase', null, global);
-goog.exportSymbol('proto.contractcase.ContractCaseConfig', null, global);
-goog.exportSymbol('proto.contractcase.ContractCaseConfig.UsernamePassword', null, global);
-goog.exportSymbol('proto.contractcase.DefinitionHandle', null, global);
-goog.exportSymbol('proto.contractcase.DefinitionRequest', null, global);
-goog.exportSymbol('proto.contractcase.DefinitionRequest.KindCase', null, global);
-goog.exportSymbol('proto.contractcase.DefinitionResponse', null, global);
-goog.exportSymbol('proto.contractcase.DefinitionResponse.KindCase', null, global);
-goog.exportSymbol('proto.contractcase.EndDefinitionRequest', null, global);
-goog.exportSymbol('proto.contractcase.EndDefinitionResponse', null, global);
-goog.exportSymbol('proto.contractcase.LogPrinterResponse', null, global);
-goog.exportSymbol('proto.contractcase.LogRequest', null, global);
-goog.exportSymbol('proto.contractcase.PrintMatchErrorRequest', null, global);
-goog.exportSymbol('proto.contractcase.PrintMessageErrorRequest', null, global);
-goog.exportSymbol('proto.contractcase.PrintTestTitleRequest', null, global);
-goog.exportSymbol('proto.contractcase.ResultFailure', null, global);
-goog.exportSymbol('proto.contractcase.ResultPrinterResponse', null, global);
-goog.exportSymbol('proto.contractcase.ResultSuccess', null, global);
-goog.exportSymbol('proto.contractcase.ResultSuccessHasAnyPayload', null, global);
-goog.exportSymbol('proto.contractcase.ResultSuccessHasMapPayload', null, global);
-goog.exportSymbol('proto.contractcase.RunExampleRequest', null, global);
-goog.exportSymbol('proto.contractcase.RunExampleResponse', null, global);
-goog.exportSymbol('proto.contractcase.RunRejectingExampleRequest', null, global);
-goog.exportSymbol('proto.contractcase.RunRejectingExampleResponse', null, global);
-goog.exportSymbol('proto.contractcase.RunStateHandlerRequest', null, global);
-goog.exportSymbol('proto.contractcase.StateHandlerHandle', null, global);
-goog.exportSymbol('proto.contractcase.StateHandlerHandle.Stage', null, global);
-goog.exportSymbol('proto.contractcase.StateHandlerResponse', null, global);
-goog.exportSymbol('proto.contractcase.StripMatchersRequest', null, global);
-goog.exportSymbol('proto.contractcase.StripMatchersResponse', null, global);
-goog.exportSymbol('proto.contractcase.TriggerFunctionHandle', null, global);
-goog.exportSymbol('proto.contractcase.TriggerFunctionRequest', null, global);
-goog.exportSymbol('proto.contractcase.TriggerFunctionResponse', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.BoundaryResult', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.BoundaryResult.ValueCase', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.ContractCaseConfig', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.DefinitionRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.DefinitionRequest.KindCase', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.DefinitionResponse', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.DefinitionResponse.KindCase', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.LogPrinterResponse', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.LogRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.ResultFailure', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.ResultSuccess', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.RunExampleRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.RunExampleResponse', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.StateHandlerHandle', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.Stage', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.StateHandlerResponse', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.StripMatchersRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.StripMatchersResponse', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest', null, global);
+goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse', null, global);
 /**
  * Generated by JsPbCodeGenerator.
  * @param {Array=} opt_data Optional initial data array, typically from a
@@ -69,16 +68,16 @@ goog.exportSymbol('proto.contractcase.TriggerFunctionResponse', null, global);
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.ContractCaseConfig = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.contractcase.ContractCaseConfig.repeatedFields_, null);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.repeatedFields_, null);
 };
-goog.inherits(proto.contractcase.ContractCaseConfig, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.ContractCaseConfig, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.ContractCaseConfig.displayName = 'proto.contractcase.ContractCaseConfig';
+  proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.displayName = 'proto.io.contract_testing.contractcase.grpc.ContractCaseConfig';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -90,16 +89,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.ContractCaseConfig.UsernamePassword, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.ContractCaseConfig.UsernamePassword.displayName = 'proto.contractcase.ContractCaseConfig.UsernamePassword';
+  proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.displayName = 'proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -111,16 +110,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.DefinitionHandle = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccess = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.DefinitionHandle, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.ResultSuccess, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.DefinitionHandle.displayName = 'proto.contractcase.DefinitionHandle';
+  proto.io.contract_testing.contractcase.grpc.ResultSuccess.displayName = 'proto.io.contract_testing.contractcase.grpc.ResultSuccess';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -132,16 +131,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.ResultSuccess = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.ResultSuccess, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.ResultSuccess.displayName = 'proto.contractcase.ResultSuccess';
+  proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.displayName = 'proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -153,16 +152,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.ResultSuccessHasMapPayload = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.ResultSuccessHasMapPayload, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.ResultSuccessHasMapPayload.displayName = 'proto.contractcase.ResultSuccessHasMapPayload';
+  proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.displayName = 'proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -174,16 +173,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.ResultSuccessHasAnyPayload = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.ResultFailure = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.ResultSuccessHasAnyPayload, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.ResultFailure, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.ResultSuccessHasAnyPayload.displayName = 'proto.contractcase.ResultSuccessHasAnyPayload';
+  proto.io.contract_testing.contractcase.grpc.ResultFailure.displayName = 'proto.io.contract_testing.contractcase.grpc.ResultFailure';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -195,16 +194,37 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.ResultFailure = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.io.contract_testing.contractcase.grpc.BoundaryResult.oneofGroups_);
+};
+goog.inherits(proto.io.contract_testing.contractcase.grpc.BoundaryResult, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.io.contract_testing.contractcase.grpc.BoundaryResult.displayName = 'proto.io.contract_testing.contractcase.grpc.BoundaryResult';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.ResultFailure, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.StateHandlerHandle, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.ResultFailure.displayName = 'proto.contractcase.ResultFailure';
+  proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.displayName = 'proto.io.contract_testing.contractcase.grpc.StateHandlerHandle';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -216,37 +236,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.BoundaryResult = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.contractcase.BoundaryResult.oneofGroups_);
-};
-goog.inherits(proto.contractcase.BoundaryResult, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.contractcase.BoundaryResult.displayName = 'proto.contractcase.BoundaryResult';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.contractcase.StateHandlerHandle = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.StateHandlerHandle, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.StateHandlerHandle.displayName = 'proto.contractcase.StateHandlerHandle';
+  proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.displayName = 'proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -258,16 +257,37 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.TriggerFunctionHandle = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.repeatedFields_, null);
+};
+goog.inherits(proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.TriggerFunctionHandle, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.RunExampleRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.TriggerFunctionHandle.displayName = 'proto.contractcase.TriggerFunctionHandle';
+  proto.io.contract_testing.contractcase.grpc.RunExampleRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.RunExampleRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -279,37 +299,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.BeginDefinitionRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.contractcase.BeginDefinitionRequest.repeatedFields_, null);
-};
-goog.inherits(proto.contractcase.BeginDefinitionRequest, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.contractcase.BeginDefinitionRequest.displayName = 'proto.contractcase.BeginDefinitionRequest';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.contractcase.RunExampleRequest = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.RunExampleRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.RunExampleRequest.displayName = 'proto.contractcase.RunExampleRequest';
+  proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -321,16 +320,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.RunRejectingExampleRequest = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.RunRejectingExampleRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.StripMatchersRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.RunRejectingExampleRequest.displayName = 'proto.contractcase.RunRejectingExampleRequest';
+  proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.StripMatchersRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -342,16 +341,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.StripMatchersRequest = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.StripMatchersRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.StripMatchersRequest.displayName = 'proto.contractcase.StripMatchersRequest';
+  proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -363,16 +362,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.EndDefinitionRequest = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.EndDefinitionRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.StateHandlerResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.EndDefinitionRequest.displayName = 'proto.contractcase.EndDefinitionRequest';
+  proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.displayName = 'proto.io.contract_testing.contractcase.grpc.StateHandlerResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -384,16 +383,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.StateHandlerResponse = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.StateHandlerResponse, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.LogPrinterResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.StateHandlerResponse.displayName = 'proto.contractcase.StateHandlerResponse';
+  proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.displayName = 'proto.io.contract_testing.contractcase.grpc.LogPrinterResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -405,16 +404,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.LogPrinterResponse = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.LogPrinterResponse, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.LogPrinterResponse.displayName = 'proto.contractcase.LogPrinterResponse';
+  proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.displayName = 'proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -426,16 +425,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.ResultPrinterResponse = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.ResultPrinterResponse, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.ResultPrinterResponse.displayName = 'proto.contractcase.ResultPrinterResponse';
+  proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -447,16 +446,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.RunStateHandlerRequest = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.RunStateHandlerRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.RunStateHandlerRequest.displayName = 'proto.contractcase.RunStateHandlerRequest';
+  proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -468,16 +467,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.TriggerFunctionRequest = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.LogRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.TriggerFunctionRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.LogRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.TriggerFunctionRequest.displayName = 'proto.contractcase.TriggerFunctionRequest';
+  proto.io.contract_testing.contractcase.grpc.LogRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.LogRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -489,16 +488,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.LogRequest = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.LogRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.LogRequest.displayName = 'proto.contractcase.LogRequest';
+  proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -510,16 +509,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.PrintMatchErrorRequest = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.PrintMatchErrorRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.PrintMatchErrorRequest.displayName = 'proto.contractcase.PrintMatchErrorRequest';
+  proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -531,16 +530,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.PrintMessageErrorRequest = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.PrintMessageErrorRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.PrintMessageErrorRequest.displayName = 'proto.contractcase.PrintMessageErrorRequest';
+  proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -552,16 +551,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.PrintTestTitleRequest = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.PrintTestTitleRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.PrintTestTitleRequest.displayName = 'proto.contractcase.PrintTestTitleRequest';
+  proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.displayName = 'proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -573,16 +572,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.BeginDefinitionResponse = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.BeginDefinitionResponse, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.RunExampleResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.BeginDefinitionResponse.displayName = 'proto.contractcase.BeginDefinitionResponse';
+  proto.io.contract_testing.contractcase.grpc.RunExampleResponse.displayName = 'proto.io.contract_testing.contractcase.grpc.RunExampleResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -594,16 +593,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.RunExampleResponse = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.RunExampleResponse, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.RunExampleResponse.displayName = 'proto.contractcase.RunExampleResponse';
+  proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.displayName = 'proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -615,16 +614,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.RunRejectingExampleResponse = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.RunRejectingExampleResponse, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.StripMatchersResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.RunRejectingExampleResponse.displayName = 'proto.contractcase.RunRejectingExampleResponse';
+  proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.displayName = 'proto.io.contract_testing.contractcase.grpc.StripMatchersResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -636,16 +635,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.StripMatchersResponse = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.StripMatchersResponse, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.StripMatchersResponse.displayName = 'proto.contractcase.StripMatchersResponse';
+  proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.displayName = 'proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -657,16 +656,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.EndDefinitionResponse = function(opt_data) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.contractcase.EndDefinitionResponse, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.EndDefinitionResponse.displayName = 'proto.contractcase.EndDefinitionResponse';
+  proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.displayName = 'proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -678,16 +677,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.TriggerFunctionResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_);
 };
-goog.inherits(proto.contractcase.TriggerFunctionResponse, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.DefinitionRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.TriggerFunctionResponse.displayName = 'proto.contractcase.TriggerFunctionResponse';
+  proto.io.contract_testing.contractcase.grpc.DefinitionRequest.displayName = 'proto.io.contract_testing.contractcase.grpc.DefinitionRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -699,37 +698,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.contractcase.DefinitionRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.contractcase.DefinitionRequest.oneofGroups_);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_);
 };
-goog.inherits(proto.contractcase.DefinitionRequest, jspb.Message);
+goog.inherits(proto.io.contract_testing.contractcase.grpc.DefinitionResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.contractcase.DefinitionRequest.displayName = 'proto.contractcase.DefinitionRequest';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.contractcase.DefinitionResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.contractcase.DefinitionResponse.oneofGroups_);
-};
-goog.inherits(proto.contractcase.DefinitionResponse, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.contractcase.DefinitionResponse.displayName = 'proto.contractcase.DefinitionResponse';
+  proto.io.contract_testing.contractcase.grpc.DefinitionResponse.displayName = 'proto.io.contract_testing.contractcase.grpc.DefinitionResponse';
 }
 
 /**
@@ -737,7 +715,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.contractcase.ContractCaseConfig.repeatedFields_ = [12];
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.repeatedFields_ = [12];
 
 
 
@@ -754,8 +732,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.ContractCaseConfig.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.ContractCaseConfig.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject(opt_includeInstance, this);
 };
 
 
@@ -764,11 +742,11 @@ proto.contractcase.ContractCaseConfig.prototype.toObject = function(opt_includeI
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.ContractCaseConfig} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ContractCaseConfig.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
     providerName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     consumerName: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -778,13 +756,13 @@ proto.contractcase.ContractCaseConfig.toObject = function(includeInstance, msg) 
     publish: jspb.Message.getFieldWithDefault(msg, 6, ""),
     brokerCiAccessToken: jspb.Message.getFieldWithDefault(msg, 7, ""),
     brokerBaseUrl: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    brokerBasicAuth: (f = msg.getBrokerBasicAuth()) && proto.contractcase.ContractCaseConfig.UsernamePassword.toObject(includeInstance, f),
+    brokerBasicAuth: (f = msg.getBrokerBasicAuth()) && proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.toObject(includeInstance, f),
     printResults: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
     throwOnFail: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
     stateHandlersList: jspb.Message.toObjectList(msg.getStateHandlersList(),
-    proto.contractcase.StateHandlerHandle.toObject, includeInstance),
-    triggerAndTestsMap: (f = msg.getTriggerAndTestsMap()) ? f.toObject(includeInstance, proto.contractcase.TriggerFunctionHandle.toObject) : [],
-    triggerAndTest: (f = msg.getTriggerAndTest()) && proto.contractcase.TriggerFunctionHandle.toObject(includeInstance, f),
+    proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.toObject, includeInstance),
+    triggerAndTestsMap: (f = msg.getTriggerAndTestsMap()) ? f.toObject(includeInstance, proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject) : [],
+    triggerAndTest: (f = msg.getTriggerAndTest()) && proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject(includeInstance, f),
     baseUrlUnderTest: jspb.Message.getFieldWithDefault(msg, 15, "")
   };
 
@@ -799,23 +777,23 @@ proto.contractcase.ContractCaseConfig.toObject = function(includeInstance, msg) 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.ContractCaseConfig}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig}
  */
-proto.contractcase.ContractCaseConfig.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.ContractCaseConfig;
-  return proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.ContractCaseConfig;
+  return proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.ContractCaseConfig} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.ContractCaseConfig}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig}
  */
-proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -855,8 +833,8 @@ proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader = function(msg
       msg.setBrokerBaseUrl(value);
       break;
     case 9:
-      var value = new proto.contractcase.ContractCaseConfig.UsernamePassword;
-      reader.readMessage(value,proto.contractcase.ContractCaseConfig.UsernamePassword.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.deserializeBinaryFromReader);
       msg.setBrokerBasicAuth(value);
       break;
     case 10:
@@ -868,19 +846,19 @@ proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader = function(msg
       msg.setThrowOnFail(value);
       break;
     case 12:
-      var value = new proto.contractcase.StateHandlerHandle;
-      reader.readMessage(value,proto.contractcase.StateHandlerHandle.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.StateHandlerHandle;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.deserializeBinaryFromReader);
       msg.addStateHandlers(value);
       break;
     case 13:
       var value = msg.getTriggerAndTestsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.contractcase.TriggerFunctionHandle.deserializeBinaryFromReader, "", new proto.contractcase.TriggerFunctionHandle());
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.deserializeBinaryFromReader, "", new proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle());
          });
       break;
     case 14:
-      var value = new proto.contractcase.TriggerFunctionHandle;
-      reader.readMessage(value,proto.contractcase.TriggerFunctionHandle.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.deserializeBinaryFromReader);
       msg.setTriggerAndTest(value);
       break;
     case 15:
@@ -900,9 +878,9 @@ proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader = function(msg
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.ContractCaseConfig.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.ContractCaseConfig.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -910,11 +888,11 @@ proto.contractcase.ContractCaseConfig.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.ContractCaseConfig} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ContractCaseConfig.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getProviderName();
   if (f.length > 0) {
@@ -977,7 +955,7 @@ proto.contractcase.ContractCaseConfig.serializeBinaryToWriter = function(message
     writer.writeMessage(
       9,
       f,
-      proto.contractcase.ContractCaseConfig.UsernamePassword.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.serializeBinaryToWriter
     );
   }
   f = message.getPrintResults();
@@ -999,19 +977,19 @@ proto.contractcase.ContractCaseConfig.serializeBinaryToWriter = function(message
     writer.writeRepeatedMessage(
       12,
       f,
-      proto.contractcase.StateHandlerHandle.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.serializeBinaryToWriter
     );
   }
   f = message.getTriggerAndTestsMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(13, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.contractcase.TriggerFunctionHandle.serializeBinaryToWriter);
+    f.serializeBinary(13, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.serializeBinaryToWriter);
   }
   f = message.getTriggerAndTest();
   if (f != null) {
     writer.writeMessage(
       14,
       f,
-      proto.contractcase.TriggerFunctionHandle.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.serializeBinaryToWriter
     );
   }
   f = message.getBaseUrlUnderTest();
@@ -1040,8 +1018,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.ContractCaseConfig.UsernamePassword.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.toObject(opt_includeInstance, this);
 };
 
 
@@ -1050,11 +1028,11 @@ proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.toObject = func
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.ContractCaseConfig.UsernamePassword} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.toObject = function(includeInstance, msg) {
   var f, obj = {
     username: jspb.Message.getFieldWithDefault(msg, 1, ""),
     password: jspb.Message.getFieldWithDefault(msg, 2, "")
@@ -1071,23 +1049,23 @@ proto.contractcase.ContractCaseConfig.UsernamePassword.toObject = function(inclu
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.ContractCaseConfig.UsernamePassword}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword}
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.ContractCaseConfig.UsernamePassword;
-  return proto.contractcase.ContractCaseConfig.UsernamePassword.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword;
+  return proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.ContractCaseConfig.UsernamePassword} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.ContractCaseConfig.UsernamePassword}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword}
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1115,9 +1093,9 @@ proto.contractcase.ContractCaseConfig.UsernamePassword.deserializeBinaryFromRead
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.ContractCaseConfig.UsernamePassword.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1125,11 +1103,11 @@ proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.serializeBinary
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.ContractCaseConfig.UsernamePassword} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getUsername();
   if (f.length > 0) {
@@ -1152,16 +1130,16 @@ proto.contractcase.ContractCaseConfig.UsernamePassword.serializeBinaryToWriter =
  * optional string username = 1;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.getUsername = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.getUsername = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig.UsernamePassword} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword} returns this
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.setUsername = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.setUsername = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -1170,16 +1148,16 @@ proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.setUsername = f
  * optional string password = 2;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.getPassword = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.getPassword = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig.UsernamePassword} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword} returns this
  */
-proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.setPassword = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.setPassword = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -1188,16 +1166,16 @@ proto.contractcase.ContractCaseConfig.UsernamePassword.prototype.setPassword = f
  * optional string provider_name = 1;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getProviderName = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getProviderName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setProviderName = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setProviderName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -1206,16 +1184,16 @@ proto.contractcase.ContractCaseConfig.prototype.setProviderName = function(value
  * optional string consumer_name = 2;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getConsumerName = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getConsumerName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setConsumerName = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setConsumerName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -1224,16 +1202,16 @@ proto.contractcase.ContractCaseConfig.prototype.setConsumerName = function(value
  * optional string log_level = 3;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getLogLevel = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getLogLevel = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setLogLevel = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setLogLevel = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -1242,16 +1220,16 @@ proto.contractcase.ContractCaseConfig.prototype.setLogLevel = function(value) {
  * optional string contract_dir = 4;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getContractDir = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getContractDir = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setContractDir = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setContractDir = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -1260,16 +1238,16 @@ proto.contractcase.ContractCaseConfig.prototype.setContractDir = function(value)
  * optional string contract_filename = 5;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getContractFilename = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getContractFilename = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setContractFilename = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setContractFilename = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -1278,16 +1256,16 @@ proto.contractcase.ContractCaseConfig.prototype.setContractFilename = function(v
  * optional string publish = 6;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getPublish = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getPublish = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setPublish = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setPublish = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
@@ -1296,16 +1274,16 @@ proto.contractcase.ContractCaseConfig.prototype.setPublish = function(value) {
  * optional string broker_ci_access_token = 7;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getBrokerCiAccessToken = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getBrokerCiAccessToken = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setBrokerCiAccessToken = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setBrokerCiAccessToken = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
@@ -1314,44 +1292,44 @@ proto.contractcase.ContractCaseConfig.prototype.setBrokerCiAccessToken = functio
  * optional string broker_base_url = 8;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getBrokerBaseUrl = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getBrokerBaseUrl = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setBrokerBaseUrl = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setBrokerBaseUrl = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
  * optional UsernamePassword broker_basic_auth = 9;
- * @return {?proto.contractcase.ContractCaseConfig.UsernamePassword}
+ * @return {?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword}
  */
-proto.contractcase.ContractCaseConfig.prototype.getBrokerBasicAuth = function() {
-  return /** @type{?proto.contractcase.ContractCaseConfig.UsernamePassword} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.ContractCaseConfig.UsernamePassword, 9));
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getBrokerBasicAuth = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword, 9));
 };
 
 
 /**
- * @param {?proto.contractcase.ContractCaseConfig.UsernamePassword|undefined} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
 */
-proto.contractcase.ContractCaseConfig.prototype.setBrokerBasicAuth = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setBrokerBasicAuth = function(value) {
   return jspb.Message.setWrapperField(this, 9, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.clearBrokerBasicAuth = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearBrokerBasicAuth = function() {
   return this.setBrokerBasicAuth(undefined);
 };
 
@@ -1360,7 +1338,7 @@ proto.contractcase.ContractCaseConfig.prototype.clearBrokerBasicAuth = function(
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.ContractCaseConfig.prototype.hasBrokerBasicAuth = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasBrokerBasicAuth = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
@@ -1369,16 +1347,16 @@ proto.contractcase.ContractCaseConfig.prototype.hasBrokerBasicAuth = function() 
  * optional bool print_results = 10;
  * @return {boolean}
  */
-proto.contractcase.ContractCaseConfig.prototype.getPrintResults = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getPrintResults = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setPrintResults = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setPrintResults = function(value) {
   return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
@@ -1387,54 +1365,54 @@ proto.contractcase.ContractCaseConfig.prototype.setPrintResults = function(value
  * optional bool throw_on_fail = 11;
  * @return {boolean}
  */
-proto.contractcase.ContractCaseConfig.prototype.getThrowOnFail = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getThrowOnFail = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setThrowOnFail = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setThrowOnFail = function(value) {
   return jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 
 /**
  * repeated StateHandlerHandle state_handlers = 12;
- * @return {!Array<!proto.contractcase.StateHandlerHandle>}
+ * @return {!Array<!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle>}
  */
-proto.contractcase.ContractCaseConfig.prototype.getStateHandlersList = function() {
-  return /** @type{!Array<!proto.contractcase.StateHandlerHandle>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.contractcase.StateHandlerHandle, 12));
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getStateHandlersList = function() {
+  return /** @type{!Array<!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.io.contract_testing.contractcase.grpc.StateHandlerHandle, 12));
 };
 
 
 /**
- * @param {!Array<!proto.contractcase.StateHandlerHandle>} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @param {!Array<!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle>} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
 */
-proto.contractcase.ContractCaseConfig.prototype.setStateHandlersList = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setStateHandlersList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 12, value);
 };
 
 
 /**
- * @param {!proto.contractcase.StateHandlerHandle=} opt_value
+ * @param {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle=} opt_value
  * @param {number=} opt_index
- * @return {!proto.contractcase.StateHandlerHandle}
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle}
  */
-proto.contractcase.ContractCaseConfig.prototype.addStateHandlers = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 12, opt_value, proto.contractcase.StateHandlerHandle, opt_index);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.addStateHandlers = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 12, opt_value, proto.io.contract_testing.contractcase.grpc.StateHandlerHandle, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.clearStateHandlersList = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearStateHandlersList = function() {
   return this.setStateHandlersList([]);
 };
 
@@ -1443,48 +1421,48 @@ proto.contractcase.ContractCaseConfig.prototype.clearStateHandlersList = functio
  * map<string, TriggerFunctionHandle> trigger_and_tests = 13;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.contractcase.TriggerFunctionHandle>}
+ * @return {!jspb.Map<string,!proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle>}
  */
-proto.contractcase.ContractCaseConfig.prototype.getTriggerAndTestsMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.contractcase.TriggerFunctionHandle>} */ (
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getTriggerAndTestsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,!proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle>} */ (
       jspb.Message.getMapField(this, 13, opt_noLazyCreate,
-      proto.contractcase.TriggerFunctionHandle));
+      proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle));
 };
 
 
 /**
  * Clears values from the map. The map will be non-null.
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.clearTriggerAndTestsMap = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearTriggerAndTestsMap = function() {
   this.getTriggerAndTestsMap().clear();
   return this;};
 
 
 /**
  * optional TriggerFunctionHandle trigger_and_test = 14;
- * @return {?proto.contractcase.TriggerFunctionHandle}
+ * @return {?proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle}
  */
-proto.contractcase.ContractCaseConfig.prototype.getTriggerAndTest = function() {
-  return /** @type{?proto.contractcase.TriggerFunctionHandle} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.TriggerFunctionHandle, 14));
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getTriggerAndTest = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle, 14));
 };
 
 
 /**
- * @param {?proto.contractcase.TriggerFunctionHandle|undefined} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
 */
-proto.contractcase.ContractCaseConfig.prototype.setTriggerAndTest = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setTriggerAndTest = function(value) {
   return jspb.Message.setWrapperField(this, 14, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.clearTriggerAndTest = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearTriggerAndTest = function() {
   return this.setTriggerAndTest(undefined);
 };
 
@@ -1493,7 +1471,7 @@ proto.contractcase.ContractCaseConfig.prototype.clearTriggerAndTest = function()
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.ContractCaseConfig.prototype.hasTriggerAndTest = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasTriggerAndTest = function() {
   return jspb.Message.getField(this, 14) != null;
 };
 
@@ -1502,16 +1480,16 @@ proto.contractcase.ContractCaseConfig.prototype.hasTriggerAndTest = function() {
  * optional string base_url_under_test = 15;
  * @return {string}
  */
-proto.contractcase.ContractCaseConfig.prototype.getBaseUrlUnderTest = function() {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getBaseUrlUnderTest = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ContractCaseConfig} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.contractcase.ContractCaseConfig.prototype.setBaseUrlUnderTest = function(value) {
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setBaseUrlUnderTest = function(value) {
   return jspb.Message.setProto3StringField(this, 15, value);
 };
 
@@ -1532,8 +1510,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.DefinitionHandle.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.DefinitionHandle.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.ResultSuccess.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.ResultSuccess.toObject(opt_includeInstance, this);
 };
 
 
@@ -1542,141 +1520,11 @@ proto.contractcase.DefinitionHandle.prototype.toObject = function(opt_includeIns
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.DefinitionHandle} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultSuccess} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.DefinitionHandle.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    definitionId: jspb.Message.getFieldWithDefault(msg, 1, "")
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.DefinitionHandle}
- */
-proto.contractcase.DefinitionHandle.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.DefinitionHandle;
-  return proto.contractcase.DefinitionHandle.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.contractcase.DefinitionHandle} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.DefinitionHandle}
- */
-proto.contractcase.DefinitionHandle.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setDefinitionId(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.contractcase.DefinitionHandle.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.contractcase.DefinitionHandle.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.DefinitionHandle} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.contractcase.DefinitionHandle.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getDefinitionId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string definition_id = 1;
- * @return {string}
- */
-proto.contractcase.DefinitionHandle.prototype.getDefinitionId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.contractcase.DefinitionHandle} returns this
- */
-proto.contractcase.DefinitionHandle.prototype.setDefinitionId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.contractcase.ResultSuccess.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.ResultSuccess.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.contractcase.ResultSuccess} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.contractcase.ResultSuccess.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccess.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -1692,23 +1540,23 @@ proto.contractcase.ResultSuccess.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.ResultSuccess}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccess}
  */
-proto.contractcase.ResultSuccess.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccess.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.ResultSuccess;
-  return proto.contractcase.ResultSuccess.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.ResultSuccess;
+  return proto.io.contract_testing.contractcase.grpc.ResultSuccess.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.ResultSuccess} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultSuccess} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.ResultSuccess}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccess}
  */
-proto.contractcase.ResultSuccess.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccess.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1728,9 +1576,9 @@ proto.contractcase.ResultSuccess.deserializeBinaryFromReader = function(msg, rea
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.ResultSuccess.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.ResultSuccess.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.ResultSuccess.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.ResultSuccess.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1738,11 +1586,11 @@ proto.contractcase.ResultSuccess.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.ResultSuccess} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultSuccess} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ResultSuccess.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccess.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -1763,8 +1611,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.ResultSuccessHasMapPayload.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.ResultSuccessHasMapPayload.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.toObject(opt_includeInstance, this);
 };
 
 
@@ -1773,11 +1621,11 @@ proto.contractcase.ResultSuccessHasMapPayload.prototype.toObject = function(opt_
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.ResultSuccessHasMapPayload} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ResultSuccessHasMapPayload.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.toObject = function(includeInstance, msg) {
   var f, obj = {
     map: (f = msg.getMap()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
@@ -1793,23 +1641,23 @@ proto.contractcase.ResultSuccessHasMapPayload.toObject = function(includeInstanc
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.ResultSuccessHasMapPayload}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload}
  */
-proto.contractcase.ResultSuccessHasMapPayload.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.ResultSuccessHasMapPayload;
-  return proto.contractcase.ResultSuccessHasMapPayload.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload;
+  return proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.ResultSuccessHasMapPayload} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.ResultSuccessHasMapPayload}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload}
  */
-proto.contractcase.ResultSuccessHasMapPayload.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1834,9 +1682,9 @@ proto.contractcase.ResultSuccessHasMapPayload.deserializeBinaryFromReader = func
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.ResultSuccessHasMapPayload.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.ResultSuccessHasMapPayload.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1844,11 +1692,11 @@ proto.contractcase.ResultSuccessHasMapPayload.prototype.serializeBinary = functi
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.ResultSuccessHasMapPayload} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ResultSuccessHasMapPayload.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getMap();
   if (f != null) {
@@ -1865,7 +1713,7 @@ proto.contractcase.ResultSuccessHasMapPayload.serializeBinaryToWriter = function
  * optional google.protobuf.Struct map = 1;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.contractcase.ResultSuccessHasMapPayload.prototype.getMap = function() {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.prototype.getMap = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 1));
 };
@@ -1873,18 +1721,18 @@ proto.contractcase.ResultSuccessHasMapPayload.prototype.getMap = function() {
 
 /**
  * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.contractcase.ResultSuccessHasMapPayload} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload} returns this
 */
-proto.contractcase.ResultSuccessHasMapPayload.prototype.setMap = function(value) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.prototype.setMap = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.ResultSuccessHasMapPayload} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload} returns this
  */
-proto.contractcase.ResultSuccessHasMapPayload.prototype.clearMap = function() {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.prototype.clearMap = function() {
   return this.setMap(undefined);
 };
 
@@ -1893,7 +1741,7 @@ proto.contractcase.ResultSuccessHasMapPayload.prototype.clearMap = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.ResultSuccessHasMapPayload.prototype.hasMap = function() {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.prototype.hasMap = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1914,8 +1762,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.ResultSuccessHasAnyPayload.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.ResultSuccessHasAnyPayload.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.toObject(opt_includeInstance, this);
 };
 
 
@@ -1924,11 +1772,11 @@ proto.contractcase.ResultSuccessHasAnyPayload.prototype.toObject = function(opt_
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.ResultSuccessHasAnyPayload} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ResultSuccessHasAnyPayload.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.toObject = function(includeInstance, msg) {
   var f, obj = {
     payload: (f = msg.getPayload()) && google_protobuf_struct_pb.Value.toObject(includeInstance, f)
   };
@@ -1944,23 +1792,23 @@ proto.contractcase.ResultSuccessHasAnyPayload.toObject = function(includeInstanc
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.ResultSuccessHasAnyPayload}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload}
  */
-proto.contractcase.ResultSuccessHasAnyPayload.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.ResultSuccessHasAnyPayload;
-  return proto.contractcase.ResultSuccessHasAnyPayload.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload;
+  return proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.ResultSuccessHasAnyPayload} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.ResultSuccessHasAnyPayload}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload}
  */
-proto.contractcase.ResultSuccessHasAnyPayload.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1985,9 +1833,9 @@ proto.contractcase.ResultSuccessHasAnyPayload.deserializeBinaryFromReader = func
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.ResultSuccessHasAnyPayload.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.ResultSuccessHasAnyPayload.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1995,11 +1843,11 @@ proto.contractcase.ResultSuccessHasAnyPayload.prototype.serializeBinary = functi
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.ResultSuccessHasAnyPayload} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ResultSuccessHasAnyPayload.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getPayload();
   if (f != null) {
@@ -2016,7 +1864,7 @@ proto.contractcase.ResultSuccessHasAnyPayload.serializeBinaryToWriter = function
  * optional google.protobuf.Value payload = 1;
  * @return {?proto.google.protobuf.Value}
  */
-proto.contractcase.ResultSuccessHasAnyPayload.prototype.getPayload = function() {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.prototype.getPayload = function() {
   return /** @type{?proto.google.protobuf.Value} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Value, 1));
 };
@@ -2024,18 +1872,18 @@ proto.contractcase.ResultSuccessHasAnyPayload.prototype.getPayload = function() 
 
 /**
  * @param {?proto.google.protobuf.Value|undefined} value
- * @return {!proto.contractcase.ResultSuccessHasAnyPayload} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload} returns this
 */
-proto.contractcase.ResultSuccessHasAnyPayload.prototype.setPayload = function(value) {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.prototype.setPayload = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.ResultSuccessHasAnyPayload} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload} returns this
  */
-proto.contractcase.ResultSuccessHasAnyPayload.prototype.clearPayload = function() {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.prototype.clearPayload = function() {
   return this.setPayload(undefined);
 };
 
@@ -2044,7 +1892,7 @@ proto.contractcase.ResultSuccessHasAnyPayload.prototype.clearPayload = function(
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.ResultSuccessHasAnyPayload.prototype.hasPayload = function() {
+proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.prototype.hasPayload = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -2065,8 +1913,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.ResultFailure.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.ResultFailure.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.ResultFailure.toObject(opt_includeInstance, this);
 };
 
 
@@ -2075,11 +1923,11 @@ proto.contractcase.ResultFailure.prototype.toObject = function(opt_includeInstan
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.ResultFailure} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultFailure} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ResultFailure.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.toObject = function(includeInstance, msg) {
   var f, obj = {
     kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -2097,23 +1945,23 @@ proto.contractcase.ResultFailure.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.ResultFailure}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure}
  */
-proto.contractcase.ResultFailure.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.ResultFailure;
-  return proto.contractcase.ResultFailure.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.ResultFailure;
+  return proto.io.contract_testing.contractcase.grpc.ResultFailure.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.ResultFailure} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultFailure} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.ResultFailure}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure}
  */
-proto.contractcase.ResultFailure.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2145,9 +1993,9 @@ proto.contractcase.ResultFailure.deserializeBinaryFromReader = function(msg, rea
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.ResultFailure.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.ResultFailure.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.ResultFailure.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2155,11 +2003,11 @@ proto.contractcase.ResultFailure.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.ResultFailure} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultFailure} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ResultFailure.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKind();
   if (f.length > 0) {
@@ -2189,16 +2037,16 @@ proto.contractcase.ResultFailure.serializeBinaryToWriter = function(message, wri
  * optional string kind = 1;
  * @return {string}
  */
-proto.contractcase.ResultFailure.prototype.getKind = function() {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.getKind = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ResultFailure} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure} returns this
  */
-proto.contractcase.ResultFailure.prototype.setKind = function(value) {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.setKind = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -2207,16 +2055,16 @@ proto.contractcase.ResultFailure.prototype.setKind = function(value) {
  * optional string message = 2;
  * @return {string}
  */
-proto.contractcase.ResultFailure.prototype.getMessage = function() {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.getMessage = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ResultFailure} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure} returns this
  */
-proto.contractcase.ResultFailure.prototype.setMessage = function(value) {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.setMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -2225,16 +2073,16 @@ proto.contractcase.ResultFailure.prototype.setMessage = function(value) {
  * optional string location = 3;
  * @return {string}
  */
-proto.contractcase.ResultFailure.prototype.getLocation = function() {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.getLocation = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.ResultFailure} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure} returns this
  */
-proto.contractcase.ResultFailure.prototype.setLocation = function(value) {
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.setLocation = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -2248,12 +2096,12 @@ proto.contractcase.ResultFailure.prototype.setLocation = function(value) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.contractcase.BoundaryResult.oneofGroups_ = [[1,2,3,4]];
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.oneofGroups_ = [[1,2,3,4]];
 
 /**
  * @enum {number}
  */
-proto.contractcase.BoundaryResult.ValueCase = {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.ValueCase = {
   VALUE_NOT_SET: 0,
   SUCCESS: 1,
   SUCCESS_HAS_MAP: 2,
@@ -2262,10 +2110,10 @@ proto.contractcase.BoundaryResult.ValueCase = {
 };
 
 /**
- * @return {proto.contractcase.BoundaryResult.ValueCase}
+ * @return {proto.io.contract_testing.contractcase.grpc.BoundaryResult.ValueCase}
  */
-proto.contractcase.BoundaryResult.prototype.getValueCase = function() {
-  return /** @type {proto.contractcase.BoundaryResult.ValueCase} */(jspb.Message.computeOneofCase(this, proto.contractcase.BoundaryResult.oneofGroups_[0]));
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.getValueCase = function() {
+  return /** @type {proto.io.contract_testing.contractcase.grpc.BoundaryResult.ValueCase} */(jspb.Message.computeOneofCase(this, proto.io.contract_testing.contractcase.grpc.BoundaryResult.oneofGroups_[0]));
 };
 
 
@@ -2283,8 +2131,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.BoundaryResult.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.BoundaryResult.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject(opt_includeInstance, this);
 };
 
 
@@ -2293,16 +2141,16 @@ proto.contractcase.BoundaryResult.prototype.toObject = function(opt_includeInsta
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.BoundaryResult} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.BoundaryResult.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject = function(includeInstance, msg) {
   var f, obj = {
-    success: (f = msg.getSuccess()) && proto.contractcase.ResultSuccess.toObject(includeInstance, f),
-    successHasMap: (f = msg.getSuccessHasMap()) && proto.contractcase.ResultSuccessHasMapPayload.toObject(includeInstance, f),
-    successHasAny: (f = msg.getSuccessHasAny()) && proto.contractcase.ResultSuccessHasAnyPayload.toObject(includeInstance, f),
-    failure: (f = msg.getFailure()) && proto.contractcase.ResultFailure.toObject(includeInstance, f)
+    success: (f = msg.getSuccess()) && proto.io.contract_testing.contractcase.grpc.ResultSuccess.toObject(includeInstance, f),
+    successHasMap: (f = msg.getSuccessHasMap()) && proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.toObject(includeInstance, f),
+    successHasAny: (f = msg.getSuccessHasAny()) && proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.toObject(includeInstance, f),
+    failure: (f = msg.getFailure()) && proto.io.contract_testing.contractcase.grpc.ResultFailure.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2316,23 +2164,23 @@ proto.contractcase.BoundaryResult.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.BoundaryResult}
+ * @return {!proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.BoundaryResult.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.BoundaryResult;
-  return proto.contractcase.BoundaryResult.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.BoundaryResult;
+  return proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.BoundaryResult} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.BoundaryResult}
+ * @return {!proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.BoundaryResult.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2340,23 +2188,23 @@ proto.contractcase.BoundaryResult.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.ResultSuccess;
-      reader.readMessage(value,proto.contractcase.ResultSuccess.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.ResultSuccess;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.ResultSuccess.deserializeBinaryFromReader);
       msg.setSuccess(value);
       break;
     case 2:
-      var value = new proto.contractcase.ResultSuccessHasMapPayload;
-      reader.readMessage(value,proto.contractcase.ResultSuccessHasMapPayload.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.deserializeBinaryFromReader);
       msg.setSuccessHasMap(value);
       break;
     case 3:
-      var value = new proto.contractcase.ResultSuccessHasAnyPayload;
-      reader.readMessage(value,proto.contractcase.ResultSuccessHasAnyPayload.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.deserializeBinaryFromReader);
       msg.setSuccessHasAny(value);
       break;
     case 4:
-      var value = new proto.contractcase.ResultFailure;
-      reader.readMessage(value,proto.contractcase.ResultFailure.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.ResultFailure;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.ResultFailure.deserializeBinaryFromReader);
       msg.setFailure(value);
       break;
     default:
@@ -2372,9 +2220,9 @@ proto.contractcase.BoundaryResult.deserializeBinaryFromReader = function(msg, re
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.BoundaryResult.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.BoundaryResult.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2382,18 +2230,18 @@ proto.contractcase.BoundaryResult.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.BoundaryResult} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.BoundaryResult.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSuccess();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.ResultSuccess.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.ResultSuccess.serializeBinaryToWriter
     );
   }
   f = message.getSuccessHasMap();
@@ -2401,7 +2249,7 @@ proto.contractcase.BoundaryResult.serializeBinaryToWriter = function(message, wr
     writer.writeMessage(
       2,
       f,
-      proto.contractcase.ResultSuccessHasMapPayload.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload.serializeBinaryToWriter
     );
   }
   f = message.getSuccessHasAny();
@@ -2409,7 +2257,7 @@ proto.contractcase.BoundaryResult.serializeBinaryToWriter = function(message, wr
     writer.writeMessage(
       3,
       f,
-      proto.contractcase.ResultSuccessHasAnyPayload.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.serializeBinaryToWriter
     );
   }
   f = message.getFailure();
@@ -2417,7 +2265,7 @@ proto.contractcase.BoundaryResult.serializeBinaryToWriter = function(message, wr
     writer.writeMessage(
       4,
       f,
-      proto.contractcase.ResultFailure.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.ResultFailure.serializeBinaryToWriter
     );
   }
 };
@@ -2425,28 +2273,28 @@ proto.contractcase.BoundaryResult.serializeBinaryToWriter = function(message, wr
 
 /**
  * optional ResultSuccess success = 1;
- * @return {?proto.contractcase.ResultSuccess}
+ * @return {?proto.io.contract_testing.contractcase.grpc.ResultSuccess}
  */
-proto.contractcase.BoundaryResult.prototype.getSuccess = function() {
-  return /** @type{?proto.contractcase.ResultSuccess} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.ResultSuccess, 1));
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.getSuccess = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.ResultSuccess} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.ResultSuccess, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.ResultSuccess|undefined} value
- * @return {!proto.contractcase.BoundaryResult} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.ResultSuccess|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} returns this
 */
-proto.contractcase.BoundaryResult.prototype.setSuccess = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 1, proto.contractcase.BoundaryResult.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.setSuccess = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1, proto.io.contract_testing.contractcase.grpc.BoundaryResult.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.BoundaryResult} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} returns this
  */
-proto.contractcase.BoundaryResult.prototype.clearSuccess = function() {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.clearSuccess = function() {
   return this.setSuccess(undefined);
 };
 
@@ -2455,35 +2303,35 @@ proto.contractcase.BoundaryResult.prototype.clearSuccess = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.BoundaryResult.prototype.hasSuccess = function() {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.hasSuccess = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional ResultSuccessHasMapPayload success_has_map = 2;
- * @return {?proto.contractcase.ResultSuccessHasMapPayload}
+ * @return {?proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload}
  */
-proto.contractcase.BoundaryResult.prototype.getSuccessHasMap = function() {
-  return /** @type{?proto.contractcase.ResultSuccessHasMapPayload} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.ResultSuccessHasMapPayload, 2));
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.getSuccessHasMap = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload, 2));
 };
 
 
 /**
- * @param {?proto.contractcase.ResultSuccessHasMapPayload|undefined} value
- * @return {!proto.contractcase.BoundaryResult} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.ResultSuccessHasMapPayload|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} returns this
 */
-proto.contractcase.BoundaryResult.prototype.setSuccessHasMap = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.contractcase.BoundaryResult.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.setSuccessHasMap = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2, proto.io.contract_testing.contractcase.grpc.BoundaryResult.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.BoundaryResult} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} returns this
  */
-proto.contractcase.BoundaryResult.prototype.clearSuccessHasMap = function() {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.clearSuccessHasMap = function() {
   return this.setSuccessHasMap(undefined);
 };
 
@@ -2492,35 +2340,35 @@ proto.contractcase.BoundaryResult.prototype.clearSuccessHasMap = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.BoundaryResult.prototype.hasSuccessHasMap = function() {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.hasSuccessHasMap = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional ResultSuccessHasAnyPayload success_has_any = 3;
- * @return {?proto.contractcase.ResultSuccessHasAnyPayload}
+ * @return {?proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload}
  */
-proto.contractcase.BoundaryResult.prototype.getSuccessHasAny = function() {
-  return /** @type{?proto.contractcase.ResultSuccessHasAnyPayload} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.ResultSuccessHasAnyPayload, 3));
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.getSuccessHasAny = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload, 3));
 };
 
 
 /**
- * @param {?proto.contractcase.ResultSuccessHasAnyPayload|undefined} value
- * @return {!proto.contractcase.BoundaryResult} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} returns this
 */
-proto.contractcase.BoundaryResult.prototype.setSuccessHasAny = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 3, proto.contractcase.BoundaryResult.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.setSuccessHasAny = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 3, proto.io.contract_testing.contractcase.grpc.BoundaryResult.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.BoundaryResult} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} returns this
  */
-proto.contractcase.BoundaryResult.prototype.clearSuccessHasAny = function() {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.clearSuccessHasAny = function() {
   return this.setSuccessHasAny(undefined);
 };
 
@@ -2529,35 +2377,35 @@ proto.contractcase.BoundaryResult.prototype.clearSuccessHasAny = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.BoundaryResult.prototype.hasSuccessHasAny = function() {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.hasSuccessHasAny = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional ResultFailure failure = 4;
- * @return {?proto.contractcase.ResultFailure}
+ * @return {?proto.io.contract_testing.contractcase.grpc.ResultFailure}
  */
-proto.contractcase.BoundaryResult.prototype.getFailure = function() {
-  return /** @type{?proto.contractcase.ResultFailure} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.ResultFailure, 4));
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.getFailure = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.ResultFailure} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.ResultFailure, 4));
 };
 
 
 /**
- * @param {?proto.contractcase.ResultFailure|undefined} value
- * @return {!proto.contractcase.BoundaryResult} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.ResultFailure|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} returns this
 */
-proto.contractcase.BoundaryResult.prototype.setFailure = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 4, proto.contractcase.BoundaryResult.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.setFailure = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 4, proto.io.contract_testing.contractcase.grpc.BoundaryResult.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.BoundaryResult} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.BoundaryResult} returns this
  */
-proto.contractcase.BoundaryResult.prototype.clearFailure = function() {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.clearFailure = function() {
   return this.setFailure(undefined);
 };
 
@@ -2566,7 +2414,7 @@ proto.contractcase.BoundaryResult.prototype.clearFailure = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.BoundaryResult.prototype.hasFailure = function() {
+proto.io.contract_testing.contractcase.grpc.BoundaryResult.prototype.hasFailure = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -2587,8 +2435,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.StateHandlerHandle.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.StateHandlerHandle.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.toObject(opt_includeInstance, this);
 };
 
 
@@ -2597,11 +2445,11 @@ proto.contractcase.StateHandlerHandle.prototype.toObject = function(opt_includeI
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.StateHandlerHandle} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.StateHandlerHandle.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.toObject = function(includeInstance, msg) {
   var f, obj = {
     handle: jspb.Message.getFieldWithDefault(msg, 1, ""),
     stage: jspb.Message.getFieldWithDefault(msg, 2, 0)
@@ -2618,23 +2466,23 @@ proto.contractcase.StateHandlerHandle.toObject = function(includeInstance, msg) 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.StateHandlerHandle}
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle}
  */
-proto.contractcase.StateHandlerHandle.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.StateHandlerHandle;
-  return proto.contractcase.StateHandlerHandle.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.StateHandlerHandle;
+  return proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.StateHandlerHandle} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.StateHandlerHandle}
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle}
  */
-proto.contractcase.StateHandlerHandle.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2646,7 +2494,7 @@ proto.contractcase.StateHandlerHandle.deserializeBinaryFromReader = function(msg
       msg.setHandle(value);
       break;
     case 2:
-      var value = /** @type {!proto.contractcase.StateHandlerHandle.Stage} */ (reader.readEnum());
+      var value = /** @type {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.Stage} */ (reader.readEnum());
       msg.setStage(value);
       break;
     default:
@@ -2662,9 +2510,9 @@ proto.contractcase.StateHandlerHandle.deserializeBinaryFromReader = function(msg
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.StateHandlerHandle.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.StateHandlerHandle.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2672,11 +2520,11 @@ proto.contractcase.StateHandlerHandle.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.StateHandlerHandle} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.StateHandlerHandle.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getHandle();
   if (f.length > 0) {
@@ -2698,7 +2546,7 @@ proto.contractcase.StateHandlerHandle.serializeBinaryToWriter = function(message
 /**
  * @enum {number}
  */
-proto.contractcase.StateHandlerHandle.Stage = {
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.Stage = {
   STAGE_SETUP_UNSPECIFIED: 0,
   STAGE_TEARDOWN: 1
 };
@@ -2707,34 +2555,34 @@ proto.contractcase.StateHandlerHandle.Stage = {
  * optional string handle = 1;
  * @return {string}
  */
-proto.contractcase.StateHandlerHandle.prototype.getHandle = function() {
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.getHandle = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.StateHandlerHandle} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle} returns this
  */
-proto.contractcase.StateHandlerHandle.prototype.setHandle = function(value) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.setHandle = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * optional Stage stage = 2;
- * @return {!proto.contractcase.StateHandlerHandle.Stage}
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.Stage}
  */
-proto.contractcase.StateHandlerHandle.prototype.getStage = function() {
-  return /** @type {!proto.contractcase.StateHandlerHandle.Stage} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.getStage = function() {
+  return /** @type {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.Stage} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {!proto.contractcase.StateHandlerHandle.Stage} value
- * @return {!proto.contractcase.StateHandlerHandle} returns this
+ * @param {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.Stage} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle} returns this
  */
-proto.contractcase.StateHandlerHandle.prototype.setStage = function(value) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.setStage = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
 };
 
@@ -2755,8 +2603,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.TriggerFunctionHandle.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.TriggerFunctionHandle.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject(opt_includeInstance, this);
 };
 
 
@@ -2765,11 +2613,11 @@ proto.contractcase.TriggerFunctionHandle.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.TriggerFunctionHandle} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.TriggerFunctionHandle.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject = function(includeInstance, msg) {
   var f, obj = {
     handle: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
@@ -2785,23 +2633,23 @@ proto.contractcase.TriggerFunctionHandle.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.TriggerFunctionHandle}
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle}
  */
-proto.contractcase.TriggerFunctionHandle.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.TriggerFunctionHandle;
-  return proto.contractcase.TriggerFunctionHandle.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle;
+  return proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.TriggerFunctionHandle} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.TriggerFunctionHandle}
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle}
  */
-proto.contractcase.TriggerFunctionHandle.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2825,9 +2673,9 @@ proto.contractcase.TriggerFunctionHandle.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.TriggerFunctionHandle.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.TriggerFunctionHandle.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2835,11 +2683,11 @@ proto.contractcase.TriggerFunctionHandle.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.TriggerFunctionHandle} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.TriggerFunctionHandle.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getHandle();
   if (f.length > 0) {
@@ -2855,16 +2703,16 @@ proto.contractcase.TriggerFunctionHandle.serializeBinaryToWriter = function(mess
  * optional string handle = 1;
  * @return {string}
  */
-proto.contractcase.TriggerFunctionHandle.prototype.getHandle = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.getHandle = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.TriggerFunctionHandle} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle} returns this
  */
-proto.contractcase.TriggerFunctionHandle.prototype.setHandle = function(value) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.setHandle = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -2875,7 +2723,7 @@ proto.contractcase.TriggerFunctionHandle.prototype.setHandle = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.contractcase.BeginDefinitionRequest.repeatedFields_ = [4];
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.repeatedFields_ = [4];
 
 
 
@@ -2892,8 +2740,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.BeginDefinitionRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.BeginDefinitionRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -2902,13 +2750,13 @@ proto.contractcase.BeginDefinitionRequest.prototype.toObject = function(opt_incl
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.BeginDefinitionRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.BeginDefinitionRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    config: (f = msg.getConfig()) && proto.contractcase.ContractCaseConfig.toObject(includeInstance, f),
+    config: (f = msg.getConfig()) && proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject(includeInstance, f),
     callerVersionsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
@@ -2923,23 +2771,23 @@ proto.contractcase.BeginDefinitionRequest.toObject = function(includeInstance, m
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.BeginDefinitionRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest}
  */
-proto.contractcase.BeginDefinitionRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.BeginDefinitionRequest;
-  return proto.contractcase.BeginDefinitionRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest;
+  return proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.BeginDefinitionRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.BeginDefinitionRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest}
  */
-proto.contractcase.BeginDefinitionRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2947,8 +2795,8 @@ proto.contractcase.BeginDefinitionRequest.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.ContractCaseConfig;
-      reader.readMessage(value,proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.ContractCaseConfig;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinaryFromReader);
       msg.setConfig(value);
       break;
     case 4:
@@ -2968,9 +2816,9 @@ proto.contractcase.BeginDefinitionRequest.deserializeBinaryFromReader = function
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.BeginDefinitionRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.BeginDefinitionRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2978,18 +2826,18 @@ proto.contractcase.BeginDefinitionRequest.prototype.serializeBinary = function()
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.BeginDefinitionRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.BeginDefinitionRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getConfig();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.ContractCaseConfig.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryToWriter
     );
   }
   f = message.getCallerVersionsList();
@@ -3004,28 +2852,28 @@ proto.contractcase.BeginDefinitionRequest.serializeBinaryToWriter = function(mes
 
 /**
  * optional ContractCaseConfig config = 1;
- * @return {?proto.contractcase.ContractCaseConfig}
+ * @return {?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig}
  */
-proto.contractcase.BeginDefinitionRequest.prototype.getConfig = function() {
-  return /** @type{?proto.contractcase.ContractCaseConfig} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.ContractCaseConfig, 1));
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.getConfig = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.ContractCaseConfig, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.ContractCaseConfig|undefined} value
- * @return {!proto.contractcase.BeginDefinitionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} returns this
 */
-proto.contractcase.BeginDefinitionRequest.prototype.setConfig = function(value) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.setConfig = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.BeginDefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} returns this
  */
-proto.contractcase.BeginDefinitionRequest.prototype.clearConfig = function() {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.clearConfig = function() {
   return this.setConfig(undefined);
 };
 
@@ -3034,7 +2882,7 @@ proto.contractcase.BeginDefinitionRequest.prototype.clearConfig = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.BeginDefinitionRequest.prototype.hasConfig = function() {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.hasConfig = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -3043,16 +2891,16 @@ proto.contractcase.BeginDefinitionRequest.prototype.hasConfig = function() {
  * repeated string caller_versions = 4;
  * @return {!Array<string>}
  */
-proto.contractcase.BeginDefinitionRequest.prototype.getCallerVersionsList = function() {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.getCallerVersionsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
 /**
  * @param {!Array<string>} value
- * @return {!proto.contractcase.BeginDefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} returns this
  */
-proto.contractcase.BeginDefinitionRequest.prototype.setCallerVersionsList = function(value) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.setCallerVersionsList = function(value) {
   return jspb.Message.setField(this, 4, value || []);
 };
 
@@ -3060,18 +2908,18 @@ proto.contractcase.BeginDefinitionRequest.prototype.setCallerVersionsList = func
 /**
  * @param {string} value
  * @param {number=} opt_index
- * @return {!proto.contractcase.BeginDefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} returns this
  */
-proto.contractcase.BeginDefinitionRequest.prototype.addCallerVersions = function(value, opt_index) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.addCallerVersions = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.contractcase.BeginDefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} returns this
  */
-proto.contractcase.BeginDefinitionRequest.prototype.clearCallerVersionsList = function() {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.clearCallerVersionsList = function() {
   return this.setCallerVersionsList([]);
 };
 
@@ -3092,8 +2940,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.RunExampleRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.RunExampleRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.RunExampleRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -3102,14 +2950,14 @@ proto.contractcase.RunExampleRequest.prototype.toObject = function(opt_includeIn
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.RunExampleRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunExampleRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.RunExampleRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     exampleDefinition: (f = msg.getExampleDefinition()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    config: (f = msg.getConfig()) && proto.contractcase.ContractCaseConfig.toObject(includeInstance, f)
+    config: (f = msg.getConfig()) && proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3123,23 +2971,23 @@ proto.contractcase.RunExampleRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.RunExampleRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunExampleRequest}
  */
-proto.contractcase.RunExampleRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.RunExampleRequest;
-  return proto.contractcase.RunExampleRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.RunExampleRequest;
+  return proto.io.contract_testing.contractcase.grpc.RunExampleRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.RunExampleRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunExampleRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.RunExampleRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunExampleRequest}
  */
-proto.contractcase.RunExampleRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3152,8 +3000,8 @@ proto.contractcase.RunExampleRequest.deserializeBinaryFromReader = function(msg,
       msg.setExampleDefinition(value);
       break;
     case 3:
-      var value = new proto.contractcase.ContractCaseConfig;
-      reader.readMessage(value,proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.ContractCaseConfig;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinaryFromReader);
       msg.setConfig(value);
       break;
     default:
@@ -3169,9 +3017,9 @@ proto.contractcase.RunExampleRequest.deserializeBinaryFromReader = function(msg,
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.RunExampleRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.RunExampleRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.RunExampleRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3179,11 +3027,11 @@ proto.contractcase.RunExampleRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.RunExampleRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunExampleRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.RunExampleRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getExampleDefinition();
   if (f != null) {
@@ -3198,7 +3046,7 @@ proto.contractcase.RunExampleRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       3,
       f,
-      proto.contractcase.ContractCaseConfig.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryToWriter
     );
   }
 };
@@ -3208,7 +3056,7 @@ proto.contractcase.RunExampleRequest.serializeBinaryToWriter = function(message,
  * optional google.protobuf.Struct example_definition = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.contractcase.RunExampleRequest.prototype.getExampleDefinition = function() {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.prototype.getExampleDefinition = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -3216,18 +3064,18 @@ proto.contractcase.RunExampleRequest.prototype.getExampleDefinition = function()
 
 /**
  * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.contractcase.RunExampleRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunExampleRequest} returns this
 */
-proto.contractcase.RunExampleRequest.prototype.setExampleDefinition = function(value) {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.prototype.setExampleDefinition = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.RunExampleRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunExampleRequest} returns this
  */
-proto.contractcase.RunExampleRequest.prototype.clearExampleDefinition = function() {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.prototype.clearExampleDefinition = function() {
   return this.setExampleDefinition(undefined);
 };
 
@@ -3236,35 +3084,35 @@ proto.contractcase.RunExampleRequest.prototype.clearExampleDefinition = function
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.RunExampleRequest.prototype.hasExampleDefinition = function() {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.prototype.hasExampleDefinition = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional ContractCaseConfig config = 3;
- * @return {?proto.contractcase.ContractCaseConfig}
+ * @return {?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig}
  */
-proto.contractcase.RunExampleRequest.prototype.getConfig = function() {
-  return /** @type{?proto.contractcase.ContractCaseConfig} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.ContractCaseConfig, 3));
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.prototype.getConfig = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.ContractCaseConfig, 3));
 };
 
 
 /**
- * @param {?proto.contractcase.ContractCaseConfig|undefined} value
- * @return {!proto.contractcase.RunExampleRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunExampleRequest} returns this
 */
-proto.contractcase.RunExampleRequest.prototype.setConfig = function(value) {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.prototype.setConfig = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.RunExampleRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunExampleRequest} returns this
  */
-proto.contractcase.RunExampleRequest.prototype.clearConfig = function() {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.prototype.clearConfig = function() {
   return this.setConfig(undefined);
 };
 
@@ -3273,7 +3121,7 @@ proto.contractcase.RunExampleRequest.prototype.clearConfig = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.RunExampleRequest.prototype.hasConfig = function() {
+proto.io.contract_testing.contractcase.grpc.RunExampleRequest.prototype.hasConfig = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -3294,8 +3142,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.RunRejectingExampleRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -3304,14 +3152,14 @@ proto.contractcase.RunRejectingExampleRequest.prototype.toObject = function(opt_
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.RunRejectingExampleRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.RunRejectingExampleRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     exampleDefinition: (f = msg.getExampleDefinition()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    config: (f = msg.getConfig()) && proto.contractcase.ContractCaseConfig.toObject(includeInstance, f)
+    config: (f = msg.getConfig()) && proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3325,23 +3173,23 @@ proto.contractcase.RunRejectingExampleRequest.toObject = function(includeInstanc
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.RunRejectingExampleRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest}
  */
-proto.contractcase.RunRejectingExampleRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.RunRejectingExampleRequest;
-  return proto.contractcase.RunRejectingExampleRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest;
+  return proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.RunRejectingExampleRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.RunRejectingExampleRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest}
  */
-proto.contractcase.RunRejectingExampleRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3354,8 +3202,8 @@ proto.contractcase.RunRejectingExampleRequest.deserializeBinaryFromReader = func
       msg.setExampleDefinition(value);
       break;
     case 3:
-      var value = new proto.contractcase.ContractCaseConfig;
-      reader.readMessage(value,proto.contractcase.ContractCaseConfig.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.ContractCaseConfig;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinaryFromReader);
       msg.setConfig(value);
       break;
     default:
@@ -3371,9 +3219,9 @@ proto.contractcase.RunRejectingExampleRequest.deserializeBinaryFromReader = func
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.RunRejectingExampleRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3381,11 +3229,11 @@ proto.contractcase.RunRejectingExampleRequest.prototype.serializeBinary = functi
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.RunRejectingExampleRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.RunRejectingExampleRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getExampleDefinition();
   if (f != null) {
@@ -3400,7 +3248,7 @@ proto.contractcase.RunRejectingExampleRequest.serializeBinaryToWriter = function
     writer.writeMessage(
       3,
       f,
-      proto.contractcase.ContractCaseConfig.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryToWriter
     );
   }
 };
@@ -3410,7 +3258,7 @@ proto.contractcase.RunRejectingExampleRequest.serializeBinaryToWriter = function
  * optional google.protobuf.Struct example_definition = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.getExampleDefinition = function() {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.prototype.getExampleDefinition = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -3418,18 +3266,18 @@ proto.contractcase.RunRejectingExampleRequest.prototype.getExampleDefinition = f
 
 /**
  * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.contractcase.RunRejectingExampleRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest} returns this
 */
-proto.contractcase.RunRejectingExampleRequest.prototype.setExampleDefinition = function(value) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.prototype.setExampleDefinition = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.RunRejectingExampleRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest} returns this
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.clearExampleDefinition = function() {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.prototype.clearExampleDefinition = function() {
   return this.setExampleDefinition(undefined);
 };
 
@@ -3438,35 +3286,35 @@ proto.contractcase.RunRejectingExampleRequest.prototype.clearExampleDefinition =
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.hasExampleDefinition = function() {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.prototype.hasExampleDefinition = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional ContractCaseConfig config = 3;
- * @return {?proto.contractcase.ContractCaseConfig}
+ * @return {?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig}
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.getConfig = function() {
-  return /** @type{?proto.contractcase.ContractCaseConfig} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.ContractCaseConfig, 3));
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.prototype.getConfig = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.ContractCaseConfig, 3));
 };
 
 
 /**
- * @param {?proto.contractcase.ContractCaseConfig|undefined} value
- * @return {!proto.contractcase.RunRejectingExampleRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest} returns this
 */
-proto.contractcase.RunRejectingExampleRequest.prototype.setConfig = function(value) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.prototype.setConfig = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.RunRejectingExampleRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest} returns this
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.clearConfig = function() {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.prototype.clearConfig = function() {
   return this.setConfig(undefined);
 };
 
@@ -3475,7 +3323,7 @@ proto.contractcase.RunRejectingExampleRequest.prototype.clearConfig = function()
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.RunRejectingExampleRequest.prototype.hasConfig = function() {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.prototype.hasConfig = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -3496,8 +3344,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.StripMatchersRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.StripMatchersRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -3506,11 +3354,11 @@ proto.contractcase.StripMatchersRequest.prototype.toObject = function(opt_includ
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.StripMatchersRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.StripMatchersRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.StripMatchersRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     matcherOrData: (f = msg.getMatcherOrData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
@@ -3526,23 +3374,23 @@ proto.contractcase.StripMatchersRequest.toObject = function(includeInstance, msg
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.StripMatchersRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.StripMatchersRequest}
  */
-proto.contractcase.StripMatchersRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.StripMatchersRequest;
-  return proto.contractcase.StripMatchersRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.StripMatchersRequest;
+  return proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.StripMatchersRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.StripMatchersRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.StripMatchersRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.StripMatchersRequest}
  */
-proto.contractcase.StripMatchersRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3567,9 +3415,9 @@ proto.contractcase.StripMatchersRequest.deserializeBinaryFromReader = function(m
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.StripMatchersRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.StripMatchersRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3577,11 +3425,11 @@ proto.contractcase.StripMatchersRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.StripMatchersRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.StripMatchersRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.StripMatchersRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getMatcherOrData();
   if (f != null) {
@@ -3598,7 +3446,7 @@ proto.contractcase.StripMatchersRequest.serializeBinaryToWriter = function(messa
  * optional google.protobuf.Struct matcher_or_data = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.contractcase.StripMatchersRequest.prototype.getMatcherOrData = function() {
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.prototype.getMatcherOrData = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -3606,18 +3454,18 @@ proto.contractcase.StripMatchersRequest.prototype.getMatcherOrData = function() 
 
 /**
  * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.contractcase.StripMatchersRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.StripMatchersRequest} returns this
 */
-proto.contractcase.StripMatchersRequest.prototype.setMatcherOrData = function(value) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.prototype.setMatcherOrData = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.StripMatchersRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.StripMatchersRequest} returns this
  */
-proto.contractcase.StripMatchersRequest.prototype.clearMatcherOrData = function() {
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.prototype.clearMatcherOrData = function() {
   return this.setMatcherOrData(undefined);
 };
 
@@ -3626,7 +3474,7 @@ proto.contractcase.StripMatchersRequest.prototype.clearMatcherOrData = function(
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.StripMatchersRequest.prototype.hasMatcherOrData = function() {
+proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.prototype.hasMatcherOrData = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -3647,8 +3495,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.EndDefinitionRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.EndDefinitionRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -3657,13 +3505,13 @@ proto.contractcase.EndDefinitionRequest.prototype.toObject = function(opt_includ
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.EndDefinitionRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.EndDefinitionRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    handle: (f = msg.getHandle()) && proto.contractcase.DefinitionHandle.toObject(includeInstance, f)
+
   };
 
   if (includeInstance) {
@@ -3677,34 +3525,29 @@ proto.contractcase.EndDefinitionRequest.toObject = function(includeInstance, msg
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.EndDefinitionRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest}
  */
-proto.contractcase.EndDefinitionRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.EndDefinitionRequest;
-  return proto.contractcase.EndDefinitionRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest;
+  return proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.EndDefinitionRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.EndDefinitionRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest}
  */
-proto.contractcase.EndDefinitionRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto.contractcase.DefinitionHandle;
-      reader.readMessage(value,proto.contractcase.DefinitionHandle.deserializeBinaryFromReader);
-      msg.setHandle(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -3718,9 +3561,9 @@ proto.contractcase.EndDefinitionRequest.deserializeBinaryFromReader = function(m
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.EndDefinitionRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.EndDefinitionRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3728,57 +3571,12 @@ proto.contractcase.EndDefinitionRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.EndDefinitionRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.EndDefinitionRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getHandle();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.contractcase.DefinitionHandle.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional DefinitionHandle handle = 1;
- * @return {?proto.contractcase.DefinitionHandle}
- */
-proto.contractcase.EndDefinitionRequest.prototype.getHandle = function() {
-  return /** @type{?proto.contractcase.DefinitionHandle} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.DefinitionHandle, 1));
-};
-
-
-/**
- * @param {?proto.contractcase.DefinitionHandle|undefined} value
- * @return {!proto.contractcase.EndDefinitionRequest} returns this
-*/
-proto.contractcase.EndDefinitionRequest.prototype.setHandle = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.contractcase.EndDefinitionRequest} returns this
- */
-proto.contractcase.EndDefinitionRequest.prototype.clearHandle = function() {
-  return this.setHandle(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.contractcase.EndDefinitionRequest.prototype.hasHandle = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -3798,8 +3596,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.StateHandlerResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.StateHandlerResponse.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -3808,14 +3606,14 @@ proto.contractcase.StateHandlerResponse.prototype.toObject = function(opt_includ
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.StateHandlerResponse} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.StateHandlerResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.StateHandlerResponse.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    stateHandlerHandle: (f = msg.getStateHandlerHandle()) && proto.contractcase.StateHandlerHandle.toObject(includeInstance, f),
-    result: (f = msg.getResult()) && proto.contractcase.BoundaryResult.toObject(includeInstance, f)
+    stateHandlerHandle: (f = msg.getStateHandlerHandle()) && proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.toObject(includeInstance, f),
+    result: (f = msg.getResult()) && proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3829,23 +3627,23 @@ proto.contractcase.StateHandlerResponse.toObject = function(includeInstance, msg
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.StateHandlerResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerResponse}
  */
-proto.contractcase.StateHandlerResponse.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.StateHandlerResponse;
-  return proto.contractcase.StateHandlerResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.StateHandlerResponse;
+  return proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.StateHandlerResponse} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.StateHandlerResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.StateHandlerResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerResponse}
  */
-proto.contractcase.StateHandlerResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3853,13 +3651,13 @@ proto.contractcase.StateHandlerResponse.deserializeBinaryFromReader = function(m
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.StateHandlerHandle;
-      reader.readMessage(value,proto.contractcase.StateHandlerHandle.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.StateHandlerHandle;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.deserializeBinaryFromReader);
       msg.setStateHandlerHandle(value);
       break;
     case 2:
-      var value = new proto.contractcase.BoundaryResult;
-      reader.readMessage(value,proto.contractcase.BoundaryResult.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BoundaryResult;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader);
       msg.setResult(value);
       break;
     default:
@@ -3875,9 +3673,9 @@ proto.contractcase.StateHandlerResponse.deserializeBinaryFromReader = function(m
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.StateHandlerResponse.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.StateHandlerResponse.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3885,18 +3683,18 @@ proto.contractcase.StateHandlerResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.StateHandlerResponse} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.StateHandlerResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.StateHandlerResponse.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getStateHandlerHandle();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.StateHandlerHandle.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.serializeBinaryToWriter
     );
   }
   f = message.getResult();
@@ -3904,7 +3702,7 @@ proto.contractcase.StateHandlerResponse.serializeBinaryToWriter = function(messa
     writer.writeMessage(
       2,
       f,
-      proto.contractcase.BoundaryResult.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter
     );
   }
 };
@@ -3912,28 +3710,28 @@ proto.contractcase.StateHandlerResponse.serializeBinaryToWriter = function(messa
 
 /**
  * optional StateHandlerHandle state_handler_handle = 1;
- * @return {?proto.contractcase.StateHandlerHandle}
+ * @return {?proto.io.contract_testing.contractcase.grpc.StateHandlerHandle}
  */
-proto.contractcase.StateHandlerResponse.prototype.getStateHandlerHandle = function() {
-  return /** @type{?proto.contractcase.StateHandlerHandle} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.StateHandlerHandle, 1));
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.prototype.getStateHandlerHandle = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.StateHandlerHandle} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.StateHandlerHandle, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.StateHandlerHandle|undefined} value
- * @return {!proto.contractcase.StateHandlerResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.StateHandlerHandle|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerResponse} returns this
 */
-proto.contractcase.StateHandlerResponse.prototype.setStateHandlerHandle = function(value) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.prototype.setStateHandlerHandle = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.StateHandlerResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerResponse} returns this
  */
-proto.contractcase.StateHandlerResponse.prototype.clearStateHandlerHandle = function() {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.prototype.clearStateHandlerHandle = function() {
   return this.setStateHandlerHandle(undefined);
 };
 
@@ -3942,35 +3740,35 @@ proto.contractcase.StateHandlerResponse.prototype.clearStateHandlerHandle = func
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.StateHandlerResponse.prototype.hasStateHandlerHandle = function() {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.prototype.hasStateHandlerHandle = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional BoundaryResult result = 2;
- * @return {?proto.contractcase.BoundaryResult}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.StateHandlerResponse.prototype.getResult = function() {
-  return /** @type{?proto.contractcase.BoundaryResult} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BoundaryResult, 2));
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.prototype.getResult = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BoundaryResult} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BoundaryResult, 2));
 };
 
 
 /**
- * @param {?proto.contractcase.BoundaryResult|undefined} value
- * @return {!proto.contractcase.StateHandlerResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BoundaryResult|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerResponse} returns this
 */
-proto.contractcase.StateHandlerResponse.prototype.setResult = function(value) {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.prototype.setResult = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.StateHandlerResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerResponse} returns this
  */
-proto.contractcase.StateHandlerResponse.prototype.clearResult = function() {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.prototype.clearResult = function() {
   return this.setResult(undefined);
 };
 
@@ -3979,7 +3777,7 @@ proto.contractcase.StateHandlerResponse.prototype.clearResult = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.StateHandlerResponse.prototype.hasResult = function() {
+proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -4000,8 +3798,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.LogPrinterResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.LogPrinterResponse.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -4010,13 +3808,13 @@ proto.contractcase.LogPrinterResponse.prototype.toObject = function(opt_includeI
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.LogPrinterResponse} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.LogPrinterResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.LogPrinterResponse.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.contractcase.BoundaryResult.toObject(includeInstance, f)
+    result: (f = msg.getResult()) && proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4030,23 +3828,23 @@ proto.contractcase.LogPrinterResponse.toObject = function(includeInstance, msg) 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.LogPrinterResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogPrinterResponse}
  */
-proto.contractcase.LogPrinterResponse.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.LogPrinterResponse;
-  return proto.contractcase.LogPrinterResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.LogPrinterResponse;
+  return proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.LogPrinterResponse} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.LogPrinterResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.LogPrinterResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogPrinterResponse}
  */
-proto.contractcase.LogPrinterResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4054,8 +3852,8 @@ proto.contractcase.LogPrinterResponse.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.BoundaryResult;
-      reader.readMessage(value,proto.contractcase.BoundaryResult.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BoundaryResult;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader);
       msg.setResult(value);
       break;
     default:
@@ -4071,9 +3869,9 @@ proto.contractcase.LogPrinterResponse.deserializeBinaryFromReader = function(msg
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.LogPrinterResponse.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.LogPrinterResponse.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4081,18 +3879,18 @@ proto.contractcase.LogPrinterResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.LogPrinterResponse} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.LogPrinterResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.LogPrinterResponse.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResult();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.BoundaryResult.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter
     );
   }
 };
@@ -4100,28 +3898,28 @@ proto.contractcase.LogPrinterResponse.serializeBinaryToWriter = function(message
 
 /**
  * optional BoundaryResult result = 1;
- * @return {?proto.contractcase.BoundaryResult}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.LogPrinterResponse.prototype.getResult = function() {
-  return /** @type{?proto.contractcase.BoundaryResult} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BoundaryResult, 1));
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.prototype.getResult = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BoundaryResult} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BoundaryResult, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.BoundaryResult|undefined} value
- * @return {!proto.contractcase.LogPrinterResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BoundaryResult|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogPrinterResponse} returns this
 */
-proto.contractcase.LogPrinterResponse.prototype.setResult = function(value) {
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.prototype.setResult = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.LogPrinterResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogPrinterResponse} returns this
  */
-proto.contractcase.LogPrinterResponse.prototype.clearResult = function() {
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.prototype.clearResult = function() {
   return this.setResult(undefined);
 };
 
@@ -4130,7 +3928,7 @@ proto.contractcase.LogPrinterResponse.prototype.clearResult = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.LogPrinterResponse.prototype.hasResult = function() {
+proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -4151,8 +3949,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.ResultPrinterResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.ResultPrinterResponse.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -4161,13 +3959,13 @@ proto.contractcase.ResultPrinterResponse.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.ResultPrinterResponse} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ResultPrinterResponse.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.contractcase.BoundaryResult.toObject(includeInstance, f)
+    result: (f = msg.getResult()) && proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4181,23 +3979,23 @@ proto.contractcase.ResultPrinterResponse.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.ResultPrinterResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse}
  */
-proto.contractcase.ResultPrinterResponse.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.ResultPrinterResponse;
-  return proto.contractcase.ResultPrinterResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse;
+  return proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.ResultPrinterResponse} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.ResultPrinterResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse}
  */
-proto.contractcase.ResultPrinterResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4205,8 +4003,8 @@ proto.contractcase.ResultPrinterResponse.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.BoundaryResult;
-      reader.readMessage(value,proto.contractcase.BoundaryResult.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BoundaryResult;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader);
       msg.setResult(value);
       break;
     default:
@@ -4222,9 +4020,9 @@ proto.contractcase.ResultPrinterResponse.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.ResultPrinterResponse.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.ResultPrinterResponse.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4232,18 +4030,18 @@ proto.contractcase.ResultPrinterResponse.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.ResultPrinterResponse} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.ResultPrinterResponse.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResult();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.BoundaryResult.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter
     );
   }
 };
@@ -4251,28 +4049,28 @@ proto.contractcase.ResultPrinterResponse.serializeBinaryToWriter = function(mess
 
 /**
  * optional BoundaryResult result = 1;
- * @return {?proto.contractcase.BoundaryResult}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.ResultPrinterResponse.prototype.getResult = function() {
-  return /** @type{?proto.contractcase.BoundaryResult} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BoundaryResult, 1));
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.prototype.getResult = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BoundaryResult} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BoundaryResult, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.BoundaryResult|undefined} value
- * @return {!proto.contractcase.ResultPrinterResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BoundaryResult|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse} returns this
 */
-proto.contractcase.ResultPrinterResponse.prototype.setResult = function(value) {
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.prototype.setResult = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.ResultPrinterResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse} returns this
  */
-proto.contractcase.ResultPrinterResponse.prototype.clearResult = function() {
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.prototype.clearResult = function() {
   return this.setResult(undefined);
 };
 
@@ -4281,7 +4079,7 @@ proto.contractcase.ResultPrinterResponse.prototype.clearResult = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.ResultPrinterResponse.prototype.hasResult = function() {
+proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -4302,8 +4100,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.RunStateHandlerRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.RunStateHandlerRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -4312,13 +4110,13 @@ proto.contractcase.RunStateHandlerRequest.prototype.toObject = function(opt_incl
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.RunStateHandlerRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.RunStateHandlerRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    stateHandlerHandle: (f = msg.getStateHandlerHandle()) && proto.contractcase.StateHandlerHandle.toObject(includeInstance, f)
+    stateHandlerHandle: (f = msg.getStateHandlerHandle()) && proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4332,23 +4130,23 @@ proto.contractcase.RunStateHandlerRequest.toObject = function(includeInstance, m
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.RunStateHandlerRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest}
  */
-proto.contractcase.RunStateHandlerRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.RunStateHandlerRequest;
-  return proto.contractcase.RunStateHandlerRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest;
+  return proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.RunStateHandlerRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.RunStateHandlerRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest}
  */
-proto.contractcase.RunStateHandlerRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4356,8 +4154,8 @@ proto.contractcase.RunStateHandlerRequest.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.StateHandlerHandle;
-      reader.readMessage(value,proto.contractcase.StateHandlerHandle.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.StateHandlerHandle;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.deserializeBinaryFromReader);
       msg.setStateHandlerHandle(value);
       break;
     default:
@@ -4373,9 +4171,9 @@ proto.contractcase.RunStateHandlerRequest.deserializeBinaryFromReader = function
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.RunStateHandlerRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.RunStateHandlerRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4383,18 +4181,18 @@ proto.contractcase.RunStateHandlerRequest.prototype.serializeBinary = function()
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.RunStateHandlerRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.RunStateHandlerRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getStateHandlerHandle();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.StateHandlerHandle.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.serializeBinaryToWriter
     );
   }
 };
@@ -4402,28 +4200,28 @@ proto.contractcase.RunStateHandlerRequest.serializeBinaryToWriter = function(mes
 
 /**
  * optional StateHandlerHandle state_handler_handle = 1;
- * @return {?proto.contractcase.StateHandlerHandle}
+ * @return {?proto.io.contract_testing.contractcase.grpc.StateHandlerHandle}
  */
-proto.contractcase.RunStateHandlerRequest.prototype.getStateHandlerHandle = function() {
-  return /** @type{?proto.contractcase.StateHandlerHandle} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.StateHandlerHandle, 1));
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.prototype.getStateHandlerHandle = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.StateHandlerHandle} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.StateHandlerHandle, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.StateHandlerHandle|undefined} value
- * @return {!proto.contractcase.RunStateHandlerRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.StateHandlerHandle|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest} returns this
 */
-proto.contractcase.RunStateHandlerRequest.prototype.setStateHandlerHandle = function(value) {
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.prototype.setStateHandlerHandle = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.RunStateHandlerRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest} returns this
  */
-proto.contractcase.RunStateHandlerRequest.prototype.clearStateHandlerHandle = function() {
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.prototype.clearStateHandlerHandle = function() {
   return this.setStateHandlerHandle(undefined);
 };
 
@@ -4432,7 +4230,7 @@ proto.contractcase.RunStateHandlerRequest.prototype.clearStateHandlerHandle = fu
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.RunStateHandlerRequest.prototype.hasStateHandlerHandle = function() {
+proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.prototype.hasStateHandlerHandle = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -4453,8 +4251,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.TriggerFunctionRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.TriggerFunctionRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -4463,13 +4261,13 @@ proto.contractcase.TriggerFunctionRequest.prototype.toObject = function(opt_incl
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.TriggerFunctionRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.TriggerFunctionRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    triggerFunction: (f = msg.getTriggerFunction()) && proto.contractcase.TriggerFunctionHandle.toObject(includeInstance, f),
+    triggerFunction: (f = msg.getTriggerFunction()) && proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject(includeInstance, f),
     config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -4484,23 +4282,23 @@ proto.contractcase.TriggerFunctionRequest.toObject = function(includeInstance, m
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.TriggerFunctionRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest}
  */
-proto.contractcase.TriggerFunctionRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.TriggerFunctionRequest;
-  return proto.contractcase.TriggerFunctionRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest;
+  return proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.TriggerFunctionRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.TriggerFunctionRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest}
  */
-proto.contractcase.TriggerFunctionRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4508,8 +4306,8 @@ proto.contractcase.TriggerFunctionRequest.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.TriggerFunctionHandle;
-      reader.readMessage(value,proto.contractcase.TriggerFunctionHandle.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.deserializeBinaryFromReader);
       msg.setTriggerFunction(value);
       break;
     case 2:
@@ -4530,9 +4328,9 @@ proto.contractcase.TriggerFunctionRequest.deserializeBinaryFromReader = function
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.TriggerFunctionRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.TriggerFunctionRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4540,18 +4338,18 @@ proto.contractcase.TriggerFunctionRequest.prototype.serializeBinary = function()
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.TriggerFunctionRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.TriggerFunctionRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getTriggerFunction();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.TriggerFunctionHandle.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.serializeBinaryToWriter
     );
   }
   f = message.getConfig();
@@ -4567,28 +4365,28 @@ proto.contractcase.TriggerFunctionRequest.serializeBinaryToWriter = function(mes
 
 /**
  * optional TriggerFunctionHandle trigger_function = 1;
- * @return {?proto.contractcase.TriggerFunctionHandle}
+ * @return {?proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle}
  */
-proto.contractcase.TriggerFunctionRequest.prototype.getTriggerFunction = function() {
-  return /** @type{?proto.contractcase.TriggerFunctionHandle} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.TriggerFunctionHandle, 1));
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.prototype.getTriggerFunction = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.TriggerFunctionHandle|undefined} value
- * @return {!proto.contractcase.TriggerFunctionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest} returns this
 */
-proto.contractcase.TriggerFunctionRequest.prototype.setTriggerFunction = function(value) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.prototype.setTriggerFunction = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.TriggerFunctionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest} returns this
  */
-proto.contractcase.TriggerFunctionRequest.prototype.clearTriggerFunction = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.prototype.clearTriggerFunction = function() {
   return this.setTriggerFunction(undefined);
 };
 
@@ -4597,7 +4395,7 @@ proto.contractcase.TriggerFunctionRequest.prototype.clearTriggerFunction = funct
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.TriggerFunctionRequest.prototype.hasTriggerFunction = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.prototype.hasTriggerFunction = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -4606,7 +4404,7 @@ proto.contractcase.TriggerFunctionRequest.prototype.hasTriggerFunction = functio
  * optional google.protobuf.Struct config = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.contractcase.TriggerFunctionRequest.prototype.getConfig = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.prototype.getConfig = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -4614,18 +4412,18 @@ proto.contractcase.TriggerFunctionRequest.prototype.getConfig = function() {
 
 /**
  * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.contractcase.TriggerFunctionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest} returns this
 */
-proto.contractcase.TriggerFunctionRequest.prototype.setConfig = function(value) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.prototype.setConfig = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.TriggerFunctionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest} returns this
  */
-proto.contractcase.TriggerFunctionRequest.prototype.clearConfig = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.prototype.clearConfig = function() {
   return this.setConfig(undefined);
 };
 
@@ -4634,7 +4432,7 @@ proto.contractcase.TriggerFunctionRequest.prototype.clearConfig = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.TriggerFunctionRequest.prototype.hasConfig = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.prototype.hasConfig = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -4655,8 +4453,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.LogRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.LogRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.LogRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -4665,11 +4463,11 @@ proto.contractcase.LogRequest.prototype.toObject = function(opt_includeInstance)
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.LogRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.LogRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.LogRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     level: jspb.Message.getFieldWithDefault(msg, 1, ""),
     timestamp: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -4691,23 +4489,23 @@ proto.contractcase.LogRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.LogRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest}
  */
-proto.contractcase.LogRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.LogRequest;
-  return proto.contractcase.LogRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.LogRequest;
+  return proto.io.contract_testing.contractcase.grpc.LogRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.LogRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.LogRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.LogRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest}
  */
-proto.contractcase.LogRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4755,9 +4553,9 @@ proto.contractcase.LogRequest.deserializeBinaryFromReader = function(msg, reader
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.LogRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.LogRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.LogRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4765,11 +4563,11 @@ proto.contractcase.LogRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.LogRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.LogRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.LogRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getLevel();
   if (f.length > 0) {
@@ -4827,16 +4625,16 @@ proto.contractcase.LogRequest.serializeBinaryToWriter = function(message, writer
  * optional string level = 1;
  * @return {string}
  */
-proto.contractcase.LogRequest.prototype.getLevel = function() {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getLevel = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.LogRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.contractcase.LogRequest.prototype.setLevel = function(value) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setLevel = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -4845,16 +4643,16 @@ proto.contractcase.LogRequest.prototype.setLevel = function(value) {
  * optional string timestamp = 2;
  * @return {string}
  */
-proto.contractcase.LogRequest.prototype.getTimestamp = function() {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getTimestamp = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.LogRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.contractcase.LogRequest.prototype.setTimestamp = function(value) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setTimestamp = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -4863,16 +4661,16 @@ proto.contractcase.LogRequest.prototype.setTimestamp = function(value) {
  * optional string version = 3;
  * @return {string}
  */
-proto.contractcase.LogRequest.prototype.getVersion = function() {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getVersion = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.LogRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.contractcase.LogRequest.prototype.setVersion = function(value) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -4881,16 +4679,16 @@ proto.contractcase.LogRequest.prototype.setVersion = function(value) {
  * optional string type_string = 4;
  * @return {string}
  */
-proto.contractcase.LogRequest.prototype.getTypeString = function() {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getTypeString = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.LogRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.contractcase.LogRequest.prototype.setTypeString = function(value) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setTypeString = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -4899,16 +4697,16 @@ proto.contractcase.LogRequest.prototype.setTypeString = function(value) {
  * optional string location = 5;
  * @return {string}
  */
-proto.contractcase.LogRequest.prototype.getLocation = function() {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getLocation = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.LogRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.contractcase.LogRequest.prototype.setLocation = function(value) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setLocation = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -4917,16 +4715,16 @@ proto.contractcase.LogRequest.prototype.setLocation = function(value) {
  * optional string message = 6;
  * @return {string}
  */
-proto.contractcase.LogRequest.prototype.getMessage = function() {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getMessage = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.LogRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.contractcase.LogRequest.prototype.setMessage = function(value) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
@@ -4935,16 +4733,16 @@ proto.contractcase.LogRequest.prototype.setMessage = function(value) {
  * optional string additional = 7;
  * @return {string}
  */
-proto.contractcase.LogRequest.prototype.getAdditional = function() {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getAdditional = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.LogRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.contractcase.LogRequest.prototype.setAdditional = function(value) {
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setAdditional = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
@@ -4965,8 +4763,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.PrintMatchErrorRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -4975,11 +4773,11 @@ proto.contractcase.PrintMatchErrorRequest.prototype.toObject = function(opt_incl
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.PrintMatchErrorRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.PrintMatchErrorRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -5001,23 +4799,23 @@ proto.contractcase.PrintMatchErrorRequest.toObject = function(includeInstance, m
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.PrintMatchErrorRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest}
  */
-proto.contractcase.PrintMatchErrorRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.PrintMatchErrorRequest;
-  return proto.contractcase.PrintMatchErrorRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest;
+  return proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.PrintMatchErrorRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.PrintMatchErrorRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest}
  */
-proto.contractcase.PrintMatchErrorRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5065,9 +4863,9 @@ proto.contractcase.PrintMatchErrorRequest.deserializeBinaryFromReader = function
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.PrintMatchErrorRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5075,11 +4873,11 @@ proto.contractcase.PrintMatchErrorRequest.prototype.serializeBinary = function()
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.PrintMatchErrorRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.PrintMatchErrorRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKind();
   if (f.length > 0) {
@@ -5137,16 +4935,16 @@ proto.contractcase.PrintMatchErrorRequest.serializeBinaryToWriter = function(mes
  * optional string kind = 1;
  * @return {string}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.getKind = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getKind = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMatchErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.setKind = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setKind = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -5155,16 +4953,16 @@ proto.contractcase.PrintMatchErrorRequest.prototype.setKind = function(value) {
  * optional string message = 2;
  * @return {string}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.getMessage = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getMessage = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMatchErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.setMessage = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -5173,16 +4971,16 @@ proto.contractcase.PrintMatchErrorRequest.prototype.setMessage = function(value)
  * optional string location = 3;
  * @return {string}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.getLocation = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getLocation = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMatchErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.setLocation = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setLocation = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -5191,16 +4989,16 @@ proto.contractcase.PrintMatchErrorRequest.prototype.setLocation = function(value
  * optional string location_tag = 4;
  * @return {string}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.getLocationTag = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getLocationTag = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMatchErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.setLocationTag = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setLocationTag = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -5209,16 +5007,16 @@ proto.contractcase.PrintMatchErrorRequest.prototype.setLocationTag = function(va
  * optional string error_type_tag = 5;
  * @return {string}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.getErrorTypeTag = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getErrorTypeTag = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMatchErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.setErrorTypeTag = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setErrorTypeTag = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -5227,16 +5025,16 @@ proto.contractcase.PrintMatchErrorRequest.prototype.setErrorTypeTag = function(v
  * optional string expected = 6;
  * @return {string}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.getExpected = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getExpected = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMatchErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.setExpected = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setExpected = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
@@ -5245,16 +5043,16 @@ proto.contractcase.PrintMatchErrorRequest.prototype.setExpected = function(value
  * optional string actual = 7;
  * @return {string}
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.getActual = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getActual = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMatchErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.contractcase.PrintMatchErrorRequest.prototype.setActual = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setActual = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
@@ -5275,8 +5073,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.PrintMessageErrorRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -5285,11 +5083,11 @@ proto.contractcase.PrintMessageErrorRequest.prototype.toObject = function(opt_in
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.PrintMessageErrorRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.PrintMessageErrorRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -5309,23 +5107,23 @@ proto.contractcase.PrintMessageErrorRequest.toObject = function(includeInstance,
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.PrintMessageErrorRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest}
  */
-proto.contractcase.PrintMessageErrorRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.PrintMessageErrorRequest;
-  return proto.contractcase.PrintMessageErrorRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest;
+  return proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.PrintMessageErrorRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.PrintMessageErrorRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest}
  */
-proto.contractcase.PrintMessageErrorRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5365,9 +5163,9 @@ proto.contractcase.PrintMessageErrorRequest.deserializeBinaryFromReader = functi
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.PrintMessageErrorRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5375,11 +5173,11 @@ proto.contractcase.PrintMessageErrorRequest.prototype.serializeBinary = function
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.PrintMessageErrorRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.PrintMessageErrorRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKind();
   if (f.length > 0) {
@@ -5423,16 +5221,16 @@ proto.contractcase.PrintMessageErrorRequest.serializeBinaryToWriter = function(m
  * optional string kind = 1;
  * @return {string}
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.getKind = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.getKind = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMessageErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.setKind = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setKind = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -5441,16 +5239,16 @@ proto.contractcase.PrintMessageErrorRequest.prototype.setKind = function(value) 
  * optional string message = 2;
  * @return {string}
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.getMessage = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.getMessage = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMessageErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.setMessage = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -5459,16 +5257,16 @@ proto.contractcase.PrintMessageErrorRequest.prototype.setMessage = function(valu
  * optional string location = 3;
  * @return {string}
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.getLocation = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.getLocation = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMessageErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.setLocation = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setLocation = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -5477,16 +5275,16 @@ proto.contractcase.PrintMessageErrorRequest.prototype.setLocation = function(val
  * optional string location_tag = 4;
  * @return {string}
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.getLocationTag = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.getLocationTag = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMessageErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.setLocationTag = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setLocationTag = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -5495,16 +5293,16 @@ proto.contractcase.PrintMessageErrorRequest.prototype.setLocationTag = function(
  * optional string error_type_tag = 5;
  * @return {string}
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.getErrorTypeTag = function() {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.getErrorTypeTag = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintMessageErrorRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
  */
-proto.contractcase.PrintMessageErrorRequest.prototype.setErrorTypeTag = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setErrorTypeTag = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -5525,8 +5323,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.PrintTestTitleRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.PrintTestTitleRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -5535,11 +5333,11 @@ proto.contractcase.PrintTestTitleRequest.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.PrintTestTitleRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.PrintTestTitleRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
     icon: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -5558,23 +5356,23 @@ proto.contractcase.PrintTestTitleRequest.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.PrintTestTitleRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest}
  */
-proto.contractcase.PrintTestTitleRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.PrintTestTitleRequest;
-  return proto.contractcase.PrintTestTitleRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest;
+  return proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.PrintTestTitleRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.PrintTestTitleRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest}
  */
-proto.contractcase.PrintTestTitleRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5610,9 +5408,9 @@ proto.contractcase.PrintTestTitleRequest.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.PrintTestTitleRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.PrintTestTitleRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5620,11 +5418,11 @@ proto.contractcase.PrintTestTitleRequest.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.PrintTestTitleRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.PrintTestTitleRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKind();
   if (f.length > 0) {
@@ -5661,16 +5459,16 @@ proto.contractcase.PrintTestTitleRequest.serializeBinaryToWriter = function(mess
  * optional string kind = 1;
  * @return {string}
  */
-proto.contractcase.PrintTestTitleRequest.prototype.getKind = function() {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.getKind = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintTestTitleRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
  */
-proto.contractcase.PrintTestTitleRequest.prototype.setKind = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setKind = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -5679,16 +5477,16 @@ proto.contractcase.PrintTestTitleRequest.prototype.setKind = function(value) {
  * optional string icon = 2;
  * @return {string}
  */
-proto.contractcase.PrintTestTitleRequest.prototype.getIcon = function() {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.getIcon = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintTestTitleRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
  */
-proto.contractcase.PrintTestTitleRequest.prototype.setIcon = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setIcon = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -5697,16 +5495,16 @@ proto.contractcase.PrintTestTitleRequest.prototype.setIcon = function(value) {
  * optional string title = 3;
  * @return {string}
  */
-proto.contractcase.PrintTestTitleRequest.prototype.getTitle = function() {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.getTitle = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintTestTitleRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
  */
-proto.contractcase.PrintTestTitleRequest.prototype.setTitle = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setTitle = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -5715,16 +5513,16 @@ proto.contractcase.PrintTestTitleRequest.prototype.setTitle = function(value) {
  * optional string additional_text = 4;
  * @return {string}
  */
-proto.contractcase.PrintTestTitleRequest.prototype.getAdditionalText = function() {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.getAdditionalText = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.PrintTestTitleRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
  */
-proto.contractcase.PrintTestTitleRequest.prototype.setAdditionalText = function(value) {
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setAdditionalText = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -5745,8 +5543,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.BeginDefinitionResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.BeginDefinitionResponse.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -5755,13 +5553,13 @@ proto.contractcase.BeginDefinitionResponse.prototype.toObject = function(opt_inc
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.BeginDefinitionResponse} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.BeginDefinitionResponse.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.contractcase.BoundaryResult.toObject(includeInstance, f)
+    result: (f = msg.getResult()) && proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5775,23 +5573,23 @@ proto.contractcase.BeginDefinitionResponse.toObject = function(includeInstance, 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.BeginDefinitionResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse}
  */
-proto.contractcase.BeginDefinitionResponse.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.BeginDefinitionResponse;
-  return proto.contractcase.BeginDefinitionResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse;
+  return proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.BeginDefinitionResponse} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.BeginDefinitionResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse}
  */
-proto.contractcase.BeginDefinitionResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5799,8 +5597,8 @@ proto.contractcase.BeginDefinitionResponse.deserializeBinaryFromReader = functio
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.BoundaryResult;
-      reader.readMessage(value,proto.contractcase.BoundaryResult.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BoundaryResult;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader);
       msg.setResult(value);
       break;
     default:
@@ -5816,9 +5614,9 @@ proto.contractcase.BeginDefinitionResponse.deserializeBinaryFromReader = functio
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.BeginDefinitionResponse.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.BeginDefinitionResponse.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5826,18 +5624,18 @@ proto.contractcase.BeginDefinitionResponse.prototype.serializeBinary = function(
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.BeginDefinitionResponse} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.BeginDefinitionResponse.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResult();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.BoundaryResult.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter
     );
   }
 };
@@ -5845,28 +5643,28 @@ proto.contractcase.BeginDefinitionResponse.serializeBinaryToWriter = function(me
 
 /**
  * optional BoundaryResult result = 1;
- * @return {?proto.contractcase.BoundaryResult}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.BeginDefinitionResponse.prototype.getResult = function() {
-  return /** @type{?proto.contractcase.BoundaryResult} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BoundaryResult, 1));
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.prototype.getResult = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BoundaryResult} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BoundaryResult, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.BoundaryResult|undefined} value
- * @return {!proto.contractcase.BeginDefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BoundaryResult|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse} returns this
 */
-proto.contractcase.BeginDefinitionResponse.prototype.setResult = function(value) {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.prototype.setResult = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.BeginDefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse} returns this
  */
-proto.contractcase.BeginDefinitionResponse.prototype.clearResult = function() {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.prototype.clearResult = function() {
   return this.setResult(undefined);
 };
 
@@ -5875,7 +5673,7 @@ proto.contractcase.BeginDefinitionResponse.prototype.clearResult = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.BeginDefinitionResponse.prototype.hasResult = function() {
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -5896,8 +5694,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.RunExampleResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.RunExampleResponse.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.RunExampleResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -5906,13 +5704,13 @@ proto.contractcase.RunExampleResponse.prototype.toObject = function(opt_includeI
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.RunExampleResponse} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunExampleResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.RunExampleResponse.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.contractcase.BoundaryResult.toObject(includeInstance, f)
+    result: (f = msg.getResult()) && proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5926,23 +5724,23 @@ proto.contractcase.RunExampleResponse.toObject = function(includeInstance, msg) 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.RunExampleResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunExampleResponse}
  */
-proto.contractcase.RunExampleResponse.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.RunExampleResponse;
-  return proto.contractcase.RunExampleResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.RunExampleResponse;
+  return proto.io.contract_testing.contractcase.grpc.RunExampleResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.RunExampleResponse} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunExampleResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.RunExampleResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunExampleResponse}
  */
-proto.contractcase.RunExampleResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5950,8 +5748,8 @@ proto.contractcase.RunExampleResponse.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.BoundaryResult;
-      reader.readMessage(value,proto.contractcase.BoundaryResult.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BoundaryResult;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader);
       msg.setResult(value);
       break;
     default:
@@ -5967,9 +5765,9 @@ proto.contractcase.RunExampleResponse.deserializeBinaryFromReader = function(msg
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.RunExampleResponse.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.RunExampleResponse.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.RunExampleResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5977,18 +5775,18 @@ proto.contractcase.RunExampleResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.RunExampleResponse} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunExampleResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.RunExampleResponse.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResult();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.BoundaryResult.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter
     );
   }
 };
@@ -5996,28 +5794,28 @@ proto.contractcase.RunExampleResponse.serializeBinaryToWriter = function(message
 
 /**
  * optional BoundaryResult result = 1;
- * @return {?proto.contractcase.BoundaryResult}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.RunExampleResponse.prototype.getResult = function() {
-  return /** @type{?proto.contractcase.BoundaryResult} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BoundaryResult, 1));
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse.prototype.getResult = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BoundaryResult} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BoundaryResult, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.BoundaryResult|undefined} value
- * @return {!proto.contractcase.RunExampleResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BoundaryResult|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunExampleResponse} returns this
 */
-proto.contractcase.RunExampleResponse.prototype.setResult = function(value) {
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse.prototype.setResult = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.RunExampleResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunExampleResponse} returns this
  */
-proto.contractcase.RunExampleResponse.prototype.clearResult = function() {
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse.prototype.clearResult = function() {
   return this.setResult(undefined);
 };
 
@@ -6026,7 +5824,7 @@ proto.contractcase.RunExampleResponse.prototype.clearResult = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.RunExampleResponse.prototype.hasResult = function() {
+proto.io.contract_testing.contractcase.grpc.RunExampleResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -6047,8 +5845,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.RunRejectingExampleResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.RunRejectingExampleResponse.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -6057,13 +5855,13 @@ proto.contractcase.RunRejectingExampleResponse.prototype.toObject = function(opt
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.RunRejectingExampleResponse} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.RunRejectingExampleResponse.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.contractcase.BoundaryResult.toObject(includeInstance, f)
+    result: (f = msg.getResult()) && proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6077,23 +5875,23 @@ proto.contractcase.RunRejectingExampleResponse.toObject = function(includeInstan
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.RunRejectingExampleResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse}
  */
-proto.contractcase.RunRejectingExampleResponse.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.RunRejectingExampleResponse;
-  return proto.contractcase.RunRejectingExampleResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse;
+  return proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.RunRejectingExampleResponse} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.RunRejectingExampleResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse}
  */
-proto.contractcase.RunRejectingExampleResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6101,8 +5899,8 @@ proto.contractcase.RunRejectingExampleResponse.deserializeBinaryFromReader = fun
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.BoundaryResult;
-      reader.readMessage(value,proto.contractcase.BoundaryResult.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BoundaryResult;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader);
       msg.setResult(value);
       break;
     default:
@@ -6118,9 +5916,9 @@ proto.contractcase.RunRejectingExampleResponse.deserializeBinaryFromReader = fun
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.RunRejectingExampleResponse.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.RunRejectingExampleResponse.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6128,18 +5926,18 @@ proto.contractcase.RunRejectingExampleResponse.prototype.serializeBinary = funct
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.RunRejectingExampleResponse} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.RunRejectingExampleResponse.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResult();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.BoundaryResult.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter
     );
   }
 };
@@ -6147,28 +5945,28 @@ proto.contractcase.RunRejectingExampleResponse.serializeBinaryToWriter = functio
 
 /**
  * optional BoundaryResult result = 1;
- * @return {?proto.contractcase.BoundaryResult}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.RunRejectingExampleResponse.prototype.getResult = function() {
-  return /** @type{?proto.contractcase.BoundaryResult} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BoundaryResult, 1));
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.prototype.getResult = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BoundaryResult} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BoundaryResult, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.BoundaryResult|undefined} value
- * @return {!proto.contractcase.RunRejectingExampleResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BoundaryResult|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse} returns this
 */
-proto.contractcase.RunRejectingExampleResponse.prototype.setResult = function(value) {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.prototype.setResult = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.RunRejectingExampleResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse} returns this
  */
-proto.contractcase.RunRejectingExampleResponse.prototype.clearResult = function() {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.prototype.clearResult = function() {
   return this.setResult(undefined);
 };
 
@@ -6177,7 +5975,7 @@ proto.contractcase.RunRejectingExampleResponse.prototype.clearResult = function(
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.RunRejectingExampleResponse.prototype.hasResult = function() {
+proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -6198,8 +5996,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.StripMatchersResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.StripMatchersResponse.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -6208,13 +6006,13 @@ proto.contractcase.StripMatchersResponse.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.StripMatchersResponse} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.StripMatchersResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.StripMatchersResponse.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.contractcase.BoundaryResult.toObject(includeInstance, f)
+    result: (f = msg.getResult()) && proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6228,23 +6026,23 @@ proto.contractcase.StripMatchersResponse.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.StripMatchersResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.StripMatchersResponse}
  */
-proto.contractcase.StripMatchersResponse.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.StripMatchersResponse;
-  return proto.contractcase.StripMatchersResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.StripMatchersResponse;
+  return proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.StripMatchersResponse} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.StripMatchersResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.StripMatchersResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.StripMatchersResponse}
  */
-proto.contractcase.StripMatchersResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6252,8 +6050,8 @@ proto.contractcase.StripMatchersResponse.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.BoundaryResult;
-      reader.readMessage(value,proto.contractcase.BoundaryResult.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BoundaryResult;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader);
       msg.setResult(value);
       break;
     default:
@@ -6269,9 +6067,9 @@ proto.contractcase.StripMatchersResponse.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.StripMatchersResponse.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.StripMatchersResponse.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6279,18 +6077,18 @@ proto.contractcase.StripMatchersResponse.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.StripMatchersResponse} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.StripMatchersResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.StripMatchersResponse.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResult();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.BoundaryResult.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter
     );
   }
 };
@@ -6298,28 +6096,28 @@ proto.contractcase.StripMatchersResponse.serializeBinaryToWriter = function(mess
 
 /**
  * optional BoundaryResult result = 1;
- * @return {?proto.contractcase.BoundaryResult}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.StripMatchersResponse.prototype.getResult = function() {
-  return /** @type{?proto.contractcase.BoundaryResult} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BoundaryResult, 1));
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.prototype.getResult = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BoundaryResult} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BoundaryResult, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.BoundaryResult|undefined} value
- * @return {!proto.contractcase.StripMatchersResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BoundaryResult|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.StripMatchersResponse} returns this
 */
-proto.contractcase.StripMatchersResponse.prototype.setResult = function(value) {
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.prototype.setResult = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.StripMatchersResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.StripMatchersResponse} returns this
  */
-proto.contractcase.StripMatchersResponse.prototype.clearResult = function() {
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.prototype.clearResult = function() {
   return this.setResult(undefined);
 };
 
@@ -6328,7 +6126,7 @@ proto.contractcase.StripMatchersResponse.prototype.clearResult = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.StripMatchersResponse.prototype.hasResult = function() {
+proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -6349,8 +6147,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.EndDefinitionResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.EndDefinitionResponse.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -6359,13 +6157,13 @@ proto.contractcase.EndDefinitionResponse.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.EndDefinitionResponse} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.EndDefinitionResponse.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.contractcase.BoundaryResult.toObject(includeInstance, f)
+    result: (f = msg.getResult()) && proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6379,23 +6177,23 @@ proto.contractcase.EndDefinitionResponse.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.EndDefinitionResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse}
  */
-proto.contractcase.EndDefinitionResponse.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.EndDefinitionResponse;
-  return proto.contractcase.EndDefinitionResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse;
+  return proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.EndDefinitionResponse} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.EndDefinitionResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse}
  */
-proto.contractcase.EndDefinitionResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6403,8 +6201,8 @@ proto.contractcase.EndDefinitionResponse.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.BoundaryResult;
-      reader.readMessage(value,proto.contractcase.BoundaryResult.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BoundaryResult;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader);
       msg.setResult(value);
       break;
     default:
@@ -6420,9 +6218,9 @@ proto.contractcase.EndDefinitionResponse.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.EndDefinitionResponse.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.EndDefinitionResponse.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6430,18 +6228,18 @@ proto.contractcase.EndDefinitionResponse.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.EndDefinitionResponse} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.EndDefinitionResponse.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResult();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.BoundaryResult.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter
     );
   }
 };
@@ -6449,28 +6247,28 @@ proto.contractcase.EndDefinitionResponse.serializeBinaryToWriter = function(mess
 
 /**
  * optional BoundaryResult result = 1;
- * @return {?proto.contractcase.BoundaryResult}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.EndDefinitionResponse.prototype.getResult = function() {
-  return /** @type{?proto.contractcase.BoundaryResult} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BoundaryResult, 1));
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.prototype.getResult = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BoundaryResult} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BoundaryResult, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.BoundaryResult|undefined} value
- * @return {!proto.contractcase.EndDefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BoundaryResult|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse} returns this
 */
-proto.contractcase.EndDefinitionResponse.prototype.setResult = function(value) {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.prototype.setResult = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.EndDefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse} returns this
  */
-proto.contractcase.EndDefinitionResponse.prototype.clearResult = function() {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.prototype.clearResult = function() {
   return this.setResult(undefined);
 };
 
@@ -6479,7 +6277,7 @@ proto.contractcase.EndDefinitionResponse.prototype.clearResult = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.EndDefinitionResponse.prototype.hasResult = function() {
+proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -6500,8 +6298,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.TriggerFunctionResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.TriggerFunctionResponse.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -6510,13 +6308,13 @@ proto.contractcase.TriggerFunctionResponse.prototype.toObject = function(opt_inc
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.TriggerFunctionResponse} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.TriggerFunctionResponse.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.contractcase.BoundaryResult.toObject(includeInstance, f)
+    result: (f = msg.getResult()) && proto.io.contract_testing.contractcase.grpc.BoundaryResult.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6530,23 +6328,23 @@ proto.contractcase.TriggerFunctionResponse.toObject = function(includeInstance, 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.TriggerFunctionResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse}
  */
-proto.contractcase.TriggerFunctionResponse.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.TriggerFunctionResponse;
-  return proto.contractcase.TriggerFunctionResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse;
+  return proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.TriggerFunctionResponse} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.TriggerFunctionResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse}
  */
-proto.contractcase.TriggerFunctionResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6554,8 +6352,8 @@ proto.contractcase.TriggerFunctionResponse.deserializeBinaryFromReader = functio
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.contractcase.BoundaryResult;
-      reader.readMessage(value,proto.contractcase.BoundaryResult.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BoundaryResult;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BoundaryResult.deserializeBinaryFromReader);
       msg.setResult(value);
       break;
     default:
@@ -6571,9 +6369,9 @@ proto.contractcase.TriggerFunctionResponse.deserializeBinaryFromReader = functio
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.TriggerFunctionResponse.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.TriggerFunctionResponse.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6581,18 +6379,18 @@ proto.contractcase.TriggerFunctionResponse.prototype.serializeBinary = function(
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.TriggerFunctionResponse} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.TriggerFunctionResponse.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResult();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.contractcase.BoundaryResult.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BoundaryResult.serializeBinaryToWriter
     );
   }
 };
@@ -6600,28 +6398,28 @@ proto.contractcase.TriggerFunctionResponse.serializeBinaryToWriter = function(me
 
 /**
  * optional BoundaryResult result = 1;
- * @return {?proto.contractcase.BoundaryResult}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BoundaryResult}
  */
-proto.contractcase.TriggerFunctionResponse.prototype.getResult = function() {
-  return /** @type{?proto.contractcase.BoundaryResult} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BoundaryResult, 1));
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.prototype.getResult = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BoundaryResult} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BoundaryResult, 1));
 };
 
 
 /**
- * @param {?proto.contractcase.BoundaryResult|undefined} value
- * @return {!proto.contractcase.TriggerFunctionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BoundaryResult|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse} returns this
 */
-proto.contractcase.TriggerFunctionResponse.prototype.setResult = function(value) {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.prototype.setResult = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.TriggerFunctionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse} returns this
  */
-proto.contractcase.TriggerFunctionResponse.prototype.clearResult = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.prototype.clearResult = function() {
   return this.setResult(undefined);
 };
 
@@ -6630,7 +6428,7 @@ proto.contractcase.TriggerFunctionResponse.prototype.clearResult = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.TriggerFunctionResponse.prototype.hasResult = function() {
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -6644,12 +6442,12 @@ proto.contractcase.TriggerFunctionResponse.prototype.hasResult = function() {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.contractcase.DefinitionRequest.oneofGroups_ = [[2,3,4,5,6,7,8,9,10]];
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_ = [[2,3,4,5,6,7,8,9,10]];
 
 /**
  * @enum {number}
  */
-proto.contractcase.DefinitionRequest.KindCase = {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.KindCase = {
   KIND_NOT_SET: 0,
   BEGIN_DEFINITION: 2,
   RUN_EXAMPLE: 3,
@@ -6663,10 +6461,10 @@ proto.contractcase.DefinitionRequest.KindCase = {
 };
 
 /**
- * @return {proto.contractcase.DefinitionRequest.KindCase}
+ * @return {proto.io.contract_testing.contractcase.grpc.DefinitionRequest.KindCase}
  */
-proto.contractcase.DefinitionRequest.prototype.getKindCase = function() {
-  return /** @type {proto.contractcase.DefinitionRequest.KindCase} */(jspb.Message.computeOneofCase(this, proto.contractcase.DefinitionRequest.oneofGroups_[0]));
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getKindCase = function() {
+  return /** @type {proto.io.contract_testing.contractcase.grpc.DefinitionRequest.KindCase} */(jspb.Message.computeOneofCase(this, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_[0]));
 };
 
 
@@ -6684,8 +6482,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.DefinitionRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.DefinitionRequest.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.DefinitionRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -6694,22 +6492,22 @@ proto.contractcase.DefinitionRequest.prototype.toObject = function(opt_includeIn
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.DefinitionRequest} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.DefinitionRequest.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    beginDefinition: (f = msg.getBeginDefinition()) && proto.contractcase.BeginDefinitionRequest.toObject(includeInstance, f),
-    runExample: (f = msg.getRunExample()) && proto.contractcase.RunExampleRequest.toObject(includeInstance, f),
-    runRejectingExample: (f = msg.getRunRejectingExample()) && proto.contractcase.RunRejectingExampleRequest.toObject(includeInstance, f),
-    stripMatchers: (f = msg.getStripMatchers()) && proto.contractcase.StripMatchersRequest.toObject(includeInstance, f),
-    endDefinition: (f = msg.getEndDefinition()) && proto.contractcase.EndDefinitionRequest.toObject(includeInstance, f),
-    stateHandlerResponse: (f = msg.getStateHandlerResponse()) && proto.contractcase.StateHandlerResponse.toObject(includeInstance, f),
-    logPrinterResponse: (f = msg.getLogPrinterResponse()) && proto.contractcase.LogPrinterResponse.toObject(includeInstance, f),
-    resultPrinterResponse: (f = msg.getResultPrinterResponse()) && proto.contractcase.ResultPrinterResponse.toObject(includeInstance, f),
-    triggerFunctionResponse: (f = msg.getTriggerFunctionResponse()) && proto.contractcase.TriggerFunctionResponse.toObject(includeInstance, f)
+    beginDefinition: (f = msg.getBeginDefinition()) && proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.toObject(includeInstance, f),
+    runExample: (f = msg.getRunExample()) && proto.io.contract_testing.contractcase.grpc.RunExampleRequest.toObject(includeInstance, f),
+    runRejectingExample: (f = msg.getRunRejectingExample()) && proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.toObject(includeInstance, f),
+    stripMatchers: (f = msg.getStripMatchers()) && proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.toObject(includeInstance, f),
+    endDefinition: (f = msg.getEndDefinition()) && proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.toObject(includeInstance, f),
+    stateHandlerResponse: (f = msg.getStateHandlerResponse()) && proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.toObject(includeInstance, f),
+    logPrinterResponse: (f = msg.getLogPrinterResponse()) && proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.toObject(includeInstance, f),
+    resultPrinterResponse: (f = msg.getResultPrinterResponse()) && proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.toObject(includeInstance, f),
+    triggerFunctionResponse: (f = msg.getTriggerFunctionResponse()) && proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6723,23 +6521,23 @@ proto.contractcase.DefinitionRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.DefinitionRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest}
  */
-proto.contractcase.DefinitionRequest.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.DefinitionRequest;
-  return proto.contractcase.DefinitionRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.DefinitionRequest;
+  return proto.io.contract_testing.contractcase.grpc.DefinitionRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.DefinitionRequest} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.DefinitionRequest}
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest}
  */
-proto.contractcase.DefinitionRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6751,48 +6549,48 @@ proto.contractcase.DefinitionRequest.deserializeBinaryFromReader = function(msg,
       msg.setId(value);
       break;
     case 2:
-      var value = new proto.contractcase.BeginDefinitionRequest;
-      reader.readMessage(value,proto.contractcase.BeginDefinitionRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.deserializeBinaryFromReader);
       msg.setBeginDefinition(value);
       break;
     case 3:
-      var value = new proto.contractcase.RunExampleRequest;
-      reader.readMessage(value,proto.contractcase.RunExampleRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.RunExampleRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.RunExampleRequest.deserializeBinaryFromReader);
       msg.setRunExample(value);
       break;
     case 4:
-      var value = new proto.contractcase.RunRejectingExampleRequest;
-      reader.readMessage(value,proto.contractcase.RunRejectingExampleRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.deserializeBinaryFromReader);
       msg.setRunRejectingExample(value);
       break;
     case 5:
-      var value = new proto.contractcase.StripMatchersRequest;
-      reader.readMessage(value,proto.contractcase.StripMatchersRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.StripMatchersRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.deserializeBinaryFromReader);
       msg.setStripMatchers(value);
       break;
     case 6:
-      var value = new proto.contractcase.EndDefinitionRequest;
-      reader.readMessage(value,proto.contractcase.EndDefinitionRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.deserializeBinaryFromReader);
       msg.setEndDefinition(value);
       break;
     case 7:
-      var value = new proto.contractcase.StateHandlerResponse;
-      reader.readMessage(value,proto.contractcase.StateHandlerResponse.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.StateHandlerResponse;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.deserializeBinaryFromReader);
       msg.setStateHandlerResponse(value);
       break;
     case 8:
-      var value = new proto.contractcase.LogPrinterResponse;
-      reader.readMessage(value,proto.contractcase.LogPrinterResponse.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.LogPrinterResponse;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.deserializeBinaryFromReader);
       msg.setLogPrinterResponse(value);
       break;
     case 9:
-      var value = new proto.contractcase.ResultPrinterResponse;
-      reader.readMessage(value,proto.contractcase.ResultPrinterResponse.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.deserializeBinaryFromReader);
       msg.setResultPrinterResponse(value);
       break;
     case 10:
-      var value = new proto.contractcase.TriggerFunctionResponse;
-      reader.readMessage(value,proto.contractcase.TriggerFunctionResponse.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.deserializeBinaryFromReader);
       msg.setTriggerFunctionResponse(value);
       break;
     default:
@@ -6808,9 +6606,9 @@ proto.contractcase.DefinitionRequest.deserializeBinaryFromReader = function(msg,
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.DefinitionRequest.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.DefinitionRequest.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.DefinitionRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6818,11 +6616,11 @@ proto.contractcase.DefinitionRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.DefinitionRequest} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -6836,7 +6634,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       2,
       f,
-      proto.contractcase.BeginDefinitionRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.serializeBinaryToWriter
     );
   }
   f = message.getRunExample();
@@ -6844,7 +6642,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       3,
       f,
-      proto.contractcase.RunExampleRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.RunExampleRequest.serializeBinaryToWriter
     );
   }
   f = message.getRunRejectingExample();
@@ -6852,7 +6650,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       4,
       f,
-      proto.contractcase.RunRejectingExampleRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.serializeBinaryToWriter
     );
   }
   f = message.getStripMatchers();
@@ -6860,7 +6658,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       5,
       f,
-      proto.contractcase.StripMatchersRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.StripMatchersRequest.serializeBinaryToWriter
     );
   }
   f = message.getEndDefinition();
@@ -6868,7 +6666,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       6,
       f,
-      proto.contractcase.EndDefinitionRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.serializeBinaryToWriter
     );
   }
   f = message.getStateHandlerResponse();
@@ -6876,7 +6674,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       7,
       f,
-      proto.contractcase.StateHandlerResponse.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.StateHandlerResponse.serializeBinaryToWriter
     );
   }
   f = message.getLogPrinterResponse();
@@ -6884,7 +6682,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       8,
       f,
-      proto.contractcase.LogPrinterResponse.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.LogPrinterResponse.serializeBinaryToWriter
     );
   }
   f = message.getResultPrinterResponse();
@@ -6892,7 +6690,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       9,
       f,
-      proto.contractcase.ResultPrinterResponse.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse.serializeBinaryToWriter
     );
   }
   f = message.getTriggerFunctionResponse();
@@ -6900,7 +6698,7 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       10,
       f,
-      proto.contractcase.TriggerFunctionResponse.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse.serializeBinaryToWriter
     );
   }
 };
@@ -6910,44 +6708,44 @@ proto.contractcase.DefinitionRequest.serializeBinaryToWriter = function(message,
  * optional string id = 1;
  * @return {string}
  */
-proto.contractcase.DefinitionRequest.prototype.getId = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.setId = function(value) {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * optional BeginDefinitionRequest begin_definition = 2;
- * @return {?proto.contractcase.BeginDefinitionRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest}
  */
-proto.contractcase.DefinitionRequest.prototype.getBeginDefinition = function() {
-  return /** @type{?proto.contractcase.BeginDefinitionRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BeginDefinitionRequest, 2));
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getBeginDefinition = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest, 2));
 };
 
 
 /**
- * @param {?proto.contractcase.BeginDefinitionRequest|undefined} value
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setBeginDefinition = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setBeginDefinition = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearBeginDefinition = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.clearBeginDefinition = function() {
   return this.setBeginDefinition(undefined);
 };
 
@@ -6956,35 +6754,35 @@ proto.contractcase.DefinitionRequest.prototype.clearBeginDefinition = function()
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasBeginDefinition = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.hasBeginDefinition = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional RunExampleRequest run_example = 3;
- * @return {?proto.contractcase.RunExampleRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.RunExampleRequest}
  */
-proto.contractcase.DefinitionRequest.prototype.getRunExample = function() {
-  return /** @type{?proto.contractcase.RunExampleRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.RunExampleRequest, 3));
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getRunExample = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.RunExampleRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.RunExampleRequest, 3));
 };
 
 
 /**
- * @param {?proto.contractcase.RunExampleRequest|undefined} value
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.RunExampleRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setRunExample = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 3, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setRunExample = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 3, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearRunExample = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.clearRunExample = function() {
   return this.setRunExample(undefined);
 };
 
@@ -6993,35 +6791,35 @@ proto.contractcase.DefinitionRequest.prototype.clearRunExample = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasRunExample = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.hasRunExample = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional RunRejectingExampleRequest run_rejecting_example = 4;
- * @return {?proto.contractcase.RunRejectingExampleRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest}
  */
-proto.contractcase.DefinitionRequest.prototype.getRunRejectingExample = function() {
-  return /** @type{?proto.contractcase.RunRejectingExampleRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.RunRejectingExampleRequest, 4));
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getRunRejectingExample = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest, 4));
 };
 
 
 /**
- * @param {?proto.contractcase.RunRejectingExampleRequest|undefined} value
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setRunRejectingExample = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 4, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setRunRejectingExample = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 4, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearRunRejectingExample = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.clearRunRejectingExample = function() {
   return this.setRunRejectingExample(undefined);
 };
 
@@ -7030,35 +6828,35 @@ proto.contractcase.DefinitionRequest.prototype.clearRunRejectingExample = functi
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasRunRejectingExample = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.hasRunRejectingExample = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
  * optional StripMatchersRequest strip_matchers = 5;
- * @return {?proto.contractcase.StripMatchersRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.StripMatchersRequest}
  */
-proto.contractcase.DefinitionRequest.prototype.getStripMatchers = function() {
-  return /** @type{?proto.contractcase.StripMatchersRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.StripMatchersRequest, 5));
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getStripMatchers = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.StripMatchersRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.StripMatchersRequest, 5));
 };
 
 
 /**
- * @param {?proto.contractcase.StripMatchersRequest|undefined} value
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.StripMatchersRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setStripMatchers = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 5, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setStripMatchers = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 5, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearStripMatchers = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.clearStripMatchers = function() {
   return this.setStripMatchers(undefined);
 };
 
@@ -7067,35 +6865,35 @@ proto.contractcase.DefinitionRequest.prototype.clearStripMatchers = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasStripMatchers = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.hasStripMatchers = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
  * optional EndDefinitionRequest end_definition = 6;
- * @return {?proto.contractcase.EndDefinitionRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest}
  */
-proto.contractcase.DefinitionRequest.prototype.getEndDefinition = function() {
-  return /** @type{?proto.contractcase.EndDefinitionRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.EndDefinitionRequest, 6));
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getEndDefinition = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest, 6));
 };
 
 
 /**
- * @param {?proto.contractcase.EndDefinitionRequest|undefined} value
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setEndDefinition = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 6, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setEndDefinition = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 6, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearEndDefinition = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.clearEndDefinition = function() {
   return this.setEndDefinition(undefined);
 };
 
@@ -7104,35 +6902,35 @@ proto.contractcase.DefinitionRequest.prototype.clearEndDefinition = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasEndDefinition = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.hasEndDefinition = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
  * optional StateHandlerResponse state_handler_response = 7;
- * @return {?proto.contractcase.StateHandlerResponse}
+ * @return {?proto.io.contract_testing.contractcase.grpc.StateHandlerResponse}
  */
-proto.contractcase.DefinitionRequest.prototype.getStateHandlerResponse = function() {
-  return /** @type{?proto.contractcase.StateHandlerResponse} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.StateHandlerResponse, 7));
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getStateHandlerResponse = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.StateHandlerResponse} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.StateHandlerResponse, 7));
 };
 
 
 /**
- * @param {?proto.contractcase.StateHandlerResponse|undefined} value
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.StateHandlerResponse|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setStateHandlerResponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 7, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setStateHandlerResponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 7, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearStateHandlerResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.clearStateHandlerResponse = function() {
   return this.setStateHandlerResponse(undefined);
 };
 
@@ -7141,35 +6939,35 @@ proto.contractcase.DefinitionRequest.prototype.clearStateHandlerResponse = funct
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasStateHandlerResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.hasStateHandlerResponse = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
  * optional LogPrinterResponse log_printer_response = 8;
- * @return {?proto.contractcase.LogPrinterResponse}
+ * @return {?proto.io.contract_testing.contractcase.grpc.LogPrinterResponse}
  */
-proto.contractcase.DefinitionRequest.prototype.getLogPrinterResponse = function() {
-  return /** @type{?proto.contractcase.LogPrinterResponse} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.LogPrinterResponse, 8));
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getLogPrinterResponse = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.LogPrinterResponse} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.LogPrinterResponse, 8));
 };
 
 
 /**
- * @param {?proto.contractcase.LogPrinterResponse|undefined} value
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.LogPrinterResponse|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setLogPrinterResponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 8, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setLogPrinterResponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 8, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearLogPrinterResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.clearLogPrinterResponse = function() {
   return this.setLogPrinterResponse(undefined);
 };
 
@@ -7178,35 +6976,35 @@ proto.contractcase.DefinitionRequest.prototype.clearLogPrinterResponse = functio
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasLogPrinterResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.hasLogPrinterResponse = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
  * optional ResultPrinterResponse result_printer_response = 9;
- * @return {?proto.contractcase.ResultPrinterResponse}
+ * @return {?proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse}
  */
-proto.contractcase.DefinitionRequest.prototype.getResultPrinterResponse = function() {
-  return /** @type{?proto.contractcase.ResultPrinterResponse} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.ResultPrinterResponse, 9));
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getResultPrinterResponse = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse, 9));
 };
 
 
 /**
- * @param {?proto.contractcase.ResultPrinterResponse|undefined} value
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.ResultPrinterResponse|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setResultPrinterResponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 9, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setResultPrinterResponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 9, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearResultPrinterResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.clearResultPrinterResponse = function() {
   return this.setResultPrinterResponse(undefined);
 };
 
@@ -7215,35 +7013,35 @@ proto.contractcase.DefinitionRequest.prototype.clearResultPrinterResponse = func
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasResultPrinterResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.hasResultPrinterResponse = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
  * optional TriggerFunctionResponse trigger_function_response = 10;
- * @return {?proto.contractcase.TriggerFunctionResponse}
+ * @return {?proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse}
  */
-proto.contractcase.DefinitionRequest.prototype.getTriggerFunctionResponse = function() {
-  return /** @type{?proto.contractcase.TriggerFunctionResponse} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.TriggerFunctionResponse, 10));
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getTriggerFunctionResponse = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse, 10));
 };
 
 
 /**
- * @param {?proto.contractcase.TriggerFunctionResponse|undefined} value
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.TriggerFunctionResponse|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
 */
-proto.contractcase.DefinitionRequest.prototype.setTriggerFunctionResponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 10, proto.contractcase.DefinitionRequest.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setTriggerFunctionResponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 10, proto.io.contract_testing.contractcase.grpc.DefinitionRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionRequest} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.contractcase.DefinitionRequest.prototype.clearTriggerFunctionResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.clearTriggerFunctionResponse = function() {
   return this.setTriggerFunctionResponse(undefined);
 };
 
@@ -7252,7 +7050,7 @@ proto.contractcase.DefinitionRequest.prototype.clearTriggerFunctionResponse = fu
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionRequest.prototype.hasTriggerFunctionResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.hasTriggerFunctionResponse = function() {
   return jspb.Message.getField(this, 10) != null;
 };
 
@@ -7266,12 +7064,12 @@ proto.contractcase.DefinitionRequest.prototype.hasTriggerFunctionResponse = func
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.contractcase.DefinitionResponse.oneofGroups_ = [[2,3,4,5,6,12,7,8,9,10,11]];
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_ = [[2,3,4,5,6,12,7,8,9,10,11]];
 
 /**
  * @enum {number}
  */
-proto.contractcase.DefinitionResponse.KindCase = {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.KindCase = {
   KIND_NOT_SET: 0,
   RUN_STATE_HANDLER: 2,
   LOG_REQUEST: 3,
@@ -7287,10 +7085,10 @@ proto.contractcase.DefinitionResponse.KindCase = {
 };
 
 /**
- * @return {proto.contractcase.DefinitionResponse.KindCase}
+ * @return {proto.io.contract_testing.contractcase.grpc.DefinitionResponse.KindCase}
  */
-proto.contractcase.DefinitionResponse.prototype.getKindCase = function() {
-  return /** @type {proto.contractcase.DefinitionResponse.KindCase} */(jspb.Message.computeOneofCase(this, proto.contractcase.DefinitionResponse.oneofGroups_[0]));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getKindCase = function() {
+  return /** @type {proto.io.contract_testing.contractcase.grpc.DefinitionResponse.KindCase} */(jspb.Message.computeOneofCase(this, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0]));
 };
 
 
@@ -7308,8 +7106,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.contractcase.DefinitionResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.contractcase.DefinitionResponse.toObject(opt_includeInstance, this);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.io.contract_testing.contractcase.grpc.DefinitionResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -7318,24 +7116,24 @@ proto.contractcase.DefinitionResponse.prototype.toObject = function(opt_includeI
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.contractcase.DefinitionResponse} msg The msg instance to transform.
+ * @param {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.DefinitionResponse.toObject = function(includeInstance, msg) {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    runStateHandler: (f = msg.getRunStateHandler()) && proto.contractcase.RunStateHandlerRequest.toObject(includeInstance, f),
-    logRequest: (f = msg.getLogRequest()) && proto.contractcase.LogRequest.toObject(includeInstance, f),
-    printMatchErrorRequest: (f = msg.getPrintMatchErrorRequest()) && proto.contractcase.PrintMatchErrorRequest.toObject(includeInstance, f),
-    printMessageErrorRequest: (f = msg.getPrintMessageErrorRequest()) && proto.contractcase.PrintMessageErrorRequest.toObject(includeInstance, f),
-    printTestTitleRequest: (f = msg.getPrintTestTitleRequest()) && proto.contractcase.PrintTestTitleRequest.toObject(includeInstance, f),
-    triggerFunctionRequest: (f = msg.getTriggerFunctionRequest()) && proto.contractcase.TriggerFunctionRequest.toObject(includeInstance, f),
-    beginDefinitionResponse: (f = msg.getBeginDefinitionResponse()) && proto.contractcase.BeginDefinitionResponse.toObject(includeInstance, f),
-    runExampleResponse: (f = msg.getRunExampleResponse()) && proto.contractcase.RunExampleResponse.toObject(includeInstance, f),
-    runRejectingExampleResponse: (f = msg.getRunRejectingExampleResponse()) && proto.contractcase.RunRejectingExampleResponse.toObject(includeInstance, f),
-    stripMatchersResponse: (f = msg.getStripMatchersResponse()) && proto.contractcase.StripMatchersResponse.toObject(includeInstance, f),
-    endDefinitionResponse: (f = msg.getEndDefinitionResponse()) && proto.contractcase.EndDefinitionResponse.toObject(includeInstance, f)
+    runStateHandler: (f = msg.getRunStateHandler()) && proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.toObject(includeInstance, f),
+    logRequest: (f = msg.getLogRequest()) && proto.io.contract_testing.contractcase.grpc.LogRequest.toObject(includeInstance, f),
+    printMatchErrorRequest: (f = msg.getPrintMatchErrorRequest()) && proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.toObject(includeInstance, f),
+    printMessageErrorRequest: (f = msg.getPrintMessageErrorRequest()) && proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.toObject(includeInstance, f),
+    printTestTitleRequest: (f = msg.getPrintTestTitleRequest()) && proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.toObject(includeInstance, f),
+    triggerFunctionRequest: (f = msg.getTriggerFunctionRequest()) && proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.toObject(includeInstance, f),
+    beginDefinitionResponse: (f = msg.getBeginDefinitionResponse()) && proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.toObject(includeInstance, f),
+    runExampleResponse: (f = msg.getRunExampleResponse()) && proto.io.contract_testing.contractcase.grpc.RunExampleResponse.toObject(includeInstance, f),
+    runRejectingExampleResponse: (f = msg.getRunRejectingExampleResponse()) && proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.toObject(includeInstance, f),
+    stripMatchersResponse: (f = msg.getStripMatchersResponse()) && proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.toObject(includeInstance, f),
+    endDefinitionResponse: (f = msg.getEndDefinitionResponse()) && proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7349,23 +7147,23 @@ proto.contractcase.DefinitionResponse.toObject = function(includeInstance, msg) 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.contractcase.DefinitionResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse}
  */
-proto.contractcase.DefinitionResponse.deserializeBinary = function(bytes) {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.contractcase.DefinitionResponse;
-  return proto.contractcase.DefinitionResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.io.contract_testing.contractcase.grpc.DefinitionResponse;
+  return proto.io.contract_testing.contractcase.grpc.DefinitionResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.contractcase.DefinitionResponse} msg The message object to deserialize into.
+ * @param {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.contractcase.DefinitionResponse}
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse}
  */
-proto.contractcase.DefinitionResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7377,58 +7175,58 @@ proto.contractcase.DefinitionResponse.deserializeBinaryFromReader = function(msg
       msg.setId(value);
       break;
     case 2:
-      var value = new proto.contractcase.RunStateHandlerRequest;
-      reader.readMessage(value,proto.contractcase.RunStateHandlerRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.deserializeBinaryFromReader);
       msg.setRunStateHandler(value);
       break;
     case 3:
-      var value = new proto.contractcase.LogRequest;
-      reader.readMessage(value,proto.contractcase.LogRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.LogRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.LogRequest.deserializeBinaryFromReader);
       msg.setLogRequest(value);
       break;
     case 4:
-      var value = new proto.contractcase.PrintMatchErrorRequest;
-      reader.readMessage(value,proto.contractcase.PrintMatchErrorRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.deserializeBinaryFromReader);
       msg.setPrintMatchErrorRequest(value);
       break;
     case 5:
-      var value = new proto.contractcase.PrintMessageErrorRequest;
-      reader.readMessage(value,proto.contractcase.PrintMessageErrorRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.deserializeBinaryFromReader);
       msg.setPrintMessageErrorRequest(value);
       break;
     case 6:
-      var value = new proto.contractcase.PrintTestTitleRequest;
-      reader.readMessage(value,proto.contractcase.PrintTestTitleRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.deserializeBinaryFromReader);
       msg.setPrintTestTitleRequest(value);
       break;
     case 12:
-      var value = new proto.contractcase.TriggerFunctionRequest;
-      reader.readMessage(value,proto.contractcase.TriggerFunctionRequest.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.deserializeBinaryFromReader);
       msg.setTriggerFunctionRequest(value);
       break;
     case 7:
-      var value = new proto.contractcase.BeginDefinitionResponse;
-      reader.readMessage(value,proto.contractcase.BeginDefinitionResponse.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.deserializeBinaryFromReader);
       msg.setBeginDefinitionResponse(value);
       break;
     case 8:
-      var value = new proto.contractcase.RunExampleResponse;
-      reader.readMessage(value,proto.contractcase.RunExampleResponse.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.RunExampleResponse;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.RunExampleResponse.deserializeBinaryFromReader);
       msg.setRunExampleResponse(value);
       break;
     case 9:
-      var value = new proto.contractcase.RunRejectingExampleResponse;
-      reader.readMessage(value,proto.contractcase.RunRejectingExampleResponse.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.deserializeBinaryFromReader);
       msg.setRunRejectingExampleResponse(value);
       break;
     case 10:
-      var value = new proto.contractcase.StripMatchersResponse;
-      reader.readMessage(value,proto.contractcase.StripMatchersResponse.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.StripMatchersResponse;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.deserializeBinaryFromReader);
       msg.setStripMatchersResponse(value);
       break;
     case 11:
-      var value = new proto.contractcase.EndDefinitionResponse;
-      reader.readMessage(value,proto.contractcase.EndDefinitionResponse.deserializeBinaryFromReader);
+      var value = new proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.deserializeBinaryFromReader);
       msg.setEndDefinitionResponse(value);
       break;
     default:
@@ -7444,9 +7242,9 @@ proto.contractcase.DefinitionResponse.deserializeBinaryFromReader = function(msg
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.contractcase.DefinitionResponse.prototype.serializeBinary = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.contractcase.DefinitionResponse.serializeBinaryToWriter(this, writer);
+  proto.io.contract_testing.contractcase.grpc.DefinitionResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7454,11 +7252,11 @@ proto.contractcase.DefinitionResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.contractcase.DefinitionResponse} message
+ * @param {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message, writer) {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -7472,7 +7270,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       2,
       f,
-      proto.contractcase.RunStateHandlerRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.serializeBinaryToWriter
     );
   }
   f = message.getLogRequest();
@@ -7480,7 +7278,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       3,
       f,
-      proto.contractcase.LogRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.LogRequest.serializeBinaryToWriter
     );
   }
   f = message.getPrintMatchErrorRequest();
@@ -7488,7 +7286,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       4,
       f,
-      proto.contractcase.PrintMatchErrorRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.serializeBinaryToWriter
     );
   }
   f = message.getPrintMessageErrorRequest();
@@ -7496,7 +7294,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       5,
       f,
-      proto.contractcase.PrintMessageErrorRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.serializeBinaryToWriter
     );
   }
   f = message.getPrintTestTitleRequest();
@@ -7504,7 +7302,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       6,
       f,
-      proto.contractcase.PrintTestTitleRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.serializeBinaryToWriter
     );
   }
   f = message.getTriggerFunctionRequest();
@@ -7512,7 +7310,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       12,
       f,
-      proto.contractcase.TriggerFunctionRequest.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest.serializeBinaryToWriter
     );
   }
   f = message.getBeginDefinitionResponse();
@@ -7520,7 +7318,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       7,
       f,
-      proto.contractcase.BeginDefinitionResponse.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse.serializeBinaryToWriter
     );
   }
   f = message.getRunExampleResponse();
@@ -7528,7 +7326,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       8,
       f,
-      proto.contractcase.RunExampleResponse.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.RunExampleResponse.serializeBinaryToWriter
     );
   }
   f = message.getRunRejectingExampleResponse();
@@ -7536,7 +7334,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       9,
       f,
-      proto.contractcase.RunRejectingExampleResponse.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse.serializeBinaryToWriter
     );
   }
   f = message.getStripMatchersResponse();
@@ -7544,7 +7342,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       10,
       f,
-      proto.contractcase.StripMatchersResponse.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.StripMatchersResponse.serializeBinaryToWriter
     );
   }
   f = message.getEndDefinitionResponse();
@@ -7552,7 +7350,7 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
     writer.writeMessage(
       11,
       f,
-      proto.contractcase.EndDefinitionResponse.serializeBinaryToWriter
+      proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse.serializeBinaryToWriter
     );
   }
 };
@@ -7562,44 +7360,44 @@ proto.contractcase.DefinitionResponse.serializeBinaryToWriter = function(message
  * optional string id = 1;
  * @return {string}
  */
-proto.contractcase.DefinitionResponse.prototype.getId = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.setId = function(value) {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * optional RunStateHandlerRequest run_state_handler = 2;
- * @return {?proto.contractcase.RunStateHandlerRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getRunStateHandler = function() {
-  return /** @type{?proto.contractcase.RunStateHandlerRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.RunStateHandlerRequest, 2));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getRunStateHandler = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest, 2));
 };
 
 
 /**
- * @param {?proto.contractcase.RunStateHandlerRequest|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setRunStateHandler = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setRunStateHandler = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearRunStateHandler = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearRunStateHandler = function() {
   return this.setRunStateHandler(undefined);
 };
 
@@ -7608,35 +7406,35 @@ proto.contractcase.DefinitionResponse.prototype.clearRunStateHandler = function(
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasRunStateHandler = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasRunStateHandler = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional LogRequest log_request = 3;
- * @return {?proto.contractcase.LogRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.LogRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getLogRequest = function() {
-  return /** @type{?proto.contractcase.LogRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.LogRequest, 3));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getLogRequest = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.LogRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.LogRequest, 3));
 };
 
 
 /**
- * @param {?proto.contractcase.LogRequest|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.LogRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setLogRequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 3, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setLogRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 3, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearLogRequest = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearLogRequest = function() {
   return this.setLogRequest(undefined);
 };
 
@@ -7645,35 +7443,35 @@ proto.contractcase.DefinitionResponse.prototype.clearLogRequest = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasLogRequest = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasLogRequest = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional PrintMatchErrorRequest print_match_error_request = 4;
- * @return {?proto.contractcase.PrintMatchErrorRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getPrintMatchErrorRequest = function() {
-  return /** @type{?proto.contractcase.PrintMatchErrorRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.PrintMatchErrorRequest, 4));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getPrintMatchErrorRequest = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest, 4));
 };
 
 
 /**
- * @param {?proto.contractcase.PrintMatchErrorRequest|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setPrintMatchErrorRequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 4, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setPrintMatchErrorRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 4, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearPrintMatchErrorRequest = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearPrintMatchErrorRequest = function() {
   return this.setPrintMatchErrorRequest(undefined);
 };
 
@@ -7682,35 +7480,35 @@ proto.contractcase.DefinitionResponse.prototype.clearPrintMatchErrorRequest = fu
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasPrintMatchErrorRequest = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasPrintMatchErrorRequest = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
  * optional PrintMessageErrorRequest print_message_error_request = 5;
- * @return {?proto.contractcase.PrintMessageErrorRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getPrintMessageErrorRequest = function() {
-  return /** @type{?proto.contractcase.PrintMessageErrorRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.PrintMessageErrorRequest, 5));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getPrintMessageErrorRequest = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest, 5));
 };
 
 
 /**
- * @param {?proto.contractcase.PrintMessageErrorRequest|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setPrintMessageErrorRequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 5, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setPrintMessageErrorRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 5, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearPrintMessageErrorRequest = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearPrintMessageErrorRequest = function() {
   return this.setPrintMessageErrorRequest(undefined);
 };
 
@@ -7719,35 +7517,35 @@ proto.contractcase.DefinitionResponse.prototype.clearPrintMessageErrorRequest = 
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasPrintMessageErrorRequest = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasPrintMessageErrorRequest = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
  * optional PrintTestTitleRequest print_test_title_request = 6;
- * @return {?proto.contractcase.PrintTestTitleRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getPrintTestTitleRequest = function() {
-  return /** @type{?proto.contractcase.PrintTestTitleRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.PrintTestTitleRequest, 6));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getPrintTestTitleRequest = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest, 6));
 };
 
 
 /**
- * @param {?proto.contractcase.PrintTestTitleRequest|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setPrintTestTitleRequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 6, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setPrintTestTitleRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 6, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearPrintTestTitleRequest = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearPrintTestTitleRequest = function() {
   return this.setPrintTestTitleRequest(undefined);
 };
 
@@ -7756,35 +7554,35 @@ proto.contractcase.DefinitionResponse.prototype.clearPrintTestTitleRequest = fun
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasPrintTestTitleRequest = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasPrintTestTitleRequest = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
  * optional TriggerFunctionRequest trigger_function_request = 12;
- * @return {?proto.contractcase.TriggerFunctionRequest}
+ * @return {?proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest}
  */
-proto.contractcase.DefinitionResponse.prototype.getTriggerFunctionRequest = function() {
-  return /** @type{?proto.contractcase.TriggerFunctionRequest} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.TriggerFunctionRequest, 12));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getTriggerFunctionRequest = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest, 12));
 };
 
 
 /**
- * @param {?proto.contractcase.TriggerFunctionRequest|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.TriggerFunctionRequest|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setTriggerFunctionRequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 12, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setTriggerFunctionRequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 12, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearTriggerFunctionRequest = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearTriggerFunctionRequest = function() {
   return this.setTriggerFunctionRequest(undefined);
 };
 
@@ -7793,35 +7591,35 @@ proto.contractcase.DefinitionResponse.prototype.clearTriggerFunctionRequest = fu
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasTriggerFunctionRequest = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasTriggerFunctionRequest = function() {
   return jspb.Message.getField(this, 12) != null;
 };
 
 
 /**
  * optional BeginDefinitionResponse begin_definition_response = 7;
- * @return {?proto.contractcase.BeginDefinitionResponse}
+ * @return {?proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse}
  */
-proto.contractcase.DefinitionResponse.prototype.getBeginDefinitionResponse = function() {
-  return /** @type{?proto.contractcase.BeginDefinitionResponse} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.BeginDefinitionResponse, 7));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getBeginDefinitionResponse = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse, 7));
 };
 
 
 /**
- * @param {?proto.contractcase.BeginDefinitionResponse|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setBeginDefinitionResponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 7, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setBeginDefinitionResponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 7, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearBeginDefinitionResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearBeginDefinitionResponse = function() {
   return this.setBeginDefinitionResponse(undefined);
 };
 
@@ -7830,35 +7628,35 @@ proto.contractcase.DefinitionResponse.prototype.clearBeginDefinitionResponse = f
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasBeginDefinitionResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasBeginDefinitionResponse = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
  * optional RunExampleResponse run_example_response = 8;
- * @return {?proto.contractcase.RunExampleResponse}
+ * @return {?proto.io.contract_testing.contractcase.grpc.RunExampleResponse}
  */
-proto.contractcase.DefinitionResponse.prototype.getRunExampleResponse = function() {
-  return /** @type{?proto.contractcase.RunExampleResponse} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.RunExampleResponse, 8));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getRunExampleResponse = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.RunExampleResponse} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.RunExampleResponse, 8));
 };
 
 
 /**
- * @param {?proto.contractcase.RunExampleResponse|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.RunExampleResponse|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setRunExampleResponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 8, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setRunExampleResponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 8, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearRunExampleResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearRunExampleResponse = function() {
   return this.setRunExampleResponse(undefined);
 };
 
@@ -7867,35 +7665,35 @@ proto.contractcase.DefinitionResponse.prototype.clearRunExampleResponse = functi
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasRunExampleResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasRunExampleResponse = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
  * optional RunRejectingExampleResponse run_rejecting_example_response = 9;
- * @return {?proto.contractcase.RunRejectingExampleResponse}
+ * @return {?proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse}
  */
-proto.contractcase.DefinitionResponse.prototype.getRunRejectingExampleResponse = function() {
-  return /** @type{?proto.contractcase.RunRejectingExampleResponse} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.RunRejectingExampleResponse, 9));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getRunRejectingExampleResponse = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse, 9));
 };
 
 
 /**
- * @param {?proto.contractcase.RunRejectingExampleResponse|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.RunRejectingExampleResponse|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setRunRejectingExampleResponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 9, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setRunRejectingExampleResponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 9, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearRunRejectingExampleResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearRunRejectingExampleResponse = function() {
   return this.setRunRejectingExampleResponse(undefined);
 };
 
@@ -7904,35 +7702,35 @@ proto.contractcase.DefinitionResponse.prototype.clearRunRejectingExampleResponse
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasRunRejectingExampleResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasRunRejectingExampleResponse = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
  * optional StripMatchersResponse strip_matchers_response = 10;
- * @return {?proto.contractcase.StripMatchersResponse}
+ * @return {?proto.io.contract_testing.contractcase.grpc.StripMatchersResponse}
  */
-proto.contractcase.DefinitionResponse.prototype.getStripMatchersResponse = function() {
-  return /** @type{?proto.contractcase.StripMatchersResponse} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.StripMatchersResponse, 10));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getStripMatchersResponse = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.StripMatchersResponse} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.StripMatchersResponse, 10));
 };
 
 
 /**
- * @param {?proto.contractcase.StripMatchersResponse|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.StripMatchersResponse|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setStripMatchersResponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 10, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setStripMatchersResponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 10, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearStripMatchersResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearStripMatchersResponse = function() {
   return this.setStripMatchersResponse(undefined);
 };
 
@@ -7941,35 +7739,35 @@ proto.contractcase.DefinitionResponse.prototype.clearStripMatchersResponse = fun
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasStripMatchersResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasStripMatchersResponse = function() {
   return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
  * optional EndDefinitionResponse end_definition_response = 11;
- * @return {?proto.contractcase.EndDefinitionResponse}
+ * @return {?proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse}
  */
-proto.contractcase.DefinitionResponse.prototype.getEndDefinitionResponse = function() {
-  return /** @type{?proto.contractcase.EndDefinitionResponse} */ (
-    jspb.Message.getWrapperField(this, proto.contractcase.EndDefinitionResponse, 11));
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getEndDefinitionResponse = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse, 11));
 };
 
 
 /**
- * @param {?proto.contractcase.EndDefinitionResponse|undefined} value
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @param {?proto.io.contract_testing.contractcase.grpc.EndDefinitionResponse|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
 */
-proto.contractcase.DefinitionResponse.prototype.setEndDefinitionResponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 11, proto.contractcase.DefinitionResponse.oneofGroups_[0], value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setEndDefinitionResponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 11, proto.io.contract_testing.contractcase.grpc.DefinitionResponse.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.contractcase.DefinitionResponse} returns this
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.contractcase.DefinitionResponse.prototype.clearEndDefinitionResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearEndDefinitionResponse = function() {
   return this.setEndDefinitionResponse(undefined);
 };
 
@@ -7978,9 +7776,9 @@ proto.contractcase.DefinitionResponse.prototype.clearEndDefinitionResponse = fun
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.contractcase.DefinitionResponse.prototype.hasEndDefinitionResponse = function() {
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasEndDefinitionResponse = function() {
   return jspb.Message.getField(this, 11) != null;
 };
 
 
-goog.object.extend(exports, proto.contractcase);
+goog.object.extend(exports, proto.io.contract_testing.contractcase.grpc);

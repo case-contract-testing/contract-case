@@ -1,4 +1,4 @@
-// package: contractcase
+// package: io.contract_testing.contractcase.grpc
 // file: proto/contract_case_stream.proto
 
 /* tslint:disable */
@@ -18,7 +18,7 @@ interface IContractCaseService_IContractDefinition
     proto_contract_case_stream_pb.DefinitionRequest,
     proto_contract_case_stream_pb.DefinitionResponse
   > {
-  path: '/contractcase.ContractCase/ContractDefinition';
+  path: '/io.contract_testing.contractcase.grpc.ContractCase/ContractDefinition';
   requestStream: true;
   responseStream: true;
   requestSerialize: grpc.serialize<proto_contract_case_stream_pb.DefinitionRequest>;

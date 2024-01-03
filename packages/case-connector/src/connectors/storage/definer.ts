@@ -12,6 +12,7 @@ import {
   makeConfigurationError,
 } from '../../domain/errors/errors';
 import { DefinitionId } from '../../domain/types';
+import { maintainerLog } from '../../domain/maintainerLog';
 
 const ENDED_DEFINER = 'CLOSED' as const;
 
@@ -38,6 +39,8 @@ export const createDefiner = (
     ),
   };
   DEFINING_CONTRACTS[id] = definer;
+
+  maintainerLog('  ---  storage', `Storing a definer (${id})`);
   return id;
 };
 

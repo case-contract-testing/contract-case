@@ -1,7 +1,10 @@
-import grpc, { ServerDuplexStream } from '@grpc/grpc-js';
+import { Server, ServerCredentials, ServerDuplexStream } from '@grpc/grpc-js';
 
 import {
+  BoundaryFailure,
+  BoundaryFailureKindConstants,
   BoundaryResult,
+  BoundarySuccess,
   PrintableMatchError,
   PrintableMessageError,
   PrintableTestTitle,
@@ -38,16 +41,30 @@ import {
   makeResult,
 } from './responseMappers';
 import { makeExecuteCall } from './executeCall';
+import { maintainerLog } from '../../domain/maintainerLog';
 
 /**
  * Starts an RPC server that receives requests for the Greeter service at the
  * sample server port
  */
-function main() {
-  const server = new grpc.Server();
+export function main(): void {
+  const server = new Server();
+
+  server.bindAsync(
+    '0.0.0.0:50200',
+    ServerCredentials.createInsecure(),
+    (error, port) => {
+      if (error != null) {
+        maintainerLog('[SERVER]', `Unable to start: ${error}`);
+      } else {
+        maintainerLog('[SERVER]', `Started on port: ${port}`);
+        server.start();
+      }
+    },
+  );
 
   server.addService(service.ContractCaseService, {
-    ContractDefinition: (
+    contractDefinition: (
       call: ServerDuplexStream<WireDefinitionRequest, WireDefinitionResponse>,
     ) => {
       const executeCall = makeExecuteCall(call);
@@ -55,6 +72,10 @@ function main() {
       let definitionId: string | undefined;
 
       call.on('data', (request: WireDefinitionRequest) => {
+        maintainerLog(
+          '[RECEIVED]',
+          JSON.stringify(request.toObject(), null, 2),
+        );
         const type = request.getKindCase();
         switch (type) {
           case WireDefinitionRequest.KindCase.KIND_NOT_SET:
@@ -69,65 +90,91 @@ function main() {
                   'Begin definition was called with something that returned an undefined getBeginDefinition',
                 );
               }
-              definitionId = beginDefinition(
-                mapConfig(beginDefinitionRequest.getConfig(), executeCall),
-                {
-                  log: async (
-                    level: string,
-                    timestamp: string,
-                    version: string,
-                    typeString: string,
-                    location: string,
-                    message: string,
-                    additional: string,
-                  ): Promise<BoundaryResult> =>
-                    waitForResolution(
-                      makeResolvableId((id: string) =>
-                        executeCall(
-                          id,
-                          makeLogRequest({
-                            level,
-                            timestamp,
-                            version,
-                            typeString,
-                            location,
-                            message,
-                            additional,
-                          }),
+              const makeBeginDefinitionResponse = (result: BoundaryResult) =>
+                new WireDefinitionResponse().setBeginDefinitionResponse(
+                  new WireEndDefinitionResponse().setResult(makeResult(result)),
+                );
+              try {
+                definitionId = beginDefinition(
+                  mapConfig(beginDefinitionRequest.getConfig(), executeCall),
+                  {
+                    log: async (
+                      level: string,
+                      timestamp: string,
+                      version: string,
+                      typeString: string,
+                      location: string,
+                      message: string,
+                      additional: string,
+                    ): Promise<BoundaryResult> =>
+                      waitForResolution(
+                        makeResolvableId((id: string) =>
+                          executeCall(
+                            id,
+                            makeLogRequest({
+                              level,
+                              timestamp,
+                              version,
+                              typeString,
+                              location,
+                              message,
+                              additional,
+                            }),
+                          ),
                         ),
                       ),
-                    ),
-                },
-                {
-                  printMatchError: async (
-                    matchError: PrintableMatchError,
-                  ): Promise<BoundaryResult> =>
-                    waitForResolution(
-                      makeResolvableId((id: string) =>
-                        executeCall(id, makePrintMatchErrorRequest(matchError)),
-                      ),
-                    ),
-                  printMessageError: async (
-                    messageError: PrintableMessageError,
-                  ): Promise<BoundaryResult> =>
-                    waitForResolution(
-                      makeResolvableId((id) =>
-                        executeCall(
-                          id,
-                          makePrintableMessageErrorRequest(messageError),
+                  },
+                  {
+                    printMatchError: async (
+                      matchError: PrintableMatchError,
+                    ): Promise<BoundaryResult> =>
+                      waitForResolution(
+                        makeResolvableId((id: string) =>
+                          executeCall(
+                            id,
+                            makePrintMatchErrorRequest(matchError),
+                          ),
                         ),
                       ),
-                    ),
-                  printTestTitle: async (
-                    testTitle: PrintableTestTitle,
-                  ): Promise<BoundaryResult> =>
-                    waitForResolution(
-                      makeResolvableId((id: string) =>
-                        executeCall(id, makePrintTestTitleRequest(testTitle)),
+                    printMessageError: async (
+                      messageError: PrintableMessageError,
+                    ): Promise<BoundaryResult> =>
+                      waitForResolution(
+                        makeResolvableId((id) =>
+                          executeCall(
+                            id,
+                            makePrintableMessageErrorRequest(messageError),
+                          ),
+                        ),
                       ),
+                    printTestTitle: async (
+                      testTitle: PrintableTestTitle,
+                    ): Promise<BoundaryResult> =>
+                      waitForResolution(
+                        makeResolvableId((id: string) =>
+                          executeCall(id, makePrintTestTitleRequest(testTitle)),
+                        ),
+                      ),
+                  },
+                  beginDefinitionRequest.getCallerVersionsList(),
+                );
+              } catch (e) {
+                executeCall(
+                  request.getId(),
+                  makeBeginDefinitionResponse(
+                    new BoundaryFailure(
+                      BoundaryFailureKindConstants.CASE_CORE_ERROR,
+                      `Unable to create definer: ${(e as Error).message}`,
+                      'ContractCase Connector',
                     ),
-                },
-                beginDefinitionRequest.getCallerVersionsList(),
+                  ),
+                );
+                return;
+              }
+
+              executeCall(
+                request.getId(),
+                makeBeginDefinitionResponse(new BoundarySuccess()),
               );
             }
             break;
@@ -173,7 +220,7 @@ function main() {
               );
 
             runExample(
-              request.getId(),
+              definitionId,
               mapJson(runExampleRequest.getExampleDefinition()),
               mapConfig(runExampleRequest.getConfig(), executeCall),
             ).then((result) =>
@@ -201,7 +248,7 @@ function main() {
               );
 
             runRejectingExample(
-              request.getId(),
+              definitionId,
               mapJson(runRejectingExampleRequest.getExampleDefinition()),
               mapConfig(runRejectingExampleRequest.getConfig(), executeCall),
             ).then((result) =>
@@ -233,7 +280,7 @@ function main() {
               request.getId(),
               makeStripMatchersResponse(
                 stripMatchers(
-                  request.getId(),
+                  definitionId,
                   mapJson(stripMatchersRequest.getMatcherOrData()),
                 ),
               ),
@@ -309,13 +356,4 @@ function main() {
       });
     },
   });
-  server.bindAsync(
-    '0.0.0.0:200400',
-    grpc.ServerCredentials.createInsecure(),
-    () => {
-      server.start();
-    },
-  );
 }
-
-main();
