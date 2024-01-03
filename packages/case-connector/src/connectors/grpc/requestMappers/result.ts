@@ -13,16 +13,12 @@ export const mapResult = (
   wireBoundaryResult: WireBoundaryResult | undefined,
 ): BoundaryResult => {
   if (wireBoundaryResult == null) {
-    throw new ConnectorError(
-      'Log printer response was called with something that returned an undefined wireBoundaryResult',
-    );
+    throw new ConnectorError('There was an undefined wireBoundaryResult');
   }
   const resultType = wireBoundaryResult.getValueCase();
   switch (resultType) {
     case WireBoundaryResult.ValueCase.VALUE_NOT_SET:
-      throw new ConnectorError(
-        'Log printer response was called with something that returned an unset wireBoundaryResult. This is probably an error in the wrapper library',
-      );
+      throw new ConnectorError('There was an an unset wireBoundaryResult');
     case WireBoundaryResult.ValueCase.SUCCESS:
       return new BoundarySuccess();
 
