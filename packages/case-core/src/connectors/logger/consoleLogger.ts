@@ -7,7 +7,7 @@ import type { LogLevelContext, Logger } from '../../entities/types';
 import { LogPrinter } from './types';
 
 const caseVersionString = (parentVersions: string[] = []) =>
-  `(${parentVersions.concat([`ContractCasee@${caseVersion}`]).join('->')})`;
+  `(${parentVersions.concat([`ContractCase@${caseVersion}`]).join('->')})`;
 
 const timestampString = (): string =>
   new Date().toLocaleString(Intl.DateTimeFormat().resolvedOptions().locale, {
