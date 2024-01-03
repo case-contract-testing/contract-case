@@ -5,6 +5,7 @@ export const rawEquality = (
   a: AnyCaseMatcherOrData | undefined,
   b: AnyCaseMatcherOrData | undefined,
 ): boolean => {
+  if (a === null && b === null) return true;
   if (
     typeof a === 'function' ||
     typeof a === 'bigint' ||

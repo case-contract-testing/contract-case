@@ -68,3 +68,26 @@ describe('raw equals', () => {
     ).toBe(false);
   });
 });
+
+it('handles the object that came from the Java Wrapper bug', () => {
+  expect(
+    rawEquality(
+      {
+        body: null,
+        headers: null,
+        method: 'GET',
+        path: '/product/10',
+        query: null,
+        uniqueName: null,
+      },
+      {
+        body: null,
+        headers: null,
+        method: 'GET',
+        path: '/product/10',
+        query: null,
+        uniqueName: null,
+      },
+    ),
+  ).toBe(true);
+});

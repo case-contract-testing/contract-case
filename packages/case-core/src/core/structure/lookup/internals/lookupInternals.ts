@@ -18,8 +18,11 @@ export const addLookup = (
       context.logger.error(
         `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`,
       );
-      context.logger.error('New matcher is', matcher);
-      context.logger.error('Existing matcher is', matcherLookup[lookupName]);
+      context.logger.error(`New matcher is (${typeof matcher})`, matcher);
+      context.logger.error(
+        `Existing matcher is (${typeof matcher})`,
+        matcherLookup[lookupName],
+      );
 
       throw new CaseConfigurationError(
         `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`,
