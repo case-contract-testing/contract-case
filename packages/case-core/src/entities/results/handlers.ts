@@ -32,7 +32,15 @@ export const handleResult = (
     ) {
       context.logger.debug(`Matching errors present`);
       if (context['_case:currentRun:context:throwOnFail']) {
+        context.logger.maintainerDebug(
+          `Throwing a CaseFailedAssertionError with`,
+          example.errors,
+        );
         throw new CaseFailedAssertionError(example.errors);
+      } else {
+        context.logger.maintainerDebug(
+          `Not erroring because throwOnFail is false`,
+        );
       }
     }
     const verificationError: VerificationError | undefined =
