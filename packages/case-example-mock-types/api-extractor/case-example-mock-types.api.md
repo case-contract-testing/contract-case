@@ -16,8 +16,7 @@ abstract class AnyMockDescriptor {
     // @internal (undocumented)
     readonly '_case:run:context:setup': InternalContractCaseCoreSetup;
     constructor(mockType: string, setup: ContractCaseCoreSetup);
-    // (undocumented)
-    stringify(): unknown;
+    stringify(): string;
     toJSON(): unknown;
 }
 

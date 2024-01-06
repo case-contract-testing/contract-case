@@ -4,12 +4,18 @@
 
 ## base.AnyMockDescriptor.stringify() method
 
+This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.
+
+You shouldn't need to override this method.
+
 **Signature:**
 
 ```typescript
-stringify(): unknown;
+stringify(): string;
 ```
 
 **Returns:**
 
-unknown
+string
+
+A JSON string representation of this mock.

@@ -8,6 +8,10 @@ Only override this method if you are writing a matcher in a language other than 
 
 It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.
 
+It isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`<!-- -->.
+
+Calling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.
+
 WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in \[Extending ContractCase\](https://case.contract-testing.io/docs/advanced-topics/extending-case).
 
 **Signature:**

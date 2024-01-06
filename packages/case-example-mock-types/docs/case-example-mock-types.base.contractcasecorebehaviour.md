@@ -8,6 +8,8 @@ This type defines the core behaviour that ContractCase has with this mock.
 
 If you are using the included example types from ContractCase (or any extension libraries), you do not need to use this class (or understand this documentation).
 
+This documentation is only necessary for people extending ContractCase to include new mock types.
+
 See the definitions in the case-entities-internal package for more details.
 
 **Signature:**

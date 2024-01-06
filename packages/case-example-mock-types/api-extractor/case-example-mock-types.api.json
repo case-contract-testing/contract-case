@@ -251,7 +251,7 @@
                 {
                   "kind": "Method",
                   "canonicalReference": "@contract-case/case-example-mock-types!base.AnyMockDescriptor#stringify:member(1)",
-                  "docComment": "",
+                  "docComment": "/**\n * This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.\n *\n * You shouldn't need to override this method.\n *\n * @returns A JSON string representation of this mock.\n */\n",
                   "excerptTokens": [
                     {
                       "kind": "Content",
@@ -259,7 +259,7 @@
                     },
                     {
                       "kind": "Content",
-                      "text": "unknown"
+                      "text": "string"
                     },
                     {
                       "kind": "Content",
@@ -282,7 +282,7 @@
                 {
                   "kind": "Method",
                   "canonicalReference": "@contract-case/case-example-mock-types!base.AnyMockDescriptor#toJSON:member(1)",
-                  "docComment": "/**\n * Only override this method if you are writing a matcher in a language other than TypeScript.\n *\n * It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n *\n * WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in [Extending ContractCase](https://case.contract-testing.io/docs/advanced-topics/extending-case).\n *\n * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/advanced-topics/extending-case).\n */\n",
+                  "docComment": "/**\n * Only override this method if you are writing a matcher in a language other than TypeScript.\n *\n * It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n *\n * It isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n *\n * Calling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n *\n * WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in [Extending ContractCase](https://case.contract-testing.io/docs/advanced-topics/extending-case).\n *\n * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/advanced-topics/extending-case).\n */\n",
                   "excerptTokens": [
                     {
                       "kind": "Content",
@@ -316,7 +316,7 @@
             {
               "kind": "Interface",
               "canonicalReference": "@contract-case/case-example-mock-types!base.ContractCaseCoreBehaviour:interface",
-              "docComment": "/**\n * This type defines the core behaviour that ContractCase has with this mock.\n *\n * If you are using the included example types from ContractCase (or any extension libraries), you do not need to use this class (or understand this documentation).\n *\n * See the definitions in the case-entities-internal package for more details.\n *\n * @public\n */\n",
+              "docComment": "/**\n * This type defines the core behaviour that ContractCase has with this mock.\n *\n * If you are using the included example types from ContractCase (or any extension libraries), you do not need to use this class (or understand this documentation).\n *\n * This documentation is only necessary for people extending ContractCase to include new mock types.\n *\n * See the definitions in the case-entities-internal package for more details.\n *\n * @public\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
