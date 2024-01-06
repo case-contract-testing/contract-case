@@ -8,6 +8,7 @@ import { BoundaryResult as WireBoundaryResult } from '../proto/contract_case_str
 import { ConnectorError } from '../../../domain/errors';
 import { UnreachableError } from '../UnreachableError';
 import { mapJson, mapJsonMap } from './json';
+import { unbox } from './values';
 
 export const mapResult = (
   wireBoundaryResult: WireBoundaryResult | undefined,
@@ -48,9 +49,9 @@ export const mapResult = (
         );
       }
       return new BoundaryFailure(
-        wireFailure.getKind(),
-        wireFailure.getMessage(),
-        wireFailure.getLocation(),
+        unbox(wireFailure.getKind()),
+        unbox(wireFailure.getMessage()),
+        unbox(wireFailure.getLocation()),
       );
     }
     default:

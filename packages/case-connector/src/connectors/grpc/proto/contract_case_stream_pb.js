@@ -23,6 +23,8 @@ var global = (function() {
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 goog.object.extend(proto, google_protobuf_struct_pb);
+var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js');
+goog.object.extend(proto, google_protobuf_wrappers_pb);
 goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest', null, global);
 goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.BeginDefinitionResponse', null, global);
 goog.exportSymbol('proto.io.contract_testing.contractcase.grpc.BoundaryResult', null, global);
@@ -748,22 +750,22 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.toObjec
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    providerName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    consumerName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    logLevel: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    contractDir: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    contractFilename: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    publish: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    brokerCiAccessToken: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    brokerBaseUrl: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    providerName: (f = msg.getProviderName()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    consumerName: (f = msg.getConsumerName()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    logLevel: (f = msg.getLogLevel()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    contractDir: (f = msg.getContractDir()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    contractFilename: (f = msg.getContractFilename()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    publish: (f = msg.getPublish()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    brokerCiAccessToken: (f = msg.getBrokerCiAccessToken()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    brokerBaseUrl: (f = msg.getBrokerBaseUrl()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
     brokerBasicAuth: (f = msg.getBrokerBasicAuth()) && proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.toObject(includeInstance, f),
-    printResults: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
-    throwOnFail: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    printResults: (f = msg.getPrintResults()) && google_protobuf_wrappers_pb.BoolValue.toObject(includeInstance, f),
+    throwOnFail: (f = msg.getThrowOnFail()) && google_protobuf_wrappers_pb.BoolValue.toObject(includeInstance, f),
     stateHandlersList: jspb.Message.toObjectList(msg.getStateHandlersList(),
     proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.toObject, includeInstance),
     triggerAndTestsMap: (f = msg.getTriggerAndTestsMap()) ? f.toObject(includeInstance, proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject) : [],
     triggerAndTest: (f = msg.getTriggerAndTest()) && proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject(includeInstance, f),
-    baseUrlUnderTest: jspb.Message.getFieldWithDefault(msg, 15, "")
+    baseUrlUnderTest: (f = msg.getBaseUrlUnderTest()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -801,35 +803,43 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinary
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setProviderName(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setConsumerName(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setLogLevel(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setContractDir(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setContractFilename(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setPublish(value);
       break;
     case 7:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setBrokerCiAccessToken(value);
       break;
     case 8:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setBrokerBaseUrl(value);
       break;
     case 9:
@@ -838,11 +848,13 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinary
       msg.setBrokerBasicAuth(value);
       break;
     case 10:
-      var value = /** @type {boolean} */ (reader.readBool());
+      var value = new google_protobuf_wrappers_pb.BoolValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.BoolValue.deserializeBinaryFromReader);
       msg.setPrintResults(value);
       break;
     case 11:
-      var value = /** @type {boolean} */ (reader.readBool());
+      var value = new google_protobuf_wrappers_pb.BoolValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.BoolValue.deserializeBinaryFromReader);
       msg.setThrowOnFail(value);
       break;
     case 12:
@@ -862,7 +874,8 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinary
       msg.setTriggerAndTest(value);
       break;
     case 15:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setBaseUrlUnderTest(value);
       break;
     default:
@@ -895,59 +908,67 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.seriali
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getProviderName();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getConsumerName();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getLogLevel();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       3,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getContractDir();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       4,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getContractFilename();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       5,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getPublish();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       6,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getBrokerCiAccessToken();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       7,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getBrokerBaseUrl();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       8,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getBrokerBasicAuth();
@@ -959,17 +980,19 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryTo
     );
   }
   f = message.getPrintResults();
-  if (f) {
-    writer.writeBool(
+  if (f != null) {
+    writer.writeMessage(
       10,
-      f
+      f,
+      google_protobuf_wrappers_pb.BoolValue.serializeBinaryToWriter
     );
   }
   f = message.getThrowOnFail();
-  if (f) {
-    writer.writeBool(
+  if (f != null) {
+    writer.writeMessage(
       11,
-      f
+      f,
+      google_protobuf_wrappers_pb.BoolValue.serializeBinaryToWriter
     );
   }
   f = message.getStateHandlersList();
@@ -993,10 +1016,11 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryTo
     );
   }
   f = message.getBaseUrlUnderTest();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       15,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
@@ -1034,8 +1058,8 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.toObject = function(includeInstance, msg) {
   var f, obj = {
-    username: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    password: jspb.Message.getFieldWithDefault(msg, 2, "")
+    username: (f = msg.getUsername()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    password: (f = msg.getPassword()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1073,11 +1097,13 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setUsername(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setPassword(value);
       break;
     default:
@@ -1110,199 +1136,391 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getUsername();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getPassword();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string username = 1;
- * @return {string}
+ * optional google.protobuf.StringValue username = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.getUsername = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.setUsername = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.setUsername = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.clearUsername = function() {
+  return this.setUsername(undefined);
 };
 
 
 /**
- * optional string password = 2;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.hasUsername = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue password = 2;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.getPassword = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 2));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.setPassword = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.setPassword = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.clearPassword = function() {
+  return this.setPassword(undefined);
 };
 
 
 /**
- * optional string provider_name = 1;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.UsernamePassword.prototype.hasPassword = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue provider_name = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getProviderName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setProviderName = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setProviderName = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearProviderName = function() {
+  return this.setProviderName(undefined);
 };
 
 
 /**
- * optional string consumer_name = 2;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasProviderName = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue consumer_name = 2;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getConsumerName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 2));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setConsumerName = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setConsumerName = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearConsumerName = function() {
+  return this.setConsumerName(undefined);
 };
 
 
 /**
- * optional string log_level = 3;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasConsumerName = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue log_level = 3;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getLogLevel = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 3));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setLogLevel = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setLogLevel = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearLogLevel = function() {
+  return this.setLogLevel(undefined);
 };
 
 
 /**
- * optional string contract_dir = 4;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasLogLevel = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue contract_dir = 4;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getContractDir = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 4));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setContractDir = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setContractDir = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearContractDir = function() {
+  return this.setContractDir(undefined);
 };
 
 
 /**
- * optional string contract_filename = 5;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasContractDir = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue contract_filename = 5;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getContractFilename = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 5));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setContractFilename = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setContractFilename = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearContractFilename = function() {
+  return this.setContractFilename(undefined);
 };
 
 
 /**
- * optional string publish = 6;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasContractFilename = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue publish = 6;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getPublish = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 6));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setPublish = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setPublish = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearPublish = function() {
+  return this.setPublish(undefined);
 };
 
 
 /**
- * optional string broker_ci_access_token = 7;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasPublish = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue broker_ci_access_token = 7;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getBrokerCiAccessToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 7));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setBrokerCiAccessToken = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setBrokerCiAccessToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearBrokerCiAccessToken = function() {
+  return this.setBrokerCiAccessToken(undefined);
 };
 
 
 /**
- * optional string broker_base_url = 8;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasBrokerCiAccessToken = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue broker_base_url = 8;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getBrokerBaseUrl = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 8));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setBrokerBaseUrl = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setBrokerBaseUrl = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearBrokerBaseUrl = function() {
+  return this.setBrokerBaseUrl(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasBrokerBaseUrl = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
@@ -1344,38 +1562,76 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasBrok
 
 
 /**
- * optional bool print_results = 10;
- * @return {boolean}
+ * optional google.protobuf.BoolValue print_results = 10;
+ * @return {?proto.google.protobuf.BoolValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getPrintResults = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+  return /** @type{?proto.google.protobuf.BoolValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.BoolValue, 10));
 };
 
 
 /**
- * @param {boolean} value
+ * @param {?proto.google.protobuf.BoolValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setPrintResults = function(value) {
+  return jspb.Message.setWrapperField(this, 10, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setPrintResults = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 10, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearPrintResults = function() {
+  return this.setPrintResults(undefined);
 };
 
 
 /**
- * optional bool throw_on_fail = 11;
+ * Returns whether this field is set.
  * @return {boolean}
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getThrowOnFail = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasPrintResults = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * @param {boolean} value
+ * optional google.protobuf.BoolValue throw_on_fail = 11;
+ * @return {?proto.google.protobuf.BoolValue}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getThrowOnFail = function() {
+  return /** @type{?proto.google.protobuf.BoolValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.BoolValue, 11));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.BoolValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setThrowOnFail = function(value) {
+  return jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setThrowOnFail = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 11, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearThrowOnFail = function() {
+  return this.setThrowOnFail(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasThrowOnFail = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
@@ -1477,20 +1733,39 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasTrig
 
 
 /**
- * optional string base_url_under_test = 15;
- * @return {string}
+ * optional google.protobuf.StringValue base_url_under_test = 15;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getBaseUrlUnderTest = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 15));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setBaseUrlUnderTest = function(value) {
+  return jspb.Message.setWrapperField(this, 15, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setBaseUrlUnderTest = function(value) {
-  return jspb.Message.setProto3StringField(this, 15, value);
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearBaseUrlUnderTest = function() {
+  return this.setBaseUrlUnderTest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasBaseUrlUnderTest = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 
@@ -1929,9 +2204,9 @@ proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.toObject = f
  */
 proto.io.contract_testing.contractcase.grpc.ResultFailure.toObject = function(includeInstance, msg) {
   var f, obj = {
-    kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    message: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 3, "")
+    kind: (f = msg.getKind()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    message: (f = msg.getMessage()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    location: (f = msg.getLocation()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1969,15 +2244,18 @@ proto.io.contract_testing.contractcase.grpc.ResultFailure.deserializeBinaryFromR
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setKind(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setMessage(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setLocation(value);
       break;
     default:
@@ -2010,80 +2288,140 @@ proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.serializeBin
 proto.io.contract_testing.contractcase.grpc.ResultFailure.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKind();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getMessage();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getLocation();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       3,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string kind = 1;
- * @return {string}
+ * optional google.protobuf.StringValue kind = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.getKind = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.setKind = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.setKind = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.clearKind = function() {
+  return this.setKind(undefined);
 };
 
 
 /**
- * optional string message = 2;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.hasKind = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue message = 2;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 2));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.setMessage = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.setMessage = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.clearMessage = function() {
+  return this.setMessage(undefined);
 };
 
 
 /**
- * optional string location = 3;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.hasMessage = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue location = 3;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.getLocation = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 3));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.setLocation = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.ResultFailure} returns this
  */
-proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.setLocation = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.clearLocation = function() {
+  return this.setLocation(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ResultFailure.prototype.hasLocation = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -2451,7 +2789,7 @@ proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.toObjec
  */
 proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.toObject = function(includeInstance, msg) {
   var f, obj = {
-    handle: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    handle: (f = msg.getHandle()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
     stage: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
@@ -2490,7 +2828,8 @@ proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.deserializeBinary
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setHandle(value);
       break;
     case 2:
@@ -2527,10 +2866,11 @@ proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.seriali
 proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getHandle();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getStage();
@@ -2552,20 +2892,39 @@ proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.Stage = {
 };
 
 /**
- * optional string handle = 1;
- * @return {string}
+ * optional google.protobuf.StringValue handle = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.getHandle = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.setHandle = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.StateHandlerHandle} returns this
  */
-proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.setHandle = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.clearHandle = function() {
+  return this.setHandle(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.prototype.hasHandle = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -2619,7 +2978,7 @@ proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.toOb
  */
 proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject = function(includeInstance, msg) {
   var f, obj = {
-    handle: jspb.Message.getFieldWithDefault(msg, 1, "")
+    handle: (f = msg.getHandle()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2657,7 +3016,8 @@ proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.deserializeBin
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setHandle(value);
       break;
     default:
@@ -2690,30 +3050,50 @@ proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.seri
 proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getHandle();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string handle = 1;
- * @return {string}
+ * optional google.protobuf.StringValue handle = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.getHandle = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.setHandle = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle} returns this
  */
-proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.setHandle = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.clearHandle = function() {
+  return this.setHandle(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.prototype.hasHandle = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -2757,7 +3137,8 @@ proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.toO
 proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     config: (f = msg.getConfig()) && proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject(includeInstance, f),
-    callerVersionsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    callerVersionsList: jspb.Message.toObjectList(msg.getCallerVersionsList(),
+    google_protobuf_wrappers_pb.StringValue.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -2800,7 +3181,8 @@ proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.deserializeBi
       msg.setConfig(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.addCallerVersions(value);
       break;
     default:
@@ -2842,9 +3224,10 @@ proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.serializeBina
   }
   f = message.getCallerVersionsList();
   if (f.length > 0) {
-    writer.writeRepeatedString(
+    writer.writeRepeatedMessage(
       4,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
@@ -2888,30 +3271,31 @@ proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.has
 
 
 /**
- * repeated string caller_versions = 4;
- * @return {!Array<string>}
+ * repeated google.protobuf.StringValue caller_versions = 4;
+ * @return {!Array<!proto.google.protobuf.StringValue>}
  */
 proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.getCallerVersionsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+  return /** @type{!Array<!proto.google.protobuf.StringValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, google_protobuf_wrappers_pb.StringValue, 4));
 };
 
 
 /**
- * @param {!Array<string>} value
+ * @param {!Array<!proto.google.protobuf.StringValue>} value
  * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} returns this
- */
+*/
 proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.setCallerVersionsList = function(value) {
-  return jspb.Message.setField(this, 4, value || []);
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.google.protobuf.StringValue=} opt_value
  * @param {number=} opt_index
- * @return {!proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest} returns this
+ * @return {!proto.google.protobuf.StringValue}
  */
-proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.addCallerVersions = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.prototype.addCallerVersions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.google.protobuf.StringValue, opt_index);
 };
 
 
@@ -4469,13 +4853,13 @@ proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.toObject = func
  */
 proto.io.contract_testing.contractcase.grpc.LogRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    level: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    timestamp: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    typeString: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    message: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    additional: jspb.Message.getFieldWithDefault(msg, 7, "")
+    level: (f = msg.getLevel()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    timestamp: (f = msg.getTimestamp()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    version: (f = msg.getVersion()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    typeString: (f = msg.getTypeString()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    location: (f = msg.getLocation()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    message: (f = msg.getMessage()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    additional: (f = msg.getAdditional()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4513,31 +4897,38 @@ proto.io.contract_testing.contractcase.grpc.LogRequest.deserializeBinaryFromRead
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setLevel(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setTimestamp(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setVersion(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setTypeString(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setLocation(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setMessage(value);
       break;
     case 7:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setAdditional(value);
       break;
     default:
@@ -4570,180 +4961,320 @@ proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.serializeBinary
 proto.io.contract_testing.contractcase.grpc.LogRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getLevel();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getTimestamp();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getVersion();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       3,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getTypeString();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       4,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getLocation();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       5,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getMessage();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       6,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getAdditional();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       7,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string level = 1;
- * @return {string}
+ * optional google.protobuf.StringValue level = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getLevel = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setLevel = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setLevel = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.clearLevel = function() {
+  return this.setLevel(undefined);
 };
 
 
 /**
- * optional string timestamp = 2;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.hasLevel = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue timestamp = 2;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getTimestamp = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 2));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setTimestamp = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setTimestamp = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.clearTimestamp = function() {
+  return this.setTimestamp(undefined);
 };
 
 
 /**
- * optional string version = 3;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.hasTimestamp = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue version = 3;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 3));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setVersion = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setVersion = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.clearVersion = function() {
+  return this.setVersion(undefined);
 };
 
 
 /**
- * optional string type_string = 4;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.hasVersion = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue type_string = 4;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getTypeString = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 4));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setTypeString = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setTypeString = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.clearTypeString = function() {
+  return this.setTypeString(undefined);
 };
 
 
 /**
- * optional string location = 5;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.hasTypeString = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue location = 5;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getLocation = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 5));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setLocation = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setLocation = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.clearLocation = function() {
+  return this.setLocation(undefined);
 };
 
 
 /**
- * optional string message = 6;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.hasLocation = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue message = 6;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 6));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setMessage = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setMessage = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.clearMessage = function() {
+  return this.setMessage(undefined);
 };
 
 
 /**
- * optional string additional = 7;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.hasMessage = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue additional = 7;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.getAdditional = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 7));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setAdditional = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.LogRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.setAdditional = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.clearAdditional = function() {
+  return this.setAdditional(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.LogRequest.prototype.hasAdditional = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -4779,13 +5310,13 @@ proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.toO
  */
 proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    message: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    locationTag: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    errorTypeTag: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    expected: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    actual: jspb.Message.getFieldWithDefault(msg, 7, "")
+    kind: (f = msg.getKind()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    message: (f = msg.getMessage()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    location: (f = msg.getLocation()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    locationTag: (f = msg.getLocationTag()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    errorTypeTag: (f = msg.getErrorTypeTag()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    expected: (f = msg.getExpected()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    actual: (f = msg.getActual()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4823,31 +5354,38 @@ proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.deserializeBi
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setKind(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setMessage(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setLocation(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setLocationTag(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setErrorTypeTag(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setExpected(value);
       break;
     case 7:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setActual(value);
       break;
     default:
@@ -4880,180 +5418,320 @@ proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.ser
 proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKind();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getMessage();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getLocation();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       3,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getLocationTag();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       4,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getErrorTypeTag();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       5,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getExpected();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       6,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getActual();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       7,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string kind = 1;
- * @return {string}
+ * optional google.protobuf.StringValue kind = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getKind = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setKind = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setKind = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.clearKind = function() {
+  return this.setKind(undefined);
 };
 
 
 /**
- * optional string message = 2;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.hasKind = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue message = 2;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 2));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setMessage = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setMessage = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.clearMessage = function() {
+  return this.setMessage(undefined);
 };
 
 
 /**
- * optional string location = 3;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.hasMessage = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue location = 3;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getLocation = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 3));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setLocation = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setLocation = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.clearLocation = function() {
+  return this.setLocation(undefined);
 };
 
 
 /**
- * optional string location_tag = 4;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.hasLocation = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue location_tag = 4;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getLocationTag = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 4));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setLocationTag = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setLocationTag = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.clearLocationTag = function() {
+  return this.setLocationTag(undefined);
 };
 
 
 /**
- * optional string error_type_tag = 5;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.hasLocationTag = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue error_type_tag = 5;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getErrorTypeTag = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 5));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setErrorTypeTag = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setErrorTypeTag = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.clearErrorTypeTag = function() {
+  return this.setErrorTypeTag(undefined);
 };
 
 
 /**
- * optional string expected = 6;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.hasErrorTypeTag = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue expected = 6;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getExpected = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 6));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setExpected = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setExpected = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.clearExpected = function() {
+  return this.setExpected(undefined);
 };
 
 
 /**
- * optional string actual = 7;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.hasExpected = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue actual = 7;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.getActual = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 7));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setActual = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.setActual = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.clearActual = function() {
+  return this.setActual(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.prototype.hasActual = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -5089,11 +5767,11 @@ proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.t
  */
 proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    message: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    locationTag: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    errorTypeTag: jspb.Message.getFieldWithDefault(msg, 5, "")
+    kind: (f = msg.getKind()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    message: (f = msg.getMessage()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    location: (f = msg.getLocation()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    locationTag: (f = msg.getLocationTag()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    errorTypeTag: (f = msg.getErrorTypeTag()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5131,23 +5809,28 @@ proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.deserialize
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setKind(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setMessage(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setLocation(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setLocationTag(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setErrorTypeTag(value);
       break;
     default:
@@ -5180,130 +5863,230 @@ proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.s
 proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKind();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getMessage();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getLocation();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       3,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getLocationTag();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       4,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getErrorTypeTag();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       5,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string kind = 1;
- * @return {string}
+ * optional google.protobuf.StringValue kind = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.getKind = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setKind = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setKind = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.clearKind = function() {
+  return this.setKind(undefined);
 };
 
 
 /**
- * optional string message = 2;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.hasKind = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue message = 2;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 2));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setMessage = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setMessage = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.clearMessage = function() {
+  return this.setMessage(undefined);
 };
 
 
 /**
- * optional string location = 3;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.hasMessage = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue location = 3;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.getLocation = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 3));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setLocation = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setLocation = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.clearLocation = function() {
+  return this.setLocation(undefined);
 };
 
 
 /**
- * optional string location_tag = 4;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.hasLocation = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue location_tag = 4;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.getLocationTag = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 4));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setLocationTag = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setLocationTag = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.clearLocationTag = function() {
+  return this.setLocationTag(undefined);
 };
 
 
 /**
- * optional string error_type_tag = 5;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.hasLocationTag = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue error_type_tag = 5;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.getErrorTypeTag = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 5));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setErrorTypeTag = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.setErrorTypeTag = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.clearErrorTypeTag = function() {
+  return this.setErrorTypeTag(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintMessageErrorRequest.prototype.hasErrorTypeTag = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -5339,10 +6122,10 @@ proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.toOb
  */
 proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    icon: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    title: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    additionalText: jspb.Message.getFieldWithDefault(msg, 4, "")
+    kind: (f = msg.getKind()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    icon: (f = msg.getIcon()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    title: (f = msg.getTitle()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    additionalText: (f = msg.getAdditionalText()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5380,19 +6163,23 @@ proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.deserializeBin
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setKind(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setIcon(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setTitle(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setAdditionalText(value);
       break;
     default:
@@ -5425,105 +6212,185 @@ proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.seri
 proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKind();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getIcon();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getTitle();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       3,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getAdditionalText();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       4,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string kind = 1;
- * @return {string}
+ * optional google.protobuf.StringValue kind = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.getKind = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setKind = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setKind = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.clearKind = function() {
+  return this.setKind(undefined);
 };
 
 
 /**
- * optional string icon = 2;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.hasKind = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue icon = 2;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.getIcon = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 2));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setIcon = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setIcon = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.clearIcon = function() {
+  return this.setIcon(undefined);
 };
 
 
 /**
- * optional string title = 3;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.hasIcon = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue title = 3;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.getTitle = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 3));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setTitle = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setTitle = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.clearTitle = function() {
+  return this.setTitle(undefined);
 };
 
 
 /**
- * optional string additional_text = 4;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.hasTitle = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue additional_text = 4;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.getAdditionalText = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 4));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setAdditionalText = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.setAdditionalText = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.clearAdditionalText = function() {
+  return this.setAdditionalText(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.PrintTestTitleRequest.prototype.hasAdditionalText = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -6498,7 +7365,7 @@ proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.toObject
  */
 proto.io.contract_testing.contractcase.grpc.DefinitionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    id: (f = msg.getId()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
     beginDefinition: (f = msg.getBeginDefinition()) && proto.io.contract_testing.contractcase.grpc.BeginDefinitionRequest.toObject(includeInstance, f),
     runExample: (f = msg.getRunExample()) && proto.io.contract_testing.contractcase.grpc.RunExampleRequest.toObject(includeInstance, f),
     runRejectingExample: (f = msg.getRunRejectingExample()) && proto.io.contract_testing.contractcase.grpc.RunRejectingExampleRequest.toObject(includeInstance, f),
@@ -6545,7 +7412,8 @@ proto.io.contract_testing.contractcase.grpc.DefinitionRequest.deserializeBinaryF
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setId(value);
       break;
     case 2:
@@ -6623,10 +7491,11 @@ proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.serializ
 proto.io.contract_testing.contractcase.grpc.DefinitionRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getBeginDefinition();
@@ -6705,20 +7574,39 @@ proto.io.contract_testing.contractcase.grpc.DefinitionRequest.serializeBinaryToW
 
 
 /**
- * optional string id = 1;
- * @return {string}
+ * optional google.protobuf.StringValue id = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setId = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionRequest} returns this
  */
-proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.clearId = function() {
+  return this.setId(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.DefinitionRequest.prototype.hasId = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -7122,7 +8010,7 @@ proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.toObjec
  */
 proto.io.contract_testing.contractcase.grpc.DefinitionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    id: (f = msg.getId()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
     runStateHandler: (f = msg.getRunStateHandler()) && proto.io.contract_testing.contractcase.grpc.RunStateHandlerRequest.toObject(includeInstance, f),
     logRequest: (f = msg.getLogRequest()) && proto.io.contract_testing.contractcase.grpc.LogRequest.toObject(includeInstance, f),
     printMatchErrorRequest: (f = msg.getPrintMatchErrorRequest()) && proto.io.contract_testing.contractcase.grpc.PrintMatchErrorRequest.toObject(includeInstance, f),
@@ -7171,7 +8059,8 @@ proto.io.contract_testing.contractcase.grpc.DefinitionResponse.deserializeBinary
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setId(value);
       break;
     case 2:
@@ -7259,10 +8148,11 @@ proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.seriali
 proto.io.contract_testing.contractcase.grpc.DefinitionResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
   f = message.getRunStateHandler();
@@ -7357,20 +8247,39 @@ proto.io.contract_testing.contractcase.grpc.DefinitionResponse.serializeBinaryTo
 
 
 /**
- * optional string id = 1;
- * @return {string}
+ * optional google.protobuf.StringValue id = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setId = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.io.contract_testing.contractcase.grpc.DefinitionResponse} returns this
  */
-proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.clearId = function() {
+  return this.setId(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.DefinitionResponse.prototype.hasId = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 

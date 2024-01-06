@@ -3,6 +3,7 @@ import {
   PrintableMessageError,
   PrintableTestTitle,
 } from '@contract-case/case-boundary';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 import {
   DefinitionResponse as WireDefinitionResponse,
   LogRequest as WireLogRequest,
@@ -30,13 +31,13 @@ export const makeLogRequest = ({
 }): WireDefinitionResponse =>
   new WireDefinitionResponse().setLogRequest(
     new WireLogRequest()
-      .setLevel(level)
-      .setTimestamp(timestamp)
-      .setVersion(version)
-      .setTypeString(typeString)
-      .setLocation(location)
-      .setMessage(message)
-      .setAdditional(additional),
+      .setLevel(new StringValue().setValue(level))
+      .setTimestamp(new StringValue().setValue(timestamp))
+      .setVersion(new StringValue().setValue(version))
+      .setTypeString(new StringValue().setValue(typeString))
+      .setLocation(new StringValue().setValue(location))
+      .setMessage(new StringValue().setValue(message))
+      .setAdditional(new StringValue().setValue(additional)),
   );
 
 export const makePrintMatchErrorRequest = ({
@@ -50,13 +51,13 @@ export const makePrintMatchErrorRequest = ({
 }: PrintableMatchError): WireDefinitionResponse =>
   new WireDefinitionResponse().setPrintMatchErrorRequest(
     new WirePrintMatchErrorRequest()
-      .setActual(actual)
-      .setKind(kind)
-      .setLocationTag(locationTag)
-      .setExpected(expected)
-      .setLocation(location)
-      .setMessage(message)
-      .setErrorTypeTag(errorTypeTag),
+      .setActual(new StringValue().setValue(actual))
+      .setKind(new StringValue().setValue(kind))
+      .setLocationTag(new StringValue().setValue(locationTag))
+      .setExpected(new StringValue().setValue(expected))
+      .setLocation(new StringValue().setValue(location))
+      .setMessage(new StringValue().setValue(message))
+      .setErrorTypeTag(new StringValue().setValue(errorTypeTag)),
   );
 
 export const makePrintableMessageErrorRequest = ({
@@ -68,11 +69,11 @@ export const makePrintableMessageErrorRequest = ({
 }: PrintableMessageError): WireDefinitionResponse =>
   new WireDefinitionResponse().setPrintMessageErrorRequest(
     new WirePrintMessageErrorRequest()
-      .setErrorTypeTag(errorTypeTag)
-      .setKind(kind)
-      .setLocation(location)
-      .setLocationTag(locationTag)
-      .setMessage(message),
+      .setErrorTypeTag(new StringValue().setValue(errorTypeTag))
+      .setKind(new StringValue().setValue(kind))
+      .setLocation(new StringValue().setValue(location))
+      .setLocationTag(new StringValue().setValue(locationTag))
+      .setMessage(new StringValue().setValue(message)),
   );
 
 export const makePrintTestTitleRequest = ({
@@ -83,8 +84,8 @@ export const makePrintTestTitleRequest = ({
 }: PrintableTestTitle): WireDefinitionResponse =>
   new WireDefinitionResponse().setPrintTestTitleRequest(
     new WirePrintTestTitleRequest()
-      .setKind(kind)
-      .setIcon(icon)
-      .setTitle(title)
-      .setAdditionalText(additionalText),
+      .setKind(new StringValue().setValue(kind))
+      .setIcon(new StringValue().setValue(icon))
+      .setTitle(new StringValue().setValue(title))
+      .setAdditionalText(new StringValue().setValue(additionalText)),
   );

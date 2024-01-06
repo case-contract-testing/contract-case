@@ -43,6 +43,14 @@ import {
 import { makeExecuteCall } from './executeCall';
 import { maintainerLog } from '../../domain/maintainerLog';
 
+const getId = (request: WireDefinitionRequest): string => {
+  const id = request.getId();
+  if (id === undefined) {
+    throw new ConnectorError('Request had no id, but we were expecting one');
+  }
+  return id.getValue();
+};
+
 /**
  * Starts an RPC server that receives requests for the Greeter service at the
  * sample server port
@@ -156,11 +164,15 @@ export function main(): void {
                         ),
                       ),
                   },
-                  beginDefinitionRequest.getCallerVersionsList(),
+                  beginDefinitionRequest
+                    .getCallerVersionsList()
+                    .map((s) =>
+                      s != null ? s.getValue() : 'missing-version-value',
+                    ),
                 );
               } catch (e) {
                 executeCall(
-                  request.getId(),
+                  getId(request),
                   makeBeginDefinitionResponse(
                     new BoundaryFailure(
                       BoundaryFailureKindConstants.CASE_CORE_ERROR,
@@ -173,7 +185,7 @@ export function main(): void {
               }
 
               executeCall(
-                request.getId(),
+                getId(request),
                 makeBeginDefinitionResponse(new BoundarySuccess()),
               );
             }
@@ -197,7 +209,7 @@ export function main(): void {
               );
 
             endRecord(definitionId).then((result) =>
-              executeCall(request.getId(), makeEndDefinitionResponse(result)),
+              executeCall(getId(request), makeEndDefinitionResponse(result)),
             );
             break;
           }
@@ -224,7 +236,7 @@ export function main(): void {
               mapJson(runExampleRequest.getExampleDefinition()),
               mapConfig(runExampleRequest.getConfig(), executeCall),
             ).then((result) =>
-              executeCall(request.getId(), makeRunExampleResponse(result)),
+              executeCall(getId(request), makeRunExampleResponse(result)),
             );
             break;
           }
@@ -253,7 +265,7 @@ export function main(): void {
               mapConfig(runRejectingExampleRequest.getConfig(), executeCall),
             ).then((result) =>
               executeCall(
-                request.getId(),
+                getId(request),
                 makeRunRejectingExampleResponse(result),
               ),
             );
@@ -277,7 +289,7 @@ export function main(): void {
               );
 
             executeCall(
-              request.getId(),
+              getId(request),
               makeStripMatchersResponse(
                 stripMatchers(
                   definitionId,
@@ -297,7 +309,7 @@ export function main(): void {
               }
 
               resolveById(
-                request.getId(),
+                getId(request),
                 mapResult(stateHandlerResponse.getResult()),
               );
             }
@@ -312,7 +324,7 @@ export function main(): void {
               }
 
               resolveById(
-                request.getId(),
+                getId(request),
                 mapResult(resultPrinterResponse.getResult()),
               );
             }
@@ -328,7 +340,7 @@ export function main(): void {
               }
 
               resolveById(
-                request.getId(),
+                getId(request),
                 mapResult(triggerFunctionResponse.getResult()),
               );
             }
@@ -342,7 +354,7 @@ export function main(): void {
             }
 
             resolveById(
-              request.getId(),
+              getId(request),
               mapResult(logPrinterResponse.getResult()),
             );
             break;

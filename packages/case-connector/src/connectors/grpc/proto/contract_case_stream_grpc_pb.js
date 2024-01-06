@@ -4,6 +4,7 @@
 var grpc = require('@grpc/grpc-js');
 var proto_contract_case_stream_pb = require('../proto/contract_case_stream_pb.js');
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
+var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js');
 
 function serialize_io_contract_testing_contractcase_grpc_DefinitionRequest(arg) {
   if (!(arg instanceof proto_contract_case_stream_pb.DefinitionRequest)) {

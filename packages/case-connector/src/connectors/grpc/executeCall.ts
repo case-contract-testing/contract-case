@@ -1,4 +1,5 @@
 import { ServerDuplexStream } from '@grpc/grpc-js';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 import {
   DefinitionRequest as WireDefinitionRequest,
   DefinitionResponse as WireDefinitionResponse,
@@ -12,7 +13,7 @@ const executeCall = (
 ) =>
   new Promise<void>((resolve) => {
     maintainerLog(`[SENDING] (${id})`, response.toObject());
-    call.write(response.setId(id), () => {
+    call.write(response.setId(new StringValue().setValue(id)), () => {
       resolve();
     });
   });

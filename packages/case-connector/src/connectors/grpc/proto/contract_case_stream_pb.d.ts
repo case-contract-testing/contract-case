@@ -6,24 +6,64 @@
 
 import * as jspb from 'google-protobuf';
 import * as google_protobuf_struct_pb from 'google-protobuf/google/protobuf/struct_pb';
+import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wrappers_pb';
 
 export class ContractCaseConfig extends jspb.Message {
-  getProviderName(): string;
-  setProviderName(value: string): ContractCaseConfig;
-  getConsumerName(): string;
-  setConsumerName(value: string): ContractCaseConfig;
-  getLogLevel(): string;
-  setLogLevel(value: string): ContractCaseConfig;
-  getContractDir(): string;
-  setContractDir(value: string): ContractCaseConfig;
-  getContractFilename(): string;
-  setContractFilename(value: string): ContractCaseConfig;
-  getPublish(): string;
-  setPublish(value: string): ContractCaseConfig;
-  getBrokerCiAccessToken(): string;
-  setBrokerCiAccessToken(value: string): ContractCaseConfig;
-  getBrokerBaseUrl(): string;
-  setBrokerBaseUrl(value: string): ContractCaseConfig;
+  hasProviderName(): boolean;
+  clearProviderName(): void;
+  getProviderName(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setProviderName(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ContractCaseConfig;
+
+  hasConsumerName(): boolean;
+  clearConsumerName(): void;
+  getConsumerName(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setConsumerName(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ContractCaseConfig;
+
+  hasLogLevel(): boolean;
+  clearLogLevel(): void;
+  getLogLevel(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setLogLevel(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ContractCaseConfig;
+
+  hasContractDir(): boolean;
+  clearContractDir(): void;
+  getContractDir(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setContractDir(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ContractCaseConfig;
+
+  hasContractFilename(): boolean;
+  clearContractFilename(): void;
+  getContractFilename(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setContractFilename(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ContractCaseConfig;
+
+  hasPublish(): boolean;
+  clearPublish(): void;
+  getPublish(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setPublish(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ContractCaseConfig;
+
+  hasBrokerCiAccessToken(): boolean;
+  clearBrokerCiAccessToken(): void;
+  getBrokerCiAccessToken(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setBrokerCiAccessToken(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ContractCaseConfig;
+
+  hasBrokerBaseUrl(): boolean;
+  clearBrokerBaseUrl(): void;
+  getBrokerBaseUrl(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setBrokerBaseUrl(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ContractCaseConfig;
 
   hasBrokerBasicAuth(): boolean;
   clearBrokerBasicAuth(): void;
@@ -31,10 +71,20 @@ export class ContractCaseConfig extends jspb.Message {
   setBrokerBasicAuth(
     value?: ContractCaseConfig.UsernamePassword,
   ): ContractCaseConfig;
-  getPrintResults(): boolean;
-  setPrintResults(value: boolean): ContractCaseConfig;
-  getThrowOnFail(): boolean;
-  setThrowOnFail(value: boolean): ContractCaseConfig;
+
+  hasPrintResults(): boolean;
+  clearPrintResults(): void;
+  getPrintResults(): google_protobuf_wrappers_pb.BoolValue | undefined;
+  setPrintResults(
+    value?: google_protobuf_wrappers_pb.BoolValue,
+  ): ContractCaseConfig;
+
+  hasThrowOnFail(): boolean;
+  clearThrowOnFail(): void;
+  getThrowOnFail(): google_protobuf_wrappers_pb.BoolValue | undefined;
+  setThrowOnFail(
+    value?: google_protobuf_wrappers_pb.BoolValue,
+  ): ContractCaseConfig;
   clearStateHandlersList(): void;
   getStateHandlersList(): Array<StateHandlerHandle>;
   setStateHandlersList(value: Array<StateHandlerHandle>): ContractCaseConfig;
@@ -50,8 +100,13 @@ export class ContractCaseConfig extends jspb.Message {
   clearTriggerAndTest(): void;
   getTriggerAndTest(): TriggerFunctionHandle | undefined;
   setTriggerAndTest(value?: TriggerFunctionHandle): ContractCaseConfig;
-  getBaseUrlUnderTest(): string;
-  setBaseUrlUnderTest(value: string): ContractCaseConfig;
+
+  hasBaseUrlUnderTest(): boolean;
+  clearBaseUrlUnderTest(): void;
+  getBaseUrlUnderTest(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setBaseUrlUnderTest(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ContractCaseConfig;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ContractCaseConfig.AsObject;
@@ -76,29 +131,38 @@ export class ContractCaseConfig extends jspb.Message {
 
 export namespace ContractCaseConfig {
   export type AsObject = {
-    providerName: string;
-    consumerName: string;
-    logLevel: string;
-    contractDir: string;
-    contractFilename: string;
-    publish: string;
-    brokerCiAccessToken: string;
-    brokerBaseUrl: string;
+    providerName?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    consumerName?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    logLevel?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    contractDir?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    contractFilename?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    publish?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    brokerCiAccessToken?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    brokerBaseUrl?: google_protobuf_wrappers_pb.StringValue.AsObject;
     brokerBasicAuth?: ContractCaseConfig.UsernamePassword.AsObject;
-    printResults: boolean;
-    throwOnFail: boolean;
+    printResults?: google_protobuf_wrappers_pb.BoolValue.AsObject;
+    throwOnFail?: google_protobuf_wrappers_pb.BoolValue.AsObject;
     stateHandlersList: Array<StateHandlerHandle.AsObject>;
 
     triggerAndTestsMap: Array<[string, TriggerFunctionHandle.AsObject]>;
     triggerAndTest?: TriggerFunctionHandle.AsObject;
-    baseUrlUnderTest: string;
+    baseUrlUnderTest?: google_protobuf_wrappers_pb.StringValue.AsObject;
   };
 
   export class UsernamePassword extends jspb.Message {
-    getUsername(): string;
-    setUsername(value: string): UsernamePassword;
-    getPassword(): string;
-    setPassword(value: string): UsernamePassword;
+    hasUsername(): boolean;
+    clearUsername(): void;
+    getUsername(): google_protobuf_wrappers_pb.StringValue | undefined;
+    setUsername(
+      value?: google_protobuf_wrappers_pb.StringValue,
+    ): UsernamePassword;
+
+    hasPassword(): boolean;
+    clearPassword(): void;
+    getPassword(): google_protobuf_wrappers_pb.StringValue | undefined;
+    setPassword(
+      value?: google_protobuf_wrappers_pb.StringValue,
+    ): UsernamePassword;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UsernamePassword.AsObject;
@@ -123,8 +187,8 @@ export namespace ContractCaseConfig {
 
   export namespace UsernamePassword {
     export type AsObject = {
-      username: string;
-      password: string;
+      username?: google_protobuf_wrappers_pb.StringValue.AsObject;
+      password?: google_protobuf_wrappers_pb.StringValue.AsObject;
     };
   }
 }
@@ -224,12 +288,20 @@ export namespace ResultSuccessHasAnyPayload {
 }
 
 export class ResultFailure extends jspb.Message {
-  getKind(): string;
-  setKind(value: string): ResultFailure;
-  getMessage(): string;
-  setMessage(value: string): ResultFailure;
-  getLocation(): string;
-  setLocation(value: string): ResultFailure;
+  hasKind(): boolean;
+  clearKind(): void;
+  getKind(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setKind(value?: google_protobuf_wrappers_pb.StringValue): ResultFailure;
+
+  hasMessage(): boolean;
+  clearMessage(): void;
+  getMessage(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setMessage(value?: google_protobuf_wrappers_pb.StringValue): ResultFailure;
+
+  hasLocation(): boolean;
+  clearLocation(): void;
+  getLocation(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setLocation(value?: google_protobuf_wrappers_pb.StringValue): ResultFailure;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResultFailure.AsObject;
@@ -254,9 +326,9 @@ export class ResultFailure extends jspb.Message {
 
 export namespace ResultFailure {
   export type AsObject = {
-    kind: string;
-    message: string;
-    location: string;
+    kind?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    message?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    location?: google_protobuf_wrappers_pb.StringValue.AsObject;
   };
 }
 
@@ -322,8 +394,12 @@ export namespace BoundaryResult {
 }
 
 export class StateHandlerHandle extends jspb.Message {
-  getHandle(): string;
-  setHandle(value: string): StateHandlerHandle;
+  hasHandle(): boolean;
+  clearHandle(): void;
+  getHandle(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setHandle(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): StateHandlerHandle;
   getStage(): StateHandlerHandle.Stage;
   setStage(value: StateHandlerHandle.Stage): StateHandlerHandle;
 
@@ -350,7 +426,7 @@ export class StateHandlerHandle extends jspb.Message {
 
 export namespace StateHandlerHandle {
   export type AsObject = {
-    handle: string;
+    handle?: google_protobuf_wrappers_pb.StringValue.AsObject;
     stage: StateHandlerHandle.Stage;
   };
 
@@ -361,8 +437,12 @@ export namespace StateHandlerHandle {
 }
 
 export class TriggerFunctionHandle extends jspb.Message {
-  getHandle(): string;
-  setHandle(value: string): TriggerFunctionHandle;
+  hasHandle(): boolean;
+  clearHandle(): void;
+  getHandle(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setHandle(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): TriggerFunctionHandle;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TriggerFunctionHandle.AsObject;
@@ -387,7 +467,7 @@ export class TriggerFunctionHandle extends jspb.Message {
 
 export namespace TriggerFunctionHandle {
   export type AsObject = {
-    handle: string;
+    handle?: google_protobuf_wrappers_pb.StringValue.AsObject;
   };
 }
 
@@ -397,9 +477,14 @@ export class BeginDefinitionRequest extends jspb.Message {
   getConfig(): ContractCaseConfig | undefined;
   setConfig(value?: ContractCaseConfig): BeginDefinitionRequest;
   clearCallerVersionsList(): void;
-  getCallerVersionsList(): Array<string>;
-  setCallerVersionsList(value: Array<string>): BeginDefinitionRequest;
-  addCallerVersions(value: string, index?: number): string;
+  getCallerVersionsList(): Array<google_protobuf_wrappers_pb.StringValue>;
+  setCallerVersionsList(
+    value: Array<google_protobuf_wrappers_pb.StringValue>,
+  ): BeginDefinitionRequest;
+  addCallerVersions(
+    value?: google_protobuf_wrappers_pb.StringValue,
+    index?: number,
+  ): google_protobuf_wrappers_pb.StringValue;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BeginDefinitionRequest.AsObject;
@@ -425,7 +510,7 @@ export class BeginDefinitionRequest extends jspb.Message {
 export namespace BeginDefinitionRequest {
   export type AsObject = {
     config?: ContractCaseConfig.AsObject;
-    callerVersionsList: Array<string>;
+    callerVersionsList: Array<google_protobuf_wrappers_pb.StringValue.AsObject>;
   };
 }
 
@@ -750,20 +835,40 @@ export namespace TriggerFunctionRequest {
 }
 
 export class LogRequest extends jspb.Message {
-  getLevel(): string;
-  setLevel(value: string): LogRequest;
-  getTimestamp(): string;
-  setTimestamp(value: string): LogRequest;
-  getVersion(): string;
-  setVersion(value: string): LogRequest;
-  getTypeString(): string;
-  setTypeString(value: string): LogRequest;
-  getLocation(): string;
-  setLocation(value: string): LogRequest;
-  getMessage(): string;
-  setMessage(value: string): LogRequest;
-  getAdditional(): string;
-  setAdditional(value: string): LogRequest;
+  hasLevel(): boolean;
+  clearLevel(): void;
+  getLevel(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setLevel(value?: google_protobuf_wrappers_pb.StringValue): LogRequest;
+
+  hasTimestamp(): boolean;
+  clearTimestamp(): void;
+  getTimestamp(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setTimestamp(value?: google_protobuf_wrappers_pb.StringValue): LogRequest;
+
+  hasVersion(): boolean;
+  clearVersion(): void;
+  getVersion(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setVersion(value?: google_protobuf_wrappers_pb.StringValue): LogRequest;
+
+  hasTypeString(): boolean;
+  clearTypeString(): void;
+  getTypeString(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setTypeString(value?: google_protobuf_wrappers_pb.StringValue): LogRequest;
+
+  hasLocation(): boolean;
+  clearLocation(): void;
+  getLocation(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setLocation(value?: google_protobuf_wrappers_pb.StringValue): LogRequest;
+
+  hasMessage(): boolean;
+  clearMessage(): void;
+  getMessage(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setMessage(value?: google_protobuf_wrappers_pb.StringValue): LogRequest;
+
+  hasAdditional(): boolean;
+  clearAdditional(): void;
+  getAdditional(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setAdditional(value?: google_protobuf_wrappers_pb.StringValue): LogRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): LogRequest.AsObject;
@@ -788,31 +893,65 @@ export class LogRequest extends jspb.Message {
 
 export namespace LogRequest {
   export type AsObject = {
-    level: string;
-    timestamp: string;
-    version: string;
-    typeString: string;
-    location: string;
-    message: string;
-    additional: string;
+    level?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    timestamp?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    version?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    typeString?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    location?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    message?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    additional?: google_protobuf_wrappers_pb.StringValue.AsObject;
   };
 }
 
 export class PrintMatchErrorRequest extends jspb.Message {
-  getKind(): string;
-  setKind(value: string): PrintMatchErrorRequest;
-  getMessage(): string;
-  setMessage(value: string): PrintMatchErrorRequest;
-  getLocation(): string;
-  setLocation(value: string): PrintMatchErrorRequest;
-  getLocationTag(): string;
-  setLocationTag(value: string): PrintMatchErrorRequest;
-  getErrorTypeTag(): string;
-  setErrorTypeTag(value: string): PrintMatchErrorRequest;
-  getExpected(): string;
-  setExpected(value: string): PrintMatchErrorRequest;
-  getActual(): string;
-  setActual(value: string): PrintMatchErrorRequest;
+  hasKind(): boolean;
+  clearKind(): void;
+  getKind(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setKind(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMatchErrorRequest;
+
+  hasMessage(): boolean;
+  clearMessage(): void;
+  getMessage(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setMessage(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMatchErrorRequest;
+
+  hasLocation(): boolean;
+  clearLocation(): void;
+  getLocation(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setLocation(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMatchErrorRequest;
+
+  hasLocationTag(): boolean;
+  clearLocationTag(): void;
+  getLocationTag(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setLocationTag(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMatchErrorRequest;
+
+  hasErrorTypeTag(): boolean;
+  clearErrorTypeTag(): void;
+  getErrorTypeTag(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setErrorTypeTag(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMatchErrorRequest;
+
+  hasExpected(): boolean;
+  clearExpected(): void;
+  getExpected(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setExpected(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMatchErrorRequest;
+
+  hasActual(): boolean;
+  clearActual(): void;
+  getActual(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setActual(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMatchErrorRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PrintMatchErrorRequest.AsObject;
@@ -837,27 +976,51 @@ export class PrintMatchErrorRequest extends jspb.Message {
 
 export namespace PrintMatchErrorRequest {
   export type AsObject = {
-    kind: string;
-    message: string;
-    location: string;
-    locationTag: string;
-    errorTypeTag: string;
-    expected: string;
-    actual: string;
+    kind?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    message?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    location?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    locationTag?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    errorTypeTag?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    expected?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    actual?: google_protobuf_wrappers_pb.StringValue.AsObject;
   };
 }
 
 export class PrintMessageErrorRequest extends jspb.Message {
-  getKind(): string;
-  setKind(value: string): PrintMessageErrorRequest;
-  getMessage(): string;
-  setMessage(value: string): PrintMessageErrorRequest;
-  getLocation(): string;
-  setLocation(value: string): PrintMessageErrorRequest;
-  getLocationTag(): string;
-  setLocationTag(value: string): PrintMessageErrorRequest;
-  getErrorTypeTag(): string;
-  setErrorTypeTag(value: string): PrintMessageErrorRequest;
+  hasKind(): boolean;
+  clearKind(): void;
+  getKind(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setKind(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMessageErrorRequest;
+
+  hasMessage(): boolean;
+  clearMessage(): void;
+  getMessage(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setMessage(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMessageErrorRequest;
+
+  hasLocation(): boolean;
+  clearLocation(): void;
+  getLocation(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setLocation(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMessageErrorRequest;
+
+  hasLocationTag(): boolean;
+  clearLocationTag(): void;
+  getLocationTag(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setLocationTag(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMessageErrorRequest;
+
+  hasErrorTypeTag(): boolean;
+  clearErrorTypeTag(): void;
+  getErrorTypeTag(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setErrorTypeTag(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintMessageErrorRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PrintMessageErrorRequest.AsObject;
@@ -882,23 +1045,42 @@ export class PrintMessageErrorRequest extends jspb.Message {
 
 export namespace PrintMessageErrorRequest {
   export type AsObject = {
-    kind: string;
-    message: string;
-    location: string;
-    locationTag: string;
-    errorTypeTag: string;
+    kind?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    message?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    location?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    locationTag?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    errorTypeTag?: google_protobuf_wrappers_pb.StringValue.AsObject;
   };
 }
 
 export class PrintTestTitleRequest extends jspb.Message {
-  getKind(): string;
-  setKind(value: string): PrintTestTitleRequest;
-  getIcon(): string;
-  setIcon(value: string): PrintTestTitleRequest;
-  getTitle(): string;
-  setTitle(value: string): PrintTestTitleRequest;
-  getAdditionalText(): string;
-  setAdditionalText(value: string): PrintTestTitleRequest;
+  hasKind(): boolean;
+  clearKind(): void;
+  getKind(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setKind(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintTestTitleRequest;
+
+  hasIcon(): boolean;
+  clearIcon(): void;
+  getIcon(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setIcon(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintTestTitleRequest;
+
+  hasTitle(): boolean;
+  clearTitle(): void;
+  getTitle(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setTitle(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintTestTitleRequest;
+
+  hasAdditionalText(): boolean;
+  clearAdditionalText(): void;
+  getAdditionalText(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setAdditionalText(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PrintTestTitleRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PrintTestTitleRequest.AsObject;
@@ -923,10 +1105,10 @@ export class PrintTestTitleRequest extends jspb.Message {
 
 export namespace PrintTestTitleRequest {
   export type AsObject = {
-    kind: string;
-    icon: string;
-    title: string;
-    additionalText: string;
+    kind?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    icon?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    title?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    additionalText?: google_protobuf_wrappers_pb.StringValue.AsObject;
   };
 }
 
@@ -1129,8 +1311,10 @@ export namespace TriggerFunctionResponse {
 }
 
 export class DefinitionRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): DefinitionRequest;
+  hasId(): boolean;
+  clearId(): void;
+  getId(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setId(value?: google_protobuf_wrappers_pb.StringValue): DefinitionRequest;
 
   hasBeginDefinition(): boolean;
   clearBeginDefinition(): void;
@@ -1204,7 +1388,7 @@ export class DefinitionRequest extends jspb.Message {
 
 export namespace DefinitionRequest {
   export type AsObject = {
-    id: string;
+    id?: google_protobuf_wrappers_pb.StringValue.AsObject;
     beginDefinition?: BeginDefinitionRequest.AsObject;
     runExample?: RunExampleRequest.AsObject;
     runRejectingExample?: RunRejectingExampleRequest.AsObject;
@@ -1231,8 +1415,10 @@ export namespace DefinitionRequest {
 }
 
 export class DefinitionResponse extends jspb.Message {
-  getId(): string;
-  setId(value: string): DefinitionResponse;
+  hasId(): boolean;
+  clearId(): void;
+  getId(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setId(value?: google_protobuf_wrappers_pb.StringValue): DefinitionResponse;
 
   hasRunStateHandler(): boolean;
   clearRunStateHandler(): void;
@@ -1320,7 +1506,7 @@ export class DefinitionResponse extends jspb.Message {
 
 export namespace DefinitionResponse {
   export type AsObject = {
-    id: string;
+    id?: google_protobuf_wrappers_pb.StringValue.AsObject;
     runStateHandler?: RunStateHandlerRequest.AsObject;
     logRequest?: LogRequest.AsObject;
     printMatchErrorRequest?: PrintMatchErrorRequest.AsObject;

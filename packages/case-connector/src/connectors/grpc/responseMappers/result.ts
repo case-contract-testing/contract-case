@@ -3,6 +3,7 @@ import {
   BoundaryResult,
   BoundarySuccessWithMap,
 } from '@contract-case/case-boundary';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 import {
   ResultSuccessHasMapPayload as WireResultSuccessHasMapPayload,
   BoundaryResult as WireBoundaryResult,
@@ -37,9 +38,9 @@ export const makeResult = (result: BoundaryResult): WireBoundaryResult => {
       const failure = result as BoundaryFailure;
       return new WireBoundaryResult().setFailure(
         new WireResultFailure()
-          .setKind(failure.kind)
-          .setLocation(failure.location)
-          .setMessage(failure.message),
+          .setKind(new StringValue().setValue(failure.kind))
+          .setLocation(new StringValue().setValue(failure.location))
+          .setMessage(new StringValue().setValue(failure.message)),
       );
     }
     default:

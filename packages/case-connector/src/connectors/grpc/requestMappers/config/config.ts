@@ -20,6 +20,7 @@ import {
   waitForResolution,
 } from '../../promiseHandler/promiseHandler';
 import { ExecuteCall } from '../../executeCall';
+import { unbox, unboxBoolOrUndefined, unboxOrUndefined } from '../values';
 
 const mapTriggerFunction = (
   handle: TriggerFunctionHandle,
@@ -62,8 +63,8 @@ const mapBasicAuth = (
   }
 
   return {
-    username: basicAuth.getUsername(),
-    password: basicAuth.getPassword(),
+    username: unbox(basicAuth.getUsername()),
+    password: unbox(basicAuth.getPassword()),
   };
 };
 
@@ -75,20 +76,20 @@ const mapAllConfigFields = (
   config: WireContractCaseConfig,
   executeCall: ExecuteCall,
 ): WithUndefined<ContractCaseConnectorConfig> => ({
-  providerName: config.getProviderName(),
-  consumerName: config.getConsumerName(),
-  logLevel: config.getLogLevel(),
-  contractDir: config.getContractDir(),
-  contractFilename: config.getContractFilename(),
+  providerName: unboxOrUndefined(config.getProviderName()),
+  consumerName: unboxOrUndefined(config.getConsumerName()),
+  logLevel: unboxOrUndefined(config.getLogLevel()),
+  contractDir: unboxOrUndefined(config.getContractDir()),
+  contractFilename: unboxOrUndefined(config.getContractFilename()),
 
-  publish: config.getPublish(),
-  brokerCiAccessToken: config.getBrokerCiAccessToken(),
-  brokerBaseUrl: config.getBrokerBaseUrl(),
+  publish: unboxOrUndefined(config.getPublish()),
+  brokerCiAccessToken: unboxOrUndefined(config.getBrokerCiAccessToken()),
+  brokerBaseUrl: unboxOrUndefined(config.getBrokerBaseUrl()),
   brokerBasicAuth: mapBasicAuth(config.getBrokerBasicAuth()),
 
-  baseUrlUnderTest: config.getBaseUrlUnderTest(),
-  printResults: config.getPrintResults(),
-  throwOnFail: config.getThrowOnFail(),
+  baseUrlUnderTest: unboxOrUndefined(config.getBaseUrlUnderTest()),
+  printResults: unboxBoolOrUndefined(config.getPrintResults()),
+  throwOnFail: unboxBoolOrUndefined(config.getThrowOnFail()),
 
   stateHandlers: mapStateHandlers(config.getStateHandlersList(), executeCall),
   triggerAndTests: config

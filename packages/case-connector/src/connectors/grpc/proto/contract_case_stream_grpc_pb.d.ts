@@ -7,6 +7,7 @@
 import * as grpc from '@grpc/grpc-js';
 import * as proto_contract_case_stream_pb from '../proto/contract_case_stream_pb';
 import * as google_protobuf_struct_pb from 'google-protobuf/google/protobuf/struct_pb';
+import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wrappers_pb';
 
 interface IContractCaseService
   extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
