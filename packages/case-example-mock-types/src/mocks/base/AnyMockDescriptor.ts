@@ -126,4 +126,8 @@ export abstract class AnyMockDescriptor {
       {},
     );
   }
+
+  stringify(): unknown {
+    return JSON.stringify(this);
+  }
 }
