@@ -27,7 +27,11 @@ import {
 import { versionString } from '../versionString';
 import { ContractCaseConnectorConfig, VerificationId } from '../domain/types';
 import { mapConfig, mapConfigNoId } from './config';
-import { closeVerifier, createVerifier, getVerifier } from './storage/verifier';
+import {
+  closeVerifier,
+  createVerifier,
+  getVerifier,
+} from './case-boundary/verifier';
 
 export const beginVerification = (
   config: ContractCaseConnectorConfig,
