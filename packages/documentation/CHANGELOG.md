@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.7](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.6...documentation-v0.0.7) (2024-01-06)
+
+
+### Documentation
+
+* Update mdx syntax for docusaurus upgrade ([d2e7d6c](https://github.com/case-contract-testing/contract-case/commit/d2e7d6cab50433c40680a66ae3d50f6d7b3117e8))
+
 ## [0.0.6](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.5...documentation-v0.0.6) (2023-06-01)
 
 
