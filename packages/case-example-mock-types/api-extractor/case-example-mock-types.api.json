@@ -163,7 +163,7 @@
   "projectFolderUrl": "https://github.com/case-contract-testing/contract-case/tree/main/packages/case-example-mock-types",
   "kind": "Package",
   "canonicalReference": "@contract-case/case-example-mock-types!",
-  "docComment": "",
+  "docComment": "/**\n * These are the [CaseExample mock types](https://case.contract-testing.io/docs/reference/example-types)\n *\n * @remarks\n *\n * These are the data objects that define [CaseExamples](https://case.contract-testing.io/docs/reference/example-types). Read [the documentation here](https://case.contracttesting.io)\n *\n * @packageDocumentation\n */\n",
   "name": "@contract-case/case-example-mock-types",
   "preserveMemberOrder": false,
   "members": [

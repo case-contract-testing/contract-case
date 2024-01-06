@@ -6,6 +6,6 @@
 
 ## Packages
 
-| Package                                                                | Description |
-| ---------------------------------------------------------------------- | ----------- |
-| [@contract-case/case-example-mock-types](./case-example-mock-types.md) |             |
+| Package                                                                | Description                                                                                             |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| [@contract-case/case-example-mock-types](./case-example-mock-types.md) | These are the \[CaseExample mock types\](https://case.contract-testing.io/docs/reference/example-types) |

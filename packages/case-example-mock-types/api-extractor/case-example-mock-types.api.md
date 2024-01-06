@@ -105,6 +105,4 @@ class WillSendHttpRequest extends AnyMockDescriptor {
     readonly response: AnyMatcherOrData;
 }
 
-// (No @packageDocumentation comment for this package)
-
 ```

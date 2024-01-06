@@ -6,16 +6,6 @@
 
 Transformation matcher that matches a JSON.stringify()ed version of the given object.
 
-**Signature:**
-
-```typescript
-export declare class StringifiedJson extends AnyMatcher
-```
-
-**Extends:** [AnyMatcher](./test-equivalence-matchers.base.anymatcher.md)
-
-## Example
-
 For example, if the actual data is the string:
 
 ```
@@ -37,6 +27,14 @@ StringifiedJson({
   "foo": AnyNumber(2)
 })
 ```
+
+**Signature:**
+
+```typescript
+export declare class StringifiedJson extends AnyMatcher
+```
+
+**Extends:** [AnyMatcher](./test-equivalence-matchers.base.anymatcher.md)
 
 ## Constructors
 

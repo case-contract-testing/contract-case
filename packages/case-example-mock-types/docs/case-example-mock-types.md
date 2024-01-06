@@ -4,6 +4,12 @@
 
 ## case-example-mock-types package
 
+These are the \[CaseExample mock types\](https://case.contract-testing.io/docs/reference/example-types)
+
+## Remarks
+
+These are the data objects that define \[CaseExamples\](https://case.contract-testing.io/docs/reference/example-types). Read \[the documentation here\](https://case.contracttesting.io)
+
 ## Namespaces
 
 | Namespace                                 | Description |
