@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.15.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.15.0...@contract-case/case-example-mock-types-v0.15.1) (2024-01-06)
+
+
+### Features
+
+* Add a stringified convenience method to the mock descriptors ([a6fa77e](https://github.com/case-contract-testing/contract-case/commit/a6fa77e2c79073f183c603336f43503194f6d3b2))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.15.0 to 0.15.1
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.15.0 to 0.15.1
+  * peerDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.15.0 to 0.15.1
+
 ## [0.15.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.14.0...@contract-case/case-example-mock-types-v0.15.0) (2023-12-25)
 
 
