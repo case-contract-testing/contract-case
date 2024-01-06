@@ -95,37 +95,46 @@ export class WritingCaseContract extends BaseCaseContract {
         `The contractMode is expected to be 'write', but it was '${runContext['_case:currentRun:context:contractMode']}'. If you are not expecting this message, this is almost certainly a misconfiguration`,
       );
     }
-    return this.mutex.runExclusive(() => {
-      states.forEach((state) => {
-        if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
-          Object.entries(state.variables).forEach(([key, value]) =>
-            runContext.addDefaultVariable(key, state.stateName, value),
-          );
-        }
+    return this.mutex
+      .runExclusive(() => {
+        states.forEach((state) => {
+          if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
+            Object.entries(state.variables).forEach(([key, value]) =>
+              runContext.addDefaultVariable(key, state.stateName, value),
+            );
+          }
+        });
+
+        const example: CaseExample = {
+          states,
+          mock: nameMock(mockDescription, runContext),
+          result: 'PENDING',
+        };
+
+        return executeExample<T, R>(
+          example,
+          {
+            stateHandlers,
+            trigger,
+            triggers,
+            testResponse,
+            triggerAndTest,
+            triggerAndTests,
+            testErrorResponse,
+            names: exampleToNames(example, `${this.testIndex}`),
+          },
+          this,
+          runContext,
+        );
+      })
+      .then((r) => {
+        runContext.logger.maintainerDebug('executeTest completed with:', r);
+        return r;
+      })
+      .catch((e) => {
+        runContext.logger.maintainerDebug('executeTest threw:', e);
+        throw e;
       });
-
-      const example: CaseExample = {
-        states,
-        mock: nameMock(mockDescription, runContext),
-        result: 'PENDING',
-      };
-
-      return executeExample<T, R>(
-        example,
-        {
-          stateHandlers,
-          trigger,
-          triggers,
-          testResponse,
-          triggerAndTest,
-          triggerAndTests,
-          testErrorResponse,
-          names: exampleToNames(example, `${this.testIndex}`),
-        },
-        this,
-        runContext,
-      );
-    });
   }
 
   recordExample(

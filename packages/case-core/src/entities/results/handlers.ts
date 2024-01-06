@@ -1,6 +1,7 @@
 import {
   CaseConfigurationError,
   CaseFailedAssertionError,
+  CaseTriggerError,
 } from '../../entities';
 import type { MatchContext } from '../../entities/context/types';
 import type { CaseExample } from '../../entities/contract/types';
@@ -9,6 +10,8 @@ import {
   ERROR_TYPE_MATCHING,
   ERROR_TYPE_RAW_MATCH,
   ERROR_TYPE_TEST_RESPONSE,
+  ERROR_TYPE_TRIGGER,
+  TriggerError,
   VerificationError,
 } from './types';
 
@@ -17,13 +20,32 @@ export const handleResult = (
   exampleIndex: string,
   context: MatchContext,
 ): void => {
+  context.logger.deepMaintainerDebug('Handling a result of', example);
   if (example.result === 'FAILED') {
+    context.logger.deepMaintainerDebug(
+      `Printing a failure title for`,
+      example,
+      exampleIndex,
+      context,
+    );
     context.resultPrinter.printFailureTitle(example, exampleIndex, context);
     example.errors.forEach((e) => {
       context.resultPrinter.printError(e, context);
     });
     // Warning: **ALL** error types must be checked in this function
 
+    const triggerError: TriggerError | undefined = example.errors.find(
+      (i) => i.type === ERROR_TYPE_TRIGGER,
+    ) as TriggerError | undefined;
+
+    if (triggerError) {
+      throw new CaseTriggerError(
+        `Your trigger function failed, with: ${triggerError.message}`,
+        {
+          '_case:currentRun:context:location': triggerError.location,
+        },
+      );
+    }
     if (
       example.errors.some(
         (i) =>

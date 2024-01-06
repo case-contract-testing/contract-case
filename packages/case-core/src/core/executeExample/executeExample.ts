@@ -140,15 +140,31 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
             );
             await assertable.assert().catch();
 
-            return errorToFailedExample(error, example, context);
+            const resultingExample = errorToFailedExample(
+              error,
+              example,
+              context,
+            );
+            context.logger.deepMaintainerDebug(
+              'The resulting failure is:',
+              resultingExample,
+            );
+            return resultingExample;
           },
         );
       },
-      (error) =>
-        makeFailedExample(
+      (error) => {
+        context.logger.deepMaintainerDebug('An error was thrown', error);
+        const resultingExample = makeFailedExample(
           example,
           makeResults(configurationError(error, context)),
-        ),
+        );
+        context.logger.deepMaintainerDebug(
+          'The new resulting failure is:',
+          resultingExample,
+        );
+        return resultingExample;
+      },
     )
     .then((resultingExample) => {
       handleResult(
