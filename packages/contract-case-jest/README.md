@@ -96,14 +96,12 @@ We plan for ContractCase to always be compatible with both of these brokers.
 
 ## Roadmap
 
+1. Documentation (in progress)
 1. Pact Parity (in progress, close to complete)
-2. "Provider" driven contracts (done)
-3. Documentation (in progress)
-4. RELEASE BETA (done)
-5. Support Python, C# and Go
-6. Arbitrary combinations of request/response pairs, incidentally including native SQS support
-7. Pass-through APIs
-8. Plugins and arbitrary extensions
+1. Support Python, C# and Go
+1. Arbitrary combinations of request/response pairs, incidentally including native SQS support
+1. Pass-through APIs
+1. Plugins and arbitrary extensions
 
 For the gory details, you can see the implementation notebook / todo list [here](docs/maintainers/todo.md)
 

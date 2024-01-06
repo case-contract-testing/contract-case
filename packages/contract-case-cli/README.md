@@ -16,4 +16,8 @@
 
 This is the command line interface for the ContractCase contract testing suite.
 
+```
+npx @contract-case/cli --help
+```
+
 Read the [documentation here](https://case.contract-testing.io/docs/intro/). Documentation is currently in-progress. Feedback welcome!

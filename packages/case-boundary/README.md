@@ -5,6 +5,10 @@
 
 This is the [JSii](https://aws.github.io/jsii/user-guides/lib-author/toolchain/jsii/) layer that is the exported interface for ContractCase.
 
+However, because of [a bug preventing servers from running](https://github.com/aws/jsii/issues/4133), communication with wrapper libraries is provided by @contract-case/case-connector instead.
+
+Additionally, case-boundary is not currently translated to JSii due to [some packaging issues](https://github.com/aws/jsii/issues/4132) that make the automated build a bit tricky to run.
+
 Don't depend on this directly unless you are writing a custom wrapper for ContractCase.
 
 [Start here instead](https://case.contract-testing.io/docs/intro)
