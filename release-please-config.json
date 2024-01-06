@@ -11,7 +11,7 @@
         "@contract-case/case-example-mock-types",
         "@contract-case/test-equivalence-matchers"
       ],
-      "merge": false
+      "merge": true
     }
   ],
   "group-pull-request-title-pattern": "chore: release ${version}",
