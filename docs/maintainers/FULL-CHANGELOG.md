@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.15.1](https://github.com/case-contract-testing/contract-case/compare/v0.15.0...v0.15.1) (2024-01-06)
+
+
+### Features
+
+* Add a stringified convenience method to the mock descriptors ([a6fa77e](https://github.com/case-contract-testing/contract-case/commit/a6fa77e2c79073f183c603336f43503194f6d3b2))
+
+
+### Bug Fixes
+
+* Correct an issue where lookup matchers that had nulls were incorrectly seen as non-equal ([06ac4fa](https://github.com/case-contract-testing/contract-case/commit/06ac4fa0d7648dffd02dfbe083d0220e424358ca))
+* Correct issue where trigger function errors weren't thrown in some cases ([6172c18](https://github.com/case-contract-testing/contract-case/commit/6172c1827c52b45cd98e2b992d3c31ad544585c9))
+* Correct name in log string ([6dec88b](https://github.com/case-contract-testing/contract-case/commit/6dec88b0feaee94fb672078618053fe5129320c1))
+* Improve maintainer logging when there are no errors thrown ([f5110c0](https://github.com/case-contract-testing/contract-case/commit/f5110c06b4ba6d280ff192e259154531918f9823))
+* Improve trigger function error message ([1894fb5](https://github.com/case-contract-testing/contract-case/commit/1894fb53d0c8a31635880a4103a07464980f4e6f))
+
 ## [0.15.0](https://github.com/case-contract-testing/contract-case/compare/v0.14.0...v0.15.0) (2023-12-25)
 
 
