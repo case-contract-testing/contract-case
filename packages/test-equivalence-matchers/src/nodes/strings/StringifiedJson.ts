@@ -6,7 +6,6 @@ import { AnyMatcherOrData } from '../../types';
  * Transformation matcher that matches a JSON.stringify()ed version of the given
  * object.
  *
- * @example
  * For example, if the actual data is the string:
  *
  * ```

@@ -16,6 +16,8 @@ abstract class AnyMockDescriptor {
     // @internal (undocumented)
     readonly '_case:run:context:setup': InternalContractCaseCoreSetup;
     constructor(mockType: string, setup: ContractCaseCoreSetup);
+    // (undocumented)
+    stringify(): unknown;
     toJSON(): unknown;
 }
 
@@ -103,5 +105,7 @@ class WillSendHttpRequest extends AnyMockDescriptor {
     // (undocumented)
     readonly response: AnyMatcherOrData;
 }
+
+// (No @packageDocumentation comment for this package)
 
 ```

@@ -1,19 +1,13 @@
-import * as arrays from './nodes/arrays';
-import * as base from './nodes/base';
-import * as convenience from './nodes/convenience';
-import * as http from './nodes/http';
-import * as modifiers from './nodes/modifiers';
-import * as objects from './nodes/objects';
-import * as primitives from './nodes/primitives';
-import * as strings from './nodes/strings';
+// If updating this file, make sure you update index-api-extractor.ts as well,
+// as it doesn't support `export * as`
+
+export * as arrays from './nodes/arrays';
+export * as base from './nodes/base';
+export * as convenience from './nodes/convenience';
+export * as http from './nodes/http';
+export * as modifiers from './nodes/modifiers';
+export * as objects from './nodes/objects';
+export * as primitives from './nodes/primitives';
+export * as strings from './nodes/strings';
 
 export * from './types';
-
-export { arrays };
-export { base };
-export { convenience };
-export { http };
-export { modifiers };
-export { objects };
-export { primitives };
-export { strings };
