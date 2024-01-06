@@ -40,7 +40,7 @@ export const handleResult = (
 
     if (triggerError) {
       throw new CaseTriggerError(
-        `Your trigger function failed, with: ${triggerError.message}`,
+        `The provided trigger function failed during execution:\n\n   ${triggerError.message}`,
         {
           '_case:currentRun:context:location': triggerError.location,
         },
