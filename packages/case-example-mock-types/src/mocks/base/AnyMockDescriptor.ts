@@ -11,6 +11,9 @@ import {
  * extension libraries), you do not need to use this class (or understand this
  * documentation).
  *
+ * This documentation is only necessary for people extending ContractCase to include
+ * new mock types.
+ *
  * See the definitions in the case-entities-internal package for more details.
  * @public
  */
@@ -111,6 +114,10 @@ export abstract class AnyMockDescriptor {
    *
    * It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.
    *
+   * It isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.
+   *
+   * Calling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.
+   *
    * WARNING: Do not return a string from this method. You must instead return
    * an object that can be serialised to JSON following the matcher format
    * described in [Extending ContractCase](https://case.contract-testing.io/docs/advanced-topics/extending-case).
@@ -127,7 +134,15 @@ export abstract class AnyMockDescriptor {
     );
   }
 
-  stringify(): unknown {
+  /**
+   * This method returns the entire example as a JSON string, as a convenience
+   * so that wrapper libraries don't need to figure out how to walk a tree of example objects.
+   *
+   * You shouldn't need to override this method.
+   *
+   * @returns A JSON string representation of this mock.
+   */
+  stringify(): string {
     return JSON.stringify(this);
   }
 }
