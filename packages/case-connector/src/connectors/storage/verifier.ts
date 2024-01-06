@@ -11,7 +11,6 @@ import {
   makeCoreError,
   makeConfigurationError,
 } from '../../domain/errors/errors';
-import { versionString } from '../../versionString';
 
 const ENDED_VERIFIER = 'CLOSED' as const;
 
@@ -41,7 +40,7 @@ export const createVerifier = (
       callback,
       callbackPrinter,
       resultPrinter,
-      [...callerVersions, versionString],
+      callerVersions,
     ),
   };
   VERIFYING_CONTRACTS[id] = verifier;
