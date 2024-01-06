@@ -7,7 +7,7 @@
   "packages/test-equivalence-matchers": "0.15.2",
   "packages/documentation": "0.0.7",
   ".": "0.15.2",
-  "packages/contract-case-cli": "0.1.7",
+  "packages/contract-case-cli": "0.1.8",
   "packages/case-maintainer-config": "0.0.3",
   "packages/eslint-config-case-maintainer": "0.0.3",
   "packages/case-connector": "0.6.7"
