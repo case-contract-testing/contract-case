@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.15.2](https://github.com/case-contract-testing/contract-case/compare/v0.15.1...v0.15.2) (2024-01-06)
+
+
+### Bug Fixes
+
+* Correctly expose java types from jsii modules ([f40fc13](https://github.com/case-contract-testing/contract-case/commit/f40fc1371a3bc2565692e491125762b82b5e068b))
+* Improve AnyMock documentation ([b518a6d](https://github.com/case-contract-testing/contract-case/commit/b518a6d4ef410506da4e1f3d5e9035878f596bc9))
+
 ## [0.15.1](https://github.com/case-contract-testing/contract-case/compare/v0.15.0...v0.15.1) (2024-01-06)
 
 
