@@ -10,14 +10,20 @@ import { ErrorType } from './types';
 const errorMessage = (message: string, location: string) =>
   `${message}\n    - at ${location}`;
 
-const makeError = (kind: ErrorType, message: string) => {
+const makeError = (kind: ErrorType, message: string, location: string) => {
   switch (kind) {
     case 'CaseCoreError':
-      return new CaseCoreError(message);
+      return new CaseCoreError(message, {
+        '_case:currentRun:context:location': [location],
+      });
     case 'CaseTriggerError':
-      return new CaseTriggerError(message);
+      return new CaseTriggerError(message, {
+        '_case:currentRun:context:location': [location],
+      });
     case 'CaseConfigurationError':
-      return new CaseConfigurationError(message);
+      return new CaseConfigurationError(message, {
+        '_case:currentRun:context:location': [location],
+      });
     case 'VerifyTriggerReturnObjectError':
       return new VerifyTriggerReturnObjectError(message);
     default:
@@ -37,11 +43,12 @@ export const failureToJsError = (
       case 'CaseTriggerError':
       case 'CaseConfigurationError':
       case 'VerifyTriggerReturnObjectError':
-        return makeError(result.kind, result.message);
+        return makeError(result.kind, result.message, result.location);
       default:
         return makeError(
           defaultError,
           errorMessage(`[${result.kind}]: ${result.message}`, result.location),
+          result.location,
         );
     }
   }
