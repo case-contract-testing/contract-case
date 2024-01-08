@@ -251,9 +251,7 @@ export function main(): void {
             }
             const makeRunRejectingExampleResponse = (result: BoundaryResult) =>
               new WireDefinitionResponse().setResultResponse(
-                new WireResultResponse().setResult(
-                  makeResult(result),
-                ),
+                new WireResultResponse().setResult(makeResult(result)),
               );
 
             runRejectingExample(
