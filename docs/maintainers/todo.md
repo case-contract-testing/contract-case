@@ -117,10 +117,11 @@ Next:
 # Connector
 
 - [ ] Make loggers for the boundaries & glue
-- [ ] Extract controller from grpc, maybe
+- [x] Extract controller from grpc, maybe
 - [ ] Confirm if the state handlers should have config / params?
 - [ ] Move the links to the promise handler out of the mappers
 - [x] Remove the unnecessary handles from the grpc
+- [ ] Do proper stack trace passing, as a first class object
 - [ ] Tie the proto in the java to the proto in the typescript
 - [ ] Start the server from java
 - [ ] Redo JSii boundary for interface types
