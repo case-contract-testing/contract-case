@@ -33,12 +33,12 @@ import {
   ContractCaseConnectorConfig,
   DefinitionId,
   ExampleDefinition,
-} from '../domain/types';
+} from './types';
 import {
   closeDefiner,
   createDefiner,
   getDefiner,
-} from './case-boundary/definer';
+} from '../connectors/case-boundary/definer';
 
 export const beginDefinition = (
   config: ContractCaseConnectorConfig,

@@ -25,13 +25,13 @@ import {
   IRunTestCallback,
 } from '@contract-case/case-boundary';
 import { versionString } from '../versionString';
-import { ContractCaseConnectorConfig, VerificationId } from '../domain/types';
+import { ContractCaseConnectorConfig, VerificationId } from './types';
 import { mapConfig, mapConfigNoId } from './config';
 import {
   closeVerifier,
   createVerifier,
   getVerifier,
-} from './case-boundary/verifier';
+} from '../connectors/case-boundary/verifier';
 
 export const beginVerification = (
   config: ContractCaseConnectorConfig,

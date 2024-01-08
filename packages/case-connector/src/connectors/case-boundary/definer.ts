@@ -6,7 +6,6 @@ import {
   BoundaryContractDefiner,
   BoundaryFailure,
 } from '@contract-case/case-boundary';
-import { versionString } from '../../versionString';
 import {
   makeCoreError,
   makeConfigurationError,
@@ -35,7 +34,7 @@ export const createDefiner = (
       { ...config, testRunId: id },
       callbackPrinter,
       resultPrinter,
-      [...callerVersions, versionString],
+      callerVersions,
     ),
   };
   DEFINING_CONTRACTS[id] = definer;

@@ -23,7 +23,7 @@ import {
   runExample,
   runRejectingExample,
   stripMatchers,
-} from '../define';
+} from '../../domain/define';
 import { mapConfig, mapJson, mapResult } from './requestMappers';
 import {
   makeResolvableId,
