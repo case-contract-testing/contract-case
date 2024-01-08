@@ -142,11 +142,11 @@ export const setupHttpResponseProducer = (
             config: mock,
             assertableData: () =>
               new Promise<void>((startVerify, closeReject) => {
+                context.logger.maintainerDebug(
+                  `Closing server from ${mock.baseUrl}`,
+                  mock,
+                );
                 server.close((err?: Error) => {
-                  context.logger.maintainerDebug(
-                    `Closing server from ${mock.baseUrl}`,
-                    mock,
-                  );
                   if (err) {
                     context.logger.error(
                       `There was an error shutting down the mock server. This shouldn't happen, and might be a bug`,
@@ -157,6 +157,10 @@ export const setupHttpResponseProducer = (
                       ),
                     );
                   } else {
+                    context.logger.maintainerDebug(
+                      `Server at ${mock.baseUrl} closed`,
+                      mock,
+                    );
                     startVerify();
                   }
                 });
