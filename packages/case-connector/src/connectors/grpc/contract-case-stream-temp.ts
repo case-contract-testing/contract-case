@@ -10,12 +10,9 @@ import {
   PrintableTestTitle,
 } from '@contract-case/case-boundary';
 import {
-  RunExampleResponse as WireRunExampleResponse,
-  RunRejectingExampleResponse as WireRunRejectingExampleResponse,
-  StripMatchersResponse as WireStripMatchersResponse,
+  ResultResponse as WireResultResponse,
   DefinitionRequest as WireDefinitionRequest,
   DefinitionResponse as WireDefinitionResponse,
-  EndDefinitionResponse as WireEndDefinitionResponse,
 } from './proto/contract_case_stream_pb';
 import service from './proto/contract_case_stream_grpc_pb';
 import { UnreachableError } from './UnreachableError';
@@ -99,8 +96,8 @@ export function main(): void {
                 );
               }
               const makeBeginDefinitionResponse = (result: BoundaryResult) =>
-                new WireDefinitionResponse().setBeginDefinitionResponse(
-                  new WireEndDefinitionResponse().setResult(makeResult(result)),
+                new WireDefinitionResponse().setResultResponse(
+                  new WireResultResponse().setResult(makeResult(result)),
                 );
               try {
                 definitionId = beginDefinition(
@@ -204,8 +201,8 @@ export function main(): void {
             }
 
             const makeEndDefinitionResponse = (result: BoundaryResult) =>
-              new WireDefinitionResponse().setEndDefinitionResponse(
-                new WireEndDefinitionResponse().setResult(makeResult(result)),
+              new WireDefinitionResponse().setResultResponse(
+                new WireResultResponse().setResult(makeResult(result)),
               );
 
             endRecord(definitionId).then((result) =>
@@ -227,8 +224,8 @@ export function main(): void {
             }
 
             const makeRunExampleResponse = (result: BoundaryResult) =>
-              new WireDefinitionResponse().setRunExampleResponse(
-                new WireRunExampleResponse().setResult(makeResult(result)),
+              new WireDefinitionResponse().setResultResponse(
+                new WireResultResponse().setResult(makeResult(result)),
               );
 
             runExample(
@@ -253,8 +250,8 @@ export function main(): void {
               );
             }
             const makeRunRejectingExampleResponse = (result: BoundaryResult) =>
-              new WireDefinitionResponse().setRunExampleResponse(
-                new WireRunRejectingExampleResponse().setResult(
+              new WireDefinitionResponse().setResultResponse(
+                new WireResultResponse().setResult(
                   makeResult(result),
                 ),
               );
@@ -284,8 +281,8 @@ export function main(): void {
               );
             }
             const makeStripMatchersResponse = (result: BoundaryResult) =>
-              new WireDefinitionResponse().setStripMatchersResponse(
-                new WireStripMatchersResponse().setResult(makeResult(result)),
+              new WireDefinitionResponse().setResultResponse(
+                new WireResultResponse().setResult(makeResult(result)),
               );
 
             executeCall(
@@ -299,27 +296,12 @@ export function main(): void {
             );
             break;
           }
-          case WireDefinitionRequest.KindCase.STATE_HANDLER_RESPONSE:
+          case WireDefinitionRequest.KindCase.RESULT_RESPONSE:
             {
-              const stateHandlerResponse = request.getStateHandlerResponse();
-              if (stateHandlerResponse == null) {
-                throw new ConnectorError(
-                  'Result printer response was called with an undefined request',
-                );
-              }
-
-              resolveById(
-                getId(request),
-                mapResult(stateHandlerResponse.getResult()),
-              );
-            }
-            break;
-          case WireDefinitionRequest.KindCase.RESULT_PRINTER_RESPONSE:
-            {
-              const resultPrinterResponse = request.getResultPrinterResponse();
+              const resultPrinterResponse = request.getResultResponse();
               if (resultPrinterResponse == null) {
                 throw new ConnectorError(
-                  'Result printer response was called with an undefined request',
+                  'Result response was called with an undefined request',
                 );
               }
 
@@ -329,36 +311,6 @@ export function main(): void {
               );
             }
             break;
-          case WireDefinitionRequest.KindCase.TRIGGER_FUNCTION_RESPONSE:
-            {
-              const triggerFunctionResponse =
-                request.getTriggerFunctionResponse();
-              if (triggerFunctionResponse == null) {
-                throw new ConnectorError(
-                  'Trigger function response was called with an undefined request',
-                );
-              }
-
-              resolveById(
-                getId(request),
-                mapResult(triggerFunctionResponse.getResult()),
-              );
-            }
-            break;
-          case WireDefinitionRequest.KindCase.LOG_PRINTER_RESPONSE: {
-            const logPrinterResponse = request.getLogPrinterResponse();
-            if (logPrinterResponse == null) {
-              throw new ConnectorError(
-                'Log printer response was called with something that returned an undefined logPrinterResponse',
-              );
-            }
-
-            resolveById(
-              getId(request),
-              mapResult(logPrinterResponse.getResult()),
-            );
-            break;
-          }
           default:
             throw new UnreachableError(type);
         }

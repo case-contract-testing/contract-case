@@ -36,14 +36,9 @@ message ContractCaseConfig {
 }
 
 // Indicates a successful response with no payload
-message ResultSuccess {
-}
-message ResultSuccessHasMapPayload {
-  google.protobuf.Struct map = 1;
-}
-message ResultSuccessHasAnyPayload {
-  google.protobuf.Value payload = 1;
-}
+message ResultSuccess {}
+message ResultSuccessHasMapPayload { google.protobuf.Struct map = 1; }
+message ResultSuccessHasAnyPayload { google.protobuf.Value payload = 1; }
 message ResultFailure {
   google.protobuf.StringValue kind = 1;
   google.protobuf.StringValue message = 2;
@@ -70,9 +65,7 @@ message StateHandlerHandle {
   Stage stage = 2;
 }
 
-message TriggerFunctionHandle {
-  google.protobuf.StringValue handle = 1;
-}
+message TriggerFunctionHandle { google.protobuf.StringValue handle = 1; }
 
 // Requests from client
 message BeginDefinitionRequest {
@@ -90,30 +83,13 @@ message RunRejectingExampleRequest {
   ContractCaseConfig config = 3;
 }
 
-message StripMatchersRequest {
-  google.protobuf.Struct matcher_or_data = 2;
-}
+message StripMatchersRequest { google.protobuf.Struct matcher_or_data = 2; }
 
-message EndDefinitionRequest {
-}
-
-message StateHandlerResponse {
-  StateHandlerHandle state_handler_handle = 1;
-  BoundaryResult result = 2;
-}
-
-message LogPrinterResponse {
-  BoundaryResult result = 1;
-}
-message ResultPrinterResponse {
-  BoundaryResult result = 1;
-}
+message EndDefinitionRequest {}
 
 // Responses from server
 
-message RunStateHandlerRequest {
-  StateHandlerHandle state_handler_handle = 1;
-}
+message RunStateHandlerRequest { StateHandlerHandle state_handler_handle = 1; }
 message TriggerFunctionRequest {
   TriggerFunctionHandle trigger_function = 1;
   google.protobuf.Struct config = 2;
@@ -242,24 +218,7 @@ message PrintTestTitleRequest {
   google.protobuf.StringValue additional_text = 4;
 }
 
-message BeginDefinitionResponse {
-  BoundaryResult result = 1;
-}
-message RunExampleResponse {
-  BoundaryResult result = 1;
-}
-message RunRejectingExampleResponse {
-  BoundaryResult result = 1;
-}
-message StripMatchersResponse {
-  BoundaryResult result = 1;
-}
-message EndDefinitionResponse {
-  BoundaryResult result = 1;
-}
-message TriggerFunctionResponse {
-  BoundaryResult result = 1;
-}
+message ResultResponse { BoundaryResult result = 1; }
 
 message DefinitionRequest {
   google.protobuf.StringValue id = 1;
@@ -270,30 +229,28 @@ message DefinitionRequest {
     RunRejectingExampleRequest run_rejecting_example = 4;
     StripMatchersRequest strip_matchers = 5;
     EndDefinitionRequest end_definition = 6;
-    // Answering server questions
-    StateHandlerResponse state_handler_response = 7;
-    LogPrinterResponse log_printer_response = 8;
-    ResultPrinterResponse result_printer_response = 9;
-    TriggerFunctionResponse trigger_function_response = 10;
+    // Answering server driven RPC calls
+    ResultResponse result_response = 7;
   }
 }
 
 message DefinitionResponse {
   google.protobuf.StringValue id = 1;
   oneof kind {
-    // These could come at any time
+    // Run a state handler
     RunStateHandlerRequest run_state_handler = 2;
+    // Request to log a line
     LogRequest log_request = 3;
+    // Request to print a matching error (has a diff)
     PrintMatchErrorRequest print_match_error_request = 4;
+    // Request to print an error from a test that just has a message
     PrintMessageErrorRequest print_message_error_request = 5;
+    // Request to print a test title
     PrintTestTitleRequest print_test_title_request = 6;
-    TriggerFunctionRequest trigger_function_request = 12;
-    // These indicate the end of an RPC call
-    BeginDefinitionResponse begin_definition_response = 7;
-    RunExampleResponse run_example_response = 8;
-    RunRejectingExampleResponse run_rejecting_example_response = 9;
-    StripMatchersResponse strip_matchers_response = 10;
-    EndDefinitionResponse end_definition_response = 11;
+    // Request to trigger a trigger function
+    TriggerFunctionRequest trigger_function_request = 7;
+    // Answering client driven RPC calls
+    ResultResponse result_response = 8;
   }
 }
 

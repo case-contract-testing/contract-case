@@ -657,111 +657,6 @@ export namespace EndDefinitionRequest {
   export type AsObject = {};
 }
 
-export class StateHandlerResponse extends jspb.Message {
-  hasStateHandlerHandle(): boolean;
-  clearStateHandlerHandle(): void;
-  getStateHandlerHandle(): StateHandlerHandle | undefined;
-  setStateHandlerHandle(value?: StateHandlerHandle): StateHandlerResponse;
-
-  hasResult(): boolean;
-  clearResult(): void;
-  getResult(): BoundaryResult | undefined;
-  setResult(value?: BoundaryResult): StateHandlerResponse;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StateHandlerResponse.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: StateHandlerResponse,
-  ): StateHandlerResponse.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: StateHandlerResponse,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): StateHandlerResponse;
-  static deserializeBinaryFromReader(
-    message: StateHandlerResponse,
-    reader: jspb.BinaryReader,
-  ): StateHandlerResponse;
-}
-
-export namespace StateHandlerResponse {
-  export type AsObject = {
-    stateHandlerHandle?: StateHandlerHandle.AsObject;
-    result?: BoundaryResult.AsObject;
-  };
-}
-
-export class LogPrinterResponse extends jspb.Message {
-  hasResult(): boolean;
-  clearResult(): void;
-  getResult(): BoundaryResult | undefined;
-  setResult(value?: BoundaryResult): LogPrinterResponse;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): LogPrinterResponse.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: LogPrinterResponse,
-  ): LogPrinterResponse.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: LogPrinterResponse,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): LogPrinterResponse;
-  static deserializeBinaryFromReader(
-    message: LogPrinterResponse,
-    reader: jspb.BinaryReader,
-  ): LogPrinterResponse;
-}
-
-export namespace LogPrinterResponse {
-  export type AsObject = {
-    result?: BoundaryResult.AsObject;
-  };
-}
-
-export class ResultPrinterResponse extends jspb.Message {
-  hasResult(): boolean;
-  clearResult(): void;
-  getResult(): BoundaryResult | undefined;
-  setResult(value?: BoundaryResult): ResultPrinterResponse;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ResultPrinterResponse.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: ResultPrinterResponse,
-  ): ResultPrinterResponse.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: ResultPrinterResponse,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): ResultPrinterResponse;
-  static deserializeBinaryFromReader(
-    message: ResultPrinterResponse,
-    reader: jspb.BinaryReader,
-  ): ResultPrinterResponse;
-}
-
-export namespace ResultPrinterResponse {
-  export type AsObject = {
-    result?: BoundaryResult.AsObject;
-  };
-}
-
 export class RunStateHandlerRequest extends jspb.Message {
   hasStateHandlerHandle(): boolean;
   clearStateHandlerHandle(): void;
@@ -1112,199 +1007,34 @@ export namespace PrintTestTitleRequest {
   };
 }
 
-export class BeginDefinitionResponse extends jspb.Message {
+export class ResultResponse extends jspb.Message {
   hasResult(): boolean;
   clearResult(): void;
   getResult(): BoundaryResult | undefined;
-  setResult(value?: BoundaryResult): BeginDefinitionResponse;
+  setResult(value?: BoundaryResult): ResultResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BeginDefinitionResponse.AsObject;
+  toObject(includeInstance?: boolean): ResultResponse.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: BeginDefinitionResponse,
-  ): BeginDefinitionResponse.AsObject;
+    msg: ResultResponse,
+  ): ResultResponse.AsObject;
   static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
   static extensionsBinary: {
     [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
   };
   static serializeBinaryToWriter(
-    message: BeginDefinitionResponse,
+    message: ResultResponse,
     writer: jspb.BinaryWriter,
   ): void;
-  static deserializeBinary(bytes: Uint8Array): BeginDefinitionResponse;
+  static deserializeBinary(bytes: Uint8Array): ResultResponse;
   static deserializeBinaryFromReader(
-    message: BeginDefinitionResponse,
+    message: ResultResponse,
     reader: jspb.BinaryReader,
-  ): BeginDefinitionResponse;
+  ): ResultResponse;
 }
 
-export namespace BeginDefinitionResponse {
-  export type AsObject = {
-    result?: BoundaryResult.AsObject;
-  };
-}
-
-export class RunExampleResponse extends jspb.Message {
-  hasResult(): boolean;
-  clearResult(): void;
-  getResult(): BoundaryResult | undefined;
-  setResult(value?: BoundaryResult): RunExampleResponse;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RunExampleResponse.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: RunExampleResponse,
-  ): RunExampleResponse.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: RunExampleResponse,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): RunExampleResponse;
-  static deserializeBinaryFromReader(
-    message: RunExampleResponse,
-    reader: jspb.BinaryReader,
-  ): RunExampleResponse;
-}
-
-export namespace RunExampleResponse {
-  export type AsObject = {
-    result?: BoundaryResult.AsObject;
-  };
-}
-
-export class RunRejectingExampleResponse extends jspb.Message {
-  hasResult(): boolean;
-  clearResult(): void;
-  getResult(): BoundaryResult | undefined;
-  setResult(value?: BoundaryResult): RunRejectingExampleResponse;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RunRejectingExampleResponse.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: RunRejectingExampleResponse,
-  ): RunRejectingExampleResponse.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: RunRejectingExampleResponse,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): RunRejectingExampleResponse;
-  static deserializeBinaryFromReader(
-    message: RunRejectingExampleResponse,
-    reader: jspb.BinaryReader,
-  ): RunRejectingExampleResponse;
-}
-
-export namespace RunRejectingExampleResponse {
-  export type AsObject = {
-    result?: BoundaryResult.AsObject;
-  };
-}
-
-export class StripMatchersResponse extends jspb.Message {
-  hasResult(): boolean;
-  clearResult(): void;
-  getResult(): BoundaryResult | undefined;
-  setResult(value?: BoundaryResult): StripMatchersResponse;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StripMatchersResponse.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: StripMatchersResponse,
-  ): StripMatchersResponse.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: StripMatchersResponse,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): StripMatchersResponse;
-  static deserializeBinaryFromReader(
-    message: StripMatchersResponse,
-    reader: jspb.BinaryReader,
-  ): StripMatchersResponse;
-}
-
-export namespace StripMatchersResponse {
-  export type AsObject = {
-    result?: BoundaryResult.AsObject;
-  };
-}
-
-export class EndDefinitionResponse extends jspb.Message {
-  hasResult(): boolean;
-  clearResult(): void;
-  getResult(): BoundaryResult | undefined;
-  setResult(value?: BoundaryResult): EndDefinitionResponse;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): EndDefinitionResponse.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: EndDefinitionResponse,
-  ): EndDefinitionResponse.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: EndDefinitionResponse,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): EndDefinitionResponse;
-  static deserializeBinaryFromReader(
-    message: EndDefinitionResponse,
-    reader: jspb.BinaryReader,
-  ): EndDefinitionResponse;
-}
-
-export namespace EndDefinitionResponse {
-  export type AsObject = {
-    result?: BoundaryResult.AsObject;
-  };
-}
-
-export class TriggerFunctionResponse extends jspb.Message {
-  hasResult(): boolean;
-  clearResult(): void;
-  getResult(): BoundaryResult | undefined;
-  setResult(value?: BoundaryResult): TriggerFunctionResponse;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TriggerFunctionResponse.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: TriggerFunctionResponse,
-  ): TriggerFunctionResponse.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: TriggerFunctionResponse,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): TriggerFunctionResponse;
-  static deserializeBinaryFromReader(
-    message: TriggerFunctionResponse,
-    reader: jspb.BinaryReader,
-  ): TriggerFunctionResponse;
-}
-
-export namespace TriggerFunctionResponse {
+export namespace ResultResponse {
   export type AsObject = {
     result?: BoundaryResult.AsObject;
   };
@@ -1341,27 +1071,10 @@ export class DefinitionRequest extends jspb.Message {
   getEndDefinition(): EndDefinitionRequest | undefined;
   setEndDefinition(value?: EndDefinitionRequest): DefinitionRequest;
 
-  hasStateHandlerResponse(): boolean;
-  clearStateHandlerResponse(): void;
-  getStateHandlerResponse(): StateHandlerResponse | undefined;
-  setStateHandlerResponse(value?: StateHandlerResponse): DefinitionRequest;
-
-  hasLogPrinterResponse(): boolean;
-  clearLogPrinterResponse(): void;
-  getLogPrinterResponse(): LogPrinterResponse | undefined;
-  setLogPrinterResponse(value?: LogPrinterResponse): DefinitionRequest;
-
-  hasResultPrinterResponse(): boolean;
-  clearResultPrinterResponse(): void;
-  getResultPrinterResponse(): ResultPrinterResponse | undefined;
-  setResultPrinterResponse(value?: ResultPrinterResponse): DefinitionRequest;
-
-  hasTriggerFunctionResponse(): boolean;
-  clearTriggerFunctionResponse(): void;
-  getTriggerFunctionResponse(): TriggerFunctionResponse | undefined;
-  setTriggerFunctionResponse(
-    value?: TriggerFunctionResponse,
-  ): DefinitionRequest;
+  hasResultResponse(): boolean;
+  clearResultResponse(): void;
+  getResultResponse(): ResultResponse | undefined;
+  setResultResponse(value?: ResultResponse): DefinitionRequest;
 
   getKindCase(): DefinitionRequest.KindCase;
 
@@ -1394,10 +1107,7 @@ export namespace DefinitionRequest {
     runRejectingExample?: RunRejectingExampleRequest.AsObject;
     stripMatchers?: StripMatchersRequest.AsObject;
     endDefinition?: EndDefinitionRequest.AsObject;
-    stateHandlerResponse?: StateHandlerResponse.AsObject;
-    logPrinterResponse?: LogPrinterResponse.AsObject;
-    resultPrinterResponse?: ResultPrinterResponse.AsObject;
-    triggerFunctionResponse?: TriggerFunctionResponse.AsObject;
+    resultResponse?: ResultResponse.AsObject;
   };
 
   export enum KindCase {
@@ -1407,10 +1117,7 @@ export namespace DefinitionRequest {
     RUN_REJECTING_EXAMPLE = 4,
     STRIP_MATCHERS = 5,
     END_DEFINITION = 6,
-    STATE_HANDLER_RESPONSE = 7,
-    LOG_PRINTER_RESPONSE = 8,
-    RESULT_PRINTER_RESPONSE = 9,
-    TRIGGER_FUNCTION_RESPONSE = 10,
+    RESULT_RESPONSE = 7,
   }
 }
 
@@ -1452,34 +1159,10 @@ export class DefinitionResponse extends jspb.Message {
   getTriggerFunctionRequest(): TriggerFunctionRequest | undefined;
   setTriggerFunctionRequest(value?: TriggerFunctionRequest): DefinitionResponse;
 
-  hasBeginDefinitionResponse(): boolean;
-  clearBeginDefinitionResponse(): void;
-  getBeginDefinitionResponse(): BeginDefinitionResponse | undefined;
-  setBeginDefinitionResponse(
-    value?: BeginDefinitionResponse,
-  ): DefinitionResponse;
-
-  hasRunExampleResponse(): boolean;
-  clearRunExampleResponse(): void;
-  getRunExampleResponse(): RunExampleResponse | undefined;
-  setRunExampleResponse(value?: RunExampleResponse): DefinitionResponse;
-
-  hasRunRejectingExampleResponse(): boolean;
-  clearRunRejectingExampleResponse(): void;
-  getRunRejectingExampleResponse(): RunRejectingExampleResponse | undefined;
-  setRunRejectingExampleResponse(
-    value?: RunRejectingExampleResponse,
-  ): DefinitionResponse;
-
-  hasStripMatchersResponse(): boolean;
-  clearStripMatchersResponse(): void;
-  getStripMatchersResponse(): StripMatchersResponse | undefined;
-  setStripMatchersResponse(value?: StripMatchersResponse): DefinitionResponse;
-
-  hasEndDefinitionResponse(): boolean;
-  clearEndDefinitionResponse(): void;
-  getEndDefinitionResponse(): EndDefinitionResponse | undefined;
-  setEndDefinitionResponse(value?: EndDefinitionResponse): DefinitionResponse;
+  hasResultResponse(): boolean;
+  clearResultResponse(): void;
+  getResultResponse(): ResultResponse | undefined;
+  setResultResponse(value?: ResultResponse): DefinitionResponse;
 
   getKindCase(): DefinitionResponse.KindCase;
 
@@ -1513,11 +1196,7 @@ export namespace DefinitionResponse {
     printMessageErrorRequest?: PrintMessageErrorRequest.AsObject;
     printTestTitleRequest?: PrintTestTitleRequest.AsObject;
     triggerFunctionRequest?: TriggerFunctionRequest.AsObject;
-    beginDefinitionResponse?: BeginDefinitionResponse.AsObject;
-    runExampleResponse?: RunExampleResponse.AsObject;
-    runRejectingExampleResponse?: RunRejectingExampleResponse.AsObject;
-    stripMatchersResponse?: StripMatchersResponse.AsObject;
-    endDefinitionResponse?: EndDefinitionResponse.AsObject;
+    resultResponse?: ResultResponse.AsObject;
   };
 
   export enum KindCase {
@@ -1527,11 +1206,7 @@ export namespace DefinitionResponse {
     PRINT_MATCH_ERROR_REQUEST = 4,
     PRINT_MESSAGE_ERROR_REQUEST = 5,
     PRINT_TEST_TITLE_REQUEST = 6,
-    TRIGGER_FUNCTION_REQUEST = 12,
-    BEGIN_DEFINITION_RESPONSE = 7,
-    RUN_EXAMPLE_RESPONSE = 8,
-    RUN_REJECTING_EXAMPLE_RESPONSE = 9,
-    STRIP_MATCHERS_RESPONSE = 10,
-    END_DEFINITION_RESPONSE = 11,
+    TRIGGER_FUNCTION_REQUEST = 7,
+    RESULT_RESPONSE = 8,
   }
 }
