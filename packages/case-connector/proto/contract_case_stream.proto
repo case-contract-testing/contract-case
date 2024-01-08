@@ -36,9 +36,14 @@ message ContractCaseConfig {
 }
 
 // Indicates a successful response with no payload
-message ResultSuccess {}
-message ResultSuccessHasMapPayload { google.protobuf.Struct map = 1; }
-message ResultSuccessHasAnyPayload { google.protobuf.Value payload = 1; }
+message ResultSuccess {
+}
+message ResultSuccessHasMapPayload {
+  google.protobuf.Struct map = 1;
+}
+message ResultSuccessHasAnyPayload {
+  google.protobuf.Value payload = 1;
+}
 message ResultFailure {
   google.protobuf.StringValue kind = 1;
   google.protobuf.StringValue message = 2;
@@ -65,7 +70,9 @@ message StateHandlerHandle {
   Stage stage = 2;
 }
 
-message TriggerFunctionHandle { google.protobuf.StringValue handle = 1; }
+message TriggerFunctionHandle {
+  google.protobuf.StringValue handle = 1;
+}
 
 // Requests from client
 message BeginDefinitionRequest {
@@ -83,13 +90,18 @@ message RunRejectingExampleRequest {
   ContractCaseConfig config = 3;
 }
 
-message StripMatchersRequest { google.protobuf.Struct matcher_or_data = 2; }
+message StripMatchersRequest {
+  google.protobuf.Struct matcher_or_data = 2;
+}
 
-message EndDefinitionRequest {}
+message EndDefinitionRequest {
+}
 
 // Responses from server
 
-message RunStateHandlerRequest { StateHandlerHandle state_handler_handle = 1; }
+message RunStateHandlerRequest {
+  StateHandlerHandle state_handler_handle = 1;
+}
 message TriggerFunctionRequest {
   TriggerFunctionHandle trigger_function = 1;
   google.protobuf.Struct config = 2;
@@ -218,7 +230,9 @@ message PrintTestTitleRequest {
   google.protobuf.StringValue additional_text = 4;
 }
 
-message ResultResponse { BoundaryResult result = 1; }
+message ResultResponse {
+  BoundaryResult result = 1;
+}
 
 message DefinitionRequest {
   google.protobuf.StringValue id = 1;
