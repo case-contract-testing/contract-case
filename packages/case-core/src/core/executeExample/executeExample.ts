@@ -138,7 +138,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
             context.logger.maintainerDebug(
               `Draining assertable and ignoring the result`,
             );
-            await assertable.assert().catch();
+            await assertable.assert().catch(() => {});
 
             const resultingExample = errorToFailedExample(
               error,
