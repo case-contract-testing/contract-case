@@ -47,7 +47,7 @@ ContractCase plans to always be compatible with both of these brokers.
   - Example [server-driven contract verification](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.spec.verify.ts).
 - Contract verification is an individual test in your test suite per interaction, rather than one test for all interactions. This provides much more granular feedback and better integration with your testing suite.
 - Matchers are recursive, which means that you can much more easily combine matchers. No more remembering which matchers were valid outside the body and which aren't. Additionally, many new matchers can be created by simply combining
-- Extending case is significantly easier - to add new mock types, implement one function and one DSL object. To add new matcher type, there are three functions, and one DSL object to implement. At the moment, these extensions must be added to the core code. See the documentation on [extending case](/docs/advanced-topics//extending-case) for details.
+- Extending case is significantly easier - to add new mock types, implement one function and one DSL object. To add new matcher type, there are three functions, and one DSL object to implement. At the moment, these extensions must be added to the core code. See the documentation on [extending case](/docs/advanced-topics/extending-case) for details.
 
 ## Planned improvements
 
