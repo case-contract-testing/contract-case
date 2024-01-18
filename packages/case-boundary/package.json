@@ -58,8 +58,8 @@
     "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "@contract-case/case-core": "0.15.2",
-    "@contract-case/case-entities-internal": "0.15.2",
+    "@contract-case/case-core": "0.15.3",
+    "@contract-case/case-entities-internal": "0.15.3",
     "read-pkg-up": "^7.0.1"
   },
   "stability": "stable",
