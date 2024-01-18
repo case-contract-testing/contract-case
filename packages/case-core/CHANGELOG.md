@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.15.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.15.2...@contract-case/case-core-v0.15.3) (2024-01-18)
+
+
+### Bug Fixes
+
+* Correct issue where trigger functions that failed before calling the server would fail with the wrong reason ([1a8a375](https://github.com/case-contract-testing/contract-case/commit/1a8a3750421f0bad42c47a23b549c3790089fb6a))
+* Improve debug logging around server startup and shutdown ([8509660](https://github.com/case-contract-testing/contract-case/commit/8509660d0e190b65677be7fcf5ca6e32a8cf2345))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.15.2 to 0.15.3
+
 ## [0.15.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.15.1...@contract-case/case-core-v0.15.2) (2024-01-06)
 
 
