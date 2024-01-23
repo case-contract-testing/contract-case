@@ -1,29 +1,39 @@
 import {
-  BoundaryStateHandler,
   BoundaryResult,
-  BoundarySuccess,
   BoundarySuccessWithMap,
+  BoundarySuccess,
+  BoundaryStateHandler,
 } from '@contract-case/case-boundary';
-import { SetupFunction } from '../../../../../entities/types';
+import { SetupFunction, TeardownFunction } from '../../../../../entities/types';
 import { makeBoundaryFailure } from '../../jsErrorToBoundary';
 
 export class MappedStateHandler extends BoundaryStateHandler {
   private setupFn: SetupFunction;
 
-  constructor(setupFn: SetupFunction) {
+  private teardownFn: TeardownFunction;
+
+  constructor(setupFn: SetupFunction, teardownFn: TeardownFunction) {
     super();
     this.setupFn = setupFn;
+    this.teardownFn = teardownFn;
   }
 
   override setup(): Promise<BoundaryResult> {
     return Promise.resolve()
       .then(() => this.setupFn())
       .then((contents) => {
-        if (contents) {
+        if (contents != null) {
           return new BoundarySuccessWithMap(contents);
         }
         return new BoundarySuccess();
       })
+      .catch(makeBoundaryFailure);
+  }
+
+  override teardown(): Promise<BoundaryResult> {
+    return Promise.resolve()
+      .then(() => this.teardownFn())
+      .then(() => new BoundarySuccess())
       .catch(makeBoundaryFailure);
   }
 }

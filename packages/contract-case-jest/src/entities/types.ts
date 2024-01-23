@@ -15,7 +15,7 @@ export type StateHandlers = Record<string, StateHandler>;
 
 export type RunTestCallback = (
   testName: string,
-  verify: () => Promise<unknown>
+  verify: () => Promise<unknown>,
 ) => void;
 
 export interface ContractDescription {
