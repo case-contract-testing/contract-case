@@ -9,7 +9,7 @@ import {
 
 export const inState = (
   name: string,
-  variables?: Record<string, AnyCaseMatcherOrData>
+  variables?: Record<string, AnyCaseMatcherOrData>,
 ): NameOnlyState | StateWithVariables =>
   variables
     ? {
