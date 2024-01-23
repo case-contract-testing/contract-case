@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.10.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.9.2...@contract-case/case-boundary-v0.10.0) (2024-01-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove StateHandlerWithTeardown; now state handlers are expected to provide both setup and teardown. Use no-op functions returning BoundarySuccess if your DSL allows missing functions
+
+### Features
+
+* Expose library as JSii again ([bbedcaf](https://github.com/case-contract-testing/contract-case/commit/bbedcaf979d799a7afbfb68171d0a9902b56bc9d))
+
+
+### Code Refactoring
+
+* Remove StateHandlerWithTeardown; now state handlers are expected to provide both setup and teardown. Use no-op functions returning BoundarySuccess if your DSL allows missing functions ([838b94a](https://github.com/case-contract-testing/contract-case/commit/838b94a28a421b4dba518ca16295757de3c5238a))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.15.3 to 0.15.4
+    * @contract-case/case-entities-internal bumped from 0.15.3 to 0.15.4
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.0.3 to 0.0.4
+
 ## [0.9.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.9.2...@contract-case/case-boundary-v0.9.3) (2024-01-18)
 
 ### Dependencies

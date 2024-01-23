@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.7.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.6.7...@contract-case/case-connector-v0.7.0) (2024-01-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace all response types that only return a single result with one unified type
+
+### Bug Fixes
+
+* Correct issue where the version string was double printed ([d59596a](https://github.com/case-contract-testing/contract-case/commit/d59596a2a4199994769bb056a2795f5eb39f3008))
+* Don't double count case-connector version in maintainer debug logs ([dd1edd0](https://github.com/case-contract-testing/contract-case/commit/dd1edd08460e459311527041075877337732f7e3))
+
+
+### Code Refactoring
+
+* replace all response types that only return a single result with one unified type ([53909f1](https://github.com/case-contract-testing/contract-case/commit/53909f16ad13e1d136aed953b207b9c3feea35f3))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.9.2 to 0.10.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.0.3 to 0.0.4
+
 ## [0.6.7](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.6.6...@contract-case/case-connector-v0.6.7) (2024-01-06)
 
 

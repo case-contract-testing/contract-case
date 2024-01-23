@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-core",
-  "version": "0.15.3",
+  "version": "0.15.4",
   "description": "Core functionality for the ContractCase contract testing suite",
   "keywords": [
     "testing",
@@ -54,7 +54,7 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "@contract-case/case-maintainer-config": "0.0.3",
+    "@contract-case/case-maintainer-config": "0.0.4",
     "@contract-case/eslint-config-case-maintainer": "0.0.3",
     "@types/current-git-branch": "^1.1.6",
     "@types/express": "^4.17.14",
@@ -74,7 +74,7 @@
     "typescript": "5.3.3"
   },
   "dependencies": {
-    "@contract-case/case-entities-internal": "0.15.3",
+    "@contract-case/case-entities-internal": "0.15.4",
     "absolute-version": "^1.0.2",
     "async-mutex": "^0.4.0",
     "axios": "^1.6.3",
