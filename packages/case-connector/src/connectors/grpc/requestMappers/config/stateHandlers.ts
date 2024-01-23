@@ -45,7 +45,10 @@ export const mapStateHandlers = (
           : {}),
         ...(handler.getStage() ===
         WireStateHandlerHandle.Stage.STAGE_SETUP_UNSPECIFIED
-          ? { setup: makeStateHandlerCall(handler, executeCall) }
+          ? {
+              setup: makeStateHandlerCall(handler, executeCall),
+              teardown: makeStateHandlerCall(handler, executeCall),
+            }
           : {
               setup: makeStateHandlerCall(handler, executeCall),
               teardown: makeStateHandlerCall(handler, executeCall),

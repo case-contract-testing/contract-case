@@ -1,2 +1,2 @@
-export * from './base';
-export * from './http';
+export * as base from './base';
+export * as http from './http';

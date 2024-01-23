@@ -25,7 +25,6 @@ import {
   BoundaryResult,
   ILogPrinter,
   IResultPrinter,
-  TsBoundaryAnyMatcher,
 } from '@contract-case/case-boundary';
 import { versionString } from '../versionString';
 import { mapConfig, mapConfigNoId } from './config';
@@ -39,6 +38,7 @@ import {
   createDefiner,
   getDefiner,
 } from '../connectors/case-boundary/definer';
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 
 export const beginDefinition = (
   config: ContractCaseConnectorConfig,
@@ -85,7 +85,7 @@ export const runRejectingExample = (
 
 export const stripMatchers = (
   defineId: string,
-  matcherOrData: TsBoundaryAnyMatcher,
+  matcherOrData: AnyCaseMatcherOrData,
 ): BoundaryResult => {
   const definerHandle = getDefiner(defineId, 'stripMatchers');
   if (!('id' in definerHandle)) {

@@ -3,7 +3,7 @@ import {
   BoundaryContractDefiner,
   BoundaryMockDefinition,
 } from '@contract-case/case-boundary';
-import { base } from '@contract-case/case-example-mock-types';
+import { mocks } from '@contract-case/case-example-mock-types';
 
 import { defaultPrinter } from './defaultTestPrinter';
 
@@ -23,7 +23,7 @@ import {
 import { errorHandler } from './handler';
 
 const mapDefinition = (
-  definition: ExampleDefinition
+  definition: ExampleDefinition,
 ): BoundaryMockDefinition => ({
   states: Array.isArray(definition.states) ? definition.states : [],
   definition: definition.definition,
@@ -32,7 +32,7 @@ const mapDefinition = (
 export type ExampleDefinition = {
   // TODO types for states
   states?: Array<unknown>;
-  definition: base.AnyMockDescriptor;
+  definition: mocks.base.AnyMockDescriptor;
 };
 
 export class ContractCaseDefiner {
@@ -47,7 +47,7 @@ export class ContractCaseDefiner {
         mapConfig({ ...config }),
         defaultPrinter,
         defaultPrinter,
-        [versionString]
+        [versionString],
       );
     } catch (e) {
       // Hack since this object isn't constructed anyway
@@ -58,12 +58,12 @@ export class ContractCaseDefiner {
 
   runExample<OtherR, OtherC extends Record<string, unknown>>(
     definition: ExampleDefinition,
-    runConfig: IndividualSuccessTestConfig<OtherR, OtherC> = {}
+    runConfig: IndividualSuccessTestConfig<OtherR, OtherC> = {},
   ): Promise<unknown> {
     return this.boundaryDefiner
       .runExample(
         mapDefinition(definition),
-        mapSuccessConfig({ ...this.config, ...runConfig })
+        mapSuccessConfig({ ...this.config, ...runConfig }),
       )
       .then(mapSuccess)
       .catch(errorHandler);
@@ -71,12 +71,12 @@ export class ContractCaseDefiner {
 
   runRejectingExample<OtherR, OtherC extends Record<string, unknown>>(
     definition: ExampleDefinition,
-    runConfig: IndividualFailedTestConfig<OtherR, OtherC> = {}
+    runConfig: IndividualFailedTestConfig<OtherR, OtherC> = {},
   ): Promise<unknown> {
     return this.boundaryDefiner
       .runRejectingExample(
         mapDefinition(definition),
-        mapFailingConfig({ ...this.config, ...runConfig })
+        mapFailingConfig({ ...this.config, ...runConfig }),
       )
       .then(mapSuccess)
       .catch(errorHandler);
@@ -92,7 +92,7 @@ export class ContractCaseDefiner {
   stripMatchers<T>(matcherOrData: unknown): T {
     try {
       return mapSuccessWithAny(
-        this.boundaryDefiner.stripMatchers(matcherOrData as BoundaryAnyMatcher)
+        this.boundaryDefiner.stripMatchers(matcherOrData as BoundaryAnyMatcher),
       );
     } catch (e) {
       return errorHandler(e as Error);
