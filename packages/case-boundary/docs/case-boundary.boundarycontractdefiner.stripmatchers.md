@@ -7,14 +7,14 @@
 **Signature:**
 
 ```typescript
-stripMatchers(matcherOrData: TsBoundaryAnyMatcher): BoundaryResult;
+stripMatchers(matcherOrData: BoundaryAnyMatcher): BoundaryResult;
 ```
 
 ## Parameters
 
-| Parameter     | Type                                                            | Description |
-| ------------- | --------------------------------------------------------------- | ----------- |
-| matcherOrData | [TsBoundaryAnyMatcher](./case-boundary.tsboundaryanymatcher.md) |             |
+| Parameter     | Type                                                        | Description |
+| ------------- | ----------------------------------------------------------- | ----------- |
+| matcherOrData | [BoundaryAnyMatcher](./case-boundary.boundaryanymatcher.md) |             |
 
 **Returns:**
 

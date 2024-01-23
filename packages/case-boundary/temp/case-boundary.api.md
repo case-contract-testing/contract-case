@@ -4,10 +4,6 @@
 
 ```ts
 
-import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
-import { AnyMockDescriptor } from '@contract-case/case-core';
-import { AnyState } from '@contract-case/case-core';
-
 // @public
 export type BoundaryAnyMatcher = any;
 
@@ -23,11 +19,11 @@ export class BoundaryContractDefiner {
     // (undocumented)
     endRecord(): Promise<BoundaryResult>;
     // (undocumented)
-    runExample(definition: TsBoundaryMockDefinition, runConfig: ContractCaseBoundaryConfig): Promise<BoundaryResult>;
+    runExample(definition: BoundaryMockDefinition, runConfig: ContractCaseBoundaryConfig): Promise<BoundaryResult>;
     // (undocumented)
-    runRejectingExample(definition: TsBoundaryMockDefinition, runConfig: ContractCaseBoundaryConfig): Promise<BoundaryResult>;
+    runRejectingExample(definition: BoundaryMockDefinition, runConfig: ContractCaseBoundaryConfig): Promise<BoundaryResult>;
     // (undocumented)
-    stripMatchers(matcherOrData: TsBoundaryAnyMatcher): BoundaryResult;
+    stripMatchers(matcherOrData: BoundaryAnyMatcher): BoundaryResult;
 }
 
 // @public
@@ -98,10 +94,6 @@ export class BoundaryResultTypeConstants {
 // @public
 export abstract class BoundaryStateHandler {
     setup(): Promise<BoundaryResult>;
-}
-
-// @public
-export abstract class BoundaryStateHandlerWithTeardown extends BoundaryStateHandler {
     teardown(): Promise<BoundaryResult>;
 }
 
@@ -185,14 +177,14 @@ export interface IInvokeCoreTest {
 
 // @public
 export interface ILogPrinter {
-    log(level: string, timestamp: string, version: string, typeString: string, location: string, message: string, additional: string): BoundaryResult;
+    log(level: string, timestamp: string, version: string, typeString: string, location: string, message: string, additional: string): Promise<BoundaryResult>;
 }
 
 // @public
 export interface IResultPrinter {
-    printMatchError(MatchErrorDescription: PrintableMatchError): BoundaryResult;
-    printMessageError(messageErrorDetails: PrintableMessageError): BoundaryResult;
-    printTestTitle(titleDetails: PrintableTestTitle): BoundaryResult;
+    printMatchError(MatchErrorDescription: PrintableMatchError): Promise<BoundaryResult>;
+    printMessageError(messageErrorDetails: PrintableMessageError): Promise<BoundaryResult>;
+    printTestTitle(titleDetails: PrintableTestTitle): Promise<BoundaryResult>;
 }
 
 // @public
@@ -252,23 +244,6 @@ export const RESULT_SUCCESS_HAS_ANY_PAYLOAD = "SuccessAny";
 //
 // @internal
 export const RESULT_SUCCESS_HAS_MAP_PAYLOAD = "SuccessMap";
-
-// @public
-export type TsBoundaryAnyMatcher = AnyCaseMatcherOrData;
-
-// @public
-export type TsBoundaryAnyMockDescriptor = AnyMockDescriptor;
-
-// @public
-export type TsBoundaryAnyState = AnyState;
-
-// @public
-export interface TsBoundaryMockDefinition {
-    // (undocumented)
-    readonly definition: TsBoundaryAnyMockDescriptor;
-    // (undocumented)
-    readonly states: Array<TsBoundaryAnyState>;
-}
 
 // @public
 export interface UserNamePassword {

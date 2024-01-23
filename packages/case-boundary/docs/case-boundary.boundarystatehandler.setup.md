@@ -4,7 +4,9 @@
 
 ## BoundaryStateHandler.setup() method
 
-Call the user's state setup function
+Call the user's state setup function.
+
+If the user provided no setup function, this should be a function that does nothing and returns a `BoundarySuccess`
 
 **Signature:**
 

@@ -9,7 +9,7 @@ Called by ContractCase to ask the DSL to print an individual match error line.
 **Signature:**
 
 ```typescript
-printMatchError(MatchErrorDescription: PrintableMatchError): BoundaryResult;
+printMatchError(MatchErrorDescription: PrintableMatchError): Promise<BoundaryResult>;
 ```
 
 ## Parameters
@@ -20,4 +20,4 @@ printMatchError(MatchErrorDescription: PrintableMatchError): BoundaryResult;
 
 **Returns:**
 
-[BoundaryResult](./case-boundary.boundaryresult.md)
+Promise&lt;[BoundaryResult](./case-boundary.boundaryresult.md)<!-- -->&gt;

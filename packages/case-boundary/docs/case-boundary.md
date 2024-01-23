@@ -26,11 +26,10 @@ Don't depend on this directly unless you are writing a custom wrapper for Contra
 
 ## Abstract Classes
 
-| Abstract Class                                                                          | Description                                                                                                                                                                                                                                                                                    |
-| --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [BoundaryResult](./case-boundary.boundaryresult.md)                                     | Supertype for all methods that return results. Use one of <code>BoundarySuccess</code>, <code>BoundaryFailure</code>, or one of the specialised <code>BoundarySuccessWith\*</code> return types as appropriate. See the documentation for the method you're implementing for more information. |
-| [BoundaryStateHandler](./case-boundary.boundarystatehandler.md)                         | An interface for a state handler that only has setup                                                                                                                                                                                                                                           |
-| [BoundaryStateHandlerWithTeardown](./case-boundary.boundarystatehandlerwithteardown.md) | An interface for a state handler with setup and teardown                                                                                                                                                                                                                                       |
+| Abstract Class                                                  | Description                                                                                                                                                                                                                                                                                    |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [BoundaryResult](./case-boundary.boundaryresult.md)             | Supertype for all methods that return results. Use one of <code>BoundarySuccess</code>, <code>BoundaryFailure</code>, or one of the specialised <code>BoundarySuccessWith\*</code> return types as appropriate. See the documentation for the method you're implementing for more information. |
+| [BoundaryStateHandler](./case-boundary.boundarystatehandler.md) | An interface for a state handler that only has setup                                                                                                                                                                                                                                           |
 
 ## Interfaces
 
@@ -47,16 +46,12 @@ Don't depend on this directly unless you are writing a custom wrapper for Contra
 | [PrintableMatchError](./case-boundary.printablematcherror.md)               | Data class to hold data to print a message error during matching                                                                                                                                                                        |
 | [PrintableMessageError](./case-boundary.printablemessageerror.md)           | Data class to hold data to print a message error                                                                                                                                                                                        |
 | [PrintableTestTitle](./case-boundary.printabletesttitle.md)                 | Data class to hold data for a test title print line                                                                                                                                                                                     |
-| [TsBoundaryMockDefinition](./case-boundary.tsboundarymockdefinition.md)     | This interface describes a Mock Definition, when viewing through jsii                                                                                                                                                                   |
 | [UserNamePassword](./case-boundary.usernamepassword.md)                     | Describes a username and password                                                                                                                                                                                                       |
 
 ## Type Aliases
 
-| Type Alias                                                                    | Description                                                  |
-| ----------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [BoundaryAnyMatcher](./case-boundary.boundaryanymatcher.md)                   | This type is used for any matcher, when viewing through jsii |
-| [BoundaryAnyMockDescriptor](./case-boundary.boundaryanymockdescriptor.md)     | This type is used for any matcher, when viewing through jsii |
-| [BoundaryAnyState](./case-boundary.boundaryanystate.md)                       | This type is used for any matcher, when viewing through jsii |
-| [TsBoundaryAnyMatcher](./case-boundary.tsboundaryanymatcher.md)               | This type is used for any matcher                            |
-| [TsBoundaryAnyMockDescriptor](./case-boundary.tsboundaryanymockdescriptor.md) | This type is used for any matcher                            |
-| [TsBoundaryAnyState](./case-boundary.tsboundaryanystate.md)                   | This type is used for any matcher                            |
+| Type Alias                                                                | Description                                                  |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [BoundaryAnyMatcher](./case-boundary.boundaryanymatcher.md)               | This type is used for any matcher, when viewing through jsii |
+| [BoundaryAnyMockDescriptor](./case-boundary.boundaryanymockdescriptor.md) | This type is used for any matcher, when viewing through jsii |
+| [BoundaryAnyState](./case-boundary.boundaryanystate.md)                   | This type is used for any matcher, when viewing through jsii |

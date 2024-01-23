@@ -9,7 +9,7 @@ Called by ContractCase to ask the DSL to print a test title or main execution de
 **Signature:**
 
 ```typescript
-printTestTitle(titleDetails: PrintableTestTitle): BoundaryResult;
+printTestTitle(titleDetails: PrintableTestTitle): Promise<BoundaryResult>;
 ```
 
 ## Parameters
@@ -20,4 +20,4 @@ printTestTitle(titleDetails: PrintableTestTitle): BoundaryResult;
 
 **Returns:**
 
-[BoundaryResult](./case-boundary.boundaryresult.md)
+Promise&lt;[BoundaryResult](./case-boundary.boundaryresult.md)<!-- -->&gt;

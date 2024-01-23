@@ -9,7 +9,7 @@ Called by ContractCase to ask the DSL to print an error during testing that does
 **Signature:**
 
 ```typescript
-printMessageError(messageErrorDetails: PrintableMessageError): BoundaryResult;
+printMessageError(messageErrorDetails: PrintableMessageError): Promise<BoundaryResult>;
 ```
 
 ## Parameters
@@ -20,4 +20,4 @@ printMessageError(messageErrorDetails: PrintableMessageError): BoundaryResult;
 
 **Returns:**
 
-[BoundaryResult](./case-boundary.boundaryresult.md)
+Promise&lt;[BoundaryResult](./case-boundary.boundaryresult.md)<!-- -->&gt;

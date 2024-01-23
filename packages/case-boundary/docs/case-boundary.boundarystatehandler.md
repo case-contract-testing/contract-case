@@ -14,6 +14,7 @@ export declare abstract class BoundaryStateHandler
 
 ## Methods
 
-| Method                                                   | Modifiers | Description                          |
-| -------------------------------------------------------- | --------- | ------------------------------------ |
-| [setup()](./case-boundary.boundarystatehandler.setup.md) |           | Call the user's state setup function |
+| Method                                                         | Modifiers | Description                                                                                                                                                                            |
+| -------------------------------------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [setup()](./case-boundary.boundarystatehandler.setup.md)       |           | <p>Call the user's state setup function.</p><p>If the user provided no setup function, this should be a function that does nothing and returns a <code>BoundarySuccess</code></p>      |
+| [teardown()](./case-boundary.boundarystatehandler.teardown.md) |           | <p>Call the user's state teardown function</p><p>If the user provided no teardown function, this should be a function that does nothing and returns a <code>BoundarySuccess</code></p> |

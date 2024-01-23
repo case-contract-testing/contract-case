@@ -8,6 +8,8 @@ import { AnyMatcherOrData } from '@contract-case/test-equivalence-matchers';
 import { InternalContractCaseCoreSetup } from '@contract-case/case-entities-internal';
 import { MOCK_HTTP_CLIENT } from '@contract-case/case-entities-internal';
 import { MOCK_HTTP_SERVER } from '@contract-case/case-entities-internal';
+import { SETUP_NAMED_STATE } from '@contract-case/case-entities-internal';
+import { SETUP_VARIABLE_STATE } from '@contract-case/case-entities-internal';
 
 // @public
 abstract class AnyMockDescriptor {
@@ -27,7 +29,6 @@ declare namespace base {
         AnyMockDescriptor
     }
 }
-export { base }
 
 // @public
 interface ContractCaseCoreBehaviour {
@@ -49,13 +50,52 @@ declare namespace http {
         WillSendHttpRequest
     }
 }
-export { http }
 
 // @public (undocumented)
 interface HttpExample {
     readonly request: AnyMatcherOrData;
     readonly response: AnyMatcherOrData;
 }
+
+// @public
+class InState {
+    // @internal (undocumented)
+    readonly '_case:state:type': typeof SETUP_NAMED_STATE;
+    constructor(stateName: string);
+    // (undocumented)
+    readonly stateName: string;
+    stringify(): string;
+    toJSON(): unknown;
+}
+
+// @public
+class InStateWithVariables {
+    // @internal (undocumented)
+    readonly '_case:state:type': typeof SETUP_VARIABLE_STATE;
+    constructor(stateName: string, variables: Record<string, AnyMatcherOrData>);
+    // (undocumented)
+    readonly stateName: string;
+    stringify(): string;
+    toJSON(): unknown;
+    // (undocumented)
+    readonly variables: Record<string, AnyMatcherOrData>;
+}
+
+declare namespace mocks {
+    export {
+        base,
+        http
+    }
+}
+export { mocks }
+
+declare namespace states {
+    export {
+        InState,
+        InStateWithVariables
+    }
+}
+export { states }
 
 // @public
 class WillReceiveHttpRequest extends AnyMockDescriptor {

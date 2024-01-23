@@ -4,15 +4,15 @@
 
 ## case-example-mock-types package
 
-These are the \[CaseExample mock types\](https://case.contract-testing.io/docs/reference/example-types)
+These are the \[CaseExample mock types\](https://case.contract-testing.io/docs/reference/example-types) and the state descriptors for CaseExamples.
 
 ## Remarks
 
-These are the data objects that define \[CaseExamples\](https://case.contract-testing.io/docs/reference/example-types). Read \[the documentation here\](https://case.contracttesting.io)
+These are the data objects that define \[CaseExamples\](https://case.contract-testing.io/docs/reference/example-types). Read about the \[Example types here\](\[CaseExample mock types\](https://case.contract-testing.io/docs/reference/example-types)), or \[the full documentation here\](https://case.contracttesting.io)
 
 ## Namespaces
 
-| Namespace                                 | Description |
-| ----------------------------------------- | ----------- |
-| [base](./case-example-mock-types.base.md) |             |
-| [http](./case-example-mock-types.http.md) |             |
+| Namespace                                     | Description |
+| --------------------------------------------- | ----------- |
+| [mocks](./case-example-mock-types.mocks.md)   |             |
+| [states](./case-example-mock-types.states.md) |             |

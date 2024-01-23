@@ -103,9 +103,10 @@
       }
     },
     "targetDefaults": {
-      "prebuild": {
+      "build:docs:local": {
         "dependsOn": [
-          "^prebuild"
+          "build",
+          "^build:docs:local"
         ]
       },
       "build": {
