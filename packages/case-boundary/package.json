@@ -11,11 +11,6 @@
     "src": "src",
     "build": "build"
   },
-  "files": [
-    "dist",
-    "docs",
-    "api-extractor"
-  ],
   "publishConfig": {
     "access": "public"
   },
