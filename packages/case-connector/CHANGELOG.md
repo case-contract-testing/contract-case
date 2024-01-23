@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.7.0...@contract-case/case-connector-v0.7.1) (2024-01-23)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-boundary bumped from 0.10.0 to 0.10.1
+
 ## [0.7.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.6.7...@contract-case/case-connector-v0.7.0) (2024-01-23)
 
 

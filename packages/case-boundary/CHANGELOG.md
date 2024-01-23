@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.10.0...@contract-case/case-boundary-v0.10.1) (2024-01-23)
+
+
+### Bug Fixes
+
+* Ensure that jsii bundle is correctly created ([66637da](https://github.com/case-contract-testing/contract-case/commit/66637da778a13636807113060e3eb5f4cfa524a0))
+
 ## [0.10.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-boundary-v0.9.2...@contract-case/case-boundary-v0.10.0) (2024-01-23)
 
 
