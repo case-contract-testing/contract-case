@@ -7,8 +7,6 @@ This is the [JSii](https://aws.github.io/jsii/user-guides/lib-author/toolchain/j
 
 However, because of [a bug preventing servers from running](https://github.com/aws/jsii/issues/4133), communication with wrapper libraries is provided by @contract-case/case-connector instead.
 
-Additionally, case-boundary is not currently translated to JSii due to [some packaging issues](https://github.com/aws/jsii/issues/4132) that make the automated build a bit tricky to run.
+Don't depend on this directly unless you are writing a _very_ custom wrapper for ContractCase. If you're just writing a regular wrapper for ContractCase, you probably want [@contract-case/case-connector](https://www.npmjs.com/package/@contract-case/case-connector).
 
-Don't depend on this directly unless you are writing a custom wrapper for ContractCase.
-
-[Start here instead](https://case.contract-testing.io/docs/intro)
+Otherwise, if you're looking to use ContractCase for testing, [start here instead](https://case.contract-testing.io/docs/intro)

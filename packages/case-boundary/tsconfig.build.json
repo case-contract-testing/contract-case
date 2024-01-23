@@ -1,14 +1,37 @@
 {
-  "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "outDir": "build",
+    "forceConsistentCasingInFileNames": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "alwaysStrict": true,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "incremental": true,
+    "lib": ["es2020"],
+    "module": "CommonJS",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "stripInternal": false,
+    "target": "ES2020",
+    "composite": false,
+    "tsBuildInfoFile": "build/tsconfig.tsbuildinfo"
+  },
+  "include": ["**/*.spec.ts"],
   "exclude": [
+    "node_modules",
+    "_incoming/**/*",
     "jest.config.ts",
-    "dist/**/*.js",
-    "example/*",
-    "src/__tests__/*",
-    "**/*.spec.verify.ts",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "coverage"
+    "build/**/*.ts"
   ]
 }

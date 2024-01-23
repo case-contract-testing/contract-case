@@ -5,8 +5,8 @@
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs/reference/matchers",
   "license": "BSD-3-Clause",
-  "main": "./dist/src/index.js",
-  "types": "./dist/src/index.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "directories": {
     "src": "src",
     "build": "build"
@@ -24,10 +24,15 @@
     "url": "git+ssh://git@github.com/case-contract-testing/case.git"
   },
   "scripts": {
-    "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "prebuild": "rimraf build",
+    "build": "jsii",
     "build:docs": "api-extractor run --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "build:docs:local": "api-extractor run --local --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "prepackage": "rimraf dist",
+    "prepack": "mkdirp node_modules/@contract-case && ln -sf ${PWD}/../case-entities node_modules/@contract-case/case-entities-internal",
+    "postpack": "rimraf node_modules",
+    "package": "jsii-pacmak",
+    "publish:maven": "publib-maven",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "format:base": "prettier \"{docs,src}/**/*.{ts,md}\"",
@@ -36,6 +41,32 @@
   },
   "bugs": {
     "url": "https://github.com/case-contract-testing/case/issues"
+  },
+  "jsii": {
+    "excludeTypescript": [
+      "_incoming/**/*",
+      "**/*.spec.ts",
+      "jest.config.ts"
+    ],
+    "outdir": "dist",
+    "versionFormat": "full",
+    "tsc": {
+      "outDir": "build",
+      "forceConsistentCasingInFileNames": true,
+      "composite": true,
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true
+    },
+    "targets": {
+      "java": {
+        "package": "io.contract_testing.contractcase.case_boundary",
+        "maven": {
+          "groupId": "io.contract-testing.contractcase",
+          "artifactId": "case_boundary"
+        }
+      }
+    }
   },
   "devDependencies": {
     "@contract-case/case-maintainer-config": "0.0.3",
@@ -62,6 +93,11 @@
     "@contract-case/case-entities-internal": "0.15.3",
     "read-pkg-up": "^7.0.1"
   },
+  "bundledDependencies": [
+    "@contract-case/case-core",
+    "@contract-case/case-entities-internal",
+    "read-pkg-up"
+  ],
   "stability": "stable",
   "nx": {
     "tasksRunnerOptions": {
@@ -99,6 +135,9 @@
         "outputs": "{projectRoot}/docs"
       },
       "package": {
+        "dependsOn": [
+          "build"
+        ],
         "outputs": [
           "{projectRoot}/dist"
         ]

@@ -10,7 +10,10 @@ import {
 } from '@contract-case/case-core';
 
 import { convertConfig, jsErrorToFailure, wrapLogPrinter } from './mappers';
-import { TsBoundaryAnyMatcher, TsBoundaryMockDefinition } from './types';
+import {
+  BoundaryAnyMatcher,
+  BoundaryMockDefinition,
+} from './types.jsii-boundary';
 import {
   ContractCaseBoundaryConfig,
   ILogPrinter,
@@ -30,7 +33,7 @@ const mapDefinitionPart = (matcherOrData: unknown): Definition =>
   JSON.parse(JSON.stringify(matcherOrData));
 
 const mapDefinition = (
-  definition: TsBoundaryMockDefinition,
+  definition: BoundaryMockDefinition,
   {
     stateHandlers,
     triggerAndTests,
@@ -123,7 +126,7 @@ export class BoundaryContractDefiner {
   }
 
   async runExample(
-    definition: TsBoundaryMockDefinition,
+    definition: BoundaryMockDefinition,
     runConfig: ContractCaseBoundaryConfig,
   ): Promise<BoundaryResult> {
     try {
@@ -146,7 +149,7 @@ export class BoundaryContractDefiner {
   }
 
   async runRejectingExample(
-    definition: TsBoundaryMockDefinition,
+    definition: BoundaryMockDefinition,
     runConfig: ContractCaseBoundaryConfig,
   ): Promise<BoundaryResult> {
     try {
@@ -167,7 +170,7 @@ export class BoundaryContractDefiner {
     }
   }
 
-  stripMatchers(matcherOrData: TsBoundaryAnyMatcher): BoundaryResult {
+  stripMatchers(matcherOrData: BoundaryAnyMatcher): BoundaryResult {
     try {
       this.initialiseDefiner();
       if (this.definer === undefined) {
