@@ -1,8 +1,11 @@
 import {
   BoundaryStateHandler,
   ITriggerFunction,
-  TsBoundaryMockDefinition,
 } from '@contract-case/case-boundary';
+import {
+  AnyMockDescriptor,
+  AnyState,
+} from '@contract-case/case-entities-internal';
 
 export type ConnectorStateHandler = BoundaryStateHandler;
 
@@ -32,4 +35,7 @@ export type ContractCaseConnectorConfig = {
 export type DefinitionId = string;
 export type VerificationId = string;
 
-export type ExampleDefinition = TsBoundaryMockDefinition;
+export type ExampleDefinition = {
+  readonly states: Array<AnyState>;
+  readonly definition: AnyMockDescriptor;
+};
