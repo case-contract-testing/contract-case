@@ -8,7 +8,9 @@ import { BoundaryResult } from './Result';
  */
 export abstract class BoundaryStateHandler {
   /**
-   * Call the user's state setup function
+   * Call the user's state setup function.
+   *
+   * If the user provided no setup function, this should be a function that does nothing and returns a `BoundarySuccess`
    *
    * @returns Either a `BoundaryFailure` with
    * `kind=BoundaryFailureKindConstants.CASE_CONFIGURATION_ERROR` or a
@@ -20,16 +22,11 @@ export abstract class BoundaryStateHandler {
       `${this}: State handler setup function not overridden`,
     );
   }
-}
 
-/**
- * An interface for a state handler with setup and teardown
- *
- * @public
- */
-export abstract class BoundaryStateHandlerWithTeardown extends BoundaryStateHandler {
   /**
    * Call the user's state teardown function
+   *
+   * If the user provided no teardown function, this should be a function that does nothing and returns a `BoundarySuccess`
    *
    * @returns Either a `BoundaryFailure` with `kind=BoundaryFailureKindConstants.CASE_CONFIGURATION_ERROR` or a `BoundarySuccess`
    */

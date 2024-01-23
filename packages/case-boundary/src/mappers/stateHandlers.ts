@@ -6,7 +6,6 @@ import {
   RESULT_SUCCESS_HAS_MAP_PAYLOAD,
   BoundarySuccessWithMap,
   BoundaryStateHandler,
-  BoundaryStateHandlerWithTeardown,
 } from '../boundary';
 import { failureToJsError } from './Result';
 
@@ -39,33 +38,28 @@ const wrapSetup =
     });
 
 const mapHandlerClass = (
-  boundaryHandler: BoundaryStateHandler | BoundaryStateHandlerWithTeardown,
-): StateHandlerFunction => {
-  if (boundaryHandler instanceof BoundaryStateHandlerWithTeardown) {
-    return {
-      setup: wrapSetup(boundaryHandler),
-      teardown: () =>
-        boundaryHandler.teardown().then((result) => {
-          switch (result.resultType) {
-            case RESULT_SUCCESS:
-              return;
-            case RESULT_FAILURE:
-              failureToJsError(result);
-              break;
-            case RESULT_SUCCESS_HAS_MAP_PAYLOAD:
-              throw new CaseCoreError(
-                `Teardown function is not supposed to return SuccessWithMap`,
-              );
-            default:
-              throw new CaseCoreError(
-                `Unknown result type '${result.resultType}' during setup handler`,
-              );
-          }
-        }),
-    };
-  }
-  return wrapSetup(boundaryHandler);
-};
+  boundaryHandler: BoundaryStateHandler,
+): StateHandlerFunction => ({
+  setup: wrapSetup(boundaryHandler),
+  teardown: () =>
+    boundaryHandler.teardown().then((result) => {
+      switch (result.resultType) {
+        case RESULT_SUCCESS:
+          return;
+        case RESULT_FAILURE:
+          failureToJsError(result);
+          break;
+        case RESULT_SUCCESS_HAS_MAP_PAYLOAD:
+          throw new CaseCoreError(
+            `Teardown function is not supposed to return SuccessWithMap`,
+          );
+        default:
+          throw new CaseCoreError(
+            `Unknown result type '${result.resultType}' during setup handler`,
+          );
+      }
+    }),
+});
 
 type StateHandlerFunction =
   | (() => Promise<void | Record<string, AnyCaseMatcherOrData>>)
@@ -75,10 +69,7 @@ type StateHandlerFunction =
     };
 
 export const mapStateHandlers = (
-  boundaryHandlers: Record<
-    string,
-    BoundaryStateHandler | BoundaryStateHandlerWithTeardown
-  >,
+  boundaryHandlers: Record<string, BoundaryStateHandler>,
 ): Record<string, StateHandlerFunction> =>
   Object.entries(boundaryHandlers)
     .map(([key, boundaryHandler]) => ({
