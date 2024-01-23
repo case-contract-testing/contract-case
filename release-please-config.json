@@ -1,5 +1,4 @@
 {
-  "bootstrap-sha": "4caa29631e09fc1bd1a94fff6c79632ddf4c7fa0",
   "plugins": [
     { "type": "node-workspace", "merge": false },
     {
