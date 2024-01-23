@@ -1,7 +1,4 @@
-import {
-  AnyStateType,
-  SETUP_NAMED_STATE,
-} from '@contract-case/case-entities-internal';
+import { SETUP_NAMED_STATE } from '@contract-case/case-entities-internal';
 
 /**
  * A state descriptor for configuring an example that needs to run in a
@@ -9,9 +6,9 @@ import {
  *
  * @public
  */
-export abstract class InState {
+export class InState {
   /** @internal */
-  readonly '_case:state:type': AnyStateType;
+  readonly '_case:state:type': typeof SETUP_NAMED_STATE;
 
   readonly stateName: string;
 

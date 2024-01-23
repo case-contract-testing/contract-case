@@ -1,7 +1,4 @@
-import {
-  AnyStateType,
-  SETUP_NAMED_STATE,
-} from '@contract-case/case-entities-internal';
+import { SETUP_VARIABLE_STATE } from '@contract-case/case-entities-internal';
 import { AnyMatcherOrData } from '@contract-case/test-equivalence-matchers';
 
 /**
@@ -10,9 +7,9 @@ import { AnyMatcherOrData } from '@contract-case/test-equivalence-matchers';
  *
  * @public
  */
-export abstract class InStateWithVariables {
+export class InStateWithVariables {
   /** @internal */
-  readonly '_case:state:type': AnyStateType;
+  readonly '_case:state:type': typeof SETUP_VARIABLE_STATE;
 
   readonly stateName: string;
 
@@ -28,7 +25,7 @@ export abstract class InStateWithVariables {
    * @param variables - A object where the keys are variable names, mapped to any data or matcher objects.
    */
   constructor(stateName: string, variables: Record<string, AnyMatcherOrData>) {
-    this['_case:state:type'] = SETUP_NAMED_STATE;
+    this['_case:state:type'] = SETUP_VARIABLE_STATE;
     this.stateName = stateName;
     this.variables = variables;
   }
