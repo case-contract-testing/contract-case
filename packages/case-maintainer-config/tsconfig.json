@@ -26,5 +26,5 @@
     "strict": true,
     "target": "es2022"
   },
-  "display": "Node LTS + Strictest"
+  "display": "ContractCase TS Config"
 }
