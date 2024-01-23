@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.15.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.15.3...@contract-case/case-example-mock-types-v0.15.4) (2024-01-23)
+
+
+### Features
+
+* Add InState and InStateWithVariables for describing states during example runs ([cb2d437](https://github.com/case-contract-testing/contract-case/commit/cb2d4372d405d7b25d2e27e67a0b9199366f8745))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.15.3 to 0.15.4
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.0.3 to 0.0.4
+    * @contract-case/test-equivalence-matchers bumped from 0.15.3 to 0.15.4
+  * peerDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.15.3 to 0.15.4
+
 ## [0.15.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.15.2...@contract-case/case-example-mock-types-v0.15.3) (2024-01-18)
 
 

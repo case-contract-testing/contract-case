@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.15.4](https://github.com/case-contract-testing/contract-case/compare/v0.15.3...v0.15.4) (2024-01-23)
+
+
+### Features
+
+* Add InState and InStateWithVariables for describing states during example runs ([cb2d437](https://github.com/case-contract-testing/contract-case/commit/cb2d4372d405d7b25d2e27e67a0b9199366f8745))
+
+
+### Bug Fixes
+
+* **deps:** Bump version of case-boundary to 0.9.3 ([7a56f60](https://github.com/case-contract-testing/contract-case/commit/7a56f60888d077cda861e2c6cb52c82ff0b86a15))
+
 ## [0.15.3](https://github.com/case-contract-testing/contract-case/compare/v0.15.2...v0.15.3) (2024-01-18)
 
 

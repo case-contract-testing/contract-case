@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.15.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.15.3...@contract-case/case-entities-internal-v0.15.4) (2024-01-23)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-entities-internal:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.0.3 to 0.0.4
+
 ## [0.15.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.15.2...@contract-case/case-entities-internal-v0.15.3) (2024-01-18)
 
 
