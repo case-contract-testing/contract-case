@@ -1,7 +1,0 @@
-{
-  "extends": ["@contract-case/case-maintainer"],
-
-  "rules": {
-    "max-classes-per-file": "off"
-  }
-}

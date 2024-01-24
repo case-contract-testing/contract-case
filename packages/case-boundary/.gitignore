@@ -1,5 +1,0 @@
-# jsii specific things
-.jsii
-build
-dist
-tsconfig.json

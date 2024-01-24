@@ -87,12 +87,6 @@
         { "type": "ci", "section": "Continuous Integration", "hidden": true }
       ]
     },
-    "packages/case-boundary": {
-      "component": "@contract-case/case-boundary",
-      "bump-minor-pre-major": true,
-      "bump-patch-for-minor-pre-major": true,
-      "changelog-path": "CHANGELOG.md"
-    },
     "packages/contract-case-jest": {
       "component": "@contract-case/contract-case-jest",
       "bump-minor-pre-major": true,
