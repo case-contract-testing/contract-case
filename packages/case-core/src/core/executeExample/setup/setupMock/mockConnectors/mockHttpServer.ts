@@ -97,8 +97,15 @@ export const setupHttpResponseProducer = (
             res.status(expectedResponse.status);
 
             if (expectedResponse.body) {
+              context.logger.debug(
+                `Sending HTTP ${expectedResponse.status} response to '${addressToString(server?.address())}', with body:`,
+                expectedResponse.body,
+              );
               res.send(expectedResponse.body);
             } else {
+              context.logger.debug(
+                `Sending empty HTTP ${expectedResponse.status} response to '${addressToString(server?.address())}'`,
+              );
               res.send();
             }
             next();
