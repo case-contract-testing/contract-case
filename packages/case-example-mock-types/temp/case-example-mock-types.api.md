@@ -22,6 +22,16 @@ abstract class AnyMockDescriptor {
     toJSON(): unknown;
 }
 
+// @public
+abstract class AnyState {
+    // @internal (undocumented)
+    readonly '_case:state:type': string;
+    constructor(stateType: string, stateName: string);
+    readonly stateName: string;
+    stringify(): string;
+    toJSON(): unknown;
+}
+
 declare namespace base {
     export {
         ContractCaseCoreBehaviour,
@@ -58,25 +68,17 @@ interface HttpExample {
 }
 
 // @public
-class InState {
+class InState extends AnyState {
     // @internal (undocumented)
     readonly '_case:state:type': typeof SETUP_NAMED_STATE;
     constructor(stateName: string);
-    // (undocumented)
-    readonly stateName: string;
-    stringify(): string;
-    toJSON(): unknown;
 }
 
 // @public
-class InStateWithVariables {
+class InStateWithVariables extends AnyState {
     // @internal (undocumented)
     readonly '_case:state:type': typeof SETUP_VARIABLE_STATE;
     constructor(stateName: string, variables: Record<string, AnyMatcherOrData>);
-    // (undocumented)
-    readonly stateName: string;
-    stringify(): string;
-    toJSON(): unknown;
     // (undocumented)
     readonly variables: Record<string, AnyMatcherOrData>;
 }
@@ -92,7 +94,8 @@ export { mocks }
 declare namespace states {
     export {
         InState,
-        InStateWithVariables
+        InStateWithVariables,
+        AnyState
     }
 }
 export { states }

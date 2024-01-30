@@ -10,3 +10,9 @@
 | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | [InState](./case-example-mock-types.states.instate.md)                           | A state descriptor for configuring an example that needs to run in a particular named state.                                               |
 | [InStateWithVariables](./case-example-mock-types.states.instatewithvariables.md) | A state descriptor for configuring an example that needs to run in a particular named state, and with variables provided by the framework. |
+
+## Abstract Classes
+
+| Abstract Class                                           | Description                                                                                                                                                                                                          |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [AnyState](./case-example-mock-types.states.anystate.md) | <p>The base class for all ContractCase State Descriptors. You shouldn't need to extend this.</p><p>You don't need to read the documentation for this class unless you are working on a wrapper for ContractCase.</p> |

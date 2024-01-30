@@ -9,8 +9,10 @@ A state descriptor for configuring an example that needs to run in a particular 
 **Signature:**
 
 ```typescript
-export declare class InStateWithVariables
+export declare class InStateWithVariables extends AnyState
 ```
+
+**Extends:** [AnyState](./case-example-mock-types.states.anystate.md)
 
 ## Constructors
 
@@ -22,12 +24,4 @@ export declare class InStateWithVariables
 
 | Property                                                                        | Modifiers             | Type                                   | Description |
 | ------------------------------------------------------------------------------- | --------------------- | -------------------------------------- | ----------- |
-| [stateName](./case-example-mock-types.states.instatewithvariables.statename.md) | <code>readonly</code> | string                                 |             |
 | [variables](./case-example-mock-types.states.instatewithvariables.variables.md) | <code>readonly</code> | Record&lt;string, AnyMatcherOrData&gt; |             |
-
-## Methods
-
-| Method                                                                            | Modifiers | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [stringify()](./case-example-mock-types.states.instatewithvariables.stringify.md) |           | <p>This method returns the entire state descriptor as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.</p><p>You shouldn't need to override this method.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| [toJSON()](./case-example-mock-types.states.instatewithvariables.tojson.md)       |           | <p>You shouldn't need to override or call this method.</p><p>It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.</p><p>It isn't called by any implementation directly, it's used on the javascript side by <code>JSON.stringify()</code>.</p><p>Calling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.</p><p>WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in \[Extending ContractCase\](https://case.contract-testing.io/docs/advanced-topics/extending-case).</p> |
