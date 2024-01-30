@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.15.5](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.15.4...@contract-case/case-core-v0.15.5) (2024-01-30)
+
+
+### Bug Fixes
+
+* Correct an issue where nested lookup matchers would fail the test of whether or not they described the same thing ([bc2eac9](https://github.com/case-contract-testing/contract-case/commit/bc2eac9cb2ebb42044a957ed377501e5e3180c00))
+* Improve logging of http responses ([4f8faef](https://github.com/case-contract-testing/contract-case/commit/4f8faeff9e5616e120ac60227b458ab643827d31))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.15.4 to 0.15.5
+
 ## [0.15.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.15.3...@contract-case/case-core-v0.15.4) (2024-01-23)
 
 

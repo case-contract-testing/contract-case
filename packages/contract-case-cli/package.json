@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/cli",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Command-line interface for ContractCase, allowing interactions with the Contract / Pact Broker",
   "keywords": [
     "testing",
@@ -74,7 +74,7 @@
   },
   "dependencies": {
     "@contract-case/case-boundary": "0.10.1",
-    "@contract-case/case-core": "0.15.4",
+    "@contract-case/case-core": "0.15.5",
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
     "read-pkg-up": "^7.0.1"
