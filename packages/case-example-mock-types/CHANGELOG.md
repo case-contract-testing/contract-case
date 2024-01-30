@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.15.5](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.15.4...@contract-case/case-example-mock-types-v0.15.5) (2024-01-30)
+
+
+### Features
+
+* Add a new AnyState supertype for the state variables ([854c312](https://github.com/case-contract-testing/contract-case/commit/854c312f1eac72e35c79d463936c089240c91fa6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.15.4 to 0.15.5
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.15.4 to 0.15.5
+  * peerDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.15.4 to 0.15.5
+
 ## [0.15.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.15.3...@contract-case/case-example-mock-types-v0.15.4) (2024-01-23)
 
 
