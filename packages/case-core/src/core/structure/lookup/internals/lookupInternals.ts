@@ -12,7 +12,10 @@ export const addLookup = (
   context: MatchContextWithoutLookup,
 ): Record<string, AnyCaseMatcherOrData> => {
   const lookupName = `${lookupType}:${uniqueName}`;
-  context.logger.maintainerDebug(`Saving lookup ${lookupType}:`, matcher);
+  context.logger.maintainerDebug(
+    `Saving lookup ${lookupType} (${lookupName}):`,
+    matcher,
+  );
   if (matcherLookup[lookupName]) {
     if (!rawEquality(matcher, matcherLookup[lookupName])) {
       context.logger.error(

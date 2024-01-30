@@ -15,6 +15,10 @@ export const addMatcher = (
   context: MatchContextWithoutLookup,
 ): LookupMap => {
   if (isLookupableMatcher(matcher) && '_case:matcher:child' in matcher) {
+    context.logger.deepMaintainerDebug(
+      'addMatcher: Calling addLookup for',
+      matcher,
+    );
     return addLookup(
       matcherLookup,
       'matcher',
@@ -23,6 +27,7 @@ export const addMatcher = (
       context,
     );
   }
+  context.logger.deepMaintainerDebug('addMatcher: Not adding', matcher);
   return matcherLookup;
 };
 
