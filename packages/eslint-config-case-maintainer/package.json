@@ -32,7 +32,7 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "prettier": "^3.0.3"
+    "prettier": "^3.2.5"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^6.15.0",
