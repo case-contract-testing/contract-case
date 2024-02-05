@@ -59,7 +59,7 @@
     "body-parser": "^1.20.2",
     "eslint": "^8.56.0",
     "jest": "^29.7.0",
-    "prettier": "^3.0.3",
+    "prettier": "3.2.5",
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
