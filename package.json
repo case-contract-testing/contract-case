@@ -17,7 +17,7 @@
     "@nx/nx-linux-arm64-gnu": "17.2.5",
     "@nx/nx-linux-arm64-musl": "17.2.8",
     "@nx/nx-linux-x64-gnu": "17.2.7",
-    "@nx/nx-linux-x64-musl": "17.0.1",
+    "@nx/nx-linux-x64-musl": "18.0.1",
     "@nx/nx-win32-arm64-msvc": "17.2.5",
     "@nx/nx-win32-x64-msvc": "17.1.3"
   },
