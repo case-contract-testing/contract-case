@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.16.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/test-equivalence-matchers-v0.15.6...@contract-case/test-equivalence-matchers-v0.16.0) (2024-02-11)
+
+
+### Bug Fixes
+
+* Correctly expose java types from jsii modules ([f40fc13](https://github.com/case-contract-testing/contract-case/commit/f40fc1371a3bc2565692e491125762b82b5e068b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.15.6 to 0.16.0
+
 ## [0.15.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/test-equivalence-matchers-v0.15.5...@contract-case/test-equivalence-matchers-v0.15.6) (2024-02-11)
 
 

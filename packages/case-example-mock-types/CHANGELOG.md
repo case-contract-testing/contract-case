@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.16.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.15.6...@contract-case/case-example-mock-types-v0.16.0) (2024-02-11)
+
+
+### Features
+
+* Add a new AnyState supertype for the state variables ([854c312](https://github.com/case-contract-testing/contract-case/commit/854c312f1eac72e35c79d463936c089240c91fa6))
+* Add a stringified convenience method to the mock descriptors ([a6fa77e](https://github.com/case-contract-testing/contract-case/commit/a6fa77e2c79073f183c603336f43503194f6d3b2))
+* Add InState and InStateWithVariables for describing states during example runs ([cb2d437](https://github.com/case-contract-testing/contract-case/commit/cb2d4372d405d7b25d2e27e67a0b9199366f8745))
+
+
+### Bug Fixes
+
+* Correctly expose java types from jsii modules ([f40fc13](https://github.com/case-contract-testing/contract-case/commit/f40fc1371a3bc2565692e491125762b82b5e068b))
+* Improve AnyMock documentation ([b518a6d](https://github.com/case-contract-testing/contract-case/commit/b518a6d4ef410506da4e1f3d5e9035878f596bc9))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.15.6 to 0.16.0
+  * devDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.15.6 to 0.16.0
+  * peerDependencies
+    * @contract-case/test-equivalence-matchers bumped from 0.15.6 to 0.16.0
+
 ## [0.15.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.15.5...@contract-case/case-example-mock-types-v0.15.6) (2024-02-11)
 
 

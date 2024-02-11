@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.16.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.15.6...@contract-case/case-core-v0.16.0) (2024-02-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Now all loggers and printers return promises, to better reflect that there is a boundary crossed
+
+### Bug Fixes
+
+* Correct an issue where lookup matchers that had nulls were incorrectly seen as non-equal ([06ac4fa](https://github.com/case-contract-testing/contract-case/commit/06ac4fa0d7648dffd02dfbe083d0220e424358ca))
+* Correct an issue where nested lookup matchers would fail the test of whether or not they described the same thing ([bc2eac9](https://github.com/case-contract-testing/contract-case/commit/bc2eac9cb2ebb42044a957ed377501e5e3180c00))
+* Correct issue where trigger function errors weren't thrown in some cases ([6172c18](https://github.com/case-contract-testing/contract-case/commit/6172c1827c52b45cd98e2b992d3c31ad544585c9))
+* Correct issue where trigger functions that failed before calling the server would fail with the wrong reason ([1a8a375](https://github.com/case-contract-testing/contract-case/commit/1a8a3750421f0bad42c47a23b549c3790089fb6a))
+* Correct issue where type error might be thrown when a trigger function failed ([7889ef3](https://github.com/case-contract-testing/contract-case/commit/7889ef329f6e290221852752615c886d4d700158))
+* Correct name in log string ([6dec88b](https://github.com/case-contract-testing/contract-case/commit/6dec88b0feaee94fb672078618053fe5129320c1))
+* Improve debug logging around server startup and shutdown ([8509660](https://github.com/case-contract-testing/contract-case/commit/8509660d0e190b65677be7fcf5ca6e32a8cf2345))
+* Improve log output when matchers are double-specified ([62a4b09](https://github.com/case-contract-testing/contract-case/commit/62a4b09e53ab8b0b97af021388cbfbdc0f77b5ec))
+* Improve logging of http responses ([4f8faef](https://github.com/case-contract-testing/contract-case/commit/4f8faeff9e5616e120ac60227b458ab643827d31))
+* Improve maintainer logging when there are no errors thrown ([f5110c0](https://github.com/case-contract-testing/contract-case/commit/f5110c06b4ba6d280ff192e259154531918f9823))
+* Improve trigger function error message ([1894fb5](https://github.com/case-contract-testing/contract-case/commit/1894fb53d0c8a31635880a4103a07464980f4e6f))
+
+
+### Code Refactoring
+
+* Now all loggers and printers return promises, to better reflect that there is a boundary crossed ([14a9365](https://github.com/case-contract-testing/contract-case/commit/14a9365d6f873c352dadff539b7d8b67946412d0))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.15.6 to 0.16.0
+
 ## [0.15.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.15.5...@contract-case/case-core-v0.15.6) (2024-02-11)
 
 
