@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-connector",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "Connector to allow ContractCase to run as a server. Use only if you're creating a custom wrapper for a new language",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs",

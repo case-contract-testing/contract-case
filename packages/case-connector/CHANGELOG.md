@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.7.3...@contract-case/case-connector-v0.7.4) (2024-02-11)
+
+
+### Bug Fixes
+
+* Bump version of case-boundary to 0.10.4 ([a15aac9](https://github.com/case-contract-testing/contract-case/commit/a15aac9a1337b77831c9f0baf425b6e3f4e2fa17))
+
 ## [0.7.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.7.2...@contract-case/case-connector-v0.7.3) (2024-02-11)
 
 
