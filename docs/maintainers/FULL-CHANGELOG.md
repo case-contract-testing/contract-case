@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.15.6](https://github.com/case-contract-testing/contract-case/compare/v0.15.5...v0.15.6) (2024-02-11)
+
+
+### Bug Fixes
+
+* Correct issue where type error might be thrown when a trigger function failed ([7889ef3](https://github.com/case-contract-testing/contract-case/commit/7889ef329f6e290221852752615c886d4d700158))
+* Improve log output when matchers are double-specified ([62a4b09](https://github.com/case-contract-testing/contract-case/commit/62a4b09e53ab8b0b97af021388cbfbdc0f77b5ec))
+
 ## [0.15.5](https://github.com/case-contract-testing/contract-case/compare/v0.15.4...v0.15.5) (2024-01-30)
 
 
