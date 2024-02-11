@@ -22,7 +22,10 @@ import {
 import { errorHandler } from './handler';
 
 const mapCallback = (callback: RunTestCallback): IRunTestCallback => ({
-  runTest: (testName: string, invoker: IInvokeCoreTest): BoundaryResult => {
+  runTest: async (
+    testName: string,
+    invoker: IInvokeCoreTest,
+  ): Promise<BoundaryResult> => {
     try {
       callback(testName, () => invoker.verify().then(mapSuccess));
     } catch (e) {
@@ -40,7 +43,7 @@ export class ContractVerifier {
   constructor(
     config: ContractCaseVerifierConfig,
     callback: RunTestCallback,
-    printer = defaultPrinter
+    printer = defaultPrinter,
   ) {
     this.config = config;
 
@@ -50,7 +53,7 @@ export class ContractVerifier {
         mapCallback(callback),
         printer,
         printer,
-        [versionString]
+        [versionString],
       );
     } catch (e) {
       // Hack since this object isn't constructed anyway
@@ -68,7 +71,7 @@ export class ContractVerifier {
   availableContractDescriptions(): ContractDescription[] {
     try {
       return mapSuccessWithAny(
-        this.boundaryVerifier.availableContractDescriptions()
+        this.boundaryVerifier.availableContractDescriptions(),
       );
     } catch (e) {
       return errorHandler(e as Error);
@@ -88,8 +91,8 @@ export class ContractVerifier {
           mapConfig({
             ...this.config,
             ...configOverrides,
-          } as ContractCaseVerifierConfig)
-        )
+          } as ContractCaseVerifierConfig),
+        ),
       );
     } catch (e) {
       errorHandler(e as Error);
