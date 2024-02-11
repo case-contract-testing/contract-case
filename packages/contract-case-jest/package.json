@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/contract-case-jest",
-  "version": "0.11.4",
+  "version": "0.11.5",
   "description": "ContractCase contract testing suite",
   "keywords": [
     "testing",
@@ -77,9 +77,9 @@
   },
   "dependencies": {
     "@contract-case/case-boundary": "0.10.1",
-    "@contract-case/case-entities-internal": "0.15.5",
-    "@contract-case/case-example-mock-types": "0.15.5",
-    "@contract-case/cli": "0.1.11",
+    "@contract-case/case-entities-internal": "0.15.6",
+    "@contract-case/case-example-mock-types": "0.15.6",
+    "@contract-case/cli": "0.1.12",
     "chalk": "^4.1.2",
     "read-pkg-up": "^7.0.1",
     "ts-node": "^10.9.1"
