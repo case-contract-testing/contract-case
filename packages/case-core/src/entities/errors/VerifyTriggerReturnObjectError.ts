@@ -9,7 +9,7 @@ export class VerifyTriggerReturnObjectError extends Error {
   constructor(cause: unknown) {
     const maybeError = cause as Error;
 
-    if ('message' in maybeError) {
+    if (typeof maybeError === 'object' && 'message' in maybeError) {
       super(`${MESSAGE}\n\n${maybeError.message}`);
       if (maybeError.stack) this.stack = maybeError.stack;
     } else {

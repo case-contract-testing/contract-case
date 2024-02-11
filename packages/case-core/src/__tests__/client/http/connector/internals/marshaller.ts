@@ -19,7 +19,11 @@ type WireErrorResponse = {
 
 const isWireErrorResponse = (data: unknown): data is WireErrorResponse => {
   const maybeResponse = data as WireErrorResponse;
-  return 'message' in maybeResponse && typeof maybeResponse === 'string';
+  return (
+    typeof maybeResponse === 'object' &&
+    'message' in maybeResponse &&
+    typeof maybeResponse.message === 'string'
+  );
 };
 
 export const unmarshallFailure = (error: Error): never => {
