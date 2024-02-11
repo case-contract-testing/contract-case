@@ -6,13 +6,14 @@ import { CaseConfigurationError, CaseCoreError } from '../../../../entities';
 import type { MatchContextWithoutLookup } from '../../../../entities/types';
 import { rawEquality } from './rawEquals';
 import type { LookupMap, LookupType } from './types';
+import { lookupName, stripType } from './lookupName';
 
 export const findLookup = (
   matcherLookup: LookupMap,
   lookupType: LookupType,
   uniqueName: string,
 ): AnyCaseMatcherOrData | undefined =>
-  matcherLookup[`${lookupType}:${uniqueName}`];
+  matcherLookup[lookupName({ lookupType, uniqueName })];
 
 const unboxAllLookups = (
   matcherLookup: LookupMap,
@@ -65,12 +66,12 @@ export const addLookup = (
   matcher: AnyCaseMatcherOrData,
   context: MatchContextWithoutLookup,
 ): Record<string, AnyCaseMatcherOrData> => {
-  const lookupName = `${lookupType}:${uniqueName}`;
+  const name = lookupName({ lookupType, uniqueName });
   context.logger.maintainerDebug(
-    `Saving lookup ${lookupType} (${lookupName}):`,
+    `Saving lookup ${lookupType} (${name}):`,
     matcher,
   );
-  const candidateMatcher = matcherLookup[lookupName];
+  const candidateMatcher = matcherLookup[name];
   if (candidateMatcher) {
     if (
       !rawEquality(
@@ -79,26 +80,26 @@ export const addLookup = (
       )
     ) {
       context.logger.error(
-        `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`,
+        `The ${lookupType} with the name '${stripType({ lookupType, name })}' has more than one definition, and they are not the same`,
       );
       context.logger.error(`New matcher is (${typeof matcher})`, matcher);
       context.logger.error(
         `Existing matcher is (${typeof matcher})`,
-        matcherLookup[lookupName],
+        matcherLookup[name],
       );
 
       throw new CaseConfigurationError(
-        `The ${lookupType} with the name '${lookupName}' has more than one definition, and they are not the same`,
+        `The ${lookupType} with the name '${stripType({ lookupType, name })}' has more than one definition, and they are not the same`,
       );
     } else {
       context.logger.maintainerDebug(
-        `The ${lookupType} with the name '${lookupName}' is already stored exactly as given`,
+        `The ${lookupType} with the name '${stripType({ lookupType, name })}' is already stored exactly as given`,
       );
     }
   }
 
   return {
     ...matcherLookup,
-    [lookupName]: matcher,
+    [name]: matcher,
   };
 };
