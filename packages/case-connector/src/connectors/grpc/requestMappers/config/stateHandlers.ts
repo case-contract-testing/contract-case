@@ -1,31 +1,31 @@
 import { BoundaryResult } from '@contract-case/case-boundary';
 
 import {
-  DefinitionResponse as WireDefinitionResponse,
   RunStateHandlerRequest as WireRunStateHandlerRequest,
   StateHandlerHandle as WireStateHandlerHandle,
+  ContractResponse as WireContractResponse,
 } from '../../proto/contract_case_stream_pb';
 
 import { ConnectorStateHandler } from '../../../../domain/types';
-import { ExecuteCall } from '../../executeCall';
 
 import {
   waitForResolution,
   makeResolvableId,
 } from '../../promiseHandler/promiseHandler';
 import { unbox } from '../values';
+import { SendContractResponse } from '../../sendContractResponse';
 
 const makeStateHandlerCall =
   (
     handle: WireStateHandlerHandle,
-    executeCall: ExecuteCall,
+    executeCall: SendContractResponse,
   ): (() => Promise<BoundaryResult>) =>
   () =>
     waitForResolution(
       makeResolvableId((id: string) =>
         executeCall(
           id,
-          new WireDefinitionResponse().setRunStateHandler(
+          new WireContractResponse().setRunStateHandler(
             new WireRunStateHandlerRequest().setStateHandlerHandle(handle),
           ),
         ),
@@ -34,7 +34,7 @@ const makeStateHandlerCall =
 
 export const mapStateHandlers = (
   stateHandlers: WireStateHandlerHandle[],
-  executeCall: ExecuteCall,
+  executeCall: SendContractResponse,
 ): Record<string, ConnectorStateHandler> =>
   stateHandlers.reduce<Record<string, ConnectorStateHandler>>(
     (acc: Record<string, ConnectorStateHandler>, handler) => ({

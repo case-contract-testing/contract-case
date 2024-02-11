@@ -10,11 +10,13 @@ import {
   ResultFailure as WireResultFailure,
   ResultSuccess as WireResultSuccess,
   ResultSuccessHasAnyPayload as WireResultSuccessHasAnyPayload,
+  ContractResponse as WireContractResponse,
+  ResultResponse as WireResultResponse,
 } from '../proto/contract_case_stream_pb';
 import { UnreachableError } from '../UnreachableError';
 import { makeGrpcStruct, makeGrpcValue } from './json';
 
-export const makeResult = (result: BoundaryResult): WireBoundaryResult => {
+const makeResult = (result: BoundaryResult): WireBoundaryResult => {
   switch (result.resultType) {
     case 'Success':
       return new WireBoundaryResult().setSuccess(new WireResultSuccess());
@@ -47,3 +49,10 @@ export const makeResult = (result: BoundaryResult): WireBoundaryResult => {
       throw new UnreachableError(result.resultType);
   }
 };
+
+export const makeResultResponse = (
+  result: BoundaryResult,
+): WireContractResponse =>
+  new WireContractResponse().setResultResponse(
+    new WireResultResponse().setResult(makeResult(result)),
+  );

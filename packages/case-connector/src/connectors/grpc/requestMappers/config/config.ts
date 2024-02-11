@@ -3,7 +3,7 @@ import {
   Struct,
 } from 'google-protobuf/google/protobuf/struct_pb';
 import {
-  DefinitionResponse,
+  ContractResponse,
   TriggerFunctionHandle,
   TriggerFunctionRequest,
   ContractCaseConfig as WireContractCaseConfig,
@@ -19,19 +19,19 @@ import {
   makeResolvableId,
   waitForResolution,
 } from '../../promiseHandler/promiseHandler';
-import { ExecuteCall } from '../../executeCall';
+import { SendContractResponse } from '../../sendContractResponse';
 import { unbox, unboxBoolOrUndefined, unboxOrUndefined } from '../values';
 
 const mapTriggerFunction = (
   handle: TriggerFunctionHandle,
-  executeCall: ExecuteCall,
+  executeCall: SendContractResponse,
 ) => ({
   trigger: (withConfig: Record<string, unknown>) =>
     waitForResolution(
       makeResolvableId((id: string) =>
         executeCall(
           id,
-          new DefinitionResponse().setTriggerFunctionRequest(
+          new ContractResponse().setTriggerFunctionRequest(
             new TriggerFunctionRequest()
               .setTriggerFunction(handle)
               .setConfig(
@@ -47,7 +47,7 @@ const mapTriggerFunction = (
 
 const mapTriggerAndTest = (
   config: WireContractCaseConfig,
-  executeCall: ExecuteCall,
+  executeCall: SendContractResponse,
 ) => {
   const trigger = config.getTriggerAndTest();
   return trigger !== undefined
@@ -74,7 +74,7 @@ type WithUndefined<T> = {
 
 const mapAllConfigFields = (
   config: WireContractCaseConfig,
-  executeCall: ExecuteCall,
+  executeCall: SendContractResponse,
 ): WithUndefined<ContractCaseConnectorConfig> => ({
   providerName: unboxOrUndefined(config.getProviderName()),
   consumerName: unboxOrUndefined(config.getConsumerName()),
@@ -108,7 +108,7 @@ const mapAllConfigFields = (
 
 export const mapConfig = (
   config: WireContractCaseConfig | undefined,
-  executeCall: ExecuteCall,
+  executeCall: SendContractResponse,
 ): ContractCaseConnectorConfig => {
   if (config === undefined) {
     throw new ConnectorError('Config object must be provided');

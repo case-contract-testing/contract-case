@@ -1121,73 +1121,328 @@ export namespace DefinitionRequest {
   }
 }
 
-export class DefinitionResponse extends jspb.Message {
+export class BeginVerificationRequest extends jspb.Message {
+  hasConfig(): boolean;
+  clearConfig(): void;
+  getConfig(): ContractCaseConfig | undefined;
+  setConfig(value?: ContractCaseConfig): BeginVerificationRequest;
+  clearCallerVersionsList(): void;
+  getCallerVersionsList(): Array<google_protobuf_wrappers_pb.StringValue>;
+  setCallerVersionsList(
+    value: Array<google_protobuf_wrappers_pb.StringValue>,
+  ): BeginVerificationRequest;
+  addCallerVersions(
+    value?: google_protobuf_wrappers_pb.StringValue,
+    index?: number,
+  ): google_protobuf_wrappers_pb.StringValue;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BeginVerificationRequest.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: BeginVerificationRequest,
+  ): BeginVerificationRequest.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: BeginVerificationRequest,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): BeginVerificationRequest;
+  static deserializeBinaryFromReader(
+    message: BeginVerificationRequest,
+    reader: jspb.BinaryReader,
+  ): BeginVerificationRequest;
+}
+
+export namespace BeginVerificationRequest {
+  export type AsObject = {
+    config?: ContractCaseConfig.AsObject;
+    callerVersionsList: Array<google_protobuf_wrappers_pb.StringValue.AsObject>;
+  };
+}
+
+export class AvailableContractDefinitions extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AvailableContractDefinitions.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: AvailableContractDefinitions,
+  ): AvailableContractDefinitions.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: AvailableContractDefinitions,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): AvailableContractDefinitions;
+  static deserializeBinaryFromReader(
+    message: AvailableContractDefinitions,
+    reader: jspb.BinaryReader,
+  ): AvailableContractDefinitions;
+}
+
+export namespace AvailableContractDefinitions {
+  export type AsObject = {};
+}
+
+export class RunVerification extends jspb.Message {
+  hasConfig(): boolean;
+  clearConfig(): void;
+  getConfig(): ContractCaseConfig | undefined;
+  setConfig(value?: ContractCaseConfig): RunVerification;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RunVerification.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: RunVerification,
+  ): RunVerification.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: RunVerification,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): RunVerification;
+  static deserializeBinaryFromReader(
+    message: RunVerification,
+    reader: jspb.BinaryReader,
+  ): RunVerification;
+}
+
+export namespace RunVerification {
+  export type AsObject = {
+    config?: ContractCaseConfig.AsObject;
+  };
+}
+
+export class StartTestEvent extends jspb.Message {
+  hasTestName(): boolean;
+  clearTestName(): void;
+  getTestName(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setTestName(value?: google_protobuf_wrappers_pb.StringValue): StartTestEvent;
+
+  hasInvokerId(): boolean;
+  clearInvokerId(): void;
+  getInvokerId(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setInvokerId(value?: google_protobuf_wrappers_pb.StringValue): StartTestEvent;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartTestEvent.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: StartTestEvent,
+  ): StartTestEvent.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: StartTestEvent,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): StartTestEvent;
+  static deserializeBinaryFromReader(
+    message: StartTestEvent,
+    reader: jspb.BinaryReader,
+  ): StartTestEvent;
+}
+
+export namespace StartTestEvent {
+  export type AsObject = {
+    testName?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    invokerId?: google_protobuf_wrappers_pb.StringValue.AsObject;
+  };
+}
+
+export class InvokeTest extends jspb.Message {
+  hasInvokerId(): boolean;
+  clearInvokerId(): void;
+  getInvokerId(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setInvokerId(value?: google_protobuf_wrappers_pb.StringValue): InvokeTest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InvokeTest.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: InvokeTest,
+  ): InvokeTest.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: InvokeTest,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): InvokeTest;
+  static deserializeBinaryFromReader(
+    message: InvokeTest,
+    reader: jspb.BinaryReader,
+  ): InvokeTest;
+}
+
+export namespace InvokeTest {
+  export type AsObject = {
+    invokerId?: google_protobuf_wrappers_pb.StringValue.AsObject;
+  };
+}
+
+export class VerificationRequest extends jspb.Message {
   hasId(): boolean;
   clearId(): void;
   getId(): google_protobuf_wrappers_pb.StringValue | undefined;
-  setId(value?: google_protobuf_wrappers_pb.StringValue): DefinitionResponse;
+  setId(value?: google_protobuf_wrappers_pb.StringValue): VerificationRequest;
+
+  hasBeginVerification(): boolean;
+  clearBeginVerification(): void;
+  getBeginVerification(): BeginVerificationRequest | undefined;
+  setBeginVerification(value?: BeginVerificationRequest): VerificationRequest;
+
+  hasAvailableContractDefinitions(): boolean;
+  clearAvailableContractDefinitions(): void;
+  getAvailableContractDefinitions(): AvailableContractDefinitions | undefined;
+  setAvailableContractDefinitions(
+    value?: AvailableContractDefinitions,
+  ): VerificationRequest;
+
+  hasRunVerification(): boolean;
+  clearRunVerification(): void;
+  getRunVerification(): RunVerification | undefined;
+  setRunVerification(value?: RunVerification): VerificationRequest;
+
+  hasResultResponse(): boolean;
+  clearResultResponse(): void;
+  getResultResponse(): ResultResponse | undefined;
+  setResultResponse(value?: ResultResponse): VerificationRequest;
+
+  hasInvokeTest(): boolean;
+  clearInvokeTest(): void;
+  getInvokeTest(): InvokeTest | undefined;
+  setInvokeTest(value?: InvokeTest): VerificationRequest;
+
+  getKindCase(): VerificationRequest.KindCase;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): VerificationRequest.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: VerificationRequest,
+  ): VerificationRequest.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: VerificationRequest,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): VerificationRequest;
+  static deserializeBinaryFromReader(
+    message: VerificationRequest,
+    reader: jspb.BinaryReader,
+  ): VerificationRequest;
+}
+
+export namespace VerificationRequest {
+  export type AsObject = {
+    id?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    beginVerification?: BeginVerificationRequest.AsObject;
+    availableContractDefinitions?: AvailableContractDefinitions.AsObject;
+    runVerification?: RunVerification.AsObject;
+    resultResponse?: ResultResponse.AsObject;
+    invokeTest?: InvokeTest.AsObject;
+  };
+
+  export enum KindCase {
+    KIND_NOT_SET = 0,
+    BEGIN_VERIFICATION = 2,
+    AVAILABLE_CONTRACT_DEFINITIONS = 3,
+    RUN_VERIFICATION = 4,
+    RESULT_RESPONSE = 5,
+    INVOKE_TEST = 9,
+  }
+}
+
+export class ContractResponse extends jspb.Message {
+  hasId(): boolean;
+  clearId(): void;
+  getId(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setId(value?: google_protobuf_wrappers_pb.StringValue): ContractResponse;
 
   hasRunStateHandler(): boolean;
   clearRunStateHandler(): void;
   getRunStateHandler(): RunStateHandlerRequest | undefined;
-  setRunStateHandler(value?: RunStateHandlerRequest): DefinitionResponse;
+  setRunStateHandler(value?: RunStateHandlerRequest): ContractResponse;
 
   hasLogRequest(): boolean;
   clearLogRequest(): void;
   getLogRequest(): LogRequest | undefined;
-  setLogRequest(value?: LogRequest): DefinitionResponse;
+  setLogRequest(value?: LogRequest): ContractResponse;
 
   hasPrintMatchErrorRequest(): boolean;
   clearPrintMatchErrorRequest(): void;
   getPrintMatchErrorRequest(): PrintMatchErrorRequest | undefined;
-  setPrintMatchErrorRequest(value?: PrintMatchErrorRequest): DefinitionResponse;
+  setPrintMatchErrorRequest(value?: PrintMatchErrorRequest): ContractResponse;
 
   hasPrintMessageErrorRequest(): boolean;
   clearPrintMessageErrorRequest(): void;
   getPrintMessageErrorRequest(): PrintMessageErrorRequest | undefined;
   setPrintMessageErrorRequest(
     value?: PrintMessageErrorRequest,
-  ): DefinitionResponse;
+  ): ContractResponse;
 
   hasPrintTestTitleRequest(): boolean;
   clearPrintTestTitleRequest(): void;
   getPrintTestTitleRequest(): PrintTestTitleRequest | undefined;
-  setPrintTestTitleRequest(value?: PrintTestTitleRequest): DefinitionResponse;
+  setPrintTestTitleRequest(value?: PrintTestTitleRequest): ContractResponse;
 
   hasTriggerFunctionRequest(): boolean;
   clearTriggerFunctionRequest(): void;
   getTriggerFunctionRequest(): TriggerFunctionRequest | undefined;
-  setTriggerFunctionRequest(value?: TriggerFunctionRequest): DefinitionResponse;
+  setTriggerFunctionRequest(value?: TriggerFunctionRequest): ContractResponse;
 
   hasResultResponse(): boolean;
   clearResultResponse(): void;
   getResultResponse(): ResultResponse | undefined;
-  setResultResponse(value?: ResultResponse): DefinitionResponse;
+  setResultResponse(value?: ResultResponse): ContractResponse;
 
-  getKindCase(): DefinitionResponse.KindCase;
+  hasStartTestEvent(): boolean;
+  clearStartTestEvent(): void;
+  getStartTestEvent(): StartTestEvent | undefined;
+  setStartTestEvent(value?: StartTestEvent): ContractResponse;
+
+  getKindCase(): ContractResponse.KindCase;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DefinitionResponse.AsObject;
+  toObject(includeInstance?: boolean): ContractResponse.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: DefinitionResponse,
-  ): DefinitionResponse.AsObject;
+    msg: ContractResponse,
+  ): ContractResponse.AsObject;
   static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
   static extensionsBinary: {
     [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
   };
   static serializeBinaryToWriter(
-    message: DefinitionResponse,
+    message: ContractResponse,
     writer: jspb.BinaryWriter,
   ): void;
-  static deserializeBinary(bytes: Uint8Array): DefinitionResponse;
+  static deserializeBinary(bytes: Uint8Array): ContractResponse;
   static deserializeBinaryFromReader(
-    message: DefinitionResponse,
+    message: ContractResponse,
     reader: jspb.BinaryReader,
-  ): DefinitionResponse;
+  ): ContractResponse;
 }
 
-export namespace DefinitionResponse {
+export namespace ContractResponse {
   export type AsObject = {
     id?: google_protobuf_wrappers_pb.StringValue.AsObject;
     runStateHandler?: RunStateHandlerRequest.AsObject;
@@ -1197,6 +1452,7 @@ export namespace DefinitionResponse {
     printTestTitleRequest?: PrintTestTitleRequest.AsObject;
     triggerFunctionRequest?: TriggerFunctionRequest.AsObject;
     resultResponse?: ResultResponse.AsObject;
+    startTestEvent?: StartTestEvent.AsObject;
   };
 
   export enum KindCase {
@@ -1208,5 +1464,6 @@ export namespace DefinitionResponse {
     PRINT_TEST_TITLE_REQUEST = 6,
     TRIGGER_FUNCTION_REQUEST = 7,
     RESULT_RESPONSE = 8,
+    START_TEST_EVENT = 9,
   }
 }

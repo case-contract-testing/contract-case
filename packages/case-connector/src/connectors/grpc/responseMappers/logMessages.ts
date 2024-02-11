@@ -5,7 +5,7 @@ import {
 } from '@contract-case/case-boundary';
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 import {
-  DefinitionResponse as WireDefinitionResponse,
+  ContractResponse as WireContractResponse,
   LogRequest as WireLogRequest,
   PrintMatchErrorRequest as WirePrintMatchErrorRequest,
   PrintMessageErrorRequest as WirePrintMessageErrorRequest,
@@ -28,8 +28,8 @@ export const makeLogRequest = ({
   location: string;
   message: string;
   additional: string;
-}): WireDefinitionResponse =>
-  new WireDefinitionResponse().setLogRequest(
+}): WireContractResponse =>
+  new WireContractResponse().setLogRequest(
     new WireLogRequest()
       .setLevel(new StringValue().setValue(level))
       .setTimestamp(new StringValue().setValue(timestamp))
@@ -48,8 +48,8 @@ export const makePrintMatchErrorRequest = ({
   errorTypeTag,
   expected,
   actual,
-}: PrintableMatchError): WireDefinitionResponse =>
-  new WireDefinitionResponse().setPrintMatchErrorRequest(
+}: PrintableMatchError): WireContractResponse =>
+  new WireContractResponse().setPrintMatchErrorRequest(
     new WirePrintMatchErrorRequest()
       .setActual(new StringValue().setValue(actual))
       .setKind(new StringValue().setValue(kind))
@@ -66,8 +66,8 @@ export const makePrintableMessageErrorRequest = ({
   location,
   locationTag,
   errorTypeTag,
-}: PrintableMessageError): WireDefinitionResponse =>
-  new WireDefinitionResponse().setPrintMessageErrorRequest(
+}: PrintableMessageError): WireContractResponse =>
+  new WireContractResponse().setPrintMessageErrorRequest(
     new WirePrintMessageErrorRequest()
       .setErrorTypeTag(new StringValue().setValue(errorTypeTag))
       .setKind(new StringValue().setValue(kind))
@@ -81,8 +81,8 @@ export const makePrintTestTitleRequest = ({
   icon,
   title,
   additionalText,
-}: PrintableTestTitle): WireDefinitionResponse =>
-  new WireDefinitionResponse().setPrintTestTitleRequest(
+}: PrintableTestTitle): WireContractResponse =>
+  new WireContractResponse().setPrintTestTitleRequest(
     new WirePrintTestTitleRequest()
       .setKind(new StringValue().setValue(kind))
       .setIcon(new StringValue().setValue(icon))

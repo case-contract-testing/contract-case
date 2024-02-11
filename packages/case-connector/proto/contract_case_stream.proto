@@ -248,7 +248,41 @@ message DefinitionRequest {
   }
 }
 
-message DefinitionResponse {
+message BeginVerificationRequest {
+  ContractCaseConfig config = 1;
+  repeated google.protobuf.StringValue caller_versions = 4;
+}
+
+message AvailableContractDefinitions {
+}
+
+message RunVerification {
+  ContractCaseConfig config = 1;
+}
+
+message StartTestEvent {
+  google.protobuf.StringValue test_name = 1;
+  google.protobuf.StringValue invoker_id = 2;
+}
+
+message InvokeTest {
+  google.protobuf.StringValue invoker_id = 1;
+}
+
+message VerificationRequest {
+  google.protobuf.StringValue id = 1;
+  oneof kind {
+    // From user calls
+    BeginVerificationRequest begin_verification = 2;
+    AvailableContractDefinitions available_contract_definitions = 3;
+    RunVerification run_verification = 4;
+    // Answering server driven RPC calls
+    ResultResponse result_response = 5;
+    InvokeTest invoke_test = 9;
+  }
+}
+
+message ContractResponse {
   google.protobuf.StringValue id = 1;
   oneof kind {
     // Run a state handler
@@ -265,10 +299,15 @@ message DefinitionResponse {
     TriggerFunctionRequest trigger_function_request = 7;
     // Answering client driven RPC calls
     ResultResponse result_response = 8;
+    // Invoking tests (verification only)
+    StartTestEvent start_test_event = 9;
   }
 }
 
 service ContractCase {
   rpc ContractDefinition(stream DefinitionRequest)
-      returns (stream DefinitionResponse) {}
+      returns (stream ContractResponse) {}
+
+  rpc ContractVerification(stream VerificationRequest)
+      returns (stream ContractResponse) {}
 }

@@ -17,6 +17,7 @@ const promises: Record<
 export const makeResolvableId = (
   executeCall: (id: string) => Promise<void>,
 ): string => {
+  // TODO: Add mutex here?
   const id = uuidv4();
 
   let r: (value: BoundaryResult) => void = () => {
@@ -27,6 +28,12 @@ export const makeResolvableId = (
       "This isn't supposed to be possible, as promises that don't do any read/write execute immediately",
     );
   };
+
+  if (promises[id] !== undefined) {
+    throw new ConnectorError(
+      `There is already a promise with id '${id}'. This shouldn't happen unless there are UUID collisions.\nTry re-running your tests, and report a bug if this doesn't fix it.`,
+    );
+  }
   const immediatePromise = new Promise<BoundaryResult>((resolve) => {
     r = (v: BoundaryResult) => {
       promises[id] = undefined;
