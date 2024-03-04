@@ -82,7 +82,7 @@
     "@types/jest": "^29.5.11",
     "eslint": "^8.57.0",
     "jest": "^29.7.0",
-    "jsii": "^5.3.13",
+    "jsii": "^5.3.25",
     "jsii-docgen": "^10.3.2",
     "jsii-pacmak": "^1.93.0",
     "prettier": "3.2.5",
