@@ -9,8 +9,9 @@ const sendContractResponse = <T>(
   response: WireContractResponse,
 ) =>
   new Promise<void>((resolve) => {
-    maintainerLog(`[SENDING] (${id})`, response.toObject());
-    call.write(response.setId(new StringValue().setValue(id)), () => {
+    const responseWithId = response.setId(new StringValue().setValue(id));
+    maintainerLog(`[SENDING] (${id})`, responseWithId.toObject());
+    call.write(responseWithId, () => {
       resolve();
     });
   });
