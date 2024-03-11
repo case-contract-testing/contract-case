@@ -4,6 +4,7 @@ import service from './proto/contract_case_stream_grpc_pb';
 
 import { maintainerLog } from '../../domain/maintainerLog';
 import { contractDefinition } from './contractDefinition';
+import { contractVerification } from './contractVerification';
 
 const PORT = 50200;
 
@@ -28,5 +29,6 @@ export function main(): void {
 
   server.addService(service.ContractCaseService, {
     contractDefinition,
+    contractVerification,
   });
 }
