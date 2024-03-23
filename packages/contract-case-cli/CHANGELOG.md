@@ -23,6 +23,13 @@
   * devDependencies
     * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
 
+## [0.1.13](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.12...@contract-case/cli-v0.1.13) (2024-02-11)
+
+
+### Bug Fixes
+
+* Bump version of case-boundary to v0.11.0 ([834951b](https://github.com/case-contract-testing/contract-case/commit/834951bbf6205824cc1eb0b8f8392c502973a4a5))
+
 ## [0.1.12](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.11...@contract-case/cli-v0.1.12) (2024-02-11)
 
 

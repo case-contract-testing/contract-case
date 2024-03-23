@@ -29,6 +29,20 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.11.7](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.11.6...@contract-case/contract-case-jest-v0.11.7) (2024-02-11)
+
+
+### Bug Fixes
+
+* Bump version of case-boundary to v0.11.0 ([834951b](https://github.com/case-contract-testing/contract-case/commit/834951bbf6205824cc1eb0b8f8392c502973a4a5))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/cli bumped from 0.1.12 to 0.1.13
+
 ## [0.11.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.11.5...@contract-case/contract-case-jest-v0.11.6) (2024-02-11)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.5](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.7.4...@contract-case/case-connector-v0.7.5) (2024-02-11)
+
+
+### Features
+
+* Implement and expose contract verifier ([ea460cd](https://github.com/case-contract-testing/contract-case/commit/ea460cd5a915975673b2f22d98e05fab3b2b1cba))
+
 ## [0.7.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.7.3...@contract-case/case-connector-v0.7.4) (2024-02-11)
 
 

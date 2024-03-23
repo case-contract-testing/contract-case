@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.8](https://github.com/case-contract-testing/contract-case/compare/v0.15.7...v0.15.8) (2024-02-11)
+
+
+### Features
+
+* Implement and expose contract verifier ([ea460cd](https://github.com/case-contract-testing/contract-case/commit/ea460cd5a915975673b2f22d98e05fab3b2b1cba))
+
 ## [0.15.7](https://github.com/case-contract-testing/contract-case/compare/v0.15.6...v0.15.7) (2024-02-11)
 
 
