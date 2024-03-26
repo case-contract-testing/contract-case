@@ -68,7 +68,7 @@
     "@contract-case/test-equivalence-matchers": "0.15.6",
     "@microsoft/api-documenter": "^7.23.37",
     "@microsoft/api-extractor": "^7.40.1",
-    "@types/jest": "^29.5.11",
+    "@types/jest": "^29.5.12",
     "jsii": "^5.3.25",
     "jsii-docgen": "^10.3.2",
     "jsii-pacmak": "^1.93.0",
