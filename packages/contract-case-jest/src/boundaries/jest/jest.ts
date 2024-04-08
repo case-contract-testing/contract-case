@@ -12,7 +12,7 @@ const TIMEOUT = 30000;
 
 const runJestTest: RunTestCallback = (
   testName: string,
-  verify: () => Promise<unknown>
+  verify: () => Promise<unknown>,
 ): void => {
   // eslint-disable-next-line jest/expect-expect
   it(`${testName}`, () => verify(), TIMEOUT);
@@ -20,7 +20,7 @@ const runJestTest: RunTestCallback = (
 
 export const defineContract = (
   config: ContractCaseJestConfig,
-  callback: DefineCaseJestCallback
+  callback: DefineCaseJestCallback,
 ): void =>
   describe(`Case contract definition`, () => {
     const contract = new ContractCaseDefiner({
@@ -32,7 +32,7 @@ export const defineContract = (
     afterAll(() => contract.endRecord(), TIMEOUT);
 
     describe(`between ${config.consumerName} and ${config.providerName}`, () => {
-      jest.setTimeout(30000);
+      jest.setTimeout(TIMEOUT);
 
       callback(contract);
     });
@@ -40,12 +40,13 @@ export const defineContract = (
 
 export const verifyContract = (
   config: ContractCaseJestVerifierConfig,
-  callback: VerifyCaseJestCallback
+  callback: VerifyCaseJestCallback,
 ): void => {
   if (!config.providerName) {
     throw new Error('Must specify a providerName to verify');
   }
   describe(`Provider verification for ${config.providerName}`, () => {
     callback(new ContractVerifier(config, runJestTest));
+    it('[ContractCase Internals] Init', () => {});
   });
 };
