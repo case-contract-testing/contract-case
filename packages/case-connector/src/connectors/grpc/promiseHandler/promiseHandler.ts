@@ -16,6 +16,7 @@ const promises: Record<
  */
 export const makeResolvableId = (
   executeCall: (id: string) => Promise<void>,
+  thenRun: (result: BoundaryResult) => BoundaryResult = (x) => x,
 ): string => {
   // TODO: Add mutex here?
   const id = uuidv4();
@@ -41,7 +42,12 @@ export const makeResolvableId = (
     };
   });
 
-  promises[id] = { r, p: executeCall(id).then(() => immediatePromise) };
+  promises[id] = {
+    r,
+    p: executeCall(id)
+      .then(() => immediatePromise)
+      .then(thenRun),
+  };
   return id;
 };
 
@@ -79,5 +85,5 @@ export const resolveById = (id: string, result: BoundaryResult): void => {
       'This can happen if a wrapper library misbehaves and responds to the same message more than once',
     );
   }
-  resolvable.r(result);
+  return resolvable.r(result);
 };

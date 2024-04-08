@@ -1,4 +1,6 @@
 import { ServerDuplexStream } from '@grpc/grpc-js';
+import { format } from 'pretty-format';
+
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 import { ContractResponse as WireContractResponse } from './proto/contract_case_stream_pb';
 import { maintainerLog } from '../../domain/maintainerLog';
@@ -10,7 +12,7 @@ const sendContractResponse = <T>(
 ) =>
   new Promise<void>((resolve) => {
     const responseWithId = response.setId(new StringValue().setValue(id));
-    maintainerLog(`[SENDING] (${id})`, responseWithId.toObject());
+    maintainerLog(`[SENDING] (${id})`, format(responseWithId.toObject()));
     call.write(responseWithId, () => {
       resolve();
     });
