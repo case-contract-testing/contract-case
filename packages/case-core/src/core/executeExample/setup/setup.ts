@@ -41,7 +41,7 @@ export const setupExample = <T extends AnyMockDescriptorType>(
   parentContext.logger.debug(
     `Beginning setup for example "${exampleName.mockName}"`,
   );
-  parentContext.logger.maintainerDebug(
+  parentContext.logger.deepMaintainerDebug(
     'Context is',
     JSON.parse(JSON.stringify(parentContext)),
   );

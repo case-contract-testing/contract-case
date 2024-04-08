@@ -95,7 +95,7 @@ export class ContractVerifierConnector {
   verifyContract<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
     configOverride = {},
-  ): void {
+  ): Promise<void> {
     const mergedConfig = { ...this.config, ...configOverride };
 
     if (typeof mergedConfig.providerName !== 'string') {
@@ -146,16 +146,18 @@ export class ContractVerifierConnector {
       );
     }
 
-    contractsToVerify.map((contractLink) => {
-      this.context.logger.debug(
-        `Verifying contract from file '${contractLink.filePath}'`,
-      );
-      return new ReadingCaseContract(
-        contractLink.contents,
-        this.dependencies,
-        mergedConfig,
-        this.parentVersions,
-      ).verifyContract(invoker, this.callback);
-    });
+    return Promise.all(
+      contractsToVerify.map((contractLink) => {
+        this.context.logger.debug(
+          `Verifying contract from file '${contractLink.filePath}'`,
+        );
+        return new ReadingCaseContract(
+          contractLink.contents,
+          this.dependencies,
+          mergedConfig,
+          this.parentVersions,
+        ).verifyContract(invoker, this.callback);
+      }),
+    ).then(() => {});
   }
 }

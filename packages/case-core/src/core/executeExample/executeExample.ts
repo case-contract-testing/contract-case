@@ -154,7 +154,10 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
         );
       },
       (error) => {
-        context.logger.deepMaintainerDebug('An error was thrown', error);
+        context.logger.maintainerDebug(
+          'An error was thrown by setupExample',
+          error,
+        );
         const resultingExample = makeFailedExample(
           example,
           makeResults(configurationError(error, context)),
@@ -167,7 +170,8 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
       },
     )
     .then((resultingExample) => {
-      handleResult(
+      context.logger.maintainerDebug('Resulting example was', resultingExample);
+      return handleResult(
         contract.recordExample(resultingExample, context),
         context['_case:currentRun:context:testName'],
         context,

@@ -76,7 +76,7 @@ export const executeStateSetup = (
           example.states
             .map((state) => {
               context.logger.debug(
-                `Setting up state '${state.stateName}' with default values`,
+                `Setting up state '${state.stateName}' with default values (no state handler call needed)`,
               );
               if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
                 return Object.entries(state.variables).map(([key, value]) =>

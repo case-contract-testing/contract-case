@@ -59,7 +59,11 @@ export class ReadingCaseContract extends BaseCaseContract {
   verifyContract<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
     runTestCb: RunTestCallback,
-  ): void {
+  ): Promise<void> {
+    this.initialContext.logger.maintainerDebug(
+      `Verifying contract between '${this.currentContract.description.consumerName}' and '${this.currentContract.description.providerName}'. There are '${this.currentContract.examples.length}' examples`,
+    );
+    const finishedIndicators = [];
     this.currentContract.examples.forEach((example, index) => {
       if (example.result !== 'VERIFIED') {
         throw new CaseCoreError(
@@ -68,32 +72,72 @@ export class ReadingCaseContract extends BaseCaseContract {
       }
 
       const names = exampleToNames(example, `${index}`);
+      this.initialContext.logger.maintainerDebug(
+        `Preparing test framework's callback for: ${names.mockName} `,
+      );
+      let exampleFinished: () => void;
 
+      finishedIndicators.push(
+        new Promise<void>((resolve) => {
+          exampleFinished = resolve;
+        }),
+      );
       runTestCb(names.mockName, () =>
-        this.mutex.runExclusive(() =>
-          executeExample(
-            { ...example, result: 'PENDING' },
-            {
-              ...invoker,
-              names,
-            },
-            this,
-            applyNodeToContext(example.mock, this.initialContext, {
-              '_case:currentRun:context:testName': `${index}`,
-              '_case:currentRun:context:contractMode': 'read',
-              '_case:currentRun:context:location': [
-                'verification',
-                `mock[${index}]`,
-              ],
-            }),
-          ),
-        ),
+        this.mutex
+          .runExclusive(() => {
+            this.initialContext.logger.maintainerDebug(
+              `Run test callback for ${names.mockName}`,
+            );
+            return executeExample(
+              { ...example, result: 'PENDING' },
+              {
+                ...invoker,
+                names,
+              },
+              this,
+              applyNodeToContext(example.mock, this.initialContext, {
+                '_case:currentRun:context:testName': `${index}`,
+                '_case:currentRun:context:contractMode': 'read',
+                '_case:currentRun:context:location': [
+                  'verification',
+                  `mock[${index}]`,
+                ],
+              }),
+            );
+          })
+          .finally(() => {
+            this.initialContext.logger.maintainerDebug(
+              `Example[${index}] completed: ${names.mockName}`,
+            );
+            exampleFinished();
+          }),
       );
     });
-    runTestCb('Publishing verification results', () => {
-      this.initialContext.logger.maintainerDebug('In test callback');
-      return this.endRecord();
-    });
+    let publishFinished: () => void;
+
+    finishedIndicators.push(
+      new Promise<void>((resolve) => {
+        publishFinished = resolve;
+      }),
+    );
+    runTestCb(
+      this.initialContext['_case:currentRun:context:publish']
+        ? 'Publishing verification results'
+        : 'Finalising contract',
+      () => {
+        this.initialContext.logger.maintainerDebug(
+          'Test callback for ending record',
+        );
+        return this.endRecord().finally(() => {
+          this.initialContext.logger.maintainerDebug(
+            `Publishing contract callback completed`,
+          );
+          publishFinished();
+        });
+      },
+    );
+
+    return Promise.all(finishedIndicators).then(() => {});
   }
 
   // eslint-disable-next-line class-methods-use-this
