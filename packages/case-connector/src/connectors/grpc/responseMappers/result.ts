@@ -1,8 +1,3 @@
-import {
-  BoundaryFailure,
-  BoundaryResult,
-  BoundarySuccessWithMap,
-} from '@contract-case/case-boundary';
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 import {
   ResultSuccessHasMapPayload as WireResultSuccessHasMapPayload,
@@ -15,6 +10,11 @@ import {
 } from '../proto/contract_case_stream_pb';
 import { UnreachableError } from '../UnreachableError';
 import { makeGrpcStruct, makeGrpcValue } from './json';
+import {
+  BoundaryFailure,
+  BoundaryResult,
+  BoundarySuccessWithMap,
+} from '../../../entities/types';
 
 const makeResult = (result: BoundaryResult): WireBoundaryResult => {
   switch (result.resultType) {

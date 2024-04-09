@@ -1,8 +1,3 @@
-import {
-  PrintableMatchError,
-  PrintableMessageError,
-  PrintableTestTitle,
-} from '@contract-case/case-boundary';
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 import {
   ContractResponse as WireContractResponse,
@@ -11,6 +6,12 @@ import {
   PrintMessageErrorRequest as WirePrintMessageErrorRequest,
   PrintTestTitleRequest as WirePrintTestTitleRequest,
 } from '../proto/contract_case_stream_pb';
+
+import {
+  PrintableMatchError,
+  PrintableMessageError,
+  PrintableTestTitle,
+} from '../../../entities/types';
 
 export const makeLogRequest = ({
   level,

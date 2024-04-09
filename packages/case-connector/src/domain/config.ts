@@ -1,5 +1,5 @@
-import { ContractCaseBoundaryConfig } from '@contract-case/case-boundary';
 import { ContractCaseConnectorConfig } from './types';
+import { ContractCaseBoundaryConfig } from '../entities/types';
 
 export const mapConfig = (
   config: ContractCaseConnectorConfig,

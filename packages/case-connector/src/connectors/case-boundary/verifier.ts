@@ -6,7 +6,7 @@ import {
   ILogPrinter,
   IResultPrinter,
   BoundaryFailure,
-} from '@contract-case/case-boundary';
+} from './internals';
 import {
   makeCoreError,
   makeConfigurationError,

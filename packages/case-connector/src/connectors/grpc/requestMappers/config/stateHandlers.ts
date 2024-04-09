@@ -1,4 +1,4 @@
-import { BoundaryResult } from '@contract-case/case-boundary';
+import { BoundaryResult } from '../../../../entities/types';
 
 import {
   RunStateHandlerRequest as WireRunStateHandlerRequest,

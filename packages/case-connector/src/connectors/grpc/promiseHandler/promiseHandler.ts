@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { BoundaryResult } from '@contract-case/case-boundary';
+import { BoundaryResult } from '../../../entities/types';
 import { ConnectorError } from '../../../domain/errors';
 
 const promises: Record<

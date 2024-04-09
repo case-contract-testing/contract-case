@@ -23,7 +23,7 @@ import {
   ILogPrinter,
   IResultPrinter,
   IRunTestCallback,
-} from '@contract-case/case-boundary';
+} from '../entities/types';
 import { versionString } from '../versionString';
 import { ContractCaseConnectorConfig, VerificationId } from './types';
 import { mapConfig, mapConfigNoId } from './config';

@@ -1,13 +1,5 @@
 import { ServerDuplexStream } from '@grpc/grpc-js';
 
-import {
-  BoundaryFailure,
-  BoundaryFailureKindConstants,
-  BoundaryResult,
-  BoundarySuccess,
-  BoundarySuccessWithAny,
-  IInvokeCoreTest,
-} from '@contract-case/case-boundary';
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 import {
   VerificationRequest as WireVerificationRequest,
@@ -15,7 +7,14 @@ import {
   StartTestEvent as WireStartTestEvent,
 } from './proto/contract_case_stream_pb';
 import { UnreachableError } from './UnreachableError';
-
+import {
+  BoundaryFailure,
+  BoundaryFailureKindConstants,
+  BoundaryResult,
+  BoundarySuccess,
+  BoundarySuccessWithAny,
+  IInvokeCoreTest,
+} from '../../entities/types';
 import { ConnectorError } from '../../domain/errors/ConnectorError';
 import {
   availableContractDescriptions,

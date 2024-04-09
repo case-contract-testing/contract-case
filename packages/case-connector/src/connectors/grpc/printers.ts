@@ -5,7 +5,7 @@ import {
   PrintableMatchError,
   PrintableMessageError,
   PrintableTestTitle,
-} from '@contract-case/case-boundary';
+} from '../../entities/types';
 
 import {
   makeResolvableId,

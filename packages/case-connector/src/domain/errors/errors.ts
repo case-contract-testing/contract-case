@@ -1,7 +1,7 @@
 import {
   BoundaryFailure,
   BoundaryFailureKindConstants,
-} from '@contract-case/case-boundary';
+} from '../../entities/types';
 
 export const makeCoreError = (
   message: string,

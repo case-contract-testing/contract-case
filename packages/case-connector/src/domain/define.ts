@@ -21,11 +21,6 @@
  *      invalidates ID
  */
 
-import {
-  BoundaryResult,
-  ILogPrinter,
-  IResultPrinter,
-} from '@contract-case/case-boundary';
 import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { versionString } from '../versionString';
 import { mapConfig, mapConfigNoId } from './config';
@@ -39,6 +34,7 @@ import {
   createDefiner,
   getDefiner,
 } from '../connectors/case-boundary/definer';
+import { BoundaryResult, ILogPrinter, IResultPrinter } from '../entities/types';
 
 export const beginDefinition = (
   config: ContractCaseConnectorConfig,

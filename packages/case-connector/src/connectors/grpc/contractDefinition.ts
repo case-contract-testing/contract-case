@@ -4,7 +4,7 @@ import {
   BoundaryFailure,
   BoundaryFailureKindConstants,
   BoundarySuccess,
-} from '@contract-case/case-boundary';
+} from '../../entities/types';
 import {
   DefinitionRequest as WireDefinitionRequest,
   ContractResponse as WireContractResponse,
