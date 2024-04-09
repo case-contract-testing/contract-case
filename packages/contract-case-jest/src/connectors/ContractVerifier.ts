@@ -4,7 +4,7 @@ import {
   BoundarySuccess,
   IInvokeCoreTest,
   IRunTestCallback,
-} from '@contract-case/case-boundary';
+} from '@contract-case/case-connector';
 import { defaultPrinter } from './defaultTestPrinter';
 
 import {

@@ -3,7 +3,7 @@ import {
   BoundarySuccessWithMap,
   BoundarySuccess,
   BoundaryStateHandler,
-} from '@contract-case/case-boundary';
+} from '@contract-case/case-connector';
 import { SetupFunction, TeardownFunction } from '../../../../../entities/types';
 import { makeBoundaryFailure } from '../../jsErrorToBoundary';
 

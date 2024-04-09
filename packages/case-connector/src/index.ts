@@ -40,3 +40,5 @@
  *      - map config
  *
  */
+
+export * from './connectors/case-boundary/internals';

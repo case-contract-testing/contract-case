@@ -3,7 +3,7 @@ import {
   BoundarySuccess,
   BoundaryFailure,
   ITriggerFunction,
-} from '@contract-case/case-boundary';
+} from '@contract-case/case-connector';
 import {
   Trigger,
   TestErrorResponseFunction,
@@ -15,7 +15,7 @@ import {
 export const mapFailingTrigger =
   <R, C extends Record<string, unknown>>(
     trigger: Trigger<R, C>,
-    testErrorFunction: TestErrorResponseFunction
+    testErrorFunction: TestErrorResponseFunction,
   ) =>
   (config: TriggerConfig<C>): Promise<BoundaryResult> =>
     trigger(config)
@@ -35,18 +35,18 @@ export const mapFailingTrigger =
                 new BoundaryFailure(
                   err.name,
                   err.message,
-                  err.stack ?? 'no-stack'
-                )
-            )
+                  err.stack ?? 'no-stack',
+                ),
+            ),
       )
       .catch<BoundaryResult>(
-        (e) => new BoundaryFailure(e.name, e.message, e.stack ?? 'no-stack')
+        (e) => new BoundaryFailure(e.name, e.message, e.stack ?? 'no-stack'),
       );
 
 export const mapSuccessTrigger =
   <R, C extends Record<string, unknown>>(
     trigger: Trigger<R, C>,
-    testResponseFunction: TestResponseFunction<R, C>
+    testResponseFunction: TestResponseFunction<R, C>,
   ) =>
   (config: TriggerConfig<C>): Promise<BoundaryResult> =>
     trigger(config)
@@ -59,14 +59,14 @@ export const mapSuccessTrigger =
         () => {
           // TODO correct this return type
           throw new Error('TRIGGER FAILED ');
-        }
+        },
       )
       .catch<BoundaryResult>(
-        (e) => new BoundaryFailure(e.name, e.message, e.stack ?? 'no-stack')
+        (e) => new BoundaryFailure(e.name, e.message, e.stack ?? 'no-stack'),
       );
 
 export const mapTriggers = (
-  triggers: TriggerGroups
+  triggers: TriggerGroups,
 ): Record<string, ITriggerFunction> =>
   Object.entries(triggers.groups)
     .map(([requestName, triggerPairings]) => [
@@ -76,7 +76,7 @@ export const mapTriggers = (
               [`${requestName}::${responseName}`]: {
                 trigger: mapFailingTrigger(
                   triggerPairings.trigger,
-                  testErrorFunction
+                  testErrorFunction,
                 ),
               },
             }))
@@ -88,7 +88,7 @@ export const mapTriggers = (
               [`${requestName}::${responseName}`]: {
                 trigger: mapSuccessTrigger(
                   triggerPairings.trigger,
-                  testResponseFunction
+                  testResponseFunction,
                 ),
               },
             }))

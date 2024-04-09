@@ -8,7 +8,7 @@ import {
   PrintableMatchError,
   PrintableMessageError,
   PrintableTestTitle,
-} from '@contract-case/case-boundary';
+} from '@contract-case/case-connector';
 
 import { Console } from 'node:console';
 import { makeBoundaryFailure } from './case-boundary/mappers/jsErrorToBoundary';

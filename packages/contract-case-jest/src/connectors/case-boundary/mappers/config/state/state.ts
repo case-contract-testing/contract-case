@@ -1,4 +1,4 @@
-import { BoundaryStateHandler } from '@contract-case/case-boundary';
+import { BoundaryStateHandler } from '@contract-case/case-connector';
 import { StateHandler, StateHandlers } from '../../../../../entities/types';
 import { MappedStateHandler } from './MappedStateHandler';
 import { ContractCaseConfigurationError } from '../../../../../entities';

@@ -4,7 +4,7 @@ import {
   BoundarySuccessWithAny,
   BoundaryFailureKindConstants,
   BoundaryResultTypeConstants,
-} from '@contract-case/case-boundary';
+} from '@contract-case/case-connector';
 import {
   ContractCaseConfigurationError,
   ContractCaseCoreError,
@@ -18,20 +18,20 @@ export const mapFailureToJsError = (failure: BoundaryFailure): Error => {
     case BoundaryFailureKindConstants.CASE_BROKER_ERROR:
       return new ContractCaseConfigurationError(
         failure.message,
-        failure.location
+        failure.location,
       );
     case BoundaryFailureKindConstants.CASE_FAILED_ASSERTION_ERROR:
     case BoundaryFailureKindConstants.CASE_VERIFY_RETURN_ERROR:
       return new ContractCaseExpectationsNotMet(
         failure.message,
-        failure.location
+        failure.location,
       );
     case BoundaryFailureKindConstants.CASE_CORE_ERROR:
       return new ContractCaseCoreError(failure.message, failure.location);
     default:
       return new ContractCaseCoreError(
         `Unexpected error(${failure.kind}) : ${failure.message}.`,
-        failure.location
+        failure.location,
       );
   }
 };

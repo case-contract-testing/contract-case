@@ -1,4 +1,4 @@
-import { BoundaryCrashMessage } from '@contract-case/case-boundary';
+import { BoundaryCrashMessage } from '@contract-case/case-connector';
 import {
   CaseConfigurationError,
   BrokerError,

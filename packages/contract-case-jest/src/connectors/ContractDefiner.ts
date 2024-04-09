@@ -2,7 +2,7 @@ import {
   BoundaryAnyMatcher,
   BoundaryContractDefiner,
   BoundaryMockDefinition,
-} from '@contract-case/case-boundary';
+} from '@contract-case/case-connector';
 import { mocks } from '@contract-case/case-example-mock-types';
 
 import { defaultPrinter } from './defaultTestPrinter';

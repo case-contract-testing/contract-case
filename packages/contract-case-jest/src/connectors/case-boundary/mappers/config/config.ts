@@ -1,4 +1,4 @@
-import { ContractCaseBoundaryConfig } from '@contract-case/case-boundary';
+import { ContractCaseBoundaryConfig } from '@contract-case/case-connector';
 import {
   ContractCaseConfig,
   ContractCaseVerifierConfig,
@@ -41,13 +41,13 @@ export const mapSuccessConfig = <R, C extends Record<string, unknown>>({
   IndividualSuccessTestConfig<R, C>): ContractCaseBoundaryConfig => {
   if (trigger && testResponse === undefined) {
     throw new ContractCaseConfigurationError(
-      'If specifying a trigger function, you must also specify a testResponse function'
+      'If specifying a trigger function, you must also specify a testResponse function',
     );
   }
 
   if (trigger === undefined && testResponse !== undefined) {
     throw new ContractCaseConfigurationError(
-      'If specifying a testResponse function, you must also specify a trigger function'
+      'If specifying a testResponse function, you must also specify a trigger function',
     );
   }
   return {
