@@ -111,6 +111,22 @@ export interface BaseCaseConfig {
      */
     password: string;
   };
+
+  /**
+   * The internals map allows configuration of low-level ContractCase features.
+   * It contains no end-user configuration properties, and is intended to be used for customisation
+   * when exposing ContractCase in different languages only.
+   *
+   * It should never be exposed to end-users.
+   */
+  internals: {
+    /**
+     * Whether to run verification synchronously, or asynchronously (returning a
+     * promise that completes when all verification is complete). Most languages
+     * will want asynchronous verification, so that `verifyContract()` fails correctly.
+     */
+    asyncVerification: boolean;
+  };
 }
 
 // TODO figure out a better way to get all the config in here

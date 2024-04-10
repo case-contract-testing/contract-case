@@ -59,7 +59,7 @@ export class ReadingCaseContract extends BaseCaseContract {
   verifyContract<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
     runTestCb: RunTestCallback,
-  ): Promise<void> {
+  ): Promise<void> | undefined {
     this.initialContext.logger.maintainerDebug(
       `Verifying contract between '${this.currentContract.description.consumerName}' and '${this.currentContract.description.providerName}'. There are '${this.currentContract.examples.length}' examples`,
     );
@@ -136,8 +136,14 @@ export class ReadingCaseContract extends BaseCaseContract {
         });
       },
     );
-
-    return Promise.all(finishedIndicators).then(() => {});
+    if (
+      this.initialContext['_case:currentRun:context:internals'] &&
+      this.initialContext['_case:currentRun:context:internals']
+        .asyncVerification
+    ) {
+      return Promise.all(finishedIndicators).then(() => {});
+    }
+    return undefined;
   }
 
   // eslint-disable-next-line class-methods-use-this

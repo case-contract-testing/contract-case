@@ -154,7 +154,7 @@ export class BoundaryContractVerifier {
    */
   runVerification(
     configOverrides: ContractCaseBoundaryConfig,
-  ): Promise<BoundaryResult> {
+  ): Promise<BoundaryResult> | BoundaryResult {
     try {
       this.initialiseVerifier();
       if (this.verifier === undefined) {
@@ -167,17 +167,22 @@ export class BoundaryContractVerifier {
       const { config: initialConfig, partialInvoker: initialInvoker } =
         convertConfig(this.constructorConfig);
 
-      return this.verifier
-        .verifyContract(
-          { ...initialInvoker, ...partialInvoker },
-          { ...initialConfig, ...config },
-        )
-        .then(
+      const result = this.verifier.verifyContract(
+        { ...initialInvoker, ...partialInvoker },
+        { ...initialConfig, ...config },
+      );
+      if (configOverrides.internals.asyncVerification) {
+        return Promise.resolve(result).then(
           () => new BoundarySuccess(),
           (e: Error) => jsErrorToFailure(e),
         );
+      }
+      return new BoundarySuccess();
     } catch (e) {
-      return Promise.reject(e);
+      if (configOverrides.internals.asyncVerification) {
+        return Promise.reject(e);
+      }
+      throw e;
     }
   }
 }

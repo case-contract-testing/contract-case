@@ -18,7 +18,7 @@ import { readerDependencies } from '../dependencies';
 import { configFromEnv, configToRunContext } from '../../core/config';
 import { constructDataContext } from '../../entities/context';
 import { ContractStore } from '../../core/types.ContractReader';
-import { CaseConfigurationError } from '../../entities';
+import { CaseConfigurationError, CaseCoreError } from '../../entities';
 import { TestPrinter } from './types';
 
 const readContractFromStore = (
@@ -95,7 +95,7 @@ export class ContractVerifierConnector {
   verifyContract<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
     configOverride = {},
-  ): Promise<void> {
+  ): Promise<void> | undefined {
     const mergedConfig = { ...this.config, ...configOverride };
 
     if (typeof mergedConfig.providerName !== 'string') {
@@ -145,19 +145,40 @@ export class ContractVerifierConnector {
         "No contracts were matched for verification. Try this run again with logLevel: 'debug' to find out more",
       );
     }
+    if (mergedConfig.internals == null) {
+      throw new CaseCoreError(
+        'Verify contract was called with no internals set - this is an error in the caller, probably the language specific wrapper',
+      );
+    }
 
-    return Promise.all(
-      contractsToVerify.map((contractLink) => {
-        this.context.logger.debug(
-          `Verifying contract from file '${contractLink.filePath}'`,
-        );
-        return new ReadingCaseContract(
-          contractLink.contents,
-          this.dependencies,
-          mergedConfig,
-          this.parentVersions,
-        ).verifyContract(invoker, this.callback);
-      }),
-    ).then(() => {});
+    const results = contractsToVerify.map((contractLink) => {
+      this.context.logger.debug(
+        `Verifying contract from file '${contractLink.filePath}'`,
+      );
+      return new ReadingCaseContract(
+        contractLink.contents,
+        this.dependencies,
+        mergedConfig,
+        this.parentVersions,
+      ).verifyContract(invoker, this.callback);
+    });
+    if (mergedConfig.internals.asyncVerification) {
+      this.context.logger.maintainerDebug(`Awaiting async verification`);
+      return Promise.all(results).then(
+        () => {
+          this.context.logger.maintainerDebug(
+            `Async verification complete (Success)`,
+          );
+        },
+        (e) => {
+          this.context.logger.maintainerDebug(
+            `Async verification complete (Error: ${e.message})`,
+          );
+          throw e;
+        },
+      );
+    }
+    this.context.logger.maintainerDebug(`Synchronous verification complete`);
+    return undefined;
   }
 }

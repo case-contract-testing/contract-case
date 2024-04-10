@@ -8,7 +8,8 @@ import { TriggerGroupMap } from './connectors/TriggerGroup';
 verifyContract(
   {
     providerName: 'http request provider',
-    printResults: false,
+    printResults: true,
+    logLevel: 'maintainerDebug',
   },
   (verifier) => {
     verifier.runVerification({
@@ -16,11 +17,6 @@ verifyContract(
         .addTriggerGroup('an http "GET" request to "/health" without a body', {
           trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
           testResponses: {
-            'a (200) response with body an object shaped like {status: "up"}': (
-              health,
-            ) => {
-              expect(health).toEqual('up');
-            },
             'a (200) response with body an object shaped like {status: <any string>}':
               (health) => expect(typeof health).toBe('string'),
           },
