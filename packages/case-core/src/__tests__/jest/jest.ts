@@ -60,9 +60,17 @@ export const verifyContract = (
   }
   describe(`Provider verification for ${config.providerName}`, () => {
     callback(
-      new ContractVerifierConnector(config, runJestTest, defaultPrinter, [
-        'local-jest-wrapper',
-      ]),
+      new ContractVerifierConnector(
+        {
+          ...config,
+          internals: {
+            asyncVerification: false,
+          },
+        },
+        runJestTest,
+        defaultPrinter,
+        ['local-jest-wrapper'],
+      ),
     );
   });
 };
