@@ -8,8 +8,6 @@ import { TriggerGroupMap } from './connectors/TriggerGroup';
 verifyContract(
   {
     providerName: 'http request provider',
-    printResults: true,
-    logLevel: 'maintainerDebug',
   },
   (verifier) => {
     verifier.runVerification({
