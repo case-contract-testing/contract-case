@@ -7,10 +7,8 @@
 - [x] Note about stability
 - [x] Spike translation to C# etc
 - [x] Determine how package structure will work
-- [ ] Release Java + Python
-- [ ] Extract Jest
-- [ ] Release C# ?
-
+- [x] Extract Jest
+- [ ] Release Java
 - [ ] Broker docs
 - [ ] Broker configurability in CLI
   - [ ] Selectors on download
@@ -18,6 +16,8 @@
 - [ ] Auto docs on Matchers
 - [ ] Auto docs on Mock types
 - [ ] Fix bug where it's not finding the CI token
+- [ ] Release python
+- [ ] Release C# ?
 
 ## Todo list
 
@@ -53,12 +53,12 @@ Next:
   - Jest DSL
   - [x] Error handling boundary
   - [x] Crash messages
-  - [ ] Case Matcher functions
+  - [ ] Case Matcher functions so that you don't have to import JSii
   - Java DSL
   - [ ] Set up maven publish
   - [ ] Error handling boundary
-  - [ ] Crash messages
-  - [ ] Case Matcher functions
+  - [x] Crash messages
+  - [ ] Case Matcher function so that you don't have to import JSii
 
 ## Documentation todos
 
@@ -81,10 +81,29 @@ Next:
 - [x] Documentation for config object
 - [x] Documentation for states
 - [ ] Documentation for verification
+- [ ] Remove "advanced topics" but keep content
+- [ ] Remove FAQ but keep content
+- [x] Differences from Pact
+- [ ] -- Pass-through APIs
+- [ ] -- Mock model
+- [ ] -- How to do proxy testing
+- [ ] -- Extensibility
+- [ ] How to use
+- [ ] How states work
+- [x] Why there's no optional
+- [x] How log levels work
+- [ ] Maintainer documentation
+- [ ] Correct coverage information
+- [ ] Package versioning strategy
+
+## After grpc
+
+- [ ] Remove case-boundary types from java wrapper
+- [ ] Write up / modify implementation instructions
+- [ ] Remove case-boundary from case-connector (refactor so that ts dsl uses the same as the grpc?)
 
 ## Notes from refactor:
 
-- [ ] Add @subclassable tags
 - [ ] Add a way to configure individual mocks
 - [ ] Rename all the repeated types so they're not confusing
 - [x] Rename case:matcher to \_case:matcher
@@ -104,19 +123,17 @@ Next:
   - should there be "array" ?
 - [ ] Properly use accepts or some other property to use resolvesTo
 - [ ] Validators need to move
-
   - [ ] Array length (including checking that it's sensible)
   - [ ] Array length sensible
   - [ ] Array contains with an empty array
   - [ ] Array starts with with an empty array
   - [ ] String prefix with an empty string?
-
 - [ ] Remove MatchContextByType from core
 - [ ] Make it an error to not have broker tokens or URLs when trying to publish
 
 # Connector
 
-- [ ] Make loggers for the boundaries & glue
+- [x] Make loggers for the boundaries & glue
 - [x] Extract controller from grpc, maybe
 - [ ] Confirm if the state handlers should have config / params?
 - [ ] Move the links to the promise handler out of the mappers
@@ -126,12 +143,13 @@ Next:
 - [ ] Start the server from java
 - [ ] Redo JSii boundary for interface types
 - [ ] Expose teardown correctly on boundary
+- [ ] Wrap connector errors so that the core can't explode the server
 
 # Java
 
 - [ ] Make junit wrapper
 
-Pact Parity
+# Pact Parity
 
 - [ ] JVM / Python / Go / C# bindings
 - [x] Strip matchers
@@ -178,21 +196,21 @@ Pact Parity
 - [ ] Helpers for setting up tests
 - [ ] Timeouts
 
-Major features
+# Major features
 
 - [x] Add context to start and end contract
 - [x] Test harness integration
 - [x] Provider defined examples
 - [x] Authentication sources (authentication as a first class citizen)
 - [ ] SNS and SQS support
+- [ ] grpc support
 
-Later features
+# Later features
 
 - [ ] Save a new matcher directly to contract, without a test (so that it can be used in tests)
 - [ ] Text bodies
 - [ ] XML Matchers
 - [ ] Http forms matchers
-- [ ] grpc support
 - [ ] graphql support
 - [ ] Kafka support
 - [ ] URL matchers
@@ -219,13 +237,13 @@ Cool features
 - [ ] Pact compatibility (ability to read Pact files)
 - [ ] Call-out matchers that call out to another service
 - [ ] Ignore matcher ("pretend this isn't in the response for the following matcher")
-- [ ] Run as a server so that arbitrary frameworks can use it
+- [x] Run as a server so that arbitrary frameworks can use it
 - [ ] "Is this interaction the same as that"?
 - [ ] Combine files for upload (does the broker support multiple contracts between the same two services?)
 - [ ] Parametrised matchers
 - [ ] Ability to change the default version strategy
 
-Contract file access patterns
+## Contract file access patterns
 
 - [x] Enumerate interactions
 - [ ] List states ?
@@ -233,7 +251,7 @@ Contract file access patterns
 - [ ] Union contract files
 - [ ] Intersect contract files
 
-Internals
+## Internals
 
 - [x] Http produce request body matcher
 - [x] Http produce request path matcher
@@ -270,7 +288,7 @@ Internals
 - [ ] Move the error reporting logic closer to the boundary so that it's not possible to miss an example
 - [ ] Ability to tell when the main run is taking place from context
 
-Configuration and ergonomics
+## Configuration and ergonomics
 
 - [x] Log levels
 - [x] File locations
@@ -294,21 +312,6 @@ Configuration and ergonomics
 - [ ] Better system for stripping matchers with `and()` - maybe `{ items, keys, structure }`?
 - [ ] Accepts / resolvesTo sanity checks
 
-Documentation
-
-- [x] Differences from Pact
-- [ ] -- Pass-through APIs
-- [ ] -- Mock model
-- [ ] -- How to do proxy testing
-- [ ] -- Extensibility
-- [ ] How to use
-- [ ] How states work
-- [x] Why there's no optional
-- [ ] How log levels work
-- [ ] Maintainer documentation
-- [ ] Correct coverage information
-- [ ] Package versioning strategy
-
 Potential issues:
 
 - [ ] Double handling of lookup interactions if the same data is traversed (eg, by checkMatch and stripMatch)
@@ -316,6 +319,7 @@ Potential issues:
 - [ ] Dangling promises when 'No verifier or errorVerifier provided' CaseConfigurationError happens
 - [ ] Make teardowns run for successful state setup functions when one of the setups (or other teardowns) fails.
 - [ ] Worker process still running when the triggers aren't found
+- [ ] Server shutdown is slow when run via grpc - maybe we can assume shutdown is clean and not await it?
 
 ### Implementation notebook
 
