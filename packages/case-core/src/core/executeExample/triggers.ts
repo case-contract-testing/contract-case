@@ -157,8 +157,11 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
       }
     }
     if (triggerAndTests !== undefined) {
-      const fun =
-        triggerAndTests[`${names.requestName}::${names.responseName}`];
+      const triggerName = `${names.requestName}::${names.responseName}`;
+      const fun = triggerAndTests[triggerName];
+      context.logger.deepMaintainerDebug(
+        `Trigger ${fun ? 'exists' : 'undefined'} for '${triggerName}'`,
+      );
       if (fun !== undefined) {
         context.logger.debug(
           `Invoking provided trigger for '${names.requestName}', and verification for a successful '${names.responseName}'`,
@@ -201,7 +204,7 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
           `No verifier or errorVerifier for '${names.responseName}' provided`,
         );
         throw new CaseConfigurationError(
-          `No verifier or errorVerifier provided for response '${names.responseName}' provided`,
+          `No verifier or errorVerifier provided for response:\n     ${names.responseName}`,
           context,
         );
       }
@@ -209,12 +212,45 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
         `No trigger for request '${names.requestName}' provided`,
       );
       throw new CaseConfigurationError(
-        `No trigger provided for request '${names.requestName}' provided`,
+        `No trigger provided for request:\n     ${names.requestName}`,
         context,
       );
     }
+    if (triggerAndTests !== undefined) {
+      const allFunctions = Object.keys(triggerAndTests);
+      const startsWith = allFunctions.filter((s) =>
+        s.startsWith(`${names.requestName}::`),
+      );
+      if (startsWith.length > 0) {
+        throw new CaseConfigurationError(
+          `The trigger configuration for\n     ${names.requestName}\n   is missing a test for\n     ${names.responseName}\n   However, the following response tests exist:\n${startsWith
+            .map((s) => `        ${s.split('::')[1]}`)
+            .join('\n')}`,
+        );
+      }
+
+      const endsWith = allFunctions.filter((s) =>
+        s.endsWith(names.responseName),
+      );
+
+      if (endsWith.length > 0) {
+        throw new CaseConfigurationError(
+          `Missing a trigger configuration for\n     ${
+            names.requestName
+          }\n However, the response test for\n     ${
+            names.responseName
+          }\n exists in the following configurations:\n${endsWith
+            .map((s) => `        ${s.split('::')[0]}`)
+            .join('\n')}`,
+        );
+      }
+
+      throw new CaseConfigurationError(
+        `Missing a trigger for:\n       ${names.requestName}\n  this should be paired with a test for:\n       ${names.responseName}`,
+      );
+    }
     throw new CaseConfigurationError(
-      `No trigger or trigger map provided for '${names.requestName}', but it expected at least one of these to be set`,
+      `No trigger or trigger map provided for:\n     ${names.requestName}\n  You must set a trigger or a trigger map`,
       context,
     );
   });

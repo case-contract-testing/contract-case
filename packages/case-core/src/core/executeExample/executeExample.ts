@@ -131,8 +131,9 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
           },
           async (error) => {
             context.logger.debug(
-              `This example failed while trying to invoke the trigger function: ${error.message}`,
+              `This example failed while trying to invoke the trigger function: ${error.message}\n   ${(error as Error).stack}`,
             );
+
             // We still need to drain the assertable
 
             context.logger.maintainerDebug(
