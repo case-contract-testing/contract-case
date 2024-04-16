@@ -2,6 +2,7 @@ import {
   JavaScriptValue,
   Struct,
 } from 'google-protobuf/google/protobuf/struct_pb';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 import {
   ContractResponse,
   TriggerFunctionHandle,
@@ -28,20 +29,42 @@ const mapTriggerFunction = (
 ) => ({
   trigger: (withConfig: Record<string, unknown>) =>
     waitForResolution(
-      makeResolvableId((id: string) =>
-        executeCall(
+      makeResolvableId((id: string) => {
+        if (Array.isArray(handle)) {
+          // TODO: Figure out why this is sometimes an array instead of a handle
+          return executeCall(
+            id,
+            new ContractResponse().setTriggerFunctionRequest(
+              new TriggerFunctionRequest()
+                .setTriggerFunction(
+                  new TriggerFunctionHandle().setHandle(
+                    new StringValue().setValue(handle[0][0]),
+                  ),
+                )
+                .setConfig(
+                  Struct.fromJavaScript(
+                    withConfig as Record<string, JavaScriptValue>,
+                  ),
+                ),
+            ),
+          );
+        }
+
+        return executeCall(
           id,
           new ContractResponse().setTriggerFunctionRequest(
             new TriggerFunctionRequest()
-              .setTriggerFunction(handle)
+              .setTriggerFunction(
+                new TriggerFunctionHandle().setHandle(handle.getHandle()),
+              )
               .setConfig(
                 Struct.fromJavaScript(
                   withConfig as Record<string, JavaScriptValue>,
                 ),
               ),
           ),
-        ),
-      ),
+        );
+      }),
     ),
 });
 
