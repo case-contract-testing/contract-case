@@ -56,9 +56,10 @@ Next:
   - [ ] Case Matcher functions so that you don't have to import JSii
   - Java DSL
   - [ ] Set up maven publish
-  - [ ] Error handling boundary
+  - [x] Error handling boundary
   - [x] Crash messages
   - [ ] Case Matcher function so that you don't have to import JSii
+  - [ ] Trigger functions should take config
 
 ## Documentation todos
 
@@ -286,7 +287,8 @@ Cool features
 - [ ] Make it less likely that a key is missed during the location printing (maybe make the maintainer-only location strings an explicit type instead of implied by `:`)
 - [ ] Review test harness and separate into a dedicated module
 - [ ] Move the error reporting logic closer to the boundary so that it's not possible to miss an example
-- [ ] Ability to tell when the main run is taking place from context
+- [ ] Ability to tell when the main run is taking place from context (maybe don't log during the sanity run?)
+- [ ] Make the triggerAndTests map have a more unique key (not just `::`, and detect if it has been printed twice)
 
 ## Configuration and ergonomics
 

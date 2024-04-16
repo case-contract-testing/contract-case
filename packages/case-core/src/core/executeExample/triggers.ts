@@ -90,10 +90,10 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
   context: MatchContext,
 ): Promise<unknown> =>
   Promise.resolve().then(() => {
-    context.logger.deepMaintainerDebug(
+    context.logger.maintainerDebug(
       `In this mock (${mock['_case:mock:type']}), in '${
         context['_case:currentRun:context:contractMode']
-      }' mode, the triggers are ${
+      }' mode, the triggers must be ${
         mock['_case:run:context:setup'][
           context['_case:currentRun:context:contractMode']
         ].triggers
@@ -105,22 +105,19 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
       ].triggers === 'generated'
     ) {
       context.logger.maintainerDebug(
-        "Triggers don't exist for this mock type; skipping",
+        "Triggers don't need to be provided for this mock type; skipping",
       );
       return Promise.resolve();
     }
-    context.logger.deepMaintainerDebug(
-      'The provided triggers at this point are',
-      {
-        trigger,
-        triggerAndTest,
-        triggerAndTests,
-        triggers,
-        names,
-        testErrorResponse,
-        testResponse,
-      },
-    );
+    context.logger.maintainerDebug('The provided triggers at this point are', {
+      trigger,
+      triggerAndTest,
+      triggerAndTests,
+      triggers,
+      names,
+      testErrorResponse,
+      testResponse,
+    });
     if (triggerAndTest !== undefined) {
       context.logger.debug(
         `Invoking provided trigger / test for '${names.requestName}'`,
@@ -230,16 +227,16 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
       }
 
       const endsWith = allFunctions.filter((s) =>
-        s.endsWith(names.responseName),
+        s.endsWith(`::${names.responseName}`),
       );
 
       if (endsWith.length > 0) {
         throw new CaseConfigurationError(
-          `Missing a trigger configuration for\n     ${
+          `Missing a trigger pair for request:\n     ${
             names.requestName
-          }\n However, the response test for\n     ${
+          }\n with a response test for response:\n     ${
             names.responseName
-          }\n exists in the following configurations:\n${endsWith
+          }\n However, tests for that response name do exist in the following configurations:\n${endsWith
             .map((s) => `        ${s.split('::')[0]}`)
             .join('\n')}`,
         );

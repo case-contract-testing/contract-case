@@ -67,7 +67,7 @@ export const addLookup = (
   context: MatchContextWithoutLookup,
 ): Record<string, AnyCaseMatcherOrData> => {
   const name = lookupName({ lookupType, uniqueName });
-  context.logger.maintainerDebug(
+  context.logger.deepMaintainerDebug(
     `Saving lookup ${lookupType} (${name}):`,
     matcher,
   );
@@ -92,7 +92,7 @@ export const addLookup = (
         `The ${lookupType} with the name '${stripType({ lookupType, name })}' has more than one definition, and they are not the same`,
       );
     } else {
-      context.logger.maintainerDebug(
+      context.logger.deepMaintainerDebug(
         `The ${lookupType} with the name '${stripType({ lookupType, name })}' is already stored exactly as given`,
       );
     }

@@ -151,10 +151,20 @@ export class ReadingCaseContract extends BaseCaseContract {
     example: CaseExample,
     currentContext: MatchContext,
   ): CaseExample {
+    currentContext.logger.deepMaintainerDebug(
+      `recordExample called with`,
+      example,
+    );
     if (example.result === 'FAILED') {
+      currentContext.logger.maintainerDebug(
+        `Example was a failure, marking verification failed (was '${this.status}')`,
+      );
       this.status = 'FAILED';
+    } else {
+      currentContext.logger.maintainerDebug(
+        `Example was a success, no change to current status of '${this.status}'`,
+      );
     }
-    currentContext.logger.maintainerDebug(`recordExample called with`, example);
     return example;
   }
 

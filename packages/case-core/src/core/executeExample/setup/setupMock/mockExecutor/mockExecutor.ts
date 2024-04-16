@@ -21,7 +21,7 @@ const inferMock = <T extends AnyMockDescriptorType>(
     ].type;
 
   if (invertedType !== mock['_case:mock:type']) {
-    context.logger.maintainerDebug(
+    context.logger.deepMaintainerDebug(
       `Inverting mock from '${mock['_case:mock:type']}' to '${invertedType}'`,
     );
     return {
@@ -29,7 +29,7 @@ const inferMock = <T extends AnyMockDescriptorType>(
       '_case:mock:type': invertedType,
     };
   }
-  context.logger.maintainerDebug(
+  context.logger.deepMaintainerDebug(
     `Mock type left at '${mock['_case:mock:type']}'`,
   );
   return mock;
