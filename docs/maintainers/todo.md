@@ -9,6 +9,12 @@
 - [x] Determine how package structure will work
 - [x] Extract Jest
 - [ ] Release Java
+  - [x] DSL call core
+  - [ ] DSL start server
+  - [x] Example client define
+  - [x] Example client verify
+  - [ ] Example server define
+  - [ ] Example server verify
 - [ ] Broker docs
 - [ ] Broker configurability in CLI
   - [ ] Selectors on download
@@ -142,7 +148,9 @@ Next:
 - [ ] Do proper stack trace passing, as a first class object
 - [ ] Tie the proto in the java to the proto in the typescript
 - [ ] Start the server from java
-- [ ] Redo JSii boundary for interface types
+- [x] Remove JSii from boundary
+- [ ] Redo boundary interface types now that we don't need JSii
+- [ ] Add back in validators for constants (probably contract tests)
 - [ ] Expose teardown correctly on boundary
 - [ ] Wrap connector errors so that the core can't explode the server
 
