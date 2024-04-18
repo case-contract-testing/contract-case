@@ -112,6 +112,7 @@ export const setupHttpResponseProducer = (
           });
 
           server = app.listen();
+          server.keepAliveTimeout = 0;
           const address = server.address();
 
           context.logger.maintainerDebug(
