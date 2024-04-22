@@ -67,7 +67,7 @@
     "@contract-case/eslint-config-case-maintainer": "0.0.3",
     "@contract-case/test-equivalence-matchers": "0.15.6",
     "@microsoft/api-documenter": "^7.23.37",
-    "@microsoft/api-extractor": "^7.40.1",
+    "@microsoft/api-extractor": "^7.43.1",
     "@types/jest": "^29.5.12",
     "jsii": "^5.4.1",
     "jsii-docgen": "^10.3.2",
