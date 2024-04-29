@@ -19,7 +19,7 @@
     "@nx/nx-linux-x64-gnu": "18.0.5",
     "@nx/nx-linux-x64-musl": "18.2.4",
     "@nx/nx-win32-arm64-msvc": "18.0.4",
-    "@nx/nx-win32-x64-msvc": "18.2.4"
+    "@nx/nx-win32-x64-msvc": "18.3.4"
   },
   "scripts": {
     "package": "lerna run package",
