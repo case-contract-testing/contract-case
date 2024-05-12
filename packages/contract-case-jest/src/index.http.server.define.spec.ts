@@ -74,7 +74,11 @@ describe('e2e http provider driven', () => {
       },
       'A user exists': {
         setup: () => {
+          // Make a user ID
           const userId = '42';
+          // Mock the repository layer call
+          // so that it returns a User object if called
+          // with the ID above
           mockGetUser = (id) => {
             if (id === userId)
               return {
@@ -83,14 +87,22 @@ describe('e2e http provider driven', () => {
               };
             return undefined;
           };
+          // Return the userId as a state variable
           return { userId };
         },
         teardown: () => {
+          // Remove the mock, so that the server state
+          // was the same as it was before the test
           mockGetUser = () => undefined;
         },
       },
       'No users exist': () => {
+        // Mock the repository layer call
+        // so that it always returns nothing
         mockGetUser = () => undefined;
+        // We still need to return a userId, since some tests expect
+        // state variable to return it
+        return { userId: '345' };
       },
     };
 
@@ -98,7 +110,6 @@ describe('e2e http provider driven', () => {
       {
         consumerName: 'http request consumer',
         providerName: 'http request provider',
-
         stateHandlers,
         baseUrlUnderTest: `http://localhost:${port}`,
         // remove the following lines for your own tests
@@ -200,7 +211,10 @@ describe('e2e http provider driven', () => {
             describe("when the user doesn't exist", () => {
               it('returns a user not found error', () =>
                 contract.runRejectingExample({
-                  states: [inState('Server is up'), inState('No users exist')],
+                  states: [
+                    inState('Server is up'),
+                    inState('No users exist', { userId: '123' }),
+                  ],
                   definition: willReceiveHttpRequest({
                     request: {
                       method: 'GET',
