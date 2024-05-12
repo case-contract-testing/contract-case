@@ -49,9 +49,10 @@
     "@contract-case/case-entities-internal": "0.15.6",
     "@grpc/grpc-js": "^1.10.2",
     "@grpc/proto-loader": "^0.7.10",
+    "get-port": "^5.1.1",
     "google-protobuf": "^3.21.2",
-    "read-pkg-up": "^7.0.1",
     "pretty-format": "^29.7.0",
+    "read-pkg-up": "^7.0.1",
     "uuid": "^9.0.1"
   },
   "stability": "stable",
