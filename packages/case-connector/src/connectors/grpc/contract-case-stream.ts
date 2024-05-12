@@ -22,7 +22,6 @@ export function main(): void {
         maintainerLog('[SERVER]', `Unable to start: ${error}`);
       } else {
         maintainerLog('[SERVER]', `Started on port: ${port}`);
-        server.start();
       }
     },
   );
