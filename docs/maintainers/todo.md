@@ -10,7 +10,7 @@
 - [x] Extract Jest
 - [ ] Release Java
   - [x] DSL call core
-  - [ ] DSL start server
+  - [x] DSL start server
   - [x] Example client define
   - [x] Example client verify
   - [ ] Example server define
