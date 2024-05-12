@@ -20,7 +20,7 @@
     "build:proto": "npm run build:proto:js && npm run build:proto:ts && npm run format:fix",
     "build:proto:js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/connectors/grpc --grpc_out=grpc_js:src/connectors/grpc ./proto/contract_case_stream.proto",
     "build:proto:ts": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/connectors/grpc --grpc_out=grpc_js:src/connectors/grpc --plugin=protoc-gen-grpc=../../node_modules/grpc_tools_node_protoc_ts/bin/protoc-gen-ts ./proto/contract_case_stream.proto",
-    "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "build": "rimraf {dist,webpack} && tsc --project tsconfig.build.json && webpack-cli",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "lint:fix:proto": "protolint --fix ./proto",
@@ -41,8 +41,11 @@
     "grpc-tools": "^1.12.4",
     "prettier": "3.2.5",
     "rimraf": "^5.0.1",
+    "source-map-loader": "^5.0.0",
     "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "@contract-case/case-core": "0.15.6",
