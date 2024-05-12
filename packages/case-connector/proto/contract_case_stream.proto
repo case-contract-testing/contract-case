@@ -237,19 +237,25 @@ message ResultResponse {
 message DefinitionRequest {
   google.protobuf.StringValue id = 1;
   oneof kind {
-    // From user calls
+    // Host language wants to begin a definition
     BeginDefinitionRequest begin_definition = 2;
+    // Host language wants to run an example that returns success
     RunExampleRequest run_example = 3;
+    // Host language wants to run an example that returns a failure
     RunRejectingExampleRequest run_rejecting_example = 4;
+    // Host language wants to strip the matchers from a defintion
     StripMatchersRequest strip_matchers = 5;
+    // Host langauge has finished the definition
     EndDefinitionRequest end_definition = 6;
-    // Answering server driven RPC calls
+    // Core returns a response to a host call
     ResultResponse result_response = 7;
   }
 }
 
 message BeginVerificationRequest {
+  // The configuration for this verification
   ContractCaseConfig config = 1;
+  // Version strings of all ContractCase components for maintainer logs
   repeated google.protobuf.StringValue caller_versions = 4;
 }
 
@@ -257,27 +263,37 @@ message AvailableContractDefinitions {
 }
 
 message RunVerification {
+  // Any configuration overrides for this verification
   ContractCaseConfig config = 1;
 }
 
 message StartTestEvent {
+  // The name of this test (human readable)
   google.protobuf.StringValue test_name = 1;
+  // An ID for a callback to the test invoker when the core is ready
   google.protobuf.StringValue invoker_id = 2;
 }
 
 message InvokeTest {
+  // Callback ID from the host language in a start test event
+  // Used by the core to invoke a specific test
   google.protobuf.StringValue invoker_id = 1;
 }
 
 message VerificationRequest {
   google.protobuf.StringValue id = 1;
   oneof kind {
-    // From user calls
+    // Host language wants to start a verification session
+    // Used to do initial setup by the core - must be called before
+    // run_verification
     BeginVerificationRequest begin_verification = 2;
+    // Host language wants to know what contracts are available
     AvailableContractDefinitions available_contract_definitions = 3;
+    // Host language wants to run a verification
     RunVerification run_verification = 4;
-    // Answering server driven RPC calls
+    // Core is responding to a host call
     ResultResponse result_response = 5;
+    // Core wants to invoke a specific test
     InvokeTest invoke_test = 9;
   }
 }
