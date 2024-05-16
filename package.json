@@ -4,7 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.15.7",
+  "version": "0.15.8",
   "devDependencies": {
     "@tsconfig/node16": "^16.1.2",
     "jsii-docgen": "^10.3.2",

@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.15.8](https://github.com/case-contract-testing/contract-case/compare/v0.15.7...v0.15.8) (2024-05-16)
+
+
+### Features
+
+* Add case-boundary into the connector package ([072222f](https://github.com/case-contract-testing/contract-case/commit/072222f4b4f1eeddef461b0007bc5f431217fb7b))
+* Add internal config parameters to control whether verification is async or not ([6882739](https://github.com/case-contract-testing/contract-case/commit/68827393b0b766e753aeb77dcab123a2a01672fe))
+* Implement and expose contract verifier ([ea460cd](https://github.com/case-contract-testing/contract-case/commit/ea460cd5a915975673b2f22d98e05fab3b2b1cba))
+
+
+### Bug Fixes
+
+* Prevent server waiting for keepalive timeout on http verification ([7cebbf0](https://github.com/case-contract-testing/contract-case/commit/7cebbf0ced18f7129ff31f01067938b2ed11390c))
+* Remove current-git-branch, allowing webpack to roll up the package ([0078083](https://github.com/case-contract-testing/contract-case/commit/0078083936e7a51bb2df02dcc7c22541bd7d1b04))
+* Significantly improve trigger configuration error messages ([c494726](https://github.com/case-contract-testing/contract-case/commit/c4947265d3a65e57c7ff051de93db2b500f843ec))
+* Start the ContractCase server on a random port ([4c5d431](https://github.com/case-contract-testing/contract-case/commit/4c5d431848cb026701510cf7248f0c48ff5f8b75))
+* Tidy up logging by demoting some noisy logs to deepMaintainerDebug from maintainerDebug ([b9c5548](https://github.com/case-contract-testing/contract-case/commit/b9c5548569bb3082e4d2ffa93be08323127b1932))
+* Use case-connector instead of case-boundary ([ecc1c9a](https://github.com/case-contract-testing/contract-case/commit/ecc1c9a02f1afc7caadaf1844d9b49eb1843a014))
+
 ## [0.15.7](https://github.com/case-contract-testing/contract-case/compare/v0.15.6...v0.15.7) (2024-02-11)
 
 

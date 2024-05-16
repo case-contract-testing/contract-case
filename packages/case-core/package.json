@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-core",
-  "version": "0.15.6",
+  "version": "0.15.7",
   "description": "Core functionality for the ContractCase contract testing suite",
   "keywords": [
     "testing",
@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@contract-case/case-maintainer-config": "0.0.4",
-    "@contract-case/eslint-config-case-maintainer": "0.0.3",
+    "@contract-case/eslint-config-case-maintainer": "0.1.0",
     "@types/current-git-branch": "^1.1.6",
     "@types/express": "^4.17.14",
     "@types/is-ci": "^3.0.0",
@@ -71,10 +71,10 @@
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
-    "typescript": "5.4.5"
+    "typescript": "5.4.2"
   },
   "dependencies": {
-    "@contract-case/case-entities-internal": "0.15.6",
+    "@contract-case/case-entities-internal": "0.15.7",
     "absolute-version": "^1.0.2",
     "async-mutex": "^0.5.0",
     "axios": "^1.6.8",

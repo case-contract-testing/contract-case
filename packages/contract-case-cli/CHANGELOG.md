@@ -23,6 +23,24 @@
   * devDependencies
     * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
 
+## [0.1.13](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.12...@contract-case/cli-v0.1.13) (2024-05-16)
+
+
+### Bug Fixes
+
+* Bump version of case-boundary to v0.11.0 ([834951b](https://github.com/case-contract-testing/contract-case/commit/834951bbf6205824cc1eb0b8f8392c502973a4a5))
+* Use case-connector instead of case-boundary ([ecc1c9a](https://github.com/case-contract-testing/contract-case/commit/ecc1c9a02f1afc7caadaf1844d9b49eb1843a014))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.7.4 to 0.7.5
+    * @contract-case/case-core bumped from 0.15.6 to 0.15.7
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.3 to 0.1.0
+
 ## [0.1.12](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.11...@contract-case/cli-v0.1.12) (2024-02-11)
 
 
