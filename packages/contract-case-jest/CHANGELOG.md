@@ -29,6 +29,32 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.11.7](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.11.6...@contract-case/contract-case-jest-v0.11.7) (2024-05-16)
+
+
+### Features
+
+* Add internal config parameters to control whether verification is async or not ([6882739](https://github.com/case-contract-testing/contract-case/commit/68827393b0b766e753aeb77dcab123a2a01672fe))
+
+
+### Bug Fixes
+
+* Bump version of case-boundary to v0.11.0 ([834951b](https://github.com/case-contract-testing/contract-case/commit/834951bbf6205824cc1eb0b8f8392c502973a4a5))
+* Ensure tests can run even if there's no verfications ([827ee89](https://github.com/case-contract-testing/contract-case/commit/827ee892cf552ef4661432bde379fffcd854fa0f))
+* Use case-connector instead of case-boundary ([ecc1c9a](https://github.com/case-contract-testing/contract-case/commit/ecc1c9a02f1afc7caadaf1844d9b49eb1843a014))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.7.4 to 0.7.5
+    * @contract-case/case-entities-internal bumped from 0.15.6 to 0.15.7
+    * @contract-case/case-example-mock-types bumped from 0.15.6 to 0.15.7
+    * @contract-case/cli bumped from 0.1.12 to 0.1.13
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.3 to 0.1.0
+
 ## [0.11.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.11.5...@contract-case/contract-case-jest-v0.11.6) (2024-02-11)
 
 

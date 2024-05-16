@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/contract-case-jest",
-  "version": "0.11.6",
+  "version": "0.11.7",
   "description": "ContractCase contract testing suite",
   "keywords": [
     "testing",
@@ -56,7 +56,7 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "@contract-case/eslint-config-case-maintainer": "0.0.3",
+    "@contract-case/eslint-config-case-maintainer": "0.1.0",
     "@types/body-parser": "^1.19.2",
     "@types/express": "^4.17.14",
     "@types/jest": "^29.5.12",
@@ -70,16 +70,16 @@
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
-    "typescript": "5.4.5"
+    "typescript": "5.4.2"
   },
   "peerDependencies": {
     "jest": "^29.4.3"
   },
   "dependencies": {
-    "@contract-case/case-connector": "0.7.4",
-    "@contract-case/case-entities-internal": "0.15.6",
-    "@contract-case/case-example-mock-types": "0.15.6",
-    "@contract-case/cli": "0.1.12",
+    "@contract-case/case-connector": "0.7.5",
+    "@contract-case/case-entities-internal": "0.15.7",
+    "@contract-case/case-example-mock-types": "0.15.7",
+    "@contract-case/cli": "0.1.13",
     "chalk": "^4.1.2",
     "read-pkg-up": "^7.0.1",
     "ts-node": "^10.9.1"

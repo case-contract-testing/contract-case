@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.15.7](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.15.6...@contract-case/case-entities-internal-v0.15.7) (2024-05-16)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-entities-internal:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.3 to 0.1.0
+
 ## [0.15.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.15.5...@contract-case/case-entities-internal-v0.15.6) (2024-02-11)
 
 

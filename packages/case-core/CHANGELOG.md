@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.15.7](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.15.6...@contract-case/case-core-v0.15.7) (2024-05-16)
+
+
+### Features
+
+* Add internal config parameters to control whether verification is async or not ([6882739](https://github.com/case-contract-testing/contract-case/commit/68827393b0b766e753aeb77dcab123a2a01672fe))
+
+
+### Bug Fixes
+
+* Prevent server waiting for keepalive timeout on http verification ([7cebbf0](https://github.com/case-contract-testing/contract-case/commit/7cebbf0ced18f7129ff31f01067938b2ed11390c))
+* Remove current-git-branch, allowing webpack to roll up the package ([0078083](https://github.com/case-contract-testing/contract-case/commit/0078083936e7a51bb2df02dcc7c22541bd7d1b04))
+* Significantly improve trigger configuration error messages ([c494726](https://github.com/case-contract-testing/contract-case/commit/c4947265d3a65e57c7ff051de93db2b500f843ec))
+* Tidy up logging by demoting some noisy logs to deepMaintainerDebug from maintainerDebug ([b9c5548](https://github.com/case-contract-testing/contract-case/commit/b9c5548569bb3082e4d2ffa93be08323127b1932))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.15.6 to 0.15.7
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.0.3 to 0.1.0
+
 ## [0.15.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.15.5...@contract-case/case-core-v0.15.6) (2024-02-11)
 
 

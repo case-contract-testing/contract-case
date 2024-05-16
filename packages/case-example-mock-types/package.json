@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-example-mock-types",
-  "version": "0.15.6",
+  "version": "0.15.7",
   "description": "CaseExample mock types component for the ContractCase contract testing suite",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs/reference/example-types",
@@ -64,8 +64,8 @@
   },
   "devDependencies": {
     "@contract-case/case-maintainer-config": "0.0.4",
-    "@contract-case/eslint-config-case-maintainer": "0.0.3",
-    "@contract-case/test-equivalence-matchers": "0.15.6",
+    "@contract-case/eslint-config-case-maintainer": "0.1.0",
+    "@contract-case/test-equivalence-matchers": "0.15.7",
     "@microsoft/api-documenter": "^7.23.37",
     "@microsoft/api-extractor": "^7.43.1",
     "@types/jest": "^29.5.12",
@@ -74,16 +74,16 @@
     "jsii-pacmak": "^1.97.0",
     "mkdirp": "^3.0.1",
     "prettier": "3.2.5",
-    "publib": "^0.2.833",
+    "publib": "^0.2.828",
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@contract-case/case-entities-internal": "0.15.6"
+    "@contract-case/case-entities-internal": "0.15.7"
   },
   "peerDependencies": {
-    "@contract-case/test-equivalence-matchers": "0.15.6"
+    "@contract-case/test-equivalence-matchers": "0.15.7"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
