@@ -13,8 +13,8 @@
       "merge": true
     }
   ],
-  "group-pull-request-title-pattern": "chore: release ${component} ${scope} ${version}",
-  "pull-request-title-pattern": "chore: release ${component} ${scope} ${version}",
+  "group-pull-request-title-pattern": "chore: release ${branch}",
+  "pull-request-title-pattern": "chore: release ${branch}",
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
   "packages": {
