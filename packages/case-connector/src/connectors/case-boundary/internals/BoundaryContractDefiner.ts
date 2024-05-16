@@ -22,7 +22,7 @@ import {
   BoundarySuccess,
   BoundarySuccessWithAny,
 } from './boundary';
-import { versionString } from './versionString';
+import { versionString } from '../../../versionString';
 
 type Definition = {
   states: Array<AnyState>;
@@ -93,7 +93,12 @@ export class BoundaryContractDefiner {
     this.definer = undefined;
     this.logPrinter = logPrinter;
     this.resultPrinter = resultPrinter;
-    this.parentVersions = parentVersions;
+    // If invoked directly, we need to include our version
+    if (!parentVersions.includes(versionString)) {
+      this.parentVersions = [...parentVersions, versionString];
+    } else {
+      this.parentVersions = parentVersions;
+    }
   }
 
   private initialiseDefiner() {
@@ -120,7 +125,7 @@ export class BoundaryContractDefiner {
         config,
         partialInvoker,
         wrapLogPrinter(this.logPrinter, this.resultPrinter),
-        [...this.parentVersions, versionString],
+        [...this.parentVersions],
       );
     }
   }

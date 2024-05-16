@@ -20,7 +20,7 @@ import {
   BoundarySuccess,
   BoundarySuccessWithAny,
 } from './boundary';
-import { versionString } from './versionString';
+import { versionString } from '../../../versionString';
 
 class CoreInvoker implements IInvokeCoreTest {
   private coreVerify: () => Promise<unknown>;
@@ -99,6 +99,12 @@ export class BoundaryContractVerifier {
     this.logPrinter = logPrinter;
     this.resultPrinter = resultPrinter;
     this.parentVersions = parentVersions;
+    // If invoked directly, we need to include our version
+    if (!parentVersions.includes(versionString)) {
+      this.parentVersions = [...parentVersions, versionString];
+    } else {
+      this.parentVersions = parentVersions;
+    }
   }
 
   private initialiseVerifier() {
@@ -112,7 +118,7 @@ export class BoundaryContractVerifier {
       config,
       wrapCallback(this.callback),
       wrapLogPrinter(this.logPrinter, this.resultPrinter),
-      [...this.parentVersions, versionString],
+      [...this.parentVersions],
     );
   }
 
