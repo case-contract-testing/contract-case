@@ -1,6 +1,12 @@
 // If updating this file, make sure you update index-api-extractor.ts as well,
 // as it doesn't support `export * as`
 
+/*!
+ * ContractCase Definition types
+ * Copyright(c) 2022-2024 Timothy Jones (TLJ)
+ * BSD-3-Clause license
+ */
+
 export * as arrays from './nodes/arrays';
 export * as base from './nodes/base';
 export * as convenience from './nodes/convenience';

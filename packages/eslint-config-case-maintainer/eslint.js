@@ -1,3 +1,9 @@
+/*!
+ * ContractCase eslint settings for maintainers
+ * Copyright(c) 2022-2024 Timothy Jones (TLJ)
+ * BSD-3-Clause license
+ */
+
 module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [

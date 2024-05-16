@@ -4,6 +4,12 @@ import type {
   MOCK_HTTP_SERVER,
 } from './entities/types';
 
+/*!
+ * ContractCase
+ * Copyright(c) 2022-2024 Timothy Jones (TLJ)
+ * BSD-3-Clause license
+ */
+
 export * from './boundaries';
 export * from './boundaries/types';
 export { CaseConfig } from './core/types';
