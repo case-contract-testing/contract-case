@@ -1,4 +1,6 @@
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
+const { version } = require('./package.json');
 
 module.exports = {
   context: __dirname,
@@ -10,7 +12,7 @@ module.exports = {
     },
   },
   output: {
-    path: path.join(__dirname, '/webpack'),
+    path: path.join(__dirname, '/package'),
     iife: false,
   },
   devtool: 'source-map',
@@ -27,6 +29,18 @@ module.exports = {
         use: ['source-map-loader'],
         enforce: 'pre',
       },
+    ],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+        extractComments: {
+          banner: (licenseFile) =>
+            `ContractCase Connector v${version}. License information can be found in ${licenseFile}`,
+        },
+      }),
     ],
   },
 };

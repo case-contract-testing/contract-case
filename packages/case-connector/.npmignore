@@ -7,9 +7,6 @@ tsconfig.json
 !*.js
 !*.d.ts
 
-# Exclude jsii outdir
-dist
-
 # Exclude IDE settings
 .vscode
 
