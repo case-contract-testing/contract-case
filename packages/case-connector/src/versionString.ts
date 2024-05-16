@@ -1,6 +1,6 @@
 import packageJson from '../package.json';
 
 export const versionString: string =
-  packageJson.name != null && packageJson.version != null
-    ? `${packageJson.name}@${packageJson.version}`
+  packageJson.version != null
+    ? `case-connector@${packageJson.version}`
     : 'UNKNOWN-VERSION';
