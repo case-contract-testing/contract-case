@@ -8,7 +8,7 @@
   "devDependencies": {
     "@tsconfig/node16": "^16.1.2",
     "jsii-docgen": "^10.3.2",
-    "lerna": "^8.1.2"
+    "lerna": "^8.1.3"
   },
   "optionalDependencies": {
     "@nx/nx-darwin-arm64": "18.2.4",
