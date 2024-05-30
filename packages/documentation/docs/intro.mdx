@@ -3,6 +3,11 @@ sidebar_label: 'Introduction'
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import InstallJs from './examples/_install_js.mdx';
+import InstallJava from './examples/_install_java.mdx';
+
 # ContractCase Contract Testing Suite
 
 ContractCase is a next-generation consumer-driven contract testing framework, building
@@ -65,15 +70,16 @@ list](https://github.com/case-contract-testing/case/blob/main/docs/maintainers/t
 
 ### I'm fine with all the caveats, how do I get started?
 
-```
-npm install --save-dev @contract-case/contract-case-jest
-```
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <InstallJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <InstallJava />
+  </TabItem>
+</Tabs>
 
-You may also need the peer dependencies:
-
-```
-npm install --save-dev jest@^29.4.3
-```
+---
 
 If you just want to jump in to some examples, you can have a read of:
 
