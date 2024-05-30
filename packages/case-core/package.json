@@ -77,7 +77,7 @@
     "@contract-case/case-entities-internal": "0.15.7",
     "absolute-version": "^1.0.2",
     "async-mutex": "^0.5.0",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "chalk": "^4.1.2",
     "express": "^4.19.2",
     "filenamify": "^4.3.0",
