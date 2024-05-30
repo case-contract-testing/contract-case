@@ -41,6 +41,13 @@ jobs:
           CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
+
+  dependency-submission:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
       # Generate and submits a dependency graph, enabling Dependabot Alerts for gradle project dependencies.
       # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
       - name: Generate and submit dependency graph
