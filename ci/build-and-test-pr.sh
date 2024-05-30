@@ -11,4 +11,3 @@ npx lerna --ci run build
 npx lerna --ci run lint
 npx lerna --ci run test:local
 npx lerna --ci run test:local:verify
-npx lerna --ci run package
