@@ -110,6 +110,13 @@
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
+    },
+    "packages/dsl-java": {
+      "component": "@contract-case/dsl-java",
+      "extra-files": ["build.gradle", "package.json", "README.md"],
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
     }
   }
 }

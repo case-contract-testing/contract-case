@@ -1,0 +1,188 @@
+import java.text.SimpleDateFormat
+
+plugins {
+    id 'java-library'
+    id 'java-library-distribution'
+    id 'maven-publish'
+    id 'org.jreleaser' version '1.12.0'
+    id "com.google.protobuf" version "0.9.4"
+
+}
+group = 'io.contract-testing.contractcase'
+version = "0.1.0" // x-release-please-version
+
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+def caseCoreVersion = "0.15.6"
+def grpcVersion = "1.64.0"
+
+dependencies {
+    api "io.contract-testing.contractcase:case_example_mock_types:${caseCoreVersion}"
+    api "io.contract-testing.contractcase:test-equivalence-matchers:${caseCoreVersion}"
+    implementation 'com.diogonunes:JColor:5.5.1'
+    implementation 'com.google.protobuf:protobuf-java:4.27.0'
+    implementation 'com.google.protobuf:protobuf-java-util:4.27.0'
+    implementation 'com.google.protobuf:protoc:4.27.0'
+    implementation "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+    implementation "io.grpc:grpc-core:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    implementation "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.1'
+    implementation 'org.jetbrains:annotations:24.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+    testImplementation 'com.google.protobuf:protobuf-gradle-plugin:0.9.4'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    duplicatesStrategy(DuplicatesStrategy.WARN)
+    manifest {
+        attributes(
+                'Build-Timestamp': new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
+                'Build-Jdk': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
+                'Implementation-Version': version,
+                'Implementation-Title': 'ContractCase Java DSL, for defining and verifying contracts with ContractCase',
+                'Specification-Title': 'ContractCase Java DSL, for defining and verifying contracts with ContractCase',
+                'Specification-Version': version,
+        )
+    }
+}
+
+sourceSets {
+    main {
+        java {}
+    }
+}
+
+protobuf {
+    plugins {
+        // Locate a plugin with name 'grpc'. This step is optional.
+        // If you leave it empty, it uses the current directory.
+        // If you don't specify it, protoc will try to use "protoc-gen-grpc" from
+        // system search path.
+        'grpc' {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.64.0'
+        }
+    }
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:4.27.0'
+    }
+    generateProtoTasks {
+        all().configureEach { task ->
+            task.builtins {
+                java {}
+            }
+            task.plugins {
+                grpc {
+                    outputSubDir = 'grpcjava'
+                }
+            }
+        }
+
+    }
+
+}
+
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+
+publishing {
+    publications {
+        contractcase(MavenPublication) {
+            groupId = 'io.contract-testing.contractcase'
+            artifactId = 'contract-case'
+            version = version
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+
+            pom {
+                name = 'contract-case'
+                description = 'ContractCase Java DSL'
+                url = 'https://case.contract-testing.io/'
+                inceptionYear = '2022'
+                licenses {
+                    license {
+                        name = 'BSD-3-Clause'
+                        url = 'https://spdx.org/licenses/BSD-3-Clause.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'TimothyJones'
+                        name = 'Timothy Jones'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/case-contract-testing/java-dsl.git'
+                    developerConnection = 'scm:git:ssh://github.com/case-contract-testing/java-dsl.git'
+                    url = 'https://github.com/case-contract-testing/java-dsl'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = layout.buildDirectory.dir('staging-deploy')
+        }
+        mavenLocal()
+    }
+    /*
+    contractcase(MavenPublication) {
+        from components.java
+        versionMapping {
+            usage('java-api') {
+                fromResolutionOf('runtimeClasspath')
+            }
+            usage('java-runtime') {
+                fromResolutionResult()
+            }
+        }
+    }*/
+}
+
+jreleaser {
+    signing {
+        active = 'ALWAYS'
+        armored = true
+    }
+    deploy {
+        maven {
+            nexus2 {
+                'maven-central' {
+                    active = 'ALWAYS'
+                    url = 'https://s01.oss.sonatype.org/service/local'
+                    snapshotUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+                    closeRepository = true
+                    releaseRepository = true
+                    username = System.getenv("MAVEN_USERNAME")
+                    password = System.getenv("MAVEN_PASSWORD")
+                    applyMavenCentralRules = true
+
+                    stagingRepository('build/staging-deploy')
+                }
+            }
+        }
+    }
+}

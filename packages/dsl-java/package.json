@@ -1,0 +1,69 @@
+{
+  "name": "@contract-case/dsl-java",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Java DSL for the ContractCase contract testing suite",
+  "keywords": [
+    "testing",
+    "api",
+    "pact",
+    "contracttesting",
+    "contract-testing",
+    "contractcase"
+  ],
+  "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
+  "homepage": "https://case.contract-testing.io",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "build": "rimraf build && ./install-connector.sh && ./gradlew build"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/TimothyJones"
+  },
+  "bugs": {
+    "url": "https://github.com/case-contract-testing/contract-case/issues"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.1"
+  },
+  "dependencies": {
+    "@contract-case/case-connector": "0.7.5"
+  },
+  "nx": {
+    "tasksRunnerOptions": {
+      "default": {
+        "runner": "nx/tasks-runners/default",
+        "options": {
+          "cacheableOperations": [
+            "build",
+            "package",
+            "lint",
+            "format:check",
+            "test"
+          ]
+        }
+      }
+    },
+    "targetDefaults": {
+      "prebuild": {
+        "dependsOn": [
+          "^prebuild"
+        ]
+      },
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "{projectRoot}/build"
+        ]
+      },
+      "package": {
+        "outputs": [
+          "{projectRoot}/dist"
+        ]
+      }
+    }
+  }
+}
