@@ -23,15 +23,14 @@ jobs:
 
   publish:
     needs: [release-please]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-lates
+    if: ${{ needs.release-please.outputs.release_created }}
     steps:
       # The logic below handles the npm publication:
       - name: Checkout Repository
-        if: ${{ needs.release-please.outputs.release_created }}
         uses: actions/checkout@v4.1.6
       - name: Setup Node
         uses: actions/setup-node@v4.0.2
-        if: ${{ needs.release-please.outputs.release_created }}
         with:
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
@@ -48,7 +47,6 @@ jobs:
         uses: gradle/wrapper-validation-action@216d1ad2b3710bf005dc39237337b9673fd8fcd5 # v3.3.2
       - run: npm install -g npm@latest
       - name: Build Packages
-        if: ${{ needs.release-please.outputs.release_created }}
         run: ci/build-and-test.sh
         env:
           CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
