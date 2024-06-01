@@ -1,4 +1,8 @@
-# Triggers, testResponse and testErrorResponse functions
+---
+sidebar_position: 6
+---
+
+# Triggers and response tests
 
 If ContractCase needs to invoke your code during a test, then you will need to define a `trigger`, and either a `testResponse` or `testErrorResponse` function.
 
@@ -29,15 +33,13 @@ testResponse =
 In this function you test the response object that your trigger returns. It is
 separate from the trigger because it is called at a different part of the [ContractCase
 Example Lifecycle](/docs/defining-contracts/lifecycle), and to help ensure that
-you have confirmed that your code can understand the response. For more on this,
-see the best practices section on [confirming that your code understands the
-response](/docs/best-practices/confirm-understood-responses).
+you have confirmed that your code can understand the response.
 
 ```ts
 testErrorResponse: (error: Error, config: MockConfig): Promise<unknown> | void
 ```
 
-This is equivalent to the `testResponse` function, but for `trigger` calls that are expected to fail with an error. See the [testing API error responses](/docs/best-practices/testing-error-responses) section for best practices.
+This is equivalent to the `testResponse` function, but for `trigger` calls that are expected to fail with an error.
 
 ## Providing triggers during contract definition
 
@@ -122,7 +124,7 @@ await contract.runRejectingExample(
     testErrorResponse: (e) => {
       expect(e).toBeInstanceOf(UserNotFoundError);
     },
-  }
+  },
 );
 ```
 
@@ -157,7 +159,7 @@ different triggers.
       trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
       testResponses: {
         'a (200) response with body an object shaped like {status: "up"}': (
-          health
+          health,
         ) => {
           expect(health).toEqual('up');
         },
@@ -169,7 +171,7 @@ different triggers.
           expect(e).toBeInstanceOf(ApiError);
         },
         'a (503) response with body an object shaped like {status: "down"}': (
-          e
+          e,
         ) => {
           expect(e).toBeInstanceOf(ApiError);
         },
@@ -181,12 +183,12 @@ different triggers.
         trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
         testResponses: {
           'a (200) response with body an object shaped like {status: "up"}': (
-            health
+            health,
           ) => {
             expect(health).toEqual('up');
           },
         },
-      }
+      },
     );
 }
 ```

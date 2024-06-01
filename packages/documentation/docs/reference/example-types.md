@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # ContractCase Example Types
 
 This document describes the different ContractCase Example types, and which lifecycle steps apply to each.

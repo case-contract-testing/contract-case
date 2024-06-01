@@ -47,26 +47,23 @@ ContractCase plans to always be compatible with both of these brokers.
   - Example [server-driven contract verification](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.spec.verify.ts).
 - Contract verification is an individual test in your test suite per interaction, rather than one test for all interactions. This provides much more granular feedback and better integration with your testing suite.
 - Matchers are recursive, which means that you can much more easily combine matchers. No more remembering which matchers were valid outside the body and which aren't. Additionally, many new matchers can be created by simply combining
-- Extending case is significantly easier - to add new mock types, implement one function and one DSL object. To add new matcher type, there are three functions, and one DSL object to implement. At the moment, these extensions must be added to the core code. See the documentation on [extending case](/docs/plugin-framework/extending-case) for details.
+- Extending case is significantly easier - to add new mock types, implement one function and one DSL object. To add new matcher type, there are three functions, and one DSL object to implement. At the moment, these extensions must be added to the core code. See the documentation on [extending case](/docs/reference/plugin-framework/extending-case) for details.
 
 ## Planned improvements
 
 - Native message formats - actually invoke SQS queues / kafka messages etc during verification
 - First-class support for pass-through APIs and API gateways
 - Support for plugins
+- Read Pact files during verification (for easy migration)
 
 ## Things Pact supports that ContractCase doesn't yet support
 
-- Currently ContractCase only supports Javascript / Typescript, with Jest
+- Currently ContractCase only supports Javascript / Typescript, with Jest, and Jest.
 - ContractCase does not yet support any message types
 - ContractCase does not yet have date convenience matchers
 - ContractCase does not yet have XML or gRPC support
-- ContractCase cannot yet read Pact files during verification (it reads its own contract file format).
 
 ## Things Pact supports that ContractCase will not support
 
-- ContractCase does not have a regular expression matcher. This is by design. To
-  understand the rationale, see the section on [writing specific
-  contracts](/docs/best-practices/write-specific-contracts) in the best practices
-  section.
+- ContractCase does not have a regular expression matcher. This is by design, as regular expression matchers allow examples that are too broad. Our experience was the that regular expression matcher in Pact was usually used to create optional examples, which is not recommended.
 - Because of several differences in how examples are modelled, ContractCase cannot support writing a Pact file (it does write its own format of contract files).

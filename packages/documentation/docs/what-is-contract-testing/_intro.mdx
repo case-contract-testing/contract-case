@@ -43,7 +43,9 @@ flowchart TD
 
 </span>
 
-In a contract test, you then write down the mock's expectations in a contract file ([contract definition](../defining-contracts), and later replay it again against the real server ([contract verification](../verifying-contracts)).
+In a contract test, you then write down the mock's expectations in a contract
+file ([contract definition](../defining-contracts), and later replay it again
+against the real server ([contract verification](../verifying-contracts)).
 
 For example, in an HTTP contract test, first the mock is configured with an
 expected request and response pair. Then, if the real request matched the
@@ -67,7 +69,8 @@ flowchart TB
 
 </span>
 
-Contract definition is where you write one or more expectations for the mock. In `ContractCase`, these expectations are called Examples.
+Contract definition is where you write one or more expectations for the mock. In
+`ContractCase`, these expectations are called Examples.
 
 - Each example is independent
 
@@ -76,8 +79,11 @@ the responses can be understood also pass, then the contract file will be
 written.
 
 This contract file can then be uploaded to a broker, so that it can be
-downloaded by other dependencies that need it. The broker is a key part of the value of contract testing - it might notify the
-relevant service CI pipelines that there is a new contract, and it can also remember verification results. You can read more about brokers in [configuring a broker](./defining-contracts/brokers).
+downloaded by other dependencies that need it. The broker is a key part of the
+value of contract testing - it might notify the
+relevant service CI pipelines that there is a new contract, and it can also
+remember verification results. You can read more about brokers in [configuring a
+broker](../defining-contracts/brokers).
 
 <span align="center">
 
@@ -131,6 +137,6 @@ flowchart LR
 
 </span>
 
-Next, read about [defining a contract in ContractCase](./defining-contracts).
+Next, read about [defining a contract in ContractCase](../defining-contracts).
 
-<!--- cspell:dictionaries !html --->
+{ /* <!--- cspell:dictionaries !html ---> */ }

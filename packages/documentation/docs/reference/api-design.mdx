@@ -1,10 +1,22 @@
-# Testing error responses
+---
+sidebar_position: 10
+---
 
-:::caution DRAFT
+# API design guidelines
+
+
+:::caution INCOMPLETE DOCUMENT
 
 While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
 
 Each breaking change during the beta, one more document will be completed. If this notice is present in a document, it is not yet considered complete. If you are having trouble using ContractCase or you would like a particular document prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new)
 :::
+
+
+- Separate your API code from the code that needs it (eg your UI code)so that:
+  - You can comfortably call it from tests.
+  - You can inject configuration parameters (eg baseURL for http APIs)
+  - Don't emit API specific types (eg http Response objects from your API).
+    your API should unbox and handle the response object, and return a business object instead.
 
 - Don't pass back API framework error responses out of your client code, wrap them in a business error. For example, instead of throwing an HTTP 404 error from an HTTP client, instead throw a custom business error type like `UserNotFound`.

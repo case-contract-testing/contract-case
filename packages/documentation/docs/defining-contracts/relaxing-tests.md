@@ -2,21 +2,26 @@
 sidebar_position: 6
 ---
 
-# Introduction to Test Equivalence Matchers
+# Test data
 
-When the contract is run against the provider, it's nice if the test data
-doesn't have to match exactly. This means that you don't have to keep test data
-in sync between the contract definition and the contract verification. You can
-use [Test Equivalence Matchers](/docs/reference/matchers) and [state variables](./state-definitions)
-to do this.
+By default, the data used in an example is strictly matched. However, this can be inconvenient for many provider teams. For example, sometimes it's not possible to know user IDs before the users have been created. Alternatively, it can be frustrating to have to maintain the exact same test data between the consumer test and the provider verification.
+
+You can use [Test Equivalence Matchers](/docs/reference/matchers) and [state variables](./state-definitions)
+to avoid needing to keep the test data in sync between the contract definition and verification.
 
 ## Test Equivalence Matchers
 
-For example, during a test for a client's getUser call, we don't mind what the
-specific name of the user is. We just need an example because we _do_ need to confirm that
-we read it correctly in the `testResponse` function. In our case, we used `john smith`.
+A test equivalence matcher says "this test is equivalent to one that passes this matcher"
+
+For example, during a test for a client's getUser call, we might not mind what the
+specific name of the user is, just that the user name was a valid, non-empty string.
+
+At definition time, we need a specific example because we _do_ need to confirm that
+we read it correctly in the `testResponse` function. However, we might not need to use the same example at verification time.
+
+In the examples in the earlier sections, we used `john smith` as the example username.
 At provider time, we would be happy to accept any example that was a string, and
-we would be quite confident that we are still contract compliant.
+we would be quite confident that the contract was still satisfied.
 
 We can express this with the `anyString(example?: string)` Test Equivalence Matcher:
 
@@ -107,8 +112,7 @@ accept any `string` value, and not just the exact string `'foo'`.
 
 ### Improving your contract
 
-ContractCase has a number of convenience methods and approaches for writing tests concisely and without need for intensive maintenance effort.
-See the [convenience methods for easy contract writing](/docs/best-practices/convenient-definitions) section if you'd like to read more.
+ContractCase has a number of convenience methods and approaches for writing tests concisely and without need for intensive maintenance effort. See the section on [convenient definitions](./convenient-definitions.md) for more information.
 
 ### Next steps
 

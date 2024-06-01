@@ -389,9 +389,9 @@ import { base } from '@contract-case/test-equivalence-matchers'
 new base.AnyMatcher(matcherType: string)
 ```
 
-| **Name**                                                                                                                           | **Type**            | **Description**                                                                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcher.Initializer.parameter.matcherType">matcherType</a></code> | <code>string</code> | - The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case) for a description of these strings). |
+| **Name**                                                                                                                           | **Type**            | **Description**                                                                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcher.Initializer.parameter.matcherType">matcherType</a></code> | <code>string</code> | - The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings). |
 
 ---
 
@@ -399,7 +399,7 @@ new base.AnyMatcher(matcherType: string)
 
 - _Type:_ string
 
-The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case) for a description of these strings).
+The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings).
 
 Matcher strings beginning with `_case:` are reserved for the default ContractCase
 matchers. Only use a types prefixed with `_case:` if you wish to create a special case
@@ -427,7 +427,7 @@ It exists because the ContractCase matcher format is not legal in all languages 
 
 WARNING: Do not return a string from this method. You must instead return
 an object that can be serialised to JSON following the matcher format
-described in [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case).
+described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
 
 ### AnyMatcherWithExample <a name="AnyMatcherWithExample" id="@contract-case/test-equivalence-matchers.base.AnyMatcherWithExample"></a>
 

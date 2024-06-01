@@ -8,7 +8,7 @@ export abstract class AnyMatcher {
   readonly '_case:matcher:type': string;
 
   /**
-   * @param matcherType - The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case) for a description of these strings).
+   * @param matcherType - The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings).
    *
    * Matcher strings beginning with `_case:` are reserved for the default ContractCase
    * matchers. Only use a types prefixed with `_case:` if you wish to create a special case
@@ -25,9 +25,9 @@ export abstract class AnyMatcher {
    *
    * WARNING: Do not return a string from this method. You must instead return
    * an object that can be serialised to JSON following the matcher format
-   * described in [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case).
+   * described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
    *
-   * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/plugin-framework/extending-case).
+   * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
    */
   toJSON(): unknown {
     return Object.entries(this).reduce(

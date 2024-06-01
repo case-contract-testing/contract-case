@@ -1,5 +1,6 @@
 ---
 sidebar_label: Command Line Interface (CLI)
+sidebar_position: 9
 ---
 
 # Command Line Interface (CLI)

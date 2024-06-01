@@ -1,5 +1,6 @@
 ---
-sidebar_label: CaseConfig
+sidebar_label: Configuration
+sidebar_position: 2
 ---
 
 # Configuring ContractCase

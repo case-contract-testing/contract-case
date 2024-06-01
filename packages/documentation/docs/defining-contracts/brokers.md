@@ -1,3 +1,7 @@
+---
+sidebar_position: 9
+---
+
 # Uploading your contract to a broker
 
 Here's the defining contract lifecycle again:
@@ -41,7 +45,7 @@ See the [configuration options](../reference/configuring) for details.
 
 If you need to override this behaviour, you can set `publish` to either `"ALWAYS"` or `"NEVER"`.
 
-## Case File directory
+## Contract directory
 
 In addition to publishing contracts, ContractCase writes a contract file (a Case File) to the
 contract directory. By default this is

@@ -200,10 +200,10 @@ import { base } from '@contract-case/case-example-mock-types'
 new base.AnyMockDescriptor(mockType: string, setup: ContractCaseCoreSetup)
 ```
 
-| **Name**                                                                                                                          | **Type**                                                                       | **Description**                                                                                                                                                                       |
-| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <code><a href="#@contract-case/case-example-mock-types.base.AnyMockDescriptor.Initializer.parameter.mockType">mockType</a></code> | <code>string</code>                                                            | - The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case) for a description of these strings). |
-| <code><a href="#@contract-case/case-example-mock-types.base.AnyMockDescriptor.Initializer.parameter.setup">setup</a></code>       | <code>@contract-case/case-example-mock-types.base.ContractCaseCoreSetup</code> | _No description._                                                                                                                                                                     |
+| **Name**                                                                                                                          | **Type**                                                                       | **Description**                                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code><a href="#@contract-case/case-example-mock-types.base.AnyMockDescriptor.Initializer.parameter.mockType">mockType</a></code> | <code>string</code>                                                            | - The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings). |
+| <code><a href="#@contract-case/case-example-mock-types.base.AnyMockDescriptor.Initializer.parameter.setup">setup</a></code>       | <code>@contract-case/case-example-mock-types.base.ContractCaseCoreSetup</code> | _No description._                                                                                                                                                                               |
 
 ---
 
@@ -211,7 +211,7 @@ new base.AnyMockDescriptor(mockType: string, setup: ContractCaseCoreSetup)
 
 - _Type:_ string
 
-The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case) for a description of these strings).
+The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings).
 
 Mock description type strings beginning with `_case:` are reserved for the default ContractCase
 matchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case
@@ -245,7 +245,7 @@ It exists because the ContractCase matcher format is not legal in all languages 
 
 WARNING: Do not return a string from this method. You must instead return
 an object that can be serialised to JSON following the matcher format
-described in [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case).
+described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
 
 ### WillReceiveHttpRequest <a name="WillReceiveHttpRequest" id="@contract-case/case-example-mock-types.http.WillReceiveHttpRequest"></a>
 
@@ -289,7 +289,7 @@ It exists because the ContractCase matcher format is not legal in all languages 
 
 WARNING: Do not return a string from this method. You must instead return
 an object that can be serialised to JSON following the matcher format
-described in [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case).
+described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
 
 #### Properties <a name="Properties" id="Properties"></a>
 
@@ -362,7 +362,7 @@ It exists because the ContractCase matcher format is not legal in all languages 
 
 WARNING: Do not return a string from this method. You must instead return
 an object that can be serialised to JSON following the matcher format
-described in [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case).
+described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
 
 #### Properties <a name="Properties" id="Properties"></a>
 

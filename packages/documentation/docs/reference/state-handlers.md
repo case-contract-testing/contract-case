@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Writing state handlers
 
 Like [triggers](./triggers), not all example types need state handlers during
@@ -26,12 +30,19 @@ specific and easily repeatable.
 A state handler is a function that is able to modify the state of a
 running service. This is usually done by mocking the repository layer of your
 service, but it can also be done by inserting into a database, or mocking at the
-equivalent of the controller layer of your service. For more discussion, see the
-section on [best practices for state handlers](/docs/best-practices/where-to-mock).
+equivalent of the controller layer of your service.
+
+We recommend mocking the repository layer in your service code. This is so that
+your mock is simple and expressed in domain concepts: when `"user '10' exists"`
+then `repo.getUser('10')` returns `<A concrete user object>`. This is more
+comfortable to read and maintain than SQL insert statements, and provides a
+cleaner boundary for your own consumer contract tests.
 
 Optionally, a state handler can provide a teardown function too. This is
 provided in case you need to undo the precondition setup (removing records from
-the database, changing the mock back to a default, etc)
+the database, changing the mock back to a default, etc).
+
+## Implementing your state handler
 
 During verification of the contract above, a state handler would need to be written:
 
