@@ -1,0 +1,27 @@
+```java
+    contract.runExample(
+        new ExampleDefinition<>(
+            List.of(
+                new InState("Server is up"),
+                new InState("A user with id \"foo\" exists")
+            ),
+            new WillSendHttpRequest(HttpExample.builder()
+                .request(
+                    new HttpRequest(HttpRequestExample.builder()
+                        .method("GET")
+                        .path("/users/foo")
+                        .build())
+                )
+                .response(new HttpResponse(HttpResponseExample.builder()
+                    .status(200)
+                    .body(
+                        Map.ofEntries(
+                            Map.entry("status", "up"),
+                            Map.entry("name", "john smith")
+                        )
+                    )
+                    .build()))
+                .build())
+        ),
+    );
+```

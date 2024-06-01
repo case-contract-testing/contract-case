@@ -1,0 +1,16 @@
+```java
+    contract.runExample(
+        new ExampleDefinition<>(
+            List.of(
+                /* as above */
+            ),
+            new WillSendHttpRequest(
+                HttpExample.builder()
+                    /* as above */
+                    .build())
+        ),
+        IndividualSuccessTestConfigBuilder.builder()
+            .withLogLevel(LogLevel.DEBUG)
+            .build()
+    );
+```

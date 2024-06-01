@@ -1,0 +1,36 @@
+```ts
+import {
+  ContractCaseDefiner,
+  defineContract,
+} from '@contract-case/contract-case-jest';
+
+defineContract(
+  {
+    /* The name of the service writing the contract */
+    consumerName: 'Example-Client',
+    /* The name of the service that will verify the contract */
+    providerName: 'Example-Server',
+    /* Any additional ContractCaseConfig goes here */
+  },
+  (contract: ContractCaseDefiner) => {
+    describe('some API method', () => {
+      describe('with a valid access token', () => {
+        it('behaves as expected', async () => {
+          await contract.runExample(
+            /* described later in this chapter */
+          );
+        });
+      });
+
+      describe('with no access token', () => {
+        it('throws an error', async () => {
+          await contract.runRejectingExample(
+            /* described later in this chapter */
+          );
+        });
+      });
+    });
+    /* arbitrary other contract examples */
+  },
+);
+```

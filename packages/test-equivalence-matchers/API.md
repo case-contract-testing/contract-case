@@ -9,7 +9,6 @@ This module is separate because it is part of the boundary translated with JSii.
 
 # API Reference <a name="API Reference" id="api-reference"></a>
 
-
 ## Structs <a name="Structs" id="Structs"></a>
 
 ### ArrayLengthOptions <a name="ArrayLengthOptions" id="@contract-case/test-equivalence-matchers.arrays.ArrayLengthOptions"></a>
@@ -26,9 +25,9 @@ const arrayLengthOptions: arrays.ArrayLengthOptions = { ... }
 
 #### Properties <a name="Properties" id="Properties"></a>
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayLengthOptions.property.maxLength">maxLength</a></code> | <code>number</code> | The maximum length for the array - must be greater than minimum length. |
+| **Name**                                                                                                                    | **Type**            | **Description**                                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayLengthOptions.property.maxLength">maxLength</a></code> | <code>number</code> | The maximum length for the array - must be greater than minimum length.                                                                   |
 | <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayLengthOptions.property.minLength">minLength</a></code> | <code>number</code> | The minimum length for the array - must be greater than zero, otherwise empty arrays pass and you wouldn't be testing the array contents. |
 
 ---
@@ -39,7 +38,7 @@ const arrayLengthOptions: arrays.ArrayLengthOptions = { ... }
 public readonly maxLength: number;
 ```
 
-- *Type:* number
+- _Type:_ number
 
 The maximum length for the array - must be greater than minimum length.
 
@@ -53,7 +52,7 @@ Default infinity.
 public readonly minLength: number;
 ```
 
-- *Type:* number
+- _Type:_ number
 
 The minimum length for the array - must be greater than zero, otherwise empty arrays pass and you wouldn't be testing the array contents.
 
@@ -73,14 +72,14 @@ const httpRequestExample: http.HttpRequestExample = { ... }
 
 #### Properties <a name="Properties" id="Properties"></a>
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.method">method</a></code> | <code>any</code> | A string or string matcher that matches the method used for this example (eg `"GET"` or `"POST"`). |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.path">path</a></code> | <code>any</code> | A string or string matcher that matches the path of this example. |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.body">body</a></code> | <code>any</code> | A test equivalence matcher or json object that describes the body for this response. |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.headers">headers</a></code> | <code>any</code> | A Map of header names and associated test-equivalence matcher values accepted by this example. |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.query">query</a></code> | <code>any</code> | A test-equivalence matcher for the query. |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.uniqueName">uniqueName</a></code> | <code>string</code> | What unique name, if any, to give to this request. |
+| **Name**                                                                                                                    | **Type**            | **Description**                                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------- | ------------------- | -------------------------------------------------------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.method">method</a></code>         | <code>any</code>    | A string or string matcher that matches the method used for this example (eg `"GET"` or `"POST"`). |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.path">path</a></code>             | <code>any</code>    | A string or string matcher that matches the path of this example.                                  |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.body">body</a></code>             | <code>any</code>    | A test equivalence matcher or json object that describes the body for this response.               |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.headers">headers</a></code>       | <code>any</code>    | A Map of header names and associated test-equivalence matcher values accepted by this example.     |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.query">query</a></code>           | <code>any</code>    | A test-equivalence matcher for the query.                                                          |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequestExample.property.uniqueName">uniqueName</a></code> | <code>string</code> | What unique name, if any, to give to this request.                                                 |
 
 ---
 
@@ -90,7 +89,7 @@ const httpRequestExample: http.HttpRequestExample = { ... }
 public readonly method: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 A string or string matcher that matches the method used for this example (eg `"GET"` or `"POST"`).
 
@@ -105,7 +104,7 @@ requests should not have bodies - see the HTTP RFCs for details.
 public readonly path: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 A string or string matcher that matches the path of this example.
 
@@ -119,7 +118,7 @@ Note that any query parameters must be in the query, not in the path.
 public readonly body: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 A test equivalence matcher or json object that describes the body for this response.
 
@@ -133,7 +132,7 @@ If not provided, no body matching is performed.
 public readonly headers: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 A Map of header names and associated test-equivalence matcher values accepted by this example.
 
@@ -147,7 +146,7 @@ If not provided, no header matching is performed
 public readonly query: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 A test-equivalence matcher for the query.
 
@@ -164,7 +163,7 @@ array in this map.
 public readonly uniqueName: string;
 ```
 
-- *Type:* string
+- _Type:_ string
 
 What unique name, if any, to give to this request.
 
@@ -182,12 +181,12 @@ const httpResponseExample: http.HttpResponseExample = { ... }
 
 #### Properties <a name="Properties" id="Properties"></a>
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.status">status</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.body">body</a></code> | <code>any</code> | A test equivalence matcher or json object that describes the body for this response. |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.headers">headers</a></code> | <code>any</code> | A Map of header names and associated test-equivalence matcher values accepted by this example. |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.uniqueName">uniqueName</a></code> | <code>string</code> | What unique name, if any, to give to this response. |
+| **Name**                                                                                                                     | **Type**            | **Description**                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.status">status</a></code>         | <code>any</code>    | _No description._                                                                              |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.body">body</a></code>             | <code>any</code>    | A test equivalence matcher or json object that describes the body for this response.           |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.headers">headers</a></code>       | <code>any</code>    | A Map of header names and associated test-equivalence matcher values accepted by this example. |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponseExample.property.uniqueName">uniqueName</a></code> | <code>string</code> | What unique name, if any, to give to this response.                                            |
 
 ---
 
@@ -197,7 +196,7 @@ const httpResponseExample: http.HttpResponseExample = { ... }
 public readonly status: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 ---
 
@@ -207,7 +206,7 @@ public readonly status: any;
 public readonly body: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 A test equivalence matcher or json object that describes the body for this response.
 
@@ -221,7 +220,7 @@ If not provided, no body matching is performed.
 public readonly headers: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 A Map of header names and associated test-equivalence matcher values accepted by this example.
 
@@ -235,7 +234,7 @@ If not provided, no header matching is performed
 public readonly uniqueName: string;
 ```
 
-- *Type:* string
+- _Type:_ string
 
 What unique name, if any, to give to this response.
 
@@ -261,15 +260,15 @@ import { convenience } from '@contract-case/test-equivalence-matchers'
 new convenience.And(matchers: any[])
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                     | **Type**           | **Description**                                                             |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.convenience.And.Initializer.parameter.matchers">matchers</a></code> | <code>any[]</code> | - An array of the matchers to run against this particular spot in the tree. |
 
 ---
 
 ##### `matchers`<sup>Required</sup> <a name="matchers" id="@contract-case/test-equivalence-matchers.convenience.And.Initializer.parameter.matchers"></a>
 
-- *Type:* any[]
+- _Type:_ any[]
 
 An array of the matchers to run against this particular spot in the tree.
 
@@ -277,9 +276,9 @@ An array of the matchers to run against this particular spot in the tree.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.And.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                           | **Description**                                                                                                                      |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.And.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -289,10 +288,7 @@ An array of the matchers to run against this particular spot in the tree.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### AnyBoolean <a name="AnyBoolean" id="@contract-case/test-equivalence-matchers.primitives.AnyBoolean"></a>
 
@@ -306,15 +302,15 @@ import { primitives } from '@contract-case/test-equivalence-matchers'
 new primitives.AnyBoolean(example: boolean)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                         | **Type**             | **Description**       |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------- | --------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyBoolean.Initializer.parameter.example">example</a></code> | <code>boolean</code> | - An example boolean. |
 
 ---
 
 ##### `example`<sup>Required</sup> <a name="example" id="@contract-case/test-equivalence-matchers.primitives.AnyBoolean.Initializer.parameter.example"></a>
 
-- *Type:* boolean
+- _Type:_ boolean
 
 An example boolean.
 
@@ -322,9 +318,9 @@ An example boolean.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyBoolean.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                 | **Description**                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyBoolean.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -334,10 +330,7 @@ An example boolean.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### AnyInteger <a name="AnyInteger" id="@contract-case/test-equivalence-matchers.primitives.AnyInteger"></a>
 
@@ -351,15 +344,15 @@ import { primitives } from '@contract-case/test-equivalence-matchers'
 new primitives.AnyInteger(example: number)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                         | **Type**            | **Description**                                     |
+| -------------------------------------------------------------------------------------------------------------------------------- | ------------------- | --------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyInteger.Initializer.parameter.example">example</a></code> | <code>number</code> | - Any floating point number, not infinity, not NaN. |
 
 ---
 
 ##### `example`<sup>Required</sup> <a name="example" id="@contract-case/test-equivalence-matchers.primitives.AnyInteger.Initializer.parameter.example"></a>
 
-- *Type:* number
+- _Type:_ number
 
 Any floating point number, not infinity, not NaN.
 
@@ -367,9 +360,9 @@ Any floating point number, not infinity, not NaN.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyInteger.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                 | **Description**                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyInteger.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -379,10 +372,7 @@ Any floating point number, not infinity, not NaN.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### AnyMatcher <a name="AnyMatcher" id="@contract-case/test-equivalence-matchers.base.AnyMatcher"></a>
 
@@ -399,17 +389,17 @@ import { base } from '@contract-case/test-equivalence-matchers'
 new base.AnyMatcher(matcherType: string)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcher.Initializer.parameter.matcherType">matcherType</a></code> | <code>string</code> | - The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/advanced-topics/extending-case) for a description of these strings). |
+| **Name**                                                                                                                           | **Type**            | **Description**                                                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcher.Initializer.parameter.matcherType">matcherType</a></code> | <code>string</code> | - The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case) for a description of these strings). |
 
 ---
 
 ##### `matcherType`<sup>Required</sup> <a name="matcherType" id="@contract-case/test-equivalence-matchers.base.AnyMatcher.Initializer.parameter.matcherType"></a>
 
-- *Type:* string
+- _Type:_ string
 
-The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/advanced-topics/extending-case) for a description of these strings).
+The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case) for a description of these strings).
 
 Matcher strings beginning with `_case:` are reserved for the default ContractCase
 matchers. Only use a types prefixed with `_case:` if you wish to create a special case
@@ -419,8 +409,8 @@ for a matching behaviour that is already provided by a core ContractCase matcher
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
+| **Name**                                                                                           | **Description**                                                                             |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcher.toJSON">toJSON</a></code> | Only override this method if you are writing a matcher in a language other than TypeScript. |
 
 ---
@@ -437,10 +427,7 @@ It exists because the ContractCase matcher format is not legal in all languages 
 
 WARNING: Do not return a string from this method. You must instead return
 an object that can be serialised to JSON following the matcher format
-described in [Extending ContractCase](https://case.contract-testing.io/docs/advanced-topics/extending-case).
-
-
-
+described in [Extending ContractCase](https://case.contract-testing.io/docs/plugin-framework/extending-case).
 
 ### AnyMatcherWithExample <a name="AnyMatcherWithExample" id="@contract-case/test-equivalence-matchers.base.AnyMatcherWithExample"></a>
 
@@ -456,30 +443,30 @@ import { base } from '@contract-case/test-equivalence-matchers'
 new base.AnyMatcherWithExample(matcherType: string, example: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcherWithExample.Initializer.parameter.matcherType">matcherType</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcherWithExample.Initializer.parameter.example">example</a></code> | <code>any</code> | *No description.* |
+| **Name**                                                                                                                                      | **Type**            | **Description**   |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ----------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcherWithExample.Initializer.parameter.matcherType">matcherType</a></code> | <code>string</code> | _No description._ |
+| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcherWithExample.Initializer.parameter.example">example</a></code>         | <code>any</code>    | _No description._ |
 
 ---
 
 ##### `matcherType`<sup>Required</sup> <a name="matcherType" id="@contract-case/test-equivalence-matchers.base.AnyMatcherWithExample.Initializer.parameter.matcherType"></a>
 
-- *Type:* string
+- _Type:_ string
 
 ---
 
 ##### `example`<sup>Required</sup> <a name="example" id="@contract-case/test-equivalence-matchers.base.AnyMatcherWithExample.Initializer.parameter.example"></a>
 
-- *Type:* any
+- _Type:_ any
 
 ---
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcherWithExample.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                      | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.base.AnyMatcherWithExample.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -489,10 +476,7 @@ new base.AnyMatcherWithExample(matcherType: string, example: any)
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### AnyNull <a name="AnyNull" id="@contract-case/test-equivalence-matchers.primitives.AnyNull"></a>
 
@@ -501,21 +485,21 @@ Matches `null` (useful for languages like Java where `body: null` means no body,
 #### Initializers <a name="Initializers" id="@contract-case/test-equivalence-matchers.primitives.AnyNull.Initializer"></a>
 
 ```typescript
-import { primitives } from '@contract-case/test-equivalence-matchers'
+import { primitives } from '@contract-case/test-equivalence-matchers';
 
-new primitives.AnyNull()
+new primitives.AnyNull();
 ```
 
 | **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| -------- | -------- | --------------- |
 
 ---
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyNull.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                              | **Description**                                                                                                                      |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyNull.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -525,10 +509,7 @@ new primitives.AnyNull()
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### AnyNumber <a name="AnyNumber" id="@contract-case/test-equivalence-matchers.primitives.AnyNumber"></a>
 
@@ -542,15 +523,15 @@ import { primitives } from '@contract-case/test-equivalence-matchers'
 new primitives.AnyNumber(example: number)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                        | **Type**            | **Description**      |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------- | -------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyNumber.Initializer.parameter.example">example</a></code> | <code>number</code> | - An example number. |
 
 ---
 
 ##### `example`<sup>Required</sup> <a name="example" id="@contract-case/test-equivalence-matchers.primitives.AnyNumber.Initializer.parameter.example"></a>
 
-- *Type:* number
+- _Type:_ number
 
 An example number.
 
@@ -558,9 +539,9 @@ An example number.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyNumber.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.primitives.AnyNumber.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -570,10 +551,7 @@ An example number.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### AnyString <a name="AnyString" id="@contract-case/test-equivalence-matchers.strings.AnyString"></a>
 
@@ -587,15 +565,15 @@ import { strings } from '@contract-case/test-equivalence-matchers'
 new strings.AnyString(example: string)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                     | **Type**            | **Description**      |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------- | -------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.strings.AnyString.Initializer.parameter.example">example</a></code> | <code>string</code> | - An example string. |
 
 ---
 
 ##### `example`<sup>Required</sup> <a name="example" id="@contract-case/test-equivalence-matchers.strings.AnyString.Initializer.parameter.example"></a>
 
-- *Type:* string
+- _Type:_ string
 
 An example string.
 
@@ -603,9 +581,9 @@ An example string.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.AnyString.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                             | **Description**                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.AnyString.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -615,10 +593,7 @@ An example string.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### ArrayContains <a name="ArrayContains" id="@contract-case/test-equivalence-matchers.arrays.ArrayContains"></a>
 
@@ -632,15 +607,15 @@ import { arrays } from '@contract-case/test-equivalence-matchers'
 new arrays.ArrayContains(matchers: any[])
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                          | **Type**           | **Description**                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ----------------------------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayContains.Initializer.parameter.matchers">matchers</a></code> | <code>any[]</code> | - any number of matchers, each of which must be found inside the array. |
 
 ---
 
 ##### `matchers`<sup>Required</sup> <a name="matchers" id="@contract-case/test-equivalence-matchers.arrays.ArrayContains.Initializer.parameter.matchers"></a>
 
-- *Type:* any[]
+- _Type:_ any[]
 
 any number of matchers, each of which must be found inside the array.
 
@@ -648,9 +623,9 @@ any number of matchers, each of which must be found inside the array.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayContains.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayContains.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -660,10 +635,7 @@ any number of matchers, each of which must be found inside the array.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### ArrayEachEntryMatches <a name="ArrayEachEntryMatches" id="@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatches"></a>
 
@@ -677,15 +649,15 @@ import { arrays } from '@contract-case/test-equivalence-matchers'
 new arrays.ArrayEachEntryMatches(matcher: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                                | **Type**         | **Description**                            |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------ |
 | <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatches.Initializer.parameter.matcher">matcher</a></code> | <code>any</code> | - The matcher for each entry in the array. |
 
 ---
 
 ##### `matcher`<sup>Required</sup> <a name="matcher" id="@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatches.Initializer.parameter.matcher"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The matcher for each entry in the array.
 
@@ -693,9 +665,9 @@ The matcher for each entry in the array.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatches.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                        | **Description**                                                                                                                      |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatches.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -705,10 +677,7 @@ The matcher for each entry in the array.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### ArrayEachEntryMatchesWithExample <a name="ArrayEachEntryMatchesWithExample" id="@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatchesWithExample"></a>
 
@@ -722,16 +691,16 @@ import { arrays } from '@contract-case/test-equivalence-matchers'
 new arrays.ArrayEachEntryMatchesWithExample(matcher: any, example: any[])
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher">matcher</a></code> | <code>any</code> | - The matcher for each entry in the array. |
+| **Name**                                                                                                                                           | **Type**           | **Description**                                     |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher">matcher</a></code> | <code>any</code>   | - The matcher for each entry in the array.          |
 | <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.example">example</a></code> | <code>any[]</code> | - An optional example of the whole array to return. |
 
 ---
 
 ##### `matcher`<sup>Required</sup> <a name="matcher" id="@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The matcher for each entry in the array.
 
@@ -739,7 +708,7 @@ The matcher for each entry in the array.
 
 ##### `example`<sup>Required</sup> <a name="example" id="@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.example"></a>
 
-- *Type:* any[]
+- _Type:_ any[]
 
 An optional example of the whole array to return.
 
@@ -747,9 +716,9 @@ An optional example of the whole array to return.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatchesWithExample.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                                   | **Description**                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayEachEntryMatchesWithExample.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -759,10 +728,7 @@ An optional example of the whole array to return.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### ArrayLength <a name="ArrayLength" id="@contract-case/test-equivalence-matchers.arrays.ArrayLength"></a>
 
@@ -776,15 +742,15 @@ import { arrays } from '@contract-case/test-equivalence-matchers'
 new arrays.ArrayLength(options: ArrayLengthOptions)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                      | **Type**                                                                        | **Description**                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayLength.Initializer.parameter.options">options</a></code> | <code>@contract-case/test-equivalence-matchers.arrays.ArrayLengthOptions</code> | - An `ArrayLengthOptions` object with optional minLength (default 1) and maxLength (default infinity) properties. |
 
 ---
 
 ##### `options`<sup>Required</sup> <a name="options" id="@contract-case/test-equivalence-matchers.arrays.ArrayLength.Initializer.parameter.options"></a>
 
-- *Type:* @contract-case/test-equivalence-matchers.arrays.ArrayLengthOptions
+- _Type:_ @contract-case/test-equivalence-matchers.arrays.ArrayLengthOptions
 
 An `ArrayLengthOptions` object with optional minLength (default 1) and maxLength (default infinity) properties.
 
@@ -792,9 +758,9 @@ An `ArrayLengthOptions` object with optional minLength (default 1) and maxLength
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayLength.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                              | **Description**                                                                                                                      |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayLength.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -804,10 +770,7 @@ An `ArrayLengthOptions` object with optional minLength (default 1) and maxLength
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### ArrayStartsWith <a name="ArrayStartsWith" id="@contract-case/test-equivalence-matchers.arrays.ArrayStartsWith"></a>
 
@@ -821,15 +784,15 @@ import { arrays } from '@contract-case/test-equivalence-matchers'
 new arrays.ArrayStartsWith(matchers: any[])
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayStartsWith.Initializer.parameter.matchers">matchers</a></code> | <code>any[]</code> | -  An array of matchers that describes the start of the array. |
+| **Name**                                                                                                                            | **Type**           | **Description**                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayStartsWith.Initializer.parameter.matchers">matchers</a></code> | <code>any[]</code> | - An array of matchers that describes the start of the array. |
 
 ---
 
 ##### `matchers`<sup>Required</sup> <a name="matchers" id="@contract-case/test-equivalence-matchers.arrays.ArrayStartsWith.Initializer.parameter.matchers"></a>
 
-- *Type:* any[]
+- _Type:_ any[]
 
 An array of matchers that describes the start of the array.
 
@@ -839,9 +802,9 @@ Additional elements in the actual array are ignored.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayStartsWith.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                  | **Description**                                                                                                                      |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.arrays.ArrayStartsWith.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -851,10 +814,7 @@ Additional elements in the actual array are ignored.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### Base64Encoded <a name="Base64Encoded" id="@contract-case/test-equivalence-matchers.strings.Base64Encoded"></a>
 
@@ -871,15 +831,15 @@ import { strings } from '@contract-case/test-equivalence-matchers'
 new strings.Base64Encoded(child: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                     | **Type**         | **Description**                                                     |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.strings.Base64Encoded.Initializer.parameter.child">child</a></code> | <code>any</code> | - The string or string matcher that would match the decoded string. |
 
 ---
 
 ##### `child`<sup>Required</sup> <a name="child" id="@contract-case/test-equivalence-matchers.strings.Base64Encoded.Initializer.parameter.child"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The string or string matcher that would match the decoded string.
 
@@ -887,9 +847,9 @@ The string or string matcher that would match the decoded string.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.Base64Encoded.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                 | **Description**                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.Base64Encoded.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -899,10 +859,7 @@ The string or string matcher that would match the decoded string.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### BasicAuthHeaderValue <a name="BasicAuthHeaderValue" id="@contract-case/test-equivalence-matchers.http.BasicAuthHeaderValue"></a>
 
@@ -916,16 +873,16 @@ import { http } from '@contract-case/test-equivalence-matchers'
 new http.BasicAuthHeaderValue(username: any, password: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.BasicAuthHeaderValue.Initializer.parameter.username">username</a></code> | <code>any</code> | - The username for this basic auth header. |
+| **Name**                                                                                                                               | **Type**         | **Description**                              |
+| -------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.BasicAuthHeaderValue.Initializer.parameter.username">username</a></code> | <code>any</code> | - The username for this basic auth header.   |
 | <code><a href="#@contract-case/test-equivalence-matchers.http.BasicAuthHeaderValue.Initializer.parameter.password">password</a></code> | <code>any</code> | - The password for this basic auth password. |
 
 ---
 
 ##### `username`<sup>Required</sup> <a name="username" id="@contract-case/test-equivalence-matchers.http.BasicAuthHeaderValue.Initializer.parameter.username"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The username for this basic auth header.
 
@@ -933,7 +890,7 @@ The username for this basic auth header.
 
 ##### `password`<sup>Required</sup> <a name="password" id="@contract-case/test-equivalence-matchers.http.BasicAuthHeaderValue.Initializer.parameter.password"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The password for this basic auth password.
 
@@ -941,9 +898,9 @@ The password for this basic auth password.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.BasicAuthHeaderValue.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                     | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.BasicAuthHeaderValue.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -953,10 +910,7 @@ The password for this basic auth password.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### BearerTokenHeaderValue <a name="BearerTokenHeaderValue" id="@contract-case/test-equivalence-matchers.http.BearerTokenHeaderValue"></a>
 
@@ -970,15 +924,15 @@ import { http } from '@contract-case/test-equivalence-matchers'
 new http.BearerTokenHeaderValue(token: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                           | **Type**         | **Description**                                       |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.http.BearerTokenHeaderValue.Initializer.parameter.token">token</a></code> | <code>any</code> | - A string or string matcher for a Bearer auth token. |
 
 ---
 
 ##### `token`<sup>Required</sup> <a name="token" id="@contract-case/test-equivalence-matchers.http.BearerTokenHeaderValue.Initializer.parameter.token"></a>
 
-- *Type:* any
+- _Type:_ any
 
 A string or string matcher for a Bearer auth token.
 
@@ -986,9 +940,9 @@ A string or string matcher for a Bearer auth token.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.BearerTokenHeaderValue.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                       | **Description**                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.BearerTokenHeaderValue.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -998,10 +952,7 @@ A string or string matcher for a Bearer auth token.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### CascadingContextMatcher <a name="CascadingContextMatcher" id="@contract-case/test-equivalence-matchers.base.CascadingContextMatcher"></a>
 
@@ -1024,17 +975,17 @@ import { base } from '@contract-case/test-equivalence-matchers'
 new base.CascadingContextMatcher(child: any, contextModifiers: {[ key: string ]: string}, currentRunModifiers: {[ key: string ]: string})
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.base.CascadingContextMatcher.Initializer.parameter.child">child</a></code> | <code>any</code> | - The matcher to apply these context changes to. |
-| <code><a href="#@contract-case/test-equivalence-matchers.base.CascadingContextMatcher.Initializer.parameter.contextModifiers">contextModifiers</a></code> | <code>{[ key: string ]: string}</code> | - a map of properties to add to the context object. |
+| **Name**                                                                                                                                                        | **Type**                               | **Description**                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ------------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.base.CascadingContextMatcher.Initializer.parameter.child">child</a></code>                             | <code>any</code>                       | - The matcher to apply these context changes to.        |
+| <code><a href="#@contract-case/test-equivalence-matchers.base.CascadingContextMatcher.Initializer.parameter.contextModifiers">contextModifiers</a></code>       | <code>{[ key: string ]: string}</code> | - a map of properties to add to the context object.     |
 | <code><a href="#@contract-case/test-equivalence-matchers.base.CascadingContextMatcher.Initializer.parameter.currentRunModifiers">currentRunModifiers</a></code> | <code>{[ key: string ]: string}</code> | - a map of properties to add to the current run object. |
 
 ---
 
 ##### `child`<sup>Required</sup> <a name="child" id="@contract-case/test-equivalence-matchers.base.CascadingContextMatcher.Initializer.parameter.child"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The matcher to apply these context changes to.
 
@@ -1042,7 +993,7 @@ The matcher to apply these context changes to.
 
 ##### `contextModifiers`<sup>Required</sup> <a name="contextModifiers" id="@contract-case/test-equivalence-matchers.base.CascadingContextMatcher.Initializer.parameter.contextModifiers"></a>
 
-- *Type:* {[ key: string ]: string}
+- _Type:_ {[ key: string ]: string}
 
 a map of properties to add to the context object.
 
@@ -1050,7 +1001,7 @@ a map of properties to add to the context object.
 
 ##### `currentRunModifiers`<sup>Required</sup> <a name="currentRunModifiers" id="@contract-case/test-equivalence-matchers.base.CascadingContextMatcher.Initializer.parameter.currentRunModifiers"></a>
 
-- *Type:* {[ key: string ]: string}
+- _Type:_ {[ key: string ]: string}
 
 a map of properties to add to the current run object.
 
@@ -1058,8 +1009,8 @@ a map of properties to add to the current run object.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
+| **Name**                                                                                                        | **Description**                                                                                           |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.base.CascadingContextMatcher.toJSON">toJSON</a></code> | If extending this class, do not override this method (or if you do, make sure you call `super.toJSON()`). |
 
 ---
@@ -1071,9 +1022,6 @@ public toJSON(): any
 ```
 
 If extending this class, do not override this method (or if you do, make sure you call `super.toJSON()`).
-
-
-
 
 ### ChangeLogLevel <a name="ChangeLogLevel" id="@contract-case/test-equivalence-matchers.convenience.ChangeLogLevel"></a>
 
@@ -1093,16 +1041,16 @@ import { convenience } from '@contract-case/test-equivalence-matchers'
 new convenience.ChangeLogLevel(logLevel: string, child: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.ChangeLogLevel.Initializer.parameter.logLevel">logLevel</a></code> | <code>string</code> | - The new LogLevel. |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.ChangeLogLevel.Initializer.parameter.child">child</a></code> | <code>any</code> | - The next matcher in the tree. |
+| **Name**                                                                                                                                | **Type**            | **Description**                 |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.ChangeLogLevel.Initializer.parameter.logLevel">logLevel</a></code> | <code>string</code> | - The new LogLevel.             |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.ChangeLogLevel.Initializer.parameter.child">child</a></code>       | <code>any</code>    | - The next matcher in the tree. |
 
 ---
 
 ##### `logLevel`<sup>Required</sup> <a name="logLevel" id="@contract-case/test-equivalence-matchers.convenience.ChangeLogLevel.Initializer.parameter.logLevel"></a>
 
-- *Type:* string
+- _Type:_ string
 
 The new LogLevel.
 
@@ -1112,7 +1060,7 @@ One of "none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainer
 
 ##### `child`<sup>Required</sup> <a name="child" id="@contract-case/test-equivalence-matchers.convenience.ChangeLogLevel.Initializer.parameter.child"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The next matcher in the tree.
 
@@ -1120,9 +1068,9 @@ The next matcher in the tree.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.ChangeLogLevel.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                      | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.ChangeLogLevel.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1132,10 +1080,7 @@ The next matcher in the tree.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### ExactlyLike <a name="ExactlyLike" id="@contract-case/test-equivalence-matchers.modifiers.ExactlyLike"></a>
 
@@ -1152,15 +1097,15 @@ import { modifiers } from '@contract-case/test-equivalence-matchers'
 new modifiers.ExactlyLike(content: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                         | **Type**         | **Description**                                             |
+| -------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.modifiers.ExactlyLike.Initializer.parameter.content">content</a></code> | <code>any</code> | - The object, array, primitive or matcher to match exactly. |
 
 ---
 
 ##### `content`<sup>Required</sup> <a name="content" id="@contract-case/test-equivalence-matchers.modifiers.ExactlyLike.Initializer.parameter.content"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The object, array, primitive or matcher to match exactly.
 
@@ -1168,9 +1113,9 @@ The object, array, primitive or matcher to match exactly.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.modifiers.ExactlyLike.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                 | **Description**                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.modifiers.ExactlyLike.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1180,10 +1125,7 @@ The object, array, primitive or matcher to match exactly.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### HttpRequest <a name="HttpRequest" id="@contract-case/test-equivalence-matchers.http.HttpRequest"></a>
 
@@ -1197,15 +1139,15 @@ import { http } from '@contract-case/test-equivalence-matchers'
 new http.HttpRequest(requestExample: HttpRequestExample)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                                  | **Type**                                                                      | **Description**                                       |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.Initializer.parameter.requestExample">requestExample</a></code> | <code>@contract-case/test-equivalence-matchers.http.HttpRequestExample</code> | - An HttpResponseExample that describes the response. |
 
 ---
 
 ##### `requestExample`<sup>Required</sup> <a name="requestExample" id="@contract-case/test-equivalence-matchers.http.HttpRequest.Initializer.parameter.requestExample"></a>
 
-- *Type:* @contract-case/test-equivalence-matchers.http.HttpRequestExample
+- _Type:_ @contract-case/test-equivalence-matchers.http.HttpRequestExample
 
 An HttpResponseExample that describes the response.
 
@@ -1213,9 +1155,9 @@ An HttpResponseExample that describes the response.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                            | **Description**                                                                                                                      |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1225,19 +1167,18 @@ An HttpResponseExample that describes the response.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 #### Properties <a name="Properties" id="Properties"></a>
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.method">method</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.path">path</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.body">body</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.headers">headers</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.query">query</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.uniqueName">uniqueName</a></code> | <code>string</code> | *No description.* |
+| **Name**                                                                                                             | **Type**            | **Description**   |
+| -------------------------------------------------------------------------------------------------------------------- | ------------------- | ----------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.method">method</a></code>         | <code>any</code>    | _No description._ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.path">path</a></code>             | <code>any</code>    | _No description._ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.body">body</a></code>             | <code>any</code>    | _No description._ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.headers">headers</a></code>       | <code>any</code>    | _No description._ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.query">query</a></code>           | <code>any</code>    | _No description._ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpRequest.property.uniqueName">uniqueName</a></code> | <code>string</code> | _No description._ |
 
 ---
 
@@ -1247,7 +1188,7 @@ For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-t
 public readonly method: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 ---
 
@@ -1257,7 +1198,7 @@ public readonly method: any;
 public readonly path: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 ---
 
@@ -1267,7 +1208,7 @@ public readonly path: any;
 public readonly body: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 ---
 
@@ -1277,7 +1218,7 @@ public readonly body: any;
 public readonly headers: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 ---
 
@@ -1287,7 +1228,7 @@ public readonly headers: any;
 public readonly query: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 ---
 
@@ -1297,10 +1238,9 @@ public readonly query: any;
 public readonly uniqueName: string;
 ```
 
-- *Type:* string
+- _Type:_ string
 
 ---
-
 
 ### HttpResponse <a name="HttpResponse" id="@contract-case/test-equivalence-matchers.http.HttpResponse"></a>
 
@@ -1314,15 +1254,15 @@ import { http } from '@contract-case/test-equivalence-matchers'
 new http.HttpResponse(responseExample: HttpResponseExample)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                                     | **Type**                                                                       | **Description**                                       |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.Initializer.parameter.responseExample">responseExample</a></code> | <code>@contract-case/test-equivalence-matchers.http.HttpResponseExample</code> | - An HttpResponseExample that describes the response. |
 
 ---
 
 ##### `responseExample`<sup>Required</sup> <a name="responseExample" id="@contract-case/test-equivalence-matchers.http.HttpResponse.Initializer.parameter.responseExample"></a>
 
-- *Type:* @contract-case/test-equivalence-matchers.http.HttpResponseExample
+- _Type:_ @contract-case/test-equivalence-matchers.http.HttpResponseExample
 
 An HttpResponseExample that describes the response.
 
@@ -1330,9 +1270,9 @@ An HttpResponseExample that describes the response.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                             | **Description**                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1342,17 +1282,16 @@ An HttpResponseExample that describes the response.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 #### Properties <a name="Properties" id="Properties"></a>
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.status">status</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.body">body</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.headers">headers</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.uniqueName">uniqueName</a></code> | <code>string</code> | *No description.* |
+| **Name**                                                                                                              | **Type**            | **Description**   |
+| --------------------------------------------------------------------------------------------------------------------- | ------------------- | ----------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.status">status</a></code>         | <code>any</code>    | _No description._ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.body">body</a></code>             | <code>any</code>    | _No description._ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.headers">headers</a></code>       | <code>any</code>    | _No description._ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpResponse.property.uniqueName">uniqueName</a></code> | <code>string</code> | _No description._ |
 
 ---
 
@@ -1362,7 +1301,7 @@ For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-t
 public readonly status: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 ---
 
@@ -1372,7 +1311,7 @@ public readonly status: any;
 public readonly body: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 ---
 
@@ -1382,7 +1321,7 @@ public readonly body: any;
 public readonly headers: any;
 ```
 
-- *Type:* any
+- _Type:_ any
 
 ---
 
@@ -1392,10 +1331,9 @@ public readonly headers: any;
 public readonly uniqueName: string;
 ```
 
-- *Type:* string
+- _Type:_ string
 
 ---
-
 
 ### HttpStatusCode <a name="HttpStatusCode" id="@contract-case/test-equivalence-matchers.http.HttpStatusCode"></a>
 
@@ -1409,15 +1347,15 @@ import { http } from '@contract-case/test-equivalence-matchers'
 new http.HttpStatusCode(statusCode: string | string[])
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                             | **Type**                        | **Description**                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------------------ |
 | <code><a href="#@contract-case/test-equivalence-matchers.http.HttpStatusCode.Initializer.parameter.statusCode">statusCode</a></code> | <code>string \| string[]</code> | - The http status code to match, expressed as a number or string (eg `200`, `"404"` or `"4XX"`). |
 
 ---
 
 ##### `statusCode`<sup>Required</sup> <a name="statusCode" id="@contract-case/test-equivalence-matchers.http.HttpStatusCode.Initializer.parameter.statusCode"></a>
 
-- *Type:* string | string[]
+- _Type:_ string | string[]
 
 The http status code to match, expressed as a number or string (eg `200`, `"404"` or `"4XX"`).
 
@@ -1434,9 +1372,9 @@ in the documentation](https://case.contract-testing.io/docs/faq#how-do-i-tell-co
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpStatusCode.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                               | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.HttpStatusCode.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1446,10 +1384,7 @@ in the documentation](https://case.contract-testing.io/docs/faq#how-do-i-tell-co
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### NamedMatch <a name="NamedMatch" id="@contract-case/test-equivalence-matchers.convenience.NamedMatch"></a>
 
@@ -1463,16 +1398,16 @@ import { convenience } from '@contract-case/test-equivalence-matchers'
 new convenience.NamedMatch(name: string, child: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.NamedMatch.Initializer.parameter.name">name</a></code> | <code>string</code> | - The name you can use to lookup this matcher later. |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.NamedMatch.Initializer.parameter.child">child</a></code> | <code>any</code> | - The content of this named match. |
+| **Name**                                                                                                                      | **Type**            | **Description**                                      |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.NamedMatch.Initializer.parameter.name">name</a></code>   | <code>string</code> | - The name you can use to lookup this matcher later. |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.NamedMatch.Initializer.parameter.child">child</a></code> | <code>any</code>    | - The content of this named match.                   |
 
 ---
 
 ##### `name`<sup>Required</sup> <a name="name" id="@contract-case/test-equivalence-matchers.convenience.NamedMatch.Initializer.parameter.name"></a>
 
-- *Type:* string
+- _Type:_ string
 
 The name you can use to lookup this matcher later.
 
@@ -1480,7 +1415,7 @@ The name you can use to lookup this matcher later.
 
 ##### `child`<sup>Required</sup> <a name="child" id="@contract-case/test-equivalence-matchers.convenience.NamedMatch.Initializer.parameter.child"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The content of this named match.
 
@@ -1490,9 +1425,9 @@ If omitted or undefined, the content will be looked up in a previously named mat
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.NamedMatch.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                  | **Description**                                                                                                                      |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.NamedMatch.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1502,10 +1437,7 @@ If omitted or undefined, the content will be looked up in a previously named mat
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### ObjectEachKeyMatches <a name="ObjectEachKeyMatches" id="@contract-case/test-equivalence-matchers.objects.ObjectEachKeyMatches"></a>
 
@@ -1519,15 +1451,15 @@ import { objects } from '@contract-case/test-equivalence-matchers'
 new objects.ObjectEachKeyMatches(matcher: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                                | **Type**         | **Description**                        |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.objects.ObjectEachKeyMatches.Initializer.parameter.matcher">matcher</a></code> | <code>any</code> | - The matcher that all keys must pass. |
 
 ---
 
 ##### `matcher`<sup>Required</sup> <a name="matcher" id="@contract-case/test-equivalence-matchers.objects.ObjectEachKeyMatches.Initializer.parameter.matcher"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The matcher that all keys must pass.
 
@@ -1535,9 +1467,9 @@ The matcher that all keys must pass.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.objects.ObjectEachKeyMatches.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                        | **Description**                                                                                                                      |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.objects.ObjectEachKeyMatches.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1547,10 +1479,7 @@ The matcher that all keys must pass.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### ObjectEachValueMatches <a name="ObjectEachValueMatches" id="@contract-case/test-equivalence-matchers.objects.ObjectEachValueMatches"></a>
 
@@ -1564,15 +1493,15 @@ import { objects } from '@contract-case/test-equivalence-matchers'
 new objects.ObjectEachValueMatches(matcher: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                                  | **Type**         | **Description**                          |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.objects.ObjectEachValueMatches.Initializer.parameter.matcher">matcher</a></code> | <code>any</code> | - The matcher that all values must pass. |
 
 ---
 
 ##### `matcher`<sup>Required</sup> <a name="matcher" id="@contract-case/test-equivalence-matchers.objects.ObjectEachValueMatches.Initializer.parameter.matcher"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The matcher that all values must pass.
 
@@ -1580,9 +1509,9 @@ The matcher that all values must pass.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.objects.ObjectEachValueMatches.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                          | **Description**                                                                                                                      |
+| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.objects.ObjectEachValueMatches.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1592,10 +1521,7 @@ The matcher that all values must pass.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### ReferenceMatch <a name="ReferenceMatch" id="@contract-case/test-equivalence-matchers.convenience.ReferenceMatch"></a>
 
@@ -1609,15 +1535,15 @@ import { convenience } from '@contract-case/test-equivalence-matchers'
 new convenience.ReferenceMatch(name: string)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                        | **Type**            | **Description**                                         |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ------------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.convenience.ReferenceMatch.Initializer.parameter.name">name</a></code> | <code>string</code> | - The name you gave to a previous call of `NamedMatch`. |
 
 ---
 
 ##### `name`<sup>Required</sup> <a name="name" id="@contract-case/test-equivalence-matchers.convenience.ReferenceMatch.Initializer.parameter.name"></a>
 
-- *Type:* string
+- _Type:_ string
 
 The name you gave to a previous call of `NamedMatch`.
 
@@ -1625,9 +1551,9 @@ The name you gave to a previous call of `NamedMatch`.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.ReferenceMatch.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                      | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.ReferenceMatch.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1637,10 +1563,7 @@ The name you gave to a previous call of `NamedMatch`.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### ShapedLike <a name="ShapedLike" id="@contract-case/test-equivalence-matchers.modifiers.ShapedLike"></a>
 
@@ -1657,15 +1580,15 @@ import { modifiers } from '@contract-case/test-equivalence-matchers'
 new modifiers.ShapedLike(content: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                        | **Type**         | **Description**                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.modifiers.ShapedLike.Initializer.parameter.content">content</a></code> | <code>any</code> | - The object, array, primitive or matcher to match the shape against. |
 
 ---
 
 ##### `content`<sup>Required</sup> <a name="content" id="@contract-case/test-equivalence-matchers.modifiers.ShapedLike.Initializer.parameter.content"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The object, array, primitive or matcher to match the shape against.
 
@@ -1673,9 +1596,9 @@ The object, array, primitive or matcher to match the shape against.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.modifiers.ShapedLike.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.modifiers.ShapedLike.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1685,10 +1608,7 @@ The object, array, primitive or matcher to match the shape against.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### StateVariable <a name="StateVariable" id="@contract-case/test-equivalence-matchers.convenience.StateVariable"></a>
 
@@ -1708,15 +1628,15 @@ import { convenience } from '@contract-case/test-equivalence-matchers'
 new convenience.StateVariable(name: string)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                       | **Type**            | **Description**             |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------- | --------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.convenience.StateVariable.Initializer.parameter.name">name</a></code> | <code>string</code> | - The name of the variable. |
 
 ---
 
 ##### `name`<sup>Required</sup> <a name="name" id="@contract-case/test-equivalence-matchers.convenience.StateVariable.Initializer.parameter.name"></a>
 
-- *Type:* string
+- _Type:_ string
 
 The name of the variable.
 
@@ -1724,9 +1644,9 @@ The name of the variable.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.StateVariable.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                     | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.StateVariable.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1736,10 +1656,7 @@ The name of the variable.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### StringContaining <a name="StringContaining" id="@contract-case/test-equivalence-matchers.strings.StringContaining"></a>
 
@@ -1753,16 +1670,16 @@ import { strings } from '@contract-case/test-equivalence-matchers'
 new strings.StringContaining(substring: string, example: string)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                                | **Type**            | **Description**                                |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.strings.StringContaining.Initializer.parameter.substring">substring</a></code> | <code>string</code> | - The substring that the matcher must contain. |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringContaining.Initializer.parameter.example">example</a></code> | <code>string</code> | - An example string that passes this matcher. |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringContaining.Initializer.parameter.example">example</a></code>     | <code>string</code> | - An example string that passes this matcher.  |
 
 ---
 
 ##### `substring`<sup>Required</sup> <a name="substring" id="@contract-case/test-equivalence-matchers.strings.StringContaining.Initializer.parameter.substring"></a>
 
-- *Type:* string
+- _Type:_ string
 
 The substring that the matcher must contain.
 
@@ -1770,7 +1687,7 @@ The substring that the matcher must contain.
 
 ##### `example`<sup>Required</sup> <a name="example" id="@contract-case/test-equivalence-matchers.strings.StringContaining.Initializer.parameter.example"></a>
 
-- *Type:* string
+- _Type:_ string
 
 An example string that passes this matcher.
 
@@ -1778,9 +1695,9 @@ An example string that passes this matcher.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringContaining.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                    | **Description**                                                                                                                      |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringContaining.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1790,10 +1707,7 @@ An example string that passes this matcher.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### StringifiedJson <a name="StringifiedJson" id="@contract-case/test-equivalence-matchers.strings.StringifiedJson"></a>
 
@@ -1827,15 +1741,15 @@ import { strings } from '@contract-case/test-equivalence-matchers'
 new strings.StringifiedJson(child: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                       | **Type**         | **Description**                                   |
+| ------------------------------------------------------------------------------------------------------------------------------ | ---------------- | ------------------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.strings.StringifiedJson.Initializer.parameter.child">child</a></code> | <code>any</code> | - The object or matcher that matches the decoded. |
 
 ---
 
 ##### `child`<sup>Required</sup> <a name="child" id="@contract-case/test-equivalence-matchers.strings.StringifiedJson.Initializer.parameter.child"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The object or matcher that matches the decoded.
 
@@ -1843,9 +1757,9 @@ The object or matcher that matches the decoded.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringifiedJson.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                   | **Description**                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringifiedJson.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1855,10 +1769,7 @@ The object or matcher that matches the decoded.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### StringPrefix <a name="StringPrefix" id="@contract-case/test-equivalence-matchers.strings.StringPrefix"></a>
 
@@ -1872,16 +1783,16 @@ import { strings } from '@contract-case/test-equivalence-matchers'
 new strings.StringPrefix(prefix: string, suffix: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringPrefix.Initializer.parameter.prefix">prefix</a></code> | <code>string</code> | - The prefix string. |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringPrefix.Initializer.parameter.suffix">suffix</a></code> | <code>any</code> | - A string or matcher to match against the suffix. |
+| **Name**                                                                                                                      | **Type**            | **Description**                                    |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------- | -------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringPrefix.Initializer.parameter.prefix">prefix</a></code> | <code>string</code> | - The prefix string.                               |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringPrefix.Initializer.parameter.suffix">suffix</a></code> | <code>any</code>    | - A string or matcher to match against the suffix. |
 
 ---
 
 ##### `prefix`<sup>Required</sup> <a name="prefix" id="@contract-case/test-equivalence-matchers.strings.StringPrefix.Initializer.parameter.prefix"></a>
 
-- *Type:* string
+- _Type:_ string
 
 The prefix string.
 
@@ -1891,7 +1802,7 @@ Must be a string and not a matcher
 
 ##### `suffix`<sup>Required</sup> <a name="suffix" id="@contract-case/test-equivalence-matchers.strings.StringPrefix.Initializer.parameter.suffix"></a>
 
-- *Type:* any
+- _Type:_ any
 
 A string or matcher to match against the suffix.
 
@@ -1899,9 +1810,9 @@ A string or matcher to match against the suffix.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringPrefix.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringPrefix.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1911,10 +1822,7 @@ A string or matcher to match against the suffix.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### StringSuffix <a name="StringSuffix" id="@contract-case/test-equivalence-matchers.strings.StringSuffix"></a>
 
@@ -1928,16 +1836,16 @@ import { strings } from '@contract-case/test-equivalence-matchers'
 new strings.StringSuffix(prefix: any, suffix: string)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringSuffix.Initializer.parameter.prefix">prefix</a></code> | <code>any</code> | - A string or matcher to match against the prefix. |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringSuffix.Initializer.parameter.suffix">suffix</a></code> | <code>string</code> | - The suffix for the matched string. |
+| **Name**                                                                                                                      | **Type**            | **Description**                                    |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------- | -------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringSuffix.Initializer.parameter.prefix">prefix</a></code> | <code>any</code>    | - A string or matcher to match against the prefix. |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringSuffix.Initializer.parameter.suffix">suffix</a></code> | <code>string</code> | - The suffix for the matched string.               |
 
 ---
 
 ##### `prefix`<sup>Required</sup> <a name="prefix" id="@contract-case/test-equivalence-matchers.strings.StringSuffix.Initializer.parameter.prefix"></a>
 
-- *Type:* any
+- _Type:_ any
 
 A string or matcher to match against the prefix.
 
@@ -1947,7 +1855,7 @@ If you don't mind what the prefix is, pass null / undefined
 
 ##### `suffix`<sup>Required</sup> <a name="suffix" id="@contract-case/test-equivalence-matchers.strings.StringSuffix.Initializer.parameter.suffix"></a>
 
-- *Type:* string
+- _Type:_ string
 
 The suffix for the matched string.
 
@@ -1957,9 +1865,9 @@ Must be a string and not a matcher
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringSuffix.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                | **Description**                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.strings.StringSuffix.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -1969,10 +1877,7 @@ Must be a string and not a matcher
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### UriEncodedString <a name="UriEncodedString" id="@contract-case/test-equivalence-matchers.http.UriEncodedString"></a>
 
@@ -1988,15 +1893,15 @@ import { http } from '@contract-case/test-equivalence-matchers'
 new http.UriEncodedString(child: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
+| **Name**                                                                                                                     | **Type**         | **Description**                         |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------- |
 | <code><a href="#@contract-case/test-equivalence-matchers.http.UriEncodedString.Initializer.parameter.child">child</a></code> | <code>any</code> | - Any string matcher or literal string. |
 
 ---
 
 ##### `child`<sup>Required</sup> <a name="child" id="@contract-case/test-equivalence-matchers.http.UriEncodedString.Initializer.parameter.child"></a>
 
-- *Type:* any
+- _Type:_ any
 
 Any string matcher or literal string.
 
@@ -2004,9 +1909,9 @@ Any string matcher or literal string.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.http.UriEncodedString.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                 | **Description**                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.http.UriEncodedString.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -2016,10 +1921,7 @@ Any string matcher or literal string.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
 
 ### WithExample <a name="WithExample" id="@contract-case/test-equivalence-matchers.convenience.WithExample"></a>
 
@@ -2038,16 +1940,16 @@ import { convenience } from '@contract-case/test-equivalence-matchers'
 new convenience.WithExample(matcher: any, example: any)
 ```
 
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.WithExample.Initializer.parameter.matcher">matcher</a></code> | <code>any</code> | - Any matcher to add an example to. |
+| **Name**                                                                                                                           | **Type**         | **Description**                                   |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------- |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.WithExample.Initializer.parameter.matcher">matcher</a></code> | <code>any</code> | - Any matcher to add an example to.               |
 | <code><a href="#@contract-case/test-equivalence-matchers.convenience.WithExample.Initializer.parameter.example">example</a></code> | <code>any</code> | - The example to use when stripping the matchers. |
 
 ---
 
 ##### `matcher`<sup>Required</sup> <a name="matcher" id="@contract-case/test-equivalence-matchers.convenience.WithExample.Initializer.parameter.matcher"></a>
 
-- *Type:* any
+- _Type:_ any
 
 Any matcher to add an example to.
 
@@ -2055,7 +1957,7 @@ Any matcher to add an example to.
 
 ##### `example`<sup>Required</sup> <a name="example" id="@contract-case/test-equivalence-matchers.convenience.WithExample.Initializer.parameter.example"></a>
 
-- *Type:* any
+- _Type:_ any
 
 The example to use when stripping the matchers.
 
@@ -2063,9 +1965,9 @@ The example to use when stripping the matchers.
 
 #### Methods <a name="Methods" id="Methods"></a>
 
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#@contract-case/test-equivalence-matchers.convenience.WithExample.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
+| **Name**                                                                                                   | **Description**                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| <code><a href="#@contract-case/test-equivalence-matchers.convenience.WithExample.toJSON">toJSON</a></code> | For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)). |
 
 ---
 
@@ -2075,9 +1977,4 @@ The example to use when stripping the matchers.
 public toJSON(): any
 ```
 
-For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).
-
-
-
-
-
+For non-TypeScript implementations (see [AnyMatcher.toJSON()](#@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON)).

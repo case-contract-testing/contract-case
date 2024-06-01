@@ -1,0 +1,25 @@
+```ts
+import { willSendHttpRequest } from '@contract-case/contract-case-jest';
+
+          await contract.runExample({
+            definition: willSendHttpRequest({
+              request: {
+                method: 'GET',
+                path: '/users/foo',
+              },
+              response: {
+                status: 200,
+                body: {
+                  // Note that we only describe the fields
+                  // that your consumer actually needs for
+                  // this particular test.  The real response
+                  // might have more elements, but if your
+                  // consumer doesn't need them, you don't
+                  // need to put them in the contract.
+                  userId: 'foo',
+                  name: 'john smith',
+                },
+              },
+            }),
+          });
+```

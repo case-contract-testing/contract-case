@@ -8,7 +8,7 @@ Only override this method if you are writing a matcher in a language other than 
 
 It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.
 
-WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in \[Extending ContractCase\](https://case.contract-testing.io/docs/advanced-topics/extending-case).
+WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in \[Extending ContractCase\](https://case.contract-testing.io/docs/plugin-framework/extending-case).
 
 **Signature:**
 
@@ -20,4 +20,4 @@ toJSON(): unknown;
 
 unknown
 
-An object in the matcher format described \[in the Extending ContractCase documentation\](https://case.contract-testing.io/docs/advanced-topics/extending-case).
+An object in the matcher format described \[in the Extending ContractCase documentation\](https://case.contract-testing.io/docs/plugin-framework/extending-case).

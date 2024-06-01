@@ -10,9 +10,9 @@ State handlers are defined with the `stateHandlers` key on the `ContractCaseConf
 ## When are state handlers invoked?
 
 State handlers are invoked by ContractCase during setup for Examples that were defined
-with states (see the [ContractCase Example Lifecycle](/docs/defining-contracts/lifecycle)). 
+with states (see the [ContractCase Example Lifecycle](/docs/defining-contracts/lifecycle)).
 The order of execution of state handlers is the same as the order that the states
-were defined in. 
+were defined in.
 
 If you haven't defined states first, read the section on [defining
 states](/docs/defining-contracts/state-definitions), which must be done during contract definition.
@@ -33,6 +33,39 @@ Optionally, a state handler can provide a teardown function too. This is
 provided in case you need to undo the precondition setup (removing records from
 the database, changing the mock back to a default, etc)
 
+During verification of the contract above, a state handler would need to be written:
+
+```ts
+const stateHandlers = {
+  // State handlers are keyed by the name of the state.
+  // This must match exactly.
+
+  // When the states don't have variables, there are two possible
+  // signatures for a state handler:
+  // Either
+  //   () => Promise<void> | void
+  // or
+  //  {
+  //    setup:    () => Promise<void> | void
+  //    teardown: () => Promise | void
+  //  }
+  //
+  // There are also state
+  'Server is up': () => {
+    // Any setup goes here
+  },
+
+  'A user with id "foo" exists': {
+    setup: () => {
+      // Any setup goes here
+    },
+    teardown: () => {
+      // Any teardown goes here
+    },
+  },
+};
+```
+
 ### Setup state handlers
 
 A setup state handler is is only invoked during the state setup lifecycle phase.
@@ -45,25 +78,25 @@ stateHandlers: {
        // Configure your running server to appear to be up here
     },
 },
-```        
+```
 
 Or as a `setup` key on the stateHandler value:
 
 ```ts
 stateHandlers: {
-    'Server is up': { 
+    'Server is up': {
         setup: () => {
             // Configure your running server to appear to be up here
         },
     }
 },
-```    
+```
 
 If your function needs to be asynchronous, you can return a `Promise` or make it `async`.
 
 ```ts
 stateHandlers: {
-    'Server is up': { 
+    'Server is up': {
         setup: async () => {
             // Configure your running server to appear to be up here
         },
@@ -94,13 +127,13 @@ stateHandlers: {
 
 State teardown functions are run after the Example has completed execution (see
 the [Example Lifecycle documentation](/docs/defining-contracts/lifecycle) for
-more information). 
+more information).
 
 State teardown functions are specified with the `teardown` key on a state setup object:
 
 ```ts
 stateHandlers: {
-    'A user exists': { 
+    'A user exists': {
         setup:  async () => {
             const userId: string = await insertUser({ .... });
             return { userId };

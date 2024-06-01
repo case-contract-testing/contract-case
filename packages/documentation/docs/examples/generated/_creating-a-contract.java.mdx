@@ -1,0 +1,20 @@
+```java
+  private static final ContractDefiner contract = new ContractDefiner(
+      ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+          .consumerName("Example-Client")
+          .providerName("Example-Server")
+          .build());
+
+
+  public void testSomeApiMethod() {
+    contract.runExample(
+        /* described later in this chapter */
+    );
+  }
+
+  public void testSomeFailingMethod() {
+    contract.runThrowingExample(
+        /* described later in this chapter */
+    );
+  }
+```

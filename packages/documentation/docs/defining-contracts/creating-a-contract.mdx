@@ -2,6 +2,11 @@
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CreatingJs from '../examples/generated/_creating-a-contract.ts.mdx';
+import CreatingJava from '../examples/generated/_creating-a-contract.java.mdx';
+
 # Creating a contract
 
 Here's the contract testing lifecycle:
@@ -23,34 +28,18 @@ In ContractCase, a contract starts with a `defineContract` call. This can be con
 `ContractCaseConfig` object (see [the configuration options reference
 here](/docs/reference/configuring)).
 
-For example, in Jest, defining a contract might look like:
+For example, defining a contract might look like:
 
-```ts
-defineContract(
-  {
-    consumerName /* The name of the service writing the contract */,
-    providerName /* The name of the service that will verify the contract */,
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <CreatingJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <CreatingJava />
+  </TabItem>
+</Tabs>
 
-    /* Any additional ContractCaseConfig */
-  },
-  (contract: ContractDefiner) => {
-    describe('some API method', () => {
-      describe('with a valid access token', () => {
-        it('behaves as expected', async () => {
-          await contract.runExample(/* described later in this chapter */);
-        });
-      });
 
-      describe('with no access token', () => {
-        it('throws an error', async () => {
-          await contract.runRejectingExample(/* described later in this chapter */);
-        });
-      });
-    });
-    /* arbitrary other contract examples */
-  },
-);
-```
 
 In a contract, you can have as many `runExample` and `runRejectingExample`
 calls as you like. When all the tests are over, ContractCase will write the contract to

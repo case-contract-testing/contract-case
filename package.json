@@ -7,6 +7,7 @@
   "version": "0.15.8",
   "devDependencies": {
     "@tsconfig/node16": "^16.1.2",
+    "example-extractor": "^0.0.4",
     "jsii-docgen": "^10.3.2",
     "lerna": "^8.1.3"
   },
@@ -26,6 +27,7 @@
     "build": "lerna run build",
     "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",
+    "extract-docs": "rimraf packages/documentation/docs/examples/generated && example-extractor -o packages/documentation/docs/examples/generated",
     "update-docs": "lerna run build:docs && jsii-docgen -p @contract-case/case-boundary -o docs/maintainers/reference/case-boundary-API.md",
     "test": "lerna run test",
     "test:verify": "lerna run test:verify"

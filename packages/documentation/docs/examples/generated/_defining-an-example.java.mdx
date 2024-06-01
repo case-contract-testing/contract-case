@@ -1,0 +1,32 @@
+```java
+  public void testGetUser() {
+    contract.runExample(
+        new ExampleDefinition<>(
+            List.of(), // State definitions, covered below
+            new WillSendHttpRequest(HttpExample.builder()
+                .request(
+                    new HttpRequest(HttpRequestExample.builder()
+                        .method("GET")
+                        .path("/users/foo")
+                        .build())
+                )
+                .response(new HttpResponse(HttpResponseExample.builder()
+                    .status(200)
+                    .body(
+                        // Note that we only describe the fields
+                        // that your consumer actually needs for
+                        // this particular test.  The real response
+                        // might have more elements, but if your
+                        // consumer doesn't need them, you don't
+                        // need to put them in the contract.
+                        Map.ofEntries(
+                            Map.entry("status", "up"),
+                            Map.entry("name", "john smith")
+                        )
+                    )
+                    .build()))
+                .build())
+        ),
+    );
+  }
+```

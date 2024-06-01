@@ -1,0 +1,69 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Js from '../examples/generated/\_defining-an-example.ts.mdx';
+import Java from '../examples/generated/\_defining-an-example.java.mdx';
+
+import StateJs from '../examples/generated/\_defining-an-example-states.ts.mdx';
+import StateJava from '../examples/generated/\_defining-an-example-states.java.mdx';
+
+import ConfigJs from '../examples/generated/\_defining-an-example-config.ts.mdx';
+import ConfigJava from '../examples/generated/\_defining-an-example-config.java.mdx';
+
+
+
+# Defining a ContractCase Example
+
+In ContractCase, a contract is a series of examples. Each example is independent - for
+example: "a getUser request looks like $X, and a success response looks like $Y":
+
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <Js />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <Java />
+  </TabItem>
+</Tabs>
+
+Any preconditions needed to set up the examples are handled with state - for
+example: "when a user with ID 'foo' exists, a getUser request looks like $X, and
+a success response looks like $Y":
+
+
+
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <StateJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <StateJava />
+  </TabItem>
+</Tabs>
+
+Additionally, you can override the configuration for this test by providing an
+optional `ContractCaseConfig` object as the final argument. See [the
+configuration options reference](/docs/reference/configuring) for full details.
+For example, here's how you could set the log level to debug for an individual
+test:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <ConfigJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <ConfigJava />
+  </TabItem>
+</Tabs>
+
+
+See the [state handlers](/docs/reference/state-handlers) section for more on state handlers.
+
+### Next steps
+
+Next, set up your state [state definitions](./state-definitions).
