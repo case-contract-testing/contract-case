@@ -1,0 +1,23 @@
+```ts
+      await contract.runExample({
+        states: [
+          inState('Server is up'),
+          inState('A user exists', { userId: '123' }),
+        ],
+        definition: willSendHttpRequest({
+          request: {
+            method: 'GET',
+            path: stringPrefix('/users/', stateVariable('userId')),
+          },
+          response: {
+            status: 200,
+            body: {
+              userId: stateVariable('userId'),
+              name: anyString('John Smith'),
+            },
+          },
+        }),
+        /* ... */
+      });
+    });
+```

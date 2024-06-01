@@ -1,0 +1,37 @@
+```java
+    contract.runExample(
+        new ExampleDefinition<>(
+            List.of(
+                new InState("Server is up"),
+                new InStateWithVariables(
+                    "A user exists",
+                    Map.of("userId", "123")
+                )
+            ),
+            new WillSendHttpRequest(
+                HttpExample.builder()
+                    .request(
+                        new HttpRequest(HttpRequestExample.builder()
+                            .method("GET")
+                            .path(
+                                new StringPrefix(
+                                    "/users",
+                                    new StateVariable("userId")
+                                )
+                            ).build()
+                        )
+                    )
+                    .response(new HttpResponse(HttpResponseExample.builder()
+                        .status(200)
+                        .body(
+                            Map.ofEntries(
+                                Map.entry("userId", new StateVariable("userId")),
+                                Map.entry("name", new AnyString("john smith"))
+                            )
+                        )
+                        .build()))
+                    .build())
+        ),
+        /* ... */
+    );
+```

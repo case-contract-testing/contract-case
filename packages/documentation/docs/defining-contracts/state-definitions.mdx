@@ -2,6 +2,20 @@
 sidebar_position: 5
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import StatesJs from '../examples/generated/_defining-states.ts.mdx';
+import StatesJava from '../examples/generated/_defining-states.java.mdx';
+
+import OrderJs from '../examples/generated/_defining-states-order.ts.mdx';
+import OrderJava from '../examples/generated/_defining-states-order.java.mdx';
+
+import VariableJs from '../examples/generated/_state-variables.ts.mdx';
+import VariableJava from '../examples/generated/_state-variables.java.mdx';
+
+import AllJs from '../examples/generated/_state-matchers.ts.mdx';
+import AllJava from '../examples/generated/_state-matchers.java.mdx';
+
 # Defining service states
 
 Since each Example in ContractCase is defined and verified independently, you may need to indicate preconditions that must be true for the example to be valid. This is done using service states.
@@ -9,10 +23,14 @@ Since each Example in ContractCase is defined and verified independently, you ma
 Each state is identified with a name string. The best practice is to use a human
 readable, descriptive string - for example:
 
-```ts
-    inState('Server is up'),
-    inState('A user with id "foo" exists'),
-```
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <StatesJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <StatesJava />
+  </TabItem>
+</Tabs>
 
 There are two parts to service states:
 
@@ -32,15 +50,15 @@ For a full list of the Example types and when state handlers are required, see [
 
 States are guaranteed to be executed in the order that the states are defined in the Example:
 
-```ts
-await contract.runExample({
-    states: [
-        inState('Server is up'), // This one runs first
-        inState('A user with id "foo" exists'), // This one runs second
-    ],
-    ...
-});
-```
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <OrderJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <OrderJava />
+  </TabItem>
+</Tabs>
+
 
 ## State definition types
 
@@ -69,9 +87,14 @@ all of the same properties as name-only states, but can return variables too:
 
 To define a state with variables, provide an object keyed by variable names, where the values are the default values for the variables:
 
-```
-    inState('A user exists', { userId: 'foo' }),
-```
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+   <VariableJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <VariableJava />
+  </TabItem>
+</Tabs>
 
 This defines a state with the name `"A user exists"`, which is expected to
 return a variable called `userId`. The default value for this variable is
@@ -92,28 +115,15 @@ to be primitive types, but generally.
 
 These state variables are available via the `stateVariable()` test equivalence matcher:
 
-```ts
-await contract.runExample({
-  states: [
-    inState('Server is up'),
-    inState('A user exists', { userId: '123' }),
-  ],
-  definition: willSendHttpRequest({
-    request: {
-      method: 'GET',
-      path: stringPrefix('/users/', stateVariable('userId')),
-    },
-    response: {
-      status: 200,
-      body: {
-        userId: stateVariable('userId'),
-        name: anyString('John Smith'),
-      },
-    },
-  }),
-  /* ... */
-});
-```
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+   <AllJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <AllJava />
+  </TabItem>
+</Tabs>
 
 ### Next steps
 

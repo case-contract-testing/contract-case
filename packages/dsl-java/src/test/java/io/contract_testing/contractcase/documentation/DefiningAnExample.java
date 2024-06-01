@@ -8,11 +8,16 @@ import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.Trigger;
 import io.contract_testing.contractcase.case_example_mock_types.mocks.http.HttpExample;
 import io.contract_testing.contractcase.case_example_mock_types.mocks.http.WillSendHttpRequest;
+import io.contract_testing.contractcase.case_example_mock_types.states.AnyState;
 import io.contract_testing.contractcase.case_example_mock_types.states.InState;
+import io.contract_testing.contractcase.case_example_mock_types.states.InStateWithVariables;
+import io.contract_testing.contractcase.test_equivalence_matchers.convenience.StateVariable;
 import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpRequest;
 import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpRequestExample;
 import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpResponse;
 import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpResponseExample;
+import io.contract_testing.contractcase.test_equivalence_matchers.strings.AnyString;
+import io.contract_testing.contractcase.test_equivalence_matchers.strings.StringPrefix;
 import java.util.List;
 import java.util.Map;
 
@@ -102,6 +107,128 @@ public class DefiningAnExample {
         IndividualSuccessTestConfigBuilder.builder()
             .withLogLevel(LogLevel.DEBUG)
             .build()
+    );
+    // end-example
+
+    contract.runExample(
+        new ExampleDefinition<>(
+            List.of(
+                /* as above */
+                // example-extract _defining-states
+                new InState("Server is up"),
+                new InState("A user with id \"foo\" exists")
+                // end-example
+            ),
+            new WillSendHttpRequest(
+                HttpExample.builder()
+                    /* as above */
+                    // ignore-extract
+                    .request(
+                        new HttpRequest(HttpRequestExample.builder()
+                            .method("GET")
+                            .path("/users/foo")
+                            .build())
+                    )
+                    .response(new HttpResponse(HttpResponseExample.builder()
+                        .status(200)
+                        .body(
+                            Map.ofEntries(
+                                Map.entry("status", "up"),
+                                Map.entry("name", "john smith")
+                            )
+                        )
+                        .build()))
+                    // end-ignore
+                    .build())
+        ),
+        IndividualSuccessTestConfigBuilder.builder()
+            .withLogLevel(LogLevel.DEBUG)
+            .build()
+    );
+
+    // example-extract _defining-states-order
+    contract.runExample(
+        new ExampleDefinition<>(
+            List.of(
+                // This one runs first
+                new InState("Server is up"),
+                // This one runs second
+                new InState("A user with id \"foo\" exists")
+            ),
+            /* ... */
+            // ignore-extract
+            new WillSendHttpRequest(
+                HttpExample.builder()
+                    .request(
+                        new HttpRequest(HttpRequestExample.builder()
+                            .method("GET")
+                            .path("/users/foo")
+                            .build())
+                    )
+                    .response(new HttpResponse(HttpResponseExample.builder()
+                        .status(200)
+                        .body(
+                            Map.ofEntries(
+                                Map.entry("status", "up"),
+                                Map.entry("name", "john smith")
+                            )
+                        )
+                        .build()))
+
+                    .build())
+
+        ),
+        IndividualSuccessTestConfigBuilder.builder()
+            .withLogLevel(LogLevel.DEBUG)
+            .build()
+        // end-ignore
+    );
+    // end-example
+
+    // example-extract _state-variables
+    new InStateWithVariables("A user exists", Map.of("userId", "foo"));
+    // end-example
+
+    // example-extract _state-matchers
+    contract.runExample(
+        new ExampleDefinition<>(
+            List.of(
+                new InState("Server is up"),
+                new InStateWithVariables(
+                    "A user exists",
+                    Map.of("userId", "123")
+                )
+            ),
+            new WillSendHttpRequest(
+                HttpExample.builder()
+                    .request(
+                        new HttpRequest(HttpRequestExample.builder()
+                            .method("GET")
+                            .path(
+                                new StringPrefix(
+                                    "/users",
+                                    new StateVariable("userId")
+                                )
+                            ).build()
+                        )
+                    )
+                    .response(new HttpResponse(HttpResponseExample.builder()
+                        .status(200)
+                        .body(
+                            Map.ofEntries(
+                                Map.entry("userId", new StateVariable("userId")),
+                                Map.entry("name", new AnyString("john smith"))
+                            )
+                        )
+                        .build()))
+                    .build())
+        ),
+        /* ... */
+        // ignore-extract
+        IndividualSuccessTestConfigBuilder.builder()
+            .withLogLevel(LogLevel.DEBUG)
+            .build()
+        // end-ignore
     );
     // end-example
   }

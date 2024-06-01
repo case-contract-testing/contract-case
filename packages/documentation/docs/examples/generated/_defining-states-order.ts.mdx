@@ -1,0 +1,12 @@
+```ts
+      await contract.runExample(
+        {
+          states: [
+            inState('Server is up'), // This one runs first
+            inState('A user with id "foo" exists'), // This one runs second
+          ],
+          /* .... */
+        },
+        { logLevel: 'debug' },
+      );
+```
