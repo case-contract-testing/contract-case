@@ -1,0 +1,49 @@
+---
+sidebar_label: 'Getting Started'
+sidebar_position: 1.5
+---
+
+# Getting started
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import InstallJs from './examples/_install_js.mdx';
+import InstallJava from './examples/_install_java.mdx';
+
+First off, install the DSL package that's right for your language:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <InstallJs />
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <InstallJava />
+  </TabItem>
+</Tabs>
+
+## Contract testing lifecycle
+
+Here's the lifecycle of a contract test:
+
+1. Define a contract 
+   1. Define examples
+   1. Run tests to confirm the examples are correct
+   1. Upload contracts to a broker
+1. Verify the contract 
+   1. Download contract from the broker
+   1. Verify the contract
+   1. Publish verification result to the broker
+
+## Next steps
+
+If you just want to jump in to some examples, you can have a read of:
+
+* Typescript [client-driven contract definition](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.client.define.spec.ts)
+* Typescript [client-driven contract verification](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.client.spec.verify.ts)
+* Typescript [server-driven contract definition](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.define.spec.ts)
+* Typescript [server-driven contract verification](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.spec.verify.ts)
+
+If you're new to contract testing, have a read of [what is contract testing](./what-is-contract-testing/).
+
+If you're defining a contract, [start here](./defining-contracts). If you're verifying an existing contract, [start here](./verifying-contracts).

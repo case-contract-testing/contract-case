@@ -1,42 +1,34 @@
----
-sidebar_label: 'What is contract testing?'
-sidebar_position: 2
----
 
-# Introduction to Contract Testing
-
-Contract testing is a simple, effective and automated way to build confidence
-that your software deployments don't contain or rely on breaking API changes. If
-you've ever experienced downtime because of an accidental breaking API change,
-then contract testing is for you.
-
-<span align="center">
-
-!["A small API change had massive ramifications" - Elon Musk](/assets/motivating-tweet-small.jpg)
-
-</span>
-
-Contract testing builds deployment confidence by testing whether two services (eg an http client and an http server) are able to
-communicate with each other. You can think of it as a unit test, where the
-"unit" is allowed to cross a communication boundary. Or, you can think of it as asynchronous integration tests.
-
-
-:::info
-If you have not previously been exposed to contract testing, you have probably
-used one of the three main alternatives - end-to-end tests, schema tests, and
-mocking. You can read more details about how contract testing improves over these approaches in [alternatives to contract testing](./Alternatives).
-
-:::
-
-## What is contract testing
 
 > In this documentation, `service` is used to describe any communicating client, server, message producer or consumer.
 
-Contract testing was originally [defined by Martin
-Fowler](https://martinfowler.com/bliki/ContractTest.html) is like mocking your
-services dependencies, but the behaviour of the mock is later compared against
-the real dependency. For example, here's a diagram of how a single test for an HTTP
-request/response pair works using only mocks:
+Contract testing [defined by Martin
+Fowler](https://martinfowler.com/bliki/ContractTest.html) 
+is a way of ensuring that two services can understand each
+other, by using replayable mocks. It allows tests to run hermetically in
+isolation, but retains the advantages of actually spinning the services up
+together.
+
+A contract test is divided into two halves:
+
+First the contract is [_defined_](../defining-contracts), during which the consumer is tested against
+a mock of the provider. This produces a contract file, which can be run against the real provider later.
+
+Then this contract file is [_verified_](../verifying-contracts) against the real
+provider, using a mock of the consumer that behaves the same as the consumer
+tested during contract definition.
+
+For example, for a contract written by an HTTP client consumer:
+
+1. While defining the contract, you invoke your real client code, and your contract testing framework provides a mock server that confirms that you really do send the request you said you would.
+2. While verifying the contract, the contract testing framework provides a mock
+   client that behaves exactly like the client that was tested in step 1. This
+   client is used to query your real server, running (usually) locally, or in a
+   test environment.
+
+The contract records the behaviour of the mock used in step 1, which is then validated against the behaviour of the real provider in step 2.
+
+## 
 
 <span align="center">
 
@@ -51,7 +43,7 @@ flowchart TD
 
 </span>
 
-In a contract test, you then write down the mock's expectations in a contract file ([contract definition](./defining-contracts), and later replay it again against the real server ([contract verification](./verifying-contracts)).
+In a contract test, you then write down the mock's expectations in a contract file ([contract definition](../defining-contracts), and later replay it again against the real server ([contract verification](../verifying-contracts)).
 
 For example, in an HTTP contract test, first the mock is configured with an
 expected request and response pair. Then, if the real request matched the

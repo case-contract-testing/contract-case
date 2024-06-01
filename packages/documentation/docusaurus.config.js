@@ -107,7 +107,7 @@ const config = {
               },
               {
                 label: 'What is contract testing?',
-                to: '/docs/what-is-contract-testing',
+                to: '/docs/what-is-contract-testing/',
               },
               {
                 label: 'Defining contracts',

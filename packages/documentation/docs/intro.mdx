@@ -3,17 +3,13 @@ sidebar_label: 'Introduction'
 sidebar_position: 1
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import InstallJs from './examples/_install_js.mdx';
-import InstallJava from './examples/_install_java.mdx';
+
 
 # ContractCase Contract Testing Suite
 
 ContractCase is a next-generation consumer-driven contract testing framework, building
 on many of the lessons from maintaining the excellent [Pact](https://pact.io) contract testing
-framework. Contract testing an effective way to get
-deployment confidence for your applications and services, giving much faster and more actionable feedback than any of the [other approaches](./Alternatives).
+framework.
 
 <div style={{textAlign: 'center'}}>
     <div>
@@ -24,70 +20,38 @@ deployment confidence for your applications and services, giving much faster and
     <div style={{fontSize: 'small'}}>Briefcase sticker created by <a href="https://www.flaticon.com/free-stickers/law">Gohsantosadrive on Flaticon</a></div>
 </div>
 
-## First time here?
+## What is contract testing?
 
-New to contract testing? Have a read of [what is contract testing](./what-is-contract-testing), then follow on with [defining contracts](./defining-contracts).
+Contract testing builds deployment confidence by testing whether two services (eg an http client and an http server) are able to
+communicate and understand each other.
 
-If you're already familiar with Pact, you might be interested in the section written [for users coming from Pact](./Alternatives/differences-to-pact).
+If you've ever experienced downtime because of breaking API behaviours, then contract testing is for you.
 
-## Contract testing lifecycle
+* You can think of it as a unit test, where the "unit" is the communication code of the consumer and provider
+* Or, you can think of it as integration tests that can run independently without the full stack
+* Or you can think of it as a mock service, where your requests can be replayed later against the thing that you mocked
 
-1. Define a contract ([start here](./defining-contracts))
-   1. Define examples
-   1. Run tests to confirm the examples are correct
-   1. Upload contracts to a broker
-1. Verify the contract ([start here](./verifying-contracts))
-   1. Download contract from the broker
-   1. Verify the contract
-   1. Publish verification result to the broker
+In our view, contract testing gives much faster and more actionable feedback than any of the [other approaches](./Alternatives).
 
-Incomplete documentation is in the sidebar on your left (or at the bottom on
-mobile). By way of apology for any breaking changes, at least one new page of
-documentation will be added every time a breaking change is released during the
-beta period.
+By using real examples, contract testing is more than just a type checker - it
+asserts that your providing service really does generate the responses you need in the
+conditions you need it to. It is an ideal companion to generated APIs using Swagger, gRPC or
+GraphQL, and very useful in microservice environments.
 
 ## Caveats and limitations
 
-ContractCase is now available and should work for both client and server driven http/https
-contracts. Feedback on the ContractCase API / DSL and (especially) naming
-conventions very welcome. However, the following caveats should be kept in mind:
+ContractCase is currently in beta. Feedback is extremely welcome and encouraged - 
+please help us get to a stable release by trying out the framework, and [report
+any issues](https://github.com/case-contract-testing/contract-case/issues) you
+experience.
+
+During the beta, there are some caveats
 
 1. ContractCase doesn't yet support merging of contracts. This means that your whole contract must be defined in one test file.
 1. ContractCase currently only has rudimentary support for the contract broker. It works, but it's not very configurable yet - if you have a use case that isn't yet supported and you'd like it prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new).
-1. ContractCase currently is only compatible with Jest. At a later date, the jest support will be extracted, and the peer-dependency removed.
+1. ContractCase is currently only available in JS/TS and Java. At a later date, support for Python, C# and Go will be added. 
 
-Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
-
-ContractCase is currently only available in Javascript / Typescript. At a later date, support for Python, Java, C# and Go will be added, using [JSii](https://aws.github.io/jsii/). There are no plans to add other languages at this time.
-
-These caveats will be updated as progress is made. You can follow the detailed
-progress by reading the [maintainer todo
-list](https://github.com/case-contract-testing/case/blob/main/docs/maintainers/todo.md).
-
-:::danger
-**THE API IS UNSTABLE AND BREAKING CHANGES WILL HAPPEN IN MINOR VERSIONS BEFORE 1.0.0 IS RELEASED**
-:::
-
-### I'm fine with all the caveats, how do I get started?
-
-<Tabs groupId="language">
-  <TabItem value="js" label="Typescript">
-    <InstallJs />
-  </TabItem>
-  <TabItem value="java" label="Java">
-    <InstallJava />
-  </TabItem>
-</Tabs>
-
----
-
-If you just want to jump in to some examples, you can have a read of:
-
-- The [client-driven contract definition](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.client.define.spec.ts)
-- The [client-driven contract verification](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.client.spec.verify.ts)
-- The [server-driven contract definition](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.define.spec.ts)
-- The [server-driven contract verification](https://github.com/case-contract-testing/contract-case/blob/main/packages/contract-case-jest/src/index.http.server.spec.verify.ts).
-
-If you build on those examples, make sure you remove `printResults: false` and `logLevel: none`.
-
-You will probably have a better time if you read the documentation on [what is contract testing](./what-is-contract-testing) and [defining contracts](./defining-contracts) first, though.
+Incomplete documentation is in the sidebar on your left (or at the bottom on
+mobile). By way of apology for any breaking changes during the beta, at least
+one new page of documentation will be added every time a breaking change is released during the
+beta period.

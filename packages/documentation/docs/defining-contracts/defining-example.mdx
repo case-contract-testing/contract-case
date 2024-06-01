@@ -30,11 +30,20 @@ example: "a getUser request looks like $X, and a success response looks like $Y"
   </TabItem>
 </Tabs>
 
+## Examples should be independent
+
+Instead of making examples dependent on each other (and the corresponding
+explosion of complexity and potentially brittle tests), each contract definition
+example runs independently. 
+
+This is achieved with [state definitions](./defining-contracts/state-definitions) and [state setup
+handlers](./reference/state-handlers), which you can use to set up any preconditions
+that your example needs (for example, a user existing)
+required by the `getUser` request first.
+
 Any preconditions needed to set up the examples are handled with state - for
 example: "when a user with ID 'foo' exists, a getUser request looks like $X, and
 a success response looks like $Y":
-
-
 
 
 <Tabs groupId="language">
@@ -46,7 +55,12 @@ a success response looks like $Y":
   </TabItem>
 </Tabs>
 
-Additionally, you can override the configuration for this test by providing an
+
+See the [state handlers](/docs/reference/state-handlers) section for more on state handlers.
+
+## Overriding configuration
+
+You can override the configuration for individual tests by providing an
 optional `ContractCaseConfig` object as the final argument. See [the
 configuration options reference](/docs/reference/configuring) for full details.
 For example, here's how you could set the log level to debug for an individual
@@ -61,8 +75,25 @@ test:
   </TabItem>
 </Tabs>
 
+Setting the log level to debug is a useful way to see what is happening during
+the test, which can help you understand why an example might be failing.
 
-See the [state handlers](/docs/reference/state-handlers) section for more on state handlers.
+## How do I tell ContractCase that a field is optional?
+
+Instead of marking fields as optional, write two contract tests, one with the
+field and one without. To provide the best deployment confidence, a contract
+test needs specific examples, so there is no optional matcher.
+
+This is because a test which allows optional fields could still pass even if the field
+was never present. You wouldn't be sure that your provider could _ever_ generate
+that missing field.
+
+## Do I describe the whole API payload?
+
+You only need to describe the parts of the API payload that your consumer relies on.
+
+This is advantageous because it's not a breaking change to rename or remove a field/endpoint that
+no-one is using. 
 
 ### Next steps
 
