@@ -57,4 +57,4 @@ verifyContract(
 
 - By default, verification results are uploaded to a broker if the broker access tokens and baseUrl are set and the run is in CI. Set the option `publish: true` or `publish: false` to override this
 - By default, verification failures will not throw errors. This can be overridden with `throwOnFail: true` in the options.
-- You will need to add [deployment checks](./deploy-checks) before you get the deployment safety
+- You will need to add [deployment checks](../deployment-checks) before you get the deployment safety
