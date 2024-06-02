@@ -1,0 +1,35 @@
+# Terminology
+
+
+:::caution INCOMPLETE DOCUMENT
+
+While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
+
+Each breaking change during the beta, one more document will be completed. If this notice is present in a document, it is not yet considered complete. If you are having trouble using ContractCase or you would like a particular document prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new)
+:::
+
+
+### Consumer
+
+If you are coming from other contract testing frameworks like Pact, be
+aware that a Consumer is ContractCase is not always a synonym for "client", and
+provider is not always a synonym for "server". For example, you
+might be writing the contract on the server side, which means you are defining
+the consumer of HTTP requests, not the consumer of responses.
+
+
+If your consumer is an HTTP client, contract definition means:
+   - You define a series of request and response pairs, for different server
+   states (for example, the same `getUser` request might result in different
+   responses depending on whether or not the server exists)
+   - Ensure that your client can actually send those defined requests
+   - Ensure that your client can understand the responses you defined
+
+In some rare cases, it might make sense for the server to be considered the consumer.
+
+If your consumer is an HTTP server, contract definition means:
+   - You define a series of request and response pairs, for different server
+   states (for example, the same `getUser` request might result in different
+   responses depending on whether or not the server exists)
+   - Ensure that your server can actually understand those requests
+   - Ensure that your servicer will actually send the responses you defined

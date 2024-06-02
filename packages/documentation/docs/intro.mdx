@@ -38,6 +38,27 @@ asserts that your providing service really does generate the responses you need 
 conditions you need it to. It is an ideal companion to generated APIs using Swagger, gRPC or
 GraphQL, and very useful in microservice environments.
 
+## How does ContractCase work?
+
+ContractCase has two main modes of running tests:
+
+- **Contract Definition** - in [contract definition](./defining-contracts/) you
+  define a number of specific examples (say, HTTP request/response pairs) that
+  the provider will return in various states (for example, a "getUser" request
+  might return different responses depending on whether or not the user exists).
+  state. Using these examples, you test one side of the communication boundary (say, the HTTP client).
+- **Contract Verification** - During [contract verification](./verifying-contracts/), you take a list of
+  examples (the contract file) written by a service that your service communicates
+  with, and you confirm that it meets the expectations laid out in the contract.
+
+Together, these form two halves of the same test. For example, with an HTTP client
+defining the contract, in contract _definition_ you confirm that the client can
+generate a specific request, and understand a particular response. In contract
+_verification_ you would then confirm that the server can understand the request, and
+generate a particular response.
+
+
+
 ## Caveats and limitations
 
 ContractCase is currently in beta. Feedback is extremely welcome and encouraged - 

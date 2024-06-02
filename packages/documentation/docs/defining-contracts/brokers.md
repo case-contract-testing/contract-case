@@ -4,13 +4,6 @@ sidebar_position: 9
 
 # Uploading your contract to a broker
 
-Here's the defining contract lifecycle again:
-
-1. Define a contract:
-   1. [Define examples](./defining-example)
-   1. Run tests to confirm the examples are correct
-   1. You are here `-->` Upload contracts to a broker `<--` You are here
-
 The last step in the defining contracts lifecycle is to upload the contract to the broker. This is important, because otherwise the other side of your contract can't be verified:
 
 ## ContractCase Case Files
@@ -58,9 +51,4 @@ This directory is useful if you are spiking a
 
 ## Next steps
 
-Next, you'll want to verify the contract:
-
-1. Verify the contract ([start here](../verifying-contracts))
-   1. Download contract from the broker
-   1. Verify the contract
-   1. Publish verification result to the broker
+Next, you'll want to [verify the contract](../verifying-contracts).

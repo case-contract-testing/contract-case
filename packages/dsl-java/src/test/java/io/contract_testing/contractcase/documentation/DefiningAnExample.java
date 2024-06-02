@@ -8,7 +8,6 @@ import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.Trigger;
 import io.contract_testing.contractcase.case_example_mock_types.mocks.http.HttpExample;
 import io.contract_testing.contractcase.case_example_mock_types.mocks.http.WillSendHttpRequest;
-import io.contract_testing.contractcase.case_example_mock_types.states.AnyState;
 import io.contract_testing.contractcase.case_example_mock_types.states.InState;
 import io.contract_testing.contractcase.case_example_mock_types.states.InStateWithVariables;
 import io.contract_testing.contractcase.test_equivalence_matchers.convenience.StateVariable;
@@ -233,5 +232,11 @@ public class DefiningAnExample {
     // end-example
   }
 
+  // example-extract _end-record
+  // annotate with @AfterAll if using JUnit
+  static void after() {
+    contract.endRecord();
+  }
+  // end-example
 
 }
