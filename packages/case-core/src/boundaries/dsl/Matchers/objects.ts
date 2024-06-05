@@ -1,10 +1,10 @@
 import {
-  AnyCaseMatcherOrData,
   CoreObjectValuesMatch,
   OBJECT_VALUES_MATCH_TYPE,
   CoreObjectKeysMatcher,
   OBJECT_KEYS_MATCH_TYPE,
 } from '@contract-case/case-entities-internal';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
 
 /**
  * Matches an object where each value matches the provided matcher.

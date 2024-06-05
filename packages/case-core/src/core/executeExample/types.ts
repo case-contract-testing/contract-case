@@ -1,16 +1,16 @@
-import type {
-  ArbitraryConfig,
-  SetupInfoFor,
-} from '../../entities/nodes/mocks/setup.types';
-import type {
-  StateHandlers,
-  ExampleNames,
-  AnyMockDescriptorType,
-  AnyState,
-  CaseMockDescriptorFor,
-  Assertable,
+import {
   MOCK_HTTP_SERVER,
-} from '../../entities/types';
+  SetupInfoFor,
+  ArbitraryConfig,
+} from '@contract-case/case-core-plugin-http-dsl';
+import {
+  AnyMockDescriptor,
+  AnyMockDescriptorType,
+  StateHandlers,
+} from '@contract-case/case-entities-internal';
+import { CaseMockDescriptorFor } from '@contract-case/case-plugin-base';
+import { ExampleNames } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { AnyState, Assertable } from '../../entities/types';
 
 export type RunTestCallback = (
   testName: string,
@@ -46,7 +46,7 @@ export type TestInvoker<
   R = unknown,
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
-  mockDescription: CaseMockDescriptorFor<T>;
+  mockDescription: CaseMockDescriptorFor<AnyMockDescriptor, T>;
   /**
    * Do both the trigger and the assertion on the response (this type exists
    * because we can't pass around native response objects)

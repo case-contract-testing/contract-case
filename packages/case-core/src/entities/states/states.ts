@@ -1,7 +1,5 @@
-import {
-  AnyCaseMatcherOrData,
-  CASCADING_CONTEXT_MATCHER_TYPE,
-} from '@contract-case/case-entities-internal';
+import { CASCADING_CONTEXT_MATCHER_TYPE } from '@contract-case/case-entities-internal';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
 import {
   NameOnlyState,
   SETUP_NAMED_STATE,

@@ -1,20 +1,20 @@
 import {
   COMBINE_MATCHERS_TYPE,
   CoreAndCombinationMatcher,
-  AnyData,
-  isCaseNode,
 } from '@contract-case/case-entities-internal';
-import { StripUnsupportedError } from '../../entities';
-import { addLocation } from '../../entities/context';
 import {
-  type StripMatcherFn,
-  type MatchContext,
-  type CheckMatchFn,
-  type MatchResult,
-  type MatcherExecutor,
-} from '../../entities/types';
+  StripMatcherFn,
+  MatchContext,
+  AnyData,
+  addLocation,
+  StripUnsupportedError,
+  isCaseNode,
+  CheckMatchFn,
+  MatchResult,
+  MatcherExecutor,
+} from '@contract-case/case-plugin-base';
 
-const strip: StripMatcherFn<typeof COMBINE_MATCHERS_TYPE> = (
+const strip: StripMatcherFn<CoreAndCombinationMatcher> = (
   matcher: CoreAndCombinationMatcher,
   matchContext: MatchContext,
 ): AnyData => {
@@ -53,7 +53,7 @@ const strip: StripMatcherFn<typeof COMBINE_MATCHERS_TYPE> = (
   return firstStrippedResult;
 };
 
-const check: CheckMatchFn<typeof COMBINE_MATCHERS_TYPE> = async (
+const check: CheckMatchFn<CoreAndCombinationMatcher> = async (
   matcher: CoreAndCombinationMatcher,
   matchContext: MatchContext,
   actual: unknown,
@@ -73,7 +73,8 @@ const check: CheckMatchFn<typeof COMBINE_MATCHERS_TYPE> = async (
   ).flat();
 
 export const AndCombinationMatcher: MatcherExecutor<
-  typeof COMBINE_MATCHERS_TYPE
+  typeof COMBINE_MATCHERS_TYPE,
+  CoreAndCombinationMatcher
 > = {
   describe: (matcher, matchContext) =>
     matcher['_case:matcher:children']

@@ -1,4 +1,4 @@
-import { LogLevel } from '../../entities/types';
+import { LogLevel } from '@contract-case/case-plugin-base';
 
 export interface LogPrinter {
   log: (

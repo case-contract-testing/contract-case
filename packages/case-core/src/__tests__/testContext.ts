@@ -1,4 +1,8 @@
-import { DataContext, Logger, MatchContext } from '../entities/types';
+import {
+  Logger,
+  DataContext,
+  MatchContext,
+} from '@contract-case/case-plugin-base';
 
 export const MAINTAINER_TEST_CONTEXT = {
   testRunId: 'MAINTAINER',

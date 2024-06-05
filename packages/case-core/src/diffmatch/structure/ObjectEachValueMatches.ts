@@ -1,24 +1,23 @@
 import {
   OBJECT_VALUES_MATCH_TYPE,
   CoreObjectValuesMatch,
-  AnyData,
+  CaseNodeFor,
 } from '@contract-case/case-entities-internal';
-import { addLocation } from '../../entities/context';
 import {
+  StripMatcherFn,
+  MatchContext,
+  AnyData,
+  addLocation,
+  CheckMatchFn,
+  MatchResult,
   combineResults,
   makeResults,
   matchingError,
-} from '../../entities/results';
-import type {
-  StripMatcherFn,
-  MatchContext,
-  CheckMatchFn,
-  MatchResult,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 import { isObject, whyNotAnObject } from './internals/objectTests';
 
-const strip: StripMatcherFn<typeof OBJECT_VALUES_MATCH_TYPE> = (
+const strip: StripMatcherFn<CaseNodeFor<typeof OBJECT_VALUES_MATCH_TYPE>> = (
   matcher: CoreObjectValuesMatch,
   matchContext: MatchContext,
 ): AnyData =>
@@ -34,7 +33,7 @@ const strip: StripMatcherFn<typeof OBJECT_VALUES_MATCH_TYPE> = (
         ),
       };
 
-const check: CheckMatchFn<typeof OBJECT_VALUES_MATCH_TYPE> = async (
+const check: CheckMatchFn<CoreObjectValuesMatch> = async (
   matcher: CoreObjectValuesMatch,
   matchContext: MatchContext,
   actual: unknown,
@@ -71,7 +70,8 @@ const check: CheckMatchFn<typeof OBJECT_VALUES_MATCH_TYPE> = async (
 ];
 
 export const ObjectEachValueMatches: MatcherExecutor<
-  typeof OBJECT_VALUES_MATCH_TYPE
+  typeof OBJECT_VALUES_MATCH_TYPE,
+  CoreObjectValuesMatch
 > = {
   describe: (matcher, context) =>
     `an object where each value is ${context.descendAndDescribe(

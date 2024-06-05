@@ -1,19 +1,21 @@
 import {
   AnyCaseNodeType,
   CaseNodeFor,
-  AnyLeafOrStructure,
   AnyCaseMatcher,
-  isCaseNode,
 } from '@contract-case/case-entities-internal';
+import {
+  AnyLeafOrStructure,
+  isCaseNode,
+} from '@contract-case/case-plugin-base';
 import {
   coreAndMatcher,
   coreArrayLengthMatcher,
-} from '../entities/nodes/matchers/auxiliary';
-import * as leafMatchers from '../entities/nodes/matchers/leaf';
+} from '../entities/matchers/auxiliary';
+import * as leafMatchers from '../entities/matchers/leaf';
 import {
   coreShapedArrayMatcher,
   coreShapedObjectMatcher,
-} from '../entities/nodes/matchers/structure';
+} from '../entities/matchers/structure';
 
 export const inferMatcher = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,

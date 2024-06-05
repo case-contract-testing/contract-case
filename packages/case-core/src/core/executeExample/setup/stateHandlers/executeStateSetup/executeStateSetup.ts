@@ -1,14 +1,18 @@
-import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
-import { CaseConfigurationError } from '../../../../../entities';
-import { addLocation } from '../../../../../entities/context';
 import {
-  type StateHandlers,
-  type MatchContext,
+  StateHandlers,
   isSetupFunction,
-  type CaseExample,
-  SETUP_VARIABLE_STATE,
+} from '@contract-case/case-entities-internal';
+import {
+  MatchContext,
+  AnyCaseMatcherOrData,
+  CaseConfigurationError,
+  addLocation,
+} from '@contract-case/case-plugin-base';
+import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import {
   AnyState,
-} from '../../../../../entities/types';
+  SETUP_VARIABLE_STATE,
+} from '@contract-case/case-plugin-base/dist/src/core/states';
 import { validateVariables } from './validateVariables';
 
 const stateSetupHandler =

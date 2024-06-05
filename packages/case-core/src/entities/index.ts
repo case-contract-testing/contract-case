@@ -1,3 +1,2 @@
-export * from './errors';
-export * from './nodes/matchers';
+export * from './matchers';
 export * from './states';

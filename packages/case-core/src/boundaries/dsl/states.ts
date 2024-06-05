@@ -1,4 +1,4 @@
-import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
 import { state } from '../../entities/states';
 import type { AnyState } from '../../entities/types';
 

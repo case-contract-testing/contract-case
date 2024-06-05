@@ -1,32 +1,30 @@
 import {
   ARRAY_LENGTH_MATCHER_TYPE,
   CoreArrayLengthMatcher,
-  AnyData,
   ARRAY_LENGTH_PARAMETER_INFINITE,
 } from '@contract-case/case-entities-internal';
-import { StripUnsupportedError } from '../../entities/errors';
 import {
+  StripMatcherFn,
+  MatchContext,
+  AnyData,
+  StripUnsupportedError,
+  CheckMatchFn,
+  MatchResult,
   combineResults,
   errorWhen,
-  makeResults,
   matchingError,
-} from '../../entities/results';
-import {
-  MatchContext,
-  MatchResult,
-  StripMatcherFn,
-  CheckMatchFn,
+  makeResults,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 
-const strip: StripMatcherFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
+const strip: StripMatcherFn<CoreArrayLengthMatcher> = (
   matcher: CoreArrayLengthMatcher,
   matchContext: MatchContext,
 ): AnyData => {
   throw new StripUnsupportedError(matcher, matchContext);
 };
 
-const check: CheckMatchFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
+const check: CheckMatchFn<CoreArrayLengthMatcher> = (
   matcher: CoreArrayLengthMatcher,
   matchContext: MatchContext,
   actual: unknown,
@@ -69,7 +67,8 @@ const check: CheckMatchFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
       );
 
 export const ArrayLengthExecutor: MatcherExecutor<
-  typeof ARRAY_LENGTH_MATCHER_TYPE
+  typeof ARRAY_LENGTH_MATCHER_TYPE,
+  CoreArrayLengthMatcher
 > = {
   describe: (matcher) =>
     `an array of length min: ${matcher['_case:matcher:minLength']}, max: ${matcher['_case:matcher:maxLength']};`,

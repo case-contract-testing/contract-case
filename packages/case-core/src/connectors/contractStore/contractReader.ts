@@ -1,8 +1,10 @@
 import * as path from 'node:path';
 import * as fs from 'node:fs';
+import {
+  CaseConfigurationError,
+  DataContext,
+} from '@contract-case/case-plugin-base';
 import { DownloadedContract } from '../../core/types.broker';
-import { CaseConfigurationError } from '../../entities';
-import { DataContext } from '../../entities/types';
 import { ContractStore } from '../../core/types.ContractReader';
 
 type Contents<T> = { contents: T; filePath: string };

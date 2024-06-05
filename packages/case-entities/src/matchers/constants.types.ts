@@ -4,7 +4,8 @@ import {
   HTTP_RESPONSE_MATCHER_TYPE,
   URL_ENCODED_STRING_TYPE,
   HTTP_BASIC_AUTH_TYPE,
-} from './http/constants.types';
+} from '@contract-case/case-core-plugin-http-dsl';
+import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-plugin-base';
 
 /* Parameters */
 
@@ -15,7 +16,7 @@ export const CASCADING_CONTEXT_MATCHER_TYPE = '_case:CascadingContext' as const;
 export const SHAPED_OBJECT_MATCHER_TYPE = '_case:ObjectShape' as const;
 export const OBJECT_VALUES_MATCH_TYPE = '_case:ObjectValuesMatch' as const;
 export const OBJECT_KEYS_MATCH_TYPE = '_case:ObjectKeysMatch' as const;
-export const LOOKUP_MATCHER_TYPE = '_case:Lookup' as const;
+
 export const CONTEXT_VARIABLE_TYPE = '_case:ContextVariable' as const;
 export const NUMBER_MATCHER_TYPE = '_case:MatchNumber' as const;
 export const STRING_MATCHER_TYPE = '_case:MatchString' as const;

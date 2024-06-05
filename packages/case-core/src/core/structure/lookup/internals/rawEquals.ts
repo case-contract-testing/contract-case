@@ -1,5 +1,7 @@
-import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
-import { CaseConfigurationError } from '../../../../entities';
+import {
+  AnyCaseMatcherOrData,
+  CaseConfigurationError,
+} from '@contract-case/case-plugin-base';
 
 export const rawEquality = (
   a: AnyCaseMatcherOrData | undefined,

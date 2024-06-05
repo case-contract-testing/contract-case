@@ -1,8 +1,8 @@
+import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import {
-  AnyMockDescriptorType,
   InternalContractCaseCoreBehaviour,
   InternalContractCaseCoreSetup,
-} from '@contract-case/case-entities-internal';
+} from '@contract-case/case-plugin-base';
 
 /**
  * This type defines the core behaviour that ContractCase has with this mock.

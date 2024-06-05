@@ -1,7 +1,7 @@
 import {
-  StateWithVariables,
   NameOnlyState,
-} from '@contract-case/case-entities-internal';
+  StateWithVariables,
+} from '@contract-case/case-plugin-base/dist/src/core/states';
 import { InState, InStateWithVariables } from '.';
 
 describe('state descriptors', () => {

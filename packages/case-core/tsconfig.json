@@ -4,6 +4,14 @@
     "outDir": "dist/",
     "rootDir": "."
   },
-  "include": ["package.json", "src/**/*.ts", "bin"],
+  "include": [
+    "package.json",
+    "src/**/*.ts",
+    "bin",
+    "../case-core-plugin-http/src/plugin/matchers/resolve.ts",
+    "../case-core-plugin-http/src/plugin/matchers/results/results.ts",
+    "../case-core-plugin-http/src/plugin/matchers/renderActual.spec.ts",
+    "../case-core-plugin-http/src/plugin/matchers/renderActual.ts"
+  ],
   "exclude": ["jest.config.ts", "dist/**/*.js", "coverage", "dist"]
 }

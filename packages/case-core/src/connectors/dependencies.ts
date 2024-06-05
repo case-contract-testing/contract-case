@@ -1,10 +1,10 @@
+import { LogLevelContext, DataContext } from '@contract-case/case-plugin-base';
 import { BrokerService } from '../core/BrokerService';
 import {
   CaseConfig,
   ReaderDependencies,
   WriterDependencies,
 } from '../core/types';
-import { DataContext, LogLevelContext } from '../entities/types';
 import { makeBrokerApi } from './broker';
 import { writeContract } from './contractStore';
 import { makeEnvironment } from './BuildEnvironment/BuildEnvironment';

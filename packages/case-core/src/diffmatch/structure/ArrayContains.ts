@@ -1,27 +1,25 @@
 import {
   ARRAY_CONTAINS_TYPE,
-  AnyCaseMatcherOrData,
-  AnyData,
   CoreArrayContainsMatcher,
-  isCaseNode,
 } from '@contract-case/case-entities-internal';
-import { addLocation } from '../../entities/context';
 import {
-  matcherToString,
-  matchingError,
-  combineResults,
-  hasErrors,
-  makeResults,
-} from '../../entities/results';
-import {
-  MatchContext,
-  MatchResult,
   StripMatcherFn,
+  MatchContext,
+  AnyData,
+  addLocation,
+  AnyCaseMatcherOrData,
+  hasErrors,
+  combineResults,
+  makeResults,
+  matchingError,
+  isCaseNode,
+  matcherToString,
   CheckMatchFn,
+  MatchResult,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 
-const strip: StripMatcherFn<typeof ARRAY_CONTAINS_TYPE> = (
+const strip: StripMatcherFn<CoreArrayContainsMatcher> = (
   matcher: CoreArrayContainsMatcher,
   matchContext: MatchContext,
 ): AnyData =>
@@ -81,7 +79,7 @@ const checkMatch = async (
         ),
       );
 
-const check: CheckMatchFn<typeof ARRAY_CONTAINS_TYPE> = async (
+const check: CheckMatchFn<CoreArrayContainsMatcher> = async (
   matcher: CoreArrayContainsMatcher,
   matchContext: MatchContext,
   actual: unknown,
@@ -110,7 +108,10 @@ const check: CheckMatchFn<typeof ARRAY_CONTAINS_TYPE> = async (
         ),
   );
 
-export const ArrayContains: MatcherExecutor<typeof ARRAY_CONTAINS_TYPE> = {
+export const ArrayContains: MatcherExecutor<
+  typeof ARRAY_CONTAINS_TYPE,
+  CoreArrayContainsMatcher
+> = {
   describe: (matcher, matchContext) =>
     `an array containing ${matcher['_case:matcher:matchers']
       .map((childMatcher, index) =>

@@ -1,10 +1,10 @@
 import {
   CoreHttpStatusCodeMatcher,
-  AnyCaseMatcherOrData,
+  httpStatusCodeMatcher,
   CoreUrlEncodedStringMatcher,
-} from '@contract-case/case-entities-internal';
-import { httpStatusCodeMatcher } from '../../../entities';
-import { coreUrlEncodedString } from '../../../entities/nodes/matchers/http/matcher';
+  coreUrlEncodedString,
+} from '@contract-case/case-core-plugin-http-dsl';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
 
 /**
  * Matches http status codes. Matches may be provided as a string, eg '4XX' or '401', or a number.

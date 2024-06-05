@@ -1,15 +1,15 @@
 import {
   CoreContextVariableMatcher,
-  AnyData,
   CONTEXT_VARIABLE_TYPE,
 } from '@contract-case/case-entities-internal';
-import { CaseConfigurationError } from '../../entities';
-import { addLocation } from '../../entities/context';
-import type {
+import {
   MatchContext,
   MatchResult,
+  CaseConfigurationError,
+  addLocation,
+  AnyData,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 
 const check = (
   matcher: CoreContextVariableMatcher,
@@ -85,7 +85,8 @@ const strip = (
 };
 
 export const ContextVariableMatcher: MatcherExecutor<
-  typeof CONTEXT_VARIABLE_TYPE
+  typeof CONTEXT_VARIABLE_TYPE,
+  CoreContextVariableMatcher
 > = {
   describe: (matcher) => `{{${matcher['_case:matcher:variableName']}}}`,
   check,

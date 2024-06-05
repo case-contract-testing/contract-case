@@ -1,16 +1,15 @@
 import { Mutex } from 'async-mutex';
 
-import { CaseCoreError } from '../entities';
-import { addLocation, applyNodeToContext } from '../entities/context';
-import { exampleToNames } from '../entities/contract';
-import type {
-  CaseExample,
+import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
+import {
+  CaseCoreError,
+  applyNodeToContext,
   MatchContext,
-  AnyMockDescriptorType,
-} from '../entities/types';
-
+  addLocation,
+} from '@contract-case/case-plugin-base';
+import { exampleToNames } from '@contract-case/case-plugin-base/dist/src/core/contract';
+import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { BaseCaseContract } from './BaseCaseContract';
-import { executeExample } from './executeExample';
 
 import type { MultiTestInvoker, RunTestCallback } from './executeExample/types';
 import type { CaseConfig } from './config/types';
@@ -19,6 +18,7 @@ import {
   MakeBrokerService,
   ReaderDependencies,
 } from './types';
+import { executeExample } from './executeExample';
 
 export class ReadingCaseContract extends BaseCaseContract {
   private mutex: Mutex;

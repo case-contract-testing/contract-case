@@ -1,10 +1,11 @@
-import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
+import { AnyLeafOrStructure } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
 import { WritingCaseContract } from '../core';
 
 export const makeExpectErrorContaining =
   (contract: WritingCaseContract) =>
   (
-    matcher: AnyCaseMatcherOrData,
+    matcher: AnyCaseMatcher | AnyLeafOrStructure,
     example: unknown,
     expectedContent: string,
   ): void => {

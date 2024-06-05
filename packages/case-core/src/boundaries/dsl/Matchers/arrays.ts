@@ -1,5 +1,4 @@
 import {
-  AnyCaseMatcherOrData,
   CoreArrayEachEntryMatches,
   ARRAY_EACH_ENTRY_MATCHES_TYPE,
   CoreArrayLengthMatcher,
@@ -8,7 +7,10 @@ import {
   CoreShapedArrayMatcher,
 } from '@contract-case/case-entities-internal';
 import {
+  AnyCaseMatcherOrData,
   CaseConfigurationError,
+} from '@contract-case/case-plugin-base';
+import {
   coreArrayLengthMatcher,
   coreShapedArrayMatcher,
 } from '../../../entities';

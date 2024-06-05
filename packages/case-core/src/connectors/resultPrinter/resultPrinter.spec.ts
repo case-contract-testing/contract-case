@@ -1,15 +1,17 @@
 /* eslint-disable jest/expect-expect */
 import {
+  matchingError,
+  VerifyTriggerReturnObjectError,
+} from '@contract-case/case-plugin-base';
+import {
   EMPTY_DATA_CONTEXT,
   EMPTY_MATCH_CONTEXT,
 } from '../../__tests__/testContext';
 import { anyString } from '../../boundaries';
 import { defaultPrinter } from '../../__tests__/jest/defaultTestPrinter';
-import { VerifyTriggerReturnObjectError } from '../../entities';
 import {
   configurationError,
   failedExpectationError,
-  matchingError,
   triggerError,
   verificationError,
 } from '../../entities/results';

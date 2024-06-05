@@ -1,16 +1,18 @@
-import { CaseCoreError } from '../../../../../entities';
-import { addLocation } from '../../../../../entities/context';
-import type { MockData } from '../../../../../entities/nodes/types';
-import type {
+import { MockData } from '@contract-case/case-core-plugin-http-dsl';
+import {
+  AnyMockDescriptor,
   AnyMockDescriptorType,
+} from '@contract-case/case-entities-internal';
+import {
   CaseMockDescriptorFor,
   MatchContext,
-} from '../../../../../entities/types';
-
+  CaseCoreError,
+  addLocation,
+} from '@contract-case/case-plugin-base';
 import type { MockSetupFns } from './types';
 
 const inferMock = <T extends AnyMockDescriptorType>(
-  mock: CaseMockDescriptorFor<T>,
+  mock: CaseMockDescriptorFor<AnyMockDescriptor, T>,
   context: MatchContext,
 ) => {
   context.logger.maintainerDebug('Raw mockDescriptor is', mock);
@@ -36,7 +38,7 @@ const inferMock = <T extends AnyMockDescriptorType>(
 };
 
 const executeMock = <T extends AnyMockDescriptorType>(
-  mock: CaseMockDescriptorFor<T>,
+  mock: CaseMockDescriptorFor<AnyMockDescriptor, T>,
   MockSetup: MockSetupFns,
   context: MatchContext,
 ) => {
@@ -63,7 +65,7 @@ const executeMock = <T extends AnyMockDescriptorType>(
 };
 
 export const mockExecutor = <T extends AnyMockDescriptorType>(
-  mock: CaseMockDescriptorFor<T>,
+  mock: CaseMockDescriptorFor<AnyMockDescriptor, T>,
   MockSetup: MockSetupFns,
   context: MatchContext,
 ): Promise<MockData<T>> =>

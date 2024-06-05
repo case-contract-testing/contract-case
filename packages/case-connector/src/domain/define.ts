@@ -21,7 +21,7 @@
  *      invalidates ID
  */
 
-import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
+import { AnyCaseMatcherOrData } from '@contract-case/case-core';
 import { versionString } from '../versionString';
 import { mapConfig, mapConfigNoId } from './config';
 import {

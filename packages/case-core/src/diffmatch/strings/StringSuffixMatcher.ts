@@ -2,14 +2,15 @@ import {
   CoreStringSuffixMatcher,
   STRING_SUFFIX_TYPE,
 } from '@contract-case/case-entities-internal';
-import { mustResolveToString } from '../../entities';
-import { addLocation } from '../../entities/context';
-import { makeResults, matchingError } from '../../entities/results';
-import type {
+import {
   MatchContext,
   MatchResult,
+  makeResults,
+  matchingError,
+  addLocation,
   MatcherExecutor,
-} from '../../entities/types';
+  mustResolveToString,
+} from '@contract-case/case-plugin-base';
 
 const check = async (
   matcher: CoreStringSuffixMatcher,
@@ -46,7 +47,10 @@ const check = async (
       );
 };
 
-export const StringSuffixMatcher: MatcherExecutor<typeof STRING_SUFFIX_TYPE> = {
+export const StringSuffixMatcher: MatcherExecutor<
+  typeof STRING_SUFFIX_TYPE,
+  CoreStringSuffixMatcher
+> = {
   describe: (matcher: CoreStringSuffixMatcher, matchContext) =>
     `"${matchContext
       .descendAndDescribe(

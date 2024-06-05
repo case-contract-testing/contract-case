@@ -1,5 +1,5 @@
-import { SETUP_VARIABLE_STATE } from '@contract-case/case-entities-internal';
 import { AnyMatcherOrData } from '@contract-case/test-equivalence-matchers';
+import { SETUP_VARIABLE_STATE } from '@contract-case/case-plugin-base/dist/src/core/states';
 import { AnyState } from './AnyState';
 
 /**

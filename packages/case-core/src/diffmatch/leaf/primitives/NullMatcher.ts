@@ -3,18 +3,16 @@ import {
   CoreNullMatcher,
 } from '@contract-case/case-entities-internal';
 import {
-  errorWhen,
-  matchingError,
-  actualToString,
-} from '../../../entities/results';
-import type {
   CheckMatchFn,
   MatchContext,
   CaseError,
+  errorWhen,
+  matchingError,
+  actualToString,
   MatcherExecutor,
-} from '../../../entities/types';
+} from '@contract-case/case-plugin-base';
 
-const check: CheckMatchFn<typeof NULL_MATCHER_TYPE> = (
+const check: CheckMatchFn<CoreNullMatcher> = (
   matcher: CoreNullMatcher,
   matchContext: MatchContext,
   actual: unknown,
@@ -29,7 +27,10 @@ const check: CheckMatchFn<typeof NULL_MATCHER_TYPE> = (
     ),
   );
 
-export const NullMatcher: MatcherExecutor<typeof NULL_MATCHER_TYPE> = {
+export const NullMatcher: MatcherExecutor<
+  typeof NULL_MATCHER_TYPE,
+  CoreNullMatcher
+> = {
   describe: () => `null`,
   check,
   strip: () => null,

@@ -1,4 +1,4 @@
-import { CaseCoreError } from '../../../../entities';
+import { CaseCoreError } from '@contract-case/case-plugin-base';
 import { LookupType } from './types';
 
 export const lookupName = ({

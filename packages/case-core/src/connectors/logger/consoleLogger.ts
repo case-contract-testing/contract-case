@@ -1,9 +1,12 @@
 import { format } from 'pretty-format';
 
+import {
+  LogLevelContext,
+  Logger,
+  shouldLog,
+  locationString,
+} from '@contract-case/case-plugin-base';
 import { caseVersion } from '../../entities/caseVersion';
-import { shouldLog } from '../../entities/logger/shouldLog';
-import { locationString } from '../../entities/context';
-import type { LogLevelContext, Logger } from '../../entities/types';
 import { LogPrinter } from './types';
 
 const caseVersionString = (parentVersions: string[] = []) =>

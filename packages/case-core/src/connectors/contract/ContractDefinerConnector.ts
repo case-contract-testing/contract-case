@@ -1,7 +1,17 @@
+import { SetupInfoFor } from '@contract-case/case-core-plugin-http-dsl';
 import {
-  AnyData,
-  AnyCaseMatcherOrData,
+  AnyCaseMatcher,
+  AnyMockDescriptor,
+  AnyMockDescriptorType,
 } from '@contract-case/case-entities-internal';
+import {
+  CaseMockDescriptorFor,
+  CaseConfigurationError,
+  AnyData,
+  AnyLeafOrStructure,
+} from '@contract-case/case-plugin-base';
+import { AnyState } from '@contract-case/case-plugin-base/dist/src/core/states';
+import { CaseContractDescription } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { WritingCaseContract } from '../../core';
 
 import type {
@@ -10,14 +20,6 @@ import type {
 } from '../../core/executeExample/types';
 import type { CaseConfig } from '../../core/types';
 
-import { CaseConfigurationError } from '../../entities';
-import type {
-  AnyMockDescriptorType,
-  AnyState,
-  CaseMockDescriptorFor,
-  CaseContractDescription,
-  SetupInfoFor,
-} from '../../entities/types';
 import { writerDependencies } from '../dependencies';
 import { TestPrinter } from './types';
 import { configFromEnv } from '../../core/config';
@@ -27,7 +29,7 @@ export type DefinitionSuccessExample<
   R = unknown,
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
-  definition: CaseMockDescriptorFor<T>;
+  definition: CaseMockDescriptorFor<AnyMockDescriptor, T>;
   trigger?: Trigger<T, R>;
   testResponse?: (data: R, config: SetupInfoFor<T>) => unknown;
   triggerAndTest?: Trigger<T>;
@@ -38,7 +40,7 @@ export type DefinitionFailingExample<
   R = unknown,
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
-  definition: CaseMockDescriptorFor<T>;
+  definition: CaseMockDescriptorFor<AnyMockDescriptor, T>;
   trigger?: Trigger<T, R>;
   triggerAndTest?: Trigger<T>;
   testErrorResponse?: (err: Error, config: SetupInfoFor<T>) => unknown;
@@ -165,7 +167,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     return this.contract.endRecord();
   }
 
-  stripMatchers(matcherOrData: AnyCaseMatcherOrData): AnyData {
+  stripMatchers(matcherOrData: AnyCaseMatcher | AnyLeafOrStructure): AnyData {
     return this.contract.stripMatchers(matcherOrData);
   }
 }

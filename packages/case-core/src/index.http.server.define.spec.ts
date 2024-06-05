@@ -3,6 +3,7 @@ import * as fs from 'node:fs';
 
 // These imports are our code under test
 import type * as http from 'node:http';
+import { willReceiveHttpRequest } from '@contract-case/case-core-plugin-http-dsl';
 import start from './__tests__/server/http/connectors/web';
 import type { User } from './__tests__/server/http/model/responses';
 import type { Dependencies } from './__tests__/server/http/domain/types';
@@ -18,7 +19,6 @@ import {
   stateVariable,
   stringPrefix,
   StateHandlers,
-  willReceiveHttpRequest,
 } from '.';
 
 // Normally you just let Case set filename and test-run-id for you

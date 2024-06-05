@@ -1,8 +1,10 @@
-import type {
-  ArbitraryConfig,
-  Assertable,
+import {
   MOCK_HTTP_SERVER,
-} from './entities/types';
+  ArbitraryConfig,
+} from '@contract-case/case-core-plugin-http-dsl';
+import type { Assertable } from './entities/types';
+import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
+import { AnyLeafOrStructure } from '@contract-case/case-plugin-base';
 
 /*!
  * ContractCase
@@ -15,12 +17,21 @@ export * from './boundaries/types';
 export { CaseConfig } from './core/types';
 export { TestInvoker, MultiTestInvoker } from './core/executeExample/types';
 export { BrokerError } from './core';
-export * from './entities/errors';
+export { LogLevel } from '@contract-case/case-plugin-base';
+
 export {
-  LogLevel,
+  CaseConfigurationError,
+  CaseCoreError,
+  CaseFailedAssertionError,
+  CaseTriggerError,
+  VerifyTriggerReturnObjectError,
+} from '@contract-case/case-plugin-base';
+export {
+  AnyMockDescriptorType,
   AnyMockDescriptor,
-  CaseContractDescription,
-} from './entities/types';
+} from '@contract-case/case-entities-internal';
+
+export type AnyCaseMatcherOrData = AnyCaseMatcher | AnyLeafOrStructure;
 
 export * from './connectors';
 

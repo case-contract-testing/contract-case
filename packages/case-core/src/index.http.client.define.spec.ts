@@ -1,5 +1,6 @@
 import * as fs from 'node:fs';
 // These imports are our code under test
+import { willSendHttpRequest } from '@contract-case/case-core-plugin-http-dsl';
 import api from './__tests__/client/http/connector';
 import { ApiError } from './__tests__/client/http/connector/internals/apiErrors';
 import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';
@@ -14,7 +15,6 @@ import {
   shapedLike,
   stateVariable,
   stringPrefix,
-  willSendHttpRequest,
   HttpRequestConfig,
   anyString,
 } from '.';

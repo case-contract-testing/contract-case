@@ -1,5 +1,12 @@
 import * as fs from 'node:fs';
 
+import { willSendHttpRequest } from '@contract-case/case-core-plugin-http-dsl';
+import {
+  DataContext,
+  LogLevelContext,
+  MatchContext,
+  CaseConfigurationError,
+} from '@contract-case/case-plugin-base';
 import {
   and,
   anyBoolean,
@@ -18,16 +25,9 @@ import {
   stringSuffix,
   stringifiedJson,
   uriEncodedString,
-  willSendHttpRequest,
   withExample,
 } from '../../boundaries';
 import { defineContract } from '../../__tests__/jest/jest';
-import { CaseConfigurationError } from '../../entities';
-import type {
-  DataContext,
-  LogLevelContext,
-  MatchContext,
-} from '../../entities/types';
 import { makeBrokerApi } from './broker';
 import { makeLogger } from '../logger';
 import { makeContractStore } from '../contractStore/contractReader';

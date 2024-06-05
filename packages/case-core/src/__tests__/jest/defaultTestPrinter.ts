@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { Console } from 'node:console';
+import { LogLevel } from '@contract-case/case-plugin-base';
 import { LogPrinter } from '../../connectors/logger/types';
-import { LogLevel } from '../../entities/types';
 import {
   PrintableMatchError,
   PrintableMessageError,

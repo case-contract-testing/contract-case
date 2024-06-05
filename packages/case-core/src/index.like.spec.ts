@@ -1,3 +1,4 @@
+import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import {
   anyBoolean,
   anyInteger,
@@ -8,7 +9,6 @@ import {
   shapedLike,
 } from './boundaries/dsl/Matchers';
 
-import { CaseConfigurationError } from './entities';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';

@@ -1,12 +1,19 @@
 import {
+  AnyCaseMatcher,
   AnyCaseNodeType,
   CaseNodeFor,
-  AnyLeafOrStructure,
+  hasExample,
 } from '@contract-case/case-entities-internal';
-import type { MatchContext, MatcherExecutor } from '../entities/types';
-import { CaseCoreError } from '../entities';
-import { foldIntoContext } from '../entities/context';
 
+import {
+  AnyLeafOrStructure,
+  MatchContext,
+  foldIntoContext,
+  MatcherExecutor,
+  CaseCoreError,
+  TraversalFns,
+  AnyCaseMatcher as UnknownCaseNodeType,
+} from '@contract-case/case-plugin-base';
 import { inferMatcher } from '../diffmatch/inferMatcher';
 
 import { MatcherExecutors } from './MatcherExecutors';
@@ -18,8 +25,9 @@ const getExecutor = <T extends AnyCaseNodeType>(
   const matcher = inferMatcher<T>(matcherOrData) as CaseNodeFor<T>;
   const matchContext = foldIntoContext(matcher, parentMatchContext);
 
-  const executor: MatcherExecutor<T> =
-    MatcherExecutors[matcher['_case:matcher:type'] as T];
+  const executor: MatcherExecutor<T, CaseNodeFor<T>> = MatcherExecutors[
+    matcher['_case:matcher:type'] as T
+  ];
   if (!executor) {
     throw new CaseCoreError(
       `Missing executor for matcher type '${matcher['_case:matcher:type']}'`,
@@ -44,31 +52,31 @@ const getExecutor = <T extends AnyCaseNodeType>(
 };
 
 const descendAndCheck = <T extends AnyCaseNodeType>(
-  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
+  matcherOrData: AnyLeafOrStructure | UnknownCaseNodeType | CaseNodeFor<T>,
   parentMatchContext: MatchContext,
   actual: unknown,
-): ReturnType<MatcherExecutor<AnyCaseNodeType>['check']> =>
-  getExecutor(matcherOrData, parentMatchContext).check(actual);
+): ReturnType<MatcherExecutor<T, CaseNodeFor<T>>['check']> =>
+  getExecutor(matcherOrData as AnyCaseMatcher, parentMatchContext).check(
+    actual,
+  );
 
 const descendAndDescribe = <T extends AnyCaseNodeType>(
-  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
+  matcherOrData: AnyLeafOrStructure | UnknownCaseNodeType | CaseNodeFor<T>,
   parentMatchContext: MatchContext,
-): string => getExecutor(matcherOrData, parentMatchContext).name();
+): string =>
+  getExecutor(matcherOrData as AnyCaseMatcher, parentMatchContext).name();
 
 const descendAndStrip = <T extends AnyCaseNodeType>(
-  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
+  matcherOrData: AnyLeafOrStructure | UnknownCaseNodeType | CaseNodeFor<T>,
   parentMatchContext: MatchContext,
-): ReturnType<MatcherExecutor<T>['strip']> => {
-  if (
-    typeof matcherOrData === 'object' &&
-    matcherOrData !== null &&
-    '_case:matcher:example' in matcherOrData
-  ) {
+): ReturnType<MatcherExecutor<T, CaseNodeFor<T>>['strip']> => {
+  if (hasExample(matcherOrData)) {
     parentMatchContext.logger.deepMaintainerDebug(
       `Executing strip with matcher type: ${matcherOrData['_case:matcher:type']} and specific example`,
     );
+
     return getExecutor(
-      matcherOrData['_case:matcher:example'],
+      matcherOrData['_case:matcher:example'] as AnyCaseMatcher,
       parentMatchContext,
     ).strip();
   }
@@ -81,18 +89,21 @@ const descendAndStrip = <T extends AnyCaseNodeType>(
         : `inferred from ${typeof matcherOrData}`
     }`,
   );
-  return getExecutor(matcherOrData, parentMatchContext).strip();
+  return getExecutor(
+    matcherOrData as AnyCaseMatcher,
+    parentMatchContext,
+  ).strip();
 };
 
 const selfVerify = <T extends AnyCaseNodeType>(
-  matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,
+  matcherOrData: AnyLeafOrStructure | UnknownCaseNodeType | CaseNodeFor<T>,
   parentMatchContext: MatchContext,
-): ReturnType<MatcherExecutor<AnyCaseNodeType>['check']> =>
-  getExecutor(matcherOrData, parentMatchContext).check(
-    descendAndStrip(matcherOrData, parentMatchContext),
+): ReturnType<MatcherExecutor<T, CaseNodeFor<T>>['check']> =>
+  getExecutor<T>(matcherOrData as CaseNodeFor<T>, parentMatchContext).check(
+    descendAndStrip<T>(matcherOrData as CaseNodeFor<T>, parentMatchContext),
   );
 
-export const traversals = {
+export const traversals: TraversalFns = {
   descendAndDescribe,
   descendAndCheck,
   descendAndStrip,

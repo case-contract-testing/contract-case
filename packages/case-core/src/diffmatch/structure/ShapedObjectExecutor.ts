@@ -1,25 +1,24 @@
 import {
   SHAPED_OBJECT_MATCHER_TYPE,
   CoreShapedObjectMatcher,
+  CaseNodeFor,
+} from '@contract-case/case-entities-internal';
+import {
+  StripMatcherFn,
+  MatchContext,
   AnyData,
   AnyCaseMatcherOrData,
-} from '@contract-case/case-entities-internal';
-import { addLocation } from '../../entities/context';
-import {
+  addLocation,
   actualToString,
+  CheckMatchFn,
+  MatchResult,
   combineResults,
   makeResults,
   matchingError,
-} from '../../entities/results';
-import type {
-  StripMatcherFn,
-  MatchContext,
-  CheckMatchFn,
-  MatchResult,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 
-const strip: StripMatcherFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = (
+const strip: StripMatcherFn<CaseNodeFor<typeof SHAPED_OBJECT_MATCHER_TYPE>> = (
   matcher: CoreShapedObjectMatcher,
   matchContext: MatchContext,
 ): AnyData =>
@@ -64,7 +63,9 @@ const whyNotAnObject = (actual: unknown) => {
   )} is not an Object.`;
 };
 
-const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
+const check: CheckMatchFn<
+  CaseNodeFor<typeof SHAPED_OBJECT_MATCHER_TYPE>
+> = async (
   matcher: CoreShapedObjectMatcher,
   matchContext: MatchContext,
   actual: unknown,
@@ -113,7 +114,8 @@ const check: CheckMatchFn<typeof SHAPED_OBJECT_MATCHER_TYPE> = async (
 ];
 
 export const ShapedObjectExecutor: MatcherExecutor<
-  typeof SHAPED_OBJECT_MATCHER_TYPE
+  typeof SHAPED_OBJECT_MATCHER_TYPE,
+  CaseNodeFor<typeof SHAPED_OBJECT_MATCHER_TYPE>
 > = {
   describe: (matcher, context) =>
     `an object shaped like {${Object.entries(matcher['_case:matcher:children'])

@@ -1,10 +1,13 @@
 import type * as http from 'http';
-import { willSendHttpRequest } from './entities/nodes/mocks/http';
-import type { MatchResult } from './entities/types';
-import { makeNoErrorResult } from './entities/results';
+import { willSendHttpRequest } from '@contract-case/case-core-plugin-http-dsl';
+import {
+  CaseFailedAssertionError,
+  MatchResult,
+  CaseConfigurationError,
+  makeNoErrorResult,
+} from '@contract-case/case-plugin-base';
 import { anyString, httpStatus, logLevel } from './boundaries/dsl/Matchers';
 import type { CaseConfig } from './core/types';
-import { CaseConfigurationError, CaseFailedAssertionError } from './entities';
 
 import start from './__tests__/server/http/index';
 

@@ -1,17 +1,20 @@
-import { CaseConfigurationError } from '../../../../entities';
-import { addLocation } from '../../../../entities/context';
-import { hasErrors } from '../../../../entities/results';
-import type {
+import {
+  AnyMockDescriptor,
   AnyMockDescriptorType,
-  Assertable,
+} from '@contract-case/case-entities-internal';
+import {
   CaseMockDescriptorFor,
   MatchContext,
-} from '../../../../entities/types';
+  addLocation,
+  hasErrors,
+  CaseConfigurationError,
+} from '@contract-case/case-plugin-base';
 import { mockExecutor } from './mockExecutor';
 import { MockExecutors } from './mockExecutors';
+import { Assertable } from '../../../../entities/types';
 
 export const setupMock = <T extends AnyMockDescriptorType>(
-  mockDescriptor: CaseMockDescriptorFor<T>,
+  mockDescriptor: CaseMockDescriptorFor<AnyMockDescriptor, T>,
   parentMatchContext: MatchContext,
 ): Promise<Assertable<T>> =>
   mockExecutor(mockDescriptor, MockExecutors, parentMatchContext).then(

@@ -1,4 +1,15 @@
 import {
+  CoreHttpStatusCodeMatcher,
+  CoreUrlEncodedStringMatcher,
+  CoreHttpBasicAuthValueMatcher,
+  CoreHttpRequestMatcher,
+  CoreHttpResponseMatcher,
+} from '@contract-case/case-core-plugin-http-dsl';
+import {
+  AnyCaseMatcherOrData,
+  LookupableMatcher,
+} from '@contract-case/case-plugin-base';
+import {
   NUMBER_MATCHER_TYPE,
   STRING_MATCHER_TYPE,
   BOOLEAN_MATCHER_TYPE,
@@ -20,16 +31,8 @@ import {
   BASE64_ENCODED_TYPE,
   JSON_STRINGIFIED_TYPE,
   AnyCaseNodeType,
-  LOOKUP_MATCHER_TYPE,
   ARRAY_LENGTH_PARAMETER_INFINITE,
 } from './constants.types';
-import {
-  HTTP_BASIC_AUTH_TYPE,
-  HTTP_REQUEST_MATCHER_TYPE,
-  HTTP_RESPONSE_MATCHER_TYPE,
-  HTTP_STATUS_CODE_MATCHER_TYPE,
-  URL_ENCODED_STRING_TYPE,
-} from './http/constants.types';
 
 export interface MatchContextByType {
   '_case:context:matchBy': 'type';
@@ -139,7 +142,7 @@ export interface CoreStringPrefixMatcher {
 
 export interface CoreStringSuffixMatcher {
   '_case:matcher:type': typeof STRING_SUFFIX_TYPE;
-  '_case:matcher:prefix': string | AnyCaseStringMatcher;
+  '_case:matcher:prefix': string | AnyCaseMatcher;
   '_case:matcher:suffix': string;
   '_case:matcher:resolvesTo': 'string';
 }
@@ -151,7 +154,7 @@ export interface CoreContextVariableMatcher {
 
 export interface CoreBase64EncodedMatcher {
   '_case:matcher:type': typeof BASE64_ENCODED_TYPE;
-  '_case:matcher:child': AnyCaseStringMatcher;
+  '_case:matcher:child': AnyCaseMatcherOrData;
   '_case:matcher:resolvesTo': 'string';
 }
 
@@ -159,53 +162,6 @@ export interface CoreJsonStringifiedMatcher {
   '_case:matcher:type': typeof JSON_STRINGIFIED_TYPE;
   '_case:matcher:child': AnyCaseMatcherOrData;
   '_case:matcher:resolvesTo': 'string';
-}
-
-export interface LookupableMatcher {
-  '_case:matcher:type': typeof LOOKUP_MATCHER_TYPE;
-  '_case:matcher:uniqueName': string;
-  '_case:matcher:child'?: AnyCaseMatcherOrData;
-}
-
-export interface CoreUrlEncodedStringMatcher {
-  '_case:matcher:type': typeof URL_ENCODED_STRING_TYPE;
-  '_case:matcher:child': AnyCaseMatcherOrData;
-  '_case:matcher:accepts': 'string';
-  '_case:matcher:resolvesTo': 'string';
-}
-
-export interface CoreHttpStatusCodeMatcher {
-  '_case:matcher:type': typeof HTTP_STATUS_CODE_MATCHER_TYPE;
-  '_case:matcher:rule': string | Array<string>;
-  '_case:matcher:example': number;
-  '_case:matcher:resolvesTo': 'HttpStatusCode';
-}
-
-export interface CoreHttpBasicAuthValueMatcher {
-  '_case:matcher:type': typeof HTTP_BASIC_AUTH_TYPE;
-  '_case:matcher:username': AnyCaseMatcherOrData;
-  '_case:matcher:password': AnyCaseMatcherOrData;
-  '_case:matcher:resolvesTo': 'string';
-}
-
-export interface CoreHttpRequestMatcher {
-  '_case:matcher:type': typeof HTTP_REQUEST_MATCHER_TYPE;
-  '_case:matcher:uniqueName'?: string;
-  uniqueName?: string;
-  path: AnyCaseStringMatcher | string;
-  method: AnyCaseStringMatcher | string;
-  body?: AnyCaseMatcherOrData;
-  headers?: AnyCaseMatcherOrData | Record<string, AnyCaseMatcherOrData>;
-  query?: AnyCaseMatcherOrData;
-}
-
-export interface CoreHttpResponseMatcher {
-  '_case:matcher:type': typeof HTTP_RESPONSE_MATCHER_TYPE;
-  '_case:matcher:uniqueName'?: string;
-  uniqueName?: string;
-  status: number | CoreHttpStatusCodeMatcher;
-  body?: AnyCaseMatcherOrData;
-  headers?: AnyCaseMatcherOrData | Record<string, AnyCaseMatcherOrData>;
 }
 
 export type NumberMatcher = CoreNumberMatcher & MatchContextByType;
@@ -244,34 +200,3 @@ export type AnyCaseMatcher =
   | CoreContextVariableMatcher
   | CoreBase64EncodedMatcher
   | CoreJsonStringifiedMatcher;
-
-export type ResolvesTo<T extends string> = {
-  '_case:matcher:resolvesTo': T;
-};
-
-export type AnyCaseMatcherOrData =
-  | AnyCaseMatcher
-  | AnyData
-  | AnyLeafOrStructure;
-
-export type AnyCaseStringMatcher =
-  | Extract<AnyCaseMatcher, ResolvesTo<'string'>>
-  | (AnyCaseMatcher & ResolvesTo<'string'>);
-
-type JsonSerialisablePrimitive = boolean | number | string | null;
-
-export type AnyLeafOrStructure =
-  | JsonSerialisablePrimitive
-  | JsonOrMatcherArray
-  | JsonOrMatcherMap;
-export interface JsonOrMatcherMap {
-  [key: string]: AnyCaseMatcherOrData;
-}
-export type JsonOrMatcherArray = Array<AnyCaseMatcherOrData>;
-
-interface JsonMap {
-  [key: string]: AnyData;
-}
-type JsonArray = Array<AnyData>;
-
-export type AnyData = JsonSerialisablePrimitive | JsonMap | JsonArray;

@@ -3,8 +3,8 @@ import {
   CoreStringMatcher,
   CoreBooleanMatcher,
   CoreNullMatcher,
+  MatchContextByType,
 } from '@contract-case/case-entities-internal';
-import type { MatchContextByType } from '../../../entities/types';
 
 export type NumberMatcher = CoreNumberMatcher & MatchContextByType;
 export type StringMatcher = CoreStringMatcher & MatchContextByType;

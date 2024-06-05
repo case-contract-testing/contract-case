@@ -1,23 +1,26 @@
 import {
-  AnyCaseMatcherOrData,
-  CoreAndCombinationMatcher,
-  AnyCaseMatcher,
-  AnyData,
   HasExample,
+  CoreAndCombinationMatcher,
   CoreCascadingMatcher,
   CASCADING_CONTEXT_MATCHER_TYPE,
-  LookupableMatcher,
-  CoreContextVariableMatcher,
   CONTEXT_VARIABLE_TYPE,
-  ResolvesTo,
+  CoreContextVariableMatcher,
 } from '@contract-case/case-entities-internal';
+import {
+  AnyCaseMatcherOrData,
+  AnyCaseMatcher,
+  AnyData,
+  LookupableMatcher,
+  coreLookupMatcher,
+  MatchContextByExact,
+  ResolvesTo,
+  LogLevel,
+} from '@contract-case/case-plugin-base';
 import {
   coreAndMatcher,
   coreLookupMatcherRequest,
-  coreLookupMatcher,
   coreShapedLike,
 } from '../../../entities';
-import { LogLevel, MatchContextByExact } from '../../../entities/types';
 
 /**
  * Meta matcher that matches all matchers provided. Use this to combine matching rules for the same element

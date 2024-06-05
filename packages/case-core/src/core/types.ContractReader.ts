@@ -1,4 +1,4 @@
-import { DataContext } from '../entities/types';
+import { DataContext } from '@contract-case/case-plugin-base';
 import { ContractFileFromDisk } from './types.broker';
 
 export interface ContractStore {

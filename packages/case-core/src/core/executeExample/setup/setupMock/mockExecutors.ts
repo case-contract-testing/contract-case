@@ -1,8 +1,12 @@
-import { MOCK_HTTP_CLIENT, MOCK_HTTP_SERVER } from '../../../../entities/types';
-
+import {
+  MOCK_HTTP_CLIENT,
+  MOCK_HTTP_SERVER,
+} from '@contract-case/case-core-plugin-http-dsl';
+import {
+  setupHttpResponseConsumer,
+  setupHttpResponseProducer,
+} from '@contract-case/case-core-plugin-http';
 import type { MockSetupFns } from './mockExecutor/types';
-import { setupHttpResponseProducer } from './mockConnectors/mockHttpServer';
-import { setupHttpResponseConsumer } from './mockConnectors/mockHttpClient';
 
 export const MockExecutors: MockSetupFns = {
   [MOCK_HTTP_CLIENT]: setupHttpResponseConsumer,

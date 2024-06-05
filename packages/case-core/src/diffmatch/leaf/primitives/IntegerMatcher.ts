@@ -3,15 +3,13 @@ import {
   INTEGER_MATCH_TYPE,
 } from '@contract-case/case-entities-internal';
 import {
+  MatchContext,
+  CaseError,
   combineResults,
   errorWhen,
   matchingError,
-} from '../../../entities/results';
-import type {
-  MatchContext,
-  CaseError,
   MatcherExecutor,
-} from '../../../entities/types';
+} from '@contract-case/case-plugin-base';
 
 const check = (
   matcher: CoreIntegerMatcher,
@@ -25,7 +23,10 @@ const check = (
     ),
   );
 
-export const IntegerMatcher: MatcherExecutor<typeof INTEGER_MATCH_TYPE> = {
+export const IntegerMatcher: MatcherExecutor<
+  typeof INTEGER_MATCH_TYPE,
+  CoreIntegerMatcher
+> = {
   describe: (matcher: CoreIntegerMatcher, matchContext: MatchContext) =>
     matchContext['_case:context:matchBy'] === 'exact'
       ? `${matcher['_case:matcher:example']}`

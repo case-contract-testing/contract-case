@@ -1,5 +1,4 @@
-import { CaseCoreError } from '@contract-case/case-core';
-import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
+import { CaseCoreError, AnyCaseMatcherOrData } from '@contract-case/case-core';
 import {
   RESULT_SUCCESS,
   RESULT_FAILURE,

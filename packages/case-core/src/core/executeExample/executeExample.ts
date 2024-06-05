@@ -1,33 +1,36 @@
-import { findAndCallTrigger } from './triggers';
-import { setupExample } from './setup';
-
 import {
-  CaseConfigurationError,
-  CaseCoreError,
-  CaseFailedAssertionError,
-  StripUnsupportedError,
-  VerifyTriggerReturnObjectError,
-} from '../../entities';
-import { makeFailedExample, makeSuccessExample } from '../../entities/contract';
-import {
-  hasErrors,
-  makeResults,
-  configurationError,
-  verificationError,
-  handleResult,
-  triggerError,
-} from '../../entities/results';
-import type {
+  AnyMockDescriptor,
   AnyMockDescriptorType,
-  Assertable,
-  CaseExample,
-  CaseMockDescriptorFor,
+} from '@contract-case/case-entities-internal';
+import {
   MatchContext,
-} from '../../entities/types';
-import type { WritingCaseContract } from '../WritingCaseContract';
+  VerifyTriggerReturnObjectError,
+  makeResults,
+  CaseConfigurationError,
+  StripUnsupportedError,
+  CaseTriggerError,
+  CaseFailedAssertionError,
+  CaseCoreError,
+  hasErrors,
+  CaseMockDescriptorFor,
+} from '@contract-case/case-plugin-base';
+import {
+  makeFailedExample,
+  makeSuccessExample,
+} from '@contract-case/case-plugin-base/dist/src/core/contract';
+import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { setupExample } from './setup';
+import { findAndCallTrigger } from './triggers';
+import {
+  verificationError,
+  configurationError,
+  triggerError,
+  handleResult,
+} from '../../entities/results';
+import { InvokingScaffold } from './types';
+import { Assertable } from '../../entities/types';
 import type { ReadingCaseContract } from '../ReadingCaseContract';
-import type { InvokingScaffold } from './types';
-import { CaseTriggerError } from '../../entities/errors/CaseTriggerError';
+import type { WritingCaseContract } from '../WritingCaseContract';
 
 const errorToFailedExample = (
   error: Error,
@@ -112,7 +115,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
       (assertable: Assertable<T>) => {
         context.logger.debug(`Invoking trigger with`, assertable.config);
         return findAndCallTrigger(
-          example.mock as CaseMockDescriptorFor<T>,
+          example.mock as CaseMockDescriptorFor<AnyMockDescriptor, T>,
           {
             trigger,
             triggers,

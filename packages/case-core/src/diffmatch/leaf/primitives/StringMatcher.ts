@@ -3,15 +3,13 @@ import {
   STRING_MATCHER_TYPE,
 } from '@contract-case/case-entities-internal';
 import {
+  MatchContext,
+  CaseError,
   combineResults,
   errorWhen,
   matchingError,
-} from '../../../entities/results';
-import type {
-  MatchContext,
-  CaseError,
   MatcherExecutor,
-} from '../../../entities/types';
+} from '@contract-case/case-plugin-base';
 import { testExactMatch } from './internal/testExactMatch';
 
 const check = (
@@ -35,7 +33,10 @@ const check = (
     ),
   );
 
-export const StringMatcher: MatcherExecutor<typeof STRING_MATCHER_TYPE> = {
+export const StringMatcher: MatcherExecutor<
+  typeof STRING_MATCHER_TYPE,
+  CoreStringMatcher
+> = {
   describe: (matcher, matchContext) =>
     matchContext['_case:context:matchBy'] === 'exact'
       ? `"${matcher['_case:matcher:example']}"`

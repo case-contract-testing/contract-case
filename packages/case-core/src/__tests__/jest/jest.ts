@@ -1,6 +1,6 @@
+import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import type { CaseConfig } from '../../core/types';
 import type { RunTestCallback } from '../../core/executeExample/types';
-import type { AnyMockDescriptorType } from '../../entities/types';
 import type {
   CaseJestConfig,
   DefineCaseJestCallback,

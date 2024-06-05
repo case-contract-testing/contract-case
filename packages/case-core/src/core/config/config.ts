@@ -1,5 +1,4 @@
-import type { RunContext } from '../../entities/types';
-
+import { RunContext } from '@contract-case/case-plugin-base';
 import { CaseConfig, stringConfigArgs } from './types';
 
 const ENV_TO_CONFIG_KEY: Record<string, keyof CaseConfig> = {

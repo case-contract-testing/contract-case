@@ -5,15 +5,16 @@ import { mkdirp } from 'mkdirp';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import type { WriteContract } from '../../core/types';
-
-import { CaseConfigurationError } from '../../entities';
-import type {
+import {
+  DataContext,
   HasContractFileConfig,
+  CaseConfigurationError,
+} from '@contract-case/case-plugin-base';
+import {
   CaseContractDescription,
   ContractData,
-  DataContext,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import type { WriteContract } from '../../core/types';
 
 const checkCurrentRunField = <T extends DataContext>(
   context: DataContext,

@@ -2,18 +2,17 @@ import {
   CoreStringContainsMatcher,
   STRING_CONTAINS_TYPE,
 } from '@contract-case/case-entities-internal';
-import { mustResolveToString, StripUnsupportedError } from '../../entities';
 import {
+  MatchContext,
+  MatchResult,
+  mustResolveToString,
   combineResults,
   errorWhen,
   matchingError,
   makeResults,
-} from '../../entities/results';
-import type {
-  MatchContext,
-  MatchResult,
   MatcherExecutor,
-} from '../../entities/types';
+  StripUnsupportedError,
+} from '@contract-case/case-plugin-base';
 
 const check = async (
   matcher: CoreStringContainsMatcher,
@@ -47,7 +46,8 @@ const check = async (
 };
 
 export const StringContainsMatcher: MatcherExecutor<
-  typeof STRING_CONTAINS_TYPE
+  typeof STRING_CONTAINS_TYPE,
+  CoreStringContainsMatcher
 > = {
   describe: (matcher: CoreStringContainsMatcher, matchContext) =>
     `a string containing "${mustResolveToString(

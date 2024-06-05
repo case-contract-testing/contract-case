@@ -1,5 +1,7 @@
-import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
-import { actualToString } from '../../../entities/results';
+import {
+  AnyCaseMatcherOrData,
+  actualToString,
+} from '@contract-case/case-plugin-base';
 
 export const isObject = (
   actual: unknown,

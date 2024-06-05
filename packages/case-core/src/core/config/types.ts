@@ -1,7 +1,6 @@
-import type { LogLevel } from '../../entities/logger/types';
-
 // TODO figure out a better way to get all the config in here
-import type { HttpResponseProviderConfig } from '../executeExample/setup/setupMock/mockConnectors/types';
+import { HttpResponseProviderConfig } from '@contract-case/case-core-plugin-http';
+import { LogLevel } from '@contract-case/case-plugin-base';
 
 type IsStringArg<K> = K extends keyof Required<BaseCaseConfig>
   ? [Required<BaseCaseConfig>[K]] extends [string | boolean]

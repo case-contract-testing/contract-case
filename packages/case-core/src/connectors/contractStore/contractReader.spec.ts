@@ -1,5 +1,5 @@
+import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import { EMPTY_DATA_CONTEXT } from '../../__tests__/testContext';
-import { CaseConfigurationError } from '../../entities';
 import { makeContractStore, readContract } from './contractReader';
 
 describe('readContract', () => {

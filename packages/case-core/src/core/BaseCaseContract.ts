@@ -1,27 +1,27 @@
 import {
-  AnyCaseMatcherOrData,
-  LookupableMatcher,
-  AnyData,
-} from '@contract-case/case-entities-internal';
-import { traversals } from '../diffmatch';
-
-import { CaseConfigurationError, CaseCoreError } from '../entities';
-import { constructMatchContext, applyNodeToContext } from '../entities/context';
-import { coreShapedLike } from '../entities/nodes/matchers/auxiliary';
-import { hasErrors } from '../entities/results';
-import type {
-  ContractData,
   MatchContext,
-  CaseContractDescription,
+  ResultFormatter,
   LogLevelContext,
   Logger,
   RawLookupFns,
   MatchContextWithoutLookup,
   ContractLookupFns,
+  AnyCaseMatcherOrData,
+  constructMatchContext,
+  CaseConfigurationError,
+  isLookupableMatcher,
+  CaseCoreError,
+  AnyData,
+  applyNodeToContext,
   MatchResult,
-  ResultFormatter,
-} from '../entities/types';
-
+  hasErrors,
+  AnyLeafOrStructure,
+} from '@contract-case/case-plugin-base';
+import {
+  ContractData,
+  CaseContractDescription,
+} from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
 import {
   findMatcher,
   makeContract,
@@ -32,6 +32,8 @@ import {
 import { configToRunContext } from './config';
 import type { CaseConfig } from './config/types';
 import { DEFAULT_TEST_ID } from './defaultTestId';
+import { traversals } from '../diffmatch';
+import { coreShapedLike } from '../entities';
 
 export class BaseCaseContract {
   currentContract: ContractData;
@@ -149,7 +151,7 @@ export class BaseCaseContract {
   }
 
   saveLookupableMatcher(
-    namedMatcher: LookupableMatcher,
+    namedMatcher: AnyCaseMatcherOrData,
     context: MatchContextWithoutLookup,
   ): ContractData {
     if (this.currentContract === undefined) {
@@ -158,6 +160,16 @@ export class BaseCaseContract {
       );
       throw new CaseConfigurationError(
         'Contract was not initialised at the time that saveNamedMatcher was called',
+      );
+    }
+    if (!isLookupableMatcher(namedMatcher)) {
+      context.logger.error(
+        'Non-lookup matcher incorrectly received in saveLookupMatcher. Matcher follows',
+        namedMatcher,
+      );
+      throw new CaseCoreError(
+        `A non-lookup matcher was passed to saveLookupableMatcher. This is an error in a matcher or mock implementation. Please open an issue.`,
+        context,
       );
     }
 
@@ -192,7 +204,7 @@ export class BaseCaseContract {
     );
   }
 
-  stripMatchers(matcherOrData: AnyCaseMatcherOrData): AnyData {
+  stripMatchers(matcherOrData: AnyCaseMatcher | AnyLeafOrStructure): AnyData {
     return traversals.descendAndStrip(
       matcherOrData,
       applyNodeToContext(matcherOrData, this.initialContext),
@@ -200,7 +212,7 @@ export class BaseCaseContract {
   }
 
   checkMatch(
-    matcherOrData: AnyCaseMatcherOrData,
+    matcherOrData: AnyCaseMatcher | AnyLeafOrStructure,
     actual: unknown,
   ): Promise<MatchResult> {
     return Promise.resolve()

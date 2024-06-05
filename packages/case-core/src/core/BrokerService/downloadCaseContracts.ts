@@ -1,4 +1,4 @@
-import { DataContext } from '../../entities/types';
+import { DataContext } from '@contract-case/case-plugin-base';
 import { ContractLink, BrokerApi, DownloadedContract } from '../types.broker';
 
 type ContractRef = {

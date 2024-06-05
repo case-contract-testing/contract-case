@@ -1,4 +1,9 @@
 import {
+  makeNoErrorResult,
+  CaseConfigurationError,
+  StripUnsupportedError,
+} from '@contract-case/case-plugin-base';
+import {
   anyNumber,
   anyString,
   arrayContains,
@@ -9,9 +14,6 @@ import {
   shapedLike,
   withExample,
 } from './boundaries/dsl/Matchers';
-import { CaseConfigurationError } from './entities';
-import { makeNoErrorResult } from './entities/results';
-import { StripUnsupportedError } from './entities/errors/StripUnsupportedError';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';

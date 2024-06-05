@@ -1,12 +1,12 @@
 // We need to allow underscores because they're part of the HAL response
 /* eslint-disable no-underscore-dangle */
-import { CaseConfigurationError } from '../../entities';
-import type {
-  LogContext,
-  ContractData,
-  DataContext,
-} from '../../entities/types';
 
+import {
+  CaseConfigurationError,
+  DataContext,
+  LogContext,
+} from '@contract-case/case-plugin-base';
+import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { makeAxiosConnector } from './axios';
 import { BasicAuth } from './axios/types';
 import {

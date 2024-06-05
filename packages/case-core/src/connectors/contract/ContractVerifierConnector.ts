@@ -1,3 +1,11 @@
+import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
+import {
+  CaseConfigurationError,
+  DataContext,
+  constructDataContext,
+  CaseCoreError,
+} from '@contract-case/case-plugin-base';
+import { CaseContractDescription } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import type {
   CaseConfig,
   ContractFileFromDisk,
@@ -9,16 +17,9 @@ import type {
 } from '../../core/executeExample/types';
 import { ReadingCaseContract } from '../../core/ReadingCaseContract';
 
-import type {
-  AnyMockDescriptorType,
-  CaseContractDescription,
-  DataContext,
-} from '../../entities/types';
 import { readerDependencies } from '../dependencies';
 import { configFromEnv, configToRunContext } from '../../core/config';
-import { constructDataContext } from '../../entities/context';
 import { ContractStore } from '../../core/types.ContractReader';
-import { CaseConfigurationError, CaseCoreError } from '../../entities';
 import { TestPrinter } from './types';
 
 const readContractFromStore = (

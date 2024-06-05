@@ -1,16 +1,14 @@
 import {
   LookupableMatcher,
-  LOOKUP_MATCHER_TYPE,
-  AnyData,
-} from '@contract-case/case-entities-internal';
-import { addLocation } from '../../entities/context';
-import type {
   MatchContext,
   StripMatcherFn,
+  LOOKUP_MATCHER_TYPE,
+  AnyData,
+  addLocation,
   CheckMatchFn,
   MatchResult,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 
 const getMatcher = (matcher: LookupableMatcher, matchContext: MatchContext) => {
   if (
@@ -22,7 +20,7 @@ const getMatcher = (matcher: LookupableMatcher, matchContext: MatchContext) => {
   return matchContext.lookupMatcher(matcher['_case:matcher:uniqueName']);
 };
 
-const strip: StripMatcherFn<typeof LOOKUP_MATCHER_TYPE> = (
+const strip: StripMatcherFn<LookupableMatcher> = (
   matcher: LookupableMatcher,
   matchContext: MatchContext,
 ): AnyData =>
@@ -34,7 +32,7 @@ const strip: StripMatcherFn<typeof LOOKUP_MATCHER_TYPE> = (
     ),
   );
 
-const check: CheckMatchFn<typeof LOOKUP_MATCHER_TYPE> = async (
+const check: CheckMatchFn<LookupableMatcher> = async (
   matcher: LookupableMatcher,
   matchContext: MatchContext,
   actual: unknown,
@@ -48,7 +46,10 @@ const check: CheckMatchFn<typeof LOOKUP_MATCHER_TYPE> = async (
     actual,
   );
 
-export const LookupMatcher: MatcherExecutor<typeof LOOKUP_MATCHER_TYPE> = {
+export const LookupMatcher: MatcherExecutor<
+  typeof LOOKUP_MATCHER_TYPE,
+  LookupableMatcher
+> = {
   describe: (matcher: LookupableMatcher, matchContext: MatchContext) =>
     matchContext.descendAndDescribe(
       getMatcher(matcher, matchContext),

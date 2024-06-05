@@ -1,13 +1,13 @@
 import {
   CoreCascadingMatcher,
-  AnyData,
   CASCADING_CONTEXT_MATCHER_TYPE,
 } from '@contract-case/case-entities-internal';
-import type {
+import {
   MatchContext,
   MatchResult,
+  AnyData,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 
 const check = (
   matcher: CoreCascadingMatcher,
@@ -27,7 +27,8 @@ const strip = (
   matchContext.descendAndStrip(matcher['_case:matcher:child'], matchContext);
 
 export const CascadingContext: MatcherExecutor<
-  typeof CASCADING_CONTEXT_MATCHER_TYPE
+  typeof CASCADING_CONTEXT_MATCHER_TYPE,
+  CoreCascadingMatcher
 > = {
   describe: (matcher, matchContext) =>
     matchContext.descendAndDescribe(

@@ -1,11 +1,10 @@
 import {
   AnyCaseMatcherOrData,
+  MatchContextWithoutLookup,
   isLookupableMatcher,
-} from '@contract-case/case-entities-internal';
-import {
-  type MatchContextWithoutLookup,
-  type AnyMockDescriptor,
-} from '../../../entities/types';
+  AnyMockDescriptor,
+  AnyCaseMatcher,
+} from '@contract-case/case-plugin-base';
 import { addLookup } from './internals';
 import type { LookupMap } from './types';
 
@@ -36,7 +35,6 @@ export const addMock = (
   mock: AnyMockDescriptor,
   context: MatchContextWithoutLookup,
 ): LookupMap =>
-  [mock.request, mock.response].reduce(
-    (acc, curr) => addMatcher(acc, curr, context),
-    matcherLookup,
-  );
+  [mock.request, mock.response]
+    .filter((x): x is AnyCaseMatcher => x !== undefined)
+    .reduce((acc, curr) => addMatcher(acc, curr, context), matcherLookup);

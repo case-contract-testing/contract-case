@@ -1,7 +1,5 @@
-import {
-  AnyMockDescriptor,
-  AnyState,
-} from '@contract-case/case-entities-internal';
+import { AnyMockDescriptor } from '@contract-case/case-entities-internal';
+import { AnyState } from '@contract-case/case-core';
 import { BoundaryStateHandler, ITriggerFunction } from '../entities/types';
 
 export type ConnectorStateHandler = BoundaryStateHandler;

@@ -1,9 +1,10 @@
 /* eslint-disable jest/expect-expect */
 import { http } from '@contract-case/test-equivalence-matchers';
+
 import {
-  ConsumeHttpResponse,
   ProduceHttpResponse,
-} from '@contract-case/case-entities-internal';
+  ConsumeHttpResponse,
+} from '@contract-case/case-core-plugin-http-dsl';
 import { WillReceiveHttpRequest, WillSendHttpRequest } from '.';
 
 describe('http mocks', () => {

@@ -1,18 +1,20 @@
 import {
+  AnyMockDescriptor,
+  AnyMockDescriptorType,
+} from '@contract-case/case-entities-internal';
+import {
+  MatchContext,
   VerifyTriggerReturnObjectError,
+  CaseTriggerError,
   CaseConfigurationError,
   CaseCoreError,
   CaseFailedAssertionError,
-} from '../../entities';
-import { CaseTriggerError } from '../../entities/errors/CaseTriggerError';
-import { failedExpectationError, makeResults } from '../../entities/results';
-import type {
-  AnyMockDescriptorType,
-  Assertable,
+  makeResults,
   CaseMockDescriptorFor,
-  MatchContext,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
+import { failedExpectationError } from '../../entities/results';
 import type { InvokingScaffold, Trigger } from './types';
+import { Assertable } from '../../entities/types';
 
 const invokeTrigger = <T extends AnyMockDescriptorType, R>(
   trigger: Trigger<T, R>,
@@ -76,7 +78,7 @@ const invokeFailingTrigger = <T extends AnyMockDescriptorType, R>(
   );
 
 export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
-  mock: CaseMockDescriptorFor<T>,
+  mock: CaseMockDescriptorFor<AnyMockDescriptor, T>,
   {
     trigger,
     triggerAndTest,

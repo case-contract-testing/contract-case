@@ -2,21 +2,20 @@ import {
   BOOLEAN_MATCHER_TYPE,
   CoreBooleanMatcher,
 } from '@contract-case/case-entities-internal';
+
 import {
+  CheckMatchFn,
+  MatchContext,
+  CaseError,
   combineResults,
   makeResults,
   matchingError,
   actualToString,
-} from '../../../entities/results';
-import type {
-  CaseError,
-  CheckMatchFn,
-  MatchContext,
   MatcherExecutor,
-} from '../../../entities/types';
+} from '@contract-case/case-plugin-base';
 import { testExactMatch } from './internal/testExactMatch';
 
-const check: CheckMatchFn<typeof BOOLEAN_MATCHER_TYPE> = (
+const check: CheckMatchFn<CoreBooleanMatcher> = (
   matcher: CoreBooleanMatcher,
   matchContext: MatchContext,
   actual: unknown,
@@ -37,7 +36,10 @@ const check: CheckMatchFn<typeof BOOLEAN_MATCHER_TYPE> = (
       : makeResults(),
   );
 
-export const BooleanMatcher: MatcherExecutor<typeof BOOLEAN_MATCHER_TYPE> = {
+export const BooleanMatcher: MatcherExecutor<
+  typeof BOOLEAN_MATCHER_TYPE,
+  CoreBooleanMatcher
+> = {
   describe: (matcher: CoreBooleanMatcher, matchContext: MatchContext) =>
     matchContext['_case:context:matchBy'] === 'exact'
       ? `${matcher['_case:matcher:example']}`

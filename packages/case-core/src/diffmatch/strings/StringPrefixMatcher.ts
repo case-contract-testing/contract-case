@@ -2,14 +2,15 @@ import {
   CoreStringPrefixMatcher,
   STRING_PREFIX_TYPE,
 } from '@contract-case/case-entities-internal';
-import { mustResolveToString } from '../../entities';
-import { addLocation } from '../../entities/context';
-import { makeResults, matchingError } from '../../entities/results';
-import type {
+import {
   MatchContext,
   MatchResult,
+  makeResults,
+  matchingError,
+  addLocation,
   MatcherExecutor,
-} from '../../entities/types';
+  mustResolveToString,
+} from '@contract-case/case-plugin-base';
 
 const check = async (
   matcher: CoreStringPrefixMatcher,
@@ -43,7 +44,10 @@ const check = async (
       );
 };
 
-export const StringPrefixMatcher: MatcherExecutor<typeof STRING_PREFIX_TYPE> = {
+export const StringPrefixMatcher: MatcherExecutor<
+  typeof STRING_PREFIX_TYPE,
+  CoreStringPrefixMatcher
+> = {
   describe: (matcher: CoreStringPrefixMatcher, matchContext) =>
     `"${matcher['_case:matcher:prefix']}${matchContext
       .descendAndDescribe(

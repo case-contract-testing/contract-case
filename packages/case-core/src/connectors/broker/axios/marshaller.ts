@@ -2,8 +2,8 @@
 // the relevant response objects or errors
 
 import axios, { AxiosResponse } from 'axios';
+import { CaseCoreError } from '@contract-case/case-plugin-base';
 import { BrokerError } from '../../../core';
-import { CaseCoreError } from '../../../entities';
 import { API_ERROR, API_NOT_AUTHORISED, API_NO_RESPONSE } from './apiErrors';
 
 export const unmarshallSuccess = <T>(response: AxiosResponse<T>): T =>

@@ -1,4 +1,4 @@
-import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
 
 export type LookupType = 'matcher' | 'variable:default' | 'variable:state';
 

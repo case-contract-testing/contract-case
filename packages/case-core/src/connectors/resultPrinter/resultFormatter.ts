@@ -1,19 +1,19 @@
-import { exampleToNames } from '../../entities/contract';
-import { actualToString } from '../../entities/results';
 import {
-  type CaseError,
-  ERROR_TYPE_MATCHING,
-  ERROR_TYPE_CONFIGURATION,
-  ERROR_TYPE_TEST_RESPONSE,
-  type CaseExample,
-  type ResultFormatter,
-  ERROR_TYPE_RAW_MATCH,
   LogLevelContext,
+  locationString,
+  CaseError,
   DataContext,
+  ERROR_TYPE_MATCHING,
+  ERROR_TYPE_RAW_MATCH,
+  actualToString,
+  ERROR_TYPE_CONFIGURATION,
   ERROR_TYPE_TRIGGER,
+  ERROR_TYPE_TEST_RESPONSE,
   ConfigurationError,
-} from '../../entities/types';
-import { locationString } from '../../entities/context';
+  ResultFormatter,
+} from '@contract-case/case-plugin-base';
+import { exampleToNames } from '@contract-case/case-plugin-base/dist/src/core/contract';
+import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { ResultPrinter } from './types';
 
 const locationTitleLine = (

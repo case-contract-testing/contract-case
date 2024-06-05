@@ -1,5 +1,5 @@
-import type { MockSetupFn } from '../../../../../entities/nodes/mocks/setup.types';
-import type { AnyMockDescriptorType } from '../../../../../entities/types';
+import { MockSetupFn } from '@contract-case/case-core-plugin-http-dsl';
+import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 
 export type MockSetupFns = {
   [T in AnyMockDescriptorType]: MockSetupFn<T>;

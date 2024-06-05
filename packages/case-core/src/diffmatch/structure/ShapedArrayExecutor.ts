@@ -1,24 +1,23 @@
 import {
   SHAPED_ARRAY_MATCHER_TYPE,
   CoreShapedArrayMatcher,
-  AnyData,
+  CaseNodeFor,
 } from '@contract-case/case-entities-internal';
-import { addLocation } from '../../entities/context';
 import {
+  StripMatcherFn,
+  MatchContext,
+  AnyData,
+  addLocation,
+  CheckMatchFn,
+  MatchResult,
   combineResults,
   makeResults,
   matchingError,
   makeNoErrorResult,
-} from '../../entities/results';
-import type {
-  StripMatcherFn,
-  MatchContext,
-  CheckMatchFn,
-  MatchResult,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 
-const strip: StripMatcherFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = (
+const strip: StripMatcherFn<CaseNodeFor<typeof SHAPED_ARRAY_MATCHER_TYPE>> = (
   matcher: CoreShapedArrayMatcher,
   matchContext: MatchContext,
 ): AnyData =>
@@ -29,7 +28,9 @@ const strip: StripMatcherFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = (
     ),
   );
 
-const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
+const check: CheckMatchFn<
+  CaseNodeFor<typeof SHAPED_ARRAY_MATCHER_TYPE>
+> = async (
   matcher: CoreShapedArrayMatcher,
   matchContext: MatchContext,
   actual: unknown,
@@ -81,7 +82,8 @@ const check: CheckMatchFn<typeof SHAPED_ARRAY_MATCHER_TYPE> = async (
   );
 
 export const ShapedArrayExecutor: MatcherExecutor<
-  typeof SHAPED_ARRAY_MATCHER_TYPE
+  typeof SHAPED_ARRAY_MATCHER_TYPE,
+  CaseNodeFor<typeof SHAPED_ARRAY_MATCHER_TYPE>
 > = {
   describe: (matcher, context) =>
     `an array shaped like [${matcher['_case:matcher:children']

@@ -1,20 +1,18 @@
 import {
   CoreJsonStringifiedMatcher,
-  AnyData,
   JSON_STRINGIFIED_TYPE,
 } from '@contract-case/case-entities-internal';
-import { CaseConfigurationError } from '../../entities';
-import { addLocation } from '../../entities/context';
 import {
-  actualToString,
-  makeResults,
-  matchingError,
-} from '../../entities/results';
-import type {
   MatchContext,
   MatchResult,
+  makeResults,
+  matchingError,
+  actualToString,
+  addLocation,
+  AnyData,
+  CaseConfigurationError,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 
 const check = (
   matcher: CoreJsonStringifiedMatcher,
@@ -82,7 +80,8 @@ const strip = (
 };
 
 export const JsonStringifiedString: MatcherExecutor<
-  typeof JSON_STRINGIFIED_TYPE
+  typeof JSON_STRINGIFIED_TYPE,
+  CoreJsonStringifiedMatcher
 > = {
   describe: (matcher, matchContext) =>
     `json stringified '${matchContext.descendAndDescribe(

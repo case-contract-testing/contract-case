@@ -1,57 +1,17 @@
-import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
-import { locationString } from '../../entities/context';
-import type { MatchContext } from '../../entities/context/types';
-import type {
-  CaseTriggerError,
-  VerifyTriggerReturnObjectError,
-} from '../../entities/errors';
 import {
-  ERROR_TYPE_MATCHING,
+  MatchContext,
   CaseError,
+  ERROR_TYPE_RAW_MATCH,
+  locationString,
   ConfigurationError,
   ERROR_TYPE_CONFIGURATION,
-  ERROR_TYPE_TEST_RESPONSE,
-  VerificationError,
-  ERROR_TYPE_RAW_MATCH,
-  ERROR_TYPE_TRIGGER,
+  CaseTriggerError,
   TriggerError,
-} from './types';
-
-export const errorWhen = (
-  test: boolean,
-  err: CaseError | Array<CaseError>,
-): Array<CaseError> => (test ? [err].flat() : []);
-
-/**
- * This represents a mismatched matcher
- *
- * @param matcher - The matcher that generated this error
- * @param message - The message that describes this error
- * @param actual - The actual value that was recieved
- * @param context - The match context this occurred in
- * @param expected - An optional expected value (might be a description of what was expected)
- * @returns CaseError
- */
-export const matchingError = (
-  matcher: AnyCaseMatcher,
-  message: string,
-  actual: unknown,
-  context: MatchContext,
-  expected?: unknown,
-): CaseError => ({
-  type: ERROR_TYPE_MATCHING,
-  matcher,
-  message,
-  expected:
-    expected ||
-    ('_case:matcher:example' in matcher
-      ? matcher['_case:matcher:example']
-      : context.descendAndStrip(matcher, context)),
-  actual,
-  location: context['_case:currentRun:context:location'],
-  toString: () =>
-    `${locationString(context)}: ${message} (${matcher['_case:matcher:type']})`,
-});
+  ERROR_TYPE_TRIGGER,
+  VerifyTriggerReturnObjectError,
+  VerificationError,
+  ERROR_TYPE_TEST_RESPONSE,
+} from '@contract-case/case-plugin-base';
 
 /**
  * This represents a mismatch during a case execution that isn't covered by a
@@ -99,7 +59,7 @@ export const configurationError = (
 });
 
 /**
- *This represents an error thrown by user code during execution of an example
+ * This represents an error thrown by user code during execution of an example
  * (eg, when a user's trigger is called)
  * @param error - The error thrown
  * @param context - the context that the error was in

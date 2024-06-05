@@ -1,20 +1,18 @@
 import {
   CoreBase64EncodedMatcher,
-  AnyData,
   BASE64_ENCODED_TYPE,
 } from '@contract-case/case-entities-internal';
-import { CaseConfigurationError } from '../../entities';
-import { addLocation } from '../../entities/context';
 import {
-  actualToString,
-  makeResults,
-  matchingError,
-} from '../../entities/results';
-import type {
   MatchContext,
   MatchResult,
+  addLocation,
+  makeResults,
+  matchingError,
+  actualToString,
+  AnyData,
+  CaseConfigurationError,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 
 const check = (
   matcher: CoreBase64EncodedMatcher,
@@ -69,7 +67,8 @@ const strip = (
 };
 
 export const Base64EncodedStringMatcher: MatcherExecutor<
-  typeof BASE64_ENCODED_TYPE
+  typeof BASE64_ENCODED_TYPE,
+  CoreBase64EncodedMatcher
 > = {
   describe: (matcher, matchContext) =>
     `base64 encoded string '${matchContext.descendAndDescribe(

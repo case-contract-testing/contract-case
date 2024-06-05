@@ -1,4 +1,4 @@
-import { CaseCoreError } from '../../../../entities';
+import { CaseCoreError } from '@contract-case/case-plugin-base';
 import { stripType } from './lookupName';
 
 describe('stripType', () => {

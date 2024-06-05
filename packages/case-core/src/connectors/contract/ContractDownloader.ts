@@ -1,9 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 
+import {
+  DataContext,
+  ResultFormatter,
+  constructDataContext,
+} from '@contract-case/case-plugin-base';
 import type { CaseConfig, WriteContract } from '../../core/types';
 
-import type { DataContext, ResultFormatter } from '../../entities/types';
-import { constructDataContext } from '../../entities/context';
 import { configFromEnv, configToRunContext } from '../../core/config';
 import { writerDependencies } from '../dependencies';
 import { BrokerService } from '../../core/BrokerService';

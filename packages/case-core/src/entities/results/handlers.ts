@@ -1,19 +1,20 @@
 import {
-  CaseConfigurationError,
-  CaseFailedAssertionError,
+  MatchContext,
+  TriggerError,
+  ERROR_TYPE_TRIGGER,
   CaseTriggerError,
-} from '../../entities';
-import type { MatchContext } from '../../entities/context/types';
-import type { CaseExample } from '../../entities/contract/types';
-import {
-  ERROR_TYPE_CONFIGURATION,
   ERROR_TYPE_MATCHING,
   ERROR_TYPE_RAW_MATCH,
-  ERROR_TYPE_TEST_RESPONSE,
-  ERROR_TYPE_TRIGGER,
-  TriggerError,
+  CaseFailedAssertionError,
   VerificationError,
-} from './types';
+  ERROR_TYPE_TEST_RESPONSE,
+  ERROR_TYPE_CONFIGURATION,
+  CaseConfigurationError,
+} from '@contract-case/case-plugin-base';
+// TODO: Move the "core" types back into the core package
+// They're only in the base, because of the result printer type on the context
+// eslint-disable-next-line no-restricted-imports
+import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 
 export const handleResult = (
   example: CaseExample,

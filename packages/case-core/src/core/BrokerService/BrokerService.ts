@@ -1,6 +1,11 @@
-import { CaseConfigurationError, CaseCoreError } from '../../entities';
-import { addLocation } from '../../entities/context';
-import { ContractData, DataContext, MatchContext } from '../../entities/types';
+import {
+  MatchContext,
+  addLocation,
+  CaseConfigurationError,
+  CaseCoreError,
+  DataContext,
+} from '@contract-case/case-plugin-base';
+import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import {
   BrokerApi,
   DownloadedContract,

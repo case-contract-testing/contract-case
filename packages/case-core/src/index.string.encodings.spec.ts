@@ -1,3 +1,4 @@
+import { makeNoErrorResult } from '@contract-case/case-plugin-base';
 import {
   anyString,
   arrayEachEntryMatches,
@@ -5,7 +6,6 @@ import {
   stringifiedJson,
 } from './boundaries/dsl/Matchers';
 
-import { makeNoErrorResult } from './entities/results';
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
 import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';

@@ -1,23 +1,21 @@
 import {
   ARRAY_EACH_ENTRY_MATCHES_TYPE,
   CoreArrayEachEntryMatches,
-  AnyData,
 } from '@contract-case/case-entities-internal';
-import { addLocation } from '../../entities/context';
 import {
-  matchingError,
+  StripMatcherFn,
+  MatchContext,
+  AnyData,
+  addLocation,
+  CheckMatchFn,
+  MatchResult,
   combineResults,
   makeResults,
-} from '../../entities/results';
-import type {
-  MatchContext,
-  MatchResult,
-  StripMatcherFn,
-  CheckMatchFn,
+  matchingError,
   MatcherExecutor,
-} from '../../entities/types';
+} from '@contract-case/case-plugin-base';
 
-const strip: StripMatcherFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = (
+const strip: StripMatcherFn<CoreArrayEachEntryMatches> = (
   matcher: CoreArrayEachEntryMatches,
   matchContext: MatchContext,
 ): AnyData =>
@@ -33,7 +31,7 @@ const strip: StripMatcherFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = (
         ),
       ];
 
-const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = async (
+const check: CheckMatchFn<CoreArrayEachEntryMatches> = async (
   matcher: CoreArrayEachEntryMatches,
   matchContext: MatchContext,
   actual: unknown,
@@ -75,7 +73,8 @@ const check: CheckMatchFn<typeof ARRAY_EACH_ENTRY_MATCHES_TYPE> = async (
   );
 
 export const EachArrayEntryMatches: MatcherExecutor<
-  typeof ARRAY_EACH_ENTRY_MATCHES_TYPE
+  typeof ARRAY_EACH_ENTRY_MATCHES_TYPE,
+  CoreArrayEachEntryMatches
 > = {
   describe: (matcher, context) =>
     `an array where each entry matches ${context.descendAndDescribe(

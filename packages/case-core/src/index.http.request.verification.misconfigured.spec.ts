@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import type * as http from 'node:http';
 
+import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import type { RunTestCallback } from './core/executeExample/types';
 import type { StateHandlers } from './entities/states/types';
 
 import start from './__tests__/server/http/connectors/web';
 import { baseService } from './__tests__/server/http/domain/baseService';
 import type { User } from './__tests__/server/http/model/responses';
-import { CaseConfigurationError } from './entities';
 import type { Dependencies } from './__tests__/server/http/domain/types';
 
 import { ReadingCaseContract } from './core';

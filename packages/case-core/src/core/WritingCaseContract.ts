@@ -1,24 +1,28 @@
 import { Mutex } from 'async-mutex';
 
-import { CaseCoreError, CaseFailedAssertionError } from '../entities';
-import { applyNodeToContext, addLocation } from '../entities/context';
-import { nameMock, exampleToNames } from '../entities/contract';
-import { makeResults } from '../entities/results';
+import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import {
-  type CaseContractDescription,
-  SETUP_VARIABLE_STATE,
-  type CaseExample,
-  type MatchContext,
+  applyNodeToContext,
+  nameMock,
+  MatchContext,
+  CaseCoreError,
+  addLocation,
+  CaseFailedAssertionError,
+  makeResults,
   ERROR_TYPE_CONFIGURATION,
-  AnyMockDescriptorType,
-} from '../entities/types';
-
+} from '@contract-case/case-plugin-base';
+import {
+  CaseContractDescription,
+  CaseExample,
+} from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { exampleToNames } from '@contract-case/case-plugin-base/dist/src/core/contract';
 import { BaseCaseContract } from './BaseCaseContract';
 import { addExample, hasFailure } from './structure';
 import type { TestInvoker } from './executeExample/types';
 import type { CaseConfig, WriterDependencies } from './types';
 import { configToRunContext } from './config';
 import { executeExample } from './executeExample';
+import { SETUP_VARIABLE_STATE } from '../entities/types';
 
 export class WritingCaseContract extends BaseCaseContract {
   private testIndex = 0;

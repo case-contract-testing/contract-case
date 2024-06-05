@@ -1,9 +1,9 @@
-import type {
+import {
   DataContext,
+  ResultFormatter,
   LogLevelContext,
   Logger,
-  ResultFormatter,
-} from '../entities/types';
+} from '@contract-case/case-plugin-base';
 import { BrokerService } from './BrokerService';
 import { CaseConfig } from './config/types';
 import { MakeContractStore } from './types.ContractReader';

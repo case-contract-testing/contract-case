@@ -1,12 +1,14 @@
-import { CaseConfigurationError } from '../../../../entities';
-import { addLocation } from '../../../../entities/context';
 import {
-  type StateHandlers,
-  type MatchContext,
+  StateHandlers,
   isSetupFunction,
-  type CaseExample,
-  AnyState,
-} from '../../../../entities/types';
+} from '@contract-case/case-entities-internal';
+import {
+  MatchContext,
+  addLocation,
+  CaseConfigurationError,
+} from '@contract-case/case-plugin-base';
+import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { AnyState } from '@contract-case/case-plugin-base/dist/src/core/states/states';
 
 const stateTeardownHandler = (
   stateSetups: StateHandlers,

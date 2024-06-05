@@ -1,9 +1,10 @@
 import {
   AnyCaseMatcherOrData,
+  CaseConfigurationError,
   isLookupableMatcher,
-} from '@contract-case/case-entities-internal';
-import { CaseConfigurationError, CaseCoreError } from '../../../../entities';
-import type { MatchContextWithoutLookup } from '../../../../entities/types';
+  CaseCoreError,
+  MatchContextWithoutLookup,
+} from '@contract-case/case-plugin-base';
 import { rawEquality } from './rawEquals';
 import type { LookupMap, LookupType } from './types';
 import { lookupName, stripType } from './lookupName';

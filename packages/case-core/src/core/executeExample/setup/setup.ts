@@ -1,14 +1,17 @@
-import { exampleToNames } from '../../../entities/contract';
-import type {
-  CaseExample,
-  StateHandlers,
-  MatchContext,
+import {
+  AnyMockDescriptor,
   AnyMockDescriptorType,
-  Assertable,
+  StateHandlers,
+} from '@contract-case/case-entities-internal';
+import {
+  MatchContext,
   CaseMockDescriptorFor,
-} from '../../../entities/types';
+} from '@contract-case/case-plugin-base';
+import { exampleToNames } from '@contract-case/case-plugin-base/dist/src/core/contract';
+import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { setupMock } from './setupMock';
 import { executeStateTeardown, executeStateSetup } from './stateHandlers';
+import { Assertable } from '../../../entities/types';
 
 const setupWithTeardown =
   <T extends AnyMockDescriptorType>(
@@ -17,15 +20,16 @@ const setupWithTeardown =
   ) =>
   (context: MatchContext) => {
     context.logger.maintainerDebug(`Calling setupUnhandledAssert`);
-    return setupMock(example.mock as CaseMockDescriptorFor<T>, context).then(
-      (assertable: Assertable<T>) => ({
-        ...assertable,
-        assert: () =>
-          assertable
-            .assert()
-            .finally(() => executeStateTeardown(example, stateSetups, context)),
-      }),
-    );
+    return setupMock(
+      example.mock as CaseMockDescriptorFor<AnyMockDescriptor, T>,
+      context,
+    ).then((assertable: Assertable<T>) => ({
+      ...assertable,
+      assert: () =>
+        assertable
+          .assert()
+          .finally(() => executeStateTeardown(example, stateSetups, context)),
+    }));
   };
 
 export const setupExample = <T extends AnyMockDescriptorType>(

@@ -1,9 +1,9 @@
+import { AnyMatcherOrData } from '@contract-case/test-equivalence-matchers';
+
 import {
   MOCK_HTTP_CLIENT,
   MOCK_HTTP_SERVER,
-} from '@contract-case/case-entities-internal';
-import { AnyMatcherOrData } from '@contract-case/test-equivalence-matchers';
-
+} from '@contract-case/case-core-plugin-http-dsl';
 import { AnyMockDescriptor } from '../base/AnyMockDescriptor';
 import { HttpExample } from './types';
 

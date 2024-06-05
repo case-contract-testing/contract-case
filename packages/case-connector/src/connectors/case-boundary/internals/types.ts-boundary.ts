@@ -1,5 +1,8 @@
-import { AnyMockDescriptor, AnyState } from '@contract-case/case-core';
-import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
+import {
+  AnyMockDescriptor,
+  AnyCaseMatcherOrData,
+  AnyState,
+} from '@contract-case/case-core';
 
 /**
  * This type is used for any matcher
