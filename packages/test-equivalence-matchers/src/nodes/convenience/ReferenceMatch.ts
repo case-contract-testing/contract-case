@@ -1,4 +1,4 @@
-import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-entities-internal';
+import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-plugin-base';
 import { AnyMatcher } from '../base';
 
 /**

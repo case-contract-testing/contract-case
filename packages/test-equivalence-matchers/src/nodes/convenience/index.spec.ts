@@ -3,8 +3,8 @@ import {
   CONTEXT_VARIABLE_TYPE,
   CoreAndCombinationMatcher,
   CoreContextVariableMatcher,
-  LookupableMatcher,
 } from '@contract-case/case-entities-internal';
+import { LookupableMatcher } from '@contract-case/case-plugin-base';
 import {
   And,
   ChangeLogLevel,

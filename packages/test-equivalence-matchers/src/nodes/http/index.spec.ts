@@ -1,8 +1,8 @@
+import { CoreStringPrefixMatcher } from '@contract-case/case-entities-internal';
 import {
-  CoreStringPrefixMatcher,
   CoreHttpStatusCodeMatcher,
   CoreUrlEncodedStringMatcher,
-} from '@contract-case/case-entities-internal';
+} from '@contract-case/case-core-plugin-http-dsl';
 import {
   BasicAuthHeaderValue,
   BearerTokenHeaderValue,

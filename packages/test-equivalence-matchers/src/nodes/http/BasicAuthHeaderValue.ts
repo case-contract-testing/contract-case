@@ -1,4 +1,4 @@
-import { coreBasicAuthValue } from '@contract-case/case-entities-internal';
+import { coreBasicAuthValue } from '@contract-case/case-core-plugin-http-dsl';
 import { StringPrefix } from '../strings';
 import { AnyStringMatcher } from '../../types';
 

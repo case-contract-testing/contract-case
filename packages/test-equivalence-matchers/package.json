@@ -92,7 +92,9 @@
     "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@contract-case/case-entities-internal": "0.15.7"
+    "@contract-case/case-core-plugin-http-dsl": "^0.15.7",
+    "@contract-case/case-entities-internal": "0.15.7",
+    "@contract-case/case-plugin-base": "0.15.7"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
@@ -133,6 +135,8 @@
     }
   },
   "bundleDependencies": [
-    "@contract-case/case-entities-internal"
+    "@contract-case/case-entities-internal",
+    "@contract-case/case-plugin-base",
+    "@contract-case/case-core-plugin-http-dsl"
   ]
 }

@@ -1,4 +1,4 @@
-import { URL_ENCODED_STRING_TYPE } from '@contract-case/case-entities-internal';
+import { URL_ENCODED_STRING_TYPE } from '@contract-case/case-core-plugin-http-dsl';
 import { AnyMatcher } from '../base';
 import { AnyStringMatcher } from '../../types';
 
