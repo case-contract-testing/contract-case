@@ -52,6 +52,7 @@ Next:
     - [x] Types for Logger
     - [x] Types for Result Printer
   - [ ] Types for extensions
+    - [ ] Split result printer out of exposed context
     - [ ] Refactor context to separate functions and data to make it easier to expose
   - [x] Types for contract verification
   - [x] Figure out types for the triggers
@@ -61,11 +62,13 @@ Next:
   - [x] Crash messages
   - [ ] Case Matcher functions so that you don't have to import JSii
   - Java DSL
-  - [ ] Set up maven publish
+  - [x] Set up maven publish
   - [x] Error handling boundary
   - [x] Crash messages
-  - [ ] Case Matcher function so that you don't have to import JSii
-  - [ ] Trigger functions should take config
+  - [x] Case Matcher function so that you don't have to import JSii
+  - [x] Trigger functions should take config
+
+- [ ] Build mechanism to ensure that mocks have the right number of request / response present
 
 ## Documentation todos
 
@@ -73,7 +76,7 @@ Next:
 - [ ] case-contract format ? maybe move this out too
 - [ ] Extending case
 - [ ] Vs e2e
-- [ ] Vs schema
+- [x] Vs schema
 - [ ] Vs pact
 - [ ] API coverage
 - [ ] Confirm understood client
@@ -88,20 +91,20 @@ Next:
 - [x] Documentation for config object
 - [x] Documentation for states
 - [ ] Documentation for verification
-- [ ] Remove "advanced topics" but keep content
-- [ ] Remove FAQ but keep content
+- [x] Remove "advanced topics" but keep content
+- [x] Remove FAQ but keep content
 - [x] Differences from Pact
 - [ ] -- Pass-through APIs
 - [ ] -- Mock model
 - [ ] -- How to do proxy testing
 - [ ] -- Extensibility
 - [ ] How to use
-- [ ] How states work
+- [x] How states work
 - [x] Why there's no optional
 - [x] How log levels work
 - [ ] Maintainer documentation
 - [ ] Correct coverage information
-- [ ] Package versioning strategy
+- [x] Package versioning strategy
 
 ## After grpc
 
