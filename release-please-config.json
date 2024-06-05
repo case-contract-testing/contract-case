@@ -7,6 +7,9 @@
       "components": [
         "@contract-case/case-entities-internal",
         "@contract-case/case-core",
+        "@contract-case/case-core-plugin-http",
+        "@contract-case/case-core-plugin-http-dsl",
+        "@contract-case/case-plugin-base",
         "@contract-case/case-example-mock-types",
         "@contract-case/test-equivalence-matchers"
       ],
