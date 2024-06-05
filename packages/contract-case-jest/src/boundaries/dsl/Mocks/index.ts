@@ -1,8 +1,8 @@
+import { mocks } from '@contract-case/case-example-mock-types';
 import {
   MOCK_HTTP_CLIENT,
   MOCK_HTTP_SERVER,
-} from '@contract-case/case-entities-internal';
-import { mocks } from '@contract-case/case-example-mock-types';
+} from '@contract-case/case-core-plugin-http-dsl';
 import { httpRequestMatcher, httpResponseMatcher } from '../Matchers/core';
 import { HttpMockRequest, HttpMockResponse } from '../Matchers/core/http/types';
 

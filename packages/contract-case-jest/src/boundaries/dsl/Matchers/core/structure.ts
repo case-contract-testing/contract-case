@@ -2,22 +2,24 @@ import {
   AnyCaseMatcherOrData,
   CoreShapedArrayMatcher,
   SHAPED_ARRAY_MATCHER_TYPE,
-  JsonOrMatcherMap,
   CoreShapedObjectMatcher,
   SHAPED_OBJECT_MATCHER_TYPE,
+} from '@contract-case/case-entities-internal';
+import {
+  JsonOrMatcherMap,
   LookupableMatcher,
   LOOKUP_MATCHER_TYPE,
-} from '@contract-case/case-entities-internal';
+} from '@contract-case/case-plugin-base';
 
 export const coreShapedArrayMatcher = (
-  example: Array<AnyCaseMatcherOrData>
+  example: Array<AnyCaseMatcherOrData>,
 ): CoreShapedArrayMatcher => ({
   '_case:matcher:type': SHAPED_ARRAY_MATCHER_TYPE,
   '_case:matcher:children': example,
 });
 
 export const coreShapedObjectMatcher = (
-  example: JsonOrMatcherMap
+  example: JsonOrMatcherMap,
 ): CoreShapedObjectMatcher => ({
   '_case:matcher:type': SHAPED_OBJECT_MATCHER_TYPE,
   '_case:matcher:children': example,
@@ -25,7 +27,7 @@ export const coreShapedObjectMatcher = (
 
 export const coreLookupMatcher = (
   uniqueName: string,
-  child: AnyCaseMatcherOrData
+  child: AnyCaseMatcherOrData,
 ): LookupableMatcher => ({
   '_case:matcher:type': LOOKUP_MATCHER_TYPE,
   '_case:matcher:uniqueName': uniqueName,
@@ -33,7 +35,7 @@ export const coreLookupMatcher = (
 });
 
 export const coreLookupMatcherRequest = (
-  uniqueName: string
+  uniqueName: string,
 ): LookupableMatcher => ({
   '_case:matcher:type': LOOKUP_MATCHER_TYPE,
   '_case:matcher:uniqueName': uniqueName,

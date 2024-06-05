@@ -1,23 +1,22 @@
 import {
-  AnyCaseMatcherOrData,
-  AnyCaseStringMatcher,
-  CoreHttpBasicAuthValueMatcher,
-  CoreHttpRequestMatcher,
-  CoreHttpResponseMatcher,
   CoreHttpStatusCodeMatcher,
-  CoreUrlEncodedStringMatcher,
-  HTTP_BASIC_AUTH_TYPE,
-  HTTP_REQUEST_MATCHER_TYPE,
-  HTTP_RESPONSE_MATCHER_TYPE,
   HTTP_STATUS_CODE_MATCHER_TYPE,
+  CoreHttpRequestMatcher,
+  HTTP_REQUEST_MATCHER_TYPE,
+  CoreHttpResponseMatcher,
+  HTTP_RESPONSE_MATCHER_TYPE,
+  CoreUrlEncodedStringMatcher,
   URL_ENCODED_STRING_TYPE,
-} from '@contract-case/case-entities-internal';
+  CoreHttpBasicAuthValueMatcher,
+  HTTP_BASIC_AUTH_TYPE,
+} from '@contract-case/case-core-plugin-http-dsl';
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import { HttpMockRequest, HttpMockResponse } from './types';
 import { validateCodes } from './validator';
 
 export const httpStatusCodeMatcher = (
   codes: string | Array<string>,
-  example?: number
+  example?: number,
 ): CoreHttpStatusCodeMatcher => {
   const impliedExample = validateCodes(codes);
   return {
@@ -29,21 +28,21 @@ export const httpStatusCodeMatcher = (
 };
 
 export const httpRequestMatcher = (
-  request: HttpMockRequest
+  request: HttpMockRequest,
 ): CoreHttpRequestMatcher => ({
   ...request,
   '_case:matcher:type': HTTP_REQUEST_MATCHER_TYPE,
 });
 
 export const httpResponseMatcher = (
-  response: HttpMockResponse
+  response: HttpMockResponse,
 ): CoreHttpResponseMatcher => ({
   ...response,
   '_case:matcher:type': HTTP_RESPONSE_MATCHER_TYPE,
 });
 
 export const coreUrlEncodedString = (
-  child: AnyCaseMatcherOrData
+  child: AnyCaseMatcherOrData,
 ): CoreUrlEncodedStringMatcher => ({
   '_case:matcher:type': URL_ENCODED_STRING_TYPE,
   '_case:matcher:child': child,
@@ -52,8 +51,8 @@ export const coreUrlEncodedString = (
 });
 
 export const coreBasicAuthValue = (
-  username: AnyCaseStringMatcher,
-  password: AnyCaseStringMatcher
+  username: AnyCaseMatcherOrData,
+  password: AnyCaseMatcherOrData,
 ): CoreHttpBasicAuthValueMatcher => ({
   '_case:matcher:type': HTTP_BASIC_AUTH_TYPE,
   '_case:matcher:username': username,

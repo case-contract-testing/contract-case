@@ -1,11 +1,13 @@
 import {
   AnyCaseMatcherOrData,
   CASCADING_CONTEXT_MATCHER_TYPE,
-  NameOnlyState,
-  SETUP_NAMED_STATE,
-  SETUP_VARIABLE_STATE,
-  StateWithVariables,
 } from '@contract-case/case-entities-internal';
+import {
+  NameOnlyState,
+  StateWithVariables,
+  SETUP_VARIABLE_STATE,
+  SETUP_NAMED_STATE,
+} from '@contract-case/case-plugin-base/dist/src/core/states';
 
 export const inState = (
   name: string,

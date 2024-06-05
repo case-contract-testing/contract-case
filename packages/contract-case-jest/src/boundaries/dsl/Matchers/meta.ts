@@ -2,16 +2,18 @@ import {
   AnyCaseMatcherOrData,
   CoreAndCombinationMatcher,
   AnyCaseMatcher,
-  AnyData,
   HasExample,
   CoreCascadingMatcher,
   CASCADING_CONTEXT_MATCHER_TYPE,
-  LookupableMatcher,
   CoreContextVariableMatcher,
   CONTEXT_VARIABLE_TYPE,
-  ResolvesTo,
   MatchContextByExact,
 } from '@contract-case/case-entities-internal';
+import {
+  AnyData,
+  LookupableMatcher,
+  ResolvesTo,
+} from '@contract-case/case-plugin-base';
 import {
   coreLookupMatcherRequest,
   coreAndMatcher,
@@ -38,7 +40,7 @@ export const and = (
  */
 export const withExample = <T extends AnyCaseMatcher>(
   matcher: T,
-  example: AnyData
+  example: AnyData,
 ): HasExample<CoreCascadingMatcher> => ({
   '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   '_case:matcher:child': matcher,
@@ -53,7 +55,7 @@ export const withExample = <T extends AnyCaseMatcher>(
  */
 export const namedMatch = (
   uniqueName: string,
-  matcherOrData?: AnyCaseMatcherOrData | undefined
+  matcherOrData?: AnyCaseMatcherOrData | undefined,
 ): LookupableMatcher =>
   matcherOrData === undefined
     ? coreLookupMatcherRequest(uniqueName)
@@ -67,7 +69,7 @@ export const namedMatch = (
  * @param content - The example object, array, primitive or matcher to match exactly against
  */
 export const exactlyLike = (
-  content: AnyCaseMatcherOrData
+  content: AnyCaseMatcherOrData,
 ): CoreCascadingMatcher & MatchContextByExact => ({
   '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   '_case:matcher:child': content,
@@ -82,7 +84,7 @@ export const exactlyLike = (
  * @param content - The example object, array, primitive or matcher to match against, ignoring content
  */
 export const shapedLike = (
-  content: AnyCaseMatcherOrData
+  content: AnyCaseMatcherOrData,
 ): CoreCascadingMatcher => coreShapedLike(content);
 
 /**
@@ -101,7 +103,7 @@ export const stateVariable = (name: string): CoreContextVariableMatcher => ({
  * @param name - The name of the variable
  */
 export const stringStateVariable = (
-  name: string
+  name: string,
 ): CoreContextVariableMatcher & ResolvesTo<'string'> => ({
   '_case:matcher:type': CONTEXT_VARIABLE_TYPE,
   '_case:matcher:variableName': name,
@@ -120,7 +122,7 @@ export const stringStateVariable = (
  */
 export const logLevel = (
   level: LogLevel,
-  child: AnyCaseMatcherOrData
+  child: AnyCaseMatcherOrData,
 ): CoreCascadingMatcher & {
   '_case:currentRun:context:logLevel': LogLevel;
 } => ({

@@ -1,27 +1,8 @@
+import { CoreHttpStatusCodeMatcher } from '@contract-case/case-core-plugin-http-dsl';
 import {
+  AnyCaseMatcher,
   AnyCaseMatcherOrData,
-  AnyCaseStringMatcher,
-  AnyData,
-  CoreHttpStatusCodeMatcher,
 } from '@contract-case/case-entities-internal';
-
-interface QueryObject {
-  [key: string]: undefined | string | string[] | QueryObject | QueryObject[];
-}
-
-export interface HttpRequestData {
-  body: AnyData;
-  method: string;
-  path: string;
-  query?: QueryObject;
-  headers?: Record<string, string | string[] | undefined>;
-}
-
-export interface HttpResponseData {
-  status: number;
-  body: AnyData;
-  headers?: Record<string, string>;
-}
 
 export interface HttpMockResponse {
   uniqueName?: string;
@@ -33,8 +14,8 @@ export interface HttpMockResponse {
 export interface HttpMockRequest {
   query?: AnyCaseMatcherOrData;
   uniqueName?: string;
-  path: AnyCaseStringMatcher | string;
-  method: AnyCaseStringMatcher | string;
+  path: AnyCaseMatcher | string;
+  method: AnyCaseMatcher | string;
   headers?: AnyCaseMatcherOrData | Record<string, AnyCaseMatcherOrData>;
   body?: AnyCaseMatcherOrData;
 }

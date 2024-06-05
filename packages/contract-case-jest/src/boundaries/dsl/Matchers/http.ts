@@ -1,8 +1,8 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
 import {
   CoreHttpStatusCodeMatcher,
-  AnyCaseMatcherOrData,
   CoreUrlEncodedStringMatcher,
-} from '@contract-case/case-entities-internal';
+} from '@contract-case/case-core-plugin-http-dsl';
 import { coreUrlEncodedString, httpStatusCodeMatcher } from './core';
 
 /**
@@ -15,12 +15,12 @@ import { coreUrlEncodedString, httpStatusCodeMatcher } from './core';
  */
 export const httpStatus = (
   match: number | string | Array<number | string>,
-  example?: number
+  example?: number,
 ): CoreHttpStatusCodeMatcher => {
   if (Array.isArray(match)) {
     return httpStatusCodeMatcher(
       match.map((r) => `${r}`),
-      example
+      example,
     );
   }
   return httpStatusCodeMatcher(`${match}`, example);
@@ -34,7 +34,7 @@ export const httpStatus = (
  * @param child - Any string matcher or literal string
  */
 export const uriEncodedString = (
-  child: AnyCaseMatcherOrData
+  child: AnyCaseMatcherOrData,
 ): CoreUrlEncodedStringMatcher =>
   // TODO: Check here that the child matcher will accept a string
   coreUrlEncodedString(child);
