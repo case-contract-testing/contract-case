@@ -49,6 +49,25 @@
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     },
+
+    "packages/case-core-plugin-http": {
+      "component": "@contract-case/case-core-plugin-http",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/case-core-plugin-http-dsl": {
+      "component": "@contract-case/case-core-plugin-http-dsl",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/case-plugin-base": {
+      "component": "@contract-case/case-plugin-base",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
+    },
     "packages/case-example-mock-types": {
       "component": "@contract-case/case-example-mock-types",
       "bump-minor-pre-major": true,
