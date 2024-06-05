@@ -2,9 +2,9 @@ import {
   MOCK_HTTP_SERVER,
   ArbitraryConfig,
 } from '@contract-case/case-core-plugin-http-dsl';
-import type { Assertable } from './entities/types';
 import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
 import { AnyLeafOrStructure } from '@contract-case/case-plugin-base';
+import type { Assertable } from './entities/types';
 
 /*!
  * ContractCase
