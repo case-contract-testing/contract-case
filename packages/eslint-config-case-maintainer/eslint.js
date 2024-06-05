@@ -44,6 +44,9 @@ module.exports = {
 
   overrides: [
     {
+      files: ['src/**/*.ts'],
+    },
+    {
       files: ['example/**/*.ts'],
       parserOptions: {
         ecmaVersion: 2018,
