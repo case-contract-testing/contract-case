@@ -5,6 +5,30 @@
  */
 
 /*!
+ * ContractCase Core HTTP Plugin
+ * Copyright(c) 2022-2024 Timothy Jones (TLJ)
+ * BSD-3-Clause license
+ */
+
+/*!
+ * ContractCase Core HTTP Plugin DSL
+ * Copyright(c) 2022-2024 Timothy Jones (TLJ)
+ * BSD-3-Clause license
+ */
+
+/*!
+ * ContractCase Entities
+ * Copyright(c) 2022-2024 Timothy Jones (TLJ)
+ * BSD-3-Clause license
+ */
+
+/*!
+ * ContractCase Plugin Base
+ * Copyright(c) 2022-2024 Timothy Jones (TLJ)
+ * BSD-3-Clause license
+ */
+
+/*!
  * accepts
  * Copyright(c) 2014 Jonathan Ong
  * Copyright(c) 2015 Douglas Christopher Wilson
