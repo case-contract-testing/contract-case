@@ -20,6 +20,6 @@ extending or maintaining ContractCase.
 
 - All matchers are only data, so they can be saved in the contract and passed around
 - Matchers are recursive. Each matcher that has children also accepts matchers.
-- Extensible: To implement a new matcher, you just implement the interface. See [the Adding Matchers documentation](./docs/maintainers//AddingMatchers.md)
+- Extensible: To implement a new matcher, you just implement the interface. See [the Adding Matchers documentation](./AddingMatchers.md)
 
 - The only difference between test and verification is: Verification is multiple tests, while test is a single test. The input to a single verification is the same as the input to a single test.
