@@ -13,7 +13,7 @@
   },
   "optionalDependencies": {
     "@nx/nx-darwin-arm64": "19.1.1",
-    "@nx/nx-darwin-x64": "18.3.4",
+    "@nx/nx-darwin-x64": "19.2.2",
     "@nx/nx-linux-arm-gnueabihf": "18.3.4",
     "@nx/nx-linux-arm64-gnu": "19.0.4",
     "@nx/nx-linux-arm64-musl": "19.0.2",
