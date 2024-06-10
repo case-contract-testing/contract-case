@@ -15,6 +15,9 @@ export type ContractCasePlugin<
   MockDescriptors extends AnyMockDescriptor,
   AllSetupInfo,
 > = {
+  name: string;
+  version: string;
+
   matcherExecutors: {
     [T in MatcherTypes]: MatcherExecutor<
       T,

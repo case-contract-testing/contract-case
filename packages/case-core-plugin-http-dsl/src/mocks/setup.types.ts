@@ -13,7 +13,7 @@ export type AllHttpMockSetupInfo =
   | HttpRequestConsumerSetup
   | HttpRequestProducerSetup;
 
-export type AllHttpMockExecutors = ConsumeHttpResponse | ProduceHttpResponse;
+export type AllHttpMockDescriptors = ConsumeHttpResponse | ProduceHttpResponse;
 
 export type HttpRequestConsumerSetup = HasTypeForMockDescriptor<
   typeof MOCK_HTTP_SERVER
