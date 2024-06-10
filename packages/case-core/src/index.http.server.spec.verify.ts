@@ -47,13 +47,13 @@ verifyContract(
         'an http "GET" request to "/users"?id={{userId}} without a body': {
           trigger: (config: HttpRequestConfig) =>
             api(config.baseUrl).getUserByQuery(
-              (config.variables.userId as string) || '123',
+              (config.variables['userId'] as string) || '123',
             ),
           testResponses: {
             'a (200) response with body an object shaped like {userId: {{userId}}}':
               (user, config) => {
                 expect(user).toEqual({
-                  userId: config.variables.userId,
+                  userId: config.variables['userId'],
                 });
               },
           },
@@ -75,13 +75,13 @@ verifyContract(
         'an http "GET" request to "/users/{{userId}}" without a body': {
           trigger: (config: HttpRequestConfig) =>
             api(config.baseUrl).getUserByPath(
-              config.variables.userId as string,
+              config.variables['userId'] as string,
             ),
           testResponses: {
             'a (200) response with body an object shaped like {userId: {{userId}}}':
               (user, config) => {
                 expect(user).toEqual({
-                  userId: config.variables.userId,
+                  userId: config.variables['userId'],
                 });
               },
           },
