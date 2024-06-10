@@ -3,6 +3,7 @@ import {
   MOCK_HTTP_CLIENT,
   ConsumeHttpResponse,
   ProduceHttpResponse,
+  AllHttpMockSetupInfo,
 } from '@contract-case/case-core-plugin-http-dsl';
 import { HasTypeForMockDescriptor } from '@contract-case/case-plugin-base';
 
@@ -16,3 +17,5 @@ export type CaseMockDescriptorFor<T extends AnyMockDescriptorType> = Extract<
   AnyMockDescriptor,
   HasTypeForMockDescriptor<T>
 >;
+
+export type AllMockSetupInfos = AllHttpMockSetupInfo;

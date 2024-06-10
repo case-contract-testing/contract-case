@@ -16,7 +16,7 @@ import {
   AnyData,
   isCaseNode,
 } from '../matchers/types';
-import { AnyMockDescriptor, isCaseMock } from '../mocks/types';
+import { AnyMockDescriptor, isCaseMock } from '../mocks/nodes.types';
 import { Logger } from '../logger/types';
 import { shouldLog } from '../logger/shouldLog';
 

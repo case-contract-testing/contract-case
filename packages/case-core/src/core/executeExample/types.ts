@@ -1,14 +1,14 @@
+import { MOCK_HTTP_SERVER } from '@contract-case/case-core-plugin-http-dsl';
 import {
-  MOCK_HTTP_SERVER,
-  SetupInfoFor,
-  ArbitraryConfig,
-} from '@contract-case/case-core-plugin-http-dsl';
-import {
+  AllMockSetupInfos,
   AnyMockDescriptor,
   AnyMockDescriptorType,
   StateHandlers,
 } from '@contract-case/case-entities-internal';
-import { CaseMockDescriptorFor } from '@contract-case/case-plugin-base';
+import {
+  CaseMockDescriptorFor,
+  SetupInfoFor,
+} from '@contract-case/case-plugin-base';
 import { ExampleNames } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { AnyState, Assertable } from '../../entities/types';
 
@@ -17,21 +17,32 @@ export type RunTestCallback = (
   verify: () => Promise<unknown>,
 ) => void;
 
+// TODO: We shouldn't need to custom handle this type - it should be
+// calculated from the plugins somehow, or generalised
 export type HttpRequestConfig = Assertable<typeof MOCK_HTTP_SERVER>['config'];
 
-export type Trigger<T extends AnyMockDescriptorType, R = unknown> = (
-  config: SetupInfoFor<T> | ArbitraryConfig<T> | HttpRequestConfig,
-) => Promise<R>;
+export type Trigger<
+  T extends AnyMockDescriptorType,
+  R = unknown,
+  SetupInfos = AllMockSetupInfos,
+> = (config: SetupInfoFor<SetupInfos, T> | HttpRequestConfig) => Promise<R>;
 
-type TriggerPair<T extends AnyMockDescriptorType, R> = {
+type TriggerPair<
+  T extends AnyMockDescriptorType,
+  R,
+  SetupInfos = AllMockSetupInfos,
+> = {
   trigger: Trigger<T, R>;
   testResponses?: Record<
     string,
-    (data: R, config: SetupInfoFor<T>) => Promise<unknown> | void
+    (data: R, config: SetupInfoFor<SetupInfos, T>) => Promise<unknown> | void
   >;
   testErrorResponses?: Record<
     string,
-    (error: Error, config: SetupInfoFor<T>) => Promise<unknown> | void
+    (
+      error: Error,
+      config: SetupInfoFor<SetupInfos, T>,
+    ) => Promise<unknown> | void
   >;
 };
 

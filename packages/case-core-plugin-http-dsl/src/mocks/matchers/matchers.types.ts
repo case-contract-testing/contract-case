@@ -50,3 +50,10 @@ export interface CoreHttpResponseMatcher {
   body?: AnyCaseMatcherOrData;
   headers?: AnyCaseMatcherOrData | Record<string, AnyCaseMatcherOrData>;
 }
+
+export type AllHttpMatcherDescriptors =
+  | CoreUrlEncodedStringMatcher
+  | CoreHttpStatusCodeMatcher
+  | CoreHttpBasicAuthValueMatcher
+  | CoreHttpRequestMatcher
+  | CoreHttpResponseMatcher;

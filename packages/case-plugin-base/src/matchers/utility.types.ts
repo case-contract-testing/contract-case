@@ -8,12 +8,11 @@ export interface IsCaseNodeForType<T extends string> {
   '_case:matcher:type': T;
 }
 
-export type CaseMatcherFor<
-  KnownMatcherTypes extends string,
-  T extends KnownMatcherTypes,
-> = Extract<AnyCaseMatcher, IsCaseNodeForType<T>>;
+export type CaseMatcherFor<KnownMatcherDescriptors, T extends string> = Extract<
+  KnownMatcherDescriptors,
+  IsCaseNodeForType<T>
+>;
 
-export type DataOrCaseNodeFor<
-  KnownMatcherTypes extends string,
-  T extends KnownMatcherTypes,
-> = CaseMatcherFor<KnownMatcherTypes, T> | AnyLeafOrStructure;
+export type DataOrCaseNodeFor<KnownMatcherDescriptors, T extends string> =
+  | CaseMatcherFor<KnownMatcherDescriptors, T>
+  | AnyLeafOrStructure;

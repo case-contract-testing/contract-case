@@ -1,5 +1,5 @@
-import { SetupInfoFor } from '@contract-case/case-core-plugin-http-dsl';
 import {
+  AllMockSetupInfos,
   AnyCaseMatcher,
   AnyMockDescriptor,
   AnyMockDescriptorType,
@@ -9,6 +9,7 @@ import {
   CaseConfigurationError,
   AnyData,
   AnyLeafOrStructure,
+  SetupInfoFor,
 } from '@contract-case/case-plugin-base';
 import { AnyState } from '@contract-case/case-plugin-base/dist/src/core/states';
 import { CaseContractDescription } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
@@ -27,23 +28,28 @@ import { configFromEnv } from '../../core/config';
 export type DefinitionSuccessExample<
   T extends AnyMockDescriptorType,
   R = unknown,
+  MockSetups = AllMockSetupInfos,
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
   definition: CaseMockDescriptorFor<AnyMockDescriptor, T>;
   trigger?: Trigger<T, R>;
-  testResponse?: (data: R, config: SetupInfoFor<T>) => unknown;
+  testResponse?: (data: R, config: SetupInfoFor<MockSetups, T>) => unknown;
   triggerAndTest?: Trigger<T>;
 };
 
 export type DefinitionFailingExample<
   T extends AnyMockDescriptorType,
   R = unknown,
+  MockSetups = AllMockSetupInfos,
 > = MultiTestInvoker<T, R> & {
   states?: Array<AnyState>;
   definition: CaseMockDescriptorFor<AnyMockDescriptor, T>;
   trigger?: Trigger<T, R>;
   triggerAndTest?: Trigger<T>;
-  testErrorResponse?: (err: Error, config: SetupInfoFor<T>) => unknown;
+  testErrorResponse?: (
+    err: Error,
+    config: SetupInfoFor<MockSetups, T>,
+  ) => unknown;
 };
 
 export class ContractDefinerConnector<M extends AnyMockDescriptorType> {

@@ -1,4 +1,3 @@
-import { MockData } from '@contract-case/case-core-plugin-http-dsl';
 import {
   AnyMockDescriptor,
   AnyMockDescriptorType,
@@ -8,6 +7,7 @@ import {
   MatchContext,
   CaseCoreError,
   addLocation,
+  MockData,
 } from '@contract-case/case-plugin-base';
 import type { MockSetupFns } from './types';
 
@@ -68,7 +68,7 @@ export const mockExecutor = <T extends AnyMockDescriptorType>(
   mock: CaseMockDescriptorFor<AnyMockDescriptor, T>,
   MockSetup: MockSetupFns,
   context: MatchContext,
-): Promise<MockData<T>> =>
+): Promise<MockData<unknown, T>> =>
   executeMock(
     inferMock(mock, addLocation('inference', context)),
     MockSetup,

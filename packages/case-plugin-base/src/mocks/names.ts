@@ -1,7 +1,7 @@
 import { MatchContext } from '../context/types';
 import { coreLookupMatcher } from '../matchers/lookup';
 import { AnyCaseMatcherOrData } from '../matchers/matchers.types';
-import { AnyMockDescriptor } from './types';
+import { AnyMockDescriptor } from './nodes.types';
 
 const nameMatcher = (matcher: AnyCaseMatcherOrData, context: MatchContext) =>
   coreLookupMatcher(context.descendAndDescribe(matcher, context), matcher);

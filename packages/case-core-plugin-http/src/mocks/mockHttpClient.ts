@@ -7,13 +7,14 @@ import {
   DataContext,
   HasBaseUrlUnderTest,
   MatchContext,
+  MockData,
   addLocation,
 } from '@contract-case/case-plugin-base';
 import {
   HttpRequestData,
   CoreHttpRequestResponseMatcherPair,
-  MockData,
   MOCK_HTTP_CLIENT,
+  AllHttpMockSetupInfo,
 } from '@contract-case/case-core-plugin-http-dsl';
 
 import { makeAssertionsOn } from './assert/assert';
@@ -72,7 +73,7 @@ export const setupHttpResponseConsumer = (
     response: expectedResponse,
   }: CoreHttpRequestResponseMatcherPair,
   parentContext: MatchContext,
-): Promise<MockData<typeof MOCK_HTTP_CLIENT>> =>
+): Promise<MockData<AllHttpMockSetupInfo, typeof MOCK_HTTP_CLIENT>> =>
   Promise.resolve().then(() => {
     const expectedRequest = validateHttpRequestData(
       parentContext.descendAndStrip(

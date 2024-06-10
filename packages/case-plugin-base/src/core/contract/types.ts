@@ -1,6 +1,6 @@
 import { CaseError } from '../../matchers/errors.types';
 import { AnyCaseMatcherOrData } from '../../matchers/matchers.types';
-import { AnyMockDescriptor } from '../../mocks/types';
+import { AnyMockDescriptor } from '../../mocks/nodes.types';
 import { AnyState } from '../states';
 
 export interface CaseContractDescription {

@@ -21,7 +21,7 @@ export type NameMatcherFn<T> = (
 
 export interface MatcherExecutor<
   MatcherType extends string,
-  T extends IsCaseNodeForType<MatcherType> = IsCaseNodeForType<MatcherType>,
+  T extends IsCaseNodeForType<MatcherType>,
 > {
   describe: NameMatcherFn<T>;
   check: CheckMatchFn<T>;

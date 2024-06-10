@@ -4,3 +4,10 @@ export const HTTP_REQUEST_MATCHER_TYPE = '_case:HttpRequestMatcher' as const;
 export const HTTP_STATUS_CODE_MATCHER_TYPE = '_case:HttpStatusCode' as const;
 export const URL_ENCODED_STRING_TYPE = '_case:UrlEncodedString' as const;
 export const HTTP_BASIC_AUTH_TYPE = '_case:HttpBasicAuth' as const;
+
+export type AllHttpMatcherTypes =
+  | typeof HTTP_RESPONSE_MATCHER_TYPE
+  | typeof HTTP_REQUEST_MATCHER_TYPE
+  | typeof HTTP_STATUS_CODE_MATCHER_TYPE
+  | typeof URL_ENCODED_STRING_TYPE
+  | typeof HTTP_BASIC_AUTH_TYPE;

@@ -1,10 +1,6 @@
-import {
-  MOCK_HTTP_SERVER,
-  ArbitraryConfig,
-} from '@contract-case/case-core-plugin-http-dsl';
+import { HttpRequestConsumerSetup } from '@contract-case/case-core-plugin-http-dsl';
 import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
 import { AnyLeafOrStructure } from '@contract-case/case-plugin-base';
-import type { Assertable } from './entities/types';
 
 /*!
  * ContractCase
@@ -35,6 +31,4 @@ export type AnyCaseMatcherOrData = AnyCaseMatcher | AnyLeafOrStructure;
 
 export * from './connectors';
 
-export type HttpRequestConfig =
-  | Assertable<typeof MOCK_HTTP_SERVER>['config']
-  | ArbitraryConfig<typeof MOCK_HTTP_SERVER>;
+export type HttpRequestConfig = HttpRequestConsumerSetup;

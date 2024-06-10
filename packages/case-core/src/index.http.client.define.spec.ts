@@ -1,6 +1,9 @@
 import * as fs from 'node:fs';
 // These imports are our code under test
-import { willSendHttpRequest } from '@contract-case/case-core-plugin-http-dsl';
+import {
+  HttpRequestConsumerSetup,
+  willSendHttpRequest,
+} from '@contract-case/case-core-plugin-http-dsl';
 import api from './__tests__/client/http/connector';
 import { ApiError } from './__tests__/client/http/connector/internals/apiErrors';
 import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';
@@ -15,7 +18,6 @@ import {
   shapedLike,
   stateVariable,
   stringPrefix,
-  HttpRequestConfig,
   anyString,
 } from '.';
 
@@ -47,7 +49,7 @@ describe('e2e http consumer driven', () => {
     },
     (contract) => {
       describe('health get', () => {
-        const sendHealthRequest = (config: HttpRequestConfig) =>
+        const sendHealthRequest = (config: HttpRequestConsumerSetup) =>
           api(config.baseUrl).health();
         describe('When the server is up', () => {
           const state = inState('Server is up');
@@ -133,7 +135,7 @@ describe('e2e http consumer driven', () => {
       });
       describe('User', () => {
         describe('With query variables', () => {
-          const sendUserRequest = (config: HttpRequestConfig) =>
+          const sendUserRequest = (config: HttpRequestConsumerSetup) =>
             api(config.baseUrl).getUserByQuery(
               config.variables['userId'] as string,
             );
@@ -191,7 +193,7 @@ describe('e2e http consumer driven', () => {
           });
         });
         describe('With path variables', () => {
-          const sendUserRequest = (config: HttpRequestConfig) =>
+          const sendUserRequest = (config: HttpRequestConsumerSetup) =>
             api(config.baseUrl).getUserByPath(config.variables['userId']);
           describe('when the user exists', () => {
             const responseBody = {

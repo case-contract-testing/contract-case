@@ -1,6 +1,15 @@
-import { MockSetupFn } from '@contract-case/case-core-plugin-http-dsl';
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
+import {
+  AnyMockDescriptor,
+  MockExecutorFn,
+} from '@contract-case/case-plugin-base';
+
+type CoreSetupTypes = unknown;
 
 export type MockSetupFns = {
-  [T in AnyMockDescriptorType]: MockSetupFn<T>;
+  [T in AnyMockDescriptorType]: MockExecutorFn<
+    AnyMockDescriptor,
+    CoreSetupTypes,
+    T
+  >;
 };
