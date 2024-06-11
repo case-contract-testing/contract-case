@@ -34,7 +34,6 @@ jobs:
         uses: gradle/actions/setup-gradle@db19848a5fa7950289d3668fb053140cf3028d43 # pin@v3.3.2
       - name: Validate Gradle wrapper
         uses: gradle/actions/wrapper-validation@db19848a5fa7950289d3668fb053140cf3028d43 # v3.3.2
-      - run: npm install -g npm@latest
 
       - name: test
         run: |
