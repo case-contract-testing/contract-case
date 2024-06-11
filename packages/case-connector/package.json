@@ -56,7 +56,7 @@
     "get-port": "^7.1.0",
     "google-protobuf": "^3.21.2",
     "pretty-format": "^29.7.0",
-    "uuid": "^9.0.1"
+    "uuid": "^10.0.0"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
