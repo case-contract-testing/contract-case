@@ -85,7 +85,7 @@
     "jsii": "^5.4.13",
     "jsii-docgen": "^10.3.2",
     "jsii-pacmak": "^1.97.0",
-    "prettier": "3.2.5",
+    "prettier": "3.3.2",
     "publib": "^0.2.845",
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.4",
