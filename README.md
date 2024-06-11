@@ -2,14 +2,14 @@
 
 [![Build and test](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/case-contract-testing/contract-case/badge.svg?branch=main)](https://coveralls.io/github/case-contract-testing/contract-case?branch=main)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=package.json)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9094/badge)](https://www.bestpractices.dev/projects/9094)
 
 DSL (this is the package you want to install):
 
 Node:
 
 [![npm](https://img.shields.io/npm/v/@contract-case/contract-case-jest.svg)](https://www.npmjs.com/package/@contract-case/contract-case-jest)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=package.json)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9094/badge)](https://www.bestpractices.dev/projects/9094)
 
 Java:
 
