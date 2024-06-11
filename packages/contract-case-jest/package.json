@@ -83,7 +83,7 @@
     "@contract-case/case-plugin-base": "^0.15.7",
     "@contract-case/cli": "0.1.13",
     "chalk": "^4.1.2",
-    "read-pkg-up": "^7.0.1",
+    "read-pkg-up": "^11.0.0",
     "ts-node": "^10.9.1"
   }
 }
