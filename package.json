@@ -16,7 +16,7 @@
     "@nx/nx-darwin-x64": "19.2.2",
     "@nx/nx-linux-arm-gnueabihf": "18.3.4",
     "@nx/nx-linux-arm64-gnu": "19.0.4",
-    "@nx/nx-linux-arm64-musl": "19.0.2",
+    "@nx/nx-linux-arm64-musl": "19.2.3",
     "@nx/nx-linux-x64-gnu": "19.1.0",
     "@nx/nx-linux-x64-musl": "19.2.2",
     "@nx/nx-win32-arm64-msvc": "19.1.0",
