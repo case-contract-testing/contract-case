@@ -93,7 +93,7 @@ stripping the matchers. This goes in `packages/case-core`
 
 ### Create the matcher DSL
 
-Create a DSL class in `packages/test-equivalence-matchers` that creates your matcher type, for example:
+Create a DSL class in `packages/case-definition-dsl` that creates your matcher type, for example:
 
 ```ts
 /**
@@ -110,7 +110,7 @@ export class ExactlyLike extends CascadingContextMatcher {
   }
 
   /**
-   * For non-TypeScript implementations (see [AnyMatcher.toJSON()](#\@case-contract-testing/test-equivalence-matchers.AnyMatcher.toJSON))
+   * For non-TypeScript implementations (see `AnyMatcher.toJSON`)
    *
    * @privateRemarks
    * This comment and the implementation is boilerplate on all matchers to avoid
@@ -134,7 +134,7 @@ You can also add a DSL function to the Jest boundary, for example:
  * @param content What
  */
 export const exactlyLike = (
-  content: AnyCaseNodeOrData
+  content: AnyCaseNodeOrData,
 ): CoreCascadingMatcher => ({
   'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   'case:matcher:child': content,

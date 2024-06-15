@@ -11,6 +11,5 @@ VERSION=$1
 SHA=$2
 
 echo git tag @contract-case/case-core-v"$VERSION" "$SHA"
-echo git tag @contract-case/case-example-mock-types-v"$VERSION" "$SHA"
-echo git tag @contract-case/test-equivalence-matchers-v"$VERSION" "$SHA"
+echo git tag @contract-case/case-definition-dsl-v"$VERSION" "$SHA"
 echo git tag @contract-case/case-entities-internal-v"$VERSION" "$SHA"

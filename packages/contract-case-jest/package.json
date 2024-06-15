@@ -79,7 +79,7 @@
     "@contract-case/case-connector": "0.7.5",
     "@contract-case/case-core-plugin-http-dsl": "^0.15.7",
     "@contract-case/case-entities-internal": "0.15.7",
-    "@contract-case/case-example-mock-types": "0.15.7",
+    "@contract-case/case-definition-dsl": "0.15.7",
     "@contract-case/case-plugin-base": "^0.15.7",
     "@contract-case/cli": "0.1.13",
     "chalk": "^4.1.2",
