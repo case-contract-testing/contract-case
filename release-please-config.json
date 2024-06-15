@@ -10,8 +10,7 @@
         "@contract-case/case-core-plugin-http",
         "@contract-case/case-core-plugin-http-dsl",
         "@contract-case/case-plugin-base",
-        "@contract-case/case-example-mock-types",
-        "@contract-case/test-equivalence-matchers"
+        "@contract-case/case-definition-dsl"
       ],
       "merge": true
     }
@@ -71,14 +70,8 @@
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     },
-    "packages/case-example-mock-types": {
-      "component": "@contract-case/case-example-mock-types",
-      "bump-minor-pre-major": true,
-      "bump-patch-for-minor-pre-major": true,
-      "changelog-path": "CHANGELOG.md"
-    },
-    "packages/test-equivalence-matchers": {
-      "component": "@contract-case/test-equivalence-matchers",
+    "packages/case-definition-dsl": {
+      "component": "@contract-case/case-definition-dsl",
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"

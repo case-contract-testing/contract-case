@@ -1,18 +1,20 @@
 ## Package structure
 
-- contract-case-${LANGUAGE} - The layer that users will actually use. Contains no features except for making Case idiomatic for that language. Mostly just a wrapper for Case-Boundaries to make error handling nice.
-  - depends on case-boundary-internal and possibly the other JSii layers
-  - generally does NOT depend on case-core, see [adding DSLs](./AddingDsl.md) for details. Contract-case-cli is one exception, as it does not need to be translated.
+- dsl-${LANGUAGE}-${FRAMEWORK} - The layer that users will actually use. Contains no features except for making Case idiomatic for that language.
+  - generally depends on case-connector, and knows how to start the server. See [adding DSLs](./AddingDsl.md) for details.
 
 ### Monorepo contains:
 
-- Case-Boundary (the JSii layer that is the exported interface)
-  - depends on case-core
-- Contract-Case-CLI (Compiles to a cross platform CLI for contract manipulation with the broker)
-  - depends on case-core
-- Case-Example-Mock-types (the JSii layer that just describes the mock descriptions - separate because otherwise people might call the wrong thing in the boundaries layer)
-- Case-Test-Equivalence-Matchers (the JSii layer that just describes the matcher contents - separate because otherwise people might call the wrong thing in the boundaries layer)
-  - depends on case-entities and case-core
-- Case-Core (implements the actual matching + core)
-  - depends on case-entities
-- Case-entities (typescript types and helpers imported by both core and boundaries. Separate to avoid a circular dependency)
+- case-connector: The gRPC connector that can be used as a server to call contract-case from other languages.
+- case-core: Implements the actual matching and core contract testing engine
+- case-core-plugin-http: Implements the behaviour for the HTTP Rest plugin (mock client, mock server, and any HTTP related matchers)
+- case-core-plugin-dsl: Exposes the shared types for the http plugin
+- case-definition-dsl: The JSii layer that just describes the definition language for defining examples to be run. It includes the matchers and the state definers. It currently re-exports the http-plugin-dsl types
+- case-entities: Base types and helpers imported by several packages. Separate to avoid circular dependencies.
+- case-maintainer-config: Common settings for maintaining packages (doesn't include the eslint config, as it needs specific naming conventions).
+- case-plugin-base: Base types needed to implement plugins for ContractCase
+- Contract-Case-CLI: The cross platform CLI used for contract manipulation and contacting the broker.
+- contract-case-jest: The user-facing Jest DSL for ContractCase. (_TODO: This should be renamed to `dsl-javascript-jest`_)
+- documentation: The documentation website
+- dsl-java: The user-facing Java DSL for ContractCase
+- eslint-config-case-maintainer: Common eslint settings for all typescript packages

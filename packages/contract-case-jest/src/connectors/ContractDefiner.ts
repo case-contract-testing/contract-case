@@ -3,7 +3,7 @@ import {
   BoundaryContractDefiner,
   BoundaryMockDefinition,
 } from '@contract-case/case-connector';
-import { mocks } from '@contract-case/case-example-mock-types';
+import { mocks } from '@contract-case/case-definition-dsl';
 
 import { defaultPrinter } from './defaultTestPrinter';
 

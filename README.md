@@ -110,16 +110,10 @@ Command line interface::
 [![npm](https://img.shields.io/npm/v/@contract-case/cli.svg?label=cli%3A%20npm)](https://www.npmjs.com/package/@contract-case/cli)
 [![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/contract-case-cli/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/contract-case-cli/package.json)
 
-Test Equivalence Matchers packages:
+Definition DSL packages:
 
-[![npm](https://img.shields.io/npm/v/@contract-case/test-equivalence-matchers.svg?label=test-equivalence-matchers%3A%20npm)](https://www.npmjs.com/package/@contract-case/test-equivalence-matchers)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/test-equivalence-matchers/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/test-equivalence-matchers/package.json)
-![Maven Central](https://img.shields.io/maven-central/v/io.contract-testing.contractcase/test-equivalence-matchers?label=test-equivalence-matchers%3A%20maven)
-
-Mock types packages:
-
-[![npm](https://img.shields.io/npm/v/@contract-case/case-example-mock-types.svg?label=case-example-mock-types%3A%20npm)](https://www.npmjs.com/package/@contract-case/case-example-mock-types)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-example-mock-types/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/case-example-mock-types/package.json)
+[![npm](https://img.shields.io/npm/v/@contract-case/case-definition-dsl.svg?label=case-definition-dsl%3A%20npm)](https://www.npmjs.com/package/@contract-case/case-definition-dsl)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-definition-dsl/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/case-definition-dsl/package.json)
 ![Maven Central](https://img.shields.io/maven-central/v/io.contract-testing.contractcase/case_example_mock_types?label=case_example_mock_types%3A%20maven)
 
 Boundary Packages:

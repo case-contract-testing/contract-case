@@ -30,7 +30,6 @@
   "include": ["**/*.spec.ts", "**/*.spec.verify.ts"],
   "exclude": [
     "node_modules",
-    "/Users/home/office/maintainer/contractcase-test-equivalence-matchers/build/.types-compat",
     "_incoming/**/*",
     "jest.config.ts",
     "build/**/*.ts"

@@ -1,4 +1,4 @@
-import { mocks } from '@contract-case/case-example-mock-types';
+import { mocks } from '@contract-case/case-definition-dsl';
 import {
   MOCK_HTTP_CLIENT,
   MOCK_HTTP_SERVER,
