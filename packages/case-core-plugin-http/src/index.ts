@@ -32,7 +32,7 @@ export * from './matchers';
 export * from './mocks';
 export * from './mocks/types';
 
-export const CoreHttpPlugin: ContractCasePlugin<
+const CoreHttpPlugin: ContractCasePlugin<
   AllHttpMatcherTypes,
   typeof MOCK_HTTP_CLIENT | typeof MOCK_HTTP_SERVER,
   AllHttpMatcherDescriptors,
@@ -53,3 +53,5 @@ export const CoreHttpPlugin: ContractCasePlugin<
     [MOCK_HTTP_SERVER]: setupHttpResponseProducer,
   },
 };
+
+export default CoreHttpPlugin;
