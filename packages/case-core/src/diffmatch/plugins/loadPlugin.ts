@@ -6,6 +6,7 @@ import {
   IsCaseNodeForType,
   LogContext,
   MockExecutorFn,
+  CORE_PLUGIN_PREFIX,
 } from '@contract-case/case-plugin-base';
 
 import { caseVersion } from '../../entities/caseVersion';
@@ -28,7 +29,7 @@ export const loadPlugin = <
   if (loadedPluginVersions[plugin.name] != null) {
     if (plugin.version !== loadedPluginVersions[plugin.name]) {
       if (
-        plugin.name.startsWith(`_CaseCore:`) &&
+        plugin.name.startsWith(CORE_PLUGIN_PREFIX) &&
         plugin.version !== caseVersion
       ) {
         throw new CaseCoreError(
@@ -40,15 +41,15 @@ export const loadPlugin = <
       );
     }
     context.logger.deepMaintainerDebug(
-      `Plugin '${plugin.name}' at version '${plugin.version}' has been previously loaded, skipping load of mock executors`,
+      `Plugin '${plugin.name}' at version '${plugin.version}' has been previously loaded, skipping`,
     );
     return;
   }
-  if (plugin.name.startsWith(`_CaseCore:`)) {
+  if (plugin.name.startsWith(CORE_PLUGIN_PREFIX)) {
     context.logger.deepMaintainerDebug(`Loading core plugin '${plugin.name}'`);
   } else {
     context.logger.debug(
-      `Loading mock definitions for plugin '${plugin.name}' version ${plugin.version}`,
+      `Loading plugin '${plugin.name}' version ${plugin.version}`,
     );
   }
 
@@ -77,8 +78,8 @@ export const loadPlugin = <
       unknown,
       '_case:MockHttpServer'
     >;
-
     typeToPluginName[mockType] = plugin.name;
-    loadedPluginVersions[plugin.name] = plugin.version;
   });
+
+  loadedPluginVersions[plugin.name] = plugin.version;
 };
