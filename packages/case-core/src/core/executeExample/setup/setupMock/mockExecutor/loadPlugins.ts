@@ -1,4 +1,4 @@
-import { CoreHttpPlugin } from '@contract-case/case-core-plugin-http';
+import CoreHttpPlugin from '@contract-case/case-core-plugin-http';
 import {
   AllHttpMatcherTypes,
   MOCK_HTTP_CLIENT,
