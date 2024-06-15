@@ -8,7 +8,9 @@
  *
  * @remarks
  *
- * Use the mock definitions to set your
+ * Use the mock definitions to describe the interactions that you want to test.
+ *
+ * Use the state descriptions to describe the provider states (if any) that those tests require.
  *
  * Use the Test Equivalence Matchers to generalise your tests, avoiding the need to depend on specific
  * data during verification. It's not about defining the whole type system, the
