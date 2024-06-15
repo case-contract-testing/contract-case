@@ -1,6 +1,10 @@
 .DS_Store
 Thumbs.db
 
+# ContractCase core connector
+
+src/main/resources/io/contract_testing/contractcase/client/server
+
 # Intermediate build output
 *.bak
 .npm
