@@ -1,1 +1,2 @@
-export * from './traversals';
+export * from './matching';
+export * from './plugins';

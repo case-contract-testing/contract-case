@@ -10,12 +10,12 @@ import {
 import {
   coreAndMatcher,
   coreArrayLengthMatcher,
-} from '../entities/matchers/auxiliary';
-import * as leafMatchers from '../entities/matchers/leaf';
+} from '../../entities/matchers/auxiliary';
+import * as leafMatchers from '../../entities/matchers/leaf';
 import {
   coreShapedArrayMatcher,
   coreShapedObjectMatcher,
-} from '../entities/matchers/structure';
+} from '../../entities/matchers/structure';
 
 export const inferMatcher = <T extends AnyCaseNodeType>(
   matcherOrData: CaseNodeFor<T> | AnyLeafOrStructure,

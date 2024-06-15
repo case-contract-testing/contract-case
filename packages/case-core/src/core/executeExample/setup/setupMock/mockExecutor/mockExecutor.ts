@@ -9,18 +9,9 @@ import {
   addLocation,
   MockData,
 } from '@contract-case/case-plugin-base';
-import { CoreHttpPlugin } from '@contract-case/case-core-plugin-http';
-import {
-  AllHttpMatcherTypes,
-  MOCK_HTTP_CLIENT,
-  MOCK_HTTP_SERVER,
-  AllHttpMatcherDescriptors,
-  AllHttpMockDescriptors,
-} from '@contract-case/case-core-plugin-http-dsl';
-import type { MockSetupFns } from './types';
-import { loadPlugin } from '../mockExecutors';
 
-const DEFAULT_PLUGINS = [CoreHttpPlugin] as const;
+import { loadPlugins } from './loadPlugins';
+import { MockSetupFns } from '../../../../../diffmatch/types';
 
 const inferMock = <T extends AnyMockDescriptorType>(
   mock: CaseMockDescriptorFor<AnyMockDescriptor, T>,
@@ -60,14 +51,8 @@ const executeMock = <T extends AnyMockDescriptorType>(
       context,
     );
   }
-  DEFAULT_PLUGINS.forEach((plugin) =>
-    loadPlugin<
-      AllHttpMatcherTypes,
-      typeof MOCK_HTTP_CLIENT | typeof MOCK_HTTP_SERVER,
-      AllHttpMatcherDescriptors,
-      AllHttpMockDescriptors
-    >(context, plugin),
-  );
+
+  loadPlugins(context);
 
   const executor = MockSetup[mockType];
   if (!executor) {

@@ -14,7 +14,7 @@ import {
   TraversalFns,
   AnyCaseMatcher as UnknownCaseNodeType,
 } from '@contract-case/case-plugin-base';
-import { inferMatcher } from '../diffmatch/inferMatcher';
+import { inferMatcher } from './inferMatcher';
 
 import { MatcherExecutors } from './MatcherExecutors';
 
