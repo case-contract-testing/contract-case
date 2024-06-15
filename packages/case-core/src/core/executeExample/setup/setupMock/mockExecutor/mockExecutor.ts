@@ -10,7 +10,6 @@ import {
   MockData,
 } from '@contract-case/case-plugin-base';
 
-import { loadPlugins } from './loadPlugins';
 import { MockSetupFns } from '../../../../../diffmatch/types';
 
 const inferMock = <T extends AnyMockDescriptorType>(
@@ -51,8 +50,6 @@ const executeMock = <T extends AnyMockDescriptorType>(
       context,
     );
   }
-
-  loadPlugins(context);
 
   const executor = MockSetup[mockType];
   if (!executor) {

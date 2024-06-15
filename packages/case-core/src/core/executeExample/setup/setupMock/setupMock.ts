@@ -10,7 +10,7 @@ import {
   CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
 import { mockExecutor } from './mockExecutor';
-import { MockExecutors } from './mockExecutors';
+import { MockExecutors } from '../../../plugins/mockExecutors';
 import { Assertable } from '../../../../entities/types';
 
 export const setupMock = <T extends AnyMockDescriptorType>(

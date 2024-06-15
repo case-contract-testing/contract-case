@@ -34,6 +34,7 @@ import type { CaseConfig } from './config/types';
 import { DEFAULT_TEST_ID } from './defaultTestId';
 import { traversals } from '../diffmatch';
 import { coreShapedLike } from '../entities';
+import { loadPlugins } from './plugins';
 
 export class BaseCaseContract {
   currentContract: ContractData;
@@ -97,6 +98,8 @@ export class BaseCaseContract {
         // TODO: put in a URL to the documentation here
       );
     }
+
+    loadPlugins(this.initialContext);
   }
 
   lookupVariable(

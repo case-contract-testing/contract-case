@@ -8,8 +8,8 @@ import {
 } from '@contract-case/case-core-plugin-http-dsl';
 import { MatchContext } from '@contract-case/case-plugin-base';
 
-import { MockExecutors } from '../mockExecutors';
-import { loadPlugin } from '../../../../../diffmatch';
+import { loadPlugin } from '../../diffmatch';
+import { MockExecutors } from './mockExecutors';
 
 const DEFAULT_PLUGINS = [CoreHttpPlugin] as const;
 

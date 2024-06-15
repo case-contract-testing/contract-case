@@ -26,20 +26,7 @@ import {
   MatcherExecutor,
   LOOKUP_MATCHER_TYPE,
 } from '@contract-case/case-plugin-base';
-import {
-  HTTP_STATUS_CODE_MATCHER_TYPE,
-  HTTP_RESPONSE_MATCHER_TYPE,
-  HTTP_REQUEST_MATCHER_TYPE,
-  URL_ENCODED_STRING_TYPE,
-  HTTP_BASIC_AUTH_TYPE,
-} from '@contract-case/case-core-plugin-http-dsl';
-import {
-  HttpStatusCodeMatcher,
-  HttpResponseMatcher,
-  HttpRequestMatcher,
-  UrlEncodedStringMatcher,
-  HttpBasicAuthMatcher,
-} from '@contract-case/case-core-plugin-http';
+
 import {
   NumberMatcher,
   StringMatcher,
@@ -70,9 +57,11 @@ import {
   StringSuffixMatcher,
 } from './strings';
 
-export const MatcherExecutors: {
+type AllExecutors = {
   [T in AnyCaseNodeType]: MatcherExecutor<T, CaseNodeFor<T>>;
-} = {
+};
+
+export const MatcherExecutors: AllExecutors = {
   [NUMBER_MATCHER_TYPE]: NumberMatcher,
   [STRING_MATCHER_TYPE]: StringMatcher,
   [STRING_CONTAINS_TYPE]: StringContainsMatcher,
@@ -83,9 +72,6 @@ export const MatcherExecutors: {
   [NULL_MATCHER_TYPE]: NullMatcher,
   [SHAPED_ARRAY_MATCHER_TYPE]: ShapedArrayExecutor,
   [SHAPED_OBJECT_MATCHER_TYPE]: ShapedObjectExecutor,
-  [HTTP_STATUS_CODE_MATCHER_TYPE]: HttpStatusCodeMatcher,
-  [HTTP_RESPONSE_MATCHER_TYPE]: HttpResponseMatcher,
-  [HTTP_REQUEST_MATCHER_TYPE]: HttpRequestMatcher,
   [LOOKUP_MATCHER_TYPE]: LookupMatcher,
   [ARRAY_LENGTH_MATCHER_TYPE]: ArrayLengthExecutor,
   [COMBINE_MATCHERS_TYPE]: AndCombinationMatcher,
@@ -95,8 +81,6 @@ export const MatcherExecutors: {
   [INTEGER_MATCH_TYPE]: IntegerMatcher,
   [OBJECT_KEYS_MATCH_TYPE]: ObjectEachKeyMatches,
   [CONTEXT_VARIABLE_TYPE]: ContextVariableMatcher,
-  [URL_ENCODED_STRING_TYPE]: UrlEncodedStringMatcher,
-  [HTTP_BASIC_AUTH_TYPE]: HttpBasicAuthMatcher,
   [JSON_STRINGIFIED_TYPE]: JsonStringifiedString,
   [BASE64_ENCODED_TYPE]: Base64EncodedStringMatcher,
-};
+} as AllExecutors; // TODO: Remove this assertion when we have everything loaded via plugin
