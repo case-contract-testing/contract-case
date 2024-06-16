@@ -657,6 +657,44 @@ export namespace EndDefinitionRequest {
   export type AsObject = {};
 }
 
+export class LoadPluginRequest extends jspb.Message {
+  clearModuleNamesList(): void;
+  getModuleNamesList(): Array<google_protobuf_wrappers_pb.StringValue>;
+  setModuleNamesList(
+    value: Array<google_protobuf_wrappers_pb.StringValue>,
+  ): LoadPluginRequest;
+  addModuleNames(
+    value?: google_protobuf_wrappers_pb.StringValue,
+    index?: number,
+  ): google_protobuf_wrappers_pb.StringValue;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LoadPluginRequest.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: LoadPluginRequest,
+  ): LoadPluginRequest.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: LoadPluginRequest,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): LoadPluginRequest;
+  static deserializeBinaryFromReader(
+    message: LoadPluginRequest,
+    reader: jspb.BinaryReader,
+  ): LoadPluginRequest;
+}
+
+export namespace LoadPluginRequest {
+  export type AsObject = {
+    moduleNamesList: Array<google_protobuf_wrappers_pb.StringValue.AsObject>;
+  };
+}
+
 export class RunStateHandlerRequest extends jspb.Message {
   hasStateHandlerHandle(): boolean;
   clearStateHandlerHandle(): void;
@@ -1076,6 +1114,11 @@ export class DefinitionRequest extends jspb.Message {
   getResultResponse(): ResultResponse | undefined;
   setResultResponse(value?: ResultResponse): DefinitionRequest;
 
+  hasLoadPlugin(): boolean;
+  clearLoadPlugin(): void;
+  getLoadPlugin(): LoadPluginRequest | undefined;
+  setLoadPlugin(value?: LoadPluginRequest): DefinitionRequest;
+
   getKindCase(): DefinitionRequest.KindCase;
 
   serializeBinary(): Uint8Array;
@@ -1108,6 +1151,7 @@ export namespace DefinitionRequest {
     stripMatchers?: StripMatchersRequest.AsObject;
     endDefinition?: EndDefinitionRequest.AsObject;
     resultResponse?: ResultResponse.AsObject;
+    loadPlugin?: LoadPluginRequest.AsObject;
   };
 
   export enum KindCase {
@@ -1118,6 +1162,7 @@ export namespace DefinitionRequest {
     STRIP_MATCHERS = 5,
     END_DEFINITION = 6,
     RESULT_RESPONSE = 7,
+    LOAD_PLUGIN = 8,
   }
 }
 
@@ -1323,6 +1368,11 @@ export class VerificationRequest extends jspb.Message {
   getResultResponse(): ResultResponse | undefined;
   setResultResponse(value?: ResultResponse): VerificationRequest;
 
+  hasLoadPlugin(): boolean;
+  clearLoadPlugin(): void;
+  getLoadPlugin(): LoadPluginRequest | undefined;
+  setLoadPlugin(value?: LoadPluginRequest): VerificationRequest;
+
   hasInvokeTest(): boolean;
   clearInvokeTest(): void;
   getInvokeTest(): InvokeTest | undefined;
@@ -1358,6 +1408,7 @@ export namespace VerificationRequest {
     availableContractDefinitions?: AvailableContractDefinitions.AsObject;
     runVerification?: RunVerification.AsObject;
     resultResponse?: ResultResponse.AsObject;
+    loadPlugin?: LoadPluginRequest.AsObject;
     invokeTest?: InvokeTest.AsObject;
   };
 
@@ -1367,6 +1418,7 @@ export namespace VerificationRequest {
     AVAILABLE_CONTRACT_DEFINITIONS = 3,
     RUN_VERIFICATION = 4,
     RESULT_RESPONSE = 5,
+    LOAD_PLUGIN = 6,
     INVOKE_TEST = 9,
   }
 }

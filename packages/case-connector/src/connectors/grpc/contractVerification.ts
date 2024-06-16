@@ -208,6 +208,27 @@ export const contractVerification = (
             //     sendContractResponse(getId(request), makeResultResponse(result));
           }
           break;
+        case WireVerificationRequest.KindCase.LOAD_PLUGIN:
+          {
+            const loadPluginRequest = request.getLoadPlugin();
+            if (loadPluginRequest == null) {
+              throw new ConnectorError(
+                'loadPlugin called with something that returned an undefined request',
+              );
+            }
+
+            sendContractResponse(
+              getId(request),
+              makeResultResponse(
+                new BoundaryFailure(
+                  BoundaryFailureKindConstants.CASE_CORE_ERROR,
+                  `Plugin loading not implemented`,
+                  'ContractCase Connector',
+                ),
+              ),
+            );
+          }
+          break;
         default:
           throw new UnreachableError(type);
       }

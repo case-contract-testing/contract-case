@@ -97,6 +97,10 @@ message StripMatchersRequest {
 message EndDefinitionRequest {
 }
 
+message LoadPluginRequest {
+  repeated google.protobuf.StringValue module_names = 1;
+}
+
 // Responses from server
 
 message RunStateHandlerRequest {
@@ -249,6 +253,8 @@ message DefinitionRequest {
     EndDefinitionRequest end_definition = 6;
     // Core returns a response to a host call
     ResultResponse result_response = 7;
+    // Host wants to load a plugin
+    LoadPluginRequest load_plugin = 8;
   }
 }
 
@@ -293,6 +299,8 @@ message VerificationRequest {
     RunVerification run_verification = 4;
     // Core is responding to a host call
     ResultResponse result_response = 5;
+    // Host wants to load a plugin
+    LoadPluginRequest load_plugin = 6;
     // Core wants to invoke a specific test
     InvokeTest invoke_test = 9;
   }
