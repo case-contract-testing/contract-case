@@ -1,26 +1,3 @@
-/**
- * Begin define
- *   - Begin define
- *      - Config
- *          - Statehandlers need to be callbacks
- *          - triggerAndTest needs to be a callback
- *      - LogPrinter is a callback
- *      - resultPrinter is a callback
- *      - Parent Versions
- *      - Returns ID
- *   - runExample
- *      Define ID
- *      json definition
- *      and config
- *   - runRejectingExample
- *      Define ID
- *      json definition
- *      and config
- *   - endRecord
- *      Define ID
- *      invalidates ID
- */
-
 import { AnyCaseMatcherOrData } from '@contract-case/case-core';
 import { versionString } from '../versionString';
 import { mapConfig, mapConfigNoId } from './config';
