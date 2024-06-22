@@ -1,6 +1,6 @@
 import { CaseCoreError, TestPrinter } from '@contract-case/case-core';
-import { ILogPrinter, IResultPrinter } from '../boundary';
-import { handleVoidResult } from './Result';
+import { ILogPrinter, IResultPrinter } from '../boundary/index.js';
+import { handleVoidResult } from './Result/index.js';
 
 export const wrapLogPrinter = (
   externalLogger: ILogPrinter,

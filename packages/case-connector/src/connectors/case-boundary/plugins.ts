@@ -3,8 +3,8 @@ import {
   ContractCaseBoundaryConfig,
   ILogPrinter,
   IResultPrinter,
-} from './internals';
-import { BoundaryPluginLoader } from './internals/BoundaryPluginLoader';
+} from './internals/index.js';
+import { BoundaryPluginLoader } from './internals/BoundaryPluginLoader.js';
 
 export const loadPlugins = (
   config: Omit<ContractCaseBoundaryConfig, 'testRunId'>,

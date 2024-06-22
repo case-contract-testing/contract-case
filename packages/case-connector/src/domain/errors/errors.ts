@@ -1,7 +1,7 @@
 import {
   BoundaryFailure,
   BoundaryFailureKindConstants,
-} from '../../entities/types';
+} from '../../entities/types.js';
 
 export const makeCoreError = (
   message: string,

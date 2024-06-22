@@ -1,5 +1,5 @@
-import { BoundaryResult } from './BoundaryResult';
-import { RESULT_SUCCESS_HAS_MAP_PAYLOAD } from './BoundaryResultTypeConstants';
+import { BoundaryResult } from './BoundaryResult.js';
+import { RESULT_SUCCESS_HAS_MAP_PAYLOAD } from './BoundaryResultTypeConstants.js';
 
 /**
  * This indicates a success returning a map of strings to arbitrary payloads

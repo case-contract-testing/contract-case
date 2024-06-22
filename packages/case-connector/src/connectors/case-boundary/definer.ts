@@ -5,13 +5,13 @@ import {
   IResultPrinter,
   BoundaryContractDefiner,
   BoundaryFailure,
-} from './internals';
+} from './internals/index.js';
 import {
   makeCoreError,
   makeConfigurationError,
-} from '../../domain/errors/errors';
-import { DefinitionId } from '../../domain/types';
-import { maintainerLog } from '../../domain/maintainerLog';
+} from '../../domain/errors/errors.js';
+import { DefinitionId } from '../../domain/types.js';
+import { maintainerLog } from '../../domain/maintainerLog.js';
 
 const ENDED_DEFINER = 'CLOSED' as const;
 

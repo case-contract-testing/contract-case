@@ -9,10 +9,10 @@ import {
   ILogPrinter,
   IResultPrinter,
   BoundaryResult,
-} from './boundary';
-import { versionString } from '../../../versionString';
-import { convertConfig, jsErrorToFailure, wrapLogPrinter } from './mappers';
-import { BoundarySuccess } from '.';
+} from './boundary/index.js';
+import { versionString } from '../../../versionString.js';
+import { convertConfig, jsErrorToFailure, wrapLogPrinter } from './mappers/index.js';
+import { BoundarySuccess } from './index.js';
 
 /**
  * A BoundaryPluginLoader allows loading plugins into the core

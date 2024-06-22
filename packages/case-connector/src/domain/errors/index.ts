@@ -1,2 +1,2 @@
-export * from './errors';
-export * from './ConnectorError';
+export * from './errors.js';
+export * from './ConnectorError.js';

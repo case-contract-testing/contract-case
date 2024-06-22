@@ -3,7 +3,7 @@ import {
   RESULT_SUCCESS_HAS_MAP_PAYLOAD,
   RESULT_SUCCESS_HAS_ANY_PAYLOAD,
   RESULT_FAILURE,
-} from './BoundaryResultTypeConstants';
+} from './BoundaryResultTypeConstants.js';
 
 type BoundaryResultType =
   | typeof RESULT_SUCCESS

@@ -6,11 +6,11 @@ import {
   ILogPrinter,
   IResultPrinter,
   BoundaryFailure,
-} from './internals';
+} from './internals/index.js';
 import {
   makeCoreError,
   makeConfigurationError,
-} from '../../domain/errors/errors';
+} from '../../domain/errors/errors.js';
 
 const ENDED_VERIFIER = 'CLOSED' as const;
 

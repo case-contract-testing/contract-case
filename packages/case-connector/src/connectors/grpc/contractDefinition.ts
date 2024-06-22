@@ -1,30 +1,30 @@
 import { ServerDuplexStream } from '@grpc/grpc-js';
 
 import {
+  DefinitionRequest as WireDefinitionRequest,
+  ContractResponse as WireContractResponse,
+} from '@contract-case/case-connector-proto';
+import {
   BoundaryFailure,
   BoundaryFailureKindConstants,
   BoundarySuccess,
-} from '../../entities/types';
-import {
-  DefinitionRequest as WireDefinitionRequest,
-  ContractResponse as WireContractResponse,
-} from './proto/contract_case_stream_pb';
-import { UnreachableError } from './UnreachableError';
-import { ConnectorError } from '../../domain/errors/ConnectorError';
+} from '../../entities/types.js';
+import { UnreachableError } from './UnreachableError.js';
+import { ConnectorError } from '../../domain/errors/ConnectorError.js';
 import {
   beginDefinition,
   endRecord,
   runExample,
   runRejectingExample,
   stripMatchers,
-} from '../../domain/define';
-import { mapConfig, mapJson, mapResult } from './requestMappers';
-import { resolveById } from './promiseHandler/promiseHandler';
-import { makeSendContractResponse } from './sendContractResponse';
-import { maintainerLog } from '../../domain/maintainerLog';
-import { makeLogPrinter, makeResultPrinter } from './printers';
-import { makeResultResponse } from './responseMappers';
-import { loadPlugin } from '../../domain/loadPlugin';
+} from '../../domain/define.js';
+import { mapConfig, mapJson, mapResult } from './requestMappers/index.js';
+import { resolveById } from './promiseHandler/promiseHandler.js';
+import { makeSendContractResponse } from './sendContractResponse.js';
+import { maintainerLog } from '../../domain/maintainerLog.js';
+import { makeLogPrinter, makeResultPrinter } from './printers.js';
+import { makeResultResponse } from './responseMappers/index.js';
+import { loadPlugin } from '../../domain/loadPlugin.js';
 
 const getId = (request: WireDefinitionRequest): string => {
   const id = request.getId();

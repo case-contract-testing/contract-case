@@ -1,5 +1,5 @@
-import { BoundaryResult } from './BoundaryResult';
-import { RESULT_SUCCESS_HAS_ANY_PAYLOAD } from './BoundaryResultTypeConstants';
+import { BoundaryResult } from './BoundaryResult.js';
+import { RESULT_SUCCESS_HAS_ANY_PAYLOAD } from './BoundaryResultTypeConstants.js';
 
 /**
  * This indicates a success with any arbitrary payload

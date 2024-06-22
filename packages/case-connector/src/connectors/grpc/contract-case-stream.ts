@@ -1,11 +1,10 @@
 import { Server, ServerCredentials } from '@grpc/grpc-js';
+import { ContractCaseService } from '@contract-case/case-connector-proto';
 import getPort from 'get-port';
 
-import service from './proto/contract_case_stream_grpc_pb';
-
-import { contractDefinition } from './contractDefinition';
-import { contractVerification } from './contractVerification';
-import { versionString } from '../../versionString';
+import { contractDefinition } from './contractDefinition.js';
+import { contractVerification } from './contractVerification.js';
+import { versionString } from '../../versionString.js';
 
 /**
  * Starts a gRPC server for defining and verifying ContractCase contracts
@@ -31,7 +30,7 @@ export function main(): void {
       },
     );
 
-    server.addService(service.ContractCaseService, {
+    server.addService(ContractCaseService, {
       contractDefinition,
       contractVerification,
     });

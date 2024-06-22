@@ -1,3 +1,3 @@
-export * from './failureToJsError';
-export * from './jsErrorToFailure';
-export * from './handleResult';
+export * from './failureToJsError.js';
+export * from './jsErrorToFailure.js';
+export * from './handleResult.js';

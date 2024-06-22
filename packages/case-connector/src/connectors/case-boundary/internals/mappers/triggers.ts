@@ -4,8 +4,8 @@ import {
   ITriggerFunction,
   RESULT_FAILURE,
   RESULT_SUCCESS_HAS_MAP_PAYLOAD,
-} from '../boundary';
-import { failureToJsError } from './Result';
+} from '../boundary/index.js';
+import { failureToJsError } from './Result/index.js';
 
 export const mapTrigger =
   (trigger: ITriggerFunction) =>

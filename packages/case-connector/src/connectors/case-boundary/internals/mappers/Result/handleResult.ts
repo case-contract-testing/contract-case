@@ -1,7 +1,7 @@
 import { CaseCoreError } from '@contract-case/case-core';
-import { RESULT_FAILURE, RESULT_SUCCESS, BoundaryResult } from '../../boundary';
-import { failureToJsError } from './failureToJsError';
-import { ErrorType } from './types';
+import { RESULT_FAILURE, RESULT_SUCCESS, BoundaryResult } from '../../boundary/index.js';
+import { failureToJsError } from './failureToJsError.js';
+import { ErrorType } from './types.js';
 
 export const handleVoidResult = (
   result: BoundaryResult,

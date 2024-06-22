@@ -1,2 +1,2 @@
 // export * from './types.ts-boundary';
-export * from './types.jsii-boundary';
+export * from './types.jsii-boundary.js';

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { BoundaryResult } from '../../../entities/types';
-import { ConnectorError } from '../../../domain/errors';
+import { BoundaryResult } from '../../../entities/types.js';
+import { ConnectorError } from '../../../domain/errors/index.js';
 
 const promises: Record<
   string,

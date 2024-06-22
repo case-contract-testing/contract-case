@@ -18,4 +18,4 @@ export {
   PrintableTestTitle,
   BoundarySuccessWithMap,
   ContractCaseBoundaryConfig,
-} from '../connectors/case-boundary/internals';
+} from '../connectors/case-boundary/internals/index.js';

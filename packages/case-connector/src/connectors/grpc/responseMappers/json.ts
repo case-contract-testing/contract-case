@@ -2,7 +2,7 @@ import {
   JavaScriptValue,
   Struct,
   Value,
-} from 'google-protobuf/google/protobuf/struct_pb';
+} from 'google-protobuf/google/protobuf/struct_pb.js';
 
 export const makeGrpcStruct = (struct: Record<string, unknown>): Struct =>
   Struct.fromJavaScript(struct as { [key: string]: JavaScriptValue });

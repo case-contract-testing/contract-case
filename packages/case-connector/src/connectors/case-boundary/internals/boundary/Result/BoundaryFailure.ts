@@ -1,5 +1,5 @@
-import { BoundaryResult } from './BoundaryResult';
-import { RESULT_FAILURE } from './BoundaryResultTypeConstants';
+import { BoundaryResult } from './BoundaryResult.js';
+import { RESULT_FAILURE } from './BoundaryResultTypeConstants.js';
 
 /**
  * This indicates a failure. Use `BoundaryFailureKindConstants` to determine what type of failure it is.

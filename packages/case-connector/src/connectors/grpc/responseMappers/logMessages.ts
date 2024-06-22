@@ -1,17 +1,17 @@
-import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb.js';
 import {
   ContractResponse as WireContractResponse,
   LogRequest as WireLogRequest,
   PrintMatchErrorRequest as WirePrintMatchErrorRequest,
   PrintMessageErrorRequest as WirePrintMessageErrorRequest,
   PrintTestTitleRequest as WirePrintTestTitleRequest,
-} from '../proto/contract_case_stream_pb';
+} from '@contract-case/case-connector-proto';
 
 import {
   PrintableMatchError,
   PrintableMessageError,
   PrintableTestTitle,
-} from '../../../entities/types';
+} from '../../../entities/types.js';
 
 export const makeLogRequest = ({
   level,

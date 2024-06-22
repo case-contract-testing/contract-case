@@ -5,19 +5,19 @@ import {
   PrintableMatchError,
   PrintableMessageError,
   PrintableTestTitle,
-} from '../../entities/types';
+} from '../../entities/types.js';
 
 import {
   makeResolvableId,
   waitForResolution,
-} from './promiseHandler/promiseHandler';
+} from './promiseHandler/promiseHandler.js';
 import {
   makeLogRequest,
   makePrintMatchErrorRequest,
   makePrintTestTitleRequest,
   makePrintableMessageErrorRequest,
-} from './responseMappers';
-import { SendContractResponse } from './sendContractResponse';
+} from './responseMappers/index.js';
+import { SendContractResponse } from './sendContractResponse.js';
 
 export const makeResultPrinter = (
   sendContractResponse: SendContractResponse,

@@ -3,15 +3,15 @@ import {
   ILogPrinter,
   IResultPrinter,
   IRunTestCallback,
-} from '../entities/types';
-import { versionString } from '../versionString';
-import { ContractCaseConnectorConfig, VerificationId } from './types';
-import { mapConfig, mapConfigNoId } from './config';
+} from '../entities/types.js';
+import { versionString } from '../versionString.js';
+import { ContractCaseConnectorConfig, VerificationId } from './types.js';
+import { mapConfig, mapConfigNoId } from './config.js';
 import {
   closeVerifier,
   createVerifier,
   getVerifier,
-} from '../connectors/case-boundary/verifier';
+} from '../connectors/case-boundary/verifier.js';
 
 export const beginVerification = (
   config: ContractCaseConnectorConfig,

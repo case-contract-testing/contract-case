@@ -4,10 +4,10 @@ import {
   CaseConfigurationError,
   LogLevel,
 } from '@contract-case/case-core';
-import { TestInvoker } from '@contract-case/case-core/dist/src/core/executeExample/types';
-import { ContractCaseBoundaryConfig } from '../boundary/config.types';
-import { mapStateHandlers } from './stateHandlers';
-import { mapTrigger, mapTriggers } from './triggers';
+import { TestInvoker } from '@contract-case/case-core/dist/src/core/executeExample/types.js';
+import { ContractCaseBoundaryConfig } from '../boundary/config.types.js';
+import { mapStateHandlers } from './stateHandlers.js';
+import { mapTrigger, mapTriggers } from './triggers.js';
 
 const mapLogLevel = (levelString: string): LogLevel => {
   switch (levelString) {

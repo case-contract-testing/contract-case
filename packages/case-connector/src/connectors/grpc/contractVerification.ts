@@ -1,12 +1,12 @@
 import { ServerDuplexStream } from '@grpc/grpc-js';
 
-import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb.js';
 import {
   VerificationRequest as WireVerificationRequest,
   ContractResponse as WireContractResponse,
   StartTestEvent as WireStartTestEvent,
-} from './proto/contract_case_stream_pb';
-import { UnreachableError } from './UnreachableError';
+} from '@contract-case/case-connector-proto';
+import { UnreachableError } from './UnreachableError.js';
 import {
   BoundaryFailure,
   BoundaryFailureKindConstants,
@@ -14,25 +14,25 @@ import {
   BoundarySuccess,
   BoundarySuccessWithAny,
   IInvokeCoreTest,
-} from '../../entities/types';
-import { ConnectorError } from '../../domain/errors/ConnectorError';
+} from '../../entities/types.js';
+import { ConnectorError } from '../../domain/errors/ConnectorError.js';
 import {
   availableContractDescriptions,
   beginVerification,
   runVerification,
-} from '../../domain/verify';
-import { maintainerLog } from '../../domain/maintainerLog';
+} from '../../domain/verify.js';
+import { maintainerLog } from '../../domain/maintainerLog.js';
 
-import { mapConfig, mapResult } from './requestMappers';
+import { mapConfig, mapResult } from './requestMappers/index.js';
 import {
   makeResolvableId,
   resolveById,
   waitForResolution,
-} from './promiseHandler/promiseHandler';
-import { makeSendContractResponse } from './sendContractResponse';
-import { makeLogPrinter, makeResultPrinter } from './printers';
-import { makeResultResponse } from './responseMappers';
-import { loadPlugin } from '../../domain/loadPlugin';
+} from './promiseHandler/promiseHandler.js';
+import { makeSendContractResponse } from './sendContractResponse.js';
+import { makeLogPrinter, makeResultPrinter } from './printers.js';
+import { makeResultResponse } from './responseMappers/index.js';
+import { loadPlugin } from '../../domain/loadPlugin.js';
 
 const getId = (request: WireVerificationRequest): string => {
   const id = request.getId();

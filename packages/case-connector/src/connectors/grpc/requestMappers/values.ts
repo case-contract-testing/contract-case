@@ -1,8 +1,8 @@
 import {
   BoolValue,
   StringValue,
-} from 'google-protobuf/google/protobuf/wrappers_pb';
-import { ConnectorError } from '../../../domain/errors';
+} from 'google-protobuf/google/protobuf/wrappers_pb.js';
+import { ConnectorError } from '../../../domain/errors/index.js';
 
 export const unbox = (value: StringValue | undefined): string => {
   if (value != null) {

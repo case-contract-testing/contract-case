@@ -1,14 +1,14 @@
+import { BoundaryResult as WireBoundaryResult } from '@contract-case/case-connector-proto';
 import {
   BoundaryFailure,
   BoundaryResult,
   BoundarySuccess,
   BoundarySuccessWithMap,
-} from '../../../entities/types';
-import { BoundaryResult as WireBoundaryResult } from '../proto/contract_case_stream_pb';
-import { ConnectorError } from '../../../domain/errors';
-import { UnreachableError } from '../UnreachableError';
-import { mapJson, mapJsonMap } from './json';
-import { unbox } from './values';
+} from '../../../entities/types.js';
+import { ConnectorError } from '../../../domain/errors/index.js';
+import { UnreachableError } from '../UnreachableError.js';
+import { mapJson, mapJsonMap } from './json.js';
+import { unbox } from './values.js';
 
 export const mapResult = (
   wireBoundaryResult: WireBoundaryResult | undefined,

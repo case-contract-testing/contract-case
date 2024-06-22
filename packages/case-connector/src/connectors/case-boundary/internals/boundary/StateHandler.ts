@@ -1,5 +1,5 @@
 import { CaseConfigurationError } from '@contract-case/case-core';
-import { BoundaryResult } from './Result';
+import { BoundaryResult } from './Result/index.js';
 
 /**
  * An interface for a state handler that only has setup

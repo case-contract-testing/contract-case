@@ -1,3 +1,3 @@
-export * from './config';
-export * from './result';
-export * from './json';
+export * from './config/index.js';
+export * from './result.js';
+export * from './json.js';

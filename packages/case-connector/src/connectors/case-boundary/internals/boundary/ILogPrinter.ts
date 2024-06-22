@@ -1,4 +1,4 @@
-import { BoundaryResult } from './Result';
+import { BoundaryResult } from './Result/index.js';
 
 /**
  * Data class to hold data to print a message error during matching

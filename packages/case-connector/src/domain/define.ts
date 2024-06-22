@@ -1,17 +1,17 @@
 import { AnyCaseMatcherOrData } from '@contract-case/case-core';
-import { versionString } from '../versionString';
-import { mapConfig, mapConfigNoId } from './config';
+import { versionString } from '../versionString.js';
+import { mapConfig, mapConfigNoId } from './config.js';
 import {
   ContractCaseConnectorConfig,
   DefinitionId,
   ExampleDefinition,
-} from './types';
+} from './types.js';
 import {
   closeDefiner,
   createDefiner,
   getDefiner,
-} from '../connectors/case-boundary/definer';
-import { BoundaryResult, ILogPrinter, IResultPrinter } from '../entities/types';
+} from '../connectors/case-boundary/definer.js';
+import { BoundaryResult, ILogPrinter, IResultPrinter } from '../entities/types.js';
 
 export const beginDefinition = (
   config: ContractCaseConnectorConfig,

@@ -1,4 +1,4 @@
-import { versionString } from '../versionString';
+import { versionString } from '../versionString.js';
 
 export const maintainerLog = (...s: unknown[]): void => {
   if (

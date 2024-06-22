@@ -1,5 +1,5 @@
-import { RESULT_SUCCESS } from './BoundaryResultTypeConstants';
-import { BoundaryResult } from './BoundaryResult';
+import { RESULT_SUCCESS } from './BoundaryResultTypeConstants.js';
+import { BoundaryResult } from './BoundaryResult.js';
 
 /**
  * This indicates that the result was successful

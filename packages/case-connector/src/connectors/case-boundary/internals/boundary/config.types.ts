@@ -1,5 +1,5 @@
-import { ITriggerFunction } from './ITriggerFunction';
-import { BoundaryStateHandler } from './StateHandler';
+import { ITriggerFunction } from './ITriggerFunction.js';
+import { BoundaryStateHandler } from './StateHandler.js';
 
 /**
  * Describes a username and password

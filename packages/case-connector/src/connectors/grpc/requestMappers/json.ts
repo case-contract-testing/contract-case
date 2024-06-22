@@ -1,5 +1,8 @@
-import type { Struct, Value } from 'google-protobuf/google/protobuf/struct_pb';
-import { ConnectorError } from '../../../domain/errors';
+import type {
+  Struct,
+  Value,
+} from 'google-protobuf/google/protobuf/struct_pb.js';
+import { ConnectorError } from '../../../domain/errors/index.js';
 
 export const mapJsonMap = (
   struct: Struct | undefined,

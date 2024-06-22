@@ -1,27 +1,27 @@
 import {
   JavaScriptValue,
   Struct,
-} from 'google-protobuf/google/protobuf/struct_pb';
-import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
+} from 'google-protobuf/google/protobuf/struct_pb.js';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb.js';
 import {
   ContractResponse,
   TriggerFunctionHandle,
   TriggerFunctionRequest,
   ContractCaseConfig as WireContractCaseConfig,
-} from '../../proto/contract_case_stream_pb';
+} from '@contract-case/case-connector-proto';
 
 import {
   ConnectorTriggerFunction,
   ContractCaseConnectorConfig,
-} from '../../../../domain/types';
-import { mapStateHandlers } from './stateHandlers';
-import { ConnectorError } from '../../../../domain/errors';
+} from '../../../../domain/types.js';
+import { mapStateHandlers } from './stateHandlers.js';
+import { ConnectorError } from '../../../../domain/errors/index.js';
 import {
   makeResolvableId,
   waitForResolution,
-} from '../../promiseHandler/promiseHandler';
-import { SendContractResponse } from '../../sendContractResponse';
-import { unbox, unboxBoolOrUndefined, unboxOrUndefined } from '../values';
+} from '../../promiseHandler/promiseHandler.js';
+import { SendContractResponse } from '../../sendContractResponse.js';
+import { unbox, unboxBoolOrUndefined, unboxOrUndefined } from '../values.js';
 
 const mapTriggerFunction = (
   handle: TriggerFunctionHandle,

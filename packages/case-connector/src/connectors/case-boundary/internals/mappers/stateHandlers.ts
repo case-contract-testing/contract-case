@@ -5,8 +5,8 @@ import {
   RESULT_SUCCESS_HAS_MAP_PAYLOAD,
   BoundarySuccessWithMap,
   BoundaryStateHandler,
-} from '../boundary';
-import { failureToJsError } from './Result';
+} from '../boundary/index.js';
+import { failureToJsError } from './Result/index.js';
 
 const wrapSetup =
   (boundaryHandler: BoundaryStateHandler) =>

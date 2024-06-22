@@ -41,4 +41,4 @@
  *
  */
 
-export * from './connectors/case-boundary/internals';
+export * from './connectors/case-boundary/internals/index.js';

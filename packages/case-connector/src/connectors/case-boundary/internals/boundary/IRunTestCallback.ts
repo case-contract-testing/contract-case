@@ -1,4 +1,4 @@
-import { BoundaryResult } from './Result';
+import { BoundaryResult } from './Result/index.js';
 
 /**
  * Interface to tell ContractCase to run the test indicated in a call to an

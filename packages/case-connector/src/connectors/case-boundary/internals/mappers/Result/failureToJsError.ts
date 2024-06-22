@@ -4,8 +4,8 @@ import {
   CaseTriggerError,
   VerifyTriggerReturnObjectError,
 } from '@contract-case/case-core';
-import { BoundaryFailure, BoundaryResult } from '../../boundary';
-import { ErrorType } from './types';
+import { BoundaryFailure, BoundaryResult } from '../../boundary/index.js';
+import { ErrorType } from './types.js';
 
 const errorMessage = (message: string, location: string) =>
   `${message}\n    - at ${location}`;

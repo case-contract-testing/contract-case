@@ -1,4 +1,4 @@
-import { BoundaryFailure } from '../../boundary';
+import { BoundaryFailure } from '../../boundary/index.js';
 
 export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
   if (e instanceof Error) {

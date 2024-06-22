@@ -1,9 +1,10 @@
 import { ServerDuplexStream } from '@grpc/grpc-js';
 import { format } from 'pretty-format';
 
-import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
-import { ContractResponse as WireContractResponse } from './proto/contract_case_stream_pb';
-import { maintainerLog } from '../../domain/maintainerLog';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb.js';
+import { ContractResponse as WireContractResponse } from '@contract-case/case-connector-proto';
+
+import { maintainerLog } from '../../domain/maintainerLog.js';
 
 const sendContractResponse = <T>(
   call: ServerDuplexStream<T, WireContractResponse>,

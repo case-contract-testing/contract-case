@@ -10,8 +10,8 @@ import {
   handleVoidResult,
   jsErrorToFailure,
   wrapLogPrinter,
-} from './mappers';
-import { IInvokeCoreTest, IRunTestCallback } from './boundary/IRunTestCallback';
+} from './mappers/index.js';
+import { IInvokeCoreTest, IRunTestCallback } from './boundary/IRunTestCallback.js';
 import {
   ILogPrinter,
   IResultPrinter,
@@ -19,8 +19,8 @@ import {
   BoundaryResult,
   BoundarySuccess,
   BoundarySuccessWithAny,
-} from './boundary';
-import { versionString } from '../../../versionString';
+} from './boundary/index.js';
+import { versionString } from '../../../versionString.js';
 
 class CoreInvoker implements IInvokeCoreTest {
   private coreVerify: () => Promise<unknown>;

@@ -1,19 +1,18 @@
-import { BoundaryResult } from '../../../../entities/types';
-
 import {
   RunStateHandlerRequest as WireRunStateHandlerRequest,
   StateHandlerHandle as WireStateHandlerHandle,
   ContractResponse as WireContractResponse,
-} from '../../proto/contract_case_stream_pb';
+} from '@contract-case/case-connector-proto';
+import { BoundaryResult } from '../../../../entities/types.js';
 
-import { ConnectorStateHandler } from '../../../../domain/types';
+import { ConnectorStateHandler } from '../../../../domain/types.js';
 
 import {
   waitForResolution,
   makeResolvableId,
-} from '../../promiseHandler/promiseHandler';
-import { unbox } from '../values';
-import { SendContractResponse } from '../../sendContractResponse';
+} from '../../promiseHandler/promiseHandler.js';
+import { unbox } from '../values.js';
+import { SendContractResponse } from '../../sendContractResponse.js';
 
 const makeStateHandlerCall =
   (

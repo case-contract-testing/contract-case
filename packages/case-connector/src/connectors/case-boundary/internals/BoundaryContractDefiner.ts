@@ -9,11 +9,15 @@ import {
   ContractDefinerConnector,
 } from '@contract-case/case-core';
 
-import { convertConfig, jsErrorToFailure, wrapLogPrinter } from './mappers';
+import {
+  convertConfig,
+  jsErrorToFailure,
+  wrapLogPrinter,
+} from './mappers/index.js';
 import {
   BoundaryAnyMatcher,
   BoundaryMockDefinition,
-} from './types.jsii-boundary';
+} from './types.jsii-boundary.js';
 import {
   ContractCaseBoundaryConfig,
   ILogPrinter,
@@ -21,8 +25,8 @@ import {
   BoundaryResult,
   BoundarySuccess,
   BoundarySuccessWithAny,
-} from './boundary';
-import { versionString } from '../../../versionString';
+} from './boundary/index.js';
+import { versionString } from '../../../versionString.js';
 
 type Definition = {
   states: Array<AnyState>;

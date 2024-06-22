@@ -1,4 +1,4 @@
-import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb.js';
 import {
   ResultSuccessHasMapPayload as WireResultSuccessHasMapPayload,
   BoundaryResult as WireBoundaryResult,
@@ -7,14 +7,14 @@ import {
   ResultSuccessHasAnyPayload as WireResultSuccessHasAnyPayload,
   ContractResponse as WireContractResponse,
   ResultResponse as WireResultResponse,
-} from '../proto/contract_case_stream_pb';
-import { UnreachableError } from '../UnreachableError';
-import { makeGrpcStruct, makeGrpcValue } from './json';
+} from '@contract-case/case-connector-proto';
+import { UnreachableError } from '../UnreachableError.js';
+import { makeGrpcStruct, makeGrpcValue } from './json.js';
 import {
   BoundaryFailure,
   BoundaryResult,
   BoundarySuccessWithMap,
-} from '../../../entities/types';
+} from '../../../entities/types.js';
 
 const makeResult = (result: BoundaryResult): WireBoundaryResult => {
   switch (result.resultType) {

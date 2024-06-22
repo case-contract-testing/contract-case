@@ -6,7 +6,7 @@
  * Don't depend on this directly unless you are writing a custom wrapper for ContractCase.
  */
 
-export * from './BoundaryContractDefiner';
-export * from './BoundaryContractVerifier';
-export * from './boundary';
-export * from './types';
+export * from './BoundaryContractDefiner.js';
+export * from './BoundaryContractVerifier.js';
+export * from './boundary/index.js';
+export * from './types.js';
