@@ -1,7 +1,7 @@
-import { UserNotFoundConsumerError } from './errors';
-import { API_NOT_FOUND } from './internals/apiErrors';
-import { makeAxiosConnector } from './internals/axiosConnector';
-import type { ServerHealth } from './types';
+import { UserNotFoundConsumerError } from './errors.js';
+import { API_NOT_FOUND } from './internals/apiErrors.js';
+import { makeAxiosConnector } from './internals/axiosConnector.js';
+import type { ServerHealth } from './types.js';
 
 // This is the main API interface. It knows how to turn your business domain
 // requests into logical requests for the connector. The connector's job is to

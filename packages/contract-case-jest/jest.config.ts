@@ -4,7 +4,7 @@
  */
 
 export default {
-  preset: 'ts-jest',
+  preset: 'ts-jest/presets/default-esm',
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -68,6 +68,11 @@ export default {
 
   // An array of directory names to be searched recursively up from the requiring module's location
   moduleDirectories: ['node_modules', 'src'],
+
+  extensionsToTreatAsEsm: ['.ts'],
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
 
   // An array of file extensions your modules use
   // moduleFileExtensions: [

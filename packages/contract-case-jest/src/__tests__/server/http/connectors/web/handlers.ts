@@ -3,10 +3,10 @@ import type {
   BaseServiceDependencies,
   HealthServiceDependencies,
   UserServiceDependencies,
-} from '../../domain/types';
-import { makeUserService } from '../../domain/userService';
-import type { User } from '../../model/responses';
-import responder from './responder';
+} from '../../domain/types.js';
+import { makeUserService } from '../../domain/userService.js';
+import type { User } from '../../model/responses.js';
+import responder from './responder.js';
 
 export const base: (deps: BaseServiceDependencies) => RequestHandler =
   ({ baseService }: BaseServiceDependencies) =>

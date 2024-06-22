@@ -1,11 +1,11 @@
 import express from 'express';
 import type * as http from 'http';
 import bodyParser from 'body-parser';
-import { baseService } from '../../domain/baseService';
-import routes from './routes';
-import { healthService } from '../../domain/healthService';
-import type { Dependencies } from '../../domain/types';
-import { userRepo } from '../users/defaultUserRepository';
+import { baseService } from '../../domain/baseService.js';
+import routes from './routes.js';
+import { healthService } from '../../domain/healthService.js';
+import type { Dependencies } from '../../domain/types.js';
+import { userRepo } from '../users/defaultUserRepository.js';
 
 const app = express();
 const PORT = 8282; // default port to listen

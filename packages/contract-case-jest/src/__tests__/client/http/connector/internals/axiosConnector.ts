@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { unmarshallSuccess, unmarshallFailure } from './marshaller';
+import { unmarshallSuccess, unmarshallFailure } from './marshaller.js';
 
 type HttpConnector = {
   authedGet: <T>(path: string, query?: Record<string, string>) => Promise<T>;

@@ -1,7 +1,7 @@
 import { BoundaryStateHandler } from '@contract-case/case-connector';
-import { StateHandler, StateHandlers } from '../../../../../entities/types';
-import { MappedStateHandler } from './MappedStateHandler';
-import { ContractCaseConfigurationError } from '../../../../../entities';
+import { StateHandler, StateHandlers } from '../../../../../entities/types.js';
+import { MappedStateHandler } from './MappedStateHandler.js';
+import { ContractCaseConfigurationError } from '../../../../../entities/index.js';
 
 const NO_OP_HANDLER = () => {};
 

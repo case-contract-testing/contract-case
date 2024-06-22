@@ -1,3 +1,3 @@
-export * from './ContractCaseConfigurationError';
-export * from './ContractCaseCoreError';
-export * from './ContractCaseExpectationsNotMet';
+export * from './ContractCaseConfigurationError.js';
+export * from './ContractCaseCoreError.js';
+export * from './ContractCaseExpectationsNotMet.js';

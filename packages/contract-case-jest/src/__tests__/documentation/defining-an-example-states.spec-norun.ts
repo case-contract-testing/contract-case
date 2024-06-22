@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 /* eslint-disable jest/expect-expect */
 
-import { defineContract, ContractCaseDefiner } from '../..';
+import { defineContract, ContractCaseDefiner } from '../../index.js';
 
 // example-extract _defining-an-example-states
 import {

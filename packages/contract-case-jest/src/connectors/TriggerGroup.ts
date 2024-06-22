@@ -1,4 +1,4 @@
-import { Groups, TriggerGroups, TriggerGroup } from '../entities';
+import { Groups, TriggerGroups, TriggerGroup } from '../entities/index.js';
 
 export class TriggerGroupMap implements TriggerGroups {
   groups: Groups = {};

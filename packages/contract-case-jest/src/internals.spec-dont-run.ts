@@ -1,4 +1,4 @@
-import { verifyContract } from '.';
+import { verifyContract } from './index.js';
 
 // This file exists for debugging purposes - rename it to `spec.ts` to run
 

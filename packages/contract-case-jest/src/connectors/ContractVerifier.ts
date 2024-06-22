@@ -5,21 +5,21 @@ import {
   IInvokeCoreTest,
   IRunTestCallback,
 } from '@contract-case/case-connector';
-import { defaultPrinter } from './defaultTestPrinter';
+import { defaultPrinter } from './defaultTestPrinter.js';
 
 import {
   mapSuccess,
   mapConfig,
   mapSuccessWithAny,
   makeBoundaryFailure,
-} from './case-boundary';
+} from './case-boundary/index.js';
 import {
   ContractCaseVerifierConfig,
   ContractDescription,
   RunTestCallback,
   versionString,
-} from '../entities';
-import { errorHandler } from './handler';
+} from '../entities/index.js';
+import { errorHandler } from './handler.js';
 
 const mapCallback = (callback: RunTestCallback): IRunTestCallback => ({
   runTest: async (

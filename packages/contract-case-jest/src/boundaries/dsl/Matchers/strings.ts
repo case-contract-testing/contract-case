@@ -12,7 +12,7 @@ import {
   CoreJsonStringifiedMatcher,
   JSON_STRINGIFIED_TYPE,
 } from '@contract-case/case-entities-internal';
-import { anyString } from './primitives';
+import { anyString } from './primitives.js';
 
 /**
  * Matches any string that contains the given substring.

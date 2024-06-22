@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 /* eslint-disable jest/expect-expect */
 
-import { willReceiveHttpRequest } from '../../boundaries';
+import { willReceiveHttpRequest } from '../../boundaries/index.js';
 // example-extract _creating-a-contract
 import {
   ContractCaseDefiner,

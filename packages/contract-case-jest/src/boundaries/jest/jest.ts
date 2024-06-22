@@ -1,12 +1,12 @@
-import { ContractCaseDefiner } from '../../connectors/ContractDefiner';
-import { ContractVerifier } from '../../connectors/ContractVerifier';
-import { RunTestCallback } from '../../entities';
+import { ContractCaseDefiner } from '../../connectors/ContractDefiner.js';
+import { ContractVerifier } from '../../connectors/ContractVerifier.js';
+import { RunTestCallback } from '../../entities/index.js';
 import type {
   ContractCaseJestConfig,
   ContractCaseJestVerifierConfig,
   DefineCaseJestCallback,
   VerifyCaseJestCallback,
-} from './types';
+} from './types.js';
 
 const TIMEOUT = 30000;
 

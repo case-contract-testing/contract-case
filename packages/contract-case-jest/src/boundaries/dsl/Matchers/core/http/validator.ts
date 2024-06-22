@@ -1,4 +1,4 @@
-import { ContractCaseConfigurationError } from '../../../../../entities/errors/ContractCaseConfigurationError';
+import { ContractCaseConfigurationError } from '../../../../../entities/errors/ContractCaseConfigurationError.js';
 
 const validateCodeNumber = (code: number): number => {
   if (code < 100 || code >= 600) {

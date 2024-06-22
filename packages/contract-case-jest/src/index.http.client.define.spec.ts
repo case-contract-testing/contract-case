@@ -1,8 +1,8 @@
 import * as fs from 'node:fs';
 // These imports are our code under test
-import api from './__tests__/client/http/connector';
-import { ApiError } from './__tests__/client/http/connector/internals/apiErrors';
-import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';
+import api from './__tests__/client/http/connector/index.js';
+import { ApiError } from './__tests__/client/http/connector/internals/apiErrors.js';
+import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors.js';
 
 // These imports are from Case
 import {
@@ -15,7 +15,7 @@ import {
   HttpRequestConfig,
   defineContract,
   anyString,
-} from '.';
+} from './index.js';
 
 const contractDetails = {
   consumerName: 'http response consumer',

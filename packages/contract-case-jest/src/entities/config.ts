@@ -1,5 +1,5 @@
-import { StateHandlers } from './types';
-import { TriggerGroups, Trigger } from './types.triggers';
+import { StateHandlers } from './types.js';
+import { TriggerGroups, Trigger } from './types.triggers.js';
 
 export interface UserNamePassword {
   /**

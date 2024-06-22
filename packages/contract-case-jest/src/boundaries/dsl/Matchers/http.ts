@@ -3,7 +3,7 @@ import {
   CoreHttpStatusCodeMatcher,
   CoreUrlEncodedStringMatcher,
 } from '@contract-case/case-core-plugin-http-dsl';
-import { coreUrlEncodedString, httpStatusCodeMatcher } from './core';
+import { coreUrlEncodedString, httpStatusCodeMatcher } from './core/index.js';
 
 /**
  * Matches http status codes. Matches may be provided as a string, eg '4XX' or '401', or a number.

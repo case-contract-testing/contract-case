@@ -9,7 +9,7 @@ import {
   ContractCaseConfigurationError,
   ContractCaseCoreError,
   ContractCaseExpectationsNotMet,
-} from '../../../entities';
+} from '../../../entities/index.js';
 
 export const mapFailureToJsError = (failure: BoundaryFailure): Error => {
   switch (failure.kind) {

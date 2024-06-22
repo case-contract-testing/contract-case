@@ -1,3 +1,3 @@
-import type { UserRepository } from '../../domain/types';
+import type { UserRepository } from '../../domain/types.js';
 
 export const userRepo: UserRepository = { get: () => undefined };

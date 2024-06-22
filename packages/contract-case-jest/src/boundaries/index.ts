@@ -1,2 +1,2 @@
-export * from './dsl';
-export * from './jest';
+export * from './dsl/index.js';
+export * from './jest/index.js';

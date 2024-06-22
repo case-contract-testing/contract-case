@@ -4,10 +4,10 @@ import {
   ContractCaseVerifierConfig,
   IndividualFailedTestConfig,
   IndividualSuccessTestConfig,
-} from '../../../../entities/config';
-import { mapStateHandlers } from './state/state';
-import { mapTriggers, mapSuccessTrigger, mapFailingTrigger } from './triggers';
-import { ContractCaseConfigurationError } from '../../../../entities';
+} from '../../../../entities/config.js';
+import { mapStateHandlers } from './state/state.js';
+import { mapTriggers, mapSuccessTrigger, mapFailingTrigger } from './triggers.js';
+import { ContractCaseConfigurationError } from '../../../../entities/index.js';
 
 const mapPublish = (publish: ContractCaseConfig['publish']) => {
   if (publish === true) return 'ALWAYS';

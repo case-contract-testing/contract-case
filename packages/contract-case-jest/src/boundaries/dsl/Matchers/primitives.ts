@@ -4,18 +4,18 @@ import {
   NULL_MATCHER_TYPE,
 } from '@contract-case/case-entities-internal';
 
-import { and } from './meta';
+import { and } from './meta.js';
 import type {
   BooleanMatcher,
   NullMatcher,
   NumberMatcher,
   StringMatcher,
-} from './types';
+} from './types.js';
 import {
   coreNumberMatcher,
   coreIntegerMatcher,
   coreStringMatcher,
-} from './core';
+} from './core/index.js';
 /**
  * Matches any number.
  *

@@ -1,3 +1,3 @@
-export * from './boundaryResultToJs';
-export * from './config';
-export * from './jsErrorToBoundary';
+export * from './boundaryResultToJs.js';
+export * from './config/index.js';
+export * from './jsErrorToBoundary.js';

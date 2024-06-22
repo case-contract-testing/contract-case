@@ -19,8 +19,8 @@ import {
   coreAndMatcher,
   coreLookupMatcher,
   coreShapedLike,
-} from './core';
-import { LogLevel } from '../../../entities/config';
+} from './core/index.js';
+import { LogLevel } from '../../../entities/config.js';
 
 /**
  * Meta matcher that matches all matchers provided. Use this to combine matching rules for the same element

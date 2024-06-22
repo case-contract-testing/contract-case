@@ -1,5 +1,5 @@
 import { BoundaryCrashMessage } from '@contract-case/case-connector';
-import { crashPrinter } from './defaultTestPrinter';
+import { crashPrinter } from './defaultTestPrinter.js';
 
 export const errorHandler = (e: Error): never => {
   switch (e.name) {

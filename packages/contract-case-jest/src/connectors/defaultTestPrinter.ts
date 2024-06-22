@@ -11,7 +11,7 @@ import {
 } from '@contract-case/case-connector';
 
 import { Console } from 'node:console';
-import { makeBoundaryFailure } from './case-boundary/mappers/jsErrorToBoundary';
+import { makeBoundaryFailure } from './case-boundary/mappers/jsErrorToBoundary.js';
 
 const stdout = new Console({ stdout: process.stdout });
 

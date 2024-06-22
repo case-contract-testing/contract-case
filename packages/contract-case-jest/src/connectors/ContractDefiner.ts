@@ -5,22 +5,22 @@ import {
 } from '@contract-case/case-connector';
 import { mocks } from '@contract-case/case-definition-dsl';
 
-import { defaultPrinter } from './defaultTestPrinter';
+import { defaultPrinter } from './defaultTestPrinter.js';
 
 import {
   ContractCaseConfig,
   IndividualFailedTestConfig,
   IndividualSuccessTestConfig,
   versionString,
-} from '../entities';
+} from '../entities/index.js';
 import {
   mapSuccess,
   mapConfig,
   mapSuccessConfig,
   mapFailingConfig,
   mapSuccessWithAny,
-} from './case-boundary';
-import { errorHandler } from './handler';
+} from './case-boundary/index.js';
+import { errorHandler } from './handler.js';
 
 const mapDefinition = (
   definition: ExampleDefinition,

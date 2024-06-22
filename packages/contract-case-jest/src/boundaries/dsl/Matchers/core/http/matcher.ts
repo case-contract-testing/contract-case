@@ -11,8 +11,8 @@ import {
   HTTP_BASIC_AUTH_TYPE,
 } from '@contract-case/case-core-plugin-http-dsl';
 import { AnyCaseMatcherOrData } from '@contract-case/case-entities-internal';
-import { HttpMockRequest, HttpMockResponse } from './types';
-import { validateCodes } from './validator';
+import { HttpMockRequest, HttpMockResponse } from './types.js';
+import { validateCodes } from './validator.js';
 
 export const httpStatusCodeMatcher = (
   codes: string | Array<string>,

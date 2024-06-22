@@ -3,10 +3,10 @@ import * as fs from 'node:fs';
 
 // These imports are our code under test
 import type * as http from 'node:http';
-import start from './__tests__/server/http/connectors/web';
-import type { User } from './__tests__/server/http/model/responses';
-import type { Dependencies } from './__tests__/server/http/domain/types';
-import { baseService } from './__tests__/server/http/domain/baseService';
+import start from './__tests__/server/http/connectors/web/index.js';
+import type { User } from './__tests__/server/http/model/responses.js';
+import type { Dependencies } from './__tests__/server/http/domain/types.js';
+import { baseService } from './__tests__/server/http/domain/baseService.js';
 
 import {
   inState,
@@ -17,7 +17,7 @@ import {
   StateHandlers,
   willReceiveHttpRequest,
   defineContract,
-} from '.';
+} from './index.js';
 
 // Normally you just let Case set filename and test-run-id for you
 const TEST_RUN_ID = 'PDC';

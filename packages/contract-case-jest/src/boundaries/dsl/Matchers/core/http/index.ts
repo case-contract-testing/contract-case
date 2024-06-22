@@ -4,4 +4,4 @@ export {
   httpResponseMatcher,
   coreBasicAuthValue,
   coreUrlEncodedString,
-} from './matcher';
+} from './matcher.js';

@@ -10,7 +10,7 @@ import {
   TestResponseFunction,
   TriggerConfig,
   TriggerGroups,
-} from '../../../../entities';
+} from '../../../../entities/index.js';
 
 export const mapFailingTrigger =
   <R, C extends Record<string, unknown>>(

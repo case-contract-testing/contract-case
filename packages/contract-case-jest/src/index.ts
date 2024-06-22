@@ -1,4 +1,4 @@
-import { TriggerConfig } from './entities';
+import { TriggerConfig } from './entities/index.js';
 
 /*!
  * ContractCase Jest DSL
@@ -6,11 +6,11 @@ import { TriggerConfig } from './entities';
  * BSD-3-Clause license
  */
 
-export { ContractCaseDefiner } from './connectors/ContractDefiner';
-export * from './boundaries';
-export * as dsl from './boundaries/dsl';
-export * as TestEquivalenceMatchers from './boundaries/dsl/Matchers';
-export * from './entities/types';
+export { ContractCaseDefiner } from './connectors/ContractDefiner.js';
+export * from './boundaries/index.js';
+export * as dsl from './boundaries/dsl/index.js';
+export * as TestEquivalenceMatchers from './boundaries/dsl/Matchers/index.js';
+export * from './entities/types.js';
 
 // TODO remove this hack type and do it properly
 export type HttpRequestConfig = TriggerConfig<{

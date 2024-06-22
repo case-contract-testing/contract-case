@@ -1,5 +1,5 @@
-import { UserNotFoundException } from '../model/UserNotFoundException';
-import type { UserService, UserServiceDependencies } from './types';
+import { UserNotFoundException } from '../model/UserNotFoundException.js';
+import type { UserService, UserServiceDependencies } from './types.js';
 
 export const makeUserService = ({
   userRepository,

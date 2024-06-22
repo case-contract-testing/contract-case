@@ -3,8 +3,8 @@ import {
   MOCK_HTTP_CLIENT,
   MOCK_HTTP_SERVER,
 } from '@contract-case/case-core-plugin-http-dsl';
-import { httpRequestMatcher, httpResponseMatcher } from '../Matchers/core';
-import { HttpMockRequest, HttpMockResponse } from '../Matchers/core/http/types';
+import { httpRequestMatcher, httpResponseMatcher } from '../Matchers/core/index.js';
+import { HttpMockRequest, HttpMockResponse } from '../Matchers/core/http/types.js';
 
 type HttpRequestResponseDescription = {
   request: HttpMockRequest;
