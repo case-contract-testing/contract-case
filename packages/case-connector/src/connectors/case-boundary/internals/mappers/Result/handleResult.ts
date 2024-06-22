@@ -1,5 +1,9 @@
 import { CaseCoreError } from '@contract-case/case-core';
-import { RESULT_FAILURE, RESULT_SUCCESS, BoundaryResult } from '../../boundary/index.js';
+import {
+  RESULT_FAILURE,
+  RESULT_SUCCESS,
+  BoundaryResult,
+} from '../../boundary/index.js';
 import { failureToJsError } from './failureToJsError.js';
 import { ErrorType } from './types.js';
 

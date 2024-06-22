@@ -11,7 +11,11 @@ import {
   BoundaryResult,
 } from './boundary/index.js';
 import { versionString } from '../../../versionString.js';
-import { convertConfig, jsErrorToFailure, wrapLogPrinter } from './mappers/index.js';
+import {
+  convertConfig,
+  jsErrorToFailure,
+  wrapLogPrinter,
+} from './mappers/index.js';
 import { BoundarySuccess } from './index.js';
 
 /**

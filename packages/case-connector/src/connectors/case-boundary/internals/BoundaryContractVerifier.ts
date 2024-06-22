@@ -11,7 +11,10 @@ import {
   jsErrorToFailure,
   wrapLogPrinter,
 } from './mappers/index.js';
-import { IInvokeCoreTest, IRunTestCallback } from './boundary/IRunTestCallback.js';
+import {
+  IInvokeCoreTest,
+  IRunTestCallback,
+} from './boundary/IRunTestCallback.js';
 import {
   ILogPrinter,
   IResultPrinter,

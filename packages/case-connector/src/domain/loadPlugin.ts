@@ -1,5 +1,9 @@
 import { loadPlugins } from '../connectors/case-boundary/plugins.js';
-import { BoundaryResult, ILogPrinter, IResultPrinter } from '../entities/types.js';
+import {
+  BoundaryResult,
+  ILogPrinter,
+  IResultPrinter,
+} from '../entities/types.js';
 import { mapConfig } from './config.js';
 import { ContractCaseConnectorConfig } from './types.js';
 

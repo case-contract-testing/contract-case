@@ -11,7 +11,11 @@ import {
   createDefiner,
   getDefiner,
 } from '../connectors/case-boundary/definer.js';
-import { BoundaryResult, ILogPrinter, IResultPrinter } from '../entities/types.js';
+import {
+  BoundaryResult,
+  ILogPrinter,
+  IResultPrinter,
+} from '../entities/types.js';
 
 export const beginDefinition = (
   config: ContractCaseConnectorConfig,
