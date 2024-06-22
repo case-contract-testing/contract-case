@@ -73,7 +73,13 @@ export class BoundaryPluginLoader {
 
   async loadPlugins(moduleNames: string[]): Promise<BoundaryResult> {
     this.initialiseLoader();
-    return Promise.all(moduleNames.map((moduleName) => import(moduleName)))
+    return Promise.all(
+      moduleNames.map(
+        // webpack ignore is needed here so that the final bundle for host
+        // languages is able to import arbitrary libs, without webpack failing
+        (moduleName) => import(/* webpackIgnore: true */ moduleName),
+      ),
+    )
       .then(
         (plugins) => {
           if (this.loader == null) {

@@ -24,6 +24,7 @@ import { makeSendContractResponse } from './sendContractResponse';
 import { maintainerLog } from '../../domain/maintainerLog';
 import { makeLogPrinter, makeResultPrinter } from './printers';
 import { makeResultResponse } from './responseMappers';
+import { loadPlugin } from '../../domain/loadPlugin';
 
 const getId = (request: WireDefinitionRequest): string => {
   const id = request.getId();
@@ -204,15 +205,23 @@ export const contractDefinition = (
             );
           }
 
-          sendContractResponse(
-            getId(request),
-            makeResultResponse(
-              new BoundaryFailure(
-                BoundaryFailureKindConstants.CASE_CORE_ERROR,
-                `Plugin loading not implemented`,
-                'ContractCase Connector',
-              ),
-            ),
+          loadPlugin(
+            mapConfig(loadPluginRequest.getConfig(), sendContractResponse),
+            makeLogPrinter(sendContractResponse),
+            makeResultPrinter(sendContractResponse),
+            loadPluginRequest
+              .getCallerVersionsList()
+              .map((s) => (s != null ? s.getValue() : 'missing-version-value')),
+            loadPluginRequest.getModuleNamesList().map((s, index) => {
+              if (s == null) {
+                throw new ConnectorError(
+                  `loadPlugin called with a null module name at position '${index}'`,
+                );
+              }
+              return s.getValue();
+            }),
+          ).then((result) =>
+            sendContractResponse(getId(request), makeResultResponse(result)),
           );
         }
         break;

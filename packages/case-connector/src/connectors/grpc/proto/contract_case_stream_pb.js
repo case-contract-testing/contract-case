@@ -3949,7 +3949,7 @@ proto.io.contract_testing.contractcase.grpc.EndDefinitionRequest.serializeBinary
  * @private {!Array<number>}
  * @const
  */
-proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.repeatedFields_ = [1];
+proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.repeatedFields_ = [1,3];
 
 
 
@@ -3983,6 +3983,9 @@ proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.toObject
 proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     moduleNamesList: jspb.Message.toObjectList(msg.getModuleNamesList(),
+    google_protobuf_wrappers_pb.StringValue.toObject, includeInstance),
+    config: (f = msg.getConfig()) && proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject(includeInstance, f),
+    callerVersionsList: jspb.Message.toObjectList(msg.getCallerVersionsList(),
     google_protobuf_wrappers_pb.StringValue.toObject, includeInstance)
   };
 
@@ -4025,6 +4028,16 @@ proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.deserializeBinaryF
       reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.addModuleNames(value);
       break;
+    case 2:
+      var value = new proto.io.contract_testing.contractcase.grpc.ContractCaseConfig;
+      reader.readMessage(value,proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinaryFromReader);
+      msg.setConfig(value);
+      break;
+    case 3:
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
+      msg.addCallerVersions(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4058,6 +4071,22 @@ proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.serializeBinaryToW
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
+    );
+  }
+  f = message.getConfig();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getCallerVersionsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
       f,
       google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
@@ -4100,6 +4129,81 @@ proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.addModul
  */
 proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.clearModuleNamesList = function() {
   return this.setModuleNamesList([]);
+};
+
+
+/**
+ * optional ContractCaseConfig config = 2;
+ * @return {?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig}
+ */
+proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.getConfig = function() {
+  return /** @type{?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} */ (
+    jspb.Message.getWrapperField(this, proto.io.contract_testing.contractcase.grpc.ContractCaseConfig, 2));
+};
+
+
+/**
+ * @param {?proto.io.contract_testing.contractcase.grpc.ContractCaseConfig|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.LoadPluginRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.setConfig = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.contract_testing.contractcase.grpc.LoadPluginRequest} returns this
+ */
+proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.clearConfig = function() {
+  return this.setConfig(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.hasConfig = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * repeated google.protobuf.StringValue caller_versions = 3;
+ * @return {!Array<!proto.google.protobuf.StringValue>}
+ */
+proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.getCallerVersionsList = function() {
+  return /** @type{!Array<!proto.google.protobuf.StringValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, google_protobuf_wrappers_pb.StringValue, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.google.protobuf.StringValue>} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.LoadPluginRequest} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.setCallerVersionsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.google.protobuf.StringValue=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.google.protobuf.StringValue}
+ */
+proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.addCallerVersions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.google.protobuf.StringValue, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.io.contract_testing.contractcase.grpc.LoadPluginRequest} returns this
+ */
+proto.io.contract_testing.contractcase.grpc.LoadPluginRequest.prototype.clearCallerVersionsList = function() {
+  return this.setCallerVersionsList([]);
 };
 
 

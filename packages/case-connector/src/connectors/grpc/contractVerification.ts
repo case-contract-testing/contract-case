@@ -32,6 +32,7 @@ import {
 import { makeSendContractResponse } from './sendContractResponse';
 import { makeLogPrinter, makeResultPrinter } from './printers';
 import { makeResultResponse } from './responseMappers';
+import { loadPlugin } from '../../domain/loadPlugin';
 
 const getId = (request: WireVerificationRequest): string => {
   const id = request.getId();
@@ -216,6 +217,27 @@ export const contractVerification = (
                 'loadPlugin called with something that returned an undefined request',
               );
             }
+
+            loadPlugin(
+              mapConfig(loadPluginRequest.getConfig(), sendContractResponse),
+              makeLogPrinter(sendContractResponse),
+              makeResultPrinter(sendContractResponse),
+              loadPluginRequest
+                .getCallerVersionsList()
+                .map((s) =>
+                  s != null ? s.getValue() : 'missing-version-value',
+                ),
+              loadPluginRequest.getModuleNamesList().map((s, index) => {
+                if (s == null) {
+                  throw new ConnectorError(
+                    `loadPlugin called with a null module name at position '${index}'`,
+                  );
+                }
+                return s.getValue();
+              }),
+            ).then((result) =>
+              sendContractResponse(getId(request), makeResultResponse(result)),
+            );
 
             sendContractResponse(
               getId(request),

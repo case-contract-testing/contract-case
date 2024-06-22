@@ -668,6 +668,20 @@ export class LoadPluginRequest extends jspb.Message {
     index?: number,
   ): google_protobuf_wrappers_pb.StringValue;
 
+  hasConfig(): boolean;
+  clearConfig(): void;
+  getConfig(): ContractCaseConfig | undefined;
+  setConfig(value?: ContractCaseConfig): LoadPluginRequest;
+  clearCallerVersionsList(): void;
+  getCallerVersionsList(): Array<google_protobuf_wrappers_pb.StringValue>;
+  setCallerVersionsList(
+    value: Array<google_protobuf_wrappers_pb.StringValue>,
+  ): LoadPluginRequest;
+  addCallerVersions(
+    value?: google_protobuf_wrappers_pb.StringValue,
+    index?: number,
+  ): google_protobuf_wrappers_pb.StringValue;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): LoadPluginRequest.AsObject;
   static toObject(
@@ -692,6 +706,8 @@ export class LoadPluginRequest extends jspb.Message {
 export namespace LoadPluginRequest {
   export type AsObject = {
     moduleNamesList: Array<google_protobuf_wrappers_pb.StringValue.AsObject>;
+    config?: ContractCaseConfig.AsObject;
+    callerVersionsList: Array<google_protobuf_wrappers_pb.StringValue.AsObject>;
   };
 }
 
