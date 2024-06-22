@@ -78,7 +78,7 @@
     "@contract-case/case-core-plugin-http-dsl": "^0.15.7",
     "@contract-case/case-entities-internal": "0.15.7",
     "@contract-case/case-plugin-base": "^0.15.7",
-    "absolute-version": "^1.0.2",
+    "absolute-version": "^2.0.0",
     "async-mutex": "^0.5.0",
     "axios": "^1.7.2",
     "chalk": "^4.1.2",
