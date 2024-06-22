@@ -26,6 +26,7 @@
       "exclude-paths": [
         "packages/case-boundary",
         "packages/case-connector",
+        "packages/case-connector-proto",
         "packages/contract-case-cli",
         "packages/contract-case-jest",
         "packages/case-maintainer-config",
@@ -110,6 +111,12 @@
     },
     "packages/case-connector": {
       "component": "@contract-case/case-connector",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/case-connector-proto": {
+      "component": "@contract-case/case-connector-proto",
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
