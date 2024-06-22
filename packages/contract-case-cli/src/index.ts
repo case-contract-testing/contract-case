@@ -4,4 +4,4 @@
  * BSD-3-Clause license
  */
 
-import './boundaries/cli';
+import './boundaries/cli.js';

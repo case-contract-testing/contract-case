@@ -1,1 +1,1 @@
-export * from './DownloadContracts';
+export * from './DownloadContracts.js';

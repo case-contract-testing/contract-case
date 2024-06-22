@@ -1,6 +1,7 @@
 {
   "name": "@contract-case/cli",
   "version": "0.1.13",
+  "type": "module",
   "description": "Command-line interface for ContractCase, allowing interactions with the Contract / Pact Broker",
   "keywords": [
     "testing",

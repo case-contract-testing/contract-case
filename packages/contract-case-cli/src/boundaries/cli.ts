@@ -2,7 +2,7 @@ import { program } from 'commander';
 import { CaseConfig, LogLevel } from '@contract-case/case-core';
 
 import packageJson from '../../package.json';
-import { handleError, downloadContracts } from '../connectors';
+import { handleError, downloadContracts } from '../connectors/index.js';
 
 const mapConfig = (options: unknown): CaseConfig => {
   // This function is full of type assertions because the case core does the actual validation.

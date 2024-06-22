@@ -1,6 +1,6 @@
 import { CaseConfig, ContractDownloader } from '@contract-case/case-core';
-import { defaultPrinter } from './defaultResultPrinter';
-import { versionString } from '../../entities/versionString';
+import { defaultPrinter } from './defaultResultPrinter.js';
+import { versionString } from '../../entities/versionString.js';
 
 export const downloadContracts = (
   serviceName: string,
