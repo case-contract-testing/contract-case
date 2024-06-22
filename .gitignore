@@ -2,6 +2,8 @@ webpack
 temp-contracts
 eg.sh
 
+.nx
+
 # Logs
 logs
 *.log
