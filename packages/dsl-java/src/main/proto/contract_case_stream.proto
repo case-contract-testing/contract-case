@@ -99,6 +99,8 @@ message EndDefinitionRequest {
 
 message LoadPluginRequest {
   repeated google.protobuf.StringValue module_names = 1;
+  ContractCaseConfig config = 2;
+  repeated google.protobuf.StringValue caller_versions = 3;
 }
 
 // Responses from server
