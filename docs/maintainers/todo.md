@@ -8,7 +8,7 @@
 - [x] Spike translation to C# etc
 - [x] Determine how package structure will work
 - [x] Extract Jest
-- [ ] Release Java
+- [x] Release Java
   - [x] DSL call core
   - [x] DSL start server
   - [x] Example client define
