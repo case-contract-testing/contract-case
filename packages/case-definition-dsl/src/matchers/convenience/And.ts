@@ -3,11 +3,12 @@ import { AnyMatcher } from '../base';
 import { AnyMatcherOrData } from '../../types';
 
 /**
- * Matches the content of a variable that comes from a state. See [state
- * definitions](https://case.contract-testing.io/docs/defining-contracts/state-definitions)
- * and [state
- * handlers](https://case.contract-testing.io/docs/reference/state-handlers) for
- * more details.
+ * Matches all of the provided matchers. Useful for combining restrictions
+ * provided by different matchers, or creating new matchers without needing
+ * plugins.
+ *
+ * For best results, wrap the And matcher in a WithExample matcher.
+ *
  * @public
  */
 export class And extends AnyMatcher {
