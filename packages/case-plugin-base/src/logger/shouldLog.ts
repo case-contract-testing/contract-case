@@ -3,6 +3,17 @@ import { CaseConfigurationError, CaseCoreError } from '../errors';
 
 import type { LogLevel } from './types';
 
+/**
+ * Tests whether a given log level should log at this point in the execution
+ *
+ * DO NOT CALL THIS METHOD IN A PLUGIN
+ *
+ * @internal
+ *
+ * @param context - the current execution context
+ * @param logLevel - the log level to test
+ * @returns true if `logLevel` should be logged during this run
+ */
 export const shouldLog = (
   context: LogLevelContext,
   logLevel: LogLevel,

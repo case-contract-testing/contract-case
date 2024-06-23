@@ -1,7 +1,10 @@
 import type { MatchResult } from '../matchers/errors.types';
 
 /**
- * Use this when expectations set up in the test were not met
+ * This is thrown by ContractCase core when expectations set up in the test were not met.
+ *
+ * If implementing a plugin, do not throw this during a matcher execution,
+ * instead return a {@link MatchResult} that contains the appropriate error.
  */
 export class CaseFailedAssertionError extends Error {
   matchResult: MatchResult;

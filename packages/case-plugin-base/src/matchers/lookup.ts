@@ -1,6 +1,19 @@
 import { LOOKUP_MATCHER_TYPE, LookupableMatcher } from './lookup.types';
 import { AnyCaseMatcherOrData } from './matchers.types';
 
+/**
+ * Creates a matcher descriptor for a lookupable matcher.
+ *
+ * @remarks
+ *
+ * Useful if you want to automatically name lookupable matcher descriptors in your plugin.
+ *
+ * Note that lookup matchers must have identical contents when rendered.
+ *
+ * @param uniqueName - the name for this lookupable matcher
+ * @param child - the contents of this lookupable matcher
+ * @returns a {@link LookupableMatcher}
+ */
 export const coreLookupMatcher = (
   uniqueName: string,
   child: AnyCaseMatcherOrData,

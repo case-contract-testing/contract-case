@@ -5,7 +5,9 @@ const locationString = (
 ) => ` (at ${matchContext['_case:currentRun:context:location'].join('.')})`;
 
 /**
- * The user has configured ContractCase incorrectly
+ * Indicates that the user has configured ContractCase incorrectly.
+ *
+ * Throw this during mock setup if you encounter configuration errors.
  */
 export class CaseConfigurationError extends Error {
   constructor(

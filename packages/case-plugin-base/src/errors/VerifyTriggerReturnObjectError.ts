@@ -1,7 +1,8 @@
 const MESSAGE = 'Failed while verifying object returned by trigger:';
 
 /**
- * The user-provided verification function failed
+ * This is thrown by ContractCase core to indicate that the user-provided
+ * verification function failed
  */
 export class VerifyTriggerReturnObjectError extends Error {
   override cause: unknown;

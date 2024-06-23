@@ -5,7 +5,8 @@ const locationString = (
 ) => ` (at ${matchContext['_case:currentRun:context:location'].join('.')})`;
 
 /**
- * The user-provided trigger failed when we weren't expecting it to
+ * This is thrown by ContractCase core to indicate that the user-provided
+ * trigger failed when we weren't expecting it to.
  */
 export class CaseTriggerError extends Error {
   constructor(

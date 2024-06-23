@@ -1,19 +1,25 @@
 import { locationString } from '../../context';
 import { MatchContext } from '../../context/types';
-import { CaseError, ERROR_TYPE_MATCHING } from '../errors.types';
+import { CaseError, ERROR_TYPE_MATCHING, MatchResult } from '../errors.types';
 import { AnyCaseMatcher } from '../matchers.types';
 
+/**
+ * Helper function that will return an error if the test condition is met, or a non-erroring {@link MatchResult} otherwise.
+ * @param test - a boolean condition
+ * @param err - either an error or an array of errors
+ * @returns a {@link MatchResult} containing the errors if `test` is true, or a passing {@link MatchResult} otherwise.
+ */
 export const errorWhen = (
   test: boolean,
   err: CaseError | Array<CaseError>,
-): Array<CaseError> => (test ? [err].flat() : []);
+): MatchResult => (test ? [err].flat() : []);
 
 /**
- * This represents a mismatched matcher
+ * Creates a mismatched matcher expectations error
  *
  * @param matcher - The matcher that generated this error
  * @param message - The message that describes this error
- * @param actual - The actual value that was recieved
+ * @param actual - The actual value that was received
  * @param context - The match context this occurred in
  * @param expected - An optional expected value (might be a description of what was expected)
  * @returns CaseError

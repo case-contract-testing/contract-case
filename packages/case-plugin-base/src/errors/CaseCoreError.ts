@@ -5,7 +5,12 @@ const locationString = (
 ) => `(at ${matchContext['_case:currentRun:context:location'].join('.')})`;
 
 /**
- * Something went wrong in ContractCase internals. Almost certainly a bug.
+ * Something went wrong in ContractCase internals.
+ *
+ * @remarks
+ * Use this when there is almost certainly a bug in the implementation of the contract case core or your plugin.
+ *
+ * If used during a plugin execution, please include the plugin name / bug reporting instructions in the message.
  */
 export class CaseCoreError extends Error {
   constructor(

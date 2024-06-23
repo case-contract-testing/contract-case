@@ -6,6 +6,9 @@ const locationString = (matchContext: DataContext) =>
 
 /**
  * Tried to strip matchers from something that doesn't have an example
+ *
+ * Throw this during `matcher.strip` execution if `strip` has been called when the
+ * results can't be reconciled without an example.
  */
 export class StripUnsupportedError extends Error {
   constructor(matcher: AnyCaseMatcher, context: DataContext) {
