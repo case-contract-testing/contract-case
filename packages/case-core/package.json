@@ -31,7 +31,6 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
-    "coverage": "lcov-result-merger '*/lcov.info' combined-coverage.info",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "format:base": "prettier --parser typescript \"{src,bin}/**/*.ts\"",

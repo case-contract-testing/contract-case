@@ -29,6 +29,7 @@
     "lint:fix": "lerna run lint:fix",
     "update-docs": "rimraf packages/documentation/docs/examples/generated && example-extractor -o packages/documentation/docs/examples/generated && lerna run build:docs",
     "test": "lerna run test",
-    "test:verify": "lerna run test:verify"
+    "test:verify": "lerna run test:verify",
+    "coverage": "lcov-result-merger 'packages/*/coverage/lcov.info' combined-coverage.info --prepend-source-files"
   }
 }

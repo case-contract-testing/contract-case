@@ -46,6 +46,5 @@ jobs:
       - name: Coveralls Core
         uses: coverallsapp/github-action@643bc377ffa44ace6394b2b5d0d3950076de9f63 # master
         with:
-          path-to-lcov: 'packages/case-core/combined-coverage.info'
-          base-path: 'packages/case-core'
+          path-to-lcov: 'combined-coverage.info'
           github-token: ${{ secrets.GITHUB_TOKEN }}

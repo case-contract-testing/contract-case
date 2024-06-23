@@ -2,6 +2,7 @@ webpack
 temp-contracts
 eg.sh
 
+combined-coverage.info
 .nx
 
 # Logs
