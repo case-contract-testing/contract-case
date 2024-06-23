@@ -21,8 +21,7 @@
     "build:docs:local": "api-extractor run --local --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "watch": "jsii -w",
     "prepackage": "rimraf dist",
-    "prepack": "mkdirp node_modules/@contract-case && ln -sf ${PWD}/../case-entities node_modules/@contract-case/case-entities-internal",
-    "postpack": "rimraf node_modules",
+    "prepack": "mkdirp node_modules/@contract-case && ln -sf ${PWD}/../case-entities node_modules/@contract-case/case-entities-internal &&  ln -sf ${PWD}/../case-core-plugin-http-dsl node_modules/@contract-case/case-core-plugin-http-dsl && ln -sf ${PWD}/../case-plugin-base node_modules/@contract-case/case-plugin-base",
     "package": "jsii-pacmak",
     "publish:maven": "publib-maven",
     "test": "jest",
@@ -54,10 +53,10 @@
     },
     "targets": {
       "java": {
-        "package": "io.contract_testing.contractcase.case_example_mock_types",
+        "package": "io.contract_testing.contractcase.definitions",
         "maven": {
           "groupId": "io.contract-testing.contractcase",
-          "artifactId": "case_example_mock_types"
+          "artifactId": "definitions"
         }
       }
     }
@@ -81,7 +80,7 @@
   },
   "dependencies": {
     "@contract-case/case-entities-internal": "0.15.7",
-    "@contract-case/case-plugin-base": "^0.15.7",
+    "@contract-case/case-plugin-base": "0.15.7",
     "@contract-case/case-core-plugin-http-dsl": "0.15.7"
   },
   "stability": "stable",
@@ -123,7 +122,7 @@
       }
     }
   },
-  "bundleDependencies": [
+  "bundledDependencies": [
     "@contract-case/case-entities-internal",
     "@contract-case/case-plugin-base",
     "@contract-case/case-core-plugin-http-dsl"
