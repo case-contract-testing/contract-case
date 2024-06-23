@@ -111,6 +111,9 @@ Next:
 - [ ] Remove case-boundary types from java wrapper
 - [ ] Write up / modify implementation instructions
 - [ ] Remove case-boundary from case-connector (refactor so that ts dsl uses the same as the grpc?)
+- [ ] It's possible that mustResolveToString and mustResolveToNumber have been
+      used in places where we meant `shouldResolveToString` - review uses, and
+      consider introducing a version that doesn't throw CaseCoreError
 
 ## Notes from refactor:
 
