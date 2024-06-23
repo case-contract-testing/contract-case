@@ -64,10 +64,6 @@
     "typescript": "5.4.5"
   },
   "dependencies": {
-    "@contract-case/case-plugin-base": "^0.15.7",
-    "axios": "^1.7.2",
-    "express": "^4.19.2",
-    "pretty-format": "^29.7.0",
-    "qs": "^6.12.1"
+    "@contract-case/case-plugin-base": "^0.15.7"
   }
 }
