@@ -1,3 +1,7 @@
+/**
+ * The log levels available
+ * @public
+ */
 export type LogLevel =
   | 'none'
   | 'error'
@@ -6,6 +10,10 @@ export type LogLevel =
   | 'maintainerDebug'
   | 'deepMaintainerDebug';
 
+/**
+ * Describes the logger object
+ * @public
+ */
 export interface Logger {
   /**
    * Something has gone wrong during the execution of the test framework

@@ -3,7 +3,7 @@ import { AnyCaseMatcherOrData } from './matchers.types';
 
 /**
  * Creates a matcher descriptor for a lookupable matcher.
- *
+ * @public
  * @remarks
  *
  * Useful if you want to automatically name lookupable matcher descriptors in your plugin.

@@ -5,6 +5,8 @@ import type { MatchResult } from '../matchers/errors.types';
  *
  * If implementing a plugin, do not throw this during a matcher execution,
  * instead return a {@link MatchResult} that contains the appropriate error.
+ *
+ * @public
  */
 export class CaseFailedAssertionError extends Error {
   matchResult: MatchResult;

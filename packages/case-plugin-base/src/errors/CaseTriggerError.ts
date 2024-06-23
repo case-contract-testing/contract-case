@@ -7,6 +7,8 @@ const locationString = (
 /**
  * This is thrown by ContractCase core to indicate that the user-provided
  * trigger failed when we weren't expecting it to.
+ *
+ * @public
  */
 export class CaseTriggerError extends Error {
   constructor(

@@ -9,6 +9,8 @@ const locationString = (matchContext: DataContext) =>
  *
  * Throw this during `matcher.strip` execution if `strip` has been called when the
  * results can't be reconciled without an example.
+ *
+ * @public
  */
 export class StripUnsupportedError extends Error {
   constructor(matcher: AnyCaseMatcher, context: DataContext) {

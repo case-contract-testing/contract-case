@@ -13,7 +13,7 @@ type VariableValue = any;
 
 /**
  * The base SetupInfo provided to all mock setup functions and triggers.
- *
+ * @public
  * @remarks
  * All SetupInfo objects extend this type
  */
@@ -26,7 +26,7 @@ export type BaseSetupInfo = {
 
 /**
  * Helper type to extract a specific mock's SetupInfo object form all known SetupInfo objects
- *
+ * @public
  * @typeParam AllSetupInfo - All known SetupInfo objects
  * @typeParam T - the type of the mock descriptor that you want to get the SetupInfo for.
  */
@@ -44,7 +44,7 @@ type MockOutput = {
 
 /**
  * Represents the data produced by an invocation of a mock, ready for assertion.
- *
+ * @public
  * @typeParam AllSetupInfo - All known SetupInfo objects
  * @typeParam T - the type of the mock descriptor that this data is for
  */
@@ -55,7 +55,7 @@ export type MockData<AllSetupInfo, T extends string> = {
 
 /**
  * A function that will set up and run a mock.
- *
+ * @public
  * @typeParam AllMockDescriptors - All known MockDescriptor objects
  * @typeParam AllSetupInfo - All known SetupInfo objects
  * @typeParam T - the type of the mock descriptor that this function consumes

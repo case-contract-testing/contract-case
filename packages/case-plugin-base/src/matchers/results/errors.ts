@@ -5,6 +5,8 @@ import { AnyCaseMatcher } from '../matchers.types';
 
 /**
  * Helper function that will return an error if the test condition is met, or a non-erroring {@link MatchResult} otherwise.
+ *
+ * @public
  * @param test - a boolean condition
  * @param err - either an error or an array of errors
  * @returns a {@link MatchResult} containing the errors if `test` is true, or a passing {@link MatchResult} otherwise.
@@ -16,6 +18,8 @@ export const errorWhen = (
 
 /**
  * Creates a mismatched matcher expectations error
+ *
+ * @public
  *
  * @param matcher - The matcher that generated this error
  * @param message - The message that describes this error

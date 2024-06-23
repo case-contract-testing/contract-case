@@ -8,6 +8,8 @@ const locationString = (
  * Indicates that the user has configured ContractCase incorrectly.
  *
  * Throw this during mock setup if you encounter configuration errors.
+ *
+ * @public
  */
 export class CaseConfigurationError extends Error {
   constructor(

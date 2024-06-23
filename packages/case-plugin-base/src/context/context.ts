@@ -55,6 +55,15 @@ const updateFunctions = (context: MatchContext) => {
   };
 };
 
+/**
+ * Folds this case matcher into the context
+ *
+ * @internal
+ *
+ * @param caseNode - any descriptor
+ * @param context - the current context
+ * @returns a context object containing the descriptor combined with the context
+ */
 export const foldIntoContext = (
   caseNode: AnyCaseMatcher | AnyMockDescriptor,
   context: MatchContext,
@@ -84,6 +93,12 @@ const combineWithRoot = (
   return updateFunctions(newContext);
 };
 
+/**
+ * Constructs a data context object
+ *
+ * @internal
+ *
+ */
 export const constructDataContext = (
   makeLogger: (c: LogLevelContext) => Logger,
   resultPrinter: ResultFormatter,
@@ -113,6 +128,11 @@ export const constructDataContext = (
   };
 };
 
+/**
+ * TODO: Move this out of the plugin lib
+ *
+ * @internal
+ */
 export const constructMatchContext = (
   traversals: TraversalFns,
   makeLogger: (c: LogLevelContext) => Logger,
@@ -140,12 +160,27 @@ export const constructMatchContext = (
   };
 };
 
+/**
+ * TODO: Move this out of the plugin lib
+ *
+ * @internal
+ */
 export const applyNodeToContext = (
   caseNodeOrData: AnyCaseMatcherOrData | AnyMockDescriptor,
   context: MatchContext,
   runConfig: Partial<RunContext> = {},
 ): MatchContext => combineWithRoot(caseNodeOrData, context, runConfig);
 
+/**
+ * Adds the current location to the context
+ *
+ * @public
+ *
+ * @param location - a string representing the current location. Prefix with `:`
+ * if this location should only be printed during maintainer debugging
+ * @param context - the current {@link MatchContext}
+ * @returns a new {@link MatchContext} with updated location.
+ */
 export const addLocation = (
   location: string,
   context: MatchContext,
@@ -157,6 +192,11 @@ export const addLocation = (
     ].concat([location]),
   });
 
+/**
+ * Gets the string representation of the current context
+ *
+ * @internal
+ */
 export const locationString = (matchContext: LogLevelContext): string =>
   matchContext['_case:currentRun:context:location']
     .filter(

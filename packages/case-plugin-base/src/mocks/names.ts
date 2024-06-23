@@ -8,7 +8,7 @@ const nameMatcher = (matcher: AnyCaseMatcherOrData, context: MatchContext) =>
 
 /**
  * Helper function that will name this mock if it isn't already named.
- *
+ * @public
  * @remarks
  *
  * You probably don't need to use this function, it is used by ContractCase internals.

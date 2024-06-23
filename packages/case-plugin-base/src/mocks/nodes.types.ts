@@ -2,6 +2,7 @@ import { AnyCaseMatcher } from '../matchers/matchers.types';
 
 /**
  * Describes how contract case behaves with this type of mock.
+ * @public
  */
 export interface InternalContractCaseCoreBehaviour {
   /**
@@ -26,6 +27,7 @@ export interface InternalContractCaseCoreBehaviour {
 
 /**
  * Controls the behaviour of the mock when writing or reading contracts with this type.
+ *  @public
  */
 export interface InternalContractCaseCoreSetup {
   /**
@@ -38,6 +40,10 @@ export interface InternalContractCaseCoreSetup {
   read: InternalContractCaseCoreBehaviour;
 }
 
+/**
+ * Base type for mock descriptors
+ * @public
+ */
 export type AnyMockDescriptor = {
   '_case:mock:type': string;
   '_case:run:context:setup': InternalContractCaseCoreSetup;
@@ -47,7 +53,7 @@ export type AnyMockDescriptor = {
 
 /**
  * Helper type for extracting a mock descriptor from all the known mock descriptors
- *
+ * @public
  * @typeParam KnownMockDescriptors - All the mock descriptor objects known
  * @typeParam T - The string constant for the mock descriptor that we're interested in
  */
@@ -59,7 +65,7 @@ export type CaseMockDescriptorFor<
 /**
  * Helper type for a contract case mock descriptor object. All mock descriptors
  * must extend this for the string constant that they use
- *
+ * @public
  * @typeParam T - The string constant for the mock descriptor.
  */
 export interface HasTypeForMockDescriptor<T extends string> {
@@ -68,7 +74,7 @@ export interface HasTypeForMockDescriptor<T extends string> {
 
 /**
  * Determines if a given value is a valid mock descriptor.
- *
+ * @public
  * @remarks
  *
  * This function checks if the provided value is an object and contains the

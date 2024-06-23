@@ -24,7 +24,7 @@ import { IsCaseNodeForType } from './utility.types';
  *   yourMatcher.strip(descriptor)
  * ) // must be a `MatchResult` with no errors
  * ```
- *
+ * @public
  * @typeParam T - a matcher descriptor
  * @param matcher - the matcher descriptor
  * @param matchContext - the {@link MatchContext} for this run
@@ -57,7 +57,7 @@ export type CheckMatchFn<T> = (
  *   yourMatcher.strip(descriptor)
  * ) // must be a `MatchResult` with no errors
  * ```
- *
+ * @public
  * @typeParam T - a matcher descriptor
  * @param matcher - the matcher descriptor
  * @param matchContext - the {@link MatchContext} for this run
@@ -80,7 +80,7 @@ export type StripMatcherFn<T> = (
  * it may be called repeatedly on the
  * same data by ContractCase during a run.
  *
- *
+ * @public
  * @typeParam T - a matcher descriptor
  * @param matcher - the matcher descriptor
  * @param matchContext - the {@link MatchContext} for this run
@@ -94,7 +94,7 @@ export type NameMatcherFn<T> = (
 /**
  * A MatcherExecutor contains the three functions
  * needed to execute a matcher descriptor during a run.
- *
+ * @public
  * @remarks
  * All functions must have no side effects.
  *

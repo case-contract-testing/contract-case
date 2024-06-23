@@ -2,7 +2,7 @@ import { AnyCaseMatcher } from './matchers.types';
 
 /**
  * Type guard to determine if an object is a ContractCase matcher descriptor or not
- *
+ * @public
  * @param maybeMatcher - a matcher or data
  * @returns true if `maybeMatcher` is a matcher descriptor, false if not
  */

@@ -1,9 +1,14 @@
 import { AnyCaseMatcherOrData } from './matchers.types';
 
+/**
+ * The type constant for a lookup matcher
+ * @internal
+ */
 export const LOOKUP_MATCHER_TYPE = '_case:Lookup' as const;
 
 /**
  * The matcher descriptor for a lookupable matcher
+ * @public
  */
 export interface LookupableMatcher {
   '_case:matcher:type': typeof LOOKUP_MATCHER_TYPE;
@@ -13,6 +18,7 @@ export interface LookupableMatcher {
 
 /**
  * Determines if a specific matcher or data is a lookupable matcher
+ * @public
  *
  * @param maybeMatcher - the matcher or data in question
  * @returns true if `maybeMatcher` is a lookupable matcher, false otherwise

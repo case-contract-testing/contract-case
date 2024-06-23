@@ -11,25 +11,30 @@ import { AnyCaseMatcher } from './matchers.types';
 
 /**
  * Represents an error from a matcher
+ * @public
  */
 export const ERROR_TYPE_MATCHING = 'MATCHING_ERROR' as const;
 /**
  * Represents an error that would be from a matcher, but there's no physical matcher
+ * @public
  */
 export const ERROR_TYPE_RAW_MATCH = 'RAW_MATCH_ERROR' as const;
 
 /**
  * Represents an error because of configuration during test execution
+ * @public
  */
 export const ERROR_TYPE_CONFIGURATION = 'CONFIGURATION_ERROR' as const;
 
 /**
  * Represents an error because of the user supplied trigger
+ * @public
  */
 export const ERROR_TYPE_TRIGGER = 'TRIGGER_FUNCTION_ERROR' as const;
 
 /**
  * Represents an error during the testResponse or testErrorResponse function
+ * @public
  */
 export const ERROR_TYPE_TEST_RESPONSE = 'TEST_RESPONSE_ERROR' as const;
 
@@ -40,6 +45,7 @@ export const ERROR_TYPE_TEST_RESPONSE = 'TEST_RESPONSE_ERROR' as const;
  * @privateRemarks
  *
  * TODO: link `matchingError` in this documentation when tsdoc supports better imports
+ * @public
  */
 export interface MatchingError {
   type: typeof ERROR_TYPE_MATCHING;
@@ -80,6 +86,7 @@ export interface MatchingError {
  *
  * @privateRemarks
  * TODO: link `failedExpectationError` in this documentation when tsdoc supports better imports
+ * @public
  */
 export interface RawMatchError {
   type: typeof ERROR_TYPE_RAW_MATCH;
@@ -114,6 +121,7 @@ export interface RawMatchError {
  * You shouldn't need to use this in most plugins, as the core will call it for you.
  *
  * Don't create this directly, use `verificationError` to create one.
+ * @public
  */
 export interface VerificationError {
   type: typeof ERROR_TYPE_TEST_RESPONSE;
@@ -133,6 +141,7 @@ export interface VerificationError {
  * The data for a user configuration error.
  *
  * Don't create this directly, use `configurationError` to create one.
+ * @public
  */
 export interface ConfigurationError {
   type: typeof ERROR_TYPE_CONFIGURATION;
@@ -153,6 +162,7 @@ export interface ConfigurationError {
  * You shouldn't need to use this in most plugins, as the core will call it for you when necessary
  *
  * Don't create this directly, use `triggerError` to create one.
+ * @public
  */
 export interface TriggerError {
   type: typeof ERROR_TYPE_TRIGGER;
@@ -164,6 +174,7 @@ export interface TriggerError {
 
 /**
  * Union of all error data types.
+ * @public
  */
 export type CaseError =
   | MatchingError
@@ -174,5 +185,6 @@ export type CaseError =
 
 /**
  * Describes the result of calling a matcher executor. If there are no errors, the array should be empty.
+ * @public
  */
 export type MatchResult = Array<CaseError>;

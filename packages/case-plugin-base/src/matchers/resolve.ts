@@ -11,7 +11,7 @@ import { AnyCaseMatcherOrData } from './matchers.types';
  * Use it if you expect that it should _never_ be possible for the matcher to
  * resolve to anything other than a string, as it throws a
  * {@link CaseCoreError}, indicating a bug.
- *
+ * @public
  *
  * @param matcher - any matcher descriptor or data object
  * @param context - the current {@link MatchContext}
@@ -40,7 +40,7 @@ export const mustResolveToString = (
  * Use it if you expect that it should _never_ be possible for the matcher to
  * resolve to anything other than a number, as it throws a
  * {@link CaseCoreError}, indicating a bug.
- *
+ * @public
  *
  * @param matcher - any matcher descriptor or data object
  * @param context - the current {@link MatchContext}

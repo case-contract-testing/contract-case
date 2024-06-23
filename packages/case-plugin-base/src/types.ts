@@ -12,6 +12,7 @@ export * from './mocks/types';
  * Represents a plugin for the ContractCase contract testing framework.
  * A plugin can defines custom matchers or mock setups for testing different cases.
  *
+ * @public
  * @typeParam MatcherTypes - A union type of string constants for the matcher types supported by the plugin.
  * @typeParam MockTypes - A union type of string constants for the mocks types supported by the plugin.
  * @typeParam MatcherDescriptors - A union type of all matcher descriptor objects for the matchers supplied by this plugin.
