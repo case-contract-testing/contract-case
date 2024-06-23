@@ -20,7 +20,9 @@ import {
  *
  * @param message - The message that describes this error
  * @param actual - The actual value that was recieved
- * @param code - A code that can be looked up in the documentation
+ * @param code - A code that can be looked up in the documentation. This should
+ *                be a unique code specific to this kind of error that users
+ *                could look up in the documentation for more information.
  * @param context - The match context this occurred in
  * @param expected - An optional expected value (might be a description of what was expected)
  * @returns CaseError
