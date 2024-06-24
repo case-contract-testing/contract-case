@@ -63,7 +63,7 @@
     "rimraf": "^5.0.1",
     "ts-jest": "^29.1.5",
     "ts-node": "^10.9.2",
-    "typescript": "5.4.5"
+    "typescript": "5.5.2"
   },
   "dependencies": {
     "@contract-case/case-core-plugin-http-dsl": "^0.15.7",
