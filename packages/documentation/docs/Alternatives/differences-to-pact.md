@@ -17,9 +17,10 @@ the test suite. However, in ContractCase, failing provider verification does not
 the test suite by default. Errors are still printed, and the verification
 results are published to the broker in CI. This means that to get deployment safety with ContractCase, you must use can-i-deploy. See the section on [gating deploys](/docs/deployment-checks) for more information. If you need the test suite to fail if the verification fails, set `throwOnFailure: true` in the verifier options.
 
-:::danger
-Failing provider verification in ContractCase does not fail the test suite by default - although it will print errors. This means the use of can-i-deploy is required to get the deployment safety benefits with ContractCase. See the [deployment checks](/docs/deployment-checks) section for more details.
-:::
+Failing provider verification in ContractCase does not fail the test suite by
+default - although it will print errors. This means the use of can-i-deploy is
+required to get the deployment safety benefits with ContractCase. See the
+[deployment checks](/docs/deployment-checks) section for more details.
 
 Some terminology in case is different from Pact:
 
