@@ -34,6 +34,7 @@
     "prebuild:docs:local": "npm run build",
     "build:docs:local": "api-extractor run --local --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
