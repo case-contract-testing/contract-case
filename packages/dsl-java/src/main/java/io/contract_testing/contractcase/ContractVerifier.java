@@ -22,10 +22,12 @@ public class ContractVerifier implements AutoCloseable {
   private final InternalVerifierClient verifier;
 
   private final List<ConnectorFailure> failures = new ArrayList<>();
+  private final ContractCaseConfig config;
 
-  public ContractVerifier(ContractCaseConfig config) {
+  public ContractVerifier(final ContractCaseConfig config) {
     LogPrinter logPrinter = new LogPrinter();
     ContractCaseProcess.getInstance().start();
+    this.config = config;
 
     InternalVerifierClient verification = null;
     try {
@@ -82,6 +84,17 @@ public class ContractVerifier implements AutoCloseable {
       BoundaryCrashReporter.handleAndRethrow(e);
     }
     this.verifier = verification;
+  }
+
+  public void loadPlugins(String... pluginNames) {
+    try {
+      ConnectorResultMapper.mapVoid(this.verifier.loadPlugins(ConnectorConfigMapper.map(
+          config,
+          "VERIFICATION_LOAD_PLUGIN"
+      ), pluginNames));
+    } catch (Throwable e) {
+      BoundaryCrashReporter.handleAndRethrow(e);
+    }
   }
 
   public List<ContractDescription> availableContractDescriptions() {

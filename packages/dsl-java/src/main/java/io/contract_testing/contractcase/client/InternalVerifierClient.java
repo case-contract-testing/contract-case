@@ -7,6 +7,7 @@ import io.contract_testing.contractcase.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.AvailableContractDefinitions;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginVerificationRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RunVerification;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.VerificationRequest;
 import java.util.List;
@@ -77,5 +78,12 @@ public class InternalVerifierClient implements AutoCloseable {
   @Override
   public void close() {
     rpcConnector.close();
+  }
+
+  public ConnectorResult loadPlugins(ContractCaseConnectorConfig configOverrides, String[] pluginNames) {
+    return rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
+            .setLoadPlugin(LoadPluginRequest.newBuilder()
+                .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides)))
+        , "loadPlugins");
   }
 }

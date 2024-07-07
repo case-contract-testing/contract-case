@@ -13,6 +13,8 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginDefinitionR
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.EndDefinitionRequest;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginRequest;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.VerificationRequest;
 import io.contract_testing.contractcase.test_equivalence_matchers.base.AnyMatcher;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
@@ -84,4 +86,10 @@ public class InternalDefinerClient {
             .build()), "begin");
   }
 
+  public ConnectorResult loadPlugins(ContractCaseConnectorConfig configOverrides, String[] pluginNames) {
+      return rpcConnector.executeCallAndWait(DefinitionRequest.newBuilder()
+              .setLoadPlugin(LoadPluginRequest.newBuilder()
+                  .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides)))
+          , "loadPlugins");
+  }
 }

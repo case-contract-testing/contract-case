@@ -10,12 +10,15 @@ public class ContractDefiner {
 
   private static final String TEST_RUN_ID = "JAVA";
   private final InternalDefinerClient definer;
+  private final ContractCaseConfig config;
 
 
   public ContractDefiner(final @NotNull ContractCaseConfig config) {
     ContractCaseProcess.getInstance().start();
     
     LogPrinter logPrinter = new LogPrinter();
+    this.config = config;
+
     InternalDefinerClient definer = null;
     try {
       definer = new InternalDefinerClient(
@@ -31,6 +34,17 @@ public class ContractDefiner {
 
   public void endRecord() {
     ConnectorResultMapper.mapVoid(this.definer.endRecord());
+  }
+
+  public void loadPlugins(String... pluginNames) {
+    try {
+      ConnectorResultMapper.mapVoid(this.definer.loadPlugins(ConnectorConfigMapper.map(
+          config,
+          "DEFINER_LOAD_PLUGIN"
+      ), pluginNames));
+    } catch (Throwable e) {
+      BoundaryCrashReporter.handleAndRethrow(e);
+    }
   }
 
   public <T, M extends AnyMockDescriptor> void runExample(ExampleDefinition<M> definition,
