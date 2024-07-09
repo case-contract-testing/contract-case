@@ -19,7 +19,7 @@
     "@nx/nx-linux-arm64-musl": "19.3.2",
     "@nx/nx-linux-x64-gnu": "19.4.1",
     "@nx/nx-linux-x64-musl": "19.3.1",
-    "@nx/nx-win32-arm64-msvc": "19.3.2",
+    "@nx/nx-win32-arm64-msvc": "19.4.1",
     "@nx/nx-win32-x64-msvc": "18.3.4"
   },
   "scripts": {
