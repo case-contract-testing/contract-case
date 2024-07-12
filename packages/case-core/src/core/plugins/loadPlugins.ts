@@ -1,4 +1,5 @@
 import CoreHttpPlugin from '@contract-case/case-core-plugin-http';
+import CoreFunctionPlugin from '@contract-case/case-core-plugin-function';
 import {
   AnyMockDescriptor,
   ContractCasePlugin,
@@ -10,7 +11,10 @@ import {
 import { loadPlugin } from '../../diffmatch';
 import { MockExecutors } from './mockExecutors';
 
-const DEFAULT_CORE_PLUGINS = [CoreHttpPlugin];
+const DEFAULT_CORE_PLUGINS = [CoreHttpPlugin, CoreFunctionPlugin];
+
+// TODO: type the plugins nicer so this isn't necessary
+type TrustMeBro = typeof CoreHttpPlugin;
 
 export const loadPlugins = <
   MatchT extends string,
@@ -25,5 +29,5 @@ export const loadPlugins = <
 };
 
 export const loadCorePlugins = (context: MatchContext): void => {
-  loadPlugins(context, DEFAULT_CORE_PLUGINS);
+  loadPlugins(context, DEFAULT_CORE_PLUGINS as TrustMeBro[]);
 };

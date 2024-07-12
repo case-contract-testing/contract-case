@@ -75,6 +75,7 @@
   "dependencies": {
     "@contract-case/case-core-plugin-http": "^0.15.7",
     "@contract-case/case-core-plugin-http-dsl": "^0.15.7",
+    "@contract-case/case-core-plugin-function": "^0.15.7",
     "@contract-case/case-entities-internal": "0.15.7",
     "@contract-case/case-plugin-base": "^0.15.7",
     "absolute-version": "^2.0.0",
