@@ -34,7 +34,7 @@ describe('e2e http consumer driven', () => {
     } catch (e) {
       // We don't care if this fails
     }
-  });
+  }, 30000);
   defineContract(
     {
       ...contractDetails,

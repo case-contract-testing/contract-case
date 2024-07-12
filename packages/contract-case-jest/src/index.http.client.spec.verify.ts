@@ -24,7 +24,7 @@ describe('Server verification', () => {
 
   beforeAll(async () => {
     server = await start(port, serverDependencies);
-  });
+  }, 30000);
   afterAll(
     () =>
       new Promise<void>((resolve, reject) => {

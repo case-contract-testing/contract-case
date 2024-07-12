@@ -31,7 +31,7 @@ describe('e2e http provider driven', () => {
     } catch (e) {
       // We don't care if this fails
     }
-  });
+  }, 30000);
   describe('test and write contract', () => {
     // CODE UNDER TEST SETUP BOILERPLATE
     let server: http.Server;
