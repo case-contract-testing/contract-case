@@ -1,7 +1,7 @@
 {
   "name": "@contract-case/case-plugin-base",
   "version": "0.15.7",
-  "description": "Shared types for ContractCase modules",
+  "description": "Plugin framework for writing plugins for the ContractCase test framework",
   "keywords": [
     "testing",
     "api",
