@@ -1,0 +1,3 @@
+{
+  "extends": ["@contract-case/case-maintainer"]
+}

@@ -9,6 +9,7 @@
         "@contract-case/case-core",
         "@contract-case/case-core-plugin-http",
         "@contract-case/case-core-plugin-http-dsl",
+        "@contract-case/case-core-plugin-function",
         "@contract-case/case-plugin-base",
         "@contract-case/case-definition-dsl"
       ],
@@ -52,7 +53,6 @@
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     },
-
     "packages/case-core-plugin-http": {
       "component": "@contract-case/case-core-plugin-http",
       "bump-minor-pre-major": true,
@@ -61,6 +61,12 @@
     },
     "packages/case-core-plugin-http-dsl": {
       "component": "@contract-case/case-core-plugin-http-dsl",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/case-core-plugin-function": {
+      "component": "@contract-case/case-core-plugin-function",
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"

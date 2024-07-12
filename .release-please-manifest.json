@@ -3,6 +3,7 @@
   "packages/case-definition-dsl": "0.15.7",
   "packages/case-core-plugin-http": "0.15.7",
   "packages/case-core-plugin-http-dsl": "0.15.7",
+  "packages/case-core-plugin-function": "0.15.7",
   "packages/case-plugin-base": "0.15.7",
   "packages/case-entities": "0.15.7",
   "packages/contract-case-jest": "0.11.7",
