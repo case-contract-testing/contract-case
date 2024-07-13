@@ -127,6 +127,19 @@
         }
       ],
       "mock": {
+        "_case:mock:type": "_case:MockHttpClient",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "write": {
+            "type": "_case:MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        },
         "request": {
           "_case:matcher:type": "_case:Lookup",
           "_case:matcher:uniqueName": "an http \"GET\" request to \"/health\" with the following headers an object shaped like {accept: \"application/json\"} without a body",
@@ -149,19 +162,6 @@
             },
             "_case:matcher:type": "_case:HttpResponseMatcher"
           }
-        },
-        "_case:mock:type": "_case:MockHttpClient",
-        "_case:run:context:setup": {
-          "write": {
-            "type": "_case:MockHttpClient",
-            "stateVariables": "state",
-            "triggers": "generated"
-          },
-          "read": {
-            "type": "_case:MockHttpServer",
-            "stateVariables": "default",
-            "triggers": "provided"
-          }
         }
       },
       "result": "VERIFIED"
@@ -174,6 +174,19 @@
         }
       ],
       "mock": {
+        "_case:mock:type": "_case:MockHttpClient",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "write": {
+            "type": "_case:MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        },
         "request": {
           "_case:matcher:type": "_case:Lookup",
           "_case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
@@ -197,19 +210,6 @@
             },
             "_case:matcher:type": "_case:HttpResponseMatcher"
           }
-        },
-        "_case:mock:type": "_case:MockHttpClient",
-        "_case:run:context:setup": {
-          "write": {
-            "type": "_case:MockHttpClient",
-            "stateVariables": "state",
-            "triggers": "generated"
-          },
-          "read": {
-            "type": "_case:MockHttpServer",
-            "stateVariables": "default",
-            "triggers": "provided"
-          }
         }
       },
       "result": "VERIFIED"
@@ -222,6 +222,19 @@
         }
       ],
       "mock": {
+        "_case:mock:type": "_case:MockHttpClient",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "write": {
+            "type": "_case:MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        },
         "request": {
           "_case:matcher:type": "_case:Lookup",
           "_case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
@@ -246,19 +259,6 @@
             },
             "_case:matcher:type": "_case:HttpResponseMatcher"
           }
-        },
-        "_case:mock:type": "_case:MockHttpClient",
-        "_case:run:context:setup": {
-          "write": {
-            "type": "_case:MockHttpClient",
-            "stateVariables": "state",
-            "triggers": "generated"
-          },
-          "read": {
-            "type": "_case:MockHttpServer",
-            "stateVariables": "default",
-            "triggers": "provided"
-          }
         }
       },
       "result": "VERIFIED"
@@ -271,6 +271,19 @@
         }
       ],
       "mock": {
+        "_case:mock:type": "_case:MockHttpClient",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "write": {
+            "type": "_case:MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        },
         "request": {
           "_case:matcher:type": "_case:Lookup",
           "_case:matcher:uniqueName": "an http \"GET\" request to \"/health\" without a body",
@@ -289,19 +302,6 @@
               "status": "down"
             },
             "_case:matcher:type": "_case:HttpResponseMatcher"
-          }
-        },
-        "_case:mock:type": "_case:MockHttpClient",
-        "_case:run:context:setup": {
-          "write": {
-            "type": "_case:MockHttpClient",
-            "stateVariables": "state",
-            "triggers": "generated"
-          },
-          "read": {
-            "type": "_case:MockHttpServer",
-            "stateVariables": "default",
-            "triggers": "provided"
           }
         }
       },
@@ -326,6 +326,19 @@
         }
       ],
       "mock": {
+        "_case:mock:type": "_case:MockHttpClient",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "write": {
+            "type": "_case:MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        },
         "request": {
           "_case:matcher:type": "_case:Lookup",
           "_case:matcher:uniqueName": "an http \"GET\" request to \"/users\"?id={{userId}} without a body",
@@ -354,19 +367,6 @@
             },
             "_case:matcher:type": "_case:HttpResponseMatcher"
           }
-        },
-        "_case:mock:type": "_case:MockHttpClient",
-        "_case:run:context:setup": {
-          "write": {
-            "type": "_case:MockHttpClient",
-            "stateVariables": "state",
-            "triggers": "generated"
-          },
-          "read": {
-            "type": "_case:MockHttpServer",
-            "stateVariables": "default",
-            "triggers": "provided"
-          }
         }
       },
       "result": "VERIFIED"
@@ -390,6 +390,19 @@
         }
       ],
       "mock": {
+        "_case:mock:type": "_case:MockHttpClient",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "write": {
+            "type": "_case:MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        },
         "request": {
           "_case:matcher:type": "_case:Lookup",
           "_case:matcher:uniqueName": "an http \"GET\" request to \"/users\"?id={{userId}} without a body",
@@ -411,19 +424,6 @@
           "_case:matcher:child": {
             "status": 404,
             "_case:matcher:type": "_case:HttpResponseMatcher"
-          }
-        },
-        "_case:mock:type": "_case:MockHttpClient",
-        "_case:run:context:setup": {
-          "write": {
-            "type": "_case:MockHttpClient",
-            "stateVariables": "state",
-            "triggers": "generated"
-          },
-          "read": {
-            "type": "_case:MockHttpServer",
-            "stateVariables": "default",
-            "triggers": "provided"
           }
         }
       },
@@ -448,6 +448,19 @@
         }
       ],
       "mock": {
+        "_case:mock:type": "_case:MockHttpClient",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "write": {
+            "type": "_case:MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        },
         "request": {
           "_case:matcher:type": "_case:Lookup",
           "_case:matcher:uniqueName": "an http \"GET\" request to \"/users/{{userId}}\" without a body",
@@ -478,19 +491,6 @@
             },
             "_case:matcher:type": "_case:HttpResponseMatcher"
           }
-        },
-        "_case:mock:type": "_case:MockHttpClient",
-        "_case:run:context:setup": {
-          "write": {
-            "type": "_case:MockHttpClient",
-            "stateVariables": "state",
-            "triggers": "generated"
-          },
-          "read": {
-            "type": "_case:MockHttpServer",
-            "stateVariables": "default",
-            "triggers": "provided"
-          }
         }
       },
       "result": "VERIFIED"
@@ -507,6 +507,19 @@
         }
       ],
       "mock": {
+        "_case:mock:type": "_case:MockHttpClient",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "write": {
+            "type": "_case:MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        },
         "request": {
           "_case:matcher:type": "_case:Lookup",
           "_case:matcher:uniqueName": "an http \"GET\" request to \"/users/123\" without a body",
@@ -527,19 +540,6 @@
           "_case:matcher:child": {
             "status": 404,
             "_case:matcher:type": "_case:HttpResponseMatcher"
-          }
-        },
-        "_case:mock:type": "_case:MockHttpClient",
-        "_case:run:context:setup": {
-          "write": {
-            "type": "_case:MockHttpClient",
-            "stateVariables": "state",
-            "triggers": "generated"
-          },
-          "read": {
-            "type": "_case:MockHttpServer",
-            "stateVariables": "default",
-            "triggers": "provided"
           }
         }
       },

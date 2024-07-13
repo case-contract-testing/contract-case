@@ -1,10 +1,12 @@
 import { mocks } from '@contract-case/case-definition-dsl';
 import {
-  MOCK_HTTP_CLIENT,
-  MOCK_HTTP_SERVER,
-} from '@contract-case/case-core-plugin-http-dsl';
-import { httpRequestMatcher, httpResponseMatcher } from '../Matchers/core/index.js';
-import { HttpMockRequest, HttpMockResponse } from '../Matchers/core/http/types.js';
+  HttpMockRequest,
+  HttpMockResponse,
+} from '../Matchers/core/http/types.js';
+import {
+  httpRequestMatcher,
+  httpResponseMatcher,
+} from '../Matchers/core/http/index.js';
 
 type HttpRequestResponseDescription = {
   request: HttpMockRequest;
@@ -15,42 +17,16 @@ export const willSendHttpRequest = ({
   request,
   response,
 }: HttpRequestResponseDescription): mocks.http.WillSendHttpRequest =>
-  ({
+  new mocks.http.WillSendHttpRequest({
     request: httpRequestMatcher(request),
     response: httpResponseMatcher(response),
-    '_case:mock:type': MOCK_HTTP_SERVER,
-    '_case:run:context:setup': {
-      write: {
-        type: MOCK_HTTP_SERVER,
-        stateVariables: 'default',
-        triggers: 'provided',
-      },
-      read: {
-        type: MOCK_HTTP_CLIENT,
-        stateVariables: 'state',
-        triggers: 'generated',
-      },
-    },
-  }) as unknown as mocks.http.WillSendHttpRequest;
+  });
 
 export const willReceiveHttpRequest = ({
   request,
   response,
 }: HttpRequestResponseDescription): mocks.http.WillReceiveHttpRequest =>
-  ({
+  new mocks.http.WillReceiveHttpRequest({
     request: httpRequestMatcher(request),
     response: httpResponseMatcher(response),
-    '_case:mock:type': MOCK_HTTP_CLIENT,
-    '_case:run:context:setup': {
-      write: {
-        type: MOCK_HTTP_CLIENT,
-        stateVariables: 'state',
-        triggers: 'generated',
-      },
-      read: {
-        type: MOCK_HTTP_SERVER,
-        stateVariables: 'default',
-        triggers: 'provided',
-      },
-    },
-  }) as unknown as mocks.http.WillReceiveHttpRequest;
+  });
