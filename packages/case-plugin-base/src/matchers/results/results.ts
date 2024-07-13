@@ -48,7 +48,8 @@ export const makeNoErrorResult = (): MatchResult => [];
  * @param result - a {@link MatchResult} object
  * @returns true if `result` has any errors
  */
-export const hasErrors = (result: MatchResult): boolean => result.length !== 0;
+export const hasErrors = (result: MatchResult | CaseError[]): boolean =>
+  result.length !== 0;
 
 /**
  * Tests whether a given {@link MatchResult} object has no errors.
