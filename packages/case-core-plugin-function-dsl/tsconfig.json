@@ -1,0 +1,9 @@
+{
+  "extends": "@contract-case/case-maintainer-config/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist/"
+  },
+  "include": ["src/**/*.ts", "package.json"],
+
+  "exclude": ["jest.config.ts", "dist/**/*.js", "coverage", "dist"]
+}

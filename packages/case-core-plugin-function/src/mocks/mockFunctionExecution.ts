@@ -1,13 +1,13 @@
 import {
+  MockFunctionExecutionDescriptor,
+  FunctionMockSetupInfo,
+  MOCK_FUNCTION_EXECUTION,
+} from '@contract-case/case-core-plugin-function-dsl';
+import {
   MatchContext,
   MockData,
   addLocation,
 } from '@contract-case/case-plugin-base';
-import {
-  FunctionMockSetupInfo,
-  MOCK_FUNCTION_EXECUTION,
-  MockFunctionExecutionDescriptor,
-} from '../dsl/types';
 
 export const setupMockFunctionExecution = (
   {

@@ -8,18 +8,16 @@ import {
   CORE_PLUGIN_PREFIX,
   ContractCasePlugin,
 } from '@contract-case/case-plugin-base';
+import {
+  FUNCTION_ARGUMENTS_MATCHER_TYPE,
+  MOCK_FUNCTION_EXECUTION,
+  CoreFunctionArgumentsMatcher,
+  MockFunctionExecutionDescriptor,
+  FunctionMockSetupInfo,
+} from '@contract-case/case-core-plugin-function-dsl';
 
 import { pluginVersion } from './version';
-import {
-  CoreFunctionArgumentsMatcher,
-  FUNCTION_ARGUMENTS_MATCHER_TYPE,
-} from './dsl/matchers';
 import { FunctionArgumentMatcherExecutor } from './matchers/FunctionArgumentsMatcher';
-import {
-  FunctionMockSetupInfo,
-  MOCK_FUNCTION_EXECUTION,
-  MockFunctionExecutionDescriptor,
-} from './dsl/types';
 import { setupMockFunctionExecution } from './mocks';
 
 export * from './matchers';

@@ -21,7 +21,7 @@
     "build:docs:local": "api-extractor run --local --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "watch": "jsii -w",
     "prepackage": "rimraf dist",
-    "prepack": "mkdirp node_modules/@contract-case && ln -sf ${PWD}/../case-entities node_modules/@contract-case/case-entities-internal &&  ln -sf ${PWD}/../case-core-plugin-http-dsl node_modules/@contract-case/case-core-plugin-http-dsl && ln -sf ${PWD}/../case-plugin-base node_modules/@contract-case/case-plugin-base",
+    "prepack": "mkdirp node_modules/@contract-case && ln -sf ${PWD}/../case-entities node_modules/@contract-case/case-entities-internal &&  ln -sf ${PWD}/../case-core-plugin-http-dsl node_modules/@contract-case/case-core-plugin-http-dsl && ln -sf ${PWD}/../case-plugin-base node_modules/@contract-case/case-plugin-base  && ln -sf ${PWD}/../case-core-function-dsl node_modules/@contract-case/case-core-function-dsl",
     "package": "jsii-pacmak",
     "publish:maven": "publib-maven",
     "test": "jest",
@@ -81,7 +81,8 @@
   "dependencies": {
     "@contract-case/case-entities-internal": "0.15.7",
     "@contract-case/case-plugin-base": "0.15.7",
-    "@contract-case/case-core-plugin-http-dsl": "0.15.7"
+    "@contract-case/case-core-plugin-http-dsl": "0.15.7",
+    "@contract-case/case-core-plugin-function-dsl": "0.15.7"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
@@ -125,6 +126,7 @@
   "bundledDependencies": [
     "@contract-case/case-entities-internal",
     "@contract-case/case-plugin-base",
-    "@contract-case/case-core-plugin-http-dsl"
+    "@contract-case/case-core-plugin-http-dsl",
+    "@contract-case/case-core-plugin-function-dsl"
   ]
 }

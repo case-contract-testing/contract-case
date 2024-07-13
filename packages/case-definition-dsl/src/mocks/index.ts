@@ -2,4 +2,5 @@
 // as it doesn't support `export * as`
 
 export * as base from './base';
+export * as functions from './functions';
 export * as http from './http';

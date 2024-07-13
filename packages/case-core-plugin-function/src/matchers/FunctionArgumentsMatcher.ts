@@ -1,4 +1,8 @@
 import {
+  CoreFunctionArgumentsMatcher,
+  FUNCTION_ARGUMENTS_MATCHER_TYPE,
+} from '@contract-case/case-core-plugin-function-dsl';
+import {
   MatchContext,
   AnyData,
   addLocation,
@@ -6,10 +10,6 @@ import {
   CaseConfigurationError,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
-import {
-  CoreFunctionArgumentsMatcher,
-  FUNCTION_ARGUMENTS_MATCHER_TYPE,
-} from '../dsl/matchers';
 
 const strip = (
   matcher: CoreFunctionArgumentsMatcher,

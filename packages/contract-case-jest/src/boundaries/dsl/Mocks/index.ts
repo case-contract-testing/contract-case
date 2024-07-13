@@ -1,4 +1,5 @@
 import { mocks } from '@contract-case/case-definition-dsl';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
 import {
   HttpMockRequest,
   HttpMockResponse,
@@ -30,3 +31,13 @@ export const willReceiveHttpRequest = ({
     request: httpRequestMatcher(request),
     response: httpResponseMatcher(response),
   });
+
+type FunctionExecutionExample = {
+  arguments: AnyCaseMatcherOrData[];
+  returnValue: AnyCaseMatcherOrData;
+};
+
+export const willCallFunction = (
+  example: FunctionExecutionExample,
+): mocks.functions.MockFunctionExecution =>
+  new mocks.functions.MockFunctionExecution(example);
