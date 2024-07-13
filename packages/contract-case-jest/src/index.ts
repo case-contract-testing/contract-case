@@ -16,3 +16,8 @@ export * from './entities/types.js';
 export type HttpRequestConfig = TriggerConfig<{
   baseUrl: string;
 }>;
+
+// TODO remove this hack type too, and also do it properly
+export type FunctionExecutorConfig = TriggerConfig<{
+  invokeable: (...invokedArguments: unknown[]) => unknown;
+}>;
