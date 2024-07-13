@@ -36,8 +36,8 @@ export const setupMockFunctionExecution = (
       },
       assertableData: () =>
         Promise.resolve(data).then((result) => ({
-          actual: result,
-          context: addLocation('response', context),
+          actual: result ? result.actualArguments : null,
+          context: addLocation('functionArguments', context),
           expected: expectedArguments,
         })),
     };
