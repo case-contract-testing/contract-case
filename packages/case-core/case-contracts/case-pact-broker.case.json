@@ -73,7 +73,7 @@
       },
       "_case:matcher:type": "_case:HttpResponseMatcher"
     },
-    "matcher:an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] and an array of length min: 1, max: 1;}": {
+    "matcher:an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] / an array of length min: 1, max: 1;}": {
       "method": "POST",
       "path": {
         "_case:matcher:type": "_case:UrlEncodedString",
@@ -144,7 +144,7 @@
       },
       "_case:context:matchBy": "type"
     },
-    "matcher:an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Basic http basic auth with username='{{username}}' and password={{password}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] and an array of length min: 1, max: 1;}": {
+    "matcher:an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Basic http basic auth with username='{{username}}' and password={{password}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] / an array of length min: 1, max: 1;}": {
       "method": "POST",
       "path": {
         "_case:matcher:type": "_case:UrlEncodedString",
@@ -277,7 +277,7 @@
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
     },
-    "matcher:a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, and an array containing an object shaped like {type: \"info\",text: <any string>},}": {
+    "matcher:a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, / an array containing an object shaped like {type: \"info\",text: <any string>},}": {
       "status": 200,
       "body": {
         "notices": {
@@ -331,7 +331,7 @@
       },
       "_case:matcher:type": "_case:HttpResponseMatcher"
     },
-    "matcher:an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: base64 encoded string 'json stringified 'an object shaped like {contractType: \"_case::contract\",description: an object shaped like {consumerName: <any string>,providerName: <any string>}}''}] and an array of length min: 1, max: 1;}": {
+    "matcher:an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] / an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: base64 encoded string 'json stringified 'an object shaped like {contractType: \"_case::contract\",description: an object shaped like {consumerName: <any string>,providerName: <any string>}}''}] / an array of length min: 1, max: 1;}": {
       "method": "POST",
       "path": "/contracts/publish",
       "headers": {
@@ -412,7 +412,7 @@
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
     },
-    "matcher:an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: <any string>}] and an array of length min: 1, max: 1;}": {
+    "matcher:an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] / an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: <any string>}] / an array of length min: 1, max: 1;}": {
       "method": "POST",
       "path": "/contracts/publish",
       "headers": {
@@ -504,7 +504,7 @@
       "mock": {
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] and an array of length min: 1, max: 1;}",
+          "_case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] / an array of length min: 1, max: 1;}",
           "_case:matcher:child": {
             "method": "POST",
             "path": {
@@ -657,7 +657,7 @@
       "mock": {
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Basic http basic auth with username='{{username}}' and password={{password}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] and an array of length min: 1, max: 1;}",
+          "_case:matcher:uniqueName": "an http \"POST\" request to uriEncoded string '\"/pacts/provider/{{providerName}}/for-verification\"' with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Basic http basic auth with username='{{username}}' and password={{password}}\"} and body an object shaped like {consumerVersionSelectors: an array where each entry matches an object where each value is <any boolean>,providerVersionTags: an array shaped like [\"main\"] / an array of length min: 1, max: 1;}",
           "_case:matcher:child": {
             "method": "POST",
             "path": {
@@ -943,7 +943,7 @@
       "mock": {
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: base64 encoded string 'json stringified 'an object shaped like {contractType: \"_case::contract\",description: an object shaped like {consumerName: <any string>,providerName: <any string>}}''}] and an array of length min: 1, max: 1;}",
+          "_case:matcher:uniqueName": "an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] / an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: base64 encoded string 'json stringified 'an object shaped like {contractType: \"_case::contract\",description: an object shaped like {consumerName: <any string>,providerName: <any string>}}''}] / an array of length min: 1, max: 1;}",
           "_case:matcher:child": {
             "method": "POST",
             "path": "/contracts/publish",
@@ -1028,7 +1028,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, and an array containing an object shaped like {type: \"info\",text: <any string>},}",
+          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, / an array containing an object shaped like {type: \"info\",text: <any string>},}",
           "_case:matcher:child": {
             "status": 200,
             "body": {
@@ -1117,7 +1117,7 @@
       "mock": {
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] and an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: <any string>}] and an array of length min: 1, max: 1;}",
+          "_case:matcher:uniqueName": "an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] / an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: <any string>}] / an array of length min: 1, max: 1;}",
           "_case:matcher:child": {
             "method": "POST",
             "path": "/contracts/publish",

@@ -77,14 +77,14 @@ export const AndCombinationMatcher: MatcherExecutor<
   CoreAndCombinationMatcher
 > = {
   describe: (matcher, matchContext) =>
-    matcher['_case:matcher:children']
+    `${matcher['_case:matcher:children']
       .map((child, index) =>
         matchContext.descendAndDescribe(
           child,
           addLocation(`:and[${index}]`, matchContext),
         ),
       )
-      .join(' and '),
+      .join(' / ')}`,
   check,
   strip,
 };
