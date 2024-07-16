@@ -12,24 +12,23 @@ import {
   FUNCTION_ARGUMENTS_MATCHER_TYPE,
   MOCK_FUNCTION_EXECUTION,
   CoreFunctionArgumentsMatcher,
-  MockFunctionExecutionDescriptor,
-  FunctionMockSetupInfo,
+  MOCK_FUNCTION_CALLER,
 } from '@contract-case/case-core-plugin-function-dsl';
 
 import { pluginVersion } from './version';
 import { FunctionArgumentMatcherExecutor } from './matchers/FunctionArgumentsMatcher';
-import { setupMockFunctionExecution } from './mocks';
+import { setupMockFunctionCaller, setupMockFunctionExecution } from './mocks';
+import { AllDescriptors, AllSetup } from './mocks/types';
 
 export * from './matchers';
 export * from './mocks';
-export * from './mocks/types';
 
 const CoreHttpPlugin: ContractCasePlugin<
   typeof FUNCTION_ARGUMENTS_MATCHER_TYPE,
-  typeof MOCK_FUNCTION_EXECUTION,
+  typeof MOCK_FUNCTION_EXECUTION | typeof MOCK_FUNCTION_CALLER,
   CoreFunctionArgumentsMatcher,
-  MockFunctionExecutionDescriptor,
-  FunctionMockSetupInfo
+  AllDescriptors,
+  AllSetup
 > = {
   // Note: If using this code as an example for your own plugin,
   // DO NOT start your plugin name with the core plugin prefix
@@ -41,6 +40,7 @@ const CoreHttpPlugin: ContractCasePlugin<
   },
   setupMocks: {
     [MOCK_FUNCTION_EXECUTION]: setupMockFunctionExecution,
+    [MOCK_FUNCTION_CALLER]: setupMockFunctionCaller,
   },
 };
 

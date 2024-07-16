@@ -1,7 +1,7 @@
 import {
   functionArgumentsMatcher,
   MOCK_FUNCTION_EXECUTION,
-  MOCK_FUNCTION_INVOCATION,
+  MOCK_FUNCTION_CALLER,
 } from '@contract-case/case-core-plugin-function-dsl';
 import { AnyMockDescriptor } from '../base/AnyMockDescriptor';
 import { AnyMatcherOrData } from '../../types';
@@ -24,7 +24,7 @@ export class MockFunctionExecution extends AnyMockDescriptor {
       triggers: 'provided';
     };
     read: {
-      type: typeof MOCK_FUNCTION_INVOCATION;
+      type: typeof MOCK_FUNCTION_CALLER;
       stateVariables: 'state';
       triggers: 'generated';
     };
@@ -42,7 +42,7 @@ export class MockFunctionExecution extends AnyMockDescriptor {
         triggers: 'provided',
       },
       read: {
-        mockType: MOCK_FUNCTION_INVOCATION,
+        mockType: MOCK_FUNCTION_CALLER,
         stateVariables: 'state',
         triggers: 'generated',
       },

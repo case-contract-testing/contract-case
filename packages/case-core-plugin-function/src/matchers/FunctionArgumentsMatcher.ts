@@ -22,7 +22,7 @@ const strip = (
 ): AnyData =>
   matchContext.descendAndStrip(
     matcher.arguments,
-    addLocation(`functionArguments`, matchContext),
+    addLocation(`arguments`, matchContext),
   );
 
 const describe = (
