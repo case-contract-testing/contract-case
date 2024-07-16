@@ -55,6 +55,7 @@ const MOCK_LOOKUP = {
   addDefaultVariable: (): [name: string, value: string] => ['name', 'value'],
   addStateVariable: (): [name: string, value: string] => ['name', 'value'],
   lookupVariable: () => 'TEST VALUE',
+  invokeFunctionByHandle: () => Promise.resolve('returnValue'),
 };
 
 export const EMPTY_MATCH_CONTEXT: MatchContext = {
