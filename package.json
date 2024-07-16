@@ -6,7 +6,7 @@
   ],
   "version": "0.15.8",
   "devDependencies": {
-    "@tsconfig/node16": "^16.1.2",
+    "@contract-case/eslint-config-case-maintainer": "0.1.0",
     "example-extractor": "^0.0.4",
     "jsii-docgen": "^10.4.18",
     "lerna": "^8.1.3"
