@@ -22,9 +22,13 @@ describe('Server verification', () => {
     userRepository: { get: (id) => mockGetUser(id) },
   };
 
-  beforeAll(async () => {
-    server = await start(port, serverDependencies);
-  }, 30000);
+  beforeAll(
+    async () => {
+      server = await start(port, serverDependencies);
+    },
+    // Long timeout to reduce brittleness in windows tests in github
+    60000,
+  );
   afterAll(
     () =>
       new Promise<void>((resolve, reject) => {
