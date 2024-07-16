@@ -5,12 +5,35 @@ import {
 } from '@contract-case/case-plugin-base';
 
 export const MOCK_FUNCTION_EXECUTION = '_case:MockFunctionExecution' as const;
-export const MOCK_FUNCTION_INVOCATION = '_case:MockFunctionExecution' as const;
+export const MOCK_FUNCTION_CALLER = '_case:MockFunctionCaller' as const;
 
-export interface MockFunctionExecutionDescriptor
-  extends HasTypeForMockDescriptor<typeof MOCK_FUNCTION_EXECUTION> {
+export interface MockFunctionDescriptor {
   arguments: AnyCaseMatcher[];
   returnValue: AnyCaseMatcher;
+}
+
+export interface MockFunctionCallerDescriptor
+  extends HasTypeForMockDescriptor<typeof MOCK_FUNCTION_CALLER>,
+    MockFunctionDescriptor {
+  arguments: AnyCaseMatcher[];
+  returnValue: AnyCaseMatcher;
+  '_case:run:context:setup': {
+    write: {
+      type: typeof MOCK_FUNCTION_CALLER;
+      stateVariables: 'state';
+      triggers: 'generated';
+    };
+    read: {
+      type: typeof MOCK_FUNCTION_EXECUTION;
+      stateVariables: 'default';
+      triggers: 'provided';
+    };
+  };
+}
+
+export interface MockFunctionExecutionDescriptor
+  extends HasTypeForMockDescriptor<typeof MOCK_FUNCTION_EXECUTION>,
+    MockFunctionDescriptor {
   '_case:run:context:setup': {
     write: {
       type: typeof MOCK_FUNCTION_EXECUTION;
@@ -18,7 +41,7 @@ export interface MockFunctionExecutionDescriptor
       triggers: 'provided';
     };
     read: {
-      type: typeof MOCK_FUNCTION_INVOCATION;
+      type: typeof MOCK_FUNCTION_CALLER;
       stateVariables: 'state';
       triggers: 'generated';
     };
@@ -30,4 +53,11 @@ export type FunctionMockSetupInfo = HasTypeForMockDescriptor<
 > &
   BaseSetupInfo & {
     invokeable: (...invokedArguments: unknown[]) => unknown;
+  };
+
+export type FunctionCallerMockSetupInfo = HasTypeForMockDescriptor<
+  typeof MOCK_FUNCTION_CALLER
+> &
+  BaseSetupInfo & {
+    functionHandle: string;
   };
