@@ -58,6 +58,8 @@ export class BaseCaseContract {
       lookupVariable: this.lookupVariable.bind(this),
     };
 
+    const invokeHandle = this.invokeFunctionByHandle.bind(this);
+
     const makeLookup = (
       context: MatchContextWithoutLookup,
     ): ContractLookupFns => ({
@@ -77,6 +79,8 @@ export class BaseCaseContract {
       ) => contractFns.addVariable(name, 'state', stateName, value, context),
       lookupVariable: (name: string) =>
         contractFns.lookupVariable(name, context),
+      invokeFunctionByHandle: (handle: string, callerArguments: unknown[]) =>
+        invokeHandle(handle, callerArguments, context),
     });
 
     this.initialContext = constructMatchContext(
@@ -100,6 +104,23 @@ export class BaseCaseContract {
     }
 
     loadCorePlugins(this.initialContext);
+  }
+
+  invokeFunctionByHandle(
+    handle: string,
+    callerArguments: unknown[],
+    context: MatchContextWithoutLookup,
+  ): Promise<unknown> {
+    context.logger.maintainerDebug(
+      `Invoking function by handle: '${handle}', with callerArguments: `,
+      callerArguments,
+    );
+    return Promise.reject(
+      new CaseCoreError(
+        `not implemented (${this.currentContract.description.consumerName})`,
+        context,
+      ),
+    );
   }
 
   lookupVariable(
