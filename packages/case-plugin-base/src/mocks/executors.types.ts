@@ -50,11 +50,28 @@ type MockOutput = {
  */
 export type MockData<AllSetupInfo, T extends string> = {
   config: SetupInfoFor<AllSetupInfo, T>;
+  /**
+   * Returns the results of the mock invocation, but without any assertions run on it.
+   *
+   * If your mock generates its own triggers, generate and call them during the execution of the assertableData method.
+   * If the trigger fails, throw either a CaseConfigurationError (in the case of
+   * user-supplied configuration mistakes or their code throwing unexpected
+   * errors), or a CaseCoreError if your plugin has crashed.
+   *
+   * @returns the {@link MockOutput} that can be asserted on.
+   */
   assertableData: () => Promise<MockOutput>;
 };
 
 /**
  * A function that will set up and run a mock.
+ *
+ * During the execution of this function, you should validate the mock
+ * descriptor is correctly formed, and any configuration properties on the
+ * context that your plugin requires are present and correctly formed.
+ *
+ * Additionally, any listeners (eg http servers) that the mock requires should be
+ *
  * @public
  * @typeParam AllMockDescriptors - All known MockDescriptor objects
  * @typeParam AllSetupInfo - All known SetupInfo objects

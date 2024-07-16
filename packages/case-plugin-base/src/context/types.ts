@@ -62,19 +62,77 @@ export interface RawLookupFns {
  * @public
  */
 export interface ContractLookupFns {
+  /**
+   * Looks up a previously saved matcher by unique name
+   *
+   * @param uniqueName - the name the matcher was saved with
+   *
+   * @returns the cached matcher
+   * @throws CaseConfigurationError if there is no matcher defined
+   */
   lookupMatcher: (uniqueName: string) => AnyCaseMatcherOrData;
+  /**
+   * Saves a matcher by the unique description. The description is generated
+   * from the matcher, and may be overridden if the matcher has a uniqueName.
+   *
+   * @param matcher - the matcher to save.
+   * @returns the cached matcher
+   * @throws CaseConfigurationError if there is no matcher defined
+   */
   saveLookupableMatcher: (matcher: AnyCaseMatcher) => void;
+  /**
+   * Adds a default variable to the *contract* (not the context). Primarily used
+   * by the state handler setup code.
+   *
+   * It is unlikely that plugins will need to call this code.
+   *
+   * Note that this function modifies the contract.
+   *
+   * @param matcher - the matcher to save.
+   * @returns the cached matcher
+   * @throws CaseConfigurationError if there is no matcher defined
+   */
   addDefaultVariable: (
     name: string,
     stateName: string,
     value: AnyCaseMatcherOrData,
   ) => [name: string, value: AnyCaseMatcherOrData];
+  /**
+   * This function adds a state variable to the *contract*. Primarily used
+   * by the state handler setup code.
+   *
+   * It is unlikely that plugins will need to call this function.
+   *
+   * @param matcher - the matcher to save.
+   * @returns the cached matcher
+   * @throws CaseConfigurationError if there is no matcher defined
+   */
   addStateVariable: (
     name: string,
     stateName: string,
     value: AnyCaseMatcherOrData,
   ) => [name: string, value: AnyCaseMatcherOrData];
+  /**
+   * Get a previously saved state variable, either from state or from the
+   * default value.
+   *
+   * @param name - the name of the variable
+   * @returns the matcher (or data) for the variable.
+   * @throws CaseConfigurationError if the variable isn't set.
+   */
   lookupVariable: (name: string) => AnyCaseMatcherOrData;
+  /**
+   * Convenience function so that mock executions can call out to user provided functions.
+   *
+   * Primarily used by the Function plugin, but may have other uses.
+   * @param handle - the handle to the function (must have been previously registered)
+   * @param callerArguments - the arguments to pass to the function (as an array)
+   * @returns a promise that is the result of the call, or a CaseConfigurationError if the function invocation failed.
+   */
+  invokeFunctionByHandle: (
+    handle: string,
+    callerArguments: unknown[],
+  ) => Promise<unknown>;
 }
 
 /**
@@ -207,6 +265,23 @@ export interface HasBaseUrlUnderTest {
 }
 
 /**
+ * Custom configuration for plugin mocks. Plugins must validate their config
+ * data at the time it needs it - throw a CaseConfigurationError if required
+ * configuration keys are missing, or malformed.
+ *
+ * The format is a double Record - the first key is the plugin short name, the
+ * second key is the configuration key. Values are arbitrary.
+ *
+ * @internal
+ */
+export interface PluginMockConfig {
+  '_case:currentRun:context:pluginMockConfig': Record<
+    string,
+    Record<string, unknown>
+  >;
+}
+
+/**
  * RunContext exists distinct from CaseConfig, as it allows us to have internal configuration properties that aren't exposed
  *
  * @internal
@@ -216,7 +291,8 @@ export interface RunContext
     InjectableContext &
       LogLevelContext &
       HasBaseUrlUnderTest &
-      ContractFileConfig
+      ContractFileConfig &
+      PluginMockConfig
   > {
   '_case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
   '_case:currentRun:context:printResults': boolean;
