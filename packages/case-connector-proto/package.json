@@ -33,7 +33,7 @@
     "@contract-case/eslint-config-case-maintainer": "0.1.0",
     "@types/google-protobuf": "^3.15.12",
     "@types/jest": "^29.5.12",
-    "@types/uuid": "^9.0.8",
+    "@types/uuid": "^10.0.0",
     "grpc_tools_node_protoc_ts": "^5.3.3",
     "grpc-tools": "^1.12.4",
     "prettier": "3.3.3",
