@@ -39,5 +39,5 @@ type FunctionExecutionExample = {
 
 export const willCallFunction = (
   example: FunctionExecutionExample,
-): mocks.functions.MockFunctionExecution =>
-  new mocks.functions.MockFunctionExecution(example);
+): mocks.functions.WillCallFunction =>
+  new mocks.functions.WillCallFunction(example);

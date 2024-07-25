@@ -12,7 +12,7 @@ import { FunctionExecutionExample } from './types';
  *
  * @public
  */
-export class MockFunctionExecution extends AnyMockDescriptor {
+export class WillCallFunction extends AnyMockDescriptor {
   /** @internal */
   readonly '_case:mock:type': typeof MOCK_FUNCTION_EXECUTION;
 

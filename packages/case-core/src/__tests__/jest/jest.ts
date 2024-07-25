@@ -51,6 +51,34 @@ export const defineContract = <T extends AnyMockDescriptorType>(
     });
   });
 
+/**
+ * This is a copy of defineContract that doesn't do teardown - so that internal tests can fail.
+ */
+export const defineInternalContract = <T extends AnyMockDescriptorType>(
+  { config, ...contractConfig }: CaseJestConfig<T>,
+  callback: DefineCaseJestCallback,
+): void =>
+  describe(`Case contract definition`, () => {
+    const { stateHandlers, triggers, ...contextConfig } = config || {};
+    const contract = new ContractDefinerConnector(
+      contractConfig,
+      {
+        testRunId:
+          process.env['JEST_WORKER_ID'] || 'JEST_WORKER_ID_WAS_UNDEFINED',
+        ...contextConfig,
+      },
+      { stateHandlers, triggers },
+      defaultPrinter,
+      ['local-jest-wrapper'],
+    );
+
+    describe(`between ${contractConfig.consumerName} and ${contractConfig.providerName}`, () => {
+      jest.setTimeout(TIMEOUT);
+
+      callback(contract);
+    });
+  });
+
 export const verifyContract = (
   config: CaseConfig,
   callback: VerifyCaseJestCallback,
