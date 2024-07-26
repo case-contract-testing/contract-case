@@ -274,8 +274,8 @@ export interface HasBaseUrlUnderTest {
  *
  * @internal
  */
-export interface PluginMockConfig {
-  '_case:currentRun:context:pluginMockConfig': Record<
+export interface MockConfig {
+  '_case:currentRun:context:mockConfig': Record<
     string,
     Record<string, unknown>
   >;
@@ -292,7 +292,7 @@ export interface RunContext
       LogLevelContext &
       HasBaseUrlUnderTest &
       ContractFileConfig &
-      PluginMockConfig
+      MockConfig
   > {
   '_case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
   '_case:currentRun:context:printResults': boolean;
