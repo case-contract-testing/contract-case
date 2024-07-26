@@ -1,10 +1,6 @@
 import { LogLevelContext, DataContext } from '@contract-case/case-plugin-base';
 import { BrokerService } from '../core/BrokerService';
-import {
-  CaseConfig,
-  ReaderDependencies,
-  WriterDependencies,
-} from '../core/types';
+import { ReaderDependencies, WriterDependencies } from '../core/types';
 import { makeBrokerApi } from './broker';
 import { writeContract } from './contractStore';
 import { makeEnvironment } from './BuildEnvironment/BuildEnvironment';
@@ -14,8 +10,9 @@ import { DEFAULT_TEST_ID } from '../core';
 import { makeContractStore } from './contractStore/contractReader';
 import { LogPrinter } from './logger/types';
 import { ResultPrinter } from './resultPrinter/types';
+import { BaseCaseConfig } from '../core/config/types';
 
-const DEFAULT_CONFIG: CaseConfig = {
+const DEFAULT_CONFIG: Partial<BaseCaseConfig> = {
   logLevel: 'warn',
   contractDir: 'case-contracts',
   publish: 'ONLY_IN_CI',

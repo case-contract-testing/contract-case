@@ -5,7 +5,7 @@ import {
   Logger,
 } from '@contract-case/case-plugin-base';
 import { BrokerService } from './BrokerService';
-import { CaseConfig } from './config/types';
+import { DefaultConfig } from './config/types';
 import { MakeContractStore } from './types.ContractReader';
 import { MakeBrokerApi } from './types.broker';
 import { WriteContract } from './types.contract';
@@ -20,7 +20,7 @@ export { CaseConfig } from './config/types';
 export type MakeBrokerService = (context: DataContext) => BrokerService;
 
 export interface ReaderDependencies {
-  defaultConfig: CaseConfig;
+  defaultConfig: DefaultConfig;
   resultFormatter: ResultFormatter;
   makeLogger: (context: LogLevelContext) => Logger;
   makeBrokerApi: MakeBrokerApi;
@@ -30,7 +30,7 @@ export interface ReaderDependencies {
 }
 
 export interface WriterDependencies {
-  defaultConfig: CaseConfig;
+  defaultConfig: DefaultConfig;
   resultFormatter: ResultFormatter;
   makeLogger: (context: LogLevelContext) => Logger;
   writeContract: WriteContract;

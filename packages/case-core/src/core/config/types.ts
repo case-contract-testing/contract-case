@@ -116,7 +116,7 @@ export interface BaseCaseConfig {
    * It contains no end-user configuration properties, and is intended to be used for customisation
    * when exposing ContractCase in different languages only.
    *
-   * It should never be exposed to end-users.
+   * It should never need to be exposed to end-users.
    */
   internals: {
     /**
@@ -128,6 +128,18 @@ export interface BaseCaseConfig {
   };
 }
 
-// TODO figure out a better way to get all the config in here
+type PluginConfig = {
+  /**
+   * The mockConfig object is keyed by plugin short names (eg 'http'), and contains
+   * arbitrary configuration for plugins. It's up to individual plugins to
+   * validate their own configuration.
+   */
+  mockConfig: Record<string, Record<string, unknown>>;
+};
+
+// TODO Replace HttpResponseProviderConfig with uses of PluginConfig
 export type CaseConfig = Partial<HttpResponseProviderConfig> &
-  Partial<BaseCaseConfig>;
+  Partial<BaseCaseConfig> &
+  Partial<PluginConfig>;
+
+export type DefaultConfig = Partial<BaseCaseConfig>;

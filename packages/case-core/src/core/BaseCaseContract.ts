@@ -30,7 +30,7 @@ import {
   findVariable,
 } from './structure';
 import { configToRunContext } from './config';
-import type { CaseConfig } from './config/types';
+import type { CaseConfig, DefaultConfig } from './config/types';
 import { DEFAULT_TEST_ID } from './defaultTestId';
 import { traversals } from '../diffmatch';
 import { coreShapedLike } from '../entities';
@@ -44,7 +44,7 @@ export class BaseCaseContract {
   constructor(
     description: CaseContractDescription,
     config: CaseConfig,
-    defaultConfig: CaseConfig,
+    defaultConfig: DefaultConfig,
     resultPrinter: ResultFormatter,
     makeLogger: (context: LogLevelContext) => Logger,
     parentVersions: Array<string>,
