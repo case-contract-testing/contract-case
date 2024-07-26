@@ -21,45 +21,40 @@ const validateArray = (maybeArray: unknown, context: MatchContext) => {
 };
 
 const extractHandle = (context: MatchContext): string => {
-  if (!context['_case:currentRun:context:pluginMockConfig']) {
+  if (!context['_case:currentRun:context:mockConfig']) {
     throw new CaseConfigurationError(
-      "Must specify pluginMockConfig for the 'function' plugin",
+      "Must specify mockConfig for the 'function' plugin",
       context,
     );
   }
-  if (!('function' in context['_case:currentRun:context:pluginMockConfig'])) {
+  if (!('function' in context['_case:currentRun:context:mockConfig'])) {
     throw new CaseConfigurationError(
-      "Must specify pluginMockConfig for the 'function' plugin",
+      "Must specify mockConfig for the 'function' plugin",
       context,
     );
   }
   if (
-    !(
-      'handle' in
-      context['_case:currentRun:context:pluginMockConfig']['function']
-    )
+    !('handle' in context['_case:currentRun:context:mockConfig']['function'])
   ) {
     throw new CaseConfigurationError(
-      "Must specify a value for 'handle' in pluginMockConfig['function']",
+      "Must specify a value for 'handle' in mockConfig['function']",
       context,
     );
   }
 
   if (
     !(
-      typeof context['_case:currentRun:context:pluginMockConfig']['function'][
+      typeof context['_case:currentRun:context:mockConfig']['function'][
         'handle'
       ] === 'string'
     )
   ) {
     throw new CaseConfigurationError(
-      "'handle' was specified in pluginMockConfig['function'], but it wasn't a string",
+      "'handle' was specified in mockConfig['function'], but it wasn't a string",
       context,
     );
   }
-  return context['_case:currentRun:context:pluginMockConfig']['function'][
-    'handle'
-  ];
+  return context['_case:currentRun:context:mockConfig']['function']['handle'];
 };
 
 export const setupMockFunctionCaller = (
