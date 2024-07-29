@@ -16,8 +16,12 @@ describe('plugin loader', () => {
     it('throws a configuration error', () => {
       expect(() => {
         loadPlugin({} as MockSetupFns, EMPTY_MATCH_CONTEXT, {
-          name: 'Empty test plugin',
-          version: 'LOAD_IN_PROGRESS',
+          description: {
+            humanReadableName: 'Empty test plugin',
+            version: 'LOAD_IN_PROGRESS',
+            shortName: 'empty',
+            uniqueMachineName: 'EMPTY:TEST:PLUGIN',
+          },
           matcherExecutors: {},
           setupMocks: {},
         });
@@ -28,8 +32,12 @@ describe('plugin loader', () => {
     it('loads an empty plugin', () => {
       expect(() => {
         loadPlugin({} as MockSetupFns, EMPTY_MATCH_CONTEXT, {
-          name: 'Empty test plugin',
-          version: '0.0.0',
+          description: {
+            humanReadableName: 'Empty test plugin',
+            version: '0.0.0',
+            shortName: 'empty',
+            uniqueMachineName: 'EMPTY:TEST:PLUGIN',
+          },
           matcherExecutors: {},
           setupMocks: {},
         });

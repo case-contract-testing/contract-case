@@ -10,6 +10,7 @@ import {
   getPluginConfig,
 } from '@contract-case/case-plugin-base';
 import { AllSetup } from './types';
+import { description } from '../description';
 
 const validateArray = (maybeArray: unknown, context: MatchContext) => {
   if (!Array.isArray(maybeArray)) {
@@ -22,10 +23,10 @@ const validateArray = (maybeArray: unknown, context: MatchContext) => {
 };
 
 const extractHandle = (context: MatchContext): string => {
-  const pluginConfig = getPluginConfig(context, 'function');
+  const pluginConfig = getPluginConfig(context, description.shortName);
   if (!('handle' in pluginConfig)) {
     throw new CaseConfigurationError(
-      "Must specify a value for 'handle' in mockConfig['function']",
+      `Must specify a value for 'handle' in mockConfig['${description.shortName}']`,
       context,
     );
   }

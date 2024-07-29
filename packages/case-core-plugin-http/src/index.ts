@@ -17,10 +17,7 @@ import {
   MOCK_HTTP_SERVER,
   URL_ENCODED_STRING_TYPE,
 } from '@contract-case/case-core-plugin-http-dsl';
-import {
-  CORE_PLUGIN_PREFIX,
-  ContractCasePlugin,
-} from '@contract-case/case-plugin-base';
+import { ContractCasePlugin } from '@contract-case/case-plugin-base';
 import {
   HttpBasicAuthMatcher,
   HttpRequestMatcher,
@@ -29,7 +26,7 @@ import {
   UrlEncodedStringMatcher,
 } from './matchers';
 import { setupHttpResponseConsumer, setupHttpResponseProducer } from './mocks';
-import { pluginVersion } from './version';
+import { description } from './description';
 
 export * from './matchers';
 export * from './mocks';
@@ -42,11 +39,7 @@ const CoreHttpPlugin: ContractCasePlugin<
   AllHttpMockDescriptors,
   AllHttpMockSetupInfo
 > = {
-  // Note: If using this code as an example for your own plugin,
-  // DO NOT start your plugin name with the core plugin prefix
-  // or ContractCase will not log debug information / load failures appropriately
-  name: `${CORE_PLUGIN_PREFIX} Http / Rest Plugin`,
-  version: pluginVersion,
+  description,
   matcherExecutors: {
     [HTTP_BASIC_AUTH_TYPE]: HttpBasicAuthMatcher,
     [HTTP_REQUEST_MATCHER_TYPE]: HttpRequestMatcher,
