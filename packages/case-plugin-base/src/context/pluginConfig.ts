@@ -1,5 +1,5 @@
 import { CaseConfigurationError } from '../errors';
-import { MatchContext } from './types';
+import { DataContext } from './types';
 
 /**
  * Gets the plugin configuration (the mockConfig object keyed by your plugin
@@ -19,7 +19,7 @@ import { MatchContext } from './types';
  * set, or are set but not defined.
  */
 export const getPluginConfig = (
-  context: MatchContext,
+  context: DataContext,
   pluginShortName: string,
 ): Record<string, unknown> => {
   const configDescription = {
