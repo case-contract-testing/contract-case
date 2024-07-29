@@ -7,6 +7,7 @@ import {
   MatchContext,
   MockData,
   addLocation,
+  getPluginConfig,
 } from '@contract-case/case-plugin-base';
 import { AllSetup } from './types';
 
@@ -21,40 +22,21 @@ const validateArray = (maybeArray: unknown, context: MatchContext) => {
 };
 
 const extractHandle = (context: MatchContext): string => {
-  if (!context['_case:currentRun:context:mockConfig']) {
-    throw new CaseConfigurationError(
-      "Must specify mockConfig for the 'function' plugin",
-      context,
-    );
-  }
-  if (!('function' in context['_case:currentRun:context:mockConfig'])) {
-    throw new CaseConfigurationError(
-      "Must specify mockConfig for the 'function' plugin",
-      context,
-    );
-  }
-  if (
-    !('handle' in context['_case:currentRun:context:mockConfig']['function'])
-  ) {
+  const pluginConfig = getPluginConfig(context, 'function');
+  if (!('handle' in pluginConfig)) {
     throw new CaseConfigurationError(
       "Must specify a value for 'handle' in mockConfig['function']",
       context,
     );
   }
 
-  if (
-    !(
-      typeof context['_case:currentRun:context:mockConfig']['function'][
-        'handle'
-      ] === 'string'
-    )
-  ) {
+  if (!(typeof pluginConfig['handle'] === 'string')) {
     throw new CaseConfigurationError(
       "'handle' was specified in mockConfig['function'], but it wasn't a string",
       context,
     );
   }
-  return context['_case:currentRun:context:mockConfig']['function']['handle'];
+  return pluginConfig['handle'];
 };
 
 export const setupMockFunctionCaller = (
