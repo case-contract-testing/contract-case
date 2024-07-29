@@ -6,7 +6,6 @@
 
 export * from './context';
 // export * from './core';
-export * from './corePlugins';
 export * from './errors';
 export * from './logger';
 export * from './matchers';
