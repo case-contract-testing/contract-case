@@ -6,6 +6,10 @@
 
 A function that will set up and run a mock.
 
+During the execution of this function, you should validate the mock descriptor is correctly formed, and any configuration properties on the context that your plugin requires are present and correctly formed.
+
+Additionally, any listeners (eg http servers) that the mock requires should be
+
 **Signature:**
 
 ```typescript

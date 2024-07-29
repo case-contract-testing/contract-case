@@ -4,6 +4,8 @@
 
 ## ContractLookupFns.lookupVariable property
 
+Get a previously saved state variable, either from state or from the default value.
+
 **Signature:**
 
 ```typescript

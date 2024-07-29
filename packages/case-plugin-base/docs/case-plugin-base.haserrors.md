@@ -9,7 +9,7 @@ Tests whether a given [MatchResult](./case-plugin-base.matchresult.md) object ha
 **Signature:**
 
 ```typescript
-hasErrors: (result: MatchResult) => boolean
+hasErrors: (result: MatchResult | CaseError[]) => boolean
 ```
 
 ## Parameters
@@ -37,7 +37,7 @@ result
 
 </td><td>
 
-[MatchResult](./case-plugin-base.matchresult.md)
+[MatchResult](./case-plugin-base.matchresult.md) \| [CaseError](./case-plugin-base.caseerror.md)<!-- -->\[\]
 
 
 </td><td>

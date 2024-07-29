@@ -36,9 +36,22 @@ export type SetupInfoFor<AllSetupInfo, T extends string> = Extract<
 > &
   BaseSetupInfo;
 
-type MockOutput = {
+/**
+ * Represents the output state of a mock's execution, including what was expected.
+ * @public
+ */
+export type MockOutput = {
+  /**
+   * The actual data received by this mock, formatted by the executor.
+   */
   actual: unknown;
+  /**
+   * The expectations at this point from the matcher
+   */
   expected: AnyCaseMatcherOrData;
+  /**
+   * The current match context at this point in the matching
+   */
   context: MatchContext;
 };
 

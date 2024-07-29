@@ -11,6 +11,7 @@ import { DataContext } from './types';
  * This function doesn't know the expected shape of your configuration object;
  * it's up to you to then validate the object has the appropriate fields set
  * to valid values.
+ * @public
  *
  * @param context - the current {@link MatchContext}
  * @param pluginShortName - the short name for the currently executing plugin

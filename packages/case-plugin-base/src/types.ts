@@ -3,6 +3,7 @@ import { CaseMatcherFor, IsCaseNodeForType } from './matchers/utility.types';
 import { MockExecutorFn } from './mocks/executors.types';
 import { AnyMockDescriptor } from './mocks/nodes.types';
 
+export * from './corePlugins';
 export * from './context/types';
 export * from './logger/types';
 export * from './matchers/types';
@@ -33,7 +34,7 @@ export type PluginDescription = {
    * as collisions prevent plugins from being loaded at the same time.
    *
    * The unique names for plugins for distribution with ContractCase have the
-   * prefix {@link CASE_CORE_PREFIX}. This is used to control the logging and
+   * prefix {@link CORE_PLUGIN_PREFIX}. This is used to control the logging and
    * error messages during plugin loads. Only use this prefix if you are
    * developing a custom plugin that is going to be part of the core
    * distribution.

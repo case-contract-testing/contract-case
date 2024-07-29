@@ -816,7 +816,7 @@
                 {
                   "kind": "Class",
                   "canonicalReference": "@contract-case/case-definition-dsl!matchers.convenience.And:class",
-                  "docComment": "/**\n * Matches the content of a variable that comes from a state. See [state definitions](https://case.contract-testing.io/docs/defining-contracts/state-definitions) and [state handlers](https://case.contract-testing.io/docs/reference/state-handlers) for more details.\n *\n * @public\n */\n",
+                  "docComment": "/**\n * Matches all of the provided matchers. Useful for combining restrictions provided by different matchers, or creating new matchers without needing plugins.\n *\n * For best results, wrap the And matcher in a WithExample matcher.\n *\n * @public\n */\n",
                   "excerptTokens": [
                     {
                       "kind": "Content",
@@ -4752,6 +4752,223 @@
                     }
                   ],
                   "extendsTokenRanges": []
+                }
+              ]
+            },
+            {
+              "kind": "Namespace",
+              "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions:namespace",
+              "docComment": "",
+              "excerptTokens": [],
+              "fileUrlPath": "src/mocks/index-api-extractor.ts",
+              "releaseTag": "None",
+              "name": "functions",
+              "preserveMemberOrder": false,
+              "members": [
+                {
+                  "kind": "Interface",
+                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExample:interface",
+                  "docComment": "/**\n * Example descriptor for a function execution\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export interface FunctionExecutionExample "
+                    }
+                  ],
+                  "fileUrlPath": "src/mocks/functions/types.ts",
+                  "releaseTag": "Public",
+                  "name": "FunctionExecutionExample",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExample#arguments:member",
+                      "docComment": "/**\n * An array of expected function arguments (or test equivalence matchers for those arguments)\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly arguments: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "[]"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "arguments",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 3
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExample#returnValue:member",
+                      "docComment": "/**\n * A test equivalence matcher for the return value from this function\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly returnValue: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "returnValue",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    }
+                  ],
+                  "extendsTokenRanges": []
+                },
+                {
+                  "kind": "Class",
+                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillCallFunction:class",
+                  "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export declare class WillCallFunction extends "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "AnyMockDescriptor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyMockDescriptor:class"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": " "
+                    }
+                  ],
+                  "fileUrlPath": "src/mocks/functions/MockFunctionExecution.ts",
+                  "releaseTag": "Public",
+                  "isAbstract": false,
+                  "name": "WillCallFunction",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "Constructor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillCallFunction:constructor(1)",
+                      "docComment": "/**\n * Constructs a new instance of the `WillCallFunction` class\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "constructor(example: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "FunctionExecutionExample",
+                          "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExample:interface"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ");"
+                        }
+                      ],
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [
+                        {
+                          "parameterName": "example",
+                          "parameterTypeTokenRange": {
+                            "startIndex": 1,
+                            "endIndex": 2
+                          },
+                          "isOptional": false
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillCallFunction#arguments:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly arguments: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "arguments",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillCallFunction#returnValue:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly returnValue: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "returnValue",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    }
+                  ],
+                  "extendsTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "implementsTokenRanges": []
                 }
               ]
             },

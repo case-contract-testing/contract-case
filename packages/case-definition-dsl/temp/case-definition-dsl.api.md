@@ -19,6 +19,8 @@ import { INTEGER_MATCH_TYPE } from '@contract-case/case-entities-internal';
 import { InternalContractCaseCoreSetup } from '@contract-case/case-plugin-base';
 import { JSON_STRINGIFIED_TYPE } from '@contract-case/case-entities-internal';
 import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-plugin-base';
+import { MOCK_FUNCTION_CALLER } from '@contract-case/case-core-plugin-function-dsl';
+import { MOCK_FUNCTION_EXECUTION } from '@contract-case/case-core-plugin-function-dsl';
 import { MOCK_HTTP_CLIENT } from '@contract-case/case-core-plugin-http-dsl';
 import { MOCK_HTTP_SERVER } from '@contract-case/case-core-plugin-http-dsl';
 import { NULL_MATCHER_TYPE } from '@contract-case/case-entities-internal';
@@ -303,6 +305,19 @@ class ExactlyLike extends CascadingContextMatcher {
     toJSON(): unknown;
 }
 
+// @public
+interface FunctionExecutionExample {
+    readonly arguments: AnyMatcherOrData[];
+    readonly returnValue: AnyMatcherOrData;
+}
+
+declare namespace functions {
+    export {
+        WillCallFunction,
+        FunctionExecutionExample
+    }
+}
+
 declare namespace http {
     export {
         WillReceiveHttpRequest,
@@ -440,6 +455,7 @@ export { matchers }
 declare namespace mocks {
     export {
         base,
+        functions,
         http
     }
 }
@@ -612,6 +628,30 @@ class UriEncodedString extends AnyMatcher {
     readonly '_case:matcher:type': typeof URL_ENCODED_STRING_TYPE;
     constructor(child: AnyStringMatcher);
     toJSON(): unknown;
+}
+
+// @public
+class WillCallFunction extends AnyMockDescriptor {
+    // @internal (undocumented)
+    readonly '_case:mock:type': typeof MOCK_FUNCTION_EXECUTION;
+    // @internal (undocumented)
+    readonly '_case:run:context:setup': {
+        write: {
+            type: typeof MOCK_FUNCTION_EXECUTION;
+            stateVariables: 'default';
+            triggers: 'provided';
+        };
+        read: {
+            type: typeof MOCK_FUNCTION_CALLER;
+            stateVariables: 'state';
+            triggers: 'generated';
+        };
+    };
+    constructor(example: FunctionExecutionExample);
+    // (undocumented)
+    readonly arguments: AnyMatcherOrData;
+    // (undocumented)
+    readonly returnValue: AnyMatcherOrData;
 }
 
 // @public

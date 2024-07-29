@@ -4,6 +4,12 @@
 
 ## ContractLookupFns.addDefaultVariable property
 
+Adds a default variable to the \*contract\* (not the context). Primarily used by the state handler setup code.
+
+It is unlikely that plugins will need to call this code.
+
+Note that this function modifies the contract.
+
 **Signature:**
 
 ```typescript

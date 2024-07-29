@@ -172,6 +172,19 @@ Helper function that will return an error if the test condition is met, or a non
 </td></tr>
 <tr><td>
 
+[getPluginConfig(context, pluginShortName)](./case-plugin-base.getpluginconfig.md)
+
+
+</td><td>
+
+Gets the plugin configuration (the mockConfig object keyed by your plugin short name) for the given plugin. This function validates the context and throws [CaseConfigurationError](./case-plugin-base.caseconfigurationerror.md) if the mockConfig object is not set or the key is missing. You don't need to catch this exception, you can let it bubble up to the framework for it to be rendered to the user.
+
+This function doesn't know the expected shape of your configuration object; it's up to you to then validate the object has the appropriate fields set to valid values.
+
+
+</td></tr>
+<tr><td>
+
 [hasErrors(result)](./case-plugin-base.haserrors.md)
 
 
@@ -863,6 +876,21 @@ Represents the data produced by an invocation of a mock, ready for assertion.
 
 A function that will set up and run a mock.
 
+During the execution of this function, you should validate the mock descriptor is correctly formed, and any configuration properties on the context that your plugin requires are present and correctly formed.
+
+Additionally, any listeners (eg http servers) that the mock requires should be
+
+
+</td></tr>
+<tr><td>
+
+[MockOutput](./case-plugin-base.mockoutput.md)
+
+
+</td><td>
+
+Represents the output state of a mock's execution, including what was expected.
+
 
 </td></tr>
 <tr><td>
@@ -873,6 +901,17 @@ A function that will set up and run a mock.
 </td><td>
 
 Extracts the name for this matcher in an English, human readable format.
+
+
+</td></tr>
+<tr><td>
+
+[PluginDescription](./case-plugin-base.plugindescription.md)
+
+
+</td><td>
+
+Describes the plugin name and version
 
 
 </td></tr>

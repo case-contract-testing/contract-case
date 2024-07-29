@@ -116,8 +116,7 @@ export const constructMatchContext: (traversals: TraversalFns, makeLogger: (c: L
 
 // @public
 export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends string, MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>, MockDescriptors extends AnyMockDescriptor, AllSetupInfo> = {
-    name: string;
-    version: string;
+    description: PluginDescription;
     matcherExecutors: {
         [T in MatcherTypes]: MatcherExecutor<T, CaseMatcherFor<MatcherDescriptors, T>>;
     };
@@ -138,15 +137,11 @@ export interface ContractFileConfig {
 
 // @public
 export interface ContractLookupFns {
-    // (undocumented)
     addDefaultVariable: (name: string, stateName: string, value: AnyCaseMatcherOrData) => [name: string, value: AnyCaseMatcherOrData];
-    // (undocumented)
     addStateVariable: (name: string, stateName: string, value: AnyCaseMatcherOrData) => [name: string, value: AnyCaseMatcherOrData];
-    // (undocumented)
+    invokeFunctionByHandle: (handle: string, callerArguments: unknown[]) => Promise<unknown>;
     lookupMatcher: (uniqueName: string) => AnyCaseMatcherOrData;
-    // (undocumented)
     lookupVariable: (name: string) => AnyCaseMatcherOrData;
-    // (undocumented)
     saveLookupableMatcher: (matcher: AnyCaseMatcher) => void;
 }
 
@@ -202,6 +197,9 @@ export const errorWhen: (test: boolean, err: CaseError | Array<CaseError>) => Ma
 // @internal
 export const foldIntoContext: (caseNode: AnyCaseMatcher | AnyMockDescriptor, context: MatchContext) => MatchContext;
 
+// @public
+export const getPluginConfig: (context: DataContext, pluginShortName: string) => Record<string, unknown>;
+
 // Warning: (ae-internal-missing-underscore) The name "HasBaseUrlUnderTest" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
@@ -216,7 +214,7 @@ export interface HasBaseUrlUnderTest {
 export type HasContractFileConfig = DataContext & ContractFileConfig;
 
 // @public
-export const hasErrors: (result: MatchResult) => boolean;
+export const hasErrors: (result: MatchResult | CaseError[]) => boolean;
 
 // @public
 export type HasExample<T extends AnyCaseMatcher> = T & {
@@ -390,6 +388,14 @@ export const matchingError: (matcher: AnyCaseMatcher, message: string, actual: u
 // @public
 export type MatchResult = Array<CaseError>;
 
+// Warning: (ae-internal-missing-underscore) The name "MockConfig" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export interface MockConfig {
+    // (undocumented)
+    '_case:currentRun:context:mockConfig': Record<string, Record<string, unknown>>;
+}
+
 // @public
 export type MockData<AllSetupInfo, T extends string> = {
     config: SetupInfoFor<AllSetupInfo, T>;
@@ -398,6 +404,13 @@ export type MockData<AllSetupInfo, T extends string> = {
 
 // @public
 export type MockExecutorFn<AllMockDescriptors extends AnyMockDescriptor, AllSetupInfo, T extends string> = (mock: CaseMockDescriptorFor<AllMockDescriptors, T>, context: MatchContext) => Promise<MockData<AllSetupInfo, T>>;
+
+// @public
+export type MockOutput = {
+    actual: unknown;
+    expected: AnyCaseMatcherOrData;
+    context: MatchContext;
+};
 
 // @public
 export const mustResolveToNumber: (matcher: AnyCaseMatcherOrData, context: MatchContext) => number;
@@ -410,6 +423,14 @@ export type NameMatcherFn<T> = (matcher: T, matchContext: MatchContext) => strin
 
 // @public
 export const nameMock: <M extends AnyMockDescriptor>(mock: M, context: MatchContext) => M;
+
+// @public
+export type PluginDescription = {
+    humanReadableName: string;
+    shortName: string;
+    uniqueMachineName: string;
+    version: string;
+};
 
 // Warning: (ae-internal-missing-underscore) The name "RawLookupFns" should be prefixed with an underscore because the declaration is marked as @internal
 //
@@ -456,7 +477,7 @@ export type ResultFormatter = {
 // Warning: (ae-internal-missing-underscore) The name "RunContext" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
-export interface RunContext extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest & ContractFileConfig> {
+export interface RunContext extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest & ContractFileConfig & MockConfig> {
     // (undocumented)
     '_case:currentRun:context:brokerBaseUrl'?: string;
     // (undocumented)
@@ -553,9 +574,8 @@ export class VerifyTriggerReturnObjectError extends Error {
 
 // Warnings were encountered during analysis:
 //
-// src/context/types.ts:314:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
+// src/context/types.ts:390:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
 // src/mocks/executors.types.ts:24:3 - (ae-forgotten-export) The symbol "VariableValue" needs to be exported by the entry point index.d.ts
-// src/mocks/executors.types.ts:53:3 - (ae-forgotten-export) The symbol "MockOutput" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

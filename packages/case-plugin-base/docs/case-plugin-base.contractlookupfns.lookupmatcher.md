@@ -4,6 +4,8 @@
 
 ## ContractLookupFns.lookupMatcher property
 
+Looks up a previously saved matcher by unique name
+
 **Signature:**
 
 ```typescript

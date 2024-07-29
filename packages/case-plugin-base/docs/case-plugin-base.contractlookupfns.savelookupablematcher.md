@@ -4,6 +4,8 @@
 
 ## ContractLookupFns.saveLookupableMatcher property
 
+Saves a matcher by the unique description. The description is generated from the matcher, and may be overridden if the matcher has a uniqueName.
+
 **Signature:**
 
 ```typescript

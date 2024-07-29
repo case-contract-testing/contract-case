@@ -50,6 +50,12 @@ Description
 
 </td><td>
 
+Adds a default variable to the \*contract\* (not the context). Primarily used by the state handler setup code.
+
+It is unlikely that plugins will need to call this code.
+
+Note that this function modifies the contract.
+
 
 </td></tr>
 <tr><td>
@@ -66,6 +72,31 @@ Description
 
 
 </td><td>
+
+This function adds a state variable to the \*contract\*. Primarily used by the state handler setup code.
+
+It is unlikely that plugins will need to call this function.
+
+
+</td></tr>
+<tr><td>
+
+[invokeFunctionByHandle](./case-plugin-base.contractlookupfns.invokefunctionbyhandle.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(handle: string, callerArguments: unknown\[\]) =&gt; Promise&lt;unknown&gt;
+
+
+</td><td>
+
+Convenience function so that mock executions can call out to user provided functions.
+
+Primarily used by the Function plugin, but may have other uses.
 
 
 </td></tr>
@@ -84,6 +115,8 @@ Description
 
 </td><td>
 
+Looks up a previously saved matcher by unique name
+
 
 </td></tr>
 <tr><td>
@@ -101,6 +134,8 @@ Description
 
 </td><td>
 
+Get a previously saved state variable, either from state or from the default value.
+
 
 </td></tr>
 <tr><td>
@@ -117,6 +152,8 @@ Description
 
 
 </td><td>
+
+Saves a matcher by the unique description. The description is generated from the matcher, and may be overridden if the matcher has a uniqueName.
 
 
 </td></tr>

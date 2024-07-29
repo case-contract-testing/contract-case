@@ -10,8 +10,7 @@ Represents a plugin for the ContractCase contract testing framework. A plugin ca
 
 ```typescript
 export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends string, MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>, MockDescriptors extends AnyMockDescriptor, AllSetupInfo> = {
-    name: string;
-    version: string;
+    description: PluginDescription;
     matcherExecutors: {
         [T in MatcherTypes]: MatcherExecutor<T, CaseMatcherFor<MatcherDescriptors, T>>;
     };
@@ -20,5 +19,5 @@ export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends st
     };
 };
 ```
-**References:** [IsCaseNodeForType](./case-plugin-base.iscasenodefortype.md)<!-- -->, [AnyMockDescriptor](./case-plugin-base.anymockdescriptor.md)<!-- -->, [MatcherExecutor](./case-plugin-base.matcherexecutor.md)<!-- -->, [CaseMatcherFor](./case-plugin-base.casematcherfor.md)<!-- -->, [MockExecutorFn](./case-plugin-base.mockexecutorfn.md)
+**References:** [IsCaseNodeForType](./case-plugin-base.iscasenodefortype.md)<!-- -->, [AnyMockDescriptor](./case-plugin-base.anymockdescriptor.md)<!-- -->, [PluginDescription](./case-plugin-base.plugindescription.md)<!-- -->, [MatcherExecutor](./case-plugin-base.matcherexecutor.md)<!-- -->, [CaseMatcherFor](./case-plugin-base.casematcherfor.md)<!-- -->, [MockExecutorFn](./case-plugin-base.mockexecutorfn.md)
 

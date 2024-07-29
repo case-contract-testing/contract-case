@@ -4,6 +4,10 @@
 
 ## ContractLookupFns.addStateVariable property
 
+This function adds a state variable to the \*contract\*. Primarily used by the state handler setup code.
+
+It is unlikely that plugins will need to call this function.
+
 **Signature:**
 
 ```typescript
