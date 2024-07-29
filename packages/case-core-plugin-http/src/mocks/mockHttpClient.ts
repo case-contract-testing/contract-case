@@ -9,6 +9,7 @@ import {
   MatchContext,
   MockData,
   addLocation,
+  getPluginConfig,
 } from '@contract-case/case-plugin-base';
 import {
   HttpRequestData,
@@ -18,6 +19,7 @@ import {
 } from '@contract-case/case-core-plugin-http-dsl';
 
 import { makeAssertionsOn } from './assert/assert';
+import { description } from '../description';
 
 const isHasBaseUrl = (
   context: Partial<DataContext>,
@@ -26,17 +28,63 @@ const isHasBaseUrl = (
   context['_case:currentRun:context:baseUrlUnderTest'] !== undefined &&
   typeof context['_case:currentRun:context:baseUrlUnderTest'] === 'string';
 
+const isValidHttpConfig = (
+  context: Partial<DataContext>,
+): context is HasBaseUrlUnderTest =>
+  '_case:currentRun:context:mockConfig' in context &&
+  context['_case:currentRun:context:mockConfig'] !== undefined &&
+  typeof context['_case:currentRun:context:mockConfig'] === 'string';
+
+type HttpClientPluginConfig = {
+  baseUrlUnderTest: string;
+};
+
+const validatePluginConfig = (
+  context: DataContext,
+  pluginConfig: Record<string, unknown>,
+): HttpClientPluginConfig => {
+  if (!('baseUrlUnderTest' in pluginConfig)) {
+    throw new CaseConfigurationError(
+      `Must provide baseUrlUnderTest in order to validate HTTP response providers. 
+      Please ensure that config.mockConfig[${description.shortName}].baseUrlUnderTest 
+      is set appropriately.`,
+      context,
+    );
+  }
+
+  if (typeof pluginConfig['baseUrlUnderTest'] !== 'string') {
+    throw new CaseConfigurationError(
+      `baseUrlUnderTest was provided, but was not a string.
+
+      Please ensure that config.mockConfig[${description.shortName}].baseUrlUnderTest 
+      is set appropriately.`,
+      context,
+    );
+  }
+
+  // TODO: The next version of typescript should be smart enough to be able to
+  // remove this assertion
+  return pluginConfig as HttpClientPluginConfig;
+};
+
 const validateConfig = (
   context: MatchContext,
-): Promise<MatchContext & HasBaseUrlUnderTest> => {
+): MatchContext & HasBaseUrlUnderTest => {
   if (isHasBaseUrl(context)) {
-    return Promise.resolve(context);
+    context.logger.warn(
+      `baseUrlUnderTest is deprecated and should be set via 
+      mockConfig['http'].baseUrlUnderTest instead`,
+    );
+    return context;
   }
-  return Promise.reject(
-    new CaseConfigurationError(
-      `Must provide a URL Under Test in order to validate HTTP response providers`,
-      context,
-    ),
+  const pluginConfig = getPluginConfig(context, description.shortName);
+  validatePluginConfig(context, pluginConfig);
+  if (isValidHttpConfig(context)) {
+    return context;
+  }
+  throw new CaseConfigurationError(
+    `Must provide a URL Under Test in order to validate HTTP response providers`,
+    context,
   );
 };
 
@@ -67,6 +115,16 @@ const validateHttpRequestData = (
   return data;
 };
 
+const getBaseUrlUnderTest = (context: DataContext) => {
+  if (isHasBaseUrl(context)) {
+    return context['_case:currentRun:context:baseUrlUnderTest'];
+  }
+  return validatePluginConfig(
+    context,
+    getPluginConfig(context, description.shortName),
+  ).baseUrlUnderTest;
+};
+
 export const setupHttpResponseConsumer = (
   {
     request: requestMatcher,
@@ -84,7 +142,7 @@ export const setupHttpResponseConsumer = (
 
     const { body, method, path, headers, query } = expectedRequest;
 
-    return validateConfig(parentContext).then(
+    return Promise.resolve(validateConfig(parentContext)).then(
       (run: DataContext & HasBaseUrlUnderTest) => ({
         config: {
           '_case:mock:type': MOCK_HTTP_CLIENT,
@@ -96,7 +154,7 @@ export const setupHttpResponseConsumer = (
               validateStatus: () => true, // This means that all status codes resolve the promise
               method,
               httpAgent,
-              url: `${run['_case:currentRun:context:baseUrlUnderTest']}${path}`,
+              url: `${getBaseUrlUnderTest(run)}${path}`,
               ...(body
                 ? {
                     body,
@@ -114,9 +172,9 @@ export const setupHttpResponseConsumer = (
                       new CaseConfigurationError(
                         `[${
                           err.code ? err.code : 'HTTP_FAIL'
-                        }]\n\nRequest was made to '${
-                          run['_case:currentRun:context:baseUrlUnderTest']
-                        }', but no response. \n\nConfirm that you have:\n 1) Started the real server\n 2) Provided the correct URL to the running server\n\nUnderlying Error: ${
+                        }]\n\nRequest was made to '${getBaseUrlUnderTest(
+                          run,
+                        )}', but no response. \n\nConfirm that you have:\n 1) Started the real server\n 2) Provided the correct URL to the running server\n\nUnderlying Error: ${
                           err.message
                         }`,
                         run,
