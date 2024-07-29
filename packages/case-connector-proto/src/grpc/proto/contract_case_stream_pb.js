@@ -744,7 +744,8 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject = functi
     proto.io.contract_testing.contractcase.grpc.StateHandlerHandle.toObject, includeInstance),
     triggerAndTestsMap: (f = msg.getTriggerAndTestsMap()) ? f.toObject(includeInstance, proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject) : [],
     triggerAndTest: (f = msg.getTriggerAndTest()) && proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject(includeInstance, f),
-    baseUrlUnderTest: (f = msg.getBaseUrlUnderTest()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
+    baseUrlUnderTest: (f = msg.getBaseUrlUnderTest()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    mockConfigMap: (f = msg.getMockConfigMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -856,6 +857,12 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinary
       var value = new google_protobuf_wrappers_pb.StringValue;
       reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setBaseUrlUnderTest(value);
+      break;
+    case 16:
+      var value = msg.getMockConfigMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -1001,6 +1008,10 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryTo
       f,
       google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
+  }
+  f = message.getMockConfigMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(16, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -1746,6 +1757,28 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearBa
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasBaseUrlUnderTest = function() {
   return jspb.Message.getField(this, 15) != null;
 };
+
+
+/**
+ * map<string, string> mock_config = 16;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getMockConfigMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 16, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearMockConfigMap = function() {
+  this.getMockConfigMap().clear();
+  return this;};
 
 
 

@@ -33,6 +33,8 @@ message ContractCaseConfig {
 
   google.protobuf.StringValue base_url_under_test =
       15; // Long term, this will be moved
+
+  map<string, string> mock_config = 16;
 }
 
 // Indicates a successful response with no payload

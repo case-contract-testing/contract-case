@@ -25,6 +25,8 @@ export type ContractCaseConnectorConfig = {
   stateHandlers: Record<string, ConnectorStateHandler>;
   triggerAndTests: Record<string, ConnectorTriggerFunction>;
   triggerAndTest: ConnectorTriggerFunction;
+
+  mockConfig: Record<string, Record<string, unknown>>;
 };
 
 export type DefinitionId = string;

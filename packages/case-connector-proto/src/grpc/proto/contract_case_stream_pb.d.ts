@@ -108,6 +108,9 @@ export class ContractCaseConfig extends jspb.Message {
     value?: google_protobuf_wrappers_pb.StringValue,
   ): ContractCaseConfig;
 
+  getMockConfigMap(): jspb.Map<string, string>;
+  clearMockConfigMap(): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ContractCaseConfig.AsObject;
   static toObject(
@@ -147,6 +150,8 @@ export namespace ContractCaseConfig {
     triggerAndTestsMap: Array<[string, TriggerFunctionHandle.AsObject]>;
     triggerAndTest?: TriggerFunctionHandle.AsObject;
     baseUrlUnderTest?: google_protobuf_wrappers_pb.StringValue.AsObject;
+
+    mockConfigMap: Array<[string, string]>;
   };
 
   export class UsernamePassword extends jspb.Message {

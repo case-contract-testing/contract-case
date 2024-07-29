@@ -2,6 +2,7 @@ import {
   JavaScriptValue,
   Struct,
 } from 'google-protobuf/google/protobuf/struct_pb.js';
+import { Map as PbMap } from 'google-protobuf';
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb.js';
 import {
   ContractResponse,
@@ -91,6 +92,16 @@ const mapBasicAuth = (
   };
 };
 
+const mapMockConfig = (
+  wireMockConfig: PbMap<string, string>,
+): Record<string, Record<string, unknown>> =>
+  wireMockConfig
+    .getEntryList()
+    .reduce(
+      (curr, [key, value]) => ({ ...curr, [key]: JSON.parse(value) }),
+      {} as Record<string, Record<string, unknown>>,
+    );
+
 type WithUndefined<T> = {
   [P in keyof T]-?: T[P] | undefined;
 };
@@ -126,7 +137,7 @@ const mapAllConfigFields = (
       {} as Record<string, ConnectorTriggerFunction>,
     ),
   triggerAndTest: mapTriggerAndTest(config, executeCall),
-  // ConnectorTriggerFunction;
+  mockConfig: mapMockConfig(config.getMockConfigMap()),
 });
 
 export const mapConfig = (

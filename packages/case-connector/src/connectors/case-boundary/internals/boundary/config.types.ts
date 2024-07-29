@@ -142,6 +142,11 @@ export interface ContractCaseBoundaryConfig {
   readonly baseUrlUnderTest?: string;
 
   /**
+   * Configuration for any mocks that ContractCase runs during the execution of this test
+   */
+  readonly mockConfig?: Record<string, Record<string, unknown>>;
+
+  /**
    * The internals map allows configuration of low-level ContractCase features.
    * It contains no end-user configuration properties, and is intended to be used for customisation
    * when exposing ContractCase in different languages only.
