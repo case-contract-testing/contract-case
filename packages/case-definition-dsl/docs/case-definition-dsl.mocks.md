@@ -24,6 +24,13 @@ Description
 </td></tr>
 <tr><td>
 
+[functions](./case-definition-dsl.mocks.functions.md)
+
+</td><td>
+
+</td></tr>
+<tr><td>
+
 [http](./case-definition-dsl.mocks.http.md)
 
 </td><td>
