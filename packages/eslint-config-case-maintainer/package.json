@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/eslint-config-case-maintainer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "eslint settings for contract-case modules. Only useful for ContractCase maintainers",
   "keywords": [
     "contractcase"
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^7.13.0",
-    "@typescript-eslint/parser": "^7.18.0",
+    "@typescript-eslint/parser": "^7.16.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.0.0",
