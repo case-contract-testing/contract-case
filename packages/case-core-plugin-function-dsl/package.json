@@ -57,7 +57,7 @@
     "rimraf": "^6.0.1",
     "ts-jest": "^29.1.5",
     "ts-node": "^10.9.2",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   },
   "dependencies": {
     "@contract-case/case-plugin-base": "^0.15.7"
