@@ -238,17 +238,6 @@ export const contractVerification = (
             ).then((result) =>
               sendContractResponse(getId(request), makeResultResponse(result)),
             );
-
-            sendContractResponse(
-              getId(request),
-              makeResultResponse(
-                new BoundaryFailure(
-                  BoundaryFailureKindConstants.CASE_CORE_ERROR,
-                  `Plugin loading not implemented`,
-                  'ContractCase Connector',
-                ),
-              ),
-            );
           }
           break;
         default:
