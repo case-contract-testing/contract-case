@@ -56,6 +56,13 @@ export class ReadingCaseContract extends BaseCaseContract {
     this.mutex = new Mutex();
   }
 
+  /**
+   * Verifies this contract
+   *
+   * @param invoker - The invoker for this test
+   * @param runTestCb - a callback to tell the test framework that we're running a test
+   * @returns a Promise if the verification if asyncVerification is set, otherwise undefined
+   */
   verifyContract<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
     runTestCb: RunTestCallback,
