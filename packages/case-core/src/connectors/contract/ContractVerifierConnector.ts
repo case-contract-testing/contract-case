@@ -96,6 +96,7 @@ export class ContractVerifierConnector {
   verifyContract<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
     configOverride = {},
+    invokeableFns: Record<string, (...args: unknown[]) => Promise<void>> = {},
   ): Promise<void> | undefined {
     const mergedConfig = { ...this.config, ...configOverride };
 
@@ -156,12 +157,18 @@ export class ContractVerifierConnector {
       this.context.logger.debug(
         `Verifying contract from file '${contractLink.filePath}'`,
       );
-      return new ReadingCaseContract(
+      const contractVerifier = new ReadingCaseContract(
         contractLink.contents,
         this.dependencies,
         mergedConfig,
         this.parentVersions,
-      ).verifyContract(invoker, this.callback);
+      );
+
+      Object.entries(invokeableFns).forEach(([key, value]) => {
+        contractVerifier.registerFunction(key, value);
+      });
+
+      return contractVerifier.verifyContract(invoker, this.callback);
     });
     if (mergedConfig.internals.asyncVerification) {
       this.context.logger.maintainerDebug(`Awaiting async verification`);

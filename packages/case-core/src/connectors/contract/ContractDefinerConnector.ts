@@ -82,6 +82,13 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     this.invoker = invoker;
   }
 
+  registerFunction(
+    handle: string,
+    invokeableFn: (...args: unknown[]) => Promise<unknown>,
+  ): void {
+    this.contract.registerFunction(handle, invokeableFn);
+  }
+
   runExample<T extends AnyMockDescriptorType, R>(
     {
       states = [],

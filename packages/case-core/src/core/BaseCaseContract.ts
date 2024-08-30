@@ -36,10 +36,14 @@ import { traversals } from '../diffmatch';
 import { coreShapedLike } from '../entities';
 import { loadCorePlugins } from './plugins';
 
+type UserProvidedFunction = (...args: unknown[]) => Promise<unknown>;
+
 export class BaseCaseContract {
   currentContract: ContractData;
 
   initialContext: MatchContext;
+
+  userProvidedFunctions: Record<string, UserProvidedFunction>;
 
   constructor(
     description: CaseContractDescription,
@@ -48,8 +52,10 @@ export class BaseCaseContract {
     resultPrinter: ResultFormatter,
     makeLogger: (context: LogLevelContext) => Logger,
     parentVersions: Array<string>,
+    userProvidedFunctions: Record<string, UserProvidedFunction> = {},
   ) {
     this.currentContract = makeContract(description);
+    this.userProvidedFunctions = userProvidedFunctions;
 
     const contractFns: RawLookupFns = {
       lookupMatcher: this.lookupMatcher.bind(this),
@@ -106,6 +112,19 @@ export class BaseCaseContract {
     loadCorePlugins(this.initialContext);
   }
 
+  registerFunction(handle: string, invokeableFn: UserProvidedFunction): void {
+    if (handle in this.userProvidedFunctions) {
+      const message = `Registering a function with handle '${handle}', but a function with this handle is already registered. Make sure you are only calling registerHandle once.`;
+      this.initialContext.logger.error(message);
+      this.initialContext.logger.deepMaintainerDebug(
+        'When trying to register the duplicate, the userProvidedFunctions were:',
+        this.userProvidedFunctions,
+      );
+      throw new CaseConfigurationError(message);
+    }
+    this.userProvidedFunctions[handle] = invokeableFn;
+  }
+
   invokeFunctionByHandle(
     handle: string,
     callerArguments: unknown[],
@@ -115,12 +134,21 @@ export class BaseCaseContract {
       `Invoking function by handle: '${handle}', with callerArguments: `,
       callerArguments,
     );
-    return Promise.reject(
-      new CaseCoreError(
-        `not implemented (${this.currentContract.description.consumerName})`,
-        context,
-      ),
-    );
+    return Promise.resolve()
+      .then(() => {
+        const invokeableFn = this.userProvidedFunctions[handle];
+        if (invokeableFn == null) {
+          const message = `Tried to invoke a user-provided function with the handle '${handle}', but it didn't exist\nMake sure you have specified a function with this handle when setting up your test`;
+          context.logger.error(message);
+          context.logger.deepMaintainerDebug(
+            'When trying to add the duplicate, the userProvidedFunctions were:',
+            this.userProvidedFunctions,
+          );
+          throw new CaseConfigurationError(message, context);
+        }
+        return invokeableFn;
+      })
+      .then((invokeableFn) => invokeableFn(...callerArguments));
   }
 
   lookupVariable(
