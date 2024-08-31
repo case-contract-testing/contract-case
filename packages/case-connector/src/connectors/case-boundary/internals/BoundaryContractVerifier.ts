@@ -9,6 +9,7 @@ import {
   convertConfig,
   handleVoidResult,
   jsErrorToFailure,
+  mapInvokableFunctions,
   wrapLogPrinter,
 } from './mappers/index.js';
 import {
@@ -24,6 +25,7 @@ import {
   BoundarySuccessWithAny,
 } from './boundary/index.js';
 import { versionString } from '../../../versionString.js';
+import { BoundaryInvokableFunction } from './types.js';
 
 class CoreInvoker implements IInvokeCoreTest {
   private coreVerify: () => Promise<unknown>;
@@ -163,6 +165,7 @@ export class BoundaryContractVerifier {
    */
   runVerification(
     configOverrides: ContractCaseBoundaryConfig,
+    invokeableFns: Record<string, BoundaryInvokableFunction> = {},
   ): Promise<BoundaryResult> | BoundaryResult {
     try {
       this.initialiseVerifier();
@@ -179,6 +182,7 @@ export class BoundaryContractVerifier {
       const result = this.verifier.verifyContract(
         { ...initialInvoker, ...partialInvoker },
         { ...initialConfig, ...config },
+        mapInvokableFunctions(invokeableFns),
       );
       if (configOverrides.internals.asyncVerification) {
         return Promise.resolve(result).then(

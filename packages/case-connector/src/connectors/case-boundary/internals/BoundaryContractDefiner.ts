@@ -12,6 +12,7 @@ import {
 import {
   convertConfig,
   jsErrorToFailure,
+  mapInvokableFunction,
   wrapLogPrinter,
 } from './mappers/index.js';
 import {
@@ -27,6 +28,7 @@ import {
   BoundarySuccessWithAny,
 } from './boundary/index.js';
 import { versionString } from '../../../versionString.js';
+import { BoundaryInvokableFunction } from './types.js';
 
 type Definition = {
   states: Array<AnyState>;
@@ -173,6 +175,24 @@ export class BoundaryContractDefiner {
         { ...mapDefinition(definition, partialInvoker, config) },
         config,
       );
+      return new BoundarySuccess();
+    } catch (e) {
+      return jsErrorToFailure(e);
+    }
+  }
+
+  registerFunction(
+    handle: string,
+    invokeableFn: BoundaryInvokableFunction,
+  ): BoundaryResult {
+    try {
+      this.initialiseDefiner();
+      if (this.definer === undefined) {
+        throw new CaseCoreError(
+          'Definer was undefined after it was initialised (stripMatchers)',
+        );
+      }
+      this.definer.registerFunction(handle, mapInvokableFunction(invokeableFn));
       return new BoundarySuccess();
     } catch (e) {
       return jsErrorToFailure(e);
