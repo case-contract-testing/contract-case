@@ -25,7 +25,7 @@ dependencies {
     api "io.contract-testing.contractcase:case_example_mock_types:${caseCoreVersion}"
     api "io.contract-testing.contractcase:test-equivalence-matchers:${caseCoreVersion}"
     implementation 'com.diogonunes:JColor:5.5.1'
-    implementation 'com.google.protobuf:protobuf-java:4.27.3'
+    implementation 'com.google.protobuf:protobuf-java:4.28.0'
     implementation 'com.google.protobuf:protobuf-java-util:4.28.0'
     implementation 'com.google.protobuf:protoc:4.27.3'
     implementation "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
