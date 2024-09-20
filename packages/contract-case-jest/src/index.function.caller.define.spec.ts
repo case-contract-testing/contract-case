@@ -16,7 +16,7 @@ const contractDetails = {
 };
 
 // Normally you can just let Case set a filename for you.
-const FILENAME = `case-contracts/function-caller.case.json`;
+const FILENAME = `case-contracts/temp-function-caller.case.json`;
 
 const TIMEOUT = 3000;
 
@@ -54,7 +54,7 @@ describe('function executor', () => {
   defineInternalContract(
     {
       ...contractDetails,
-      printResults: true, // Set this to true for you own tests
+      printResults: false, // Set this to true for you own tests
       contractFilename: FILENAME, // Usually you will not need to provide a filename
     },
     (contract) => {

@@ -145,7 +145,7 @@ export type ContractCaseVerifierConfig = Omit<
 
 export interface IndividualSuccessTestConfig<
   R,
-  C extends Record<string, unknown>
+  C extends Record<string, unknown>,
 > extends Partial<ContractCaseConfig> {
   /**
    * A trigger that will send the request (if appropriate)
@@ -170,13 +170,18 @@ export interface IndividualSuccessTestConfig<
    */
   readonly testResponse?: (
     data: R,
-    config: Record<string, unknown>
+    config: Record<string, unknown>,
   ) => Promise<unknown> | void;
+
+  /**
+   * Configuration for any plugins or specific mock types. Keyed by the plugin / mock shortName
+   */
+  readonly mockConfig?: Record<string, unknown>;
 }
 
 export interface IndividualFailedTestConfig<
   R,
-  C extends Record<string, unknown>
+  C extends Record<string, unknown>,
 > extends Partial<ContractCaseConfig> {
   /**
    * A trigger that will send the request (if appropriate)
@@ -199,6 +204,6 @@ export interface IndividualFailedTestConfig<
    */
   readonly testErrorResponse?: (
     err: Error,
-    config: Record<string, unknown>
+    config: Record<string, unknown>,
   ) => Promise<unknown> | void;
 }

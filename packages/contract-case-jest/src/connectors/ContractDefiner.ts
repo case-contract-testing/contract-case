@@ -1,7 +1,10 @@
 import {
   BoundaryAnyMatcher,
   BoundaryContractDefiner,
+  BoundaryInvokableFunction,
   BoundaryMockDefinition,
+  BoundaryResult,
+  BoundarySuccessWithAny,
 } from '@contract-case/case-connector';
 import { mocks } from '@contract-case/case-definition-dsl';
 
@@ -19,8 +22,26 @@ import {
   mapSuccessConfig,
   mapFailingConfig,
   mapSuccessWithAny,
+  makeBoundaryFailure,
 } from './case-boundary/index.js';
 import { errorHandler } from './handler.js';
+
+type InvokeableFunction =
+  | ((...args: unknown[]) => unknown)
+  | ((...args: unknown[]) => Promise<unknown>);
+
+const mapInvokeableFunction =
+  (invokeableFn: InvokeableFunction): BoundaryInvokableFunction =>
+  (...args: string[]): Promise<BoundaryResult> =>
+    Promise.resolve()
+      .then(() => invokeableFn(...args.map((arg) => JSON.parse(arg))))
+      // Map void / undefined returns to null, as this is the boundary expectation
+      .then((result) => (result != null ? result : null))
+      .then((result) => JSON.stringify(result))
+      .then(
+        (result) => new BoundarySuccessWithAny(result),
+        (e) => makeBoundaryFailure(e),
+      );
 
 const mapDefinition = (
   definition: ExampleDefinition,
@@ -87,6 +108,22 @@ export class ContractCaseDefiner {
       .endRecord()
       .then(mapSuccess)
       .catch(errorHandler);
+  }
+
+  registerFunction(
+    handle: string,
+    invokeableFn: (...args: unknown[]) => unknown,
+  ): void {
+    try {
+      return mapSuccess(
+        this.boundaryDefiner.registerFunction(
+          handle,
+          mapInvokeableFunction(invokeableFn),
+        ),
+      );
+    } catch (e) {
+      return errorHandler(e as Error);
+    }
   }
 
   stripMatchers<T>(matcherOrData: unknown): T {

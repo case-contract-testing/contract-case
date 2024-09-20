@@ -41,3 +41,8 @@ export const willCallFunction = (
   example: FunctionExecutionExample,
 ): mocks.functions.WillCallFunction =>
   new mocks.functions.WillCallFunction(example);
+
+export const willReceiveFunctionCall = (
+  example: FunctionExecutionExample,
+): mocks.functions.WillReceiveFunctionCall =>
+  new mocks.functions.WillReceiveFunctionCall(example);

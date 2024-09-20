@@ -57,8 +57,16 @@ export const mapSuccessWithAny = <T>(result: BoundaryResult): T => {
     case BoundaryResultTypeConstants.RESULT_SUCCESS:
     case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_MAP_PAYLOAD:
       throw new Error("TODO: This shouldn't happen");
-    case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD:
-      return (result as BoundarySuccessWithAny).payload as T;
+    case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD: {
+      try {
+        return JSON.parse((result as BoundarySuccessWithAny).payload) as T;
+      } catch (e) {
+        throw new ContractCaseCoreError(
+          `Parse error in boundary success with any: ${(e as Error).message}`,
+          'mapSuccessWithAny',
+        );
+      }
+    }
     default:
       throw new Error(`TODO: unexpected result type ${result.resultType}`);
   }
