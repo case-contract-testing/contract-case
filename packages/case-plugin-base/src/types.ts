@@ -26,18 +26,27 @@ export type PluginDescription = {
    * It should be reasonably unique. If two plugins share a shortName, they
    * might not be able to be loaded during the same run, as plugins validate
    * their `mockConfig[shortName]` setting.
+   *
+   * If you have two plugins that need the same configuration properties,
+   * it's fine for them to share their shortName.
    */
   shortName: string;
   /**
    * A unique machine name, used to reason about the plugin's load state when
    * loading a plugin. This must be unique in the plugin ecosystem,
-   * as collisions prevent plugins from being loaded at the same time.
+   * as two plugins with the same uniqueMachineName can't be loaded in the same
+   * contract. For this reason, it is recommended you namespace your plugin
+   * names with a common prefix.
    *
-   * The unique names for plugins for distribution with ContractCase have the
-   * prefix {@link CORE_PLUGIN_PREFIX}. This is used to control the logging and
-   * error messages during plugin loads. Only use this prefix if you are
-   * developing a custom plugin that is going to be part of the core
-   * distribution.
+   * This is different from the shortname above, since you might have multiple
+   * plugins wanting to share configuration, and the global uniqueness
+   * constraint means that the uniqueMachineName might be too clumsy for a user
+   * to comfortably use them as a configuration key.
+   *
+   * Plugins for distribution with ContractCase have their unique names
+   * prefixed with {@link CORE_PLUGIN_PREFIX}. This is used to control the
+   * logging and error messages during plugin loads. To keep the logs and error
+   * messages correct, only use this prefix if you are developing core a plugin.
    */
   uniqueMachineName: string;
   /**

@@ -26,7 +26,7 @@ export const getPluginConfig = (
 ): Record<string, unknown> => {
   if (!context['_case:currentRun:context:mockConfig']) {
     throw new CaseConfigurationError(
-      `The plugin '${description.shortName}' (${description.humanReadableName}) requires the mockConfig configuration property to be set. Please check your configuration.`,
+      `The plugin '${description.humanReadableName}' requires the mockConfig configuration property to be set with a key of '${description.shortName}'. Please check your configuration.`,
       context,
     );
   }
@@ -34,7 +34,7 @@ export const getPluginConfig = (
     !(description.shortName in context['_case:currentRun:context:mockConfig'])
   ) {
     throw new CaseConfigurationError(
-      `The plugin '${description.shortName}' (${description.humanReadableName}) requires the mockConfig configuration property to have a key '${description.shortName}'. Please check your configuration.`,
+      `The plugin '${description.humanReadableName}' requires the mockConfig configuration property to have a key '${description.shortName}'. Please check your configuration.`,
       context,
     );
   }
