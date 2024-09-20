@@ -1,4 +1,5 @@
 import { CaseConfigurationError } from '../errors';
+import { PluginDescription } from '../types';
 import { DataContext } from './types';
 
 /**
@@ -21,38 +22,29 @@ import { DataContext } from './types';
  */
 export const getPluginConfig = (
   context: DataContext,
-  pluginShortName: string,
+  description: PluginDescription,
 ): Record<string, unknown> => {
-  const configDescription = {
-    shortName: pluginShortName,
-    // TODO: Get a long name from a passed in PluginDescription instead of
-    // a hardcoded name here
-    longName: 'Long name here',
-  };
   if (!context['_case:currentRun:context:mockConfig']) {
     throw new CaseConfigurationError(
-      `The plugin '${configDescription.shortName}' (${configDescription.longName}) requires the mockConfig configuration property to be set. Please check your configuration.`,
+      `The plugin '${description.shortName}' (${description.humanReadableName}) requires the mockConfig configuration property to be set. Please check your configuration.`,
       context,
     );
   }
   if (
-    !(
-      configDescription.shortName in
-      context['_case:currentRun:context:mockConfig']
-    )
+    !(description.shortName in context['_case:currentRun:context:mockConfig'])
   ) {
     throw new CaseConfigurationError(
-      `The plugin '${configDescription.shortName}' (${configDescription.longName}) requires the mockConfig configuration property to have a key '${configDescription.shortName}'. Please check your configuration.`,
+      `The plugin '${description.shortName}' (${description.humanReadableName}) requires the mockConfig configuration property to have a key '${description.shortName}'. Please check your configuration.`,
       context,
     );
   }
 
   const pluginConfig =
-    context['_case:currentRun:context:mockConfig'][configDescription.shortName];
+    context['_case:currentRun:context:mockConfig'][description.shortName];
 
   if (pluginConfig == null) {
     throw new CaseConfigurationError(
-      `The mockConfig configuration key '${configDescription.shortName}' was set, but had no content (${configDescription.longName}). Please check your configuration.`,
+      `The mockConfig configuration key '${description.shortName}' was set, but had no content (${description.humanReadableName}). Please check your configuration.`,
       context,
     );
   }

@@ -23,7 +23,7 @@ const validateArray = (maybeArray: unknown, context: MatchContext) => {
 };
 
 const extractHandle = (context: MatchContext): string => {
-  const pluginConfig = getPluginConfig(context, description.shortName);
+  const pluginConfig = getPluginConfig(context, description);
   if (!('handle' in pluginConfig)) {
     throw new CaseConfigurationError(
       `Must specify a value for 'handle' in mockConfig['${description.shortName}']`,

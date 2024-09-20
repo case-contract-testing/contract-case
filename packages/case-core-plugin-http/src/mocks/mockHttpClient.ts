@@ -77,7 +77,7 @@ const validateConfig = (
     );
     return context;
   }
-  const pluginConfig = getPluginConfig(context, description.shortName);
+  const pluginConfig = getPluginConfig(context, description);
   validatePluginConfig(context, pluginConfig);
   if (isValidHttpConfig(context)) {
     return context;
@@ -119,10 +119,8 @@ const getBaseUrlUnderTest = (context: DataContext) => {
   if (isHasBaseUrl(context)) {
     return context['_case:currentRun:context:baseUrlUnderTest'];
   }
-  return validatePluginConfig(
-    context,
-    getPluginConfig(context, description.shortName),
-  ).baseUrlUnderTest;
+  return validatePluginConfig(context, getPluginConfig(context, description))
+    .baseUrlUnderTest;
 };
 
 export const setupHttpResponseConsumer = (
