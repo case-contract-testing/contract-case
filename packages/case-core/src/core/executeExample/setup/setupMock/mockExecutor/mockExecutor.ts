@@ -53,7 +53,14 @@ const executeMock = <T extends AnyMockDescriptorType>(
 
   const executor = MockSetup[mockType];
   if (!executor) {
-    throw new CaseCoreError(`Missing setup for mock type '${mockType}'`);
+    context.logger.maintainerDebug(
+      'Error: Missing setup function for mock.',
+      mock,
+    );
+    throw new CaseCoreError(
+      `Missing setup function for mock type '${mockType}'. This might mean the plugin that supports this mock type is not loaded. If the mock type is a core type, this is an`,
+      context,
+    );
   }
   context.logger.debug(
     `Initialising a ${

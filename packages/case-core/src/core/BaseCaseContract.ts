@@ -138,7 +138,7 @@ export class BaseCaseContract {
       .then(() => {
         const invokeableFn = this.userProvidedFunctions[handle];
         if (invokeableFn == null) {
-          const message = `Tried to invoke a user-provided function with the handle '${handle}', but it didn't exist\nMake sure you have specified a function with this handle when setting up your test`;
+          const message = `Tried to invoke a user-provided function with the handle '${handle}', but it didn't exist\nMake sure you have used registerFunction to define a function with this handle when setting up your test`;
           context.logger.error(message);
           context.logger.deepMaintainerDebug(
             'When trying to add the duplicate, the userProvidedFunctions were:',
