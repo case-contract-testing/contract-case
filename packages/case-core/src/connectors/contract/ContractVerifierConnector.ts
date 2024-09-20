@@ -96,7 +96,10 @@ export class ContractVerifierConnector {
   verifyContract<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
     configOverride = {},
-    invokeableFns: Record<string, (...args: unknown[]) => Promise<void>> = {},
+    invokeableFns: Record<
+      string,
+      (...args: unknown[]) => Promise<unknown>
+    > = {},
   ): Promise<void> | undefined {
     const mergedConfig = { ...this.config, ...configOverride };
 
