@@ -75,7 +75,7 @@ export const setupMockFunctionCaller = (
             context.logger.debug(`Function '${handle}' returned`, result);
             return {
               actual: result,
-              context: addLocation('calledFunction', context),
+              context: addLocation('returnValue', context),
               expected: returnValue,
             };
           } catch (e) {
