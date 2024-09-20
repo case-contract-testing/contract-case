@@ -209,7 +209,9 @@ export class BoundaryContractDefiner {
       }
 
       return new BoundarySuccessWithAny(
-        this.definer.stripMatchers(JSON.parse(JSON.stringify(matcherOrData))),
+        JSON.stringify(
+          this.definer.stripMatchers(JSON.parse(JSON.stringify(matcherOrData))),
+        ),
       );
     } catch (e) {
       return jsErrorToFailure(e);

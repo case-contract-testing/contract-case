@@ -1,14 +1,16 @@
 import { BoundaryInvokableFunction } from '../types.js';
-import { handleVoidResult } from './Result/index.js';
+import { handleSuccessAnyResult } from './Result/index.js';
 
-type Fn = (...args: unknown[]) => Promise<void>;
+type Fn = (...args: unknown[]) => Promise<unknown>;
 
 export const mapInvokableFunction =
   (invokeableFn: BoundaryInvokableFunction): Fn =>
-  (...args: unknown[]): Promise<void> =>
+  (...args: unknown[]): Promise<unknown> =>
     Promise.resolve()
       .then(() => invokeableFn(...args.map((arg) => JSON.stringify(arg))))
-      .then((result) => handleVoidResult(result, 'CaseConfigurationError'));
+      .then((result) =>
+        handleSuccessAnyResult(result, 'CaseConfigurationError'),
+      );
 
 export const mapInvokableFunctions = (
   invokeableFns: Record<string, BoundaryInvokableFunction>,

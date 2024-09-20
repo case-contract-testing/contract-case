@@ -148,7 +148,7 @@ export class BoundaryContractVerifier {
       }
 
       return new BoundarySuccessWithAny(
-        this.verifier.getAvailableContractDescriptions(),
+        JSON.stringify(this.verifier.getAvailableContractDescriptions()),
       );
     } catch (e) {
       return jsErrorToFailure(e);

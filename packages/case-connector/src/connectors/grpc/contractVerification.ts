@@ -201,9 +201,12 @@ export const contractVerification = (
               );
             }
 
+            const id = request.getId()?.getValue();
             resolveById(
               wrappedInvokerId.getValue(),
-              new BoundarySuccessWithAny(request.getId()),
+              new BoundarySuccessWithAny(
+                JSON.stringify(id != null ? id : null),
+              ),
             );
 
             //     sendContractResponse(getId(request), makeResultResponse(result));
