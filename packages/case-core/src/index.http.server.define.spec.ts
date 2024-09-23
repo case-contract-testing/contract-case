@@ -50,7 +50,7 @@ describe('e2e http provider driven', () => {
 
     beforeAll(async () => {
       server = await start(port, serverDependencies);
-    });
+    }, 30000);
 
     afterAll(
       () =>
