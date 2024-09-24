@@ -1,11 +1,6 @@
 /* eslint-disable jest/expect-expect */
 import * as fs from 'node:fs';
-import {
-  anyNumber,
-  anyString,
-  defineContract,
-  willReceiveFunctionCall,
-} from './index.js';
+import { defineContract, willReceiveFunctionCall } from './index.js';
 
 const contractDetails = {
   consumerName: 'function execution',
@@ -67,8 +62,8 @@ describe('function receiver', () => {
           contract.runExample(
             {
               definition: willReceiveFunctionCall({
-                arguments: [anyString('example'), anyNumber(2)],
-                returnValue: anyString('example2'),
+                arguments: ['example', 2],
+                returnValue: 'example2',
               }),
             },
             { mockConfig: { function: { handle: FUNCTION_WITH_ARG_HANDLE } } },

@@ -14,29 +14,14 @@
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": []
     },
-    "matcher:a function invoked with 2 arguments ( <any string>, <any number> )": {
+    "matcher:a function invoked with 2 arguments ( \"example\", 2 )": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": [
-        {
-          "_case:matcher:type": "_case:MatchString",
-          "_case:matcher:example": "example",
-          "_case:matcher:resolvesTo": "string",
-          "_case:context:matchBy": "type"
-        },
-        {
-          "_case:matcher:type": "_case:MatchNumber",
-          "_case:matcher:example": 2,
-          "_case:matcher:resolvesTo": "number",
-          "_case:context:matchBy": "type"
-        }
+        "example",
+        2
       ]
     },
-    "matcher:<any string>": {
-      "_case:matcher:type": "_case:MatchString",
-      "_case:matcher:example": "example2",
-      "_case:matcher:resolvesTo": "string",
-      "_case:context:matchBy": "type"
-    }
+    "matcher:\"example2\"": "example2"
   },
   "examples": [
     {
@@ -85,34 +70,19 @@
         },
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a function invoked with 2 arguments ( <any string>, <any number> )",
+          "_case:matcher:uniqueName": "a function invoked with 2 arguments ( \"example\", 2 )",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionArgumentsMatcher",
             "arguments": [
-              {
-                "_case:matcher:type": "_case:MatchString",
-                "_case:matcher:example": "example",
-                "_case:matcher:resolvesTo": "string",
-                "_case:context:matchBy": "type"
-              },
-              {
-                "_case:matcher:type": "_case:MatchNumber",
-                "_case:matcher:example": 2,
-                "_case:matcher:resolvesTo": "number",
-                "_case:context:matchBy": "type"
-              }
+              "example",
+              2
             ]
           }
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "<any string>",
-          "_case:matcher:child": {
-            "_case:matcher:type": "_case:MatchString",
-            "_case:matcher:example": "example2",
-            "_case:matcher:resolvesTo": "string",
-            "_case:context:matchBy": "type"
-          }
+          "_case:matcher:uniqueName": "\"example2\"",
+          "_case:matcher:child": "example2"
         }
       },
       "result": "VERIFIED"
