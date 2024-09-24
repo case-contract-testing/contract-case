@@ -48,6 +48,6 @@ export class WillReceiveFunctionCall extends AnyMockDescriptor {
       },
     });
     this.request = functionArgumentsMatcher(example.arguments);
-    this.response packages/case-definition-dsl/src/mocks/functions/MockFunctionCall.ts= example.returnValue;
+    this.response = example.returnValue;
   }
 }
