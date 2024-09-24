@@ -81,7 +81,7 @@ describe('Server verification', () => {
         },
       };
 
-      verifier.runVerification({ stateHandlers });
+      return verifier.runVerification({ stateHandlers });
     },
   );
 });

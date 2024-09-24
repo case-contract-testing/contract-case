@@ -9,7 +9,7 @@ verifyContract(
   {
     providerName: 'http request provider',
   },
-  (verifier) => {
+  (verifier) =>
     verifier.runVerification({
       triggers: new TriggerGroupMap()
         .addTriggerGroup('an http "GET" request to "/health" without a body', {
@@ -97,6 +97,5 @@ verifyContract(
             },
           },
         ),
-    });
-  },
+    }),
 );
