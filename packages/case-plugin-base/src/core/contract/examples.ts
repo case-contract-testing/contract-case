@@ -19,6 +19,10 @@ const getResponseName = (index: string, mock: AnyMockDescriptor): string => {
     return 'No response defined';
   }
 
+  if (mock.response == null) {
+    return 'null';
+  }
+
   return '_case:matcher:uniqueName' in mock.response &&
     typeof mock.response['_case:matcher:uniqueName'] === 'string'
     ? mock.response['_case:matcher:uniqueName']

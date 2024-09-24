@@ -28,6 +28,7 @@ export const isLookupableMatcher = (
 ): maybeMatcher is LookupableMatcher => {
   const matcher = maybeMatcher as LookupableMatcher;
   return (
+    matcher != null &&
     '_case:matcher:uniqueName' in matcher &&
     typeof '_case:matcher:uniqueName' === 'string' &&
     matcher['_case:matcher:type'] === LOOKUP_MATCHER_TYPE
