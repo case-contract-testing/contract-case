@@ -9,7 +9,7 @@ const contractDetails = {
 };
 
 // Normally you can just let Case set a filename for you.
-const FILENAME = `case-contracts/function-caller.case.json`;
+const FILENAME = `case-contracts/temp-function-caller.case.json`;
 
 describe('function executor', () => {
   beforeAll(() => {
@@ -25,7 +25,7 @@ describe('function executor', () => {
     {
       ...contractDetails,
       config: {
-        printResults: true, // Set this to true for you own tests
+        printResults: false, // Set this to true for you own tests
         contractFilename: FILENAME, // Usually you will not need to provide a filename
       },
     },
@@ -66,7 +66,6 @@ describe('function executor', () => {
               arguments: [anyInteger(3), anyString('2')],
               returnValue: null,
             }),
-
             trigger: async (config: any) => config.invokeable(1, 2),
             testResponse: (result) => {
               expect(result).toEqual(null);

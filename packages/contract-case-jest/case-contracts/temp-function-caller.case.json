@@ -1,0 +1,39 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "function caller",
+    "providerName": "function execution"
+  },
+  "metadata": {
+    "_case": {
+      "version": "case-internal-tests"
+    }
+  },
+  "matcherLookup": {},
+  "examples": [
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockFunctionCaller",
+            "stateVariables": "state",
+            "triggers": "generated"
+          },
+          "write": {
+            "type": "_case:MockFunctionExecution",
+            "stateVariables": "default",
+            "triggers": "provided"
+          }
+        },
+        "arguments": {
+          "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+          "arguments": []
+        },
+        "returnValue": null
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}

@@ -112,7 +112,8 @@ export class ContractCaseDefiner {
 
   registerFunction(
     handle: string,
-    invokeableFn: (...args: unknown[]) => unknown,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    invokeableFn: (...args: any[]) => any,
   ): void {
     try {
       return mapSuccess(

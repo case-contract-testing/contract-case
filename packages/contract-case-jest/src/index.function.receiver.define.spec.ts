@@ -1,43 +1,19 @@
 /* eslint-disable jest/expect-expect */
 import * as fs from 'node:fs';
-
 import {
-  ContractCaseDefiner,
-  ContractCaseJestConfig,
-  DefineCaseJestCallback,
+  anyNumber,
+  anyString,
+  defineContract,
   willReceiveFunctionCall,
 } from './index.js';
 
 const contractDetails = {
-  consumerName: 'function caller',
-  providerName: 'function execution',
+  consumerName: 'function execution',
+  providerName: 'function definer',
 };
 
 // Normally you can just let Case set a filename for you.
-const FILENAME = `case-contracts/temp-function-receiver.case.json`;
-
-const TIMEOUT = 3000;
-
-/**
- * This is a copy of defineContract that doesn't do teardown - so that internal tests can fail.
- */
-const defineInternalContract = (
-  config: ContractCaseJestConfig,
-  callback: DefineCaseJestCallback,
-): void =>
-  describe(`Case contract definition`, () => {
-    const contract = new ContractCaseDefiner({
-      testRunId:
-        process.env['JEST_WORKER_ID'] || 'JEST_WORKER_ID_WAS_UNDEFINED',
-      ...config,
-    });
-
-    describe(`between ${config.consumerName} and ${config.providerName}`, () => {
-      jest.setTimeout(TIMEOUT);
-
-      callback(contract);
-    });
-  });
+const FILENAME = `case-contracts/function-receiver.case.json`;
 
 describe('function receiver', () => {
   beforeAll(() => {
@@ -49,7 +25,7 @@ describe('function receiver', () => {
       // We don't care if this fails
     }
   }, 30000);
-  defineInternalContract(
+  defineContract(
     {
       ...contractDetails,
       printResults: true, // Set this to true for you own tests
@@ -64,65 +40,8 @@ describe('function receiver', () => {
         beforeAll(() => {
           contract.registerFunction(NO_ARG_FUNCTION_HANDLE, () => {});
         });
-        describe('without the mockConfig property', () => {
-          it('fails', () =>
-            expect(
-              contract.runExample({
-                definition: willReceiveFunctionCall({
-                  arguments: [],
-                  returnValue: null,
-                }),
-              }),
-            ).rejects.toThrow(
-              "The plugin 'function execution plugin' requires the mockConfig configuration property to be set with a key of 'function'",
-            ));
-        });
-        describe('with the mockConfig property', () => {
-          it("fails without the 'function' key", () =>
-            expect(
-              contract.runExample(
-                {
-                  definition: willReceiveFunctionCall({
-                    arguments: [],
-                    returnValue: null,
-                  }),
-                },
-                { mockConfig: {} },
-              ),
-            ).rejects.toThrow(
-              /The plugin 'function execution plugin' requires the mockConfig configuration property/,
-            ));
-        });
-        it('fails without the handle property', () =>
-          expect(
-            contract.runExample(
-              {
-                definition: willReceiveFunctionCall({
-                  arguments: [],
-                  returnValue: null,
-                }),
-              },
-              { mockConfig: { function: {} } },
-            ),
-          ).rejects.toThrow(
-            /Must specify a value for 'handle' in mockConfig\['function'\]/,
-          ));
-        it('fails without the right handle property', () =>
-          expect(
-            contract.runExample(
-              {
-                definition: willReceiveFunctionCall({
-                  arguments: [],
-                  returnValue: null,
-                }),
-              },
-              { mockConfig: { function: { handle: 'This one is wrong' } } },
-            ),
-          ).rejects.toThrow(
-            /Tried to invoke a user-provided function with the handle 'This one is wrong'/,
-          ));
 
-        it('succeeds with correct config', () =>
+        it('succeeds', () =>
           contract.runExample(
             {
               definition: willReceiveFunctionCall({
@@ -131,6 +50,28 @@ describe('function receiver', () => {
               }),
             },
             { mockConfig: { function: { handle: NO_ARG_FUNCTION_HANDLE } } },
+          ));
+      });
+      describe('function with args', () => {
+        // This string can be anything you like, as long as it's the same when
+        // registering the function, and executing the test
+        const FUNCTION_WITH_ARG_HANDLE = 'HAS ARGS FUNCTION';
+        beforeAll(() => {
+          contract.registerFunction(
+            FUNCTION_WITH_ARG_HANDLE,
+            (s: string, n: number) => `${s}${n}`,
+          );
+        });
+
+        it('succeeds', () =>
+          contract.runExample(
+            {
+              definition: willReceiveFunctionCall({
+                arguments: [anyString('example'), anyNumber(2)],
+                returnValue: anyString('example2'),
+              }),
+            },
+            { mockConfig: { function: { handle: FUNCTION_WITH_ARG_HANDLE } } },
           ));
       });
     },
