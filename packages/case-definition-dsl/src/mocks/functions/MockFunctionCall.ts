@@ -30,9 +30,9 @@ export class WillReceiveFunctionCall extends AnyMockDescriptor {
     };
   };
 
-  readonly arguments: AnyMatcherOrData;
+  readonly request: AnyMatcherOrData;
 
-  readonly returnValue: AnyMatcherOrData;
+  readonly response: AnyMatcherOrData;
 
   constructor(example: FunctionExecutionExample) {
     super(MOCK_FUNCTION_CALLER, {
@@ -47,7 +47,7 @@ export class WillReceiveFunctionCall extends AnyMockDescriptor {
         triggers: 'provided',
       },
     });
-    this.arguments = functionArgumentsMatcher(example.arguments);
-    this.returnValue = example.returnValue;
+    this.request = functionArgumentsMatcher(example.arguments);
+    this.response packages/case-definition-dsl/src/mocks/functions/MockFunctionCall.ts= example.returnValue;
   }
 }

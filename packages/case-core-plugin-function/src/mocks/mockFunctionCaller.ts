@@ -41,7 +41,7 @@ const extractHandle = (context: MatchContext): string => {
 };
 
 export const setupMockFunctionCaller = (
-  { arguments: expectedArguments, returnValue }: MockFunctionDescriptor,
+  { request: expectedArguments, response: returnValue }: MockFunctionDescriptor,
   context: MatchContext,
 ): Promise<MockData<AllSetup, typeof MOCK_FUNCTION_CALLER>> =>
   Promise.resolve().then(() => {

@@ -30,9 +30,9 @@ export class WillCallFunction extends AnyMockDescriptor {
     };
   };
 
-  readonly arguments: AnyMatcherOrData;
+  readonly request: AnyMatcherOrData;
 
-  readonly returnValue: AnyMatcherOrData;
+  readonly response: AnyMatcherOrData;
 
   constructor(example: FunctionExecutionExample) {
     super(MOCK_FUNCTION_EXECUTION, {
@@ -47,7 +47,7 @@ export class WillCallFunction extends AnyMockDescriptor {
         triggers: 'generated',
       },
     });
-    this.arguments = functionArgumentsMatcher(example.arguments);
-    this.returnValue = example.returnValue;
+    this.request = functionArgumentsMatcher(example.arguments);
+    this.response = example.returnValue;
   }
 }

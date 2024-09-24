@@ -1,15 +1,43 @@
 {
   "contractType": "case::contract",
   "description": {
-    "consumerName": "function caller",
-    "providerName": "function execution"
+    "consumerName": "function execution",
+    "providerName": "function definer"
   },
   "metadata": {
     "_case": {
       "version": "case-internal-tests"
     }
   },
-  "matcherLookup": {},
+  "matcherLookup": {
+    "matcher:a function invoked with no arguments": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": []
+    },
+    "matcher:a function invoked with 2 arguments ( <any string>, <any number> )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        {
+          "_case:matcher:type": "_case:MatchString",
+          "_case:matcher:example": "example",
+          "_case:matcher:resolvesTo": "string",
+          "_case:context:matchBy": "type"
+        },
+        {
+          "_case:matcher:type": "_case:MatchNumber",
+          "_case:matcher:example": 2,
+          "_case:matcher:resolvesTo": "number",
+          "_case:context:matchBy": "type"
+        }
+      ]
+    },
+    "matcher:<any string>": {
+      "_case:matcher:type": "_case:MatchString",
+      "_case:matcher:example": "example2",
+      "_case:matcher:resolvesTo": "string",
+      "_case:context:matchBy": "type"
+    }
+  },
   "examples": [
     {
       "states": [],
@@ -27,11 +55,15 @@
             "triggers": "generated"
           }
         },
-        "arguments": {
-          "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-          "arguments": []
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a function invoked with no arguments",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": []
+          }
         },
-        "returnValue": null
+        "response": null
       },
       "result": "VERIFIED"
     },
@@ -51,28 +83,36 @@
             "triggers": "generated"
           }
         },
-        "arguments": {
-          "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-          "arguments": [
-            {
-              "_case:matcher:type": "_case:MatchString",
-              "_case:matcher:example": "example",
-              "_case:matcher:resolvesTo": "string",
-              "_case:context:matchBy": "type"
-            },
-            {
-              "_case:matcher:type": "_case:MatchNumber",
-              "_case:matcher:example": 2,
-              "_case:matcher:resolvesTo": "number",
-              "_case:context:matchBy": "type"
-            }
-          ]
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a function invoked with 2 arguments ( <any string>, <any number> )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              {
+                "_case:matcher:type": "_case:MatchString",
+                "_case:matcher:example": "example",
+                "_case:matcher:resolvesTo": "string",
+                "_case:context:matchBy": "type"
+              },
+              {
+                "_case:matcher:type": "_case:MatchNumber",
+                "_case:matcher:example": 2,
+                "_case:matcher:resolvesTo": "number",
+                "_case:context:matchBy": "type"
+              }
+            ]
+          }
         },
-        "returnValue": {
-          "_case:matcher:type": "_case:MatchString",
-          "_case:matcher:example": "example2",
-          "_case:matcher:resolvesTo": "string",
-          "_case:context:matchBy": "type"
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "<any string>",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:MatchString",
+            "_case:matcher:example": "example2",
+            "_case:matcher:resolvesTo": "string",
+            "_case:context:matchBy": "type"
+          }
         }
       },
       "result": "VERIFIED"

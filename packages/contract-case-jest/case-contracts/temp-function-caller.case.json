@@ -9,7 +9,12 @@
       "version": "case-internal-tests"
     }
   },
-  "matcherLookup": {},
+  "matcherLookup": {
+    "matcher:a function invoked with no arguments": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": []
+    }
+  },
   "examples": [
     {
       "states": [],
@@ -27,11 +32,15 @@
             "triggers": "provided"
           }
         },
-        "arguments": {
-          "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-          "arguments": []
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a function invoked with no arguments",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": []
+          }
         },
-        "returnValue": null
+        "response": null
       },
       "result": "VERIFIED"
     }

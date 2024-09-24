@@ -10,7 +10,7 @@ import {
 import { AllSetup } from './types';
 
 export const setupMockFunctionExecution = (
-  { arguments: expectedArguments, returnValue }: MockFunctionDescriptor,
+  { request: expectedArguments, response: returnValue }: MockFunctionDescriptor,
   parentContext: MatchContext,
 ): Promise<MockData<AllSetup, typeof MOCK_FUNCTION_EXECUTION>> =>
   Promise.resolve(addLocation('mockFunction', parentContext)).then(
