@@ -135,6 +135,11 @@ export interface ContractCaseConfig {
    * @deprecated This will be moved to a config property that allows configuration for arbitrary mocks
    */
   readonly baseUrlUnderTest?: string;
+
+  /**
+   * Configuration for any plugins or specific mock types. Keyed by the plugin / mock shortName
+   */
+  readonly mockConfig?: Record<string, Record<string, unknown>>;
 }
 
 export type ContractCaseVerifierConfig = Omit<
@@ -176,7 +181,7 @@ export interface IndividualSuccessTestConfig<
   /**
    * Configuration for any plugins or specific mock types. Keyed by the plugin / mock shortName
    */
-  readonly mockConfig?: Record<string, unknown>;
+  readonly mockConfig?: Record<string, Record<string, unknown>>;
 }
 
 export interface IndividualFailedTestConfig<
