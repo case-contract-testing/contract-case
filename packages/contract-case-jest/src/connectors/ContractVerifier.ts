@@ -85,7 +85,7 @@ export class ContractVerifier {
    * @param configOverrides - A `ContractCaseVerifierConfig` that defines any config options to override (after the ones provided in the constructor are applied)
    */
   async runVerification(
-    configOverrides: Partial<ContractCaseVerifierConfig>,
+    configOverrides: Partial<ContractCaseVerifierConfig> = {},
   ): Promise<void> {
     try {
       mapSuccess(
