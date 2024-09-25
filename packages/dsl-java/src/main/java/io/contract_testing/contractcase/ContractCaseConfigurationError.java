@@ -26,7 +26,7 @@ public class ContractCaseConfigurationError extends RuntimeException {
   }
 
   /**
-   * Returns the location that the error happened in
+   * Returns the location where the error happened
    * @return The location
    */
   public String getLocation() {
