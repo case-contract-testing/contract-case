@@ -24,7 +24,6 @@ describe('function receiver', () => {
     {
       ...contractDetails,
       contractFilename: FILENAME, // Usually you will not need to provide a filename
-      logLevel: 'maintainerDebug',
     },
     (contract) => {
       describe('function with no args', () => {
