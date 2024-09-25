@@ -38,8 +38,8 @@ describe('e2e http consumer driven', () => {
   defineContract(
     {
       ...contractDetails,
-      printResults: false, // Set this to true for you own tests
-      contractFilename: FILENAME, // Usually you will not need to provide a filename
+      // Usually you will not need to provide a filename
+      contractFilename: FILENAME,
     },
     (contract) => {
       describe('health get', () => {

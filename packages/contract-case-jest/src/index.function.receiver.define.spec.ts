@@ -2,11 +2,6 @@
 import * as fs from 'node:fs';
 import { defineContract, willReceiveFunctionCall } from './index.js';
 
-const contractDetails = {
-  consumerName: 'function execution',
-  providerName: 'function definer',
-};
-
 // Normally you can just let Case set a filename for you.
 const FILENAME = `case-contracts/function-receiver.case.json`;
 
@@ -22,8 +17,10 @@ describe('function receiver', () => {
   }, 30000);
   defineContract(
     {
-      ...contractDetails,
-      contractFilename: FILENAME, // Usually you will not need to provide a filename
+      consumerName: 'function execution',
+      providerName: 'function definer',
+      // Usually you will not need to provide a filename
+      contractFilename: FILENAME,
     },
     (contract) => {
       describe('function with no args', () => {
@@ -35,16 +32,13 @@ describe('function receiver', () => {
         });
 
         it('succeeds', () =>
-          contract.runExample(
-            {
-              definition: willReceiveFunctionCall({
-                arguments: [],
-                returnValue: null,
-                functionName: NO_ARG_FUNCTION_HANDLE,
-              }),
-            },
-            { mockConfig: { function: { handle: NO_ARG_FUNCTION_HANDLE } } },
-          ));
+          contract.runExample({
+            definition: willReceiveFunctionCall({
+              arguments: [],
+              returnValue: null,
+              functionName: NO_ARG_FUNCTION_HANDLE,
+            }),
+          }));
       });
       describe('function with args', () => {
         // This string can be anything you like, as long as it's the same when

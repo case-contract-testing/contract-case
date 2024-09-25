@@ -6,11 +6,9 @@ describe('verification', () => {
   verifyContract(
     {
       providerName: 'function definer',
-      printResults: true, // Remove this / set to true if you are copying this example
     },
     (verifier) =>
       verifier.runVerification({
-        mockConfig: { function: { handle: 'soo' } },
         triggers: new TriggerGroupMap()
           .addTriggerGroup('a function invoked with no arguments', {
             trigger: async (config: FunctionExecutorConfig) =>

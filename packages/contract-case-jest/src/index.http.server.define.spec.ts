@@ -113,11 +113,11 @@ describe('e2e http provider driven', () => {
         stateHandlers,
         mockConfig: {
           http: {
-            baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
+            // Replace this with your own server URL
+            baseUrlUnderTest: `http://localhost:${port}`,
           },
         },
         // remove the following lines for your own tests
-        printResults: false, // Remove this for your own tests
         testRunId: TEST_RUN_ID, // Remove this for your own tests
       },
       (contract) => {
@@ -257,7 +257,10 @@ describe('e2e http provider driven', () => {
             describe("when the user doesn't exist", () => {
               it('returns a user not found error', () =>
                 contract.runRejectingExample({
-                  states: [inState('Server is up'), inState('No users exist')],
+                  states: [
+                    inState('Server is up'),
+                    inState('No users exist', { userId: '123' }),
+                  ],
                   definition: willReceiveHttpRequest({
                     request: {
                       method: 'GET',
