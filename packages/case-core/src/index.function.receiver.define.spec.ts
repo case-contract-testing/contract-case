@@ -45,67 +45,35 @@ describe('function receiver', () => {
                 definition: new mocks.functions.WillReceiveFunctionCall({
                   arguments: [],
                   returnValue: null,
+                  functionName: undefined as unknown as string, // hack to force it not to be set
                 }),
               }),
             ).rejects.toThrow(
-              "The plugin 'function execution plugin' requires the mockConfig configuration property to be set with a key of 'function'",
+              /There was no functionName set to use as a handle to call this function./,
             ));
         });
-        describe('with the mockConfig property', () => {
-          it("fails without the 'function' key", () =>
-            expect(
-              contract.runExample(
-                {
-                  definition: new mocks.functions.WillReceiveFunctionCall({
-                    arguments: [],
-                    returnValue: null,
-                  }),
-                },
-                { mockConfig: {} },
-              ),
-            ).rejects.toThrow(
-              /The plugin 'function execution plugin' requires the mockConfig configuration property/,
-            ));
-        });
-        it('fails without the handle property', () =>
-          expect(
-            contract.runExample(
-              {
-                definition: new mocks.functions.WillReceiveFunctionCall({
-                  arguments: [],
-                  returnValue: null,
-                }),
-              },
-              { mockConfig: { function: {} } },
-            ),
-          ).rejects.toThrow(
-            /Must specify a value for 'handle' in mockConfig\['function'\]/,
-          ));
+
         it('fails without the right handle property', () =>
           expect(
-            contract.runExample(
-              {
-                definition: new mocks.functions.WillReceiveFunctionCall({
-                  arguments: [],
-                  returnValue: null,
-                }),
-              },
-              { mockConfig: { function: { handle: 'This one is wrong' } } },
-            ),
+            contract.runExample({
+              definition: new mocks.functions.WillReceiveFunctionCall({
+                arguments: [],
+                returnValue: null,
+                functionName: 'This one is wrong',
+              }),
+            }),
           ).rejects.toThrow(
             /Tried to invoke a user-provided function with the handle 'This one is wrong'/,
           ));
 
         it('succeeds with correct config', () =>
-          contract.runExample(
-            {
-              definition: new mocks.functions.WillReceiveFunctionCall({
-                arguments: [],
-                returnValue: null,
-              }),
-            },
-            { mockConfig: { function: { handle: NO_ARG_FUNCTION_HANDLE } } },
-          ));
+          contract.runExample({
+            definition: new mocks.functions.WillReceiveFunctionCall({
+              arguments: [],
+              returnValue: null,
+              functionName: NO_ARG_FUNCTION_HANDLE,
+            }),
+          }));
       });
       describe('function with args', () => {
         // This string can be anything you like, as long as it's the same when
@@ -121,15 +89,13 @@ describe('function receiver', () => {
         });
 
         it('succeeds with correct config', () =>
-          contract.runExample(
-            {
-              definition: new mocks.functions.WillReceiveFunctionCall({
-                arguments: [anyString('example'), anyNumber(2)],
-                returnValue: anyString('example2'),
-              }),
-            },
-            { mockConfig: { function: { handle: FUNCTION_WITH_ARG_HANDLE } } },
-          ));
+          contract.runExample({
+            definition: new mocks.functions.WillReceiveFunctionCall({
+              arguments: [anyString('example'), anyNumber(2)],
+              returnValue: anyString('example2'),
+              functionName: FUNCTION_WITH_ARG_HANDLE,
+            }),
+          }));
       });
     },
   );

@@ -8,17 +8,17 @@ export const MOCK_FUNCTION_EXECUTION = '_case:MockFunctionExecution' as const;
 export const MOCK_FUNCTION_CALLER = '_case:MockFunctionCaller' as const;
 
 export interface MockFunctionDescriptor {
+  /** The arguments */
   request: AnyCaseMatcher;
+  /** The return value */
   response: AnyCaseMatcher;
+  /** The name of the function, for use as a handle by `registerFunction` */
+  functionName: string;
 }
 
 export interface MockFunctionCallerDescriptor
   extends HasTypeForMockDescriptor<typeof MOCK_FUNCTION_CALLER>,
     MockFunctionDescriptor {
-  /** The arguments */
-  request: AnyCaseMatcher;
-  /** The return value */
-  response: AnyCaseMatcher;
   '_case:run:context:setup': {
     write: {
       type: typeof MOCK_FUNCTION_CALLER;

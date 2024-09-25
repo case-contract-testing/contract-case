@@ -1,10 +1,12 @@
 import {
   BoundaryContractVerifier,
+  BoundaryInvokableFunction,
   BoundaryResult,
   BoundarySuccess,
   IInvokeCoreTest,
   IRunTestCallback,
 } from '@contract-case/case-connector';
+import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import { defaultPrinter } from './defaultTestPrinter.js';
 
 import {
@@ -12,6 +14,7 @@ import {
   mapConfig,
   mapSuccessWithAny,
   makeBoundaryFailure,
+  mapInvokeableFunction,
 } from './case-boundary/index.js';
 import {
   ContractCaseVerifierConfig,
@@ -40,12 +43,15 @@ export class ContractVerifier {
 
   private config: ContractCaseVerifierConfig;
 
+  private invokeableFunctions: Record<string, BoundaryInvokableFunction>;
+
   constructor(
     config: ContractCaseVerifierConfig,
     callback: RunTestCallback,
     printer = defaultPrinter,
   ) {
     this.config = config;
+    this.invokeableFunctions = {};
 
     try {
       this.boundaryVerifier = new BoundaryContractVerifier(
@@ -78,6 +84,19 @@ export class ContractVerifier {
     }
   }
 
+  registerFunction(
+    handle: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    invokeableFn: (...args: any[]) => any,
+  ): void {
+    if (handle in this.invokeableFunctions) {
+      throw new CaseConfigurationError(
+        `The function named '${handle}' has already been registered. You must only register functions once`,
+      );
+    }
+    this.invokeableFunctions[handle] = mapInvokeableFunction(invokeableFn);
+  }
+
   /**
    * Run the verification of the contract(s) that can be found using the configuration provided.
    * If you want to filter the contract(s), use the configOverrides to specify a Consumer or Provider name.
@@ -94,6 +113,7 @@ export class ContractVerifier {
             ...this.config,
             ...configOverrides,
           } as ContractCaseVerifierConfig),
+          this.invokeableFunctions,
         ),
       );
     } catch (e) {

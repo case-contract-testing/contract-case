@@ -7,10 +7,8 @@ import {
   MatchContext,
   MockData,
   addLocation,
-  getPluginConfig,
 } from '@contract-case/case-plugin-base';
 import { AllSetup } from './types';
-import { description } from '../description';
 
 const validateArray = (maybeArray: unknown, context: MatchContext) => {
   if (!Array.isArray(maybeArray)) {
@@ -22,26 +20,12 @@ const validateArray = (maybeArray: unknown, context: MatchContext) => {
   return maybeArray;
 };
 
-const extractHandle = (context: MatchContext): string => {
-  const pluginConfig = getPluginConfig(context, description);
-  if (!('handle' in pluginConfig)) {
-    throw new CaseConfigurationError(
-      `Must specify a value for 'handle' in mockConfig['${description.shortName}']`,
-      context,
-    );
-  }
-
-  if (!(typeof pluginConfig['handle'] === 'string')) {
-    throw new CaseConfigurationError(
-      "'handle' was specified in mockConfig['function'], but it wasn't a string",
-      context,
-    );
-  }
-  return pluginConfig['handle'];
-};
-
 export const setupMockFunctionCaller = (
-  { request: expectedArguments, response: returnValue }: MockFunctionDescriptor,
+  {
+    request: expectedArguments,
+    response: returnValue,
+    functionName: functionHandle,
+  }: MockFunctionDescriptor,
   context: MatchContext,
 ): Promise<MockData<AllSetup, typeof MOCK_FUNCTION_CALLER>> =>
   Promise.resolve().then(() => {
@@ -53,26 +37,33 @@ export const setupMockFunctionCaller = (
       context,
     );
 
-    const handle = extractHandle(context);
-
     return {
       config: {
         '_case:mock:type': MOCK_FUNCTION_CALLER,
         variables: context['_case:currentRun:context:variables'],
-        functionHandle: '',
+        functionHandle,
       },
       assertableData: () =>
         Promise.resolve().then(async () => {
           try {
             context.logger.debug(
-              `Invoking function by handle '${handle}', with arguments`,
+              `Invoking function by handle '${functionHandle}', with arguments`,
               callerArguments,
             );
+            if (!functionHandle) {
+              throw new CaseConfigurationError(
+                'There was no functionName set to use as a handle to call this function. Please check the contract definition for this test.',
+                context,
+              );
+            }
             const result = await context.invokeFunctionByHandle(
-              handle,
+              functionHandle,
               callerArguments,
             );
-            context.logger.debug(`Function '${handle}' returned`, result);
+            context.logger.debug(
+              `Function '${functionHandle}' returned`,
+              result,
+            );
             return {
               actual: result,
               context: addLocation('returnValue', context),
@@ -82,7 +73,10 @@ export const setupMockFunctionCaller = (
             if (e instanceof CaseConfigurationError) {
               throw e;
             }
-            context.logger.error(`Function '${handle}' threw an error`, e);
+            context.logger.error(
+              `Function '${functionHandle}' threw an error`,
+              e,
+            );
             throw new CaseConfigurationError(
               `The provided function threw an error during execution: ${(e as Error).message}`,
               context,

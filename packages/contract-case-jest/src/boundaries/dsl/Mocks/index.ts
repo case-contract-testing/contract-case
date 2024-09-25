@@ -35,6 +35,7 @@ export const willReceiveHttpRequest = ({
 type FunctionExecutionExample = {
   arguments: AnyCaseMatcherOrData[];
   returnValue: AnyCaseMatcherOrData;
+  functionName: string;
 };
 
 export const willCallFunction = (

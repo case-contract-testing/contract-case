@@ -48,7 +48,8 @@
             "arguments": []
           }
         },
-        "response": null
+        "response": null,
+        "functionName": "NO ARG FUNCTION"
       },
       "result": "VERIFIED"
     },
@@ -83,7 +84,8 @@
           "_case:matcher:type": "_case:Lookup",
           "_case:matcher:uniqueName": "\"example2\"",
           "_case:matcher:child": "example2"
-        }
+        },
+        "functionName": "HAS ARGS FUNCTION"
       },
       "result": "VERIFIED"
     }

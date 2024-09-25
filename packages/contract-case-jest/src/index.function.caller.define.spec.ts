@@ -27,7 +27,6 @@ describe('function executor', () => {
   defineContract(
     {
       ...contractDetails,
-      printResults: false, // Set this to true for you own tests
       contractFilename: FILENAME, // Usually you will not need to provide a filename
     },
     (contract) => {
@@ -38,13 +37,33 @@ describe('function executor', () => {
               definition: willCallFunction({
                 arguments: [],
                 returnValue: null,
+                functionName: 'zeroArgs',
               }),
             },
             {
               trigger: async (config: FunctionExecutorConfig) =>
                 config.invokeable(),
-              testResponse: (result) => {
-                expect(result).toEqual(null);
+              testResponse: (returnValue) => {
+                expect(returnValue).toEqual(null);
+              },
+            },
+          ));
+      });
+      describe('function with two args', () => {
+        it('returns nothing', () =>
+          contract.runExample(
+            {
+              definition: willCallFunction({
+                arguments: ['example', 2],
+                returnValue: 'example2',
+                functionName: 'concatenate',
+              }),
+            },
+            {
+              trigger: async (config: FunctionExecutorConfig) =>
+                config.invokeable('example', 2),
+              testResponse: (returnValue: unknown) => {
+                expect(returnValue).toEqual('example2');
               },
             },
           ));

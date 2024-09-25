@@ -36,6 +36,7 @@ describe('function executor', () => {
             definition: new mocks.functions.WillCallFunction({
               arguments: [],
               returnValue: null,
+              functionName: 'noArgs',
             }),
             trigger: async (config: any) => config.invokeable(),
             testResponse: (result) => {
@@ -50,6 +51,7 @@ describe('function executor', () => {
             definition: new mocks.functions.WillCallFunction({
               arguments: [anyInteger(3)],
               returnValue: null,
+              functionName: 'oneArg',
             }),
             trigger: async (config: any) => config.invokeable(1, 2),
             testResponse: (result) => {
@@ -65,6 +67,7 @@ describe('function executor', () => {
             definition: new mocks.functions.WillCallFunction({
               arguments: [anyInteger(3), anyString('2')],
               returnValue: null,
+              functionName: 'twoArgs',
             }),
             trigger: async (config: any) => config.invokeable(1, 2),
             testResponse: (result) => {

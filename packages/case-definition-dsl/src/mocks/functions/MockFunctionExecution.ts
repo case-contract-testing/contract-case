@@ -34,6 +34,8 @@ export class WillCallFunction extends AnyMockDescriptor {
 
   readonly response: AnyMatcherOrData;
 
+  readonly functionName: string;
+
   constructor(example: FunctionExecutionExample) {
     super(MOCK_FUNCTION_EXECUTION, {
       write: {
@@ -49,5 +51,7 @@ export class WillCallFunction extends AnyMockDescriptor {
     });
     this.request = functionArgumentsMatcher(example.arguments);
     this.response = example.returnValue;
+
+    this.functionName = example.functionName;
   }
 }

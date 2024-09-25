@@ -13,6 +13,14 @@
     "matcher:a function invoked with no arguments": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": []
+    },
+    "matcher:\"example2\"": "example2",
+    "matcher:a function invoked with 2 arguments ( \"example\", 2 )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        "example",
+        2
+      ]
     }
   },
   "examples": [
@@ -40,7 +48,44 @@
             "arguments": []
           }
         },
-        "response": null
+        "response": null,
+        "functionName": "zeroArgs"
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockFunctionCaller",
+            "stateVariables": "state",
+            "triggers": "generated"
+          },
+          "write": {
+            "type": "_case:MockFunctionExecution",
+            "stateVariables": "default",
+            "triggers": "provided"
+          }
+        },
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a function invoked with 2 arguments ( \"example\", 2 )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              "example",
+              2
+            ]
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "\"example2\"",
+          "_case:matcher:child": "example2"
+        },
+        "functionName": "concatenate"
       },
       "result": "VERIFIED"
     }

@@ -23,7 +23,6 @@ describe('function receiver', () => {
   defineContract(
     {
       ...contractDetails,
-      printResults: true, // Set this to true for you own tests
       contractFilename: FILENAME, // Usually you will not need to provide a filename
       logLevel: 'maintainerDebug',
     },
@@ -42,6 +41,7 @@ describe('function receiver', () => {
               definition: willReceiveFunctionCall({
                 arguments: [],
                 returnValue: null,
+                functionName: NO_ARG_FUNCTION_HANDLE,
               }),
             },
             { mockConfig: { function: { handle: NO_ARG_FUNCTION_HANDLE } } },
@@ -59,15 +59,13 @@ describe('function receiver', () => {
         });
 
         it('succeeds', () =>
-          contract.runExample(
-            {
-              definition: willReceiveFunctionCall({
-                arguments: ['example', 2],
-                returnValue: 'example2',
-              }),
-            },
-            { mockConfig: { function: { handle: FUNCTION_WITH_ARG_HANDLE } } },
-          ));
+          contract.runExample({
+            definition: willReceiveFunctionCall({
+              arguments: ['example', 2],
+              returnValue: 'example2',
+              functionName: FUNCTION_WITH_ARG_HANDLE,
+            }),
+          }));
       });
     },
   );
