@@ -132,6 +132,19 @@ class ConnectorOutgoingMapper {
       builder.setPublish(ConnectorOutgoingMapper.map(config.getPublish().toString()));
     }
 
+    if (config.getMockConfig() != null) {
+      config.getMockConfig().forEach((String k, Map<String, String> v) -> {
+        try {
+          builder.putMockConfig(k, objectMapper.writeValueAsString(v));
+        } catch (JsonProcessingException e) {
+          throw new ContractCaseCoreError(
+              "Unable to write mockConfig for '" + k + "' to string",
+              e
+          );
+        }
+      });
+    }
+
     return builder.build();
   }
 

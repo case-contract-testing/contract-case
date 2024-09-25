@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -83,11 +84,16 @@ public class ContractCaseConfig {
   /**
    * The base URL for your real server, if you are testing an http server.
    *
-   * @deprecated This will be moved to a config property that allows configuration for arbitrary
-   * mocks
+   * @deprecated Use {@link #mockConfig} with the {@code http} key instead
    */
   @Deprecated
   public final String baseUrlUnderTest;
+
+  /**
+   * The mockConfig Map is keyed by plugin short names (eg 'http'), and contains arbitrary
+   * configuration for plugins.
+   */
+  public final Map<String, Map<String, String>> mockConfig;
 
 
   public final TriggerGroups triggers;
@@ -103,7 +109,7 @@ public class ContractCaseConfig {
       String contractDir, String contractFilename, Boolean printResults, Boolean throwOnFail,
       PublishType publish, String brokerBaseUrl, String brokerCiAccessToken,
       BrokerBasicAuthCredentials brokerBasicAuth, String baseUrlUnderTest, TriggerGroups triggers,
-      Map<String, StateHandler> stateHandlers) {
+      Map<String, StateHandler> stateHandlers, Map<String, Map<String, String>> mockConfig) {
     this.providerName = providerName;
     this.consumerName = consumerName;
     this.logLevel = logLevel;
@@ -118,6 +124,7 @@ public class ContractCaseConfig {
     this.baseUrlUnderTest = baseUrlUnderTest;
     this.triggers = triggers;
     this.stateHandlers = stateHandlers;
+    this.mockConfig = mockConfig;
   }
 
   public String getProviderName() {
@@ -192,6 +199,8 @@ public class ContractCaseConfig {
     private String baseUrlUnderTest;
     private TriggerGroups triggers;
     private Map<String, StateHandler> stateHandlers;
+
+    private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
 
     private ContractCaseConfigBuilder() {
     }
@@ -270,6 +279,11 @@ public class ContractCaseConfig {
       return this;
     }
 
+    public ContractCaseConfigBuilder mockConfig(String mockShortName, Map<String, String> config) {
+      this.mockConfig.put(mockShortName, config);
+      return this;
+    }
+
     public ContractCaseConfig build() {
       return new ContractCaseConfig(
           providerName,
@@ -285,7 +299,8 @@ public class ContractCaseConfig {
           brokerBasicAuth,
           baseUrlUnderTest,
           triggers,
-          stateHandlers
+          stateHandlers,
+          mockConfig
       );
     }
   }

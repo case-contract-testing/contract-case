@@ -6,6 +6,7 @@ import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.PublishType;
 import io.contract_testing.contractcase.StateHandler;
 import io.contract_testing.contractcase.TriggerGroups;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ContractCaseConnectorConfig extends ContractCaseConfig {
@@ -29,12 +30,24 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
   public final String testRunId;
   public final Map<String, ? extends ITriggerFunction> triggerAndTests;
 
-  protected ContractCaseConnectorConfig(String providerName, String consumerName, LogLevel logLevel,
-      String contractDir, String contractFilename, Boolean printResults, Boolean throwOnFail,
-      PublishType publish, String brokerBaseUrl, String brokerCiAccessToken,
-      BrokerBasicAuthCredentials brokerBasicAuth, String baseUrlUnderTest,
-      Map<String, ConnectorStateHandler> stateHandlers, String testRunId,
-      Map<String, ? extends ITriggerFunction> triggerAndTests, ITriggerFunction triggerAndTest) {
+  protected ContractCaseConnectorConfig(
+      String providerName,
+      String consumerName,
+      LogLevel logLevel,
+      String contractDir,
+      String contractFilename,
+      Boolean printResults,
+      Boolean throwOnFail,
+      PublishType publish,
+      String brokerBaseUrl,
+      String brokerCiAccessToken,
+      BrokerBasicAuthCredentials brokerBasicAuth,
+      String baseUrlUnderTest,
+      Map<String, ConnectorStateHandler> stateHandlers,
+      String testRunId,
+      Map<String, ? extends ITriggerFunction> triggerAndTests,
+      ITriggerFunction triggerAndTest,
+      Map<String, Map<String, String>> mockConfig) {
     super(
         providerName,
         consumerName,
@@ -49,7 +62,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
         brokerBasicAuth,
         baseUrlUnderTest,
         null,
-        null
+        null,
+        mockConfig
     );
     this.testRunId = testRunId;
     this.triggerAndTests = triggerAndTests;
@@ -73,6 +87,10 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
 
   public Map<String, ConnectorStateHandler> getConnectorStateHandlers() {
     return this.connectorStateHandlers;
+  }
+
+  public Map<String, Map<String, String>> getMockConfig() {
+    return this.mockConfig;
   }
 
   @Deprecated
@@ -106,6 +124,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
     private String testRunId;
     private Map<String, ? extends ITriggerFunction> triggerAndTests;
     private ITriggerFunction triggerAndTest;
+
+    private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
 
     private Builder() {
     }
@@ -194,6 +214,11 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       return this;
     }
 
+    public Builder mockConfig(String mockShortName, Map<String, String> config) {
+      this.mockConfig.put(mockShortName, config);
+      return this;
+    }
+
     public ContractCaseConnectorConfig build() {
       return new ContractCaseConnectorConfig(
           providerName,
@@ -211,7 +236,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
           stateHandlers,
           testRunId,
           triggerAndTests,
-          triggerAndTest
+          triggerAndTest,
+          mockConfig
       );
     }
 

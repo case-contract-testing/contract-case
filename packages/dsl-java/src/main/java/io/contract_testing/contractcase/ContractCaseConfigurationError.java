@@ -15,11 +15,20 @@ public class ContractCaseConfigurationError extends RuntimeException {
             Collectors.joining());
   }
 
+  /**
+   * Indicates that there was an error with the user-provided configuration or contract
+   * @param message The detail message
+   * @param location Where this error happened (eg, "Java DSL")
+   */
   public ContractCaseConfigurationError(@NotNull String message, @NotNull String location) {
     super(message);
     this.location = location;
   }
 
+  /**
+   * Returns the location that the error happened in
+   * @return The location
+   */
   public String getLocation() {
     return location;
   }

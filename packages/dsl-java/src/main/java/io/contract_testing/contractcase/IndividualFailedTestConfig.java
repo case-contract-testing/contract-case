@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
@@ -12,10 +13,10 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
       PublishType publish, String brokerBaseUrl, String brokerCiAccessToken,
       BrokerBasicAuthCredentials brokerBasicAuth, String baseUrlUnderTest, TriggerGroups triggers,
       Map<String, StateHandler> stateHandlers, Trigger<T> trigger,
-      TestErrorResponseFunction testErrorResponse) {
+      TestErrorResponseFunction testErrorResponse, Map<String, Map<String, String>> mockConfig) {
     super(providerName, consumerName, logLevel, contractDir, contractFilename, printResults,
         throwOnFail, publish, brokerBaseUrl, brokerCiAccessToken, brokerBasicAuth, baseUrlUnderTest,
-        triggers, stateHandlers
+        triggers, stateHandlers, mockConfig
     );
     this.trigger = trigger;
     this.testErrorResponse = testErrorResponse;
@@ -39,6 +40,7 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
     private Map<String, StateHandler> stateHandlers;
     private Trigger<T> trigger;
     private TestErrorResponseFunction testErrorResponse;
+    private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
 
     private IndividualFailedTestConfigBuilder() {
     }
@@ -131,10 +133,33 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
       return this;
     }
 
+
+    public IndividualFailedTestConfigBuilder<T> mockConfig(String mockShortName,
+        Map<String, String> config) {
+      this.mockConfig.put(mockShortName, config);
+      return this;
+    }
+
+
     public IndividualFailedTestConfig<T> build() {
-      return new IndividualFailedTestConfig<>(providerName, consumerName, logLevel, contractDir,
-          contractFilename, printResults, throwOnFail, publish, brokerBaseUrl, brokerCiAccessToken,
-          brokerBasicAuth, baseUrlUnderTest, triggers, stateHandlers, trigger, testErrorResponse
+      return new IndividualFailedTestConfig<>(
+          providerName,
+          consumerName,
+          logLevel,
+          contractDir,
+          contractFilename,
+          printResults,
+          throwOnFail,
+          publish,
+          brokerBaseUrl,
+          brokerCiAccessToken,
+          brokerBasicAuth,
+          baseUrlUnderTest,
+          triggers,
+          stateHandlers,
+          trigger,
+          testErrorResponse,
+          mockConfig
       );
     }
   }

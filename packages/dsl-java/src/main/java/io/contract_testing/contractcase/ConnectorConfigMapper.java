@@ -114,6 +114,9 @@ class ConnectorConfigMapper {
     if (config.stateHandlers != null) {
       builder.stateHandlers(ConnectorStateHandlerMapper.map(config.stateHandlers));
     }
+
+    config.mockConfig.forEach(builder::mockConfig);
+
     return builder;
   }
 
