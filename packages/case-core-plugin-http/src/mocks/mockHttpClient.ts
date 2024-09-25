@@ -28,13 +28,6 @@ const isHasBaseUrl = (
   context['_case:currentRun:context:baseUrlUnderTest'] !== undefined &&
   typeof context['_case:currentRun:context:baseUrlUnderTest'] === 'string';
 
-const isValidHttpConfig = (
-  context: Partial<DataContext>,
-): context is HasBaseUrlUnderTest =>
-  '_case:currentRun:context:mockConfig' in context &&
-  context['_case:currentRun:context:mockConfig'] !== undefined &&
-  typeof context['_case:currentRun:context:mockConfig'] === 'string';
-
 type HttpClientPluginConfig = {
   baseUrlUnderTest: string;
 };
@@ -67,9 +60,7 @@ const validatePluginConfig = (
   return pluginConfig as HttpClientPluginConfig;
 };
 
-const validateConfig = (
-  context: MatchContext,
-): MatchContext & HasBaseUrlUnderTest => {
+const validateConfig = (context: MatchContext): MatchContext => {
   if (isHasBaseUrl(context)) {
     context.logger.warn(
       `baseUrlUnderTest is deprecated and should be set via 
@@ -78,14 +69,9 @@ const validateConfig = (
     return context;
   }
   const pluginConfig = getPluginConfig(context, description);
+  // This method will throw if the plugin config isn't valid
   validatePluginConfig(context, pluginConfig);
-  if (isValidHttpConfig(context)) {
-    return context;
-  }
-  throw new CaseConfigurationError(
-    `Must provide a URL Under Test in order to validate HTTP response providers`,
-    context,
-  );
+  return context;
 };
 
 const httpAgent = new http.Agent({
@@ -141,7 +127,7 @@ export const setupHttpResponseConsumer = (
     const { body, method, path, headers, query } = expectedRequest;
 
     return Promise.resolve(validateConfig(parentContext)).then(
-      (run: DataContext & HasBaseUrlUnderTest) => ({
+      (run: DataContext) => ({
         config: {
           '_case:mock:type': MOCK_HTTP_CLIENT,
           variables: parentContext['_case:currentRun:context:variables'],
