@@ -111,7 +111,11 @@ describe('e2e http provider driven', () => {
         consumerName: 'http request consumer',
         providerName: 'http request provider',
         stateHandlers,
-        baseUrlUnderTest: `http://localhost:${port}`,
+        mockConfig: {
+          http: {
+            baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
+          },
+        },
         // remove the following lines for your own tests
         printResults: false, // Remove this for your own tests
         testRunId: TEST_RUN_ID, // Remove this for your own tests

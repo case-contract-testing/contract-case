@@ -47,8 +47,12 @@ describe('Server verification', () => {
   verifyContract(
     {
       providerName: 'http response provider',
-      baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
       printResults: false, // Remove this / set to true if you are copying this example
+      mockConfig: {
+        http: {
+          baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
+        },
+      },
     },
     (verifier) => {
       const stateHandlers: StateHandlers = {
