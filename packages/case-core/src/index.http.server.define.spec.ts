@@ -102,7 +102,11 @@ describe('e2e http provider driven', () => {
         providerName: 'http request provider',
         config: {
           stateHandlers,
-          baseUrlUnderTest: `http://localhost:${port}`,
+          mockConfig: {
+            http: {
+              baseUrlUnderTest: `http://localhost:${port}`,
+            },
+          },
 
           // remove the following lines for your own tests
           printResults: false, // Remove this for your own tests

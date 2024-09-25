@@ -36,7 +36,11 @@ describe('Server verification', () => {
     contract,
     readerDependencies(defaultPrinter),
     {
-      baseUrlUnderTest: `http://localhost:${port}`,
+      mockConfig: {
+        http: {
+          baseUrlUnderTest: `http://localhost:${port}`,
+        },
+      },
       logLevel: 'none',
       printResults: false,
       publish: false,

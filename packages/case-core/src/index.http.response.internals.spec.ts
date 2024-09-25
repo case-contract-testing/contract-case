@@ -81,7 +81,11 @@ describe('simple get endpoint', () => {
     const config: CaseConfig & {
       contractMode: 'read';
     } = {
-      baseUrlUnderTest: 'http://localhost:8282',
+      mockConfig: {
+        http: {
+          baseUrlUnderTest: `http://localhost:8282`,
+        },
+      },
       contractMode: 'read',
       logLevel: 'error',
     };
@@ -94,7 +98,11 @@ describe('simple get endpoint', () => {
             },
             {
               ...config,
-              baseUrlUnderTest: 'http://localhost:8081',
+              mockConfig: {
+                http: {
+                  baseUrlUnderTest: `http://localhost:8081`,
+                },
+              },
             },
           ),
         ).rejects.toBeInstanceOf(CaseConfigurationError));

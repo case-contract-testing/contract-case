@@ -51,7 +51,7 @@ Next:
     - [x] Pass in core printer to Logger
     - [x] Types for Logger
     - [x] Types for Result Printer
-  - [ ] Types for extensions
+  - [x] Types for extensions
     - [ ] Split result printer out of exposed context
     - [ ] Refactor context to separate functions and data to make it easier to expose
   - [x] Types for contract verification
