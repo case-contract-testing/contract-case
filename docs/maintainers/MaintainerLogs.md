@@ -9,6 +9,7 @@ At this level, logs should not be useful for users. Things to log:
 - General control flow
 - Choices that ContractCase makes (what is happening)
 - Context at creation time
+- When throwing an error, log all information used to decide to throw that error.
 
 ## Deep Maintainer debug
 
