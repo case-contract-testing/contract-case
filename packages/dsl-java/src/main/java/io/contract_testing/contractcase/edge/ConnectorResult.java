@@ -5,7 +5,6 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class ConnectorResult {
 
-  private static final Semaphore jsiiMutex = new Semaphore(1);
 
   public static ConnectorResult toConnectorResult(ConnectorResult result) {
     return result;
