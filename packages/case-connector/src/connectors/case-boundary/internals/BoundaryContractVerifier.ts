@@ -193,7 +193,7 @@ export class BoundaryContractVerifier {
       return new BoundarySuccess();
     } catch (e) {
       if (configOverrides.internals.asyncVerification) {
-        return Promise.reject(e);
+        return Promise.resolve(jsErrorToFailure(e));
       }
       throw e;
     }
