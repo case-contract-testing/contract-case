@@ -29,6 +29,8 @@
 
 Next:
 
+- [ ] Configuration Errors in triggers are incorrectly mapped to verification failures
+
 - [x] Fix Broker download contracts
 - [x] Do upload for verification results
 - [x] Spike JSii - support list
