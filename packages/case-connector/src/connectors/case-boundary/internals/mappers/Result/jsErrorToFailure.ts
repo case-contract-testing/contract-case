@@ -1,9 +1,15 @@
-import { BoundaryFailure } from '../../boundary/index.js';
+import { maintainerLog } from '../../../../../domain/maintainerLog.js';
+import {
+  BoundaryFailure,
+  BoundaryFailureKindConstants,
+} from '../../boundary/index.js';
 
 export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
+  maintainerLog('Mapping error to failure:', e);
   if (e instanceof Error) {
     return new BoundaryFailure(
-      e.name,
+      BoundaryFailureKindConstants.jsNameToConstant[e.name] ||
+        BoundaryFailureKindConstants.CASE_CORE_ERROR,
       e.message,
       e.stack ?? 'unknown location',
     );
