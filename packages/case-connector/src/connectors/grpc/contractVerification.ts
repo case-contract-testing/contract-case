@@ -46,6 +46,29 @@ export const contractVerification = (
   call: ServerDuplexStream<WireVerificationRequest, WireContractResponse>,
 ): void => {
   const sendContractResponse = makeSendContractResponse(call);
+  const sendUnexpectedError = (
+    request: WireVerificationRequest,
+    e: Error,
+    location: string,
+  ) => {
+    // This should never happen, so we log a lot
+    maintainerLog(
+      `!!!Unexpected error!!! At ${location}`,
+      e,
+      '!!!During request',
+      request,
+    );
+    sendContractResponse(
+      request.getId()?.getValue() || '',
+      makeResultResponse(
+        new BoundaryFailure(
+          BoundaryFailureKindConstants.CASE_CORE_ERROR,
+          `[${e.name}] ${e.message}`,
+          e.stack ?? 'ContractCase Connector',
+        ),
+      ),
+    );
+  };
 
   let verificationId: string | undefined;
 
@@ -145,9 +168,17 @@ export const contractVerification = (
             );
           }
 
-          availableContractDescriptions(verificationId).then((result) =>
-            sendContractResponse(getId(request), makeResultResponse(result)),
-          );
+          availableContractDescriptions(verificationId)
+            .then((result) =>
+              sendContractResponse(getId(request), makeResultResponse(result)),
+            )
+            .catch((e) => {
+              sendUnexpectedError(
+                request,
+                e as Error,
+                'Available contract descriptions',
+              );
+            });
           break;
         }
         case WireVerificationRequest.KindCase.RUN_VERIFICATION: {
@@ -166,9 +197,13 @@ export const contractVerification = (
           runVerification(
             verificationId,
             mapConfig(runVerificationRequest.getConfig(), sendContractResponse),
-          ).then((result) =>
-            sendContractResponse(getId(request), makeResultResponse(result)),
-          );
+          )
+            .then((result) =>
+              sendContractResponse(getId(request), makeResultResponse(result)),
+            )
+            .catch((e) => {
+              sendUnexpectedError(request, e as Error, 'Run verification');
+            });
           break;
         }
         case WireVerificationRequest.KindCase.RESULT_RESPONSE:
@@ -204,11 +239,9 @@ export const contractVerification = (
             const id = request.getId()?.getValue();
             resolveById(
               wrappedInvokerId.getValue(),
-              new BoundarySuccessWithAny(
-                JSON.stringify(id != null ? id : null),
-              ),
+              // TODO: This should probably explode, there should always be an ID
+              new BoundarySuccessWithAny(id ?? '!!NO_ID!!'),
             );
-
             //     sendContractResponse(getId(request), makeResultResponse(result));
           }
           break;
@@ -238,25 +271,23 @@ export const contractVerification = (
                 }
                 return s.getValue();
               }),
-            ).then((result) =>
-              sendContractResponse(getId(request), makeResultResponse(result)),
-            );
+            )
+              .then((result) =>
+                sendContractResponse(
+                  getId(request),
+                  makeResultResponse(result),
+                ),
+              )
+              .catch((e) => {
+                sendUnexpectedError(request, e as Error, 'load plugin');
+              });
           }
           break;
         default:
           throw new UnreachableError(type);
       }
     } catch (e) {
-      sendContractResponse(
-        request.getId()?.getValue() || '',
-        makeResultResponse(
-          new BoundaryFailure(
-            BoundaryFailureKindConstants.CASE_CORE_ERROR,
-            `[${(e as Error).name}] ${(e as Error).message}`,
-            (e as Error).stack ?? 'ContractCase Connector',
-          ),
-        ),
-      );
+      sendUnexpectedError(request, e as Error, 'Overall catch');
     }
   });
   call.on('end', () => {
