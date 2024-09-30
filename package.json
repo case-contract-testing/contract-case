@@ -18,7 +18,7 @@
     "@nx/nx-linux-arm64-gnu": "19.5.1",
     "@nx/nx-linux-arm64-musl": "19.8.0",
     "@nx/nx-linux-x64-gnu": "19.8.2",
-    "@nx/nx-linux-x64-musl": "19.5.6",
+    "@nx/nx-linux-x64-musl": "19.8.2",
     "@nx/nx-win32-arm64-msvc": "19.5.1",
     "@nx/nx-win32-x64-msvc": "19.6.0"
   },
