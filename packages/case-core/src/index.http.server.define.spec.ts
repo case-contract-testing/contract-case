@@ -93,6 +93,7 @@ describe('e2e http provider driven', () => {
       },
       'No users exist': () => {
         mockGetUser = () => undefined;
+        return { userId: '007' };
       },
     };
 
@@ -247,11 +248,14 @@ describe('e2e http provider driven', () => {
             describe("when the user doesn't exist", () => {
               it('returns a user not found error', () =>
                 contract.runRejectingExample({
-                  states: [inState('Server is up'), inState('No users exist')],
+                  states: [
+                    inState('Server is up'),
+                    inState('No users exist', { userId: '123' }),
+                  ],
                   definition: willReceiveHttpRequest({
                     request: {
                       method: 'GET',
-                      path: stringPrefix('/users/', '123'),
+                      path: stringPrefix('/users/', stateVariable('userId')),
                     },
                     response: {
                       status: 404,

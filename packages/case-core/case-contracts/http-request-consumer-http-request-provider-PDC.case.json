@@ -106,16 +106,6 @@
         "_case:matcher:resolvesTo": "string"
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
-    },
-    "matcher:an http \"GET\" request to \"/users/123\" without a body": {
-      "method": "GET",
-      "path": {
-        "_case:matcher:type": "_case:StringPrefix",
-        "_case:matcher:prefix": "/users/",
-        "_case:matcher:suffix": "123",
-        "_case:matcher:resolvesTo": "string"
-      },
-      "_case:matcher:type": "_case:HttpRequestMatcher"
     }
   },
   "examples": [
@@ -495,20 +485,30 @@
           "stateName": "Server is up"
         },
         {
-          "_case:state:type": "_case:NamedState",
-          "stateName": "No users exist"
+          "_case:state:type": "_case:StateWithVariables",
+          "stateName": "No users exist",
+          "variables": {
+            "userId": {
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "123",
+              "_case:context:matchBy": "type"
+            }
+          }
         }
       ],
       "mock": {
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "an http \"GET\" request to \"/users/123\" without a body",
+          "_case:matcher:uniqueName": "an http \"GET\" request to \"/users/{{userId}}\" without a body",
           "_case:matcher:child": {
             "method": "GET",
             "path": {
               "_case:matcher:type": "_case:StringPrefix",
               "_case:matcher:prefix": "/users/",
-              "_case:matcher:suffix": "123",
+              "_case:matcher:suffix": {
+                "_case:matcher:type": "_case:ContextVariable",
+                "_case:matcher:variableName": "userId"
+              },
               "_case:matcher:resolvesTo": "string"
             },
             "_case:matcher:type": "_case:HttpRequestMatcher"
