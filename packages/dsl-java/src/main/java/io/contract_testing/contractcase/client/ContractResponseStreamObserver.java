@@ -10,6 +10,8 @@ import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.GeneratedMessage;
 import io.contract_testing.contractcase.ContractCaseCoreError;
 import io.contract_testing.contractcase.LogPrinter;
+import io.contract_testing.contractcase.edge.ConnectorFailure;
+import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.ConnectorStateHandler;
 import io.contract_testing.contractcase.edge.ConnectorSuccess;
@@ -161,6 +163,15 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
             ),
             requestId
         ));
+      }
+      case INVOKE_FUNCTION -> {
+        executor.submit(() ->
+            rpcConnector.sendResponse(
+                mapResultResponse(new ConnectorFailure(
+                    ConnectorFailureKindConstants.CASE_CORE_ERROR,
+                    "Invoke Function is not implemented",
+                    "Java DSL"
+                )), requestId));
       }
       case KIND_NOT_SET -> {
         throw new ContractCaseCoreError(

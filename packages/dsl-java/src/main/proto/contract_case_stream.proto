@@ -38,14 +38,9 @@ message ContractCaseConfig {
 }
 
 // Indicates a successful response with no payload
-message ResultSuccess {
-}
-message ResultSuccessHasMapPayload {
-  google.protobuf.Struct map = 1;
-}
-message ResultSuccessHasAnyPayload {
-  google.protobuf.Value payload = 1;
-}
+message ResultSuccess {}
+message ResultSuccessHasMapPayload { google.protobuf.Struct map = 1; }
+message ResultSuccessHasAnyPayload { google.protobuf.Value payload = 1; }
 message ResultFailure {
   google.protobuf.StringValue kind = 1;
   google.protobuf.StringValue message = 2;
@@ -72,33 +67,39 @@ message StateHandlerHandle {
   Stage stage = 2;
 }
 
-message TriggerFunctionHandle {
-  google.protobuf.StringValue handle = 1;
-}
+message TriggerFunctionHandle { google.protobuf.StringValue handle = 1; }
 
-// Requests from client
+// Requests from client / host
+
+// From Host to Core, instructs the core to begin a contract definition
 message BeginDefinitionRequest {
   ContractCaseConfig config = 1;
   repeated google.protobuf.StringValue caller_versions = 4;
 }
 
+// From Host to Core, instructs the core to run a particular example as part of
+// contract definition
 message RunExampleRequest {
   google.protobuf.Struct example_definition = 2;
   ContractCaseConfig config = 3;
 }
 
+// From host to core, instructs the core to run a particular example, that we
+// expect to fail. This is part of contract definition
 message RunRejectingExampleRequest {
   google.protobuf.Struct example_definition = 2;
   ContractCaseConfig config = 3;
 }
 
-message StripMatchersRequest {
-  google.protobuf.Struct matcher_or_data = 2;
-}
+// From host to core, instructs the core to strip the matchers from a given
+// matcher / data object
+message StripMatchersRequest { google.protobuf.Struct matcher_or_data = 2; }
 
-message EndDefinitionRequest {
-}
+// From host to core, instructs the core to finish the current contract
+// definition
+message EndDefinitionRequest {}
 
+// From host to core, instructs the core to load a plugin
 message LoadPluginRequest {
   repeated google.protobuf.StringValue module_names = 1;
   ContractCaseConfig config = 2;
@@ -107,14 +108,19 @@ message LoadPluginRequest {
 
 // Responses from server
 
-message RunStateHandlerRequest {
-  StateHandlerHandle state_handler_handle = 1;
-}
+// From Core to Host, instructs the host to run a given state handler
+message RunStateHandlerRequest { StateHandlerHandle state_handler_handle = 1; }
+
+// From Core to Host, requests the host invoke one of the user-provided
+// triggers.
 message TriggerFunctionRequest {
   TriggerFunctionHandle trigger_function = 1;
+  // The configuration to invoke this trigger with
+  // note that this is arbitrary, provided by the mock executor
   google.protobuf.Struct config = 2;
 }
 
+// From Core to Host, requests the host logs the given information
 message LogRequest {
   /**
    * A `LogLevel`   google.protobuf.StringValue , either `error`, `warn`,
@@ -154,6 +160,7 @@ message LogRequest {
   google.protobuf.StringValue additional = 7;
 }
 
+// From Core to Host, requests the host prints the given expected/actual error
 message PrintMatchErrorRequest {
   /**
    * The red highlighted blob, eg "MATCHING ERROR" or "TRIGGER FUNCTION ERROR".
@@ -191,6 +198,9 @@ message PrintMatchErrorRequest {
   google.protobuf.StringValue actual = 7;
 }
 
+// From Core to host, requests the host prints the following error message (used
+// by test failures that aren't because of expected / actual expectations or
+// configuration)
 message PrintMessageErrorRequest {
   /**
    * The red highlighted blob, eg "MATCHING ERROR" or "TRIGGER FUNCTION ERROR".
@@ -238,8 +248,60 @@ message PrintTestTitleRequest {
   google.protobuf.StringValue additional_text = 4;
 }
 
-message ResultResponse {
-  BoundaryResult result = 1;
+// Used by both to indicate a response to an earlier message
+// Responses share the ID of the requesting message
+// This was probably a mistake - in a future version, we should
+// expand the ID field so that it's "in response to"
+//
+// Most messages must be acknowledged with a response - this indicates the
+// return of the previous message.
+message ResultResponse { BoundaryResult result = 1; }
+
+// From the Host to the Core, requests that a verification session begins
+message BeginVerificationRequest {
+  // The configuration for this verification
+  ContractCaseConfig config = 1;
+  // Version strings of all ContractCase components for maintainer logs
+  repeated google.protobuf.StringValue caller_versions = 4;
+}
+
+// From the Host to the Core, requests a list of the available contracts
+message AvailableContractDefinitions {}
+
+// From the Host to the Core, instructs the core that the current verification
+// session is now configured, and asks it to execute the verification.
+message RunVerification {
+  // Any configuration overrides for this verification
+  ContractCaseConfig config = 1;
+}
+
+// From the Core to the Host, instructs the host that a new test is starting.
+// This is useful for test frameworks reporting, and has no effect if it is
+// acknowledged without taking any action.
+message StartTestEvent {
+  // The name of this test (human readable)
+  google.protobuf.StringValue test_name = 1;
+  // An ID for a callback to the test invoker when the core is ready
+  google.protobuf.StringValue invoker_id = 2;
+}
+
+// From the Host to the Core, tells the core to execute the test it was given
+message InvokeTest {
+  // Callback ID from the host language in a start test event
+  // Used by the core to invoke a specific test
+  google.protobuf.StringValue invoker_id = 1;
+}
+
+message RegisterFunction {
+  // The function handle / name
+  google.protobuf.StringValue handle = 1;
+}
+
+message InvokeFunction {
+  // The function handle / name to invoke
+  google.protobuf.StringValue handle = 1;
+  // The arguments for the function, as json strings
+  repeated google.protobuf.StringValue arguments = 2;
 }
 
 message DefinitionRequest {
@@ -259,35 +321,9 @@ message DefinitionRequest {
     ResultResponse result_response = 7;
     // Host wants to load a plugin
     LoadPluginRequest load_plugin = 8;
+    // Host wants to register a function that the Core can call
+    RegisterFunction register_function = 9;
   }
-}
-
-message BeginVerificationRequest {
-  // The configuration for this verification
-  ContractCaseConfig config = 1;
-  // Version strings of all ContractCase components for maintainer logs
-  repeated google.protobuf.StringValue caller_versions = 4;
-}
-
-message AvailableContractDefinitions {
-}
-
-message RunVerification {
-  // Any configuration overrides for this verification
-  ContractCaseConfig config = 1;
-}
-
-message StartTestEvent {
-  // The name of this test (human readable)
-  google.protobuf.StringValue test_name = 1;
-  // An ID for a callback to the test invoker when the core is ready
-  google.protobuf.StringValue invoker_id = 2;
-}
-
-message InvokeTest {
-  // Callback ID from the host language in a start test event
-  // Used by the core to invoke a specific test
-  google.protobuf.StringValue invoker_id = 1;
 }
 
 message VerificationRequest {
@@ -307,6 +343,8 @@ message VerificationRequest {
     LoadPluginRequest load_plugin = 6;
     // Core wants to invoke a specific test
     InvokeTest invoke_test = 9;
+    // Host wants to register a function that the Core can call
+    RegisterFunction register_function = 10;
   }
 }
 
@@ -329,6 +367,9 @@ message ContractResponse {
     ResultResponse result_response = 8;
     // Invoking tests (verification only)
     StartTestEvent start_test_event = 9;
+    // Core wants to invoke an arbitrary function on the host,
+    // registered earlier by RegisterFunction
+    InvokeFunction invoke_function = 10;
   }
 }
 
