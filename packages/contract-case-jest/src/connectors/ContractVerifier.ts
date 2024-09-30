@@ -84,6 +84,14 @@ export class ContractVerifier {
     }
   }
 
+  /**
+   * Registers a function that can be invoked by ContractCase during a verification.
+   *
+   * Required by some mock types, like mock function caller.
+   *
+   * @param handle - The string name of the function. Must be unique, and must match the expectation configured in the Example.
+   * @param invokeableFn - The function to invoke
+   */
   registerFunction(
     handle: string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
