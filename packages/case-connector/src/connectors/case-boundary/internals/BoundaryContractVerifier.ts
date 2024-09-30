@@ -165,7 +165,7 @@ export class BoundaryContractVerifier {
    */
   runVerification(
     configOverrides: ContractCaseBoundaryConfig,
-    invokeableFns: Record<string, BoundaryInvokableFunction> = {},
+    invokeableFns: Record<string, BoundaryInvokableFunction>,
   ): Promise<BoundaryResult> | BoundaryResult {
     try {
       this.initialiseVerifier();

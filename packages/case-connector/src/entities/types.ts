@@ -6,6 +6,7 @@ export {
   BoundaryFailure,
   BoundaryFailureKindConstants,
   BoundarySuccess,
+  BoundaryInvokableFunction,
   ILogPrinter,
   IResultPrinter,
   IRunTestCallback,

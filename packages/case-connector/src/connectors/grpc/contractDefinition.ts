@@ -14,11 +14,17 @@ import { ConnectorError } from '../../domain/errors/ConnectorError.js';
 import {
   beginDefinition,
   endRecord,
+  registerFunction,
   runExample,
   runRejectingExample,
   stripMatchers,
 } from '../../domain/define.js';
-import { mapConfig, mapJson, mapResult } from './requestMappers/index.js';
+import {
+  makeInvokeFunction,
+  mapConfig,
+  mapJson,
+  mapResult,
+} from './requestMappers/index.js';
 import { resolveById } from './promiseHandler/promiseHandler.js';
 import { makeSendContractResponse } from './sendContractResponse.js';
 import { maintainerLog } from '../../domain/maintainerLog.js';
@@ -38,6 +44,30 @@ export const contractDefinition = (
   call: ServerDuplexStream<WireDefinitionRequest, WireContractResponse>,
 ): void => {
   const sendContractResponse = makeSendContractResponse(call);
+
+  const sendUnexpectedError = (
+    request: WireDefinitionRequest,
+    e: Error,
+    location: string,
+  ) => {
+    // This should never happen, so we log a lot
+    maintainerLog(
+      `!!!Unexpected error!!! At ${location}`,
+      e,
+      '!!!During request',
+      request,
+    );
+    sendContractResponse(
+      request.getId()?.getValue() || '',
+      makeResultResponse(
+        new BoundaryFailure(
+          BoundaryFailureKindConstants.CASE_CORE_ERROR,
+          `[${e.name}] ${e.message}`,
+          e.stack ?? 'ContractCase Connector',
+        ),
+      ),
+    );
+  };
 
   let definitionId: string | undefined;
 
@@ -223,6 +253,36 @@ export const contractDefinition = (
           ).then((result) =>
             sendContractResponse(getId(request), makeResultResponse(result)),
           );
+        }
+        break;
+      case WireDefinitionRequest.KindCase.REGISTER_FUNCTION:
+        {
+          const registerFunctionRequest = request.getRegisterFunction();
+          if (registerFunctionRequest == null) {
+            throw new ConnectorError(
+              'registerFunction called with something that returned an undefined request',
+            );
+          }
+          if (definitionId === undefined) {
+            throw new ConnectorError(
+              'runVerification was called before beginVerification',
+            );
+          }
+          const handle = registerFunctionRequest.getHandle()?.getValue();
+          if (handle == null) {
+            throw new ConnectorError('Handle was missing a value');
+          }
+          registerFunction(
+            definitionId,
+            handle,
+            makeInvokeFunction(handle, sendContractResponse),
+          )
+            .then((result) =>
+              sendContractResponse(getId(request), makeResultResponse(result)),
+            )
+            .catch((e) => {
+              sendUnexpectedError(request, e as Error, 'load plugin');
+            });
         }
         break;
       default:

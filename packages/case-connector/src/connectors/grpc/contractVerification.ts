@@ -19,11 +19,16 @@ import { ConnectorError } from '../../domain/errors/ConnectorError.js';
 import {
   availableContractDescriptions,
   beginVerification,
+  registerFunction,
   runVerification,
 } from '../../domain/verify.js';
 import { maintainerLog } from '../../domain/maintainerLog.js';
 
-import { mapConfig, mapResult } from './requestMappers/index.js';
+import {
+  makeInvokeFunction,
+  mapConfig,
+  mapResult,
+} from './requestMappers/index.js';
 import {
   makeResolvableId,
   resolveById,
@@ -254,23 +259,62 @@ export const contractVerification = (
               );
             }
 
-            loadPlugin(
-              mapConfig(loadPluginRequest.getConfig(), sendContractResponse),
-              makeLogPrinter(sendContractResponse),
-              makeResultPrinter(sendContractResponse),
-              loadPluginRequest
-                .getCallerVersionsList()
-                .map((s) =>
-                  s != null ? s.getValue() : 'missing-version-value',
+            Promise.resolve()
+              .then(() =>
+                loadPlugin(
+                  mapConfig(
+                    loadPluginRequest.getConfig(),
+                    sendContractResponse,
+                  ),
+                  makeLogPrinter(sendContractResponse),
+                  makeResultPrinter(sendContractResponse),
+                  loadPluginRequest
+                    .getCallerVersionsList()
+                    .map((s) =>
+                      s != null ? s.getValue() : 'missing-version-value',
+                    ),
+                  loadPluginRequest.getModuleNamesList().map((s, index) => {
+                    if (s == null) {
+                      throw new ConnectorError(
+                        `loadPlugin called with a null module name at position '${index}'`,
+                      );
+                    }
+                    return s.getValue();
+                  }),
                 ),
-              loadPluginRequest.getModuleNamesList().map((s, index) => {
-                if (s == null) {
-                  throw new ConnectorError(
-                    `loadPlugin called with a null module name at position '${index}'`,
-                  );
-                }
-                return s.getValue();
-              }),
+              )
+              .then((result) =>
+                sendContractResponse(
+                  getId(request),
+                  makeResultResponse(result),
+                ),
+              )
+              .catch((e) => {
+                sendUnexpectedError(request, e as Error, 'load plugin');
+              });
+          }
+          break;
+        case WireVerificationRequest.KindCase.REGISTER_FUNCTION:
+          {
+            const registerFunctionRequest = request.getRegisterFunction();
+            if (registerFunctionRequest == null) {
+              throw new ConnectorError(
+                'registerFunction called with something that returned an undefined request',
+              );
+            }
+            if (verificationId === undefined) {
+              throw new ConnectorError(
+                'runVerification was called before beginVerification',
+              );
+            }
+            const handle = registerFunctionRequest.getHandle()?.getValue();
+            if (handle == null) {
+              throw new ConnectorError('Handle was missing a value');
+            }
+            registerFunction(
+              verificationId,
+              handle,
+              makeInvokeFunction(handle, sendContractResponse),
             )
               .then((result) =>
                 sendContractResponse(

@@ -6,6 +6,7 @@ import {
   ILogPrinter,
   IResultPrinter,
   BoundaryFailure,
+  BoundaryInvokableFunction,
 } from './internals/index.js';
 import {
   makeCoreError,
@@ -17,6 +18,7 @@ const ENDED_VERIFIER = 'CLOSED' as const;
 export type VerificationHandle = {
   id: string;
   verifier: BoundaryContractVerifier;
+  invokeableFunctions: Record<string, BoundaryInvokableFunction>;
 };
 
 type VerificationContainer = VerificationHandle | typeof ENDED_VERIFIER;
@@ -42,6 +44,7 @@ export const createVerifier = (
       resultPrinter,
       callerVersions,
     ),
+    invokeableFunctions: {},
   };
   VERIFYING_CONTRACTS[id] = verifier;
   return id;

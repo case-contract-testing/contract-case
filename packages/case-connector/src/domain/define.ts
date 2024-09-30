@@ -12,6 +12,7 @@ import {
   getDefiner,
 } from '../connectors/case-boundary/definer.js';
 import {
+  BoundaryInvokableFunction,
   BoundaryResult,
   ILogPrinter,
   IResultPrinter,
@@ -70,6 +71,27 @@ export const stripMatchers = (
   }
   return definerHandle.definer.stripMatchers(matcherOrData);
 };
+
+/**
+ * Registers a function that the core can invoke later.
+ *
+ * @param defineId - The ID for the contract definer
+ * @param handle - The handle / name to refer to this function later
+ * @param invokeableFunction - The function to invoke
+ * @returns A {@link BoundaryResult} Promise indicating whether the function was registered successfully
+ */
+export const registerFunction = (
+  defineId: string,
+  handle: string,
+  invokeableFunction: BoundaryInvokableFunction,
+): Promise<BoundaryResult> =>
+  Promise.resolve().then(() => {
+    const definerHandle = getDefiner(defineId, 'registerFunction');
+    if (!('id' in definerHandle)) {
+      return definerHandle;
+    }
+    return definerHandle.definer.registerFunction(handle, invokeableFunction);
+  });
 
 export const endRecord = (defineId: string): Promise<BoundaryResult> =>
   Promise.resolve().then(() => {
