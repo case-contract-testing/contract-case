@@ -38,14 +38,19 @@ versions, as they are listed in source code / generated documentation.
 
 Java:
 
-- Give `TriggerGroups` a builder and make it immutable, to match the rest of the builders
-- Complete javadoc (eliminate all warnings)
-- Autogenerate documentation or configuration classes somehow - so that they're in sync between different languages
+- [ ] Give `TriggerGroups` a builder and make it immutable, to match the rest of the builders
+- [ ] Complete javadoc (eliminate all warnings)
+- [ ] Autogenerate documentation or configuration classes somehow - so that they're in sync between different languages
+- [ ] Implement server verification and definition in the tests
+- [ ] Implement function verifiers
+- [ ] Implement mockConfig passing
+- [ ] Should we catch JUnit failures and remap them so that contract case can render them?
+- [ ] More idiomatic logging - at the moment, you have to set standard out as the logger
 
 Next:
 
 - [ ] Configuration Errors in triggers are incorrectly mapped to verification failures
-
+- [ ] State handlers in the grpc connector aren't given the configuration
 - [x] Fix Broker download contracts
 - [x] Do upload for verification results
 - [x] Spike JSii - support list
@@ -86,6 +91,10 @@ Next:
   - [x] Trigger functions should take config
 
 - [ ] Build mechanism to ensure that mocks have the right number of request / response present
+- [ ] Tidy up error handling in the grpc connector
+  - [ ] Thrown errors should be caught in the section that they're thrown, so that they don't fall over the whole connector
+  - [ ] There should be a never-throws boundary in the domain layer, in case the mappers throw
+  - [ ] DRY out the unexpected error handler
 
 ## Documentation todos
 
