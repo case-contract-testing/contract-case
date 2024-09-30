@@ -39,14 +39,15 @@ public class SetupInfo {
   public String getStateVariable(String key) {
     if (this.stateVariables.get(key) == null) {
       var stateKeys = new ArrayList<>(this.stateVariables.keySet());
-      throw new ContractCaseConfigurationError("No state variable present with name '" + key
-          + "'. Check the variable is defined in the contract. "
-          + (stateKeys.size() == 0
-          ? "There are no currently defined state variables"
-          : "Currently defined variables are: \n"
-              + stateKeys
-              .stream().map(s -> "    " + s)
-              .collect(Collectors.joining("\n"))));
+      throw new ContractCaseConfigurationError(
+          "Can't get state variable '" + key + "', as it's not present in the config"
+              + "'. Check the variable is defined in the contract. "
+              + (stateKeys.size() == 0
+              ? "There are no currently defined state variables"
+              : "Currently defined variables are: \n"
+                  + stateKeys
+                  .stream().map(s -> "    " + s)
+                  .collect(Collectors.joining("\n"))));
     }
     return this.stateVariables.get(key);
   }

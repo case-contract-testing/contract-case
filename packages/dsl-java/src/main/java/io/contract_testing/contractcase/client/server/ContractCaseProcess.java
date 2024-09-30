@@ -117,7 +117,7 @@ public class ContractCaseProcess {
       throw new UncheckedIOException(ioe);
     }
 
-    this.shutdownHook = new Thread(this::terminate, "Terminate jsii client");
+    this.shutdownHook = new Thread(this::terminate, "Terminate CaseConnector client");
     Runtime.getRuntime().addShutdownHook(this.shutdownHook);
   }
 

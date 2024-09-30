@@ -35,13 +35,26 @@ dependencies {
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.0'
     implementation 'org.jetbrains:annotations:25.0.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.1'
+
     testImplementation 'com.google.protobuf:protobuf-gradle-plugin:0.9.4'
+
+    // Execution of tests
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.1'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.1'
+
+    // client implementation under test, in test.httpclient.implementation
+    testImplementation 'org.apache.httpcomponents:fluent-hc:4.5.5'
+    testCompileOnly 'org.projectlombok:lombok:1.18.28'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+
 }
 
 test {
     useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+    }
 }
 
 jar {

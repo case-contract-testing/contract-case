@@ -176,17 +176,28 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
     Status status = Status.fromThrowable(t);
     if (Status.Code.UNAVAILABLE.equals(status.getCode())) {
       System.err.println("""
-          ContractCase was unable to contact its internal server.
-             This is either a conflict while starting the server,
-             a crash while the server was running, or a bug in
-             ContractCase. Please see the rest of the log output
-             for details.
-
-             If you are unable to resolve this locally,
-             please open an issue here:
-
-             https://github.com/case-contract-testing/contract-case
-          """);
+          \nContractCase was unable to contact its internal server.
+             This is probably a configuration error causing
+             early shutdown of the JVM.
+             
+             \n
+             Please see the full log output for a stack trace.
+             
+             ---
+             """
+          + "   " + t.getMessage() +
+          """
+                 
+                 ---
+                 \n
+                 If you are unable to resolve this locally, or
+                 there is no configuration error below this message,
+                 it may be a bug in ContractCase.
+                 \n
+                 If you suspect a bug, please open an issue here:
+                 \n
+                 https://github.com/case-contract-testing/contract-case
+              """);
     } else {
       System.err.println("ContractCase failed: " + status);
       t.printStackTrace();

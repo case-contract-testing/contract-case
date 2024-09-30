@@ -15,7 +15,8 @@
   "homepage": "https://case.contract-testing.io",
   "license": "BSD-3-Clause",
   "scripts": {
-    "build": "rimraf build && bash install-connector.sh && bash -c './gradlew build'"
+    "build": "rimraf build && bash install-connector.sh && bash -c './gradlew build testClasses -x test'",
+    "test": "./gradlew test"
   },
   "funding": {
     "type": "individual",
