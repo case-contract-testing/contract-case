@@ -4,7 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Config object for ContractCase
+ * Config object for ContractCase. See the <a
+ * href="https://case.contract-testing.io/docs/reference/configuring">configuration reference</a>
+ * for more details.
+ *
+ * @see <a href="https://case.contract-testing.io/docs/reference/configuring">Configuration
+ * reference</a>
  */
 public class ContractCaseConfig {
 
@@ -95,16 +100,27 @@ public class ContractCaseConfig {
    */
   public final Map<String, Map<String, String>> mockConfig;
 
-
+  /**
+   * Define the trigger and test function (if any) for this interaction pair.
+   * <p>
+   * See <a href="https://case.contract-testing.io/docs/reference/triggers">the trigger
+   * reference</a> and {@link TriggerGroups} for details.
+   */
   public final TriggerGroups triggers;
 
   /**
-   * State setup and teardown handlers for any states this test requires (see (<a
-   * href="https://case.contract-testing.io/docs/reference/state-handlers/">writing state
-   * handlers</a>)) for more details
+   * State setup and teardown handlers for any states this test requires.
+   * <p>
+   * See <a href="https://case.contract-testing.io/docs/reference/state-handlers/">writing state
+   * handlers</a> for more details
    */
   public final Map<String, StateHandler> stateHandlers;
 
+  /**
+   * Don't construct this directly, use a {@link ContractCaseConfigBuilder} instead, obtained via
+   * {@link ContractCaseConfigBuilder#aContractCaseConfig()}
+   */
+  @SuppressWarnings("doclint")
   protected ContractCaseConfig(String providerName, String consumerName, LogLevel logLevel,
       String contractDir, String contractFilename, Boolean printResults, Boolean throwOnFail,
       PublishType publish, String brokerBaseUrl, String brokerCiAccessToken,
@@ -183,6 +199,14 @@ public class ContractCaseConfig {
     return stateHandlers;
   }
 
+  /**
+   * Builder for {@link ContractCaseConfig} objects.
+   * <p>
+   * See the documentation for {@link ContractCaseConfig} for java specifics, and the
+   * <a href="https://case.contract-testing.io/docs/reference/configuring">configuration
+   * reference</a> for full details.
+   */
+  @SuppressWarnings("doclint")
   public static final class ContractCaseConfigBuilder {
 
     private String providerName;
@@ -205,6 +229,9 @@ public class ContractCaseConfig {
     private ContractCaseConfigBuilder() {
     }
 
+    /**
+     * @return An empty builder
+     */
     public static ContractCaseConfigBuilder aContractCaseConfig() {
       return new ContractCaseConfigBuilder();
     }

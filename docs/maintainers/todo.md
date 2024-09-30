@@ -25,7 +25,22 @@
 - [ ] Release python
 - [ ] Release C# ?
 
+## Permalinks needed
+
+The following links need to be made permanent, or replaced with permalink
+versions, as they are listed in source code / generated documentation.
+
+- https://case.contract-testing.io/docs/reference/configuring
+- https://case.contract-testing.io/docs/reference/state-handlers/
+- https://case.contract-testing.io/docs/reference/triggers
+
 ## Todo list
+
+Java:
+
+- Give `TriggerGroups` a builder and make it immutable, to match the rest of the builders
+- Complete javadoc (eliminate all warnings)
+- Autogenerate documentation or configuration classes somehow - so that they're in sync between different languages
 
 Next:
 

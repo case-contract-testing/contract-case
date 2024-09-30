@@ -18,16 +18,23 @@ repositories {
     mavenLocal()
 }
 
+tasks.withType(Javadoc).configureEach {
+    exclude('io/contract_testing/contractcase/grpc')
+    exclude('io/contract_testing/contractcase/edge')
+    exclude('io/contract_testing/contractcase/client')
+}
+
 def caseCoreVersion = "0.15.6"
 def grpcVersion = "1.68.0"
+def protobufVersion = "4.28.2"
 
 dependencies {
     api "io.contract-testing.contractcase:case_example_mock_types:${caseCoreVersion}"
     api "io.contract-testing.contractcase:test-equivalence-matchers:${caseCoreVersion}"
     implementation 'com.diogonunes:JColor:5.5.1'
-    implementation 'com.google.protobuf:protobuf-java:4.28.2'
-    implementation 'com.google.protobuf:protobuf-java-util:4.28.2'
-    implementation 'com.google.protobuf:protoc:4.28.2'
+    implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
+    implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
+    implementation "com.google.protobuf:protoc:${protobufVersion}"
     implementation "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
     implementation "io.grpc:grpc-core:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
@@ -84,12 +91,12 @@ protobuf {
         // If you don't specify it, protoc will try to use "protoc-gen-grpc" from
         // system search path.
         'grpc' {
-            artifact = 'io.grpc:protoc-gen-grpc-java:1.68.0'
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
         }
     }
     protoc {
         // Download from repositories
-        artifact = 'com.google.protobuf:protoc:4.28.2'
+        artifact = "com.google.protobuf:protoc:${protobufVersion}"
     }
     generateProtoTasks {
         all().configureEach { task ->
@@ -102,9 +109,7 @@ protobuf {
                 }
             }
         }
-
     }
-
 }
 
 
