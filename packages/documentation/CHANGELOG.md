@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.8](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.7...documentation-v0.0.8) (2024-10-01)
+
+
+### Documentation
+
+* Add more java examples ([c176fa9](https://github.com/case-contract-testing/contract-case/commit/c176fa93930b78c761d312d48ec133081aa13d38))
+* Add some java examples ([b38a779](https://github.com/case-contract-testing/contract-case/commit/b38a77992c92e3cadb3474edeee39c3181394957))
+* Add terminology page ([8fa1954](https://github.com/case-contract-testing/contract-case/commit/8fa195491f5084be3ceb83cf0253e755a8a018d3))
+* Clarify contract definition section ([1040e60](https://github.com/case-contract-testing/contract-case/commit/1040e60a1488333ce59d92a1e3f64c6db6cd2e67))
+* Remove FAQ and put the answers in more appropriate locations ([2cede5a](https://github.com/case-contract-testing/contract-case/commit/2cede5a9b66ac63375b540168f086b81c6bc5181))
+* Significantly reduce repetition in documentation ([d69c222](https://github.com/case-contract-testing/contract-case/commit/d69c222796a75fc2ca7b50898af306d05c83aa98))
+* Update introduction ([dffe337](https://github.com/case-contract-testing/contract-case/commit/dffe337bf2df428d18ac396e8399b55f187a68fc))
+
 ## [0.0.7](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.6...documentation-v0.0.7) (2024-01-06)
 
 

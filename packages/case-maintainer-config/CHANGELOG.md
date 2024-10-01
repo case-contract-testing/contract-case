@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-maintainer-config-v0.0.4...@contract-case/case-maintainer-config-v0.1.0) (2024-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* Use NodeNext instead of commonjs+node
+
+### Features
+
+* Use NodeNext instead of commonjs+node ([cd948b6](https://github.com/case-contract-testing/contract-case/commit/cd948b6ae8df53752a969931561b6dff4361362b))
+
 ## [0.0.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-maintainer-config-v0.0.3...@contract-case/case-maintainer-config-v0.0.4) (2024-01-23)
 
 

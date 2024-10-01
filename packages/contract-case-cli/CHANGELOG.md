@@ -23,6 +23,27 @@
   * devDependencies
     * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
 
+## [0.2.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.13...@contract-case/cli-v0.2.0) (2024-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* Convert package to pure ESM
+
+### Code Refactoring
+
+* Convert package to pure ESM ([b03cbcd](https://github.com/case-contract-testing/contract-case/commit/b03cbcd52d1ec5d96c66a467865842150acdabf5))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.7.5 to 0.8.0
+    * @contract-case/case-core bumped from 0.15.7 to 0.16.0
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.1.0 to 0.1.1
+
 ## [0.1.13](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.1.12...@contract-case/cli-v0.1.13) (2024-05-16)
 
 

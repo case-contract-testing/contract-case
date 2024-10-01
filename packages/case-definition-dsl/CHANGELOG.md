@@ -1,5 +1,41 @@
 # Changelog
 
+## [0.16.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.15.7...@contract-case/case-definition-dsl-v0.16.0) (2024-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace test-equivalence-matchers and case-example-mock-types with one package named "case-definition-dsl"
+
+### Features
+
+* Add function caller mocks ([e05b370](https://github.com/case-contract-testing/contract-case/commit/e05b370380d67f1b0774631bbd83d5e0c83d6a59))
+* Add MockFunctionCall to the definition dsl ([172fbe2](https://github.com/case-contract-testing/contract-case/commit/172fbe2b2c9a60942042e797e9ccf4e97bd39650))
+
+
+### Bug Fixes
+
+* Correct documentation for And matcher ([70ed28d](https://github.com/case-contract-testing/contract-case/commit/70ed28d08ded1897acbf666dff863c42d3f89994))
+
+
+### Code Refactoring
+
+* Replace test-equivalence-matchers and case-example-mock-types with one package named "case-definition-dsl" ([031ce1e](https://github.com/case-contract-testing/contract-case/commit/031ce1e1eef309f37b17dfff6dc90a2317cac122))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.15.7 to 0.16.0
+    * @contract-case/case-plugin-base bumped from 0.15.7 to 0.16.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.15.7 to 0.16.0
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.15.7 to 0.16.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.0.4 to 0.1.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.1.0 to 0.1.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.15.7 to 0.16.0
+
 ## [0.15.7](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-example-mock-types-v0.15.6...@contract-case/case-example-mock-types-v0.15.7) (2024-05-16)
 
 
