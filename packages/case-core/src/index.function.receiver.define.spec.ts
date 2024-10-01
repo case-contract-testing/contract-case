@@ -26,7 +26,10 @@ describe('function receiver', () => {
     {
       ...contractDetails,
       config: {
-        printResults: false, // Set this to true for you own tests
+        // These tests are expected to be failing, so we don't want to print anything
+        printResults: false,
+        // Similarly, we don't want to log anything
+        logLevel: 'none',
         contractFilename: FILENAME, // Usually you will not need to provide a filename
       },
     },
