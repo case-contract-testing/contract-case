@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.1](https://github.com/case-contract-testing/contract-case/compare/v0.16.0...v0.16.1) (2024-10-01)
+
+
+### Bug Fixes
+
+* Correct broken JS includes ([a439292](https://github.com/case-contract-testing/contract-case/commit/a43929236dcf4130c4ec145bcacc95effacc6f15))
+
 ## [0.16.0](https://github.com/case-contract-testing/contract-case/compare/v0.15.8...v0.16.0) (2024-10-01)
 
 

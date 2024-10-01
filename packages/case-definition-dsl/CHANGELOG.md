@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.16.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.16.0...@contract-case/case-definition-dsl-v0.16.1) (2024-10-01)
+
+
+### Bug Fixes
+
+* Correct broken JS includes ([a439292](https://github.com/case-contract-testing/contract-case/commit/a43929236dcf4130c4ec145bcacc95effacc6f15))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.16.0 to 0.16.1
+    * @contract-case/case-plugin-base bumped from 0.16.0 to 0.16.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.16.0 to 0.16.1
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.16.0 to 0.16.1
+  * devDependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.16.0 to 0.16.1
+
 ## [0.16.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.15.7...@contract-case/case-definition-dsl-v0.16.0) (2024-10-01)
 
 
