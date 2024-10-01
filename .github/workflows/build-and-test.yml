@@ -44,7 +44,6 @@ jobs:
         env:
           CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
           CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-          CASE_CONNECTOR_DEBUG: true
           NODE_VERSION: ${{ matrix.node-version }}
           FORCE_COLOR: true
 
