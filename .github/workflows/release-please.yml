@@ -42,7 +42,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
         with:
-          node-version: 18
+          node-version: 22
           registry-url: 'https://registry.npmjs.org'
       - name: Set up JDK 17
         uses: actions/setup-java@b36c23c0d998641eff861008f374ee103c25ac73 # v4.4.0
@@ -60,7 +60,7 @@ jobs:
         env:
           CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
           CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-          NODE_VERSION: 18
+          NODE_VERSION: 22
           FORCE_COLOR: true
 
     # Release Please has already incremented versions and published tags, so we just
