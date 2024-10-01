@@ -21,6 +21,7 @@ import io.grpc.stub.StreamObserver;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
@@ -35,7 +36,10 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   private final SendingWorker<T> worker;
   private Status errorStatus;
 
-  private ManagedChannel channel;
+  private final ManagedChannel channel;
+
+  final CountDownLatch finishLatch = new CountDownLatch(1);
+
 
   private static final int DEFAULT_TIMEOUT_SECONDS = 60;
 
@@ -183,7 +187,16 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
   public void close() {
     worker.close();
-    this.channel.shutdown();
+    try {
+      finishLatch.await(5, TimeUnit.SECONDS);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+    }
+    try {
+      this.channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+    }
   }
 
 

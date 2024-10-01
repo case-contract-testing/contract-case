@@ -184,42 +184,49 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
 
   @Override
   public void onError(final Throwable t) {
-    Status status = Status.fromThrowable(t);
-    if (Status.Code.UNAVAILABLE.equals(status.getCode())) {
-      System.err.println("""
-          \nContractCase was unable to contact its internal server.
-             This is probably a configuration error causing
-             early shutdown of the JVM.
-             
-             \n
-             Please see the full log output for a stack trace.
-             
-             ---
-             """
-          + "   " + t.getMessage() +
-          """
-                 
-                 ---
-                 \n
-                 If you are unable to resolve this locally, or
-                 there is no configuration error below this message,
-                 it may be a bug in ContractCase.
-                 \n
-                 If you suspect a bug, please open an issue here:
-                 \n
-                 https://github.com/case-contract-testing/contract-case
-              """);
-    } else {
-      System.err.println("ContractCase failed: " + status);
-      t.printStackTrace();
+    try {
+      Status status = Status.fromThrowable(t);
+      if (Status.Code.UNAVAILABLE.equals(status.getCode())) {
+        System.err.println("""
+            ContractCase was unable to contact its internal server.
+               This is either a conflict while starting the server,
+               a crash while the server was running, or a bug in
+               ContractCase.
+               
+               \n
+               There may be additional context in the rest of
+               the log output.
+               
+               --- Error message is ---
+               """
+            + "   " + t.getMessage() + """
+               ------------------------
+               \n
+               If you are unable to resolve this locally, or if
+               you suspect a bug, please open an issue here:
+               \n
+               https://github.com/case-contract-testing/contract-case/issues/new
+            """);
+      } else {
+        System.err.println("ContractCase failed: " + status);
+        t.printStackTrace();
+      }
+
+      rpcConnector.setErrorStatus(status);
+      executor.shutdown();
+    } finally {
+      rpcConnector.finishLatch.countDown();
     }
-    rpcConnector.setErrorStatus(status);
   }
 
   @Override
   public void onCompleted() {
-    MaintainerLog.log("Closing listener and pool as the stream completed");
-    executor.shutdown();
+    try {
+      MaintainerLog.log("Closing listener and pool as the stream completed");
+      executor.shutdown();
+    } finally {
+      rpcConnector.finishLatch.countDown();
+    }
   }
 
   @NotNull

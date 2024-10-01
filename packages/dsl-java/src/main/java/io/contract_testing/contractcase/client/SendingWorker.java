@@ -2,15 +2,20 @@ package io.contract_testing.contractcase.client;
 
 import io.grpc.stub.StreamObserver;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 class SendingWorker<T> implements Runnable {
 
   private final BlockingQueue<SendTask<T>> queue;
   private final StreamObserver<T> requestObserver;
   private final ExecutorService executorService;
+
+  final CountDownLatch finishLatch = new CountDownLatch(1);
+
 
   SendingWorker(StreamObserver<T> requestObserver) {
     this.queue = new LinkedBlockingQueue<>();
@@ -39,6 +44,7 @@ class SendingWorker<T> implements Runnable {
           case CLOSE -> {
             requestObserver.onCompleted();
             executorService.shutdown();
+            finishLatch.countDown();
             return;
           }
         }
@@ -53,6 +59,13 @@ class SendingWorker<T> implements Runnable {
       this.queue.put(new SendTask<T>(TaskType.CLOSE, null));
     } catch (InterruptedException e) {
       throw new RuntimeException("SendingWorker interrupted while closing", e);
+    }
+    try {
+      if (!finishLatch.await(5, TimeUnit.SECONDS)) {
+        throw new RuntimeException("Timed out waiting for finish");
+      }
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
     }
   }
 
