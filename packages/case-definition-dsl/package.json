@@ -21,7 +21,7 @@
     "build:docs:local": "api-extractor run --local --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "watch": "jsii -w",
     "prepackage": "rimraf dist",
-    "prepack": "mkdirp node_modules/@contract-case && ln -sf ${PWD}/../case-entities node_modules/@contract-case/case-entities-internal &&  ln -sf ${PWD}/../case-core-plugin-http-dsl node_modules/@contract-case/case-core-plugin-http-dsl && ln -sf ${PWD}/../case-plugin-base node_modules/@contract-case/case-plugin-base  && ln -sf ${PWD}/../case-core-function-dsl node_modules/@contract-case/case-core-function-dsl",
+    "prepack": "bash -c './script/link-bundled-deps.sh'",
     "package": "jsii-pacmak",
     "publish:maven": "publib-maven",
     "test": "jest",
