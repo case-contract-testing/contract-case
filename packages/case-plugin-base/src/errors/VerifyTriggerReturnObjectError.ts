@@ -20,7 +20,7 @@ export class VerifyTriggerReturnObjectError extends Error {
     }
 
     Object.setPrototypeOf(this, new.target.prototype);
-    this.name = VerifyTriggerReturnObjectError.name;
+    this.name = 'VerifyTriggerReturnObjectError';
 
     this.cause = cause;
   }

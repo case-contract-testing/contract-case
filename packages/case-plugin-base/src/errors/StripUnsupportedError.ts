@@ -22,6 +22,6 @@ export class StripUnsupportedError extends Error {
       )}`,
     );
     Object.setPrototypeOf(this, new.target.prototype);
-    this.name = StripUnsupportedError.name;
+    this.name = 'StripUnsupportedError';
   }
 }

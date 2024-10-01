@@ -18,6 +18,6 @@ export class CaseConfigurationError extends Error {
   ) {
     super(`${message}${context ? locationString(context) : ''}`);
     Object.setPrototypeOf(this, new.target.prototype);
-    this.name = CaseConfigurationError.name;
+    this.name = 'CaseConfigurationError';
   }
 }

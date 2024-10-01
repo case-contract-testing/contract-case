@@ -54,5 +54,13 @@ export class BoundaryFailureKindConstants {
     [CaseTriggerError.name]: this.CASE_TRIGGER_ERROR,
     [VerifyTriggerReturnObjectError.name]: this.CASE_VERIFY_RETURN_ERROR,
     [BrokerError.name]: this.CASE_BROKER_ERROR,
+    // The following mappings are maintained so that the non-minified names also work
+    // In case the names are set directly.
+    [this.CASE_CORE_ERROR]: this.CASE_CORE_ERROR,
+    [this.CASE_CONFIGURATION_ERROR]: this.CASE_CONFIGURATION_ERROR,
+    [this.CASE_FAILED_ASSERTION_ERROR]: this.CASE_FAILED_ASSERTION_ERROR,
+    [this.CASE_TRIGGER_ERROR]: this.CASE_TRIGGER_ERROR,
+    [this.CASE_VERIFY_RETURN_ERROR]: this.CASE_VERIFY_RETURN_ERROR,
+    [this.CASE_BROKER_ERROR]: this.CASE_BROKER_ERROR,
   };
 }

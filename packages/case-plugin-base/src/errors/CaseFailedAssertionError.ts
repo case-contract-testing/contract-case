@@ -18,7 +18,7 @@ export class CaseFailedAssertionError extends Error {
         .reduce((acc, curr) => `${acc}\n${curr}`)}`,
     );
     Object.setPrototypeOf(this, new.target.prototype);
-    this.name = CaseFailedAssertionError.name;
+    this.name = 'CaseFailedAssertionError';
     this.matchResult = matchResult;
   }
 }

@@ -6,7 +6,7 @@ export class ContractCaseCoreError extends Error {
     this.location = location;
 
     Object.setPrototypeOf(this, new.target.prototype);
-    this.name = ContractCaseCoreError.name;
+    this.name = 'ContractCaseCoreError';
     this.stack = this.location.startsWith('CaseCoreError')
       ? `Contract${this.location}`
       : this.location;

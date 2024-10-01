@@ -6,7 +6,7 @@ export class ContractCaseExpectationsNotMet extends Error {
     this.location = location;
 
     Object.setPrototypeOf(this, new.target.prototype);
-    this.name = ContractCaseExpectationsNotMet.name;
+    this.name = 'ContractCaseExpectationsNotMet';
     this.stack = location;
   }
 }

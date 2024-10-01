@@ -5,7 +5,7 @@ export class BrokerError extends Error {
     super(message);
 
     Object.setPrototypeOf(this, new.target.prototype);
-    this.name = BrokerError.name;
+    this.name = 'BrokerError';
 
     this.code = code;
   }

@@ -17,6 +17,6 @@ export class CaseTriggerError extends Error {
   ) {
     super(`${message}${context ? locationString(context) : ''}`);
     Object.setPrototypeOf(this, new.target.prototype);
-    this.name = CaseTriggerError.name;
+    this.name = 'CaseTriggerError';
   }
 }

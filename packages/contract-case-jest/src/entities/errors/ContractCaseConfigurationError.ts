@@ -4,10 +4,11 @@ export class ContractCaseConfigurationError extends Error {
   constructor(message: string, location?: string | undefined) {
     super(message);
 
-    this.location = location !== undefined ? location : this.stack ?? 'unknown';
+    this.location =
+      location !== undefined ? location : (this.stack ?? 'unknown');
 
     Object.setPrototypeOf(this, new.target.prototype);
-    this.name = ContractCaseConfigurationError.name;
+    this.name = 'ContractCaseConfigurationError';
     this.stack = this.location.startsWith('CaseConfigurationError')
       ? `Contract${this.location}`
       : this.location;
