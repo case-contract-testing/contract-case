@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.1.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.1.0...@contract-case/dsl-java-v0.1.1) (2024-10-01)
+
+
+### Features
+
+* Add loadPlugin message to both contract definition and verification grpc streams ([5845808](https://github.com/case-contract-testing/contract-case/commit/584580849cc48eaf990a2b559ab85f29f0b571b6))
+* Add mockConfig configuration property ([f82a394](https://github.com/case-contract-testing/contract-case/commit/f82a394f4e048721f5399928a83f19ed044ac13c))
+* Add plugin loader methods to ContractDefiner and ContractVerifier ([1112f40](https://github.com/case-contract-testing/contract-case/commit/1112f40de01e53dd4dc5f60d9562a30a4fe090d4))
+
+
+### Bug Fixes
+
+* Avoid channel unavailable messages during normal shutdown ([0ccdbf7](https://github.com/case-contract-testing/contract-case/commit/0ccdbf7a5e2dfd10deb92a68b0b6a552ccef10d3))
+* Extract sourcemap for better stack traces ([e465b96](https://github.com/case-contract-testing/contract-case/commit/e465b962296ae0c661c5c0a0dd7e230218e6aca7))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.7.5 to 0.8.0
+
 ## [0.1.0](https://github.com/case-contract-testing/java-dsl/compare/contractcase-v0.0.1...contractcase-v0.1.0) (2024-05-16)
 
 

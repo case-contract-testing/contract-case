@@ -1,5 +1,53 @@
 # Changelog
 
+## [0.8.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.7.5...@contract-case/case-connector-v0.8.0) (2024-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* BoundarySuccessWithAny is now always a json encoded string. Existing mappers will need to be updated.
+* Convert package to pure ESM
+* Split HTTP mock and matchers to their own packages
+
+### Features
+
+* Add BoundaryPluginLoader to facilitate loading of plugins ([2242e96](https://github.com/case-contract-testing/contract-case/commit/2242e960c93278d9fafdacce79d568b87200345c))
+* Add grpc messages for function invokers and responses ([1a45353](https://github.com/case-contract-testing/contract-case/commit/1a453539bc12bda8ccd1ec69f0d485c197eb43e6))
+* Add loadPlugin message to both contract definition and verification grpc streams ([5845808](https://github.com/case-contract-testing/contract-case/commit/584580849cc48eaf990a2b559ab85f29f0b571b6))
+* Add mockConfig to configuration object, allowing arbitrary configuration of mocks ([a9aa4f7](https://github.com/case-contract-testing/contract-case/commit/a9aa4f717095dde70e98742dd16dd3e20cc63b1d))
+* Expose invokeable functions through the javascript boundary ([39a1920](https://github.com/case-contract-testing/contract-case/commit/39a19206157962dc60e2f216fb13500c1f37b94d))
+
+
+### Bug Fixes
+
+* Fix issue where failures in verfication could cause the server to die ([6415824](https://github.com/case-contract-testing/contract-case/commit/64158247dccefbe40d41cdcbdc643014e0ef6c75))
+* Fix issue where failures were incorrectly mapped across core binary ([5ea3a1f](https://github.com/case-contract-testing/contract-case/commit/5ea3a1f028b2d6cc4b7ddb7edcfb92b228f23590))
+* Hardcode error names so that they're robust to minification ([3106196](https://github.com/case-contract-testing/contract-case/commit/3106196f909ef703ecb15e0f076933a987e69fc3))
+* Now loading plugins over grpc doesn't throw an error ([0137381](https://github.com/case-contract-testing/contract-case/commit/013738163d79d3fac8a27e88c77a6ee6b0e3fc1f))
+
+
+### Miscellaneous Chores
+
+* Split HTTP mock and matchers to their own packages ([bfc2e4f](https://github.com/case-contract-testing/contract-case/commit/bfc2e4ff2d464899fd8ce63978048e9f1991ff80))
+
+
+### Code Refactoring
+
+* BoundarySuccessWithAny is now always a json encoded string. Existing mappers will need to be updated. ([5fc4a7a](https://github.com/case-contract-testing/contract-case/commit/5fc4a7afc4b88ecc70e5d1d86f2e6f42a2486ae4))
+* Convert package to pure ESM ([64f5788](https://github.com/case-contract-testing/contract-case/commit/64f5788236d25f70092b6d1e5c4d2f4e0e412bc9))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.15.7 to 0.16.0
+    * @contract-case/case-connector-proto bumped from 0.7.5 to 0.7.6
+    * @contract-case/case-entities-internal bumped from 0.15.7 to 0.16.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.0.4 to 0.1.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.1.0 to 0.1.1
+
 ## [0.7.5](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.7.4...@contract-case/case-connector-v0.7.5) (2024-05-16)
 
 

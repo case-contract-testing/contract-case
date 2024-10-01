@@ -29,6 +29,46 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.12.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.11.7...@contract-case/contract-case-jest-v0.12.0) (2024-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* Convert package to pure ESM
+* Replace test-equivalence-matchers and case-example-mock-types with one package named "case-definition-dsl"
+
+### Features
+
+* Add function execution mocks ([1b7494f](https://github.com/case-contract-testing/contract-case/commit/1b7494fa01f7802bfe7243332da5d58087f14628))
+* Support mocking a function caller for a supplied function ([658c68b](https://github.com/case-contract-testing/contract-case/commit/658c68bcc80b9c1e8c03d787a275ab8251c9be4e))
+
+
+### Bug Fixes
+
+* Added a default empty config to runVerification, allowing it to be called with no arguments ([c1adc5b](https://github.com/case-contract-testing/contract-case/commit/c1adc5b06a33f0a00c7a44194c694db99e5cca20))
+* Fix issue where mockConfig was not passed through during verification ([e5b83c8](https://github.com/case-contract-testing/contract-case/commit/e5b83c8408b6626230a78697ac057ec6776e1945))
+* Hardcode error names so that they're robust to minification ([3106196](https://github.com/case-contract-testing/contract-case/commit/3106196f909ef703ecb15e0f076933a987e69fc3))
+
+
+### Code Refactoring
+
+* Convert package to pure ESM ([70c5fe4](https://github.com/case-contract-testing/contract-case/commit/70c5fe4402adf59c4f4072856d4dd7c0ac10326c))
+* Replace test-equivalence-matchers and case-example-mock-types with one package named "case-definition-dsl" ([031ce1e](https://github.com/case-contract-testing/contract-case/commit/031ce1e1eef309f37b17dfff6dc90a2317cac122))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.7.5 to 0.8.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.15.7 to 0.16.0
+    * @contract-case/case-entities-internal bumped from 0.15.7 to 0.16.0
+    * @contract-case/case-definition-dsl bumped from 0.15.7 to 0.16.0
+    * @contract-case/case-plugin-base bumped from 0.15.7 to 0.16.0
+    * @contract-case/cli bumped from 0.1.13 to 0.2.0
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.1.0 to 0.1.1
+
 ## [0.11.7](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.11.6...@contract-case/contract-case-jest-v0.11.7) (2024-05-16)
 
 
