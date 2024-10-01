@@ -44,7 +44,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
     this.logPrinter = logPrinter;
     this.configHandle = configHandle;
     this.runTestCallback = runTestCallback;
-    this.executor = Executors.newCachedThreadPool();
+    this.executor = Executors.newSingleThreadExecutor();
   }
 
   @Override
@@ -218,7 +218,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
 
   @Override
   public void onCompleted() {
-    MaintainerLog.log("Closing listener and pool");
+    MaintainerLog.log("Closing listener and pool as the stream completed");
     executor.shutdown();
   }
 

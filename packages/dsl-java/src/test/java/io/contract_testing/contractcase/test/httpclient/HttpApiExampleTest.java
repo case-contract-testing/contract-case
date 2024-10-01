@@ -2,7 +2,6 @@ package io.contract_testing.contractcase.test.httpclient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.ExampleDefinition;
@@ -138,7 +137,6 @@ public class HttpApiExampleTest {
 
   @Test
   public void testGetUserWithPathVariable() {
-
     contract.runExample(
         new ExampleDefinition<>(
             List.of(
@@ -170,6 +168,7 @@ public class HttpApiExampleTest {
               assertThat(user.userId()).isEqualTo(setupInfo.getStateVariable("userId"));
             })
     );
+
   }
 
 

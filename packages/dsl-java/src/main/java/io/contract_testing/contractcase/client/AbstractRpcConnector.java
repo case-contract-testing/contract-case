@@ -118,7 +118,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
         );
       }
       return new ConnectorFailure(
-          ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
+          ConnectorFailureKindConstants.CASE_CORE_ERROR,
           "Timed out waiting for internal connection to ContractCase for message '" + id + "'",
           MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
       );

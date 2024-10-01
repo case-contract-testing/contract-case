@@ -18,9 +18,11 @@ public class ContractCaseProcess {
 
   private static ContractCaseProcess instance;
   private int portNumber;
+  private ReaderSink outputStreamSink;
 
   public static synchronized ContractCaseProcess getInstance() {
     if (instance == null) {
+      MaintainerLog.log("Creating process instance");
       instance = new ContractCaseProcess();
     }
     return instance;
@@ -42,7 +44,7 @@ public class ContractCaseProcess {
   /**
    * The error stream sink ensures that all standard error from the binary is captured
    */
-  private ErrorStreamSink errorStreamSink;
+  private StreamSink errorStreamSink;
 
 
   /**
@@ -65,8 +67,10 @@ public class ContractCaseProcess {
 
   private synchronized void startRuntimeIfNeeded() {
     if (childProcess != null) {
+      MaintainerLog.log("Runtime is already started");
       return;
     }
+    MaintainerLog.log("Starting runtime");
 
     final List<String> serverStartCommand = List.of(
         "node",
@@ -85,7 +89,11 @@ public class ContractCaseProcess {
               String.format("Java/%s", System.getProperty("java.version"))
           );
       pb.environment().put("NODE_OPTIONS", "--enable-source-maps");
+
       this.childProcess = pb.start();
+
+      this.errorStreamSink = new StreamSink(this.childProcess.getErrorStream());
+      this.errorStreamSink.start();
 
       this.stdin = new OutputStreamWriter(
           this.childProcess.getOutputStream(),
@@ -95,15 +103,14 @@ public class ContractCaseProcess {
           this.childProcess.getInputStream(),
           StandardCharsets.UTF_8
       ));
-
-      this.errorStreamSink = new ErrorStreamSink(this.childProcess.getErrorStream());
-      this.errorStreamSink.start();
-
       var firstLine = stdout.readLine();
       var splitLine = firstLine.split(":\\s*");
       if (splitLine.length != 2) {
         throw new ContractCaseCoreError("Unable to start server: " + firstLine);
       }
+
+      this.outputStreamSink = new ReaderSink(stdout);
+      this.outputStreamSink.start();
       try {
         var portNumber = Integer.parseInt(splitLine[1]);
         MaintainerLog.log("Server started on port: " + portNumber);
@@ -164,6 +171,19 @@ public class ContractCaseProcess {
       }
     }
 
+    // Cleaning up error stream sink (ensuring all messages are flushed, etc...)
+    if (this.outputStreamSink != null) {
+      try {
+        MaintainerLog.log("Closing output stream...");
+        this.outputStreamSink.close();
+        MaintainerLog.log("...output stream closed");
+      } catch (final InterruptedException ie) {
+        // Ignore - we can no longer do anything about this...
+      } finally {
+        this.outputStreamSink = null;
+      }
+    }
+
     // We shut down already, no need for the shutdown hook anymore
     if (this.shutdownHook != null) {
       try {
@@ -192,14 +212,14 @@ public class ContractCaseProcess {
    * @see <a
    * href="https://github.com/zeroturnaround/zt-exec/blob/master/src/main/java/org/zeroturnaround/exec/stream/InputStreamPumper.java">zt-exec</a>
    */
-  private static final class ErrorStreamSink extends Thread {
+  private static final class StreamSink extends Thread {
 
     private final InputStream inputStream;
     private final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
     private boolean eof = false;
     private boolean stop = false;
 
-    public ErrorStreamSink(final InputStream inputStream) {
+    public StreamSink(final InputStream inputStream) {
       this.inputStream = inputStream;
       this.setDaemon(true);
       this.setName(this.getClass().getCanonicalName());
@@ -264,7 +284,80 @@ public class ContractCaseProcess {
     }
 
     private void processLine(final String line) {
-      System.err.print(line);
+      System.err.println(line.replace("\n", ""));
+    }
+  }
+
+  /**
+   * This is like the {@link StreamSink}, but it works on readers. This code exists in case the
+   * child process prints more than we're expecting.
+   */
+  private static final class ReaderSink extends Thread {
+
+    private final BufferedReader reader;
+    private final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+    private boolean stop = false;
+
+    public ReaderSink(final BufferedReader reader) {
+      this.reader = reader;
+      this.setDaemon(true);
+      this.setName(this.getClass().getCanonicalName());
+      this.setUncaughtExceptionHandler((thread, throwable) -> {
+        System.err.printf(
+            "Unexpected error in thread \"%s\": %s%n",
+            thread.getName(),
+            throwable
+        );
+      });
+    }
+
+    public void run() {
+      try {
+        while (!this.stop) {
+          this.acceptData(false);
+          if (!this.stop) {
+            // Short interruptible sleep, so we can be stopped by a signal... This is a bit ugly (busy-waiting)
+            // but is in fact the only way to be reliably interruptible with the InputStream API.
+            Thread.sleep(100);
+          }
+        }
+        // Finish flushing the stream until no data is left, so no log entries are dropped on the floor.
+        this.acceptData(true);
+      } catch (final IOException ioe) {
+        if (!ioe.getMessage().equals("Stream closed")) {
+          // This exception didn't occur during shutdown
+          throw new UncheckedIOException(ioe);
+        }
+      } catch (
+          final InterruptedException ie) {
+        // Ignore - simply exit right away.
+      }
+    }
+
+    public void close() throws InterruptedException {
+      this.stop = true;
+      this.join();
+    }
+
+    /**
+     * Accepts data from {@link #reader} as long as data is available, or until EOF is reached if
+     * the {@code uninterruptible} parameter is set to {@code true}.
+     *
+     * @param uninterruptible whether data should be read in a blocking manner until EOF is reached
+     *                        or not.
+     * @throws IOException if the underlying stream throws an IOException
+     */
+    private void acceptData(final boolean uninterruptible) throws IOException {
+      if (this.reader.ready() || uninterruptible) {
+        var line = this.reader.readLine();
+        if (line != null) {
+          processLine(line);
+        }
+      }
+    }
+
+    private void processLine(final String line) {
+      System.err.println("Unexpected stdout: " + line.replace("\n", ""));
     }
   }
 
