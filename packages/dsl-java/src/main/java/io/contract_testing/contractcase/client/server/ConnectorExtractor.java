@@ -9,6 +9,7 @@ import java.nio.file.Path;
 class ConnectorExtractor {
 
   private static final String CASE_CONNECTOR_FILENAME = "case-connector.js";
+  private static final String CASE_CONNECTOR_SOURCEMAP = "case-connector.js.map";
 
   /**
    * Extracts a local copy of the contract case bundle from the jar's resources to a temporary
@@ -17,13 +18,17 @@ class ConnectorExtractor {
    * @return The path to the extracted contract case bundle
    */
   static String extractCaseConnector() {
-    final var localCopy = createTemporaryDirectory().resolve(CASE_CONNECTOR_FILENAME);
+    final var dir = createTemporaryDirectory();
+    final var localConnectorJs = dir.resolve(CASE_CONNECTOR_FILENAME);
+    final var localConnectorSourceMap = dir.resolve(CASE_CONNECTOR_SOURCEMAP);
 
-    copyResource(CASE_CONNECTOR_FILENAME, localCopy);
+    copyResource(CASE_CONNECTOR_FILENAME, localConnectorJs);
+    copyResource(CASE_CONNECTOR_SOURCEMAP, localConnectorSourceMap);
 
-    localCopy.toFile().deleteOnExit();
+    localConnectorJs.toFile().deleteOnExit();
+    localConnectorSourceMap.toFile().deleteOnExit();
 
-    return localCopy.toString();
+    return localConnectorJs.toString();
 
   }
 
