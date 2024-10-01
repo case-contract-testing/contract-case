@@ -156,13 +156,13 @@ export const setupHttpResponseProducer = (
               assertableData: () =>
                 new Promise<void>((startVerify, closeReject) => {
                   context.logger.maintainerDebug(
-                    `Closing server from ${mock.baseUrl}`,
+                    `Closing server from ${mock.baseUrl}, first politely:`,
                     mock,
                   );
                   server.close((err?: Error) => {
                     if (err) {
                       context.logger.error(
-                        `There was an error shutting down the mock server. This shouldn't happen, and might be a bug`,
+                        `There was an error shutting down the mock server. This shouldn't happen - errors here means that the server probably isn't started. Almost certainly there's a bug.`,
                       );
                       closeReject(
                         new CaseCoreError(
@@ -177,6 +177,11 @@ export const setupHttpResponseProducer = (
                       startVerify();
                     }
                   });
+                  context.logger.maintainerDebug(
+                    `And also forcefully closing server from ${mock.baseUrl}`,
+                    mock,
+                  );
+                  server.closeAllConnections();
                 }).then(async () => {
                   context.logger.maintainerDebug(
                     `Asserting that the expected request for the mock at ${mock.baseUrl} happened correctly`,
