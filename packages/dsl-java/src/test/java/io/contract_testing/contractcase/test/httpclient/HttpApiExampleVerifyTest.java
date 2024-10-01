@@ -17,6 +17,7 @@ import io.contract_testing.contractcase.test.httpclient.implementation.User;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 public class HttpApiExampleVerifyTest {
@@ -134,7 +135,11 @@ public class HttpApiExampleVerifyTest {
                 userErrorTests
             )))
         .build());
-    contract.close();
+
   }
 
+  @AfterAll
+  static void after() {
+    contract.close();
+  }
 }
