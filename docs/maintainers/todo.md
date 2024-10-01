@@ -46,11 +46,15 @@ Java:
 - [ ] Implement mockConfig passing
 - [ ] Should we catch JUnit failures and remap them so that contract case can render them?
 - [ ] More idiomatic logging - at the moment, you have to set standard out as the logger
+- [ ] Kill Boundary layer - it's unnecessary, we should map straight to Connector
 
 Next:
 
 - [ ] Configuration Errors in triggers are incorrectly mapped to verification failures
 - [ ] State handlers in the grpc connector aren't given the configuration
+- [ ] Connect CASE_CONNECTOR_CLIENT to a maintainer log somewhere
+- [ ] Connect CASE_CONNECTOR_CLIENT in Jest DSL - probably include it in an
+      internal config property, and have the grpc connector read it from the env var
 - [x] Fix Broker download contracts
 - [x] Do upload for verification results
 - [x] Spike JSii - support list

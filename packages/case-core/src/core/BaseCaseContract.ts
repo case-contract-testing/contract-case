@@ -108,6 +108,7 @@ export class BaseCaseContract {
         // TODO: put in a URL to the documentation here
       );
     }
+    this.initialContext.logger.maintainerDebug(`Running on ${process.version}`);
 
     loadCorePlugins(this.initialContext);
   }
