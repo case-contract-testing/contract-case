@@ -6,6 +6,7 @@
   "packages/case-core-plugin-function": "0.16.3",
   "packages/case-core-plugin-function-dsl": "0.16.3",
   "packages/case-plugin-base": "0.16.3",
+  "packages/case-plugin-dsl-types": "0.16.3",
   "packages/case-entities": "0.16.3",
   "packages/contract-case-jest": "0.12.3",
   "packages/documentation": "0.0.8",
