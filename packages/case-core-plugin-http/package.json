@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-core-plugin-http",
-  "version": "0.16.1",
+  "version": "0.16.2",
   "description": "ContractCase core HTTP plugin, providing HTTP matchers and mocks",
   "keywords": [
     "testing",
@@ -64,8 +64,8 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "@contract-case/case-core-plugin-http-dsl": "^0.16.1",
-    "@contract-case/case-plugin-base": "^0.16.1",
+    "@contract-case/case-core-plugin-http-dsl": "^0.16.2",
+    "@contract-case/case-plugin-base": "^0.16.2",
     "axios": "^1.7.7",
     "express": "^4.20.0",
     "qs": "^6.13.0"
