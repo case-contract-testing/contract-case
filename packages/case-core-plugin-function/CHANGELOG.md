@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.16.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.16.2...@contract-case/case-core-plugin-function-v0.16.3) (2024-10-02)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-core-plugin-function:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from ^0.16.2 to ^0.16.3
+    * @contract-case/case-plugin-base bumped from ^0.16.2 to ^0.16.3
+
 ## [0.16.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.16.1...@contract-case/case-core-plugin-function-v0.16.2) (2024-10-02)
 
 

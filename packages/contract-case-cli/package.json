@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/cli",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "module",
   "description": "Command-line interface for ContractCase, allowing interactions with the Contract / Pact Broker",
   "keywords": [
@@ -74,8 +74,8 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "@contract-case/case-connector": "0.8.2",
-    "@contract-case/case-core": "0.16.2",
+    "@contract-case/case-connector": "0.8.3",
+    "@contract-case/case-core": "0.16.3",
     "chalk": "^5.3.0",
     "commander": "^12.1.0",
     "read-pkg-up": "^7.0.1"

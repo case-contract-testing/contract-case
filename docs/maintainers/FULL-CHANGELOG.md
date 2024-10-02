@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.3](https://github.com/case-contract-testing/contract-case/compare/v0.16.2...v0.16.3) (2024-10-02)
+
+
+### Bug Fixes
+
+* Correct included jsii dependencies ([352f4b3](https://github.com/case-contract-testing/contract-case/commit/352f4b3753c16b83088fb6391aadddd4ef0628d3))
+
 ## [0.16.2](https://github.com/case-contract-testing/contract-case/compare/v0.16.1...v0.16.2) (2024-10-02)
 
 

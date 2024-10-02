@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-core-plugin-function",
-  "version": "0.16.2",
+  "version": "0.16.3",
   "description": "ContractCase core function plugin, allowing validation of arbitrary functions",
   "keywords": [
     "testing",
@@ -60,7 +60,7 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "@contract-case/case-core-plugin-function-dsl": "^0.16.2",
-    "@contract-case/case-plugin-base": "^0.16.2"
+    "@contract-case/case-core-plugin-function-dsl": "^0.16.3",
+    "@contract-case/case-plugin-base": "^0.16.3"
   }
 }
