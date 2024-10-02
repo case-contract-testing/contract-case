@@ -82,7 +82,8 @@
     "@contract-case/case-entities-internal": "0.16.1",
     "@contract-case/case-plugin-base": "0.16.1",
     "@contract-case/case-core-plugin-http-dsl": "0.16.1",
-    "@contract-case/case-core-plugin-function-dsl": "0.16.1"
+    "@contract-case/case-core-plugin-function-dsl": "0.16.1",
+    "pretty-format": "29.7.0"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
@@ -127,6 +128,7 @@
     "@contract-case/case-entities-internal",
     "@contract-case/case-plugin-base",
     "@contract-case/case-core-plugin-http-dsl",
-    "@contract-case/case-core-plugin-function-dsl"
+    "@contract-case/case-core-plugin-function-dsl",
+    "pretty-format"
   ]
 }
