@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.2.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.1.2...@contract-case/dsl-java-v0.2.0) (2024-10-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* Use the combined DSL package io.contract-testing.contractcase:definitions instead of the separate matchers and mocks packages. Please update your imports
+
+### Code Refactoring
+
+* Use the combined DSL package io.contract-testing.contractcase:definitions instead of the separate matchers and mocks packages. Please update your imports ([c569c6a](https://github.com/case-contract-testing/contract-case/commit/c569c6a7127a5c47663f18e0518ddba321740b59))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.8.1 to 0.8.2
+
 ## [0.1.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.1.1...@contract-case/dsl-java-v0.1.2) (2024-10-01)
 
 

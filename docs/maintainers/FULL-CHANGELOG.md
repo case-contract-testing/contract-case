@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.2](https://github.com/case-contract-testing/contract-case/compare/v0.16.1...v0.16.2) (2024-10-02)
+
+
+### Bug Fixes
+
+* Include pretty-format in package too ([c17b646](https://github.com/case-contract-testing/contract-case/commit/c17b646d0f52c24032df283c34cc517ff3cb6724))
+
 ## [0.16.1](https://github.com/case-contract-testing/contract-case/compare/v0.16.0...v0.16.1) (2024-10-01)
 
 

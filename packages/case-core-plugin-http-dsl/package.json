@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-core-plugin-http-dsl",
-  "version": "0.16.1",
+  "version": "0.16.2",
   "description": "ContractCase HTTP plugin CaseExample definition DSL",
   "keywords": [
     "testing",
@@ -64,6 +64,6 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "@contract-case/case-plugin-base": "^0.16.1"
+    "@contract-case/case-plugin-base": "^0.16.2"
   }
 }

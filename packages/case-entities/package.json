@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-entities-internal",
-  "version": "0.16.1",
+  "version": "0.16.2",
   "description": "Shared types for ContractCase modules",
   "keywords": [
     "testing",
@@ -66,8 +66,8 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "@contract-case/case-core-plugin-http-dsl": "0.16.1",
-    "@contract-case/case-core-plugin-function-dsl": "0.16.1",
-    "@contract-case/case-plugin-base": "0.16.1"
+    "@contract-case/case-core-plugin-http-dsl": "0.16.2",
+    "@contract-case/case-core-plugin-function-dsl": "0.16.2",
+    "@contract-case/case-plugin-base": "0.16.2"
   }
 }
