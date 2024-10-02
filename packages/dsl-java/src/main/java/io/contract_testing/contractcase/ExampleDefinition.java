@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.contract_testing.contractcase.case_example_mock_types.mocks.base.AnyMockDescriptor;
-import io.contract_testing.contractcase.case_example_mock_types.states.AnyState;
+import io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor;
+import io.contract_testing.contractcase.definitions.states.AnyState;
 import java.util.List;
 
 public class ExampleDefinition<M extends AnyMockDescriptor> {

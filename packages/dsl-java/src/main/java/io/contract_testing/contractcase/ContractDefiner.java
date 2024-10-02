@@ -1,9 +1,9 @@
 package io.contract_testing.contractcase;
 
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
-import io.contract_testing.contractcase.case_example_mock_types.mocks.base.AnyMockDescriptor;
 import io.contract_testing.contractcase.client.InternalDefinerClient;
 import io.contract_testing.contractcase.client.server.ContractCaseProcess;
+import io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor;
 import org.jetbrains.annotations.NotNull;
 
 public class ContractDefiner {

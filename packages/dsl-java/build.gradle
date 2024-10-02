@@ -24,13 +24,12 @@ tasks.withType(Javadoc).configureEach {
     exclude('io/contract_testing/contractcase/client')
 }
 
-def caseCoreVersion = "0.15.6"
+def caseCoreVersion = "0.16.1"
 def grpcVersion = "1.68.0"
 def protobufVersion = "4.28.2"
 
 dependencies {
-    api "io.contract-testing.contractcase:case_example_mock_types:${caseCoreVersion}"
-    api "io.contract-testing.contractcase:test-equivalence-matchers:${caseCoreVersion}"
+    api "io.contract-testing.contractcase:definitions:${caseCoreVersion}"
     implementation 'com.diogonunes:JColor:5.5.1'
     implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
     implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"

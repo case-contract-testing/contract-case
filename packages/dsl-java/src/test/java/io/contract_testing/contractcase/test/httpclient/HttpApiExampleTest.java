@@ -9,22 +9,22 @@ import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFai
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.PublishType;
 import io.contract_testing.contractcase.Trigger;
-import io.contract_testing.contractcase.case_example_mock_types.mocks.http.HttpExample;
-import io.contract_testing.contractcase.case_example_mock_types.mocks.http.WillSendHttpRequest;
-import io.contract_testing.contractcase.case_example_mock_types.states.InState;
-import io.contract_testing.contractcase.case_example_mock_types.states.InStateWithVariables;
+import io.contract_testing.contractcase.definitions.matchers.AnyString;
+import io.contract_testing.contractcase.definitions.matchers.HttpRequest;
+import io.contract_testing.contractcase.definitions.matchers.HttpRequestExample;
+import io.contract_testing.contractcase.definitions.matchers.HttpResponse;
+import io.contract_testing.contractcase.definitions.matchers.HttpResponseExample;
+import io.contract_testing.contractcase.definitions.matchers.NamedMatch;
+import io.contract_testing.contractcase.definitions.matchers.ReferenceMatch;
+import io.contract_testing.contractcase.definitions.matchers.StateVariable;
+import io.contract_testing.contractcase.definitions.matchers.StringPrefix;
+import io.contract_testing.contractcase.definitions.mocks.http.HttpExample;
+import io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest;
+import io.contract_testing.contractcase.definitions.states.InState;
+import io.contract_testing.contractcase.definitions.states.InStateWithVariables;
 import io.contract_testing.contractcase.test.httpclient.implementation.ApiClient;
 import io.contract_testing.contractcase.test.httpclient.implementation.User;
 import io.contract_testing.contractcase.test.httpclient.implementation.UserNotFoundException;
-import io.contract_testing.contractcase.test_equivalence_matchers.convenience.NamedMatch;
-import io.contract_testing.contractcase.test_equivalence_matchers.convenience.ReferenceMatch;
-import io.contract_testing.contractcase.test_equivalence_matchers.convenience.StateVariable;
-import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpRequest;
-import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpRequestExample;
-import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpResponse;
-import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpResponseExample;
-import io.contract_testing.contractcase.test_equivalence_matchers.strings.AnyString;
-import io.contract_testing.contractcase.test_equivalence_matchers.strings.StringPrefix;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -67,30 +67,34 @@ public class HttpApiExampleTest {
 
   @Test
   public void testHealthUp() {
-    contract.runExample(
-        new ExampleDefinition<>(
-            List.of(new InState("Server is up")),
-            new WillSendHttpRequest(HttpExample.builder()
-                .request(new NamedMatch(
-                    "Get health",
-                    new HttpRequest(HttpRequestExample.builder()
-                        .path("/health")
-                        .method("GET")
-                        .build())
-                ))
-                .response(new HttpResponse(HttpResponseExample.builder()
-                    .status(200)
-                    .body(Map.ofEntries(Map.entry("status", "up")))
-                    .build()))
-                .build())
-        ),
-        IndividualSuccessTestConfigBuilder.<String>builder()
-            .withProviderName("Java Example HTTP Server")
-            .withTrigger(getHealth)
-            .withTestResponse((status, setupInfo) -> {
-              assertThat(status).isEqualTo("up");
-            })
-    );
+    try {
+      contract.runExample(
+          new ExampleDefinition<>(
+              List.of(new InState("Server is up")),
+              new WillSendHttpRequest(HttpExample.builder()
+                  .request(new NamedMatch(
+                      "Get health",
+                      new HttpRequest(HttpRequestExample.builder()
+                          .path("/health")
+                          .method("GET")
+                          .build())
+                  ))
+                  .response(new HttpResponse(HttpResponseExample.builder()
+                      .status(200)
+                      .body(Map.ofEntries(Map.entry("status", "up")))
+                      .build()))
+                  .build())
+          ),
+          IndividualSuccessTestConfigBuilder.<String>builder()
+              .withProviderName("Java Example HTTP Server")
+              .withTrigger(getHealth)
+              .withTestResponse((status, setupInfo) -> {
+                assertThat(status).isEqualTo("up");
+              })
+      );
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   @Test

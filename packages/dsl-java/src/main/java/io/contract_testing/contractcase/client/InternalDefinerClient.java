@@ -5,6 +5,7 @@ import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.ma
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.contract_testing.contractcase.LogPrinter;
+import io.contract_testing.contractcase.definitions.matchers.AnyMatcher;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.edge.ConnectorResult;
@@ -14,8 +15,6 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConf
 import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.EndDefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginRequest;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.VerificationRequest;
-import io.contract_testing.contractcase.test_equivalence_matchers.base.AnyMatcher;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 

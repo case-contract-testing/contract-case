@@ -6,14 +6,15 @@ import io.contract_testing.contractcase.ExampleDefinition;
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.Trigger;
-import io.contract_testing.contractcase.case_example_mock_types.mocks.http.HttpExample;
-import io.contract_testing.contractcase.case_example_mock_types.mocks.http.WillSendHttpRequest;
-import io.contract_testing.contractcase.case_example_mock_types.states.InState;
-import io.contract_testing.contractcase.test_equivalence_matchers.convenience.NamedMatch;
-import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpRequest;
-import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpRequestExample;
-import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpResponse;
-import io.contract_testing.contractcase.test_equivalence_matchers.http.HttpResponseExample;
+
+import io.contract_testing.contractcase.definitions.matchers.HttpRequest;
+import io.contract_testing.contractcase.definitions.matchers.HttpRequestExample;
+import io.contract_testing.contractcase.definitions.matchers.HttpResponse;
+import io.contract_testing.contractcase.definitions.matchers.HttpResponseExample;
+import io.contract_testing.contractcase.definitions.matchers.NamedMatch;
+import io.contract_testing.contractcase.definitions.mocks.http.HttpExample;
+import io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest;
+import io.contract_testing.contractcase.definitions.states.InState;
 import java.util.List;
 import java.util.Map;
 
