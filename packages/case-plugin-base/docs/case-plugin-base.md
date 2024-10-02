@@ -172,7 +172,7 @@ Helper function that will return an error if the test condition is met, or a non
 </td></tr>
 <tr><td>
 
-[getPluginConfig(context, pluginShortName)](./case-plugin-base.getpluginconfig.md)
+[getPluginConfig(context, description)](./case-plugin-base.getpluginconfig.md)
 
 
 </td><td>

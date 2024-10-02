@@ -198,7 +198,7 @@ export const errorWhen: (test: boolean, err: CaseError | Array<CaseError>) => Ma
 export const foldIntoContext: (caseNode: AnyCaseMatcher | AnyMockDescriptor, context: MatchContext) => MatchContext;
 
 // @public
-export const getPluginConfig: (context: DataContext, pluginShortName: string) => Record<string, unknown>;
+export const getPluginConfig: (context: DataContext, description: PluginDescription) => Record<string, unknown>;
 
 // Warning: (ae-internal-missing-underscore) The name "HasBaseUrlUnderTest" should be prefixed with an underscore because the declaration is marked as @internal
 //

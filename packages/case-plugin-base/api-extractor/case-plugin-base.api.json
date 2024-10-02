@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.47.4",
+    "toolVersion": "7.47.9",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -2334,11 +2334,12 @@
             },
             {
               "kind": "Content",
-              "text": ", pluginShortName: "
+              "text": ", description: "
             },
             {
-              "kind": "Content",
-              "text": "string"
+              "kind": "Reference",
+              "text": "PluginDescription",
+              "canonicalReference": "@contract-case/case-plugin-base!PluginDescription:type"
             },
             {
               "kind": "Content",
@@ -2371,7 +2372,7 @@
               "isOptional": false
             },
             {
-              "parameterName": "pluginShortName",
+              "parameterName": "description",
               "parameterTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 4

@@ -11,7 +11,7 @@ This function doesn't know the expected shape of your configuration object; it's
 **Signature:**
 
 ```typescript
-getPluginConfig: (context: DataContext, pluginShortName: string) => Record<string, unknown>
+getPluginConfig: (context: DataContext, description: PluginDescription) => Record<string, unknown>
 ```
 
 ## Parameters
@@ -50,17 +50,15 @@ the current [MatchContext](./case-plugin-base.matchcontext.md)
 </td></tr>
 <tr><td>
 
-pluginShortName
+description
 
 
 </td><td>
 
-string
+[PluginDescription](./case-plugin-base.plugindescription.md)
 
 
 </td><td>
-
-the short name for the currently executing plugin
 
 
 </td></tr>
