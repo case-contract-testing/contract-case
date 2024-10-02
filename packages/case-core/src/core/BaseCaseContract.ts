@@ -6,22 +6,24 @@ import {
   RawLookupFns,
   MatchContextWithoutLookup,
   ContractLookupFns,
-  AnyCaseMatcherOrData,
   constructMatchContext,
   CaseConfigurationError,
-  isLookupableMatcher,
   CaseCoreError,
-  AnyData,
   applyNodeToContext,
   MatchResult,
   hasErrors,
-  AnyLeafOrStructure,
 } from '@contract-case/case-plugin-base';
 import {
   ContractData,
   CaseContractDescription,
 } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
+import {
+  AnyCaseMatcherOrData,
+  AnyData,
+  AnyLeafOrStructure,
+  isLookupableMatcher,
+} from '@contract-case/case-plugin-dsl-types';
 import {
   findMatcher,
   makeContract,

@@ -2,7 +2,7 @@ import {
   AnyData,
   AnyCaseMatcherOrData,
   AnyCaseMatcher,
-} from '@contract-case/case-plugin-base';
+} from '@contract-case/case-plugin-dsl-types';
 import { CoreHttpStatusCodeMatcher } from './matchers.types';
 
 interface QueryObject {

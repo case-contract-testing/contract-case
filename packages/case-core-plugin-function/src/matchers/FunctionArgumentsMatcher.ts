@@ -4,7 +4,6 @@ import {
 } from '@contract-case/case-core-plugin-function-dsl';
 import {
   MatchContext,
-  AnyData,
   addLocation,
   MatchResult,
   CaseConfigurationError,
@@ -15,6 +14,7 @@ import {
   CaseCoreError,
   hasErrors,
 } from '@contract-case/case-plugin-base';
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
 const strip = (
   matcher: CoreFunctionArgumentsMatcher,

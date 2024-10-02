@@ -6,10 +6,8 @@ import {
   ARRAY_CONTAINS_TYPE,
   CoreShapedArrayMatcher,
 } from '@contract-case/case-entities-internal';
-import {
-  AnyCaseMatcherOrData,
-  CaseConfigurationError,
-} from '@contract-case/case-plugin-base';
+import { CaseConfigurationError } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 import {
   coreArrayLengthMatcher,
   coreShapedArrayMatcher,

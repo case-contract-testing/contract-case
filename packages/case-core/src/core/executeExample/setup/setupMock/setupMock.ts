@@ -3,12 +3,12 @@ import {
   AnyMockDescriptorType,
 } from '@contract-case/case-entities-internal';
 import {
-  CaseMockDescriptorFor,
   MatchContext,
   addLocation,
   hasErrors,
   CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
+import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
 import { mockExecutor } from './mockExecutor';
 import { MockExecutors } from '../../../plugins/mockExecutors';
 import { Assertable } from '../../../../entities/types';

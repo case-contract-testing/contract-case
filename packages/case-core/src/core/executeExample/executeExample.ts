@@ -12,13 +12,13 @@ import {
   CaseFailedAssertionError,
   CaseCoreError,
   hasErrors,
-  CaseMockDescriptorFor,
 } from '@contract-case/case-plugin-base';
 import {
   makeFailedExample,
   makeSuccessExample,
 } from '@contract-case/case-plugin-base/dist/src/core/contract';
 import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
 import { setupExample } from './setup';
 import { findAndCallTrigger } from './triggers';
 import {

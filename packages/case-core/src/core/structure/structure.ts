@@ -1,13 +1,13 @@
-import {
-  AnyCaseMatcherOrData,
-  MatchContextWithoutLookup,
-  LookupableMatcher,
-} from '@contract-case/case-plugin-base';
+import { MatchContextWithoutLookup } from '@contract-case/case-plugin-base';
 import {
   CaseContractDescription,
   ContractData,
   CaseExample,
 } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import {
+  AnyCaseMatcherOrData,
+  LookupableMatcher,
+} from '@contract-case/case-plugin-dsl-types';
 import { caseVersion } from '../../entities/caseVersion';
 import { addMock, addMatcher } from './lookup';
 

@@ -1,7 +1,7 @@
 import {
   AnyCaseMatcher,
   AnyCaseMatcherOrData,
-} from '@contract-case/case-plugin-base';
+} from '@contract-case/case-plugin-dsl-types';
 import {
   HTTP_BASIC_AUTH_TYPE,
   HTTP_REQUEST_MATCHER_TYPE,

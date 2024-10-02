@@ -11,7 +11,7 @@ import {
   ProduceHttpResponse,
   AllHttpMockSetupInfo,
 } from '@contract-case/case-core-plugin-http-dsl';
-import { HasTypeForMockDescriptor } from '@contract-case/case-plugin-base';
+import { HasTypeForMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 
 export type AnyMockDescriptorType =
   | typeof MOCK_HTTP_SERVER

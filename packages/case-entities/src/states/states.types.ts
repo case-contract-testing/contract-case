@@ -1,4 +1,4 @@
-import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 
 export type PromiseOrRaw<T> = Promise<T> | T;
 

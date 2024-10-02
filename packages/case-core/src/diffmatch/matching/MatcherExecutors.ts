@@ -22,11 +22,9 @@ import {
   BASE64_ENCODED_TYPE,
   CaseNodeFor,
 } from '@contract-case/case-entities-internal';
-import {
-  MatcherExecutor,
-  LOOKUP_MATCHER_TYPE,
-} from '@contract-case/case-plugin-base';
+import { MatcherExecutor } from '@contract-case/case-plugin-base';
 
+import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-plugin-dsl-types';
 import {
   NumberMatcher,
   StringMatcher,

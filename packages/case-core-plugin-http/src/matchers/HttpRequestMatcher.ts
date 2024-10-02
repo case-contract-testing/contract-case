@@ -5,7 +5,6 @@ import {
 } from '@contract-case/case-core-plugin-http-dsl';
 import {
   MatchContext,
-  AnyData,
   addLocation,
   mustResolveToString,
   MatchResult,
@@ -14,9 +13,12 @@ import {
   combineResults,
   CaseError,
   makeResults,
-  AnyCaseMatcherOrData,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import {
+  AnyData,
+  AnyCaseMatcherOrData,
+} from '@contract-case/case-plugin-dsl-types';
 import qs from 'qs';
 
 const isHttpRequestData = (data: unknown): data is HttpRequestData => {

@@ -1,5 +1,4 @@
 import {
-  AnyMockDescriptor,
   CaseConfigurationError,
   CaseCoreError,
   ContractCasePlugin,
@@ -9,6 +8,7 @@ import {
   CORE_PLUGIN_PREFIX,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 
 import { CoreNumberMatcher } from '@contract-case/case-entities-internal';
 import { caseVersion } from '../../entities/caseVersion';

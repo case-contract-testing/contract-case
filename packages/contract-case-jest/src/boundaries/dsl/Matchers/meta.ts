@@ -13,7 +13,7 @@ import {
   AnyData,
   LookupableMatcher,
   ResolvesTo,
-} from '@contract-case/case-plugin-base';
+} from '@contract-case/case-plugin-dsl-types';
 import {
   coreLookupMatcherRequest,
   coreAndMatcher,

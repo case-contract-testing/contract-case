@@ -2,7 +2,7 @@ import {
   HasTypeForMockDescriptor,
   AnyCaseMatcher,
   BaseSetupInfo,
-} from '@contract-case/case-plugin-base';
+} from '@contract-case/case-plugin-dsl-types';
 
 export const MOCK_FUNCTION_EXECUTION = '_case:MockFunctionExecution' as const;
 export const MOCK_FUNCTION_CALLER = '_case:MockFunctionCaller' as const;

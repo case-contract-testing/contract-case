@@ -6,7 +6,6 @@ import {
 import {
   StripMatcherFn,
   MatchContext,
-  AnyData,
   StripUnsupportedError,
   CheckMatchFn,
   MatchResult,
@@ -16,6 +15,7 @@ import {
   makeResults,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
 const strip: StripMatcherFn<CoreArrayLengthMatcher> = (
   matcher: CoreArrayLengthMatcher,

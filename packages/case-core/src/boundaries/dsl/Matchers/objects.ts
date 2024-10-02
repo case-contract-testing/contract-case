@@ -4,7 +4,7 @@ import {
   CoreObjectKeysMatcher,
   OBJECT_KEYS_MATCH_TYPE,
 } from '@contract-case/case-entities-internal';
-import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 
 /**
  * Matches an object where each value matches the provided matcher.

@@ -7,15 +7,17 @@ import {
   CoreContextVariableMatcher,
 } from '@contract-case/case-entities-internal';
 import {
-  AnyCaseMatcherOrData,
-  AnyCaseMatcher,
-  AnyData,
-  LookupableMatcher,
   coreLookupMatcher,
   MatchContextByExact,
-  ResolvesTo,
   LogLevel,
 } from '@contract-case/case-plugin-base';
+import {
+  AnyCaseMatcher,
+  AnyCaseMatcherOrData,
+  AnyData,
+  LookupableMatcher,
+  ResolvesTo,
+} from '@contract-case/case-plugin-dsl-types';
 import {
   coreAndMatcher,
   coreLookupMatcherRequest,

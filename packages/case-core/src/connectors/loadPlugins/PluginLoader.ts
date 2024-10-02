@@ -1,12 +1,10 @@
-/* eslint-disable no-underscore-dangle */
-
 import {
-  AnyMockDescriptor,
   ContractCasePlugin,
   DataContext,
   IsCaseNodeForType,
   constructDataContext,
 } from '@contract-case/case-plugin-base';
+import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 import type { CaseConfig } from '../../core/types';
 
 import { configFromEnv, configToRunContext } from '../../core/config';

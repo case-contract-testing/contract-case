@@ -1,10 +1,10 @@
+import { MatchContextWithoutLookup } from '@contract-case/case-plugin-base';
 import {
-  AnyCaseMatcherOrData,
-  MatchContextWithoutLookup,
-  isLookupableMatcher,
-  AnyMockDescriptor,
   AnyCaseMatcher,
-} from '@contract-case/case-plugin-base';
+  AnyCaseMatcherOrData,
+  AnyMockDescriptor,
+  isLookupableMatcher,
+} from '@contract-case/case-plugin-dsl-types';
 import { addLookup } from './internals';
 import type { LookupMap } from './types';
 

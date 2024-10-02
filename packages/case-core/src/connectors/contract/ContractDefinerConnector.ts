@@ -4,14 +4,14 @@ import {
   AnyMockDescriptor,
   AnyMockDescriptorType,
 } from '@contract-case/case-entities-internal';
+import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import {
   CaseMockDescriptorFor,
-  CaseConfigurationError,
   AnyData,
   AnyLeafOrStructure,
   SetupInfoFor,
-} from '@contract-case/case-plugin-base';
-import { AnyState } from '@contract-case/case-plugin-base/dist/src/core/states';
+  AnyState,
+} from '@contract-case/case-plugin-dsl-types';
 import { CaseContractDescription } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { WritingCaseContract } from '../../core';
 

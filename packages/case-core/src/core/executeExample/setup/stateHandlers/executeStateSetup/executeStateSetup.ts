@@ -4,15 +4,15 @@ import {
 } from '@contract-case/case-entities-internal';
 import {
   MatchContext,
-  AnyCaseMatcherOrData,
   CaseConfigurationError,
   addLocation,
 } from '@contract-case/case-plugin-base';
 import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import {
+  AnyCaseMatcherOrData,
   AnyState,
   SETUP_VARIABLE_STATE,
-} from '@contract-case/case-plugin-base/dist/src/core/states';
+} from '@contract-case/case-plugin-dsl-types';
 import { validateVariables } from './validateVariables';
 
 const stateSetupHandler =

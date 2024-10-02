@@ -8,7 +8,7 @@ import {
   CASCADING_CONTEXT_MATCHER_TYPE,
   MatchContextByType,
 } from '@contract-case/case-entities-internal';
-import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 
 type ArrayLengthOptions = { minLength?: number; maxLength?: number };
 

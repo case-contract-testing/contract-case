@@ -1,13 +1,13 @@
 import {
   MatchContext,
-  AnyCaseMatcherOrData,
   CaseConfigurationError,
   hasErrors,
 } from '@contract-case/case-plugin-base';
 import {
+  AnyCaseMatcherOrData,
   AnyState,
   SETUP_VARIABLE_STATE,
-} from '@contract-case/case-plugin-base/dist/src/core/states';
+} from '@contract-case/case-plugin-dsl-types';
 
 export const validateVariables = async (
   state: AnyState,

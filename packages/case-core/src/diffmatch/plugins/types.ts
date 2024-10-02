@@ -1,8 +1,6 @@
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
-import {
-  AnyMockDescriptor,
-  MockExecutorFn,
-} from '@contract-case/case-plugin-base';
+import { MockExecutorFn } from '@contract-case/case-plugin-base';
+import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 
 type CoreSetupTypes = unknown;
 

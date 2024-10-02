@@ -1,7 +1,5 @@
-import {
-  AnyCaseMatcherOrData,
-  CaseConfigurationError,
-} from '@contract-case/case-plugin-base';
+import { CaseConfigurationError } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 
 export const rawEquality = (
   a: AnyCaseMatcherOrData | undefined,

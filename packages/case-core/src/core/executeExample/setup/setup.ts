@@ -3,12 +3,10 @@ import {
   AnyMockDescriptorType,
   StateHandlers,
 } from '@contract-case/case-entities-internal';
-import {
-  MatchContext,
-  CaseMockDescriptorFor,
-} from '@contract-case/case-plugin-base';
+import { MatchContext } from '@contract-case/case-plugin-base';
 import { exampleToNames } from '@contract-case/case-plugin-base/dist/src/core/contract';
 import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
 import { setupMock } from './setupMock';
 import { executeStateTeardown, executeStateSetup } from './stateHandlers';
 import { Assertable } from '../../../entities/types';

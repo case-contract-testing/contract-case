@@ -3,10 +3,8 @@ import {
   CaseNodeFor,
   AnyCaseMatcher,
 } from '@contract-case/case-entities-internal';
-import {
-  AnyLeafOrStructure,
-  isCaseNode,
-} from '@contract-case/case-plugin-base';
+import { isCaseNode } from '@contract-case/case-plugin-base';
+import { AnyLeafOrStructure } from '@contract-case/case-plugin-dsl-types';
 import {
   coreAndMatcher,
   coreArrayLengthMatcher,

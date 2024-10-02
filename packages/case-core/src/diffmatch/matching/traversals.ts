@@ -6,14 +6,16 @@ import {
 } from '@contract-case/case-entities-internal';
 
 import {
-  AnyLeafOrStructure,
   MatchContext,
   foldIntoContext,
   MatcherExecutor,
   CaseCoreError,
   TraversalFns,
-  AnyCaseMatcher as UnknownCaseNodeType,
 } from '@contract-case/case-plugin-base';
+import {
+  AnyLeafOrStructure,
+  AnyCaseMatcher as UnknownCaseNodeType,
+} from '@contract-case/case-plugin-dsl-types';
 import { inferMatcher } from './inferMatcher';
 
 import { MatcherExecutors } from './MatcherExecutors';

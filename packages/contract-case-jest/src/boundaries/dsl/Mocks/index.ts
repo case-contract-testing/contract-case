@@ -1,5 +1,5 @@
 import { mocks } from '@contract-case/case-definition-dsl';
-import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 import {
   HttpMockRequest,
   HttpMockResponse,

@@ -5,7 +5,6 @@ import {
 import {
   StripMatcherFn,
   MatchContext,
-  AnyData,
   addLocation,
   StripUnsupportedError,
   isCaseNode,
@@ -13,6 +12,7 @@ import {
   MatchResult,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
 const strip: StripMatcherFn<CoreAndCombinationMatcher> = (
   matcher: CoreAndCombinationMatcher,

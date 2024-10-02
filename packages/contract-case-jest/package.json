@@ -81,6 +81,7 @@
     "@contract-case/case-entities-internal": "0.16.3",
     "@contract-case/case-definition-dsl": "0.16.3",
     "@contract-case/case-plugin-base": "0.16.3",
+    "@contract-case/case-plugin-dsl-types": "0.16.3",
     "@contract-case/cli": "0.2.3",
     "chalk": "^4.1.2",
     "read-pkg-up": "^7.0.1",

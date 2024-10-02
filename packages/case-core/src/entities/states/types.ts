@@ -1,4 +1,4 @@
-import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 
 export const SETUP_NAMED_STATE = '_case:NamedState' as const;
 export const SETUP_VARIABLE_STATE = '_case:StateWithVariables' as const;

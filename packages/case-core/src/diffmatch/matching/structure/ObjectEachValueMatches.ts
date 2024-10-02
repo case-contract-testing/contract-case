@@ -6,7 +6,6 @@ import {
 import {
   StripMatcherFn,
   MatchContext,
-  AnyData,
   addLocation,
   CheckMatchFn,
   MatchResult,
@@ -15,6 +14,7 @@ import {
   matchingError,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { isObject, whyNotAnObject } from './internals/objectTests';
 
 const strip: StripMatcherFn<CaseNodeFor<typeof OBJECT_VALUES_MATCH_TYPE>> = (

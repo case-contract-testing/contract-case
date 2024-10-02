@@ -5,7 +5,7 @@ import {
   URL_ENCODED_STRING_TYPE,
   HTTP_BASIC_AUTH_TYPE,
 } from '@contract-case/case-core-plugin-http-dsl';
-import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-plugin-base';
+import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-plugin-dsl-types';
 
 /* Parameters */
 

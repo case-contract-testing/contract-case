@@ -7,7 +7,7 @@ import {
   StateWithVariables,
   SETUP_VARIABLE_STATE,
   SETUP_NAMED_STATE,
-} from '@contract-case/case-plugin-base/dist/src/core/states';
+} from '@contract-case/case-plugin-dsl-types';
 
 export const inState = (
   name: string,

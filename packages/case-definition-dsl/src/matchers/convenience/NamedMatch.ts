@@ -1,4 +1,4 @@
-import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-plugin-base';
+import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-plugin-dsl-types';
 import { AnyMatcher } from '../base';
 import { AnyMatcherOrData } from '../../types';
 

@@ -4,7 +4,7 @@ import {
   CoreUrlEncodedStringMatcher,
   coreUrlEncodedString,
 } from '@contract-case/case-core-plugin-http-dsl';
-import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 
 /**
  * Matches http status codes. Matches may be provided as a string, eg '4XX' or '401', or a number.

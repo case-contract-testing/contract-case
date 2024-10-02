@@ -5,9 +5,7 @@ import {
 import {
   StripMatcherFn,
   MatchContext,
-  AnyData,
   addLocation,
-  AnyCaseMatcherOrData,
   hasErrors,
   combineResults,
   makeResults,
@@ -18,6 +16,10 @@ import {
   MatchResult,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import {
+  AnyCaseMatcherOrData,
+  AnyData,
+} from '@contract-case/case-plugin-dsl-types';
 
 const strip: StripMatcherFn<CoreArrayContainsMatcher> = (
   matcher: CoreArrayContainsMatcher,

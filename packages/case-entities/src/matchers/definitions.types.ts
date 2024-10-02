@@ -8,7 +8,7 @@ import {
 import {
   AnyCaseMatcherOrData,
   LookupableMatcher,
-} from '@contract-case/case-plugin-base';
+} from '@contract-case/case-plugin-dsl-types';
 import {
   NUMBER_MATCHER_TYPE,
   STRING_MATCHER_TYPE,

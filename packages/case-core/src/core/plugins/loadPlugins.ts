@@ -1,12 +1,12 @@
 import CoreHttpPlugin from '@contract-case/case-core-plugin-http';
 import CoreFunctionPlugin from '@contract-case/case-core-plugin-function';
 import {
-  AnyMockDescriptor,
   ContractCasePlugin,
   DataContext,
   IsCaseNodeForType,
   MatchContext,
 } from '@contract-case/case-plugin-base';
+import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 
 import { loadPlugin } from '../../diffmatch';
 import { MockExecutors } from './mockExecutors';

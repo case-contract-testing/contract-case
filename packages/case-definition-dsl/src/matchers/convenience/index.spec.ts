@@ -4,7 +4,7 @@ import {
   CoreAndCombinationMatcher,
   CoreContextVariableMatcher,
 } from '@contract-case/case-entities-internal';
-import { LookupableMatcher } from '@contract-case/case-plugin-base';
+import { LookupableMatcher } from '@contract-case/case-plugin-dsl-types';
 import {
   And,
   ChangeLogLevel,

@@ -5,11 +5,11 @@ import {
   AnyMockDescriptorType,
   StateHandlers,
 } from '@contract-case/case-entities-internal';
+import { ExampleNames } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import {
   CaseMockDescriptorFor,
   SetupInfoFor,
-} from '@contract-case/case-plugin-base';
-import { ExampleNames } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+} from '@contract-case/case-plugin-dsl-types';
 import { AnyState, Assertable } from '../../entities/types';
 
 export type RunTestCallback = (

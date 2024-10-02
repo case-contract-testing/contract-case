@@ -4,7 +4,6 @@ import {
 } from '@contract-case/case-core-plugin-http-dsl';
 import {
   MatchContext,
-  AnyData,
   addLocation,
   mustResolveToNumber,
   MatchResult,
@@ -13,6 +12,7 @@ import {
   makeNoErrorResult,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
 type HttpResponseData = {
   body?: unknown;

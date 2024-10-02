@@ -68,6 +68,6 @@
   "dependencies": {
     "@contract-case/case-core-plugin-http-dsl": "0.16.3",
     "@contract-case/case-core-plugin-function-dsl": "0.16.3",
-    "@contract-case/case-plugin-base": "0.16.3"
+    "@contract-case/case-plugin-dsl-types": "0.16.3"
   }
 }

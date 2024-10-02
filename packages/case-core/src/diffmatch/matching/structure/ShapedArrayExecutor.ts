@@ -6,7 +6,6 @@ import {
 import {
   StripMatcherFn,
   MatchContext,
-  AnyData,
   addLocation,
   CheckMatchFn,
   MatchResult,
@@ -16,6 +15,7 @@ import {
   makeNoErrorResult,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
 const strip: StripMatcherFn<CaseNodeFor<typeof SHAPED_ARRAY_MATCHER_TYPE>> = (
   matcher: CoreShapedArrayMatcher,

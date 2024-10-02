@@ -6,8 +6,6 @@ import {
 import {
   StripMatcherFn,
   MatchContext,
-  AnyData,
-  AnyCaseMatcherOrData,
   addLocation,
   actualToString,
   CheckMatchFn,
@@ -17,6 +15,10 @@ import {
   matchingError,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import {
+  AnyCaseMatcherOrData,
+  AnyData,
+} from '@contract-case/case-plugin-dsl-types';
 
 const strip: StripMatcherFn<CaseNodeFor<typeof SHAPED_OBJECT_MATCHER_TYPE>> = (
   matcher: CoreShapedObjectMatcher,

@@ -9,10 +9,10 @@ import {
   makeResults,
   matchingError,
   actualToString,
-  AnyData,
   CaseConfigurationError,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
 const check = (
   matcher: CoreUrlEncodedStringMatcher,

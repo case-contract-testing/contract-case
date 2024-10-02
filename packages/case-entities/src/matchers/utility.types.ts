@@ -1,4 +1,4 @@
-import { AnyLeafOrStructure } from '@contract-case/case-plugin-base';
+import { AnyLeafOrStructure } from '@contract-case/case-plugin-dsl-types';
 import { AnyCaseNodeType } from './constants.types';
 import { AnyCaseMatcher } from './definitions.types';
 

@@ -11,7 +11,8 @@ import {
   CoreJsonStringifiedMatcher,
   JSON_STRINGIFIED_TYPE,
 } from '@contract-case/case-entities-internal';
-import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
+
 import { anyString } from './primitives';
 
 /**

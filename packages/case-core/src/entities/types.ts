@@ -2,7 +2,8 @@ import {
   AllMockSetupInfos,
   AnyMockDescriptorType,
 } from '@contract-case/case-entities-internal';
-import { MatchResult, SetupInfoFor } from '@contract-case/case-plugin-base';
+import { MatchResult } from '@contract-case/case-plugin-base';
+import { SetupInfoFor } from '@contract-case/case-plugin-dsl-types';
 
 export * from './states/types';
 

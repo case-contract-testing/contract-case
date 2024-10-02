@@ -1,14 +1,16 @@
 import {
-  LookupableMatcher,
   MatchContext,
   StripMatcherFn,
-  LOOKUP_MATCHER_TYPE,
-  AnyData,
   addLocation,
   CheckMatchFn,
   MatchResult,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import {
+  LookupableMatcher,
+  AnyData,
+  LOOKUP_MATCHER_TYPE,
+} from '@contract-case/case-plugin-dsl-types';
 
 const getMatcher = (matcher: LookupableMatcher, matchContext: MatchContext) => {
   if (

@@ -1,4 +1,4 @@
-import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-base';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 
 export const FUNCTION_ARGUMENTS_MATCHER_TYPE =
   '_case:FunctionArgumentsMatcher' as const;

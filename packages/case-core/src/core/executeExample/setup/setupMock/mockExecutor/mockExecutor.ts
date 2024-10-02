@@ -3,12 +3,12 @@ import {
   AnyMockDescriptorType,
 } from '@contract-case/case-entities-internal';
 import {
-  CaseMockDescriptorFor,
   MatchContext,
   CaseCoreError,
   addLocation,
   MockData,
 } from '@contract-case/case-plugin-base';
+import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
 
 import { MockSetupFns } from '../../../../../diffmatch/types';
 

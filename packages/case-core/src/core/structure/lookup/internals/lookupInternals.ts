@@ -1,10 +1,12 @@
 import {
-  AnyCaseMatcherOrData,
   CaseConfigurationError,
-  isLookupableMatcher,
   CaseCoreError,
   MatchContextWithoutLookup,
 } from '@contract-case/case-plugin-base';
+import {
+  AnyCaseMatcherOrData,
+  isLookupableMatcher,
+} from '@contract-case/case-plugin-dsl-types';
 import { rawEquality } from './rawEquals';
 import type { LookupMap, LookupType } from './types';
 import { lookupName, stripType } from './lookupName';

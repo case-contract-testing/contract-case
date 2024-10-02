@@ -9,7 +9,7 @@ import {
   JsonOrMatcherMap,
   LookupableMatcher,
   LOOKUP_MATCHER_TYPE,
-} from '@contract-case/case-plugin-base';
+} from '@contract-case/case-plugin-dsl-types';
 
 export const coreShapedArrayMatcher = (
   example: Array<AnyCaseMatcherOrData>,

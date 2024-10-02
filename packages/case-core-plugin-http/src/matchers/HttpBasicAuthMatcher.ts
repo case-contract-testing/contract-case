@@ -11,9 +11,9 @@ import {
   actualToString,
   combineResultPromises,
   addLocation,
-  AnyData,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
 const encode = (username: string, password: string) => {
   if (username.includes(':')) {

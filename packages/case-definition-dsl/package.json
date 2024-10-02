@@ -80,10 +80,9 @@
   },
   "dependencies": {
     "@contract-case/case-entities-internal": "0.16.3",
-    "@contract-case/case-plugin-base": "0.16.3",
+    "@contract-case/case-plugin-dsl-types": "0.16.3",
     "@contract-case/case-core-plugin-http-dsl": "0.16.3",
-    "@contract-case/case-core-plugin-function-dsl": "0.16.3",
-    "pretty-format": "29.7.0"
+    "@contract-case/case-core-plugin-function-dsl": "0.16.3"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
@@ -126,9 +125,8 @@
   },
   "bundledDependencies": [
     "@contract-case/case-entities-internal",
-    "@contract-case/case-plugin-base",
+    "@contract-case/case-plugin-dsl-types",
     "@contract-case/case-core-plugin-http-dsl",
-    "@contract-case/case-core-plugin-function-dsl",
-    "pretty-format"
+    "@contract-case/case-core-plugin-function-dsl"
   ]
 }

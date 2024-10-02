@@ -1,4 +1,4 @@
-import { SETUP_NAMED_STATE } from '@contract-case/case-plugin-base/dist/src/core/states';
+import { SETUP_NAMED_STATE } from '@contract-case/case-plugin-dsl-types';
 import { AnyState } from './AnyState';
 
 /**
