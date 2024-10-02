@@ -1,7 +1,7 @@
 # Case-Entities
 
-[![Build and test](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/case/badge.svg?targetFile=packages/case-entities/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/case-entities/package.json)
+[![Build and test](https://github.com/case-contract-testing/contract-case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/contract-case/actions/workflows/build-and-test.yml)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-entities/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case?targetFile=packages/case-entities/package.json)
 
 These are the shared developer config files for @contract-case modules.
 
