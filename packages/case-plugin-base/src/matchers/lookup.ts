@@ -1,5 +1,8 @@
-import { LOOKUP_MATCHER_TYPE, LookupableMatcher } from './lookup.types';
-import { AnyCaseMatcherOrData } from './matchers.types';
+import {
+  AnyCaseMatcherOrData,
+  LOOKUP_MATCHER_TYPE,
+  LookupableMatcher,
+} from '@contract-case/case-plugin-dsl-types';
 
 /**
  * Creates a matcher descriptor for a lookupable matcher.

@@ -1,4 +1,4 @@
-import { AnyCaseMatcher } from './matchers.types';
+import { AnyCaseMatcher } from '@contract-case/case-plugin-dsl-types';
 
 /**
  * Type guard to determine if an object is a ContractCase matcher descriptor or not

@@ -1,3 +1,10 @@
+import {
+  AnyCaseMatcher,
+  AnyMockDescriptor,
+  AnyCaseMatcherOrData,
+  isCaseMock,
+  AnyData,
+} from '@contract-case/case-plugin-dsl-types';
 import type {
   MatchContext,
   RunContext,
@@ -10,13 +17,7 @@ import type {
   ContractLookupFns,
 } from './types';
 
-import {
-  AnyCaseMatcher,
-  AnyCaseMatcherOrData,
-  AnyData,
-  isCaseNode,
-} from '../matchers/types';
-import { AnyMockDescriptor, isCaseMock } from '../mocks/nodes.types';
+import { isCaseNode } from '../matchers/types';
 import { Logger } from '../logger/types';
 import { shouldLog } from '../logger/shouldLog';
 

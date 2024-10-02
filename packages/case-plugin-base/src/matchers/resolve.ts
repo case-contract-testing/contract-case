@@ -1,6 +1,6 @@
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 import { MatchContext } from '../context/types';
 import { CaseCoreError } from '../errors';
-import { AnyCaseMatcherOrData } from './matchers.types';
 
 /**
  * During a matcher execution, this function can be called to ensure that the

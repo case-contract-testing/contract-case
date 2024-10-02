@@ -1,7 +1,7 @@
+import { AnyCaseMatcher } from '@contract-case/case-plugin-dsl-types';
 import { locationString } from '../../context';
 import { MatchContext } from '../../context/types';
 import { CaseError, ERROR_TYPE_MATCHING, MatchResult } from '../errors.types';
-import { AnyCaseMatcher } from '../matchers.types';
 
 /**
  * Helper function that will return an error if the test condition is met, or a non-erroring {@link MatchResult} otherwise.

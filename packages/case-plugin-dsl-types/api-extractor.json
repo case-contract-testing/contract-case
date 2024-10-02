@@ -1,0 +1,53 @@
+/**
+ * Config file for API Extractor.  For more info, please visit: https://api-extractor.com
+ */
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+
+  /**
+   * Optionally specifies another JSON config file that this file extends from.  This provides a way for
+   * standard settings to be shared across multiple projects.
+   *
+   * If the path starts with "./" or "../", the path is resolved relative to the folder of the file that contains
+   * the "extends" field.  Otherwise, the first path segment is interpreted as an NPM package name, and will be
+   * resolved using NodeJS require().
+   *
+   * SUPPORTED TOKENS: none
+   * DEFAULT VALUE: ""
+   */
+  "extends": "@contract-case/case-maintainer-config/api-extractor.json",
+
+  /**
+   * (REQUIRED) Specifies the .d.ts file to be used as the starting point for analysis.  API Extractor
+   * analyzes the symbols exported by this module.
+   *
+   * The file extension must be ".d.ts" and not ".ts".
+   *
+   * The path is resolved relative to the folder of the config file that contains the setting; to change this,
+   * prepend a folder token such as "<projectFolder>".
+   *
+   * SUPPORTED TOKENS: <projectFolder>, <packageName>, <unscopedPackageName>
+   */
+  "mainEntryPointFilePath": "<projectFolder>/dist/src/index.d.ts",
+
+  /**
+   * Configures how the doc model file (*.api.json) will be generated.
+   */
+  "docModel": {
+    /**
+     * The base URL where the project's source code can be viewed on a website such as GitHub or
+     * Azure DevOps. This URL path corresponds to the `<projectFolder>` path on disk.
+     *
+     * This URL is concatenated with the file paths serialized to the doc model to produce URL file paths to individual API items.
+     * For example, if the `projectFolderUrl` is "https://github.com/microsoft/rushstack/tree/main/apps/api-extractor" and an API
+     * item's file path is "api/ExtractorConfig.ts", the full URL file path would be
+     * "https://github.com/microsoft/rushstack/tree/main/apps/api-extractor/api/ExtractorConfig.js".
+     *
+     * Can be omitted if you don't need source code links in your API documentation reference.
+     *
+     * SUPPORTED TOKENS: none
+     * DEFAULT VALUE: ""
+     */
+    "projectFolderUrl": "https://github.com/case-contract-testing/contract-case/tree/main/packages/case-plugin-dsl-types"
+  }
+}

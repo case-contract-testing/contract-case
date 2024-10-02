@@ -1,4 +1,4 @@
-import { AnyCaseMatcherOrData } from '../../matchers/matchers.types';
+import { AnyCaseMatcherOrData } from '../matchers/types';
 
 export const SETUP_NAMED_STATE = '_case:NamedState' as const;
 export const SETUP_VARIABLE_STATE = '_case:StateWithVariables' as const;

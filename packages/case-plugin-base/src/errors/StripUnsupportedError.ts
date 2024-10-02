@@ -1,4 +1,4 @@
-import { AnyCaseMatcher } from '../matchers/types';
+import { AnyCaseMatcher } from '@contract-case/case-plugin-dsl-types';
 import type { DataContext } from '../context/types';
 
 const locationString = (matchContext: DataContext) =>

@@ -1,6 +1,6 @@
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { MatchContext } from '../context/types';
 import { MatchResult } from './errors.types';
-import { AnyData } from './matchers.types';
 import { IsCaseNodeForType } from './utility.types';
 
 /**

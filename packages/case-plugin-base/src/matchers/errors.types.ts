@@ -1,5 +1,5 @@
+import { AnyCaseMatcher } from '@contract-case/case-plugin-dsl-types';
 import { VerifyTriggerReturnObjectError } from '../errors/VerifyTriggerReturnObjectError';
-import { AnyCaseMatcher } from './matchers.types';
 
 // ************************************************************
 // Warning: **ALL** of the following error types must be listed

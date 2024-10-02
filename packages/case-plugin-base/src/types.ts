@@ -1,7 +1,7 @@
+import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 import { MatcherExecutor } from './matchers/types';
 import { CaseMatcherFor, IsCaseNodeForType } from './matchers/utility.types';
 import { MockExecutorFn } from './mocks/executors.types';
-import { AnyMockDescriptor } from './mocks/nodes.types';
 
 export * from './corePlugins';
 export * from './context/types';

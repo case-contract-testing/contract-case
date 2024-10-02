@@ -1,4 +1,7 @@
-import { AnyCaseMatcher, AnyLeafOrStructure } from './matchers.types';
+import {
+  AnyCaseMatcher,
+  AnyLeafOrStructure,
+} from '@contract-case/case-plugin-dsl-types';
 
 /**
  * A matcher descriptor that has an example

@@ -1,7 +1,9 @@
+import {
+  AnyMockDescriptor,
+  AnyCaseMatcherOrData,
+  AnyState,
+} from '@contract-case/case-plugin-dsl-types';
 import { CaseError } from '../../matchers/errors.types';
-import { AnyCaseMatcherOrData } from '../../matchers/matchers.types';
-import { AnyMockDescriptor } from '../../mocks/nodes.types';
-import { AnyState } from '../states';
 
 export interface CaseContractDescription {
   consumerName: string;
