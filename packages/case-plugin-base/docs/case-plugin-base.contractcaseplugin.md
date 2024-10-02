@@ -19,5 +19,5 @@ export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends st
     };
 };
 ```
-**References:** [IsCaseNodeForType](./case-plugin-base.iscasenodefortype.md)<!-- -->, [AnyMockDescriptor](./case-plugin-base.anymockdescriptor.md)<!-- -->, [PluginDescription](./case-plugin-base.plugindescription.md)<!-- -->, [MatcherExecutor](./case-plugin-base.matcherexecutor.md)<!-- -->, [CaseMatcherFor](./case-plugin-base.casematcherfor.md)<!-- -->, [MockExecutorFn](./case-plugin-base.mockexecutorfn.md)
+**References:** [IsCaseNodeForType](./case-plugin-base.iscasenodefortype.md)<!-- -->, [PluginDescription](./case-plugin-base.plugindescription.md)<!-- -->, [MatcherExecutor](./case-plugin-base.matcherexecutor.md)<!-- -->, [CaseMatcherFor](./case-plugin-base.casematcherfor.md)<!-- -->, [MockExecutorFn](./case-plugin-base.mockexecutorfn.md)
 

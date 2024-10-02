@@ -37,7 +37,7 @@ matcher
 
 </td><td>
 
-[AnyCaseMatcher](./case-plugin-base.anycasematcher.md)
+AnyCaseMatcher
 
 
 </td><td>

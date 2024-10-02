@@ -13,5 +13,3 @@ export type HasExample<T extends AnyCaseMatcher> = T & {
     '_case:matcher:example': unknown;
 };
 ```
-**References:** [AnyCaseMatcher](./case-plugin-base.anycasematcher.md)
-

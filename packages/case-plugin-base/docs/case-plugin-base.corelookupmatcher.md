@@ -53,7 +53,7 @@ child
 
 </td><td>
 
-[AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)
+AnyCaseMatcherOrData
 
 
 </td><td>
@@ -65,9 +65,9 @@ the contents of this lookupable matcher
 </tbody></table>
 **Returns:**
 
-[LookupableMatcher](./case-plugin-base.lookupablematcher.md)
+LookupableMatcher
 
-a [LookupableMatcher](./case-plugin-base.lookupablematcher.md)
+a 
 
 ## Remarks
 

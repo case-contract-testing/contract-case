@@ -102,7 +102,7 @@ The ContractCase run location array
 
 </td><td>
 
-[AnyCaseMatcher](./case-plugin-base.anycasematcher.md)
+AnyCaseMatcher
 
 
 </td><td>

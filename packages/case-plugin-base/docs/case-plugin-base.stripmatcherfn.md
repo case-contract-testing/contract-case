@@ -11,7 +11,7 @@ Strips the matchers from a matcher descriptor to return the raw data represented
 ```typescript
 export type StripMatcherFn<T> = (matcher: T, matchContext: MatchContext) => AnyData;
 ```
-**References:** [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->, [AnyData](./case-plugin-base.anydata.md)
+**References:** [MatchContext](./case-plugin-base.matchcontext.md)
 
 ## Remarks
 

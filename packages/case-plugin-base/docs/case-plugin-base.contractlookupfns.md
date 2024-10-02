@@ -45,7 +45,7 @@ Description
 
 </td><td>
 
-(name: string, stateName: string, value: [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)<!-- -->) =&gt; \[name: string, value: [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)<!-- -->\]
+(name: string, stateName: string, value: AnyCaseMatcherOrData) =&gt; \[name: string, value: AnyCaseMatcherOrData\]
 
 
 </td><td>
@@ -68,7 +68,7 @@ Note that this function modifies the contract.
 
 </td><td>
 
-(name: string, stateName: string, value: [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)<!-- -->) =&gt; \[name: string, value: [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)<!-- -->\]
+(name: string, stateName: string, value: AnyCaseMatcherOrData) =&gt; \[name: string, value: AnyCaseMatcherOrData\]
 
 
 </td><td>
@@ -110,7 +110,7 @@ Primarily used by the Function plugin, but may have other uses.
 
 </td><td>
 
-(uniqueName: string) =&gt; [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)
+(uniqueName: string) =&gt; AnyCaseMatcherOrData
 
 
 </td><td>
@@ -129,7 +129,7 @@ Looks up a previously saved matcher by unique name
 
 </td><td>
 
-(name: string) =&gt; [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)
+(name: string) =&gt; AnyCaseMatcherOrData
 
 
 </td><td>
@@ -148,7 +148,7 @@ Get a previously saved state variable, either from state or from the default val
 
 </td><td>
 
-(matcher: [AnyCaseMatcher](./case-plugin-base.anycasematcher.md)<!-- -->) =&gt; void
+(matcher: AnyCaseMatcher) =&gt; void
 
 
 </td><td>
