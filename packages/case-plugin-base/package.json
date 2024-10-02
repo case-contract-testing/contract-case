@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-plugin-base",
-  "version": "0.16.0",
+  "version": "0.16.1",
   "description": "Plugin framework for writing plugins for the ContractCase test framework",
   "keywords": [
     "testing",
