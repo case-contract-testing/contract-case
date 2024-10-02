@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.17.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-dsl-v0.16.3...@contract-case/case-core-plugin-function-dsl-v0.17.0) (2024-10-02)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-core-plugin-function-dsl:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from ^0.16.3 to ^0.17.0
+
 ## [0.16.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-dsl-v0.16.2...@contract-case/case-core-plugin-function-dsl-v0.16.3) (2024-10-02)
 
 
