@@ -1,5 +1,6 @@
 import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
+import { AnyLeafOrStructure } from '@contract-case/case-plugin-dsl-types';
 import { anyNumber, anyString, namedMatch } from './boundaries/dsl/Matchers';
 
 import { makeExpectErrorContaining } from './__tests__/expectErrorContaining';
@@ -7,7 +8,6 @@ import { MAINTAINER_TEST_CONTEXT } from './__tests__/testContext';
 import { WritingCaseContract } from './core';
 import { writerDependencies } from './connectors/dependencies';
 import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
-import { AnyLeafOrStructure } from '@contract-case/case-plugin-dsl-types';
 
 describe('named matches', () => {
   const contract = new WritingCaseContract(
