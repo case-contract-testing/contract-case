@@ -50,6 +50,23 @@ An array of expected function arguments (or test equivalence matchers for those 
 </td></tr>
 <tr><td>
 
+[functionName](./case-definition-dsl.mocks.functions.functionexecutionexample.functionname.md)
+
+</td><td>
+
+`readonly`
+
+</td><td>
+
+string
+
+</td><td>
+
+The name of the function to be executed. Doubles as the handle used by registerFunction.
+
+</td></tr>
+<tr><td>
+
 [returnValue](./case-definition-dsl.mocks.functions.functionexecutionexample.returnvalue.md)
 
 </td><td>

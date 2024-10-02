@@ -308,13 +308,22 @@ class ExactlyLike extends CascadingContextMatcher {
 // @public
 interface FunctionExecutionExample {
     readonly arguments: AnyMatcherOrData[];
+    readonly functionName: string;
+    readonly returnValue: AnyMatcherOrData;
+}
+
+// @public
+interface FunctionExecutionExampleWithHandle {
+    readonly arguments: AnyMatcherOrData[];
     readonly returnValue: AnyMatcherOrData;
 }
 
 declare namespace functions {
     export {
         WillCallFunction,
-        FunctionExecutionExample
+        WillReceiveFunctionCall,
+        FunctionExecutionExample,
+        FunctionExecutionExampleWithHandle
     }
 }
 
@@ -649,9 +658,37 @@ class WillCallFunction extends AnyMockDescriptor {
     };
     constructor(example: FunctionExecutionExample);
     // (undocumented)
-    readonly arguments: AnyMatcherOrData;
+    readonly functionName: string;
     // (undocumented)
-    readonly returnValue: AnyMatcherOrData;
+    readonly request: AnyMatcherOrData;
+    // (undocumented)
+    readonly response: AnyMatcherOrData;
+}
+
+// @public
+class WillReceiveFunctionCall extends AnyMockDescriptor {
+    // @internal (undocumented)
+    readonly '_case:mock:type': typeof MOCK_FUNCTION_CALLER;
+    // @internal (undocumented)
+    readonly '_case:run:context:setup': {
+        write: {
+            type: typeof MOCK_FUNCTION_CALLER;
+            stateVariables: 'state';
+            triggers: 'generated';
+        };
+        read: {
+            type: typeof MOCK_FUNCTION_EXECUTION;
+            stateVariables: 'default';
+            triggers: 'provided';
+        };
+    };
+    constructor(example: FunctionExecutionExample);
+    // (undocumented)
+    readonly functionName: string;
+    // (undocumented)
+    readonly request: AnyMatcherOrData;
+    // (undocumented)
+    readonly response: AnyMatcherOrData;
 }
 
 // @public

@@ -24,6 +24,15 @@ Description
 Defines an example that expects a function to be called with specific arguments
 
 </td></tr>
+<tr><td>
+
+[WillReceiveFunctionCall](./case-definition-dsl.mocks.functions.willreceivefunctioncall.md)
+
+</td><td>
+
+Defines an example that expects a function to be called with specific arguments
+
+</td></tr>
 </tbody></table>
 
 ## Interfaces
@@ -44,6 +53,15 @@ Description
 </td><td>
 
 Example descriptor for a function execution
+
+</td></tr>
+<tr><td>
+
+[FunctionExecutionExampleWithHandle](./case-definition-dsl.mocks.functions.functionexecutionexamplewithhandle.md)
+
+</td><td>
+
+Example descriptor for a function execution that can be called by ContractCase
 
 </td></tr>
 </tbody></table>
