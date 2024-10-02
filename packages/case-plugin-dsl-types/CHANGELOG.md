@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.17.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-dsl-types-v0.16.3...@contract-case/case-plugin-dsl-types-v0.17.0) (2024-10-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* Separate case-plugin-base into case-plugin-base and case-plugin-dsl-types to make working with bundled dependencies easier. Some imports may need to be updated.
+
+### Code Refactoring
+
+* Separate case-plugin-base into case-plugin-base and case-plugin-dsl-types to make working with bundled dependencies easier. Some imports may need to be updated. ([6659218](https://github.com/case-contract-testing/contract-case/commit/6659218c053146c2c1171fa3c9621c6aa8399aac))
+
 ## [0.16.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.16.2...@contract-case/case-plugin-base-v0.16.3) (2024-10-02)
 
 
