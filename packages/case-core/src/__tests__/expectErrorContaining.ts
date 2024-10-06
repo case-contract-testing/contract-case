@@ -1,5 +1,5 @@
-import { AnyLeafOrStructure } from '@contract-case/case-plugin-base';
 import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
+import { AnyLeafOrStructure } from '@contract-case/case-plugin-dsl-types';
 import { WritingCaseContract } from '../core';
 
 export const makeExpectErrorContaining =
