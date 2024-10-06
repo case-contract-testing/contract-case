@@ -368,8 +368,15 @@
           "stateName": "Server is up"
         },
         {
-          "_case:state:type": "_case:NamedState",
-          "stateName": "No users exist"
+          "_case:state:type": "_case:StateWithVariables",
+          "stateName": "No users exist",
+          "variables": {
+            "userId": {
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "123",
+              "_case:context:matchBy": "type"
+            }
+          }
         }
       ],
       "mock": {
