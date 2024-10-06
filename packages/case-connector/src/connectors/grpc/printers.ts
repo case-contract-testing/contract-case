@@ -27,7 +27,11 @@ export const makeResultPrinter = (
   ): Promise<BoundaryResult> =>
     waitForResolution(
       makeResolvableId((id: string) =>
-        sendContractResponse(id, makePrintMatchErrorRequest(matchError)),
+        sendContractResponse(
+          'deepMaintainerDebug',
+          id,
+          makePrintMatchErrorRequest(matchError),
+        ),
       ),
     ),
   printMessageError: async (
@@ -36,6 +40,7 @@ export const makeResultPrinter = (
     waitForResolution(
       makeResolvableId((id) =>
         sendContractResponse(
+          'deepMaintainerDebug',
           id,
           makePrintableMessageErrorRequest(messageError),
         ),
@@ -46,7 +51,11 @@ export const makeResultPrinter = (
   ): Promise<BoundaryResult> =>
     waitForResolution(
       makeResolvableId((id: string) =>
-        sendContractResponse(id, makePrintTestTitleRequest(testTitle)),
+        sendContractResponse(
+          'deepMaintainerDebug',
+          id,
+          makePrintTestTitleRequest(testTitle),
+        ),
       ),
     ),
 });
@@ -66,6 +75,7 @@ export const makeLogPrinter = (
     waitForResolution(
       makeResolvableId((id: string) =>
         sendContractResponse(
+          'deepMaintainerDebug',
           id,
           makeLogRequest({
             level,

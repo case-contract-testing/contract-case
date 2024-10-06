@@ -64,6 +64,7 @@ export const contractVerification = (
       request,
     );
     sendContractResponse(
+      'maintainerDebug',
       request.getId()?.getValue() || '',
       makeResultResponse(
         new BoundaryFailure(
@@ -113,6 +114,7 @@ export const contractVerification = (
                           }`;
                           invoker.verify().then((verificationResult) => {
                             sendContractResponse(
+                              'maintainerDebug',
                               id,
                               makeResultResponse(verificationResult),
                             );
@@ -125,6 +127,7 @@ export const contractVerification = (
                     return waitForResolution(
                       makeResolvableId((id: string) =>
                         sendContractResponse(
+                          'maintainerDebug',
                           id,
                           new WireContractResponse().setStartTestEvent(
                             new WireStartTestEvent()
@@ -148,6 +151,7 @@ export const contractVerification = (
               );
             } catch (e) {
               sendContractResponse(
+                'maintainerDebug',
                 getId(request),
                 makeResultResponse(
                   new BoundaryFailure(
@@ -161,6 +165,7 @@ export const contractVerification = (
             }
 
             sendContractResponse(
+              'maintainerDebug',
               getId(request),
               makeResultResponse(new BoundarySuccess()),
             );
@@ -175,7 +180,11 @@ export const contractVerification = (
 
           availableContractDescriptions(verificationId)
             .then((result) =>
-              sendContractResponse(getId(request), makeResultResponse(result)),
+              sendContractResponse(
+                'maintainerDebug',
+                getId(request),
+                makeResultResponse(result),
+              ),
             )
             .catch((e) => {
               sendUnexpectedError(
@@ -204,7 +213,11 @@ export const contractVerification = (
             mapConfig(runVerificationRequest.getConfig(), sendContractResponse),
           )
             .then((result) =>
-              sendContractResponse(getId(request), makeResultResponse(result)),
+              sendContractResponse(
+                'maintainerDebug',
+                getId(request),
+                makeResultResponse(result),
+              ),
             )
             .catch((e) => {
               sendUnexpectedError(request, e as Error, 'Run verification');
@@ -285,6 +298,7 @@ export const contractVerification = (
               )
               .then((result) =>
                 sendContractResponse(
+                  'maintainerDebug',
                   getId(request),
                   makeResultResponse(result),
                 ),
@@ -318,6 +332,7 @@ export const contractVerification = (
             )
               .then((result) =>
                 sendContractResponse(
+                  'maintainerDebug',
                   getId(request),
                   makeResultResponse(result),
                 ),
