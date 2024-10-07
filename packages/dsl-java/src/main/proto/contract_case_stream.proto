@@ -38,9 +38,16 @@ message ContractCaseConfig {
 }
 
 // Indicates a successful response with no payload
-message ResultSuccess {}
-message ResultSuccessHasMapPayload { google.protobuf.Struct map = 1; }
-message ResultSuccessHasAnyPayload { google.protobuf.Value payload = 1; }
+message ResultSuccess {
+}
+message ResultSuccessHasMapPayload {
+  // Always a map of Strings -> Strings
+  google.protobuf.Struct map = 1;
+}
+message ResultSuccessHasAnyPayload {
+  // Always a JSON serialised object
+  google.protobuf.StringValue payload = 1;
+}
 message ResultFailure {
   google.protobuf.StringValue kind = 1;
   google.protobuf.StringValue message = 2;
@@ -67,7 +74,9 @@ message StateHandlerHandle {
   Stage stage = 2;
 }
 
-message TriggerFunctionHandle { google.protobuf.StringValue handle = 1; }
+message TriggerFunctionHandle {
+  google.protobuf.StringValue handle = 1;
+}
 
 // Requests from client / host
 
@@ -93,11 +102,14 @@ message RunRejectingExampleRequest {
 
 // From host to core, instructs the core to strip the matchers from a given
 // matcher / data object
-message StripMatchersRequest { google.protobuf.Struct matcher_or_data = 2; }
+message StripMatchersRequest {
+  google.protobuf.Struct matcher_or_data = 2;
+}
 
 // From host to core, instructs the core to finish the current contract
 // definition
-message EndDefinitionRequest {}
+message EndDefinitionRequest {
+}
 
 // From host to core, instructs the core to load a plugin
 message LoadPluginRequest {
@@ -109,7 +121,9 @@ message LoadPluginRequest {
 // Responses from server
 
 // From Core to Host, instructs the host to run a given state handler
-message RunStateHandlerRequest { StateHandlerHandle state_handler_handle = 1; }
+message RunStateHandlerRequest {
+  StateHandlerHandle state_handler_handle = 1;
+}
 
 // From Core to Host, requests the host invoke one of the user-provided
 // triggers.
@@ -255,7 +269,9 @@ message PrintTestTitleRequest {
 //
 // Most messages must be acknowledged with a response - this indicates the
 // return of the previous message.
-message ResultResponse { BoundaryResult result = 1; }
+message ResultResponse {
+  BoundaryResult result = 1;
+}
 
 // From the Host to the Core, requests that a verification session begins
 message BeginVerificationRequest {
@@ -266,7 +282,8 @@ message BeginVerificationRequest {
 }
 
 // From the Host to the Core, requests a list of the available contracts
-message AvailableContractDefinitions {}
+message AvailableContractDefinitions {
+}
 
 // From the Host to the Core, instructs the core that the current verification
 // session is now configured, and asks it to execute the verification.

@@ -3,11 +3,14 @@ package io.contract_testing.contractcase.client;
 import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.StringValue;
+import io.contract_testing.contractcase.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.ContractCaseCoreError;
+import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.LogPrinter;
 import io.contract_testing.contractcase.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
+import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseGrpc;
@@ -18,6 +21,8 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -39,6 +44,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   private final ManagedChannel channel;
 
   final CountDownLatch finishLatch = new CountDownLatch(1);
+  private final Map<String, ConnectorInvokableFunction> registeredFunctions = new ConcurrentHashMap<>();
 
 
   private static final int DEFAULT_TIMEOUT_SECONDS = 60;
@@ -90,12 +96,12 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
     var future = new CompletableFuture<BoundaryResult>();
     responseFutures.put(id, future);
-    worker.send(setId(builder, ConnectorOutgoingMapper.map(id)));
+    worker.send(setId(builder, ConnectorOutgoingMapper.map(id)), LogLevel.MAINTAINER_DEBUG);
 
     try {
-      MaintainerLog.log("Waiting for: " + id);
+      MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Waiting for: " + id);
       var mappedResult = ConnectorIncomingMapper.mapBoundaryResult(future.get(
-          timeoutSeconds,
+          timeoutSeconds * 1000,
           TimeUnit.SECONDS
       ));
 
@@ -110,8 +116,11 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
       return mappedResult;
     } catch (TimeoutException e) {
-      MaintainerLog.log("Timed out waiting for: " + id);
-      MaintainerLog.log("Remaining futures: " + responseFutures.keySet());
+      MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Timed out waiting for: " + id);
+      MaintainerLog.log(
+          LogLevel.MAINTAINER_DEBUG,
+          "Remaining futures: " + responseFutures.keySet()
+      );
 
       if (errorStatus != null) {
         return new ConnectorFailure(
@@ -127,7 +136,10 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
           MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
       );
     } catch (ExecutionException e) {
-      MaintainerLog.log("Execution exception waiting for: " + id + "\n" + e);
+      MaintainerLog.log(
+          LogLevel.MAINTAINER_DEBUG,
+          "Execution exception waiting for: " + id + "\n" + e
+      );
       return new ConnectorFailure(
           ConnectorFailureKindConstants.CASE_CORE_ERROR,
           "Failed waiting for a response '" + id + "':" + e.getMessage(),
@@ -144,7 +156,9 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
   void completeWait(String id, BoundaryResult result) {
     MaintainerLog.log(
-        "Completing wait for id '" + id + "', with result: " + result.getValueCase().name());
+        LogLevel.MAINTAINER_DEBUG,
+        "Completing wait for id '" + id + "', with result: " + result.getValueCase().name()
+    );
 
     final var future = responseFutures.get(id);
     if (future == null) {
@@ -160,7 +174,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
   private static final Semaphore sendMutex = new Semaphore(1);
 
-  void sendResponse(B builder, String id) {
+  void sendResponse(B builder, String id, LogLevel logLevel) {
     try {
       sendMutex.acquire();
     } catch (InterruptedException e) {
@@ -171,14 +185,14 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
     }
     try {
 
-      worker.send(setId(builder, ConnectorOutgoingMapper.map(id)));
+      worker.send(setId(builder, ConnectorOutgoingMapper.map(id)), logLevel);
     } finally {
       sendMutex.release();
     }
   }
 
-  void sendResponse(ResultResponse response, String id) {
-    sendResponse(makeResponse(response), id);
+  void sendResponse(ResultResponse response, String id, LogLevel logLevel) {
+    sendResponse(makeResponse(response), id, logLevel);
   }
 
   public void setErrorStatus(Status errorStatus) {
@@ -200,4 +214,24 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   }
 
 
+  public <R> void registerFunction(String functionName, ConnectorInvokableFunction function) {
+    if (this.registeredFunctions.containsKey(functionName)) {
+      throw new ContractCaseConfigurationError("The function '"
+          + "' was already registered. Make sure you are only registering it once.");
+    }
+    this.registeredFunctions.put(functionName, function);
+  }
+
+  public ConnectorResult invokeFunction(String functionName, List<String> args) {
+    var method = this.registeredFunctions.get(functionName);
+    if (method == null) {
+      return new ConnectorFailure(
+          ConnectorFailureKindConstants.CASE_CORE_ERROR,
+          "The core asked us to invoke the function '" + functionName
+              + "' but it didn't exist in our store",
+          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
+      );
+    }
+    return method.apply(args);
+  }
 }

@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase.client;
 
+import io.contract_testing.contractcase.LogLevel;
 import io.grpc.stub.StreamObserver;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
@@ -24,9 +25,9 @@ class SendingWorker<T> implements Runnable {
     executorService.submit(this);
   }
 
-  void send(T data) {
+  void send(T data, LogLevel logLevel) {
     try {
-      queue.put(new SendTask<T>(TaskType.SEND_DATA, data));
+      queue.put(new SendTask<T>(TaskType.SEND_DATA, data, logLevel));
     } catch (InterruptedException e) {
       throw new RuntimeException("Interrupted while sending: " + e.getMessage(), e);
     }
@@ -38,7 +39,7 @@ class SendingWorker<T> implements Runnable {
         var task = queue.take();
         switch (task.type) {
           case SEND_DATA -> {
-            MaintainerLog.log(" -> Sending: " + task.data);
+            MaintainerLog.log(task.logLevel(), " -> Sending: " + task.data);
             requestObserver.onNext(task.data);
           }
           case CLOSE -> {
@@ -56,7 +57,7 @@ class SendingWorker<T> implements Runnable {
 
   void close() {
     try {
-      this.queue.put(new SendTask<T>(TaskType.CLOSE, null));
+      this.queue.put(new SendTask<T>(TaskType.CLOSE, null, LogLevel.MAINTAINER_DEBUG));
     } catch (InterruptedException e) {
       throw new RuntimeException("SendingWorker interrupted while closing", e);
     }
@@ -69,7 +70,7 @@ class SendingWorker<T> implements Runnable {
     }
   }
 
-  private record SendTask<T>(TaskType type, T data) {
+  private record SendTask<T>(TaskType type, T data, LogLevel logLevel) {
 
   }
 

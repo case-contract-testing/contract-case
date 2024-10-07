@@ -12,6 +12,7 @@ import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 import io.contract_testing.contractcase.ContractCaseCoreError;
+import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.edge.ConnectorResult;
@@ -174,7 +175,7 @@ class ConnectorOutgoingMapper {
   @NotNull
   static ContractCaseStream.BoundaryResult mapResult(@NotNull ConnectorResult result) {
     var resultType = result.getResultType();
-    MaintainerLog.log("Mapping result type: " + resultType);
+    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Mapping result type: " + resultType);
     if (resultType == null) {
       throw new ContractCaseCoreError("Got a null result type at: " + result);
     }
@@ -202,7 +203,7 @@ class ConnectorOutgoingMapper {
       case ConnectorResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD ->
           ContractCaseStream.BoundaryResult.newBuilder()
               .setSuccessHasAny(ResultSuccessHasAnyPayload.newBuilder()
-                  .setPayload(mapMapToValue(((ConnectorSuccessWithAny) result).getPayload()))
+                  .setPayload(map(((ConnectorSuccessWithAny) result).getPayload()))
                   .build())
               .build();
       default -> {

@@ -1,6 +1,6 @@
 package io.contract_testing.contractcase;
 
-class BoundaryCrashReporter {
+public class BoundaryCrashReporter {
 
   static final String CRASH_MESSAGE_START = """
       ---------------------------------------------------
@@ -33,13 +33,19 @@ class BoundaryCrashReporter {
       ---------------------------------------------------
       """;
 
-  static void handleAndRethrow(Throwable e) {
+  public static void handleAndRethrow(Throwable e) {
     // This method should not call BoundaryResultMapper
     if (e instanceof ContractCaseConfigurationError) {
       throw (ContractCaseConfigurationError) e;
     } else if (e instanceof ContractCaseExpectationsNotMet) {
       throw (ContractCaseExpectationsNotMet) e;
     }
+    printCrashMessage(e);
+
+    throw new ContractCaseCoreError(e);
+  }
+
+  public static void printCrashMessage(Throwable e) {
     if (e instanceof ContractCaseCoreError) {
       System.err.println(
           CRASH_MESSAGE_START
@@ -61,8 +67,6 @@ class BoundaryCrashReporter {
               + "\n\n"
               + CRASH_MESSAGE_END);
     }
-
-    throw new ContractCaseCoreError(e);
   }
 
 }

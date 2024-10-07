@@ -40,14 +40,14 @@ public class ContractVerifier implements AutoCloseable {
                 @NotNull InvokeCoreTest invoker) {
               // TODO replace this with something that knows about JUnit
               try {
-                MaintainerLog.log("Invoking verifier for: " + testName);
+                MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Invoking verifier for: " + testName);
                 var result = invoker.verify();
 
                 // TODO: Replace this with something that knows what to do with these results
                 if (result.getResultType().equals(ConnectorResultTypeConstants.RESULT_SUCCESS)) {
-                  MaintainerLog.log("");
-                  MaintainerLog.log("[SUCCESS] " + testName);
-                  MaintainerLog.log("");
+                  MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "");
+                  MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "[SUCCESS] " + testName);
+                  MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "");
 
                 } else {
                   var failure = ((ConnectorFailure) result);
@@ -63,13 +63,13 @@ public class ContractVerifier implements AutoCloseable {
                             + "\n\n"
                             + CRASH_MESSAGE_END);
                   } else if (kind.equals(ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR)) {
-                    MaintainerLog.log("");
-                    MaintainerLog.log("[CONFIGURATION ERROR] " + failure.getMessage());
-                    MaintainerLog.log("");
+                    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "");
+                    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "[CONFIGURATION ERROR] " + failure.getMessage());
+                    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "");
                   } else {
-                    MaintainerLog.log("");
-                    MaintainerLog.log("[OTHER ERROR] " + failure.getMessage());
-                    MaintainerLog.log("");
+                    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "");
+                    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "[OTHER ERROR] " + failure.getMessage());
+                    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "");
                   }
                 }
                 return result;

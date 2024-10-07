@@ -4,10 +4,12 @@ import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.ma
 import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapRunRejectingExampleRequest;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction0;
 import io.contract_testing.contractcase.LogPrinter;
 import io.contract_testing.contractcase.definitions.matchers.AnyMatcher;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
+import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper;
 import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.ContractCaseConnectorConfig;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginDefinitionRequest;
@@ -15,6 +17,7 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConf
 import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.EndDefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginRequest;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.RegisterFunction;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
@@ -85,10 +88,18 @@ public class InternalDefinerClient {
             .build()), "begin");
   }
 
-  public ConnectorResult loadPlugins(ContractCaseConnectorConfig configOverrides, String[] pluginNames) {
-      return rpcConnector.executeCallAndWait(DefinitionRequest.newBuilder()
-              .setLoadPlugin(LoadPluginRequest.newBuilder()
-                  .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides)))
-          , "loadPlugins");
+  public ConnectorResult loadPlugins(ContractCaseConnectorConfig configOverrides,
+      String[] pluginNames) {
+    return rpcConnector.executeCallAndWait(DefinitionRequest.newBuilder()
+            .setLoadPlugin(LoadPluginRequest.newBuilder()
+                .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides)))
+        , "loadPlugins");
+  }
+
+  public <R> ConnectorResult registerFunction(String functionName, InvokableFunction0<R> function) {
+    rpcConnector.registerFunction(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(functionName, function));
+    return rpcConnector.executeCallAndWait(DefinitionRequest.newBuilder()
+        .setRegisterFunction(RegisterFunction.newBuilder()
+            .setHandle(ConnectorOutgoingMapper.map(functionName))), "registerFunction");
   }
 }

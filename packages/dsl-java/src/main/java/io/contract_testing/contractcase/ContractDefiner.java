@@ -1,6 +1,7 @@
 package io.contract_testing.contractcase;
 
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction0;
 import io.contract_testing.contractcase.client.InternalDefinerClient;
 import io.contract_testing.contractcase.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor;
@@ -101,4 +102,11 @@ public class ContractDefiner {
     );
   }
 
+  public <R> void registerFunction(String functionName, InvokableFunction0<R> function) {
+    try {
+      ConnectorResultMapper.mapVoid(definer.registerFunction(functionName, function));
+    } catch (Throwable e) {
+      BoundaryCrashReporter.handleAndRethrow(e);
+    }
+  }
 }
