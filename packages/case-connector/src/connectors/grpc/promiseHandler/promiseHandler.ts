@@ -12,14 +12,17 @@ const promises: Record<
  * @internal
  *
  * @param executeCall - the call to execute immediately. Should be a function that takes an ID that is made in the call.
+ * @param thenRun - The handler for the result
+ * @param reason - a string to prefix the ID with, helpful for debugging
  * @returns an ID that can be used in a call of `waitForResolution` to get a promise
  */
 export const makeResolvableId = (
   executeCall: (id: string) => Promise<void>,
   thenRun: (result: BoundaryResult) => BoundaryResult = (x) => x,
+  reason: string = '',
 ): string => {
   // TODO: Add mutex here?
-  const id = uuidv4();
+  const id = `${reason}${uuidv4()}`;
 
   let r: (value: BoundaryResult) => void = () => {
     // This promise should be immediately overwritten by

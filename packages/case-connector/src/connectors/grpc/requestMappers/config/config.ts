@@ -34,6 +34,7 @@ const mapTriggerFunction = (
         if (Array.isArray(handle)) {
           // TODO: Figure out why this is sometimes an array instead of a handle
           return executeCall(
+            'maintainerDebug',
             id,
             new ContractResponse().setTriggerFunctionRequest(
               new TriggerFunctionRequest()
@@ -52,6 +53,7 @@ const mapTriggerFunction = (
         }
 
         return executeCall(
+          'maintainerDebug',
           id,
           new ContractResponse().setTriggerFunctionRequest(
             new TriggerFunctionRequest()

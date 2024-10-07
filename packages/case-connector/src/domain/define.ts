@@ -17,6 +17,7 @@ import {
   ILogPrinter,
   IResultPrinter,
 } from '../entities/types.js';
+import { maintainerLog } from './maintainerLog.js';
 
 export const beginDefinition = (
   config: ContractCaseConnectorConfig,
@@ -90,6 +91,8 @@ export const registerFunction = (
     if (!('id' in definerHandle)) {
       return definerHandle;
     }
+    maintainerLog('Registering function', handle, definerHandle.definer);
+
     return definerHandle.definer.registerFunction(handle, invokeableFunction);
   });
 

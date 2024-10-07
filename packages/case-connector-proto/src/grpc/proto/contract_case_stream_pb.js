@@ -2109,7 +2109,7 @@ proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.prototype
  */
 proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.toObject = function(includeInstance, msg) {
   var f, obj = {
-    payload: (f = msg.getPayload()) && google_protobuf_struct_pb.Value.toObject(includeInstance, f)
+    payload: (f = msg.getPayload()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2147,8 +2147,8 @@ proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.deseriali
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new google_protobuf_struct_pb.Value;
-      reader.readMessage(value,google_protobuf_struct_pb.Value.deserializeBinaryFromReader);
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setPayload(value);
       break;
     default:
@@ -2185,24 +2185,24 @@ proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.serialize
     writer.writeMessage(
       1,
       f,
-      google_protobuf_struct_pb.Value.serializeBinaryToWriter
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional google.protobuf.Value payload = 1;
- * @return {?proto.google.protobuf.Value}
+ * optional google.protobuf.StringValue payload = 1;
+ * @return {?proto.google.protobuf.StringValue}
  */
 proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.prototype.getPayload = function() {
-  return /** @type{?proto.google.protobuf.Value} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Value, 1));
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Value|undefined} value
+ * @param {?proto.google.protobuf.StringValue|undefined} value
  * @return {!proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload} returns this
 */
 proto.io.contract_testing.contractcase.grpc.ResultSuccessHasAnyPayload.prototype.setPayload = function(value) {

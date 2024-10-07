@@ -21,6 +21,7 @@ export const makeInvokeFunction =
     waitForResolution(
       makeResolvableId((id: string) =>
         executeCall(
+          'maintainerDebug',
           id,
           new WireContractResponse().setInvokeFunction(
             new InvokeFunction()

@@ -15,5 +15,5 @@ Additionally, any listeners (eg http servers) that the mock requires should be
 ```typescript
 export type MockExecutorFn<AllMockDescriptors extends AnyMockDescriptor, AllSetupInfo, T extends string> = (mock: CaseMockDescriptorFor<AllMockDescriptors, T>, context: MatchContext) => Promise<MockData<AllSetupInfo, T>>;
 ```
-**References:** [AnyMockDescriptor](./case-plugin-base.anymockdescriptor.md)<!-- -->, [CaseMockDescriptorFor](./case-plugin-base.casemockdescriptorfor.md)<!-- -->, [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->, [MockData](./case-plugin-base.mockdata.md)
+**References:** [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->, [MockData](./case-plugin-base.mockdata.md)
 

@@ -26,27 +26,45 @@ export const makeResultPrinter = (
     matchError: PrintableMatchError,
   ): Promise<BoundaryResult> =>
     waitForResolution(
-      makeResolvableId((id: string) =>
-        sendContractResponse(id, makePrintMatchErrorRequest(matchError)),
+      makeResolvableId(
+        (id: string) =>
+          sendContractResponse(
+            'deepMaintainerDebug',
+            id,
+            makePrintMatchErrorRequest(matchError),
+          ),
+        (r) => r,
+        'printMatchError',
       ),
     ),
   printMessageError: async (
     messageError: PrintableMessageError,
   ): Promise<BoundaryResult> =>
     waitForResolution(
-      makeResolvableId((id) =>
-        sendContractResponse(
-          id,
-          makePrintableMessageErrorRequest(messageError),
-        ),
+      makeResolvableId(
+        (id) =>
+          sendContractResponse(
+            'deepMaintainerDebug',
+            id,
+            makePrintableMessageErrorRequest(messageError),
+          ),
+        (r) => r,
+        'printMessageError',
       ),
     ),
   printTestTitle: async (
     testTitle: PrintableTestTitle,
   ): Promise<BoundaryResult> =>
     waitForResolution(
-      makeResolvableId((id: string) =>
-        sendContractResponse(id, makePrintTestTitleRequest(testTitle)),
+      makeResolvableId(
+        (id: string) =>
+          sendContractResponse(
+            'deepMaintainerDebug',
+            id,
+            makePrintTestTitleRequest(testTitle),
+          ),
+        (r) => r,
+        'printTestTitle',
       ),
     ),
 });
@@ -64,19 +82,23 @@ export const makeLogPrinter = (
     additional: string,
   ): Promise<BoundaryResult> =>
     waitForResolution(
-      makeResolvableId((id: string) =>
-        sendContractResponse(
-          id,
-          makeLogRequest({
-            level,
-            timestamp,
-            version,
-            typeString,
-            location,
-            message,
-            additional,
-          }),
-        ),
+      makeResolvableId(
+        (id: string) =>
+          sendContractResponse(
+            'deepMaintainerDebug',
+            id,
+            makeLogRequest({
+              level,
+              timestamp,
+              version,
+              typeString,
+              location,
+              message,
+              additional,
+            }),
+          ),
+        (r) => r,
+        'printLog',
       ),
     ),
 });

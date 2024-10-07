@@ -2,9 +2,9 @@ package io.contract_testing.contractcase.edge;
 
 public class ConnectorSuccessWithAny extends ConnectorResult {
 
-  private final Object payload;
+  private final String payload;
 
-  public ConnectorSuccessWithAny(Object payload) {
+  public ConnectorSuccessWithAny(String payload) {
 
     this.payload = payload;
   }
@@ -14,7 +14,7 @@ public class ConnectorSuccessWithAny extends ConnectorResult {
     return ConnectorResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD;
   }
 
-  public Object getPayload() {
+  public String getPayload() {
     return payload;
   }
 }

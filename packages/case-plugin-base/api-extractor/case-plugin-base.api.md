@@ -4,52 +4,26 @@
 
 ```ts
 
+import { AnyCaseMatcher } from '@contract-case/case-plugin-dsl-types';
+import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
+import { AnyLeafOrStructure } from '@contract-case/case-plugin-dsl-types';
+import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
+import { AnyState } from '@contract-case/case-plugin-dsl-types';
+import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
+import { LookupableMatcher } from '@contract-case/case-plugin-dsl-types';
+import { SetupInfoFor } from '@contract-case/case-plugin-dsl-types';
+
 // @public
 export const actualToString: <T>(actual: T, indent?: number) => string;
 
 // @public
 export const addLocation: (location: string, context: MatchContext) => MatchContext;
 
-// @public
-export interface AnyCaseMatcher {
-    // (undocumented)
-    '_case:matcher:type': string;
-}
-
-// Warning: (ae-incompatible-release-tags) The symbol "AnyCaseMatcherOrData" is marked as @public, but its signature references "AnyLeafOrStructure" which is marked as @internal
-//
-// @public
-export type AnyCaseMatcherOrData = AnyCaseMatcher | AnyData | AnyLeafOrStructure;
-
-// Warning: (ae-forgotten-export) The symbol "JsonSerialisablePrimitive" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "JsonMap" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "JsonArray" needs to be exported by the entry point index.d.ts
-//
-// @public
-export type AnyData = JsonSerialisablePrimitive | JsonMap | JsonArray;
-
-// Warning: (ae-internal-missing-underscore) The name "AnyLeafOrStructure" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
-export type AnyLeafOrStructure = JsonSerialisablePrimitive | JsonOrMatcherArray | JsonOrMatcherMap;
-
-// @public
-export type AnyMockDescriptor = {
-    '_case:mock:type': string;
-    '_case:run:context:setup': InternalContractCaseCoreSetup;
-    request?: AnyCaseMatcher;
-    response?: AnyCaseMatcher;
-};
-
 // Warning: (ae-internal-missing-underscore) The name "applyNodeToContext" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
 export const applyNodeToContext: (caseNodeOrData: AnyCaseMatcherOrData | AnyMockDescriptor, context: MatchContext, runConfig?: Partial<RunContext>) => MatchContext;
-
-// @public
-export type BaseSetupInfo = {
-    variables: Record<string, VariableValue>;
-};
 
 // @public
 export class CaseConfigurationError extends Error {
@@ -73,9 +47,6 @@ export class CaseFailedAssertionError extends Error {
 
 // @public
 export type CaseMatcherFor<KnownMatcherDescriptors, T extends string> = Extract<KnownMatcherDescriptors, IsCaseNodeForType<T>>;
-
-// @public
-export type CaseMockDescriptorFor<KnownMockDescriptors extends AnyMockDescriptor, T extends string> = Extract<KnownMockDescriptors, HasTypeForMockDescriptor<T>>;
 
 // @public
 export class CaseTriggerError extends Error {
@@ -224,12 +195,6 @@ export type HasExample<T extends AnyCaseMatcher> = T & {
 // @public
 export const hasNoErrors: (result: MatchResult) => boolean;
 
-// @public
-export interface HasTypeForMockDescriptor<T extends string> {
-    // (undocumented)
-    '_case:mock:type': T;
-}
-
 // Warning: (ae-internal-missing-underscore) The name "HttpTestContext" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
@@ -239,22 +204,6 @@ export interface HttpTestContext {
 }
 
 // @public
-export interface InternalContractCaseCoreBehaviour {
-    stateVariables: 'state' | 'default';
-    triggers: 'provided' | 'generated';
-    type: string;
-}
-
-// @public
-export interface InternalContractCaseCoreSetup {
-    read: InternalContractCaseCoreBehaviour;
-    write: InternalContractCaseCoreBehaviour;
-}
-
-// @public
-export const isCaseMock: (maybeMock: unknown) => maybeMock is AnyMockDescriptor;
-
-// @public
 export const isCaseNode: (maybeMatcher: unknown) => maybeMatcher is AnyCaseMatcher;
 
 // @public
@@ -262,17 +211,6 @@ export interface IsCaseNodeForType<T extends string> {
     // (undocumented)
     '_case:matcher:type': T;
 }
-
-// @public
-export const isLookupableMatcher: (maybeMatcher: unknown) => maybeMatcher is LookupableMatcher;
-
-// @public
-export type JsonOrMatcherArray = Array<AnyCaseMatcherOrData>;
-
-// @public
-export type JsonOrMatcherMap = {
-    [key: string]: AnyCaseMatcherOrData;
-};
 
 // Warning: (ae-internal-missing-underscore) The name "locationString" should be prefixed with an underscore because the declaration is marked as @internal
 //
@@ -308,23 +246,6 @@ export type LogLevelContext = {
     '_case:currentRun:context:logLevel': LogLevel;
     '_case:currentRun:context:location': Array<string>;
 };
-
-// Warning: (ae-internal-missing-underscore) The name "LOOKUP_MATCHER_TYPE" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
-export const LOOKUP_MATCHER_TYPE: "_case:Lookup";
-
-// @public
-export interface LookupableMatcher {
-    // (undocumented)
-    '_case:matcher:child'?: AnyCaseMatcherOrData;
-    // Warning: (ae-incompatible-release-tags) The symbol ""_case:matcher:type"" is marked as @public, but its signature references "LOOKUP_MATCHER_TYPE" which is marked as @internal
-    //
-    // (undocumented)
-    '_case:matcher:type': typeof LOOKUP_MATCHER_TYPE;
-    // (undocumented)
-    '_case:matcher:uniqueName': string;
-}
 
 // @public
 export const makeNoErrorResult: () => MatchResult;
@@ -459,11 +380,6 @@ export interface RawMatchError {
     type: typeof ERROR_TYPE_RAW_MATCH;
 }
 
-// @public
-export type ResolvesTo<T extends string> = {
-    '_case:matcher:resolvesTo': T;
-};
-
 // Warning: (ae-internal-missing-underscore) The name "ResultFormatter" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
@@ -507,9 +423,6 @@ export interface RunContext extends Partial<InjectableContext & LogLevelContext 
 
 // @public
 export const SERIALISABLE_TO_JSON: "json";
-
-// @public
-export type SetupInfoFor<AllSetupInfo, T extends string> = Extract<AllSetupInfo, HasTypeForMockDescriptor<T>> & BaseSetupInfo;
 
 // Warning: (ae-internal-missing-underscore) The name "shouldLog" should be prefixed with an underscore because the declaration is marked as @internal
 //
@@ -575,7 +488,6 @@ export class VerifyTriggerReturnObjectError extends Error {
 // Warnings were encountered during analysis:
 //
 // src/context/types.ts:390:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
-// src/mocks/executors.types.ts:24:3 - (ae-forgotten-export) The symbol "VariableValue" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

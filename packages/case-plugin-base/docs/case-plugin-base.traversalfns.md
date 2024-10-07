@@ -45,7 +45,7 @@ Description
 
 </td><td>
 
-&lt;T extends [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)<!-- -->&gt;(matcherOrData: T, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->, actual: unknown) =&gt; Promise&lt;[MatchResult](./case-plugin-base.matchresult.md)<!-- -->&gt; \| [MatchResult](./case-plugin-base.matchresult.md)
+&lt;T extends AnyCaseMatcherOrData&gt;(matcherOrData: T, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->, actual: unknown) =&gt; Promise&lt;[MatchResult](./case-plugin-base.matchresult.md)<!-- -->&gt; \| [MatchResult](./case-plugin-base.matchresult.md)
 
 
 </td><td>
@@ -62,7 +62,7 @@ Description
 
 </td><td>
 
-(matcherOrData: [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)<!-- -->, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; string
+(matcherOrData: AnyCaseMatcherOrData, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; string
 
 
 </td><td>
@@ -79,7 +79,7 @@ Description
 
 </td><td>
 
-(matcherOrData: [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)<!-- -->, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; [AnyData](./case-plugin-base.anydata.md)
+(matcherOrData: AnyCaseMatcherOrData, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; AnyData
 
 
 </td><td>
@@ -96,7 +96,7 @@ Description
 
 </td><td>
 
-(matcherOrData: [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)<!-- -->, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; Promise&lt;[MatchResult](./case-plugin-base.matchresult.md)<!-- -->&gt; \| [MatchResult](./case-plugin-base.matchresult.md)
+(matcherOrData: AnyCaseMatcherOrData, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; Promise&lt;[MatchResult](./case-plugin-base.matchresult.md)<!-- -->&gt; \| [MatchResult](./case-plugin-base.matchresult.md)
 
 
 </td><td>

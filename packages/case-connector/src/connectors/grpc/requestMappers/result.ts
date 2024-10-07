@@ -3,11 +3,12 @@ import {
   BoundaryFailure,
   BoundaryResult,
   BoundarySuccess,
+  BoundarySuccessWithAny,
   BoundarySuccessWithMap,
 } from '../../../entities/types.js';
 import { ConnectorError } from '../../../domain/errors/index.js';
 import { UnreachableError } from '../UnreachableError.js';
-import { mapJson, mapJsonMap } from './json.js';
+import { mapJsonMap } from './json.js';
 import { unbox } from './values.js';
 
 export const mapResult = (
@@ -39,7 +40,9 @@ export const mapResult = (
           'undefined wire with any p in a boundary result. This is probably an error in the wrapper library.',
         );
       }
-      return new BoundarySuccessWithMap(mapJson(wireWithAny.getPayload()));
+      return new BoundarySuccessWithAny(
+        JSON.parse(wireWithAny.getPayload()?.getValue() ?? 'null'),
+      );
     }
     case WireBoundaryResult.ValueCase.FAILURE: {
       const wireFailure = wireBoundaryResult.getFailure();

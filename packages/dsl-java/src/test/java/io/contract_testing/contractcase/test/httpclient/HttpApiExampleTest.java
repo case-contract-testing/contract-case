@@ -34,8 +34,8 @@ import org.junit.jupiter.api.Test;
 public class HttpApiExampleTest {
 
   private static final ContractDefiner contract = new ContractDefiner(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
-      .providerName("Java Example HTTP Server")
       .consumerName("Java Example HTTP Client")
+      .providerName("Java Example HTTP Server")
       .publish(PublishType.NEVER)
       .contractDir("temp-contracts")
       .build());
@@ -67,34 +67,30 @@ public class HttpApiExampleTest {
 
   @Test
   public void testHealthUp() {
-    try {
-      contract.runExample(
-          new ExampleDefinition<>(
-              List.of(new InState("Server is up")),
-              new WillSendHttpRequest(HttpExample.builder()
-                  .request(new NamedMatch(
-                      "Get health",
-                      new HttpRequest(HttpRequestExample.builder()
-                          .path("/health")
-                          .method("GET")
-                          .build())
-                  ))
-                  .response(new HttpResponse(HttpResponseExample.builder()
-                      .status(200)
-                      .body(Map.ofEntries(Map.entry("status", "up")))
-                      .build()))
-                  .build())
-          ),
-          IndividualSuccessTestConfigBuilder.<String>builder()
-              .withProviderName("Java Example HTTP Server")
-              .withTrigger(getHealth)
-              .withTestResponse((status, setupInfo) -> {
-                assertThat(status).isEqualTo("up");
-              })
-      );
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    contract.runExample(
+        new ExampleDefinition<>(
+            List.of(new InState("Server is up")),
+            new WillSendHttpRequest(HttpExample.builder()
+                .request(new NamedMatch(
+                    "Get health",
+                    new HttpRequest(HttpRequestExample.builder()
+                        .path("/health")
+                        .method("GET")
+                        .build())
+                ))
+                .response(new HttpResponse(HttpResponseExample.builder()
+                    .status(200)
+                    .body(Map.ofEntries(Map.entry("status", "up")))
+                    .build()))
+                .build())
+        ),
+        IndividualSuccessTestConfigBuilder.<String>builder()
+            .withProviderName("Java Example HTTP Server")
+            .withTrigger(getHealth)
+            .withTestResponse((status, setupInfo) -> {
+              assertThat(status).isEqualTo("up");
+            })
+    );
   }
 
   @Test

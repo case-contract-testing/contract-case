@@ -50,7 +50,10 @@ Java:
 
 Next:
 
-- [ ] Configuration Errors in triggers are incorrectly mapped to verification failures
+- [ ] Don't throw exceptions in the DSL - it won't be handled correctly by JSii.
+- [ ] Perhaps separate the DSL's needs in the definition package and the pretty-format, bit too.
+- [ ] Rename handle -> functonName in the registerFunction() calls
+- [ ] Fix variables so that you can have different defaults for different states
 - [ ] State handlers in the grpc connector aren't given the configuration
 - [ ] Connect CASE_CONNECTOR_CLIENT to a maintainer log somewhere
 - [ ] Connect CASE_CONNECTOR_CLIENT in Jest DSL - probably include it in an
@@ -99,6 +102,13 @@ Next:
   - [ ] Thrown errors should be caught in the section that they're thrown, so that they don't fall over the whole connector
   - [ ] There should be a never-throws boundary in the domain layer, in case the mappers throw
   - [ ] DRY out the unexpected error handler
+
+## Mindless tasks
+
+Good for when I don't want to think
+
+- [ ] Replace all `maintainerLog` lines with appropriate `connectorDebugLog` lines
+- [ ] Kill
 
 ## Documentation todos
 

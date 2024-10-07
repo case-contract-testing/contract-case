@@ -1,7 +1,9 @@
 package io.contract_testing.contractcase.client.server;
 
 
+import io.contract_testing.contractcase.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.ContractCaseCoreError;
+import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.client.MaintainerLog;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -22,7 +24,7 @@ public class ContractCaseProcess {
 
   public static synchronized ContractCaseProcess getInstance() {
     if (instance == null) {
-      MaintainerLog.log("Creating process instance");
+      MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Creating process instance");
       instance = new ContractCaseProcess();
     }
     return instance;
@@ -60,17 +62,34 @@ public class ContractCaseProcess {
 
   public void start() {
     this.startRuntimeIfNeeded();
-    if (this.childProcess == null) {
+    if (this.childProcess == null && overridePort == 0) {
       throw new ContractCaseCoreError("Server process not started");
     }
   }
 
+  private int overridePort = 0;
+
   private synchronized void startRuntimeIfNeeded() {
-    if (childProcess != null) {
-      MaintainerLog.log("Runtime is already started");
+    var envOverridePort = System.getenv("CASE_CONNECTOR_OVERRIDE_PORT");
+
+    if (envOverridePort != null) {
+      try {
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Overriding port to: " + envOverridePort);
+        this.overridePort = Integer.parseInt(envOverridePort);
+
+      } catch (NumberFormatException e) {
+        throw new ContractCaseConfigurationError(
+            "Unable to parse the custom port from '" + envOverridePort
+                + "'. Make sure CASE_CONNECTOR_OVERRIDE_PORT is set to an integer");
+      }
       return;
     }
-    MaintainerLog.log("Starting runtime");
+
+    if (childProcess != null) {
+      MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Runtime is already started");
+      return;
+    }
+    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Starting runtime");
 
     final List<String> serverStartCommand = List.of(
         "node",
@@ -113,7 +132,7 @@ public class ContractCaseProcess {
       this.outputStreamSink.start();
       try {
         var portNumber = Integer.parseInt(splitLine[1]);
-        MaintainerLog.log("Server started on port: " + portNumber);
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Server started on port: " + portNumber);
         this.portNumber = portNumber;
       } catch (NumberFormatException e) {
         throw new ContractCaseCoreError(
@@ -131,14 +150,14 @@ public class ContractCaseProcess {
   synchronized void terminate() {
     // Todo: Tell child to exit
 
-    MaintainerLog.log("Exiting...");
+    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Exiting...");
 
     // Cleaning up stdout (ensuring buffers are flushed, etc...)
     if (stdout != null) {
       try {
-        MaintainerLog.log("Closing stdout...");
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Closing stdout...");
         stdout.close();
-        MaintainerLog.log("...stdout closed");
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "...stdout closed");
       } catch (final IOException ioe) {
         // Ignore - the stream might have already been closed.
       } finally {
@@ -149,9 +168,9 @@ public class ContractCaseProcess {
     if (childProcess != null) {
       // Wait for the child process to complete
       try {
-        MaintainerLog.log("Closing server process...");
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Closing server process...");
         childProcess.destroyForcibly();
-        MaintainerLog.log("...server process killed");
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "...server process killed");
 
       } finally {
         childProcess = null;
@@ -161,9 +180,9 @@ public class ContractCaseProcess {
     // Cleaning up error stream sink (ensuring all messages are flushed, etc...)
     if (this.errorStreamSink != null) {
       try {
-        MaintainerLog.log("Closing error stream...");
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Closing error stream...");
         this.errorStreamSink.close();
-        MaintainerLog.log("...error stream closed");
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "...error stream closed");
       } catch (final InterruptedException ie) {
         // Ignore - we can no longer do anything about this...
       } finally {
@@ -174,9 +193,9 @@ public class ContractCaseProcess {
     // Cleaning up error stream sink (ensuring all messages are flushed, etc...)
     if (this.outputStreamSink != null) {
       try {
-        MaintainerLog.log("Closing output stream...");
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Closing output stream...");
         this.outputStreamSink.close();
-        MaintainerLog.log("...output stream closed");
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "...output stream closed");
       } catch (final InterruptedException ie) {
         // Ignore - we can no longer do anything about this...
       } finally {
@@ -194,10 +213,13 @@ public class ContractCaseProcess {
         this.shutdownHook = null;
       }
     }
-    MaintainerLog.log("...exited");
+    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "...exited");
   }
 
   public int getPortNumber() {
+    if (overridePort != 0) {
+      return overridePort;
+    }
     return portNumber;
   }
 

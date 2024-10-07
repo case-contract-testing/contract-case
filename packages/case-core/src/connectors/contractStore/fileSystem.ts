@@ -16,6 +16,13 @@ import {
 } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import type { WriteContract } from '../../core/types';
 
+const EXTENSION = '.case.json' as const;
+/**
+ * filenamify recommends the max filename length be 255, but defaults to 100, so
+ * we change it
+ */
+const MAX_FILENAME_LENGTH = 255 as const;
+
 const checkCurrentRunField = <T extends DataContext>(
   context: DataContext,
   configName: string,
@@ -54,9 +61,8 @@ const isCaseContractConfig = (
     .map((field) => checkCurrentRunField(context, field))
     .reduce((acc, curr) => acc && curr, true);
 
-const EXTENSION = '.case.json';
-
-const escapeFileName = (pathString: string) => filenamify(pathString);
+const escapeFileName = (pathString: string) =>
+  filenamify(pathString, { maxLength: MAX_FILENAME_LENGTH });
 
 const makeFilename = (
   description: CaseContractDescription,
@@ -103,6 +109,12 @@ export const writeContract: WriteContract = (
   const pathToFile = context['_case:currentRun:context:contractFilename']
     ? context['_case:currentRun:context:contractFilename']
     : makePath(contract.description, context);
+
+  if (!pathToFile.endsWith(EXTENSION)) {
+    context.logger.warn(
+      `The contract filename has been truncated, as it was over ${MAX_FILENAME_LENGTH} characters. The new name is '${pathToFile}'`,
+    );
+  }
 
   context.logger.maintainerDebug(`About to write contract to '${pathToFile}'`);
   const dirName = path.dirname(pathToFile);

@@ -1,6 +1,6 @@
 # Case Core Function Plugin
 
-[![Build and test](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/case/actions/workflows/build-and-test.yml)
+[![Build and test](https://github.com/case-contract-testing/contract-case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/contract-case/actions/workflows/build-and-test.yml)
 
 This is a ContractCase Core package. [Start here instead](https://case.contract-testing.io/docs/intro)
 

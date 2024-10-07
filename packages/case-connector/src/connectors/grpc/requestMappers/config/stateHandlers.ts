@@ -23,6 +23,7 @@ const makeStateHandlerCall =
     waitForResolution(
       makeResolvableId((id: string) =>
         executeCall(
+          'maintainerDebug',
           id,
           new WireContractResponse().setRunStateHandler(
             new WireRunStateHandlerRequest().setStateHandlerHandle(handle),

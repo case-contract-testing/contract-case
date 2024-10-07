@@ -207,34 +207,12 @@ Tests whether a given [MatchResult](./case-plugin-base.matchresult.md) object ha
 </td></tr>
 <tr><td>
 
-[isCaseMock(maybeMock)](./case-plugin-base.iscasemock.md)
-
-
-</td><td>
-
-Determines if a given value is a valid mock descriptor.
-
-
-</td></tr>
-<tr><td>
-
 [isCaseNode(maybeMatcher)](./case-plugin-base.iscasenode.md)
 
 
 </td><td>
 
 Type guard to determine if an object is a ContractCase matcher descriptor or not
-
-
-</td></tr>
-<tr><td>
-
-[isLookupableMatcher(maybeMatcher)](./case-plugin-base.islookupablematcher.md)
-
-
-</td><td>
-
-Determines if a specific matcher or data is a lookupable matcher
 
 
 </td></tr>
@@ -332,17 +310,6 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[AnyCaseMatcher](./case-plugin-base.anycasematcher.md)
-
-
-</td><td>
-
-Base type for any matcher descriptor
-
-
-</td></tr>
-<tr><td>
-
 [ConfigurationError](./case-plugin-base.configurationerror.md)
 
 
@@ -362,39 +329,6 @@ Don't create this directly, use `configurationError` to create one.
 </td><td>
 
 The part of the context that allows saving or looking up data bound to a specific context and contract
-
-
-</td></tr>
-<tr><td>
-
-[HasTypeForMockDescriptor](./case-plugin-base.hastypeformockdescriptor.md)
-
-
-</td><td>
-
-Helper type for a contract case mock descriptor object. All mock descriptors must extend this for the string constant that they use
-
-
-</td></tr>
-<tr><td>
-
-[InternalContractCaseCoreBehaviour](./case-plugin-base.internalcontractcasecorebehaviour.md)
-
-
-</td><td>
-
-Describes how contract case behaves with this type of mock.
-
-
-</td></tr>
-<tr><td>
-
-[InternalContractCaseCoreSetup](./case-plugin-base.internalcontractcasecoresetup.md)
-
-
-</td><td>
-
-Controls the behaviour of the mock when writing or reading contracts with this type.
 
 
 </td></tr>
@@ -428,17 +362,6 @@ Part of the context with the logger attached.
 </td><td>
 
 Describes the logger object
-
-
-</td></tr>
-<tr><td>
-
-[LookupableMatcher](./case-plugin-base.lookupablematcher.md)
-
-
-</td><td>
-
-The matcher descriptor for a lookupable matcher
 
 
 </td></tr>
@@ -671,50 +594,6 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)
-
-
-</td><td>
-
-Any matcher descriptor or data
-
-
-</td></tr>
-<tr><td>
-
-[AnyData](./case-plugin-base.anydata.md)
-
-
-</td><td>
-
-Helper type to represent any raw json data
-
-
-</td></tr>
-<tr><td>
-
-[AnyMockDescriptor](./case-plugin-base.anymockdescriptor.md)
-
-
-</td><td>
-
-Base type for mock descriptors
-
-
-</td></tr>
-<tr><td>
-
-[BaseSetupInfo](./case-plugin-base.basesetupinfo.md)
-
-
-</td><td>
-
-The base SetupInfo provided to all mock setup functions and triggers.
-
-
-</td></tr>
-<tr><td>
-
 [CaseError](./case-plugin-base.caseerror.md)
 
 
@@ -732,17 +611,6 @@ Union of all error data types.
 </td><td>
 
 Helper type to extract a case matcher descriptor out of a list of descriptors
-
-
-</td></tr>
-<tr><td>
-
-[CaseMockDescriptorFor](./case-plugin-base.casemockdescriptorfor.md)
-
-
-</td><td>
-
-Helper type for extracting a mock descriptor from all the known mock descriptors
 
 
 </td></tr>
@@ -798,28 +666,6 @@ The default context for a run
 </td><td>
 
 A matcher descriptor that has an example
-
-
-</td></tr>
-<tr><td>
-
-[JsonOrMatcherArray](./case-plugin-base.jsonormatcherarray.md)
-
-
-</td><td>
-
-Any json array that might contain data or matchers
-
-
-</td></tr>
-<tr><td>
-
-[JsonOrMatcherMap](./case-plugin-base.jsonormatchermap.md)
-
-
-</td><td>
-
-Any json object that might contain data or matchers
 
 
 </td></tr>
@@ -912,28 +758,6 @@ Extracts the name for this matcher in an English, human readable format.
 </td><td>
 
 Describes the plugin name and version
-
-
-</td></tr>
-<tr><td>
-
-[ResolvesTo](./case-plugin-base.resolvesto.md)
-
-
-</td><td>
-
-Indicates that a matcher should always resolve to this type of value
-
-
-</td></tr>
-<tr><td>
-
-[SetupInfoFor](./case-plugin-base.setupinfofor.md)
-
-
-</td><td>
-
-Helper type to extract a specific mock's SetupInfo object form all known SetupInfo objects
 
 
 </td></tr>

@@ -49,7 +49,7 @@ a matcher or data
 </tbody></table>
 **Returns:**
 
-maybeMatcher is [AnyCaseMatcher](./case-plugin-base.anycasematcher.md)
+maybeMatcher is AnyCaseMatcher
 
 true if `maybeMatcher` is a matcher descriptor, false if not
 

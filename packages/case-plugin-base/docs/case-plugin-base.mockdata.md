@@ -14,5 +14,5 @@ export type MockData<AllSetupInfo, T extends string> = {
     assertableData: () => Promise<MockOutput>;
 };
 ```
-**References:** [SetupInfoFor](./case-plugin-base.setupinfofor.md)<!-- -->, [MockOutput](./case-plugin-base.mockoutput.md)
+**References:** [MockOutput](./case-plugin-base.mockoutput.md)
 

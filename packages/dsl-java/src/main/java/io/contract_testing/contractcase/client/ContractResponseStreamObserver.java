@@ -9,20 +9,19 @@ import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.ma
 import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.GeneratedMessage;
 import io.contract_testing.contractcase.ContractCaseCoreError;
+import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.LogPrinter;
-import io.contract_testing.contractcase.edge.ConnectorFailure;
-import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.ConnectorStateHandler;
 import io.contract_testing.contractcase.edge.ConnectorSuccess;
 import io.contract_testing.contractcase.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractResponse;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractResponse.KindCase;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle.Stage;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 
 class ContractResponseStreamObserver<T extends AbstractMessage, B extends GeneratedMessage.Builder<B>> implements
@@ -32,7 +31,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
   private final LogPrinter logPrinter;
   private final ConfigHandle configHandle;
   private final RunTestCallback runTestCallback;
-  private final ExecutorService executor;
+  private final CrashPrintingExecutor executor;
 
 
   public ContractResponseStreamObserver(
@@ -44,14 +43,28 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
     this.logPrinter = logPrinter;
     this.configHandle = configHandle;
     this.runTestCallback = runTestCallback;
-    this.executor = Executors.newSingleThreadExecutor();
+    this.executor = new CrashPrintingExecutor(); // Executors.newCachedThreadPool();
   }
+
+
+  final Set<KindCase> NO_LOG = Set.of(
+      KindCase.LOG_REQUEST,
+      KindCase.PRINT_MATCH_ERROR_REQUEST,
+      KindCase.PRINT_MESSAGE_ERROR_REQUEST,
+      KindCase.PRINT_TEST_TITLE_REQUEST
+  );
 
   @Override
   public void onNext(final ContractResponse coreResponse) {
     /* For when we receive messages from the server */
     final var requestId = ConnectorIncomingMapper.map(coreResponse.getId());
-    MaintainerLog.log("Received id(" + requestId + "), which was: " + coreResponse);
+    final var kind = coreResponse.getKindCase();
+    if (!NO_LOG.contains(kind)) {
+      MaintainerLog.log(
+          LogLevel.MAINTAINER_DEBUG,
+          "Received id(" + requestId + "), which was: " + coreResponse
+      );
+    }
     switch (coreResponse.getKindCase()) {
       case RUN_STATE_HANDLER -> {
         final var stateHandlerRunRequest = coreResponse.getRunStateHandler();
@@ -69,7 +82,8 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
                     stateName,
                     handle
                 )))).build(),
-            requestId
+            requestId,
+            LogLevel.MAINTAINER_DEBUG
         );
       }
       case LOG_REQUEST -> {
@@ -89,7 +103,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
                     new ConnectorSuccess()
                 )
             ).build(),
-            requestId
+            requestId, LogLevel.DEEP_MAINTAINER_DEBUG
         );
       }
       case PRINT_MATCH_ERROR_REQUEST -> {
@@ -101,7 +115,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
             mapResultResponse(
                 new ConnectorSuccess()
             ),
-            requestId
+            requestId, LogLevel.DEEP_MAINTAINER_DEBUG
         );
       }
       case PRINT_MESSAGE_ERROR_REQUEST -> {
@@ -114,14 +128,18 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
             mapResultResponse(
                 new ConnectorSuccess()
             ),
-            requestId
+            requestId, LogLevel.DEEP_MAINTAINER_DEBUG
         );
       }
       case PRINT_TEST_TITLE_REQUEST -> {
         final var printTestTitleRequest = coreResponse.getPrintTestTitleRequest();
         logPrinter.printTestTitle(
             mapPrintableTestTitle(printTestTitleRequest));
-        rpcConnector.sendResponse(mapResultResponse(new ConnectorSuccess()), requestId);
+        rpcConnector.sendResponse(
+            mapResultResponse(new ConnectorSuccess()),
+            requestId,
+            LogLevel.DEEP_MAINTAINER_DEBUG
+        );
       }
       case TRIGGER_FUNCTION_REQUEST -> {
         var triggerFunctionRequest = coreResponse.getTriggerFunctionRequest();
@@ -144,7 +162,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
                         ))
                 )
             ).build(),
-            requestId
+            requestId, LogLevel.NONE
         );
       }
       case RESULT_RESPONSE -> {
@@ -152,26 +170,36 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
       }
       case START_TEST_EVENT -> {
         var startTestEvent = coreResponse.getStartTestEvent();
+        var testName = startTestEvent.getTestName().getValue();
         executor.submit(() -> rpcConnector.sendResponse(
             mapResultResponse(
                 runTestCallback.runTest(
-                    startTestEvent.getTestName().getValue(),
+                    testName,
                     () -> rpcConnector.executeCallAndWait(
                         rpcConnector.makeInvokeTest(
                             startTestEvent.getInvokerId()), "invokeTest")
                 )
             ),
-            requestId
+            requestId, LogLevel.MAINTAINER_DEBUG
         ));
       }
       case INVOKE_FUNCTION -> {
-        executor.submit(() ->
-            rpcConnector.sendResponse(
-                mapResultResponse(new ConnectorFailure(
-                    ConnectorFailureKindConstants.CASE_CORE_ERROR,
-                    "Invoke Function is not implemented",
-                    "Java DSL"
-                )), requestId));
+        var invokeFunctionEvent = coreResponse.getInvokeFunction();
+
+        var handle = invokeFunctionEvent.getHandle().getValue();
+        var args = invokeFunctionEvent.getArgumentsList()
+            .stream()
+            .map(ConnectorIncomingMapper::map).toList();
+        MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Invoking a function");
+        executor.submit(() -> {
+          MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Processing invocation");
+          rpcConnector.sendResponse(
+              mapResultResponse(rpcConnector.invokeFunction(
+                  handle, args
+
+              ))
+              , requestId, LogLevel.MAINTAINER_DEBUG);
+        });
       }
       case KIND_NOT_SET -> {
         throw new ContractCaseCoreError(
@@ -213,7 +241,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
       }
 
       rpcConnector.setErrorStatus(status);
-      executor.shutdown();
+      executor.close();
     } finally {
       rpcConnector.finishLatch.countDown();
     }
@@ -222,8 +250,11 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
   @Override
   public void onCompleted() {
     try {
-      MaintainerLog.log("Closing listener and pool as the stream completed");
-      executor.shutdown();
+      MaintainerLog.log(
+          LogLevel.MAINTAINER_DEBUG,
+          "Closing listener and pool as the stream completed"
+      );
+      executor.close();
     } finally {
       rpcConnector.finishLatch.countDown();
     }

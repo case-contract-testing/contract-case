@@ -209,7 +209,10 @@ describe('e2e http provider driven', () => {
             describe("when the user doesn't exist", () => {
               it('returns a user not found error', () =>
                 contract.runRejectingExample({
-                  states: [inState('Server is up'), inState('No users exist')],
+                  states: [
+                    inState('Server is up'),
+                    inState('No users exist', { userId: '123' }),
+                  ],
                   definition: willReceiveHttpRequest({
                     request: {
                       method: 'GET',

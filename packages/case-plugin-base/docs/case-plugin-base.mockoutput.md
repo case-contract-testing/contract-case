@@ -15,5 +15,5 @@ export type MockOutput = {
     context: MatchContext;
 };
 ```
-**References:** [AnyCaseMatcherOrData](./case-plugin-base.anycasematcherordata.md)<!-- -->, [MatchContext](./case-plugin-base.matchcontext.md)
+**References:** [MatchContext](./case-plugin-base.matchcontext.md)
 
