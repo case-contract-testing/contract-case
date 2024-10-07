@@ -30,14 +30,7 @@ export const handleSuccessAnyResult = (
   defaultError: ErrorType,
 ): string => {
   if (result.resultType === RESULT_SUCCESS_HAS_ANY_PAYLOAD) {
-    try {
-      return (result as BoundarySuccessWithAny).payload;
-    } catch (e) {
-      maintainerLog('Error parsing successAny: ', e, 'result was', result);
-      throw new CaseCoreError(
-        `Was unable to parse the payload returned by a success any result. This is probably a bug in the language-specific wrapper (${(e as Error | undefined)?.message}).`,
-      );
-    }
+    return (result as BoundarySuccessWithAny).payload;
   }
   if (result.resultType === RESULT_FAILURE) {
     throw failureToJsError(result, defaultError);

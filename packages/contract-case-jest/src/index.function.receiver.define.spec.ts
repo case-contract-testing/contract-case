@@ -19,6 +19,7 @@ describe('function receiver', () => {
     {
       consumerName: 'function execution',
       providerName: 'function definer',
+      logLevel: 'maintainerDebug',
       // Usually you will not need to provide a filename
       contractFilename: FILENAME,
     },
