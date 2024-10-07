@@ -27,6 +27,7 @@ class CrashPrintingExecutor implements AutoCloseable {
 
   @Override
   public void close() {
-    this.executor.close();
+    // In Java 17, executor.close() doesn't exist
+    this.executor.shutdown();
   }
 }
