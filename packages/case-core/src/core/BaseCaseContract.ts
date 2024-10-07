@@ -125,6 +125,9 @@ export class BaseCaseContract {
       );
       throw new CaseConfigurationError(message);
     }
+    this.initialContext.logger.debug(
+      `Registered a user-provided invokable function with name '${handle}'`,
+    );
     this.userProvidedFunctions[handle] = invokeableFn;
   }
 
@@ -133,12 +136,12 @@ export class BaseCaseContract {
     callerArguments: unknown[],
     context: MatchContextWithoutLookup,
   ): Promise<unknown> {
-    context.logger.maintainerDebug(
-      `Invoking function by handle: '${handle}', with callerArguments: `,
-      callerArguments,
-    );
     return Promise.resolve()
       .then(() => {
+        context.logger.maintainerDebug(
+          `Invoking function by handle: '${handle}', with callerArguments: `,
+          callerArguments,
+        );
         const invokeableFn = this.userProvidedFunctions[handle];
         if (invokeableFn == null) {
           const message = `Tried to invoke a user-provided function with the handle '${handle}', but it didn't exist\nMake sure you have used registerFunction to define a function with this handle when setting up your test`;
