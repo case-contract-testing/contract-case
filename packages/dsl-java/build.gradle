@@ -50,7 +50,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.2'
 
     // client implementation under test, in test.httpclient.implementation
-    testImplementation 'org.apache.httpcomponents:fluent-hc:4.5.5'
+    testImplementation 'org.apache.httpcomponents:fluent-hc:4.5.14'
     testCompileOnly 'org.projectlombok:lombok:1.18.28'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
 
