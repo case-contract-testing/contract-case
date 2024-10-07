@@ -2,10 +2,12 @@ package io.contract_testing.contractcase;
 
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction0;
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.client.InternalDefinerClient;
 import io.contract_testing.contractcase.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor;
 import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper;
+import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import org.jetbrains.annotations.NotNull;
 
 public class ContractDefiner {
@@ -104,10 +106,24 @@ public class ContractDefiner {
   }
 
   public <R> void registerFunction(String functionName, InvokableFunction0<R> function) {
+    registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
+        functionName,
+        function
+    ));
+  }
+
+  public <R, A> void registerFunction(String functionName, InvokableFunction1<R, A> function) {
+    registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
+        functionName,
+        function
+    ));
+  }
+
+  private void registerFunctionInternal(String functionName,
+      ConnectorInvokableFunction connectorFunction) {
     try {
       ConnectorResultMapper.mapVoid(definer.registerFunction(
-          functionName,
-          ConnectorInvokableFunctionMapper.fromInvokableFunction(functionName, function)
+          functionName, connectorFunction
       ));
     } catch (Throwable e) {
       BoundaryCrashReporter.handleAndRethrow(e);
