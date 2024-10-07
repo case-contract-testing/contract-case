@@ -16,7 +16,8 @@ export const connectorDebugLog = (
   if (
     connectorDebug == null ||
     connectorDebug === '0' ||
-    connectorDebug === 'false'
+    connectorDebug === 'false' ||
+    connectorDebug === ''
   ) {
     return;
   }

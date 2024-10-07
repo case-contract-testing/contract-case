@@ -27,7 +27,10 @@ import {
 } from './requestMappers/index.js';
 import { resolveById } from './promiseHandler/promiseHandler.js';
 import { makeSendContractResponse } from './sendContractResponse.js';
-import { maintainerLog } from '../../domain/maintainerLog.js';
+import {
+  connectorDebugLog,
+  maintainerLog,
+} from '../../domain/maintainerLog.js';
 import { makeLogPrinter, makeResultPrinter } from './printers.js';
 import { makeResultResponse } from './responseMappers/index.js';
 import { loadPlugin } from '../../domain/loadPlugin.js';
@@ -228,7 +231,7 @@ export const contractDefinition = (
         break;
       }
       case WireDefinitionRequest.KindCase.RESULT_RESPONSE:
-        {
+        try {
           const resultPrinterResponse = request.getResultResponse();
           if (resultPrinterResponse == null) {
             throw new ConnectorError(
@@ -240,6 +243,8 @@ export const contractDefinition = (
             getId(request),
             mapResult(resultPrinterResponse.getResult()),
           );
+        } catch (e) {
+          connectorDebugLog('maintainerDebug', 'Exploded with:', e);
         }
         break;
       case WireDefinitionRequest.KindCase.LOAD_PLUGIN:

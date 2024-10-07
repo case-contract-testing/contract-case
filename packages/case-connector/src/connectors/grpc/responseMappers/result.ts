@@ -1,4 +1,3 @@
-import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb.js';
 import {
   ResultSuccessHasMapPayload as WireResultSuccessHasMapPayload,
   BoundaryResult as WireBoundaryResult,
@@ -9,10 +8,11 @@ import {
   ResultResponse as WireResultResponse,
 } from '@contract-case/case-connector-proto';
 import { UnreachableError } from '../UnreachableError.js';
-import { makeGrpcStruct, makeGrpcValue } from './json.js';
+import { makeGrpcString, makeGrpcStruct } from './json.js';
 import {
   BoundaryFailure,
   BoundaryResult,
+  BoundarySuccessWithAny,
   BoundarySuccessWithMap,
 } from '../../../entities/types.js';
 
@@ -29,10 +29,10 @@ const makeResult = (result: BoundaryResult): WireBoundaryResult => {
       );
     }
     case 'SuccessAny': {
-      const successWithAny = result as BoundarySuccessWithMap;
+      const successWithAny = result as BoundarySuccessWithAny;
       return new WireBoundaryResult().setSuccessHasAny(
         new WireResultSuccessHasAnyPayload().setPayload(
-          makeGrpcValue(successWithAny.payload),
+          makeGrpcString(successWithAny.payload),
         ),
       );
     }
@@ -40,9 +40,9 @@ const makeResult = (result: BoundaryResult): WireBoundaryResult => {
       const failure = result as BoundaryFailure;
       return new WireBoundaryResult().setFailure(
         new WireResultFailure()
-          .setKind(new StringValue().setValue(failure.kind))
-          .setLocation(new StringValue().setValue(failure.location))
-          .setMessage(new StringValue().setValue(failure.message)),
+          .setKind(makeGrpcString(failure.kind))
+          .setLocation(makeGrpcString(failure.location))
+          .setMessage(makeGrpcString(failure.message)),
       );
     }
     default:

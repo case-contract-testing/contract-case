@@ -28,14 +28,14 @@ export const handleVoidResult = (
 export const handleSuccessAnyResult = (
   result: BoundaryResult,
   defaultError: ErrorType,
-): unknown => {
+): string => {
   if (result.resultType === RESULT_SUCCESS_HAS_ANY_PAYLOAD) {
     try {
-      return JSON.parse((result as BoundarySuccessWithAny).payload);
+      return (result as BoundarySuccessWithAny).payload;
     } catch (e) {
       maintainerLog('Error parsing successAny: ', e, 'result was', result);
       throw new CaseCoreError(
-        'Was unable to parse the payload returned by a success any result. This is probably a bug in the language-specific wrapper.',
+        `Was unable to parse the payload returned by a success any result. This is probably a bug in the language-specific wrapper (${(e as Error | undefined)?.message}).`,
       );
     }
   }

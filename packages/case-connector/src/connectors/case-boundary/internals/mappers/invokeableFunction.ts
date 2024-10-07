@@ -1,11 +1,11 @@
 import { BoundaryInvokableFunction } from '../types.js';
 import { handleSuccessAnyResult } from './Result/index.js';
 
-type Fn = (...args: unknown[]) => Promise<unknown>;
+type Fn = (...args: unknown[]) => Promise<string>;
 
 export const mapInvokableFunction =
   (invokeableFn: BoundaryInvokableFunction): Fn =>
-  (...args: unknown[]): Promise<unknown> =>
+  (...args: unknown[]): Promise<string> =>
     Promise.resolve()
       .then(() => invokeableFn(...args.map((arg) => JSON.stringify(arg))))
       .then((result) =>

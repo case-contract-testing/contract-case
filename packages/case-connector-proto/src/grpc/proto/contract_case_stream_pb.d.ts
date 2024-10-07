@@ -260,9 +260,9 @@ export namespace ResultSuccessHasMapPayload {
 export class ResultSuccessHasAnyPayload extends jspb.Message {
   hasPayload(): boolean;
   clearPayload(): void;
-  getPayload(): google_protobuf_struct_pb.Value | undefined;
+  getPayload(): google_protobuf_wrappers_pb.StringValue | undefined;
   setPayload(
-    value?: google_protobuf_struct_pb.Value,
+    value?: google_protobuf_wrappers_pb.StringValue,
   ): ResultSuccessHasAnyPayload;
 
   serializeBinary(): Uint8Array;
@@ -288,7 +288,7 @@ export class ResultSuccessHasAnyPayload extends jspb.Message {
 
 export namespace ResultSuccessHasAnyPayload {
   export type AsObject = {
-    payload?: google_protobuf_struct_pb.Value.AsObject;
+    payload?: google_protobuf_wrappers_pb.StringValue.AsObject;
   };
 }
 
