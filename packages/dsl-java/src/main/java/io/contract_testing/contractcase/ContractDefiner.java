@@ -5,6 +5,7 @@ import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction0;
 import io.contract_testing.contractcase.client.InternalDefinerClient;
 import io.contract_testing.contractcase.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor;
+import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper;
 import org.jetbrains.annotations.NotNull;
 
 public class ContractDefiner {
@@ -16,7 +17,7 @@ public class ContractDefiner {
 
   public ContractDefiner(final @NotNull ContractCaseConfig config) {
     ContractCaseProcess.getInstance().start();
-    
+
     LogPrinter logPrinter = new LogPrinter();
     this.config = config;
 
@@ -104,7 +105,10 @@ public class ContractDefiner {
 
   public <R> void registerFunction(String functionName, InvokableFunction0<R> function) {
     try {
-      ConnectorResultMapper.mapVoid(definer.registerFunction(functionName, function));
+      ConnectorResultMapper.mapVoid(definer.registerFunction(
+          functionName,
+          ConnectorInvokableFunctionMapper.fromInvokableFunction(functionName, function)
+      ));
     } catch (Throwable e) {
       BoundaryCrashReporter.handleAndRethrow(e);
     }

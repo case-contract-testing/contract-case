@@ -4,12 +4,11 @@ import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.ma
 import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapRunRejectingExampleRequest;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction0;
 import io.contract_testing.contractcase.LogPrinter;
 import io.contract_testing.contractcase.definitions.matchers.AnyMatcher;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
-import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper;
+import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.ContractCaseConnectorConfig;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginDefinitionRequest;
@@ -96,8 +95,8 @@ public class InternalDefinerClient {
         , "loadPlugins");
   }
 
-  public <R> ConnectorResult registerFunction(String functionName, InvokableFunction0<R> function) {
-    rpcConnector.registerFunction(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(functionName, function));
+  public ConnectorResult registerFunction(String functionName, ConnectorInvokableFunction function) {
+    rpcConnector.registerFunction(functionName, function);
     return rpcConnector.executeCallAndWait(DefinitionRequest.newBuilder()
         .setRegisterFunction(RegisterFunction.newBuilder()
             .setHandle(ConnectorOutgoingMapper.map(functionName))), "registerFunction");
