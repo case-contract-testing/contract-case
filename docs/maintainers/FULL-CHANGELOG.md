@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.17.1](https://github.com/case-contract-testing/contract-case/compare/v0.17.0...v0.17.1) (2024-10-08)
+
+
+### Bug Fixes
+
+* Correct location of error messages when the string prefix / suffix don't resolve to strings ([ba3746e](https://github.com/case-contract-testing/contract-case/commit/ba3746e4ee5faab80051efe6aface1288f5a419b))
+* Further improve logging of function invocation ([6641155](https://github.com/case-contract-testing/contract-case/commit/664115569ac7aac041ca05c6abe58cc585d9088c))
+* Include all error messages in overall verification failed error ([889439f](https://github.com/case-contract-testing/contract-case/commit/889439faaacde40e54d988b93436bfa2d1a18253))
+* Warn if the contract filename is too long ([fcc80d7](https://github.com/case-contract-testing/contract-case/commit/fcc80d7ed55a37bc85f95df3c460d8ad09d79e32))
+
 ## [0.17.0](https://github.com/case-contract-testing/contract-case/compare/v0.16.3...v0.17.0) (2024-10-02)
 
 

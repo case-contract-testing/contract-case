@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.2.2...@contract-case/dsl-java-v0.2.3) (2024-10-08)
+
+
+### Features
+
+* Support function invocation contracts ([2c1eac8](https://github.com/case-contract-testing/contract-case/commit/2c1eac89fb5da099d5353702551e2f26dbb996a2))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.8.4 to 0.9.0
+
 ## [0.2.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.2.1...@contract-case/dsl-java-v0.2.2) (2024-10-02)
 
 
