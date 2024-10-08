@@ -1,4 +1,7 @@
-import { MatchContextWithoutLookup } from '@contract-case/case-plugin-base';
+import {
+  CaseError,
+  MatchContextWithoutLookup,
+} from '@contract-case/case-plugin-base';
 import {
   CaseContractDescription,
   ContractData,
@@ -42,6 +45,12 @@ export const addExample = (
 export const hasFailure = (contract: ContractData): boolean =>
   contract.examples.find((example) => example.result === 'FAILED') !==
   undefined;
+
+export const getFailures = (contract: ContractData): CaseError[] =>
+  contract.examples
+    .filter((e) => e.result === 'FAILED')
+    .map((e) => e.errors)
+    .flat();
 
 export const findMatcher = (
   contract: ContractData,

@@ -17,7 +17,7 @@ import {
 } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { exampleToNames } from '@contract-case/case-plugin-base/dist/src/core/contract';
 import { BaseCaseContract } from './BaseCaseContract';
-import { addExample, hasFailure } from './structure';
+import { addExample, getFailures, hasFailure } from './structure';
 import type { TestInvoker } from './executeExample/types';
 import type { CaseConfig, WriterDependencies } from './types';
 import { configToRunContext } from './config';
@@ -132,7 +132,13 @@ export class WritingCaseContract extends BaseCaseContract {
         );
       })
       .then((r) => {
-        runContext.logger.maintainerDebug('executeTest completed with:', r);
+        if (r != null) {
+          runContext.logger.maintainerDebug('executeTest completed with:', r);
+        } else {
+          runContext.logger.maintainerDebug(
+            'executeTest completed with void return, as expected',
+          );
+        }
         return r;
       })
       .catch((e) => {
@@ -169,15 +175,17 @@ export class WritingCaseContract extends BaseCaseContract {
   async endRecord(): Promise<void> {
     const writingContext = addLocation('WritingContract', this.initialContext);
     if (hasFailure(this.currentContract)) {
-      // TODO: Print all failures
       throw new CaseFailedAssertionError(
-        makeResults({
-          type: ERROR_TYPE_CONFIGURATION,
-          message: 'There were contract failures',
-          code: 'FAIL',
-          location: ['Writing Contract'],
-          toString: () => 'There were contract failures',
-        }),
+        makeResults(
+          {
+            type: ERROR_TYPE_CONFIGURATION,
+            message: 'There were contract failures',
+            code: 'FAIL',
+            location: ['Writing Contract'],
+            toString: () => 'There were contract failures',
+          },
+          ...getFailures(this.currentContract),
+        ),
       );
     }
     //  - if success, write contract
