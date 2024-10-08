@@ -1,6 +1,6 @@
 import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 import { MatchContext } from '../context/types';
-import { CaseCoreError } from '../errors';
+import { CaseConfigurationError, CaseCoreError } from '../errors';
 
 /**
  * During a matcher execution, this function can be called to ensure that the
@@ -24,9 +24,11 @@ export const mustResolveToString = (
 ): string => {
   const stripped = context.descendAndStrip(matcher, context);
   if (typeof stripped !== 'string') {
-    const message = `Provided matcher did not resolve to a string. Instead, it resolved to: ${typeof stripped}`;
+    const message = `The provided matcher did not resolve to a string. Instead, it resolved to: ${typeof stripped}`;
     context.logger.maintainerDebug(message, stripped, matcher);
-    throw new CaseCoreError(message, context);
+    const error = new CaseConfigurationError(message, context);
+    context.logger.deepMaintainerDebug('Stack trace is', error.stack);
+    throw error;
   }
   return stripped;
 };

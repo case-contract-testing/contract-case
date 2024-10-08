@@ -75,10 +75,10 @@ export const setupMockFunctionCaller = (
             }
             context.logger.error(
               `Function '${functionHandle}' threw an error`,
-              e,
+              (e as Error).message,
             );
             throw new CaseConfigurationError(
-              `The provided function threw an error during execution: ${(e as Error).message}`,
+              `The provided function threw an error during execution:\n ${(e as Error).message}`,
               context,
             );
           }

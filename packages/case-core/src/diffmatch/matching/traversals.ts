@@ -75,6 +75,7 @@ const descendAndStrip = <T extends AnyCaseNodeType>(
   if (hasExample(matcherOrData)) {
     parentMatchContext.logger.deepMaintainerDebug(
       `Executing strip with matcher type: ${matcherOrData['_case:matcher:type']} and specific example`,
+      matcherOrData['_case:matcher:example'],
     );
 
     return getExecutor(

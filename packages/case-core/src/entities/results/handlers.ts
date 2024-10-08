@@ -34,6 +34,8 @@ export const handleResult = (
       context.resultPrinter.printError(e, context);
     });
     // Warning: **ALL** error types must be checked in this function
+    // TODO: This should be refactored so that it's not possible to reach the end
+    // without checking all types
 
     const triggerError: TriggerError | undefined = example.errors.find(
       (i) => i.type === ERROR_TYPE_TRIGGER,

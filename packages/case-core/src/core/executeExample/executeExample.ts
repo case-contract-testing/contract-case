@@ -109,7 +109,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
   }: InvokingScaffold<T, R>,
   contract: WritingCaseContract | ReadingCaseContract,
   context: MatchContext,
-): Promise<unknown> =>
+): Promise<void> =>
   setupExample<T>(example, stateHandlers, context)
     .then(
       (assertable: Assertable<T>) => {

@@ -62,6 +62,6 @@ export const StringSuffixMatcher: MatcherExecutor<
   strip: (matcher: CoreStringSuffixMatcher, matchContext) =>
     `${mustResolveToString(
       matcher['_case:matcher:prefix'],
-      addLocation(':suffix', matchContext),
+      addLocation(':prefix', matchContext),
     )}${matcher['_case:matcher:suffix']}`,
 };

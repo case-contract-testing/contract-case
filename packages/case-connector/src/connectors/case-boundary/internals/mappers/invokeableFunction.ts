@@ -24,7 +24,11 @@ export const mapInvokableFunction =
             resultString,
           );
           throw new CaseCoreError(
-            `Unable to parse the payload returned by the invokeableFunction. This is probably a bug in your invokeable function, or the language-specific wrapper (${(e as Error | undefined)?.message}).`,
+            `Unable to parse the payload returned by the invokeableFunction.
+
+            This is probably a bug in your invokeable function, or the language-specific wrapper (${(e as Error | undefined)?.message}).
+
+            The string that failed to parse was: ${resultString}`,
           );
         }
       });
