@@ -69,7 +69,6 @@ public class FunctionCallerExampleTest {
                 .build())
         ),
         IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder.builder()
-            .withLogLevel(LogLevel.DEEP_MAINTAINER_DEBUG)
             .build()
     );
   }
