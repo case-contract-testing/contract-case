@@ -59,6 +59,6 @@ export const StringPrefixMatcher: MatcherExecutor<
   strip: (matcher: CoreStringPrefixMatcher, matchContext) =>
     `${matcher['_case:matcher:prefix']}${mustResolveToString(
       matcher['_case:matcher:suffix'],
-      addLocation(':prefix', matchContext),
+      addLocation(':suffix', matchContext),
     )}`,
 };
