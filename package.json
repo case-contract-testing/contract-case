@@ -4,7 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.17.0",
+  "version": "0.17.1",
   "devDependencies": {
     "@contract-case/eslint-config-case-maintainer": "0.1.1",
     "example-extractor": "^0.0.4",

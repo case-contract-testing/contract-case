@@ -29,6 +29,21 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.12.5](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.12.4...@contract-case/contract-case-jest-v0.12.5) (2024-10-08)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.8.4 to 0.9.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.17.0 to 0.17.1
+    * @contract-case/case-entities-internal bumped from 0.17.0 to 0.17.1
+    * @contract-case/case-definition-dsl bumped from 0.17.0 to 0.17.1
+    * @contract-case/case-plugin-base bumped from 0.17.0 to 0.17.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.17.0 to 0.17.1
+    * @contract-case/cli bumped from 0.2.4 to 0.2.5
+
 ## [0.12.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.12.3...@contract-case/contract-case-jest-v0.12.4) (2024-10-02)
 
 

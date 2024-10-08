@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-plugin-dsl-types",
-  "version": "0.17.0",
+  "version": "0.17.1",
   "description": "Types for writing the definition DSL for plugins for the ContractCase test framework",
   "keywords": [
     "testing",

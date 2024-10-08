@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.8.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.7.6...@contract-case/case-connector-proto-v0.8.0) (2024-10-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* The gRRPC SuccessWithAny type now contains a json string instead of a struct, for ease of mapping
+
+### Code Refactoring
+
+* The gRRPC SuccessWithAny type now contains a json string instead of a struct, for ease of mapping ([adf66dd](https://github.com/case-contract-testing/contract-case/commit/adf66dd6e42eb85b5c5ece2d06405cb677e684e8))
+
 ## [0.7.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.7.5...@contract-case/case-connector-proto-v0.7.6) (2024-10-01)
 
 

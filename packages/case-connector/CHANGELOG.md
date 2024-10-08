@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.9.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.8.4...@contract-case/case-connector-v0.9.0) (2024-10-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* The gRRPC SuccessWithAny type now contains a json string instead of a struct, for ease of mapping
+
+### Bug Fixes
+
+* Improve error message if the invokeable function's return value fails to parse ([3634d5d](https://github.com/case-contract-testing/contract-case/commit/3634d5d5fba4ccfc27b479911322fbe2847c0dba))
+* Substantially improve maintainer logging ([30a882b](https://github.com/case-contract-testing/contract-case/commit/30a882b69e971b44285ef74e6da76ccef1a8a1ad))
+
+
+### Code Refactoring
+
+* The gRRPC SuccessWithAny type now contains a json string instead of a struct, for ease of mapping ([adf66dd](https://github.com/case-contract-testing/contract-case/commit/adf66dd6e42eb85b5c5ece2d06405cb677e684e8))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.17.0 to 0.17.1
+    * @contract-case/case-connector-proto bumped from 0.7.6 to 0.8.0
+    * @contract-case/case-entities-internal bumped from 0.17.0 to 0.17.1
+
 ## [0.8.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.8.3...@contract-case/case-connector-v0.8.4) (2024-10-02)
 
 
