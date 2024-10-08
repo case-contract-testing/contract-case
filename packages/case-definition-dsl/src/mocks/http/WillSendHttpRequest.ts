@@ -32,6 +32,10 @@ export class WillSendHttpRequest extends AnyMockDescriptor {
 
   readonly response: AnyMatcherOrData;
 
+  /**
+   * Defines an example that expects to send an HTTP request. Use this to test HTTP servers.
+   * @param httpExample -
+   */
   constructor(httpExample: HttpExample) {
     super(MOCK_HTTP_CLIENT, {
       write: {

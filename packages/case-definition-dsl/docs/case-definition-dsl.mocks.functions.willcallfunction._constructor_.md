@@ -4,7 +4,7 @@
 
 ## mocks.functions.WillCallFunction.(constructor)
 
-Constructs a new instance of the `WillCallFunction` class
+Defines an example that executes a registered function with specific arguments
 
 **Signature:**
 
@@ -36,6 +36,8 @@ example
 [FunctionExecutionExample](./case-definition-dsl.mocks.functions.functionexecutionexample.md)
 
 </td><td>
+
+a [mocks.functions.FunctionExecutionExample](./case-definition-dsl.mocks.functions.functionexecutionexample.md)
 
 </td></tr>
 </tbody></table>

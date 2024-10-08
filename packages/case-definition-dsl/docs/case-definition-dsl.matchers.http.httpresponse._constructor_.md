@@ -4,7 +4,7 @@
 
 ## matchers.http.HttpResponse.(constructor)
 
-Constructs a new instance of the `HttpResponse` class
+Matches any HTTP Response with the provided properties
 
 **Signature:**
 

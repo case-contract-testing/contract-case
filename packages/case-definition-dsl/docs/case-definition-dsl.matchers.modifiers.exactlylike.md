@@ -12,7 +12,7 @@ Everything inside this matcher will be matched exactly, unless overridden with a
 export declare class ExactlyLike extends CascadingContextMatcher
 ```
 
-**Extends:** [CascadingContextMatcher](./case-definition-dsl.matchers.internals.cascadingcontextmatcher.md)
+**Extends:** CascadingContextMatcher
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `ExactlyLike` class
+Everything inside this matcher will be matched exactly, unless overridden with a generic matcher (eg `AnyString` or` ShapedLike`<!-- -->). Use this to switch out of `shapedLike` and back to the default exact matching.
 
 </td></tr>
 </tbody></table>

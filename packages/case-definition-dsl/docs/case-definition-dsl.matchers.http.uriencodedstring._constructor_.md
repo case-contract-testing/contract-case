@@ -4,7 +4,9 @@
 
 ## matchers.http.UriEncodedString.(constructor)
 
-Constructs a new instance of the `UriEncodedString` class
+Convenience matcher to treat the string as a uri encoded string - useful in `path` segments.
+
+During matching, the actual value is decoded with `decodeUriComponent()` and passed to the child matcher.
 
 **Signature:**
 

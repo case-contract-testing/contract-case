@@ -12,7 +12,7 @@ Matches any string that contains the given substring.
 export declare class StringContaining extends AnyMatcherWithExample
 ```
 
-**Extends:** [AnyMatcherWithExample](./case-definition-dsl.matchers.internals.anymatcherwithexample.md)
+**Extends:** AnyMatcherWithExample
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `StringContaining` class
+Matches any string that contains the given substring.
 
 </td></tr>
 </tbody></table>

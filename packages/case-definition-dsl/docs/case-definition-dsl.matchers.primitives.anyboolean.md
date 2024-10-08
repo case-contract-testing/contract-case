@@ -12,7 +12,7 @@ Matches any Boolean.
 export declare class AnyBoolean extends AnyMatcherWithExample
 ```
 
-**Extends:** [AnyMatcherWithExample](./case-definition-dsl.matchers.internals.anymatcherwithexample.md)
+**Extends:** AnyMatcherWithExample
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `AnyBoolean` class
+Matches any Boolean.
 
 </td></tr>
 </tbody></table>

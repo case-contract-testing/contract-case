@@ -12,7 +12,7 @@ Matches an object where each key matches the provided matcher.
 export declare class ObjectEachKeyMatches extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `ObjectEachKeyMatches` class
+Matches an object where each key matches the provided matcher.
 
 </td></tr>
 </tbody></table>

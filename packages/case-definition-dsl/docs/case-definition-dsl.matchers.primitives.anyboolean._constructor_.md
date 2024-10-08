@@ -4,7 +4,7 @@
 
 ## matchers.primitives.AnyBoolean.(constructor)
 
-Constructs a new instance of the `AnyBoolean` class
+Matches any Boolean.
 
 **Signature:**
 

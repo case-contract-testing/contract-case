@@ -4,7 +4,7 @@ import { AnyMatcherOrData } from '../../types';
 
 /**
  * Saves the matcher below it with a unique name that can be used with lookups
- * in tests after this one.
+ * in tests after this one. Lookups can be made with {@link matchers.convenience.ReferenceMatch}.
  * @public
  */
 export class NamedMatch extends AnyMatcher {
@@ -18,6 +18,9 @@ export class NamedMatch extends AnyMatcher {
   readonly '_case:matcher:child': AnyMatcherOrData | undefined;
 
   /**
+   * Saves the matcher below it with a unique name that can be used with lookups
+   * in tests after this one. Lookups can be made with {@link matchers.convenience.ReferenceMatch}.
+   *
    * @param name - The name you can use to lookup this matcher later
    * @param child - The content of this named match. If omitted or undefined, the content will be looked up in a previously named match
    */

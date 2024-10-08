@@ -19,6 +19,12 @@ export class And extends AnyMatcher {
   readonly '_case:matcher:children': Array<AnyMatcherOrData>;
 
   /**
+   * Matches all of the provided matchers. Useful for combining restrictions
+   * provided by different matchers, or creating new matchers without needing
+   * plugins.
+   *
+   * For best results, wrap the And matcher in a WithExample matcher.
+   *
    * @param matchers - An array of the matchers to run against this particular spot in the tree
    */
   constructor(matchers: AnyMatcherOrData[]) {

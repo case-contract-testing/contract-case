@@ -15,7 +15,8 @@ export class InStateWithVariables extends AnyState {
   readonly variables: Record<string, AnyMatcherOrData>;
 
   /**
-   * Constructs a new state descriptor with the given variables.
+   * A state descriptor for configuring an example that needs to run in a
+   * particular named state, and with variables provided by the framework.
    *
    * @param stateName - The name of the state used by this example. This must
    * match one of the state handlers provided in the configuration during the

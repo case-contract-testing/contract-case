@@ -12,7 +12,7 @@ Matches an Array whose length is within the specified range (or 1-infinity if no
 export declare class ArrayLength extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 

@@ -14,7 +14,7 @@ WARNING: Since many strings are accidentally decodable as base64, this matcher i
 export declare class Base64Encoded extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 
@@ -38,6 +38,8 @@ Description
 </td><td>
 
 </td><td>
+
+Transformation matcher that matches a base64 encoded version of the given string or string matcher
 
 WARNING: Since many strings are accidentally decodable as base64, this matcher is best combined with a more restrictive string matcher (eg `StringifiedJson`<!-- -->).
 

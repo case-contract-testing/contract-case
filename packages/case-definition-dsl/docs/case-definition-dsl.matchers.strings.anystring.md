@@ -12,7 +12,7 @@ Matches any string.
 export declare class AnyString extends AnyMatcherWithExample
 ```
 
-**Extends:** [AnyMatcherWithExample](./case-definition-dsl.matchers.internals.anymatcherwithexample.md)
+**Extends:** AnyMatcherWithExample
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `AnyString` class
+Matches any string.
 
 </td></tr>
 </tbody></table>

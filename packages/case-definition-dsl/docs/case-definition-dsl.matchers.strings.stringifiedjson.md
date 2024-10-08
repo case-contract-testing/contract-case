@@ -8,24 +8,24 @@ Transformation matcher that matches a JSON.stringify()ed version of the given ob
 
 For example, if the actual data is the string:
 
-```
-"{\"foo\":2}"
+```ts
+"{\"foo\":2}";
 ```
 
 then you could match it with:
 
-```
+```ts
 StringifiedJson({
-  "foo": 2
-})
+  foo: 2,
+});
 ```
 
 or
 
-```
+```ts
 StringifiedJson({
-  "foo": AnyNumber(2)
-})
+  foo: AnyNumber(2),
+});
 ```
 
 **Signature:**
@@ -34,7 +34,7 @@ StringifiedJson({
 export declare class StringifiedJson extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 
@@ -59,7 +59,29 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `StringifiedJson` class
+Transformation matcher that matches a JSON.stringify()ed version of the given object.
+
+For example, if the actual data is the string:
+
+```ts
+"{\"foo\":2}";
+```
+
+then you could match it with:
+
+```ts
+StringifiedJson({
+  foo: 2,
+});
+```
+
+or
+
+```ts
+StringifiedJson({
+  foo: AnyNumber(2),
+});
+```
 
 </td></tr>
 </tbody></table>

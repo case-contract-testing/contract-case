@@ -4,7 +4,7 @@
 
 ## matchers.convenience.StateVariable.(constructor)
 
-Constructs a new instance of the `StateVariable` class
+Matches the content of a variable that comes from a state. See [state definitions](https://case.contract-testing.io/docs/defining-contracts/state-definitions) and [state handlers](https://case.contract-testing.io/docs/reference/state-handlers) for more details.
 
 **Signature:**
 

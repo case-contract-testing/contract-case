@@ -4,7 +4,7 @@
 
 ## matchers.convenience.ReferenceMatch.(constructor)
 
-Constructs a new instance of the `ReferenceMatch` class
+Matches a named matcher created with [matchers.convenience.NamedMatch](./case-definition-dsl.matchers.convenience.namedmatch.md)<!-- -->.
 
 **Signature:**
 

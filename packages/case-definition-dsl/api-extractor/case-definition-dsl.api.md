@@ -246,6 +246,14 @@ class Base64Encoded extends AnyMatcher {
     toJSON(): unknown;
 }
 
+declare namespace base_2 {
+    export {
+        AnyMatcher,
+        AnyMatcherWithExample,
+        CascadingContextMatcher
+    }
+}
+
 // @public
 class BasicAuthHeaderValue extends StringPrefix {
     // Warning: (ae-forgotten-export) The symbol "AnyStringMatcher" needs to be exported by the entry point index-api-extractor.d.ts
@@ -439,18 +447,10 @@ class InStateWithVariables extends AnyState {
     readonly variables: Record<string, AnyMatcherOrData>;
 }
 
-declare namespace internals {
-    export {
-        AnyMatcher,
-        AnyMatcherWithExample,
-        CascadingContextMatcher
-    }
-}
-
 declare namespace matchers {
     export {
         arrays,
-        internals,
+        base_2 as base,
         convenience,
         http_2 as http,
         modifiers,

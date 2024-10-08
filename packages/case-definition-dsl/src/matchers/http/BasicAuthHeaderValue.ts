@@ -3,7 +3,9 @@ import { StringPrefix } from '../strings';
 import { AnyStringMatcher } from '../../types';
 
 /**
- * Matches the value part of a basic auth header with the supplied username and password - useful in conjunction with the StateVariable matcher
+ * Matches the value part of a basic auth header with the supplied username and
+ * password - useful in conjunction with the StateVariable matcher
+ *
  * @public
  */
 export class BasicAuthHeaderValue extends StringPrefix {

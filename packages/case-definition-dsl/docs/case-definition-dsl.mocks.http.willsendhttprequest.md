@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `WillSendHttpRequest` class
+Defines an example that expects to send an HTTP request. Use this to test HTTP servers.
 
 </td></tr>
 </tbody></table>

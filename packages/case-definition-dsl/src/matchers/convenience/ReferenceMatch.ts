@@ -2,7 +2,8 @@ import { LOOKUP_MATCHER_TYPE } from '@contract-case/case-plugin-dsl-types';
 import { AnyMatcher } from '../base';
 
 /**
- * Matches a named matcher created with `NamedMatch`.
+ * Matches a named matcher created with {@link matchers.convenience.NamedMatch}.
+ *
  * @public
  */
 export class ReferenceMatch extends AnyMatcher {
@@ -13,6 +14,8 @@ export class ReferenceMatch extends AnyMatcher {
   readonly '_case:matcher:uniqueName': string;
 
   /**
+   * Matches a named matcher created with {@link matchers.convenience.NamedMatch}.
+   *
    * @param name - The name you gave to a previous call of `NamedMatch`
    */
   constructor(name: string) {

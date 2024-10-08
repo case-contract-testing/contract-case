@@ -4,7 +4,7 @@
 
 ## states.InStateWithVariables.(constructor)
 
-Constructs a new state descriptor with the given variables.
+A state descriptor for configuring an example that needs to run in a particular named state, and with variables provided by the framework.
 
 **Signature:**
 

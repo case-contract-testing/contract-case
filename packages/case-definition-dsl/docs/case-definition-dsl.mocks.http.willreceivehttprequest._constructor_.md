@@ -4,7 +4,7 @@
 
 ## mocks.http.WillReceiveHttpRequest.(constructor)
 
-Constructs a new instance of the `WillReceiveHttpRequest` class
+Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.
 
 **Signature:**
 
@@ -36,6 +36,8 @@ httpExample
 [HttpExample](./case-definition-dsl.mocks.http.httpexample.md)
 
 </td><td>
+
+an [mocks.http.HttpExample](./case-definition-dsl.mocks.http.httpexample.md)
 
 </td></tr>
 </tbody></table>

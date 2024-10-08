@@ -13,6 +13,12 @@ export class WithExample extends CascadingContextMatcher {
   readonly '_case:matcher:example': AnyMatcherOrData;
 
   /**
+   * Adds an example to the provided matcher. Useful when you have a complicated
+   * set of {@link matchers.convenience.And} constraints and ContractCase can't
+   * figure out what the best example should be.
+   *
+   * Note that providing any example will override examples provided further down the tree.
+   *
    * @param matcher - Any matcher to add an example to
    * @param example - The example to use when stripping the matchers
    */

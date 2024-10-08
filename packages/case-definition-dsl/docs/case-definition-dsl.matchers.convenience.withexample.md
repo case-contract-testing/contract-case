@@ -14,7 +14,7 @@ Note that providing any example will override examples provided further down the
 export declare class WithExample extends CascadingContextMatcher
 ```
 
-**Extends:** [CascadingContextMatcher](./case-definition-dsl.matchers.internals.cascadingcontextmatcher.md)
+**Extends:** CascadingContextMatcher
 
 ## Constructors
 
@@ -39,7 +39,9 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `WithExample` class
+Adds an example to the provided matcher. Useful when you have a complicated set of [matchers.convenience.And](./case-definition-dsl.matchers.convenience.and.md) constraints and ContractCase can't figure out what the best example should be.
+
+Note that providing any example will override examples provided further down the tree.
 
 </td></tr>
 </tbody></table>

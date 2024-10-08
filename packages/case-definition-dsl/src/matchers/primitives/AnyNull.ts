@@ -20,6 +20,9 @@ export class AnyNull extends AnyMatcherWithExample {
   readonly '_case:context:matchBy' = 'type';
 
   /**
+   * Matches `null` (useful for languages like Java where `body: null` means no
+   * body, but you want to match a eg a json document that has the body `"null"`).
+   *
    * @param example - Any floating point number, not infinity, not NaN.
    */
   constructor() {

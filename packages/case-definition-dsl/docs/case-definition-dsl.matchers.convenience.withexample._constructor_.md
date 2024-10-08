@@ -4,7 +4,9 @@
 
 ## matchers.convenience.WithExample.(constructor)
 
-Constructs a new instance of the `WithExample` class
+Adds an example to the provided matcher. Useful when you have a complicated set of [matchers.convenience.And](./case-definition-dsl.matchers.convenience.and.md) constraints and ContractCase can't figure out what the best example should be.
+
+Note that providing any example will override examples provided further down the tree.
 
 **Signature:**
 

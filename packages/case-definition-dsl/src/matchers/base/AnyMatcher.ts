@@ -1,7 +1,6 @@
 /* eslint-disable max-classes-per-file */
 
 /**
- *
  * The base class for all Test Equivalence Matchers. Extend this if you don't
  * have an example in your Matcher. Otherwise, use `AnyMatcherWithExample`
  * @public
@@ -11,11 +10,16 @@ export abstract class AnyMatcher {
   readonly '_case:matcher:type': string;
 
   /**
-   * @param matcherType - The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings).
-   *
+   * The base class for all Test Equivalence Matchers. Extend this if you don't
+   * have an example in your Matcher. Otherwise, use {@link matchers.internals.AnyMatcherWithExample}
    * Matcher strings beginning with `_case:` are reserved for the default ContractCase
-   * matchers. Only use a types prefixed with `_case:` if you wish to create a special case
+   * matchers.
+   *
+   * Only use a types prefixed with `_case:` if you wish to create a special case
    * for a matching behaviour that is already provided by a core ContractCase matcher.
+   *
+   * @param matcherType - The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case | Extending ContractCase} for a description of these strings).
+   *
    */
   constructor(matcherType: string) {
     this['_case:matcher:type'] = matcherType;
@@ -28,9 +32,9 @@ export abstract class AnyMatcher {
    *
    * WARNING: Do not return a string from this method. You must instead return
    * an object that can be serialised to JSON following the matcher format
-   * described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
+   * described in {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case | Extending ContractCase}.
    *
-   * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
+   * @returns An object in the matcher format described {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case | in the Extending ContractCase documentation}
    */
   toJSON(): unknown {
     return Object.entries(this).reduce(

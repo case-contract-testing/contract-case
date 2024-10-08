@@ -4,7 +4,13 @@
 
 ## matchers.strings.StringPrefix.(constructor)
 
-Constructs a new instance of the `StringPrefix` class
+Matches any string that begins with the given constant string prefix, and ends with a matchable suffix.
+
+At match time, the actual string is checked for the constant prefix, and then the rest of the string is passed to the suffix matcher..
+
+The suffix matcher must be expecting a string.
+
+See also [StringSuffix](./case-definition-dsl.matchers.strings.stringsuffix.md)
 
 **Signature:**
 

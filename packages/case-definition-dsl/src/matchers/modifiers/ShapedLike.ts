@@ -9,6 +9,10 @@ import { CascadingContextMatcher } from '../base';
  */
 export class ShapedLike extends CascadingContextMatcher {
   /**
+   * Everything inside this matcher will be matched on the shape of the data (ie,
+   * type alone), unless overridden with other matchers.  Use this to switch out
+   * of the default `exactlyLike` matching.
+   *
    * @param content - The object, array, primitive or matcher to match the shape against
    */
   constructor(content: AnyMatcherOrData) {

@@ -1,5 +1,5 @@
 import * as arrays from './arrays';
-import * as internals from './base';
+import * as base from './base';
 import * as convenience from './convenience';
 import * as http from './http';
 import * as modifiers from './modifiers';
@@ -9,7 +9,7 @@ import * as strings from './strings';
 
 export {
   arrays,
-  internals,
+  base,
   convenience,
   http,
   modifiers,

@@ -4,7 +4,15 @@ import { AnyString } from './AnyString';
 import { AnyStringMatcher } from '../../types';
 
 /**
- * Matches any string that ends with the given constant string suffix
+ * Matches any string that begins with a matchable prefix, and ends with a
+ * constant suffix.
+ *
+ * At match time, the actual string is checked for the expected constant suffix,
+ * and then the beginning of the string is passed to the prefix matcher.
+ *
+ * The prefix matcher must be expecting a string.
+ *
+ * See also {@link matchers.strings.StringPrefix | StringPrefix}
  * @public
  */
 export class StringSuffix extends AnyMatcher {

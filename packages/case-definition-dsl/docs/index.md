@@ -21,7 +21,7 @@ Description
 
 </td><td>
 
-These are the [Mock Types](https://case.contract-testing.io/docs/reference/example-types)<!-- -->, test [equivalence matcher types](https://case.contract-testing.io/docs/reference/matchers) and the [state descriptors](https://case.contract-testing.io/docs/defining-contracts/state-definitions) for CaseExamples.
+These are the [mock types](https://case.contract-testing.io/docs/reference/example-types)<!-- -->, test [equivalence matcher types](https://case.contract-testing.io/docs/reference/matchers) and the [state descriptors](https://case.contract-testing.io/docs/defining-contracts/state-definitions) for CaseExamples.
 
 </td></tr>
 </tbody></table>

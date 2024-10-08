@@ -61,6 +61,7 @@ export class HttpRequest extends AnyMatcher {
   readonly body?: AnyMatcherOrData;
 
   /**
+   * Matches any HTTP Request with the provided properties
    * @param requestExample - An HttpResponseExample that describes the response
    */
   constructor(requestExample: HttpRequestExample) {

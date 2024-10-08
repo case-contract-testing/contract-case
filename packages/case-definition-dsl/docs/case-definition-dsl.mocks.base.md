@@ -25,6 +25,8 @@ The base class for all ContractCase Mock Descriptors. Extend this if you are imp
 
 If you are using the included example types from ContractCase (or any extension libraries), you do not need to read the documentation for this class.
 
+Mock description type strings beginning with `_case:` are reserved for the default ContractCase matchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case for a matching behaviour that is already provided by a core ContractCase mock.
+
 </td></tr>
 </tbody></table>
 

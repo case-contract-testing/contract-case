@@ -12,7 +12,7 @@ Matches an array where each element matches the provided matcher.
 export declare class ArrayEachEntryMatches extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 

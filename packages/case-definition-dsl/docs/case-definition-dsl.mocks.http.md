@@ -21,7 +21,7 @@ Description
 
 </td><td>
 
-Defines an example that expects to receive an HTTP request. Use this to test HTTP clients.
+Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.
 
 </td></tr>
 <tr><td>

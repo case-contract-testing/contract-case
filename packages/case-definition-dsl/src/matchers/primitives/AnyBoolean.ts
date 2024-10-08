@@ -19,6 +19,7 @@ export class AnyBoolean extends AnyMatcherWithExample {
   readonly '_case:context:matchBy' = 'type';
 
   /**
+   * Matches any Boolean.
    * @param example - An example boolean
    */
   constructor(example: boolean) {
@@ -26,6 +27,7 @@ export class AnyBoolean extends AnyMatcherWithExample {
   }
 
   /**
+   *
    * For non-TypeScript implementations (see `AnyMatcher.toJSON`)
    *
    * @privateRemarks

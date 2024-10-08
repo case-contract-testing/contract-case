@@ -8,13 +8,13 @@ import { AnyMatcherOrData } from '../../types';
  *
  * For example, if the actual data is the string:
  *
- * ```
+ * ```ts
  * "{\"foo\":2}"
  * ```
  *
  * then you could match it with:
  *
- * ```
+ * ```ts
  * StringifiedJson({
  *   "foo": 2
  * })
@@ -22,7 +22,7 @@ import { AnyMatcherOrData } from '../../types';
  *
  * or
  *
- * ```
+ * ```ts
  * StringifiedJson({
  *   "foo": AnyNumber(2)
  * })
@@ -40,7 +40,30 @@ export class StringifiedJson extends AnyMatcher {
   readonly '_case:matcher:resolvesTo' = 'string';
 
   /**
+   * Transformation matcher that matches a JSON.stringify()ed version of the given
+   * object.
    *
+   * For example, if the actual data is the string:
+   *
+   * ```ts
+   * "{\"foo\":2}"
+   * ```
+   *
+   * then you could match it with:
+   *
+   * ```ts
+   * StringifiedJson({
+   *   "foo": 2
+   * })
+   * ```
+   *
+   * or
+   *
+   * ```ts
+   * StringifiedJson({
+   *   "foo": AnyNumber(2)
+   * })
+   * ```
    * @param child - The object or matcher that matches the decoded
    */
   constructor(child: AnyMatcherOrData) {

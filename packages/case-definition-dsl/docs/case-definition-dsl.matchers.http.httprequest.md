@@ -12,7 +12,7 @@ Matches any HTTP Request with the provided properties
 export declare class HttpRequest extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `HttpRequest` class
+Matches any HTTP Request with the provided properties
 
 </td></tr>
 </tbody></table>

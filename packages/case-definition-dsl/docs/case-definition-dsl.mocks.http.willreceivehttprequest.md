@@ -4,7 +4,7 @@
 
 ## mocks.http.WillReceiveHttpRequest class
 
-Defines an example that expects to receive an HTTP request. Use this to test HTTP clients.
+Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.
 
 **Signature:**
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `WillReceiveHttpRequest` class
+Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.
 
 </td></tr>
 </tbody></table>

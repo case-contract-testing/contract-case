@@ -16,7 +16,7 @@ Note that this log level matcher will be saved into the contract, so it will als
 export declare class ChangeLogLevel extends CascadingContextMatcher
 ```
 
-**Extends:** [CascadingContextMatcher](./case-definition-dsl.matchers.internals.cascadingcontextmatcher.md)
+**Extends:** CascadingContextMatcher
 
 ## Constructors
 
@@ -41,7 +41,11 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `ChangeLogLevel` class
+Alters the ContractCase log level below this matcher. Useful for debugging.
+
+This has no effect on matching.
+
+Note that this log level matcher will be saved into the contract, so it will also affect the log level during verification. Usually you will want to remove the use of this matcher before saving the contract.
 
 </td></tr>
 </tbody></table>

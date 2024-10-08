@@ -4,7 +4,29 @@
 
 ## matchers.strings.StringifiedJson.(constructor)
 
-Constructs a new instance of the `StringifiedJson` class
+Transformation matcher that matches a JSON.stringify()ed version of the given object.
+
+For example, if the actual data is the string:
+
+```ts
+"{\"foo\":2}";
+```
+
+then you could match it with:
+
+```ts
+StringifiedJson({
+  foo: 2,
+});
+```
+
+or
+
+```ts
+StringifiedJson({
+  foo: AnyNumber(2),
+});
+```
 
 **Signature:**
 

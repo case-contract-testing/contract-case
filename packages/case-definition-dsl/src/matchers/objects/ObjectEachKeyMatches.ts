@@ -14,6 +14,7 @@ export class ObjectEachKeyMatches extends AnyMatcher {
   readonly '_case:matcher:matcher': AnyMatcherOrData;
 
   /**
+   * Matches an object where each key matches the provided matcher.
    * @param matcher - The matcher that all keys must pass
    */
   constructor(matcher: AnyMatcherOrData) {

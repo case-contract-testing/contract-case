@@ -4,7 +4,7 @@
 
 ## matchers.http.HttpRequest.(constructor)
 
-Constructs a new instance of the `HttpRequest` class
+Matches any HTTP Request with the provided properties
 
 **Signature:**
 

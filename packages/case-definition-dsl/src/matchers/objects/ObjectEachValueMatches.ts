@@ -14,6 +14,7 @@ export class ObjectEachValueMatches extends AnyMatcher {
   readonly '_case:matcher:matcher': AnyMatcherOrData;
 
   /**
+   * Matches an object where each value matches the provided matcher.
    * @param matcher - The matcher that all values must pass
    */
   constructor(matcher: AnyMatcherOrData) {

@@ -4,7 +4,7 @@
 
 ## matchers.strings.AnyString.(constructor)
 
-Constructs a new instance of the `AnyString` class
+Matches any string.
 
 **Signature:**
 

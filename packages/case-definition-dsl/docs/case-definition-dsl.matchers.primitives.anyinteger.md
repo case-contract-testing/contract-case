@@ -12,7 +12,7 @@ Matches any whole integer number.
 export declare class AnyInteger extends AnyMatcherWithExample
 ```
 
-**Extends:** [AnyMatcherWithExample](./case-definition-dsl.matchers.internals.anymatcherwithexample.md)
+**Extends:** AnyMatcherWithExample
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `AnyInteger` class
+Matches any whole integer number.
 
 </td></tr>
 </tbody></table>

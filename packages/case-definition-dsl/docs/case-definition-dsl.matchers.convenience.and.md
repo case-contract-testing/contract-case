@@ -14,7 +14,7 @@ For best results, wrap the And matcher in a WithExample matcher.
 export declare class And extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 
@@ -39,7 +39,9 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `And` class
+Matches all of the provided matchers. Useful for combining restrictions provided by different matchers, or creating new matchers without needing plugins.
+
+For best results, wrap the And matcher in a WithExample matcher.
 
 </td></tr>
 </tbody></table>

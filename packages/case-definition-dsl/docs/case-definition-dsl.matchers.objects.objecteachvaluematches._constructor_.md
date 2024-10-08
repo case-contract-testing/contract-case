@@ -4,7 +4,7 @@
 
 ## matchers.objects.ObjectEachValueMatches.(constructor)
 
-Constructs a new instance of the `ObjectEachValueMatches` class
+Matches an object where each value matches the provided matcher.
 
 **Signature:**
 

@@ -4,7 +4,11 @@
 
 ## matchers.http.HttpStatusCode.(constructor)
 
-Constructs a new instance of the `HttpStatusCode` class
+Matches an HTTP status code
+
+Matching can be relaxed with `X`<!-- -->, eg `"4XX"` or `"5XX"`<!-- -->. This is useful for error handling.
+
+If you need to match multiple specific statues, you can provide an array of string or numbers. This behaviour is provided so that you can offer flexibility to the implementation if the code path for multiple status codes is exactly the same. It is not appropriate to use multiple status codes if the code paths are intended to be different. For more context, see [the section on optional values in the documentation](https://case.contract-testing.io/docs/faq#how-do-i-tell-contractcase-that-a-field-is-optional) for more details.
 
 **Signature:**
 
@@ -38,10 +42,6 @@ string \| string\[\]
 </td><td>
 
 The http status code to match, expressed as a number or string (eg `200`<!-- -->, `"404"` or `"4XX"`<!-- -->).
-
-Matching can be relaxed with `X`<!-- -->, eg `"4XX"` or `"5XX"`<!-- -->. This is useful for error handling.
-
-If you need to match multiple specific statues, you can provide an array of string or numbers. This behaviour is provided so that you can offer flexibility to the implementation if the code path for multiple status codes is exactly the same. It is not appropriate to use multiple status codes if the code paths are intended to be different. For more context, see \[the section on optional values in the documentation\](https://case.contract-testing.io/docs/faq\#how-do-i-tell-contractcase-that-a-field-is-optional) for more details.
 
 </td></tr>
 </tbody></table>

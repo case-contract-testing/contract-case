@@ -7,7 +7,8 @@ import { HttpExample } from './types';
 import { AnyMatcherOrData } from '../../types';
 
 /**
- * Defines an example that expects to receive an HTTP request. Use this to test HTTP clients.
+ * Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.
+ *
  * @public
  */
 export class WillReceiveHttpRequest extends AnyMockDescriptor {
@@ -32,6 +33,11 @@ export class WillReceiveHttpRequest extends AnyMockDescriptor {
 
   readonly response: AnyMatcherOrData;
 
+  /**
+   * Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.
+   *
+   * @param httpExample - an {@link mocks.http.HttpExample}
+   */
   constructor(httpExample: HttpExample) {
     super(MOCK_HTTP_CLIENT, {
       write: {

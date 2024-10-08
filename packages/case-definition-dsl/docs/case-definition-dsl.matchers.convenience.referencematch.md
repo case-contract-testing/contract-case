@@ -4,7 +4,7 @@
 
 ## matchers.convenience.ReferenceMatch class
 
-Matches a named matcher created with `NamedMatch`<!-- -->.
+Matches a named matcher created with [matchers.convenience.NamedMatch](./case-definition-dsl.matchers.convenience.namedmatch.md)<!-- -->.
 
 **Signature:**
 
@@ -12,7 +12,7 @@ Matches a named matcher created with `NamedMatch`<!-- -->.
 export declare class ReferenceMatch extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `ReferenceMatch` class
+Matches a named matcher created with [matchers.convenience.NamedMatch](./case-definition-dsl.matchers.convenience.namedmatch.md)<!-- -->.
 
 </td></tr>
 </tbody></table>

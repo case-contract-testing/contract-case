@@ -19,6 +19,7 @@ export class AnyInteger extends AnyMatcherWithExample {
   readonly '_case:context:matchBy' = 'type';
 
   /**
+   * Matches any whole integer number.
    * @param example - Any floating point number, not infinity, not NaN.
    */
   constructor(example: number) {

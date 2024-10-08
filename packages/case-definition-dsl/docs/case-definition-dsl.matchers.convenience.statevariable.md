@@ -4,7 +4,7 @@
 
 ## matchers.convenience.StateVariable class
 
-Matches the content of a variable that comes from a state. See \[state definitions\](https://case.contract-testing.io/docs/defining-contracts/state-definitions) and \[state handlers\](https://case.contract-testing.io/docs/reference/state-handlers) for more details.
+Matches the content of a variable that comes from a state. See [state definitions](https://case.contract-testing.io/docs/defining-contracts/state-definitions) and [state handlers](https://case.contract-testing.io/docs/reference/state-handlers) for more details.
 
 **Signature:**
 
@@ -12,7 +12,7 @@ Matches the content of a variable that comes from a state. See \[state definitio
 export declare class StateVariable extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `StateVariable` class
+Matches the content of a variable that comes from a state. See [state definitions](https://case.contract-testing.io/docs/defining-contracts/state-definitions) and [state handlers](https://case.contract-testing.io/docs/reference/state-handlers) for more details.
 
 </td></tr>
 </tbody></table>

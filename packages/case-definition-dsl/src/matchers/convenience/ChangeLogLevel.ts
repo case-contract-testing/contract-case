@@ -13,6 +13,14 @@ import { CascadingContextMatcher } from '../base';
  */
 export class ChangeLogLevel extends CascadingContextMatcher {
   /**
+   * Alters the ContractCase log level below this matcher. Useful for debugging.
+   *
+   * This has no effect on matching.
+   *
+   * Note that this log level matcher will be saved into the contract, so it will
+   * also affect the log level during verification. Usually you will want to
+   * remove the use of this matcher before saving the contract.
+   *
    * @param logLevel - The new LogLevel. One of "none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainerDebug". see [LogLevel](https://case.contract-testing.io/docs/reference/configuring#loglevel-none--error--warn--debug--maintainerdebug) for details
    * @param child - The next matcher in the tree.
    */

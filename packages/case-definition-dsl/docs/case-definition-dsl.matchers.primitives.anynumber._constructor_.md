@@ -4,7 +4,7 @@
 
 ## matchers.primitives.AnyNumber.(constructor)
 
-Constructs a new instance of the `AnyNumber` class
+Matches a number following [RFC 8259 JSON](https://www.rfc-editor.org/rfc/rfc8259)<!-- -->.
 
 **Signature:**
 

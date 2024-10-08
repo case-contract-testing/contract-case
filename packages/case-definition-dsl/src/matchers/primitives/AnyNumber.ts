@@ -19,6 +19,8 @@ export class AnyNumber extends AnyMatcherWithExample {
   readonly '_case:context:matchBy' = 'type';
 
   /**
+   * Matches a number following {@link https://www.rfc-editor.org/rfc/rfc8259 | RFC 8259 JSON}.
+   *
    * @param example - An example number
    */
   constructor(example: number) {

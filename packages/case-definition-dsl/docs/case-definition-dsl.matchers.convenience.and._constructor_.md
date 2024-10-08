@@ -4,7 +4,9 @@
 
 ## matchers.convenience.And.(constructor)
 
-Constructs a new instance of the `And` class
+Matches all of the provided matchers. Useful for combining restrictions provided by different matchers, or creating new matchers without needing plugins.
+
+For best results, wrap the And matcher in a WithExample matcher.
 
 **Signature:**
 

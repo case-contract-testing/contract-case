@@ -9,6 +9,10 @@ import { CascadingContextMatcher } from '../base';
  */
 export class ExactlyLike extends CascadingContextMatcher {
   /**
+   * Everything inside this matcher will be matched exactly, unless overridden
+   * with a generic matcher (eg `AnyString` or` ShapedLike`). Use this to switch
+   * out of `shapedLike` and back to the default exact matching.
+   *
    * @param content - The object, array, primitive or matcher to match exactly
    */
   constructor(content: AnyMatcherOrData) {

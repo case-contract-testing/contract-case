@@ -36,6 +36,11 @@ export class WillReceiveFunctionCall extends AnyMockDescriptor {
 
   readonly functionName: string;
 
+  /**
+   * Defines an example that expects a function to be called with specific arguments
+   *
+   * @param example - a {@link mocks.functions.FunctionExecutionExample}
+   */
   constructor(example: FunctionExecutionExample) {
     super(MOCK_FUNCTION_CALLER, {
       write: {

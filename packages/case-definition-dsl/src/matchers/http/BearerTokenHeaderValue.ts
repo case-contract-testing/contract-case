@@ -2,11 +2,16 @@ import { AnyStringMatcher } from '../../types';
 import { StringPrefix } from '../strings';
 
 /**
- * Matches the value part of a OIDC or OAuth header with the supplied token - useful in conjunction with the StateVariable matcher
+ * Matches the value part of a OIDC or OAuth header with the supplied token -
+ * useful in conjunction with the StateVariable matcher
+ *
  * @public
  */
 export class BearerTokenHeaderValue extends StringPrefix {
   /**
+   * Matches the value part of a OIDC or OAuth header with the supplied token -
+   * useful in conjunction with the StateVariable matcher
+   *
    * @param token - A string or string matcher for a Bearer auth token
    */
   constructor(token: AnyStringMatcher) {

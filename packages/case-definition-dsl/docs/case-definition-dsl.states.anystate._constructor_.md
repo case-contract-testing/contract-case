@@ -4,7 +4,9 @@
 
 ## states.AnyState.(constructor)
 
-Constructs a new state descriptor
+The base class for all ContractCase State Descriptors. You shouldn't need to extend this.
+
+You don't need to read the documentation for this class unless you are working on a wrapper for ContractCase.
 
 **Signature:**
 

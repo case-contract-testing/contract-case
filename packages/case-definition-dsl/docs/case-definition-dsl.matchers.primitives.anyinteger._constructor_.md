@@ -4,7 +4,7 @@
 
 ## matchers.primitives.AnyInteger.(constructor)
 
-Constructs a new instance of the `AnyInteger` class
+Matches any whole integer number.
 
 **Signature:**
 

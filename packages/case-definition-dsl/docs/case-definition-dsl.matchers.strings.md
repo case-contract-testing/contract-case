@@ -54,24 +54,24 @@ Transformation matcher that matches a JSON.stringify()ed version of the given ob
 
 For example, if the actual data is the string:
 
-```
-"{\"foo\":2}"
+```ts
+"{\"foo\":2}";
 ```
 
 then you could match it with:
 
-```
+```ts
 StringifiedJson({
-  "foo": 2
-})
+  foo: 2,
+});
 ```
 
 or
 
-```
+```ts
 StringifiedJson({
-  "foo": AnyNumber(2)
-})
+  foo: AnyNumber(2),
+});
 ```
 
 </td></tr>
@@ -81,7 +81,13 @@ StringifiedJson({
 
 </td><td>
 
-Matches any string that begins with the given constant string prefix
+Matches any string that begins with the given constant string prefix, and ends with a matchable suffix.
+
+At match time, the actual string is checked for the constant prefix, and then the rest of the string is passed to the suffix matcher..
+
+The suffix matcher must be expecting a string.
+
+See also [StringSuffix](./case-definition-dsl.matchers.strings.stringsuffix.md)
 
 </td></tr>
 <tr><td>
@@ -90,7 +96,13 @@ Matches any string that begins with the given constant string prefix
 
 </td><td>
 
-Matches any string that ends with the given constant string suffix
+Matches any string that begins with a matchable prefix, and ends with a constant suffix.
+
+At match time, the actual string is checked for the expected constant suffix, and then the beginning of the string is passed to the prefix matcher.
+
+The prefix matcher must be expecting a string.
+
+See also [StringPrefix](./case-definition-dsl.matchers.strings.stringprefix.md)
 
 </td></tr>
 </tbody></table>

@@ -21,7 +21,7 @@ Description
 
 </td><td>
 
-Defines an example that expects a function to be called with specific arguments
+Defines an example that executes a registered function with specific arguments
 
 </td></tr>
 <tr><td>

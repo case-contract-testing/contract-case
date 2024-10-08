@@ -15,7 +15,11 @@ export abstract class AnyState {
   readonly stateName: string;
 
   /**
-   * Constructs a new state descriptor
+   * The base class for all ContractCase State Descriptors. You shouldn't need to
+   * extend this.
+   *
+   * You don't need to read the documentation for this class unless you are working
+   * on a wrapper for ContractCase.
    *
    * @param stateName - The name of the state used by this example. This must
    * match one of the state handlers provided in the configuration during the

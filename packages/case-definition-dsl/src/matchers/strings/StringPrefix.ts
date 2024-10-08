@@ -2,9 +2,19 @@ import { STRING_PREFIX_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 import { AnyString } from './AnyString';
 import { AnyStringMatcher } from '../../types';
+import type {} from './StringSuffix';
 
 /**
- * Matches any string that begins with the given constant string prefix
+ * Matches any string that begins with the given constant string prefix, and ends with a
+ * matchable suffix.
+ *
+ * At match time, the actual string is checked for the constant prefix, and then
+ * the rest of the string is passed to the suffix matcher..
+ *
+ * The suffix matcher must be expecting a string.
+ *
+ * See also {@link matchers.strings.StringSuffix | StringSuffix}
+ *
  * @public
  */
 export class StringPrefix extends AnyMatcher {
@@ -21,6 +31,16 @@ export class StringPrefix extends AnyMatcher {
   readonly '_case:matcher:resolvesTo': 'string';
 
   /**
+   * Matches any string that begins with the given constant string prefix, and ends with a
+   * matchable suffix.
+   *
+   * At match time, the actual string is checked for the constant prefix, and then
+   * the rest of the string is passed to the suffix matcher..
+   *
+   * The suffix matcher must be expecting a string.
+   *
+   * See also {@link matchers.strings.StringSuffix | StringSuffix}
+   *
    * @param prefix - The prefix string. Must be a string and not a matcher
    * @param suffix - A string or matcher to match against the suffix.
    */

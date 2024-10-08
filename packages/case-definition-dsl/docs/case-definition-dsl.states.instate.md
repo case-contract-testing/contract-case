@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new state descriptor
+A state descriptor for configuring an example that needs to run in a particular named state.
 
 </td></tr>
 </tbody></table>

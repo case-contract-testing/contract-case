@@ -4,7 +4,7 @@
 
 ## matchers.strings.StringContaining.(constructor)
 
-Constructs a new instance of the `StringContaining` class
+Matches any string that contains the given substring.
 
 **Signature:**
 

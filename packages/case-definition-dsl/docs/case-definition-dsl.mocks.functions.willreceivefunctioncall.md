@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `WillReceiveFunctionCall` class
+Defines an example that expects a function to be called with specific arguments
 
 </td></tr>
 </tbody></table>

@@ -4,7 +4,13 @@
 
 ## matchers.strings.StringSuffix class
 
-Matches any string that ends with the given constant string suffix
+Matches any string that begins with a matchable prefix, and ends with a constant suffix.
+
+At match time, the actual string is checked for the expected constant suffix, and then the beginning of the string is passed to the prefix matcher.
+
+The prefix matcher must be expecting a string.
+
+See also [StringPrefix](./case-definition-dsl.matchers.strings.stringprefix.md)
 
 **Signature:**
 
@@ -12,7 +18,7 @@ Matches any string that ends with the given constant string suffix
 export declare class StringSuffix extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 

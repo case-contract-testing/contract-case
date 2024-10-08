@@ -39,6 +39,7 @@ export class HttpResponse extends AnyMatcher {
   readonly body?: AnyMatcherOrData;
 
   /**
+   * Matches any HTTP Response with the provided properties
    * @param responseExample - An HttpResponseExample that describes the response
    */
   constructor(responseExample: HttpResponseExample) {

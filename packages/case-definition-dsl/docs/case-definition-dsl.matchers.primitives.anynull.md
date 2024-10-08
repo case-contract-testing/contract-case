@@ -12,7 +12,7 @@ Matches `null` (useful for languages like Java where `body: null` means no body,
 export declare class AnyNull extends AnyMatcherWithExample
 ```
 
-**Extends:** [AnyMatcherWithExample](./case-definition-dsl.matchers.internals.anymatcherwithexample.md)
+**Extends:** AnyMatcherWithExample
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `AnyNull` class
+Matches `null` (useful for languages like Java where `body: null` means no body, but you want to match a eg a json document that has the body `"null"`<!-- -->).
 
 </td></tr>
 </tbody></table>

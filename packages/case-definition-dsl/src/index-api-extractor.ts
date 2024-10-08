@@ -1,7 +1,7 @@
 /**
  * @packageDocumentation
  *
- * These are the {@link https://case.contract-testing.io/docs/reference/example-types | Mock Types}, test
+ * These are the {@link https://case.contract-testing.io/docs/reference/example-types | mock types}, test
  * {@link https://case.contract-testing.io/docs/reference/matchers | equivalence matcher types}
  * and the {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions | state descriptors} for CaseExamples.
  *

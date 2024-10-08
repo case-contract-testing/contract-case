@@ -12,7 +12,7 @@ Matches an Array which contains elements that match the given matchers - note th
 export declare class ArrayContains extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 

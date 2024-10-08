@@ -28,6 +28,18 @@ export abstract class CascadingContextMatcher extends AnyMatcher {
   private readonly currentRunModifiers: Record<string, string>;
 
   /**
+   * This is a passthrough matcher that does nothing except call the child matcher
+   * with the current actual data.
+   *
+   * It's useful for taking advantage of the context cascading available on all
+   * matchers without needing to write you own matcher. Extend it if you want to
+   * make a matcher that only changes the context object. If you don't know what
+   * this means, you don't need to extend this matcher.
+   *
+   * Due to limitations with JSii, extending implementations MUST NOT override
+   * `toJSON`, or MUST return the result of `super.toJSON()` as part of their
+   * toJSON method.
+   *
    * @param child - The matcher to apply these context changes to
    * @param contextModifiers - a map of properties to add to the context object
    * @param currentRunModifiers - a map of properties to add to the current run object.

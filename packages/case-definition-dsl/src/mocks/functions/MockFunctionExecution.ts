@@ -8,7 +8,7 @@ import { AnyMatcherOrData } from '../../types';
 import { FunctionExecutionExample } from './types';
 
 /**
- * Defines an example that expects a function to be called with specific arguments
+ * Defines an example that executes a registered function with specific arguments
  *
  * @public
  */
@@ -36,6 +36,11 @@ export class WillCallFunction extends AnyMockDescriptor {
 
   readonly functionName: string;
 
+  /**
+   * Defines an example that executes a registered function with specific arguments
+   *
+   * @param example - a {@link mocks.functions.FunctionExecutionExample}
+   */
   constructor(example: FunctionExecutionExample) {
     super(MOCK_FUNCTION_EXECUTION, {
       write: {

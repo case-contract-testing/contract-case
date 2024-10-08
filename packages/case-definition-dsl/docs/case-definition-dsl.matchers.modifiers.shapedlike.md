@@ -12,7 +12,7 @@ Everything inside this matcher will be matched on the shape of the data (ie, typ
 export declare class ShapedLike extends CascadingContextMatcher
 ```
 
-**Extends:** [CascadingContextMatcher](./case-definition-dsl.matchers.internals.cascadingcontextmatcher.md)
+**Extends:** CascadingContextMatcher
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `ShapedLike` class
+Everything inside this matcher will be matched on the shape of the data (ie, type alone), unless overridden with other matchers. Use this to switch out of the default `exactlyLike` matching.
 
 </td></tr>
 </tbody></table>

@@ -19,6 +19,7 @@ export class AnyString extends AnyMatcherWithExample {
   readonly '_case:context:matchBy' = 'type';
 
   /**
+   * Matches any string.
    * @param example - An example string
    */
   constructor(example: string) {

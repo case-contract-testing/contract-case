@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `BearerTokenHeaderValue` class
+Matches the value part of a OIDC or OAuth header with the supplied token - useful in conjunction with the StateVariable matcher
 
 </td></tr>
 </tbody></table>

@@ -24,6 +24,13 @@ Description
 </td></tr>
 <tr><td>
 
+[base](./case-definition-dsl.matchers.base.md)
+
+</td><td>
+
+</td></tr>
+<tr><td>
+
 [convenience](./case-definition-dsl.matchers.convenience.md)
 
 </td><td>
@@ -32,13 +39,6 @@ Description
 <tr><td>
 
 [http](./case-definition-dsl.matchers.http.md)
-
-</td><td>
-
-</td></tr>
-<tr><td>
-
-[internals](./case-definition-dsl.matchers.internals.md)
 
 </td><td>
 

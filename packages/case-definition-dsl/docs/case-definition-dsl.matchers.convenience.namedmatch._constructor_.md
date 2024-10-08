@@ -4,7 +4,7 @@
 
 ## matchers.convenience.NamedMatch.(constructor)
 
-Constructs a new instance of the `NamedMatch` class
+Saves the matcher below it with a unique name that can be used with lookups in tests after this one. Lookups can be made with [matchers.convenience.ReferenceMatch](./case-definition-dsl.matchers.convenience.referencematch.md)<!-- -->.
 
 **Signature:**
 

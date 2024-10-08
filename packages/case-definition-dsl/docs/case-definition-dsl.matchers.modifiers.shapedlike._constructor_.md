@@ -4,7 +4,7 @@
 
 ## matchers.modifiers.ShapedLike.(constructor)
 
-Constructs a new instance of the `ShapedLike` class
+Everything inside this matcher will be matched on the shape of the data (ie, type alone), unless overridden with other matchers. Use this to switch out of the default `exactlyLike` matching.
 
 **Signature:**
 

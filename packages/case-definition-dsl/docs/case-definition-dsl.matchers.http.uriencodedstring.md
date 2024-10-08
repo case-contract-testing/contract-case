@@ -14,7 +14,7 @@ During matching, the actual value is decoded with `decodeUriComponent()` and pas
 export declare class UriEncodedString extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 
@@ -39,7 +39,9 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `UriEncodedString` class
+Convenience matcher to treat the string as a uri encoded string - useful in `path` segments.
+
+During matching, the actual value is decoded with `decodeUriComponent()` and passed to the child matcher.
 
 </td></tr>
 </tbody></table>

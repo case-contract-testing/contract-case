@@ -19,6 +19,7 @@ export class StringContaining extends AnyMatcherWithExample {
   readonly '_case:matcher:resolvesTo' = 'string';
 
   /**
+   * Matches any string that contains the given substring.
    * @param substring - The substring that the matcher must contain
    * @param example - An example string that passes this matcher
    */

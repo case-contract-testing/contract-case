@@ -4,7 +4,7 @@
 
 ## matchers.convenience.NamedMatch class
 
-Saves the matcher below it with a unique name that can be used with lookups in tests after this one.
+Saves the matcher below it with a unique name that can be used with lookups in tests after this one. Lookups can be made with [matchers.convenience.ReferenceMatch](./case-definition-dsl.matchers.convenience.referencematch.md)<!-- -->.
 
 **Signature:**
 
@@ -12,7 +12,7 @@ Saves the matcher below it with a unique name that can be used with lookups in t
 export declare class NamedMatch extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `NamedMatch` class
+Saves the matcher below it with a unique name that can be used with lookups in tests after this one. Lookups can be made with [matchers.convenience.ReferenceMatch](./case-definition-dsl.matchers.convenience.referencematch.md)<!-- -->.
 
 </td></tr>
 </tbody></table>

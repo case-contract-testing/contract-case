@@ -12,7 +12,7 @@ Matches an Array which starts with the provided array of matchers - any addition
 export declare class ArrayStartsWith extends AnyMatcher
 ```
 
-**Extends:** [AnyMatcher](./case-definition-dsl.matchers.internals.anymatcher.md)
+**Extends:** AnyMatcher
 
 ## Constructors
 

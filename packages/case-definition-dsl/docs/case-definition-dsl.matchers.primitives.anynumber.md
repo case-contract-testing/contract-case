@@ -12,7 +12,7 @@ Matches a number following \[RFC 8259 JSON\](https://www.rfc-editor.org/rfc/rfc8
 export declare class AnyNumber extends AnyMatcherWithExample
 ```
 
-**Extends:** [AnyMatcherWithExample](./case-definition-dsl.matchers.internals.anymatcherwithexample.md)
+**Extends:** AnyMatcherWithExample
 
 ## Constructors
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `AnyNumber` class
+Matches a number following [RFC 8259 JSON](https://www.rfc-editor.org/rfc/rfc8259)<!-- -->.
 
 </td></tr>
 </tbody></table>

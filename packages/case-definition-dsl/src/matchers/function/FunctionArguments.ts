@@ -11,6 +11,7 @@ export class FunctionArguments extends AnyMatcher {
   arguments: AnyMatcherOrData[];
 
   /**
+   * Matches function arguments, for use with a FunctionExecutionMock
    * @param expectedArguments - an array where each entry will be matched against that implementation
    */
   constructor(expectedArguments: AnyMatcherOrData[]) {
