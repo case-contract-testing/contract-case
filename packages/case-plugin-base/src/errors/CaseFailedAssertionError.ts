@@ -14,7 +14,7 @@ export class CaseFailedAssertionError extends Error {
   constructor(matchResult: MatchResult) {
     super(
       `ContractCase example failed to match the expectations: \n\n${matchResult
-        .map((r) => `${r.message}`)
+        .map((r) => `   - ${r.message}`)
         .reduce((acc, curr) => `${acc}\n${curr}`)}`,
     );
     Object.setPrototypeOf(this, new.target.prototype);
