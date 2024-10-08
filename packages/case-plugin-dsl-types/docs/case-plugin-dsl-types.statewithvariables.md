@@ -4,6 +4,8 @@
 
 ## StateWithVariables type
 
+Describes a named state that also contains some variables. These variables can be returned by state handlers later.
+
 **Signature:**
 
 ```typescript

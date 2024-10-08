@@ -4,6 +4,8 @@
 
 ## HasTypeForState type
 
+Helper type for extracting state types by their constant
+
 **Signature:**
 
 ```typescript

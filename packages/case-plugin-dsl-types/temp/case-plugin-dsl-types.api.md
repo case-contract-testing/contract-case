@@ -35,10 +35,10 @@ export type AnyMockDescriptor = {
     response?: AnyCaseMatcher;
 };
 
-// @public (undocumented)
+// @public
 export type AnyState = NameOnlyState | StateWithVariables;
 
-// @public (undocumented)
+// @public
 export type AnyStateType = typeof SETUP_NAMED_STATE | typeof SETUP_VARIABLE_STATE;
 
 // @public
@@ -55,7 +55,7 @@ export interface HasTypeForMockDescriptor<T extends string> {
     '_case:mock:type': T;
 }
 
-// @public (undocumented)
+// @public
 export type HasTypeForState<T extends AnyStateType> = {
     '_case:state:type': T;
 };
@@ -104,7 +104,7 @@ export interface LookupableMatcher {
     '_case:matcher:uniqueName': string;
 }
 
-// @public (undocumented)
+// @public
 export type NameOnlyState = HasTypeForState<typeof SETUP_NAMED_STATE> & {
     readonly stateName: string;
 };
@@ -114,16 +114,16 @@ export type ResolvesTo<T extends string> = {
     '_case:matcher:resolvesTo': T;
 };
 
-// @public (undocumented)
+// @public
 export const SETUP_NAMED_STATE: "_case:NamedState";
 
-// @public (undocumented)
+// @public
 export const SETUP_VARIABLE_STATE: "_case:StateWithVariables";
 
 // @public
 export type SetupInfoFor<AllSetupInfo, T extends string> = Extract<AllSetupInfo, HasTypeForMockDescriptor<T>> & BaseSetupInfo;
 
-// @public (undocumented)
+// @public
 export type StateWithVariables = HasTypeForState<typeof SETUP_VARIABLE_STATE> & {
     readonly stateName: string;
     readonly variables: Record<string, AnyCaseMatcherOrData>;

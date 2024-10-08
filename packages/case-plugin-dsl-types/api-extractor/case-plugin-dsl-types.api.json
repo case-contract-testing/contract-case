@@ -364,7 +364,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-dsl-types!AnyState:type",
-          "docComment": "",
+          "docComment": "/**\n * Union type of all currently known State types.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -400,7 +400,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-dsl-types!AnyStateType:type",
-          "docComment": "",
+          "docComment": "/**\n * Union type of all currently known State identifier strings.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -631,7 +631,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-dsl-types!HasTypeForState:type",
-          "docComment": "",
+          "docComment": "/**\n * Helper type for extracting state types by their constant\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1134,7 +1134,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-dsl-types!NameOnlyState:type",
-          "docComment": "",
+          "docComment": "/**\n * Describes a state that only has a name and no other information\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1221,7 +1221,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@contract-case/case-plugin-dsl-types!SETUP_NAMED_STATE:var",
-          "docComment": "",
+          "docComment": "/**\n * Type identifier constant for the built-in {@link NameOnlyState} type.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1244,7 +1244,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@contract-case/case-plugin-dsl-types!SETUP_VARIABLE_STATE:var",
-          "docComment": "",
+          "docComment": "/**\n * Type identifier constant for the built-in {@link StateWithVariables} type.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1344,7 +1344,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-dsl-types!StateWithVariables:type",
-          "docComment": "",
+          "docComment": "/**\n * Describes a named state that also contains some variables. These variables can be returned by state handlers later.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

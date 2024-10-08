@@ -4,6 +4,8 @@
 
 ## SETUP\_NAMED\_STATE variable
 
+Type identifier constant for the built-in [NameOnlyState](./case-plugin-dsl-types.nameonlystate.md) type.
+
 **Signature:**
 
 ```typescript

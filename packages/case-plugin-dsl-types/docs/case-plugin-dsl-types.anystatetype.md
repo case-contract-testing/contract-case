@@ -4,6 +4,8 @@
 
 ## AnyStateType type
 
+Union type of all currently known State identifier strings.
+
 **Signature:**
 
 ```typescript

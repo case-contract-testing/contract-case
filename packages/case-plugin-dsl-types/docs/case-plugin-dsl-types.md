@@ -131,6 +131,8 @@ Description
 
 </td><td>
 
+Type identifier constant for the built-in [NameOnlyState](./case-plugin-dsl-types.nameonlystate.md) type.
+
 
 </td></tr>
 <tr><td>
@@ -139,6 +141,8 @@ Description
 
 
 </td><td>
+
+Type identifier constant for the built-in [StateWithVariables](./case-plugin-dsl-types.statewithvariables.md) type.
 
 
 </td></tr>
@@ -197,6 +201,8 @@ Base type for mock descriptors
 
 </td><td>
 
+Union type of all currently known State types.
+
 
 </td></tr>
 <tr><td>
@@ -205,6 +211,8 @@ Base type for mock descriptors
 
 
 </td><td>
+
+Union type of all currently known State identifier strings.
 
 
 </td></tr>
@@ -237,6 +245,8 @@ Helper type for extracting a mock descriptor from all the known mock descriptors
 
 </td><td>
 
+Helper type for extracting state types by their constant
+
 
 </td></tr>
 <tr><td>
@@ -268,6 +278,8 @@ Any json object that might contain data or matchers
 
 </td><td>
 
+Describes a state that only has a name and no other information
+
 
 </td></tr>
 <tr><td>
@@ -298,6 +310,8 @@ Helper type to extract a specific mock's SetupInfo object form all known SetupIn
 
 
 </td><td>
+
+Describes a named state that also contains some variables. These variables can be returned by state handlers later.
 
 
 </td></tr>

@@ -4,6 +4,8 @@
 
 ## SETUP\_VARIABLE\_STATE variable
 
+Type identifier constant for the built-in [StateWithVariables](./case-plugin-dsl-types.statewithvariables.md) type.
+
 **Signature:**
 
 ```typescript

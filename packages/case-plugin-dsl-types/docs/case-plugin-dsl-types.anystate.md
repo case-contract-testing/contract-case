@@ -4,6 +4,8 @@
 
 ## AnyState type
 
+Union type of all currently known State types.
+
 **Signature:**
 
 ```typescript

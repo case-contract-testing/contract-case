@@ -4,6 +4,8 @@
 
 ## NameOnlyState type
 
+Describes a state that only has a name and no other information
+
 **Signature:**
 
 ```typescript
