@@ -1,7 +1,7 @@
 # Case-Connector
 
 [![Build and test](https://github.com/case-contract-testing/contract-case/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/case-contract-testing/contract-case/actions/workflows/build-and-test.yml)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-connector/package.json)](https://snyk.io/test/github/case-contract-testing/case?targetFile=packages/case-boundary/package.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-connector/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case?targetFile=packages/case-connector/package.json)
 
 This is the server connector (formerly case-boundary) to allow ContractCase to be run as a server.
 

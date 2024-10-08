@@ -5,7 +5,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=package.json)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9094/badge)](https://www.bestpractices.dev/projects/9094)
 
-DSL (this is the package you want to install):
+DSL (these are the packages you want to install):
 
 Node:
 
@@ -34,7 +34,7 @@ ContractCase releases follow [semantic versioning](https://semver.org/), with tw
 
 1. Before 1.0.0, ContractContractCase is in Beta, and the API is considered unstable. Breaking changes will be indicated in minor
    version bumps- that is, 0.2.0 and 0.3.0 are not entirely compatible.
-2. Patch versions will always be backwards compatible.
+2. Before 1.0.0, patch versions will always be backwards compatible.
 
 Breaking changes will always be detailed in the [changelog](./CHANGELOG.md).
 
@@ -48,10 +48,12 @@ ContractCase is now available and should work for both client and server driven 
 contracts. Feedback on the ContractCase API / DSL and (especially) naming
 conventions very welcome. However, the following caveats should be kept in mind:
 
-1. ContractCase is currently only available in Javascript / Typescript. At a later date, support for Python, Java, C# and Go will be added, using [JSii](https://aws.github.io/jsii/). There are no plans to add other languages at this time.
+1. ContractCase is currently only available in Javascript / Typescript and Java. At a later date, support for Python, C# and Go will be added. There are no plans to add other languages at this time.
 1. ContractCase doesn't yet support merging of contracts. This means that your whole contract must be defined in one test file.
-1. ContractCase currently is only compatible with Jest. At a later date, the jest support will be extracted, and the peer-dependency removed.
-1. ContractCase currently only has rudimentary broker support - it works but it's not very configurable.
+1. ContractCase currently is only compatible with Jest (js/ts) and JUnit (java).
+1. ContractCase currently only has minimal broker support. It supports the Pact
+   broker, although the Pact broker isn't able to render ContractCase contracts
+   yet.
 
 Although the test coverage is high, and great care has been taken to ensure that the results are correct, there may still be bugs. Please open an issue if you experience any problems.
 
@@ -59,49 +61,19 @@ If you want to get started immediately, we recommend starting with either the [c
 
 You can follow the detailed progress by reading the [maintainer todo list](./docs/maintainers/todo.md). These caveats will be updated as progress is made.
 
-### I'm fine with all the caveats, how do I get started?
-
-```
-npm install --save-dev @contract-case/contract-case-jest
-```
-
-You may also need the peer dependencies:
-
-```
-npm install --save-dev jest@^29.4.3
-```
-
 ## For Pact users
 
-> _TODO: Pull this section out and expand into detailed documentation_
-
-ContractCase is intended to solve some of the pain points when using Pact - if
-you are not hitting those pain points, there is no need to switch to using ContractCase (unless
-you want to or something).
-
-ContractCase has a very similar philosophy to Pact. You write your pacts as a contract, which is a series of examples.
-
-Like Pact, ContractCase requires a broker to operate. To maximise Pact compatibility, ContractCase works with the Pact broker. We
+ContractCase has a very similar philosophy to Pact, and to maximise Pact
+compatibility, ContractCase works with the Pact broker. We
 recommend either:
+
+ContractCase is easier to extend, can express
+more complex contracts, doesn't restrict where you can use matchers when
+defining request / response pairs, and can define contracts at either the server
+side or the client side (although it is always consumer driven - your consumer just might be consuming _requests_). See [for Pact users](https://case.contract-testing.io/docs/Alternatives/differences-to-pact) for more discussion.
 
 - The [Pact Broker](https://github.com/pact-foundation/pact_broker) for users wanting to host their own broke
 - The excellent [Pactflow Broker](https://pactflow.io) for those needing SaaS and enterprise features
-
-We plan for ContractCase to always be compatible with both of these brokers.
-
-## Feature differences from Pact
-
-- Drive contracts from the client or the server. ContractCase is always consumer-driven, but what you are consuming might be a request, instead of a response.
-  - Example [client-driven end-to-end test](src/index.http.requestingCDC.spec.ts)
-  - Example [server-driven end-to-end test](src/index.http.respondingPDC.spec.ts)
-- Contract verification is an individual test in your test suite per interaction, rather than one test for all interactions. This provides much more granular feedback
-- All matchers are valid in all contexts
-- Currently it only supports Javascript / Typescript, with Jest
-
-### Planned differences
-
-- Native message formats - actually invoke SQS queues / kafka messages etc during verification
-- Easy user extensions - write extensions for ContractCase just by extending a class in JS, Python, Go or Java
 
 ## Internal package versions:
 
@@ -114,13 +86,12 @@ Definition DSL packages:
 
 [![npm](https://img.shields.io/npm/v/@contract-case/case-definition-dsl.svg?label=case-definition-dsl%3A%20npm)](https://www.npmjs.com/package/@contract-case/case-definition-dsl)
 [![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-definition-dsl/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=packages/case-definition-dsl/package.json)
-![Maven Central](https://img.shields.io/maven-central/v/io.contract-testing.contractcase/case_example_mock_types?label=case_example_mock_types%3A%20maven)
+![Maven Central](https://img.shields.io/maven-central/v/io.contract-testing.contractcase/definitions?label=definitions%3A%20maven)
 
-Boundary Packages:
+Connector Packages:
 
-[![npm](https://img.shields.io/npm/v/@contract-case/case-boundary.svg?label=case-boundary%3A%20npm)](https://www.npmjs.com/package/@contract-case/case-boundary)
-[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-boundary/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case?targetFile=packages/case-boundary/package.json)
-![Maven Central](https://img.shields.io/maven-central/v/io.contract-testing.contractcase/case_boundary?label=case_boundary%3A%20maven)
+[![npm](https://img.shields.io/npm/v/@contract-case/case-connector.svg?label=case-connector%3A%20npm)](https://www.npmjs.com/package/@contract-case/case-connector)
+[![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=packages/case-connector/package.json)](https://snyk.io/test/github/case-contract-testing/contract-case?targetFile=packages/case-connector/package.json)
 
 Core Package:
 
@@ -129,14 +100,14 @@ Core Package:
 
 ## Roadmap
 
-1. Pact Parity (in progress, close to complete)
-2. "Provider" driven contracts (done)
-3. Documentation (in progress)
-4. RELEASE BETA (done)
-5. Support Python, C# and Go
-6. Arbitrary combinations of request/response pairs, incidentally including native SQS support
-7. Pass-through APIs
-8. Plugins and arbitrary extensions
+1. Pact Parity (complete)
+2. Server driven contracts (complete)
+3. Plugins and arbitrary extensions (complete)
+4. Documentation (in progress)
+5. gRPC matchers
+6. Support Python, C# and Go
+7. Arbitrary combinations of request/response pairs, incidentally including native SQS support
+8. Pass-through APIs
 
 For the gory details, you can see the implementation notebook / todo list [here](docs/maintainers/todo.md)
 
