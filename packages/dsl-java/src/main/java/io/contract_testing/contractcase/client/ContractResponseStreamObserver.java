@@ -196,7 +196,6 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
           rpcConnector.sendResponse(
               mapResultResponse(rpcConnector.invokeFunction(
                   handle, args
-
               ))
               , requestId, LogLevel.MAINTAINER_DEBUG);
         });
