@@ -281,13 +281,14 @@ Cool features
   - [x] Suffix
   - [ ] Pivot
   - [ ] Split
+  - [ ] As String
 - [x] Matcher content verification
 - [ ] Matcher argument verification
 - [x] Options + config
   - [x] Options and config from environment variables
   - [ ] Options and config from .rc files
 - [x] Logging matchers
-- [ ] JS Matchers - Loading plugins from a JS module
+- [x] JS Matchers - Loading plugins from a JS module
 - [ ] Matcher version compatibility
 - [ ] Pact compatibility (ability to read Pact files)
 - [ ] Call-out matchers that call out to another service
@@ -350,6 +351,7 @@ Cool features
 - [x] File locations
 - [x] Silent mode (no logs or test output)
 - [x] Write docs for initial setup
+- [ ] Fail if there are no tests
 - [ ] Check that contract is actually downloaded before trying to report results (etc)
 - [ ] Named shaped object types (so eg headers doesn't say 'an object shaped like')
 - [x] Better formatting of locations (strip unnecessary stuff unless in maintainer debug mode)
@@ -375,7 +377,7 @@ Potential issues:
 - [ ] Dangling promises when 'No verifier or errorVerifier provided' CaseConfigurationError happens
 - [ ] Make teardowns run for successful state setup functions when one of the setups (or other teardowns) fails.
 - [ ] Worker process still running when the triggers aren't found
-- [ ] Server shutdown is slow when run via grpc - maybe we can assume shutdown is clean and not await it?
+- [x] Server shutdown is slow when run via grpc - fixed by lowering the keepalive
 
 ### Implementation notebook
 
