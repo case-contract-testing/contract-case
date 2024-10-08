@@ -152,9 +152,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:https://github.com/case-contract-testing/java-dsl.git'
-                    developerConnection = 'scm:git:ssh://github.com/case-contract-testing/java-dsl.git'
-                    url = 'https://github.com/case-contract-testing/java-dsl'
+                    connection = 'scm:git:https://github.com/case-contract-testing/contract-case.git'
+                    developerConnection = 'scm:git:ssh://github.com/case-contract-testing/contract-case.git'
+                    url = 'https://github.com/case-contract-testing/contract-case'
                 }
             }
         }
@@ -165,18 +165,6 @@ publishing {
         }
         mavenLocal()
     }
-    /*
-    contractcase(MavenPublication) {
-        from components.java
-        versionMapping {
-            usage('java-api') {
-                fromResolutionOf('runtimeClasspath')
-            }
-            usage('java-runtime') {
-                fromResolutionResult()
-            }
-        }
-    }*/
 }
 
 jreleaser {
@@ -184,6 +172,7 @@ jreleaser {
         active = 'ALWAYS'
         armored = true
     }
+    gitRootSearch = true
     deploy {
         maven {
             nexus2 {
