@@ -175,7 +175,7 @@ export const makeBrokerApi: MakeBrokerApi = (
           if (
             contract._links['pb:publish-verification-results'] === undefined
           ) {
-            logContxt.logger.maintainerDebug(
+            logContext.logger.maintainerDebug(
               'No pb:publish-verification-result section in the following contract:',
               contract,
             );
