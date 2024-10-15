@@ -169,18 +169,18 @@ export const makeBrokerApi: MakeBrokerApi = (
               contract,
             );
             throw new CaseConfigurationError(
-              `The contract between ${contract.description.consumerName} and ${contract.description.providerName} does not appear to have a links section. Was it downloaded from a broker?`,
+              `The contract between '${contract.description.consumerName}' and '${contract.description.providerName}' doesn't have a links section. It may not have been downloaded from a broker, which means we can't publish verification status`,
             );
           }
           if (
             contract._links['pb:publish-verification-results'] === undefined
           ) {
-            logContext.logger.maintainerDebug(
+            logContxt.logger.maintainerDebug(
               'No pb:publish-verification-result section in the following contract:',
               contract,
             );
             throw new CaseConfigurationError(
-              `The contract between ${contract.description.consumerName} and ${contract.description.providerName} does not appear to have a publish verification results URL`,
+              `The contract between '${contract.description.consumerName}' and '${contract.description.providerName}' doesn't have a publish verification results URL, so we can't publish it.`,
             );
           }
         })
