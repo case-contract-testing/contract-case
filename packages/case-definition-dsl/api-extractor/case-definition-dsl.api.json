@@ -221,7 +221,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!matchers.arrays.ArrayContains:constructor(1)",
-                      "docComment": "/**\n * Constructs a new instance of the `ArrayContains` class\n *\n * @param matchers - any number of matchers, each of which must be found inside the array.\n */\n",
+                      "docComment": "/**\n * Matches an Array which contains elements that match the given matchers - note that two different matchers may be satisfied by the same item in the array.\n *\n * @param matchers - any number of matchers, each of which must be found inside the array.\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -330,7 +330,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!matchers.arrays.ArrayEachEntryMatches:constructor(1)",
-                      "docComment": "/**\n * Constructs a new instance of the `ArrayEachEntryMatches` class\n *\n * @param matcher - The matcher for each entry in the array\n *\n * @param example - An optional example of the whole array to return\n */\n",
+                      "docComment": "/**\n * Matches an array where each element matches the provided matcher.\n *\n * @param matcher - The matcher for each entry in the array\n *\n * @param example - An optional example of the whole array to return\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -401,7 +401,7 @@
                 {
                   "kind": "Class",
                   "canonicalReference": "@contract-case/case-definition-dsl!matchers.arrays.ArrayEachEntryMatchesWithExample:class",
-                  "docComment": "/**\n * Matches an array where each element matches the provided matcher.\n *\n * @public\n */\n",
+                  "docComment": "/**\n * Matches an array where each element matches the provided matcher, but with a custom example for the whole array. This example must still pass the provided matcher\n *\n * @public\n */\n",
                   "excerptTokens": [
                     {
                       "kind": "Content",
@@ -426,7 +426,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!matchers.arrays.ArrayEachEntryMatchesWithExample:constructor(1)",
-                      "docComment": "/**\n * Constructs a new instance of the `ArrayEachEntryMatchesWithExample` class\n *\n * @param matcher - The matcher for each entry in the array\n *\n * @param example - An optional example of the whole array to return\n */\n",
+                      "docComment": "/**\n * Matches an array where each element matches the provided matcher, but with a custom example for the whole array. This example must still pass the provided matcher\n *\n * @param matcher - The matcher for each entry in the array\n *\n * @param example - An optional example of the whole array to return\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -552,7 +552,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!matchers.arrays.ArrayLength:constructor(1)",
-                      "docComment": "/**\n * Constructs a new instance of the `ArrayLength` class\n *\n * @param options - An `ArrayLengthOptions` object with optional minLength (default 1) and maxLength (default infinity) properties.\n */\n",
+                      "docComment": "/**\n * Matches an Array whose length is within the specified range (or 1-infinity if not specified).\n *\n * @param options - An `ArrayLengthOptions` object with optional minLength (default 1) and maxLength (default infinity) properties.\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -720,7 +720,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!matchers.arrays.ArrayStartsWith:constructor(1)",
-                      "docComment": "/**\n * Constructs a new instance of the `ArrayStartsWith` class\n *\n * @param matchers - An array of matchers that describes the start of the array. Additional elements in the actual array are ignored.\n */\n",
+                      "docComment": "/**\n * Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored.\n *\n * @param matchers - An array of matchers that describes the start of the array. Additional elements in the actual array are ignored.\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",

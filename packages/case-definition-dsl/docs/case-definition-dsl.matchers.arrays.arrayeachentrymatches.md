@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `ArrayEachEntryMatches` class
+Matches an array where each element matches the provided matcher.
 
 </td></tr>
 </tbody></table>

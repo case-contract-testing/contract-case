@@ -4,7 +4,7 @@
 
 ## matchers.arrays.ArrayStartsWith.(constructor)
 
-Constructs a new instance of the `ArrayStartsWith` class
+Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored.
 
 **Signature:**
 

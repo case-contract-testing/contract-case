@@ -15,6 +15,9 @@ export class ArrayContains extends AnyMatcher {
   readonly '_case:matcher:matchers': Array<AnyMatcherOrData>;
 
   /**
+   * Matches an Array which contains elements that match the given matchers -
+   * note that two different matchers may be satisfied by the same item in the array.
+   *
    * @param matchers - any number of matchers, each of which must be found inside the array.
    */
   constructor(matchers: Array<AnyMatcherOrData>) {

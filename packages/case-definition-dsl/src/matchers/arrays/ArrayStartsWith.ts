@@ -14,6 +14,8 @@ export class ArrayStartsWith extends AnyMatcher {
   readonly '_case:matcher:children': Array<AnyMatcherOrData>;
 
   /**
+   * Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored.
+   *
    * @param matchers -  An array of matchers that describes the start of the array. Additional elements in the actual array are ignored.
    */
   constructor(matchers: Array<AnyMatcherOrData>) {

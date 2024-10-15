@@ -3,7 +3,10 @@ import { AnyMatcherWithExample } from '../base';
 import { AnyMatcherOrData } from '../../types';
 
 /**
- * Matches an array where each element matches the provided matcher.
+ * Matches an array where each element matches the provided matcher, but with
+ * a custom example for the whole array. This example must still pass the
+ * provided matcher
+ *
  * @public
  */
 export class ArrayEachEntryMatchesWithExample extends AnyMatcherWithExample {
@@ -17,6 +20,10 @@ export class ArrayEachEntryMatchesWithExample extends AnyMatcherWithExample {
   readonly '_case:matcher:example': Array<AnyMatcherOrData>;
 
   /**
+   * Matches an array where each element matches the provided matcher, but with
+   * a custom example for the whole array. This example must still pass the
+   * provided matcher
+   *
    * @param matcher - The matcher for each entry in the array
    * @param example - An optional example of the whole array to return
    */

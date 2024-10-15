@@ -4,7 +4,7 @@
 
 ## matchers.arrays.ArrayEachEntryMatches.(constructor)
 
-Constructs a new instance of the `ArrayEachEntryMatches` class
+Matches an array where each element matches the provided matcher.
 
 **Signature:**
 

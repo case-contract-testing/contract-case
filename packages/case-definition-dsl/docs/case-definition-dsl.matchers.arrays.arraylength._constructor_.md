@@ -4,7 +4,7 @@
 
 ## matchers.arrays.ArrayLength.(constructor)
 
-Constructs a new instance of the `ArrayLength` class
+Matches an Array whose length is within the specified range (or 1-infinity if not specified).
 
 **Signature:**
 

@@ -4,7 +4,7 @@
 
 ## matchers.arrays.ArrayContains.(constructor)
 
-Constructs a new instance of the `ArrayContains` class
+Matches an Array which contains elements that match the given matchers - note that two different matchers may be satisfied by the same item in the array.
 
 **Signature:**
 

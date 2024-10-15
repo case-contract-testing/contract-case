@@ -41,6 +41,7 @@ export class ArrayLength extends AnyMatcher {
     | typeof ARRAY_LENGTH_PARAMETER_INFINITE;
 
   /**
+   * Matches an Array whose length is within the specified range (or 1-infinity if not specified).
    * @param options - An `ArrayLengthOptions` object with optional minLength (default 1) and maxLength (default infinity) properties.
    */
   constructor(options: ArrayLengthOptions) {

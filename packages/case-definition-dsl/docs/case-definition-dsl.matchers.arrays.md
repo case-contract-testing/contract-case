@@ -39,7 +39,7 @@ Matches an array where each element matches the provided matcher.
 
 </td><td>
 
-Matches an array where each element matches the provided matcher.
+Matches an array where each element matches the provided matcher, but with a custom example for the whole array. This example must still pass the provided matcher
 
 </td></tr>
 <tr><td>

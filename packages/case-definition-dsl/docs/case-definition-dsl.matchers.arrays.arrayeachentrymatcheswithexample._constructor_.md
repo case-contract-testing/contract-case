@@ -4,7 +4,7 @@
 
 ## matchers.arrays.ArrayEachEntryMatchesWithExample.(constructor)
 
-Constructs a new instance of the `ArrayEachEntryMatchesWithExample` class
+Matches an array where each element matches the provided matcher, but with a custom example for the whole array. This example must still pass the provided matcher
 
 **Signature:**
 

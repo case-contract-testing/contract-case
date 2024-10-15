@@ -4,7 +4,7 @@
 
 ## matchers.arrays.ArrayEachEntryMatchesWithExample class
 
-Matches an array where each element matches the provided matcher.
+Matches an array where each element matches the provided matcher, but with a custom example for the whole array. This example must still pass the provided matcher
 
 **Signature:**
 
@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `ArrayEachEntryMatchesWithExample` class
+Matches an array where each element matches the provided matcher, but with a custom example for the whole array. This example must still pass the provided matcher
 
 </td></tr>
 </tbody></table>

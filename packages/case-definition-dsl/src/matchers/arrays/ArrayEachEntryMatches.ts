@@ -14,6 +14,7 @@ export class ArrayEachEntryMatches extends AnyMatcher {
   readonly '_case:matcher:matcher': AnyMatcherOrData;
 
   /**
+   * Matches an array where each element matches the provided matcher.
    * @param matcher - The matcher for each entry in the array
    * @param example - An optional example of the whole array to return
    */
