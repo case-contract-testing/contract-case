@@ -1,7 +1,7 @@
 import { program } from 'commander';
 import { CaseConfig, LogLevel } from '@contract-case/case-core';
 
-import packageJson from '../../package.json' assert { type: 'json' };
+import packageJson from '../../package.json';
 import { handleError, downloadContracts } from '../connectors/index.js';
 
 const mapConfig = (options: unknown): CaseConfig => {
@@ -52,16 +52,16 @@ program
   .option('-l, --log-level <level>', 'log level')
   .option(
     '--broker-ci-access-token',
-    'broker CI token (recommended over username + password)',
+    'broker CI token (recommended over username + password)'
   )
   .option('--broker-base-url', 'broker base URL')
   .option(
     '--broker-username',
-    'broker basic auth username. Do not supply this if you are also using a broker CI token. Must be supplied with --broker-password',
+    'broker basic auth username. Do not supply this if you are also using a broker CI token. Must be supplied with --broker-password'
   )
   .option(
     '--broker-password',
-    'broker basic auth password. Do not supply this if you are also using a broker CI token. Must be supplied with --broker-username',
+    'broker basic auth password. Do not supply this if you are also using a broker CI token. Must be supplied with --broker-username'
   )
 
   .action((providerName, options) =>
@@ -74,8 +74,8 @@ program
         (e) => {
           handleError(e);
           process.exit(1);
-        },
-      ),
+        }
+      )
   );
 
 program.parse();
