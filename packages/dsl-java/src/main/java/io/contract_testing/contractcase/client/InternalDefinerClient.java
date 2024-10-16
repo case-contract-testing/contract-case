@@ -17,6 +17,7 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionReques
 import io.contract_testing.contractcase.grpc.ContractCaseStream.EndDefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RegisterFunction;
+import java.util.Arrays;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
@@ -89,13 +90,17 @@ public class InternalDefinerClient {
 
   public ConnectorResult loadPlugins(ContractCaseConnectorConfig configOverrides,
       String[] pluginNames) {
+    var loadPluginsRequest = LoadPluginRequest.newBuilder()
+        .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides));
+    loadPluginsRequest.getModuleNamesList()
+        .addAll(Arrays.stream(pluginNames).map(ConnectorOutgoingMapper::map).toList());
     return rpcConnector.executeCallAndWait(DefinitionRequest.newBuilder()
-            .setLoadPlugin(LoadPluginRequest.newBuilder()
-                .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides)))
+            .setLoadPlugin(loadPluginsRequest)
         , "loadPlugins");
   }
 
-  public ConnectorResult registerFunction(String functionName, ConnectorInvokableFunction function) {
+  public ConnectorResult registerFunction(String functionName,
+      ConnectorInvokableFunction function) {
     rpcConnector.registerFunction(functionName, function);
     return rpcConnector.executeCallAndWait(DefinitionRequest.newBuilder()
         .setRegisterFunction(RegisterFunction.newBuilder()
