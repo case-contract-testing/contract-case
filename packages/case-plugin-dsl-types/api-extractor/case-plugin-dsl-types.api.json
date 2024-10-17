@@ -448,7 +448,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    variables: "
+              "text": "{\n    stateVariables: "
             },
             {
               "kind": "Reference",
@@ -466,7 +466,34 @@
             },
             {
               "kind": "Content",
-              "text": ">;\n}"
+              "text": ">;\n    mock: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, "
+            },
+            {
+              "kind": "Reference",
+              "text": "VariableValue",
+              "canonicalReference": "@contract-case/case-plugin-dsl-types!~VariableValue:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    functions: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, (...args: string[]) => string>;\n}"
             },
             {
               "kind": "Content",
@@ -478,7 +505,7 @@
           "name": "BaseSetupInfo",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 6
+            "endIndex": 12
           }
         },
         {

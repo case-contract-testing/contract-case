@@ -43,7 +43,9 @@ export type AnyStateType = typeof SETUP_NAMED_STATE | typeof SETUP_VARIABLE_STAT
 
 // @public
 export type BaseSetupInfo = {
-    variables: Record<string, VariableValue>;
+    stateVariables: Record<string, VariableValue>;
+    mock: Record<string, VariableValue>;
+    functions: Record<string, (...args: string[]) => string>;
 };
 
 // @public

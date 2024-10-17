@@ -10,7 +10,9 @@ The base SetupInfo provided to all mock setup functions and triggers.
 
 ```typescript
 export type BaseSetupInfo = {
-    variables: Record<string, VariableValue>;
+    stateVariables: Record<string, VariableValue>;
+    mock: Record<string, VariableValue>;
+    functions: Record<string, (...args: string[]) => string>;
 };
 ```
 
