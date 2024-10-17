@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.18.0](https://github.com/case-contract-testing/contract-case/compare/v0.17.1...v0.18.0) (2024-10-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace the config object in triggers with a clearer SetupInfo type, allowing cross-language function calls as mocks. Note that the function calls now always return json strings, user-facing DSLs will need to parse the strings
+
+### Bug Fixes
+
+* Improve broker logging and error reporting ([61fb28d](https://github.com/case-contract-testing/contract-case/commit/61fb28d362879fe68e70b2b15504da5c8b82ec5a))
+
+
+### Code Refactoring
+
+* Replace the config object in triggers with a clearer SetupInfo type, allowing cross-language function calls as mocks. Note that the function calls now always return json strings, user-facing DSLs will need to parse the strings ([c9ddd93](https://github.com/case-contract-testing/contract-case/commit/c9ddd93782b5e11cd5925ea76e089e0d779fdc11))
+
 ## [0.17.1](https://github.com/case-contract-testing/contract-case/compare/v0.17.0...v0.17.1) (2024-10-08)
 
 

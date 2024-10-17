@@ -29,6 +29,35 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.13.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.12.5...@contract-case/contract-case-jest-v0.13.0) (2024-10-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Introduce a clearer SetupInfo type instead of the config map in triggers, allowing separation between stateVariables and mockSetup information. Existing triggers will need to be updated
+
+### Bug Fixes
+
+* Accurately include version numbers at runtime ([cca80e3](https://github.com/case-contract-testing/contract-case/commit/cca80e32f2dd055388e3cadd0239c883d556bb49))
+
+
+### Code Refactoring
+
+* Introduce a clearer SetupInfo type instead of the config map in triggers, allowing separation between stateVariables and mockSetup information. Existing triggers will need to be updated ([3cafd35](https://github.com/case-contract-testing/contract-case/commit/3cafd35bd42cbc21e8b1ef0f0a4c89c106fc3aad))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.9.0 to 0.10.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.17.1 to 0.18.0
+    * @contract-case/case-entities-internal bumped from 0.17.1 to 0.18.0
+    * @contract-case/case-definition-dsl bumped from 0.17.1 to 0.18.0
+    * @contract-case/case-plugin-base bumped from 0.17.1 to 0.18.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.17.1 to 0.18.0
+    * @contract-case/cli bumped from 0.2.5 to 0.2.6
+
 ## [0.12.5](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.12.4...@contract-case/contract-case-jest-v0.12.5) (2024-10-08)
 
 

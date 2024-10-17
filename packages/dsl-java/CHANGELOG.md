@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.3.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.2.3...@contract-case/dsl-java-v0.3.0) (2024-10-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Now supports function implmentation mocks, supplied on the SetupInfo object. Breaking change as getInfo has been renamed to getMockSetup for consistency with other languages
+
+### Features
+
+* Now supports function implmentation mocks, supplied on the SetupInfo object. Breaking change as getInfo has been renamed to getMockSetup for consistency with other languages ([426ee0b](https://github.com/case-contract-testing/contract-case/commit/426ee0b322fcc1306256ee851d629f7c809cca63))
+
+
+### Bug Fixes
+
+* Correct issue where plugin module names weren't passed to the core ([149ede1](https://github.com/case-contract-testing/contract-case/commit/149ede1f23baedcc9ee2032c7b0cfe96692872b7))
+* Fix hang if the provided trigger function needed to call back to ContractCase's core ([6fefba5](https://github.com/case-contract-testing/contract-case/commit/6fefba5416d0f867de6595dffb2ea888c97bdd1f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.9.0 to 0.10.0
+
 ## [0.2.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.2.2...@contract-case/dsl-java-v0.2.3) (2024-10-08)
 
 

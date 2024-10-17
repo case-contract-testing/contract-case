@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.10.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.9.0...@contract-case/case-connector-v0.10.0) (2024-10-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace the config object in triggers with a clearer SetupInfo type, allowing cross-language function calls as mocks. Note that the function calls now always return json strings, user-facing DSLs will need to parse the strings
+
+### Bug Fixes
+
+* Accurately include version numbers at runtime ([cca80e3](https://github.com/case-contract-testing/contract-case/commit/cca80e32f2dd055388e3cadd0239c883d556bb49))
+
+
+### Code Refactoring
+
+* Replace the config object in triggers with a clearer SetupInfo type, allowing cross-language function calls as mocks. Note that the function calls now always return json strings, user-facing DSLs will need to parse the strings ([c9ddd93](https://github.com/case-contract-testing/contract-case/commit/c9ddd93782b5e11cd5925ea76e089e0d779fdc11))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.17.1 to 0.18.0
+    * @contract-case/case-connector-proto bumped from 0.8.0 to 0.9.0
+    * @contract-case/case-entities-internal bumped from 0.17.1 to 0.18.0
+
 ## [0.9.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.8.4...@contract-case/case-connector-v0.9.0) (2024-10-08)
 
 

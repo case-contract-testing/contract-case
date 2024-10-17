@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.18.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-dsl-v0.17.1...@contract-case/case-core-plugin-http-dsl-v0.18.0) (2024-10-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace the config object in triggers with a clearer SetupInfo type, allowing cross-language function calls as mocks. Note that the function calls now always return json strings, user-facing DSLs will need to parse the strings
+
+### Code Refactoring
+
+* Replace the config object in triggers with a clearer SetupInfo type, allowing cross-language function calls as mocks. Note that the function calls now always return json strings, user-facing DSLs will need to parse the strings ([c9ddd93](https://github.com/case-contract-testing/contract-case/commit/c9ddd93782b5e11cd5925ea76e089e0d779fdc11))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from ^0.17.1 to ^0.18.0
+
 ## [0.17.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-dsl-v0.17.0...@contract-case/case-core-plugin-http-dsl-v0.17.1) (2024-10-08)
 
 
