@@ -1,43 +1,42 @@
-export type TriggerConfig<C extends Record<string, unknown>> = C & {
-  // TODO try not to use any here?
-  // but probably we have to
+export type TriggerSetup<C extends Record<string, string>> = {
+  mock: Record<string, string> & C;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  variables: Record<string, any>;
+  getFunction(name: string): (...args: unknown[]) => any;
+  getStateVariable(name: string): string;
 };
 
-export type Trigger<R, C extends Record<string, unknown>> = (
-  config: TriggerConfig<C>
+export type Trigger<R, C extends Record<string, string>> = (
+  setup: TriggerSetup<C>,
 ) => Promise<R>;
 
-export type TestResponseFunction<R, C extends Record<string, unknown>> = (
+export type TestResponseFunction<R, C extends Record<string, string>> = (
   data: R,
-  config: TriggerConfig<C>
+  config: TriggerSetup<C>,
 ) => Promise<unknown> | void;
 
-export type TestErrorResponseFunction = (
+export type TestErrorResponseFunction<C extends Record<string, string>> = (
   error: Error,
-  config: Record<string, unknown>
+  config: TriggerSetup<C>,
 ) => Promise<unknown> | void;
 
-export type TriggerGroup<R, C extends Record<string, unknown>> = {
+export type TriggerGroup<R, C extends Record<string, string>> = {
   trigger: Trigger<R, C>;
   testResponses?: Record<string, TestResponseFunction<R, C>>;
-  testErrorResponses?: Record<string, TestErrorResponseFunction>;
+  testErrorResponses?: Record<string, TestErrorResponseFunction<C>>;
 };
 
-export type InferredTriggerPair<T> = T extends TriggerGroup<infer R, infer C>
-  ? TriggerGroup<R, C>
-  : never;
+export type InferredTriggerPair<T> =
+  T extends TriggerGroup<infer R, infer C> ? TriggerGroup<R, C> : never;
 
 export type Groups = {
-  [x: string]: TriggerGroup<unknown, Record<string, unknown>>;
+  [x: string]: TriggerGroup<unknown, Record<string, string>>;
 };
 
 export type TriggerGroups = {
   groups: Groups;
 
-  addTriggerGroup<R, C extends Record<string, unknown>>(
+  addTriggerGroup<R, C extends Record<string, string>>(
     name: string,
-    group: TriggerGroup<R, C>
+    group: TriggerGroup<R, C>,
   ): TriggerGroups;
 };

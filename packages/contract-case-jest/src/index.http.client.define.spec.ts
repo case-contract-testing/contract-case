@@ -44,7 +44,7 @@ describe('e2e http consumer driven', () => {
     (contract) => {
       describe('health get', () => {
         const sendHealthRequest = (config: HttpRequestConfig) =>
-          api(config.baseUrl).health();
+          api(config.mock.baseUrl).health();
         describe('When the server is up', () => {
           const state = inState('Server is up');
 
@@ -146,9 +146,9 @@ describe('e2e http consumer driven', () => {
       });
       describe('User', () => {
         describe('With query variables', () => {
-          const sendUserRequest = (config: HttpRequestConfig) =>
-            api(config.baseUrl).getUserByQuery(
-              config.variables['userId'] as string,
+          const sendUserRequest = (setup: HttpRequestConfig) =>
+            api(setup.mock.baseUrl).getUserByQuery(
+              setup.getStateVariable('userId'),
             );
           describe('when the user exists', () => {
             const responseBody = { userId: stateVariable('userId') };
@@ -212,8 +212,10 @@ describe('e2e http consumer driven', () => {
           });
         });
         describe('With path variables', () => {
-          const sendUserRequest = (config: HttpRequestConfig) =>
-            api(config.baseUrl).getUserByPath(config.variables['userId']);
+          const sendUserRequest = (setup: HttpRequestConfig) =>
+            api(setup.mock.baseUrl).getUserByPath(
+              setup.getStateVariable('userId'),
+            );
           describe('when the user exists', () => {
             const responseBody = {
               userId: stateVariable('userId'),

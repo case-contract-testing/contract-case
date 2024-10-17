@@ -150,7 +150,7 @@ export type ContractCaseVerifierConfig = Omit<
 
 export interface IndividualSuccessTestConfig<
   R,
-  C extends Record<string, unknown>,
+  C extends Record<string, string>,
 > extends Partial<ContractCaseConfig> {
   /**
    * A trigger that will send the request (if appropriate)
@@ -184,10 +184,8 @@ export interface IndividualSuccessTestConfig<
   readonly mockConfig?: Record<string, Record<string, unknown>>;
 }
 
-export interface IndividualFailedTestConfig<
-  R,
-  C extends Record<string, unknown>,
-> extends Partial<ContractCaseConfig> {
+export interface IndividualFailedTestConfig<R, C extends Record<string, string>>
+  extends Partial<ContractCaseConfig> {
   /**
    * A trigger that will send the request (if appropriate)
    *

@@ -11,8 +11,8 @@ describe('verification', () => {
       verifier.runVerification({
         triggers: new TriggerGroupMap()
           .addTriggerGroup('a function invoked with no arguments', {
-            trigger: async (config: FunctionExecutorConfig) =>
-              config.invokeable(),
+            trigger: async (setup: FunctionExecutorConfig) =>
+              setup.getFunction(setup.mock.functionHandle)(),
             testResponses: {
               null: (returnValue) => expect(returnValue).toBe(null),
             },
@@ -20,8 +20,8 @@ describe('verification', () => {
           .addTriggerGroup(
             'a function invoked with 2 arguments ( "example", 2 )',
             {
-              trigger: async (config: FunctionExecutorConfig) =>
-                config.invokeable('example', 2),
+              trigger: async (setup: FunctionExecutorConfig) =>
+                setup.getFunction(setup.mock.functionHandle)('example', 2),
               testResponses: {
                 '"example2"': (returnValue) =>
                   expect(returnValue).toEqual('example2'),

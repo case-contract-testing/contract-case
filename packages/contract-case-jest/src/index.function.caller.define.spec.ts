@@ -37,8 +37,8 @@ describe('function executor', () => {
               }),
             },
             {
-              trigger: async (config: FunctionExecutorConfig) =>
-                config.invokeable(),
+              trigger: async (setup: FunctionExecutorConfig) =>
+                setup.getFunction(setup.mock.functionHandle)(),
               testResponse: (returnValue) => {
                 expect(returnValue).toEqual(null);
               },
@@ -56,8 +56,8 @@ describe('function executor', () => {
               }),
             },
             {
-              trigger: async (config: FunctionExecutorConfig) =>
-                config.invokeable('example', 2),
+              trigger: async (setup: FunctionExecutorConfig) =>
+                setup.getFunction(setup.mock.functionHandle)('example', 2),
               testResponse: (returnValue: unknown) => {
                 expect(returnValue).toEqual('example2');
               },

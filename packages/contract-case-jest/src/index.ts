@@ -1,4 +1,4 @@
-import { TriggerConfig } from './entities/index.js';
+import { TriggerSetup } from './entities/index.js';
 
 /*!
  * ContractCase Jest DSL
@@ -13,11 +13,9 @@ export * as TestEquivalenceMatchers from './boundaries/dsl/Matchers/index.js';
 export * from './entities/types.js';
 
 // TODO remove this hack type and do it properly
-export type HttpRequestConfig = TriggerConfig<{
+export type HttpRequestConfig = TriggerSetup<{
   baseUrl: string;
 }>;
 
 // TODO remove this hack type too, and also do it properly
-export type FunctionExecutorConfig = TriggerConfig<{
-  invokeable: (...invokedArguments: unknown[]) => unknown;
-}>;
+export type FunctionExecutorConfig = TriggerSetup<{ functionHandle: string }>;

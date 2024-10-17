@@ -57,7 +57,7 @@ export class ContractCaseDefiner {
     }
   }
 
-  runExample<OtherR, OtherC extends Record<string, unknown>>(
+  runExample<OtherR, OtherC extends Record<string, string>>(
     definition: ExampleDefinition,
     runConfig: IndividualSuccessTestConfig<OtherR, OtherC> = {},
   ): Promise<unknown> {
@@ -70,7 +70,7 @@ export class ContractCaseDefiner {
       .catch(errorHandler);
   }
 
-  runRejectingExample<OtherR, OtherC extends Record<string, unknown>>(
+  runRejectingExample<OtherR, OtherC extends Record<string, string>>(
     definition: ExampleDefinition,
     runConfig: IndividualFailedTestConfig<OtherR, OtherC> = {},
   ): Promise<unknown> {

@@ -3,22 +3,53 @@ import {
   BoundarySuccess,
   BoundaryFailure,
   ITriggerFunction,
+  BoundarySetupInfo,
 } from '@contract-case/case-connector';
 import {
   Trigger,
   TestErrorResponseFunction,
   TestResponseFunction,
-  TriggerConfig,
+  TriggerSetup,
   TriggerGroups,
+  ContractCaseConfigurationError,
 } from '../../../../entities/index.js';
+import { mapSuccessWithAny } from '../boundaryResultToJs.js';
+
+const mapSetup = <C extends Record<string, string>>(
+  setup: BoundarySetupInfo,
+): TriggerSetup<C> => ({
+  mock: setup.mock as C,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getFunction: (name: string): ((...args: unknown[]) => Promise<any>) => {
+    const fn = setup.functions[name];
+    if (fn == null) {
+      throw new ContractCaseConfigurationError(
+        `getFunction was asked for '${name}', but it wasn't configured in this Interaction`,
+      );
+    }
+    return (...args: unknown[]) =>
+      Promise.resolve()
+        .then(() => fn(...args.map((a) => JSON.stringify(a))))
+        .then((result) => mapSuccessWithAny(result));
+  },
+  getStateVariable: (name: string) => {
+    const variable = setup.stateVariables[name];
+    if (variable == null) {
+      throw new ContractCaseConfigurationError(
+        `getStateVariable was asked for '${name}', but it wasn't present in the setup`,
+      );
+    }
+    return variable;
+  },
+});
 
 export const mapFailingTrigger =
-  <R, C extends Record<string, unknown>>(
+  <R, C extends Record<string, string>>(
     trigger: Trigger<R, C>,
-    testErrorFunction: TestErrorResponseFunction,
+    testErrorFunction: TestErrorResponseFunction<C>,
   ) =>
-  (config: TriggerConfig<C>): Promise<BoundaryResult> =>
-    trigger(config)
+  (setup: BoundarySetupInfo): Promise<BoundaryResult> =>
+    trigger(mapSetup(setup))
       .then<BoundaryResult, BoundaryResult>(
         () => {
           // TODO correct this return type
@@ -27,7 +58,7 @@ export const mapFailingTrigger =
         (e) =>
           Promise.resolve()
             .then(async () => {
-              await testErrorFunction(e, config);
+              await testErrorFunction(e, mapSetup(setup));
             })
             .then(
               () => new BoundarySuccess(),
@@ -44,16 +75,16 @@ export const mapFailingTrigger =
       );
 
 export const mapSuccessTrigger =
-  <R, C extends Record<string, unknown>>(
+  <R, C extends Record<string, string>>(
     trigger: Trigger<R, C>,
     testResponseFunction: TestResponseFunction<R, C>,
   ) =>
-  (config: TriggerConfig<C>): Promise<BoundaryResult> =>
-    trigger(config)
+  (setup: BoundarySetupInfo): Promise<BoundaryResult> =>
+    trigger(mapSetup(setup))
       .then<BoundaryResult, BoundaryResult>(
         async (data) => {
           // TODO correct this return type
-          await testResponseFunction(data, config);
+          await testResponseFunction(data, mapSetup(setup));
           return new BoundarySuccess();
         },
         () => {

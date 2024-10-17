@@ -6,7 +6,11 @@ import {
   IndividualSuccessTestConfig,
 } from '../../../../entities/config.js';
 import { mapStateHandlers } from './state/state.js';
-import { mapTriggers, mapSuccessTrigger, mapFailingTrigger } from './triggers.js';
+import {
+  mapTriggers,
+  mapSuccessTrigger,
+  mapFailingTrigger,
+} from './triggers.js';
 import { ContractCaseConfigurationError } from '../../../../entities/index.js';
 
 const mapPublish = (publish: ContractCaseConfig['publish']) => {
@@ -34,7 +38,7 @@ export const mapConfig = ({
   internals: { asyncVerification: false },
 });
 
-export const mapSuccessConfig = <R, C extends Record<string, unknown>>({
+export const mapSuccessConfig = <R, C extends Record<string, string>>({
   trigger,
   testResponse,
   ...config
@@ -63,7 +67,7 @@ export const mapSuccessConfig = <R, C extends Record<string, unknown>>({
   };
 };
 
-export const mapFailingConfig = <R, C extends Record<string, unknown>>({
+export const mapFailingConfig = <R, C extends Record<string, string>>({
   trigger,
   testErrorResponse,
   ...config
