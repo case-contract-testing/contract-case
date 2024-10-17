@@ -328,17 +328,31 @@ export const contractDefinition = (
         }
         break;
       case WireDefinitionRequest.KindCase.INVOKE_FUNCTION:
-        sendContractResponse(
-          'maintainerDebug',
-          getId(request),
-          makeResultResponse(
-            new BoundaryFailure(
-              BoundaryFailureKindConstants.CASE_CORE_ERROR,
-              'Invocation not yet implemented',
-              'case-connector',
-            ),
-          ),
-        );
+        {
+          const invokeFunctionRequest = request.getInvokeFunction();
+          if (invokeFunctionRequest == null) {
+            throw new ConnectorError(
+              'invokeFunction called with something that returned an undefined request',
+            );
+          }
+          const handle = invokeFunctionRequest.getHandle()?.getValue();
+          if (handle == null) {
+            throw new ConnectorError('Handle was missing a value');
+          }
+          const args = invokeFunctionRequest
+            .getArgumentsList()
+            .map((s) => s.getValue());
+
+          Promise.resolve(
+            functionRegistry.getCoreFunction(handle)(...args),
+          ).then((result) => {
+            sendContractResponse(
+              'maintainerDebug',
+              getId(request),
+              makeResultResponse(result),
+            );
+          });
+        }
         break;
       default:
         throw new UnreachableError(type);
