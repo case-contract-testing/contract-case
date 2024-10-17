@@ -130,7 +130,9 @@ export const setupHttpResponseConsumer = (
       (run: DataContext) => ({
         config: {
           '_case:mock:type': MOCK_HTTP_CLIENT,
-          variables: parentContext['_case:currentRun:context:variables'],
+          stateVariables: parentContext['_case:currentRun:context:variables'],
+          functions: {},
+          mock: {},
         },
         assertableData: () =>
           axios

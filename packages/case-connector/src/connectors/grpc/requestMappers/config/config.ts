@@ -1,11 +1,9 @@
-import {
-  JavaScriptValue,
-  Struct,
-} from 'google-protobuf/google/protobuf/struct_pb.js';
 import { Map as PbMap } from 'google-protobuf';
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb.js';
 import {
   ContractResponse,
+  CoreFunctionHandle,
+  SetupInfo,
   TriggerFunctionHandle,
   TriggerFunctionRequest,
   ContractCaseConfig as WireContractCaseConfig,
@@ -23,12 +21,38 @@ import {
 } from '../../promiseHandler/promiseHandler.js';
 import { SendContractResponse } from '../../sendContractResponse.js';
 import { unbox, unboxBoolOrUndefined, unboxOrUndefined } from '../values.js';
+import { BoundarySetupInfo } from '../../../case-boundary/internals/index.js';
+import { FunctionRegistry } from '../../functionRegistry/types.js';
+
+const mapSetupInfo = (
+  boundarySetup: BoundarySetupInfo,
+  functionRegistry: FunctionRegistry,
+): SetupInfo => {
+  const setup = new SetupInfo();
+  Object.entries(boundarySetup.mock).forEach(([key, value]) => {
+    setup.getMockMap().set(key, new StringValue().setValue(value));
+  });
+  Object.entries(boundarySetup.stateVariables).forEach(([key, value]) => {
+    setup.getStatevariablesMap().set(key, new StringValue().setValue(value));
+  });
+  Object.entries(boundarySetup.functions).forEach(([name, fn]) => {
+    setup
+      .getFunctionsMap()
+      .set(
+        name,
+        new CoreFunctionHandle().setHandle(new StringValue().setValue(name)),
+      );
+    functionRegistry.registerCoreFunction(name, fn);
+  });
+  return setup;
+};
 
 const mapTriggerFunction = (
   handle: TriggerFunctionHandle,
   executeCall: SendContractResponse,
+  functionRegistry: FunctionRegistry,
 ) => ({
-  trigger: (withConfig: Record<string, unknown>) =>
+  trigger: (withConfig: BoundarySetupInfo) =>
     waitForResolution(
       makeResolvableId((id: string) => {
         if (Array.isArray(handle)) {
@@ -43,11 +67,7 @@ const mapTriggerFunction = (
                     new StringValue().setValue(handle[0][0]),
                   ),
                 )
-                .setConfig(
-                  Struct.fromJavaScript(
-                    withConfig as Record<string, JavaScriptValue>,
-                  ),
-                ),
+                .setSetup(mapSetupInfo(withConfig, functionRegistry)),
             ),
           );
         }
@@ -60,11 +80,7 @@ const mapTriggerFunction = (
               .setTriggerFunction(
                 new TriggerFunctionHandle().setHandle(handle.getHandle()),
               )
-              .setConfig(
-                Struct.fromJavaScript(
-                  withConfig as Record<string, JavaScriptValue>,
-                ),
-              ),
+              .setSetup(mapSetupInfo(withConfig, functionRegistry)),
           ),
         );
       }),
@@ -74,10 +90,11 @@ const mapTriggerFunction = (
 const mapTriggerAndTest = (
   config: WireContractCaseConfig,
   executeCall: SendContractResponse,
+  functionRegistry: FunctionRegistry,
 ) => {
   const trigger = config.getTriggerAndTest();
   return trigger !== undefined
-    ? mapTriggerFunction(trigger, executeCall)
+    ? mapTriggerFunction(trigger, executeCall, functionRegistry)
     : undefined;
 };
 
@@ -111,6 +128,7 @@ type WithUndefined<T> = {
 const mapAllConfigFields = (
   config: WireContractCaseConfig,
   executeCall: SendContractResponse,
+  functionRegistry: FunctionRegistry,
 ): WithUndefined<ContractCaseConnectorConfig> => ({
   providerName: unboxOrUndefined(config.getProviderName()),
   consumerName: unboxOrUndefined(config.getConsumerName()),
@@ -134,24 +152,25 @@ const mapAllConfigFields = (
     .reduce<Record<string, ConnectorTriggerFunction>>(
       (acc: Record<string, ConnectorTriggerFunction>, [key, handler]) => ({
         ...acc,
-        [key]: mapTriggerFunction(handler, executeCall),
+        [key]: mapTriggerFunction(handler, executeCall, functionRegistry),
       }),
       {} as Record<string, ConnectorTriggerFunction>,
     ),
-  triggerAndTest: mapTriggerAndTest(config, executeCall),
+  triggerAndTest: mapTriggerAndTest(config, executeCall, functionRegistry),
   mockConfig: mapMockConfig(config.getMockConfigMap()),
 });
 
 export const mapConfig = (
   config: WireContractCaseConfig | undefined,
   executeCall: SendContractResponse,
+  functionRegistry: FunctionRegistry,
 ): ContractCaseConnectorConfig => {
   if (config === undefined) {
     throw new ConnectorError('Config object must be provided');
   }
 
   return Object.entries(
-    mapAllConfigFields(config, executeCall),
+    mapAllConfigFields(config, executeCall, functionRegistry),
   ).reduce<ContractCaseConnectorConfig>(
     // Kill any fields that are empty strings or otherwise undefined
     (acc, [key, value]) => ({

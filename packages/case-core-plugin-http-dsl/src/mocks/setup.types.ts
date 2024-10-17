@@ -18,9 +18,7 @@ export type AllHttpMockDescriptors = ConsumeHttpResponse | ProduceHttpResponse;
 export type HttpRequestConsumerSetup = HasTypeForMockDescriptor<
   typeof MOCK_HTTP_SERVER
 > &
-  BaseSetupInfo & {
-    baseUrl: string;
-  };
+  BaseSetupInfo;
 
 export type HttpRequestProducerSetup = HasTypeForMockDescriptor<
   typeof MOCK_HTTP_CLIENT

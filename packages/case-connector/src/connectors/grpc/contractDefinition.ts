@@ -34,6 +34,7 @@ import {
 import { makeLogPrinter, makeResultPrinter } from './printers.js';
 import { makeResultResponse } from './responseMappers/index.js';
 import { loadPlugin } from '../../domain/loadPlugin.js';
+import { makeFunctionRegistry } from './functionRegistry/index.js';
 
 const getId = (request: WireDefinitionRequest): string => {
   const id = request.getId();
@@ -75,6 +76,8 @@ export const contractDefinition = (
 
   let definitionId: string | undefined;
 
+  const functionRegistry = makeFunctionRegistry();
+
   call.on('data', (request: WireDefinitionRequest) => {
     maintainerLog('[RECEIVED]', JSON.stringify(request.toObject(), null, 2));
     const type = request.getKindCase();
@@ -97,6 +100,7 @@ export const contractDefinition = (
               mapConfig(
                 beginDefinitionRequest.getConfig(),
                 sendContractResponse,
+                functionRegistry,
               ),
               makeLogPrinter(sendContractResponse),
               makeResultPrinter(sendContractResponse),
@@ -166,7 +170,11 @@ export const contractDefinition = (
         runExample(
           definitionId,
           mapJson(runExampleRequest.getExampleDefinition()),
-          mapConfig(runExampleRequest.getConfig(), sendContractResponse),
+          mapConfig(
+            runExampleRequest.getConfig(),
+            sendContractResponse,
+            functionRegistry,
+          ),
         ).then((result) =>
           sendContractResponse(
             'maintainerDebug',
@@ -195,6 +203,7 @@ export const contractDefinition = (
           mapConfig(
             runRejectingExampleRequest.getConfig(),
             sendContractResponse,
+            functionRegistry,
           ),
         ).then((result) =>
           sendContractResponse(
@@ -257,7 +266,11 @@ export const contractDefinition = (
           }
 
           loadPlugin(
-            mapConfig(loadPluginRequest.getConfig(), sendContractResponse),
+            mapConfig(
+              loadPluginRequest.getConfig(),
+              sendContractResponse,
+              functionRegistry,
+            ),
             makeLogPrinter(sendContractResponse),
             makeResultPrinter(sendContractResponse),
             loadPluginRequest
@@ -313,6 +326,19 @@ export const contractDefinition = (
               sendUnexpectedError(request, e as Error, 'load plugin');
             });
         }
+        break;
+      case WireDefinitionRequest.KindCase.INVOKE_FUNCTION:
+        sendContractResponse(
+          'maintainerDebug',
+          getId(request),
+          makeResultResponse(
+            new BoundaryFailure(
+              BoundaryFailureKindConstants.CASE_CORE_ERROR,
+              'Invocation not yet implemented',
+              'case-connector',
+            ),
+          ),
+        );
         break;
       default:
         throw new UnreachableError(type);

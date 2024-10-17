@@ -140,24 +140,26 @@ export const setupHttpResponseProducer = (
               );
               return;
             }
-            const mock = {
+            const setup = {
               '_case:mock:type': MOCK_HTTP_SERVER,
-              baseUrl: `http://${addressToString(address)}`,
-              variables: context['_case:currentRun:context:variables'],
+
+              stateVariables: context['_case:currentRun:context:variables'],
+              functions: {},
+              mock: { baseUrl: `http://${addressToString(address)}` },
             };
             context.logger.maintainerDebug(
               `Mock listening and ready to accept ${
                 typeof address === 'object' ? address.family : 'no-family'
               } connections: `,
-              mock,
+              setup,
             );
             resolve({
-              config: mock,
+              config: setup,
               assertableData: () =>
                 new Promise<void>((startVerify, closeReject) => {
                   context.logger.maintainerDebug(
-                    `Closing server from ${mock.baseUrl}, first politely:`,
-                    mock,
+                    `Closing server from ${setup.mock.baseUrl}, first politely:`,
+                    setup,
                   );
                   server.close((err?: Error) => {
                     if (err) {
@@ -166,25 +168,25 @@ export const setupHttpResponseProducer = (
                       );
                       closeReject(
                         new CaseCoreError(
-                          `The server at ${mock.baseUrl} was not running when it was asserted: ${err}`,
+                          `The server at ${setup.mock.baseUrl} was not running when it was asserted: ${err}`,
                         ),
                       );
                     } else {
                       context.logger.maintainerDebug(
-                        `Server at ${mock.baseUrl} closed`,
-                        mock,
+                        `Server at ${setup.mock.baseUrl} closed`,
+                        setup,
                       );
                       startVerify();
                     }
                   });
                   context.logger.maintainerDebug(
-                    `And also forcefully closing server from ${mock.baseUrl}`,
-                    mock,
+                    `And also forcefully closing server from ${setup.mock.baseUrl}`,
+                    setup,
                   );
                   server.closeAllConnections();
                 }).then(async () => {
                   context.logger.maintainerDebug(
-                    `Asserting that the expected request for the mock at ${mock.baseUrl} happened correctly`,
+                    `Asserting that the expected request for the mock at ${setup.mock.baseUrl} happened correctly`,
                   );
 
                   return {

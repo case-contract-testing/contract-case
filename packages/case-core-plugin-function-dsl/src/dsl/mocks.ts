@@ -53,13 +53,9 @@ export interface MockFunctionExecutionDescriptor
 export type FunctionMockSetupInfo = HasTypeForMockDescriptor<
   typeof MOCK_FUNCTION_EXECUTION
 > &
-  BaseSetupInfo & {
-    invokeable: (...invokedArguments: unknown[]) => unknown;
-  };
+  BaseSetupInfo;
 
 export type FunctionCallerMockSetupInfo = HasTypeForMockDescriptor<
   typeof MOCK_FUNCTION_CALLER
 > &
-  BaseSetupInfo & {
-    functionHandle: string;
-  };
+  BaseSetupInfo;

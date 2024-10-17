@@ -1,6 +1,9 @@
 import { HttpRequestConsumerSetup } from '@contract-case/case-core-plugin-http-dsl';
 import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
-import { AnyLeafOrStructure } from '@contract-case/case-plugin-dsl-types';
+import {
+  AnyLeafOrStructure,
+  BaseSetupInfo,
+} from '@contract-case/case-plugin-dsl-types';
 
 /*!
  * ContractCase
@@ -32,3 +35,5 @@ export type AnyCaseMatcherOrData = AnyCaseMatcher | AnyLeafOrStructure;
 export * from './connectors';
 
 export type HttpRequestConfig = HttpRequestConsumerSetup;
+
+export { BaseSetupInfo };

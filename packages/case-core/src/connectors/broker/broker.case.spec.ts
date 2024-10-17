@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import * as fs from 'node:fs';
 
 import { willSendHttpRequest } from '@contract-case/case-core-plugin-http-dsl';
@@ -209,12 +210,12 @@ describe('broker client', () => {
                     },
                   },
                 }),
-                trigger: (config) =>
+                trigger: (setup) =>
                   makeBrokerApiForTest(
-                    config.baseUrl as string,
-                    config.variables['token'] as string,
+                    setup.mock['baseUrl'] as string,
+                    setup.stateVariables['token'] as string,
                   ).urlsForVerification(
-                    config.variables['providerName'] as string,
+                    setup.stateVariables['providerName'] as string,
                     emptyContext,
                   ),
                 testResponse: (data) => {
@@ -272,12 +273,13 @@ describe('broker client', () => {
                 trigger: (config) =>
                   makeBrokerApi({
                     '_case:currentRun:context:brokerBasicAuth': {
-                      username: config.variables['username'] as string,
-                      password: config.variables['password'] as string,
+                      username: config.stateVariables['username'] as string,
+                      password: config.stateVariables['password'] as string,
                     },
-                    '_case:currentRun:context:brokerBaseUrl': config.baseUrl,
+                    '_case:currentRun:context:brokerBaseUrl':
+                      config.mock['baseUrl'],
                   } as DataContext).urlsForVerification(
-                    config.variables['providerName'] as string,
+                    config.stateVariables['providerName'] as string,
                     emptyContext,
                   ),
                 testResponse: (data) => {
@@ -315,8 +317,8 @@ describe('broker client', () => {
                 }),
                 trigger: (config) =>
                   makeBrokerApiForTest(
-                    config.baseUrl,
-                    config.variables['token'] as string,
+                    config.mock['baseUrl'],
+                    config.stateVariables['token'] as string,
                   ).publishContract(
                     uploadingContract,
                     someVersion,
@@ -355,8 +357,8 @@ describe('broker client', () => {
                 }),
                 trigger: (config) =>
                   makeBrokerApiForTest(
-                    config.baseUrl,
-                    config.variables['invalidToken'] as string,
+                    config.mock['baseUrl'],
+                    config.stateVariables['invalidToken'] as string,
                   ).publishContract(
                     uploadingContract,
                     someVersion,
@@ -445,8 +447,8 @@ describe('broker client', () => {
                 }),
                 trigger: (config) =>
                   makeBrokerApiForTest(
-                    config.baseUrl,
-                    config.variables['token'] as string,
+                    config.mock['baseUrl'],
+                    config.stateVariables['token'] as string,
                   ).publishContractAdvanced(
                     uploadingContract,
                     someVersion,
@@ -501,8 +503,8 @@ describe('broker client', () => {
                 }),
                 trigger: (config) =>
                   makeBrokerApiForTest(
-                    config.baseUrl,
-                    config.variables['invalidToken'] as string,
+                    config.mock['baseUrl'],
+                    config.stateVariables['invalidToken'] as string,
                   ).publishContractAdvanced(
                     uploadingContract,
                     someVersion,

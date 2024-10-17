@@ -38,6 +38,7 @@ import { makeSendContractResponse } from './sendContractResponse.js';
 import { makeLogPrinter, makeResultPrinter } from './printers.js';
 import { makeResultResponse } from './responseMappers/index.js';
 import { loadPlugin } from '../../domain/loadPlugin.js';
+import { makeFunctionRegistry } from './functionRegistry/index.js';
 
 const getId = (request: WireVerificationRequest): string => {
   const id = request.getId();
@@ -78,6 +79,8 @@ export const contractVerification = (
 
   let verificationId: string | undefined;
 
+  const functionRegistry = makeFunctionRegistry();
+
   call.on('data', (request: WireVerificationRequest) => {
     maintainerLog('[RECEIVED]', JSON.stringify(request.toObject(), null, 2));
     const type = request.getKindCase();
@@ -101,6 +104,7 @@ export const contractVerification = (
                 mapConfig(
                   beginVerificationRequest.getConfig(),
                   sendContractResponse,
+                  functionRegistry,
                 ),
                 {
                   runTest: (testName: string, invoker: IInvokeCoreTest) => {
@@ -210,7 +214,11 @@ export const contractVerification = (
 
           runVerification(
             verificationId,
-            mapConfig(runVerificationRequest.getConfig(), sendContractResponse),
+            mapConfig(
+              runVerificationRequest.getConfig(),
+              sendContractResponse,
+              functionRegistry,
+            ),
           )
             .then((result) =>
               sendContractResponse(
@@ -278,6 +286,7 @@ export const contractVerification = (
                   mapConfig(
                     loadPluginRequest.getConfig(),
                     sendContractResponse,
+                    functionRegistry,
                   ),
                   makeLogPrinter(sendContractResponse),
                   makeResultPrinter(sendContractResponse),
@@ -341,6 +350,19 @@ export const contractVerification = (
                 sendUnexpectedError(request, e as Error, 'load plugin');
               });
           }
+          break;
+        case WireVerificationRequest.KindCase.INVOKE_FUNCTION:
+          sendContractResponse(
+            'maintainerDebug',
+            getId(request),
+            makeResultResponse(
+              new BoundaryFailure(
+                BoundaryFailureKindConstants.CASE_CORE_ERROR,
+                'Invocation not yet implemented',
+                'case-connector',
+              ),
+            ),
+          );
           break;
         default:
           throw new UnreachableError(type);

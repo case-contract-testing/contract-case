@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import { HttpRequestConfig } from '.';
 import api from './__tests__/client/http/connector';
 import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';
@@ -13,7 +14,8 @@ verifyContract(
     verifier.verifyContract({
       triggers: {
         'an http "GET" request to "/health" without a body': {
-          trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
+          trigger: (setup: HttpRequestConfig) =>
+            api(setup.mock['baseUrl']).health(),
           testResponses: {
             'a (200) response with body an object shaped like {status: "up"}': (
               health,
@@ -35,8 +37,8 @@ verifyContract(
         },
         'an http "GET" request to "/health" with the following headers an object shaped like {accept: "application/json"} without a body':
           {
-            trigger: (config: HttpRequestConfig) =>
-              api(config.baseUrl).health(),
+            trigger: (setup: HttpRequestConfig) =>
+              api(setup.mock['baseUrl']).health(),
             testResponses: {
               'a (200) response with body an object shaped like {status: "up"}':
                 (health) => {
@@ -45,15 +47,15 @@ verifyContract(
             },
           },
         'an http "GET" request to "/users"?id={{userId}} without a body': {
-          trigger: (config: HttpRequestConfig) =>
-            api(config.baseUrl).getUserByQuery(
-              (config.variables['userId'] as string) || '123',
+          trigger: (setup: HttpRequestConfig) =>
+            api(setup.mock['baseUrl']).getUserByQuery(
+              (setup.stateVariables['userId'] as string) || '123',
             ),
           testResponses: {
             'a (200) response with body an object shaped like {userId: {{userId}}}':
-              (user, config) => {
+              (user, setup) => {
                 expect(user).toEqual({
-                  userId: config.variables['userId'],
+                  userId: setup.stateVariables['userId'],
                 });
               },
           },
@@ -64,8 +66,8 @@ verifyContract(
           },
         },
         'an http "GET" request to "/users/123" without a body': {
-          trigger: (config: HttpRequestConfig) =>
-            api(config.baseUrl).getUserByPath('123'),
+          trigger: (setup: HttpRequestConfig) =>
+            api(setup.mock['baseUrl']).getUserByPath('123'),
           testErrorResponses: {
             'a (404) response without a body': (e) => {
               expect(e).toBeInstanceOf(UserNotFoundConsumerError);
@@ -73,15 +75,15 @@ verifyContract(
           },
         },
         'an http "GET" request to "/users/{{userId}}" without a body': {
-          trigger: (config: HttpRequestConfig) =>
-            api(config.baseUrl).getUserByPath(
-              config.variables['userId'] as string,
+          trigger: (setup: HttpRequestConfig) =>
+            api(setup.mock['baseUrl']).getUserByPath(
+              setup.stateVariables['userId'] as string,
             ),
           testResponses: {
             'a (200) response with body an object shaped like {userId: {{userId}}}':
-              (user, config) => {
+              (user, setup) => {
                 expect(user).toEqual({
-                  userId: config.variables['userId'],
+                  userId: setup.stateVariables['userId'],
                 });
               },
           },

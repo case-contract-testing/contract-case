@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import * as fs from 'node:fs';
 import { mocks } from '@contract-case/case-definition-dsl';
+import { BaseSetupInfo } from '@contract-case/case-plugin-dsl-types';
 import { defineInternalContract } from './__tests__/jest/jest';
 import { anyInteger, anyString } from './boundaries';
 
@@ -41,9 +43,10 @@ describe('function executor', () => {
               returnValue: null,
               functionName: 'noArgs',
             }),
-            trigger: async (config: any) => config.invokeable(),
+            trigger: async (setup: BaseSetupInfo) =>
+              setup.functions[setup.mock['functionHandle']]?.(),
             testResponse: (result) => {
-              expect(result).toEqual(null);
+              expect(result).toEqual('null');
             },
           }));
       });
@@ -56,9 +59,10 @@ describe('function executor', () => {
               returnValue: null,
               functionName: 'oneArg',
             }),
-            trigger: async (config: any) => config.invokeable(1, 2),
+            trigger: async (setup: BaseSetupInfo) =>
+              setup.functions['oneArg']?.('1', '2'),
             testResponse: (result) => {
-              expect(result).toEqual(null);
+              expect(result).toEqual('null');
             },
           }),
         ).rejects.toThrow(
@@ -72,9 +76,9 @@ describe('function executor', () => {
               returnValue: null,
               functionName: 'twoArgs',
             }),
-            trigger: async (config: any) => config.invokeable(1, 2),
+            trigger: async (setup: any) => setup.functions['twoArgs']('1', '2'),
             testResponse: (result) => {
-              expect(result).toEqual(null);
+              expect(result).toEqual('null');
             },
           }),
         ).rejects.toThrow("The function arguments didn't match"));

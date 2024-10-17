@@ -15,7 +15,17 @@ export type BaseSetupInfo = {
   /**
    * Variables provided by state setup functions
    */
-  variables: Record<string, VariableValue>;
+  stateVariables: Record<string, VariableValue>;
+  /**
+   * Setup returned by the mock executor (eg, urls, function names, etc)
+   */
+  mock: Record<string, VariableValue>;
+  /**
+   * Arbitrary map of invokeable functions. For most purposes, this can be
+   * empty. Useful for allowing plugins to invoke functions - the intention is
+   * that arguments and return values are JSON encoded strings.
+   */
+  functions: Record<string, (...args: string[]) => string>;
 };
 
 /**

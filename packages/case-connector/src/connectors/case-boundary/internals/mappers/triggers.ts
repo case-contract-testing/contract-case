@@ -1,17 +1,43 @@
-import { CaseCoreError } from '@contract-case/case-core';
+import { CaseCoreError, BaseSetupInfo } from '@contract-case/case-core';
 import {
   RESULT_SUCCESS,
   ITriggerFunction,
   RESULT_FAILURE,
   RESULT_SUCCESS_HAS_MAP_PAYLOAD,
+  BoundarySetupInfo,
+  BoundarySuccessWithAny,
 } from '../boundary/index.js';
-import { failureToJsError } from './Result/index.js';
+import { failureToJsError, jsErrorToFailure } from './Result/index.js';
+
+const mapSetupInfo = ({
+  stateVariables,
+  functions,
+  mock,
+}: BaseSetupInfo): BoundarySetupInfo => ({
+  stateVariables,
+  mock,
+  functions: Object.entries(functions)
+    .map(
+      ([name, fn]) =>
+        [
+          name,
+          (...args: string[]) => {
+            try {
+              return new BoundarySuccessWithAny(fn(...args));
+            } catch (e) {
+              return jsErrorToFailure(e);
+            }
+          },
+        ] as const,
+    )
+    .reduce((acc, [name, fn]) => ({ ...acc, [name]: fn }), {}),
+});
 
 export const mapTrigger =
   (trigger: ITriggerFunction) =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (config: Record<string, any>): Promise<void> =>
-    trigger.trigger(config).then((result) => {
+  (config: BaseSetupInfo): Promise<void> =>
+    trigger.trigger(mapSetupInfo(config)).then((result) => {
       switch (result.resultType) {
         case RESULT_SUCCESS:
         case RESULT_SUCCESS_HAS_MAP_PAYLOAD:
@@ -28,7 +54,7 @@ export const mapTrigger =
 export const mapTriggers = (
   triggers: Record<string, ITriggerFunction>,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): Record<string, (config: Record<string, any>) => Promise<void>> =>
+): Record<string, (config: BaseSetupInfo) => Promise<void>> =>
   Object.entries(triggers)
     .map(([key, value]) => ({ [`${key}`]: mapTrigger(value) }))
     .reduce(

@@ -40,8 +40,9 @@ export const setupMockFunctionCaller = (
     return {
       config: {
         '_case:mock:type': MOCK_FUNCTION_CALLER,
-        variables: context['_case:currentRun:context:variables'],
-        functionHandle,
+        stateVariables: context['_case:currentRun:context:variables'],
+        functions: {},
+        mock: { functionHandle },
       },
       assertableData: () =>
         Promise.resolve().then(async () => {
