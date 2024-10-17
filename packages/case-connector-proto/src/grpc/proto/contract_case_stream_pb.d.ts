@@ -755,10 +755,10 @@ export class TriggerFunctionRequest extends jspb.Message {
   getTriggerFunction(): TriggerFunctionHandle | undefined;
   setTriggerFunction(value?: TriggerFunctionHandle): TriggerFunctionRequest;
 
-  hasConfig(): boolean;
-  clearConfig(): void;
-  getConfig(): google_protobuf_struct_pb.Struct | undefined;
-  setConfig(value?: google_protobuf_struct_pb.Struct): TriggerFunctionRequest;
+  hasSetup(): boolean;
+  clearSetup(): void;
+  getSetup(): SetupInfo | undefined;
+  setSetup(value?: SetupInfo): TriggerFunctionRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TriggerFunctionRequest.AsObject;
@@ -784,7 +784,85 @@ export class TriggerFunctionRequest extends jspb.Message {
 export namespace TriggerFunctionRequest {
   export type AsObject = {
     triggerFunction?: TriggerFunctionHandle.AsObject;
-    config?: google_protobuf_struct_pb.Struct.AsObject;
+    setup?: SetupInfo.AsObject;
+  };
+}
+
+export class CoreFunctionHandle extends jspb.Message {
+  hasHandle(): boolean;
+  clearHandle(): void;
+  getHandle(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setHandle(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): CoreFunctionHandle;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CoreFunctionHandle.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: CoreFunctionHandle,
+  ): CoreFunctionHandle.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: CoreFunctionHandle,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): CoreFunctionHandle;
+  static deserializeBinaryFromReader(
+    message: CoreFunctionHandle,
+    reader: jspb.BinaryReader,
+  ): CoreFunctionHandle;
+}
+
+export namespace CoreFunctionHandle {
+  export type AsObject = {
+    handle?: google_protobuf_wrappers_pb.StringValue.AsObject;
+  };
+}
+
+export class SetupInfo extends jspb.Message {
+  getStatevariablesMap(): jspb.Map<
+    string,
+    google_protobuf_wrappers_pb.StringValue
+  >;
+  clearStatevariablesMap(): void;
+
+  getMockMap(): jspb.Map<string, google_protobuf_wrappers_pb.StringValue>;
+  clearMockMap(): void;
+
+  getFunctionsMap(): jspb.Map<string, CoreFunctionHandle>;
+  clearFunctionsMap(): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetupInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: SetupInfo): SetupInfo.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: SetupInfo,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): SetupInfo;
+  static deserializeBinaryFromReader(
+    message: SetupInfo,
+    reader: jspb.BinaryReader,
+  ): SetupInfo;
+}
+
+export namespace SetupInfo {
+  export type AsObject = {
+    statevariablesMap: Array<
+      [string, google_protobuf_wrappers_pb.StringValue.AsObject]
+    >;
+
+    mockMap: Array<[string, google_protobuf_wrappers_pb.StringValue.AsObject]>;
+
+    functionsMap: Array<[string, CoreFunctionHandle.AsObject]>;
   };
 }
 
@@ -1395,6 +1473,11 @@ export class DefinitionRequest extends jspb.Message {
   getRegisterFunction(): RegisterFunction | undefined;
   setRegisterFunction(value?: RegisterFunction): DefinitionRequest;
 
+  hasInvokeFunction(): boolean;
+  clearInvokeFunction(): void;
+  getInvokeFunction(): InvokeFunction | undefined;
+  setInvokeFunction(value?: InvokeFunction): DefinitionRequest;
+
   getKindCase(): DefinitionRequest.KindCase;
 
   serializeBinary(): Uint8Array;
@@ -1429,6 +1512,7 @@ export namespace DefinitionRequest {
     resultResponse?: ResultResponse.AsObject;
     loadPlugin?: LoadPluginRequest.AsObject;
     registerFunction?: RegisterFunction.AsObject;
+    invokeFunction?: InvokeFunction.AsObject;
   };
 
   export enum KindCase {
@@ -1441,6 +1525,7 @@ export namespace DefinitionRequest {
     RESULT_RESPONSE = 7,
     LOAD_PLUGIN = 8,
     REGISTER_FUNCTION = 9,
+    INVOKE_FUNCTION = 11,
   }
 }
 
@@ -1487,6 +1572,11 @@ export class VerificationRequest extends jspb.Message {
   getRegisterFunction(): RegisterFunction | undefined;
   setRegisterFunction(value?: RegisterFunction): VerificationRequest;
 
+  hasInvokeFunction(): boolean;
+  clearInvokeFunction(): void;
+  getInvokeFunction(): InvokeFunction | undefined;
+  setInvokeFunction(value?: InvokeFunction): VerificationRequest;
+
   getKindCase(): VerificationRequest.KindCase;
 
   serializeBinary(): Uint8Array;
@@ -1520,6 +1610,7 @@ export namespace VerificationRequest {
     loadPlugin?: LoadPluginRequest.AsObject;
     invokeTest?: InvokeTest.AsObject;
     registerFunction?: RegisterFunction.AsObject;
+    invokeFunction?: InvokeFunction.AsObject;
   };
 
   export enum KindCase {
@@ -1531,6 +1622,7 @@ export namespace VerificationRequest {
     LOAD_PLUGIN = 6,
     INVOKE_TEST = 9,
     REGISTER_FUNCTION = 10,
+    INVOKE_FUNCTION = 11,
   }
 }
 

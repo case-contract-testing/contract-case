@@ -38,8 +38,7 @@ message ContractCaseConfig {
 }
 
 // Indicates a successful response with no payload
-message ResultSuccess {
-}
+message ResultSuccess {}
 message ResultSuccessHasMapPayload {
   // Always a map of Strings -> Strings
   google.protobuf.Struct map = 1;
@@ -74,9 +73,8 @@ message StateHandlerHandle {
   Stage stage = 2;
 }
 
-message TriggerFunctionHandle {
-  google.protobuf.StringValue handle = 1;
-}
+// A reference to a trigger function that can be invoked
+message TriggerFunctionHandle { google.protobuf.StringValue handle = 1; }
 
 // Requests from client / host
 
@@ -102,14 +100,11 @@ message RunRejectingExampleRequest {
 
 // From host to core, instructs the core to strip the matchers from a given
 // matcher / data object
-message StripMatchersRequest {
-  google.protobuf.Struct matcher_or_data = 2;
-}
+message StripMatchersRequest { google.protobuf.Struct matcher_or_data = 2; }
 
 // From host to core, instructs the core to finish the current contract
 // definition
-message EndDefinitionRequest {
-}
+message EndDefinitionRequest {}
 
 // From host to core, instructs the core to load a plugin
 message LoadPluginRequest {
@@ -121,17 +116,29 @@ message LoadPluginRequest {
 // Responses from server
 
 // From Core to Host, instructs the host to run a given state handler
-message RunStateHandlerRequest {
-  StateHandlerHandle state_handler_handle = 1;
-}
+message RunStateHandlerRequest { StateHandlerHandle state_handler_handle = 1; }
 
 // From Core to Host, requests the host invoke one of the user-provided
 // triggers.
 message TriggerFunctionRequest {
   TriggerFunctionHandle trigger_function = 1;
-  // The configuration to invoke this trigger with
-  // note that this is arbitrary, provided by the mock executor
-  google.protobuf.Struct config = 2;
+  // This was the previous setupInfo
+  // google.protobuf.Struct config = 2;
+  reserved 2;
+  // The current setup of this Interaction, provided by the mock executor
+  SetupInfo setup = 3;
+}
+
+message CoreFunctionHandle { google.protobuf.StringValue handle = 1; }
+
+// Describes the setup of the currently executing Interaction
+message SetupInfo {
+  // The resolved values for the state variables
+  map<string, google.protobuf.StringValue> stateVariables = 1;
+  // The values of any mock setup information
+  map<string, google.protobuf.StringValue> mock = 2;
+  // Callbacks handles for functions
+  map<string, CoreFunctionHandle> functions = 3;
 }
 
 // From Core to Host, requests the host logs the given information
@@ -269,9 +276,7 @@ message PrintTestTitleRequest {
 //
 // Most messages must be acknowledged with a response - this indicates the
 // return of the previous message.
-message ResultResponse {
-  BoundaryResult result = 1;
-}
+message ResultResponse { BoundaryResult result = 1; }
 
 // From the Host to the Core, requests that a verification session begins
 message BeginVerificationRequest {
@@ -282,8 +287,7 @@ message BeginVerificationRequest {
 }
 
 // From the Host to the Core, requests a list of the available contracts
-message AvailableContractDefinitions {
-}
+message AvailableContractDefinitions {}
 
 // From the Host to the Core, instructs the core that the current verification
 // session is now configured, and asks it to execute the verification.
@@ -334,12 +338,15 @@ message DefinitionRequest {
     StripMatchersRequest strip_matchers = 5;
     // Host langauge has finished the definition
     EndDefinitionRequest end_definition = 6;
-    // Core returns a response to a host call
+    // Host is responding to a core call
     ResultResponse result_response = 7;
     // Host wants to load a plugin
     LoadPluginRequest load_plugin = 8;
     // Host wants to register a function that the Core can call
     RegisterFunction register_function = 9;
+    // Host wants to invoke an arbitrary function on the core,
+    // learned about via SetupInfo
+    InvokeFunction invoke_function = 11;
   }
 }
 
@@ -354,14 +361,17 @@ message VerificationRequest {
     AvailableContractDefinitions available_contract_definitions = 3;
     // Host language wants to run a verification
     RunVerification run_verification = 4;
-    // Core is responding to a host call
+    // Host is responding to a core call
     ResultResponse result_response = 5;
     // Host wants to load a plugin
     LoadPluginRequest load_plugin = 6;
-    // Core wants to invoke a specific test
+    // Callback for the Host when the Core asked it invoke a specific test
     InvokeTest invoke_test = 9;
     // Host wants to register a function that the Core can call
     RegisterFunction register_function = 10;
+    // Host wants to invoke an arbitrary function on the core,
+    // learned about via SetupInfo
+    InvokeFunction invoke_function = 11;
   }
 }
 
