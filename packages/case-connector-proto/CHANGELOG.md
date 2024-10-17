@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.9.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.8.0...@contract-case/case-connector-proto-v0.9.0) (2024-10-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace the config struct in triggers with a fully specified SetupInfo object
+
+### Code Refactoring
+
+* Replace the config struct in triggers with a fully specified SetupInfo object ([5d76d84](https://github.com/case-contract-testing/contract-case/commit/5d76d8478f505fe04801c5ed11199aee82e86e4f))
+
 ## [0.8.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.7.6...@contract-case/case-connector-proto-v0.8.0) (2024-10-08)
 
 

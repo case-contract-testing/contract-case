@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.18.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.17.1...@contract-case/case-plugin-base-v0.18.0) (2024-10-17)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-plugin-base:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.17.1 to 0.18.0
+
 ## [0.17.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.17.0...@contract-case/case-plugin-base-v0.17.1) (2024-10-08)
 
 
