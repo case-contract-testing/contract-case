@@ -152,24 +152,25 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
           );
         }
 
-        rpcConnector.sendResponse(
-            ResultResponse.newBuilder().setResult(
-                mapResult(
-                    ConnectorResult.fromConnectorResult(
-                        configHandle.getTriggerFunction(handle)
-                            .trigger(ConnectorIncomingMapper.map(
-                                    triggerFunctionRequest.getSetup(),
-                                    (name, args) -> rpcConnector.executeCallAndWait(
-                                        rpcConnector.makeInvokeFunction(
-                                            name,
-                                            args
-                                        ), "Invoking function '" + name + "' in core")
-                                )
-                            ))
-                )
-            ).build(),
-            requestId, LogLevel.NONE
-        );
+        executor.submit(() ->
+            rpcConnector.sendResponse(
+                ResultResponse.newBuilder().setResult(
+                    mapResult(
+                        ConnectorResult.fromConnectorResult(
+                            configHandle.getTriggerFunction(handle)
+                                .trigger(ConnectorIncomingMapper.map(
+                                        triggerFunctionRequest.getSetup(),
+                                        (name, args) -> rpcConnector.executeCallAndWait(
+                                            rpcConnector.makeInvokeFunction(
+                                                name,
+                                                args
+                                            ), "Invoking function '" + name + "' in core")
+                                    )
+                                ))
+                    )
+                ).build(),
+                requestId, LogLevel.NONE
+            ));
       }
       case RESULT_RESPONSE -> {
         rpcConnector.completeWait(requestId, coreResponse.getResultResponse().getResult());
