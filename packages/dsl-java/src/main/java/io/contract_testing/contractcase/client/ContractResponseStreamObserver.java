@@ -156,10 +156,16 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
             ResultResponse.newBuilder().setResult(
                 mapResult(
                     ConnectorResult.fromConnectorResult(
-                        configHandle.getTriggerFunction(handle).trigger(
-                            ConnectorIncomingMapper.map(triggerFunctionRequest.getConfig()
-                            )
-                        ))
+                        configHandle.getTriggerFunction(handle)
+                            .trigger(ConnectorIncomingMapper.map(
+                                    triggerFunctionRequest.getSetup(),
+                                    (name, args) -> rpcConnector.executeCallAndWait(
+                                        rpcConnector.makeInvokeFunction(
+                                            name,
+                                            args
+                                        ), "Invoking function '" + name + "' in core")
+                                )
+                            ))
                 )
             ).build(),
             requestId, LogLevel.NONE

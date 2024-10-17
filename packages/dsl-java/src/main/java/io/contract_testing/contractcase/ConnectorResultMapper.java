@@ -21,7 +21,7 @@ class ConnectorResultMapper {
     }
 
     throw new ContractCaseCoreError(
-        "Unexpected non-void ConnectorResult typa '" + resultType + "'",
+        "Unexpected non-void ConnectorResult type '" + resultType + "'",
         "ConnectorResultMapper.mapVoid"
     );
   }
@@ -29,15 +29,16 @@ class ConnectorResultMapper {
   private static void mapFailure(ConnectorFailure result) {
     final var kind = result.getKind();
 
-    if (kind.equals(ConnectorFailureKindConstants.CASE_BROKER_ERROR)
-        || kind.equals(ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR)
-        || kind.equals(ConnectorFailureKindConstants.CASE_TRIGGER_ERROR)) {
-      throw new ContractCaseConfigurationError(result.getMessage(), result.getLocation());
-    } else if (kind.equals(ConnectorFailureKindConstants.CASE_CORE_ERROR)) {
-      throw new ContractCaseCoreError(result.getMessage(), result.getLocation());
-    } else if (kind.equals(ConnectorFailureKindConstants.CASE_FAILED_ASSERTION_ERROR)
-        || kind.equals(ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR)) {
-      throw new ContractCaseExpectationsNotMet(result.getMessage(), result.getLocation());
+    switch (kind) {
+      case ConnectorFailureKindConstants.CASE_BROKER_ERROR,
+          ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
+          ConnectorFailureKindConstants.CASE_TRIGGER_ERROR ->
+          throw new ContractCaseConfigurationError(result.getMessage(), result.getLocation());
+      case ConnectorFailureKindConstants.CASE_CORE_ERROR ->
+          throw new ContractCaseCoreError(result.getMessage(), result.getLocation());
+      case ConnectorFailureKindConstants.CASE_FAILED_ASSERTION_ERROR,
+          ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR ->
+          throw new ContractCaseExpectationsNotMet(result.getMessage(), result.getLocation());
     }
 
     throw new ContractCaseCoreError(
@@ -46,20 +47,28 @@ class ConnectorResultMapper {
     );
   }
 
-  public static List<ContractDescription> mapListAvailableContracts(ConnectorResult result) {
+  static String mapSuccessWithAny(ConnectorResult result) {
     final var resultType = result.getResultType();
     if (resultType.equals(ConnectorResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD)) {
-      // TODO implement this
-      System.out.println(((ConnectorSuccessWithAny) result).getPayload());
-      throw new ContractCaseCoreError("The parsing of this object hasn't yet been implemented"
-          + ((ConnectorSuccessWithAny) result).getPayload());
+      return ((ConnectorSuccessWithAny) result).getPayload();
     }
     if (resultType.equals(ConnectorResultTypeConstants.RESULT_FAILURE)) {
       mapFailure((ConnectorFailure) result);
     }
     throw new ContractCaseCoreError(
-        "Unexpected non-void ConnectorResult typa '" + resultType + "'",
-        "ConnectorResultMapper.mapListAvailableContracts"
+        "Unexpected non-void ConnectorResult type '" + resultType + "'",
+        "ConnectorResultMapper.mapSuccessWithAny"
     );
+  }
+
+  static List<ContractDescription> mapListAvailableContracts(ConnectorResult result) {
+    final var availableContracts = mapSuccessWithAny(result);
+    // TODO UNIMPLEMENTED implement this
+    System.out.println(((ConnectorSuccessWithAny) result).getPayload());
+    throw new ContractCaseCoreError(
+        "The parsing of the available contracts object hasn't yet been implemented. Object was: "
+            + availableContracts
+            + ((ConnectorSuccessWithAny) result).getPayload());
+
   }
 }

@@ -8,8 +8,10 @@ import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.grpc.ContractCaseGrpc.ContractCaseStub;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest.Builder;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.InvokeFunction;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
 import io.grpc.stub.StreamObserver;
+import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 class RpcForDefinition extends AbstractRpcConnector<DefinitionRequest, Builder> {
@@ -48,5 +50,13 @@ class RpcForDefinition extends AbstractRpcConnector<DefinitionRequest, Builder> 
   @Override
   DefinitionRequest.Builder makeInvokeTest(StringValue invokerId) {
     throw new ContractCaseCoreError("makeInvokeTest isn't valid during contract definition");
+  }
+
+  @Override
+  Builder makeInvokeFunction(String name, List<String> args) {
+    return DefinitionRequest.newBuilder()
+        .setInvokeFunction(InvokeFunction.newBuilder()
+            .addAllArguments(args.stream().map(ConnectorOutgoingMapper::map).toList())
+            .setHandle(ConnectorOutgoingMapper.map(name)));
   }
 }

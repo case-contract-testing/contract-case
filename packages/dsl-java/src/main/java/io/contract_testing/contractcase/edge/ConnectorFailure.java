@@ -21,7 +21,6 @@ public class ConnectorFailure extends ConnectorResult {
   private final String location;
 
   public ConnectorFailure(String kind, String message, String location) {
-
     this.kind = kind;
     this.message = message;
     this.location = location;

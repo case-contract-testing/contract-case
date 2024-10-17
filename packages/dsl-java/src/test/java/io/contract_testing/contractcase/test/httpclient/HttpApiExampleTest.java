@@ -7,6 +7,7 @@ import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.ExampleDefinition;
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.PublishType;
 import io.contract_testing.contractcase.Trigger;
 import io.contract_testing.contractcase.definitions.matchers.AnyString;
@@ -42,7 +43,7 @@ public class HttpApiExampleTest {
 
   Trigger<String> getHealth = (setupInfo) -> {
     try {
-      return new ApiClient(setupInfo.getInfo("baseUrl")).getHealth();
+      return new ApiClient(setupInfo.getMockSetup("baseUrl")).getHealth();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -158,7 +159,7 @@ public class HttpApiExampleTest {
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
               try {
-                return new ApiClient(setupInfo.getInfo("baseUrl"))
+                return new ApiClient(setupInfo.getMockSetup("baseUrl"))
                     .getUser(setupInfo.getStateVariable("userId"));
               } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -196,7 +197,7 @@ public class HttpApiExampleTest {
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
               try {
-                return new ApiClient(setupInfo.getInfo("baseUrl"))
+                return new ApiClient(setupInfo.getMockSetup("baseUrl"))
                     .getUserQuery(setupInfo.getStateVariable("userId"));
               } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -227,7 +228,7 @@ public class HttpApiExampleTest {
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
               try {
-                return new ApiClient(setupInfo.getInfo("baseUrl"))
+                return new ApiClient(setupInfo.getMockSetup("baseUrl"))
                     .getUserQuery(setupInfo.getStateVariable("userId"));
               } catch (IOException e) {
                 throw new RuntimeException(e);

@@ -4,10 +4,14 @@ import com.google.protobuf.StringValue;
 import io.contract_testing.contractcase.LogPrinter;
 import io.contract_testing.contractcase.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseGrpc.ContractCaseStub;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest.Builder;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.InvokeFunction;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.InvokeTest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.VerificationRequest;
 import io.grpc.stub.StreamObserver;
+import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -46,7 +50,13 @@ class RpcForVerification extends AbstractRpcConnector<VerificationRequest, Verif
             InvokeTest.newBuilder().setInvokerId(invokerId)
         );
   }
-
+  @Override
+  VerificationRequest.Builder makeInvokeFunction(String name, List<String> args) {
+    return VerificationRequest.newBuilder()
+        .setInvokeFunction(InvokeFunction.newBuilder()
+            .addAllArguments(args.stream().map(ConnectorOutgoingMapper::map).toList())
+            .setHandle(ConnectorOutgoingMapper.map(name)));
+  }
 
 }
 

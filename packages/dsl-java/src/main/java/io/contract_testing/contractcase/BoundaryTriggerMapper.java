@@ -11,11 +11,11 @@ class BoundaryTriggerMapper {
       Trigger<T> trigger,
       TestResponseFunction<T> testResponseFunction) {
 
-    return config -> {
+    return connectorSetupInfo -> {
 
       SetupInfo setupInfo;
       try {
-        setupInfo = SetupInfo.from(config);
+        setupInfo = SetupInfo.from(connectorSetupInfo);
       } catch (Throwable e) {
         return ConnectorExceptionMapper.map(e);
       }
@@ -39,10 +39,10 @@ class BoundaryTriggerMapper {
 
   static <T> ITriggerFunction map(Trigger<T> trigger,
       TestErrorResponseFunction testErrorResponseFunction) {
-    return config -> {
+    return connectorSetupInfo -> {
       SetupInfo setupInfo;
       try {
-        setupInfo = SetupInfo.from(config);
+        setupInfo = SetupInfo.from(connectorSetupInfo);
       } catch (Throwable e) {
         return ConnectorExceptionMapper.map(e);
       }

@@ -2,6 +2,7 @@ package io.contract_testing.contractcase.client;
 
 import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessage.Builder;
 import com.google.protobuf.StringValue;
 import io.contract_testing.contractcase.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.ContractCaseCoreError;
@@ -78,10 +79,41 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
   abstract B makeInvokeTest(StringValue invokerId);
 
+  abstract B makeInvokeFunction(String name, List<String> args);
+
+  /**
+   * Executes a call to the core, and waits for the result. You don't need to set any ID on the
+   * request, this function will generate an ID, and call {@link #setId(Builder, StringValue)} to
+   * set it.
+   * <p>
+   * This method doesn't actually do the sending, it defers to the worker. This method then blocks
+   * until the response arrives. The timeout for this method is {@link #DEFAULT_TIMEOUT_SECONDS}
+   *
+   * @param builder A builder for the request to send
+   * @param reason  A short debugging string that represents the reason for the call. This is
+   *                prefixed to the generated ID.
+   * @return the result returned from the core.
+   */
   ConnectorResult executeCallAndWait(B builder, String reason) {
     return this.executeCallAndWait(builder, reason, DEFAULT_TIMEOUT_SECONDS);
   }
 
+  /**
+   * Executes a call to the core, and waits for the result. You don't need to set any ID on the
+   * request, this function will generate an ID, and call {@link #setId(Builder, StringValue)} to
+   * set it.
+   * <p>
+   * This method doesn't actually do the sending, it defers to the worker. This method then blocks
+   * until the response arrives.
+   *
+   * @param builder        A builder for the request to send
+   * @param reason         A short debugging string that represents the reason for the call. This is
+   *                       prefixed to the generated ID.
+   * @param timeoutSeconds How long to wait in seconds before failing the call with a
+   *                       CASE_CORE_ERROR or a CASE_CONFIGURATION_ERROR, based on a guess about
+   *                       whether it was the main connection or a general timeout.
+   * @return the result returned from the core.
+   */
   ConnectorResult executeCallAndWait(B builder, String reason, int timeoutSeconds) {
     final var id =
         "[" + reason + " " + nextId.getAndIncrement() + " " + Thread.currentThread().getName()
@@ -101,7 +133,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
     try {
       MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Waiting for: " + id);
       var mappedResult = ConnectorIncomingMapper.mapBoundaryResult(future.get(
-          timeoutSeconds * 1000,
+          timeoutSeconds * (long) 1000,
           TimeUnit.SECONDS
       ));
 
@@ -234,4 +266,5 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
     }
     return method.apply(args);
   }
+
 }

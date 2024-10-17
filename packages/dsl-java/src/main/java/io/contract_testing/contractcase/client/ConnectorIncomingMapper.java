@@ -8,18 +8,24 @@ import com.google.protobuf.Value;
 import io.contract_testing.contractcase.ContractCaseCoreError;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorResult;
+import io.contract_testing.contractcase.edge.ConnectorSetupInfo;
 import io.contract_testing.contractcase.edge.ConnectorSuccess;
 import io.contract_testing.contractcase.edge.ConnectorSuccessWithAny;
 import io.contract_testing.contractcase.edge.ConnectorSuccessWithMap;
+import io.contract_testing.contractcase.edge.InvokeCoreFunction;
 import io.contract_testing.contractcase.edge.PrintableMatchError;
 import io.contract_testing.contractcase.edge.PrintableMessageError;
 import io.contract_testing.contractcase.edge.PrintableTestTitle;
 import io.contract_testing.contractcase.grpc.ContractCaseStream;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.CoreFunctionHandle;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.PrintMatchErrorRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.PrintMessageErrorRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.PrintTestTitleRequest;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.SetupInfo;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import org.jetbrains.annotations.NotNull;
 
@@ -148,4 +154,30 @@ class ConnectorIncomingMapper {
     }
   }
 
+  static Map<String, String> map(Map<String, StringValue> stringValueMap) {
+    return stringValueMap.entrySet().stream()
+        .map(entry -> Map.entry(entry.getKey(), ConnectorIncomingMapper.map(entry.getValue())))
+        .collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+  }
+
+  public static ConnectorSetupInfo map(SetupInfo setup,
+      BiFunction<String, List<String>, ConnectorResult> callFunction) {
+    return new ConnectorSetupInfo(
+        map(setup.getStateVariablesMap()),
+        map(setup.getMockMap()),
+        mapFunctions(setup.getFunctionsMap(), callFunction)
+    );
+  }
+
+  private static Map<String, InvokeCoreFunction> mapFunctions(Map<String, CoreFunctionHandle> functionsMap,
+      BiFunction<String, List<String>, ConnectorResult> callFunction) {
+    return functionsMap.entrySet().stream()
+        .map(entry -> Map.entry(
+            entry.getKey(),
+            ConnectorIncomingMapper.map(entry.getValue().getHandle())
+        )).collect(Collectors.toMap(
+            Entry::getKey,
+            entry -> (args) -> callFunction.apply(entry.getValue(), args)
+        ));
+  }
 }

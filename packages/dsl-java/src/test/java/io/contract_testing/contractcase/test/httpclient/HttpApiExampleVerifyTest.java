@@ -30,7 +30,7 @@ public class HttpApiExampleVerifyTest {
 
   Trigger<String> getHealth = (setupInfo) -> {
     try {
-      return new ApiClient(setupInfo.getInfo("baseUrl")).getHealth();
+      return new ApiClient(setupInfo.getMockSetup("baseUrl")).getHealth();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -38,7 +38,7 @@ public class HttpApiExampleVerifyTest {
 
   Trigger<User> getUserFromConfig = (setupInfo) -> {
     try {
-      return new ApiClient(setupInfo.getInfo("baseUrl"))
+      return new ApiClient(setupInfo.getMockSetup("baseUrl"))
           .getUser(setupInfo.getStateVariable("userId"));
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -47,7 +47,7 @@ public class HttpApiExampleVerifyTest {
 
   Trigger<User> getUserByQuery = (setupInfo) -> {
     try {
-      return new ApiClient(setupInfo.getInfo("baseUrl"))
+      return new ApiClient(setupInfo.getMockSetup("baseUrl"))
           .getUserQuery(setupInfo.getStateVariable("userId"));
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -56,7 +56,7 @@ public class HttpApiExampleVerifyTest {
 
   Trigger<User> getUser123 = (setupInfo) -> {
     try {
-      return new ApiClient(setupInfo.getInfo("baseUrl"))
+      return new ApiClient(setupInfo.getMockSetup("baseUrl"))
           .getUser("123");
     } catch (IOException e) {
       throw new RuntimeException(e);

@@ -1,32 +1,28 @@
 package io.contract_testing.contractcase;
 
+import io.contract_testing.contractcase.edge.ConnectorSetupInfo;
+import io.contract_testing.contractcase.edge.InvokeCoreFunction;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Container for information about the mock side of a particular example
  */
 public class SetupInfo {
 
-  public static final String STATE_VARIABLES_KEY = "variables";
-  private final Map<String, Object> config;
-
   private final Map<String, String> stateVariables;
+  private final Map<String, String> mockSetup;
+  private final Map<String, InvokeCoreFunction> functions;
 
-  private SetupInfo(Map<String, Object> config) {
-    this.config = config;
-    var variables = config.get(STATE_VARIABLES_KEY);
-    if (variables == null) {
-      this.stateVariables = Map.of();
-    } else {
-      try {
-        this.stateVariables = Collections.unmodifiableMap((Map<String, String>) variables);
-      } catch (ClassCastException e) {
-        throw new ContractCaseCoreError("Invalid variables array in SetupInfo constructor", e);
-      }
-    }
+
+  private SetupInfo(ConnectorSetupInfo connectorSetupInfo) {
+    this.stateVariables = connectorSetupInfo.stateVariables();
+    this.mockSetup = connectorSetupInfo.mockSetup();
+    this.functions = connectorSetupInfo.functions();
   }
 
   /**
@@ -38,14 +34,14 @@ public class SetupInfo {
    */
   public String getStateVariable(String key) {
     if (this.stateVariables.get(key) == null) {
-      var stateKeys = new ArrayList<>(this.stateVariables.keySet());
+      final var keys = new ArrayList<>(this.stateVariables.keySet());
       throw new ContractCaseConfigurationError(
-          "Can't get state variable '" + key + "', as it's not present in the config"
+          "Can't get state variable '" + key + "', as it's not present in the SetupInfo"
               + "'. Check the variable is defined in the contract. "
-              + (stateKeys.size() == 0
+              + (keys.size() == 0
               ? "There are no currently defined state variables"
               : "Currently defined variables are: \n"
-                  + stateKeys
+                  + keys
                   .stream().map(s -> "    " + s)
                   .collect(Collectors.joining("\n"))));
     }
@@ -59,21 +55,40 @@ public class SetupInfo {
    * @return The value of this configuration setting
    * @throws ContractCaseConfigurationError if there is no value for this key
    */
-  public String getInfo(String key) {
-    if (this.config.get(key) == null) {
-      throw new ContractCaseConfigurationError("No setup information for key '" + key
-          + "'. Check the key is correct for this mock type");
+  public String getMockSetup(String key) {
+    if (this.mockSetup.get(key) == null) {
+      final var keys = new ArrayList<>(this.mockSetup.keySet());
+      throw new ContractCaseConfigurationError(
+          "Can't get mock setup value '" + key + "', as it's not present in the SetupInfo"
+              + "'. Check the spelling of the setup value. "
+              + (keys.size() == 0
+              ? "There are no currently defined mock setup values"
+              : "Currently defined setup values are: \n"
+                  + keys
+                  .stream().map(s -> "    " + s)
+                  .collect(Collectors.joining("\n"))));
     }
-
-    try {
-      return (String) this.config.get(key);
-    } catch (ClassCastException e) {
-      throw new ContractCaseCoreError(
-          "The setup key '" + key + "' contained something that couldn't cast to a string",
-          e
-      );
-    }
+    return this.mockSetup.get(key);
   }
+
+  public Function<List<String>, String> getFunction(String name) {
+    if (this.functions.get(name) == null) {
+      final var keys = new ArrayList<>(this.functions.keySet());
+      throw new ContractCaseConfigurationError(
+          "Can't get function '" + name + "', as it's not present in the SetupInfo"
+              + "'. Check the spelling of the function name. "
+              + (keys.size() == 0
+              ? "There are no currently defined functions"
+              : "Currently defined functions are: \n"
+                  + keys
+                  .stream().map(s -> "    " + s)
+                  .collect(Collectors.joining("\n"))));
+    }
+    return (args) -> ConnectorResultMapper.mapSuccessWithAny(
+        this.functions.get(name).invoke(args)
+    );
+  }
+
 
   /**
    * Construct a new SetupInfo convenience object from this configuration map
@@ -81,7 +96,7 @@ public class SetupInfo {
    * @param config The configuration map from the Connector
    * @return a new SetupInfo object
    */
-  static SetupInfo from(Map<String, Object> config) {
+  static SetupInfo from(@NotNull ConnectorSetupInfo config) {
     return new SetupInfo(config);
   }
 
