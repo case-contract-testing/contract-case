@@ -24,7 +24,7 @@ tasks.withType(Javadoc).configureEach {
     exclude('io/contract_testing/contractcase/client')
 }
 
-def caseCoreVersion = "0.17.1"
+def caseCoreVersion = "0.18.0"
 def grpcVersion = "1.68.0"
 def protobufVersion = "4.28.2"
 
