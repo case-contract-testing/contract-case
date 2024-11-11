@@ -51,37 +51,38 @@ java.apiReference.classes
     writeLine(example);
     writeLine('```');
 
-    writeLine();
-    writeLine('#### Parameters <a name="Parameters" id="Parameters"></a>');
-    writeLine('| **Name** | **Type** | **Description** |');
-    writeLine('| --- | --- | --- |');
-    const formatPattern = (pattern: Format): string => {
-      if ('id' in pattern) {
-        // TODO: Make this a link
-        return `${pattern.submodule}.${pattern.displayName}`;
-      }
+    if (parameters.length > 0) {
+      writeLine();
+      writeLine('#### Parameters <a name="Parameters" id="Parameters"></a>');
+      writeLine('| **Name** | **Type** | **Description** |');
+      writeLine('| --- | --- | --- |');
+      const formatPattern = (pattern: Format): string => {
+        if ('id' in pattern) {
+          // TODO: Make this a link
+          return `${pattern.submodule}.${pattern.displayName}`;
+        }
 
-      const replacements = (pattern.types ?? []).map(formatPattern);
-      return replacements.reduce(
-        (acc, curr) => acc.replace('%', curr),
-        pattern.formattingPattern,
-      );
-    };
-
-    parameters.forEach(({ displayName, type, docs }) => {
-      let line;
-      if (!('summary' in docs)) {
-        console.log(
-          `WARN (${name}): Parameter '${displayName}' has no documentation`,
+        const replacements = (pattern.types ?? []).map(formatPattern);
+        return replacements.reduce(
+          (acc, curr) => acc.replace('%', curr),
+          pattern.formattingPattern,
         );
-        line = '';
-      } else {
-        const definitelyDocs = docs as { summary: string; remarks: string };
-        line = `${definitelyDocs.summary.replace(/^- /, '').replaceAll('\n', '<br/>')}${definitelyDocs.remarks ? `<br/>${definitelyDocs.remarks.replaceAll('\n', '<br/>')}` : ''}`;
-      }
-      writeLine(`| ${displayName} | \`${formatPattern(type)}\` | ${line} |`);
-    });
+      };
 
+      parameters.forEach(({ displayName, type, docs }) => {
+        let line;
+        if (!('summary' in docs)) {
+          console.log(
+            `WARN (${name}): Parameter '${displayName}' has no documentation`,
+          );
+          line = '';
+        } else {
+          const definitelyDocs = docs as { summary: string; remarks: string };
+          line = `${definitelyDocs.summary.replace(/^- /, '').replaceAll('\n', '<br/>')}${definitelyDocs.remarks ? `<br/>${definitelyDocs.remarks.replaceAll('\n', '<br/>')}` : ''}`;
+        }
+        writeLine(`| ${displayName} | \`${formatPattern(type)}\` | ${line} |`);
+      });
+    }
     //    | <code><a href="#@contract-case/case-definition-dsl.matchers.ArrayLengthOptions.property.minLength">minLength</a></code> | <code>java.lang.Number</code> | The minimum length for the array - must be greater than zero, otherwise empty arrays pass and you wouldn't be testing the array contents | . |
 
     writeLine('  </TabItem>');
