@@ -1,0 +1,23 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+Transformation matcher that matches a base64 encoded version of the given string or string matcher.
+
+WARNING: Since many strings are accidentally decodable as base64, this matcher is
+best combined with a more restrictive string matcher (eg `StringifiedJson`).
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.Base64Encoded;
+
+new Base64Encoded(java.lang.Object child);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| child | `java.lang.Object` | The string or string matcher that would match the decoded string. |
+  </TabItem>
+</Tabs>

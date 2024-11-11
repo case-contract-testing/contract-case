@@ -1,0 +1,24 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+Matches an array where each element matches the provided matcher, but with a custom example for the whole array.
+
+This example must still pass the
+provided matcher
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample;
+
+new ArrayEachEntryMatchesWithExample(java.lang.Object matcher, java.util.List<java.lang.Object> example);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| matcher | `java.lang.Object` | The matcher for each entry in the array. |
+| example | `java.util.List<java.lang.Object>` | An optional example of the whole array to return. |
+  </TabItem>
+</Tabs>

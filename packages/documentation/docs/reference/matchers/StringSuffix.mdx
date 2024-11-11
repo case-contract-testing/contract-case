@@ -1,0 +1,28 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+Matches any string that begins with a matchable prefix, and ends with a constant suffix.
+
+At match time, the actual string is checked for the expected constant suffix,
+and then the beginning of the string is passed to the prefix matcher.
+
+The prefix matcher must be expecting a string.
+
+See also @link matchers.strings.StringPrefix StringPrefix
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.StringSuffix;
+
+new StringSuffix(java.lang.Object prefix, java.lang.String suffix);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| prefix | `java.lang.Object` | A string or matcher to match against the prefix.<br/>If you don't mind what the prefix is, pass null / undefined |
+| suffix | `java.lang.String` | The suffix for the matched string.<br/>Must be a string and not a matcher |
+  </TabItem>
+</Tabs>

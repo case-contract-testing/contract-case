@@ -1,0 +1,20 @@
+---
+sidebar_position: 4
+---
+
+
+In ContractCase, a Test Equivalence Matcher makes the promise "this specific example covers all cases where the request / response / message (etc) passes this matcher"
+
+These matchers aren’t for describing the entire request/response schema, they’re
+for making it easier to write tests. Matchers are a convenience - they don't make your test any more correct, they just allow you to add flexibility to a test, so that you don’t have to
+have the same exact test data on both sides.
+
+For example, say a test expects the following payload::
+
+```typescript
+{
+  name: anyString('Steve');
+}
+```
+
+This test says "there's a name field which must be a string (for example, Steve), and this test covers all cases where any string name is returned".

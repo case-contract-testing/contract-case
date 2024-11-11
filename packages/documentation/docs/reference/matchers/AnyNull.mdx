@@ -1,0 +1,17 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+Matches `null`. This is useful for languages like Java where `body: null` means no body,
+but you want to match (say) a json document that has the body `"null"`.
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.AnyNull;
+
+new AnyNull();
+```
+
+  </TabItem>
+</Tabs>
