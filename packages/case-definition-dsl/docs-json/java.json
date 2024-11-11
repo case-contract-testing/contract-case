@@ -1,0 +1,3134 @@
+{
+  "version": "0.1",
+  "language": "java",
+  "metadata": {
+    "packageName": "@contract-case/case-definition-dsl",
+    "packageVersion": "0.18.0"
+  },
+  "apiReference": {
+    "constructs": [],
+    "classes": [
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.And.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.And.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.And.Initializer.parameter.matchers",
+              "displayName": "matchers",
+              "id": "@contract-case/case-definition-dsl.matchers.And.Initializer.parameter.matchers",
+              "type": {
+                "formattingPattern": "java.util.List<%>",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.Object"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- An array of the matchers to run against this particular spot in the tree."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.And;\n\nnew And(java.util.List<java.lang.Object> matchers);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.And.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.And.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.And",
+        "displayName": "And",
+        "id": "@contract-case/case-definition-dsl.matchers.And",
+        "docs": {
+          "summary": "Matches all of the provided matchers. Useful for combining restrictions provided by different matchers, or creating new matchers without needing plugins.",
+          "remarks": "For best results, wrap the And matcher in a WithExample matcher."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyBoolean.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyBoolean.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "java.lang.Boolean"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- An example boolean."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyBoolean;\n\nnew AnyBoolean(java.lang.Boolean example);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyBoolean.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyBoolean",
+        "displayName": "AnyBoolean",
+        "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean",
+        "docs": {
+          "summary": "Matches any Boolean."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyInteger.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.AnyInteger.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyInteger.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@contract-case/case-definition-dsl.matchers.AnyInteger.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "java.lang.Number"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- Any floating point number, not infinity, not NaN."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyInteger;\n\nnew AnyInteger(java.lang.Number example);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyInteger.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.AnyInteger.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyInteger",
+        "displayName": "AnyInteger",
+        "id": "@contract-case/case-definition-dsl.matchers.AnyInteger",
+        "docs": {
+          "summary": "Matches any whole integer number."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcher.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcher.Initializer.parameter.matcherType",
+              "displayName": "matcherType",
+              "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher.Initializer.parameter.matcherType",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case Extending ContractCase} for a description of these strings)."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyMatcher;\n\nnew AnyMatcher(java.lang.String matcherType);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcher.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case Extending ContractCase}."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcher",
+        "displayName": "AnyMatcher",
+        "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher",
+        "docs": {
+          "summary": "The base class for all Test Equivalence Matchers.",
+          "remarks": "Extend this if you don't\nhave an example in your Matcher. Otherwise, use `AnyMatcherWithExample`"
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample.Initializer.parameter.matcherType",
+              "displayName": "matcherType",
+              "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer.parameter.matcherType",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {}
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {}
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample;\n\nnew AnyMatcherWithExample(java.lang.String matcherType, java.lang.Object example);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample",
+        "displayName": "AnyMatcherWithExample",
+        "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample",
+        "docs": {
+          "summary": "The base class for all Test Equivalence Matchers that have examples provided.",
+          "remarks": "Extend this if your matcher knows what the example will be. Otherwise, use `matchers.AnyMatcher`"
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.Initializer.parameter.mockType",
+              "displayName": "mockType",
+              "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.Initializer.parameter.mockType",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings)."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.Initializer.parameter.read",
+              "displayName": "read",
+              "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.Initializer.parameter.read",
+              "type": {
+                "formattingPattern": "%",
+                "types": [
+                  {
+                    "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
+                    "displayName": "ContractCaseCoreBehaviour",
+                    "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
+                    "packageName": "@contract-case/case-definition-dsl",
+                    "packageVersion": "0.18.0",
+                    "submodule": "mocks"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.Initializer.parameter.write",
+              "displayName": "write",
+              "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.Initializer.parameter.write",
+              "type": {
+                "formattingPattern": "%",
+                "types": [
+                  {
+                    "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
+                    "displayName": "ContractCaseCoreBehaviour",
+                    "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
+                    "packageName": "@contract-case/case-definition-dsl",
+                    "packageVersion": "0.18.0",
+                    "submodule": "mocks"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor;\n\nAnyMockDescriptor.Builder.create(java.lang.String mockType)\n    .read(ContractCaseCoreBehaviour)\n    .write(ContractCaseCoreBehaviour)\n    .build();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
+              "remarks": "You shouldn't need to override this method."
+            },
+            "usage": "public java.lang.String stringify()"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor",
+        "displayName": "AnyMockDescriptor",
+        "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor",
+        "docs": {
+          "summary": "The base class for all ContractCase Mock Descriptors. Extend this if you are implementing your own mock type.",
+          "remarks": "If you are using the included example types from ContractCase (or any\nextension libraries), you do not need to read the documentation for this\nclass.\n\nMock description type strings beginning with `_case:` are reserved for the default ContractCase\nmatchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case\nfor a matching behaviour that is already provided by a core ContractCase mock."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNull.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.AnyNull.Initializer",
+          "parameters": [],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyNull;\n\nnew AnyNull();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNull.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.AnyNull.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNull",
+        "displayName": "AnyNull",
+        "id": "@contract-case/case-definition-dsl.matchers.AnyNull",
+        "docs": {
+          "summary": "Matches `null` (useful for languages like Java where `body: null` means no body, but you want to match a eg a json document that has the body `\"null\"`)."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNumber.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.AnyNumber.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNumber.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@contract-case/case-definition-dsl.matchers.AnyNumber.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "java.lang.Number"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- An example number."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyNumber;\n\nnew AnyNumber(java.lang.Number example);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNumber.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.AnyNumber.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNumber",
+        "displayName": "AnyNumber",
+        "id": "@contract-case/case-definition-dsl.matchers.AnyNumber",
+        "docs": {
+          "summary": "Matches a number following [RFC 8259 JSON](https://www.rfc-editor.org/rfc/rfc8259)."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.states.AnyState.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.states.AnyState.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.states.AnyState.Initializer.parameter.stateType",
+              "displayName": "stateType",
+              "id": "@contract-case/case-definition-dsl.states.AnyState.Initializer.parameter.stateType",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {}
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.states.AnyState.Initializer.parameter.stateName",
+              "displayName": "stateName",
+              "id": "@contract-case/case-definition-dsl.states.AnyState.Initializer.parameter.stateName",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The name of the state used by this example.",
+                "remarks": "This must\nmatch one of the state handlers provided in the configuration during the\nexample run."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.states.AnyState;\n\nnew AnyState(java.lang.String stateType, java.lang.String stateName);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.states.AnyState.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.states.AnyState.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "You shouldn't need to override this method.",
+              "remarks": "You don't need to call this\nmethod, unless working on a wrapper for ContractCase.\n\nThis method returns the entire state descriptor as a JSON string, as a convenience\nso that wrapper libraries don't need to figure out how to walk a tree of example objects."
+            },
+            "usage": "public java.lang.String stringify()"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.states.AnyState.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.states.AnyState.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "You shouldn't need to override or call this method.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.states.AnyState.property.stateName",
+            "displayName": "stateName",
+            "id": "@contract-case/case-definition-dsl.states.AnyState.property.stateName",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "The name of this state, used to determine which state handler to run."
+            },
+            "usage": "public java.lang.String getStateName();"
+          }
+        ],
+        "fqn": "io.contract_testing.contractcase.definitions.states.AnyState",
+        "displayName": "AnyState",
+        "id": "@contract-case/case-definition-dsl.states.AnyState",
+        "docs": {
+          "summary": "The base class for all ContractCase State Descriptors. You shouldn't need to extend this.",
+          "remarks": "You don't need to read the documentation for this class unless you are working\non a wrapper for ContractCase."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyString.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.AnyString.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyString.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@contract-case/case-definition-dsl.matchers.AnyString.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- An example string."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyString;\n\nnew AnyString(java.lang.String example);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyString.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.AnyString.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyString",
+        "displayName": "AnyString",
+        "id": "@contract-case/case-definition-dsl.matchers.AnyString",
+        "docs": {
+          "summary": "Matches any string."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayContains.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ArrayContains.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayContains.Initializer.parameter.matchers",
+              "displayName": "matchers",
+              "id": "@contract-case/case-definition-dsl.matchers.ArrayContains.Initializer.parameter.matchers",
+              "type": {
+                "formattingPattern": "java.util.List<%>",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.Object"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- any number of matchers, each of which must be found inside the array."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayContains;\n\nnew ArrayContains(java.util.List<java.lang.Object> matchers);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayContains.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ArrayContains.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayContains",
+        "displayName": "ArrayContains",
+        "id": "@contract-case/case-definition-dsl.matchers.ArrayContains",
+        "docs": {
+          "summary": "Matches an Array which contains elements that match the given matchers - note that two different matchers may be satisfied by the same item in the array."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatches.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatches.Initializer.parameter.matcher",
+              "displayName": "matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.Initializer.parameter.matcher",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The matcher for each entry in the array."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatches;\n\nnew ArrayEachEntryMatches(java.lang.Object matcher);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatches.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatches",
+        "displayName": "ArrayEachEntryMatches",
+        "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches",
+        "docs": {
+          "summary": "Matches an array where each element matches the provided matcher."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher",
+              "displayName": "matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The matcher for each entry in the array."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "java.util.List<%>",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.Object"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- An optional example of the whole array to return."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample;\n\nnew ArrayEachEntryMatchesWithExample(java.lang.Object matcher, java.util.List<java.lang.Object> example);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample",
+        "displayName": "ArrayEachEntryMatchesWithExample",
+        "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample",
+        "docs": {
+          "summary": "Matches an array where each element matches the provided matcher, but with a custom example for the whole array.",
+          "remarks": "This example must still pass the\nprovided matcher"
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLength.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLength.Initializer.parameter.maxLength",
+              "displayName": "maxLength",
+              "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.Initializer.parameter.maxLength",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.Number"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "The maximum length for the array - must be greater than minimum length.",
+                "remarks": "Default infinity."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLength.Initializer.parameter.minLength",
+              "displayName": "minLength",
+              "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.Initializer.parameter.minLength",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.Number"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "The minimum length for the array - must be greater than zero, otherwise empty arrays pass and you wouldn't be testing the array contents.",
+                "remarks": "Default 1."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayLength;\n\nArrayLength.Builder.create()\n//  .maxLength(java.lang.Number)\n//  .minLength(java.lang.Number)\n    .build();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLength.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLength",
+        "displayName": "ArrayLength",
+        "id": "@contract-case/case-definition-dsl.matchers.ArrayLength",
+        "docs": {
+          "summary": "Matches an Array whose length is within the specified range (or 1-infinity if not specified)."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayStartsWith.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayStartsWith.Initializer.parameter.matchers",
+              "displayName": "matchers",
+              "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.Initializer.parameter.matchers",
+              "type": {
+                "formattingPattern": "java.util.List<%>",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.Object"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "-  An array of matchers that describes the start of the array.",
+                "remarks": "Additional elements in the actual array are ignored."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayStartsWith;\n\nnew ArrayStartsWith(java.util.List<java.lang.Object> matchers);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayStartsWith.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayStartsWith",
+        "displayName": "ArrayStartsWith",
+        "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith",
+        "docs": {
+          "summary": "Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.Base64Encoded.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.Base64Encoded.Initializer.parameter.child",
+              "displayName": "child",
+              "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded.Initializer.parameter.child",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The string or string matcher that would match the decoded string."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.Base64Encoded;\n\nnew Base64Encoded(java.lang.Object child);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.Base64Encoded.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.Base64Encoded",
+        "displayName": "Base64Encoded",
+        "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded",
+        "docs": {
+          "summary": "Transformation matcher that matches a base64 encoded version of the given string or string matcher.",
+          "remarks": "WARNING: Since many strings are accidentally decodable as base64, this matcher is\nbest combined with a more restrictive string matcher (eg `StringifiedJson`)."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue.Initializer.parameter.username",
+              "displayName": "username",
+              "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer.parameter.username",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The username for this basic auth header."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue.Initializer.parameter.password",
+              "displayName": "password",
+              "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer.parameter.password",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The password for this basic auth password."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue;\n\nnew BasicAuthHeaderValue(java.lang.Object username, java.lang.Object password);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue",
+        "displayName": "BasicAuthHeaderValue",
+        "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue",
+        "docs": {
+          "summary": "Matches the value part of a basic auth header with the supplied username and password - useful in conjunction with the StateVariable matcher."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue.Initializer.parameter.token",
+              "displayName": "token",
+              "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.Initializer.parameter.token",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- A string or string matcher for a Bearer auth token."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue;\n\nnew BearerTokenHeaderValue(java.lang.Object token);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue",
+        "displayName": "BearerTokenHeaderValue",
+        "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue",
+        "docs": {
+          "summary": "Matches the value part of a OIDC or OAuth header with the supplied token - useful in conjunction with the StateVariable matcher."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher.Initializer.parameter.child",
+              "displayName": "child",
+              "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.child",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The matcher to apply these context changes to."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher.Initializer.parameter.contextModifiers",
+              "displayName": "contextModifiers",
+              "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.contextModifiers",
+              "type": {
+                "formattingPattern": "java.util.Map<java.lang.String, %>",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.String"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- a map of properties to add to the context object."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher.Initializer.parameter.currentRunModifiers",
+              "displayName": "currentRunModifiers",
+              "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.currentRunModifiers",
+              "type": {
+                "formattingPattern": "java.util.Map<java.lang.String, %>",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.String"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- a map of properties to add to the current run object."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher;\n\nnew CascadingContextMatcher(java.lang.Object child, java.util.Map<java.lang.String, java.lang.String> contextModifiers, java.util.Map<java.lang.String, java.lang.String> currentRunModifiers);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "If extending this class, do not override this method (or if you do, make sure you call `super.toJSON()`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher",
+        "displayName": "CascadingContextMatcher",
+        "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher",
+        "docs": {
+          "summary": "This is a passthrough matcher that does nothing except call the child matcher with the current actual data.",
+          "remarks": "It's useful for taking advantage of the context cascading available on all\nmatchers without needing to write you own matcher. Extend it if you want to\nmake a matcher that only changes the context object. If you don't know what\nthis means, you don't need to extend this matcher.\n\nDue to limitations with JSii, extending implementations MUST NOT override\n`toJSON`, or MUST return the result of `super.toJSON()` as part of their\ntoJSON method."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel.Initializer.parameter.logLevel",
+              "displayName": "logLevel",
+              "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer.parameter.logLevel",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The new LogLevel.",
+                "remarks": "One of \"none\" | \"error\" | \"warn\" | \"debug\" | \"maintainerDebug\" | \"deepMaintainerDebug\". see [LogLevel](https://case.contract-testing.io/docs/reference/configuring#loglevel-none--error--warn--debug--maintainerdebug) for details"
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel.Initializer.parameter.child",
+              "displayName": "child",
+              "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer.parameter.child",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The next matcher in the tree."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel;\n\nnew ChangeLogLevel(java.lang.String logLevel, java.lang.Object child);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel",
+        "displayName": "ChangeLogLevel",
+        "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel",
+        "docs": {
+          "summary": "Alters the ContractCase log level below this matcher. Useful for debugging.",
+          "remarks": "This has no effect on matching.\n\nNote that this log level matcher will be saved into the contract, so it will\nalso affect the log level during verification. Usually you will want to\nremove the use of this matcher before saving the contract."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.mocks.Empty.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.mocks.Empty.Initializer",
+          "parameters": [],
+          "usage": "import io.contract_testing.contractcase.definitions.mocks.Empty;\n\nnew Empty();"
+        },
+        "interfaces": [],
+        "instanceMethods": [],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.Empty",
+        "displayName": "Empty",
+        "id": "@contract-case/case-definition-dsl.mocks.Empty",
+        "docs": {
+          "summary": "Empty class to make jsii-docgen happy with this module."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ExactlyLike.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ExactlyLike.Initializer.parameter.content",
+              "displayName": "content",
+              "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike.Initializer.parameter.content",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The object, array, primitive or matcher to match exactly."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ExactlyLike;\n\nnew ExactlyLike(java.lang.Object content);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ExactlyLike.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ExactlyLike",
+        "displayName": "ExactlyLike",
+        "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike",
+        "docs": {
+          "summary": "Everything inside this matcher will be matched exactly, unless overridden with a generic matcher (eg `AnyString` or` ShapedLike`).",
+          "remarks": "Use this to switch\nout of `shapedLike` and back to the default exact matching."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.method",
+              "displayName": "method",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.method",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A string or string matcher that matches the method used for this example (eg `\"GET\"` or `\"POST\"`).",
+                "remarks": "Case insensitive. Note that DELETE, GET and HEAD\nrequests should not have bodies - see the HTTP RFCs for details."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.path",
+              "displayName": "path",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.path",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A string or string matcher that matches the path of this example.",
+                "remarks": "Note that any query parameters must be in the query, not in the path."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.body",
+              "displayName": "body",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.body",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test equivalence matcher or json object that describes the body for this response.",
+                "remarks": "If not provided, no body matching is performed."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.headers",
+              "displayName": "headers",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.headers",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A Map of header names and associated test-equivalence matcher values accepted by this example.",
+                "remarks": "If not provided, no header matching is performed"
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.query",
+              "displayName": "query",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.query",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test-equivalence matcher for the query.",
+                "remarks": "Usually this is a Map of\ntest-equivalence matchers to match the parsed query string, keyed by\nparameter name. Repeated parameters are collated and put in an\narray in this map."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.uniqueName",
+              "displayName": "uniqueName",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.uniqueName",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "What unique name, if any, to give to this request."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.HttpRequest;\n\nHttpRequest.Builder.create()\n    .method(java.lang.Object)\n    .path(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .query(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.method",
+            "displayName": "method",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.method",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getMethod();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.path",
+            "displayName": "path",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.path",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getPath();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.body",
+            "displayName": "body",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.body",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getBody();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.headers",
+            "displayName": "headers",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.headers",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getHeaders();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.query",
+            "displayName": "query",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.query",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getQuery();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.uniqueName",
+            "displayName": "uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.uniqueName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {},
+            "usage": "public java.lang.String getUniqueName();"
+          }
+        ],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest",
+        "displayName": "HttpRequest",
+        "id": "@contract-case/case-definition-dsl.matchers.HttpRequest",
+        "docs": {
+          "summary": "Matches any HTTP Request with the provided properties."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.Initializer.parameter.status",
+              "displayName": "status",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer.parameter.status",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {}
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.Initializer.parameter.body",
+              "displayName": "body",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer.parameter.body",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test equivalence matcher or json object that describes the body for this response.",
+                "remarks": "If not provided, no body matching is performed."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.Initializer.parameter.headers",
+              "displayName": "headers",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer.parameter.headers",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A Map of header names and associated test-equivalence matcher values accepted by this example.",
+                "remarks": "If not provided, no header matching is performed"
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.Initializer.parameter.uniqueName",
+              "displayName": "uniqueName",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer.parameter.uniqueName",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "What unique name, if any, to give to this response."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.HttpResponse;\n\nHttpResponse.Builder.create()\n    .status(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.property.status",
+            "displayName": "status",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.status",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getStatus();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.property.body",
+            "displayName": "body",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.body",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getBody();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.property.headers",
+            "displayName": "headers",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.headers",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getHeaders();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.property.uniqueName",
+            "displayName": "uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.uniqueName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {},
+            "usage": "public java.lang.String getUniqueName();"
+          }
+        ],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse",
+        "displayName": "HttpResponse",
+        "id": "@contract-case/case-definition-dsl.matchers.HttpResponse",
+        "docs": {
+          "summary": "Matches any HTTP Response with the provided properties."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpStatusCode.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpStatusCode.Initializer.parameter.statusCode",
+              "displayName": "statusCode",
+              "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.Initializer.parameter.statusCode",
+              "type": {
+                "formattingPattern": "% OR %",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.String"
+                  },
+                  {
+                    "formattingPattern": "java.util.List<%>",
+                    "types": [
+                      {
+                        "formattingPattern": "java.lang.String"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The http status code to match, expressed as a number or string (eg `200`, `\"404\"` or `\"4XX\"`)."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.HttpStatusCode;\n\nnew HttpStatusCode(java.lang.String OR java.util.List<java.lang.String> statusCode);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpStatusCode.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpStatusCode",
+        "displayName": "HttpStatusCode",
+        "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode",
+        "docs": {
+          "summary": "Matches an HTTP status code."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.states.InState.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.states.InState.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.states.InState.Initializer.parameter.stateName",
+              "displayName": "stateName",
+              "id": "@contract-case/case-definition-dsl.states.InState.Initializer.parameter.stateName",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The name of the state used by this example.",
+                "remarks": "This must\nmatch one of the state handlers provided in the configuration during the\nexample run."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.states.InState;\n\nnew InState(java.lang.String stateName);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.states.InState.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.states.InState.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "You shouldn't need to override this method.",
+              "remarks": "You don't need to call this\nmethod, unless working on a wrapper for ContractCase.\n\nThis method returns the entire state descriptor as a JSON string, as a convenience\nso that wrapper libraries don't need to figure out how to walk a tree of example objects."
+            },
+            "usage": "public java.lang.String stringify()"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.states.InState.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.states.InState.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "You shouldn't need to override or call this method.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.states.InState.property.stateName",
+            "displayName": "stateName",
+            "id": "@contract-case/case-definition-dsl.states.InState.property.stateName",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "The name of this state, used to determine which state handler to run."
+            },
+            "usage": "public java.lang.String getStateName();"
+          }
+        ],
+        "fqn": "io.contract_testing.contractcase.definitions.states.InState",
+        "displayName": "InState",
+        "id": "@contract-case/case-definition-dsl.states.InState",
+        "docs": {
+          "summary": "A state descriptor for configuring an example that needs to run in a particular named state."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.states.InStateWithVariables.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.states.InStateWithVariables.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.states.InStateWithVariables.Initializer.parameter.stateName",
+              "displayName": "stateName",
+              "id": "@contract-case/case-definition-dsl.states.InStateWithVariables.Initializer.parameter.stateName",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The name of the state used by this example.",
+                "remarks": "This must\nmatch one of the state handlers provided in the configuration during the\nexample run."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.states.InStateWithVariables.Initializer.parameter.variables",
+              "displayName": "variables",
+              "id": "@contract-case/case-definition-dsl.states.InStateWithVariables.Initializer.parameter.variables",
+              "type": {
+                "formattingPattern": "java.util.Map<java.lang.String, %>",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.Object"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- A object where the keys are variable names, mapped to any data or matcher objects."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.states.InStateWithVariables;\n\nnew InStateWithVariables(java.lang.String stateName, java.util.Map<java.lang.String, java.lang.Object> variables);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.states.InStateWithVariables.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.states.InStateWithVariables.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "You shouldn't need to override this method.",
+              "remarks": "You don't need to call this\nmethod, unless working on a wrapper for ContractCase.\n\nThis method returns the entire state descriptor as a JSON string, as a convenience\nso that wrapper libraries don't need to figure out how to walk a tree of example objects."
+            },
+            "usage": "public java.lang.String stringify()"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.states.InStateWithVariables.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.states.InStateWithVariables.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "You shouldn't need to override or call this method.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.states.InStateWithVariables.property.stateName",
+            "displayName": "stateName",
+            "id": "@contract-case/case-definition-dsl.states.InStateWithVariables.property.stateName",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "The name of this state, used to determine which state handler to run."
+            },
+            "usage": "public java.lang.String getStateName();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.states.InStateWithVariables.property.variables",
+            "displayName": "variables",
+            "id": "@contract-case/case-definition-dsl.states.InStateWithVariables.property.variables",
+            "type": {
+              "formattingPattern": "java.util.Map<java.lang.String, %>",
+              "types": [
+                {
+                  "formattingPattern": "java.lang.Object"
+                }
+              ]
+            },
+            "docs": {},
+            "usage": "public java.util.Map<java.lang.String, java.lang.Object> getVariables();"
+          }
+        ],
+        "fqn": "io.contract_testing.contractcase.definitions.states.InStateWithVariables",
+        "displayName": "InStateWithVariables",
+        "id": "@contract-case/case-definition-dsl.states.InStateWithVariables",
+        "docs": {
+          "summary": "A state descriptor for configuring an example that needs to run in a particular named state, and with variables provided by the framework."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.NamedMatch.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.NamedMatch.Initializer.parameter.name",
+              "displayName": "name",
+              "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer.parameter.name",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The name you can use to lookup this matcher later."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.NamedMatch.Initializer.parameter.child",
+              "displayName": "child",
+              "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer.parameter.child",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The content of this named match.",
+                "remarks": "If omitted or undefined, the content will be looked up in a previously named match"
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.NamedMatch;\n\nnew NamedMatch(java.lang.String name, java.lang.Object child);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.NamedMatch.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.NamedMatch",
+        "displayName": "NamedMatch",
+        "id": "@contract-case/case-definition-dsl.matchers.NamedMatch",
+        "docs": {
+          "summary": "Saves the matcher below it with a unique name that can be used with lookups in tests after this one.",
+          "remarks": "Lookups can be made with {@link matchers.convenience.ReferenceMatch }."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachKeyMatches.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachKeyMatches.Initializer.parameter.matcher",
+              "displayName": "matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.Initializer.parameter.matcher",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The matcher that all keys must pass."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ObjectEachKeyMatches;\n\nnew ObjectEachKeyMatches(java.lang.Object matcher);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachKeyMatches.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachKeyMatches",
+        "displayName": "ObjectEachKeyMatches",
+        "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches",
+        "docs": {
+          "summary": "Matches an object where each key matches the provided matcher."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachValueMatches.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachValueMatches.Initializer.parameter.matcher",
+              "displayName": "matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.Initializer.parameter.matcher",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The matcher that all values must pass."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ObjectEachValueMatches;\n\nnew ObjectEachValueMatches(java.lang.Object matcher);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachValueMatches.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachValueMatches",
+        "displayName": "ObjectEachValueMatches",
+        "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches",
+        "docs": {
+          "summary": "Matches an object where each value matches the provided matcher."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ReferenceMatch.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ReferenceMatch.Initializer.parameter.name",
+              "displayName": "name",
+              "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.Initializer.parameter.name",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The name you gave to a previous call of `NamedMatch`."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ReferenceMatch;\n\nnew ReferenceMatch(java.lang.String name);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ReferenceMatch.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ReferenceMatch",
+        "displayName": "ReferenceMatch",
+        "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch",
+        "docs": {
+          "summary": "Matches a named matcher created with {@link matchers.convenience.NamedMatch }."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.ShapedLike.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.ShapedLike.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.ShapedLike.Initializer.parameter.content",
+              "displayName": "content",
+              "id": "@contract-case/case-definition-dsl.matchers.ShapedLike.Initializer.parameter.content",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The object, array, primitive or matcher to match the shape against."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.ShapedLike;\n\nnew ShapedLike(java.lang.Object content);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ShapedLike.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.ShapedLike.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ShapedLike",
+        "displayName": "ShapedLike",
+        "id": "@contract-case/case-definition-dsl.matchers.ShapedLike",
+        "docs": {
+          "summary": "Everything inside this matcher will be matched on the shape of the data (ie, type alone), unless overridden with other matchers.",
+          "remarks": "Use this to switch out\nof the default `exactlyLike` matching."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.StateVariable.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.StateVariable.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.StateVariable.Initializer.parameter.name",
+              "displayName": "name",
+              "id": "@contract-case/case-definition-dsl.matchers.StateVariable.Initializer.parameter.name",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The name of the variable."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.StateVariable;\n\nnew StateVariable(java.lang.String name);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.StateVariable.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.StateVariable.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.StateVariable",
+        "displayName": "StateVariable",
+        "id": "@contract-case/case-definition-dsl.matchers.StateVariable",
+        "docs": {
+          "summary": "Matches the content of a variable that comes from a state.",
+          "remarks": "See {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions state} * definitions}\nand {@link https://case.contract-testing.io/docs/reference/state-handlers state handlers} for\nmore details."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.StringContaining.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringContaining.Initializer.parameter.substring",
+              "displayName": "substring",
+              "id": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer.parameter.substring",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The substring that the matcher must contain."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringContaining.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- An example string that passes this matcher."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.StringContaining;\n\nnew StringContaining(java.lang.String substring, java.lang.String example);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.StringContaining.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.StringContaining.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.StringContaining",
+        "displayName": "StringContaining",
+        "id": "@contract-case/case-definition-dsl.matchers.StringContaining",
+        "docs": {
+          "summary": "Matches any string that contains the given substring."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.StringifiedJson.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringifiedJson.Initializer.parameter.child",
+              "displayName": "child",
+              "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson.Initializer.parameter.child",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The object or matcher that matches the decoded."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.StringifiedJson;\n\nnew StringifiedJson(java.lang.Object child);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.StringifiedJson.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.StringifiedJson",
+        "displayName": "StringifiedJson",
+        "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson",
+        "docs": {
+          "summary": "Transformation matcher that matches a JSON.stringify()ed version of the given object.",
+          "remarks": "For example, if the actual data is the string:\n\n```java\n\"{\\\"foo\\\":2}\";\n```\n\nthen you could match it with:\n\n```java\n// Example automatically generated from non-compiling source. May contain errors.\nStringifiedJson(Map.of(\n        \"foo\", 2));\n```\n\nor\n\n```java\n// Example automatically generated from non-compiling source. May contain errors.\nStringifiedJson(Map.of(\n        \"foo\", AnyNumber(2)));\n```"
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.StringPrefix.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringPrefix.Initializer.parameter.prefix",
+              "displayName": "prefix",
+              "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer.parameter.prefix",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The prefix string.",
+                "remarks": "Must be a string and not a matcher"
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringPrefix.Initializer.parameter.suffix",
+              "displayName": "suffix",
+              "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer.parameter.suffix",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- A string or matcher to match against the suffix."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.StringPrefix;\n\nnew StringPrefix(java.lang.String prefix, java.lang.Object suffix);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.StringPrefix.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.StringPrefix",
+        "displayName": "StringPrefix",
+        "id": "@contract-case/case-definition-dsl.matchers.StringPrefix",
+        "docs": {
+          "summary": "Matches any string that begins with the given constant string prefix, and ends with a matchable suffix.",
+          "remarks": "At match time, the actual string is checked for the constant prefix, and then\nthe rest of the string is passed to the suffix matcher..\n\nThe suffix matcher must be expecting a string.\n\nSee also {@link matchers.strings.StringSuffix StringSuffix}"
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.StringSuffix.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringSuffix.Initializer.parameter.prefix",
+              "displayName": "prefix",
+              "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer.parameter.prefix",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- A string or matcher to match against the prefix.",
+                "remarks": "If you don't mind what the prefix is, pass null / undefined"
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringSuffix.Initializer.parameter.suffix",
+              "displayName": "suffix",
+              "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer.parameter.suffix",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The suffix for the matched string.",
+                "remarks": "Must be a string and not a matcher"
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.StringSuffix;\n\nnew StringSuffix(java.lang.Object prefix, java.lang.String suffix);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.StringSuffix.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.StringSuffix",
+        "displayName": "StringSuffix",
+        "id": "@contract-case/case-definition-dsl.matchers.StringSuffix",
+        "docs": {
+          "summary": "Matches any string that begins with a matchable prefix, and ends with a constant suffix.",
+          "remarks": "At match time, the actual string is checked for the expected constant suffix,\nand then the beginning of the string is passed to the prefix matcher.\n\nThe prefix matcher must be expecting a string.\n\nSee also {@link matchers.strings.StringPrefix StringPrefix}"
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.UriEncodedString.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.UriEncodedString.Initializer.parameter.child",
+              "displayName": "child",
+              "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString.Initializer.parameter.child",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- Any string matcher or literal string."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.UriEncodedString;\n\nnew UriEncodedString(java.lang.Object child);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.UriEncodedString.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.UriEncodedString",
+        "displayName": "UriEncodedString",
+        "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString",
+        "docs": {
+          "summary": "Convenience matcher to treat the string as a uri encoded string - useful in `path` segments.",
+          "remarks": "During matching, the actual value is decoded with `decodeUriComponent()` and passed to the child matcher."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.Initializer.parameter.arguments",
+              "displayName": "arguments",
+              "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.Initializer.parameter.arguments",
+              "type": {
+                "formattingPattern": "java.util.List<%>",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.Object"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "An array of expected function arguments (or test equivalence matchers for those arguments)."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.Initializer.parameter.functionName",
+              "displayName": "functionName",
+              "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.Initializer.parameter.functionName",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "The name of the function to be executed.",
+                "remarks": "Doubles as the handle used by\nregisterFunction."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.Initializer.parameter.returnValue",
+              "displayName": "returnValue",
+              "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.Initializer.parameter.returnValue",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test equivalence matcher for the return value from this function."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction;\n\nWillCallFunction.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
+              "remarks": "You shouldn't need to override this method."
+            },
+            "usage": "public java.lang.String stringify()"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.property.functionName",
+            "displayName": "functionName",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.property.functionName",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {},
+            "usage": "public java.lang.String getFunctionName();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.property.request",
+            "displayName": "request",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.property.request",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getRequest();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.property.response",
+            "displayName": "response",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.property.response",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getResponse();"
+          }
+        ],
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction",
+        "displayName": "WillCallFunction",
+        "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction",
+        "docs": {
+          "summary": "Defines an example that executes a registered function with specific arguments."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.arguments",
+              "displayName": "arguments",
+              "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.arguments",
+              "type": {
+                "formattingPattern": "java.util.List<%>",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.Object"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "An array of expected function arguments (or test equivalence matchers for those arguments)."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.functionName",
+              "displayName": "functionName",
+              "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.functionName",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "The name of the function to be executed.",
+                "remarks": "Doubles as the handle used by\nregisterFunction."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.returnValue",
+              "displayName": "returnValue",
+              "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.returnValue",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test equivalence matcher for the return value from this function."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall;\n\nWillReceiveFunctionCall.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
+              "remarks": "You shouldn't need to override this method."
+            },
+            "usage": "public java.lang.String stringify()"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.property.functionName",
+            "displayName": "functionName",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.property.functionName",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {},
+            "usage": "public java.lang.String getFunctionName();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.property.request",
+            "displayName": "request",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.property.request",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getRequest();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.property.response",
+            "displayName": "response",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.property.response",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getResponse();"
+          }
+        ],
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall",
+        "displayName": "WillReceiveFunctionCall",
+        "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall",
+        "docs": {
+          "summary": "Defines an example that expects a function to be called with specific arguments."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.Initializer.parameter.request",
+              "displayName": "request",
+              "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.Initializer.parameter.request",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test equivalence matcher that will match an HTTP request (recommended: the Test Equivalence Matcher `HttpRequest`)."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.Initializer.parameter.response",
+              "displayName": "response",
+              "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.Initializer.parameter.response",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test equivalence matcher that will match an HTTP response (recommended: the Test Equivalence Matcher `HttpResponse`)."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest;\n\nWillReceiveHttpRequest.Builder.create()\n    .request(java.lang.Object)\n    .response(java.lang.Object)\n    .build();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
+              "remarks": "You shouldn't need to override this method."
+            },
+            "usage": "public java.lang.String stringify()"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.property.request",
+            "displayName": "request",
+            "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.property.request",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getRequest();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.property.response",
+            "displayName": "response",
+            "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.property.response",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getResponse();"
+          }
+        ],
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest",
+        "displayName": "WillReceiveHttpRequest",
+        "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest",
+        "docs": {
+          "summary": "Defines an example that expects to receive an HTTP request.",
+          "remarks": "Use this to define a contract at an HTTP client."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.Initializer.parameter.request",
+              "displayName": "request",
+              "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.Initializer.parameter.request",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test equivalence matcher that will match an HTTP request (recommended: the Test Equivalence Matcher `HttpRequest`)."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.Initializer.parameter.response",
+              "displayName": "response",
+              "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.Initializer.parameter.response",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test equivalence matcher that will match an HTTP response (recommended: the Test Equivalence Matcher `HttpResponse`)."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest;\n\nWillSendHttpRequest.Builder.create()\n    .request(java.lang.Object)\n    .response(java.lang.Object)\n    .build();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
+              "remarks": "You shouldn't need to override this method."
+            },
+            "usage": "public java.lang.String stringify()"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.property.request",
+            "displayName": "request",
+            "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.property.request",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getRequest();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.property.response",
+            "displayName": "response",
+            "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.property.response",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getResponse();"
+          }
+        ],
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest",
+        "displayName": "WillSendHttpRequest",
+        "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest",
+        "docs": {
+          "summary": "Defines an example that expects to send an HTTP request.",
+          "remarks": "Use this to test HTTP servers."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.WithExample.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.WithExample.Initializer.parameter.matcher",
+              "displayName": "matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer.parameter.matcher",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- Any matcher to add an example to."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.WithExample.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The example to use when stripping the matchers."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.WithExample;\n\nnew WithExample(java.lang.Object matcher, java.lang.Object example);"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.WithExample.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.WithExample.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.WithExample",
+        "displayName": "WithExample",
+        "id": "@contract-case/case-definition-dsl.matchers.WithExample",
+        "docs": {
+          "summary": "Adds an example to the provided matcher.",
+          "remarks": "Useful when you have a complicated\nset of constraints and ContractCase can't figure out what the best example should be.\n\nNote that providing any example will override examples provided further down the tree."
+        }
+      }
+    ],
+    "structs": [
+      {
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLengthOptions",
+        "displayName": "ArrayLengthOptions",
+        "id": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions",
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLengthOptions.property.maxLength",
+            "displayName": "maxLength",
+            "id": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions.property.maxLength",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Number"
+            },
+            "docs": {
+              "summary": "The maximum length for the array - must be greater than minimum length.",
+              "remarks": "Default infinity."
+            },
+            "usage": "public java.lang.Number getMaxLength();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLengthOptions.property.minLength",
+            "displayName": "minLength",
+            "id": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions.property.minLength",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Number"
+            },
+            "docs": {
+              "summary": "The minimum length for the array - must be greater than zero, otherwise empty arrays pass and you wouldn't be testing the array contents.",
+              "remarks": "Default 1."
+            },
+            "usage": "public java.lang.Number getMinLength();"
+          }
+        ],
+        "docs": {
+          "summary": "Options for the `ArrayLength` matcher."
+        },
+        "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayLengthOptions;\n\nArrayLengthOptions.builder()\n//  .maxLength(java.lang.Number)\n//  .minLength(java.lang.Number)\n    .build();"
+      },
+      {
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
+        "displayName": "ContractCaseCoreBehaviour",
+        "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour.property.mockType",
+            "displayName": "mockType",
+            "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour.property.mockType",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "The type of this mock.",
+              "remarks": "Usually this is inverted on read vs write, for\nexample, a written MOCK_HTTP_CLIENT might become a MOCK_HTTP_SERVER during\nreading.\n\nThis will almost always be the same as the top level type for your mock\nduring read - but if it is different, ContractCase will respect this value."
+            },
+            "usage": "public java.lang.String getMockType();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour.property.stateVariables",
+            "displayName": "stateVariables",
+            "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour.property.stateVariables",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "Whether or not this mock mode will invoke state handlers.",
+              "remarks": "If set to\n`\"default\"` then ContractCase will not invoke or require the state handlers\nand will use the default values for all state variables. If set to `\"state\"`,\nthen ContractCase will invoke the state handlers and require the expected variables to\nbe returned.\n\nAll other values are errors."
+            },
+            "usage": "public java.lang.String getStateVariables();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour.property.triggers",
+            "displayName": "triggers",
+            "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour.property.triggers",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "Whether or not this mock mode needs to be triggered by user-provided code.",
+              "remarks": "If `\"provided\"` then ContractCase will require the user to provide a\ntrigger and a test function (eg, for testing an HTTP Client, code that will\ninvoke it must be provided). If `\"generated\"`, then ContractCase will not\nrequire user provided triggers as it will generate them (eg, if the\nsystem under test is an HTTP server, ContractCase will generate client calls)."
+            },
+            "usage": "public java.lang.String getTriggers();"
+          }
+        ],
+        "docs": {
+          "summary": "This type defines the core behaviour that ContractCase has with this mock.",
+          "remarks": "If you are using the included example types from ContractCase (or any\nextension libraries), you do not need to use this class (or understand this\ndocumentation).\n\nThis documentation is only necessary for people extending ContractCase to include\nnew mock types.\n\nSee the definitions in the case-entities-internal package for more details."
+        },
+        "usage": "import io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour;\n\nContractCaseCoreBehaviour.builder()\n    .mockType(java.lang.String)\n    .stateVariables(java.lang.String)\n    .triggers(java.lang.String)\n    .build();"
+      },
+      {
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreSetup",
+        "displayName": "ContractCaseCoreSetup",
+        "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreSetup",
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreSetup.property.read",
+            "displayName": "read",
+            "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreSetup.property.read",
+            "type": {
+              "formattingPattern": "%",
+              "types": [
+                {
+                  "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
+                  "displayName": "ContractCaseCoreBehaviour",
+                  "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
+                  "packageName": "@contract-case/case-definition-dsl",
+                  "packageVersion": "0.18.0",
+                  "submodule": "mocks"
+                }
+              ]
+            },
+            "docs": {
+              "summary": "Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type."
+            },
+            "usage": "public ContractCaseCoreBehaviour getRead();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreSetup.property.write",
+            "displayName": "write",
+            "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreSetup.property.write",
+            "type": {
+              "formattingPattern": "%",
+              "types": [
+                {
+                  "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
+                  "displayName": "ContractCaseCoreBehaviour",
+                  "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
+                  "packageName": "@contract-case/case-definition-dsl",
+                  "packageVersion": "0.18.0",
+                  "submodule": "mocks"
+                }
+              ]
+            },
+            "docs": {
+              "summary": "Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type."
+            },
+            "usage": "public ContractCaseCoreBehaviour getWrite();"
+          }
+        ],
+        "docs": {},
+        "usage": "import io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreSetup;\n\nContractCaseCoreSetup.builder()\n    .read(ContractCaseCoreBehaviour)\n    .write(ContractCaseCoreBehaviour)\n    .build();"
+      },
+      {
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample",
+        "displayName": "FunctionExecutionExample",
+        "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExample",
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample.property.arguments",
+            "displayName": "arguments",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExample.property.arguments",
+            "type": {
+              "formattingPattern": "java.util.List<%>",
+              "types": [
+                {
+                  "formattingPattern": "java.lang.Object"
+                }
+              ]
+            },
+            "docs": {
+              "summary": "An array of expected function arguments (or test equivalence matchers for those arguments)."
+            },
+            "usage": "public java.util.List<java.lang.Object> getArguments();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample.property.functionName",
+            "displayName": "functionName",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExample.property.functionName",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "The name of the function to be executed.",
+              "remarks": "Doubles as the handle used by\nregisterFunction."
+            },
+            "usage": "public java.lang.String getFunctionName();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample.property.returnValue",
+            "displayName": "returnValue",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExample.property.returnValue",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher for the return value from this function."
+            },
+            "usage": "public java.lang.Object getReturnValue();"
+          }
+        ],
+        "docs": {
+          "summary": "Example descriptor for a function execution."
+        },
+        "usage": "import io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample;\n\nFunctionExecutionExample.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
+      },
+      {
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExampleWithHandle",
+        "displayName": "FunctionExecutionExampleWithHandle",
+        "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExampleWithHandle",
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExampleWithHandle.property.arguments",
+            "displayName": "arguments",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExampleWithHandle.property.arguments",
+            "type": {
+              "formattingPattern": "java.util.List<%>",
+              "types": [
+                {
+                  "formattingPattern": "java.lang.Object"
+                }
+              ]
+            },
+            "docs": {
+              "summary": "An array of expected function arguments (or test equivalence matchers for those arguments)."
+            },
+            "usage": "public java.util.List<java.lang.Object> getArguments();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExampleWithHandle.property.returnValue",
+            "displayName": "returnValue",
+            "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExampleWithHandle.property.returnValue",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher for the return value from this function."
+            },
+            "usage": "public java.lang.Object getReturnValue();"
+          }
+        ],
+        "docs": {
+          "summary": "Example descriptor for a function execution that can be called by ContractCase."
+        },
+        "usage": "import io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExampleWithHandle;\n\nFunctionExecutionExampleWithHandle.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .returnValue(java.lang.Object)\n    .build();"
+      },
+      {
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.http.HttpExample",
+        "displayName": "HttpExample",
+        "id": "@contract-case/case-definition-dsl.mocks.http.HttpExample",
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.HttpExample.property.request",
+            "displayName": "request",
+            "id": "@contract-case/case-definition-dsl.mocks.http.HttpExample.property.request",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher that will match an HTTP request (recommended: the Test Equivalence Matcher `HttpRequest`)."
+            },
+            "usage": "public java.lang.Object getRequest();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.HttpExample.property.response",
+            "displayName": "response",
+            "id": "@contract-case/case-definition-dsl.mocks.http.HttpExample.property.response",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher that will match an HTTP response (recommended: the Test Equivalence Matcher `HttpResponse`)."
+            },
+            "usage": "public java.lang.Object getResponse();"
+          }
+        ],
+        "docs": {},
+        "usage": "import io.contract_testing.contractcase.definitions.mocks.http.HttpExample;\n\nHttpExample.builder()\n    .request(java.lang.Object)\n    .response(java.lang.Object)\n    .build();"
+      },
+      {
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample",
+        "displayName": "HttpRequestExample",
+        "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample",
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.method",
+            "displayName": "method",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.method",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A string or string matcher that matches the method used for this example (eg `\"GET\"` or `\"POST\"`).",
+              "remarks": "Case insensitive. Note that DELETE, GET and HEAD\nrequests should not have bodies - see the HTTP RFCs for details."
+            },
+            "usage": "public java.lang.Object getMethod();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.path",
+            "displayName": "path",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.path",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A string or string matcher that matches the path of this example.",
+              "remarks": "Note that any query parameters must be in the query, not in the path."
+            },
+            "usage": "public java.lang.Object getPath();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.body",
+            "displayName": "body",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.body",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher or json object that describes the body for this response.",
+              "remarks": "If not provided, no body matching is performed."
+            },
+            "usage": "public java.lang.Object getBody();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.headers",
+            "displayName": "headers",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.headers",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A Map of header names and associated test-equivalence matcher values accepted by this example.",
+              "remarks": "If not provided, no header matching is performed"
+            },
+            "usage": "public java.lang.Object getHeaders();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.query",
+            "displayName": "query",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.query",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A test-equivalence matcher for the query.",
+              "remarks": "Usually this is a Map of\ntest-equivalence matchers to match the parsed query string, keyed by\nparameter name. Repeated parameters are collated and put in an\narray in this map."
+            },
+            "usage": "public java.lang.Object getQuery();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.uniqueName",
+            "displayName": "uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.uniqueName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "What unique name, if any, to give to this request."
+            },
+            "usage": "public java.lang.String getUniqueName();"
+          }
+        ],
+        "docs": {},
+        "usage": "import io.contract_testing.contractcase.definitions.matchers.HttpRequestExample;\n\nHttpRequestExample.builder()\n    .method(java.lang.Object)\n    .path(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .query(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
+      },
+      {
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponseExample",
+        "displayName": "HttpResponseExample",
+        "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample",
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponseExample.property.status",
+            "displayName": "status",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.status",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getStatus();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponseExample.property.body",
+            "displayName": "body",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.body",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher or json object that describes the body for this response.",
+              "remarks": "If not provided, no body matching is performed."
+            },
+            "usage": "public java.lang.Object getBody();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponseExample.property.headers",
+            "displayName": "headers",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.headers",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A Map of header names and associated test-equivalence matcher values accepted by this example.",
+              "remarks": "If not provided, no header matching is performed"
+            },
+            "usage": "public java.lang.Object getHeaders();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponseExample.property.uniqueName",
+            "displayName": "uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.uniqueName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "What unique name, if any, to give to this response."
+            },
+            "usage": "public java.lang.String getUniqueName();"
+          }
+        ],
+        "docs": {},
+        "usage": "import io.contract_testing.contractcase.definitions.matchers.HttpResponseExample;\n\nHttpResponseExample.builder()\n    .status(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
+      }
+    ],
+    "interfaces": [],
+    "enums": []
+  }
+}
