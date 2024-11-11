@@ -9,7 +9,7 @@
     "@contract-case/eslint-config-case-maintainer": "0.1.1",
     "example-extractor": "^0.0.4",
     "jsii-docgen": "^10.5.5",
-    "lerna": "^8.1.8"
+    "lerna": "^8.1.9"
   },
   "optionalDependencies": {
     "@nx/nx-darwin-arm64": "19.7.3",
