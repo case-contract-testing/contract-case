@@ -1,0 +1,7 @@
+{
+  "extends": ["@contract-case/case-maintainer"],
+
+  "rules": {
+    "no-console": "off"
+  }
+}

@@ -34,6 +34,7 @@
         "packages/contract-case-cli",
         "packages/contract-case-jest",
         "packages/documentation",
+        "packages/documentation-matchers-generator",
         "packages/dsl-java",
         "packages/eslint-config-case-maintainer",
         ".release-please-config.json",
@@ -43,6 +44,12 @@
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "docs/maintainers/FULL-CHANGELOG.md"
+    },
+    "packages/documentation-matchers-generator": {
+      "component": "@contract-case/documentation-matchers-generator",
+      "changelog-path": "CHANGELOG.md",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true
     },
     "packages/case-entities": {
       "component": "@contract-case/case-entities-internal",

@@ -16,5 +16,6 @@
   "packages/eslint-config-case-maintainer": "0.1.1",
   "packages/case-connector": "0.10.0",
   "packages/case-connector-proto": "0.9.0",
-  "packages/dsl-java": "0.3.0"
+  "packages/dsl-java": "0.3.0",
+  "packages/documentation-matchers-generator": "0.0.1"
 }

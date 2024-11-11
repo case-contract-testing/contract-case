@@ -1,0 +1,64 @@
+{
+  "name": "@contract-case/documentation-matchers-generator",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "description": "Generator for the matcher documentation of ContractCase",
+  "keywords": [
+    "testing",
+    "api",
+    "pact",
+    "broker",
+    "pactflow",
+    "pact-broker",
+    "contracttesting",
+    "contract-testing",
+    "contractcase"
+  ],
+  "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
+  "homepage": "https://case.contract-testing.io",
+  "license": "BSD-3-Clause",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "directories": {
+    "src": "src",
+    "dist": "dist",
+    "bin": "bin"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/case-contract-testing/case.git"
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "lint": "eslint src --ext .ts --config .eslintrc.json",
+    "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
+    "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
+    "format:check": "npm run format:base -- --list-different",
+    "format:fix": "npm run format:base -- --write "
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/TimothyJones"
+  },
+  "bugs": {
+    "url": "https://github.com/case-contract-testing/case/issues"
+  },
+  "devDependencies": {
+    "@contract-case/eslint-config-case-maintainer": "0.1.1",
+    "eslint": "^8.57.1",
+    "prettier": "3.3.3",
+    "rimraf": "^6.0.1",
+    "typescript": "5.5.4"
+  },
+  "dependencies": {
+    "@contract-case/case-definition-dsl": "0.18.0"
+  }
+}

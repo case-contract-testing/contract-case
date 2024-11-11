@@ -1,0 +1,25 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## StateVariable
+
+Matches the content of a variable that comes from a state.
+
+See @link https://case.contract-testing.io/docs/defining-contracts/state-definitions state * definitions
+and @link https://case.contract-testing.io/docs/reference/state-handlers state handlers for
+more details.
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.StateVariable;
+
+new StateVariable(java.lang.String name);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| name | `java.lang.String` | The name of the variable. |
+  </TabItem>
+</Tabs>

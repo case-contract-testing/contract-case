@@ -1,0 +1,21 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## HttpStatusCode
+
+Matches an HTTP status code.
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.HttpStatusCode;
+
+new HttpStatusCode(java.lang.String OR java.util.List<java.lang.String> statusCode);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| statusCode | `java.lang.String OR java.util.List<java.lang.String>` | The http status code to match, expressed as a number or string (eg `200`, `"404"` or `"4XX"`). |
+  </TabItem>
+</Tabs>

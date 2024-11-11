@@ -1,0 +1,21 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## BearerTokenHeaderValue
+
+Matches the value part of a OIDC or OAuth header with the supplied token - useful in conjunction with the StateVariable matcher.
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue;
+
+new BearerTokenHeaderValue(java.lang.Object token);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| token | `java.lang.Object` | A string or string matcher for a Bearer auth token. |
+  </TabItem>
+</Tabs>

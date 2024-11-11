@@ -1,0 +1,27 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## WithExample
+
+Adds an example to the provided matcher.
+
+Useful when you have a complicated
+set of constraints and ContractCase can't figure out what the best example should be.
+
+Note that providing any example will override examples provided further down the tree.
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.WithExample;
+
+new WithExample(java.lang.Object matcher, java.lang.Object example);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| matcher | `java.lang.Object` | Any matcher to add an example to. |
+| example | `java.lang.Object` | The example to use when stripping the matchers. |
+  </TabItem>
+</Tabs>

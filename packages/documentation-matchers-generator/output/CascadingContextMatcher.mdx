@@ -1,0 +1,32 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## CascadingContextMatcher
+
+This is a passthrough matcher that does nothing except call the child matcher with the current actual data.
+
+It's useful for taking advantage of the context cascading available on all
+matchers without needing to write you own matcher. Extend it if you want to
+make a matcher that only changes the context object. If you don't know what
+this means, you don't need to extend this matcher.
+
+Due to limitations with JSii, extending implementations MUST NOT override
+`toJSON`, or MUST return the result of `super.toJSON()` as part of their
+toJSON method.
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher;
+
+new CascadingContextMatcher(java.lang.Object child, java.util.Map<java.lang.String, java.lang.String> contextModifiers, java.util.Map<java.lang.String, java.lang.String> currentRunModifiers);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| child | `java.lang.Object` | The matcher to apply these context changes to. |
+| contextModifiers | `java.util.Map<java.lang.String, java.lang.String>` | a map of properties to add to the context object. |
+| currentRunModifiers | `java.util.Map<java.lang.String, java.lang.String>` | a map of properties to add to the current run object. |
+  </TabItem>
+</Tabs>
