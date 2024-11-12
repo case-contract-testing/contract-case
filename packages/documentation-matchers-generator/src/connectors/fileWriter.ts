@@ -13,8 +13,7 @@ export const makeWriter = (filename: string): Writer => {
     start: 0,
   });
   return {
-    writeLine: (line?: string) =>
-      output.write(`${(line ?? '').replace(/[{}]/g, '')}\n`),
+    writeLine: (line?: string) => output.write(`${line ?? ''}\n`),
     close: () => output.end(),
   };
 };

@@ -30,5 +30,6 @@ export type MatcherDoc = {
   summary: string;
   remarks: string | undefined;
   example: string;
+  module: string;
   parameters: Array<Parameter>;
 };
