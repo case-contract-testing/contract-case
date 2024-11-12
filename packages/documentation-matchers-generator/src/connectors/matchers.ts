@@ -1,5 +1,5 @@
-import java from '@contract-case/case-definition-dsl/docs-json/java.json' assert { type: 'json' };
-import ts from '@contract-case/case-definition-dsl/docs-json/typescript.json' assert { type: 'json' };
+import java from '@contract-case/case-definition-dsl/docs-json/java.json' with { type: 'json' };
+import ts from '@contract-case/case-definition-dsl/docs-json/typescript.json' with { type: 'json' };
 
 import { MatcherDoc, Parameter } from '../domain/types.js';
 
