@@ -1,10 +1,10 @@
 import java from '@contract-case/case-definition-dsl/docs-json/java.json' assert { type: 'json' };
 import * as fs from 'node:fs';
 
-type Format =
+type TypeDisplayFormat =
   | {
       formattingPattern: string;
-      types?: Format[];
+      types?: TypeDisplayFormat[];
     }
   | {
       id: string;
@@ -14,6 +14,46 @@ type Format =
       packageVersion: string;
       submodule: string;
     };
+
+/**
+ * Formats a type from jsii's documentation output format
+ */
+const formatDisplayType = (pattern: TypeDisplayFormat): string => {
+  if ('id' in pattern) {
+    // TODO: Make this a link
+    return `${pattern.submodule}.${pattern.displayName}`;
+  }
+
+  const replacements = (pattern.types ?? []).map(formatDisplayType);
+  return replacements.reduce(
+    (acc, curr) => acc.replace('%', curr),
+    pattern.formattingPattern,
+  );
+};
+
+/** Formats the description of a parameter */
+function formatParameterDescription(
+  docs: { summary?: string; remarks?: string },
+  name: string,
+  displayName: string,
+) {
+  if (!('summary' in docs)) {
+    console.log(
+      `WARN (${name}): Parameter '${displayName}' has no documentation`,
+    );
+    return '';
+  }
+  const definitelyDocs = docs as { summary: string; remarks: string };
+  const summary = definitelyDocs.summary
+    .replace(/^- /, '')
+    .replaceAll('\n', '<br/>');
+  const remarks = definitelyDocs.remarks
+    ? `<br/>${definitelyDocs.remarks.replaceAll('\n', '<br/>')}`
+    : '';
+
+  return `${summary}${remarks}`;
+}
+
 java.apiReference.classes
   .filter((classDoc) => classDoc.id.includes('matcher'))
   .forEach((classDoc) => {
@@ -56,34 +96,13 @@ java.apiReference.classes
       writeLine('#### Parameters <a name="Parameters" id="Parameters"></a>');
       writeLine('| **Name** | **Type** | **Description** |');
       writeLine('| --- | --- | --- |');
-      const formatPattern = (pattern: Format): string => {
-        if ('id' in pattern) {
-          // TODO: Make this a link
-          return `${pattern.submodule}.${pattern.displayName}`;
-        }
-
-        const replacements = (pattern.types ?? []).map(formatPattern);
-        return replacements.reduce(
-          (acc, curr) => acc.replace('%', curr),
-          pattern.formattingPattern,
-        );
-      };
 
       parameters.forEach(({ displayName, type, docs }) => {
-        let line;
-        if (!('summary' in docs)) {
-          console.log(
-            `WARN (${name}): Parameter '${displayName}' has no documentation`,
-          );
-          line = '';
-        } else {
-          const definitelyDocs = docs as { summary: string; remarks: string };
-          line = `${definitelyDocs.summary.replace(/^- /, '').replaceAll('\n', '<br/>')}${definitelyDocs.remarks ? `<br/>${definitelyDocs.remarks.replaceAll('\n', '<br/>')}` : ''}`;
-        }
-        writeLine(`| ${displayName} | \`${formatPattern(type)}\` | ${line} |`);
+        writeLine(
+          `| ${displayName} | \`${formatDisplayType(type)}\` | ${formatParameterDescription(docs, name, displayName)} |`,
+        );
       });
     }
-    //    | <code><a href="#@contract-case/case-definition-dsl.matchers.ArrayLengthOptions.property.minLength">minLength</a></code> | <code>java.lang.Number</code> | The minimum length for the array - must be greater than zero, otherwise empty arrays pass and you wouldn't be testing the array contents | . |
 
     writeLine('  </TabItem>');
     writeLine('</Tabs>');
