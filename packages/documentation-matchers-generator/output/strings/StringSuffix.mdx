@@ -11,6 +11,19 @@ The prefix matcher must be expecting a string.
 See also [StringPrefix](../strings/StringPrefix)
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.strings.StringSuffix(prefix: any, suffix: string)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| prefix | `any` | A string or matcher to match against the prefix.<br/>If you don't mind what the prefix is, pass null / undefined |
+| suffix | `string` | The suffix for the matched string.<br/>Must be a string and not a matcher |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.strings.StringSuffix;

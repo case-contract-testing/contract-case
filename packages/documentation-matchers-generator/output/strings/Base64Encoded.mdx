@@ -7,6 +7,18 @@ WARNING: Since many strings are accidentally decodable as base64, this matcher i
 best combined with a more restrictive string matcher (eg `StringifiedJson`).
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.strings.Base64Encoded(child: any)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| child | `any` | The string or string matcher that would match the decoded string. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.strings.Base64Encoded;

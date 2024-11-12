@@ -4,6 +4,18 @@ import TabItem from '@theme/TabItem';
 Matches an Array which contains elements that match the given matchers - note that two different matchers may be satisfied by the same item in the array.
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.arrays.ArrayContains(matchers: any[])
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| matchers | `any[]` | any number of matchers, each of which must be found inside the array. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayContains;

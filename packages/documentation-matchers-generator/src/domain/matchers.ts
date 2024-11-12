@@ -44,31 +44,23 @@ export const printMatchers = (
   matchers: Array<MatcherDoc>,
   makeWriter: (filename: string) => Writer,
 ): void => {
-  matchers.forEach(
-    ({ summary, remarks, example, parameters, name, module }) => {
-      const filename = `./output/${module}/${name}.mdx`;
+  matchers.forEach(({ summary, remarks, languages, className, module }) => {
+    const filename = `./output/${module}/${className}.mdx`;
 
-      const writer = makeWriter(filename);
+    const writer = makeWriter(filename);
 
-      writer.writeLine("import Tabs from '@theme/Tabs';");
-      writer.writeLine("import TabItem from '@theme/TabItem';");
+    writer.writeLine("import Tabs from '@theme/Tabs';");
+    writer.writeLine("import TabItem from '@theme/TabItem';");
+    writer.writeLine();
+    writer.writeLine(replaceTsDocLinks(summary));
+    if (remarks) {
       writer.writeLine();
-      writer.writeLine(replaceTsDocLinks(summary));
-      if (remarks) {
-        writer.writeLine();
-        writer.writeLine(`${replaceTsDocLinks(remarks)}`);
-      }
-      writer.writeLine();
-      writer.writeLine('<Tabs groupId="language">');
-      renderLanguage(writer, {
-        languageName: 'java',
-        languageDisplayName: 'Java',
-        example,
-        parameters,
-        className: name,
-      });
-      writer.writeLine('</Tabs>');
-      writer.close();
-    },
-  );
+      writer.writeLine(`${replaceTsDocLinks(remarks)}`);
+    }
+    writer.writeLine();
+    writer.writeLine('<Tabs groupId="language">');
+    languages.forEach((language) => renderLanguage(writer, language));
+    writer.writeLine('</Tabs>');
+    writer.close();
+  });
 };

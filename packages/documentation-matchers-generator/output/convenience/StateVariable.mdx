@@ -8,6 +8,18 @@ and [state handlers](https://case.contract-testing.io/docs/reference/state-handl
 more details.
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.convenience.StateVariable(name: string)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| name | `string` | The name of the variable. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable;

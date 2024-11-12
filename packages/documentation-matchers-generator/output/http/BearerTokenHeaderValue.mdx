@@ -4,6 +4,18 @@ import TabItem from '@theme/TabItem';
 Matches the value part of a OIDC or OAuth header with the supplied token - useful in conjunction with the StateVariable matcher.
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.http.BearerTokenHeaderValue(token: any)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| token | `any` | A string or string matcher for a Bearer auth token. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.http.BearerTokenHeaderValue;

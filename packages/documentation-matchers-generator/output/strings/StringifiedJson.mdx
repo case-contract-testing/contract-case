@@ -5,27 +5,39 @@ Transformation matcher that matches a JSON.stringify()ed version of the given ob
 
 For example, if the actual data is the string:
 
-```java
-"{\"foo\":2}";
+```ts
+"{\"foo\":2}"
 ```
 
 then you could match it with:
 
-```java
-// Example automatically generated from non-compiling source. May contain errors.
-StringifiedJson(Map.of(
-        "foo", 2));
+```ts
+StringifiedJson({
+  "foo": 2
+})
 ```
 
 or
 
-```java
-// Example automatically generated from non-compiling source. May contain errors.
-StringifiedJson(Map.of(
-        "foo", AnyNumber(2)));
+```ts
+StringifiedJson({
+  "foo": AnyNumber(2)
+})
 ```
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.strings.StringifiedJson(child: any)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| child | `any` | The object or matcher that matches the decoded. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.strings.StringifiedJson;

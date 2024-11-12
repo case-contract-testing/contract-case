@@ -7,6 +7,18 @@ Use this to switch
 out of `shapedLike` and back to the default exact matching.
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.modifiers.ExactlyLike(content: any)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| content | `any` | The object, array, primitive or matcher to match exactly. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.modifiers.ExactlyLike;

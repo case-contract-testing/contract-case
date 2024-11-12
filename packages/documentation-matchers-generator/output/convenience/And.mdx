@@ -6,6 +6,18 @@ Matches all of the provided matchers. Useful for combining restrictions provided
 For best results, wrap the And matcher in a WithExample matcher.
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.convenience.And(matchers: any[])
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| matchers | `any[]` | An array of the matchers to run against this particular spot in the tree. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.convenience.And;

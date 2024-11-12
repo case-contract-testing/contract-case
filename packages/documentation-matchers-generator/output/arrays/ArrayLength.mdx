@@ -4,6 +4,18 @@ import TabItem from '@theme/TabItem';
 Matches an Array whose length is within the specified range (or 1-infinity if not specified).
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.arrays.ArrayLength(options: ArrayLengthOptions)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| options | `matchers.ArrayLengthOptions` | An `ArrayLengthOptions` object with optional minLength (default 1) and maxLength (default infinity) properties. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLength;

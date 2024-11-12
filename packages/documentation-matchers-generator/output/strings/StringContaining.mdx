@@ -4,6 +4,19 @@ import TabItem from '@theme/TabItem';
 Matches any string that contains the given substring.
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.strings.StringContaining(substring: string, example: string)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| substring | `string` | The substring that the matcher must contain. |
+| example | `string` | An example string that passes this matcher. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.strings.StringContaining;

@@ -4,6 +4,19 @@ import TabItem from '@theme/TabItem';
 Matches the value part of a basic auth header with the supplied username and password - useful in conjunction with the StateVariable matcher.
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.http.BasicAuthHeaderValue(username: any, password: any)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| username | `any` | The username for this basic auth header. |
+| password | `any` | The password for this basic auth password. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.http.BasicAuthHeaderValue;

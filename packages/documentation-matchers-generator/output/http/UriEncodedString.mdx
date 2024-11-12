@@ -6,6 +6,18 @@ Convenience matcher to treat the string as a uri encoded string - useful in `pat
 During matching, the actual value is decoded with `decodeUriComponent()` and passed to the child matcher.
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.http.UriEncodedString(child: any)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| child | `any` | Any string matcher or literal string. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.http.UriEncodedString;

@@ -6,6 +6,19 @@ Saves the matcher below it with a unique name that can be used with lookups in t
 Lookups can be made with [matchers.convenience.ReferenceMatch](../convenience/ReferenceMatch).
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.convenience.NamedMatch(name: string, child: any)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| name | `string` | The name you can use to lookup this matcher later. |
+| child | `any` | The content of this named match.<br/>If omitted or undefined, the content will be looked up in a previously named match |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;

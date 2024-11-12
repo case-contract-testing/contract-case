@@ -7,6 +7,19 @@ This example must still pass the
 provided matcher
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.arrays.ArrayEachEntryMatchesWithExample(matcher: any, example: any[])
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| matcher | `any` | The matcher for each entry in the array. |
+| example | `any[]` | An optional example of the whole array to return. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatchesWithExample;

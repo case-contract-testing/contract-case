@@ -4,6 +4,13 @@ import TabItem from '@theme/TabItem';
 Matches `null` (useful for languages like Java where `body: null` means no body, but you want to match a eg a json document that has the body `"null"`).
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.primitives.AnyNull()
+```
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;

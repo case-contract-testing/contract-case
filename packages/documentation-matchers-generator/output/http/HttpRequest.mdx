@@ -4,6 +4,18 @@ import TabItem from '@theme/TabItem';
 Matches any HTTP Request with the provided properties.
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.http.HttpRequest(requestExample: HttpRequestExample)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| requestExample | `matchers.HttpRequestExample` | An HttpResponseExample that describes the response. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.http.HttpRequest;

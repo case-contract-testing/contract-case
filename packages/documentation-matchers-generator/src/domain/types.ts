@@ -26,12 +26,11 @@ export type Parameter = {
 };
 
 export type MatcherDoc = {
-  name: string;
+  className: string;
   summary: string;
   remarks: string | undefined;
-  example: string;
   module: string;
-  parameters: Array<Parameter>;
+  languages: Array<LanguageDetails>;
 };
 
 export type LanguageDetails = {

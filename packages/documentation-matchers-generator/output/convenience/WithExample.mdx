@@ -9,6 +9,19 @@ set of constraints and ContractCase can't figure out what the best example shoul
 Note that providing any example will override examples provided further down the tree.
 
 <Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.convenience.WithExample(matcher: any, example: any)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| matcher | `any` | Any matcher to add an example to. |
+| example | `any` | The example to use when stripping the matchers. |
+  </TabItem>
   <TabItem value="java" label="Java">
 ```java
 import io.contract_testing.contractcase.definitions.matchers.convenience.WithExample;
