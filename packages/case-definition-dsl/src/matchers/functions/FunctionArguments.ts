@@ -3,7 +3,9 @@ import { AnyMatcherOrData } from '../../types';
 import { AnyMatcher } from '../base';
 
 /**
- * Matches function arguments, for use with a FunctionExecutionMock
+ * Matches function arguments, for use with a MockFunctionCall / MockFunctionExecution.
+ *
+ * Usually you don't need to use this matcher directly, the mock creates it for you.
  *
  * @public
  */
@@ -12,7 +14,7 @@ export class FunctionArguments extends AnyMatcher {
 
   /**
    * Matches function arguments, for use with a FunctionExecutionMock
-   * @param expectedArguments - an array where each entry will be matched against that implementation
+   * @param expectedArguments - an array where each entry will be matched against the arguments
    */
   constructor(expectedArguments: AnyMatcherOrData[]) {
     super(FUNCTION_ARGUMENTS_MATCHER_TYPE);

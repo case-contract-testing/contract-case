@@ -1,6 +1,7 @@
 export * from './arrays';
 export * from './base';
 export * from './convenience';
+export * from './functions';
 export * from './http';
 export * from './modifiers';
 export * from './objects';
