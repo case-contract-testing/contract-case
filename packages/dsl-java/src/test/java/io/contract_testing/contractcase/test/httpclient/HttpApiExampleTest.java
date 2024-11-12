@@ -101,10 +101,10 @@ public class HttpApiExampleTest {
             List.of(new InState("Server is down")),
             new WillSendHttpRequest(HttpExample.builder()
                 .request(new ReferenceMatch("Get health"))
-                .response(new HttpResponse(HttpResponseExample.builder()
+                .response(HttpResponse.Builder.create()
                     .status(200)
                     .body(Map.ofEntries(Map.entry("status", "down")))
-                    .build()))
+                    .build())
                 .build())
         ),
         IndividualSuccessTestConfigBuilder.<String>builder()
