@@ -45,11 +45,11 @@ export const formatDisplayType = (pattern: TypeDisplayFormat): string => {
 export const formatParameterDescription = (
   docs: { summary?: string; remarks?: string },
   name: string,
-  displayName: string,
+  parameterName: string,
 ): string => {
   if (!('summary' in docs) || !docs.summary) {
     console.log(
-      `WARN (${name}): Parameter '${displayName}' has no documentation`,
+      `WARN (${name}): Parameter '${parameterName}' has no documentation`,
     );
     return '';
   }

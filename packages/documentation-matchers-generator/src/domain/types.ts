@@ -33,3 +33,11 @@ export type MatcherDoc = {
   module: string;
   parameters: Array<Parameter>;
 };
+
+export type LanguageDetails = {
+  languageName: string;
+  languageDisplayName: string;
+  example: string;
+  parameters: Parameter[];
+  className: string;
+};
