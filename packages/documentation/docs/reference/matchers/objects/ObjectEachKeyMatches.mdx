@@ -1,0 +1,31 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Matches an object where each key matches the provided matcher.
+
+<Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.objects.ObjectEachKeyMatches(matcher: any)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| matcher | `any` | The matcher that all keys must pass. |
+  </TabItem>
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachKeyMatches;
+
+new ObjectEachKeyMatches(java.lang.Object matcher);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| matcher | `java.lang.Object` | The matcher that all keys must pass. |
+  </TabItem>
+</Tabs>

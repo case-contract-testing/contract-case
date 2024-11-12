@@ -1,0 +1,43 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Matches any HTTP Request with the provided properties.
+
+<Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.http.HttpRequest(requestExample: HttpRequestExample)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| requestExample | `matchers.HttpRequestExample` | An HttpResponseExample that describes the response. |
+  </TabItem>
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.http.HttpRequest;
+
+HttpRequest.Builder.create()
+    .method(java.lang.Object)
+    .path(java.lang.Object)
+//  .body(java.lang.Object)
+//  .headers(java.lang.Object)
+//  .query(java.lang.Object)
+//  .uniqueName(java.lang.String)
+    .build();
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| method | `java.lang.Object` | A string or string matcher that matches the method used for this example (eg `"GET"` or `"POST"`).<br/>Case insensitive. Note that DELETE, GET and HEAD<br/>requests should not have bodies - see the HTTP RFCs for details. |
+| path | `java.lang.Object` | A string or string matcher that matches the path of this example.<br/>Note that any query parameters must be in the query, not in the path. |
+| body | `java.lang.Object` | A test equivalence matcher or json object that describes the body for this response.<br/>If not provided, no body matching is performed. |
+| headers | `java.lang.Object` | A Map of header names and associated test-equivalence matcher values accepted by this example.<br/>If not provided, no header matching is performed |
+| query | `java.lang.Object` | A test-equivalence matcher for the query.<br/>Usually this is a Map of<br/>test-equivalence matchers to match the parsed query string, keyed by<br/>parameter name. Repeated parameters are collated and put in an<br/>array in this map. |
+| uniqueName | `java.lang.String` | What unique name, if any, to give to this request. |
+  </TabItem>
+</Tabs>

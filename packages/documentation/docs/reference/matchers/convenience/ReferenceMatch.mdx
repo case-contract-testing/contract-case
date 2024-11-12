@@ -1,0 +1,31 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Matches a named matcher created with [matchers.convenience.NamedMatch](../convenience/NamedMatch).
+
+<Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.convenience.ReferenceMatch(name: string)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| name | `string` | The name you gave to a previous call of `NamedMatch`. |
+  </TabItem>
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.convenience.ReferenceMatch;
+
+new ReferenceMatch(java.lang.String name);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| name | `java.lang.String` | The name you gave to a previous call of `NamedMatch`. |
+  </TabItem>
+</Tabs>

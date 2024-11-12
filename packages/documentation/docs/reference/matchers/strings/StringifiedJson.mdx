@@ -1,0 +1,53 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Transformation matcher that matches a JSON.stringify()ed version of the given object.
+
+For example, if the actual data is the string:
+
+```ts
+"{\"foo\":2}"
+```
+
+then you could match it with:
+
+```ts
+StringifiedJson({
+  "foo": 2
+})
+```
+
+or
+
+```ts
+StringifiedJson({
+  "foo": AnyNumber(2)
+})
+```
+
+<Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.strings.StringifiedJson(child: any)
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| child | `any` | The object or matcher that matches the decoded. |
+  </TabItem>
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.strings.StringifiedJson;
+
+new StringifiedJson(java.lang.Object child);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| child | `java.lang.Object` | The object or matcher that matches the decoded. |
+  </TabItem>
+</Tabs>

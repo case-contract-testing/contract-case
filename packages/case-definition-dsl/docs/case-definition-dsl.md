@@ -14,7 +14,7 @@ Use the state descriptions to describe the provider states (if any) that those t
 
 Use the Test Equivalence Matchers to generalise your tests, avoiding the need to depend on specific data during verification. It's not about defining the whole type system, the idea is that you are saying "any message that matches this Test Equivalence Matcher is considered covered by this test".
 
-For more information, see [advice on relaxing tests](https://case.contract-testing.io/docs/defining-contracts/relaxing-tests) or [the full documentation](https://case.contracttesting.io)
+For more information, see [advice on relaxing tests](https://case.contract-testing.io/docs/defining-contracts/relaxing-tests) or [the full documentation](https://case.contract-testing.io)
 
 ## Namespaces
 

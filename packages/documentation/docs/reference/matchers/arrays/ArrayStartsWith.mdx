@@ -1,0 +1,31 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored.
+
+<Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.arrays.ArrayStartsWith(matchers: any[])
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| matchers | `any[]` |  An array of matchers that describes the start of the array.<br/>Additional elements in the actual array are ignored. |
+  </TabItem>
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayStartsWith;
+
+new ArrayStartsWith(java.util.List<java.lang.Object> matchers);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| matchers | `java.util.List<java.lang.Object>` |  An array of matchers that describes the start of the array.<br/>Additional elements in the actual array are ignored. |
+  </TabItem>
+</Tabs>

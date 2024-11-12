@@ -1,0 +1,31 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Matches an HTTP status code.
+
+<Tabs groupId="language">
+  <TabItem value="typescript" label="Typescript">
+```typescript
+import { matchers } from '@contract-case/case-definition-dsl'
+
+new matchers.http.HttpStatusCode(statusCode: string | string[])
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| statusCode | `string | string[]` | The http status code to match, expressed as a number or string (eg `200`, `"404"` or `"4XX"`). |
+  </TabItem>
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.http.HttpStatusCode;
+
+new HttpStatusCode(java.lang.String OR java.util.List<java.lang.String> statusCode);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| statusCode | `java.lang.String OR java.util.List<java.lang.String>` | The http status code to match, expressed as a number or string (eg `200`, `"404"` or `"4XX"`). |
+  </TabItem>
+</Tabs>
