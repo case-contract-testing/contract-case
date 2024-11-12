@@ -6,7 +6,7 @@ import { AnyMatcherOrData } from '../../types';
  * @public
  */
 export interface HttpResponseExample {
-  /* Any test-equivalence matcher or string or number for the HTTP status code accepted by this example (Recommended: `HttpStatusCode`) */
+  /** Any test-equivalence matcher, string, or number for the HTTP status code accepted by this example (Recommended: Use the `HttpStatusCode` matcher) */
   readonly status: AnyMatcherOrData;
 
   /** What unique name, if any, to give to this response */

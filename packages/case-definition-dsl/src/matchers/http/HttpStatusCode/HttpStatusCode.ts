@@ -32,7 +32,7 @@ export class HttpStatusCode extends AnyMatcherWithExample {
    * {@link https://case.contract-testing.io/docs/faq#how-do-i-tell-contractcase-that-a-field-is-optional | the section on optional values in the documentation}
    * for more details.
    *
-   *  @param statusCode - The http status code to match, expressed as a number or string (eg `200`, `"404"` or `"4XX"`).
+   * @param statusCode - The http status code to match, expressed as a number or string (eg `200`, `"404"` or `"4XX"`).
    *
    */
   constructor(statusCode: string | string[]) {

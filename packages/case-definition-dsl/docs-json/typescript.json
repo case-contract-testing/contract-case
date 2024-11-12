@@ -206,7 +206,9 @@
                 "formattingPattern": "string"
               },
               "variadic": false,
-              "docs": {}
+              "docs": {
+                "summary": "- The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case Extending ContractCase} for a description of these strings)."
+              }
             },
             {
               "fqn": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer.parameter.example",
@@ -216,7 +218,9 @@
                 "formattingPattern": "any"
               },
               "variadic": false,
-              "docs": {}
+              "docs": {
+                "summary": "- The data that will be used as the example for this matcher."
+              }
             }
           ],
           "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.AnyMatcherWithExample(matcherType: string, example: any)"
@@ -1126,6 +1130,72 @@
         "docs": {
           "summary": "Everything inside this matcher will be matched exactly, unless overridden with a generic matcher (eg `AnyString` or` ShapedLike`).",
           "remarks": "Use this to switch\nout of `shapedLike` and back to the default exact matching."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "@contract-case/case-definition-dsl.matchers.FunctionArguments.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.Initializer",
+          "parameters": [
+            {
+              "fqn": "@contract-case/case-definition-dsl.matchers.FunctionArguments.Initializer.parameter.expectedArguments",
+              "displayName": "expectedArguments",
+              "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.Initializer.parameter.expectedArguments",
+              "type": {
+                "formattingPattern": "%[]",
+                "types": [
+                  {
+                    "formattingPattern": "any"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- an array where each entry will be matched against the arguments."
+              }
+            }
+          ],
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.FunctionArguments(expectedArguments: any[])"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "@contract-case/case-definition-dsl.matchers.FunctionArguments.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
+            },
+            "usage": "public toJSON(): any"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "@contract-case/case-definition-dsl.matchers.FunctionArguments.property.arguments",
+            "displayName": "arguments",
+            "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.property.arguments",
+            "type": {
+              "formattingPattern": "%[]",
+              "types": [
+                {
+                  "formattingPattern": "any"
+                }
+              ]
+            },
+            "docs": {},
+            "usage": "public readonly arguments: any[];"
+          }
+        ],
+        "fqn": "@contract-case/case-definition-dsl.matchers.FunctionArguments",
+        "displayName": "FunctionArguments",
+        "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments",
+        "docs": {
+          "summary": "Matches function arguments, for use with a MockFunctionCall / MockFunctionExecution.",
+          "remarks": "Usually you don't need to use this matcher directly, the mock creates it for you."
         }
       },
       {
@@ -2917,7 +2987,9 @@
             "type": {
               "formattingPattern": "any"
             },
-            "docs": {},
+            "docs": {
+              "summary": "Any test-equivalence matcher, string, or number for the HTTP status code accepted by this example (Recommended: Use the `HttpStatusCode` matcher)."
+            },
             "usage": "public readonly status: any;"
           },
           {
