@@ -15,6 +15,8 @@ import { WritingCaseContract } from './core';
 import { writerDependencies } from './connectors/dependencies';
 import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
 
+const PORT = 8084;
+
 const expectErrorContaining = async (
   context: Promise<unknown>,
   expectedContent: string,
@@ -83,7 +85,7 @@ describe('simple get endpoint', () => {
     } = {
       mockConfig: {
         http: {
-          baseUrlUnderTest: `http://localhost:8282`,
+          baseUrlUnderTest: `http://localhost:${PORT}`,
         },
       },
       contractMode: 'read',
@@ -110,7 +112,7 @@ describe('simple get endpoint', () => {
     describe('with a running server', () => {
       let server: http.Server;
       beforeAll(async () => {
-        server = await start();
+        server = await start(PORT);
       });
       afterAll(() => {
         const closePromise = new Promise<void>((resolve) => {

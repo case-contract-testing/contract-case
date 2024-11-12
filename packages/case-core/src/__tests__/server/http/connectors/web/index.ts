@@ -8,7 +8,7 @@ import type { Dependencies } from '../../domain/types';
 import { userRepo } from '../users/defaultUserRepository';
 
 const app = express();
-const PORT = 8282; // default port to listen
+const PORT = 8289; // default port to listen
 
 const defaultDependencies: Dependencies = {
   baseService,
