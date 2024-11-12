@@ -37,7 +37,8 @@
     "url": "git+ssh://git@github.com/case-contract-testing/case.git"
   },
   "scripts": {
-    "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "build": "rimraf {dist,output} && tsc --project tsconfig.build.json && npm run build:docs",
+    "build:docs": "node dist/src/index.js",
     "lint": "eslint src --ext .ts --config .eslintrc.json",
     "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
@@ -59,6 +60,7 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "@contract-case/case-definition-dsl": "0.18.0"
+    "@contract-case/case-definition-dsl": "0.18.0",
+    "mkdirp": "^3.0.1"
   }
 }
