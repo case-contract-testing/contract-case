@@ -77,6 +77,8 @@ AnyMatcherOrData
 
 </td><td>
 
+Any test-equivalence matcher, string, or number for the HTTP status code accepted by this example (Recommended: Use the `HttpStatusCode` matcher)
+
 </td></tr>
 <tr><td>
 

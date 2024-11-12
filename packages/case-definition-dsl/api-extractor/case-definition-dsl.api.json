@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.47.9",
+    "toolVersion": "7.47.11",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -923,7 +923,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!matchers.base.AnyMatcherWithExample:constructor(1)",
-                      "docComment": "/**\n * Constructs a new instance of the `AnyMatcherWithExample` class\n */\n",
+                      "docComment": "/**\n * The base class for all Test Equivalence Matchers that have examples provided. Extend this if your matcher knows what the example will be. Otherwise, use `matchers.AnyMatcher`\n *\n * Only use a type prefixed with `_case:` if you wish to create a special case for a matching behaviour that is already provided by a core ContractCase matcher.\n *\n * @param matcherType - The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case | Extending ContractCase} for a description of these strings).\n *\n * @param example - The data that will be used as the example for this matcher\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -1748,6 +1748,153 @@
                     {
                       "kind": "Method",
                       "canonicalReference": "@contract-case/case-definition-dsl!matchers.convenience.WithExample#toJSON:member(1)",
+                      "docComment": "/**\n * For non-TypeScript implementations (see `AnyMatcher.toJSON`)\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "toJSON(): "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "unknown"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isStatic": false,
+                      "returnTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [],
+                      "isOptional": false,
+                      "isAbstract": false,
+                      "name": "toJSON"
+                    }
+                  ],
+                  "extendsTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "implementsTokenRanges": []
+                }
+              ]
+            },
+            {
+              "kind": "Namespace",
+              "canonicalReference": "@contract-case/case-definition-dsl!matchers.functions:namespace",
+              "docComment": "",
+              "excerptTokens": [],
+              "fileUrlPath": "src/matchers/index-api-extractor.ts",
+              "releaseTag": "None",
+              "name": "functions",
+              "preserveMemberOrder": false,
+              "members": [
+                {
+                  "kind": "Class",
+                  "canonicalReference": "@contract-case/case-definition-dsl!matchers.functions.FunctionArguments:class",
+                  "docComment": "/**\n * Matches function arguments, for use with a MockFunctionCall / MockFunctionExecution.\n *\n * Usually you don't need to use this matcher directly, the mock creates it for you.\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export declare class FunctionArguments extends "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "AnyMatcher",
+                      "canonicalReference": "@contract-case/case-definition-dsl!matchers.base_2.AnyMatcher:class"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": " "
+                    }
+                  ],
+                  "fileUrlPath": "src/matchers/functions/FunctionArguments.ts",
+                  "releaseTag": "Public",
+                  "isAbstract": false,
+                  "name": "FunctionArguments",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "Constructor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!matchers.functions.FunctionArguments:constructor(1)",
+                      "docComment": "/**\n * Matches function arguments, for use with a FunctionExecutionMock\n *\n * @param expectedArguments - an array where each entry will be matched against the arguments\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "constructor(expectedArguments: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "[]"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ");"
+                        }
+                      ],
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [
+                        {
+                          "parameterName": "expectedArguments",
+                          "parameterTypeTokenRange": {
+                            "startIndex": 1,
+                            "endIndex": 3
+                          },
+                          "isOptional": false
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!matchers.functions.FunctionArguments#arguments:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "arguments: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "[]"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": false,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "arguments",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 3
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    },
+                    {
+                      "kind": "Method",
+                      "canonicalReference": "@contract-case/case-definition-dsl!matchers.functions.FunctionArguments#toJSON:member(1)",
                       "docComment": "/**\n * For non-TypeScript implementations (see `AnyMatcher.toJSON`)\n */\n",
                       "excerptTokens": [
                         {
@@ -2763,7 +2910,7 @@
                     {
                       "kind": "PropertySignature",
                       "canonicalReference": "@contract-case/case-definition-dsl!matchers.http.HttpResponseExample#status:member",
-                      "docComment": "",
+                      "docComment": "/**\n * Any test-equivalence matcher, string, or number for the HTTP status code accepted by this example (Recommended: Use the `HttpStatusCode` matcher)\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",

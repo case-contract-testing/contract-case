@@ -10,14 +10,14 @@
     "classes": [
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.And.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.convenience.And.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.And.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.And.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.And.Initializer.parameter.matchers",
+              "fqn": "@contract-case/case-definition-dsl.matchers.convenience.And.Initializer.parameter.matchers",
               "displayName": "matchers",
-              "id": "@contract-case/case-definition-dsl.matchers.And.Initializer.parameter.matchers",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.And.Initializer.parameter.matchers",
               "type": {
                 "formattingPattern": "%[]",
                 "types": [
@@ -32,14 +32,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.And(matchers: any[])"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.convenience.And(matchers: any[])"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.And.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.convenience.And.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.And.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.And.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -50,9 +50,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.And",
+        "fqn": "@contract-case/case-definition-dsl.matchers.convenience.And",
         "displayName": "And",
-        "id": "@contract-case/case-definition-dsl.matchers.And",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.And",
         "docs": {
           "summary": "Matches all of the provided matchers. Useful for combining restrictions provided by different matchers, or creating new matchers without needing plugins.",
           "remarks": "For best results, wrap the And matcher in a WithExample matcher."
@@ -60,14 +60,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.AnyBoolean.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.AnyBoolean.Initializer.parameter.example",
+              "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "boolean"
               },
@@ -77,14 +77,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.AnyBoolean(example: boolean)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.primitives.AnyBoolean(example: boolean)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.AnyBoolean.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -95,23 +95,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.AnyBoolean",
+        "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean",
         "displayName": "AnyBoolean",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean",
+        "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean",
         "docs": {
           "summary": "Matches any Boolean."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.AnyInteger.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyInteger.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.AnyInteger.Initializer.parameter.example",
+              "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyInteger.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "number"
               },
@@ -121,14 +121,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.AnyInteger(example: number)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.primitives.AnyInteger(example: number)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.AnyInteger.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyInteger.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -139,23 +139,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.AnyInteger",
+        "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger",
         "displayName": "AnyInteger",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyInteger",
+        "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger",
         "docs": {
           "summary": "Matches any whole integer number."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.AnyMatcher.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.AnyMatcher.Initializer.parameter.matcherType",
+              "fqn": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher.Initializer.parameter.matcherType",
               "displayName": "matcherType",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher.Initializer.parameter.matcherType",
+              "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher.Initializer.parameter.matcherType",
               "type": {
                 "formattingPattern": "string"
               },
@@ -165,14 +165,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.AnyMatcher(matcherType: string)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.base.AnyMatcher(matcherType: string)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.AnyMatcher.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher.toJSON",
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
@@ -184,9 +184,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.AnyMatcher",
+        "fqn": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher",
         "displayName": "AnyMatcher",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher",
+        "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher",
         "docs": {
           "summary": "The base class for all Test Equivalence Matchers.",
           "remarks": "Extend this if you don't\nhave an example in your Matcher. Otherwise, use `AnyMatcherWithExample`"
@@ -194,14 +194,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer.parameter.matcherType",
+              "fqn": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.Initializer.parameter.matcherType",
               "displayName": "matcherType",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer.parameter.matcherType",
+              "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.Initializer.parameter.matcherType",
               "type": {
                 "formattingPattern": "string"
               },
@@ -211,9 +211,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer.parameter.example",
+              "fqn": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "any"
               },
@@ -223,14 +223,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.AnyMatcherWithExample(matcherType: string, example: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.base.AnyMatcherWithExample(matcherType: string, example: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -241,9 +241,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample",
+        "fqn": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample",
         "displayName": "AnyMatcherWithExample",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample",
+        "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample",
         "docs": {
           "summary": "The base class for all Test Equivalence Matchers that have examples provided.",
           "remarks": "Extend this if your matcher knows what the example will be. Otherwise, use `matchers.AnyMatcher`"
@@ -328,18 +328,18 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.AnyNull.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyNull.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyNull.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNull.Initializer",
           "parameters": [],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.AnyNull()"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.primitives.AnyNull()"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.AnyNull.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyNull.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyNull.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNull.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -350,23 +350,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.AnyNull",
+        "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyNull",
         "displayName": "AnyNull",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyNull",
+        "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNull",
         "docs": {
           "summary": "Matches `null` (useful for languages like Java where `body: null` means no body, but you want to match a eg a json document that has the body `\"null\"`)."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.AnyNumber.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyNumber.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.AnyNumber.Initializer.parameter.example",
+              "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyNumber.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "number"
               },
@@ -376,14 +376,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.AnyNumber(example: number)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.primitives.AnyNumber(example: number)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.AnyNumber.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyNumber.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -394,9 +394,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.AnyNumber",
+        "fqn": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber",
         "displayName": "AnyNumber",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyNumber",
+        "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber",
         "docs": {
           "summary": "Matches a number following [RFC 8259 JSON](https://www.rfc-editor.org/rfc/rfc8259)."
         }
@@ -484,14 +484,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.AnyString.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.strings.AnyString.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyString.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.AnyString.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.AnyString.Initializer.parameter.example",
+              "fqn": "@contract-case/case-definition-dsl.matchers.strings.AnyString.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyString.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.AnyString.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "string"
               },
@@ -501,14 +501,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.AnyString(example: string)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.strings.AnyString(example: string)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.AnyString.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.strings.AnyString.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyString.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.AnyString.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -519,23 +519,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.AnyString",
+        "fqn": "@contract-case/case-definition-dsl.matchers.strings.AnyString",
         "displayName": "AnyString",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyString",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.AnyString",
         "docs": {
           "summary": "Matches any string."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ArrayContains.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ArrayContains.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ArrayContains.Initializer.parameter.matchers",
+              "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains.Initializer.parameter.matchers",
               "displayName": "matchers",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayContains.Initializer.parameter.matchers",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains.Initializer.parameter.matchers",
               "type": {
                 "formattingPattern": "%[]",
                 "types": [
@@ -550,14 +550,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ArrayContains(matchers: any[])"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.arrays.ArrayContains(matchers: any[])"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ArrayContains.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayContains.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -568,23 +568,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ArrayContains",
+        "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains",
         "displayName": "ArrayContains",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayContains",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains",
         "docs": {
           "summary": "Matches an Array which contains elements that match the given matchers - note that two different matchers may be satisfied by the same item in the array."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.Initializer.parameter.matcher",
+              "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches.Initializer.parameter.matcher",
               "displayName": "matcher",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.Initializer.parameter.matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches.Initializer.parameter.matcher",
               "type": {
                 "formattingPattern": "any"
               },
@@ -594,14 +594,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ArrayEachEntryMatches(matcher: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.arrays.ArrayEachEntryMatches(matcher: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -612,23 +612,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches",
+        "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches",
         "displayName": "ArrayEachEntryMatches",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches",
         "docs": {
           "summary": "Matches an array where each element matches the provided matcher."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher",
+              "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher",
               "displayName": "matcher",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher",
               "type": {
                 "formattingPattern": "any"
               },
@@ -638,9 +638,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.example",
+              "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "%[]",
                 "types": [
@@ -655,14 +655,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ArrayEachEntryMatchesWithExample(matcher: any, example: any[])"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.arrays.ArrayEachEntryMatchesWithExample(matcher: any, example: any[])"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -673,9 +673,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample",
+        "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample",
         "displayName": "ArrayEachEntryMatchesWithExample",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample",
         "docs": {
           "summary": "Matches an array where each element matches the provided matcher, but with a custom example for the whole array.",
           "remarks": "This example must still pass the\nprovided matcher"
@@ -683,21 +683,21 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ArrayLength.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ArrayLength.Initializer.parameter.options",
+              "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength.Initializer.parameter.options",
               "displayName": "options",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.Initializer.parameter.options",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength.Initializer.parameter.options",
               "type": {
                 "formattingPattern": "%",
                 "types": [
                   {
-                    "id": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions",
+                    "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions",
                     "displayName": "ArrayLengthOptions",
-                    "fqn": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions",
+                    "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions",
                     "packageName": "@contract-case/case-definition-dsl",
                     "packageVersion": "0.18.0",
                     "submodule": "matchers"
@@ -710,14 +710,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ArrayLength(options: ArrayLengthOptions)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.arrays.ArrayLength(options: ArrayLengthOptions)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ArrayLength.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -728,23 +728,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ArrayLength",
+        "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength",
         "displayName": "ArrayLength",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayLength",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength",
         "docs": {
           "summary": "Matches an Array whose length is within the specified range (or 1-infinity if not specified)."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.Initializer.parameter.matchers",
+              "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith.Initializer.parameter.matchers",
               "displayName": "matchers",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.Initializer.parameter.matchers",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith.Initializer.parameter.matchers",
               "type": {
                 "formattingPattern": "%[]",
                 "types": [
@@ -760,14 +760,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ArrayStartsWith(matchers: any[])"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.arrays.ArrayStartsWith(matchers: any[])"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -778,23 +778,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith",
+        "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith",
         "displayName": "ArrayStartsWith",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith",
         "docs": {
           "summary": "Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.Base64Encoded.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.Base64Encoded.Initializer.parameter.child",
+              "fqn": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "any"
               },
@@ -804,14 +804,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.Base64Encoded(child: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.strings.Base64Encoded(child: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.Base64Encoded.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -822,9 +822,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.Base64Encoded",
+        "fqn": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded",
         "displayName": "Base64Encoded",
-        "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded",
         "docs": {
           "summary": "Transformation matcher that matches a base64 encoded version of the given string or string matcher.",
           "remarks": "WARNING: Since many strings are accidentally decodable as base64, this matcher is\nbest combined with a more restrictive string matcher (eg `StringifiedJson`)."
@@ -832,14 +832,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer.parameter.username",
+              "fqn": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.Initializer.parameter.username",
               "displayName": "username",
-              "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer.parameter.username",
+              "id": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.Initializer.parameter.username",
               "type": {
                 "formattingPattern": "any"
               },
@@ -849,9 +849,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer.parameter.password",
+              "fqn": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.Initializer.parameter.password",
               "displayName": "password",
-              "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer.parameter.password",
+              "id": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.Initializer.parameter.password",
               "type": {
                 "formattingPattern": "any"
               },
@@ -861,14 +861,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.BasicAuthHeaderValue(username: any, password: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.http.BasicAuthHeaderValue(username: any, password: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -879,23 +879,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue",
+        "fqn": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue",
         "displayName": "BasicAuthHeaderValue",
-        "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue",
+        "id": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue",
         "docs": {
           "summary": "Matches the value part of a basic auth header with the supplied username and password - useful in conjunction with the StateVariable matcher."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.Initializer.parameter.token",
+              "fqn": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue.Initializer.parameter.token",
               "displayName": "token",
-              "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.Initializer.parameter.token",
+              "id": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue.Initializer.parameter.token",
               "type": {
                 "formattingPattern": "any"
               },
@@ -905,14 +905,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.BearerTokenHeaderValue(token: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.http.BearerTokenHeaderValue(token: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -923,23 +923,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue",
+        "fqn": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue",
         "displayName": "BearerTokenHeaderValue",
-        "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue",
+        "id": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue",
         "docs": {
           "summary": "Matches the value part of a OIDC or OAuth header with the supplied token - useful in conjunction with the StateVariable matcher."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.child",
+              "fqn": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "any"
               },
@@ -949,9 +949,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.contextModifiers",
+              "fqn": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer.parameter.contextModifiers",
               "displayName": "contextModifiers",
-              "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.contextModifiers",
+              "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer.parameter.contextModifiers",
               "type": {
                 "formattingPattern": "{[ key: string ]: %}",
                 "types": [
@@ -966,9 +966,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.currentRunModifiers",
+              "fqn": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer.parameter.currentRunModifiers",
               "displayName": "currentRunModifiers",
-              "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.currentRunModifiers",
+              "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer.parameter.currentRunModifiers",
               "type": {
                 "formattingPattern": "{[ key: string ]: %}",
                 "types": [
@@ -983,14 +983,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.CascadingContextMatcher(child: any, contextModifiers: {[ key: string ]: string}, currentRunModifiers: {[ key: string ]: string})"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.base.CascadingContextMatcher(child: any, contextModifiers: {[ key: string ]: string}, currentRunModifiers: {[ key: string ]: string})"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.toJSON",
             "parameters": [],
             "docs": {
               "summary": "If extending this class, do not override this method (or if you do, make sure you call `super.toJSON()`)."
@@ -1001,9 +1001,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher",
+        "fqn": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher",
         "displayName": "CascadingContextMatcher",
-        "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher",
+        "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher",
         "docs": {
           "summary": "This is a passthrough matcher that does nothing except call the child matcher with the current actual data.",
           "remarks": "It's useful for taking advantage of the context cascading available on all\nmatchers without needing to write you own matcher. Extend it if you want to\nmake a matcher that only changes the context object. If you don't know what\nthis means, you don't need to extend this matcher.\n\nDue to limitations with JSii, extending implementations MUST NOT override\n`toJSON`, or MUST return the result of `super.toJSON()` as part of their\ntoJSON method."
@@ -1011,14 +1011,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer.parameter.logLevel",
+              "fqn": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.Initializer.parameter.logLevel",
               "displayName": "logLevel",
-              "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer.parameter.logLevel",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.Initializer.parameter.logLevel",
               "type": {
                 "formattingPattern": "string"
               },
@@ -1029,9 +1029,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer.parameter.child",
+              "fqn": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "any"
               },
@@ -1041,14 +1041,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ChangeLogLevel(logLevel: string, child: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.convenience.ChangeLogLevel(logLevel: string, child: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1059,9 +1059,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel",
+        "fqn": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel",
         "displayName": "ChangeLogLevel",
-        "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel",
         "docs": {
           "summary": "Alters the ContractCase log level below this matcher. Useful for debugging.",
           "remarks": "This has no effect on matching.\n\nNote that this log level matcher will be saved into the contract, so it will\nalso affect the log level during verification. Usually you will want to\nremove the use of this matcher before saving the contract."
@@ -1069,34 +1069,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.mocks.Empty.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.mocks.Empty.Initializer",
-          "parameters": [],
-          "usage": "import { mocks } from '@contract-case/case-definition-dsl'\n\nnew mocks.Empty()"
-        },
-        "interfaces": [],
-        "instanceMethods": [],
-        "staticMethods": [],
-        "constants": [],
-        "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.mocks.Empty",
-        "displayName": "Empty",
-        "id": "@contract-case/case-definition-dsl.mocks.Empty",
-        "docs": {
-          "summary": "Empty class to make jsii-docgen happy with this module."
-        }
-      },
-      {
-        "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ExactlyLike.Initializer",
-          "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ExactlyLike.Initializer.parameter.content",
+              "fqn": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike.Initializer.parameter.content",
               "displayName": "content",
-              "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike.Initializer.parameter.content",
+              "id": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike.Initializer.parameter.content",
               "type": {
                 "formattingPattern": "any"
               },
@@ -1106,14 +1086,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ExactlyLike(content: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.modifiers.ExactlyLike(content: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ExactlyLike.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1124,9 +1104,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ExactlyLike",
+        "fqn": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike",
         "displayName": "ExactlyLike",
-        "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike",
+        "id": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike",
         "docs": {
           "summary": "Everything inside this matcher will be matched exactly, unless overridden with a generic matcher (eg `AnyString` or` ShapedLike`).",
           "remarks": "Use this to switch\nout of `shapedLike` and back to the default exact matching."
@@ -1134,14 +1114,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.FunctionArguments.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.FunctionArguments.Initializer.parameter.expectedArguments",
+              "fqn": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.Initializer.parameter.expectedArguments",
               "displayName": "expectedArguments",
-              "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.Initializer.parameter.expectedArguments",
+              "id": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.Initializer.parameter.expectedArguments",
               "type": {
                 "formattingPattern": "%[]",
                 "types": [
@@ -1156,14 +1136,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.FunctionArguments(expectedArguments: any[])"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.functions.FunctionArguments(expectedArguments: any[])"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.FunctionArguments.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1175,9 +1155,9 @@
         "constants": [],
         "properties": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.FunctionArguments.property.arguments",
+            "fqn": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.property.arguments",
             "displayName": "arguments",
-            "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.property.arguments",
+            "id": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.property.arguments",
             "type": {
               "formattingPattern": "%[]",
               "types": [
@@ -1190,9 +1170,9 @@
             "usage": "public readonly arguments: any[];"
           }
         ],
-        "fqn": "@contract-case/case-definition-dsl.matchers.FunctionArguments",
+        "fqn": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments",
         "displayName": "FunctionArguments",
-        "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments",
+        "id": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments",
         "docs": {
           "summary": "Matches function arguments, for use with a MockFunctionCall / MockFunctionExecution.",
           "remarks": "Usually you don't need to use this matcher directly, the mock creates it for you."
@@ -1200,21 +1180,21 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.requestExample",
+              "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer.parameter.requestExample",
               "displayName": "requestExample",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.requestExample",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer.parameter.requestExample",
               "type": {
                 "formattingPattern": "%",
                 "types": [
                   {
-                    "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample",
+                    "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample",
                     "displayName": "HttpRequestExample",
-                    "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequestExample",
+                    "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample",
                     "packageName": "@contract-case/case-definition-dsl",
                     "packageVersion": "0.18.0",
                     "submodule": "matchers"
@@ -1227,14 +1207,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.HttpRequest(requestExample: HttpRequestExample)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.http.HttpRequest(requestExample: HttpRequestExample)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequest.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1246,9 +1226,9 @@
         "constants": [],
         "properties": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.method",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.method",
             "displayName": "method",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.method",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.method",
             "type": {
               "formattingPattern": "any"
             },
@@ -1256,9 +1236,9 @@
             "usage": "public readonly method: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.path",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.path",
             "displayName": "path",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.path",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.path",
             "type": {
               "formattingPattern": "any"
             },
@@ -1266,9 +1246,9 @@
             "usage": "public readonly path: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.body",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.body",
             "displayName": "body",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.body",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.body",
             "optional": true,
             "type": {
               "formattingPattern": "any"
@@ -1277,9 +1257,9 @@
             "usage": "public readonly body: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.headers",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.headers",
             "displayName": "headers",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.headers",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.headers",
             "optional": true,
             "type": {
               "formattingPattern": "any"
@@ -1288,9 +1268,9 @@
             "usage": "public readonly headers: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.query",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.query",
             "displayName": "query",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.query",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.query",
             "optional": true,
             "type": {
               "formattingPattern": "any"
@@ -1299,9 +1279,9 @@
             "usage": "public readonly query: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.uniqueName",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.uniqueName",
             "displayName": "uniqueName",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.uniqueName",
             "optional": true,
             "type": {
               "formattingPattern": "string"
@@ -1310,30 +1290,30 @@
             "usage": "public readonly uniqueName: string;"
           }
         ],
-        "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequest",
+        "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequest",
         "displayName": "HttpRequest",
-        "id": "@contract-case/case-definition-dsl.matchers.HttpRequest",
+        "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest",
         "docs": {
           "summary": "Matches any HTTP Request with the provided properties."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer.parameter.responseExample",
+              "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.Initializer.parameter.responseExample",
               "displayName": "responseExample",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer.parameter.responseExample",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.Initializer.parameter.responseExample",
               "type": {
                 "formattingPattern": "%",
                 "types": [
                   {
-                    "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample",
+                    "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample",
                     "displayName": "HttpResponseExample",
-                    "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponseExample",
+                    "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample",
                     "packageName": "@contract-case/case-definition-dsl",
                     "packageVersion": "0.18.0",
                     "submodule": "matchers"
@@ -1346,14 +1326,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.HttpResponse(responseExample: HttpResponseExample)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.http.HttpResponse(responseExample: HttpResponseExample)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponse.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1365,9 +1345,9 @@
         "constants": [],
         "properties": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.status",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.status",
             "displayName": "status",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.status",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.status",
             "type": {
               "formattingPattern": "any"
             },
@@ -1375,9 +1355,9 @@
             "usage": "public readonly status: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.body",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.body",
             "displayName": "body",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.body",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.body",
             "optional": true,
             "type": {
               "formattingPattern": "any"
@@ -1386,9 +1366,9 @@
             "usage": "public readonly body: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.headers",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.headers",
             "displayName": "headers",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.headers",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.headers",
             "optional": true,
             "type": {
               "formattingPattern": "any"
@@ -1397,9 +1377,9 @@
             "usage": "public readonly headers: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.uniqueName",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.uniqueName",
             "displayName": "uniqueName",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.uniqueName",
             "optional": true,
             "type": {
               "formattingPattern": "string"
@@ -1408,23 +1388,23 @@
             "usage": "public readonly uniqueName: string;"
           }
         ],
-        "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponse",
+        "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponse",
         "displayName": "HttpResponse",
-        "id": "@contract-case/case-definition-dsl.matchers.HttpResponse",
+        "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse",
         "docs": {
           "summary": "Matches any HTTP Response with the provided properties."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.Initializer.parameter.statusCode",
+              "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode.Initializer.parameter.statusCode",
               "displayName": "statusCode",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.Initializer.parameter.statusCode",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode.Initializer.parameter.statusCode",
               "type": {
                 "formattingPattern": "% | %",
                 "types": [
@@ -1447,14 +1427,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.HttpStatusCode(statusCode: string | string[])"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.http.HttpStatusCode(statusCode: string | string[])"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1465,11 +1445,51 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.HttpStatusCode",
+        "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode",
         "displayName": "HttpStatusCode",
-        "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode",
+        "id": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode",
         "docs": {
           "summary": "Matches an HTTP status code."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "@contract-case/case-definition-dsl.matchers.IgnoreThisClass.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.IgnoreThisClass.Initializer",
+          "parameters": [],
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.IgnoreThisClass()"
+        },
+        "interfaces": [],
+        "instanceMethods": [],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "@contract-case/case-definition-dsl.matchers.IgnoreThisClass",
+        "displayName": "IgnoreThisClass",
+        "id": "@contract-case/case-definition-dsl.matchers.IgnoreThisClass",
+        "docs": {
+          "summary": "Empty class to make jsii-docgen happy with this module."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "@contract-case/case-definition-dsl.mocks.IgnoreThisClass.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.mocks.IgnoreThisClass.Initializer",
+          "parameters": [],
+          "usage": "import { mocks } from '@contract-case/case-definition-dsl'\n\nnew mocks.IgnoreThisClass()"
+        },
+        "interfaces": [],
+        "instanceMethods": [],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "@contract-case/case-definition-dsl.mocks.IgnoreThisClass",
+        "displayName": "IgnoreThisClass",
+        "id": "@contract-case/case-definition-dsl.mocks.IgnoreThisClass",
+        "docs": {
+          "summary": "Empty class to make jsii-docgen happy with this module."
         }
       },
       {
@@ -1646,14 +1666,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer.parameter.name",
+              "fqn": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.Initializer.parameter.name",
               "displayName": "name",
-              "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer.parameter.name",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.Initializer.parameter.name",
               "type": {
                 "formattingPattern": "string"
               },
@@ -1663,9 +1683,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer.parameter.child",
+              "fqn": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "any"
               },
@@ -1676,14 +1696,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.NamedMatch(name: string, child: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.convenience.NamedMatch(name: string, child: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.NamedMatch.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1694,9 +1714,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.NamedMatch",
+        "fqn": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch",
         "displayName": "NamedMatch",
-        "id": "@contract-case/case-definition-dsl.matchers.NamedMatch",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch",
         "docs": {
           "summary": "Saves the matcher below it with a unique name that can be used with lookups in tests after this one.",
           "remarks": "Lookups can be made with {@link matchers.convenience.ReferenceMatch }."
@@ -1704,14 +1724,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.Initializer.parameter.matcher",
+              "fqn": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches.Initializer.parameter.matcher",
               "displayName": "matcher",
-              "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.Initializer.parameter.matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches.Initializer.parameter.matcher",
               "type": {
                 "formattingPattern": "any"
               },
@@ -1721,14 +1741,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ObjectEachKeyMatches(matcher: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.objects.ObjectEachKeyMatches(matcher: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1739,23 +1759,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches",
+        "fqn": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches",
         "displayName": "ObjectEachKeyMatches",
-        "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches",
+        "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches",
         "docs": {
           "summary": "Matches an object where each key matches the provided matcher."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.Initializer.parameter.matcher",
+              "fqn": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches.Initializer.parameter.matcher",
               "displayName": "matcher",
-              "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.Initializer.parameter.matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches.Initializer.parameter.matcher",
               "type": {
                 "formattingPattern": "any"
               },
@@ -1765,14 +1785,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ObjectEachValueMatches(matcher: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.objects.ObjectEachValueMatches(matcher: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1783,23 +1803,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches",
+        "fqn": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches",
         "displayName": "ObjectEachValueMatches",
-        "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches",
+        "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches",
         "docs": {
           "summary": "Matches an object where each value matches the provided matcher."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.Initializer.parameter.name",
+              "fqn": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch.Initializer.parameter.name",
               "displayName": "name",
-              "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.Initializer.parameter.name",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch.Initializer.parameter.name",
               "type": {
                 "formattingPattern": "string"
               },
@@ -1809,14 +1829,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ReferenceMatch(name: string)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.convenience.ReferenceMatch(name: string)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1827,23 +1847,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ReferenceMatch",
+        "fqn": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch",
         "displayName": "ReferenceMatch",
-        "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch",
         "docs": {
           "summary": "Matches a named matcher created with {@link matchers.convenience.NamedMatch }."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.ShapedLike.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ShapedLike.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.ShapedLike.Initializer.parameter.content",
+              "fqn": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike.Initializer.parameter.content",
               "displayName": "content",
-              "id": "@contract-case/case-definition-dsl.matchers.ShapedLike.Initializer.parameter.content",
+              "id": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike.Initializer.parameter.content",
               "type": {
                 "formattingPattern": "any"
               },
@@ -1853,14 +1873,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.ShapedLike(content: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.modifiers.ShapedLike(content: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ShapedLike.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ShapedLike.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1871,9 +1891,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.ShapedLike",
+        "fqn": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike",
         "displayName": "ShapedLike",
-        "id": "@contract-case/case-definition-dsl.matchers.ShapedLike",
+        "id": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike",
         "docs": {
           "summary": "Everything inside this matcher will be matched on the shape of the data (ie, type alone), unless overridden with other matchers.",
           "remarks": "Use this to switch out\nof the default `exactlyLike` matching."
@@ -1881,14 +1901,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.StateVariable.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.StateVariable.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.StateVariable.Initializer.parameter.name",
+              "fqn": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable.Initializer.parameter.name",
               "displayName": "name",
-              "id": "@contract-case/case-definition-dsl.matchers.StateVariable.Initializer.parameter.name",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable.Initializer.parameter.name",
               "type": {
                 "formattingPattern": "string"
               },
@@ -1898,14 +1918,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.StateVariable(name: string)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.convenience.StateVariable(name: string)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.StateVariable.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.StateVariable.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1916,9 +1936,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.StateVariable",
+        "fqn": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable",
         "displayName": "StateVariable",
-        "id": "@contract-case/case-definition-dsl.matchers.StateVariable",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable",
         "docs": {
           "summary": "Matches the content of a variable that comes from a state.",
           "remarks": "See {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions state} * definitions}\nand {@link https://case.contract-testing.io/docs/reference/state-handlers state handlers} for\nmore details."
@@ -1926,14 +1946,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer.parameter.substring",
+              "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.Initializer.parameter.substring",
               "displayName": "substring",
-              "id": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer.parameter.substring",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.Initializer.parameter.substring",
               "type": {
                 "formattingPattern": "string"
               },
@@ -1943,9 +1963,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer.parameter.example",
+              "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "string"
               },
@@ -1955,14 +1975,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.StringContaining(substring: string, example: string)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.strings.StringContaining(substring: string, example: string)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.StringContaining.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.StringContaining.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1973,23 +1993,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.StringContaining",
+        "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringContaining",
         "displayName": "StringContaining",
-        "id": "@contract-case/case-definition-dsl.matchers.StringContaining",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.StringContaining",
         "docs": {
           "summary": "Matches any string that contains the given substring."
         }
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.StringifiedJson.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.StringifiedJson.Initializer.parameter.child",
+              "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "any"
               },
@@ -1999,14 +2019,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.StringifiedJson(child: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.strings.StringifiedJson(child: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.StringifiedJson.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2017,9 +2037,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.StringifiedJson",
+        "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson",
         "displayName": "StringifiedJson",
-        "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson",
         "docs": {
           "summary": "Transformation matcher that matches a JSON.stringify()ed version of the given object.",
           "remarks": "For example, if the actual data is the string:\n\n```ts\n\"{\\\"foo\\\":2}\"\n```\n\nthen you could match it with:\n\n```ts\nStringifiedJson({\n  \"foo\": 2\n})\n```\n\nor\n\n```ts\nStringifiedJson({\n  \"foo\": AnyNumber(2)\n})\n```"
@@ -2027,14 +2047,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer.parameter.prefix",
+              "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.Initializer.parameter.prefix",
               "displayName": "prefix",
-              "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer.parameter.prefix",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.Initializer.parameter.prefix",
               "type": {
                 "formattingPattern": "string"
               },
@@ -2045,9 +2065,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer.parameter.suffix",
+              "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.Initializer.parameter.suffix",
               "displayName": "suffix",
-              "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer.parameter.suffix",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.Initializer.parameter.suffix",
               "type": {
                 "formattingPattern": "any"
               },
@@ -2057,14 +2077,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.StringPrefix(prefix: string, suffix: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.strings.StringPrefix(prefix: string, suffix: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.StringPrefix.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2075,9 +2095,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.StringPrefix",
+        "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix",
         "displayName": "StringPrefix",
-        "id": "@contract-case/case-definition-dsl.matchers.StringPrefix",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix",
         "docs": {
           "summary": "Matches any string that begins with the given constant string prefix, and ends with a matchable suffix.",
           "remarks": "At match time, the actual string is checked for the constant prefix, and then\nthe rest of the string is passed to the suffix matcher..\n\nThe suffix matcher must be expecting a string.\n\nSee also {@link matchers.strings.StringSuffix StringSuffix}"
@@ -2085,14 +2105,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer.parameter.prefix",
+              "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.Initializer.parameter.prefix",
               "displayName": "prefix",
-              "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer.parameter.prefix",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.Initializer.parameter.prefix",
               "type": {
                 "formattingPattern": "any"
               },
@@ -2103,9 +2123,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer.parameter.suffix",
+              "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.Initializer.parameter.suffix",
               "displayName": "suffix",
-              "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer.parameter.suffix",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.Initializer.parameter.suffix",
               "type": {
                 "formattingPattern": "string"
               },
@@ -2116,14 +2136,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.StringSuffix(prefix: any, suffix: string)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.strings.StringSuffix(prefix: any, suffix: string)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.StringSuffix.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2134,9 +2154,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.StringSuffix",
+        "fqn": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix",
         "displayName": "StringSuffix",
-        "id": "@contract-case/case-definition-dsl.matchers.StringSuffix",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix",
         "docs": {
           "summary": "Matches any string that begins with a matchable prefix, and ends with a constant suffix.",
           "remarks": "At match time, the actual string is checked for the expected constant suffix,\nand then the beginning of the string is passed to the prefix matcher.\n\nThe prefix matcher must be expecting a string.\n\nSee also {@link matchers.strings.StringPrefix StringPrefix}"
@@ -2144,14 +2164,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.UriEncodedString.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.UriEncodedString.Initializer.parameter.child",
+              "fqn": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "any"
               },
@@ -2161,14 +2181,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.UriEncodedString(child: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.http.UriEncodedString(child: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.UriEncodedString.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2179,9 +2199,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.UriEncodedString",
+        "fqn": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString",
         "displayName": "UriEncodedString",
-        "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString",
+        "id": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString",
         "docs": {
           "summary": "Convenience matcher to treat the string as a uri encoded string - useful in `path` segments.",
           "remarks": "During matching, the actual value is decoded with `decodeUriComponent()` and passed to the child matcher."
@@ -2559,14 +2579,14 @@
       },
       {
         "initializer": {
-          "fqn": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer",
+          "fqn": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.Initializer",
           "parameters": [
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer.parameter.matcher",
+              "fqn": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.Initializer.parameter.matcher",
               "displayName": "matcher",
-              "id": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer.parameter.matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.Initializer.parameter.matcher",
               "type": {
                 "formattingPattern": "any"
               },
@@ -2576,9 +2596,9 @@
               }
             },
             {
-              "fqn": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer.parameter.example",
+              "fqn": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "any"
               },
@@ -2588,14 +2608,14 @@
               }
             }
           ],
-          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.WithExample(matcher: any, example: any)"
+          "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nnew matchers.convenience.WithExample(matcher: any, example: any)"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.WithExample.toJSON",
+            "fqn": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.WithExample.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2606,9 +2626,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "@contract-case/case-definition-dsl.matchers.WithExample",
+        "fqn": "@contract-case/case-definition-dsl.matchers.convenience.WithExample",
         "displayName": "WithExample",
-        "id": "@contract-case/case-definition-dsl.matchers.WithExample",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.WithExample",
         "docs": {
           "summary": "Adds an example to the provided matcher.",
           "remarks": "Useful when you have a complicated\nset of constraints and ContractCase can't figure out what the best example should be.\n\nNote that providing any example will override examples provided further down the tree."
@@ -2617,14 +2637,14 @@
     ],
     "structs": [
       {
-        "fqn": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions",
+        "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions",
         "displayName": "ArrayLengthOptions",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions",
         "properties": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions.property.maxLength",
+            "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions.property.maxLength",
             "displayName": "maxLength",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions.property.maxLength",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions.property.maxLength",
             "optional": true,
             "type": {
               "formattingPattern": "number"
@@ -2636,9 +2656,9 @@
             "usage": "public readonly maxLength: number;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions.property.minLength",
+            "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions.property.minLength",
             "displayName": "minLength",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions.property.minLength",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions.property.minLength",
             "optional": true,
             "type": {
               "formattingPattern": "number"
@@ -2653,7 +2673,7 @@
         "docs": {
           "summary": "Options for the `ArrayLength` matcher."
         },
-        "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nconst arrayLengthOptions: matchers.ArrayLengthOptions = { ... }"
+        "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nconst arrayLengthOptions: matchers.arrays.ArrayLengthOptions = { ... }"
       },
       {
         "fqn": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
@@ -2886,14 +2906,14 @@
         "usage": "import { mocks } from '@contract-case/case-definition-dsl'\n\nconst httpExample: mocks.http.HttpExample = { ... }"
       },
       {
-        "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequestExample",
+        "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample",
         "displayName": "HttpRequestExample",
-        "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample",
+        "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample",
         "properties": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.method",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.method",
             "displayName": "method",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.method",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.method",
             "type": {
               "formattingPattern": "any"
             },
@@ -2904,9 +2924,9 @@
             "usage": "public readonly method: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.path",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.path",
             "displayName": "path",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.path",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.path",
             "type": {
               "formattingPattern": "any"
             },
@@ -2917,9 +2937,9 @@
             "usage": "public readonly path: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.body",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.body",
             "displayName": "body",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.body",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.body",
             "optional": true,
             "type": {
               "formattingPattern": "any"
@@ -2931,9 +2951,9 @@
             "usage": "public readonly body: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.headers",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.headers",
             "displayName": "headers",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.headers",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.headers",
             "optional": true,
             "type": {
               "formattingPattern": "any"
@@ -2945,9 +2965,9 @@
             "usage": "public readonly headers: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.query",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.query",
             "displayName": "query",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.query",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.query",
             "optional": true,
             "type": {
               "formattingPattern": "any"
@@ -2959,9 +2979,9 @@
             "usage": "public readonly query: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.uniqueName",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.uniqueName",
             "displayName": "uniqueName",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.uniqueName",
             "optional": true,
             "type": {
               "formattingPattern": "string"
@@ -2973,17 +2993,17 @@
           }
         ],
         "docs": {},
-        "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nconst httpRequestExample: matchers.HttpRequestExample = { ... }"
+        "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nconst httpRequestExample: matchers.http.HttpRequestExample = { ... }"
       },
       {
-        "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponseExample",
+        "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample",
         "displayName": "HttpResponseExample",
-        "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample",
+        "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample",
         "properties": [
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.status",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.status",
             "displayName": "status",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.status",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.status",
             "type": {
               "formattingPattern": "any"
             },
@@ -2993,9 +3013,9 @@
             "usage": "public readonly status: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.body",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.body",
             "displayName": "body",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.body",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.body",
             "optional": true,
             "type": {
               "formattingPattern": "any"
@@ -3007,9 +3027,9 @@
             "usage": "public readonly body: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.headers",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.headers",
             "displayName": "headers",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.headers",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.headers",
             "optional": true,
             "type": {
               "formattingPattern": "any"
@@ -3021,9 +3041,9 @@
             "usage": "public readonly headers: any;"
           },
           {
-            "fqn": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.uniqueName",
+            "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.uniqueName",
             "displayName": "uniqueName",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.uniqueName",
             "optional": true,
             "type": {
               "formattingPattern": "string"
@@ -3035,7 +3055,7 @@
           }
         ],
         "docs": {},
-        "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nconst httpResponseExample: matchers.HttpResponseExample = { ... }"
+        "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nconst httpResponseExample: matchers.http.HttpResponseExample = { ... }"
       }
     ],
     "interfaces": [],

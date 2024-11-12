@@ -314,6 +314,14 @@ class ExactlyLike extends CascadingContextMatcher {
 }
 
 // @public
+class FunctionArguments extends AnyMatcher {
+    constructor(expectedArguments: AnyMatcherOrData[]);
+    // (undocumented)
+    arguments: AnyMatcherOrData[];
+    toJSON(): unknown;
+}
+
+// @public
 interface FunctionExecutionExample {
     readonly arguments: AnyMatcherOrData[];
     readonly functionName: string;
@@ -332,6 +340,12 @@ declare namespace functions {
         WillReceiveFunctionCall,
         FunctionExecutionExample,
         FunctionExecutionExampleWithHandle
+    }
+}
+
+declare namespace functions_2 {
+    export {
+        FunctionArguments
     }
 }
 
@@ -412,7 +426,6 @@ class HttpResponse extends AnyMatcher {
 interface HttpResponseExample {
     readonly body?: AnyMatcherOrData;
     readonly headers?: AnyMatcherOrData;
-    // (undocumented)
     readonly status: AnyMatcherOrData;
     readonly uniqueName?: string;
 }
@@ -452,6 +465,7 @@ declare namespace matchers {
         arrays,
         base_2 as base,
         convenience,
+        functions_2 as functions,
         http_2 as http,
         modifiers,
         objects,

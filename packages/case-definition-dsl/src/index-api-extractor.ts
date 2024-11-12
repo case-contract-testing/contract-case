@@ -17,7 +17,7 @@
  * Matcher is considered covered by this test".
  *
  * For more information, see {@link https://case.contract-testing.io/docs/defining-contracts/relaxing-tests | advice on relaxing tests} or
- * {@link https://case.contracttesting.io | the full documentation}
+ * {@link https://case.contract-testing.io | the full documentation}
  *
  */
 import * as mocks from './mocks/index-api-extractor';

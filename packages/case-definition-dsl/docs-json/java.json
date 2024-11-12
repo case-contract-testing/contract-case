@@ -10,14 +10,14 @@
     "classes": [
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.And.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.And.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.And.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.And.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.And.Initializer.parameter.matchers",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.And.Initializer.parameter.matchers",
               "displayName": "matchers",
-              "id": "@contract-case/case-definition-dsl.matchers.And.Initializer.parameter.matchers",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.And.Initializer.parameter.matchers",
               "type": {
                 "formattingPattern": "java.util.List<%>",
                 "types": [
@@ -32,14 +32,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.And;\n\nnew And(java.util.List<java.lang.Object> matchers);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.convenience.And;\n\nnew And(java.util.List<java.lang.Object> matchers);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.And.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.And.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.And.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.And.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -50,9 +50,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.And",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.And",
         "displayName": "And",
-        "id": "@contract-case/case-definition-dsl.matchers.And",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.And",
         "docs": {
           "summary": "Matches all of the provided matchers. Useful for combining restrictions provided by different matchers, or creating new matchers without needing plugins.",
           "remarks": "For best results, wrap the And matcher in a WithExample matcher."
@@ -60,14 +60,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyBoolean.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyBoolean.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyBoolean.Initializer.parameter.example",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyBoolean.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "java.lang.Boolean"
               },
@@ -77,14 +77,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyBoolean;\n\nnew AnyBoolean(java.lang.Boolean example);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.primitives.AnyBoolean;\n\nnew AnyBoolean(java.lang.Boolean example);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyBoolean.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyBoolean.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -95,23 +95,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyBoolean",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyBoolean",
         "displayName": "AnyBoolean",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyBoolean",
+        "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyBoolean",
         "docs": {
           "summary": "Matches any Boolean."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyInteger.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyInteger.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyInteger.Initializer.parameter.example",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyInteger.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "java.lang.Number"
               },
@@ -121,14 +121,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyInteger;\n\nnew AnyInteger(java.lang.Number example);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;\n\nnew AnyInteger(java.lang.Number example);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyInteger.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyInteger.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -139,23 +139,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyInteger",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger",
         "displayName": "AnyInteger",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyInteger",
+        "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyInteger",
         "docs": {
           "summary": "Matches any whole integer number."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcher.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.base.AnyMatcher.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcher.Initializer.parameter.matcherType",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.base.AnyMatcher.Initializer.parameter.matcherType",
               "displayName": "matcherType",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher.Initializer.parameter.matcherType",
+              "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher.Initializer.parameter.matcherType",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -165,14 +165,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyMatcher;\n\nnew AnyMatcher(java.lang.String matcherType);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.base.AnyMatcher;\n\nnew AnyMatcher(java.lang.String matcherType);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcher.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.base.AnyMatcher.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher.toJSON",
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
@@ -184,9 +184,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcher",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.base.AnyMatcher",
         "displayName": "AnyMatcher",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyMatcher",
+        "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher",
         "docs": {
           "summary": "The base class for all Test Equivalence Matchers.",
           "remarks": "Extend this if you don't\nhave an example in your Matcher. Otherwise, use `AnyMatcherWithExample`"
@@ -194,14 +194,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.base.AnyMatcherWithExample.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample.Initializer.parameter.matcherType",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.base.AnyMatcherWithExample.Initializer.parameter.matcherType",
               "displayName": "matcherType",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer.parameter.matcherType",
+              "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.Initializer.parameter.matcherType",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -211,9 +211,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample.Initializer.parameter.example",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.base.AnyMatcherWithExample.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -223,14 +223,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample;\n\nnew AnyMatcherWithExample(java.lang.String matcherType, java.lang.Object example);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.base.AnyMatcherWithExample;\n\nnew AnyMatcherWithExample(java.lang.String matcherType, java.lang.Object example);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.base.AnyMatcherWithExample.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -241,9 +241,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyMatcherWithExample",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.base.AnyMatcherWithExample",
         "displayName": "AnyMatcherWithExample",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyMatcherWithExample",
+        "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcherWithExample",
         "docs": {
           "summary": "The base class for all Test Equivalence Matchers that have examples provided.",
           "remarks": "Extend this if your matcher knows what the example will be. Otherwise, use `matchers.AnyMatcher`"
@@ -352,18 +352,18 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNull.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyNull.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNull.Initializer",
           "parameters": [],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyNull;\n\nnew AnyNull();"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;\n\nnew AnyNull();"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNull.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyNull.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNull.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -374,23 +374,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNull",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull",
         "displayName": "AnyNull",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyNull",
+        "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNull",
         "docs": {
           "summary": "Matches `null` (useful for languages like Java where `body: null` means no body, but you want to match a eg a json document that has the body `\"null\"`)."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNumber.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyNumber.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyNumber.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNumber.Initializer.parameter.example",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyNumber.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyNumber.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "java.lang.Number"
               },
@@ -400,14 +400,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyNumber;\n\nnew AnyNumber(java.lang.Number example);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNumber;\n\nnew AnyNumber(java.lang.Number example);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNumber.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyNumber.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyNumber.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -418,9 +418,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyNumber",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.primitives.AnyNumber",
         "displayName": "AnyNumber",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyNumber",
+        "id": "@contract-case/case-definition-dsl.matchers.primitives.AnyNumber",
         "docs": {
           "summary": "Matches a number following [RFC 8259 JSON](https://www.rfc-editor.org/rfc/rfc8259)."
         }
@@ -508,14 +508,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyString.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.AnyString.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.AnyString.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.AnyString.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyString.Initializer.parameter.example",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.AnyString.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.AnyString.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.AnyString.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -525,14 +525,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.AnyString;\n\nnew AnyString(java.lang.String example);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.strings.AnyString;\n\nnew AnyString(java.lang.String example);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyString.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.AnyString.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.AnyString.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.AnyString.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -543,23 +543,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.AnyString",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.AnyString",
         "displayName": "AnyString",
-        "id": "@contract-case/case-definition-dsl.matchers.AnyString",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.AnyString",
         "docs": {
           "summary": "Matches any string."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayContains.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayContains.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ArrayContains.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayContains.Initializer.parameter.matchers",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayContains.Initializer.parameter.matchers",
               "displayName": "matchers",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayContains.Initializer.parameter.matchers",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains.Initializer.parameter.matchers",
               "type": {
                 "formattingPattern": "java.util.List<%>",
                 "types": [
@@ -574,14 +574,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayContains;\n\nnew ArrayContains(java.util.List<java.lang.Object> matchers);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayContains;\n\nnew ArrayContains(java.util.List<java.lang.Object> matchers);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayContains.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayContains.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayContains.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -592,23 +592,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayContains",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayContains",
         "displayName": "ArrayContains",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayContains",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayContains",
         "docs": {
           "summary": "Matches an Array which contains elements that match the given matchers - note that two different matchers may be satisfied by the same item in the array."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatches.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatches.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatches.Initializer.parameter.matcher",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatches.Initializer.parameter.matcher",
               "displayName": "matcher",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.Initializer.parameter.matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches.Initializer.parameter.matcher",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -618,14 +618,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatches;\n\nnew ArrayEachEntryMatches(java.lang.Object matcher);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatches;\n\nnew ArrayEachEntryMatches(java.lang.Object matcher);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatches.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatches.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -636,23 +636,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatches",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatches",
         "displayName": "ArrayEachEntryMatches",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatches",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatches",
         "docs": {
           "summary": "Matches an array where each element matches the provided matcher."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher",
               "displayName": "matcher",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.matcher",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -662,9 +662,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.example",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "java.util.List<%>",
                 "types": [
@@ -679,14 +679,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample;\n\nnew ArrayEachEntryMatchesWithExample(java.lang.Object matcher, java.util.List<java.lang.Object> example);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatchesWithExample;\n\nnew ArrayEachEntryMatchesWithExample(java.lang.Object matcher, java.util.List<java.lang.Object> example);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatchesWithExample.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -697,9 +697,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayEachEntryMatchesWithExample",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayEachEntryMatchesWithExample",
         "displayName": "ArrayEachEntryMatchesWithExample",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayEachEntryMatchesWithExample",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayEachEntryMatchesWithExample",
         "docs": {
           "summary": "Matches an array where each element matches the provided matcher, but with a custom example for the whole array.",
           "remarks": "This example must still pass the\nprovided matcher"
@@ -707,14 +707,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLength.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLength.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLength.Initializer.parameter.maxLength",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLength.Initializer.parameter.maxLength",
               "displayName": "maxLength",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.Initializer.parameter.maxLength",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength.Initializer.parameter.maxLength",
               "optional": true,
               "type": {
                 "formattingPattern": "java.lang.Number"
@@ -726,9 +726,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLength.Initializer.parameter.minLength",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLength.Initializer.parameter.minLength",
               "displayName": "minLength",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.Initializer.parameter.minLength",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength.Initializer.parameter.minLength",
               "optional": true,
               "type": {
                 "formattingPattern": "java.lang.Number"
@@ -740,14 +740,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayLength;\n\nArrayLength.Builder.create()\n//  .maxLength(java.lang.Number)\n//  .minLength(java.lang.Number)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLength;\n\nArrayLength.Builder.create()\n//  .maxLength(java.lang.Number)\n//  .minLength(java.lang.Number)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLength.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLength.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayLength.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -758,23 +758,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLength",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLength",
         "displayName": "ArrayLength",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayLength",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLength",
         "docs": {
           "summary": "Matches an Array whose length is within the specified range (or 1-infinity if not specified)."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayStartsWith.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayStartsWith.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayStartsWith.Initializer.parameter.matchers",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayStartsWith.Initializer.parameter.matchers",
               "displayName": "matchers",
-              "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.Initializer.parameter.matchers",
+              "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith.Initializer.parameter.matchers",
               "type": {
                 "formattingPattern": "java.util.List<%>",
                 "types": [
@@ -790,14 +790,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayStartsWith;\n\nnew ArrayStartsWith(java.util.List<java.lang.Object> matchers);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayStartsWith;\n\nnew ArrayStartsWith(java.util.List<java.lang.Object> matchers);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayStartsWith.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayStartsWith.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -808,23 +808,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayStartsWith",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayStartsWith",
         "displayName": "ArrayStartsWith",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayStartsWith",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayStartsWith",
         "docs": {
           "summary": "Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.Base64Encoded.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.Base64Encoded.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.Base64Encoded.Initializer.parameter.child",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.Base64Encoded.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -834,14 +834,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.Base64Encoded;\n\nnew Base64Encoded(java.lang.Object child);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.strings.Base64Encoded;\n\nnew Base64Encoded(java.lang.Object child);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.Base64Encoded.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.Base64Encoded.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -852,9 +852,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.Base64Encoded",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.Base64Encoded",
         "displayName": "Base64Encoded",
-        "id": "@contract-case/case-definition-dsl.matchers.Base64Encoded",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.Base64Encoded",
         "docs": {
           "summary": "Transformation matcher that matches a base64 encoded version of the given string or string matcher.",
           "remarks": "WARNING: Since many strings are accidentally decodable as base64, this matcher is\nbest combined with a more restrictive string matcher (eg `StringifiedJson`)."
@@ -862,14 +862,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.http.BasicAuthHeaderValue.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue.Initializer.parameter.username",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.BasicAuthHeaderValue.Initializer.parameter.username",
               "displayName": "username",
-              "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer.parameter.username",
+              "id": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.Initializer.parameter.username",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -879,9 +879,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue.Initializer.parameter.password",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.BasicAuthHeaderValue.Initializer.parameter.password",
               "displayName": "password",
-              "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.Initializer.parameter.password",
+              "id": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.Initializer.parameter.password",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -891,14 +891,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue;\n\nnew BasicAuthHeaderValue(java.lang.Object username, java.lang.Object password);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.http.BasicAuthHeaderValue;\n\nnew BasicAuthHeaderValue(java.lang.Object username, java.lang.Object password);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.BasicAuthHeaderValue.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -909,23 +909,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.BasicAuthHeaderValue",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.http.BasicAuthHeaderValue",
         "displayName": "BasicAuthHeaderValue",
-        "id": "@contract-case/case-definition-dsl.matchers.BasicAuthHeaderValue",
+        "id": "@contract-case/case-definition-dsl.matchers.http.BasicAuthHeaderValue",
         "docs": {
           "summary": "Matches the value part of a basic auth header with the supplied username and password - useful in conjunction with the StateVariable matcher."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.http.BearerTokenHeaderValue.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue.Initializer.parameter.token",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.BearerTokenHeaderValue.Initializer.parameter.token",
               "displayName": "token",
-              "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.Initializer.parameter.token",
+              "id": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue.Initializer.parameter.token",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -935,14 +935,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue;\n\nnew BearerTokenHeaderValue(java.lang.Object token);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.http.BearerTokenHeaderValue;\n\nnew BearerTokenHeaderValue(java.lang.Object token);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.BearerTokenHeaderValue.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -953,23 +953,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.BearerTokenHeaderValue",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.http.BearerTokenHeaderValue",
         "displayName": "BearerTokenHeaderValue",
-        "id": "@contract-case/case-definition-dsl.matchers.BearerTokenHeaderValue",
+        "id": "@contract-case/case-definition-dsl.matchers.http.BearerTokenHeaderValue",
         "docs": {
           "summary": "Matches the value part of a OIDC or OAuth header with the supplied token - useful in conjunction with the StateVariable matcher."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.base.CascadingContextMatcher.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher.Initializer.parameter.child",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.base.CascadingContextMatcher.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -979,9 +979,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher.Initializer.parameter.contextModifiers",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.base.CascadingContextMatcher.Initializer.parameter.contextModifiers",
               "displayName": "contextModifiers",
-              "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.contextModifiers",
+              "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer.parameter.contextModifiers",
               "type": {
                 "formattingPattern": "java.util.Map<java.lang.String, %>",
                 "types": [
@@ -996,9 +996,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher.Initializer.parameter.currentRunModifiers",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.base.CascadingContextMatcher.Initializer.parameter.currentRunModifiers",
               "displayName": "currentRunModifiers",
-              "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.Initializer.parameter.currentRunModifiers",
+              "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.Initializer.parameter.currentRunModifiers",
               "type": {
                 "formattingPattern": "java.util.Map<java.lang.String, %>",
                 "types": [
@@ -1013,14 +1013,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher;\n\nnew CascadingContextMatcher(java.lang.Object child, java.util.Map<java.lang.String, java.lang.String> contextModifiers, java.util.Map<java.lang.String, java.lang.String> currentRunModifiers);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.base.CascadingContextMatcher;\n\nnew CascadingContextMatcher(java.lang.Object child, java.util.Map<java.lang.String, java.lang.String> contextModifiers, java.util.Map<java.lang.String, java.lang.String> currentRunModifiers);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.base.CascadingContextMatcher.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher.toJSON",
             "parameters": [],
             "docs": {
               "summary": "If extending this class, do not override this method (or if you do, make sure you call `super.toJSON()`)."
@@ -1031,9 +1031,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.CascadingContextMatcher",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.base.CascadingContextMatcher",
         "displayName": "CascadingContextMatcher",
-        "id": "@contract-case/case-definition-dsl.matchers.CascadingContextMatcher",
+        "id": "@contract-case/case-definition-dsl.matchers.base.CascadingContextMatcher",
         "docs": {
           "summary": "This is a passthrough matcher that does nothing except call the child matcher with the current actual data.",
           "remarks": "It's useful for taking advantage of the context cascading available on all\nmatchers without needing to write you own matcher. Extend it if you want to\nmake a matcher that only changes the context object. If you don't know what\nthis means, you don't need to extend this matcher.\n\nDue to limitations with JSii, extending implementations MUST NOT override\n`toJSON`, or MUST return the result of `super.toJSON()` as part of their\ntoJSON method."
@@ -1041,14 +1041,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.ChangeLogLevel.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel.Initializer.parameter.logLevel",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.ChangeLogLevel.Initializer.parameter.logLevel",
               "displayName": "logLevel",
-              "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer.parameter.logLevel",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.Initializer.parameter.logLevel",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -1059,9 +1059,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel.Initializer.parameter.child",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.ChangeLogLevel.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -1071,14 +1071,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel;\n\nnew ChangeLogLevel(java.lang.String logLevel, java.lang.Object child);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.convenience.ChangeLogLevel;\n\nnew ChangeLogLevel(java.lang.String logLevel, java.lang.Object child);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.ChangeLogLevel.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1089,9 +1089,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ChangeLogLevel",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.ChangeLogLevel",
         "displayName": "ChangeLogLevel",
-        "id": "@contract-case/case-definition-dsl.matchers.ChangeLogLevel",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.ChangeLogLevel",
         "docs": {
           "summary": "Alters the ContractCase log level below this matcher. Useful for debugging.",
           "remarks": "This has no effect on matching.\n\nNote that this log level matcher will be saved into the contract, so it will\nalso affect the log level during verification. Usually you will want to\nremove the use of this matcher before saving the contract."
@@ -1099,34 +1099,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.mocks.Empty.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.modifiers.ExactlyLike.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.mocks.Empty.Initializer",
-          "parameters": [],
-          "usage": "import io.contract_testing.contractcase.definitions.mocks.Empty;\n\nnew Empty();"
-        },
-        "interfaces": [],
-        "instanceMethods": [],
-        "staticMethods": [],
-        "constants": [],
-        "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.Empty",
-        "displayName": "Empty",
-        "id": "@contract-case/case-definition-dsl.mocks.Empty",
-        "docs": {
-          "summary": "Empty class to make jsii-docgen happy with this module."
-        }
-      },
-      {
-        "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ExactlyLike.Initializer",
-          "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ExactlyLike.Initializer.parameter.content",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.modifiers.ExactlyLike.Initializer.parameter.content",
               "displayName": "content",
-              "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike.Initializer.parameter.content",
+              "id": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike.Initializer.parameter.content",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -1136,14 +1116,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ExactlyLike;\n\nnew ExactlyLike(java.lang.Object content);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.modifiers.ExactlyLike;\n\nnew ExactlyLike(java.lang.Object content);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ExactlyLike.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.modifiers.ExactlyLike.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1154,9 +1134,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ExactlyLike",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.modifiers.ExactlyLike",
         "displayName": "ExactlyLike",
-        "id": "@contract-case/case-definition-dsl.matchers.ExactlyLike",
+        "id": "@contract-case/case-definition-dsl.matchers.modifiers.ExactlyLike",
         "docs": {
           "summary": "Everything inside this matcher will be matched exactly, unless overridden with a generic matcher (eg `AnyString` or` ShapedLike`).",
           "remarks": "Use this to switch\nout of `shapedLike` and back to the default exact matching."
@@ -1164,14 +1144,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.FunctionArguments.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.functions.FunctionArguments.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.FunctionArguments.Initializer.parameter.expectedArguments",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.functions.FunctionArguments.Initializer.parameter.expectedArguments",
               "displayName": "expectedArguments",
-              "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.Initializer.parameter.expectedArguments",
+              "id": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.Initializer.parameter.expectedArguments",
               "type": {
                 "formattingPattern": "java.util.List<%>",
                 "types": [
@@ -1186,14 +1166,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.FunctionArguments;\n\nnew FunctionArguments(java.util.List<java.lang.Object> expectedArguments);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.functions.FunctionArguments;\n\nnew FunctionArguments(java.util.List<java.lang.Object> expectedArguments);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.FunctionArguments.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.functions.FunctionArguments.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1205,9 +1185,9 @@
         "constants": [],
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.FunctionArguments.property.arguments",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.functions.FunctionArguments.property.arguments",
             "displayName": "arguments",
-            "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments.property.arguments",
+            "id": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments.property.arguments",
             "type": {
               "formattingPattern": "java.util.List<%>",
               "types": [
@@ -1220,9 +1200,9 @@
             "usage": "public java.util.List<java.lang.Object> getArguments();"
           }
         ],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.FunctionArguments",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.functions.FunctionArguments",
         "displayName": "FunctionArguments",
-        "id": "@contract-case/case-definition-dsl.matchers.FunctionArguments",
+        "id": "@contract-case/case-definition-dsl.matchers.functions.FunctionArguments",
         "docs": {
           "summary": "Matches function arguments, for use with a MockFunctionCall / MockFunctionExecution.",
           "remarks": "Usually you don't need to use this matcher directly, the mock creates it for you."
@@ -1230,14 +1210,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.method",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.Initializer.parameter.method",
               "displayName": "method",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.method",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer.parameter.method",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -1248,9 +1228,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.path",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.Initializer.parameter.path",
               "displayName": "path",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.path",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer.parameter.path",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -1261,9 +1241,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.body",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.Initializer.parameter.body",
               "displayName": "body",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.body",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer.parameter.body",
               "optional": true,
               "type": {
                 "formattingPattern": "java.lang.Object"
@@ -1275,9 +1255,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.headers",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.Initializer.parameter.headers",
               "displayName": "headers",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.headers",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer.parameter.headers",
               "optional": true,
               "type": {
                 "formattingPattern": "java.lang.Object"
@@ -1289,9 +1269,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.query",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.Initializer.parameter.query",
               "displayName": "query",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.query",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer.parameter.query",
               "optional": true,
               "type": {
                 "formattingPattern": "java.lang.Object"
@@ -1303,9 +1283,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.Initializer.parameter.uniqueName",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.Initializer.parameter.uniqueName",
               "displayName": "uniqueName",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.Initializer.parameter.uniqueName",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.Initializer.parameter.uniqueName",
               "optional": true,
               "type": {
                 "formattingPattern": "java.lang.String"
@@ -1316,14 +1296,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.HttpRequest;\n\nHttpRequest.Builder.create()\n    .method(java.lang.Object)\n    .path(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .query(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.http.HttpRequest;\n\nHttpRequest.Builder.create()\n    .method(java.lang.Object)\n    .path(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .query(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1335,9 +1315,9 @@
         "constants": [],
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.method",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.property.method",
             "displayName": "method",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.method",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.method",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -1345,9 +1325,9 @@
             "usage": "public java.lang.Object getMethod();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.path",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.property.path",
             "displayName": "path",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.path",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.path",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -1355,9 +1335,9 @@
             "usage": "public java.lang.Object getPath();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.body",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.property.body",
             "displayName": "body",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.body",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.body",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Object"
@@ -1366,9 +1346,9 @@
             "usage": "public java.lang.Object getBody();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.headers",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.property.headers",
             "displayName": "headers",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.headers",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.headers",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Object"
@@ -1377,9 +1357,9 @@
             "usage": "public java.lang.Object getHeaders();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.query",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.property.query",
             "displayName": "query",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.query",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.query",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Object"
@@ -1388,9 +1368,9 @@
             "usage": "public java.lang.Object getQuery();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest.property.uniqueName",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest.property.uniqueName",
             "displayName": "uniqueName",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequest.property.uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest.property.uniqueName",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.String"
@@ -1399,23 +1379,23 @@
             "usage": "public java.lang.String getUniqueName();"
           }
         ],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequest",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequest",
         "displayName": "HttpRequest",
-        "id": "@contract-case/case-definition-dsl.matchers.HttpRequest",
+        "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequest",
         "docs": {
           "summary": "Matches any HTTP Request with the provided properties."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.Initializer.parameter.status",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse.Initializer.parameter.status",
               "displayName": "status",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer.parameter.status",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.Initializer.parameter.status",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -1425,9 +1405,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.Initializer.parameter.body",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse.Initializer.parameter.body",
               "displayName": "body",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer.parameter.body",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.Initializer.parameter.body",
               "optional": true,
               "type": {
                 "formattingPattern": "java.lang.Object"
@@ -1439,9 +1419,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.Initializer.parameter.headers",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse.Initializer.parameter.headers",
               "displayName": "headers",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer.parameter.headers",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.Initializer.parameter.headers",
               "optional": true,
               "type": {
                 "formattingPattern": "java.lang.Object"
@@ -1453,9 +1433,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.Initializer.parameter.uniqueName",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse.Initializer.parameter.uniqueName",
               "displayName": "uniqueName",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.Initializer.parameter.uniqueName",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.Initializer.parameter.uniqueName",
               "optional": true,
               "type": {
                 "formattingPattern": "java.lang.String"
@@ -1466,14 +1446,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.HttpResponse;\n\nHttpResponse.Builder.create()\n    .status(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.http.HttpResponse;\n\nHttpResponse.Builder.create()\n    .status(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1485,9 +1465,9 @@
         "constants": [],
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.property.status",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse.property.status",
             "displayName": "status",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.status",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.status",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -1495,9 +1475,9 @@
             "usage": "public java.lang.Object getStatus();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.property.body",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse.property.body",
             "displayName": "body",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.body",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.body",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Object"
@@ -1506,9 +1486,9 @@
             "usage": "public java.lang.Object getBody();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.property.headers",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse.property.headers",
             "displayName": "headers",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.headers",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.headers",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Object"
@@ -1517,9 +1497,9 @@
             "usage": "public java.lang.Object getHeaders();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse.property.uniqueName",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse.property.uniqueName",
             "displayName": "uniqueName",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponse.property.uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse.property.uniqueName",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.String"
@@ -1528,23 +1508,23 @@
             "usage": "public java.lang.String getUniqueName();"
           }
         ],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponse",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponse",
         "displayName": "HttpResponse",
-        "id": "@contract-case/case-definition-dsl.matchers.HttpResponse",
+        "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponse",
         "docs": {
           "summary": "Matches any HTTP Response with the provided properties."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpStatusCode.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpStatusCode.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpStatusCode.Initializer.parameter.statusCode",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpStatusCode.Initializer.parameter.statusCode",
               "displayName": "statusCode",
-              "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.Initializer.parameter.statusCode",
+              "id": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode.Initializer.parameter.statusCode",
               "type": {
                 "formattingPattern": "% OR %",
                 "types": [
@@ -1567,14 +1547,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.HttpStatusCode;\n\nnew HttpStatusCode(java.lang.String OR java.util.List<java.lang.String> statusCode);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.http.HttpStatusCode;\n\nnew HttpStatusCode(java.lang.String OR java.util.List<java.lang.String> statusCode);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpStatusCode.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpStatusCode.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1585,11 +1565,51 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpStatusCode",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpStatusCode",
         "displayName": "HttpStatusCode",
-        "id": "@contract-case/case-definition-dsl.matchers.HttpStatusCode",
+        "id": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode",
         "docs": {
           "summary": "Matches an HTTP status code."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.IgnoreThisClass.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.IgnoreThisClass.Initializer",
+          "parameters": [],
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.IgnoreThisClass;\n\nnew IgnoreThisClass();"
+        },
+        "interfaces": [],
+        "instanceMethods": [],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.IgnoreThisClass",
+        "displayName": "IgnoreThisClass",
+        "id": "@contract-case/case-definition-dsl.matchers.IgnoreThisClass",
+        "docs": {
+          "summary": "Empty class to make jsii-docgen happy with this module."
+        }
+      },
+      {
+        "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.mocks.IgnoreThisClass.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.mocks.IgnoreThisClass.Initializer",
+          "parameters": [],
+          "usage": "import io.contract_testing.contractcase.definitions.mocks.IgnoreThisClass;\n\nnew IgnoreThisClass();"
+        },
+        "interfaces": [],
+        "instanceMethods": [],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.mocks.IgnoreThisClass",
+        "displayName": "IgnoreThisClass",
+        "id": "@contract-case/case-definition-dsl.mocks.IgnoreThisClass",
+        "docs": {
+          "summary": "Empty class to make jsii-docgen happy with this module."
         }
       },
       {
@@ -1766,14 +1786,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.NamedMatch.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.NamedMatch.Initializer.parameter.name",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch.Initializer.parameter.name",
               "displayName": "name",
-              "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer.parameter.name",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.Initializer.parameter.name",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -1783,9 +1803,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.NamedMatch.Initializer.parameter.child",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -1796,14 +1816,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.NamedMatch;\n\nnew NamedMatch(java.lang.String name, java.lang.Object child);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;\n\nnew NamedMatch(java.lang.String name, java.lang.Object child);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.NamedMatch.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.NamedMatch.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1814,9 +1834,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.NamedMatch",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch",
         "displayName": "NamedMatch",
-        "id": "@contract-case/case-definition-dsl.matchers.NamedMatch",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.NamedMatch",
         "docs": {
           "summary": "Saves the matcher below it with a unique name that can be used with lookups in tests after this one.",
           "remarks": "Lookups can be made with {@link matchers.convenience.ReferenceMatch }."
@@ -1824,14 +1844,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachKeyMatches.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachKeyMatches.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachKeyMatches.Initializer.parameter.matcher",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachKeyMatches.Initializer.parameter.matcher",
               "displayName": "matcher",
-              "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.Initializer.parameter.matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches.Initializer.parameter.matcher",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -1841,14 +1861,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ObjectEachKeyMatches;\n\nnew ObjectEachKeyMatches(java.lang.Object matcher);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachKeyMatches;\n\nnew ObjectEachKeyMatches(java.lang.Object matcher);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachKeyMatches.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachKeyMatches.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1859,23 +1879,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachKeyMatches",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachKeyMatches",
         "displayName": "ObjectEachKeyMatches",
-        "id": "@contract-case/case-definition-dsl.matchers.ObjectEachKeyMatches",
+        "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachKeyMatches",
         "docs": {
           "summary": "Matches an object where each key matches the provided matcher."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachValueMatches.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachValueMatches.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachValueMatches.Initializer.parameter.matcher",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachValueMatches.Initializer.parameter.matcher",
               "displayName": "matcher",
-              "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.Initializer.parameter.matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches.Initializer.parameter.matcher",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -1885,14 +1905,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ObjectEachValueMatches;\n\nnew ObjectEachValueMatches(java.lang.Object matcher);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachValueMatches;\n\nnew ObjectEachValueMatches(java.lang.Object matcher);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachValueMatches.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachValueMatches.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1903,23 +1923,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ObjectEachValueMatches",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.objects.ObjectEachValueMatches",
         "displayName": "ObjectEachValueMatches",
-        "id": "@contract-case/case-definition-dsl.matchers.ObjectEachValueMatches",
+        "id": "@contract-case/case-definition-dsl.matchers.objects.ObjectEachValueMatches",
         "docs": {
           "summary": "Matches an object where each value matches the provided matcher."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ReferenceMatch.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.ReferenceMatch.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ReferenceMatch.Initializer.parameter.name",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.ReferenceMatch.Initializer.parameter.name",
               "displayName": "name",
-              "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.Initializer.parameter.name",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch.Initializer.parameter.name",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -1929,14 +1949,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ReferenceMatch;\n\nnew ReferenceMatch(java.lang.String name);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.convenience.ReferenceMatch;\n\nnew ReferenceMatch(java.lang.String name);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ReferenceMatch.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.ReferenceMatch.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1947,23 +1967,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ReferenceMatch",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.ReferenceMatch",
         "displayName": "ReferenceMatch",
-        "id": "@contract-case/case-definition-dsl.matchers.ReferenceMatch",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.ReferenceMatch",
         "docs": {
           "summary": "Matches a named matcher created with {@link matchers.convenience.NamedMatch }."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.ShapedLike.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.modifiers.ShapedLike.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.ShapedLike.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.ShapedLike.Initializer.parameter.content",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.modifiers.ShapedLike.Initializer.parameter.content",
               "displayName": "content",
-              "id": "@contract-case/case-definition-dsl.matchers.ShapedLike.Initializer.parameter.content",
+              "id": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike.Initializer.parameter.content",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -1973,14 +1993,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.ShapedLike;\n\nnew ShapedLike(java.lang.Object content);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.modifiers.ShapedLike;\n\nnew ShapedLike(java.lang.Object content);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ShapedLike.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.modifiers.ShapedLike.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.ShapedLike.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -1991,9 +2011,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ShapedLike",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.modifiers.ShapedLike",
         "displayName": "ShapedLike",
-        "id": "@contract-case/case-definition-dsl.matchers.ShapedLike",
+        "id": "@contract-case/case-definition-dsl.matchers.modifiers.ShapedLike",
         "docs": {
           "summary": "Everything inside this matcher will be matched on the shape of the data (ie, type alone), unless overridden with other matchers.",
           "remarks": "Use this to switch out\nof the default `exactlyLike` matching."
@@ -2001,14 +2021,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.StateVariable.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.StateVariable.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.StateVariable.Initializer.parameter.name",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable.Initializer.parameter.name",
               "displayName": "name",
-              "id": "@contract-case/case-definition-dsl.matchers.StateVariable.Initializer.parameter.name",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable.Initializer.parameter.name",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -2018,14 +2038,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.StateVariable;\n\nnew StateVariable(java.lang.String name);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable;\n\nnew StateVariable(java.lang.String name);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.StateVariable.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.StateVariable.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2036,9 +2056,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.StateVariable",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable",
         "displayName": "StateVariable",
-        "id": "@contract-case/case-definition-dsl.matchers.StateVariable",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable",
         "docs": {
           "summary": "Matches the content of a variable that comes from a state.",
           "remarks": "See {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions state} * definitions}\nand {@link https://case.contract-testing.io/docs/reference/state-handlers state handlers} for\nmore details."
@@ -2046,14 +2066,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.StringContaining.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringContaining.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringContaining.Initializer.parameter.substring",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringContaining.Initializer.parameter.substring",
               "displayName": "substring",
-              "id": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer.parameter.substring",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.Initializer.parameter.substring",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -2063,9 +2083,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringContaining.Initializer.parameter.example",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringContaining.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.StringContaining.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -2075,14 +2095,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.StringContaining;\n\nnew StringContaining(java.lang.String substring, java.lang.String example);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.strings.StringContaining;\n\nnew StringContaining(java.lang.String substring, java.lang.String example);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.StringContaining.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringContaining.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.StringContaining.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.StringContaining.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2093,23 +2113,23 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.StringContaining",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringContaining",
         "displayName": "StringContaining",
-        "id": "@contract-case/case-definition-dsl.matchers.StringContaining",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.StringContaining",
         "docs": {
           "summary": "Matches any string that contains the given substring."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.StringifiedJson.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringifiedJson.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringifiedJson.Initializer.parameter.child",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringifiedJson.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2119,14 +2139,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.StringifiedJson;\n\nnew StringifiedJson(java.lang.Object child);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.strings.StringifiedJson;\n\nnew StringifiedJson(java.lang.Object child);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.StringifiedJson.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringifiedJson.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2137,9 +2157,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.StringifiedJson",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringifiedJson",
         "displayName": "StringifiedJson",
-        "id": "@contract-case/case-definition-dsl.matchers.StringifiedJson",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.StringifiedJson",
         "docs": {
           "summary": "Transformation matcher that matches a JSON.stringify()ed version of the given object.",
           "remarks": "For example, if the actual data is the string:\n\n```java\n\"{\\\"foo\\\":2}\";\n```\n\nthen you could match it with:\n\n```java\n// Example automatically generated from non-compiling source. May contain errors.\nStringifiedJson(Map.of(\n        \"foo\", 2));\n```\n\nor\n\n```java\n// Example automatically generated from non-compiling source. May contain errors.\nStringifiedJson(Map.of(\n        \"foo\", AnyNumber(2)));\n```"
@@ -2147,14 +2167,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.StringPrefix.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringPrefix.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringPrefix.Initializer.parameter.prefix",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringPrefix.Initializer.parameter.prefix",
               "displayName": "prefix",
-              "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer.parameter.prefix",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.Initializer.parameter.prefix",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -2165,9 +2185,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringPrefix.Initializer.parameter.suffix",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringPrefix.Initializer.parameter.suffix",
               "displayName": "suffix",
-              "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.Initializer.parameter.suffix",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.Initializer.parameter.suffix",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2177,14 +2197,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.StringPrefix;\n\nnew StringPrefix(java.lang.String prefix, java.lang.Object suffix);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.strings.StringPrefix;\n\nnew StringPrefix(java.lang.String prefix, java.lang.Object suffix);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.StringPrefix.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringPrefix.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.StringPrefix.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2195,9 +2215,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.StringPrefix",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringPrefix",
         "displayName": "StringPrefix",
-        "id": "@contract-case/case-definition-dsl.matchers.StringPrefix",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.StringPrefix",
         "docs": {
           "summary": "Matches any string that begins with the given constant string prefix, and ends with a matchable suffix.",
           "remarks": "At match time, the actual string is checked for the constant prefix, and then\nthe rest of the string is passed to the suffix matcher..\n\nThe suffix matcher must be expecting a string.\n\nSee also {@link matchers.strings.StringSuffix StringSuffix}"
@@ -2205,14 +2225,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.StringSuffix.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringSuffix.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringSuffix.Initializer.parameter.prefix",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringSuffix.Initializer.parameter.prefix",
               "displayName": "prefix",
-              "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer.parameter.prefix",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.Initializer.parameter.prefix",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2223,9 +2243,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.StringSuffix.Initializer.parameter.suffix",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringSuffix.Initializer.parameter.suffix",
               "displayName": "suffix",
-              "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.Initializer.parameter.suffix",
+              "id": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.Initializer.parameter.suffix",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -2236,14 +2256,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.StringSuffix;\n\nnew StringSuffix(java.lang.Object prefix, java.lang.String suffix);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.strings.StringSuffix;\n\nnew StringSuffix(java.lang.Object prefix, java.lang.String suffix);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.StringSuffix.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringSuffix.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.StringSuffix.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2254,9 +2274,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.StringSuffix",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.strings.StringSuffix",
         "displayName": "StringSuffix",
-        "id": "@contract-case/case-definition-dsl.matchers.StringSuffix",
+        "id": "@contract-case/case-definition-dsl.matchers.strings.StringSuffix",
         "docs": {
           "summary": "Matches any string that begins with a matchable prefix, and ends with a constant suffix.",
           "remarks": "At match time, the actual string is checked for the expected constant suffix,\nand then the beginning of the string is passed to the prefix matcher.\n\nThe prefix matcher must be expecting a string.\n\nSee also {@link matchers.strings.StringPrefix StringPrefix}"
@@ -2264,14 +2284,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.UriEncodedString.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.http.UriEncodedString.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.UriEncodedString.Initializer.parameter.child",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.http.UriEncodedString.Initializer.parameter.child",
               "displayName": "child",
-              "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString.Initializer.parameter.child",
+              "id": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString.Initializer.parameter.child",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2281,14 +2301,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.UriEncodedString;\n\nnew UriEncodedString(java.lang.Object child);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.http.UriEncodedString;\n\nnew UriEncodedString(java.lang.Object child);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.UriEncodedString.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.UriEncodedString.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2299,9 +2319,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.UriEncodedString",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.http.UriEncodedString",
         "displayName": "UriEncodedString",
-        "id": "@contract-case/case-definition-dsl.matchers.UriEncodedString",
+        "id": "@contract-case/case-definition-dsl.matchers.http.UriEncodedString",
         "docs": {
           "summary": "Convenience matcher to treat the string as a uri encoded string - useful in `path` segments.",
           "remarks": "During matching, the actual value is decoded with `decodeUriComponent()` and passed to the child matcher."
@@ -2723,14 +2743,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.matchers.WithExample.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.WithExample.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer",
+          "id": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.WithExample.Initializer.parameter.matcher",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.WithExample.Initializer.parameter.matcher",
               "displayName": "matcher",
-              "id": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer.parameter.matcher",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.Initializer.parameter.matcher",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2740,9 +2760,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.matchers.WithExample.Initializer.parameter.example",
+              "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.WithExample.Initializer.parameter.example",
               "displayName": "example",
-              "id": "@contract-case/case-definition-dsl.matchers.WithExample.Initializer.parameter.example",
+              "id": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.Initializer.parameter.example",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2752,14 +2772,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.WithExample;\n\nnew WithExample(java.lang.Object matcher, java.lang.Object example);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.convenience.WithExample;\n\nnew WithExample(java.lang.Object matcher, java.lang.Object example);"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.WithExample.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.WithExample.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.matchers.WithExample.toJSON",
+            "id": "@contract-case/case-definition-dsl.matchers.convenience.WithExample.toJSON",
             "parameters": [],
             "docs": {
               "summary": "For non-TypeScript implementations (see `AnyMatcher.toJSON`)."
@@ -2770,9 +2790,9 @@
         "staticMethods": [],
         "constants": [],
         "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.WithExample",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.convenience.WithExample",
         "displayName": "WithExample",
-        "id": "@contract-case/case-definition-dsl.matchers.WithExample",
+        "id": "@contract-case/case-definition-dsl.matchers.convenience.WithExample",
         "docs": {
           "summary": "Adds an example to the provided matcher.",
           "remarks": "Useful when you have a complicated\nset of constraints and ContractCase can't figure out what the best example should be.\n\nNote that providing any example will override examples provided further down the tree."
@@ -2781,14 +2801,14 @@
     ],
     "structs": [
       {
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLengthOptions",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLengthOptions",
         "displayName": "ArrayLengthOptions",
-        "id": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions",
+        "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions",
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLengthOptions.property.maxLength",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLengthOptions.property.maxLength",
             "displayName": "maxLength",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions.property.maxLength",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions.property.maxLength",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Number"
@@ -2800,9 +2820,9 @@
             "usage": "public java.lang.Number getMaxLength();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.ArrayLengthOptions.property.minLength",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLengthOptions.property.minLength",
             "displayName": "minLength",
-            "id": "@contract-case/case-definition-dsl.matchers.ArrayLengthOptions.property.minLength",
+            "id": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions.property.minLength",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Number"
@@ -2817,7 +2837,7 @@
         "docs": {
           "summary": "Options for the `ArrayLength` matcher."
         },
-        "usage": "import io.contract_testing.contractcase.definitions.matchers.ArrayLengthOptions;\n\nArrayLengthOptions.builder()\n//  .maxLength(java.lang.Number)\n//  .minLength(java.lang.Number)\n    .build();"
+        "usage": "import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLengthOptions;\n\nArrayLengthOptions.builder()\n//  .maxLength(java.lang.Number)\n//  .minLength(java.lang.Number)\n    .build();"
       },
       {
         "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
@@ -3050,14 +3070,14 @@
         "usage": "import io.contract_testing.contractcase.definitions.mocks.http.HttpExample;\n\nHttpExample.builder()\n    .request(java.lang.Object)\n    .response(java.lang.Object)\n    .build();"
       },
       {
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample",
         "displayName": "HttpRequestExample",
-        "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample",
+        "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample",
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.method",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample.property.method",
             "displayName": "method",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.method",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.method",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -3068,9 +3088,9 @@
             "usage": "public java.lang.Object getMethod();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.path",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample.property.path",
             "displayName": "path",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.path",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.path",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -3081,9 +3101,9 @@
             "usage": "public java.lang.Object getPath();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.body",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample.property.body",
             "displayName": "body",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.body",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.body",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Object"
@@ -3095,9 +3115,9 @@
             "usage": "public java.lang.Object getBody();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.headers",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample.property.headers",
             "displayName": "headers",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.headers",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.headers",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Object"
@@ -3109,9 +3129,9 @@
             "usage": "public java.lang.Object getHeaders();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.query",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample.property.query",
             "displayName": "query",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.query",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.query",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Object"
@@ -3123,9 +3143,9 @@
             "usage": "public java.lang.Object getQuery();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpRequestExample.property.uniqueName",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample.property.uniqueName",
             "displayName": "uniqueName",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpRequestExample.property.uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample.property.uniqueName",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.String"
@@ -3137,17 +3157,17 @@
           }
         ],
         "docs": {},
-        "usage": "import io.contract_testing.contractcase.definitions.matchers.HttpRequestExample;\n\nHttpRequestExample.builder()\n    .method(java.lang.Object)\n    .path(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .query(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
+        "usage": "import io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample;\n\nHttpRequestExample.builder()\n    .method(java.lang.Object)\n    .path(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .query(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
       },
       {
-        "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponseExample",
+        "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample",
         "displayName": "HttpResponseExample",
-        "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample",
+        "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample",
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponseExample.property.status",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample.property.status",
             "displayName": "status",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.status",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.status",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -3157,9 +3177,9 @@
             "usage": "public java.lang.Object getStatus();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponseExample.property.body",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample.property.body",
             "displayName": "body",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.body",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.body",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Object"
@@ -3171,9 +3191,9 @@
             "usage": "public java.lang.Object getBody();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponseExample.property.headers",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample.property.headers",
             "displayName": "headers",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.headers",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.headers",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.Object"
@@ -3185,9 +3205,9 @@
             "usage": "public java.lang.Object getHeaders();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.matchers.HttpResponseExample.property.uniqueName",
+            "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample.property.uniqueName",
             "displayName": "uniqueName",
-            "id": "@contract-case/case-definition-dsl.matchers.HttpResponseExample.property.uniqueName",
+            "id": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample.property.uniqueName",
             "optional": true,
             "type": {
               "formattingPattern": "java.lang.String"
@@ -3199,7 +3219,7 @@
           }
         ],
         "docs": {},
-        "usage": "import io.contract_testing.contractcase.definitions.matchers.HttpResponseExample;\n\nHttpResponseExample.builder()\n    .status(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
+        "usage": "import io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample;\n\nHttpResponseExample.builder()\n    .status(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
       }
     ],
     "interfaces": [],

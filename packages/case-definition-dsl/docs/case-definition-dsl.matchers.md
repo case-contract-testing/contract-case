@@ -38,6 +38,13 @@ Description
 </td></tr>
 <tr><td>
 
+[functions](./case-definition-dsl.matchers.functions.md)
+
+</td><td>
+
+</td></tr>
+<tr><td>
+
 [http](./case-definition-dsl.matchers.http.md)
 
 </td><td>

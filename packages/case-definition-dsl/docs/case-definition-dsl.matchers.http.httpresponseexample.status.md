@@ -4,6 +4,8 @@
 
 ## matchers.http.HttpResponseExample.status property
 
+Any test-equivalence matcher, string, or number for the HTTP status code accepted by this example (Recommended: Use the `HttpStatusCode` matcher)
+
 **Signature:**
 
 ```typescript

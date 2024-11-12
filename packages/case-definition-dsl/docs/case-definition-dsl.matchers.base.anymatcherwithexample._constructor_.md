@@ -4,7 +4,9 @@
 
 ## matchers.base.AnyMatcherWithExample.(constructor)
 
-Constructs a new instance of the `AnyMatcherWithExample` class
+The base class for all Test Equivalence Matchers that have examples provided. Extend this if your matcher knows what the example will be. Otherwise, use `matchers.AnyMatcher`
+
+Only use a type prefixed with `_case:` if you wish to create a special case for a matching behaviour that is already provided by a core ContractCase matcher.
 
 **Signature:**
 
@@ -37,6 +39,8 @@ string
 
 </td><td>
 
+The type string for this matcher (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings).
+
 </td></tr>
 <tr><td>
 
@@ -47,6 +51,8 @@ example
 unknown
 
 </td><td>
+
+The data that will be used as the example for this matcher
 
 </td></tr>
 </tbody></table>

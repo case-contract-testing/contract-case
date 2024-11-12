@@ -15,10 +15,9 @@
   },
   "scripts": {
     "prebuild": "rimraf build",
-    "build": "jsii",
+    "build": "jsii && npm run build:docs:jsii && npm run build:docs:local",
     "build:docs": "api-extractor run --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "build:docs:jsii": "rimraf docs-json && jsii-docgen -f json -l java -o ./docs-json/java.json && jsii-docgen -f json -l typescript -o ./docs-json/typescript.json",
-    "prebuild:docs:local": "npm run build",
     "build:docs:local": "api-extractor run --local --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "watch": "jsii -w",
     "prepackage": "rimraf dist",

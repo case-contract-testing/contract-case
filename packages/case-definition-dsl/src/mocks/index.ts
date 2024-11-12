@@ -9,4 +9,4 @@ export * as http from './http';
  * Empty class to make jsii-docgen happy with this module
  *
  */
-export class Empty {}
+export class IgnoreThisClass {}

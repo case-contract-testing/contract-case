@@ -37,7 +37,9 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `AnyMatcherWithExample` class
+The base class for all Test Equivalence Matchers that have examples provided. Extend this if your matcher knows what the example will be. Otherwise, use `matchers.AnyMatcher`
+
+Only use a type prefixed with `_case:` if you wish to create a special case for a matching behaviour that is already provided by a core ContractCase matcher.
 
 </td></tr>
 </tbody></table>
