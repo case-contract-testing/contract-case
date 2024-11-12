@@ -1,0 +1,21 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Matches function arguments, for use with a MockFunctionCall / MockFunctionExecution.
+
+Usually you don't need to use this matcher directly, the mock creates it for you.
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+```java
+import io.contract_testing.contractcase.definitions.matchers.functions.FunctionArguments;
+
+new FunctionArguments(java.util.List<java.lang.Object> expectedArguments);
+```
+
+#### Parameters <a name="Parameters" id="Parameters"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| expectedArguments | `java.util.List<java.lang.Object>` | an array where each entry will be matched against the arguments. |
+  </TabItem>
+</Tabs>
