@@ -6,7 +6,6 @@ import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.ExampleDefinition;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
-import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.PublishType;
 import io.contract_testing.contractcase.definitions.matchers.AnyInteger;
 import io.contract_testing.contractcase.definitions.matchers.AnyNull;
