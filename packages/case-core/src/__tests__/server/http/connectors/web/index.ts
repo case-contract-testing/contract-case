@@ -25,7 +25,7 @@ const start = (
       app.use(bodyParser.json());
       app.use(bodyParser.urlencoded({ extended: true }));
       routes(app, dependencies);
-      const server = app.listen(port, '::');
+      const server = app.listen(port);
       server.on('listening', () => {
         resolve(server);
       });
