@@ -29,6 +29,11 @@ const start = (
       server.on('listening', () => {
         resolve(server);
       });
+      server.on('error', (e) => {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        reject(e);
+      });
     } catch (e) {
       reject(e);
     }
