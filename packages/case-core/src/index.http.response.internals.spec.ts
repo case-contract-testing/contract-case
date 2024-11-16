@@ -110,19 +110,25 @@ describe('simple get endpoint', () => {
         ).rejects.toBeInstanceOf(CaseConfigurationError));
     });
     describe('with a running server', () => {
-      let server: http.Server;
+      let serverPromise: Promise<http.Server>;
       beforeEach(async () => {
-        server = await start(PORT);
+        serverPromise = start(PORT);
+        return serverPromise;
       });
-      afterEach(() => {
-        const closePromise = new Promise<void>((resolve) => {
-          server.on('close', () => {
-            resolve();
+      afterEach(async () =>
+        Promise.resolve(serverPromise).then((server) => {
+          const closePromise = new Promise<void>((resolve, reject) => {
+            server.on('close', () => {
+              resolve();
+            });
+            server.on('error', (e) => {
+              reject(e);
+            });
           });
-        });
-        server.close();
-        return closePromise;
-      });
+          server.close();
+          return closePromise;
+        }),
+      );
 
       describe('and a matching mock', () => {
         it('succeeds', () =>
