@@ -111,10 +111,10 @@ describe('simple get endpoint', () => {
     });
     describe('with a running server', () => {
       let server: http.Server;
-      beforeAll(async () => {
+      beforeEach(async () => {
         server = await start(PORT);
       });
-      afterAll(() => {
+      afterEach(() => {
         const closePromise = new Promise<void>((resolve) => {
           server.on('close', () => {
             resolve();
