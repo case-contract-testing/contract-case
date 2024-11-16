@@ -15,7 +15,7 @@ import { WritingCaseContract } from './core';
 import { writerDependencies } from './connectors/dependencies';
 import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
 
-const PORT = 8084;
+const PORT = 8284;
 
 const expectErrorContaining = async (
   context: Promise<unknown>,
