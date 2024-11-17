@@ -13,5 +13,5 @@ Call this on any children of your matcher. If your matcher has more than one chi
 **Signature:**
 
 ```typescript
-selfVerify: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => Promise<MatchResult> | MatchResult;
+selfVerify: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => Promise<void>;
 ```

@@ -133,7 +133,7 @@ Call this on any children of your matcher. If your matcher has more than one chi
 
 </td><td>
 
-(matcherOrData: AnyCaseMatcherOrData, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; Promise&lt;[MatchResult](./case-plugin-base.matchresult.md)<!-- -->&gt; \| [MatchResult](./case-plugin-base.matchresult.md)
+(matcherOrData: AnyCaseMatcherOrData, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; Promise&lt;void&gt;
 
 
 </td><td>

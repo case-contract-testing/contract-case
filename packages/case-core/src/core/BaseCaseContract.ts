@@ -11,7 +11,6 @@ import {
   CaseCoreError,
   applyNodeToContext,
   MatchResult,
-  hasErrors,
 } from '@contract-case/case-plugin-base';
 import {
   ContractData,
@@ -280,14 +279,6 @@ export class BaseCaseContract {
           applyNodeToContext(matcherOrData, this.initialContext),
         ),
       )
-      .then((selfVerification) => {
-        if (hasErrors(selfVerification)) {
-          throw new CaseConfigurationError(
-            // TODO document this extensively.
-            `The matchers used have been given an example that doesn't pass the matcher: ${selfVerification[0]?.message} (at ${selfVerification[0]?.location})`,
-          );
-        }
-      })
       .then(() =>
         traversals.descendAndCheck(
           matcherOrData,

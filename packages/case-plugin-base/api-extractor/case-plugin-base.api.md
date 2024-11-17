@@ -444,7 +444,7 @@ export interface TraversalFns {
     descendAndDescribe: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => string;
     descendAndStrip: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => AnyData;
     descendAndValidate: <T extends AnyCaseMatcherOrData>(matcherOrData: T, parentMatchContext: MatchContext) => Promise<void>;
-    selfVerify: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => Promise<MatchResult> | MatchResult;
+    selfVerify: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => Promise<void>;
 }
 
 // @public

@@ -2,12 +2,7 @@ import {
   AnyMockDescriptor,
   AnyMockDescriptorType,
 } from '@contract-case/case-entities-internal';
-import {
-  MatchContext,
-  addLocation,
-  hasErrors,
-  CaseConfigurationError,
-} from '@contract-case/case-plugin-base';
+import { MatchContext } from '@contract-case/case-plugin-base';
 import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
 import { mockExecutor } from './mockExecutor';
 import { MockExecutors } from '../../../plugins/mockExecutors';
@@ -22,17 +17,8 @@ export const setupMock = <T extends AnyMockDescriptorType>(
       config,
       assert: () =>
         assertableData().then(({ expected, context, actual }) =>
-          Promise.resolve(
-            context.selfVerify(expected, addLocation(':selfCheck', context)),
-          )
-            .then((selfVerification) => {
-              if (hasErrors(selfVerification)) {
-                throw new CaseConfigurationError(
-                  // TODO document this extensively.
-                  `The matchers used have been given an example that doesn't pass the matcher: ${selfVerification[0]?.message} (at ${selfVerification[0]?.location})`,
-                );
-              }
-            })
+          Promise.resolve()
+            .then(() => context.selfVerify(expected, context))
             .then(() => context.descendAndCheck(expected, context, actual)),
         ),
     }),

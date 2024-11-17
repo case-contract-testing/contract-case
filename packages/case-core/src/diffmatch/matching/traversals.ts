@@ -11,6 +11,9 @@ import {
   MatcherExecutor,
   CaseCoreError,
   TraversalFns,
+  addLocation,
+  hasErrors,
+  CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
 import {
   AnyLeafOrStructure,
@@ -105,13 +108,48 @@ const descendAndStrip = <T extends AnyCaseNodeType>(
   ).strip();
 };
 
+/**
+ * selfVerify is the entry point into the self-verification process:
+ *
+ * - First check that the parameters passed to the matchers are appropriate
+ * - Then validate that the matcher matches itself (ie, if stripped back to its
+ *   example, does the example pass the matcher?)
+ *
+ * @param matcherOrData - The entry point matcher / example
+ * @param parentMatchContext - The match context for this run
+ * @returns a successful promise if verification passes, or a failed promise
+ *    with details of what went wrong if verification failed.
+ */
 const selfVerify = <T extends AnyCaseNodeType>(
   matcherOrData: AnyLeafOrStructure | UnknownCaseNodeType | CaseNodeFor<T>,
   parentMatchContext: MatchContext,
-): ReturnType<MatcherExecutor<T, CaseNodeFor<T>>['check']> =>
-  getExecutor<T>(matcherOrData as CaseNodeFor<T>, parentMatchContext).check(
-    descendAndStrip<T>(matcherOrData as CaseNodeFor<T>, parentMatchContext),
-  );
+): Promise<void> =>
+  Promise.resolve()
+    .then(() =>
+      // First validate the parameters
+      // This function will reject the promise if validation fails
+      descendAndValidate(
+        matcherOrData,
+        addLocation(':selfVerifyValidate', parentMatchContext),
+      ),
+    )
+    .then(() =>
+      // Then validate that the matcher matches its example
+      getExecutor<T>(matcherOrData as CaseNodeFor<T>, parentMatchContext).check(
+        descendAndStrip<T>(
+          matcherOrData as CaseNodeFor<T>,
+          addLocation(':sefVerifyCheck', parentMatchContext),
+        ),
+      ),
+    )
+    .then((selfVerification) => {
+      if (hasErrors(selfVerification)) {
+        throw new CaseConfigurationError(
+          // TODO document this extensively.
+          `The matchers used have been given an example that doesn't pass the matcher: ${selfVerification[0]?.message} (at ${selfVerification[0]?.location})`,
+        );
+      }
+    });
 
 export const traversals: TraversalFns = {
   descendAndDescribe,

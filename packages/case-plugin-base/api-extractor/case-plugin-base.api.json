@@ -4719,21 +4719,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "MatchResult",
-                  "canonicalReference": "@contract-case/case-plugin-base!MatchResult:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "> | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "MatchResult",
-                  "canonicalReference": "@contract-case/case-plugin-base!MatchResult:type"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -4746,7 +4732,7 @@
               "name": "selfVerify",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 11
+                "endIndex": 8
               }
             }
           ],

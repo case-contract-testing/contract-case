@@ -243,7 +243,7 @@ export interface TraversalFns {
   selfVerify: (
     matcherOrData: AnyCaseMatcherOrData,
     parentMatchContext: MatchContext,
-  ) => Promise<MatchResult> | MatchResult;
+  ) => Promise<void>;
 }
 
 /**
