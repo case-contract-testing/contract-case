@@ -2,32 +2,36 @@
 
 See also the document on [package structure](./PackageStructure.md)
 
-All DSLs depend on `@contract-case/case-boundary`. They do not depend on
-case-core (yes, even JavaScript). This is so that all DSLs have the same access
-to the core. All languages support the same features.
+All user-facing packages depend on `@contract-case/case-connector`. They do not depend on
+case-core (yes, even JavaScript packages). This is so that all DSLs have the same access to the core, which means that all languages support the same features.
 
-The purpose of the DSL is to support the types and idioms in each target language.
+The purpose of the user-facing packages is to support the types and idioms for each target language.
 
 ## Hard rules
 
-These are the rules that govern what can and can't go in a DSL. The rules are written
-to reduce fragmentation and to keep the DSL layers light. Pull requests that
+These are the rules that govern what can and can't go in a user-facing package. The rules are written
+to reduce fragmentation and to keep the user-facing layers light. Pull requests that
 break these rules won't be accepted.
 
 - **No functionality goes in your DSL.** The only purpose of your DSL layer is to make using ContractCase idiomatic in the target language.
-- **No functionality goes in the case-boundary package**. The only purpose of the case-boundary
-  layer is to map between JSii and `Case-Core`. It is necessary to do this mapping,
+- **No functionality goes in the case-connector packages**. The only purpose of the case-connector
+  layer is to map between user-facing packages in various languages and `Case-Core`. It is necessary to do this mapping,
   because ContractCase has several layers of callbacks that could be arbitrarily
   deep, and we need to pass errors across them. See the Boundary Mappings section below. Long term, if a non-JSii language were to be supported, it would need its own `case-boundary`.
 - **Any new functionality goes in to Case-Core.** If you're wanting to build new
   functionality, it should go there instead. See the other pages in the
   maintainers section for more on extending case-core.
-- **No validation goes in your DSL.** The ContractCase core performs all validation and returns appropriately (one exception - if your language supports it, use the type system to avoid the need for validation, eg use enums where ContractCase expects a few different specific values of strings, like LogLevel).
-- **No JSON definitions go in your DSL.** The pure-json example and matcher definitions are already exposed by
+- **(Almost) no validation goes in your DSL or user-facing package.** The
+  ContractCase core performs validation and returns configuration errors, and you
+  should rely on this to keep behaviour consistent. There are a couple of
+  exceptions: Wherever possible, please use your language's type system to avoid the need
+  for validation (for example, use enums where ContractCase expects a few
+  different specific values of strings, like for `LogLevel`). Similarly, there may be cases where parse or serialisation errors make sense to be thrown as `ContractCaseConfigurationError` types inside your user-facing package. Use your judgement, and chat to us if you're not sure.
+- **No JSON matcher/mock example definitions go in your DSL.** The pure-json example and matcher definitions are already exposed by
   other packages. You should not be creating JSON for Examples or Matchers in your
   DSL, unless you are depending on those other translated boundary packages to do so. Long term, if a non-JSii language were to be supported, it would need its own JSON definitions (ideally, parsed from `@contract-case/case-entities-internal`).
 - **No types from `@contract-case/case-boundary` are to be exposed to users.** These types are internal implementation details.
-- **Your DSL may depend on other DSLs.** For example, a Gradle DSL can depend on the
+- **Your user-facing package may depend on other user-facing packages.** For example, a Gradle DSL can depend on the
   Java DSL. Or a Jest DSL can depend on the TypeScript DSL.
 
 ## Naming
@@ -35,7 +39,7 @@ break these rules won't be accepted.
 There are some repeated types through the layers. Generally:
 
 1. Types in the core layer are prefixed with Case, eg `CaseConfigurationError` and `CaseConfig`.
-2. Types in the boundary are prefixed with `Boundary`, eg `BoundaryResult` and `BoundaryCaseConfig`.
+2. Types in the connector are prefixed with `Connector`, eg `ConnectorResult` and `ConnectorCaseConfig`.
 3. Types in the DSLs are prefixed with `ContractCase`, eg `ContractCaseConfigurationError` and `ContractCaseConfig`. Please follow this naming convention in your DSL.
 
 ## Implementing the DSL
@@ -44,6 +48,12 @@ Here are some steps you can follow to implement a new DSL. During implementation
 [latest API documentation for the case boundary package](./reference/case-boundary-API.md)
 
 ### Steps
+
+**_WARNING the following instructions are outdated. They were correct before the Connector package and gRPC server existed_**
+
+**_If you're about to follow these instructions, please get in touch via an issue instead_**
+
+**_We had to migrate away from a pure-JSii translated boundary package, because of a design choice in JSii that restricts host languages to blocking i/o, which makes a contract testing framework difficult to implement. Instead, there's now a gRPC server which allows contract definition and verification to be triggered 'remotely'_**
 
 Here's an overview of the steps to create the DSL. Detailed description follows in the subsequent sections.
 
