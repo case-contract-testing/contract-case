@@ -152,19 +152,94 @@ interface HasMakeLookupFn {
  * @public
  */
 export interface TraversalFns {
+  /**
+   * Descend into the provided matcher, checking the actual data against the next matcher.
+   *
+   * Call this on any children of your matcher.
+   * If your matcher has more than one child, call this
+   * function multiple times and combine the result with
+   * {@link combineResultPromises}
+   * @param matcherOrData - the next matcher to check
+   * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}
+   * @param actual - the actual data at this point
+   * @returns a Promise containing the match result. It's also valid to return a
+   * raw `MatchResult`, but implementations should prefer the Promise form, as
+   * the non-promise form will be removed in a future version.
+   */
   descendAndCheck: <T extends AnyCaseMatcherOrData>(
     matcherOrData: T,
     parentMatchContext: MatchContext,
     actual: unknown,
   ) => Promise<MatchResult> | MatchResult;
+  /**
+   * Descend into the provided matcher, validating the expectations it was configured with.
+   * The top level is called before executing an Example to confirm that the example is sane.
+   *
+   * Call this on any children of your matcher.
+   * If your matcher has more than one child, call this
+   * function multiple times and chain the promises together.
+   *
+   * @param matcherOrData - the next matcher to check
+   * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}
+   * @returns either a successful promise if everything validated correctly, or
+   * a promise containing a `CaseConfigurationError` if validation failed.
+   */
+  descendAndValidate: <T extends AnyCaseMatcherOrData>(
+    matcherOrData: T,
+    parentMatchContext: MatchContext,
+  ) => Promise<void>;
+
+  /**
+   * Descend into the provided matcher, stripping the matchers from it so that just the raw data is returned.
+   *
+   * The top level of this function can be called by users as a convenience.
+   * Additionally, it is called during the pre-validation step where ContractCase
+   * confirms that the example provided actually passes the matcher(s).
+   *
+   * Call this on any children of your matcher.
+   * If your matcher has more than one child, call this
+   * function multiple times and combine the result appropriately.
+   *
+   * @param matcherOrData - the next matcher to check
+   * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}
+   * @returns the example data represented by this matcher.
+   */
   descendAndStrip: (
     matcherOrData: AnyCaseMatcherOrData,
     parentMatchContext: MatchContext,
   ) => AnyData;
+  /**
+   * Descend into the provided matcher, describing the contents in English.
+   *
+   * The top level of this function can be called by users as a convenience.
+   * Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.
+   *
+   * Call this on any children of your matcher.
+   * If your matcher has more than one child, call this
+   * function multiple times and combine the result in the appropriate place in the string you're returning
+   *
+   * @param matcherOrData - the next matcher to check
+   * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}
+   * @returns the example data represented by this matcher.
+   */
   descendAndDescribe: (
     matcherOrData: AnyCaseMatcherOrData,
     parentMatchContext: MatchContext,
   ) => string;
+
+  /**
+   * Descend into the provided matcher, confirming that the result of `descendAndStrip` would pass as actual data.
+   *
+   * The top level of this function is called during the pre-validation step. You probably don't need to call it directly.
+   *
+   * Call this on any children of your matcher.
+   * If your matcher has more than one child, call this
+   * function multiple times and combine the result in the appropriate place in the string you're returning
+   *
+   * @param matcherOrData - the next matcher to check
+   * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}
+   * @returns the example data represented by this matcher.
+   */
   selfVerify: (
     matcherOrData: AnyCaseMatcherOrData,
     parentMatchContext: MatchContext,
