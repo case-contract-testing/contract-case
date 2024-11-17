@@ -62,4 +62,14 @@ export const LookupMatcher: MatcherExecutor<
     ),
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    Promise.resolve().then(() =>
+      matchContext.descendAndValidate(
+        getMatcher(matcher, matchContext),
+        addLocation(
+          `:lookup[${matcher['_case:matcher:uniqueName']}]`,
+          matchContext,
+        ),
+      ),
+    ),
 };

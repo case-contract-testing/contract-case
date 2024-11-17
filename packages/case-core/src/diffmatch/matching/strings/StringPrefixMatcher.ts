@@ -10,6 +10,7 @@ import {
   addLocation,
   MatcherExecutor,
   mustResolveToString,
+  CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
 
 const check = async (
@@ -61,4 +62,18 @@ export const StringPrefixMatcher: MatcherExecutor<
       matcher['_case:matcher:suffix'],
       addLocation(':suffix', matchContext),
     )}`,
+
+  validate: (matcher, matchContext) =>
+    Promise.resolve().then(() => {
+      if (typeof matcher['_case:matcher:prefix'] !== 'string') {
+        throw new CaseConfigurationError(
+          `Expected a string for the prefix, but got '${typeof matcher['_case:matcher:prefix']}' instead. Did you put the arguments the wrong way around for the prefix matcher?`,
+          matchContext,
+        );
+      }
+      return matchContext.descendAndValidate(
+        matcher['_case:matcher:suffix'],
+        addLocation(':prefix', matchContext),
+      );
+    }),
 };

@@ -90,4 +90,9 @@ export const JsonStringifiedString: MatcherExecutor<
     )}'`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    matchContext.descendAndValidate(
+      matcher['_case:matcher:child'],
+      addLocation(':jsonStringify', matchContext),
+    ),
 };

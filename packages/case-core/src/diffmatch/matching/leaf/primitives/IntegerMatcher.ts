@@ -33,4 +33,5 @@ export const IntegerMatcher: MatcherExecutor<
       : '<any integer>',
   check,
   strip: (matcher: CoreIntegerMatcher) => matcher['_case:matcher:example'],
+  validate: () => Promise.resolve(),
 };

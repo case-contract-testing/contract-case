@@ -64,4 +64,5 @@ export const NumberMatcher: MatcherExecutor<
       : '<any number>',
   check,
   strip: (matcher: CoreNumberMatcher) => matcher['_case:matcher:example'],
+  validate: () => Promise.resolve(),
 };

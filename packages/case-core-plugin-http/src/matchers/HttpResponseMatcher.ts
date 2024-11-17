@@ -11,8 +11,10 @@ import {
   combineResults,
   makeNoErrorResult,
   MatcherExecutor,
+  isCaseNode,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
+import { validateCodes } from './codeValidator';
 
 type HttpResponseData = {
   body?: unknown;
@@ -112,7 +114,38 @@ const name = (
           : ''
       }`;
 
+const validate = (
+  matcher: CoreHttpResponseMatcher,
+  matchContext: MatchContext,
+): Promise<void> =>
+  Promise.resolve()
+    .then(() =>
+      matcher.body != null
+        ? matchContext.descendAndValidate(
+            matcher.body,
+            addLocation('body', matchContext),
+          )
+        : null,
+    )
+    .then(() =>
+      matcher.headers != null
+        ? matchContext.descendAndValidate(
+            matcher.headers,
+            addLocation('headers', matchContext),
+          )
+        : null,
+    )
+    .then(() => {
+      if (!isCaseNode(matcher.status)) {
+        validateCodes(matcher.status, addLocation('status', matchContext));
+      }
+      return matchContext.descendAndValidate(
+        matcher.status,
+        addLocation('status', matchContext),
+      );
+    });
+
 export const HttpResponseMatcher: MatcherExecutor<
   typeof HTTP_RESPONSE_MATCHER_TYPE,
   CoreHttpResponseMatcher
-> = { describe: name, check, strip };
+> = { describe: name, check, strip, validate };

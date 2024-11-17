@@ -818,7 +818,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!CheckMatchFn:type",
-          "docComment": "/**\n * Checks a matcher against some actual data and returns a Promise containing a MatchResult.\n *\n * @remarks\n *\n * This function must have no side effects. It may be called repeatedly on the same data by ContractCase during a run.\n *\n * It must not modify the matcher descriptor during a run, but you may generate alternate matcher descriptors when you call the descend methods on the context.\n *\n * Note that calling check and strip together must always return no errors:\n * ```\n * yourMatcher.check(\n *   descriptor,\n *   context,\n *   yourMatcher.strip(descriptor)\n * ) // must be a `MatchResult` with no errors\n * ```\n *\n * @param matcher - the matcher descriptor\n *\n * @param matchContext - the {@link MatchContext} for this run\n *\n * @param actual - the actual data to check against\n *\n * @typeParam T - a matcher descriptor\n *\n * @returns either a Promise containing a {@link MatchResult} or a raw {@link MatchResult}. The Promise return type is preferred.\n *\n * @public\n */\n",
+          "docComment": "/**\n * Checks a matcher against some actual data and returns a Promise containing a MatchResult.\n *\n * For checks beyond this matcher, use {@link MatchContext#descendAndCheck} to descend into any children.\n *\n * @remarks\n *\n * This function must have no side effects. It may be called repeatedly on the same data by ContractCase during a run.\n *\n * It must not modify the matcher descriptor during a run, but you may generate alternate matcher descriptors when you call the descend methods on the context.\n *\n * Note that calling check and strip together must always return no errors:\n * ```\n * yourMatcher.check(\n *   descriptor,\n *   context,\n *   yourMatcher.strip(descriptor)\n * ) // must be a `MatchResult` with no errors\n * ```\n *\n * @param matcher - the matcher descriptor\n *\n * @param matchContext - the {@link MatchContext} for this run\n *\n * @param actual - the actual data to check against\n *\n * @typeParam T - a matcher descriptor\n *\n * @returns either a Promise containing a {@link MatchResult} or a raw {@link MatchResult}. The Promise return type is preferred.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3087,6 +3087,38 @@
                 "startIndex": 1,
                 "endIndex": 3
               }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!MatcherExecutor#validate:member",
+              "docComment": "/**\n * Validate the configured arguments of this matcher\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidateMatcherFn",
+                  "canonicalReference": "@contract-case/case-plugin-base!ValidateMatcherFn:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<T>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "validate",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
             }
           ],
           "extendsTokenRanges": []
@@ -3773,7 +3805,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!mustResolveToNumber:function(1)",
-          "docComment": "/**\n * During a matcher execution, this function can be called to ensure that the provided matcher resolves to number.\n *\n * @remarks\n *\n * Use it if you expect that it should _never_ be possible for the matcher to resolve to anything other than a number, as it throws a {@link CaseCoreError}, indicating a bug.\n *\n * @param matcher - any matcher descriptor or data object\n *\n * @param context - the current {@link MatchContext}\n *\n * @returns the number value that the matcher resolves to\n *\n * @throws\n *\n * a {@link CaseCoreError} if the matcher doesn't resolve to a number.\n *\n * @public\n */\n",
+          "docComment": "/**\n * During a matcher execution, this function can be called to ensure that the provided matcher resolves to number.\n *\n * @remarks\n *\n * Use it if you expect that it's not possible for the matcher to resolve to anything other than a number, as it throws a {@link CaseConfigurationError}.\n *\n * If you use this function during a `check` operation, then the `CaseConfigurationError` will ultimately become a `CaseCoreError`, because it's not supposed to be possible to throw exceptions from a `check`\n *\n * If you're using it in `check`, make sure you also call it in `validate`.\n *\n * @param matcher - any matcher descriptor or data object\n *\n * @param context - the current {@link MatchContext}\n *\n * @returns the number value that the matcher resolves to\n *\n * @throws\n *\n * a {@link CaseConfigurationError} if the matcher doesn't resolve to a number.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3832,7 +3864,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!mustResolveToString:function(1)",
-          "docComment": "/**\n * During a matcher execution, this function can be called to ensure that the provided matcher resolves to a string.\n *\n * @remarks\n *\n * Use it if you expect that it should _never_ be possible for the matcher to resolve to anything other than a string, as it throws a {@link CaseCoreError}, indicating a bug.\n *\n * @param matcher - any matcher descriptor or data object\n *\n * @param context - the current {@link MatchContext}\n *\n * @returns the string value that the matcher resolves to\n *\n * @throws\n *\n * a {@link CaseCoreError} if the matcher doesn't resolve to a string.\n *\n * @public\n */\n",
+          "docComment": "/**\n * During a matcher execution, this function can be called to ensure that the provided matcher resolves to a string when stripped with `stripMatchers`.\n *\n * @remarks\n *\n * Use it if you expect that it's not possible for the matcher to resolve to anything other than a string, as it throws a {@link CaseConfigurationError}.\n *\n * If you use this function during a `check` operation, then the `CaseConfigurationError` will ultimately become a `CaseCoreError`, because it's not supposed to be possible to throw exceptions from a `check`\n *\n * If you're using it in `check`, make sure you also call it in `validate`.\n *\n * @param matcher - any matcher descriptor or data object\n *\n * @param context - the current {@link MatchContext}\n *\n * @returns the string value that the matcher resolves to\n *\n * @throws\n *\n * a {@link CaseConfigurationError} if the matcher doesn't resolve to a string.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4435,7 +4467,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!TraversalFns#descendAndCheck:member",
-              "docComment": "",
+              "docComment": "/**\n * Descend into the provided matcher, checking the actual data against the next matcher.\n *\n * Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result with {@link combineResultPromises}\n *\n * @param matcherOrData - the next matcher to check\n *\n * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}\n *\n * @param actual - the actual data at this point\n *\n * @returns a Promise containing the match result. It's also valid to return a raw `MatchResult`, but implementations should prefer the Promise form, as the non-promise form will be removed in a future version.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4503,7 +4535,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!TraversalFns#descendAndDescribe:member",
-              "docComment": "",
+              "docComment": "/**\n * Descend into the provided matcher, describing the contents in English.\n *\n * The top level of this function can be called by users as a convenience. Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.\n *\n * Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result in the appropriate place in the string you're returning\n *\n * @param matcherOrData - the next matcher to check\n *\n * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}\n *\n * @returns the example data represented by this matcher.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4548,7 +4580,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!TraversalFns#descendAndStrip:member",
-              "docComment": "",
+              "docComment": "/**\n * Descend into the provided matcher, stripping the matchers from it so that just the raw data is returned.\n *\n * The top level of this function can be called by users as a convenience. Additionally, it is called during the pre-validation step where ContractCase confirms that the example provided actually passes the matcher(s).\n *\n * Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result appropriately.\n *\n * @param matcherOrData - the next matcher to check\n *\n * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}\n *\n * @returns the example data represented by this matcher.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4597,8 +4629,62 @@
             },
             {
               "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!TraversalFns#descendAndValidate:member",
+              "docComment": "/**\n * Descend into the provided matcher, validating the expectations it was configured with. The top level is called before executing an Example to confirm that the example is sane.\n *\n * Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and chain the promises together.\n *\n * @param matcherOrData - the next matcher to check\n *\n * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}\n *\n * @returns either a successful promise if everything validated correctly, or a promise containing a `CaseConfigurationError` if validation failed.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "descendAndValidate: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "<T extends "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AnyCaseMatcherOrData",
+                  "canonicalReference": "@contract-case/case-plugin-dsl-types!AnyCaseMatcherOrData:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">(matcherOrData: T, parentMatchContext: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "MatchContext",
+                  "canonicalReference": "@contract-case/case-plugin-base!MatchContext:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ") => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "descendAndValidate",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 8
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!TraversalFns#selfVerify:member",
-              "docComment": "",
+              "docComment": "/**\n * Descend into the provided matcher, confirming that the result of `descendAndStrip` would pass as actual data.\n *\n * The top level of this function is called during the pre-validation step. You probably don't need to call it directly.\n *\n * Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result in the appropriate place in the string you're returning\n *\n * @param matcherOrData - the next matcher to check\n *\n * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}\n *\n * @returns the example data represented by this matcher.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4828,6 +4914,63 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!ValidateMatcherFn:type",
+          "docComment": "/**\n * Validates the parameters of this matcher. ContractCase does two kinds of validation:\n *\n * - It calls `validate(matcher)`, to confirm that the parameters are appropriately set (this function) - It calls `check(matcher,context, strip(matcher))`, to confirm that the user's example matches itself.\n *\n * Because of the second check, you generally don't need to validate structure in this function. Use cases for this validation function are where only a subset of values are valid. For example, the HTTP Status Code validation function will accept the string `\"200\"`, but not the string `\"The type system accepts this incorrect value\"`.\n *\n * Like the other matcher functions, use {@link MatchContext#descendAndValidate} to descend into any children.\n *\n * If any of the Matcher's properties fail validation, throw a CaseConfigurationError.\n *\n * @remarks\n *\n * This function must have no side effects, it may be called repeatedly on the same data by ContractCase during a run.\n * ```\n * yourMatcher.check(\n *   descriptor,\n *   context,\n *   yourMatcher.strip(descriptor)\n * ) // must be a `MatchResult` with no errors\n * ```\n *\n * @param matcher - the matcher descriptor\n *\n * @param matchContext - the {@link MatchContext} for this run\n *\n * @typeParam T - a matcher descriptor\n *\n * @returns a void `Promise`, rejected with `CaseConfigurationError` if the validation failed.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ValidateMatcherFn<T> = "
+            },
+            {
+              "kind": "Content",
+              "text": "(matcher: T, matchContext: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MatchContext",
+              "canonicalReference": "@contract-case/case-plugin-base!MatchContext:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<void>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/matchers/executors.types.ts",
+          "releaseTag": "Public",
+          "name": "ValidateMatcherFn",
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
         },
         {
           "kind": "Interface",

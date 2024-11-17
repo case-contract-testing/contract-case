@@ -37,4 +37,9 @@ export const CascadingContext: MatcherExecutor<
     ),
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    matchContext.descendAndValidate(
+      matcher['_case:matcher:child'],
+      matchContext,
+    ),
 };

@@ -44,7 +44,6 @@
     "matcher:a (httpStatus 4XX | 5XX) response without a body": {
       "status": {
         "_case:matcher:type": "_case:HttpStatusCode",
-        "_case:matcher:example": 400,
         "_case:matcher:rule": [
           "4XX",
           "5XX"
@@ -243,7 +242,6 @@
           "_case:matcher:child": {
             "status": {
               "_case:matcher:type": "_case:HttpStatusCode",
-              "_case:matcher:example": 400,
               "_case:matcher:rule": [
                 "4XX",
                 "5XX"

@@ -91,4 +91,35 @@ export const ContextVariableMatcher: MatcherExecutor<
   describe: (matcher) => `{{${matcher['_case:matcher:variableName']}}}`,
   check,
   strip,
+  validate: (matcher, matchContext) => {
+    if (
+      matcher['_case:matcher:variableName'] in
+      matchContext['_case:currentRun:context:variables']
+    ) {
+      const value =
+        matchContext['_case:currentRun:context:variables'][
+          matcher['_case:matcher:variableName']
+        ];
+      if (value === undefined) {
+        throw new CaseConfigurationError(
+          `The variable '${matcher['_case:matcher:variableName']}' was undefined, which is not a valid variable value`,
+          matchContext,
+        );
+      }
+      return matchContext.descendAndValidate(
+        value,
+        addLocation(
+          `:stateVariable[${matcher['_case:matcher:variableName']}]`,
+          matchContext,
+        ),
+      );
+    }
+    return matchContext.descendAndValidate(
+      matchContext.lookupVariable(matcher['_case:matcher:variableName']),
+      addLocation(
+        `:contractVariable[${matcher['_case:matcher:variableName']}]`,
+        matchContext,
+      ),
+    );
+  },
 };

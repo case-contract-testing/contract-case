@@ -87,4 +87,15 @@ export const AndCombinationMatcher: MatcherExecutor<
       .join(' / ')}`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    Promise.resolve().then(() =>
+      Promise.all(
+        matcher['_case:matcher:children'].map((child, index) =>
+          matchContext.descendAndValidate(
+            child,
+            addLocation(`:and[${index}]`, matchContext),
+          ),
+        ),
+      ).then(() => {}),
+    ),
 };

@@ -98,4 +98,23 @@ Strips the matchers from this descriptor, returning example data
 
 
 </td></tr>
+<tr><td>
+
+[validate](./case-plugin-base.matcherexecutor.validate.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[ValidateMatcherFn](./case-plugin-base.validatematcherfn.md)<!-- -->&lt;T&gt;
+
+
+</td><td>
+
+Validate the configured arguments of this matcher
+
+
+</td></tr>
 </tbody></table>

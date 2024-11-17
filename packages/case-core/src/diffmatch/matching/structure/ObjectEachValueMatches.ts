@@ -80,4 +80,9 @@ export const ObjectEachValueMatches: MatcherExecutor<
     )}`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    matchContext.descendAndValidate(
+      matcher['_case:matcher:matcher'],
+      addLocation(`:eachValueLike`, matchContext),
+    ),
 };

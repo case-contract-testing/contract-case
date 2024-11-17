@@ -76,11 +76,16 @@ export const EachArrayEntryMatches: MatcherExecutor<
   typeof ARRAY_EACH_ENTRY_MATCHES_TYPE,
   CoreArrayEachEntryMatches
 > = {
-  describe: (matcher, context) =>
-    `an array where each entry matches ${context.descendAndDescribe(
+  describe: (matcher, matchContext) =>
+    `an array where each entry matches ${matchContext.descendAndDescribe(
       matcher['_case:matcher:matcher'],
-      addLocation(`:eachEntryLike`, context),
+      addLocation(`:eachEntryLike`, matchContext),
     )}`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    matchContext.descendAndValidate(
+      matcher['_case:matcher:matcher'],
+      addLocation(`:eachEntryLike`, matchContext),
+    ),
 };

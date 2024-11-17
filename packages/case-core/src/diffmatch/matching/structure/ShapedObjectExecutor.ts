@@ -131,4 +131,13 @@ export const ShapedObjectExecutor: MatcherExecutor<
       .join(',')}}`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    Promise.all(
+      Object.entries(matcher['_case:matcher:children']).map(([key, child]) =>
+        matchContext.descendAndValidate(
+          child,
+          addLocation(`${key}`, matchContext),
+        ),
+      ),
+    ).then(() => {}),
 };

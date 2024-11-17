@@ -4,6 +4,10 @@
 
 ## TraversalFns.descendAndCheck property
 
+Descend into the provided matcher, checking the actual data against the next matcher.
+
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result with [combineResultPromises()](./case-plugin-base.combineresultpromises.md)
+
 **Signature:**
 
 ```typescript

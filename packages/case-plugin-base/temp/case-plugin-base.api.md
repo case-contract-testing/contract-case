@@ -286,6 +286,7 @@ export interface MatcherExecutor<MatcherType extends string, T extends IsCaseNod
     check: CheckMatchFn<T>;
     describe: NameMatcherFn<T>;
     strip: StripMatcherFn<T>;
+    validate: ValidateMatcherFn<T>;
 }
 
 // @public
@@ -439,13 +440,10 @@ export class StripUnsupportedError extends Error {
 
 // @public
 export interface TraversalFns {
-    // (undocumented)
     descendAndCheck: <T extends AnyCaseMatcherOrData>(matcherOrData: T, parentMatchContext: MatchContext, actual: unknown) => Promise<MatchResult> | MatchResult;
-    // (undocumented)
     descendAndDescribe: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => string;
-    // (undocumented)
     descendAndStrip: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => AnyData;
-    // (undocumented)
+    descendAndValidate: <T extends AnyCaseMatcherOrData>(matcherOrData: T, parentMatchContext: MatchContext) => Promise<void>;
     selfVerify: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => Promise<MatchResult> | MatchResult;
 }
 
@@ -462,6 +460,9 @@ export interface TriggerError {
     // (undocumented)
     type: typeof ERROR_TYPE_TRIGGER;
 }
+
+// @public
+export type ValidateMatcherFn<T> = (matcher: T, matchContext: MatchContext) => Promise<void>;
 
 // @public
 export interface VerificationError {
@@ -487,7 +488,7 @@ export class VerifyTriggerReturnObjectError extends Error {
 
 // Warnings were encountered during analysis:
 //
-// src/context/types.ts:390:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
+// src/context/types.ts:465:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

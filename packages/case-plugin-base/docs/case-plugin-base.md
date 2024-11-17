@@ -278,7 +278,7 @@ During a matcher execution, this function can be called to ensure that the provi
 
 </td><td>
 
-During a matcher execution, this function can be called to ensure that the provided matcher resolves to a string.
+During a matcher execution, this function can be called to ensure that the provided matcher resolves to a string when stripped with `stripMatchers`<!-- -->.
 
 
 </td></tr>
@@ -623,6 +623,8 @@ Helper type to extract a case matcher descriptor out of a list of descriptors
 
 Checks a matcher against some actual data and returns a Promise containing a MatchResult.
 
+For checks beyond this matcher, use  to descend into any children.
+
 
 </td></tr>
 <tr><td>
@@ -769,6 +771,25 @@ Describes the plugin name and version
 </td><td>
 
 Strips the matchers from a matcher descriptor to return the raw data represented by this matcher (ie, the example data).
+
+
+</td></tr>
+<tr><td>
+
+[ValidateMatcherFn](./case-plugin-base.validatematcherfn.md)
+
+
+</td><td>
+
+Validates the parameters of this matcher. ContractCase does two kinds of validation:
+
+- It calls `validate(matcher)`<!-- -->, to confirm that the parameters are appropriately set (this function) - It calls `check(matcher,context, strip(matcher))`<!-- -->, to confirm that the user's example matches itself.
+
+Because of the second check, you generally don't need to validate structure in this function. Use cases for this validation function are where only a subset of values are valid. For example, the HTTP Status Code validation function will accept the string `"200"`<!-- -->, but not the string `"The type system accepts this incorrect value"`<!-- -->.
+
+Like the other matcher functions, use  to descend into any children.
+
+If any of the Matcher's properties fail validation, throw a CaseConfigurationError.
 
 
 </td></tr>

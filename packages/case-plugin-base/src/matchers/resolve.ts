@@ -1,22 +1,29 @@
 import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 import { MatchContext } from '../context/types';
-import { CaseConfigurationError, CaseCoreError } from '../errors';
+import { CaseConfigurationError } from '../errors';
 
 /**
  * During a matcher execution, this function can be called to ensure that the
- * provided matcher resolves to a string.
+ * provided matcher resolves to a string when stripped with `stripMatchers`.
  *
  * @remarks
  *
- * Use it if you expect that it should _never_ be possible for the matcher to
+ * Use it if you expect that it's not possible for the matcher to
  * resolve to anything other than a string, as it throws a
- * {@link CaseCoreError}, indicating a bug.
+ * {@link CaseConfigurationError}.
+ *
+ * If you use this function during a `check` operation, then the
+ * `CaseConfigurationError` will ultimately become a `CaseCoreError`, because
+ * it's not supposed to be possible to throw exceptions from a `check`
+ *
+ * If you're using it in `check`, make sure you also call it in `validate`.
+ *
  * @public
  *
  * @param matcher - any matcher descriptor or data object
  * @param context - the current {@link MatchContext}
  * @returns the string value that the matcher resolves to
- * @throws a {@link CaseCoreError} if the matcher doesn't resolve to a string.
+ * @throws a {@link CaseConfigurationError} if the matcher doesn't resolve to a string.
  */
 export const mustResolveToString = (
   matcher: AnyCaseMatcherOrData,
@@ -39,15 +46,21 @@ export const mustResolveToString = (
  *
  * @remarks
  *
- * Use it if you expect that it should _never_ be possible for the matcher to
+ * Use it if you expect that it's not possible for the matcher to
  * resolve to anything other than a number, as it throws a
- * {@link CaseCoreError}, indicating a bug.
+ * {@link CaseConfigurationError}.
+ *
+ * If you use this function during a `check` operation, then the
+ * `CaseConfigurationError` will ultimately become a `CaseCoreError`, because
+ * it's not supposed to be possible to throw exceptions from a `check`
+ *
+ * If you're using it in `check`, make sure you also call it in `validate`.
  * @public
  *
  * @param matcher - any matcher descriptor or data object
  * @param context - the current {@link MatchContext}
  * @returns the number value that the matcher resolves to
- * @throws a {@link CaseCoreError} if the matcher doesn't resolve to a number.
+ * @throws a {@link CaseConfigurationError} if the matcher doesn't resolve to a number.
  */
 export const mustResolveToNumber = (
   matcher: AnyCaseMatcherOrData,
@@ -57,7 +70,7 @@ export const mustResolveToNumber = (
   if (typeof stripped !== 'number') {
     const message = `Provided matcher did not resolve to a number. Instead, it resolved to: ${typeof stripped}`;
     context.logger.maintainerDebug(message, stripped, matcher);
-    throw new CaseCoreError(message, context);
+    throw new CaseConfigurationError(message, context);
   }
   return stripped;
 };

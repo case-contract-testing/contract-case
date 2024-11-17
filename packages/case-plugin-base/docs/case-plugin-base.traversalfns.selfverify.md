@@ -4,6 +4,12 @@
 
 ## TraversalFns.selfVerify property
 
+Descend into the provided matcher, confirming that the result of `descendAndStrip` would pass as actual data.
+
+The top level of this function is called during the pre-validation step. You probably don't need to call it directly.
+
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result in the appropriate place in the string you're returning
+
 **Signature:**
 
 ```typescript

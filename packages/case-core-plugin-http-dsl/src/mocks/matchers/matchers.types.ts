@@ -20,7 +20,7 @@ export interface CoreUrlEncodedStringMatcher {
 export interface CoreHttpStatusCodeMatcher {
   '_case:matcher:type': typeof HTTP_STATUS_CODE_MATCHER_TYPE;
   '_case:matcher:rule': string | Array<string>;
-  '_case:matcher:example': number;
+  '_case:matcher:example'?: number;
   '_case:matcher:resolvesTo': 'HttpStatusCode';
 }
 

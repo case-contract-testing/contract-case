@@ -71,9 +71,13 @@ the number value that the matcher resolves to
 
 ## Exceptions
 
-a [CaseCoreError](./case-plugin-base.casecoreerror.md) if the matcher doesn't resolve to a number.
+a [CaseConfigurationError](./case-plugin-base.caseconfigurationerror.md) if the matcher doesn't resolve to a number.
 
 ## Remarks
 
-Use it if you expect that it should \_never\_ be possible for the matcher to resolve to anything other than a number, as it throws a [CaseCoreError](./case-plugin-base.casecoreerror.md)<!-- -->, indicating a bug.
+Use it if you expect that it's not possible for the matcher to resolve to anything other than a number, as it throws a [CaseConfigurationError](./case-plugin-base.caseconfigurationerror.md)<!-- -->.
+
+If you use this function during a `check` operation, then the `CaseConfigurationError` will ultimately become a `CaseCoreError`<!-- -->, because it's not supposed to be possible to throw exceptions from a `check`
+
+If you're using it in `check`<!-- -->, make sure you also call it in `validate`<!-- -->.
 

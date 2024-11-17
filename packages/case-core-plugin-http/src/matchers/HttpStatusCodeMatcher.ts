@@ -15,6 +15,15 @@ import {
   hasNoErrors,
   MatcherExecutor,
 } from '@contract-case/case-plugin-base';
+import { validateCodes } from './codeValidator';
+
+const statusCodeExample = (
+  matcher: CoreHttpStatusCodeMatcher,
+  matchContext: MatchContext,
+) =>
+  '_case:matcher:example' in matcher && '_case:matcher:example' != null
+    ? matcher['_case:matcher:example']
+    : validateCodes(matcher['_case:matcher:rule'], matchContext);
 
 const checkExample = (
   rule: number | string,
@@ -98,6 +107,14 @@ const check: CheckMatchFn<CoreHttpStatusCodeMatcher> = (
   return checkExample(matcher['_case:matcher:rule'], actual, makeError);
 };
 
+const validate = (
+  matcher: CoreHttpStatusCodeMatcher,
+  matchContext: MatchContext,
+): Promise<void> =>
+  Promise.resolve().then(() => {
+    statusCodeExample(matcher, matchContext);
+  });
+
 export const HttpStatusCodeMatcher: MatcherExecutor<
   typeof HTTP_STATUS_CODE_MATCHER_TYPE,
   CoreHttpStatusCodeMatcher
@@ -109,6 +126,6 @@ export const HttpStatusCodeMatcher: MatcherExecutor<
         : matcher['_case:matcher:rule']
     }`,
   check,
-  strip: (matcher: CoreHttpStatusCodeMatcher) =>
-    matcher['_case:matcher:example'],
+  strip: (matcher, matchContext) => statusCodeExample(matcher, matchContext),
+  validate,
 };

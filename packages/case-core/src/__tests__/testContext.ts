@@ -66,4 +66,5 @@ export const EMPTY_MATCH_CONTEXT: MatchContext = {
   selfVerify: () => Promise.resolve([]),
   ...MOCK_LOOKUP,
   makeLookup: () => MOCK_LOOKUP,
+  descendAndValidate: () => Promise.resolve(),
 };

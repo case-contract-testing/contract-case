@@ -125,4 +125,32 @@ export const HttpBasicAuthMatcher: MatcherExecutor<
     )}`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    Promise.resolve()
+      .then(() => {
+        if (!('_case:matcher:password' in matcher)) {
+          throw new CaseConfigurationError(
+            'The HttpBasicAuthMatcher must be given a password',
+            matchContext,
+          );
+        }
+        if (!('_case:matcher:username' in matcher)) {
+          throw new CaseConfigurationError(
+            'The HttpBasicAuthMatcher must be given a username',
+            matchContext,
+          );
+        }
+      })
+      .then(() =>
+        matchContext.descendAndValidate(
+          matcher['_case:matcher:username'],
+          addLocation('username', matchContext),
+        ),
+      )
+      .then(() =>
+        matchContext.descendAndValidate(
+          matcher['_case:matcher:password'],
+          addLocation('password', matchContext),
+        ),
+      ),
 };

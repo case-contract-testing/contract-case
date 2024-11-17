@@ -18,20 +18,16 @@ import {
   CoreUrlEncodedStringMatcher,
 } from './matchers.types';
 import { HttpMockRequest, HttpMockResponse } from './http.types';
-import { validateCodes } from './validator';
 
 export const httpStatusCodeMatcher = (
   codes: string | Array<string>,
   example?: number,
-): CoreHttpStatusCodeMatcher => {
-  const impliedExample = validateCodes(codes);
-  return {
-    '_case:matcher:type': HTTP_STATUS_CODE_MATCHER_TYPE,
-    '_case:matcher:example': example ?? impliedExample,
-    '_case:matcher:rule': codes,
-    '_case:matcher:resolvesTo': 'HttpStatusCode',
-  };
-};
+): CoreHttpStatusCodeMatcher => ({
+  '_case:matcher:type': HTTP_STATUS_CODE_MATCHER_TYPE,
+  '_case:matcher:rule': codes,
+  '_case:matcher:resolvesTo': 'HttpStatusCode',
+  ...(example ? { '_case:matcher:example': example } : {}),
+});
 
 export const httpRequestMatcher = (
   request: HttpMockRequest,

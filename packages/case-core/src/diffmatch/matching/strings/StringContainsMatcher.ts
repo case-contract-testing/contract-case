@@ -12,6 +12,8 @@ import {
   makeResults,
   MatcherExecutor,
   StripUnsupportedError,
+  addLocation,
+  CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
 
 const check = async (
@@ -61,4 +63,21 @@ export const StringContainsMatcher: MatcherExecutor<
     }
     throw new StripUnsupportedError(matcher, matchContext);
   },
+  validate: (matcher, matchContext) =>
+    Promise.resolve().then(() => {
+      if (
+        '_case:matcher:example' in matcher &&
+        typeof matcher['_case:matcher:example'] !== 'string'
+      ) {
+        throw new CaseConfigurationError(
+          `The example provided to the string contains matcher was of type '${typeof matcher['_case:matcher:example']}' instead of string`,
+          matchContext,
+        );
+      }
+
+      return matchContext.descendAndValidate(
+        matcher['_case:matcher:contains'],
+        addLocation(':stringContains', matchContext),
+      );
+    }),
 };

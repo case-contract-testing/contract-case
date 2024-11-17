@@ -14,6 +14,7 @@ import {
   matchingError,
   makeResults,
   MatcherExecutor,
+  CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -74,4 +75,34 @@ export const ArrayLengthExecutor: MatcherExecutor<
     `an array of length min: ${matcher['_case:matcher:minLength']}, max: ${matcher['_case:matcher:maxLength']};`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    Promise.resolve().then(() => {
+      if (
+        (matcher['_case:matcher:maxLength'] !==
+          ARRAY_LENGTH_PARAMETER_INFINITE &&
+          matcher['_case:matcher:maxLength'] < 0) ||
+        Number.isNaN(matcher['_case:matcher:maxLength'])
+      ) {
+        // we don't actually bother to check whether it's an integer,
+        // because if someone sets it to 5.4,
+        // then we'll still respect the max length
+        throw new CaseConfigurationError(
+          `Array maximum length was set to the invalid value '${matcher['_case:matcher:maxLength']}'. It must be a positive integer`,
+          matchContext,
+        );
+      }
+
+      if (
+        matcher['_case:matcher:minLength'] < 0 ||
+        Number.isNaN(matcher['_case:matcher:minLength'])
+      ) {
+        // we don't actually bother to check whether it's an integer,
+        // because if someone sets it to 5.4,
+        // then we'll still respect the max length
+        throw new CaseConfigurationError(
+          `Array minimum length was set to the invalid value '${matcher['_case:matcher:minLength']}'. It must be a positive integer`,
+          matchContext,
+        );
+      }
+    }),
 };

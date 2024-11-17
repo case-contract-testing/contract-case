@@ -93,4 +93,13 @@ export const ShapedArrayExecutor: MatcherExecutor<
       .join(',')}]`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    Promise.all(
+      matcher['_case:matcher:children'].map((childMatcher, index) =>
+        matchContext.descendAndValidate(
+          childMatcher,
+          addLocation(`[${index}]`, matchContext),
+        ),
+      ),
+    ).then(() => {}),
 };

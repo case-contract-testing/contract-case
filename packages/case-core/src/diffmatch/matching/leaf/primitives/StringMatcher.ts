@@ -43,4 +43,5 @@ export const StringMatcher: MatcherExecutor<
       : '<any string>',
   check,
   strip: (matcher: CoreStringMatcher) => matcher['_case:matcher:example'],
+  validate: () => Promise.resolve(),
 };

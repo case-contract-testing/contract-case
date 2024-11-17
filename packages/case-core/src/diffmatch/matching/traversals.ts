@@ -50,6 +50,7 @@ const getExecutor = <T extends AnyCaseNodeType>(
       return result;
     },
     strip: () => executor.strip(matcher, matchContext),
+    validate: () => executor.validate(matcher, matchContext),
   };
 };
 
@@ -61,6 +62,12 @@ const descendAndCheck = <T extends AnyCaseNodeType>(
   getExecutor(matcherOrData as AnyCaseMatcher, parentMatchContext).check(
     actual,
   );
+
+const descendAndValidate = <T extends AnyCaseNodeType>(
+  matcherOrData: AnyLeafOrStructure | UnknownCaseNodeType | CaseNodeFor<T>,
+  parentMatchContext: MatchContext,
+): ReturnType<MatcherExecutor<T, CaseNodeFor<T>>['validate']> =>
+  getExecutor(matcherOrData as AnyCaseMatcher, parentMatchContext).validate();
 
 const descendAndDescribe = <T extends AnyCaseNodeType>(
   matcherOrData: AnyLeafOrStructure | UnknownCaseNodeType | CaseNodeFor<T>,
@@ -110,5 +117,6 @@ export const traversals: TraversalFns = {
   descendAndDescribe,
   descendAndCheck,
   descendAndStrip,
+  descendAndValidate,
   selfVerify,
 };

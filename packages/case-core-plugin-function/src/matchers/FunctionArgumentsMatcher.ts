@@ -103,7 +103,30 @@ const check = async (
   );
 };
 
+const validate = (
+  matcher: CoreFunctionArgumentsMatcher,
+  matchContext: MatchContext,
+): Promise<void> =>
+  Promise.resolve().then(() => {
+    if (!matcher.arguments) {
+      throw new CaseConfigurationError(
+        'Missing the arguments for the function arguments matcher',
+        matchContext,
+      );
+    }
+    if (!Array.isArray(matcher.arguments)) {
+      throw new CaseConfigurationError(
+        `Function arguments matchers require an array argument, but ${typeof matcher.arguments} was provided instead`,
+        matchContext,
+      );
+    }
+    return matchContext.descendAndValidate(
+      matcher.arguments,
+      addLocation(`arguments`, matchContext),
+    );
+  });
+
 export const FunctionArgumentMatcherExecutor: MatcherExecutor<
   typeof FUNCTION_ARGUMENTS_MATCHER_TYPE,
   CoreFunctionArgumentsMatcher
-> = { describe, check, strip };
+> = { describe, check, strip, validate };

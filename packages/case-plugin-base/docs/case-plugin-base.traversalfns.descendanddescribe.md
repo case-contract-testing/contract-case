@@ -4,6 +4,12 @@
 
 ## TraversalFns.descendAndDescribe property
 
+Descend into the provided matcher, describing the contents in English.
+
+The top level of this function can be called by users as a convenience. Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.
+
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result in the appropriate place in the string you're returning
+
 **Signature:**
 
 ```typescript

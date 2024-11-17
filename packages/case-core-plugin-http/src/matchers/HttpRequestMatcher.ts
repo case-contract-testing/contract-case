@@ -164,7 +164,46 @@ const name = (
           : ' without a body'
       }`;
 
+const validate = (
+  matcher: CoreHttpRequestMatcher,
+  matchContext: MatchContext,
+): Promise<void> =>
+  Promise.resolve()
+    .then(() => {
+      if (matcher.body != null) {
+        return matchContext.descendAndValidate(
+          matcher.body,
+          addLocation('body', matchContext),
+        );
+      }
+      return undefined;
+    })
+    .then(() => {
+      if (matcher.query != null) {
+        return matchContext.descendAndValidate(
+          matcher.query,
+          addLocation('query', matchContext),
+        );
+      }
+      return undefined;
+    })
+    .then(() => {
+      if (matcher.headers != null) {
+        return matchContext.descendAndValidate(
+          matcher.headers,
+          addLocation('headers', matchContext),
+        );
+      }
+      return undefined;
+    })
+    .then(() =>
+      matchContext.descendAndValidate(
+        matcher.method,
+        addLocation('method', matchContext),
+      ),
+    );
+
 export const HttpRequestMatcher: MatcherExecutor<
   typeof HTTP_REQUEST_MATCHER_TYPE,
   CoreHttpRequestMatcher
-> = { describe: name, check, strip };
+> = { describe: name, check, strip, validate };

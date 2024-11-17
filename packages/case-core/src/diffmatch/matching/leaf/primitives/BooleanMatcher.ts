@@ -46,4 +46,5 @@ export const BooleanMatcher: MatcherExecutor<
       : '<any boolean>',
   check,
   strip: (matcher: CoreBooleanMatcher) => matcher['_case:matcher:example'],
+  validate: () => Promise.resolve(),
 };

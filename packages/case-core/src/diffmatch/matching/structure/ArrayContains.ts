@@ -125,4 +125,13 @@ export const ArrayContains: MatcherExecutor<
       .join(' and ')},`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    Promise.all(
+      matcher['_case:matcher:matchers'].map((childMatcher, index) =>
+        matchContext.descendAndValidate(
+          childMatcher,
+          addLocation(`:arrayContains[${index}]`, matchContext),
+        ),
+      ),
+    ).then(() => {}),
 };

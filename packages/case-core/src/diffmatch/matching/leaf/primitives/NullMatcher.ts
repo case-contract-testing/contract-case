@@ -34,4 +34,5 @@ export const NullMatcher: MatcherExecutor<
   describe: () => `null`,
   check,
   strip: () => null,
+  validate: () => Promise.resolve(),
 };

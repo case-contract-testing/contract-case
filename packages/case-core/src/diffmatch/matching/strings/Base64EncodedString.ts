@@ -11,6 +11,7 @@ import {
   actualToString,
   CaseConfigurationError,
   MatcherExecutor,
+  mustResolveToString,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -77,4 +78,18 @@ export const Base64EncodedStringMatcher: MatcherExecutor<
     )}'`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    Promise.resolve().then(() => {
+      const encodedString = mustResolveToString(
+        matcher,
+        addLocation(':base64', matchContext),
+      );
+      try {
+        Buffer.from(encodedString, 'base64').toString();
+      } catch (e) {
+        throw new CaseConfigurationError(
+          `The provided string example failed to decode as base64: ${(e as Error).message}`,
+        );
+      }
+    }),
 };

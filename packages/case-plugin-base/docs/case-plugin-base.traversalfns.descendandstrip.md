@@ -4,6 +4,12 @@
 
 ## TraversalFns.descendAndStrip property
 
+Descend into the provided matcher, stripping the matchers from it so that just the raw data is returned.
+
+The top level of this function can be called by users as a convenience. Additionally, it is called during the pre-validation step where ContractCase confirms that the example provided actually passes the matcher(s).
+
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result appropriately.
+
 **Signature:**
 
 ```typescript

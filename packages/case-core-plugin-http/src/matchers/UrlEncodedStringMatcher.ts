@@ -11,6 +11,7 @@ import {
   actualToString,
   CaseConfigurationError,
   MatcherExecutor,
+  mustResolveToString,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -61,4 +62,18 @@ export const UrlEncodedStringMatcher: MatcherExecutor<
     )}'`,
   check,
   strip,
+  validate: (matcher, matchContext) =>
+    Promise.resolve().then(() => {
+      const encodedString = mustResolveToString(
+        matcher['_case:matcher:child'],
+        addLocation(':urlEncoded', matchContext),
+      );
+      try {
+        decodeURIComponent(encodedString);
+      } catch (e) {
+        throw new CaseConfigurationError(
+          `The provided string example failed to decode as a URI: ${(e as Error).message}`,
+        );
+      }
+    }),
 };

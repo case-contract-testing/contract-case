@@ -6,6 +6,8 @@
 
 Checks a matcher against some actual data and returns a Promise containing a MatchResult.
 
+For checks beyond this matcher, use  to descend into any children.
+
 **Signature:**
 
 ```typescript

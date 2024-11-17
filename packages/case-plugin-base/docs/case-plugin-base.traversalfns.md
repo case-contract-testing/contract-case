@@ -50,6 +50,10 @@ Description
 
 </td><td>
 
+Descend into the provided matcher, checking the actual data against the next matcher.
+
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result with [combineResultPromises()](./case-plugin-base.combineresultpromises.md)
+
 
 </td></tr>
 <tr><td>
@@ -66,6 +70,12 @@ Description
 
 
 </td><td>
+
+Descend into the provided matcher, describing the contents in English.
+
+The top level of this function can be called by users as a convenience. Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.
+
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result in the appropriate place in the string you're returning
 
 
 </td></tr>
@@ -84,6 +94,33 @@ Description
 
 </td><td>
 
+Descend into the provided matcher, stripping the matchers from it so that just the raw data is returned.
+
+The top level of this function can be called by users as a convenience. Additionally, it is called during the pre-validation step where ContractCase confirms that the example provided actually passes the matcher(s).
+
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result appropriately.
+
+
+</td></tr>
+<tr><td>
+
+[descendAndValidate](./case-plugin-base.traversalfns.descendandvalidate.md)
+
+
+</td><td>
+
+
+</td><td>
+
+&lt;T extends AnyCaseMatcherOrData&gt;(matcherOrData: T, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; Promise&lt;void&gt;
+
+
+</td><td>
+
+Descend into the provided matcher, validating the expectations it was configured with. The top level is called before executing an Example to confirm that the example is sane.
+
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and chain the promises together.
+
 
 </td></tr>
 <tr><td>
@@ -100,6 +137,12 @@ Description
 
 
 </td><td>
+
+Descend into the provided matcher, confirming that the result of `descendAndStrip` would pass as actual data.
+
+The top level of this function is called during the pre-validation step. You probably don't need to call it directly.
+
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result in the appropriate place in the string you're returning
 
 
 </td></tr>
