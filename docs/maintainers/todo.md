@@ -50,12 +50,12 @@ Java:
 
 Next:
 
-- [ ] Don't throw exceptions in the DSL - it won't be handled correctly by JSii.
+- [x] Don't throw exceptions in the DSL - it won't be handled correctly by JSii.
 - [ ] Perhaps separate the DSL's needs in the definition package and the pretty-format, bit too.
 - [ ] Rename handle -> functonName in the registerFunction() calls
 - [ ] Fix variables so that you can have different defaults for different states
 - [ ] State handlers in the grpc connector aren't given the configuration
-- [ ] Connect CASE_CONNECTOR_CLIENT to a maintainer log somewhere
+- [x] Connect CASE_CONNECTOR_CLIENT to a maintainer log somewhere
 - [ ] Connect CASE_CONNECTOR_CLIENT in Jest DSL - probably include it in an
       internal config property, and have the grpc connector read it from the env var
 - [x] Fix Broker download contracts
@@ -108,7 +108,6 @@ Next:
 Good for when I don't want to think
 
 - [ ] Replace all `maintainerLog` lines with appropriate `connectorDebugLog` lines
-- [ ] Kill
 
 ## Documentation todos
 

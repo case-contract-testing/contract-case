@@ -7,13 +7,14 @@ export interface BuildEnvironment {
    *     we're not running in a git repository).
    */
   branch(): string | false;
+
   /**
    * Do we think the current environment is running in a CI server?
    */
   isCi(): boolean;
 
   /**
-   * Get the version for this service
+   * Get the version for the service under test
    */
   version(): string;
 }

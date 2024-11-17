@@ -1794,7 +1794,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    '_case:currentRun:context:contractMode': 'write' | 'read';\n    '_case:currentRun:context:printResults': boolean;\n}"
+              "text": ";\n    '_case:currentRun:context:contractMode': 'write' | 'read';\n    '_case:currentRun:context:printResults': boolean;\n    '_case:currentRun:context:connectorClient': string;\n}"
             },
             {
               "kind": "Content",

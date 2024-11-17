@@ -30,6 +30,7 @@ export const EMPTY_DATA_CONTEXT: DataContext = {
   '_case:currentRun:context:logLevel': 'none',
   '_case:currentRun:context:parentVersions': [],
   '_case:currentRun:context:location': ['DURING_TESTS'],
+  '_case:currentRun:context:connectorClient': 'Tests',
   '_case:context:matchBy': 'type',
   '_case:context:serialisableTo': 'json',
   '_case:currentRun:context:contractMode': 'write',

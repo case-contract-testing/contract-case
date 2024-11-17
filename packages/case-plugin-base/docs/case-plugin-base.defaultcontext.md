@@ -14,6 +14,7 @@ export type DefaultContext = LogLevelContext & {
     '_case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
     '_case:currentRun:context:contractMode': 'write' | 'read';
     '_case:currentRun:context:printResults': boolean;
+    '_case:currentRun:context:connectorClient': string;
 };
 ```
 **References:** [MATCH\_BY\_TYPE](./case-plugin-base.match_by_type.md)<!-- -->, [MATCH\_BY\_EXACT](./case-plugin-base.match_by_exact.md)<!-- -->, [SERIALISABLE\_TO\_JSON](./case-plugin-base.serialisable_to_json.md)

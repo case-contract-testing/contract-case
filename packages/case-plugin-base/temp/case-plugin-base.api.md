@@ -143,6 +143,7 @@ export type DefaultContext = LogLevelContext & {
     '_case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
     '_case:currentRun:context:contractMode': 'write' | 'read';
     '_case:currentRun:context:printResults': boolean;
+    '_case:currentRun:context:connectorClient': string;
 };
 
 // @public
@@ -405,6 +406,8 @@ export interface RunContext extends Partial<InjectableContext & LogLevelContext 
     // (undocumented)
     '_case:currentRun:context:brokerCiAccessToken'?: string;
     // (undocumented)
+    '_case:currentRun:context:connectorClient': string;
+    // (undocumented)
     '_case:currentRun:context:defaultConfig': Record<string, AnyData>;
     // (undocumented)
     '_case:currentRun:context:internals'?: {
@@ -488,7 +491,7 @@ export class VerifyTriggerReturnObjectError extends Error {
 
 // Warnings were encountered during analysis:
 //
-// src/context/types.ts:465:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
+// src/context/types.ts:470:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

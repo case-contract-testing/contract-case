@@ -323,6 +323,10 @@ export type DefaultContext = LogLevelContext & {
    * Whether or not we should print results during this run
    */
   '_case:currentRun:context:printResults': boolean;
+  /**
+   * What's the connector client (ie, host language) for this run?
+   */
+  '_case:currentRun:context:connectorClient': string;
 };
 
 interface InjectableContext {
@@ -373,6 +377,7 @@ export interface RunContext
   '_case:currentRun:context:printResults': boolean;
   '_case:currentRun:context:variables': Record<string, AnyCaseMatcherOrData>;
   '_case:currentRun:context:defaultConfig': Record<string, AnyData>;
+  '_case:currentRun:context:connectorClient': string;
   // TODO: These are from CaseConfig and should be auto generated
   '_case:currentRun:context:throwOnFail'?: boolean;
   '_case:currentRun:context:brokerCiAccessToken'?: string;

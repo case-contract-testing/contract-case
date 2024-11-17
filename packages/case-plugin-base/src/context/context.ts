@@ -28,6 +28,7 @@ import { shouldLog } from '../logger/shouldLog';
  */
 const DEFAULT_CONTEXT: DefaultContext = {
   '_case:currentRun:context:parentVersions': [],
+  '_case:currentRun:context:connectorClient': 'No Connector Client Supplied',
   '_case:currentRun:context:location': [],
   '_case:currentRun:context:contractMode': 'write',
   '_case:currentRun:context:logLevel': 'warn',

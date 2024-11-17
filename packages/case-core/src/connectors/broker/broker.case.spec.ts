@@ -63,6 +63,7 @@ const emptyContext: DataContext = {
   '_case:currentRun:context:contractMode': 'read',
   '_case:currentRun:context:printResults': false,
   '_case:currentRun:context:variables': {},
+  '_case:currentRun:context:connectorClient': 'tests',
   '_case:currentRun:context:parentVersions': ['broker-test'],
   '_case:currentRun:context:defaultConfig': {},
 };

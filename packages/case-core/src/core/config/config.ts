@@ -12,7 +12,8 @@ const ENV_TO_CONFIG_KEY: Record<string, keyof CaseConfig> = {
 };
 
 const value = (s: string | undefined) => {
-  switch (s) {
+  if (s == null) return s;
+  switch (s.toLowerCase()) {
     case 'true':
       return true;
     case 'false':
@@ -35,4 +36,7 @@ export const configToRunContext = (config: CaseConfig): Partial<RunContext> =>
     .map(([k, v]) => ({
       [`_case:currentRun:context:${k}`]: v,
     }))
-    .reduce((acc, curr) => ({ ...acc, ...curr }), {} as Partial<RunContext>);
+    .reduce<Partial<RunContext>>((acc, curr) => ({ ...acc, ...curr }), {
+      '_case:currentRun:context:connectorClient':
+        process.env['CASE_CONNECTOR_CLIENT'] ?? 'No Connector Client Supplied',
+    });
