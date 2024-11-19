@@ -69,14 +69,6 @@ jobs:
         uses: gradle/actions/setup-gradle@473878a77f1b98e2b5ac4af93489d1656a80a5ed # v4.2.0
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@f9c9c575b8b21b6485636a91ffecd10e558c62f6 # v3.5.0
-      # Actually run the build
-      - run: bash ci/build.sh
-        shell: bash
-        env:
-          CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
-          CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-          NODE_VERSION: 22.x
-          FORCE_COLOR: true
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@ea9e4e37992a54ee68a9622e985e60c8e8f12d9f # v3.27.4
