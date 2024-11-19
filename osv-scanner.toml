@@ -1,0 +1,3 @@
+[[IgnoredVulns]]
+id = "GHSA-c7qv-q95q-8v27"
+reason = "Vulnerable package only used in development-time web server"
