@@ -12,6 +12,8 @@ export * as dsl from './boundaries/dsl/index.js';
 export * as TestEquivalenceMatchers from './boundaries/dsl/Matchers/index.js';
 export * from './entities/types.js';
 
+process.env['CASE_CONNECTOR_CLIENT'] = 'contract-case-jest';
+
 // TODO remove this hack type and do it properly
 export type HttpRequestConfig = TriggerSetup<{
   baseUrl: string;
