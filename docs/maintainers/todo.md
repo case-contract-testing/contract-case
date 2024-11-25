@@ -40,9 +40,9 @@ Java:
 
 - [ ] Give `TriggerGroups` a builder and make it immutable, to match the rest of the builders
 - [ ] Complete javadoc (eliminate all warnings)
-- [ ] Autogenerate documentation or configuration classes somehow - so that they're in sync between different languages
+- [ ] Autogenerate documentation of configuration classes somehow - so that they're in sync between different languages
 - [ ] Implement server verification and definition in the tests
-- [ ] Implement function verifiers
+- [x] Implement function verifiers
 - [ ] Implement mockConfig passing
 - [ ] Should we catch JUnit failures and remap them so that contract case can render them?
 - [ ] More idiomatic logging - at the moment, you have to set standard out as the logger
@@ -51,8 +51,6 @@ Java:
 Next:
 
 - [x] Don't throw exceptions in the DSL - it won't be handled correctly by JSii.
-- [ ] Perhaps separate the DSL's needs in the definition package and the pretty-format, bit too.
-- [ ] Rename handle -> functonName in the registerFunction() calls
 - [ ] Fix variables so that you can have different defaults for different states
 - [ ] State handlers in the grpc connector aren't given the configuration
 - [x] Connect CASE_CONNECTOR_CLIENT to a maintainer log somewhere
@@ -70,6 +68,11 @@ Next:
   - [x] Arbitrary JSON with Case Matchers
 - [x] Spike monorepo
 - [x] Flatten types at the boundary
+
+Tidiness:
+
+- [ ] Perhaps separate the DSL's needs in the definition package and the pretty-format, bit too.
+- [ ] Rename handle -> functonName in the registerFunction() calls
 
   - [x] Classes for matchers
   - [x] Classes for mocks
