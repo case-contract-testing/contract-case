@@ -54,7 +54,7 @@ Next:
 - [ ] Fix variables so that you can have different defaults for different states
 - [ ] State handlers in the grpc connector aren't given the configuration
 - [x] Connect CASE_CONNECTOR_CLIENT to a maintainer log somewhere
-- [ ] Connect CASE_CONNECTOR_CLIENT in Jest DSL - probably include it in an
+- [x] Connect CASE_CONNECTOR_CLIENT in Jest DSL - probably include it in an
       internal config property, and have the grpc connector read it from the env var
 - [x] Fix Broker download contracts
 - [x] Do upload for verification results
@@ -97,7 +97,7 @@ Tidiness:
   - [x] Set up maven publish
   - [x] Error handling boundary
   - [x] Crash messages
-  - [x] Case Matcher function so that you don't have to import JSii
+  - [x] Case Matcher functions so that you don't have to import JSii
   - [x] Trigger functions should take config
 
 - [ ] Build mechanism to ensure that mocks have the right number of request / response present
@@ -177,7 +177,7 @@ Good for when I don't want to think
   - boolean
   - should there be "array" ?
 - [ ] Properly use accepts or some other property to use resolvesTo
-- [ ] Validators need to move
+- [x] Validators need to move
   - [ ] Array length (including checking that it's sensible)
   - [ ] Array length sensible
   - [ ] Array contains with an empty array
@@ -194,10 +194,10 @@ Good for when I don't want to think
 - [ ] Move the links to the promise handler out of the mappers
 - [x] Remove the unnecessary handles from the grpc
 - [ ] Do proper stack trace passing, as a first class object
-- [ ] Tie the proto in the java to the proto in the typescript
-- [ ] Start the server from java
+- [x] Tie the proto in the java to the proto in the typescript
+- [x] Start the server from java
 - [x] Remove JSii from boundary
-- [ ] Redo boundary interface types now that we don't need JSii
+- [x] Redo boundary interface types now that we don't need JSii
 - [ ] Add back in validators for constants (probably contract tests)
 - [ ] Expose teardown correctly on boundary
 - [ ] Wrap connector errors so that the core can't explode the server
@@ -285,7 +285,7 @@ Cool features
   - [ ] Split
   - [ ] As String
 - [x] Matcher content verification
-- [ ] Matcher argument verification
+- [x] Matcher argument verification
 - [x] Options + config
   - [x] Options and config from environment variables
   - [ ] Options and config from .rc files
@@ -298,8 +298,9 @@ Cool features
 - [x] Run as a server so that arbitrary frameworks can use it
 - [ ] "Is this interaction the same as that"?
 - [ ] Combine files for upload (does the broker support multiple contracts between the same two services?)
-- [ ] Parametrised matchers
-- [ ] Ability to change the default version strategy
+  - [x] No, the broker should not support multiple contracts between the same two services, because otherwise you don't know if you have all the expectations for that service
+- [ ] Parametrised matchers so you can say "do this test for each of these values of this enum" or similar
+- [ ] Ability to change the default version strategy, so you don't have to use tags
 
 ## Contract file access patterns
 
