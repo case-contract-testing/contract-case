@@ -4,7 +4,7 @@
 
 ## MatchContext type
 
-The part of the context used during a matching run - contains traversal functions
+The part of the context used during a matching run - contains traversal functions and any lookup functions that arbitrary matchers or mocks might need.
 
 **Signature:**
 

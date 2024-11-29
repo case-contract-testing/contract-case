@@ -117,6 +117,11 @@ public class ContractCaseConfig {
   public final Map<String, StateHandler> stateHandlers;
 
   /**
+   * Controls how ContractCase will determine the version for the system under test.
+   */
+  public final AutoVersionFrom autoVersionFrom;
+
+  /**
    * Don't construct this directly, use a {@link ContractCaseConfigBuilder} instead, obtained via
    * {@link ContractCaseConfigBuilder#aContractCaseConfig()}
    */
@@ -125,7 +130,8 @@ public class ContractCaseConfig {
       String contractDir, String contractFilename, Boolean printResults, Boolean throwOnFail,
       PublishType publish, String brokerBaseUrl, String brokerCiAccessToken,
       BrokerBasicAuthCredentials brokerBasicAuth, String baseUrlUnderTest, TriggerGroups triggers,
-      Map<String, StateHandler> stateHandlers, Map<String, Map<String, String>> mockConfig) {
+      Map<String, StateHandler> stateHandlers, Map<String, Map<String, String>> mockConfig,
+      AutoVersionFrom autoVersionFrom) {
     this.providerName = providerName;
     this.consumerName = consumerName;
     this.logLevel = logLevel;
@@ -141,6 +147,7 @@ public class ContractCaseConfig {
     this.triggers = triggers;
     this.stateHandlers = stateHandlers;
     this.mockConfig = mockConfig;
+    this.autoVersionFrom = autoVersionFrom;
   }
 
   public String getProviderName() {
@@ -199,6 +206,10 @@ public class ContractCaseConfig {
     return stateHandlers;
   }
 
+  public AutoVersionFrom getAutoVersionFrom() {
+    return this.autoVersionFrom;
+  }
+
   /**
    * Builder for {@link ContractCaseConfig} objects.
    * <p>
@@ -223,6 +234,8 @@ public class ContractCaseConfig {
     private String baseUrlUnderTest;
     private TriggerGroups triggers;
     private Map<String, StateHandler> stateHandlers;
+
+    private AutoVersionFrom autoVersionFrom;
 
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
 
@@ -311,6 +324,11 @@ public class ContractCaseConfig {
       return this;
     }
 
+    public ContractCaseConfigBuilder autoVersionFrom(AutoVersionFrom autoVersionFrom) {
+      this.autoVersionFrom = autoVersionFrom;
+      return this;
+    }
+
     public ContractCaseConfig build() {
       return new ContractCaseConfig(
           providerName,
@@ -327,7 +345,8 @@ public class ContractCaseConfig {
           baseUrlUnderTest,
           triggers,
           stateHandlers,
-          mockConfig
+          mockConfig,
+          autoVersionFrom
       );
     }
   }

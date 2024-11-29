@@ -1,3 +1,5 @@
+import { DataContext } from '@contract-case/case-plugin-base';
+
 export interface BuildEnvironment {
   /**
    * What branch of the git repository is under test in this run
@@ -15,8 +17,10 @@ export interface BuildEnvironment {
 
   /**
    * Get the version for the service under test
+   *
+   * @param context - the {@link DataContext} for this run
    */
-  version(): string;
+  version(context: DataContext): string;
 }
 
 export type MakeEnvironment = () => BuildEnvironment;

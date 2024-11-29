@@ -99,25 +99,22 @@ describe('e2e http consumer driven', () => {
           const state = inState('Server is down');
           describe('No body server response', () => {
             it('calls server health', () =>
-              contract.runRejectingExample(
-                {
-                  states: [state],
-                  definition: willSendHttpRequest({
-                    request: {
-                      method: 'GET',
-                      path: '/health',
-                    },
-                    response: {
-                      status: httpStatus(['4XX', '5XX']),
-                    },
-                  }),
-                  trigger: sendHealthRequest,
-                  testErrorResponse: (e) => {
-                    expect(e).toBeInstanceOf(ApiError);
+              contract.runRejectingExample({
+                states: [state],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'GET',
+                    path: '/health',
                   },
+                  response: {
+                    status: httpStatus(['4XX', '5XX']),
+                  },
+                }),
+                trigger: sendHealthRequest,
+                testErrorResponse: (e) => {
+                  expect(e).toBeInstanceOf(ApiError);
                 },
-                { logLevel: 'deepMaintainerDebug' },
-              ));
+              }));
           });
 
           describe('specific server response', () => {

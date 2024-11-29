@@ -4,7 +4,7 @@
 
 ## MatchContextByType interface
 
-Indicates that the matchers should default to shape matching
+If the context is assignable to this type, it indicates that the matchers should default to shape (ie, type) matching
 
 **Signature:**
 

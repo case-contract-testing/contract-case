@@ -303,7 +303,7 @@ export interface ContractFileConfig {
 export type HasContractFileConfig = DataContext & ContractFileConfig;
 
 /**
- * The default context for a run
+ * The settings that are set as default context for a run
  *
  * @public
  */
@@ -327,11 +327,22 @@ export type DefaultContext = LogLevelContext & {
    * What's the connector client (ie, host language) for this run?
    */
   '_case:currentRun:context:connectorClient': string;
+
+  /**
+   * How to generate the version for the system under test
+   */
+  '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
 };
 
+/**
+ * These elements of context are injectable by the user
+ *
+ * @internal
+ */
 interface InjectableContext {
   '_case:currentRun:context:baseUrlUnderTest'?: string;
   '_case:currentRun:context:contractMode': 'write' | 'read';
+  '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
 }
 
 /**
@@ -381,6 +392,7 @@ export interface RunContext
   // TODO: These are from CaseConfig and should be auto generated
   '_case:currentRun:context:throwOnFail'?: boolean;
   '_case:currentRun:context:brokerCiAccessToken'?: string;
+  '_case:currentRun:context:autoVersionFrom'?: 'TAG' | 'GIT_SHA';
   '_case:currentRun:context:publish'?:
     | false
     | true
@@ -398,7 +410,8 @@ export interface RunContext
 }
 
 /**
- * Indicates that the matchers should default to shape matching
+ * If the context is assignable to this type, it indicates that
+ * the matchers should default to shape (ie, type) matching
  *
  * @public
  */
@@ -407,7 +420,8 @@ export interface MatchContextByType {
 }
 
 /**
- * Indicates that the matchers should default to exact matching
+ * If the context is assignable to this type, it indicates
+ * that the matchers should default to exact matching
  *
  * @public
  */
@@ -426,7 +440,9 @@ export interface HttpTestContext {
 }
 
 /**
- * Part of the context with the logger attached.
+ * Part of the context with the logger attached. Useful if you just want to pass
+ * the logging functions to something. This is used in a few places where the whole
+ * context isn't available (eg, before the context has been constructed).
  *
  * @public
  */
@@ -440,7 +456,8 @@ export interface LogContext {
 }
 
 /**
- * Just the parts of the context that have data
+ * Convenience type for just the parts of the context that have data - everything in this type
+ * will be serialisable.
  *
  * @public
  */
@@ -453,6 +470,7 @@ export type DataContext = DefaultContext &
 
 /**
  * The part of the context used during a matching run - contains traversal functions
+ * and any lookup functions that arbitrary matchers or mocks might need.
  *
  * @public
  */
@@ -462,7 +480,9 @@ export type MatchContext = DataContext &
   HasMakeLookupFn;
 
 /**
- * The result formatter object
+ * The result formatter is used for printing results. The core doesn't know how these are
+ * formatted and printed - this is up to the host DSL wrappers.
+ *
  * @internal
  */
 export type ResultFormatter = {

@@ -20,6 +20,7 @@ export const stringConfigArgs: Array<IsStringArg<keyof BaseCaseConfig>> = [
   'publish',
   'brokerCiAccessToken',
   'brokerBaseUrl',
+  'autoVersionFrom',
 ];
 
 export interface BaseCaseConfig {
@@ -110,6 +111,18 @@ export interface BaseCaseConfig {
      */
     password: string;
   };
+
+  /**
+   * Where to automatically get the version for the service under test.
+   *
+   * - `TAG` get the version from the git tag using absolute-version
+   * - `GIT_SHA` get the version from the full git sha
+   *
+   * If there is no git repository, then versioning will fail.
+   *
+   * @defaultValue `'TAG'`
+   */
+  autoVersionFrom?: 'TAG' | 'GIT_SHA';
 
   /**
    * The internals map allows configuration of low-level ContractCase features.

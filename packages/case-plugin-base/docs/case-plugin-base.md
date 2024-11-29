@@ -350,7 +350,7 @@ The base type for a case matcher descriptor that has this string constant
 
 </td><td>
 
-Part of the context with the logger attached.
+Part of the context with the logger attached. Useful if you just want to pass the logging functions to something. This is used in a few places where the whole context isn't available (eg, before the context has been constructed).
 
 
 </td></tr>
@@ -372,7 +372,7 @@ Describes the logger object
 
 </td><td>
 
-Indicates that the matchers should default to exact matching
+If the context is assignable to this type, it indicates that the matchers should default to exact matching
 
 
 </td></tr>
@@ -383,7 +383,7 @@ Indicates that the matchers should default to exact matching
 
 </td><td>
 
-Indicates that the matchers should default to shape matching
+If the context is assignable to this type, it indicates that the matchers should default to shape (ie, type) matching
 
 
 </td></tr>
@@ -645,7 +645,7 @@ Represents a plugin for the ContractCase contract testing framework. A plugin ca
 
 </td><td>
 
-Just the parts of the context that have data
+Convenience type for just the parts of the context that have data - everything in this type will be serialisable.
 
 
 </td></tr>
@@ -656,7 +656,7 @@ Just the parts of the context that have data
 
 </td><td>
 
-The default context for a run
+The settings that are set as default context for a run
 
 
 </td></tr>
@@ -689,7 +689,7 @@ The log levels available
 
 </td><td>
 
-The part of the context used during a matching run - contains traversal functions
+The part of the context used during a matching run - contains traversal functions and any lookup functions that arbitrary matchers or mocks might need.
 
 
 </td></tr>

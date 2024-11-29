@@ -4,7 +4,7 @@
 
 ## MatchContextByExact interface
 
-Indicates that the matchers should default to exact matching
+If the context is assignable to this type, it indicates that the matchers should default to exact matching
 
 **Signature:**
 

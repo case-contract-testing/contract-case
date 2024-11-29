@@ -46,6 +46,8 @@ export interface ContractCaseConfig {
    * `"debug"` - Information to help users find out what is happening during their tests
    *
    * `"maintainerDebug" | "deepMaintainerDebug"` - debugging information for ContractCase maintainers
+   *
+   * @defaultValue `'warn'`
    */
   readonly logLevel?: LogLevel;
 
@@ -53,22 +55,31 @@ export interface ContractCaseConfig {
    * The directory where the contract will be written. If you provide this, ContractCase
    * will generate the filename for you (unless `contractFilename` is specified,
    * in which case this setting is ignored)
+   *
+   * @defaultValue The current working directory
    */
   readonly contractDir?: string;
 
   /**
    * The filename where the contract will be written. If you
    * provide this, `contractDir` is ignored
+   *
+   * @defaultValue Generated automatically
    */
   readonly contractFilename?: string;
 
   /**
+   * The test run ID, used in part to generate filenames and distinguish separate runs.
+   * This generally shouldn't need to be set by users.
+   *
    * @internal
    */
   readonly testRunId?: string;
 
   /**
    * Whether or not the results should be printed
+   *
+   * @defaultValue true
    */
   readonly printResults?: boolean;
 
@@ -79,7 +90,7 @@ export interface ContractCaseConfig {
    * this setting. This includes exceptions thrown during trigger functions, but
    * does not include exceptions thrown by testResponse functions.
    *
-   * Default: `true` in contract definition, `false` in contract verification
+   * @defaultValue `true` in contract definition, `false` in contract verification
    */
   readonly throwOnFail?: boolean;
 
@@ -90,19 +101,23 @@ export interface ContractCaseConfig {
    * `"NEVER"` or `false` - never publish
    * `"ALWAYS"` or `true` - always publish (not recommended)
    *
-   * Default: `"ONLY_IN_CI"`
+   * @defaultValue `"ONLY_IN_CI"`
    */
   readonly publish?: 'ONLY_IN_CI' | 'NEVER' | 'ALWAYS' | false | true;
 
   /**
-   * The access token to use for the contract broker. Must have CI scope.
+   * The access token to use for the contract broker. For a pact broker, this must have CI scope.
    *
    * If this is specified along with brokerBasicAuth, the basic auth is ignored.
+   *
+   * @defaultValue not set
    */
   readonly brokerCiAccessToken?: string;
 
   /**
    * The base URL for the contract broker
+   *
+   * @defaultValue not set
    */
   readonly brokerBaseUrl?: string;
 
@@ -110,6 +125,8 @@ export interface ContractCaseConfig {
    * The basic authentication username and password to access the contract broker.
    *
    * If this is specified along with brokerCiAccessToken, the basic auth is ignored.
+   *
+   * @defaultValue not set
    */
   readonly brokerBasicAuth?: UserNamePassword;
 
@@ -117,15 +134,19 @@ export interface ContractCaseConfig {
    * State setup and teardown handlers for any states this test requires (see
    * [writing state handlers](https://case.contract-testing.io/docs/reference/state-handlers/))
    * for more details
+   *
+   * @defaultValue No setup or teardown handlers
    */
   readonly stateHandlers?: StateHandlers;
 
   /**
-   * Define the trigger and test function (if any) for this interaction pair.
+   * Define the trigger and test function (if any) for multiple examples under test.
    *
    * Keyed by `${requestName}::${responseName}`
    *
-   * Use a `TriggerGroupMap` to construct this
+   * Don't populate this directly, use a `TriggerGroupMap` to construct this.
+   *
+   * @defaultValue no triggers
    */
   readonly triggers?: TriggerGroups;
 
@@ -138,8 +159,20 @@ export interface ContractCaseConfig {
 
   /**
    * Configuration for any plugins or specific mock types. Keyed by the plugin / mock shortName
+   *
+   * @defaultValue empty config
    */
   readonly mockConfig?: Record<string, Record<string, unknown>>;
+
+  /**
+   * How to generate version numbers for the system under test
+   *
+   * - `"TAG"`: Use {@link https://github.com/absolute-version/absolute-version-js | absolute version} to generate version numbers from the git tag
+   * - `"GIT_SHA"`: Use the full git sha
+   *
+   * @defaultValue `TAG`
+   */
+  readonly autoVersionFrom?: 'TAG' | 'GIT_SHA';
 }
 
 export type ContractCaseVerifierConfig = Omit<

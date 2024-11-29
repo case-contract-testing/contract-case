@@ -133,6 +133,11 @@ class ConnectorOutgoingMapper {
       builder.setPublish(ConnectorOutgoingMapper.map(config.getPublish().toString()));
     }
 
+    if (config.getAutoVersionFrom() != null) {
+      builder.setAutoVersionFrom(ConnectorOutgoingMapper.map(config.getAutoVersionFrom()
+          .toString()));
+    }
+
     if (config.getMockConfig() != null) {
       config.getMockConfig().forEach((String k, Map<String, String> v) -> {
         try {

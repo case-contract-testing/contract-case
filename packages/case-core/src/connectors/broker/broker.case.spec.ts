@@ -66,6 +66,7 @@ const emptyContext: DataContext = {
   '_case:currentRun:context:connectorClient': 'tests',
   '_case:currentRun:context:parentVersions': ['broker-test'],
   '_case:currentRun:context:defaultConfig': {},
+  '_case:currentRun:context:autoVersionFrom': 'TAG',
 };
 
 const contractFilename = 'case-contracts/case-pact-broker.case.json';

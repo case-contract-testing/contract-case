@@ -8,15 +8,28 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
   public final Trigger<T> trigger;
   public final TestResponseFunction<T> testResponse;
 
-  private IndividualSuccessTestConfig(String providerName, String consumerName, LogLevel logLevel,
-      String contractDir, String contractFilename, Boolean printResults, Boolean throwOnFail,
-      PublishType publish, String brokerBaseUrl, String brokerCiAccessToken,
-      BrokerBasicAuthCredentials brokerBasicAuth, String baseUrlUnderTest, TriggerGroups triggers,
-      Map<String, StateHandler> stateHandlers, Trigger<T> trigger,
-      TestResponseFunction<T> testResponse, Map<String, Map<String, String>> mockConfig) {
+  private IndividualSuccessTestConfig(String providerName,
+      String consumerName,
+      LogLevel logLevel,
+      String contractDir,
+      String contractFilename,
+      Boolean printResults,
+      Boolean throwOnFail,
+      PublishType publish,
+      String brokerBaseUrl,
+      String brokerCiAccessToken,
+      BrokerBasicAuthCredentials brokerBasicAuth,
+      String baseUrlUnderTest,
+      TriggerGroups triggers,
+      Map<String, StateHandler> stateHandlers,
+      Trigger<T> trigger,
+      TestResponseFunction<T> testResponse,
+      Map<String, Map<String, String>> mockConfig,
+      AutoVersionFrom autoVersionFrom) {
     super(providerName, consumerName, logLevel, contractDir, contractFilename, printResults,
         throwOnFail, publish, brokerBaseUrl, brokerCiAccessToken, brokerBasicAuth, baseUrlUnderTest,
-        triggers, stateHandlers, mockConfig
+        triggers, stateHandlers, mockConfig,
+        autoVersionFrom
     );
     this.trigger = trigger;
     this.testResponse = testResponse;
@@ -40,6 +53,8 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
     private Map<String, StateHandler> stateHandlers;
     private Trigger<T> trigger;
     private TestResponseFunction<T> testResponse;
+
+    private AutoVersionFrom autoVersionFrom;
 
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
 
@@ -140,6 +155,11 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
       return this;
     }
 
+    public IndividualSuccessTestConfigBuilder<T> autoVersionFrom(AutoVersionFrom autoVersionFrom) {
+      this.autoVersionFrom = autoVersionFrom;
+      return this;
+    }
+
     public IndividualSuccessTestConfig<T> build() {
       return new IndividualSuccessTestConfig<>(
           providerName,
@@ -158,7 +178,8 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
           stateHandlers,
           trigger,
           testResponse,
-          mockConfig
+          mockConfig,
+          autoVersionFrom
       );
     }
   }

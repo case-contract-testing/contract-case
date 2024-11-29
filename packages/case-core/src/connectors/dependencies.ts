@@ -18,6 +18,7 @@ const DEFAULT_CONFIG: Partial<BaseCaseConfig> = {
   publish: 'ONLY_IN_CI',
   printResults: true,
   testRunId: DEFAULT_TEST_ID,
+  autoVersionFrom: 'TAG',
 };
 
 export const writerDependencies: (

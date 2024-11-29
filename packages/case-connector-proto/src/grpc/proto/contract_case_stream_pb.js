@@ -833,7 +833,8 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject = functi
     triggerAndTestsMap: (f = msg.getTriggerAndTestsMap()) ? f.toObject(includeInstance, proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject) : [],
     triggerAndTest: (f = msg.getTriggerAndTest()) && proto.io.contract_testing.contractcase.grpc.TriggerFunctionHandle.toObject(includeInstance, f),
     baseUrlUnderTest: (f = msg.getBaseUrlUnderTest()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
-    mockConfigMap: (f = msg.getMockConfigMap()) ? f.toObject(includeInstance, undefined) : []
+    mockConfigMap: (f = msg.getMockConfigMap()) ? f.toObject(includeInstance, undefined) : [],
+    autoVersionFrom: (f = msg.getAutoVersionFrom()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -951,6 +952,11 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinary
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
          });
+      break;
+    case 17:
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
+      msg.setAutoVersionFrom(value);
       break;
     default:
       reader.skipField();
@@ -1100,6 +1106,14 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryTo
   f = message.getMockConfigMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(16, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getAutoVersionFrom();
+  if (f != null) {
+    writer.writeMessage(
+      17,
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
+    );
   }
 };
 
@@ -1867,6 +1881,43 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getMock
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearMockConfigMap = function() {
   this.getMockConfigMap().clear();
   return this;};
+
+
+/**
+ * optional google.protobuf.StringValue auto_version_from = 17;
+ * @return {?proto.google.protobuf.StringValue}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getAutoVersionFrom = function() {
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 17));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+*/
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.setAutoVersionFrom = function(value) {
+  return jspb.Message.setWrapperField(this, 17, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearAutoVersionFrom = function() {
+  return this.setAutoVersionFrom(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasAutoVersionFrom = function() {
+  return jspb.Message.getField(this, 17) != null;
+};
 
 
 

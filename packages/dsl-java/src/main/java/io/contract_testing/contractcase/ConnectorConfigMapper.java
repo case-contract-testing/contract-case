@@ -115,6 +115,10 @@ class ConnectorConfigMapper {
       builder.stateHandlers(ConnectorStateHandlerMapper.map(config.stateHandlers));
     }
 
+    if(config.autoVersionFrom != null) {
+      builder.autoVersionFrom(config.autoVersionFrom);
+    }
+
     config.mockConfig.forEach(builder::mockConfig);
 
     return builder;

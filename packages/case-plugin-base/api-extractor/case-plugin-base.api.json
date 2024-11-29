@@ -1664,7 +1664,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!DataContext:type",
-          "docComment": "/**\n * Just the parts of the context that have data\n *\n * @public\n */\n",
+          "docComment": "/**\n * Convenience type for just the parts of the context that have data - everything in this type will be serialisable.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1754,7 +1754,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!DefaultContext:type",
-          "docComment": "/**\n * The default context for a run\n *\n * @public\n */\n",
+          "docComment": "/**\n * The settings that are set as default context for a run\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1794,7 +1794,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    '_case:currentRun:context:contractMode': 'write' | 'read';\n    '_case:currentRun:context:printResults': boolean;\n    '_case:currentRun:context:connectorClient': string;\n}"
+              "text": ";\n    '_case:currentRun:context:contractMode': 'write' | 'read';\n    '_case:currentRun:context:printResults': boolean;\n    '_case:currentRun:context:connectorClient': string;\n    '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';\n}"
             },
             {
               "kind": "Content",
@@ -2334,7 +2334,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!LogContext:interface",
-          "docComment": "/**\n * Part of the context with the logger attached.\n *\n * @public\n */\n",
+          "docComment": "/**\n * Part of the context with the logger attached. Useful if you just want to pass the logging functions to something. This is used in a few places where the whole context isn't available (eg, before the context has been constructed).\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2791,7 +2791,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!MatchContext:type",
-          "docComment": "/**\n * The part of the context used during a matching run - contains traversal functions\n *\n * @public\n */\n",
+          "docComment": "/**\n * The part of the context used during a matching run - contains traversal functions and any lookup functions that arbitrary matchers or mocks might need.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2845,7 +2845,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!MatchContextByExact:interface",
-          "docComment": "/**\n * Indicates that the matchers should default to exact matching\n *\n * @public\n */\n",
+          "docComment": "/**\n * If the context is assignable to this type, it indicates that the matchers should default to exact matching\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2890,7 +2890,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!MatchContextByType:interface",
-          "docComment": "/**\n * Indicates that the matchers should default to shape matching\n *\n * @public\n */\n",
+          "docComment": "/**\n * If the context is assignable to this type, it indicates that the matchers should default to shape (ie, type) matching\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

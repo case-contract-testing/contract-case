@@ -43,6 +43,25 @@ const mapPublish = (
   }
 };
 
+const mapAutoVersionFrom = (autoVersionFrom: string): 'TAG' | 'GIT_SHA' => {
+  switch (autoVersionFrom.toUpperCase()) {
+    case 'TAG': {
+      return 'TAG';
+    }
+    case 'GIT_SHA':
+      return 'GIT_SHA';
+    default:
+      throw new CaseConfigurationError(
+        `The autoVersionFrom setting '${autoVersionFrom}' is not a valid auto version setting`,
+      );
+  }
+};
+
+/**
+ * SeparateConfig only exists because at one point these two things were separate.
+ * At some point, we should refactor this so that the config shape doesn't need to
+ * be mapped into this intermediate type.
+ */
 type SeparateConfig = {
   config: CaseConfig;
   partialInvoker: Partial<TestInvoker<AnyMockDescriptorType, unknown>>;
@@ -54,10 +73,14 @@ export const convertConfig = ({
   triggerAndTests,
   logLevel,
   publish,
+  autoVersionFrom,
   ...incoming
 }: ContractCaseBoundaryConfig): SeparateConfig => ({
   config: {
     ...incoming,
+    ...(autoVersionFrom
+      ? { autoVersionFrom: mapAutoVersionFrom(autoVersionFrom) }
+      : {}),
     ...(logLevel ? { logLevel: mapLogLevel(logLevel) } : {}),
     ...(publish ? { publish: mapPublish(publish) } : {}),
     // baseUrlUnderTest: `http://localhost:${8084}`,

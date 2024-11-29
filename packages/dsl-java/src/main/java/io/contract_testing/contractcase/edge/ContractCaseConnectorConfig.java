@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase.edge;
 
+import io.contract_testing.contractcase.AutoVersionFrom;
 import io.contract_testing.contractcase.BrokerBasicAuthCredentials;
 import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.LogLevel;
@@ -47,7 +48,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       String testRunId,
       Map<String, ? extends ITriggerFunction> triggerAndTests,
       ITriggerFunction triggerAndTest,
-      Map<String, Map<String, String>> mockConfig) {
+      Map<String, Map<String, String>> mockConfig,
+      AutoVersionFrom autoVersionFrom) {
     super(
         providerName,
         consumerName,
@@ -63,7 +65,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
         baseUrlUnderTest,
         null,
         null,
-        mockConfig
+        mockConfig,
+        autoVersionFrom
     );
     this.testRunId = testRunId;
     this.triggerAndTests = triggerAndTests;
@@ -126,6 +129,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
     private ITriggerFunction triggerAndTest;
 
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
+    private AutoVersionFrom autoVersionFrom;
 
     private Builder() {
     }
@@ -219,6 +223,12 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       return this;
     }
 
+    public Builder autoVersionFrom(AutoVersionFrom autoVersionFrom) {
+      this.autoVersionFrom = autoVersionFrom;
+      return this;
+    }
+
+
     public ContractCaseConnectorConfig build() {
       return new ContractCaseConnectorConfig(
           providerName,
@@ -237,7 +247,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
           testRunId,
           triggerAndTests,
           triggerAndTest,
-          mockConfig
+          mockConfig,
+          autoVersionFrom
       );
     }
 

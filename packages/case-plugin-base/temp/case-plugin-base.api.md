@@ -144,6 +144,7 @@ export type DefaultContext = LogLevelContext & {
     '_case:currentRun:context:contractMode': 'write' | 'read';
     '_case:currentRun:context:printResults': boolean;
     '_case:currentRun:context:connectorClient': string;
+    '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
 };
 
 // @public
@@ -397,6 +398,8 @@ export type ResultFormatter = {
 // @internal
 export interface RunContext extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest & ContractFileConfig & MockConfig> {
     // (undocumented)
+    '_case:currentRun:context:autoVersionFrom'?: 'TAG' | 'GIT_SHA';
+    // (undocumented)
     '_case:currentRun:context:brokerBaseUrl'?: string;
     // (undocumented)
     '_case:currentRun:context:brokerBasicAuth'?: {
@@ -491,7 +494,7 @@ export class VerifyTriggerReturnObjectError extends Error {
 
 // Warnings were encountered during analysis:
 //
-// src/context/types.ts:470:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
+// src/context/types.ts:490:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

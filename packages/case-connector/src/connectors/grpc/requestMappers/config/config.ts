@@ -158,6 +158,8 @@ const mapAllConfigFields = (
     ),
   triggerAndTest: mapTriggerAndTest(config, executeCall, functionRegistry),
   mockConfig: mapMockConfig(config.getMockConfigMap()),
+
+  autoVersionFrom: unboxOrUndefined(config.getAutoVersionFrom()),
 });
 
 export const mapConfig = (

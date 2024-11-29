@@ -4,7 +4,7 @@
 
 ## LogContext interface
 
-Part of the context with the logger attached.
+Part of the context with the logger attached. Useful if you just want to pass the logging functions to something. This is used in a few places where the whole context isn't available (eg, before the context has been constructed).
 
 **Signature:**
 

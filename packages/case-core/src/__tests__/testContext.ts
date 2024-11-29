@@ -38,6 +38,7 @@ export const EMPTY_DATA_CONTEXT: DataContext = {
   '_case:currentRun:context:testName': '',
   '_case:currentRun:context:variables': {},
   '_case:currentRun:context:defaultConfig': {},
+  '_case:currentRun:context:autoVersionFrom': 'TAG',
   logger: EMPTY_LOGGER,
   resultPrinter: {
     printError(): void {},

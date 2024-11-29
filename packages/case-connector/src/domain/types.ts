@@ -27,6 +27,8 @@ export type ContractCaseConnectorConfig = {
   triggerAndTest: ConnectorTriggerFunction;
 
   mockConfig: Record<string, Record<string, unknown>>;
+
+  autoVersionFrom: string;
 };
 
 export type DefinitionId = string;

@@ -57,7 +57,7 @@ export class BrokerService {
         .publishVerificationResults(
           contract,
           success,
-          this.environment.version(),
+          this.environment.version(context),
           this.environment.branch(),
           addLocation(':PublishingContractAdvanced', context),
         )
@@ -100,7 +100,7 @@ export class BrokerService {
       return this.broker
         .publishContractAdvanced(
           contract,
-          this.environment.version(),
+          this.environment.version(context),
           this.environment.branch(),
           addLocation(':PublishingContractAdvanced', context),
         )

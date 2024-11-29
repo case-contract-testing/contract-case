@@ -12,9 +12,7 @@ optional partial config object as the last parameter to `runExample`,
 `runRejectingExample`, or `runVerification`. This is useful for overriding
 specifics for different tests (eg, for increasing the log level on one specific test).
 
-You can view the options as a filter - if an option is not specified in the test
-run, it will look to the next layer. Here are the layers, from most to least
-important:
+There are multiple places you can supply configuration. In general, the closer an option is to the `runExample` interaction, the higher precedence it has. Here are the places configuration can be specified, where the top of the list has the most precedence.
 
 1. Options specified in the test run (`runExample`, `runRejectingExample`, or `runVerification`).
 1. Options specified at contract creation time (`defineContract` or `verifyContract`)
@@ -148,10 +146,41 @@ Whether to publish contracts or verification results to the broker. When set to:
 
 If `publish` is set, you must provide credentials and `brokerBaseUrl`. See above.
 
-## Contract Testing configuration options
+## General configuration
 
-These options modify the behaviour of the contract testing engine. In general,
-you should not need to change these defaults unless your use case is unusual.
+### `autoVersionFrom` \["TAG" | "GIT_SHA"]
+
+Default: `"TAG"`
+
+How to determine the version for the service under test. It's important that each change to your service has a unique version, so ContractCase uses your git repository to determine the version.
+
+- `TAG` (default) This setting will generate a human-friendly version from using [absolute-version](https://github.com/absolute-version/absolute-version-js?). Most useful if use
+- `GIT_SHA` get the version from the full git sha
+
+If there is no git repository, versioning will fail. Support for non-git repositories will be added in the future. If this is something you need prioritised, please open an issue.
+
+### `stateHandlers` \[various, depending on language]
+
+State setup and teardown handlers for any states this test requires. How these are specified depends on the language you're using, see
+[writing state handlers](./state-handlers) for more details.
+
+### `triggers` / `trigger` / `testResponse` / `testErrorResponse` \[various, depending on language]
+
+Defines the trigger and test functions for multiple examples under test.
+
+- `triggers`: Used to define multiple trigger and test functions, useful during verification that needs triggers.
+- `trigger`: Defines a single trigger. This is only valid on individual examples
+- `testResponse` / `testErrorResponse`: Used to verify the response object from the trigger
+
+See [triggers](./triggers.md) for language specific details.
+
+## Internal configuration options
+
+These options modify the behaviour of the contract testing engine. In general, you should not need to change these from the default, unless your use case is unusual.
+
+Most users probably won't need these, but they're documented here in case you are extending ContractCase or building tools on top of it.
+
+If you're using these, it might be worth opening an issue to discuss your use-case and whether it should be better supported.
 
 ### `throwOnFail` \[boolean];
 
@@ -173,10 +202,6 @@ Any configuration errors will still fail the suite regardless of
 this setting. This includes exceptions thrown during [trigger functions](./triggers), but
 does not include exceptions thrown by [testResponse functions](./triggers).
 :::
-
-## Internal options
-
-Most users probably won't need these, but they're documented here in case you are extending ContractCase or building tools on top of it.
 
 ### `testRunId` \[string]
 

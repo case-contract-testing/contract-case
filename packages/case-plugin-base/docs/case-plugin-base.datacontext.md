@@ -4,7 +4,7 @@
 
 ## DataContext type
 
-Just the parts of the context that have data
+Convenience type for just the parts of the context that have data - everything in this type will be serialisable.
 
 **Signature:**
 

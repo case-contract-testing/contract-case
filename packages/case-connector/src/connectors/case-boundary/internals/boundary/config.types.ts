@@ -20,6 +20,12 @@ export interface UserNamePassword {
 /**
  * Configure a ContractCase run. See the [configuration documentation](https://case.contract-testing.io/docs/reference/configuring) for more details.
  *
+ * Note that many of these types are more permissive than the reality - for
+ * example, the constrained string types are listed here as `string`, whereas
+ * the core will only accept a limited number of values (eg, log level accepts
+ * `'warn'` `'error'` etc, but not `'gibbons'`). Callers may rely on the
+ * boundary mappers to throw `CaseConfigurationErrors` in the case of invalid strings.
+ *
  * @public
  */
 export interface ContractCaseBoundaryConfig {
@@ -145,6 +151,16 @@ export interface ContractCaseBoundaryConfig {
    * Configuration for any mocks that ContractCase runs during the execution of this test
    */
   readonly mockConfig?: Record<string, Record<string, unknown>>;
+
+  /**
+   * How to generate version numbers for the system under test
+   *
+   * - `"TAG"`: Use {@link https://github.com/absolute-version/absolute-version-js | absolute version} to generate version numbers from the git tag
+   * - `"GIT_SHA"`: Use the full git sha
+   *
+   * @defaultValue `TAG`
+   */
+  readonly autoVersionFrom?: string;
 
   /**
    * The internals map allows configuration of low-level ContractCase features.

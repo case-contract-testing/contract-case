@@ -32,6 +32,7 @@ const DEFAULT_CONTEXT: DefaultContext = {
   '_case:currentRun:context:location': [],
   '_case:currentRun:context:contractMode': 'write',
   '_case:currentRun:context:logLevel': 'warn',
+  '_case:currentRun:context:autoVersionFrom': 'TAG',
   '_case:currentRun:context:printResults': true,
   '_case:context:matchBy': 'exact',
   '_case:context:serialisableTo': 'json',
