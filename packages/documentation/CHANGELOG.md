@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.9](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.8...documentation-v0.0.9) (2024-12-02)
+
+
+### Features
+
+* Add ability for the current version to be generated from the git sha ([dd70365](https://github.com/case-contract-testing/contract-case/commit/dd703650fd058d34f6d772011b74faec10b93074))
+
+
+### Documentation
+
+* Add initial matcher documentation ([d95d868](https://github.com/case-contract-testing/contract-case/commit/d95d868d3f6f3a03e16119be25029822631d342e))
+* Update matcher documentation ([ace5ac9](https://github.com/case-contract-testing/contract-case/commit/ace5ac9b0d00b79fb55d4373b6405a71f849d598))
+
 ## [0.0.8](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.7...documentation-v0.0.8) (2024-10-01)
 
 
