@@ -26,7 +26,7 @@ tasks.withType(Javadoc).configureEach {
 
 def caseCoreVersion = "0.18.0"
 def grpcVersion = "1.68.2"
-def protobufVersion = "4.28.3"
+def protobufVersion = "4.29.0"
 
 dependencies {
     api "io.contract-testing.contractcase:definitions:${caseCoreVersion}"
