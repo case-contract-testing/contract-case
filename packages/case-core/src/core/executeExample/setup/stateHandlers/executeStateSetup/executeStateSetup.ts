@@ -75,22 +75,29 @@ export const executeStateSetup = (
       context.logger.maintainerDebug(
         `Executing state setup handlers in '${context['_case:currentRun:context:contractMode']}' mode: Variables obtained from ${variableSource}`,
       );
+      // We need to extract the default variables
+      // always, so that they are set for this test.
+      // since identical states can be defined with
+      // different default variable values
+      const defaultVariables = example.states
+        .map((state) => {
+          if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
+            context.logger.debug(
+              `Setting default variables from '${state.stateName}'`,
+            );
+            return Object.entries(state.variables).map(([key, value]) =>
+              context.addDefaultVariable(key, state.stateName, value),
+            );
+          }
+          return [];
+        })
+        .flat();
+
       if (variableSource === 'default') {
-        return Promise.resolve(
-          example.states
-            .map((state) => {
-              context.logger.debug(
-                `Setting up state '${state.stateName}' with default values (no state handler call needed)`,
-              );
-              if (state['_case:state:type'] === SETUP_VARIABLE_STATE) {
-                return Object.entries(state.variables).map(([key, value]) =>
-                  context.addDefaultVariable(key, state.stateName, value),
-                );
-              }
-              return [];
-            })
-            .flat(),
+        context.logger.debug(
+          `No state setup needed, returning default state variables`,
         );
+        return defaultVariables;
       }
       return Promise.resolve()
         .then(async () => {

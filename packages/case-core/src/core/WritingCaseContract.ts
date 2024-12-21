@@ -109,6 +109,9 @@ export class WritingCaseContract extends BaseCaseContract {
           }
         });
 
+        // So that stripMatcher ect have access to the context
+        this.runningContext = runContext;
+
         const example: CaseExample = {
           states,
           mock: nameMock(mockDescription, runContext),

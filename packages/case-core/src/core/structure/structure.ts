@@ -16,6 +16,25 @@ import { addMock, addMatcher } from './lookup';
 
 import { addLookup, findLookup } from './lookup/internals';
 
+/**
+ * Internal function to generate a variable name from the current test, for lookup purposes.
+ *
+ * This exists to stop default variables with the same name from clashing if their contents are different
+ *
+ * Currently concatenates the test name with the variable name, but don't rely on this.
+ *
+ * @internal
+ *
+ * @param variableName - The actual variable name
+ * @param context - The current run context. Used to get the test name
+ * @returns a unique name.
+ */
+const variableNameFor = (
+  variableName: string,
+  context: MatchContextWithoutLookup,
+): string =>
+  `${variableName}::test[${context['_case:currentRun:context:testName']}]`;
+
 export const makeContract = (
   description: CaseContractDescription,
 ): ContractData => ({
@@ -55,20 +74,22 @@ export const getFailures = (contract: ContractData): CaseError[] =>
 export const findMatcher = (
   contract: ContractData,
   uniqueName: string,
+  context: MatchContextWithoutLookup,
 ): AnyCaseMatcherOrData | undefined =>
-  findLookup(contract.matcherLookup, 'matcher', uniqueName);
+  findLookup(contract.matcherLookup, 'matcher', uniqueName, context);
 
 export const addVariable = (
   contract: ContractData,
   uniqueName: string,
+  type: 'default' | 'state',
   variable: AnyCaseMatcherOrData,
   context: MatchContextWithoutLookup,
 ): ContractData => ({
   ...contract,
   matcherLookup: addLookup(
     contract.matcherLookup,
-    `variable:default`,
-    uniqueName,
+    `variable:${type}`,
+    variableNameFor(uniqueName, context),
     variable,
     context,
   ),
@@ -78,16 +99,23 @@ export const addVariable = (
 export const findVariable = (
   contract: ContractData,
   uniqueName: string,
+  context: MatchContextWithoutLookup,
 ): AnyCaseMatcherOrData | undefined => {
   const stateVariable = findLookup(
     contract.matcherLookup,
     'variable:state',
-    uniqueName,
+    variableNameFor(uniqueName, context),
+    context,
   );
   if (stateVariable !== undefined) {
     return stateVariable;
   }
-  return findLookup(contract.matcherLookup, `variable:default`, uniqueName);
+  return findLookup(
+    contract.matcherLookup,
+    `variable:default`,
+    variableNameFor(uniqueName, context),
+    context,
+  );
 };
 
 export const addLookupableMatcher = (

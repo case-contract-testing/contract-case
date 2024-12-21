@@ -10,7 +10,7 @@
     }
   },
   "matcherLookup": {
-    "variable:default:token": {
+    "variable:default:token::test[0]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -19,7 +19,7 @@
       },
       "_case:context:matchBy": "type"
     },
-    "variable:default:providerName": {
+    "variable:default:providerName::test[0]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -126,7 +126,7 @@
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
     },
-    "variable:default:username": {
+    "variable:default:username::test[1]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -135,11 +135,20 @@
       },
       "_case:context:matchBy": "type"
     },
-    "variable:default:password": {
+    "variable:default:password::test[1]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
         "_case:matcher:child": "somePassword",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
+    },
+    "variable:default:providerName::test[1]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "http request provider",
         "_case:context:matchBy": "type"
       },
       "_case:context:matchBy": "type"
@@ -206,6 +215,15 @@
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
     },
+    "variable:default:token::test[2]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "TOKEN",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
+    },
     "matcher:a (200) response without a body": {
       "status": 200,
       "_case:matcher:type": "_case:HttpResponseMatcher"
@@ -237,7 +255,7 @@
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
     },
-    "variable:default:invalidToken": {
+    "variable:default:invalidToken::test[3]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -276,6 +294,15 @@
         }
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
+    },
+    "variable:default:token::test[4]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "TOKEN",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
     },
     "matcher:a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, / an array containing an object shaped like {type: \"info\",text: <any string>},}": {
       "status": 200,
@@ -411,6 +438,15 @@
         ]
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
+    },
+    "variable:default:token::test[5]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "INVALID_TOKEN",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
     },
     "matcher:an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] / an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: <any string>}] / an array of length min: 1, max: 1;}": {
       "method": "POST",
@@ -1106,9 +1142,9 @@
           "_case:state:type": "_case:StateWithVariables",
           "stateName": "auth token is not valid",
           "variables": {
-            "invalidToken": {
+            "token": {
               "_case:matcher:type": "_case:CascadingContext",
-              "_case:matcher:child": "TOKEN",
+              "_case:matcher:child": "INVALID_TOKEN",
               "_case:context:matchBy": "type"
             }
           }

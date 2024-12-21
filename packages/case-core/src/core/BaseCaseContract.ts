@@ -44,6 +44,12 @@ export class BaseCaseContract {
 
   initialContext: MatchContext;
 
+  /**
+   * The currently executing context. Used to make it easy to do things
+   * like get state variables during a stripMatchers call inside a test trigger
+   */
+  runningContext: MatchContext;
+
   userProvidedFunctions: Record<string, UserProvidedFunction>;
 
   constructor(
@@ -99,6 +105,7 @@ export class BaseCaseContract {
       defaultConfig,
       parentVersions,
     );
+    this.runningContext = this.initialContext;
 
     if (
       this.initialContext['_case:currentRun:context:testRunId'] ===
@@ -169,11 +176,11 @@ export class BaseCaseContract {
       );
     }
 
-    const defaultVariable = findVariable(this.currentContract, name);
+    const defaultVariable = findVariable(this.currentContract, name, context);
 
     if (defaultVariable === undefined) {
       throw new CaseConfigurationError(
-        `Variable '${name}' was requested but appears not to be set. Is the variable spelt correctly, and the states for this mock are correctly set`,
+        `Variable '${name}' was requested but appears not to be set. Check that the variable is spelt correctly, and the states for this mock are correctly setup`,
       );
     }
     return coreShapedLike(defaultVariable);
@@ -186,6 +193,10 @@ export class BaseCaseContract {
     value: AnyCaseMatcherOrData,
     context: MatchContextWithoutLookup,
   ): [name: string, value: AnyCaseMatcherOrData] {
+    context.logger.maintainerDebug(
+      `Setting state variable '${name}', in test '${context['_case:currentRun:context:testName']}'  to value:`,
+      value,
+    );
     if (this.currentContract === undefined) {
       context.logger.error(
         `addVariable was called by state '${stateName}' without initialising the contract file. This should not be possible.`,
@@ -195,14 +206,13 @@ export class BaseCaseContract {
       );
     }
 
-    if (type !== 'state') {
-      this.currentContract = addVariable(
-        this.currentContract,
-        name,
-        coreShapedLike(value),
-        context,
-      );
-    }
+    this.currentContract = addVariable(
+      this.currentContract,
+      name,
+      type,
+      coreShapedLike(value),
+      context,
+    );
 
     return [name, value];
   }
@@ -252,7 +262,11 @@ export class BaseCaseContract {
     }
 
     // Have to pull this out, because typescript can't see that it's the same result even if we call twice
-    const possibleMatch = findMatcher(this.currentContract, uniqueName);
+    const possibleMatch = findMatcher(
+      this.currentContract,
+      uniqueName,
+      context,
+    );
     if (possibleMatch !== undefined) {
       return possibleMatch;
     }
@@ -261,13 +275,62 @@ export class BaseCaseContract {
     );
   }
 
+  /**
+   * Strips the matchers from a (potentially) case matcher and returns
+   * the concrete example it would match.
+   *
+   * Note this isn't the only example it could match - just the default version.
+   *
+   * WARNING: If called outside a test, this function runs using the context of
+   * the last test run. This means that state variables might not be correct.
+   * Perhaps we should consider making it an error to call this if a test
+   * isn't running?
+   *
+   * @param matcherOrData - the matcher or data to strip the matchers from
+   * @returns the concrete example
+   */
   stripMatchers(matcherOrData: AnyCaseMatcher | AnyLeafOrStructure): AnyData {
-    return traversals.descendAndStrip(
+    this.runningContext.logger.maintainerDebug(
+      'Stripping matchers from: ',
       matcherOrData,
-      applyNodeToContext(matcherOrData, this.initialContext),
     );
+    this.runningContext.logger.deepMaintainerDebug(
+      'At the time of this strip, the current context is',
+      this.runningContext,
+    );
+    this.runningContext.logger.deepMaintainerDebug(
+      'And the lookupable variables are:',
+      Object.keys(this.currentContract.matcherLookup).filter((key) =>
+        key.startsWith('variable'),
+      ),
+    );
+
+    const strippedResult = traversals.descendAndStrip(
+      matcherOrData,
+      applyNodeToContext(matcherOrData, this.runningContext),
+    );
+
+    this.runningContext.logger.maintainerDebug(
+      'Stripped result was: ',
+      strippedResult,
+    );
+    return strippedResult;
   }
 
+  /**
+   * Checks if a matcher matchers some actual data.
+   *
+   * This is only exposed for tests at the moment - if it were exposed further,
+   * we'd need to use the running test context like stripMatchers does.
+   *
+   *
+   * WARNING: If called outside a test, this function runs using the context of
+   * the last test run. This means that state variables might not be correct.
+   *
+   * @param matcherOrData - the matcher or data that is expected
+   * @param actual - the actual data to match against
+   * @returns a {@link MatchResult} object with the results of the match
+   */
   checkMatch(
     matcherOrData: AnyCaseMatcher | AnyLeafOrStructure,
     actual: unknown,

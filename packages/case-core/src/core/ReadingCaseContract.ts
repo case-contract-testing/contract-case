@@ -95,6 +95,20 @@ export class ReadingCaseContract extends BaseCaseContract {
       runTestCb(names.mockName, () =>
         this.mutex
           .runExclusive(() => {
+            // Set running context instead of inlining this, so that
+            // stripMatchers etc have access to the context
+            this.runningContext = applyNodeToContext(
+              example.mock,
+              this.initialContext,
+              {
+                '_case:currentRun:context:testName': `${index}`,
+                '_case:currentRun:context:contractMode': 'read',
+                '_case:currentRun:context:location': [
+                  'verification',
+                  `mock[${index}]`,
+                ],
+              },
+            );
             this.initialContext.logger.maintainerDebug(
               `Run test callback for ${names.mockName}`,
             );
@@ -105,14 +119,7 @@ export class ReadingCaseContract extends BaseCaseContract {
                 names,
               },
               this,
-              applyNodeToContext(example.mock, this.initialContext, {
-                '_case:currentRun:context:testName': `${index}`,
-                '_case:currentRun:context:contractMode': 'read',
-                '_case:currentRun:context:location': [
-                  'verification',
-                  `mock[${index}]`,
-                ],
-              }),
+              this.runningContext,
             );
           })
           .finally(() => {

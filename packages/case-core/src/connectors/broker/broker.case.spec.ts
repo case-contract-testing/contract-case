@@ -467,7 +467,7 @@ describe('broker client', () => {
               contract.runRejectingExample({
                 states: [
                   inState('auth token is not valid', {
-                    invalidToken: 'TOKEN',
+                    token: 'INVALID_TOKEN',
                   }),
                 ],
                 definition: willSendHttpRequest({
@@ -506,7 +506,7 @@ describe('broker client', () => {
                 trigger: (config) =>
                   makeBrokerApiForTest(
                     config.mock['baseUrl'],
-                    config.stateVariables['invalidToken'] as string,
+                    config.stateVariables['token'] as string,
                   ).publishContractAdvanced(
                     uploadingContract,
                     someVersion,

@@ -15,12 +15,21 @@ export const findLookup = (
   matcherLookup: LookupMap,
   lookupType: LookupType,
   uniqueName: string,
-): AnyCaseMatcherOrData | undefined =>
-  matcherLookup[lookupName({ lookupType, uniqueName })];
+  context: MatchContextWithoutLookup,
+): AnyCaseMatcherOrData | undefined => {
+  const key = lookupName({ lookupType, uniqueName });
+  const lookupResult = matcherLookup[lookupName({ lookupType, uniqueName })];
+  context.logger.deepMaintainerDebug(
+    `Lookup for '${key}': `,
+    lookupResult != null ? 'found' : 'not found',
+  );
+  return lookupResult;
+};
 
 const unboxAllLookups = (
   matcherLookup: LookupMap,
   matcherOrData: AnyCaseMatcherOrData,
+  context: MatchContextWithoutLookup,
 ): AnyCaseMatcherOrData => {
   if (
     matcherOrData === null ||
@@ -40,7 +49,9 @@ const unboxAllLookups = (
   }
 
   if (Array.isArray(matcherOrData)) {
-    return matcherOrData.map((item) => unboxAllLookups(matcherLookup, item));
+    return matcherOrData.map((item) =>
+      unboxAllLookups(matcherLookup, item, context),
+    );
   }
 
   if (isLookupableMatcher(matcherOrData)) {
@@ -48,17 +59,20 @@ const unboxAllLookups = (
       matcherLookup,
       `matcher`,
       matcherOrData['_case:matcher:uniqueName'],
+      context,
     );
     if (replacement === undefined) {
       throw new CaseCoreError(
         `The matcher '${matcherOrData['_case:matcher:uniqueName']}' referenced recursively does not appear to exist. This should have been prevented at the time this matcher was saved.`,
       );
     }
-    return unboxAllLookups(matcherLookup, replacement);
+    return unboxAllLookups(matcherLookup, replacement, context);
   }
 
   return Object.entries(matcherOrData)
-    .map(([key, value]) => ({ [key]: unboxAllLookups(matcherLookup, value) }))
+    .map(([key, value]) => ({
+      [key]: unboxAllLookups(matcherLookup, value, context),
+    }))
     .reduce((acc, curr) => ({ ...acc, ...curr }));
 };
 
@@ -78,8 +92,8 @@ export const addLookup = (
   if (candidateMatcher) {
     if (
       !rawEquality(
-        unboxAllLookups(matcherLookup, matcher),
-        unboxAllLookups(matcherLookup, candidateMatcher),
+        unboxAllLookups(matcherLookup, matcher, context),
+        unboxAllLookups(matcherLookup, candidateMatcher, context),
       )
     ) {
       context.logger.error(

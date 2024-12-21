@@ -83,6 +83,13 @@ const makePath = (
     makeFilename(description, config),
   );
 
+const stripStateVariables = (contract: ContractData): ContractData => ({
+  ...contract,
+  matcherLookup: Object.entries(contract.matcherLookup)
+    .filter(([key]) => !key.startsWith('variable:state'))
+    .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
+});
+
 export const writeContract: WriteContract = (
   contract: ContractData,
   context: DataContext,
@@ -140,6 +147,9 @@ export const writeContract: WriteContract = (
     );
     throw new CaseConfigurationError(`The file ${pathToFile} already exists`);
   }
-  fs.writeFileSync(pathToFile, JSON.stringify(contract, undefined, 2));
+  fs.writeFileSync(
+    pathToFile,
+    JSON.stringify(stripStateVariables(contract), undefined, 2),
+  );
   return pathToFile;
 };
