@@ -43,7 +43,7 @@ Java:
 - [ ] Autogenerate documentation of configuration classes somehow - so that they're in sync between different languages
 - [ ] Implement server verification and definition in the tests
 - [x] Implement function verifiers
-- [ ] Implement mockConfig passing
+- [x] Implement mockConfig passing
 - [ ] Should we catch JUnit failures and remap them so that contract case can render them?
 - [ ] More idiomatic logging - at the moment, you have to set standard out as the logger
 - [ ] Kill Boundary layer - it's unnecessary, we should map straight to Connector
@@ -51,7 +51,7 @@ Java:
 Next:
 
 - [x] Don't throw exceptions in the DSL - it won't be handled correctly by JSii.
-- [ ] Fix variables so that you can have different defaults for different states
+- [x] Fix variables so that you can have different defaults for different states
 - [ ] State handlers in the grpc connector aren't given the configuration
 - [x] Connect CASE_CONNECTOR_CLIENT to a maintainer log somewhere
 - [x] Connect CASE_CONNECTOR_CLIENT in Jest DSL - probably include it in an
