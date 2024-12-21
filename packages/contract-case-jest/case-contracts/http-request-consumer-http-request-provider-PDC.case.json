@@ -60,7 +60,7 @@
       },
       "_case:matcher:type": "_case:HttpResponseMatcher"
     },
-    "variable:default:userId": {
+    "variable:default:userId::test[4]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -90,9 +90,27 @@
       },
       "_case:matcher:type": "_case:HttpResponseMatcher"
     },
+    "variable:default:userId::test[5]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "123",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
+    },
     "matcher:a (404) response without a body": {
       "status": 404,
       "_case:matcher:type": "_case:HttpResponseMatcher"
+    },
+    "variable:default:userId::test[6]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "123",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
     },
     "matcher:an http \"GET\" request to \"/users/{{userId}}\" without a body": {
       "method": "GET",
@@ -106,6 +124,15 @@
         "_case:matcher:resolvesTo": "string"
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
+    },
+    "variable:default:userId::test[7]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "123",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
     },
     "matcher:an http \"GET\" request to \"/users/123\" without a body": {
       "method": "GET",
