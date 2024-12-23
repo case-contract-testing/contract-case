@@ -9,4 +9,4 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)" # Figure out where the 
 npm install # We can't do npm ci because lerna has optional dependencies :(
 
 cd packages/dsl-java
-npm run build
+npm run compile
