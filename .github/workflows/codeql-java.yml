@@ -63,7 +63,7 @@ jobs:
         env:
           CASE_BROKER_CI_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
           CASE_BROKER_BASEURL: https://timothyjones.pactflow.io/
-          NODE_VERSION: ${{ matrix.node-version }}
+          NODE_VERSION: 22
           FORCE_COLOR: true
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@df409f7d9260372bd5f19e5b04e83cb3c43714ae # v3.27.9
