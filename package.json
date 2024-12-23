@@ -20,7 +20,7 @@
     "@nx/nx-linux-x64-gnu": "20.0.7",
     "@nx/nx-linux-x64-musl": "20.3.0",
     "@nx/nx-win32-arm64-msvc": "20.1.3",
-    "@nx/nx-win32-x64-msvc": "20.0.6"
+    "@nx/nx-win32-x64-msvc": "20.3.0"
   },
   "scripts": {
     "package": "lerna run package",
