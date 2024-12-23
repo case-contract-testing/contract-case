@@ -60,7 +60,6 @@ const main = () => {
   const ExampleService = loadService(PROTO_PATH, PACKAGE_NAME, serviceName);
 
   const client = new ExampleService(target, grpc.credentials.createInsecure());
-  console.log(client);
 
   if (!client[methodName]) {
     throw new Error(
