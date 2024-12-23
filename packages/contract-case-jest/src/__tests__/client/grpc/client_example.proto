@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.contract_testing.contractcase.examples";
+option java_outer_classname = "ContractCaseExample";
+
+package client_example;
+
+// The UserService
+service UserService {
+  // Get a user
+  rpc GetUser(GetUserRequest) returns (UserResponse) {}
+
+  // Check the server's status
+  rpc HealthStatus(GetHealthRequest) returns (HealthResponse) {}
+}
+
+// Get a user by ID
+message GetUserRequest {
+  // The user ID to get
+  string id = 1;
+}
+
+// Describes a user
+message UserResponse {
+  // Username for logging in
+  string username = 1;
+  // User's first name
+  string first_name = 2;
+  // User's last name
+  string last_name = 3;
+  // User ID in the system
+  string id = 4;
+}
+
+// Get the health status of the server
+message GetHealthRequest {
+  // no parameters
+}
+
+// Response describing the status of the server
+message HealthResponse {
+  // status of the server
+  string status = 1;
+}
