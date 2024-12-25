@@ -59,7 +59,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
         .forAddress("localhost", ContractCaseProcess.getInstance().getPortNumber())
         .usePlaintext()
         .build();
-    this.worker = new SendingWorker<T>(createConnection(
+    this.worker = SendingWorker.create(createConnection(
         ContractCaseGrpc.newStub(channel),
         new ContractResponseStreamObserver<>(
             this,

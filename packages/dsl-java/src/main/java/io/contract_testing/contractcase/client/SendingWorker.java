@@ -18,11 +18,19 @@ class SendingWorker<T> implements Runnable {
   final CountDownLatch finishLatch = new CountDownLatch(1);
 
 
-  SendingWorker(StreamObserver<T> requestObserver) {
+  private SendingWorker(StreamObserver<T> requestObserver) {
     this.queue = new LinkedBlockingQueue<>();
     this.requestObserver = requestObserver;
     executorService = Executors.newSingleThreadExecutor();
-    executorService.submit(this);
+  }
+
+  static <R> SendingWorker<R> create(StreamObserver<R> requestObserver) {
+    // This method exists because we need to construct the SendingWorker
+    // before we can submit it to its executorService (otherwise the service
+    // will get a partially constructed object, which can be bad)
+    var sendingWorker = new SendingWorker<>(requestObserver);
+    sendingWorker.executorService.submit(sendingWorker);
+    return sendingWorker;
   }
 
   void send(T data, LogLevel logLevel) {
