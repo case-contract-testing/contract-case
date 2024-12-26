@@ -315,12 +315,12 @@ public class ContractCaseConfig {
     }
 
     public ContractCaseConfigBuilder stateHandlers(Map<String, StateHandler> stateHandlers) {
-      this.stateHandlers = stateHandlers;
+      this.stateHandlers = Map.copyOf(stateHandlers);
       return this;
     }
 
     public ContractCaseConfigBuilder mockConfig(String mockShortName, Map<String, String> config) {
-      this.mockConfig.put(mockShortName, config);
+      this.mockConfig.put(mockShortName, Map.copyOf(config));
       return this;
     }
 

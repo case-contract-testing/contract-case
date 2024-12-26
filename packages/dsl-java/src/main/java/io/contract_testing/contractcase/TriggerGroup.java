@@ -24,8 +24,8 @@ public class TriggerGroup<T> {
       final @NotNull Map<String, TestErrorResponseFunction> testErrorResponses) {
     this.name = name;
     this.trigger = trigger;
-    this.testResponses = testResponses;
-    this.testErrorResponses = testErrorResponses;
+    this.testResponses = Map.copyOf(testResponses);
+    this.testErrorResponses = Map.copyOf(testErrorResponses);
   }
 
   Map<String, ITriggerFunction> toMap() {

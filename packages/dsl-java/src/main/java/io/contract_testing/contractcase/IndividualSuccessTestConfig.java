@@ -134,7 +134,7 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
 
     public IndividualSuccessTestConfigBuilder<T> withStateHandlers(
         Map<String, StateHandler> stateHandlers) {
-      this.stateHandlers = stateHandlers;
+      this.stateHandlers = Map.copyOf(stateHandlers);
       return this;
     }
 

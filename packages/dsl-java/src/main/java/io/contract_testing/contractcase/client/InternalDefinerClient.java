@@ -33,7 +33,7 @@ public class InternalDefinerClient {
   public InternalDefinerClient(final @NotNull ContractCaseConnectorConfig boundaryConfig,
       final @NotNull LogPrinter logPrinter,
       final @NotNull List<String> parentVersions) {
-    this.parentVersions = parentVersions;
+    this.parentVersions = List.copyOf(parentVersions);
     this.configHandle = new ConfigHandle(boundaryConfig);
     this.rpcConnector = new RpcForDefinition(logPrinter, configHandle);
 

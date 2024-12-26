@@ -8,4 +8,9 @@ public record ConnectorSetupInfo(
     Map<String, String> mockSetup,
     Map<String, InvokeCoreFunction> functions) {
 
+  public ConnectorSetupInfo {
+    stateVariables = Map.copyOf(stateVariables);
+    mockSetup = Map.copyOf(mockSetup);
+    functions = Map.copyOf(functions);
+  }
 }

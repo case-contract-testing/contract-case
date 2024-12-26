@@ -28,7 +28,7 @@ public class InternalVerifierClient implements AutoCloseable {
       @NotNull LogPrinter logPrinter,
       @NotNull List<String> parentVersions) {
 
-    this.parentVersions = parentVersions;
+    this.parentVersions = List.copyOf(parentVersions);
     this.configHandle = new ConfigHandle(boundaryConfig);
     this.rpcConnector = new RpcForVerification(
         logPrinter,

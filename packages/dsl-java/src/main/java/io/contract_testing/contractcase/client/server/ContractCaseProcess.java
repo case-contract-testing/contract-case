@@ -39,11 +39,6 @@ public class ContractCaseProcess {
   private BufferedReader stdout;
 
   /**
-   * Child's standard input.
-   */
-  private Writer stdin;
-
-  /**
    * The error stream sink ensures that all standard error from the binary is captured
    */
   private StreamSink errorStreamSink;
@@ -60,7 +55,7 @@ public class ContractCaseProcess {
   // Stub for extracting the packages
   // Autogenerate the package extractor
 
-  public void start() {
+  public synchronized void start() {
     this.startRuntimeIfNeeded();
     if (this.childProcess == null && overridePort == 0) {
       throw new ContractCaseCoreError("Server process not started");
@@ -114,18 +109,17 @@ public class ContractCaseProcess {
       this.errorStreamSink = new StreamSink(this.childProcess.getErrorStream());
       this.errorStreamSink.start();
 
-      this.stdin = new OutputStreamWriter(
-          this.childProcess.getOutputStream(),
-          StandardCharsets.UTF_8
-      );
       this.stdout = new BufferedReader(new InputStreamReader(
           this.childProcess.getInputStream(),
           StandardCharsets.UTF_8
       ));
       var firstLine = stdout.readLine();
+      if(firstLine == null ) {
+        throw new ContractCaseCoreError("Unable to start ContractCase internal server, output stream terminated unexpectedly");
+      }
       var splitLine = firstLine.split(":\\s*");
       if (splitLine.length != 2) {
-        throw new ContractCaseCoreError("Unable to start server: " + firstLine);
+        throw new ContractCaseCoreError("Unable to start ContractCase internal server, first line wasn't in the expected format. Contents were: " + firstLine);
       }
 
       this.outputStreamSink = new ReaderSink(stdout);
@@ -216,7 +210,7 @@ public class ContractCaseProcess {
     MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "...exited");
   }
 
-  public int getPortNumber() {
+  public synchronized int getPortNumber() {
     if (overridePort != 0) {
       return overridePort;
     }

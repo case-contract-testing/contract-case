@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase.edge;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class ConnectorSuccessWithMap extends ConnectorResult {
@@ -8,7 +9,7 @@ public class ConnectorSuccessWithMap extends ConnectorResult {
 
   public ConnectorSuccessWithMap(Map<String, Object> map) {
     super();
-    this.map = map;
+    this.map = Map.copyOf(map);
   }
 
   @Override

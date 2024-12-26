@@ -14,7 +14,7 @@ public class ExampleDefinition<M extends AnyMockDescriptor> {
   private final M definition;
 
   public ExampleDefinition(List<? extends AnyState> states, M definition) {
-    this.states = states;
+    this.states = List.copyOf(states);
     this.definition = definition;
   }
 
@@ -22,8 +22,8 @@ public class ExampleDefinition<M extends AnyMockDescriptor> {
     return definition;
   }
 
-  public List<? extends Object> getStates() {
-    return states;
+  public List<? extends AnyState> getStates() {
+    return List.copyOf(states);
   }
 
   public JsonNode toJSON() {

@@ -7,6 +7,7 @@ import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.PublishType;
 import io.contract_testing.contractcase.StateHandler;
 import io.contract_testing.contractcase.TriggerGroups;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -89,7 +90,9 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
   }
 
   public Map<String, ConnectorStateHandler> getConnectorStateHandlers() {
-    return this.connectorStateHandlers;
+    return this.connectorStateHandlers != null
+        ? Collections.unmodifiableMap(this.connectorStateHandlers)
+        : null;
   }
 
   public Map<String, Map<String, String>> getMockConfig() {
@@ -199,7 +202,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
     }
 
     public Builder stateHandlers(Map<String, ConnectorStateHandler> stateHandlers) {
-      this.stateHandlers = stateHandlers;
+      this.stateHandlers = Map.copyOf(stateHandlers);
       return this;
     }
 
@@ -209,7 +212,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
     }
 
     public Builder triggerAndTests(Map<String, ? extends ITriggerFunction> triggerAndTests) {
-      this.triggerAndTests = triggerAndTests;
+      this.triggerAndTests = Map.copyOf(triggerAndTests);
       return this;
     }
 
@@ -219,7 +222,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
     }
 
     public Builder mockConfig(String mockShortName, Map<String, String> config) {
-      this.mockConfig.put(mockShortName, config);
+      this.mockConfig.put(mockShortName, Map.copyOf(config));
       return this;
     }
 

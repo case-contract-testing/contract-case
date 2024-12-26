@@ -132,7 +132,7 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
 
     public IndividualFailedTestConfigBuilder<T> withStateHandlers(
         Map<String, StateHandler> stateHandlers) {
-      this.stateHandlers = stateHandlers;
+      this.stateHandlers = Map.copyOf(stateHandlers);
       return this;
     }
 
