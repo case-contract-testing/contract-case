@@ -1,9 +1,9 @@
 import * as http from 'node:http';
 
-import start from './__tests__/server/http/connectors/web/index.js';
-import { baseService } from './__tests__/server/http/domain/baseService.js';
-import { Dependencies } from './__tests__/server/http/domain/types.js';
-import { User } from './__tests__/server/http/model/responses.js';
+import start from './__tests__/server/connectors/http/index.js';
+import { baseService } from './__tests__/server/domain/baseService.js';
+import { Dependencies } from './__tests__/server/domain/types.js';
+import { User } from './__tests__/server/entities/responses.js';
 import { verifyContract } from './boundaries/jest/jest.js';
 import { StateHandlers } from './entities/types.js';
 

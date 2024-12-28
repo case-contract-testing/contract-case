@@ -1,6 +1,6 @@
 import type { ErrorRequestHandler, Express } from 'express';
 import type { Dependencies } from '../../domain/types.js';
-import { UserNotFoundException } from '../../model/UserNotFoundException.js';
+import { UserNotFoundException } from '../../entities/UserNotFoundException.js';
 import * as handlers from './handlers.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

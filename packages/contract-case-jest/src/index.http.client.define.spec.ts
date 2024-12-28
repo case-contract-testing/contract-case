@@ -1,8 +1,8 @@
 import * as fs from 'node:fs';
 // These imports are our code under test
-import api from './__tests__/client/http/connector/index.js';
-import { ApiError } from './__tests__/client/http/connector/internals/apiErrors.js';
-import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors.js';
+import api from './__tests__/client/http.js';
+import { ApiError } from './__tests__/client/entities/apiErrors.js';
+import { UserNotFoundConsumerError } from './__tests__/client/entities/errors.js';
 
 // These imports are from Case
 import {

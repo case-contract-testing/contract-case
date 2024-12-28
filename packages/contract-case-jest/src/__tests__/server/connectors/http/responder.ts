@@ -1,5 +1,5 @@
 import type { Response } from 'express';
-import type { ErrorResponse } from '../../model/responses.js';
+import type { ErrorResponse } from '../../entities/responses.js';
 
 interface Responder {
   success: <T>(data: T) => void;

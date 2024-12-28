@@ -3,10 +3,10 @@ import * as fs from 'node:fs';
 
 // These imports are our code under test
 import type * as http from 'node:http';
-import start from './__tests__/server/http/connectors/web/index.js';
-import type { User } from './__tests__/server/http/model/responses.js';
-import type { Dependencies } from './__tests__/server/http/domain/types.js';
-import { baseService } from './__tests__/server/http/domain/baseService.js';
+import start from './__tests__/server/http.js';
+import type { User } from './__tests__/server/entities/responses.js';
+import type { Dependencies } from './__tests__/server/domain/types.js';
+import { baseService } from './__tests__/server/domain/baseService.js';
 
 import {
   inState,

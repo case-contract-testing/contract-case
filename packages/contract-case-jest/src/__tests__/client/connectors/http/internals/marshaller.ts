@@ -8,7 +8,7 @@ import {
   API_NOT_AUTHORISED,
   API_NOT_FOUND,
   API_NO_RESPONSE,
-} from './apiErrors.js';
+} from '../../../entities/apiErrors.js';
 
 export const unmarshallSuccess = <T>(response: AxiosResponse<T>): T =>
   response.data;

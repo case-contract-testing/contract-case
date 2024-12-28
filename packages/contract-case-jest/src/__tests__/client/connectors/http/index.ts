@@ -1,7 +1,7 @@
-import { UserNotFoundConsumerError } from './errors.js';
-import { API_NOT_FOUND } from './internals/apiErrors.js';
+import { UserNotFoundConsumerError } from '../../entities/errors.js';
+import { API_NOT_FOUND } from '../../entities/apiErrors.js';
 import { makeAxiosConnector } from './internals/axiosConnector.js';
-import type { ServerHealth } from './types.js';
+import type { ServerHealth } from '../../entities/types.js';
 
 // This is the main API interface. It knows how to turn your business domain
 // requests into logical requests for the connector. The connector's job is to
@@ -24,7 +24,7 @@ type WireServerHealth = {
   status: ServerHealth;
 };
 
-const api = (baseurl: string): Api => {
+export const api = (baseurl: string): Api => {
   const server = makeAxiosConnector(baseurl);
 
   return {

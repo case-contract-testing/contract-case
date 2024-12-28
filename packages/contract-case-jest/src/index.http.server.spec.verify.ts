@@ -1,6 +1,6 @@
-import api from './__tests__/client/http/connector/index.js';
-import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors.js';
-import { ApiError } from './__tests__/client/http/connector/internals/apiErrors.js';
+import api from './__tests__/client/http.js';
+import { UserNotFoundConsumerError } from './__tests__/client/entities/errors.js';
+import { ApiError } from './__tests__/client/entities/apiErrors.js';
 
 import { verifyContract, HttpRequestConfig } from './index.js';
 import { TriggerGroupMap } from './connectors/TriggerGroup.js';

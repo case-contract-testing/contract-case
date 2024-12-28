@@ -1,4 +1,4 @@
-import type { HelloResponse, User } from '../model/responses.js';
+import type { HelloResponse, User } from '../entities/responses.js';
 
 export type BaseService = (ip: string) => HelloResponse;
 export type HealthService = { ready: () => boolean };
