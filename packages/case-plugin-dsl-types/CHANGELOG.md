@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-dsl-types-v0.18.0...@contract-case/case-plugin-dsl-types-v0.19.0) (2024-12-30)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-plugin-dsl-types:** Synchronize ContractCase versions
+
 ## [0.18.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-dsl-types-v0.17.1...@contract-case/case-plugin-dsl-types-v0.18.0) (2024-10-17)
 
 
