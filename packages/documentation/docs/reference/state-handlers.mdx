@@ -2,6 +2,12 @@
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import OrderJs from '../examples/generated/\_defining-states-order.ts.mdx';
+import OrderJava from '../examples/generated/\_defining-states-order.java.mdx';
+
 # Writing state handlers
 
 Like [triggers](./triggers), not all example types need state handlers during
@@ -15,8 +21,18 @@ State handlers are defined with the `stateHandlers` key on the `ContractCaseConf
 
 State handlers are invoked by ContractCase during setup for Examples that were defined
 with states (see the [ContractCase Example Lifecycle](/docs/defining-contracts/lifecycle)).
-The order of execution of state handlers is the same as the order that the states
-were defined in.
+
+The order of execution of state setup handlers is the same as the order that the states
+were defined in. During teardown, the state teardown handlers execute in the reverse order
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <OrderJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <OrderJava />
+  </TabItem>
+</Tabs>
 
 If you haven't defined states first, read the section on [defining
 states](/docs/defining-contracts/state-definitions), which must be done during contract definition.

@@ -19,7 +19,7 @@ Types](/docs/reference/example-types) documentation.
 type TriggerFunction = <TriggerReturnType>(config: MockConfig): TriggerReturnType
 ```
 
-The trigger function is called by case. You should call your real client code
+The trigger function is called by ContractCase. You should call your real client code
 here, and return the response that your client returns. The `MockConfig` object
 contains the details of the mock that ContractCase has set up. `TriggerReturnType` is an
 implicit type parameter, and is only used to type `testResponse`

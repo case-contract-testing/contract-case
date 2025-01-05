@@ -18,7 +18,11 @@ import AllJava from '../examples/generated/_state-matchers.java.mdx';
 
 # Defining service states
 
-Since each Example in ContractCase is defined and verified independently, you may need to indicate preconditions that must be true for the example to be valid. This is done using service states.
+Some interactions return different responses in different states. For example, an http request
+to get a user's details would return differently depending on whether or not the user exists.
+
+In order to indicate these differences, state definitions are used. 
+
 
 Each state is identified with a name string. The best practice is to use a human
 readable, descriptive string - for example:
@@ -35,20 +39,32 @@ readable, descriptive string - for example:
 There are two parts to service states:
 
 1. **State definitions** - A state definition indicates the need for a precondition with the `inState()` DSL function at contract definition time (like the example above)
-2. **State handlers** - A state handler is a function keyed by the state name that can be called to set up the service in that state.
+2. **State handlers** - A state handler is a function that can be called to set up the service in a particular state.
+
+This page describes state definitions. 
+
+On one side of the interaction, 
+the state is assumed (for example, in an http request, 
+the client side assumes that the server is in the appropriate state). 
+On the other side, state handlers are used to set up each interaction before execution.
 
 Whether or not you also need to provide a state handler depends on the Example type that
-you're defining. For example, with HTTP Examples, state handlers are only
+you're defining. Most of the time, contract definition will be done on the client side, 
+so most of the time you won't need to provide a state handler.
+For more information on state handlers, see the [state handler reference](/docs/reference/state-handlers)
+
+For example, with HTTP Examples, state handlers are only
 required at the server side. So:
 
 - A contract defined by an HTTP client will need state handlers during contract verification.
 - A contract defined by an HTTP server will need state handlers during contract definition.
 
-For a full list of the Example types and when state handlers are required, see [the Example types reference](/docs/reference/example-types). ContractCase will warn helpfully if you need state handlers and do not provide them.
+For a full list of the Example types and when state handlers are required, see [the Example types reference](/docs/reference/example-types). 
+ContractCase will warn helpfully if you need state handlers and do not provide them.
 
 ## Order of execution
 
-States are guaranteed to be executed in the order that the states are defined in the Example:
+State handlers are guaranteed to be executed in the order that the states are defined in the Example:
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
@@ -58,6 +74,8 @@ States are guaranteed to be executed in the order that the states are defined in
    <OrderJava />
   </TabItem>
 </Tabs>
+
+This means the best practice is to describes your states with the most important precondition first - eg, the server is up, a user exists, and that user is an admin.
 
 
 ## State definition types
@@ -78,9 +96,15 @@ State names need to be shared between the consumer and provider teams.
 
 ### States with variables
 
-Sometimes it's not possible to predict the result of
-a precondition - for example, it's not always possible to know what user ID the next created user will have. In these cases,
-cases, the state handler can return variables.
+Sometimes it's challenging to predict specific server state data that is needed to run a test. 
+For example, 
+the user ID for a valid user might not be known when you're writing your
+contract (say, in a situation where the server generates random user ids each
+time a new user is created).
+
+To make verification of these cases convenient, the state handler can return variables.
+When you define a state variable, you specify a default value, which will be available on the
+side of the contract that doesn't need state handlers. On the side of the contrac
 
 States with variables are an extension of name-only states - they have
 all of the same properties as name-only states, but can return variables too:
@@ -107,13 +131,12 @@ Defaults are not constrained to be primitive types, but it is generally best pra
 
 :::tip
 The default variable value is _also_ a matcher, automatically wrapped in
-`shapedLike()`. This will be checked against the variable returned by the state
-handler later, so a default value of `"foo"` will not match `12`, as a number
-does not match the string provided in the variable. Defaults are not constrained
-to be primitive types, but generally.
+`shapedLike()`. This will be checked against the value returned by the state
+handler. This ensures that the test data on both sides of the contract meet the same expectations.
 :::
 
-These state variables are available via the `stateVariable()` test equivalence matcher:
+If you need to use the state variable in a part of your Example definition, 
+you can use the [StateVariable](/docs/reference/matchers/convenience/StateVariable) test equivalence matcher:
 
 
 <Tabs groupId="language">
@@ -124,6 +147,7 @@ These state variables are available via the `stateVariable()` test equivalence m
    <AllJava />
   </TabItem>
 </Tabs>
+
 
 ### Next steps
 
