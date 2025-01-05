@@ -1,4 +1,4 @@
-import { handleUnaryCall } from '@grpc/grpc-js';
+import { handleUnaryCall, status } from '@grpc/grpc-js';
 import { Dependencies } from '../../domain/types.js';
 
 type UserRequest = {
@@ -21,7 +21,10 @@ export const GetUser =
     const user = deps.userRepository.get(call.request.id);
 
     if (user == null) {
-      callback(new Error('User not found'));
+      callback({
+        code: status.NOT_FOUND,
+        details: `No user with id '${call.request.id}' was found`,
+      });
       return;
     }
 
@@ -30,5 +33,6 @@ export const GetUser =
       username: user.name,
       first_name: '',
       last_name: '',
-    });
+      otherField: "this shoulnd't happen",
+    } as UserResponse);
   };

@@ -1,4 +1,4 @@
-import grpc, { loadPackageDefinition } from '@grpc/grpc-js';
+import grpc, { GrpcObject, loadPackageDefinition } from '@grpc/grpc-js';
 import { loadSync } from '@grpc/proto-loader';
 
 const loadProto = (protoPath: string) => {
@@ -16,12 +16,12 @@ const loadProto = (protoPath: string) => {
   }
 };
 
-const loadPackage = (
+export const loadPackage = (
   protoPath: string,
   packageName: string,
-): grpc.GrpcObject => {
+): GrpcObject => {
   const loadedProto = loadProto(protoPath);
-  const loadedPackage = loadedProto[packageName] as grpc.GrpcObject;
+  const loadedPackage = loadedProto[packageName] as GrpcObject;
   if (loadedPackage == null) {
     throw new Error(
       `The proto file '${protoPath}' doesn't have a package named '${packageName}'`,
@@ -31,15 +31,13 @@ const loadPackage = (
   return loadedPackage;
 };
 
-export const loadService = (
-  protoPath: string,
-  packageName: string,
+export const loadServiceFromPackage = (
   serviceName: string,
+  servicePackage: GrpcObject,
 ): grpc.ServiceClientConstructor => {
-  const servicePackage = loadPackage(protoPath, packageName);
   if (!servicePackage[serviceName]) {
     throw new Error(
-      `The package named '${packageName}' doesn't appear to have a service named '${serviceName}'`,
+      `The loaded package doesn't appear to have a service named '${serviceName}'`,
     );
   }
   return servicePackage[serviceName] as grpc.ServiceClientConstructor;

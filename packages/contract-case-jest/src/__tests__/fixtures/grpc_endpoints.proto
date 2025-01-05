@@ -1,10 +1,12 @@
 syntax = "proto3";
 
+import "google/protobuf/wrappers.proto";
+
 option java_multiple_files = true;
 option java_package = "io.contract_testing.contractcase.examples";
 option java_outer_classname = "ContractCaseExample";
 
-package client_example;
+package grpc_endpoints;
 
 // The UserService
 service UserService {
@@ -18,7 +20,7 @@ service UserService {
 // Get a user by ID
 message GetUserRequest {
   // The user ID to get
-  string id = 1;
+  google.protobuf.StringValue id = 1;
 }
 
 // Describes a user
