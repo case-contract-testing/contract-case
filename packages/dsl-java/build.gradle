@@ -25,7 +25,7 @@ tasks.withType(Javadoc).configureEach {
 }
 
 def caseCoreVersion = "0.18.0"
-def grpcVersion = "1.69.0"
+def grpcVersion = "1.69.1"
 def protobufVersion = "4.29.3"
 
 dependencies {
