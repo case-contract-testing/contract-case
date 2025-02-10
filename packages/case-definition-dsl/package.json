@@ -73,7 +73,7 @@
     "jsii-pacmak": "^1.106.0",
     "mkdirp": "^3.0.1",
     "prettier": "3.4.2",
-    "publib": "^0.2.899",
+    "publib": "^0.2.947",
     "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2"
