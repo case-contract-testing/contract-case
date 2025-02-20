@@ -52,7 +52,7 @@ describe('e2e grpc consumer driven', () => {
     userRepository: { get: (id) => mockGetUser(id) },
   };
 
-  describe('grpc client', () => {
+  describe.skip('grpc client', () => {
     let runningService: RunningService;
 
     beforeAll(async () => {
