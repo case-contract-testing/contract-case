@@ -61,7 +61,7 @@
     "@contract-case/eslint-config-case-maintainer": "0.1.1",
     "@types/jest": "^29.5.12",
     "cross-env": "^7.0.3",
-    "eslint": "^8.57.1",
+    "eslint": "^9.21.0",
     "jest": "^29.7.0",
     "prettier": "3.4.2",
     "rimraf": "^6.0.1",
