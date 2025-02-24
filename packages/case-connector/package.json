@@ -53,7 +53,7 @@
     "@contract-case/case-core": "0.18.0",
     "@contract-case/case-connector-proto": "0.9.0",
     "@contract-case/case-entities-internal": "0.18.0",
-    "@grpc/grpc-js": "^1.12.2",
+    "@grpc/grpc-js": "^1.12.6",
     "@grpc/proto-loader": "^0.7.10",
     "get-port": "^7.1.0",
     "google-protobuf": "^3.21.4",
