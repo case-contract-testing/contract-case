@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-export */
 import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
 import { AnyLeafOrStructure } from '@contract-case/case-plugin-dsl-types';
 import { WritingCaseContract } from '../core';

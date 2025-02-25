@@ -163,7 +163,7 @@ export class ReadingCaseContract extends BaseCaseContract {
     return undefined;
   }
 
-  // eslint-disable-next-line class-methods-use-this
+   
   recordExample(
     example: CaseExample,
     currentContext: MatchContext,

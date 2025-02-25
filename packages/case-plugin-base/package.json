@@ -34,8 +34,8 @@
     "build:docs:local": "api-extractor run --local --verbose && api-documenter markdown --input-folder api-extractor --output-folder docs && npm run format:fix",
     "build": "rimraf dist && tsc --project tsconfig.build.json && npm run build:docs:local",
     "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
-    "lint": "eslint src --ext .ts --config .eslintrc.json",
-    "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write "

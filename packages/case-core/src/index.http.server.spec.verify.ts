@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/dot-notation */
+ 
 import { HttpRequestConfig } from '.';
 import api from './__tests__/client/http/connector';
 import { UserNotFoundConsumerError } from './__tests__/client/http/connector/errors';

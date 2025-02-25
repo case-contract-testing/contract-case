@@ -1,3 +1,5 @@
+/* eslint-disable jest/expect-expect */
+/* eslint-disable jest/no-export */
 import { ContractCaseDefiner } from '../../connectors/ContractDefiner.js';
 import { ContractVerifier } from '../../connectors/ContractVerifier.js';
 import { RunTestCallback } from '../../entities/index.js';
@@ -14,7 +16,6 @@ const runJestTest: RunTestCallback = (
   testName: string,
   verify: () => Promise<unknown>,
 ): void => {
-  // eslint-disable-next-line jest/expect-expect
   it(`${testName}`, () => verify(), TIMEOUT);
 };
 

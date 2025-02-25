@@ -26,8 +26,8 @@
     "publish:maven": "publib-maven",
     "test": "jest",
     "test:local": "jest",
-    "lint": "eslint src --ext .ts --config .eslintrc.json",
-    "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "format:base": "prettier \"{docs,src}/**/*.{ts,md}\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write --log-level warn"

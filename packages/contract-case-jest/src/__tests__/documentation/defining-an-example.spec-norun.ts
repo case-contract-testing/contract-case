@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/order */
 /* eslint-disable jest/expect-expect */
 

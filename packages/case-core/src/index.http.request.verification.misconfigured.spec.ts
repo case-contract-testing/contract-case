@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import type * as http from 'node:http';
 
 import { CaseConfigurationError } from '@contract-case/case-plugin-base';

@@ -35,8 +35,8 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
-    "lint": "eslint src --ext .ts --config .eslintrc.json",
-    "lint:fix": "eslint src --fix --ext .ts --config .eslintrc.json",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write ",

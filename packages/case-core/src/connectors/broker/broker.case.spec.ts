@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/dot-notation */
 import * as fs from 'node:fs';
 
 import { willSendHttpRequest } from '@contract-case/case-core-plugin-http-dsl';

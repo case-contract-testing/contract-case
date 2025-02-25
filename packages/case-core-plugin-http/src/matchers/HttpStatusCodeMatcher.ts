@@ -21,7 +21,7 @@ const statusCodeExample = (
   matcher: CoreHttpStatusCodeMatcher,
   matchContext: MatchContext,
 ) =>
-  '_case:matcher:example' in matcher && '_case:matcher:example' != null
+  '_case:matcher:example' in matcher && matcher['_case:matcher:example'] != null
     ? matcher['_case:matcher:example']
     : validateCodes(matcher['_case:matcher:rule'], matchContext);
 

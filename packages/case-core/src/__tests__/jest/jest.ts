@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-export */
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import type { CaseConfig } from '../../core/types';
 import type { RunTestCallback } from '../../core/executeExample/types';
@@ -27,7 +28,7 @@ export const defineContract = <T extends AnyMockDescriptorType>(
   { config, ...contractConfig }: CaseJestConfig<T>,
   callback: DefineCaseJestCallback,
 ): void =>
-  describe(`Case contract definition`, () => {
+  describe(`ContractCase contract definition`, () => {
     const { stateHandlers, triggers, ...contextConfig } = config || {};
 
     const contract = new ContractDefinerConnector(
@@ -58,7 +59,7 @@ export const defineInternalContract = <T extends AnyMockDescriptorType>(
   { config, ...contractConfig }: CaseJestConfig<T>,
   callback: DefineCaseJestCallback,
 ): void =>
-  describe(`Case contract definition`, () => {
+  describe(`Case internal contract definition`, () => {
     const { stateHandlers, triggers, ...contextConfig } = config || {};
     const contract = new ContractDefinerConnector(
       contractConfig,
