@@ -163,7 +163,6 @@ export class ReadingCaseContract extends BaseCaseContract {
     return undefined;
   }
 
-   
   recordExample(
     example: CaseExample,
     currentContext: MatchContext,

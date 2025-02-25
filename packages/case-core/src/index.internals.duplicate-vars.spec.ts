@@ -1,4 +1,3 @@
- 
 import * as fs from 'node:fs';
 // These imports are our code under test
 import {
