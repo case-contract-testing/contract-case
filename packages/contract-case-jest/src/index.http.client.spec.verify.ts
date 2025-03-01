@@ -13,7 +13,7 @@ describe('Server verification', () => {
   let server: http.Server;
   let mockHealthStatus = true;
   let mockGetUser: (id: string) => User | undefined = () => undefined;
-  const port = 8087;
+  const port = 8091;
   const serverDependencies: Dependencies = {
     healthService: {
       ready: () => mockHealthStatus,
