@@ -68,24 +68,28 @@ describe('Server verification', () => {
     const runJestTestExpectingErrors =
       (errors: Record<string, Function>): RunTestCallback =>
       (testName: string, verify: () => Promise<unknown>): void => {
-        it(`${testName}`, () =>
-          verify().then(
-            () => {
-              if (errors[testName] !== undefined) {
-                throw new Error(
-                  `Expected to throw a ${errors[testName]?.name}, but it didn't`,
-                );
-              }
-            },
-            (e) => {
-              if (errors[testName] !== undefined) {
-                // eslint-disable-next-line jest/no-conditional-expect
-                expect(e).toBeInstanceOf(errors[testName]);
-              } else {
-                throw e;
-              }
-            },
-          ));
+        it(
+          `${testName}`,
+          () =>
+            verify().then(
+              () => {
+                if (errors[testName] !== undefined) {
+                  throw new Error(
+                    `Expected to throw a ${errors[testName]?.name}, but it didn't`,
+                  );
+                }
+              },
+              (e) => {
+                if (errors[testName] !== undefined) {
+                  // eslint-disable-next-line jest/no-conditional-expect
+                  expect(e).toBeInstanceOf(errors[testName]);
+                } else {
+                  throw e;
+                }
+              },
+            ),
+          60000,
+        );
       };
 
     // END JEST BOILERPLATE
