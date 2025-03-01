@@ -45,9 +45,9 @@ dependencies {
     testImplementation 'com.google.protobuf:protobuf-gradle-plugin:0.9.4'
 
     // Execution of tests
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.12.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
     testImplementation 'org.assertj:assertj-core:3.27.3'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.12.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.4'
 
     // client implementation under test, in test.httpclient.implementation
     testImplementation 'org.apache.httpcomponents:fluent-hc:4.5.14'
@@ -119,6 +119,9 @@ protobuf {
 java {
     withJavadocJar()
     withSourcesJar()
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 
