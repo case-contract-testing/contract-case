@@ -4,7 +4,27 @@
     {
       "type": "linked-versions",
       "groupName": "ContractCase",
-      "components": ["@contract-case/*"],
+      "components": [
+        "ContractCase-All-Core-Packages",
+        "@contract-case/documentation-matchers-generator",
+        "@contract-case/case-core",
+        "@contract-case/case-core-plugin-http",
+        "@contract-case/case-core-plugin-http-dsl",
+        "@contract-case/case-core-plugin-function",
+        "@contract-case/case-core-plugin-function-dsl",
+        "@contract-case/case-plugin-base",
+        "@contract-case/case-plugin-dsl-types",
+        "@contract-case/case-definition-dsl",
+        "@contract-case/cli",
+        "documentation",
+        "@contract-case/contract-case-jest",
+        "@contract-case/case-connector",
+        "@contract-case/case-connector-proto",
+        "@contract-case/case-maintainer-config",
+        "@contract-case/eslint-config-case-maintainer",
+        "@contract-case/dsl-java",
+        "@contract-case/case-entities-internal"
+      ],
       "merge": true
     }
   ],
