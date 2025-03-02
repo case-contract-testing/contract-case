@@ -16,6 +16,6 @@ public interface Trigger<T> {
    * {@link TestResponseFunction}
    * @throws Throwable Any exception thrown by your code in the event of an error
    */
-  T call(final @NotNull SetupInfo setup) throws Throwable;
+  T call(final @NotNull InteractionSetup setup) throws Throwable;
 }
 // end-example

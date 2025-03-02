@@ -2,5 +2,5 @@ package io.contract_testing.contractcase;
 
 public interface TestResponseFunction<T> {
 
-  void call(T returnedObject, SetupInfo config);
+  void call(T returnedObject, InteractionSetup config);
 }

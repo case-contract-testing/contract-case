@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractVerifier;
 import io.contract_testing.contractcase.PublishType;
-import io.contract_testing.contractcase.SetupInfo;
+import io.contract_testing.contractcase.InteractionSetup;
 import io.contract_testing.contractcase.TestErrorResponseFunction;
 import io.contract_testing.contractcase.TestResponseFunction;
 import io.contract_testing.contractcase.Trigger;
@@ -90,7 +90,7 @@ public class HttpApiExampleVerifyTest {
                     ,
                     Map.of(
                         "a (200) response with body an object shaped like {status: \"up\"}",
-                        (String result, SetupInfo setupInfo) -> {
+                        (String result, InteractionSetup interactionSetup) -> {
                           assertThat(result).isEqualTo("up");
                         }
                     ),

@@ -12,14 +12,14 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Container for information about the mock side of a particular example
  */
-public class SetupInfo {
+public class InteractionSetup {
 
   private final Map<String, String> stateVariables;
   private final Map<String, String> mockSetup;
   private final Map<String, InvokeCoreFunction> functions;
 
 
-  private SetupInfo(ConnectorSetupInfo connectorSetupInfo) {
+  private InteractionSetup(ConnectorSetupInfo connectorSetupInfo) {
     this.stateVariables = connectorSetupInfo.stateVariables();
     this.mockSetup = connectorSetupInfo.mockSetup();
     this.functions = connectorSetupInfo.functions();
@@ -96,8 +96,8 @@ public class SetupInfo {
    * @param config The configuration map from the Connector
    * @return a new SetupInfo object
    */
-  static SetupInfo from(@NotNull ConnectorSetupInfo config) {
-    return new SetupInfo(config);
+  static InteractionSetup from(@NotNull ConnectorSetupInfo config) {
+    return new InteractionSetup(config);
   }
 
 }
