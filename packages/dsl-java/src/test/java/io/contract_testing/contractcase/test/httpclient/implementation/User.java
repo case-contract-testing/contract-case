@@ -8,6 +8,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonSerialize
-public record User(@JsonProperty("userId") String userId) {
+public record User(@JsonProperty("userId") String userId, @JsonProperty String name) {
 
 }

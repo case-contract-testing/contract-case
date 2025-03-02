@@ -7,7 +7,6 @@ import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.ExampleDefinition;
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
-import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.PublishType;
 import io.contract_testing.contractcase.Trigger;
 import io.contract_testing.contractcase.definitions.matchers.AnyString;
@@ -196,12 +195,8 @@ public class HttpApiExampleTest {
         IndividualSuccessTestConfigBuilder.<User>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
-              try {
                 return new ApiClient(setupInfo.getMockSetup("baseUrl"))
                     .getUserQuery(setupInfo.getStateVariable("userId"));
-              } catch (IOException e) {
-                throw new RuntimeException(e);
-              }
             })
             .withTestResponse((user, setupInfo) -> {
               assertThat(user.userId()).isEqualTo(setupInfo.getStateVariable("userId"));
@@ -227,12 +222,8 @@ public class HttpApiExampleTest {
         IndividualFailedTestConfigBuilder.<User>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
-              try {
                 return new ApiClient(setupInfo.getMockSetup("baseUrl"))
                     .getUserQuery(setupInfo.getStateVariable("userId"));
-              } catch (IOException e) {
-                throw new RuntimeException(e);
-              }
             })
             .withTestErrorResponse((exception, setupInfo) -> {
               assertThat(exception.getClass()).isEqualTo(UserNotFoundException.class);
