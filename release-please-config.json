@@ -4,17 +4,7 @@
     {
       "type": "linked-versions",
       "groupName": "ContractCase",
-      "components": [
-        "@contract-case/case-entities-internal",
-        "@contract-case/case-core",
-        "@contract-case/case-core-plugin-http",
-        "@contract-case/case-core-plugin-http-dsl",
-        "@contract-case/case-core-plugin-function",
-        "@contract-case/case-core-plugin-function-dsl",
-        "@contract-case/case-plugin-base",
-        "@contract-case/case-plugin-dsl-types",
-        "@contract-case/case-definition-dsl"
-      ],
+      "components": ["@contract-case/*"],
       "merge": true
     }
   ],
