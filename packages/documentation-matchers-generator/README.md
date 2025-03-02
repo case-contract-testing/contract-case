@@ -14,7 +14,7 @@
 
 </span>
 
-This is the command line interface for the ContractCase contract testing suite.
+This is the generator for the matchers section in the documentation. You don't need to do anything with this package unless you are maintaining ContractCase.
 
 ```
 npx @contract-case/cli --help
