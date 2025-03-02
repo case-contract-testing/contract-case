@@ -32,7 +32,7 @@ public class FunctionCallerExampleTest {
 
   @Test
   public void testNoArgFunction() {
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(),
             new WillCallFunction(FunctionExecutionExample.builder()
@@ -54,7 +54,7 @@ public class FunctionCallerExampleTest {
   @Test
   public void testOneArgFunction() {
 
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(),
             new WillCallFunction(FunctionExecutionExample.builder()

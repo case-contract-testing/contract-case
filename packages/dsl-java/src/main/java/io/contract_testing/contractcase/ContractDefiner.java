@@ -57,10 +57,10 @@ public class ContractDefiner {
     }
   }
 
-  public <T, M extends AnyMockDescriptor> void runExample(ExampleDefinition<M> definition,
+  public <T, M extends AnyMockDescriptor> void runInteraction(ExampleDefinition<M> definition,
       final @NotNull IndividualSuccessTestConfig<T> additionalConfig) {
     try {
-      ConnectorResultMapper.mapVoid(definer.runExample(
+      ConnectorResultMapper.mapVoid(definer.runInteraction(
           definition.toJSON(),
           ConnectorConfigMapper.mapSuccessExample(additionalConfig, TEST_RUN_ID)
       ));
@@ -69,13 +69,13 @@ public class ContractDefiner {
     }
   }
 
-  public <T, M extends AnyMockDescriptor> void runExample(ExampleDefinition<M> definition,
+  public <T, M extends AnyMockDescriptor> void runInteraction(ExampleDefinition<M> definition,
       final @NotNull IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder<T> additionalConfig) {
-    this.runExample(definition, additionalConfig.build());
+    this.runInteraction(definition, additionalConfig.build());
   }
 
-  public <M extends AnyMockDescriptor> void runExample(ExampleDefinition<M> definition) {
-    this.runExample(
+  public <M extends AnyMockDescriptor> void runInteraction(ExampleDefinition<M> definition) {
+    this.runInteraction(
         definition,
         IndividualSuccessTestConfig
             .IndividualSuccessTestConfigBuilder
@@ -84,10 +84,10 @@ public class ContractDefiner {
     );
   }
 
-  public <T, M extends AnyMockDescriptor> void runThrowingExample(ExampleDefinition<M> definition,
+  public <T, M extends AnyMockDescriptor> void runThrowingInteraction(ExampleDefinition<M> definition,
       IndividualFailedTestConfig<T> additionalConfig) {
     try {
-      ConnectorResultMapper.mapVoid(definer.runRejectingExample(
+      ConnectorResultMapper.mapVoid(definer.runRejectingInteraction(
           definition.toJSON(),
           ConnectorConfigMapper.mapFailingExample(additionalConfig, TEST_RUN_ID)
       ));
@@ -96,13 +96,13 @@ public class ContractDefiner {
     }
   }
 
-  public <T, M extends AnyMockDescriptor> void runThrowingExample(ExampleDefinition<M> definition,
+  public <T, M extends AnyMockDescriptor> void runThrowingInteraction(ExampleDefinition<M> definition,
       IndividualFailedTestConfigBuilder<T> additionalConfig) {
-    this.runThrowingExample(definition, additionalConfig.build());
+    this.runThrowingInteraction(definition, additionalConfig.build());
   }
 
-  public <M extends AnyMockDescriptor> void runThrowingExample(ExampleDefinition<M> definition) {
-    this.runThrowingExample(
+  public <M extends AnyMockDescriptor> void runThrowingInteraction(ExampleDefinition<M> definition) {
+    this.runThrowingInteraction(
         definition,
         IndividualFailedTestConfig
             .IndividualFailedTestConfigBuilder

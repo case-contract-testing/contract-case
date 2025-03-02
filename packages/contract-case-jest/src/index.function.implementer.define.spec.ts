@@ -32,7 +32,7 @@ describe('function receiver', () => {
         });
 
         it('succeeds', () =>
-          contract.runExample({
+          contract.runInteraction({
             definition: willReceiveFunctionCall({
               arguments: [],
               returnValue: null,
@@ -52,7 +52,7 @@ describe('function receiver', () => {
         });
 
         it('succeeds', () =>
-          contract.runExample({
+          contract.runInteraction({
             definition: willReceiveFunctionCall({
               arguments: ['example', 2],
               returnValue: 'example2',

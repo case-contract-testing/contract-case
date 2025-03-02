@@ -91,14 +91,14 @@ message BeginDefinitionRequest {
 
 // From Host to Core, instructs the core to run a particular example as part of
 // contract definition
-message RunExampleRequest {
+message RunInteractionRequest {
   google.protobuf.Struct example_definition = 2;
   ContractCaseConfig config = 3;
 }
 
 // From host to core, instructs the core to run a particular example, that we
 // expect to fail. This is part of contract definition
-message RunRejectingExampleRequest {
+message RunRejectingInteractionRequest {
   google.protobuf.Struct example_definition = 2;
   ContractCaseConfig config = 3;
 }
@@ -346,9 +346,9 @@ message DefinitionRequest {
     // Host language wants to begin a definition
     BeginDefinitionRequest begin_definition = 2;
     // Host language wants to run an example that returns success
-    RunExampleRequest run_example = 3;
+    RunInteractionRequest run_interaction = 3;
     // Host language wants to run an example that returns a failure
-    RunRejectingExampleRequest run_rejecting_example = 4;
+    RunRejectingInteractionRequest run_rejecting_interaction = 4;
     // Host language wants to strip the matchers from a defintion
     StripMatchersRequest strip_matchers = 5;
     // Host langauge has finished the definition

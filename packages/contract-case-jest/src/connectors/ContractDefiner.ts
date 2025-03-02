@@ -57,12 +57,12 @@ export class ContractCaseDefiner {
     }
   }
 
-  runExample<OtherR, OtherC extends Record<string, string>>(
+  runInteraction<OtherR, OtherC extends Record<string, string>>(
     definition: ExampleDefinition,
     runConfig: IndividualSuccessTestConfig<OtherR, OtherC> = {},
   ): Promise<unknown> {
     return this.boundaryDefiner
-      .runExample(
+      .runInteraction(
         mapDefinition(definition),
         mapSuccessConfig({ ...this.config, ...runConfig }),
       )
@@ -70,12 +70,12 @@ export class ContractCaseDefiner {
       .catch(errorHandler);
   }
 
-  runRejectingExample<OtherR, OtherC extends Record<string, string>>(
+  runRejectingInteraction<OtherR, OtherC extends Record<string, string>>(
     definition: ExampleDefinition,
     runConfig: IndividualFailedTestConfig<OtherR, OtherC> = {},
   ): Promise<unknown> {
     return this.boundaryDefiner
-      .runRejectingExample(
+      .runRejectingInteraction(
         mapDefinition(definition),
         mapFailingConfig({ ...this.config, ...runConfig }),
       )

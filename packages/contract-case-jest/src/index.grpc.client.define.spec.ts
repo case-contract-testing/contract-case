@@ -81,7 +81,7 @@ describe('e2e grpc consumer driven', () => {
     describe('when the user exists', () => {
       //        const responseBody = { userId: stateVariable('userId') };
       /*     it('returns an existing user', async () =>
-                contract.runExample(
+                contract.runInteraction(
                   {
                     states: [
                       inState('Server is up'),
@@ -114,7 +114,7 @@ describe('e2e grpc consumer driven', () => {
             /*
             describe("when the user doesn't exist", () => {
               it('returns a user not found error', () =>
-                contract.runRejectingExample(
+                contract.runRejectingInteraction(
                   {
                     states: [
                       inState('Server is up'),

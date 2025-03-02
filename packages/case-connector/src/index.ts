@@ -8,11 +8,11 @@
  *      - resultPrinter is a callback
  *      - Parent Versions
  *      - Returns ID
- *   - runExample
+ *   - runInteraction
  *      Define ID
  *      json definition
  *      and config
- *   - runRejectingExample
+ *   - runRejectingInteraction
  *      Define ID
  *      json definition
  *      and config

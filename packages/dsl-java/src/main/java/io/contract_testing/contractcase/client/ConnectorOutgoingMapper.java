@@ -29,7 +29,8 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultSuccess;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultSuccessHasAnyPayload;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultSuccessHasMapPayload;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.RunExampleRequest;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.RunInteractionRequest;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.RunRejectingInteractionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle.Stage;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.TriggerFunctionHandle;
@@ -156,21 +157,21 @@ class ConnectorOutgoingMapper {
 
 
   @NotNull
-  static ContractCaseStream.DefinitionRequest.Builder mapRunExampleRequest(JsonNode definition,
+  static ContractCaseStream.DefinitionRequest.Builder mapRunInteractionRequest(JsonNode definition,
       @NotNull ContractCaseConnectorConfig runConfig) {
     final var structBuilder = getStructBuilder(definition);
     return DefinitionRequest.newBuilder()
-        .setRunExample(RunExampleRequest.newBuilder()
+        .setRunInteraction(RunInteractionRequest.newBuilder()
             .setConfig(ConnectorOutgoingMapper.mapConfig(runConfig)) // TODO handle additional state handlers or triggers
             .setExampleDefinition(structBuilder)
             .build());
   }
 
-  static ContractCaseStream.DefinitionRequest.Builder mapRunRejectingExampleRequest(JsonNode definition,
+  static ContractCaseStream.DefinitionRequest.Builder mapRunRejectingInteractionRequest(JsonNode definition,
       ContractCaseConnectorConfig runConfig) {
     final var structBuilder = getStructBuilder(definition);
     return DefinitionRequest.newBuilder()
-        .setRunExample(RunExampleRequest.newBuilder()
+        .setRunRejectingInteraction(RunRejectingInteractionRequest.newBuilder()
             .setConfig(ConnectorOutgoingMapper.mapConfig(runConfig)) // TODO handle additional state handlers or triggers
             .setExampleDefinition(structBuilder)
             .build());

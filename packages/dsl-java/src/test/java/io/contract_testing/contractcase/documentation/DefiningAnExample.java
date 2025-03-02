@@ -36,7 +36,7 @@ public class DefiningAnExample {
 
   public void testGetUser() {
     // example-extract _defining-an-example-states
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 new InState("Server is up"),
@@ -73,7 +73,7 @@ public class DefiningAnExample {
 
   public void testConfig() {
     // example-extract _defining-an-example-config
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 /* as above */
@@ -110,7 +110,7 @@ public class DefiningAnExample {
     );
     // end-example
 
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 /* as above */
@@ -147,7 +147,7 @@ public class DefiningAnExample {
     );
 
     // example-extract _defining-states-order
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 // This one runs first
@@ -190,7 +190,7 @@ public class DefiningAnExample {
     // end-example
 
     // example-extract _state-matchers
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 new InState("Server is up"),

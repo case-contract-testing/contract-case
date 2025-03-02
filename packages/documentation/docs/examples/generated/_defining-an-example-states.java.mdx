@@ -1,5 +1,5 @@
 ```java
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 new InState("Server is up"),
@@ -16,7 +16,7 @@
                     .status(200)
                     .body(
                         Map.ofEntries(
-                            Map.entry("status", "up"),
+                            Map.entry("userId", "foo"),
                             Map.entry("name", "john smith")
                         )
                     )

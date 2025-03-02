@@ -39,7 +39,7 @@ public class FunctionImplementerExampleTest {
     contract.registerFunction("NoArgFunction", () -> {
       return null;
     });
-    contract.runExample(new ExampleDefinition<>(
+    contract.runInteraction(new ExampleDefinition<>(
         List.of(),
         new WillReceiveFunctionCall(FunctionExecutionExample.builder()
             .arguments(List.of())
@@ -55,7 +55,7 @@ public class FunctionImplementerExampleTest {
     Function<Integer, String> functionUnderTest = (Integer num) -> num + " pages";
 
     contract.registerFunction("PageNumbers", convertJsonArgs(functionUnderTest));
-    contract.runExample(new ExampleDefinition<>(
+    contract.runInteraction(new ExampleDefinition<>(
             List.of(),
             new WillReceiveFunctionCall(FunctionExecutionExample.builder()
                 .arguments(List.of(new AnyInteger(2)))

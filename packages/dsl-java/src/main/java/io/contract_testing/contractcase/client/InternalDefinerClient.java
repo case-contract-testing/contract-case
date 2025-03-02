@@ -1,7 +1,7 @@
 package io.contract_testing.contractcase.client;
 
-import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapRunExampleRequest;
-import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapRunRejectingExampleRequest;
+import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapRunInteractionRequest;
+import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapRunRejectingInteractionRequest;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.contract_testing.contractcase.LogPrinter;
@@ -50,23 +50,23 @@ public class InternalDefinerClient {
     return result;
   }
 
-  public @NotNull ConnectorResult runExample(final @NotNull JsonNode definition,
+  public @NotNull ConnectorResult runInteraction(final @NotNull JsonNode definition,
       final ContractCaseConnectorConfig runConfig) {
     configHandle.setConnectorConfig(runConfig);
-    return rpcConnector.executeCallAndWait(mapRunExampleRequest(
+    return rpcConnector.executeCallAndWait(mapRunInteractionRequest(
         definition,
         runConfig
-    ), "runExample");
+    ), "runInteraction");
   }
 
-  public @NotNull ConnectorResult runRejectingExample(final @NotNull JsonNode definition,
+  public @NotNull ConnectorResult runRejectingInteraction(final @NotNull JsonNode definition,
       ContractCaseConnectorConfig runConfig) {
     configHandle.setConnectorConfig(runConfig);
     return rpcConnector.executeCallAndWait(
-        mapRunRejectingExampleRequest(
+        mapRunRejectingInteractionRequest(
             definition,
             runConfig
-        ), "runRejectingExample");
+        ), "runRejectingInteraction");
   }
 
   public @NotNull ConnectorResult stripMatchers(final @NotNull AnyMatcher matcherOrData) {

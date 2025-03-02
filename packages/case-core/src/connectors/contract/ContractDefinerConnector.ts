@@ -89,7 +89,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     this.contract.registerFunction(handle, invokeableFn);
   }
 
-  runExample<T extends AnyMockDescriptorType, R>(
+  runInteraction<T extends AnyMockDescriptorType, R>(
     {
       states = [],
       definition,
@@ -132,7 +132,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     );
   }
 
-  runRejectingExample<T extends AnyMockDescriptorType, R>(
+  runRejectingInteraction<T extends AnyMockDescriptorType, R>(
     {
       states = [],
       definition,

@@ -44,7 +44,7 @@ describe('function receiver', () => {
         describe('without the mockConfig property', () => {
           it('fails', () =>
             expect(
-              contract.runExample({
+              contract.runInteraction({
                 definition: new mocks.functions.WillReceiveFunctionCall({
                   arguments: [],
                   returnValue: null,
@@ -58,7 +58,7 @@ describe('function receiver', () => {
 
         it('fails without the right handle property', () =>
           expect(
-            contract.runExample({
+            contract.runInteraction({
               definition: new mocks.functions.WillReceiveFunctionCall({
                 arguments: [],
                 returnValue: null,
@@ -70,7 +70,7 @@ describe('function receiver', () => {
           ));
 
         it('succeeds with correct config', () =>
-          contract.runExample({
+          contract.runInteraction({
             definition: new mocks.functions.WillReceiveFunctionCall({
               arguments: [],
               returnValue: null,
@@ -92,7 +92,7 @@ describe('function receiver', () => {
         });
 
         it('succeeds with correct config', () =>
-          contract.runExample({
+          contract.runInteraction({
             definition: new mocks.functions.WillReceiveFunctionCall({
               arguments: [anyString('example'), anyNumber(2)],
               returnValue: anyString('example2'),

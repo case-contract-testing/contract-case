@@ -527,82 +527,82 @@ export namespace BeginDefinitionRequest {
   };
 }
 
-export class RunExampleRequest extends jspb.Message {
+export class RunInteractionRequest extends jspb.Message {
   hasExampleDefinition(): boolean;
   clearExampleDefinition(): void;
   getExampleDefinition(): google_protobuf_struct_pb.Struct | undefined;
   setExampleDefinition(
     value?: google_protobuf_struct_pb.Struct,
-  ): RunExampleRequest;
+  ): RunInteractionRequest;
 
   hasConfig(): boolean;
   clearConfig(): void;
   getConfig(): ContractCaseConfig | undefined;
-  setConfig(value?: ContractCaseConfig): RunExampleRequest;
+  setConfig(value?: ContractCaseConfig): RunInteractionRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RunExampleRequest.AsObject;
+  toObject(includeInstance?: boolean): RunInteractionRequest.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: RunExampleRequest,
-  ): RunExampleRequest.AsObject;
+    msg: RunInteractionRequest,
+  ): RunInteractionRequest.AsObject;
   static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
   static extensionsBinary: {
     [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
   };
   static serializeBinaryToWriter(
-    message: RunExampleRequest,
+    message: RunInteractionRequest,
     writer: jspb.BinaryWriter,
   ): void;
-  static deserializeBinary(bytes: Uint8Array): RunExampleRequest;
+  static deserializeBinary(bytes: Uint8Array): RunInteractionRequest;
   static deserializeBinaryFromReader(
-    message: RunExampleRequest,
+    message: RunInteractionRequest,
     reader: jspb.BinaryReader,
-  ): RunExampleRequest;
+  ): RunInteractionRequest;
 }
 
-export namespace RunExampleRequest {
+export namespace RunInteractionRequest {
   export type AsObject = {
     exampleDefinition?: google_protobuf_struct_pb.Struct.AsObject;
     config?: ContractCaseConfig.AsObject;
   };
 }
 
-export class RunRejectingExampleRequest extends jspb.Message {
+export class RunRejectingInteractionRequest extends jspb.Message {
   hasExampleDefinition(): boolean;
   clearExampleDefinition(): void;
   getExampleDefinition(): google_protobuf_struct_pb.Struct | undefined;
   setExampleDefinition(
     value?: google_protobuf_struct_pb.Struct,
-  ): RunRejectingExampleRequest;
+  ): RunRejectingInteractionRequest;
 
   hasConfig(): boolean;
   clearConfig(): void;
   getConfig(): ContractCaseConfig | undefined;
-  setConfig(value?: ContractCaseConfig): RunRejectingExampleRequest;
+  setConfig(value?: ContractCaseConfig): RunRejectingInteractionRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RunRejectingExampleRequest.AsObject;
+  toObject(includeInstance?: boolean): RunRejectingInteractionRequest.AsObject;
   static toObject(
     includeInstance: boolean,
-    msg: RunRejectingExampleRequest,
-  ): RunRejectingExampleRequest.AsObject;
+    msg: RunRejectingInteractionRequest,
+  ): RunRejectingInteractionRequest.AsObject;
   static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
   static extensionsBinary: {
     [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
   };
   static serializeBinaryToWriter(
-    message: RunRejectingExampleRequest,
+    message: RunRejectingInteractionRequest,
     writer: jspb.BinaryWriter,
   ): void;
-  static deserializeBinary(bytes: Uint8Array): RunRejectingExampleRequest;
+  static deserializeBinary(bytes: Uint8Array): RunRejectingInteractionRequest;
   static deserializeBinaryFromReader(
-    message: RunRejectingExampleRequest,
+    message: RunRejectingInteractionRequest,
     reader: jspb.BinaryReader,
-  ): RunRejectingExampleRequest;
+  ): RunRejectingInteractionRequest;
 }
 
-export namespace RunRejectingExampleRequest {
+export namespace RunRejectingInteractionRequest {
   export type AsObject = {
     exampleDefinition?: google_protobuf_struct_pb.Struct.AsObject;
     config?: ContractCaseConfig.AsObject;
@@ -832,11 +832,11 @@ export namespace CoreFunctionHandle {
 }
 
 export class SetupInfo extends jspb.Message {
-  getStatevariablesMap(): jspb.Map<
+  getStateVariablesMap(): jspb.Map<
     string,
     google_protobuf_wrappers_pb.StringValue
   >;
-  clearStatevariablesMap(): void;
+  clearStateVariablesMap(): void;
 
   getMockMap(): jspb.Map<string, google_protobuf_wrappers_pb.StringValue>;
   clearMockMap(): void;
@@ -864,7 +864,7 @@ export class SetupInfo extends jspb.Message {
 
 export namespace SetupInfo {
   export type AsObject = {
-    statevariablesMap: Array<
+    stateVariablesMap: Array<
       [string, google_protobuf_wrappers_pb.StringValue.AsObject]
     >;
 
@@ -1446,15 +1446,17 @@ export class DefinitionRequest extends jspb.Message {
   getBeginDefinition(): BeginDefinitionRequest | undefined;
   setBeginDefinition(value?: BeginDefinitionRequest): DefinitionRequest;
 
-  hasRunExample(): boolean;
-  clearRunExample(): void;
-  getRunExample(): RunExampleRequest | undefined;
-  setRunExample(value?: RunExampleRequest): DefinitionRequest;
+  hasRunInteraction(): boolean;
+  clearRunInteraction(): void;
+  getRunInteraction(): RunInteractionRequest | undefined;
+  setRunInteraction(value?: RunInteractionRequest): DefinitionRequest;
 
-  hasRunRejectingExample(): boolean;
-  clearRunRejectingExample(): void;
-  getRunRejectingExample(): RunRejectingExampleRequest | undefined;
-  setRunRejectingExample(value?: RunRejectingExampleRequest): DefinitionRequest;
+  hasRunRejectingInteraction(): boolean;
+  clearRunRejectingInteraction(): void;
+  getRunRejectingInteraction(): RunRejectingInteractionRequest | undefined;
+  setRunRejectingInteraction(
+    value?: RunRejectingInteractionRequest,
+  ): DefinitionRequest;
 
   hasStripMatchers(): boolean;
   clearStripMatchers(): void;
@@ -1513,8 +1515,8 @@ export namespace DefinitionRequest {
   export type AsObject = {
     id?: google_protobuf_wrappers_pb.StringValue.AsObject;
     beginDefinition?: BeginDefinitionRequest.AsObject;
-    runExample?: RunExampleRequest.AsObject;
-    runRejectingExample?: RunRejectingExampleRequest.AsObject;
+    runInteraction?: RunInteractionRequest.AsObject;
+    runRejectingInteraction?: RunRejectingInteractionRequest.AsObject;
     stripMatchers?: StripMatchersRequest.AsObject;
     endDefinition?: EndDefinitionRequest.AsObject;
     resultResponse?: ResultResponse.AsObject;
@@ -1526,8 +1528,8 @@ export namespace DefinitionRequest {
   export enum KindCase {
     KIND_NOT_SET = 0,
     BEGIN_DEFINITION = 2,
-    RUN_EXAMPLE = 3,
-    RUN_REJECTING_EXAMPLE = 4,
+    RUN_INTERACTION = 3,
+    RUN_REJECTING_INTERACTION = 4,
     STRIP_MATCHERS = 5,
     END_DEFINITION = 6,
     RESULT_RESPONSE = 7,

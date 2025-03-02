@@ -43,12 +43,12 @@ testErrorResponse: (error: Error, config: MockConfig): Promise<unknown> | void
 
 This is equivalent to the `testResponse` function, but for `trigger` calls that are expected to fail with an error.
 
-### With `runExample`
+### With `runInteraction`
 
 If we define this example at the client side, we will also need a trigger, and a way to test the response object:
 
 ```ts
-await contract.runExample({
+await contract.runInteraction({
     states: [
         inState('Server is up'),
         inState('A user with id "foo" exists'),
@@ -85,12 +85,12 @@ await contract.runExample({
 })
 ```
 
-### With `runRejectingExample`
+### With `runRejectingInteraction`
 
-If your API is expected to throw an error during the invocation, then you should use `runRejectingExample` instead of `runExample`, and use `testErrorResponse` instead of `testResponse`:
+If your API is expected to throw an error during the invocation, then you should use `runRejectingInteraction` instead of `runInteraction`, and use `testErrorResponse` instead of `testResponse`:
 
 ```ts
-await contract.runRejectingExample(
+await contract.runRejectingInteraction(
   {
     states: [inState('Server is up'), inState('No users exist')],
     definition: willSendHttpRequest({

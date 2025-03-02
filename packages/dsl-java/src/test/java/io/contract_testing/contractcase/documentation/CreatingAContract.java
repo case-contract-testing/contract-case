@@ -34,7 +34,7 @@ public class CreatingAContract {
 
 
   public void testSomeApiMethod() {
-    contract.runExample(
+    contract.runInteraction(
         /* described later in this chapter */
         // ignore-extract
         new ExampleDefinition<>(
@@ -65,7 +65,7 @@ public class CreatingAContract {
   }
 
   public void testSomeFailingMethod() {
-    contract.runThrowingExample(
+    contract.runThrowingInteraction(
         /* described later in this chapter */
         // ignore-extract
         new ExampleDefinition<>(
@@ -99,7 +99,7 @@ public class CreatingAContract {
 
   // example-extract _defining-an-example
   public void testGetUser() {
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(), // State definitions, covered below
             new WillSendHttpRequest(HttpExample.builder()
@@ -138,7 +138,7 @@ public class CreatingAContract {
 
 
   public void testGetUserMatchers() {
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 // example-extract _matchers-state-no-vars
@@ -191,7 +191,7 @@ public class CreatingAContract {
     );
 
     // example-extract _matchers-state-vars-complete
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 new InStateWithVariables(
@@ -240,7 +240,7 @@ public class CreatingAContract {
     );
     // end-example
 
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 new InStateWithVariables(

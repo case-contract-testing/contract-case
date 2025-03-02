@@ -28,7 +28,7 @@ describe('function executor', () => {
     (contract) => {
       describe('function with no args', () => {
         it('returns nothing', () =>
-          contract.runExample(
+          contract.runInteraction(
             {
               definition: willCallFunction({
                 arguments: [],
@@ -47,7 +47,7 @@ describe('function executor', () => {
       });
       describe('function with two args', () => {
         it('returns nothing', () =>
-          contract.runExample(
+          contract.runInteraction(
             {
               definition: willCallFunction({
                 arguments: ['example', 2],

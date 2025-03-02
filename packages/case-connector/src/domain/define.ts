@@ -30,33 +30,33 @@ export const beginDefinition = (
     versionString,
   ]);
 
-export const runExample = (
+export const runInteraction = (
   defineId: string,
   definition: ExampleDefinition,
   config: ContractCaseConnectorConfig,
 ): Promise<BoundaryResult> =>
   Promise.resolve().then(() => {
-    const definerHandle = getDefiner(defineId, 'runExample');
+    const definerHandle = getDefiner(defineId, 'runInteraction');
     if (!('id' in definerHandle)) {
       return definerHandle;
     }
-    return definerHandle.definer.runExample(
+    return definerHandle.definer.runInteraction(
       definition,
       mapConfig(config, defineId),
     );
   });
 
-export const runRejectingExample = (
+export const runRejectingInteraction = (
   defineId: string,
   definition: ExampleDefinition,
   config: ContractCaseConnectorConfig,
 ): Promise<BoundaryResult> =>
   Promise.resolve().then(() => {
-    const definerHandle = getDefiner(defineId, 'runRejectingExample');
+    const definerHandle = getDefiner(defineId, 'runRejectingInteraction');
     if (!('id' in definerHandle)) {
       return definerHandle;
     }
-    return definerHandle.definer.runRejectingExample(
+    return definerHandle.definer.runRejectingInteraction(
       definition,
       mapConfig(config, defineId),
     );

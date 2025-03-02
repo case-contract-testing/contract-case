@@ -33,7 +33,7 @@ const mapSetupInfo = (
     setup.getMockMap().set(key, new StringValue().setValue(value));
   });
   Object.entries(boundarySetup.stateVariables).forEach(([key, value]) => {
-    setup.getStatevariablesMap().set(key, new StringValue().setValue(value));
+    setup.getStateVariablesMap().set(key, new StringValue().setValue(value));
   });
   Object.entries(boundarySetup.functions).forEach(([name, fn]) => {
     setup

@@ -136,7 +136,7 @@ export class BoundaryContractDefiner {
     }
   }
 
-  async runExample(
+  async runInteraction(
     definition: BoundaryMockDefinition,
     runConfig: ContractCaseBoundaryConfig,
   ): Promise<BoundaryResult> {
@@ -144,12 +144,12 @@ export class BoundaryContractDefiner {
       this.initialiseDefiner();
       if (this.definer === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised (runExample)',
+          'Definer was undefined after it was initialised (runInteraction)',
         );
       }
 
       const { config, partialInvoker } = convertConfig(runConfig);
-      await this.definer.runExample(
+      await this.definer.runInteraction(
         mapDefinition(definition, partialInvoker, config),
         config,
       );
@@ -159,7 +159,7 @@ export class BoundaryContractDefiner {
     }
   }
 
-  async runRejectingExample(
+  async runRejectingInteraction(
     definition: BoundaryMockDefinition,
     runConfig: ContractCaseBoundaryConfig,
   ): Promise<BoundaryResult> {
@@ -167,11 +167,11 @@ export class BoundaryContractDefiner {
       this.initialiseDefiner();
       if (this.definer === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised (runRejectingExample)',
+          'Definer was undefined after it was initialised (runRejectingInteraction)',
         );
       }
       const { config, partialInvoker } = convertConfig(runConfig);
-      await this.definer.runRejectingExample(
+      await this.definer.runRejectingInteraction(
         { ...mapDefinition(definition, partialInvoker, config) },
         config,
       );

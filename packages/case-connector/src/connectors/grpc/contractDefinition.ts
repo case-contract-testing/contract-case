@@ -15,8 +15,8 @@ import {
   beginDefinition,
   endRecord,
   registerFunction,
-  runExample,
-  runRejectingExample,
+  runInteraction,
+  runRejectingInteraction,
   stripMatchers,
 } from '../../domain/define.js';
 import {
@@ -154,24 +154,24 @@ export const contractDefinition = (
         );
         break;
       }
-      case WireDefinitionRequest.KindCase.RUN_EXAMPLE: {
-        const runExampleRequest = request.getRunExample();
-        if (runExampleRequest == null) {
+      case WireDefinitionRequest.KindCase.RUN_INTERACTION: {
+        const runInteractionRequest = request.getRunInteraction();
+        if (runInteractionRequest == null) {
           throw new ConnectorError(
             'run example called with something that returned an undefined request',
           );
         }
         if (definitionId === undefined) {
           throw new ConnectorError(
-            'runExample was called before begin definition',
+            'runInteraction was called before begin definition',
           );
         }
 
-        runExample(
+        runInteraction(
           definitionId,
-          mapJson(runExampleRequest.getExampleDefinition()),
+          mapJson(runInteractionRequest.getExampleDefinition()),
           mapConfig(
-            runExampleRequest.getConfig(),
+            runInteractionRequest.getConfig(),
             sendContractResponse,
             functionRegistry,
           ),
@@ -184,24 +184,25 @@ export const contractDefinition = (
         );
         break;
       }
-      case WireDefinitionRequest.KindCase.RUN_REJECTING_EXAMPLE: {
-        const runRejectingExampleRequest = request.getRunRejectingExample();
-        if (runRejectingExampleRequest == null) {
+      case WireDefinitionRequest.KindCase.RUN_REJECTING_INTERACTION: {
+        const runRejectingInteractionRequest =
+          request.getRunRejectingInteraction();
+        if (runRejectingInteractionRequest == null) {
           throw new ConnectorError(
             'run rejecting example called with something that returned an undefined request',
           );
         }
         if (definitionId === undefined) {
           throw new ConnectorError(
-            'runExample was called before begin definition',
+            'runInteraction was called before begin definition',
           );
         }
 
-        runRejectingExample(
+        runRejectingInteraction(
           definitionId,
-          mapJson(runRejectingExampleRequest.getExampleDefinition()),
+          mapJson(runRejectingInteractionRequest.getExampleDefinition()),
           mapConfig(
-            runRejectingExampleRequest.getConfig(),
+            runRejectingInteractionRequest.getConfig(),
             sendContractResponse,
             functionRegistry,
           ),

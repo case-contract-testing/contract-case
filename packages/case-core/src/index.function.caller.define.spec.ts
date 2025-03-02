@@ -37,7 +37,7 @@ describe('function executor', () => {
     (contract) => {
       describe('function with no args', () => {
         it('returns nothing', () =>
-          contract.runExample({
+          contract.runInteraction({
             definition: new mocks.functions.WillCallFunction({
               arguments: [],
               returnValue: null,
@@ -53,7 +53,7 @@ describe('function executor', () => {
 
       it('fails with wrong number of args', () =>
         expect(
-          contract.runExample({
+          contract.runInteraction({
             definition: new mocks.functions.WillCallFunction({
               arguments: [anyInteger(3)],
               returnValue: null,
@@ -70,7 +70,7 @@ describe('function executor', () => {
         ));
       it('fails with wrong data in args', () =>
         expect(
-          contract.runExample({
+          contract.runInteraction({
             definition: new mocks.functions.WillCallFunction({
               arguments: [anyInteger(3), anyString('2')],
               returnValue: null,

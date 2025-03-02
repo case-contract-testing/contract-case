@@ -21,7 +21,7 @@ defineContract(
     describe('some API method', () => {
       describe('with a valid access token', () => {
         it('behaves as expected', async () => {
-          await contract.runExample(
+          await contract.runInteraction(
             /* described later in this chapter */
             // ignore-extract
             {
@@ -42,7 +42,7 @@ defineContract(
 
       describe('with no access token', () => {
         it('throws an error', async () => {
-          await contract.runRejectingExample(
+          await contract.runRejectingInteraction(
             /* described later in this chapter */
             // ignore-extract
             {

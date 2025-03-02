@@ -21,7 +21,7 @@ defineContract(
       describe('with a valid access token', () => {
         it('behaves as expected', async () => {
           // end-ignore
-          await contract.runExample({
+          await contract.runInteraction({
             definition: willSendHttpRequest({
               request: {
                 method: 'GET',

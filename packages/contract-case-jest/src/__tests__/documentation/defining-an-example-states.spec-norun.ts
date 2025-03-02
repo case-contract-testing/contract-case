@@ -30,7 +30,7 @@ defineContract(
         // end-ignore
 
         it('behaves as expected', async () => {
-          await contract.runExample({
+          await contract.runInteraction({
             states: [
               inState('Server is up'),
               inState('A user with id "foo" exists'),
@@ -55,7 +55,7 @@ defineContract(
 
       it('behaves as expected', async () => {
         // example-extract _defining-an-example-config
-        await contract.runExample(
+        await contract.runInteraction(
           {
             states: [
               /* as above */
@@ -88,7 +88,7 @@ defineContract(
       });
 
       it('defines states', async () => {
-        await contract.runExample(
+        await contract.runInteraction(
           {
             states: [
               /* as above */
@@ -127,7 +127,7 @@ defineContract(
 
     it('defines states in order', async () => {
       // example-extract _defining-states-order
-      await contract.runExample(
+      await contract.runInteraction(
         {
           states: [
             inState('Server is up'), // This one runs first
@@ -156,7 +156,7 @@ defineContract(
       );
       // end-example
 
-      await contract.runExample(
+      await contract.runInteraction(
         {
           states: [
             inState('Server is up'), // This one runs first
@@ -185,7 +185,7 @@ defineContract(
       );
 
       // example-extract _state-matchers
-      await contract.runExample({
+      await contract.runInteraction({
         states: [
           inState('Server is up'),
           inState('A user exists', { userId: '123' }),
@@ -210,7 +210,7 @@ defineContract(
 
     it('matchers example', async () => {
       // example-extract _matchers-state-vars-complete
-      await contract.runExample(
+      await contract.runInteraction(
         {
           states: [
             inState('Server is up'),
@@ -261,7 +261,7 @@ defineContract(
       );
       // end-example
 
-      await contract.runExample(
+      await contract.runInteraction(
         {
           states: [
             inState('Server is up'),

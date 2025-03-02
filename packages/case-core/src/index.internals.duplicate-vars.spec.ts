@@ -51,7 +51,7 @@ describe('e2e http consumer driven', () => {
             const responseBody = { userId: stateVariable('userId') };
 
             it('returns an existing user', async () =>
-              contract.runExample({
+              contract.runInteraction({
                 states: [
                   inState('Server is up'),
                   inState('A user exists', { userId: '123' }),
@@ -78,7 +78,7 @@ describe('e2e http consumer driven', () => {
           });
           describe("when the user doesn't exist", () => {
             it('returns a user not found error', () =>
-              contract.runRejectingExample({
+              contract.runRejectingInteraction({
                 states: [
                   inState('Server is up'),
                   inState('No users exist', { userId: '321' }),

@@ -8,13 +8,13 @@ sidebar_position: 2
 ContractCase accepts configuration parameters in the `defineContract` and `verifyContract` DSL functions.
 
 This config can be overridden per-test or per-verification, by passing an
-optional partial config object as the last parameter to `runExample`,
-`runRejectingExample`, or `runVerification`. This is useful for overriding
+optional partial config object as the last parameter to `runInteraction`,
+`runRejectingInteraction`, or `runVerification`. This is useful for overriding
 specifics for different tests (eg, for increasing the log level on one specific test).
 
-There are multiple places you can supply configuration. In general, the closer an option is to the `runExample` interaction, the higher precedence it has. Here are the places configuration can be specified, where the top of the list has the most precedence.
+There are multiple places you can supply configuration. In general, the closer an option is to the `runInteraction` interaction, the higher precedence it has. Here are the places configuration can be specified, where the top of the list has the most precedence.
 
-1. Options specified in the test run (`runExample`, `runRejectingExample`, or `runVerification`).
+1. Options specified in the test run (`runInteraction`, `runRejectingInteraction`, or `runVerification`).
 1. Options specified at contract creation time (`defineContract` or `verifyContract`)
 1. Environment variables (any option that can be a string or a boolean can be set with the environment variable `CASE_${optionName}`, for example `export CASE_logLevel=debug` or `export CASE_publish=false`)
 1. Default options
@@ -31,7 +31,7 @@ defining) the contract. Required by `defineContract`, not required by
 from that consuming service will be verified.
 
 :::tip note
-It is an error to specify a different value of `consumerName` in `defineContract` and `runExample` / `runRejectingExample`.
+It is an error to specify a different value of `consumerName` in `defineContract` and `runInteraction` / `runRejectingInteraction`.
 :::
 
 ### `providerName` \[string]

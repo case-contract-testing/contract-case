@@ -67,7 +67,7 @@ public class HttpApiExampleTest {
 
   @Test
   public void testHealthUp() {
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(new InState("Server is up")),
             new WillSendHttpRequest(HttpExample.builder()
@@ -95,7 +95,7 @@ public class HttpApiExampleTest {
 
   @Test
   public void testHealthDown() {
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(new InState("Server is down")),
             new WillSendHttpRequest(HttpExample.builder()
@@ -117,7 +117,7 @@ public class HttpApiExampleTest {
 
   @Test
   public void testHealthUnavailable() {
-    contract.runThrowingExample(
+    contract.runThrowingInteraction(
         new ExampleDefinition<>(
             List.of(new InState("Server is broken")),
             new WillSendHttpRequest(HttpExample.builder()
@@ -137,7 +137,7 @@ public class HttpApiExampleTest {
 
   @Test
   public void testGetUserWithPathVariable() {
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 new InState("Server is up"),
@@ -175,7 +175,7 @@ public class HttpApiExampleTest {
   @Test
   public void testGetUserWithQueryVariable() {
 
-    contract.runExample(
+    contract.runInteraction(
         new ExampleDefinition<>(
             List.of(
                 new InState("Server is up"),
@@ -206,7 +206,7 @@ public class HttpApiExampleTest {
 
   @Test
   public void testGetUserWithQueryVariableWhenUserNotExist() {
-    contract.runThrowingExample(
+    contract.runThrowingInteraction(
         new ExampleDefinition<>(
             List.of(
                 new InState("Server is up"),

@@ -131,14 +131,14 @@ Create a `ContractDefiner` class. It must:
 1. Have a constructor that takes a `ContractCaseConfig`, and instantiates a private
    `BoundaryContractDefiner`, with a mapped version of the config. See the boundary
    mappings section below.
-2. Expose a `runExample` method
-   - This method delegates to the BoundaryContractDefiner.runExample
+2. Expose a `runInteraction` method
+   - This method delegates to the BoundaryContractDefiner.runInteraction
    - Map the returned `BoundaryResult` into an error (if appropriate). See the error mappings section below.
    - TODO: Describe how to map trigger / testResponse - this is the only place where you may throw a `CaseConfigurationError`
-3. Expose a `runRejectingExample` method.
-   -You may change the name of `runRejectingExample` to `runXXXExample` where `XXX` is an idiomatic word for `rejecting` in your language.
-   - This method delegates to the `BoundaryContractDefiner.runRejectingExample`
-   - Map the `BoundaryResult` the same way as the `runExample` method.
+3. Expose a `runRejectingInteraction` method.
+   -You may change the name of `runRejectingInteraction` to `runXXXExample` where `XXX` is an idiomatic word for `rejecting` in your language.
+   - This method delegates to the `BoundaryContractDefiner.runRejectingInteraction`
+   - Map the `BoundaryResult` the same way as the `runInteraction` method.
    - TODO: Describe how to map trigger / testErrorResponse - this is the only place where you may throw a `CaseConfigurationError`
 
 ### Unmarshalling a `BoundaryFailure`

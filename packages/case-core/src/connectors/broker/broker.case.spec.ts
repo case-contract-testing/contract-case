@@ -172,7 +172,7 @@ describe('broker client', () => {
         describe('token auth', () => {
           describe('with a valid auth token', () => {
             it('will be successful', () =>
-              contract.runExample({
+              contract.runInteraction({
                 states: [stateAuthTokenValid, stateProvider],
                 definition: willSendHttpRequest({
                   request: {
@@ -229,7 +229,7 @@ describe('broker client', () => {
         describe('basic auth', () => {
           describe('with valid basic auth', () => {
             it('will be successful', () =>
-              contract.runExample({
+              contract.runInteraction({
                 states: [validBasicAuth, stateProvider],
                 definition: willSendHttpRequest({
                   request: {
@@ -297,7 +297,7 @@ describe('broker client', () => {
         describe('publish contract old endpoint', () => {
           describe('with a valid auth token', () => {
             it('will be successful', () =>
-              contract.runExample({
+              contract.runInteraction({
                 states: [stateAuthTokenValid],
                 definition: willSendHttpRequest({
                   request: {
@@ -333,7 +333,7 @@ describe('broker client', () => {
 
           describe('with an invalid auth token', () => {
             it('will be unsuccessful', () =>
-              contract.runRejectingExample({
+              contract.runRejectingInteraction({
                 states: [
                   inState('auth token is not valid', {
                     invalidToken: 'TOKEN',
@@ -375,7 +375,7 @@ describe('broker client', () => {
         describe('publish contract advanced endpoint', () => {
           describe('with a valid auth token', () => {
             it('will be successful', () =>
-              contract.runExample({
+              contract.runInteraction({
                 states: [stateAuthTokenValid],
                 definition: willSendHttpRequest({
                   request: {
@@ -463,7 +463,7 @@ describe('broker client', () => {
           });
           describe('with an invalid auth token', () => {
             it('will be unsuccessful', () =>
-              contract.runRejectingExample({
+              contract.runRejectingInteraction({
                 states: [
                   inState('auth token is not valid', {
                     token: 'INVALID_TOKEN',

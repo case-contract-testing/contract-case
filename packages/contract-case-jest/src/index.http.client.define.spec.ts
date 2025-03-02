@@ -50,7 +50,7 @@ describe('e2e http consumer driven', () => {
 
           describe('health endpoint', () => {
             it('behaves as expected', () =>
-              contract.runExample(
+              contract.runInteraction(
                 {
                   states: [state],
                   definition: willSendHttpRequest({
@@ -73,7 +73,7 @@ describe('e2e http consumer driven', () => {
 
             describe('arbitrary status response string', () => {
               it('behaves as expected', () =>
-                contract.runExample(
+                contract.runInteraction(
                   {
                     states: [state],
                     definition: willSendHttpRequest({
@@ -101,7 +101,7 @@ describe('e2e http consumer driven', () => {
           const state = inState('Server is down');
           describe('No body server response', () => {
             it('calls server health', () =>
-              contract.runRejectingExample(
+              contract.runRejectingInteraction(
                 {
                   states: [state],
                   definition: willSendHttpRequest({
@@ -123,7 +123,7 @@ describe('e2e http consumer driven', () => {
 
           describe('specific server response', () => {
             it('calls server health', async () =>
-              contract.runRejectingExample(
+              contract.runRejectingInteraction(
                 {
                   states: [state],
                   definition: willSendHttpRequest({
@@ -154,7 +154,7 @@ describe('e2e http consumer driven', () => {
             const responseBody = { userId: stateVariable('userId') };
 
             it('returns an existing user', async () =>
-              contract.runExample(
+              contract.runInteraction(
                 {
                   states: [
                     inState('Server is up'),
@@ -185,7 +185,7 @@ describe('e2e http consumer driven', () => {
           });
           describe("when the user doesn't exist", () => {
             it('returns a user not found error', () =>
-              contract.runRejectingExample(
+              contract.runRejectingInteraction(
                 {
                   states: [
                     inState('Server is up'),
@@ -223,7 +223,7 @@ describe('e2e http consumer driven', () => {
             };
 
             it('returns an existing user', async () =>
-              contract.runExample(
+              contract.runInteraction(
                 {
                   states: [
                     inState('Server is up'),
@@ -254,7 +254,7 @@ describe('e2e http consumer driven', () => {
           });
           describe("when the user doesn't exist", () => {
             it('returns a user not found error', () =>
-              contract.runRejectingExample(
+              contract.runRejectingInteraction(
                 {
                   states: [
                     inState('Server is up'),
