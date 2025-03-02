@@ -48,7 +48,7 @@ contract verification](../../verifying-contracts/http-server/) section for detai
 
 ## Order of execution
 
-State handlers are guaranteed to be executed in the order that the states are defined in the Example:
+State handlers are guaranteed to be executed in the order that the states are defined in the interaction:
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
@@ -69,12 +69,14 @@ variables.
 
 ### Name-only states
 
-The state name describes the precondition needed for your Example to be valid. It is used as a key between the consumer and the provider to set up the preconditions.
+The state name describes the precondition needed for your interaction to be valid. It is used as a key between the consumer and the provider to set up the preconditions.
 
 Good state names are short, but descriptive. It should be possible to read the
 state name and know what the precondition is. For example, the state "a user
 with id='foo' exists" implies that there's a user object retrievable with
-id=`'foo'`. If your example needs additional properties on that user, you should ideally include it in the state name (eg `"a user with id 'foo' who has purchased some books"`).
+id=`'foo'`. If your interaction needs additional properties on that user, you
+should ideally include it in the state name (eg `"a user with id 'foo' who has
+purchased some books"`).
 
 State names need to be shared between the consumer and provider teams.
 
@@ -87,13 +89,13 @@ contract (say, in a situation where the server generates random user ids each
 time a new user is created).
 
 To make verification of these cases convenient, the state handler can return variables.
-When you define a state variable, you specify a default value, which will be available on the
-side of the contract that doesn't need state handlers. On the side of the contrac
+When you define a state variable, you specify a default value. This default value will be used 
+during contract definition.
 
 States with variables are an extension of name-only states - they have
 all of the same properties as name-only states, but can return variables too:
 
-To define a state with variables, provide an object keyed by variable names, where the values are the default values for the variables:
+To define a state with variables, provide an object keyed by variable names:
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
@@ -119,7 +121,7 @@ The default variable value is _also_ a matcher, automatically wrapped in
 handler. This ensures that the test data on both sides of the contract meet the same expectations.
 :::
 
-If you need to use the state variable in a part of your Example definition, 
+If you need to use the state variable in a part of your interaction definition, 
 you can use the [StateVariable](/docs/reference/matchers/convenience/StateVariable) test equivalence matcher:
 
 

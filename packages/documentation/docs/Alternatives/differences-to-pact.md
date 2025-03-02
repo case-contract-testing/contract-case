@@ -2,7 +2,7 @@
 
 ContractCase has a very similar philosophy to Pact.
 
-- Both Pact and ContractCase write contracts as a series of independent examples.
+- Both Pact and ContractCase write contracts as a series of independent example interactions.
 - Like Pact, in ContractCase, a failing consumer test will fail to write the contract and will fail
   the test suite.
 - Like Pact, ContractCase requires a broker to operate. To maximise Pact compatibility, ContractCase works with the Pact broker. We recommend either:

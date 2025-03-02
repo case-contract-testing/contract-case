@@ -8,8 +8,8 @@ The last step in the defining contracts lifecycle is to upload the contract to t
 
 ## ContractCase Case Files
 
-The Case File is the description of the contract, containing all of the examples
-you've defined. It can only be written or published if the tests pass. This file is the source for the examples run during contract verification.
+The Case File is the description of the contract, containing all of the interactions
+you've defined. It can only be written or published if the tests pass. This file is the source for the interactions run during contract verification.
 
 ## What is the broker for
 

@@ -166,10 +166,10 @@ the relevant [contract definition](../defining-contracts/) and [contract verific
 
 ### `triggers` / `trigger` / `testResponse` / `testErrorResponse` \[various, depending on language]
 
-Defines the trigger and test functions for multiple examples under test.
+Defines the trigger and test functions for multiple interactions under test.
 
 - `triggers`: Used to define multiple trigger and test functions, useful during verification that needs triggers.
-- `trigger`: Defines a single trigger. This is only valid on individual examples
+- `trigger`: Defines a single trigger. This is only valid on individual interactions
 - `testResponse` / `testErrorResponse`: Used to verify the response object from the trigger
 
 See the relevant [contract definition](../defining-contracts/) and [contract verification](../verifying-contracts/) guides for language-specific examples of triggers and test response functions.

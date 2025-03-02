@@ -27,8 +27,8 @@ break these rules won't be accepted.
   exceptions: Wherever possible, please use your language's type system to avoid the need
   for validation (for example, use enums where ContractCase expects a few
   different specific values of strings, like for `LogLevel`). Similarly, there may be cases where parse or serialisation errors make sense to be thrown as `ContractCaseConfigurationError` types inside your user-facing package. Use your judgement, and chat to us if you're not sure.
-- **No JSON matcher/mock example definitions go in your DSL.** The pure-json example and matcher definitions are already exposed by
-  other packages. You should not be creating JSON for Examples or Matchers in your
+- **No JSON matcher/mock example definitions go in your DSL.** The pure-json interaction and matcher definitions are already exposed by
+  other packages. You should not be creating JSON for Interactions or Matchers in your
   DSL, unless you are depending on those other translated boundary packages to do so. Long term, if a non-JSii language were to be supported, it would need its own JSON definitions (ideally, parsed from `@contract-case/case-entities-internal`).
 - **No types from `@contract-case/case-boundary` are to be exposed to users.** These types are internal implementation details.
 - **Your user-facing package may depend on other user-facing packages.** For example, a Gradle DSL can depend on the
@@ -136,7 +136,7 @@ Create a `ContractDefiner` class. It must:
    - Map the returned `BoundaryResult` into an error (if appropriate). See the error mappings section below.
    - TODO: Describe how to map trigger / testResponse - this is the only place where you may throw a `CaseConfigurationError`
 3. Expose a `runRejectingInteraction` method.
-   -You may change the name of `runRejectingInteraction` to `runXXXExample` where `XXX` is an idiomatic word for `rejecting` in your language.
+   -You may change the name of `runRejectingInteraction` to `runXxxInteraction` where `Xxx` is an idiomatic word for `rejecting` in your language (eg, the java DSL uses `runThrowingExample`).
    - This method delegates to the `BoundaryContractDefiner.runRejectingInteraction`
    - Map the `BoundaryResult` the same way as the `runInteraction` method.
    - TODO: Describe how to map trigger / testErrorResponse - this is the only place where you may throw a `CaseConfigurationError`

@@ -44,7 +44,7 @@ These are the packages that users will actually import and use in their tests. T
 Additionally, there are two cross-platform packages:
 
 - `contract-case-cli`: The cross-platform CLI used for contract manipulation and contacting a broker.
-- `case-definition-dsl`: The JSii layer that just describes the definition language for defining examples to be run. This should be renamed `contract-case-definition-dsl` for consistency. It currently re-exports the http-plugin-dsl types - long term, we should separate this into a separate
+- `case-definition-dsl`: The JSii layer that just describes the definition language for defining interactions to be run. This should be renamed `contract-case-definition-dsl` for consistency. It currently re-exports the http-plugin-dsl types - long term, we should separate this into a separate
 
 #### Documentation
 

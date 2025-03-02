@@ -23,9 +23,9 @@ However, if you wish to distribute your extension for use by others who don't us
 
 Additionally, if your matcher is likely to be of general use, consider making a pull request to add it to the core implementation.
 
-## Anatomy of a ContractCase Example
+## Anatomy of a ContractCase Interaction
 
-TODO: Describe case example file structure
+TODO: Describe case interaction file structure
 
 ## ContractCase Context
 
