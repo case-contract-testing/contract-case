@@ -161,7 +161,7 @@
               },
               "variadic": false,
               "docs": {
-                "summary": "- The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case Extending ContractCase} for a description of these strings)."
+                "summary": "- The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework Extending ContractCase} for a description of these strings)."
               }
             }
           ],
@@ -176,7 +176,7 @@
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
-              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case Extending ContractCase}."
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in {@link https://case.contract-testing.io/docs/reference/plugin-framework Extending ContractCase}."
             },
             "usage": "public toJSON(): any"
           }
@@ -207,7 +207,7 @@
               },
               "variadic": false,
               "docs": {
-                "summary": "- The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case Extending ContractCase} for a description of these strings)."
+                "summary": "- The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework Extending ContractCase} for a description of these strings)."
               }
             },
             {
@@ -264,7 +264,7 @@
               },
               "variadic": false,
               "docs": {
-                "summary": "- The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings)."
+                "summary": "- The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework) for a description of these strings)."
               }
             },
             {
@@ -310,7 +310,7 @@
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
-              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
             },
             "usage": "public toJSON(): any"
           }
@@ -453,7 +453,7 @@
             "parameters": [],
             "docs": {
               "summary": "You shouldn't need to override or call this method.",
-              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
             },
             "usage": "public toJSON(): any"
           }
@@ -1534,7 +1534,7 @@
             "parameters": [],
             "docs": {
               "summary": "You shouldn't need to override or call this method.",
-              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
             },
             "usage": "public toJSON(): any"
           }
@@ -1621,7 +1621,7 @@
             "parameters": [],
             "docs": {
               "summary": "You shouldn't need to override or call this method.",
-              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
             },
             "usage": "public toJSON(): any"
           }
@@ -2258,7 +2258,7 @@
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
-              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
             },
             "usage": "public toJSON(): any"
           }
@@ -2355,7 +2355,7 @@
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
-              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
             },
             "usage": "public toJSON(): any"
           }
@@ -2452,7 +2452,7 @@
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
-              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
             },
             "usage": "public toJSON(): any"
           }
@@ -2540,7 +2540,7 @@
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
-              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case)."
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
             },
             "usage": "public toJSON(): any"
           }

@@ -36,6 +36,12 @@ versions, as they are listed in source code / generated documentation.
 
 ## Todo list
 
+Document
+
+- [ ] `namedLookup` for looking up a named segment
+- [ ] Automatically named request / response pairs
+- [ ] stateHandlers and Config in the runExample or the main contract call
+
 Java:
 
 - [ ] Give `TriggerGroups` a builder and make it immutable, to match the rest of the builders

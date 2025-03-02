@@ -5,12 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import org.apache.http.client.fluent.Request;
 
-public class ApiClient {
+public class YourApiClient {
 
   private final ObjectMapper mapper = new ObjectMapper();
   private final String baseUrl;
 
-  public ApiClient(String baseUrl) {
+  public YourApiClient(String baseUrl) {
     this.baseUrl = baseUrl;
   }
 

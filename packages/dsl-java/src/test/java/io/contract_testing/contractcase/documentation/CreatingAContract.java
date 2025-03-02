@@ -18,8 +18,8 @@ import io.contract_testing.contractcase.definitions.mocks.http.HttpExample;
 import io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest;
 import io.contract_testing.contractcase.definitions.states.InState;
 import io.contract_testing.contractcase.definitions.states.InStateWithVariables;
-import io.contract_testing.contractcase.test.httpclient.implementation.ApiClient;
 import io.contract_testing.contractcase.test.httpclient.implementation.User;
+import io.contract_testing.contractcase.test.httpclient.implementation.YourApiClient;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +56,7 @@ public class CreatingAContract {
         IndividualSuccessTestConfigBuilder.<String>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo1) -> {
-              return new ApiClient(setupInfo1.getMockSetup("baseUrl")).getHealth();
+              return new YourApiClient(setupInfo1.getMockSetup("baseUrl")).getHealth();
             })
             .withTestResponse((status, setupInfo) -> {
             })
@@ -87,7 +87,7 @@ public class CreatingAContract {
         IndividualFailedTestConfigBuilder.<String>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo1) -> {
-              return new ApiClient(setupInfo1.getMockSetup("baseUrl")).getHealth();
+              return new YourApiClient(setupInfo1.getMockSetup("baseUrl")).getHealth();
             })
             .withTestErrorResponse((thrown, setupInfo) -> {
             })
@@ -212,7 +212,6 @@ public class CreatingAContract {
                         .query(Map.of("id", new StateVariable("userId")))
                         .build())
                 )
-                // example-extract _matchers
                 .response(new HttpResponse(HttpResponseExample.builder()
                     .status(200)
                     .body(
@@ -231,14 +230,69 @@ public class CreatingAContract {
         ),
         IndividualSuccessTestConfigBuilder.builder()
             .withTrigger(
-                (config) ->
-                    new ApiClient(config.getMockSetup("baseUrl"))
-                        .getUserQuery(config.getStateVariable("userId")))
+                (interactionSetup) ->
+                    new YourApiClient(interactionSetup.getMockSetup("baseUrl"))
+                        .getUserQuery(interactionSetup.getStateVariable("userId")))
             .withTestResponse(
                 (user, config) -> {
                   assertThat(user).isEqualTo(new User("foo", ""));
                 })
     );
     // end-example
+
+    contract.runExample(
+        new ExampleDefinition<>(
+            List.of(
+                new InStateWithVariables(
+                    "A user exists",
+                    Map.ofEntries(
+                        Map.entry("userId", "123")
+                    )
+                )
+            ),
+            new WillSendHttpRequest(HttpExample.builder()
+                .request(
+                    new HttpRequest(HttpRequestExample.builder()
+                        .method("GET")
+                        .path("/users")
+                        // The StateVariable matcher tells ContractCase that
+                        // the id in the query will be the userId from the
+                        // state setup.
+                        .query(Map.of("id", new StateVariable("userId")))
+                        .build())
+                )
+                .response(new HttpResponse(HttpResponseExample.builder()
+                    .status(200)
+                    .body(
+                        Map.ofEntries(
+                            // In the response body, we expect the
+                            // userId to be the same as the one set up
+                            // during state setup
+                            Map.entry("id", new StateVariable("userId")),
+                            // and the name may be any non-empty string
+                            // (but during the contract definition, it will be "John Smith")
+                            Map.entry("name", new AnyString("john smith"))
+                        )
+                    )
+                    .build()))
+                .build())
+        ),
+        // example-extract _trigger-http-client
+        IndividualSuccessTestConfigBuilder.builder()
+            .withTrigger(
+                (interactionSetup) ->
+                    new YourApiClient(
+                        interactionSetup.getMockSetup("baseUrl")
+                    ).getUserQuery(
+                        interactionSetup.getStateVariable("userId")
+                    )
+            )
+            // end-example
+            .withTestResponse(
+                (user, config) -> {
+                  assertThat(user).isEqualTo(new User("foo", ""));
+                })
+    );
+
   }
 }

@@ -162,7 +162,7 @@ If there is no git repository, versioning will fail. Support for non-git reposit
 ### `stateHandlers` \[various, depending on language]
 
 State setup and teardown handlers for any states this test requires. How these are specified depends on the language you're using, see
-[writing state handlers](./state-handlers) for more details.
+the relevant [contract definition](../defining-contracts/) and [contract verification](../verifying-contracts/) guides for details.
 
 ### `triggers` / `trigger` / `testResponse` / `testErrorResponse` \[various, depending on language]
 
@@ -172,7 +172,7 @@ Defines the trigger and test functions for multiple examples under test.
 - `trigger`: Defines a single trigger. This is only valid on individual examples
 - `testResponse` / `testErrorResponse`: Used to verify the response object from the trigger
 
-See [triggers](./triggers.md) for language specific details.
+See the relevant [contract definition](../defining-contracts/) and [contract verification](../verifying-contracts/) guides for language-specific examples of triggers and test response functions.
 
 ## Internal configuration options
 
@@ -199,8 +199,8 @@ compatible with the consumer that wrote the contract. To get deployment confiden
 
 :::tip NOTE
 Any configuration errors will still fail the suite regardless of
-this setting. This includes exceptions thrown during [trigger functions](./triggers), but
-does not include exceptions thrown by [testResponse functions](./triggers).
+this setting. This includes exceptions thrown during `trigger` functions, but
+does not include exceptions thrown by `testResponse` / `testErrorResponse` functions.
 :::
 
 ### `testRunId` \[string]

@@ -36,6 +36,4 @@ In order to define examples, it's useful to understand how the examples will be 
 ContractCase handles most of the lifecycle for you. Not all ContractCase Example types need to have all
 lifecycle steps defined by the user - for example, ContractCase defines and invokes its
 own triggers when testing HTTP servers. For information on which lifecycle you
-should define for each ContractCase Example type, see the [example types](/docs/reference/example-types) documentation.
-
-Next we will discuss [how to define examples](./defining-example) inside `runExample`.
+should define for each ContractCase Example type, see the relevant [contract definition](../defining-contracts/) or [contract verification](../verifying-contracts/) guides.

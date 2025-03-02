@@ -12,7 +12,7 @@ import io.contract_testing.contractcase.TestResponseFunction;
 import io.contract_testing.contractcase.Trigger;
 import io.contract_testing.contractcase.TriggerGroup;
 import io.contract_testing.contractcase.TriggerGroups;
-import io.contract_testing.contractcase.test.httpclient.implementation.ApiClient;
+import io.contract_testing.contractcase.test.httpclient.implementation.YourApiClient;
 import io.contract_testing.contractcase.test.httpclient.implementation.User;
 import java.io.IOException;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public class HttpApiExampleVerifyTest {
 
   Trigger<String> getHealth = (setupInfo) -> {
     try {
-      return new ApiClient(setupInfo.getMockSetup("baseUrl")).getHealth();
+      return new YourApiClient(setupInfo.getMockSetup("baseUrl")).getHealth();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -38,7 +38,7 @@ public class HttpApiExampleVerifyTest {
 
   Trigger<User> getUserFromConfig = (setupInfo) -> {
     try {
-      return new ApiClient(setupInfo.getMockSetup("baseUrl"))
+      return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
           .getUser(setupInfo.getStateVariable("userId"));
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -47,7 +47,7 @@ public class HttpApiExampleVerifyTest {
 
   Trigger<User> getUserByQuery = (setupInfo) -> {
     try {
-      return new ApiClient(setupInfo.getMockSetup("baseUrl"))
+      return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
           .getUserQuery(setupInfo.getStateVariable("userId"));
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -56,7 +56,7 @@ public class HttpApiExampleVerifyTest {
 
   Trigger<User> getUser123 = (setupInfo) -> {
     try {
-      return new ApiClient(setupInfo.getMockSetup("baseUrl"))
+      return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
           .getUser("123");
     } catch (IOException e) {
       throw new RuntimeException(e);

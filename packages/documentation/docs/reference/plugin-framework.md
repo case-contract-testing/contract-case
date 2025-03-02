@@ -1,23 +1,22 @@
 ---
-sidebar_position: 1
+sidebar_position: 10
 ---
 
-# Extending ContractCase
+# Plugin Framework
 
-:::caution INCOMPLETE DOCUMENT
+:::danger Draft ahead
 
-While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
+This document is currently inaccurate, as it was written before JSii was found to be unsuitable for writing plugins.
 
-Each breaking change during the beta, one more document will be completed. If this notice is present in a document, it is not yet considered complete. If you are having trouble using ContractCase or you would like a particular document prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new)
+It's still possible to write extensions - if you are planning an extension, please get in touch by opening [an issue](https://github.com/case-contract-testing/contract-case/issues/new).
+
+You can also see the core plugin packages [here](https://github.com/case-contract-testing/contract-case/tree/main/packages) - any package with `core-plugin` in the name will provide a good starting point.
+
+There are [old instructions for adding matchers](https://github.com/case-contract-testing/case/blob/main/docs/maintainers/AddingMatchers.md) in the maintainer documentation.
+
 :::
 
-The best way at present to extend case is to submit a PR adding the matcher for the core. There are [instructions for adding matchers](https://github.com/case-contract-testing/case/blob/main/docs/maintainers/AddingMatchers.md) in the maintainer documentation.
-
-:::danger
-Case is designed to support easy extension, but there is no way currently to tell ContractCase that you have an extension for it. This feature is planned after cross-language support.
-:::
-
-## Caveats for extending Case
+## Caveats for extending ContractCase
 
 Extensions can be written in any of the languages where ContractCase is available.
 However, if you wish to distribute your extension for use by others who don't use the same language, it must be written in TypeScript and transpiled with JSii.
@@ -27,6 +26,10 @@ Additionally, if your matcher is likely to be of general use, consider making a 
 ## Anatomy of a ContractCase Example
 
 TODO: Describe case example file structure
+
+## ContractCase Context
+
+TODO: Describe the context object, which is passed to all matchers and mock executors.
 
 ## Extending with a new matcher type
 
@@ -63,7 +66,7 @@ export interface CoreArrayLengthMatcher {
 }
 ```
 
-If your matcher modifies the [context object](./case-context), add fields prefixed with
+If your matcher modifies the context object, add fields prefixed with
 `case:context:` - these are automatically picked up by ContractCase and rolled
 into the context before this matcher is invoked. Because case matchers are
 recursive, this context is passed down to any child matchers.
@@ -81,7 +84,7 @@ Create a DSL function that creates your matcher type, for example:
  * @param content What
  */
 export const exactlyLike = (
-  content: AnyCaseNodeOrData
+  content: AnyCaseNodeOrData,
 ): CoreCascadingMatcher => ({
   'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   'case:matcher:child': content,
@@ -131,3 +134,7 @@ To extend case with a new Mock type:
 
 1. Implement a function that matches the `MockSetupFn` interface to give ContractCase the behaviour
 1. Implement a function that returns a json-serialisable object that the function you created in the previous step would expect.
+
+# ContractCase Contract Format
+
+Most users do not need to know the format - you can treat the contract file as opaque. TODO: Describe the format

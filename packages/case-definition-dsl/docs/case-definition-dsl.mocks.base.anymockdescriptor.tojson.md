@@ -12,7 +12,7 @@ It isn't called by any implementation directly, it's used on the javascript side
 
 Calling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.
 
-WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in \[Extending ContractCase\](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
+WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in \[Extending ContractCase\](https://case.contract-testing.io/docs/reference/plugin-framework).
 
 **Signature:**
 
@@ -24,4 +24,4 @@ toJSON(): unknown;
 
 unknown
 
-An object in the matcher format described \[in the Extending ContractCase documentation\](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case/extending-case).
+An object in the matcher format described \[in the Extending ContractCase documentation\](https://case.contract-testing.io/docs/reference/plugin-framework).

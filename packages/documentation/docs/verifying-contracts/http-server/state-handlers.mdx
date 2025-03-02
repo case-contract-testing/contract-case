@@ -5,22 +5,21 @@ sidebar_position: 4
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import OrderJs from '../examples/generated/\_defining-states-order.ts.mdx';
-import OrderJava from '../examples/generated/\_defining-states-order.java.mdx';
+import OrderJs from '../../examples/generated/\_defining-states-order.ts.mdx';
+import OrderJava from '../../examples/generated/\_defining-states-order.java.mdx';
 
 # Writing state handlers
 
-Like [triggers](./triggers), not all example types need state handlers during
-contract definition. For example, if your service under test is an HTTP client, the
-default state variables are used and you don't need to define state handlers. If
-your service under test is an HTTP server, you will need to provide state handlers.
+If the service under test is an HTTP server, you will need to provide state handlers.
 
-State handlers are defined with the `stateHandlers` key on the `ContractCaseConfig` object. The `stateHandlers` object is keyed by the state name.
+State handlers are defined with the `stateHandlers` key on the
+`ContractCaseConfig` object. The `stateHandlers` object is keyed by the state
+name.
 
 ## When are state handlers invoked?
 
 State handlers are invoked by ContractCase during setup for Examples that were defined
-with states (see the [ContractCase Example Lifecycle](/docs/defining-contracts/lifecycle)).
+with states (see the [ContractCase Example Lifecycle](/docs/reference/lifecycle)).
 
 The order of execution of state setup handlers is the same as the order that the states
 were defined in. During teardown, the state teardown handlers execute in the reverse order
@@ -33,9 +32,6 @@ were defined in. During teardown, the state teardown handlers execute in the rev
    <OrderJava />
   </TabItem>
 </Tabs>
-
-If you haven't defined states first, read the section on [defining
-states](/docs/defining-contracts/state-definitions), which must be done during contract definition.
 
 ## What should a state handler do?
 
@@ -153,7 +149,7 @@ stateHandlers: {
 ### State teardown functions
 
 State teardown functions are run after the Example has completed execution (see
-the [Example Lifecycle documentation](/docs/defining-contracts/lifecycle) for
+the [Example Lifecycle documentation](/docs/reference/lifecycle) for
 more information).
 
 State teardown functions are specified with the `teardown` key on a state setup object:

@@ -1,0 +1,73 @@
+---
+sidebar_label: Contract Files
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Js from '../examples/generated/\_defining-an-example.ts.mdx';
+import Java from '../examples/generated/\_defining-an-example.java.mdx';
+
+
+import StateJs from '../examples/generated/\_defining-an-example-states.ts.mdx';
+import StateJava from '../examples/generated/\_defining-an-example-states.java.mdx';
+
+# Contract Files
+
+
+In ContractCase, a contract is between two specific deployable things (eg, the user
+service, and the web frontend). It's written down in a contract file.
+
+## What's in a contract?
+
+The contract file is written by ContractCase during contract definition. It
+describes all the interactions that the consumer expects the provider to
+implement. 
+
+Each of these interactions are described by example - meaning that they're a
+record of specific expectations that the consumer has:
+
+  - Expected Request 
+     * For example: an HTTP `GET` for `/users/123`
+  - Example Response
+    * For example: a `200 OK` response containing a `User` object as JSON
+
+To make it easy to reason about the examples in a contract, each
+example runs independently. This avoids complex and potentially brittle
+integration tests. To achieve this
+independence, any preconditions are handled by
+state setup functions. This means each interaction contains:
+
+  - Provider state(s) 
+     * For example: "the server has a user named `John Smith` with ID `123`"
+  - Expected Request 
+     * For example: an HTTP `GET` for `/users/123`
+  - Example Response
+    * For example: a `200 OK` response containing a `User` object as JSON
+
+The contract file contains at least one - but usually more - of these examples,
+plus some metadata about the contract. This metadata includes things like the
+consumer that generated it, the producer it is for, etc.
+
+Here's a concrete example of one interaction:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <StateJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <StateJava />
+  </TabItem>
+</Tabs>
+
+## Do I need to open the contract file?
+
+No, you shouldn't need to open the contract file. It's expected to be opaque to
+the user.
+
+ContractCase should describe everything you need to know about it in the output
+of a test run. If you run into problems, you can set the log level to debug to
+find out what is happening during your test run, and this should provide
+everything you need.
+
+Curious users are welcome to look in the file, of course. It's just JSON. If you do, take care not to modify it, or the expectations of the consumer that you verify won't be accurate.

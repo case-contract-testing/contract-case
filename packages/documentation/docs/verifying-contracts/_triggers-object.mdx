@@ -1,0 +1,63 @@
+
+# Triggers object
+
+Unlike 
+
+In both contract definition and contract verification, you can provide a `TriggerGroupMap` object to your `CaseConfig`, under the key `triggers`.
+
+Each `TriggerGroup` is an object keyed by request name, where each value is of type:
+
+```ts
+{
+  trigger: TriggerFunction;
+  testResponses: Record<string, TestResponseFunction>;
+  testErrorResponses: Record<string, TestErrorResponseFunction>;
+}
+```
+
+If you provide this `triggers` object, ContractCase will first find the request trigger,
+then find the matching `testResponse` or `testErrorResponse` function associated
+with that trigger. The test functions are associated with the trigger because
+sometimes the same response needs to be tested differently when it is received by
+different triggers.
+
+```ts
+{
+  triggers: new TriggerGroupMap()
+    .addTriggerGroup('an http "GET" request to "/health" without a body', {
+      trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
+      testResponses: {
+        'a (200) response with body an object shaped like {status: "up"}': (
+          health,
+        ) => {
+          expect(health).toEqual('up');
+        },
+        'a (200) response with body an object shaped like {status: <any string>}':
+          (health) => expect(typeof health).toBe('string'),
+      },
+      testErrorResponses: {
+        'a (httpStatus 4XX | 5XX) response without a body': (e) => {
+          expect(e).toBeInstanceOf(ApiError);
+        },
+        'a (503) response with body an object shaped like {status: "down"}': (
+          e,
+        ) => {
+          expect(e).toBeInstanceOf(ApiError);
+        },
+      },
+    })
+    .addTriggerGroup(
+      'an http "GET" request to "/health" with the following headers {accept: "application/json"} without a body',
+      {
+        trigger: (config: HttpRequestConfig) => api(config.baseUrl).health(),
+        testResponses: {
+          'a (200) response with body an object shaped like {status: "up"}': (
+            health,
+          ) => {
+            expect(health).toEqual('up');
+          },
+        },
+      },
+    );
+}
+```

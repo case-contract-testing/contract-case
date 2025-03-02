@@ -18,7 +18,7 @@ export abstract class AnyMatcher {
    * Only use a types prefixed with `_case:` if you wish to create a special case
    * for a matching behaviour that is already provided by a core ContractCase matcher.
    *
-   * @param matcherType - The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case | Extending ContractCase} for a description of these strings).
+   * @param matcherType - The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework | Extending ContractCase} for a description of these strings).
    *
    */
   constructor(matcherType: string) {
@@ -32,9 +32,9 @@ export abstract class AnyMatcher {
    *
    * WARNING: Do not return a string from this method. You must instead return
    * an object that can be serialised to JSON following the matcher format
-   * described in {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case | Extending ContractCase}.
+   * described in {@link https://case.contract-testing.io/docs/reference/plugin-framework | Extending ContractCase}.
    *
-   * @returns An object in the matcher format described {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case | in the Extending ContractCase documentation}
+   * @returns An object in the matcher format described {@link https://case.contract-testing.io/docs/reference/plugin-framework | in the Extending ContractCase documentation}
    */
   toJSON(): unknown {
     return Object.entries(this).reduce(
@@ -63,7 +63,7 @@ export abstract class AnyMatcherWithExample extends AnyMatcher {
    * Only use a type prefixed with `_case:` if you wish to create a special case
    * for a matching behaviour that is already provided by a core ContractCase matcher.
    *
-   * @param matcherType - The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework/extending-case | Extending ContractCase} for a description of these strings).
+   * @param matcherType - The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework | Extending ContractCase} for a description of these strings).
    * @param example - The data that will be used as the example for this matcher
    */
   constructor(matcherType: string, example: unknown) {

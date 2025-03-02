@@ -1,0 +1,18 @@
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CreatingJs from '../../examples/generated/_creating-a-contract.ts.mdx';
+import CreatingJava from '../../examples/generated/_creating-a-contract.java.mdx';
+
+import WritingJava from '../../examples/generated/_end-record.java.mdx';
+
+By far the most common contract definition is an http client contract. Most http
+contracts are json contracts. 
+
+For each interaction in an http client contract, you describe:
+
+* *The server state*: This is usually a human readable string, eg "a user exists with ID=123".
+* *The http request*: This is the request your client will send.
+* *The http response*: This is what you expect the server to respond with in the
+  given server state. Note that this is a minimal response - if your consumer
+  doesn't need a particular field, you don't need to include it in the contract.

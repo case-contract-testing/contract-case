@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Consumers and providers
 
 ContractCase is a consumer-driven contract testing framework. This means that
@@ -107,3 +111,27 @@ you can produce the requests expected by the server.
   - Confirms that the request matches the expectation in the contract
   - Sends the response
   - Calls the test response function to check that the returned object was understood by your client.
+
+### Some theory
+
+With message-based communication, it's clear which side should be the consumer - as the message sender
+provides messages, and the message receiver consumes them.
+
+However, with request/response pairs like HTTP and RPC calls, it's less clear.
+Although some contract testing frameworks consider the client to always be the
+consumer, technically in a request / response pair
+like HTTP and RPC calls, either side could be considered the consumer:
+
+- The client provides requests and consumes responses
+- The server consumes requests and provides responses
+
+Usually, it's best practice to consider the client as the consumer - as
+the server exists in "service" of the client, so the communication is _for_ the client.
+However, in some cases it might make sense to consider the server as the
+consumer (for example, in remote logging frameworks, where the client side might
+not even read the response).
+
+Definition: **The consumer is the side of the communication boundary that wants the result of the communication. Usually, this is the client.**
+
+ContractCase supports considering either the client or the server as the
+consumer; if you are unsure, we recommend starting with your client as the consumer.

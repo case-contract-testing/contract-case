@@ -22,7 +22,7 @@ import io.contract_testing.contractcase.definitions.mocks.http.HttpExample;
 import io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest;
 import io.contract_testing.contractcase.definitions.states.InState;
 import io.contract_testing.contractcase.definitions.states.InStateWithVariables;
-import io.contract_testing.contractcase.test.httpclient.implementation.ApiClient;
+import io.contract_testing.contractcase.test.httpclient.implementation.YourApiClient;
 import io.contract_testing.contractcase.test.httpclient.implementation.User;
 import io.contract_testing.contractcase.test.httpclient.implementation.UserNotFoundException;
 import java.io.IOException;
@@ -42,7 +42,7 @@ public class HttpApiExampleTest {
 
   Trigger<String> getHealth = (setupInfo) -> {
     try {
-      return new ApiClient(setupInfo.getMockSetup("baseUrl")).getHealth();
+      return new YourApiClient(setupInfo.getMockSetup("baseUrl")).getHealth();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -158,7 +158,7 @@ public class HttpApiExampleTest {
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
               try {
-                return new ApiClient(setupInfo.getMockSetup("baseUrl"))
+                return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
                     .getUser(setupInfo.getStateVariable("userId"));
               } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -195,7 +195,7 @@ public class HttpApiExampleTest {
         IndividualSuccessTestConfigBuilder.<User>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
-                return new ApiClient(setupInfo.getMockSetup("baseUrl"))
+                return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
                     .getUserQuery(setupInfo.getStateVariable("userId"));
             })
             .withTestResponse((user, setupInfo) -> {
@@ -222,7 +222,7 @@ public class HttpApiExampleTest {
         IndividualFailedTestConfigBuilder.<User>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
-                return new ApiClient(setupInfo.getMockSetup("baseUrl"))
+                return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
                     .getUserQuery(setupInfo.getStateVariable("userId"));
             })
             .withTestErrorResponse((exception, setupInfo) -> {

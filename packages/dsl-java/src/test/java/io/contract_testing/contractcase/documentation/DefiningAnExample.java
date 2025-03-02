@@ -53,7 +53,7 @@ public class DefiningAnExample {
                     .status(200)
                     .body(
                         Map.ofEntries(
-                            Map.entry("status", "up"),
+                            Map.entry("userId", "foo"),
                             Map.entry("name", "john smith")
                         )
                     )

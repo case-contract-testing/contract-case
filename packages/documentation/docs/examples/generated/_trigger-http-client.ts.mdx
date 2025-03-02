@@ -1,0 +1,6 @@
+```ts
+          trigger: (interactionSetup: HttpRequestConfig) =>
+            new YourApi(interactionSetup.mock.baseUrl).getUser(
+              interactionSetup.getStateVariable('userId'),
+            ),
+```

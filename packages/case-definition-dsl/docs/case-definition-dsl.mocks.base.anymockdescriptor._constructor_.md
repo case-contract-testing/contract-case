@@ -41,7 +41,7 @@ string
 
 </td><td>
 
-The type string for this mock description (see \[Extending ContractCase\](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings).
+The type string for this mock description (see \[Extending ContractCase\](https://case.contract-testing.io/docs/reference/plugin-framework) for a description of these strings).
 
 </td></tr>
 <tr><td>

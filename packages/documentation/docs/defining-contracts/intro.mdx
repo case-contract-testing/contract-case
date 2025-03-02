@@ -1,0 +1,121 @@
+---
+sidebar_position: 1
+sidebar_label: Creating your contract
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CreatingJs from '../examples/generated/\_creating-a-contract.ts.mdx';
+import CreatingJava from '../examples/generated/\_creating-a-contract.java.mdx';
+
+import WritingJava from '../examples/generated/\_end-record.java.mdx';
+
+
+import ConfigJs from '../examples/generated/\_defining-an-example-config.ts.mdx';
+import ConfigJava from '../examples/generated/\_defining-an-example-config.java.mdx';
+
+
+
+import Defining from './\_creating-a-contract.mdx';
+
+# Defining Contracts
+
+<Defining/>
+
+
+# Creating a contract
+
+Every contract begins with a `defineContract` call, which names the
+consumer and provider pairs that this contract is for. Additional configuration
+can be provided at this point, see [the configuration options reference](/docs/reference/configuring) for details.
+
+For example, defining a contract might look like:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <CreatingJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <CreatingJava />
+  </TabItem>
+</Tabs>
+
+In some languages, you may also need to end the contract once all of your tests
+have completed. This tells ContractCase to write the contract file to disk.
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    ```
+    // With Typescript/Javascript, there is no need 
+    // to explicitly end the contract as the
+    // `defineContract` Jest DSL handles this for you
+    ```
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <WritingJava />
+  </TabItem>
+</Tabs>
+
+
+## How to name your consumers and providers
+
+The names of your consumer and provider should be the human readable name of
+your consumer / provider deployable - for example, "ExampleCo desktop app" or
+"User Profile Service".
+
+The names should be _unique_ within your deployment ecosystem -
+if you end up with two implementations of the same service that might deploy at
+different times, they should have
+different names. For example, if you have an existing deployable called
+"Foo CLI", and some of your engineers decide they should rewrite it in Rust,
+their consumer / provider name can't also be "Foo CLI" - ideally, it should be something
+that the people on your teams will understand - it could be something like "Foo CLI (Rust)"
+
+:::tip Note
+There's no reason you can't have a consumer be its own provider - this is common
+in the case of queues that a service both reads and writes to. At verification
+time, you would always verify the current version of the contract, and also any
+previous versions that might reasonably still have messages in the queue
+:::
+
+## Choosing which side is the consumer
+
+In consumer-driven contract testing, we define the contract on the consumer
+side, and verify it at the provider side.
+
+Unlike other contract testing systems, the client in ContractCase isn't always
+the consumer. However, although it's _possible_ for the server to be the consumer,
+this is a rare use case.
+If it's your first time with contract testing, we strongly
+recommend you choose the client to be the consumer.
+
+If you're unsure, each specific contract definition section starts with some guidance on the
+use cases that it's appropriate for.
+
+## Contracts don't have to be all one type of communication
+
+Although each guide is written assuming that all interactions in your contract
+are of the same type, there's no reason you can't mix them up in the same
+contract. For example, a consumer might consume messages and http responses from
+the same provider. ContractCase supports this - just mix definitions within the same .
+
+## Circular contract dependencies
+
+Sometimes, service A is a consumer of service B, but service B also consumes service A.
+For example, Service A might be a client of some http endpoints on service B;
+while Service B might be a client of different http endpoints on Service A.
+
+```
+Service A -> Service B
+Service A <- Service B
+```
+
+This is completely supported by ContractCase. Just:
+
+- Define a contract at Service A for Service B
+- Set up contract verification on Service B
+- Define a contract at Service B for service A.
+- Set up contract verification on Service A
+
+You may complete these steps in any practical order - a circular dependency
+introduces no additional challenges for contract testing.

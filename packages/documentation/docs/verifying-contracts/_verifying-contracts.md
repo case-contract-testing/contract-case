@@ -1,9 +1,4 @@
-:::caution INCOMPLETE DRAFT
-
-While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
-
-Each breaking change during the beta, one more document will be completed. If this notice is present in a document, it is not yet considered complete. If you are having trouble using ContractCase or you would like a particular document prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new)
-:::
+Once you've written your contract, you'll want to verify it against the provider.
 
 ## Downloading contracts to verify
 
@@ -38,7 +33,11 @@ The downloaded contracts will be in `./temp-contracts`
 
 ## Verifying a contract
 
-Depending on what is in your contract, you may need to set [triggers](/docs/reference/triggers) or [state handlers](/docs/reference/state-handlers). If you need to set these, and don't, then ContractCase will fail with a configuration error.
+Depending on what is in your contract, you may need to set triggers or state
+handlers.
+
+If you need to set these, and don't, then ContractCase will fail with
+a configuration error.
 
 ```ts
 verifyContract(

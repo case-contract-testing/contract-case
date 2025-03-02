@@ -111,7 +111,7 @@ export abstract class AnyMockDescriptor {
    * matchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case
    * for a matching behaviour that is already provided by a core ContractCase mock.
    *
-   * @param mockType - The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case) for a description of these strings).
+   * @param mockType - The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework) for a description of these strings).
    *
    *
    */
@@ -134,9 +134,9 @@ export abstract class AnyMockDescriptor {
    *
    * WARNING: Do not return a string from this method. You must instead return
    * an object that can be serialised to JSON following the matcher format
-   * described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
+   * described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework).
    *
-   * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case/extending-case).
+   * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/reference/plugin-framework).
    */
   toJSON(): unknown {
     return Object.entries(this).reduce(

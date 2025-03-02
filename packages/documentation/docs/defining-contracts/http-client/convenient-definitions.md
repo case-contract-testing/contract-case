@@ -1,10 +1,10 @@
 ---
-sidebar_position: 10
+sidebar_position: 8
 ---
 
-# Plugin Framework
+# Ways to write contracts easily and conveniently
 
-:::caution INCOMPLETE DOCUMENT
+:::caution DRAFT
 
 While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
 

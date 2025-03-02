@@ -41,9 +41,9 @@ export abstract class AnyState {
    *
    * WARNING: Do not return a string from this method. You must instead return
    * an object that can be serialised to JSON following the matcher format
-   * described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
+   * described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework).
    *
-   * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/reference/plugin-framework/extending-case).
+   * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/reference/plugin-framework).
    */
   toJSON(): unknown {
     return Object.entries(this).reduce(

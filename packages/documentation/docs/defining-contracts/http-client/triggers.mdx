@@ -1,0 +1,61 @@
+---
+sidebar_position: 7
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import TriggerTypeJs from '../../examples/generated/\_trigger-type.ts.mdx';
+import TriggerTypeJava from '../../examples/generated/\_trigger-type.java.mdx';
+
+
+import TriggerHttpClientJs from '../../examples/generated/\_trigger-http-client.ts.mdx';
+import TriggerHttpClientJava from '../../examples/generated/\_trigger-http-client.java.mdx';
+
+# Triggers
+
+When writing a contract for an HTTP client, you will need to define a `trigger` function for each interaction.
+In it, you should call your real client code
+here, and return the business object that your client returns. 
+
+### Interactions where the client code succeeds
+
+If your interaction models a success (ie, it doesn't throw any exceptions or reject any promises) then:
+
+1. ContractCase calls your `trigger` function to invoke the client code for that interaction.
+2. If there was no exception, it passes the object returned from the trigger to your `testResponse` function
+3. If there was an exception from the `trigger`, the test is marked as failed,
+and the contract definition will not be successful.
+
+### Interactions where the client code is expected to fail
+
+If your interaction models a failure (ie, it doesn't return an object, and
+instead throws an exception / rejects a promise / completes a future
+exceptionally), then: 
+
+1. ContractCase calls your `trigger` function to invoke the client code for that interaction.
+2. If there was no exception, the test is marked as failed,
+and the contract definition will not be successful.
+3. If there was an exception from the `trigger`, that exception is passed to your `testErrorResponse` function
+
+
+## Writing a trigger
+
+Triggers are functions with one `InteractionSetup` argument. The interaction setup
+object contains the details of the mock that ContractCase has set up, 
+and the resolved values for any state variables. 
+
+In an HTTP client test, this will include the base URL for the mock server:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+   <TriggerHttpClientJs />
+
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <TriggerHttpClientJava />
+  </TabItem>
+</Tabs>
+

@@ -1,0 +1,11 @@
+```java
+        IndividualSuccessTestConfigBuilder.builder()
+            .withTrigger(
+                (interactionSetup) ->
+                    new YourApiClient(
+                        interactionSetup.getMockSetup("baseUrl")
+                    ).getUserQuery(
+                        interactionSetup.getStateVariable("userId")
+                    )
+            )
+```

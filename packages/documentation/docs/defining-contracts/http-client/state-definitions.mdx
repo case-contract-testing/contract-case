@@ -4,17 +4,17 @@ sidebar_position: 5
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import StatesJs from '../examples/generated/_defining-states.ts.mdx';
-import StatesJava from '../examples/generated/_defining-states.java.mdx';
+import StatesJs from '../../examples/generated/_defining-states.ts.mdx';
+import StatesJava from '../../examples/generated/_defining-states.java.mdx';
 
-import OrderJs from '../examples/generated/_defining-states-order.ts.mdx';
-import OrderJava from '../examples/generated/_defining-states-order.java.mdx';
+import OrderJs from '../../examples/generated/_defining-states-order.ts.mdx';
+import OrderJava from '../../examples/generated/_defining-states-order.java.mdx';
 
-import VariableJs from '../examples/generated/_state-variables.ts.mdx';
-import VariableJava from '../examples/generated/_state-variables.java.mdx';
+import VariableJs from '../../examples/generated/_state-variables.ts.mdx';
+import VariableJava from '../../examples/generated/_state-variables.java.mdx';
 
-import AllJs from '../examples/generated/_state-matchers.ts.mdx';
-import AllJava from '../examples/generated/_state-matchers.java.mdx';
+import AllJs from '../../examples/generated/_state-matchers.ts.mdx';
+import AllJava from '../../examples/generated/_state-matchers.java.mdx';
 
 # Defining service states
 
@@ -22,7 +22,6 @@ Some interactions return different responses in different states. For example, a
 to get a user's details would return differently depending on whether or not the user exists.
 
 In order to indicate these differences, state definitions are used. 
-
 
 Each state is identified with a name string. The best practice is to use a human
 readable, descriptive string - for example:
@@ -41,26 +40,11 @@ There are two parts to service states:
 1. **State definitions** - A state definition indicates the need for a precondition with the `inState()` DSL function at contract definition time (like the example above)
 2. **State handlers** - A state handler is a function that can be called to set up the service in a particular state.
 
-This page describes state definitions. 
+During HTTP client contract definition, you only need to reference the state definition. 
 
-On one side of the interaction, 
-the state is assumed (for example, in an http request, 
-the client side assumes that the server is in the appropriate state). 
-On the other side, state handlers are used to set up each interaction before execution.
-
-Whether or not you also need to provide a state handler depends on the Example type that
-you're defining. Most of the time, contract definition will be done on the client side, 
-so most of the time you won't need to provide a state handler.
-For more information on state handlers, see the [state handler reference](/docs/reference/state-handlers)
-
-For example, with HTTP Examples, state handlers are only
-required at the server side. So:
-
-- A contract defined by an HTTP client will need state handlers during contract verification.
-- A contract defined by an HTTP server will need state handlers during contract definition.
-
-For a full list of the Example types and when state handlers are required, see [the Example types reference](/docs/reference/example-types). 
-ContractCase will warn helpfully if you need state handlers and do not provide them.
+Later, when the provider team go to
+verify the contract, they'll need to implement state handlers (see the [http
+contract verification](../../verifying-contracts/http-server/) section for details).
 
 ## Order of execution
 
@@ -147,8 +131,3 @@ you can use the [StateVariable](/docs/reference/matchers/convenience/StateVariab
    <AllJava />
   </TabItem>
 </Tabs>
-
-
-### Next steps
-
-Next, read about how to [relax the test constraints](./relaxing-tests) to make it easy for your contract to be verified.

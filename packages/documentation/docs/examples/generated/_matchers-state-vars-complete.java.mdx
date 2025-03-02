@@ -1,0 +1,49 @@
+```java
+    contract.runExample(
+        new ExampleDefinition<>(
+            List.of(
+                new InStateWithVariables(
+                    "A user exists",
+                    Map.ofEntries(
+                        Map.entry("userId", "123")
+                    )
+                )
+            ),
+            new WillSendHttpRequest(HttpExample.builder()
+                .request(
+                    new HttpRequest(HttpRequestExample.builder()
+                        .method("GET")
+                        .path("/users")
+                        // The StateVariable matcher tells ContractCase that
+                        // the id in the query will be the userId from the
+                        // state setup.
+                        .query(Map.of("id", new StateVariable("userId")))
+                        .build())
+                )
+                .response(new HttpResponse(HttpResponseExample.builder()
+                    .status(200)
+                    .body(
+                        Map.ofEntries(
+                            // In the response body, we expect the
+                            // userId to be the same as the one set up
+                            // during state setup
+                            Map.entry("id", new StateVariable("userId")),
+                            // and the name may be any non-empty string
+                            // (but during the contract definition, it will be "John Smith")
+                            Map.entry("name", new AnyString("john smith"))
+                        )
+                    )
+                    .build()))
+                .build())
+        ),
+        IndividualSuccessTestConfigBuilder.builder()
+            .withTrigger(
+                (interactionSetup) ->
+                    new YourApiClient(interactionSetup.getMockSetup("baseUrl"))
+                        .getUserQuery(interactionSetup.getStateVariable("userId")))
+            .withTestResponse(
+                (user, config) -> {
+                  assertThat(user).isEqualTo(new User("foo", ""));
+                })
+    );
+```

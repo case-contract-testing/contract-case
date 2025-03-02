@@ -1,18 +1,20 @@
 # vs end-to-end tests
 
-:::caution INCOMPLETE DOCUMENT
-
-While ContractCase is in beta, some of the documentation is incomplete or bullet points only.
-
-Each breaking change during the beta, one more document will be completed. If this notice is present in a document, it is not yet considered complete. If you are having trouble using ContractCase or you would like a particular document prioritised, please [open an issue](https://github.com/case-contract-testing/case/issues/new)
-:::
-
 If you want to do end-to-end tests for confidence that you can safely deploy
-service X, then, you need to do an end-to-end test with exactly what will be in
-production at the time that service X will deploy. Most teams doing this at
-scale keep a copy of th production environment, which is usually not the same
-as what will be in production at deployment time (because of other deployments
-and race conditions in the pipeline).
+service X, then you need to do an end-to-end test with exactly what will be in
+production at the time that service X will deploy.
+
+Most teams doing end-to-end tests at scale keep a copy of the production
+environment they can stage their deployments in.
+This staging environment is usually not exactly the same asa
+what will be in production at deployment time - as other teams may be staging releases at the same time.
+
+This means that full confidence is usually impractical - if you wanted to do a
+full deploy confidence test, you'd need to freeze the environment (and any other
+deploys) each time you want to try to deploy something. Then you'd run all the tests, and if they passed, you could
+only unfreeze the environment once the service has
+been deployed to production. If the tests fail, you'd have to roll back staging
+to the copy of production again, and try the next service. For most teams, this turns out to be prohibitively expensive.
 
 Additionally, contract testing has the following advantages:
 

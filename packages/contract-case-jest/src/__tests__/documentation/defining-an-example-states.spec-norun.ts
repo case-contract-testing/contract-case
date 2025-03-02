@@ -13,18 +13,7 @@ import {
   anyString,
   HttpRequestConfig,
 } from '@contract-case/contract-case-jest';
-
-class YourApi {
-  // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-unused-vars
-  getUser(_arg0: string): Promise<unknown> {
-    throw new Error('Method not implemented.');
-  }
-  baseUrl: string;
-
-  constructor(baseUrl: string) {
-    this.baseUrl = baseUrl;
-  }
-}
+import { YourApi } from './YourApi.js';
 
 // ignore-extract
 defineContract(
@@ -257,20 +246,72 @@ defineContract(
           }),
         },
         {
-          trigger: (config: HttpRequestConfig) =>
-            new YourApi(config.mock.baseUrl).getUser(
-              config.getStateVariable('userId'),
+          trigger: (interactionSetup: HttpRequestConfig) =>
+            new YourApi(interactionSetup.mock.baseUrl).getUser(
+              interactionSetup.getStateVariable('userId'),
             ),
 
-          testResponse: (user, config: HttpRequestConfig) => {
+          testResponse: (user, interactionSetup: HttpRequestConfig) => {
             expect(user).toEqual({
-              userId: config.getStateVariable('userId'),
+              userId: interactionSetup.getStateVariable('userId'),
               name: 'John Smith',
             });
           },
         },
       );
       // end-example
+
+      await contract.runExample(
+        {
+          states: [
+            inState('Server is up'),
+            // Here we tell ContractCase that there's
+            // a userId variable returned by this state.
+            // We give the example "foo", to be used
+            // during the contract definition.
+            //
+            // During contract verification, the value of userId
+            // value will be provided by the state setup function
+            // in the provider test.
+            inState('A user exists', { userId: 'foo' }),
+          ],
+          definition: willSendHttpRequest({
+            request: {
+              method: 'GET',
+              path: '/users',
+              // This matcher tells ContractCase that
+              // the id in the query will be whatever
+              // the userId is
+              query: { id: stateVariable('userId') },
+            },
+            response: {
+              status: 200,
+              body: {
+                // In the response body, we expect the
+                // userId to be present
+                userId: stateVariable('userId'),
+                // and the name may be any non-empty string
+                name: anyString('John Smith'),
+              },
+            },
+          }),
+        },
+        {
+          // example-extract _trigger-http-client
+          trigger: (interactionSetup: HttpRequestConfig) =>
+            new YourApi(interactionSetup.mock.baseUrl).getUser(
+              interactionSetup.getStateVariable('userId'),
+            ),
+          // end-example
+
+          testResponse: (user, interactionSetup: HttpRequestConfig) => {
+            expect(user).toEqual({
+              userId: interactionSetup.getStateVariable('userId'),
+              name: 'John Smith',
+            });
+          },
+        },
+      );
     });
   },
 );

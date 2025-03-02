@@ -1,98 +1,21 @@
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import CreatingJs from '../examples/generated/_creating-a-contract.ts.mdx';
-import CreatingJava from '../examples/generated/_creating-a-contract.java.mdx';
-
-import WritingJava from '../examples/generated/_end-record.java.mdx';
 
 
-ContractCase is [_consumer
-driven_](https://www.martinfowler.com/articles/consumerDrivenContracts.html),
+ContractCase is [_consumer driven_](https://www.martinfowler.com/articles/consumerDrivenContracts.html),
 meaning that we define the contract on the side of the communication boundary that consumes information.
 Later, that contract is verified on the side of the communication boundary where information is provided.
 
+Consumer driven contract testing has three main steps:
+
+1. **Contract definition** (this section), where you describe the expectations that the consumer has about the provider
+2. [Contract verification](../verifying-contracts/), where you verify that the provider meets the expectations of its consumers
+3. [Deploy checks](../deployment-checks.md), where at deploy time, you ensure that the thing you're about to deploy is compatible with the environment you're deploying in. That is:
+     * Any expectations it has about providers have been verified by the version(s) of providers that are currently deployed`
+     * Any expectations from any consumers that are already deployed have been verified
+
 This section describes how to write contracts, and details the lifecycle of an example
-during contract definition. If you already have a contract,
+during contract definition. 
+
+If you already have a contract,
 and you want to know how to verify
 it, you can skip to [contract verification](/docs/verifying-contracts).
-
-## Which side is the consumer?
-
-With message-based communication, it's clear which side should be the consumer - as the message sender
-provides messages, and the message receiver consumes them.
-
-However, with request/response pairs like HTTP and RPC calls, it's less clear.
-Although some contract testing frameworks consider the client to always be the
-consumer, technically in a request / response pair
-like HTTP and RPC calls, either side could be considered the consumer:
-
-- The client provides requests and consumes responses
-- The server consumes requests and provides responses
-
-Usually, it's best practice to consider the client as the consumer - as
-the server exists in "service" of the client, so the communication is _for_ the client.
-However, in some cases it might make sense to consider the server as the
-consumer (for example, in remote logging frameworks, where the client side might
-not even read the response).
-
-:::tip Definition
-
-The consumer is the side of the communication boundary that wants the result of the communication. Usually, this is the client.
-:::
-
-ContractCase supports considering either the client or the server as the
-consumer; if you are unsure, we recommend starting with your client as the consumer.
-
-## What is in a contract?
-
-In ContractCase, a contract is a series of examples, not a specification. Each example
-is independent. To achieve this independence, any preconditions are handled by
-state setup functions. This means each example contains:
-
-- Each example contains:
-  - Example Request (eg, an HTTP `GET` for `/users/12`)
-  - Provider state (eg `"User 12 exists"`)
-  - Example Response (eg, a `200 OK` response containing a `User` object as JSON)
-
-A contract contains one or more of these examples.
-
-## Creating a contract
-
-You can begin contract definition with a `defineContract` call, which names the
-consumer and provider pairs that this contract is for. Additional configuration
-can be provided at this point, see [the configuration options reference](/docs/reference/configuring) for details.
-
-For example, defining a contract might look like:
-
-<Tabs groupId="language">
-  <TabItem value="js" label="Typescript">
-    <CreatingJs />
-  </TabItem>
-  <TabItem value="java" label="Java">
-   <CreatingJava />
-  </TabItem>
-</Tabs>
-
-
-In a contract, you can have as many `runExample` and `runRejectingExample`
-calls as you like. When all the tests are over, you may need to tell ContractCase to write the contract to disk:
-
-
-<Tabs groupId="language">
-  <TabItem value="js" label="Typescript">
-    ```
-    // With Typescript/Javascript, there is no need 
-    // to explictly write the contract as the
-    // `defineContract` Jest DSL handles this for you
-    ```
-  </TabItem>
-  <TabItem value="java" label="Java">
-   <WritingJava />
-  </TabItem>
-</Tabs>
-
-
-## Next steps
-
-Next, we will discuss the [ContractCase Example Lifecycle](./lifecycle).

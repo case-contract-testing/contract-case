@@ -1,0 +1,125 @@
+---
+sidebar_position: 8
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import TriggerTypeJs from '../../examples/generated/\_trigger-type.ts.mdx';
+import TriggerTypeJava from '../../examples/generated/\_trigger-type.java.mdx';
+
+
+import TriggerHttpClientJs from '../../examples/generated/\_trigger-http-client.ts.mdx';
+import TriggerHttpClientJava from '../../examples/generated/\_trigger-http-client.java.mdx';
+
+# Testing responses
+
+Once you've written your [triggers](./triggers), you'll need to write either a
+`testResponse` or a `testErrorResponse` function.
+
+These are used to confirm that your client understood the response from the server. 
+These functions are separate from the trigger so that ContractCase can tell the
+difference between a problem in your client code and a problem in the
+verification of the object returned from your client code. 
+
+## Test Response Function
+
+Use this if your client code is expected to succeed during this interaction.
+
+In a test response function, you should assert that your client code has successfully understood
+the response and marshalled it into whatever business object the rest of your code expects.
+
+## Test Error Response Function
+
+Use this if your client code is expected to complete with an exception / rejected promise during an interaction.
+
+In a test error response function, you should assert that your client code has correctly understood
+the response and marshalled it into whatever failed exception / error object the rest of your code expects.
+
+```ts
+testErrorResponse: (error: Error, config: MockConfig): Promise<unknown> | void
+```
+
+This is equivalent to the `testResponse` function, but for `trigger` calls that are expected to fail with an error.
+
+### With `runExample`
+
+If we define this example at the client side, we will also need a trigger, and a way to test the response object:
+
+```ts
+await contract.runExample({
+    states: [
+        inState('Server is up'),
+        inState('A user with id "foo" exists'),
+    ],
+    definition: willSendHttpRequest({
+        request: {
+            method: 'GET',
+            path: '/users/foo',
+        },
+        response: {
+            status: 200,
+            body: {
+                userId: 'foo'
+                name: 'john smith',
+            },
+        },
+    }),
+  },
+  {
+    // The trigger is the invocation of your client code
+    // It receives some configuration with details of how to contact the mock
+    // This function should return the business object that your API returns
+    trigger: (config: HttpRequestConfig) =>
+        new YourApi(config.baseUrl).getUser('foo'),
+    // The testResponse function is used to check the business object.
+    // This is an important step, as without it, ContractCase can't be sure that your
+    // calling code can understand the objects that your code is generating.
+    //
+    // It receives the object that was returned by your trigger
+    // If your trigger throws an error, the test will fail
+    testResponse: (user) => {
+        expect(user).toEqual({ userId: 'foo', name: 'john smith' });
+    }
+})
+```
+
+### With `runRejectingExample`
+
+If your API is expected to throw an error during the invocation, then you should use `runRejectingExample` instead of `runExample`, and use `testErrorResponse` instead of `testResponse`:
+
+```ts
+await contract.runRejectingExample(
+  {
+    states: [inState('Server is up'), inState('No users exist')],
+    definition: willSendHttpRequest({
+      request: {
+        method: 'GET',
+        path: '/users/foo',
+      },
+      response: {
+        status: 404,
+      },
+    }),
+  },
+  {
+    // The trigger is the invocation of your client code
+    // It receives some configuration with details of how to contact the mock
+    // This function should return the business object that your API returns
+    trigger: (config: HttpRequestConfig) =>
+      new YourApi(config.baseUrl).getUser('foo'),
+    // The testErrorResponse function is used to check the business object.
+    // This is an important step, as without it, ContractCase can't be sure that your
+    // calling code can understand the objects that your code is generating.
+    //
+    // It receives the object that was thrown by your trigger.
+    // If your trigger does not throw an error, the test will fail
+    testErrorResponse: (e) => {
+      expect(e).toBeInstanceOf(UserNotFoundError);
+    },
+  },
+);
+```
+
+Triggers and `testResponse`/`testErrorResponse` functions are not written to the contract.

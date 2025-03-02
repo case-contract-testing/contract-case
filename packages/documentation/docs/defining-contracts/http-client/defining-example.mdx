@@ -1,0 +1,84 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import StateJs from '../../examples/generated/\_defining-an-example-states.ts.mdx';
+import StateJava from '../../examples/generated/\_defining-an-example-states.java.mdx';
+
+import ConfigJs from '../../examples/generated/\_defining-an-example-config.ts.mdx';
+import ConfigJava from '../../examples/generated/\_defining-an-example-config.java.mdx';
+
+
+
+# Defining an interaction
+
+In ContractCase, a contract is a series of examples of interactions. 
+In English, an interaction might be "a getUser request looks like $X, and a success response looks like $Y":
+
+Instead of making examples dependent on each other (and the corresponding
+explosion of complexity and potentially brittle tests), each **interaction
+runs independently** during contract definition. 
+
+This is achieved with [state definitions](./state-definitions), 
+which you can define any preconditions that your interaction needs (for example "a user with ID 'foo' must exist").
+
+
+A complete interaction looks like:
+
+* States: 
+   * When the server has a user named `` with ID `123`
+* a getUser request looks like $X, and
+* the success response looks like $Y
+
+For example:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <StateJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <StateJava />
+  </TabItem>
+</Tabs>
+
+
+:::tip How are these states handled later?
+
+After your contract is written, the provider verification will use [state
+handlers](../../verifying-contracts/http-server/state-handlers) to fill in the implementation details.
+:::
+
+
+## Overriding configuration
+
+You can override the configuration for individual tests by providing an
+optional `ContractCaseConfig` object as the final argument. See [the
+configuration options reference](/docs/reference/configuring) for full details.
+For example, here's how you could set the log level to debug for an individual
+test:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <ConfigJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <ConfigJava />
+  </TabItem>
+</Tabs>
+
+Setting the log level to debug is a useful way to see what is happening during
+the test, which can help you understand why an example might be failing.
+
+## Do I describe the whole API payload?
+
+You only need to describe the parts of the API payload that your consumer relies on.
+
+This is advantageous because it's not a breaking change to rename or remove a field/endpoint that
+no-one is using. 
+
+### Next steps
+
+Next, set up your state [state definitions](./state-definitions).
