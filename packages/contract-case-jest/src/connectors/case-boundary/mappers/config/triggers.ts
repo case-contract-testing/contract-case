@@ -9,7 +9,7 @@ import {
   Trigger,
   TestErrorResponseFunction,
   TestResponseFunction,
-  TriggerSetup,
+  InteractionSetup,
   TriggerGroups,
   ContractCaseConfigurationError,
 } from '../../../../entities/index.js';
@@ -17,7 +17,7 @@ import { mapSuccessWithAny } from '../boundaryResultToJs.js';
 
 const mapSetup = <C extends Record<string, string>>(
   setup: BoundarySetupInfo,
-): TriggerSetup<C> => ({
+): InteractionSetup<C> => ({
   mock: setup.mock as C,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getFunction: (name: string): ((...args: unknown[]) => Promise<any>) => {

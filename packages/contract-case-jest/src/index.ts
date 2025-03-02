@@ -1,4 +1,4 @@
-import { TriggerSetup } from './entities/index.js';
+import { InteractionSetup } from './entities/index.js';
 
 /*!
  * ContractCase Jest DSL
@@ -15,9 +15,11 @@ export * from './entities/types.js';
 process.env['CASE_CONNECTOR_CLIENT'] = 'contract-case-jest';
 
 // TODO remove this hack type and do it properly
-export type HttpRequestConfig = TriggerSetup<{
+export type HttpRequestConfig = InteractionSetup<{
   baseUrl: string;
 }>;
 
 // TODO remove this hack type too, and also do it properly
-export type FunctionExecutorConfig = TriggerSetup<{ functionHandle: string }>;
+export type FunctionExecutorConfig = InteractionSetup<{
+  functionHandle: string;
+}>;

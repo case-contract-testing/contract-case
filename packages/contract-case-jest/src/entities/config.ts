@@ -1,5 +1,5 @@
 import { StateHandlers } from './types.js';
-import { TriggerGroups, Trigger } from './types.triggers.js';
+import { TriggerGroups, Trigger, InteractionSetup } from './types.triggers.js';
 
 export interface UserNamePassword {
   /**
@@ -199,7 +199,7 @@ export interface IndividualSuccessTestConfig<
   readonly trigger?: Trigger<R, C>;
 
   /**
-   * A test function that will assert that the value returned from a trigger (`data`) is correct
+   * A test function that will assert that the data returned from a trigger is correct
    *
    * @param data - the return value from the `trigger`
    * @param config - any configuration from the mock setup
@@ -208,7 +208,7 @@ export interface IndividualSuccessTestConfig<
    */
   readonly testResponse?: (
     data: R,
-    config: Record<string, unknown>,
+    config: InteractionSetup<C>,
   ) => Promise<unknown> | void;
 
   /**
