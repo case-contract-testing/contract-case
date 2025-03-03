@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.10.0...@contract-case/case-connector-v0.19.0) (2025-03-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace runExample / runRejectingExample / runThrowingExample with runInteraction / runRejectingInteraction / runThrowingInteraction
+
+### Features
+
+* Add ability for the current version to be generated from the git sha ([dd70365](https://github.com/case-contract-testing/contract-case/commit/dd703650fd058d34f6d772011b74faec10b93074))
+
+
+### Code Refactoring
+
+* Replace runExample / runRejectingExample / runThrowingExample with runInteraction / runRejectingInteraction / runThrowingInteraction ([a37e0e8](https://github.com/case-contract-testing/contract-case/commit/a37e0e8258672894e702aebdb5d9cddce90923b4))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.18.0 to 0.19.0
+    * @contract-case/case-connector-proto bumped from 0.9.0 to 0.19.0
+    * @contract-case/case-entities-internal bumped from 0.18.0 to 0.19.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.1.0 to 0.19.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.1.1 to 0.19.0
+
 ## [0.10.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.9.0...@contract-case/case-connector-v0.10.0) (2024-10-17)
 
 
