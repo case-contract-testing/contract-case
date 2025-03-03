@@ -18,26 +18,19 @@ Breaking changes will always be detailed in the relevant changelogs.
 
 ## Package versioning
 
-ContractCase has two main layers - the DSLs, and the core packages. The core version is unrelated to the DSL versions. This because changes that break one language might not be breaking changes in another language. It's also because some of the implementation details of the core might not be breaking changes for the user-facing DSL.
+ContractCase package versions are now linked - meaning that Java DSL version 0.19.0 wraps core version 0.19.0. This means you can easily tell what version you have.
 
-Most of the time you won't need to worry about which version you are using - the
-latest version of the DSL for your language will have the most recent core and
-therefore the most recent fixes and functionality.
+A major version bump will happen for all packages when any of the external APIs experiences a breaking change.
 
-However, for completeness, the meaning and versioning guarantees are detailed here.
+Most users won't need a definition of the difference between external APIs and
+implementation details - but for completeness,
+the external API includes:
 
-The versions of the Breaking changes from the core that will affect users (eg a file format change) are also communicated to users via
-breaking changes indicated in the DSL version numbers.
+- All user-facing DSLs
+- The contract file format
+- The configuration objects and behaviour
+- The expectations of the matching engine
+- The plugin framework
+- Everything that Case-Connector exposes (ie, the boundary between the user-facing DSL and the core matching engine)
 
-When you
-run tests with logging enabled, the version of the core package used by your version of ContractCase will be logged - if you need to check the changelog for your core version, use this version.
-
-### Core package
-
-- ContractCase Core [changelog](https://github.com/case-contract-testing/contract-case/blob/main/packages/case-core/CHANGELOG.md
-
-### Additional packages
-
-For the curious, there are some additional packages that you only need to know about if you are planning to maintain ContractCase or add additional language DSLs. These are implementation details that you shouldn't need to know about (unless you're either a maintainer or curious).
-
-Of course, if you _are_ a maintainer or curious, you can check out the [maintainer documentation here](https://github.com/case-contract-testing/contract-case/tree/main/docs/maintainers). It is much rougher than this documentation.
+If you're curious, you can check out the [maintainer documentation here](https://github.com/case-contract-testing/contract-case/tree/main/docs/maintainers). It is much rougher than this documentation.
