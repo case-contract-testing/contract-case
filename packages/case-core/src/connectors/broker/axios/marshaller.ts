@@ -3,6 +3,7 @@
 
 import axios, { AxiosResponse } from 'axios';
 import { CaseCoreError } from '@contract-case/case-plugin-base';
+import { format as prettyFormat } from 'pretty-format';
 import { BrokerError } from '../../../core';
 import { API_ERROR, API_NOT_AUTHORISED, API_NO_RESPONSE } from './apiErrors';
 
@@ -14,7 +15,7 @@ export const unmarshallFailure = (error: Error): never => {
     if (error.response) {
       if (error.response.status === 403) {
         throw new BrokerError(
-          `The access token you provided was rejected by the broker`,
+          `The access token you provided was rejected by the broker\n\n - To assist in debugging, the response body was:\n${prettyFormat(error.response.data, { indent: 4 })}`,
           API_NOT_AUTHORISED,
         );
       }
