@@ -2,13 +2,16 @@ package io.contract_testing.contractcase.client;
 
 import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.LogPrinter;
+import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.ContractCaseConnectorConfig;
 import io.contract_testing.contractcase.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.AvailableContractDefinitions;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginVerificationRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginRequest;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.RegisterFunction;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RunVerification;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.VerificationRequest;
 import java.util.List;
@@ -89,5 +92,12 @@ public class InternalVerifierClient implements AutoCloseable {
             .setLoadPlugin(LoadPluginRequest.newBuilder()
                 .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides)))
         , "loadPlugins");
+  }
+  public ConnectorResult registerFunction(String functionName,
+      ConnectorInvokableFunction function) {
+    rpcConnector.registerFunction(functionName, function);
+    return rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
+        .setRegisterFunction(RegisterFunction.newBuilder()
+            .setHandle(ConnectorOutgoingMapper.map(functionName))), "registerFunction");
   }
 }
