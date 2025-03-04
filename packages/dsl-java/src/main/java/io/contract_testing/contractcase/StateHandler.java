@@ -16,7 +16,8 @@ public class StateHandler {
     return new StateHandler(
         () -> {
           setupFunction.setup();
-          return Map.of();
+          // We use null to tell the core that there were no variables returned
+          return null;
         },
         () -> {
         }
