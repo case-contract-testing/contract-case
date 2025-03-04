@@ -3,12 +3,22 @@ package io.contract_testing.contractcase;
 import static io.contract_testing.contractcase.BoundaryCrashReporter.CRASH_MESSAGE_END;
 import static io.contract_testing.contractcase.BoundaryCrashReporter.CRASH_MESSAGE_START;
 
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction0;
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction1;
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction2;
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction3;
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction4;
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction5;
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction6;
+import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction7;
 import io.contract_testing.contractcase.client.InternalVerifierClient;
 import io.contract_testing.contractcase.client.MaintainerLog;
 import io.contract_testing.contractcase.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.edge.ConnectorExceptionMapper;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
+import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper;
+import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.ConnectorResultTypeConstants;
 import io.contract_testing.contractcase.edge.InvokeCoreTest;
@@ -127,5 +137,73 @@ public class ContractVerifier implements AutoCloseable {
   @Override
   public void close() {
     verifier.close();
+  }
+
+
+  public void registerFunction(String functionName, InvokableFunction0 function) {
+    registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
+        functionName,
+        function
+    ));
+  }
+
+  public void registerFunction(String functionName, InvokableFunction1 function) {
+    registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
+        functionName,
+        function
+    ));
+  }
+
+  public void registerFunction(String functionName, InvokableFunction2 function) {
+    registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
+        functionName,
+        function
+    ));
+  }
+
+  public void registerFunction(String functionName, InvokableFunction3 function) {
+    registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
+        functionName,
+        function
+    ));
+  }
+
+  public void registerFunction(String functionName, InvokableFunction4 function) {
+    registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
+        functionName,
+        function
+    ));
+  }
+
+  public void registerFunction(String functionName, InvokableFunction5 function) {
+    registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
+        functionName,
+        function
+    ));
+  }
+
+  public void registerFunction(String functionName, InvokableFunction6 function) {
+    registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
+        functionName,
+        function
+    ));
+  }
+
+  public void registerFunction(String functionName, InvokableFunction7 function) {
+    registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
+        functionName,
+        function
+    ));
+  }
+
+  private void registerFunctionInternal(String functionName,
+      ConnectorInvokableFunction connectorFunction) {
+    try {
+      ConnectorResultMapper.mapVoid(verifier.registerFunction(
+          functionName, connectorFunction
+      ));
+    } catch (Throwable e) {
+      BoundaryCrashReporter.handleAndRethrow(e);
+    }
   }
 }
