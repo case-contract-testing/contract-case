@@ -12,6 +12,17 @@ public class StateHandler {
     });
   }
 
+  public static StateHandler setupFunction(SetupFunctionWithoutParameters setupFunction) {
+    return new StateHandler(
+        () -> {
+          setupFunction.setup();
+          return Map.of();
+        },
+        () -> {
+        }
+    );
+  }
+
   public static StateHandler setupAndTeardown(SetupFunction setupFunction,
       TeardownFunction teardownFn) {
     return new StateHandler(setupFunction, teardownFn);
