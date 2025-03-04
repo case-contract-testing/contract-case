@@ -1,0 +1,163 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "Java Function Caller Example",
+    "providerName": "Java Function Execution Example"
+  },
+  "metadata": {
+    "_case": {
+      "version": "0.18.0"
+    }
+  },
+  "matcherLookup": {
+    "matcher:\"2 pages\"": "2 pages",
+    "matcher:a function invoked with 1 argument ( <any integer> )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        {
+          "_case:context:matchBy": "type",
+          "_case:matcher:example": 2,
+          "_case:matcher:resolvesTo": "number",
+          "_case:matcher:type": "_case:Integer"
+        }
+      ]
+    },
+    "matcher:null": {
+      "_case:context:matchBy": "type",
+      "_case:matcher:example": null,
+      "_case:matcher:resolvesTo": "null",
+      "_case:matcher:type": "_case:MatchNull"
+    },
+    "matcher:a function invoked with no arguments": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": []
+    },
+    "matcher:\"bar\"": "bar",
+    "matcher:a function invoked with 1 argument ( \"foo\" )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        "foo"
+      ]
+    }
+  },
+  "examples": [
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "PageNumbers",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a function invoked with 1 argument ( <any integer> )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              {
+                "_case:context:matchBy": "type",
+                "_case:matcher:example": 2,
+                "_case:matcher:resolvesTo": "number",
+                "_case:matcher:type": "_case:Integer"
+              }
+            ]
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "\"2 pages\"",
+          "_case:matcher:child": "2 pages"
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "NoArgFunction",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a function invoked with no arguments",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": []
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "null",
+          "_case:matcher:child": {
+            "_case:context:matchBy": "type",
+            "_case:matcher:example": null,
+            "_case:matcher:resolvesTo": "null",
+            "_case:matcher:type": "_case:MatchNull"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The key 'foo' is set to 'bar'"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "keyValueStore",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a function invoked with 1 argument ( \"foo\" )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              "foo"
+            ]
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "\"bar\"",
+          "_case:matcher:child": "bar"
+        }
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}
