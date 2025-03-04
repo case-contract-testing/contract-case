@@ -2,8 +2,12 @@ import {
   RunStateHandlerRequest as WireRunStateHandlerRequest,
   StateHandlerHandle as WireStateHandlerHandle,
   ContractResponse as WireContractResponse,
+  StateHandlerHandle,
 } from '@contract-case/case-connector-proto';
-import { BoundaryResult } from '../../../../entities/types.js';
+import {
+  BoundaryResult,
+  BoundaryStateHandler,
+} from '../../../../entities/types.js';
 
 import { ConnectorStateHandler } from '../../../../domain/types.js';
 
@@ -13,6 +17,7 @@ import {
 } from '../../promiseHandler/promiseHandler.js';
 import { unbox } from '../values.js';
 import { SendContractResponse } from '../../sendContractResponse.js';
+import { maintainerLog } from '../../../../domain/maintainerLog.js';
 
 const makeStateHandlerCall =
   (
@@ -35,19 +40,26 @@ const makeStateHandlerCall =
 export const mapStateHandlers = (
   stateHandlers: WireStateHandlerHandle[],
   executeCall: SendContractResponse,
-): Record<string, ConnectorStateHandler> =>
-  stateHandlers.reduce<Record<string, ConnectorStateHandler>>(
+): Record<string, ConnectorStateHandler> => {
+  maintainerLog(
+    'The state handlers are:',
+    stateHandlers.map(
+      (handler) => `${unbox(handler.getHandle())} (${handler.getStage()})`,
+    ),
+  );
+  return stateHandlers.reduce<Record<string, ConnectorStateHandler>>(
     (acc: Record<string, ConnectorStateHandler>, handler) => ({
       ...acc,
       [unbox(handler.getHandle())]: {
-        // We set both initially
-        setup: makeStateHandlerCall(handler, executeCall),
-        teardown: makeStateHandlerCall(handler, executeCall),
-        // but the existing one should clobber it if it's already set
+        ...(handler.getStage() ===
+        StateHandlerHandle.Stage.STAGE_SETUP_UNSPECIFIED
+          ? { setup: makeStateHandlerCall(handler, executeCall) }
+          : { teardown: makeStateHandlerCall(handler, executeCall) }),
         ...(acc[unbox(handler.getHandle())]
           ? acc[unbox(handler.getHandle())]
           : {}),
-      },
+      } as BoundaryStateHandler,
     }),
     {} as Record<string, ConnectorStateHandler>,
   );
+};
