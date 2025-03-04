@@ -124,9 +124,9 @@ describe('Server verification', () => {
       verifier.verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
-          'When Server is down, then an http "GET" request to "/health" without a body -> a (httpStatus 4XX | 5XX) response without a body':
+          'When Server is down, then an http "GET" request to "/health" without a body returns a (httpStatus 4XX | 5XX) response without a body':
             CaseConfigurationError,
-          'When Server is down, then an http "GET" request to "/health" without a body -> a (503) response with body an object shaped like {status: "down"}':
+          'When Server is down, then an http "GET" request to "/health" without a body returns a (503) response with body an object shaped like {status: "down"}':
             CaseConfigurationError,
         }),
       );
@@ -165,13 +165,13 @@ describe('Server verification', () => {
       verifier.verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
-          'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} -> a (200) response with body an object shaped like {status: "up"}':
+          'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} returns a (200) response with body an object shaped like {status: "up"}':
             CaseConfigurationError,
-          'When Server is up, then an http "GET" request to "/health" without a body -> a (200) response with body an object shaped like {status: <any string>}':
+          'When Server is up, then an http "GET" request to "/health" without a body returns a (200) response with body an object shaped like {status: <any string>}':
             CaseConfigurationError,
-          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
+          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
-          'When Server is up and No users exist, then an http "GET" request to "/users/123" without a body -> a (404) response without a body':
+          'When Server is up and No users exist, then an http "GET" request to "/users/123" without a body returns a (404) response without a body':
             CaseConfigurationError,
         }),
       );
@@ -215,13 +215,13 @@ describe('Server verification', () => {
       verifier.verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
-          'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} -> a (200) response with body an object shaped like {status: "up"}':
+          'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} returns a (200) response with body an object shaped like {status: "up"}':
             CaseConfigurationError,
-          'When Server is up, then an http "GET" request to "/health" without a body -> a (200) response with body an object shaped like {status: <any string>}':
+          'When Server is up, then an http "GET" request to "/health" without a body returns a (200) response with body an object shaped like {status: <any string>}':
             CaseConfigurationError,
-          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
+          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
-          'When Server is up and No users exist, then an http "GET" request to "/users/123" without a body -> a (404) response without a body':
+          'When Server is up and No users exist, then an http "GET" request to "/users/123" without a body returns a (404) response without a body':
             CaseConfigurationError,
         }),
       );
@@ -259,7 +259,7 @@ describe('Server verification', () => {
       verifier.verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
-          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
+          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
         }),
       );
@@ -298,7 +298,7 @@ describe('Server verification', () => {
       verifier.verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
-          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
+          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
         }),
       );
@@ -375,7 +375,7 @@ describe('Server verification', () => {
       verifier.verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
-          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body -> a (200) response with body an object shaped like {userId: \${userId}}`]:
+          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
             CaseConfigurationError,
         }),
       );

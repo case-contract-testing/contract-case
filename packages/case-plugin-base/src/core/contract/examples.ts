@@ -44,7 +44,7 @@ export const exampleToNames = (
     responseName,
     mockName: `${
       stateNames !== '' ? `When ${stateNames}, then ` : ''
-    }${requestName} -> ${responseName}`,
+    }${requestName} returns ${responseName}`,
   };
 };
 
