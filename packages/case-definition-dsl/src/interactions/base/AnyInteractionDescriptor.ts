@@ -55,11 +55,11 @@ export interface ContractCaseCoreBehaviour {
  */
 export interface ContractCaseCoreSetup {
   /**
-   * Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type.
+   * Defines how the ContractCase core will behave when writing (ie, defining) an interaction of this type.
    */
   readonly write: ContractCaseCoreBehaviour;
   /**
-   * Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type.
+   * Defines how the ContractCase core will behave when reading (ie, verifying) a interaction of this type.
    */
   readonly read: ContractCaseCoreBehaviour;
 }

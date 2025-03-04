@@ -183,7 +183,7 @@
               },
               "variadic": false,
               "docs": {
-                "summary": "Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type."
+                "summary": "Defines how the ContractCase core will behave when reading (ie, verifying) a interaction of this type."
               }
             },
             {
@@ -205,7 +205,7 @@
               },
               "variadic": false,
               "docs": {
-                "summary": "Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type."
+                "summary": "Defines how the ContractCase core will behave when writing (ie, defining) an interaction of this type."
               }
             }
           ],
@@ -2913,7 +2913,7 @@
               ]
             },
             "docs": {
-              "summary": "Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type."
+              "summary": "Defines how the ContractCase core will behave when reading (ie, verifying) a interaction of this type."
             },
             "usage": "public ContractCaseCoreBehaviour getRead();"
           },
@@ -2935,7 +2935,7 @@
               ]
             },
             "docs": {
-              "summary": "Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type."
+              "summary": "Defines how the ContractCase core will behave when writing (ie, defining) an interaction of this type."
             },
             "usage": "public ContractCaseCoreBehaviour getWrite();"
           }

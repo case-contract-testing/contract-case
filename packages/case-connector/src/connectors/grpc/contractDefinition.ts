@@ -158,7 +158,7 @@ export const contractDefinition = (
         const runInteractionRequest = request.getRunInteraction();
         if (runInteractionRequest == null) {
           throw new ConnectorError(
-            'run example called with something that returned an undefined request',
+            'runInteraction called with something that returned an undefined request',
           );
         }
         if (definitionId === undefined) {
@@ -189,12 +189,12 @@ export const contractDefinition = (
           request.getRunRejectingInteraction();
         if (runRejectingInteractionRequest == null) {
           throw new ConnectorError(
-            'run rejecting example called with something that returned an undefined request',
+            'runRejectingInteraction called with something that returned an undefined request',
           );
         }
         if (definitionId === undefined) {
           throw new ConnectorError(
-            'runInteraction was called before begin definition',
+            'runRejectingInteraction was called before begin definition',
           );
         }
 

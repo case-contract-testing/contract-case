@@ -4,7 +4,7 @@
 
 ## mocks.base.ContractCaseCoreSetup.write property
 
-Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type.
+Defines how the ContractCase core will behave when writing (ie, defining) an interaction of this type.
 
 **Signature:**
 

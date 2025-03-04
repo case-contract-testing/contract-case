@@ -89,7 +89,7 @@ const combineWithRoot = (
     ...runConfig,
     '_case:currentRun:context:location': [
       ...context['_case:currentRun:context:location'],
-      `Example[${exampleId}]`,
+      `Interaction[${exampleId}]`,
     ],
   };
   exampleId += 1;

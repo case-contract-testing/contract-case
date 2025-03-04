@@ -43,7 +43,7 @@ Description
 
 </td><td>
 
-Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type.
+Defines how the ContractCase core will behave when reading (ie, verifying) a interaction of this type.
 
 </td></tr>
 <tr><td>
@@ -60,7 +60,7 @@ Defines how the ContractCase core will behave when reading (ie, verifying) a Exa
 
 </td><td>
 
-Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type.
+Defines how the ContractCase core will behave when writing (ie, defining) an interaction of this type.
 
 </td></tr>
 </tbody></table>

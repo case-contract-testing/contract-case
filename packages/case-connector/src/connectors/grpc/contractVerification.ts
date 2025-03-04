@@ -203,7 +203,7 @@ export const contractVerification = (
           const runVerificationRequest = request.getRunVerification();
           if (runVerificationRequest == null) {
             throw new ConnectorError(
-              'run rejecting example called with something that returned an undefined request',
+              'runVerification called with something that returned an undefined request',
             );
           }
           if (verificationId === undefined) {

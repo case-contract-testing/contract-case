@@ -4,7 +4,7 @@
 
 ## mocks.base.ContractCaseCoreSetup.read property
 
-Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type.
+Defines how the ContractCase core will behave when reading (ie, verifying) a interaction of this type.
 
 **Signature:**
 

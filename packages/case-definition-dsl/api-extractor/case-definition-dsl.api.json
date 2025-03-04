@@ -4844,7 +4844,7 @@
                     {
                       "kind": "PropertySignature",
                       "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreSetup#read:member",
-                      "docComment": "/**\n * Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type.\n */\n",
+                      "docComment": "/**\n * Defines how the ContractCase core will behave when reading (ie, verifying) a interaction of this type.\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -4872,7 +4872,7 @@
                     {
                       "kind": "PropertySignature",
                       "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreSetup#write:member",
-                      "docComment": "/**\n * Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type.\n */\n",
+                      "docComment": "/**\n * Defines how the ContractCase core will behave when writing (ie, defining) an interaction of this type.\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",

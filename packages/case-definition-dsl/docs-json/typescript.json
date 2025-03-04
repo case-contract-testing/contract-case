@@ -2749,7 +2749,7 @@
               ]
             },
             "docs": {
-              "summary": "Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type."
+              "summary": "Defines how the ContractCase core will behave when reading (ie, verifying) a interaction of this type."
             },
             "usage": "public readonly read: ContractCaseCoreBehaviour;"
           },
@@ -2771,7 +2771,7 @@
               ]
             },
             "docs": {
-              "summary": "Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type."
+              "summary": "Defines how the ContractCase core will behave when writing (ie, defining) an interaction of this type."
             },
             "usage": "public readonly write: ContractCaseCoreBehaviour;"
           }

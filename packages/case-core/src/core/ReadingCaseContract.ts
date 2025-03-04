@@ -77,7 +77,7 @@ export class ReadingCaseContract extends BaseCaseContract {
     this.currentContract.examples.forEach((example, index) => {
       if (example.result !== 'VERIFIED') {
         throw new CaseCoreError(
-          `Attempting to verify an example which was '${example.result}'. This should never happen in normal operation, and might be the result of a corrupted ContractCase file, a file that was not written by ContractCase, or a bug.`,
+          `Attempting to verify an interaction which was '${example.result}'. This should never happen in normal operation, and might be the result of a corrupted ContractCase file, a file that was not written by ContractCase, or a bug.`,
         );
       }
 
@@ -124,7 +124,7 @@ export class ReadingCaseContract extends BaseCaseContract {
           })
           .finally(() => {
             this.initialContext.logger.maintainerDebug(
-              `Example[${index}] completed: ${names.mockName}`,
+              `Interaction[${index}] completed: ${names.mockName}`,
             );
             exampleFinished();
           }),
@@ -173,12 +173,12 @@ export class ReadingCaseContract extends BaseCaseContract {
     );
     if (example.result === 'FAILED') {
       currentContext.logger.maintainerDebug(
-        `Example was a failure, marking verification failed (was '${this.status}')`,
+        `Interaction was a failure, marking verification failed (was '${this.status}')`,
       );
       this.status = 'FAILED';
     } else {
       currentContext.logger.maintainerDebug(
-        `Example was a success, no change to current status of '${this.status}'`,
+        `Interaction was a success, no change to current status of '${this.status}'`,
       );
     }
     return example;
