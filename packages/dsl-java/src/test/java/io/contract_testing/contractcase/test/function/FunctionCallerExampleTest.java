@@ -11,6 +11,7 @@ import io.contract_testing.contractcase.definitions.matchers.AnyInteger;
 import io.contract_testing.contractcase.definitions.matchers.AnyNull;
 import io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction;
+import io.contract_testing.contractcase.definitions.states.InState;
 import java.util.List;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
@@ -72,6 +73,29 @@ public class FunctionCallerExampleTest {
             })
     );
   }
+
+  @Test
+  public void testStatefulFunction() {
+
+    contract.runInteraction(
+        new InteractionDefinition<>(
+            List.of(new InState("The key 'foo' is set to 'bar'")),
+            new WillCallFunction(FunctionExecutionExample.builder()
+                .arguments(List.of("foo"))
+                .returnValue("bar")
+                .functionName("keyValueStore")
+                .build())
+        ),
+        IndividualSuccessTestConfigBuilder.<String>builder()
+            .withTrigger((setupInfo) ->
+                setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of("\"foo\"")))
+            .withTestResponse((result, setupInfo) -> {
+              assertThat(result).isEqualTo("\"bar\"");
+            })
+    );
+  }
+
 
 
 
