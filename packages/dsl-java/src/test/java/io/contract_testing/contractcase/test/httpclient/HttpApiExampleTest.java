@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
-import io.contract_testing.contractcase.ExampleDefinition;
+import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.PublishType;
@@ -68,7 +68,7 @@ public class HttpApiExampleTest {
   @Test
   public void testHealthUp() {
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(new InState("Server is up")),
             new WillSendHttpRequest(HttpExample.builder()
                 .request(new NamedMatch(
@@ -96,7 +96,7 @@ public class HttpApiExampleTest {
   @Test
   public void testHealthDown() {
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(new InState("Server is down")),
             new WillSendHttpRequest(HttpExample.builder()
                 .request(new ReferenceMatch("Get health"))
@@ -118,7 +118,7 @@ public class HttpApiExampleTest {
   @Test
   public void testHealthUnavailable() {
     contract.runThrowingInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(new InState("Server is broken")),
             new WillSendHttpRequest(HttpExample.builder()
                 .request(new ReferenceMatch("Get health"))
@@ -138,7 +138,7 @@ public class HttpApiExampleTest {
   @Test
   public void testGetUserWithPathVariable() {
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 new InState("Server is up"),
                 new InStateWithVariables("A user exists", Map.of("userId", "123"))
@@ -176,7 +176,7 @@ public class HttpApiExampleTest {
   public void testGetUserWithQueryVariable() {
 
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 new InState("Server is up"),
                 new InStateWithVariables("A user exists", Map.of("userId", "123"))
@@ -207,7 +207,7 @@ public class HttpApiExampleTest {
   @Test
   public void testGetUserWithQueryVariableWhenUserNotExist() {
     contract.runThrowingInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 new InState("Server is up"),
                 new InStateWithVariables("No users exist", Map.of("userId", "123"))

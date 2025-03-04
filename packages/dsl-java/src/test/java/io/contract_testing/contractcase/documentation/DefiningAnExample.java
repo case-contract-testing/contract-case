@@ -2,7 +2,7 @@ package io.contract_testing.contractcase.documentation;
 
 import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
-import io.contract_testing.contractcase.ExampleDefinition;
+import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.Trigger;
@@ -37,7 +37,7 @@ public class DefiningAnExample {
   public void testGetUser() {
     // example-extract _defining-an-example-states
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 new InState("Server is up"),
                 new InState("A user with id \"foo\" exists")
@@ -74,7 +74,7 @@ public class DefiningAnExample {
   public void testConfig() {
     // example-extract _defining-an-example-config
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 /* as above */
                 // ignore-extract
@@ -111,7 +111,7 @@ public class DefiningAnExample {
     // end-example
 
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 /* as above */
                 // example-extract _defining-states
@@ -148,7 +148,7 @@ public class DefiningAnExample {
 
     // example-extract _defining-states-order
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 // This one runs first
                 new InState("Server is up"),
@@ -191,7 +191,7 @@ public class DefiningAnExample {
 
     // example-extract _state-matchers
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 new InState("Server is up"),
                 new InStateWithVariables(

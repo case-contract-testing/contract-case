@@ -57,7 +57,7 @@ public class ContractDefiner {
     }
   }
 
-  public <T, M extends AnyMockDescriptor> void runInteraction(ExampleDefinition<M> definition,
+  public <T, M extends AnyMockDescriptor> void runInteraction(InteractionDefinition<M> definition,
       final @NotNull IndividualSuccessTestConfig<T> additionalConfig) {
     try {
       ConnectorResultMapper.mapVoid(definer.runInteraction(
@@ -69,12 +69,12 @@ public class ContractDefiner {
     }
   }
 
-  public <T, M extends AnyMockDescriptor> void runInteraction(ExampleDefinition<M> definition,
+  public <T, M extends AnyMockDescriptor> void runInteraction(InteractionDefinition<M> definition,
       final @NotNull IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder<T> additionalConfig) {
     this.runInteraction(definition, additionalConfig.build());
   }
 
-  public <M extends AnyMockDescriptor> void runInteraction(ExampleDefinition<M> definition) {
+  public <M extends AnyMockDescriptor> void runInteraction(InteractionDefinition<M> definition) {
     this.runInteraction(
         definition,
         IndividualSuccessTestConfig
@@ -84,7 +84,7 @@ public class ContractDefiner {
     );
   }
 
-  public <T, M extends AnyMockDescriptor> void runThrowingInteraction(ExampleDefinition<M> definition,
+  public <T, M extends AnyMockDescriptor> void runThrowingInteraction(InteractionDefinition<M> definition,
       IndividualFailedTestConfig<T> additionalConfig) {
     try {
       ConnectorResultMapper.mapVoid(definer.runRejectingInteraction(
@@ -96,12 +96,12 @@ public class ContractDefiner {
     }
   }
 
-  public <T, M extends AnyMockDescriptor> void runThrowingInteraction(ExampleDefinition<M> definition,
+  public <T, M extends AnyMockDescriptor> void runThrowingInteraction(InteractionDefinition<M> definition,
       IndividualFailedTestConfigBuilder<T> additionalConfig) {
     this.runThrowingInteraction(definition, additionalConfig.build());
   }
 
-  public <M extends AnyMockDescriptor> void runThrowingInteraction(ExampleDefinition<M> definition) {
+  public <M extends AnyMockDescriptor> void runThrowingInteraction(InteractionDefinition<M> definition) {
     this.runThrowingInteraction(
         definition,
         IndividualFailedTestConfig

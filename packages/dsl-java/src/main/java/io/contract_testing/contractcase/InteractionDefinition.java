@@ -8,12 +8,12 @@ import io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor
 import io.contract_testing.contractcase.definitions.states.AnyState;
 import java.util.List;
 
-public class ExampleDefinition<M extends AnyMockDescriptor> {
+public class InteractionDefinition<M extends AnyMockDescriptor> {
 
   private final List<? extends AnyState> states;
   private final M definition;
 
-  public ExampleDefinition(List<? extends AnyState> states, M definition) {
+  public InteractionDefinition(List<? extends AnyState> states, M definition) {
     this.states = List.copyOf(states);
     this.definition = definition;
   }

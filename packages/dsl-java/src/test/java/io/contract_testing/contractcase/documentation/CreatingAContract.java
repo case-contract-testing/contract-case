@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
-import io.contract_testing.contractcase.ExampleDefinition;
+import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.definitions.matchers.AnyString;
@@ -37,7 +37,7 @@ public class CreatingAContract {
     contract.runInteraction(
         /* described later in this chapter */
         // ignore-extract
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(new InState("Server is up")),
             new WillSendHttpRequest(HttpExample.builder()
                 .request(new NamedMatch(
@@ -68,7 +68,7 @@ public class CreatingAContract {
     contract.runThrowingInteraction(
         /* described later in this chapter */
         // ignore-extract
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(new InState("Server is up")),
             new WillSendHttpRequest(HttpExample.builder()
                 .request(new NamedMatch(
@@ -100,7 +100,7 @@ public class CreatingAContract {
   // example-extract _defining-an-example
   public void testGetUser() {
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(), // State definitions, covered below
             new WillSendHttpRequest(HttpExample.builder()
                 .request(
@@ -139,7 +139,7 @@ public class CreatingAContract {
 
   public void testGetUserMatchers() {
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 // example-extract _matchers-state-no-vars
                 new InState("A user with id \"foo\" exists"),
@@ -192,7 +192,7 @@ public class CreatingAContract {
 
     // example-extract _matchers-state-vars-complete
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 new InStateWithVariables(
                     "A user exists",
@@ -241,7 +241,7 @@ public class CreatingAContract {
     // end-example
 
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(
                 new InStateWithVariables(
                     "A user exists",

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
-import io.contract_testing.contractcase.ExampleDefinition;
+import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig;
 import io.contract_testing.contractcase.InvokableFunctions;
 import io.contract_testing.contractcase.PublishType;
@@ -39,7 +39,7 @@ public class FunctionImplementerExampleTest {
     contract.registerFunction("NoArgFunction", () -> {
       return null;
     });
-    contract.runInteraction(new ExampleDefinition<>(
+    contract.runInteraction(new InteractionDefinition<>(
         List.of(),
         new WillReceiveFunctionCall(FunctionExecutionExample.builder()
             .arguments(List.of())
@@ -55,7 +55,7 @@ public class FunctionImplementerExampleTest {
     Function<Integer, String> functionUnderTest = (Integer num) -> num + " pages";
 
     contract.registerFunction("PageNumbers", convertJsonArgs(functionUnderTest));
-    contract.runInteraction(new ExampleDefinition<>(
+    contract.runInteraction(new InteractionDefinition<>(
             List.of(),
             new WillReceiveFunctionCall(FunctionExecutionExample.builder()
                 .arguments(List.of(new AnyInteger(2)))

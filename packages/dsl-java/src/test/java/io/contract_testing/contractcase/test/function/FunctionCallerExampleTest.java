@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
-import io.contract_testing.contractcase.ExampleDefinition;
+import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.PublishType;
 import io.contract_testing.contractcase.definitions.matchers.AnyInteger;
@@ -33,7 +33,7 @@ public class FunctionCallerExampleTest {
   @Test
   public void testNoArgFunction() {
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(),
             new WillCallFunction(FunctionExecutionExample.builder()
                 .arguments(List.of())
@@ -55,7 +55,7 @@ public class FunctionCallerExampleTest {
   public void testOneArgFunction() {
 
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(),
             new WillCallFunction(FunctionExecutionExample.builder()
                 .arguments(List.of(new AnyInteger(2)))
