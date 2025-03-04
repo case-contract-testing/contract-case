@@ -1,7 +1,7 @@
 ```java
   public void testGetUser() {
     contract.runInteraction(
-        new ExampleDefinition<>(
+        new InteractionDefinition<>(
             List.of(), // State definitions, covered below
             new WillSendHttpRequest(HttpExample.builder()
                 .request(

@@ -148,6 +148,107 @@
       },
       {
         "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.interactions.base.AnyInteractionDescriptor.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor.Initializer.parameter.mockType",
+              "displayName": "mockType",
+              "id": "@contract-case/case-definition-dsl.interactions.base.AnyInteractionDescriptor.Initializer.parameter.mockType",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework) for a description of these strings)."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor.Initializer.parameter.read",
+              "displayName": "read",
+              "id": "@contract-case/case-definition-dsl.interactions.base.AnyInteractionDescriptor.Initializer.parameter.read",
+              "type": {
+                "formattingPattern": "%",
+                "types": [
+                  {
+                    "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreBehaviour",
+                    "displayName": "ContractCaseCoreBehaviour",
+                    "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour",
+                    "packageName": "@contract-case/case-definition-dsl",
+                    "packageVersion": "0.18.0",
+                    "submodule": "interactions"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor.Initializer.parameter.write",
+              "displayName": "write",
+              "id": "@contract-case/case-definition-dsl.interactions.base.AnyInteractionDescriptor.Initializer.parameter.write",
+              "type": {
+                "formattingPattern": "%",
+                "types": [
+                  {
+                    "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreBehaviour",
+                    "displayName": "ContractCaseCoreBehaviour",
+                    "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour",
+                    "packageName": "@contract-case/case-definition-dsl",
+                    "packageVersion": "0.18.0",
+                    "submodule": "interactions"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type."
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor;\n\nAnyInteractionDescriptor.Builder.create(java.lang.String mockType)\n    .read(ContractCaseCoreBehaviour)\n    .write(ContractCaseCoreBehaviour)\n    .build();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.interactions.base.AnyInteractionDescriptor.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
+              "remarks": "You shouldn't need to override this method."
+            },
+            "usage": "public java.lang.String stringify()"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.interactions.base.AnyInteractionDescriptor.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor",
+        "displayName": "AnyInteractionDescriptor",
+        "id": "@contract-case/case-definition-dsl.interactions.base.AnyInteractionDescriptor",
+        "docs": {
+          "summary": "The base class for all ContractCase Mock Descriptors. Extend this if you are implementing your own mock type.",
+          "remarks": "If you are using the included example types from ContractCase (or any\nextension libraries), you do not need to read the documentation for this\nclass.\n\nMock description type strings beginning with `_case:` are reserved for the default ContractCase\nmatchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case\nfor a matching behaviour that is already provided by a core ContractCase mock."
+        }
+      },
+      {
+        "initializer": {
           "fqn": "io.contract_testing.contractcase.definitions.matchers.base.AnyMatcher.Initializer",
           "displayName": "Initializer",
           "id": "@contract-case/case-definition-dsl.matchers.base.AnyMatcher.Initializer",
@@ -247,107 +348,6 @@
         "docs": {
           "summary": "The base class for all Test Equivalence Matchers that have examples provided.",
           "remarks": "Extend this if your matcher knows what the example will be. Otherwise, use `matchers.AnyMatcher`"
-        }
-      },
-      {
-        "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.Initializer",
-          "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.Initializer",
-          "parameters": [
-            {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.Initializer.parameter.mockType",
-              "displayName": "mockType",
-              "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.Initializer.parameter.mockType",
-              "type": {
-                "formattingPattern": "java.lang.String"
-              },
-              "variadic": false,
-              "docs": {
-                "summary": "- The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework) for a description of these strings)."
-              }
-            },
-            {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.Initializer.parameter.read",
-              "displayName": "read",
-              "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.Initializer.parameter.read",
-              "type": {
-                "formattingPattern": "%",
-                "types": [
-                  {
-                    "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
-                    "displayName": "ContractCaseCoreBehaviour",
-                    "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
-                    "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.18.0",
-                    "submodule": "mocks"
-                  }
-                ]
-              },
-              "variadic": false,
-              "docs": {
-                "summary": "Defines how the ContractCase core will behave when reading (ie, verifying) a Example of this type."
-              }
-            },
-            {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.Initializer.parameter.write",
-              "displayName": "write",
-              "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.Initializer.parameter.write",
-              "type": {
-                "formattingPattern": "%",
-                "types": [
-                  {
-                    "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
-                    "displayName": "ContractCaseCoreBehaviour",
-                    "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
-                    "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.18.0",
-                    "submodule": "mocks"
-                  }
-                ]
-              },
-              "variadic": false,
-              "docs": {
-                "summary": "Defines how the ContractCase core will behave when writing (ie, defining) an Example of this type."
-              }
-            }
-          ],
-          "usage": "import io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor;\n\nAnyMockDescriptor.Builder.create(java.lang.String mockType)\n    .read(ContractCaseCoreBehaviour)\n    .write(ContractCaseCoreBehaviour)\n    .build();"
-        },
-        "interfaces": [],
-        "instanceMethods": [
-          {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.stringify",
-            "displayName": "stringify",
-            "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.stringify",
-            "parameters": [],
-            "docs": {
-              "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
-              "remarks": "You shouldn't need to override this method."
-            },
-            "usage": "public java.lang.String stringify()"
-          },
-          {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor.toJSON",
-            "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor.toJSON",
-            "parameters": [],
-            "docs": {
-              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
-              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
-            },
-            "usage": "public java.lang.Object toJSON()"
-          }
-        ],
-        "staticMethods": [],
-        "constants": [],
-        "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor",
-        "displayName": "AnyMockDescriptor",
-        "id": "@contract-case/case-definition-dsl.mocks.base.AnyMockDescriptor",
-        "docs": {
-          "summary": "The base class for all ContractCase Mock Descriptors. Extend this if you are implementing your own mock type.",
-          "remarks": "If you are using the included example types from ContractCase (or any\nextension libraries), you do not need to read the documentation for this\nclass.\n\nMock description type strings beginning with `_case:` are reserved for the default ContractCase\nmatchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case\nfor a matching behaviour that is already provided by a core ContractCase mock."
         }
       },
       {
@@ -1574,6 +1574,26 @@
       },
       {
         "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.interactions.IgnoreThisClass.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.interactions.IgnoreThisClass.Initializer",
+          "parameters": [],
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.IgnoreThisClass;\n\nnew IgnoreThisClass();"
+        },
+        "interfaces": [],
+        "instanceMethods": [],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [],
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.IgnoreThisClass",
+        "displayName": "IgnoreThisClass",
+        "id": "@contract-case/case-definition-dsl.interactions.IgnoreThisClass",
+        "docs": {
+          "summary": "Empty class to make jsii-docgen happy with this module."
+        }
+      },
+      {
+        "initializer": {
           "fqn": "io.contract_testing.contractcase.definitions.matchers.IgnoreThisClass.Initializer",
           "displayName": "Initializer",
           "id": "@contract-case/case-definition-dsl.matchers.IgnoreThisClass.Initializer",
@@ -1588,26 +1608,6 @@
         "fqn": "io.contract_testing.contractcase.definitions.matchers.IgnoreThisClass",
         "displayName": "IgnoreThisClass",
         "id": "@contract-case/case-definition-dsl.matchers.IgnoreThisClass",
-        "docs": {
-          "summary": "Empty class to make jsii-docgen happy with this module."
-        }
-      },
-      {
-        "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.mocks.IgnoreThisClass.Initializer",
-          "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.mocks.IgnoreThisClass.Initializer",
-          "parameters": [],
-          "usage": "import io.contract_testing.contractcase.definitions.mocks.IgnoreThisClass;\n\nnew IgnoreThisClass();"
-        },
-        "interfaces": [],
-        "instanceMethods": [],
-        "staticMethods": [],
-        "constants": [],
-        "properties": [],
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.IgnoreThisClass",
-        "displayName": "IgnoreThisClass",
-        "id": "@contract-case/case-definition-dsl.mocks.IgnoreThisClass",
         "docs": {
           "summary": "Empty class to make jsii-docgen happy with this module."
         }
@@ -2329,14 +2329,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.Initializer",
+          "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.Initializer.parameter.arguments",
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.Initializer.parameter.arguments",
               "displayName": "arguments",
-              "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.Initializer.parameter.arguments",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.Initializer.parameter.arguments",
               "type": {
                 "formattingPattern": "java.util.List<%>",
                 "types": [
@@ -2351,9 +2351,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.Initializer.parameter.functionName",
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.Initializer.parameter.functionName",
               "displayName": "functionName",
-              "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.Initializer.parameter.functionName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.Initializer.parameter.functionName",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -2364,9 +2364,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.Initializer.parameter.returnValue",
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.Initializer.parameter.returnValue",
               "displayName": "returnValue",
-              "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.Initializer.parameter.returnValue",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.Initializer.parameter.returnValue",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2376,14 +2376,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction;\n\nWillCallFunction.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;\n\nWillCallFunction.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.stringify",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.stringify",
             "displayName": "stringify",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.stringify",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.stringify",
             "parameters": [],
             "docs": {
               "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
@@ -2392,9 +2392,9 @@
             "usage": "public java.lang.String stringify()"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.toJSON",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.toJSON",
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
@@ -2407,9 +2407,9 @@
         "constants": [],
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.property.functionName",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.property.functionName",
             "displayName": "functionName",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.property.functionName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.property.functionName",
             "type": {
               "formattingPattern": "java.lang.String"
             },
@@ -2417,9 +2417,9 @@
             "usage": "public java.lang.String getFunctionName();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.property.request",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.property.request",
             "displayName": "request",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.property.request",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.property.request",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -2427,9 +2427,9 @@
             "usage": "public java.lang.Object getRequest();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction.property.response",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.property.response",
             "displayName": "response",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction.property.response",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.property.response",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -2437,23 +2437,23 @@
             "usage": "public java.lang.Object getResponse();"
           }
         ],
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction",
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction",
         "displayName": "WillCallFunction",
-        "id": "@contract-case/case-definition-dsl.mocks.functions.WillCallFunction",
+        "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction",
         "docs": {
           "summary": "Defines an example that executes a registered function with specific arguments."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.Initializer",
+          "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.arguments",
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.Initializer.parameter.arguments",
               "displayName": "arguments",
-              "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.arguments",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.Initializer.parameter.arguments",
               "type": {
                 "formattingPattern": "java.util.List<%>",
                 "types": [
@@ -2468,9 +2468,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.functionName",
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.Initializer.parameter.functionName",
               "displayName": "functionName",
-              "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.functionName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.Initializer.parameter.functionName",
               "type": {
                 "formattingPattern": "java.lang.String"
               },
@@ -2481,9 +2481,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.returnValue",
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.Initializer.parameter.returnValue",
               "displayName": "returnValue",
-              "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.Initializer.parameter.returnValue",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.Initializer.parameter.returnValue",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2493,14 +2493,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall;\n\nWillReceiveFunctionCall.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall;\n\nWillReceiveFunctionCall.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.stringify",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.stringify",
             "displayName": "stringify",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.stringify",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.stringify",
             "parameters": [],
             "docs": {
               "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
@@ -2509,9 +2509,9 @@
             "usage": "public java.lang.String stringify()"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.toJSON",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.toJSON",
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
@@ -2524,9 +2524,9 @@
         "constants": [],
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.property.functionName",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.property.functionName",
             "displayName": "functionName",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.property.functionName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.property.functionName",
             "type": {
               "formattingPattern": "java.lang.String"
             },
@@ -2534,9 +2534,9 @@
             "usage": "public java.lang.String getFunctionName();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.property.request",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.property.request",
             "displayName": "request",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.property.request",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.property.request",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -2544,9 +2544,9 @@
             "usage": "public java.lang.Object getRequest();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall.property.response",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.property.response",
             "displayName": "response",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall.property.response",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.property.response",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -2554,23 +2554,23 @@
             "usage": "public java.lang.Object getResponse();"
           }
         ],
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.WillReceiveFunctionCall",
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall",
         "displayName": "WillReceiveFunctionCall",
-        "id": "@contract-case/case-definition-dsl.mocks.functions.WillReceiveFunctionCall",
+        "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall",
         "docs": {
           "summary": "Defines an example that expects a function to be called with specific arguments."
         }
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillReceiveHttpRequest.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.Initializer",
+          "id": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.Initializer.parameter.request",
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillReceiveHttpRequest.Initializer.parameter.request",
               "displayName": "request",
-              "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.Initializer.parameter.request",
+              "id": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest.Initializer.parameter.request",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2580,9 +2580,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.Initializer.parameter.response",
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillReceiveHttpRequest.Initializer.parameter.response",
               "displayName": "response",
-              "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.Initializer.parameter.response",
+              "id": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest.Initializer.parameter.response",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2592,14 +2592,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest;\n\nWillReceiveHttpRequest.Builder.create()\n    .request(java.lang.Object)\n    .response(java.lang.Object)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.http.WillReceiveHttpRequest;\n\nWillReceiveHttpRequest.Builder.create()\n    .request(java.lang.Object)\n    .response(java.lang.Object)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.stringify",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillReceiveHttpRequest.stringify",
             "displayName": "stringify",
-            "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.stringify",
+            "id": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest.stringify",
             "parameters": [],
             "docs": {
               "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
@@ -2608,9 +2608,9 @@
             "usage": "public java.lang.String stringify()"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillReceiveHttpRequest.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.toJSON",
+            "id": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest.toJSON",
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
@@ -2623,9 +2623,9 @@
         "constants": [],
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.property.request",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillReceiveHttpRequest.property.request",
             "displayName": "request",
-            "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.property.request",
+            "id": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest.property.request",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -2633,9 +2633,9 @@
             "usage": "public java.lang.Object getRequest();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest.property.response",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillReceiveHttpRequest.property.response",
             "displayName": "response",
-            "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest.property.response",
+            "id": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest.property.response",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -2643,9 +2643,9 @@
             "usage": "public java.lang.Object getResponse();"
           }
         ],
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillReceiveHttpRequest",
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillReceiveHttpRequest",
         "displayName": "WillReceiveHttpRequest",
-        "id": "@contract-case/case-definition-dsl.mocks.http.WillReceiveHttpRequest",
+        "id": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest",
         "docs": {
           "summary": "Defines an example that expects to receive an HTTP request.",
           "remarks": "Use this to define a contract at an HTTP client."
@@ -2653,14 +2653,14 @@
       },
       {
         "initializer": {
-          "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.Initializer",
+          "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest.Initializer",
           "displayName": "Initializer",
-          "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.Initializer",
+          "id": "@contract-case/case-definition-dsl.interactions.http.WillSendHttpRequest.Initializer",
           "parameters": [
             {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.Initializer.parameter.request",
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest.Initializer.parameter.request",
               "displayName": "request",
-              "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.Initializer.parameter.request",
+              "id": "@contract-case/case-definition-dsl.interactions.http.WillSendHttpRequest.Initializer.parameter.request",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2670,9 +2670,9 @@
               }
             },
             {
-              "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.Initializer.parameter.response",
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest.Initializer.parameter.response",
               "displayName": "response",
-              "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.Initializer.parameter.response",
+              "id": "@contract-case/case-definition-dsl.interactions.http.WillSendHttpRequest.Initializer.parameter.response",
               "type": {
                 "formattingPattern": "java.lang.Object"
               },
@@ -2682,14 +2682,14 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest;\n\nWillSendHttpRequest.Builder.create()\n    .request(java.lang.Object)\n    .response(java.lang.Object)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest;\n\nWillSendHttpRequest.Builder.create()\n    .request(java.lang.Object)\n    .response(java.lang.Object)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.stringify",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest.stringify",
             "displayName": "stringify",
-            "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.stringify",
+            "id": "@contract-case/case-definition-dsl.interactions.http.WillSendHttpRequest.stringify",
             "parameters": [],
             "docs": {
               "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
@@ -2698,9 +2698,9 @@
             "usage": "public java.lang.String stringify()"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.toJSON",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest.toJSON",
             "displayName": "toJSON",
-            "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.toJSON",
+            "id": "@contract-case/case-definition-dsl.interactions.http.WillSendHttpRequest.toJSON",
             "parameters": [],
             "docs": {
               "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
@@ -2713,9 +2713,9 @@
         "constants": [],
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.property.request",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest.property.request",
             "displayName": "request",
-            "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.property.request",
+            "id": "@contract-case/case-definition-dsl.interactions.http.WillSendHttpRequest.property.request",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -2723,9 +2723,9 @@
             "usage": "public java.lang.Object getRequest();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest.property.response",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest.property.response",
             "displayName": "response",
-            "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest.property.response",
+            "id": "@contract-case/case-definition-dsl.interactions.http.WillSendHttpRequest.property.response",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -2733,9 +2733,9 @@
             "usage": "public java.lang.Object getResponse();"
           }
         ],
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest",
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest",
         "displayName": "WillSendHttpRequest",
-        "id": "@contract-case/case-definition-dsl.mocks.http.WillSendHttpRequest",
+        "id": "@contract-case/case-definition-dsl.interactions.http.WillSendHttpRequest",
         "docs": {
           "summary": "Defines an example that expects to send an HTTP request.",
           "remarks": "Use this to test HTTP servers."
@@ -2840,14 +2840,14 @@
         "usage": "import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLengthOptions;\n\nArrayLengthOptions.builder()\n//  .maxLength(java.lang.Number)\n//  .minLength(java.lang.Number)\n    .build();"
       },
       {
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour",
         "displayName": "ContractCaseCoreBehaviour",
-        "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
+        "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreBehaviour",
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour.property.mockType",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour.property.mockType",
             "displayName": "mockType",
-            "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour.property.mockType",
+            "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreBehaviour.property.mockType",
             "type": {
               "formattingPattern": "java.lang.String"
             },
@@ -2858,9 +2858,9 @@
             "usage": "public java.lang.String getMockType();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour.property.stateVariables",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour.property.stateVariables",
             "displayName": "stateVariables",
-            "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour.property.stateVariables",
+            "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreBehaviour.property.stateVariables",
             "type": {
               "formattingPattern": "java.lang.String"
             },
@@ -2871,9 +2871,9 @@
             "usage": "public java.lang.String getStateVariables();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour.property.triggers",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour.property.triggers",
             "displayName": "triggers",
-            "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour.property.triggers",
+            "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreBehaviour.property.triggers",
             "type": {
               "formattingPattern": "java.lang.String"
             },
@@ -2888,27 +2888,27 @@
           "summary": "This type defines the core behaviour that ContractCase has with this mock.",
           "remarks": "If you are using the included example types from ContractCase (or any\nextension libraries), you do not need to use this class (or understand this\ndocumentation).\n\nThis documentation is only necessary for people extending ContractCase to include\nnew mock types.\n\nSee the definitions in the case-entities-internal package for more details."
         },
-        "usage": "import io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour;\n\nContractCaseCoreBehaviour.builder()\n    .mockType(java.lang.String)\n    .stateVariables(java.lang.String)\n    .triggers(java.lang.String)\n    .build();"
+        "usage": "import io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour;\n\nContractCaseCoreBehaviour.builder()\n    .mockType(java.lang.String)\n    .stateVariables(java.lang.String)\n    .triggers(java.lang.String)\n    .build();"
       },
       {
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreSetup",
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreSetup",
         "displayName": "ContractCaseCoreSetup",
-        "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreSetup",
+        "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreSetup",
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreSetup.property.read",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreSetup.property.read",
             "displayName": "read",
-            "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreSetup.property.read",
+            "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreSetup.property.read",
             "type": {
               "formattingPattern": "%",
               "types": [
                 {
-                  "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
+                  "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreBehaviour",
                   "displayName": "ContractCaseCoreBehaviour",
-                  "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
+                  "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour",
                   "packageName": "@contract-case/case-definition-dsl",
                   "packageVersion": "0.18.0",
-                  "submodule": "mocks"
+                  "submodule": "interactions"
                 }
               ]
             },
@@ -2918,19 +2918,19 @@
             "usage": "public ContractCaseCoreBehaviour getRead();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreSetup.property.write",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreSetup.property.write",
             "displayName": "write",
-            "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreSetup.property.write",
+            "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreSetup.property.write",
             "type": {
               "formattingPattern": "%",
               "types": [
                 {
-                  "id": "@contract-case/case-definition-dsl.mocks.base.ContractCaseCoreBehaviour",
+                  "id": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreBehaviour",
                   "displayName": "ContractCaseCoreBehaviour",
-                  "fqn": "io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreBehaviour",
+                  "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour",
                   "packageName": "@contract-case/case-definition-dsl",
                   "packageVersion": "0.18.0",
-                  "submodule": "mocks"
+                  "submodule": "interactions"
                 }
               ]
             },
@@ -2941,17 +2941,17 @@
           }
         ],
         "docs": {},
-        "usage": "import io.contract_testing.contractcase.definitions.mocks.base.ContractCaseCoreSetup;\n\nContractCaseCoreSetup.builder()\n    .read(ContractCaseCoreBehaviour)\n    .write(ContractCaseCoreBehaviour)\n    .build();"
+        "usage": "import io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreSetup;\n\nContractCaseCoreSetup.builder()\n    .read(ContractCaseCoreBehaviour)\n    .write(ContractCaseCoreBehaviour)\n    .build();"
       },
       {
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample",
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample",
         "displayName": "FunctionExecutionExample",
-        "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExample",
+        "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample",
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample.property.arguments",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample.property.arguments",
             "displayName": "arguments",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExample.property.arguments",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample.property.arguments",
             "type": {
               "formattingPattern": "java.util.List<%>",
               "types": [
@@ -2966,9 +2966,9 @@
             "usage": "public java.util.List<java.lang.Object> getArguments();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample.property.functionName",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample.property.functionName",
             "displayName": "functionName",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExample.property.functionName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample.property.functionName",
             "type": {
               "formattingPattern": "java.lang.String"
             },
@@ -2979,9 +2979,9 @@
             "usage": "public java.lang.String getFunctionName();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample.property.returnValue",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample.property.returnValue",
             "displayName": "returnValue",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExample.property.returnValue",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample.property.returnValue",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -2994,17 +2994,17 @@
         "docs": {
           "summary": "Example descriptor for a function execution."
         },
-        "usage": "import io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample;\n\nFunctionExecutionExample.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
+        "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;\n\nFunctionExecutionExample.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
       },
       {
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExampleWithHandle",
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExampleWithHandle",
         "displayName": "FunctionExecutionExampleWithHandle",
-        "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExampleWithHandle",
+        "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle",
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExampleWithHandle.property.arguments",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExampleWithHandle.property.arguments",
             "displayName": "arguments",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExampleWithHandle.property.arguments",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle.property.arguments",
             "type": {
               "formattingPattern": "java.util.List<%>",
               "types": [
@@ -3019,9 +3019,9 @@
             "usage": "public java.util.List<java.lang.Object> getArguments();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExampleWithHandle.property.returnValue",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExampleWithHandle.property.returnValue",
             "displayName": "returnValue",
-            "id": "@contract-case/case-definition-dsl.mocks.functions.FunctionExecutionExampleWithHandle.property.returnValue",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle.property.returnValue",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -3034,17 +3034,17 @@
         "docs": {
           "summary": "Example descriptor for a function execution that can be called by ContractCase."
         },
-        "usage": "import io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExampleWithHandle;\n\nFunctionExecutionExampleWithHandle.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .returnValue(java.lang.Object)\n    .build();"
+        "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExampleWithHandle;\n\nFunctionExecutionExampleWithHandle.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .returnValue(java.lang.Object)\n    .build();"
       },
       {
-        "fqn": "io.contract_testing.contractcase.definitions.mocks.http.HttpExample",
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.http.HttpExample",
         "displayName": "HttpExample",
-        "id": "@contract-case/case-definition-dsl.mocks.http.HttpExample",
+        "id": "@contract-case/case-definition-dsl.interactions.http.HttpExample",
         "properties": [
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.HttpExample.property.request",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.http.HttpExample.property.request",
             "displayName": "request",
-            "id": "@contract-case/case-definition-dsl.mocks.http.HttpExample.property.request",
+            "id": "@contract-case/case-definition-dsl.interactions.http.HttpExample.property.request",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -3054,9 +3054,9 @@
             "usage": "public java.lang.Object getRequest();"
           },
           {
-            "fqn": "io.contract_testing.contractcase.definitions.mocks.http.HttpExample.property.response",
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.http.HttpExample.property.response",
             "displayName": "response",
-            "id": "@contract-case/case-definition-dsl.mocks.http.HttpExample.property.response",
+            "id": "@contract-case/case-definition-dsl.interactions.http.HttpExample.property.response",
             "type": {
               "formattingPattern": "java.lang.Object"
             },
@@ -3067,7 +3067,7 @@
           }
         ],
         "docs": {},
-        "usage": "import io.contract_testing.contractcase.definitions.mocks.http.HttpExample;\n\nHttpExample.builder()\n    .request(java.lang.Object)\n    .response(java.lang.Object)\n    .build();"
+        "usage": "import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;\n\nHttpExample.builder()\n    .request(java.lang.Object)\n    .response(java.lang.Object)\n    .build();"
       },
       {
         "fqn": "io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample",

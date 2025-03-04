@@ -1,6 +1,6 @@
 /* eslint-disable jest/expect-expect */
 import * as fs from 'node:fs';
-import { mocks } from '@contract-case/case-definition-dsl';
+import { interactions } from '@contract-case/case-definition-dsl';
 import { defineInternalContract } from './__tests__/jest/jest';
 import { anyString, anyNumber } from './boundaries';
 
@@ -45,7 +45,7 @@ describe('function receiver', () => {
           it('fails', () =>
             expect(
               contract.runInteraction({
-                definition: new mocks.functions.WillReceiveFunctionCall({
+                definition: new interactions.functions.WillReceiveFunctionCall({
                   arguments: [],
                   returnValue: null,
                   functionName: undefined as unknown as string, // hack to force it not to be set
@@ -59,7 +59,7 @@ describe('function receiver', () => {
         it('fails without the right handle property', () =>
           expect(
             contract.runInteraction({
-              definition: new mocks.functions.WillReceiveFunctionCall({
+              definition: new interactions.functions.WillReceiveFunctionCall({
                 arguments: [],
                 returnValue: null,
                 functionName: 'This one is wrong',
@@ -71,7 +71,7 @@ describe('function receiver', () => {
 
         it('succeeds with correct config', () =>
           contract.runInteraction({
-            definition: new mocks.functions.WillReceiveFunctionCall({
+            definition: new interactions.functions.WillReceiveFunctionCall({
               arguments: [],
               returnValue: null,
               functionName: NO_ARG_FUNCTION_HANDLE,
@@ -93,7 +93,7 @@ describe('function receiver', () => {
 
         it('succeeds with correct config', () =>
           contract.runInteraction({
-            definition: new mocks.functions.WillReceiveFunctionCall({
+            definition: new interactions.functions.WillReceiveFunctionCall({
               arguments: [anyString('example'), anyNumber(2)],
               returnValue: anyString('example2'),
               functionName: FUNCTION_WITH_ARG_HANDLE,

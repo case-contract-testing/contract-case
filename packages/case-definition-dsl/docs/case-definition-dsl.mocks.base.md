@@ -17,7 +17,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[AnyMockDescriptor](./case-definition-dsl.mocks.base.anymockdescriptor.md)
+[AnyInteractionDescriptor](./case-definition-dsl.mocks.base.anyinteractiondescriptor.md)
 
 </td><td>
 

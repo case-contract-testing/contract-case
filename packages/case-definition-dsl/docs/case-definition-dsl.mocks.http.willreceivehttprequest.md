@@ -9,10 +9,10 @@ Defines an example that expects to receive an HTTP request. Use this to define a
 **Signature:**
 
 ```typescript
-export declare class WillReceiveHttpRequest extends AnyMockDescriptor
+export declare class WillReceiveHttpRequest extends AnyInteractionDescriptor
 ```
 
-**Extends:** [AnyMockDescriptor](./case-definition-dsl.mocks.base.anymockdescriptor.md)
+**Extends:** [AnyInteractionDescriptor](./case-definition-dsl.mocks.base.anyinteractiondescriptor.md)
 
 ## Constructors
 

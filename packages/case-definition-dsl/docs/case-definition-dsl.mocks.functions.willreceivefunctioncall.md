@@ -9,10 +9,10 @@ Defines an example that expects a function to be called with specific arguments
 **Signature:**
 
 ```typescript
-export declare class WillReceiveFunctionCall extends AnyMockDescriptor
+export declare class WillReceiveFunctionCall extends AnyInteractionDescriptor
 ```
 
-**Extends:** [AnyMockDescriptor](./case-definition-dsl.mocks.base.anymockdescriptor.md)
+**Extends:** [AnyInteractionDescriptor](./case-definition-dsl.mocks.base.anyinteractiondescriptor.md)
 
 ## Constructors
 

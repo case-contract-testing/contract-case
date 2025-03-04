@@ -7,6 +7,6 @@
  * BSD-3-Clause license
  */
 
-export * as mocks from './mocks';
+export * as interactions from './interactions';
 export * as matchers from './matchers';
 export * as states from './states';

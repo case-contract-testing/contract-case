@@ -3,7 +3,7 @@ import {
   BoundaryContractDefiner,
   BoundaryMockDefinition,
 } from '@contract-case/case-connector';
-import { mocks } from '@contract-case/case-definition-dsl';
+import { interactions } from '@contract-case/case-definition-dsl';
 
 import { defaultPrinter } from './defaultTestPrinter.js';
 
@@ -33,7 +33,7 @@ const mapDefinition = (
 export type ExampleDefinition = {
   // TODO types for states
   states?: Array<unknown>;
-  definition: mocks.base.AnyMockDescriptor;
+  definition: interactions.base.AnyInteractionDescriptor;
 };
 
 export class ContractCaseDefiner {

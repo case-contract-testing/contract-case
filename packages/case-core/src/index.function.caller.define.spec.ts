@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 import * as fs from 'node:fs';
-import { mocks } from '@contract-case/case-definition-dsl';
+import { interactions } from '@contract-case/case-definition-dsl';
 import { BaseSetupInfo } from '@contract-case/case-plugin-dsl-types';
 import { defineInternalContract } from './__tests__/jest/jest';
 import { anyInteger, anyString } from './boundaries';
@@ -38,7 +38,7 @@ describe('function executor', () => {
       describe('function with no args', () => {
         it('returns nothing', () =>
           contract.runInteraction({
-            definition: new mocks.functions.WillCallFunction({
+            definition: new interactions.functions.WillCallFunction({
               arguments: [],
               returnValue: null,
               functionName: 'noArgs',
@@ -54,7 +54,7 @@ describe('function executor', () => {
       it('fails with wrong number of args', () =>
         expect(
           contract.runInteraction({
-            definition: new mocks.functions.WillCallFunction({
+            definition: new interactions.functions.WillCallFunction({
               arguments: [anyInteger(3)],
               returnValue: null,
               functionName: 'oneArg',
@@ -71,7 +71,7 @@ describe('function executor', () => {
       it('fails with wrong data in args', () =>
         expect(
           contract.runInteraction({
-            definition: new mocks.functions.WillCallFunction({
+            definition: new interactions.functions.WillCallFunction({
               arguments: [anyInteger(3), anyString('2')],
               returnValue: null,
               functionName: 'twoArgs',

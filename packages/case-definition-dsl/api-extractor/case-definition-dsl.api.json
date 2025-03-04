@@ -4592,30 +4592,30 @@
               "canonicalReference": "@contract-case/case-definition-dsl!mocks.base:namespace",
               "docComment": "",
               "excerptTokens": [],
-              "fileUrlPath": "src/mocks/index-api-extractor.ts",
+              "fileUrlPath": "src/interactions/index-api-extractor.ts",
               "releaseTag": "None",
               "name": "base",
               "preserveMemberOrder": false,
               "members": [
                 {
                   "kind": "Class",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyMockDescriptor:class",
+                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:class",
                   "docComment": "/**\n * The base class for all ContractCase Mock Descriptors. Extend this if you are implementing your own mock type.\n *\n * If you are using the included example types from ContractCase (or any extension libraries), you do not need to read the documentation for this class.\n *\n * Mock description type strings beginning with `_case:` are reserved for the default ContractCase matchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case for a matching behaviour that is already provided by a core ContractCase mock.\n *\n * @public\n */\n",
                   "excerptTokens": [
                     {
                       "kind": "Content",
-                      "text": "export declare abstract class AnyMockDescriptor "
+                      "text": "export declare abstract class AnyInteractionDescriptor "
                     }
                   ],
-                  "fileUrlPath": "src/mocks/base/AnyMockDescriptor.ts",
+                  "fileUrlPath": "src/interactions/base/AnyInteractionDescriptor.ts",
                   "releaseTag": "Public",
                   "isAbstract": true,
-                  "name": "AnyMockDescriptor",
+                  "name": "AnyInteractionDescriptor",
                   "preserveMemberOrder": false,
                   "members": [
                     {
                       "kind": "Constructor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyMockDescriptor:constructor(1)",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:constructor(1)",
                       "docComment": "/**\n * The base class for all ContractCase Mock Descriptors. Extend this if you are implementing your own mock type.\n *\n * If you are using the included example types from ContractCase (or any extension libraries), you do not need to read the documentation for this class.\n *\n * Mock description type strings beginning with `_case:` are reserved for the default ContractCase matchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case for a matching behaviour that is already provided by a core ContractCase mock.\n *\n * @param mockType - The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework) for a description of these strings).\n */\n",
                       "excerptTokens": [
                         {
@@ -4664,7 +4664,7 @@
                     },
                     {
                       "kind": "Method",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyMockDescriptor#stringify:member(1)",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor#stringify:member(1)",
                       "docComment": "/**\n * This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.\n *\n * You shouldn't need to override this method.\n *\n * @returns A JSON string representation of this mock.\n */\n",
                       "excerptTokens": [
                         {
@@ -4695,7 +4695,7 @@
                     },
                     {
                       "kind": "Method",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyMockDescriptor#toJSON:member(1)",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor#toJSON:member(1)",
                       "docComment": "/**\n * Only override this method if you are writing a matcher in a language other than TypeScript.\n *\n * It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n *\n * It isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n *\n * Calling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n *\n * WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework).\n *\n * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/reference/plugin-framework).\n */\n",
                       "excerptTokens": [
                         {
@@ -4737,7 +4737,7 @@
                       "text": "export interface ContractCaseCoreBehaviour "
                     }
                   ],
-                  "fileUrlPath": "src/mocks/base/AnyMockDescriptor.ts",
+                  "fileUrlPath": "src/interactions/base/AnyInteractionDescriptor.ts",
                   "releaseTag": "Public",
                   "name": "ContractCaseCoreBehaviour",
                   "preserveMemberOrder": false,
@@ -4836,7 +4836,7 @@
                       "text": "export interface ContractCaseCoreSetup "
                     }
                   ],
-                  "fileUrlPath": "src/mocks/base/AnyMockDescriptor.ts",
+                  "fileUrlPath": "src/interactions/base/AnyInteractionDescriptor.ts",
                   "releaseTag": "Public",
                   "name": "ContractCaseCoreSetup",
                   "preserveMemberOrder": false,
@@ -4907,7 +4907,7 @@
               "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions:namespace",
               "docComment": "",
               "excerptTokens": [],
-              "fileUrlPath": "src/mocks/index-api-extractor.ts",
+              "fileUrlPath": "src/interactions/index-api-extractor.ts",
               "releaseTag": "None",
               "name": "functions",
               "preserveMemberOrder": false,
@@ -4922,7 +4922,7 @@
                       "text": "export interface FunctionExecutionExample "
                     }
                   ],
-                  "fileUrlPath": "src/mocks/functions/types.ts",
+                  "fileUrlPath": "src/interactions/functions/types.ts",
                   "releaseTag": "Public",
                   "name": "FunctionExecutionExample",
                   "preserveMemberOrder": false,
@@ -5027,7 +5027,7 @@
                       "text": "export interface FunctionExecutionExampleWithHandle "
                     }
                   ],
-                  "fileUrlPath": "src/mocks/functions/types.ts",
+                  "fileUrlPath": "src/interactions/functions/types.ts",
                   "releaseTag": "Public",
                   "name": "FunctionExecutionExampleWithHandle",
                   "preserveMemberOrder": false,
@@ -5106,15 +5106,15 @@
                     },
                     {
                       "kind": "Reference",
-                      "text": "AnyMockDescriptor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyMockDescriptor:class"
+                      "text": "AnyInteractionDescriptor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:class"
                     },
                     {
                       "kind": "Content",
                       "text": " "
                     }
                   ],
-                  "fileUrlPath": "src/mocks/functions/MockFunctionExecution.ts",
+                  "fileUrlPath": "src/interactions/functions/MockFunctionExecution.ts",
                   "releaseTag": "Public",
                   "isAbstract": false,
                   "name": "WillCallFunction",
@@ -5263,15 +5263,15 @@
                     },
                     {
                       "kind": "Reference",
-                      "text": "AnyMockDescriptor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyMockDescriptor:class"
+                      "text": "AnyInteractionDescriptor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:class"
                     },
                     {
                       "kind": "Content",
                       "text": " "
                     }
                   ],
-                  "fileUrlPath": "src/mocks/functions/MockFunctionCall.ts",
+                  "fileUrlPath": "src/interactions/functions/MockFunctionCall.ts",
                   "releaseTag": "Public",
                   "isAbstract": false,
                   "name": "WillReceiveFunctionCall",
@@ -5416,7 +5416,7 @@
               "canonicalReference": "@contract-case/case-definition-dsl!mocks.http:namespace",
               "docComment": "",
               "excerptTokens": [],
-              "fileUrlPath": "src/mocks/index-api-extractor.ts",
+              "fileUrlPath": "src/interactions/index-api-extractor.ts",
               "releaseTag": "None",
               "name": "http",
               "preserveMemberOrder": false,
@@ -5431,7 +5431,7 @@
                       "text": "export interface HttpExample "
                     }
                   ],
-                  "fileUrlPath": "src/mocks/http/types.ts",
+                  "fileUrlPath": "src/interactions/http/types.ts",
                   "releaseTag": "Public",
                   "name": "HttpExample",
                   "preserveMemberOrder": false,
@@ -5506,15 +5506,15 @@
                     },
                     {
                       "kind": "Reference",
-                      "text": "AnyMockDescriptor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyMockDescriptor:class"
+                      "text": "AnyInteractionDescriptor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:class"
                     },
                     {
                       "kind": "Content",
                       "text": " "
                     }
                   ],
-                  "fileUrlPath": "src/mocks/http/WillReceiveHttpRequest.ts",
+                  "fileUrlPath": "src/interactions/http/WillReceiveHttpRequest.ts",
                   "releaseTag": "Public",
                   "isAbstract": false,
                   "name": "WillReceiveHttpRequest",
@@ -5633,15 +5633,15 @@
                     },
                     {
                       "kind": "Reference",
-                      "text": "AnyMockDescriptor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyMockDescriptor:class"
+                      "text": "AnyInteractionDescriptor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:class"
                     },
                     {
                       "kind": "Content",
                       "text": " "
                     }
                   ],
-                  "fileUrlPath": "src/mocks/http/WillSendHttpRequest.ts",
+                  "fileUrlPath": "src/interactions/http/WillSendHttpRequest.ts",
                   "releaseTag": "Public",
                   "isAbstract": false,
                   "name": "WillSendHttpRequest",

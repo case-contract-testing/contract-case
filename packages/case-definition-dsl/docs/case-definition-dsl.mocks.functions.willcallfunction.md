@@ -9,10 +9,10 @@ Defines an example that executes a registered function with specific arguments
 **Signature:**
 
 ```typescript
-export declare class WillCallFunction extends AnyMockDescriptor
+export declare class WillCallFunction extends AnyInteractionDescriptor
 ```
 
-**Extends:** [AnyMockDescriptor](./case-definition-dsl.mocks.base.anymockdescriptor.md)
+**Extends:** [AnyInteractionDescriptor](./case-definition-dsl.mocks.base.anyinteractiondescriptor.md)
 
 ## Constructors
 

@@ -2,7 +2,7 @@ import {
   MOCK_HTTP_SERVER,
   MOCK_HTTP_CLIENT,
 } from '@contract-case/case-core-plugin-http-dsl';
-import { AnyMockDescriptor } from '../base/AnyMockDescriptor';
+import { AnyInteractionDescriptor } from '../base/AnyInteractionDescriptor';
 import { HttpExample } from './types';
 import { AnyMatcherOrData } from '../../types';
 
@@ -10,7 +10,7 @@ import { AnyMatcherOrData } from '../../types';
  * Defines an example that expects to send an HTTP request. Use this to test HTTP servers.
  * @public
  */
-export class WillSendHttpRequest extends AnyMockDescriptor {
+export class WillSendHttpRequest extends AnyInteractionDescriptor {
   /** @internal */
   readonly '_case:mock:type': typeof MOCK_HTTP_SERVER;
 

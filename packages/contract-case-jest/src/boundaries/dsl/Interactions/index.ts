@@ -1,4 +1,4 @@
-import { mocks } from '@contract-case/case-definition-dsl';
+import { interactions } from '@contract-case/case-definition-dsl';
 import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 import {
   HttpMockRequest,
@@ -17,8 +17,8 @@ type HttpRequestResponseDescription = {
 export const willSendHttpRequest = ({
   request,
   response,
-}: HttpRequestResponseDescription): mocks.http.WillSendHttpRequest =>
-  new mocks.http.WillSendHttpRequest({
+}: HttpRequestResponseDescription): interactions.http.WillSendHttpRequest =>
+  new interactions.http.WillSendHttpRequest({
     request: httpRequestMatcher(request),
     response: httpResponseMatcher(response),
   });
@@ -26,8 +26,8 @@ export const willSendHttpRequest = ({
 export const willReceiveHttpRequest = ({
   request,
   response,
-}: HttpRequestResponseDescription): mocks.http.WillReceiveHttpRequest =>
-  new mocks.http.WillReceiveHttpRequest({
+}: HttpRequestResponseDescription): interactions.http.WillReceiveHttpRequest =>
+  new interactions.http.WillReceiveHttpRequest({
     request: httpRequestMatcher(request),
     response: httpResponseMatcher(response),
   });
@@ -40,10 +40,10 @@ type FunctionExecutionExample = {
 
 export const willCallFunction = (
   example: FunctionExecutionExample,
-): mocks.functions.WillCallFunction =>
-  new mocks.functions.WillCallFunction(example);
+): interactions.functions.WillCallFunction =>
+  new interactions.functions.WillCallFunction(example);
 
 export const willReceiveFunctionCall = (
   example: FunctionExecutionExample,
-): mocks.functions.WillReceiveFunctionCall =>
-  new mocks.functions.WillReceiveFunctionCall(example);
+): interactions.functions.WillReceiveFunctionCall =>
+  new interactions.functions.WillReceiveFunctionCall(example);

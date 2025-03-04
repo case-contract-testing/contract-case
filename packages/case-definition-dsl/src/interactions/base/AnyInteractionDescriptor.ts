@@ -92,7 +92,7 @@ const mapBehaviour = (
  *
  * @public
  */
-export abstract class AnyMockDescriptor {
+export abstract class AnyInteractionDescriptor {
   /** @internal */
   readonly '_case:mock:type': string;
 

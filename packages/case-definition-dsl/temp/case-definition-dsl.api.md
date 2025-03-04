@@ -77,6 +77,17 @@ class AnyInteger extends AnyMatcherWithExample {
 }
 
 // @public
+abstract class AnyInteractionDescriptor {
+    // @internal (undocumented)
+    readonly '_case:mock:type': string;
+    // @internal (undocumented)
+    readonly '_case:run:context:setup': InternalContractCaseCoreSetup;
+    constructor(mockType: string, setup: ContractCaseCoreSetup);
+    stringify(): string;
+    toJSON(): unknown;
+}
+
+// @public
 abstract class AnyMatcher {
     // @internal (undocumented)
     readonly '_case:matcher:type': string;
@@ -89,17 +100,6 @@ abstract class AnyMatcherWithExample extends AnyMatcher {
     // @internal (undocumented)
     readonly '_case:matcher:example': unknown;
     constructor(matcherType: string, example: unknown);
-    toJSON(): unknown;
-}
-
-// @public
-abstract class AnyMockDescriptor {
-    // @internal (undocumented)
-    readonly '_case:mock:type': string;
-    // @internal (undocumented)
-    readonly '_case:run:context:setup': InternalContractCaseCoreSetup;
-    constructor(mockType: string, setup: ContractCaseCoreSetup);
-    stringify(): string;
     toJSON(): unknown;
 }
 
@@ -230,7 +230,7 @@ declare namespace base {
     export {
         ContractCaseCoreBehaviour,
         ContractCaseCoreSetup,
-        AnyMockDescriptor
+        AnyInteractionDescriptor
     }
 }
 
@@ -654,7 +654,7 @@ class UriEncodedString extends AnyMatcher {
 }
 
 // @public
-class WillCallFunction extends AnyMockDescriptor {
+class WillCallFunction extends AnyInteractionDescriptor {
     // @internal (undocumented)
     readonly '_case:mock:type': typeof MOCK_FUNCTION_EXECUTION;
     // @internal (undocumented)
@@ -680,7 +680,7 @@ class WillCallFunction extends AnyMockDescriptor {
 }
 
 // @public
-class WillReceiveFunctionCall extends AnyMockDescriptor {
+class WillReceiveFunctionCall extends AnyInteractionDescriptor {
     // @internal (undocumented)
     readonly '_case:mock:type': typeof MOCK_FUNCTION_CALLER;
     // @internal (undocumented)
@@ -706,7 +706,7 @@ class WillReceiveFunctionCall extends AnyMockDescriptor {
 }
 
 // @public
-class WillReceiveHttpRequest extends AnyMockDescriptor {
+class WillReceiveHttpRequest extends AnyInteractionDescriptor {
     // @internal (undocumented)
     readonly '_case:mock:type': typeof MOCK_HTTP_CLIENT;
     // @internal (undocumented)
@@ -730,7 +730,7 @@ class WillReceiveHttpRequest extends AnyMockDescriptor {
 }
 
 // @public
-class WillSendHttpRequest extends AnyMockDescriptor {
+class WillSendHttpRequest extends AnyInteractionDescriptor {
     // @internal (undocumented)
     readonly '_case:mock:type': typeof MOCK_HTTP_SERVER;
     // @internal (undocumented)

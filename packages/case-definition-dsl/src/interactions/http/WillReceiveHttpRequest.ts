@@ -2,7 +2,7 @@ import {
   MOCK_HTTP_CLIENT,
   MOCK_HTTP_SERVER,
 } from '@contract-case/case-core-plugin-http-dsl';
-import { AnyMockDescriptor } from '../base/AnyMockDescriptor';
+import { AnyInteractionDescriptor } from '../base/AnyInteractionDescriptor';
 import { HttpExample } from './types';
 import { AnyMatcherOrData } from '../../types';
 
@@ -11,7 +11,7 @@ import { AnyMatcherOrData } from '../../types';
  *
  * @public
  */
-export class WillReceiveHttpRequest extends AnyMockDescriptor {
+export class WillReceiveHttpRequest extends AnyInteractionDescriptor {
   /** @internal */
   readonly '_case:mock:type': typeof MOCK_HTTP_CLIENT;
 
