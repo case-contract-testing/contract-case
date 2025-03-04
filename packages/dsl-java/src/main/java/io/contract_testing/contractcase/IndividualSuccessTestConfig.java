@@ -50,7 +50,7 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
     private BrokerBasicAuthCredentials brokerBasicAuth;
     private String baseUrlUnderTest;
     private TriggerGroups triggers;
-    private Map<String, StateHandler> stateHandlers;
+    private Map<String, StateHandler> stateHandlers = new HashMap<>();
     private Trigger<T> trigger;
     private TestResponseFunction<T> testResponse;
 
@@ -132,9 +132,13 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
       return this;
     }
 
-    public IndividualSuccessTestConfigBuilder<T> withStateHandlers(
-        Map<String, StateHandler> stateHandlers) {
-      this.stateHandlers = Map.copyOf(stateHandlers);
+    public IndividualSuccessTestConfigBuilder<T> stateHandler(String stateName, StateHandler stateHandler) {
+      if (this.stateHandlers.containsKey(stateName)) {
+        throw new ContractCaseConfigurationError("The state with name '" + stateName
+            + "' is already set. You should only set a state handler once for each state.\n   If you need a setup and teardown handler, use the convenience methods on "
+            + StateHandler.class.getName());
+      }
+      this.stateHandlers.put(stateName, stateHandler);
       return this;
     }
 

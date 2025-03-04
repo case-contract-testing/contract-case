@@ -8,7 +8,6 @@ import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.PublishType;
 import io.contract_testing.contractcase.StateHandler;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterAll;
@@ -48,19 +47,20 @@ public class FunctionCallerVerificationTest {
         //  .logLevel(LogLevel.MAINTAINER_DEBUG)
         .printResults(true)
         .throwOnFail(true)
-        .stateHandlers(
-            Map.ofEntries(
-                Map.entry(
-                    "The key 'foo' is set to 'bar'",
-                    StateHandler.setupFunction(() -> {
-                      mockedStore.put("foo", "bar");
-                    })
-                )))
-        .build());
+        .stateHandler(
+            "The key 'foo' is set to 'bar'",
+            StateHandler.setupFunction(() -> {
+                  mockedStore.put("foo", "bar");
+                }
+            )
+        )
+        .build()
+    );
 
   }
 
-  private static @NotNull <R> InvokableFunction1 convertJsonIntegerArg(Function<Integer, R> functionUnderTest) {
+  private static @NotNull <R> InvokableFunction1
+  convertJsonIntegerArg(Function<Integer, R> functionUnderTest) {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, Integer.class);
@@ -72,7 +72,8 @@ public class FunctionCallerVerificationTest {
   }
 
   @NotNull
-  private static <R> InvokableFunction1 convertJsonStringArgs(Function<String, R> functionUnderTest) {
+  private static <R> InvokableFunction1
+  convertJsonStringArgs(Function<String, R> functionUnderTest) {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, String.class);
