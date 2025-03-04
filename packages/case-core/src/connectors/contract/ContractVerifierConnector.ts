@@ -1,3 +1,5 @@
+import { Mutex } from 'async-mutex';
+
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import {
   CaseConfigurationError,
@@ -6,6 +8,7 @@ import {
   CaseCoreError,
 } from '@contract-case/case-plugin-base';
 import { CaseContractDescription } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+
 import type {
   CaseConfig,
   ContractFileFromDisk,
@@ -56,6 +59,10 @@ export class ContractVerifierConnector {
 
   parentVersions: string[];
 
+  // This is needed so that each contract runs one at a time
+  // (this connector can be passed multiple contracts)
+  private mutex: Mutex;
+
   constructor(
     userConfig: CaseConfig,
     callback: RunTestCallback,
@@ -87,6 +94,8 @@ export class ContractVerifierConnector {
     this.contracts = readContractFromStore(this.config, store);
 
     this.callback = callback;
+
+    this.mutex = new Mutex();
   }
 
   getAvailableContractDescriptions(): CaseContractDescription[] {
@@ -156,23 +165,25 @@ export class ContractVerifierConnector {
       );
     }
 
-    const results = contractsToVerify.map((contractLink) => {
-      this.context.logger.debug(
-        `Verifying contract from file '${contractLink.filePath}'`,
-      );
-      const contractVerifier = new ReadingCaseContract(
-        contractLink.contents,
-        this.dependencies,
-        mergedConfig,
-        this.parentVersions,
-      );
-
-      Object.entries(invokeableFns).forEach(([key, value]) => {
-        contractVerifier.registerFunction(key, value);
-      });
-
-      return contractVerifier.verifyContract(invoker, this.callback);
-    });
+    const results = contractsToVerify.map((contractLink) =>
+      // We run the contracts exclusively so that their callbacks
+      // to any host setup don't overlap
+      this.mutex.runExclusive(() => {
+        this.context.logger.debug(
+          `Verifying contract from file '${contractLink.filePath}'`,
+        );
+        const contractVerifier = new ReadingCaseContract(
+          contractLink.contents,
+          this.dependencies,
+          mergedConfig,
+          this.parentVersions,
+        );
+        Object.entries(invokeableFns).forEach(([key, value]) => {
+          contractVerifier.registerFunction(key, value);
+        });
+        return contractVerifier.verifyContract(invoker, this.callback);
+      }),
+    );
     if (mergedConfig.internals.asyncVerification) {
       this.context.logger.maintainerDebug(`Awaiting async verification`);
       return Promise.all(results).then(
