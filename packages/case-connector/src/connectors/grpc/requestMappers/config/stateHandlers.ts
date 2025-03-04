@@ -40,19 +40,13 @@ export const mapStateHandlers = (
     (acc: Record<string, ConnectorStateHandler>, handler) => ({
       ...acc,
       [unbox(handler.getHandle())]: {
+        // We set both initially
+        setup: makeStateHandlerCall(handler, executeCall),
+        teardown: makeStateHandlerCall(handler, executeCall),
+        // but the existing one should clobber it if it's already set
         ...(acc[unbox(handler.getHandle())]
           ? acc[unbox(handler.getHandle())]
           : {}),
-        ...(handler.getStage() ===
-        WireStateHandlerHandle.Stage.STAGE_SETUP_UNSPECIFIED
-          ? {
-              setup: makeStateHandlerCall(handler, executeCall),
-              teardown: makeStateHandlerCall(handler, executeCall),
-            }
-          : {
-              setup: makeStateHandlerCall(handler, executeCall),
-              teardown: makeStateHandlerCall(handler, executeCall),
-            }),
       },
     }),
     {} as Record<string, ConnectorStateHandler>,
