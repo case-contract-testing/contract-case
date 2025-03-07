@@ -165,25 +165,34 @@ export class ContractVerifierConnector {
       );
     }
 
-    const results = contractsToVerify.map((contractLink) =>
-      // We run the contracts exclusively so that their callbacks
-      // to any host setup don't overlap
-      this.mutex.runExclusive(() => {
-        this.context.logger.debug(
-          `Verifying contract from file '${contractLink.filePath}'`,
-        );
-        const contractVerifier = new ReadingCaseContract(
-          contractLink.contents,
-          this.dependencies,
-          mergedConfig,
-          this.parentVersions,
-        );
-        Object.entries(invokeableFns).forEach(([key, value]) => {
-          contractVerifier.registerFunction(key, value);
-        });
-        return contractVerifier.verifyContract(invoker, this.callback);
-      }),
-    );
+    if (contractsToVerify.length > 1) {
+      this.context.logger.debug(
+        '*** Multiple contracts are being verified ***',
+      );
+      this.context.logger.debug(
+        'Note that the following debug log may contain interactions from any contract in any order',
+      );
+    }
+    const results = contractsToVerify.map((contractLink, index) => {
+      this.context.logger.debug(
+        `Verifying contract from file '${contractLink.filePath}'`,
+      );
+      const contractVerifier = new ReadingCaseContract(
+        contractLink.contents,
+        this.dependencies,
+        {
+          ...mergedConfig,
+          coreLogContextPrefix:
+            contractsToVerify.length > 1 ? `Contract[${index}]` : '',
+        },
+        this.parentVersions,
+        this.mutex,
+      );
+      Object.entries(invokeableFns).forEach(([key, value]) => {
+        contractVerifier.registerFunction(key, value);
+      });
+      return contractVerifier.verifyContract(invoker, this.callback);
+    });
     if (mergedConfig.internals.asyncVerification) {
       this.context.logger.maintainerDebug(`Awaiting async verification`);
       return Promise.all(results).then(

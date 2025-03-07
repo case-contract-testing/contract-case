@@ -13,6 +13,7 @@ import { ReadingCaseContract } from './core';
 import { readerDependencies } from './connectors/dependencies';
 import { readContract } from './connectors/contractStore/contractReader';
 import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
+import { Mutex } from 'async-mutex';
 
 describe('Server verification', () => {
   let server: http.Server;
@@ -45,6 +46,7 @@ describe('Server verification', () => {
       publish: false,
     },
     ['tests'],
+    new Mutex(),
   );
   beforeAll(async () => {
     server = await start(port, serverDependencies);

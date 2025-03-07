@@ -113,7 +113,6 @@ export const constructDataContext = (
     makeLogger,
     ...DEFAULT_CONTEXT,
     '_case:currentRun:context:defaultConfig': defaults,
-    '_case:currentRun:context:location': [],
     '_case:currentRun:context:testName': 'OUTSIDE_TESTS' as const,
     '_case:currentRun:context:variables': {},
     '_case:currentRun:context:parentVersions': parentVersions,

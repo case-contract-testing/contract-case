@@ -29,6 +29,17 @@ export class ReadingCaseContract extends BaseCaseContract {
 
   private status: 'UNKNOWN' | 'FAILED' | 'SUCCESS';
 
+  /**
+   * Constructs a ReadingCaseContract
+   *
+   * @param contractFile - The DownloadedContract to verify
+   * @param readerDependencies - The dependencies for a contract reader (injected)
+   * @param config - the CaseConfig for this run
+   * @param parentVersions - the array of versions of all the ContractCase packages before this one
+   * @param mutex - a Mutex to use to ensure that only one test is run at once.
+   * this is injected, since the parent class might make more than one
+   * ReadingCaseContract objects (if verifying multiple contracts), but only one interaction can be run at once.
+   */
   constructor(
     contractFile: DownloadedContract,
     {
@@ -39,6 +50,7 @@ export class ReadingCaseContract extends BaseCaseContract {
     }: ReaderDependencies,
     config: CaseConfig,
     parentVersions: string[],
+    mutex: Mutex,
   ) {
     super(
       contractFile.description,
@@ -52,8 +64,7 @@ export class ReadingCaseContract extends BaseCaseContract {
     this.makeBrokerService = makeBrokerService;
     this.links = contractFile;
     this.status = 'UNKNOWN';
-
-    this.mutex = new Mutex();
+    this.mutex = mutex;
   }
 
   /**
@@ -105,7 +116,7 @@ export class ReadingCaseContract extends BaseCaseContract {
                 '_case:currentRun:context:contractMode': 'read',
                 '_case:currentRun:context:location': [
                   'verification',
-                  `mock[${index}]`,
+                  `interaction[${index}]`,
                 ],
               },
             );

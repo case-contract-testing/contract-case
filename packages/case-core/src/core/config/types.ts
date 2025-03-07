@@ -139,6 +139,17 @@ export interface BaseCaseConfig {
      */
     asyncVerification: boolean;
   };
+
+  /**
+   * A string to add at the start of the log context when initialising it.
+   *
+   * Used to indicate which contract we're looking at. If it's not present, the
+   * behaviour is the same as if it were set to `''`
+   *
+   * Like all properties that start with `core`, this is not intended to be
+   * exposed to users.
+   */
+  coreLogContextPrefix?: string;
 }
 
 type PluginConfig = {

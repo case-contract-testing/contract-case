@@ -39,4 +39,7 @@ export const configToRunContext = (config: CaseConfig): Partial<RunContext> =>
     .reduce<Partial<RunContext>>((acc, curr) => ({ ...acc, ...curr }), {
       '_case:currentRun:context:connectorClient':
         process.env['CASE_CONNECTOR_CLIENT'] ?? 'No Connector Client Supplied',
+      '_case:currentRun:context:location': config.coreLogContextPrefix
+        ? [config.coreLogContextPrefix]
+        : [],
     });
