@@ -1,6 +1,7 @@
 import type * as http from 'node:http';
 
 import { CaseConfigurationError } from '@contract-case/case-plugin-base';
+import { Mutex } from 'async-mutex';
 import type { RunTestCallback } from './core/executeExample/types';
 import type { StateHandlers } from './entities/states/types';
 
@@ -13,7 +14,6 @@ import { ReadingCaseContract } from './core';
 import { readerDependencies } from './connectors/dependencies';
 import { readContract } from './connectors/contractStore/contractReader';
 import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
-import { Mutex } from 'async-mutex';
 
 describe('Server verification', () => {
   let server: http.Server;

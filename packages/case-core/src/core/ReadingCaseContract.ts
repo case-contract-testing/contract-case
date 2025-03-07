@@ -84,7 +84,9 @@ export class ReadingCaseContract extends BaseCaseContract {
     this.initialContext.logger.maintainerDebug(
       `Verifying contract between '${this.currentContract.description.consumerName}' and '${this.currentContract.description.providerName}'. There are '${this.currentContract.examples.length}' examples`,
     );
-    const finishedIndicators = [];
+    const interactionFinishedIndicators: Promise<unknown>[] = [];
+    const interactionFinishers: Array<() => void> = [];
+
     this.currentContract.examples.forEach((example, index) => {
       if (example.result !== 'VERIFIED') {
         throw new CaseCoreError(
@@ -96,11 +98,20 @@ export class ReadingCaseContract extends BaseCaseContract {
       this.initialContext.logger.maintainerDebug(
         `Preparing test framework's callback for: ${names.mockName} `,
       );
-      let exampleFinished: () => void;
 
-      finishedIndicators.push(
-        new Promise<void>((resolve) => {
-          exampleFinished = resolve;
+      interactionFinishedIndicators.push(
+        new Promise<void>((resolve, reject) => {
+          const timeout = setTimeout(() => {
+            this.initialContext.logger.error(
+              `Timeout in interaction[${index}]`,
+            );
+            reject(new Error(names.mockName));
+          }, 30000);
+
+          interactionFinishers[index] = () => {
+            clearTimeout(timeout);
+            resolve();
+          };
         }),
       );
       runTestCb(names.mockName, () =>
@@ -134,16 +145,20 @@ export class ReadingCaseContract extends BaseCaseContract {
             );
           })
           .finally(() => {
+            this.initialContext.logger.deepMaintainerDebug(
+              `Interaction[${index}] type of finisher`,
+              interactionFinishers[index],
+            );
             this.initialContext.logger.maintainerDebug(
               `Interaction[${index}] completed: ${names.mockName}`,
             );
-            exampleFinished();
+            interactionFinishers[index]?.();
           }),
       );
     });
     let publishFinished: () => void;
-
-    finishedIndicators.push(
+    const publishFinishedIndicators = [];
+    publishFinishedIndicators.push(
       new Promise<void>((resolve) => {
         publishFinished = resolve;
       }),
@@ -156,12 +171,14 @@ export class ReadingCaseContract extends BaseCaseContract {
         this.initialContext.logger.maintainerDebug(
           'Test callback for ending record',
         );
-        return this.endRecord().finally(() => {
-          this.initialContext.logger.maintainerDebug(
-            `Publishing contract callback completed`,
-          );
-          publishFinished();
-        });
+        return Promise.allSettled(interactionFinishedIndicators)
+          .then(() => this.endRecord())
+          .finally(() => {
+            this.initialContext.logger.maintainerDebug(
+              `Publishing contract callback completed`,
+            );
+            publishFinished();
+          });
       },
     );
     if (
@@ -169,7 +186,10 @@ export class ReadingCaseContract extends BaseCaseContract {
       this.initialContext['_case:currentRun:context:internals']
         .asyncVerification
     ) {
-      return Promise.all(finishedIndicators).then(() => {});
+      return Promise.all([
+        ...interactionFinishedIndicators,
+        ...publishFinishedIndicators,
+      ]).then(() => {});
     }
     return undefined;
   }
