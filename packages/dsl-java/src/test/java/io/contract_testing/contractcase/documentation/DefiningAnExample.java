@@ -1,6 +1,7 @@
 package io.contract_testing.contractcase.documentation;
 
 import io.contract_testing.contractcase.ContractCaseConfig;
+import io.contract_testing.contractcase.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
@@ -28,7 +29,7 @@ public class DefiningAnExample {
   };
 
   private static final ContractDefiner contract = new ContractDefiner(
-      ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+      ContractCaseConfigBuilder.aContractCaseConfig()
           .consumerName("Example-Client")
           .providerName("Example-Server")
           .build());

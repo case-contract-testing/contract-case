@@ -2,10 +2,10 @@ package io.contract_testing.contractcase.documentation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
-import io.contract_testing.contractcase.InteractionDefinition;
+import io.contract_testing.contractcase.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
+import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.definitions.matchers.AnyString;
 import io.contract_testing.contractcase.definitions.matchers.HttpRequest;
@@ -27,7 +27,7 @@ public class CreatingAContract {
 
   // example-extract _creating-a-contract
   private static final ContractDefiner contract = new ContractDefiner(
-      ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+      ContractCaseConfigBuilder.aContractCaseConfig()
           .consumerName("Example-Client")
           .providerName("Example-Server")
           .build());

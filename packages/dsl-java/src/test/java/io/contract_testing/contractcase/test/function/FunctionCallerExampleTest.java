@@ -3,6 +3,7 @@ package io.contract_testing.contractcase.test.function;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import io.contract_testing.contractcase.ContractCaseConfig;
+import io.contract_testing.contractcase.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
@@ -18,7 +19,8 @@ import org.junit.jupiter.api.Test;
 
 public class FunctionCallerExampleTest {
 
-  private static final ContractDefiner contract = new ContractDefiner(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+  private static final ContractDefiner contract = new ContractDefiner(
+      ContractCaseConfigBuilder.aContractCaseConfig()
       .consumerName("Java Function Caller Example")
       .providerName("Java Function Execution Example")
       .publish(PublishType.NEVER)

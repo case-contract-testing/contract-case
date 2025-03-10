@@ -1,8 +1,7 @@
-package io.contract_testing.contractcase.test.function.verification;
+package io.contract_testing.contractcase.documentation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.ContractVerifier;
 import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction1;
@@ -12,9 +11,8 @@ import java.util.HashMap;
 import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Test;
 
-public class FunctionCallerVerificationTest {
+public class Verification {
 
   static final ObjectMapper mapper = new ObjectMapper();
 
@@ -27,7 +25,6 @@ public class FunctionCallerVerificationTest {
           .build());
 
 
-  @Test
   public void testVerify() throws InterruptedException {
     contract.registerFunction("NoArgFunction", () -> {
       return null;
@@ -45,19 +42,42 @@ public class FunctionCallerVerificationTest {
         convertJsonStringArgs((String key) -> mockedStore.get(key))
     );
 
-    contract.runVerification(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
-        //  .logLevel(LogLevel.MAINTAINER_DEBUG)
-        .printResults(true)
-        .throwOnFail(true)
-        .stateHandler(
-            "The key 'foo' is set to 'bar'",
-            StateHandler.setupFunction(() -> {
-                  mockedStore.put("foo", "bar");
-                }
+    // example-extract _verifying-state-handlers
+    contract.runVerification(
+        ContractCaseConfigBuilder.aContractCaseConfig()
+            // State handlers are keyed by the name of the state.
+            // This must match exactly between the name defined in the
+            // contract, and the state handler at verification time.
+
+            // A state handler either returns void, or variables.
+            //
+            // They can be created with the factories on StateHandler:
+            //
+            // StateHandler.setupFunction(() -> void)
+            // StateHandler.setupFunction(() ->  Map<String, Object>)
+            // StateHandler.setupAndTearDown(() -> Map<String, Object>, () -> void)
+            //
+            // If your state returns variables, return an object where the
+            // keys are the variable names instead of void.
+            .stateHandler(
+                "Server is up",
+                StateHandler.setupFunction(() -> {
+                  // Any setup for the state 'Server is up' goes here
+                })
+            ).stateHandler(
+                "A user exists",
+                StateHandler.setupAndTeardown(
+                    () -> {
+                      // Any setup for the state 'A user exists' goes here
+                    },
+                    () -> {
+                      // Any teardown for the state 'A user exists' goes here
+                    }
+                )
             )
-        )
-        .build()
+            .build()
     );
+    // end-example
 
   }
 

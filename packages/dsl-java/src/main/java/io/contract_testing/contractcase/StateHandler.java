@@ -12,7 +12,7 @@ public class StateHandler {
     });
   }
 
-  public static StateHandler setupFunction(SetupFunctionWithoutParameters setupFunction) {
+  public static StateHandler setupFunction(SetupFunctionWithoutVariables setupFunction) {
     return new StateHandler(
         () -> {
           setupFunction.setup();
@@ -27,6 +27,15 @@ public class StateHandler {
   public static StateHandler setupAndTeardown(SetupFunction setupFunction,
       TeardownFunction teardownFn) {
     return new StateHandler(setupFunction, teardownFn);
+  }
+
+  public static StateHandler setupAndTeardown(SetupFunctionWithoutVariables setupFunction,
+      TeardownFunction teardownFn) {
+    return new StateHandler(() -> {
+      setupFunction.setup();
+      // We use null to tell the core that there were no variables returned
+      return null;
+    }, teardownFn);
   }
 
   private StateHandler(SetupFunction setupFn, TeardownFunction teardownFn) {
