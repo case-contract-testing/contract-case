@@ -5,8 +5,8 @@ sidebar_position: 4
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import OrderJs from '../../examples/generated/\_defining-states-order.ts.mdx';
-import OrderJava from '../../examples/generated/\_defining-states-order.java.mdx';
+import HandlerJs from '../../examples/generated/\_verifying-state-handlers.ts.mdx';
+import HandlerJava from '../../examples/generated/\_verifying-state-handlers.java.mdx';
 
 # Writing state handlers
 
@@ -22,16 +22,7 @@ State handlers are invoked by ContractCase during setup for Examples that were d
 with states (see the [ContractCase Example Lifecycle](/docs/reference/lifecycle)).
 
 The order of execution of state setup handlers is the same as the order that the states
-were defined in. During teardown, the state teardown handlers execute in the reverse order
-
-<Tabs groupId="language">
-  <TabItem value="js" label="Typescript">
-    <OrderJs />
-  </TabItem>
-  <TabItem value="java" label="Java">
-   <OrderJava />
-  </TabItem>
-</Tabs>
+were defined in. During teardown, the state teardown handlers execute in the reverse order.
 
 ## What should a state handler do?
 
@@ -58,36 +49,15 @@ the database, changing the mock back to a default, etc).
 
 During verification of the contract above, a state handler would need to be written:
 
-```ts
-const stateHandlers = {
-  // State handlers are keyed by the name of the state.
-  // This must match exactly.
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <HandlerJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <HandlerJava />
+  </TabItem>
+</Tabs>
 
-  // When the states don't have variables, there are two possible
-  // signatures for a state handler:
-  // Either
-  //   () => Promise<void> | void
-  // or
-  //  {
-  //    setup:    () => Promise<void> | void
-  //    teardown: () => Promise | void
-  //  }
-  //
-  // There are also state
-  'Server is up': () => {
-    // Any setup goes here
-  },
-
-  'A user with id "foo" exists': {
-    setup: () => {
-      // Any setup goes here
-    },
-    teardown: () => {
-      // Any teardown goes here
-    },
-  },
-};
-```
 
 ### Setup state handlers
 
@@ -103,7 +73,7 @@ stateHandlers: {
 },
 ```
 
-Or as a `setup` key on the stateHandler value:
+Or as a `setup` key if you have both a setup and a teardown handler:
 
 ```ts
 stateHandlers: {
@@ -148,8 +118,8 @@ stateHandlers: {
 
 ### State teardown functions
 
-State teardown functions are run after the Example has completed execution (see
-the [Example Lifecycle documentation](/docs/reference/lifecycle) for
+State teardown functions are run after the interaction has completed execution (see
+the [interaction lifecycle documentation](/docs/reference/lifecycle) for
 more information).
 
 State teardown functions are specified with the `teardown` key on a state setup object:

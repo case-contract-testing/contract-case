@@ -1,0 +1,35 @@
+```java
+    contract.runVerification(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+            // State handlers are keyed by the name of the state.
+            // This must match exactly between the name defined in the
+            // contract, and the state handler at verification time.
+
+            // A state handler either returns void, or variables.
+            //
+            // They can be created with the factories on StateHandler:
+            //
+            // StateHandler.setupFunction(() -> void)
+            // StateHandler.setupFunction(() ->  Map<String, Object>)
+            // StateHandler.setupAndTearDown(() -> Map<String, Object>, () -> void)
+            //
+            // If your state returns variables, return an object where the
+            // keys are the variable names instead of void.
+            .stateHandler(
+                "Server is up",
+                StateHandler.setupFunction(() -> {
+                  // Any setup for the state 'Server is up' goes here
+                })
+            ).stateHandler(
+                "A user exists",
+                StateHandler.setupAndTeardown(
+                    () -> {
+                      // Any setup for the state 'A user exists' goes here
+                    },
+                    () -> {
+                      // Any teardown for the state 'A user exists' goes here
+                    }
+            )
+        )
+        .build()
+    );
+```
