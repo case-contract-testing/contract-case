@@ -60,6 +60,43 @@
     "rimraf": "^6.0.1",
     "typescript": "5.5.4"
   },
+  "nx": {
+    "tasksRunnerOptions": {
+      "default": {
+        "runner": "nx/tasks-runners/default",
+        "options": {
+          "cacheableOperations": [
+            "build",
+            "package",
+            "lint",
+            "format:check",
+            "test"
+          ]
+        }
+      }
+    },
+    "targetDefaults": {
+      "build:docs:local": {
+        "dependsOn": [
+          "build",
+          "^build:docs:local"
+        ]
+      },
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "{projectRoot}/build"
+        ]
+      },
+      "package": {
+        "outputs": [
+          "{projectRoot}/dist"
+        ]
+      }
+    }
+  },
   "dependencies": {
     "pretty-format": "^29.7.0"
   }
