@@ -1,5 +1,42 @@
 # Changelog
 
+## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.3.0...@contract-case/dsl-java-v0.19.0) (2025-03-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replaced `stateHandlers(Map)` with `stateHandler(stateName, StateHandler)` in config builders, for a more idomatic experience
+* `ExampleDefinition` has been renamed `InteractionDefinition`. You will need to update your tests
+* Replace runExample / runRejectingExample / runThrowingExample with runInteraction / runRejectingInteraction / runThrowingInteraction
+* Rename SetupInfo to InteractionSetup for consistency
+
+### Features
+
+* Add ability for the current version to be generated from the git sha ([dd70365](https://github.com/case-contract-testing/contract-case/commit/dd703650fd058d34f6d772011b74faec10b93074))
+* Add ability to register function calls to the ContractVerifier ([1de3d31](https://github.com/case-contract-testing/contract-case/commit/1de3d31647ed14ad0fe8c37701064ca836d653d0))
+* Add convenience method for state handlers with void returns to StateHandler ([5aaab4e](https://github.com/case-contract-testing/contract-case/commit/5aaab4ed8d17f1344090b022f6fe869cdac66700))
+
+
+### Bug Fixes
+
+* Allow triggers to throw exceptions, avoiding boilerplate in tests ([e9f5f04](https://github.com/case-contract-testing/contract-case/commit/e9f5f04276f372b16048979648a2a94d887c4515))
+
+
+### Code Refactoring
+
+* `ExampleDefinition` has been renamed `InteractionDefinition`. You will need to update your tests ([7739fe5](https://github.com/case-contract-testing/contract-case/commit/7739fe53bf5c412f945c84ad1571f2e13f431f43))
+* Rename SetupInfo to InteractionSetup for consistency ([ea8ba95](https://github.com/case-contract-testing/contract-case/commit/ea8ba9537b91bc99cb8a3927fd21e495f57d41a7))
+* Replace runExample / runRejectingExample / runThrowingExample with runInteraction / runRejectingInteraction / runThrowingInteraction ([a37e0e8](https://github.com/case-contract-testing/contract-case/commit/a37e0e8258672894e702aebdb5d9cddce90923b4))
+* Replaced `stateHandlers(Map)` with `stateHandler(stateName, StateHandler)` in config builders, for a more idomatic experience ([1358b76](https://github.com/case-contract-testing/contract-case/commit/1358b76f36316f5245ab4b998bd1b1ae8f1bad36))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.10.0 to 0.19.0
+    * @contract-case/case-definition-dsl bumped from 0.18.0 to 0.19.0
+
 ## [0.3.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.2.3...@contract-case/dsl-java-v0.3.0) (2024-10-17)
 
 ### ⚠ BREAKING CHANGES

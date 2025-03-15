@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.8...documentation-v0.19.0) (2025-03-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* The `mocks` module has been renamed `interactions`; and `AnyMockDescriptor` has been renamed `AnyInteractionDescriptor`. You may need to update your imports
+* Replace runExample / runRejectingExample / runThrowingExample with runInteraction / runRejectingInteraction / runThrowingInteraction
+
+### Features
+
+* Add ability for the current version to be generated from the git sha ([dd70365](https://github.com/case-contract-testing/contract-case/commit/dd703650fd058d34f6d772011b74faec10b93074))
+
+
+### Documentation
+
+* Add initial matcher documentation ([d95d868](https://github.com/case-contract-testing/contract-case/commit/d95d868d3f6f3a03e16119be25029822631d342e))
+* Improve state handler documentation ([1c02ae0](https://github.com/case-contract-testing/contract-case/commit/1c02ae086216a153e6e3e7455eb45cfb28316b38))
+* Minor improvements to wording in the state handler documentation ([7791228](https://github.com/case-contract-testing/contract-case/commit/7791228e235ec166ec7243fd4650ff5dbc70348b))
+* Substantially improve documentation ([7bf4006](https://github.com/case-contract-testing/contract-case/commit/7bf40065063184795f94e6872cb80c3014c02db9))
+* Update docs to reflect change from Example -&gt; interaction ([2d3b5b1](https://github.com/case-contract-testing/contract-case/commit/2d3b5b1cc8a6957ce02e5b0fe3194b68bb3eb956))
+* Update matcher documentation ([ace5ac9](https://github.com/case-contract-testing/contract-case/commit/ace5ac9b0d00b79fb55d4373b6405a71f849d598))
+* Update package versioning to make it clear that the versions are linked now ([fa43518](https://github.com/case-contract-testing/contract-case/commit/fa43518600c4d451450582d8776e9ead2292cd7a))
+
+
+### Code Refactoring
+
+* Replace runExample / runRejectingExample / runThrowingExample with runInteraction / runRejectingInteraction / runThrowingInteraction ([a37e0e8](https://github.com/case-contract-testing/contract-case/commit/a37e0e8258672894e702aebdb5d9cddce90923b4))
+* The `mocks` module has been renamed `interactions`; and `AnyMockDescriptor` has been renamed `AnyInteractionDescriptor`. You may need to update your imports ([f3f4b0d](https://github.com/case-contract-testing/contract-case/commit/f3f4b0dafb6f9be2a5055fe198dda03025b5682b))
+
 ## [0.0.8](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.7...documentation-v0.0.8) (2024-10-01)
 
 
