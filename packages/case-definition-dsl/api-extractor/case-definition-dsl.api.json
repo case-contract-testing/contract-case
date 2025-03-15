@@ -175,6 +175,1182 @@
       "members": [
         {
           "kind": "Namespace",
+          "canonicalReference": "@contract-case/case-definition-dsl!interactions:namespace",
+          "docComment": "",
+          "excerptTokens": [],
+          "fileUrlPath": "src/index-api-extractor.ts",
+          "releaseTag": "None",
+          "name": "interactions",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Namespace",
+              "canonicalReference": "@contract-case/case-definition-dsl!interactions.base:namespace",
+              "docComment": "",
+              "excerptTokens": [],
+              "fileUrlPath": "src/interactions/index-api-extractor.ts",
+              "releaseTag": "None",
+              "name": "base",
+              "preserveMemberOrder": false,
+              "members": [
+                {
+                  "kind": "Class",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.AnyInteractionDescriptor:class",
+                  "docComment": "/**\n * The base class for all ContractCase Mock Descriptors. Extend this if you are implementing your own mock type.\n *\n * If you are using the included example types from ContractCase (or any extension libraries), you do not need to read the documentation for this class.\n *\n * Mock description type strings beginning with `_case:` are reserved for the default ContractCase matchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case for a matching behaviour that is already provided by a core ContractCase mock.\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export declare abstract class AnyInteractionDescriptor "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/base/AnyInteractionDescriptor.ts",
+                  "releaseTag": "Public",
+                  "isAbstract": true,
+                  "name": "AnyInteractionDescriptor",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "Constructor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.AnyInteractionDescriptor:constructor(1)",
+                      "docComment": "/**\n * The base class for all ContractCase Mock Descriptors. Extend this if you are implementing your own mock type.\n *\n * If you are using the included example types from ContractCase (or any extension libraries), you do not need to read the documentation for this class.\n *\n * Mock description type strings beginning with `_case:` are reserved for the default ContractCase matchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case for a matching behaviour that is already provided by a core ContractCase mock.\n *\n * @param mockType - The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework) for a description of these strings).\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "constructor(mockType: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ", setup: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "ContractCaseCoreSetup",
+                          "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.ContractCaseCoreSetup:interface"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ");"
+                        }
+                      ],
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [
+                        {
+                          "parameterName": "mockType",
+                          "parameterTypeTokenRange": {
+                            "startIndex": 1,
+                            "endIndex": 2
+                          },
+                          "isOptional": false
+                        },
+                        {
+                          "parameterName": "setup",
+                          "parameterTypeTokenRange": {
+                            "startIndex": 3,
+                            "endIndex": 4
+                          },
+                          "isOptional": false
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "Method",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.AnyInteractionDescriptor#stringify:member(1)",
+                      "docComment": "/**\n * This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.\n *\n * You shouldn't need to override this method.\n *\n * @returns A JSON string representation of this mock.\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "stringify(): "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isStatic": false,
+                      "returnTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [],
+                      "isOptional": false,
+                      "isAbstract": false,
+                      "name": "stringify"
+                    },
+                    {
+                      "kind": "Method",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.AnyInteractionDescriptor#toJSON:member(1)",
+                      "docComment": "/**\n * Only override this method if you are writing a matcher in a language other than TypeScript.\n *\n * It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n *\n * It isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n *\n * Calling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n *\n * WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework).\n *\n * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/reference/plugin-framework).\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "toJSON(): "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "unknown"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isStatic": false,
+                      "returnTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [],
+                      "isOptional": false,
+                      "isAbstract": false,
+                      "name": "toJSON"
+                    }
+                  ],
+                  "implementsTokenRanges": []
+                },
+                {
+                  "kind": "Interface",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.ContractCaseCoreBehaviour:interface",
+                  "docComment": "/**\n * This type defines the core behaviour that ContractCase has with this mock.\n *\n * If you are using the included example types from ContractCase (or any extension libraries), you do not need to use this class (or understand this documentation).\n *\n * This documentation is only necessary for people extending ContractCase to include new mock types.\n *\n * See the definitions in the case-entities-internal package for more details.\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export interface ContractCaseCoreBehaviour "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/base/AnyInteractionDescriptor.ts",
+                  "releaseTag": "Public",
+                  "name": "ContractCaseCoreBehaviour",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.ContractCaseCoreBehaviour#mockType:member",
+                      "docComment": "/**\n * The type of this mock. Usually this is inverted on read vs write, for example, a written MOCK_HTTP_CLIENT might become a MOCK_HTTP_SERVER during reading.\n *\n * This will almost always be the same as the top level type for your mock during read - but if it is different, ContractCase will respect this value.\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly mockType: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "mockType",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.ContractCaseCoreBehaviour#stateVariables:member",
+                      "docComment": "/**\n * Whether or not this mock mode will invoke state handlers. If set to `\"default\"` then ContractCase will not invoke or require the state handlers and will use the default values for all state variables. If set to `\"state\"`, then ContractCase will invoke the state handlers and require the expected variables to be returned.\n *\n * All other values are errors.\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly stateVariables: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "stateVariables",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.ContractCaseCoreBehaviour#triggers:member",
+                      "docComment": "/**\n * Whether or not this mock mode needs to be triggered by user-provided code. If `\"provided\"` then ContractCase will require the user to provide a trigger and a test function (eg, for testing an HTTP Client, code that will invoke it must be provided). If `\"generated\"`, then ContractCase will not require user provided triggers as it will generate them (eg, if the system under test is an HTTP server, ContractCase will generate client calls).\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly triggers: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "triggers",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    }
+                  ],
+                  "extendsTokenRanges": []
+                },
+                {
+                  "kind": "Interface",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.ContractCaseCoreSetup:interface",
+                  "docComment": "/**\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export interface ContractCaseCoreSetup "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/base/AnyInteractionDescriptor.ts",
+                  "releaseTag": "Public",
+                  "name": "ContractCaseCoreSetup",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.ContractCaseCoreSetup#read:member",
+                      "docComment": "/**\n * Defines how the ContractCase core will behave when reading (ie, verifying) a interaction of this type.\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly read: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "ContractCaseCoreBehaviour",
+                          "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.ContractCaseCoreBehaviour:interface"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "read",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.ContractCaseCoreSetup#write:member",
+                      "docComment": "/**\n * Defines how the ContractCase core will behave when writing (ie, defining) an interaction of this type.\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly write: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "ContractCaseCoreBehaviour",
+                          "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.ContractCaseCoreBehaviour:interface"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "write",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    }
+                  ],
+                  "extendsTokenRanges": []
+                }
+              ]
+            },
+            {
+              "kind": "Namespace",
+              "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions:namespace",
+              "docComment": "",
+              "excerptTokens": [],
+              "fileUrlPath": "src/interactions/index-api-extractor.ts",
+              "releaseTag": "None",
+              "name": "functions",
+              "preserveMemberOrder": false,
+              "members": [
+                {
+                  "kind": "Interface",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExample:interface",
+                  "docComment": "/**\n * Example descriptor for a function execution\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export interface FunctionExecutionExample "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/functions/types.ts",
+                  "releaseTag": "Public",
+                  "name": "FunctionExecutionExample",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExample#arguments:member",
+                      "docComment": "/**\n * An array of expected function arguments (or test equivalence matchers for those arguments)\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly arguments: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "[]"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "arguments",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 3
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExample#functionName:member",
+                      "docComment": "/**\n * The name of the function to be executed. Doubles as the handle used by registerFunction.\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly functionName: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "functionName",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExample#returnValue:member",
+                      "docComment": "/**\n * A test equivalence matcher for the return value from this function\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly returnValue: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "returnValue",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    }
+                  ],
+                  "extendsTokenRanges": []
+                },
+                {
+                  "kind": "Interface",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExampleWithHandle:interface",
+                  "docComment": "/**\n * Example descriptor for a function execution that can be called by ContractCase\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export interface FunctionExecutionExampleWithHandle "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/functions/types.ts",
+                  "releaseTag": "Public",
+                  "name": "FunctionExecutionExampleWithHandle",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExampleWithHandle#arguments:member",
+                      "docComment": "/**\n * An array of expected function arguments (or test equivalence matchers for those arguments)\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly arguments: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "[]"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "arguments",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 3
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExampleWithHandle#returnValue:member",
+                      "docComment": "/**\n * A test equivalence matcher for the return value from this function\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly returnValue: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "returnValue",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    }
+                  ],
+                  "extendsTokenRanges": []
+                },
+                {
+                  "kind": "Class",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillCallFunction:class",
+                  "docComment": "/**\n * Defines an example that executes a registered function with specific arguments\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export declare class WillCallFunction extends "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "AnyInteractionDescriptor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.AnyInteractionDescriptor:class"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": " "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/functions/MockFunctionExecution.ts",
+                  "releaseTag": "Public",
+                  "isAbstract": false,
+                  "name": "WillCallFunction",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "Constructor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillCallFunction:constructor(1)",
+                      "docComment": "/**\n * Defines an example that executes a registered function with specific arguments\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "constructor(example: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "FunctionExecutionExample",
+                          "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExample:interface"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ");"
+                        }
+                      ],
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [
+                        {
+                          "parameterName": "example",
+                          "parameterTypeTokenRange": {
+                            "startIndex": 1,
+                            "endIndex": 2
+                          },
+                          "isOptional": false
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillCallFunction#functionName:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly functionName: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "functionName",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillCallFunction#request:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly request: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "request",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillCallFunction#response:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly response: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "response",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    }
+                  ],
+                  "extendsTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "implementsTokenRanges": []
+                },
+                {
+                  "kind": "Class",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCall:class",
+                  "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export declare class WillReceiveFunctionCall extends "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "AnyInteractionDescriptor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.AnyInteractionDescriptor:class"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": " "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/functions/MockFunctionCall.ts",
+                  "releaseTag": "Public",
+                  "isAbstract": false,
+                  "name": "WillReceiveFunctionCall",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "Constructor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCall:constructor(1)",
+                      "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "constructor(example: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "FunctionExecutionExample",
+                          "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExample:interface"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ");"
+                        }
+                      ],
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [
+                        {
+                          "parameterName": "example",
+                          "parameterTypeTokenRange": {
+                            "startIndex": 1,
+                            "endIndex": 2
+                          },
+                          "isOptional": false
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCall#functionName:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly functionName: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "functionName",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCall#request:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly request: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "request",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCall#response:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly response: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "response",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    }
+                  ],
+                  "extendsTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "implementsTokenRanges": []
+                }
+              ]
+            },
+            {
+              "kind": "Namespace",
+              "canonicalReference": "@contract-case/case-definition-dsl!interactions.http:namespace",
+              "docComment": "",
+              "excerptTokens": [],
+              "fileUrlPath": "src/interactions/index-api-extractor.ts",
+              "releaseTag": "None",
+              "name": "http",
+              "preserveMemberOrder": false,
+              "members": [
+                {
+                  "kind": "Interface",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.HttpExample:interface",
+                  "docComment": "/**\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export interface HttpExample "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/http/types.ts",
+                  "releaseTag": "Public",
+                  "name": "HttpExample",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.HttpExample#request:member",
+                      "docComment": "/**\n * A test equivalence matcher that will match an HTTP request (recommended: the Test Equivalence Matcher `HttpRequest`)\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly request: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "request",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.HttpExample#response:member",
+                      "docComment": "/**\n * A test equivalence matcher that will match an HTTP response (recommended: the Test Equivalence Matcher `HttpResponse`)\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly response: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "response",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    }
+                  ],
+                  "extendsTokenRanges": []
+                },
+                {
+                  "kind": "Class",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.WillReceiveHttpRequest:class",
+                  "docComment": "/**\n * Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export declare class WillReceiveHttpRequest extends "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "AnyInteractionDescriptor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.AnyInteractionDescriptor:class"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": " "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/http/WillReceiveHttpRequest.ts",
+                  "releaseTag": "Public",
+                  "isAbstract": false,
+                  "name": "WillReceiveHttpRequest",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "Constructor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.WillReceiveHttpRequest:constructor(1)",
+                      "docComment": "/**\n * Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.\n *\n * @param httpExample - an {@link mocks.http.HttpExample}\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "constructor(httpExample: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "HttpExample",
+                          "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.HttpExample:interface"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ");"
+                        }
+                      ],
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [
+                        {
+                          "parameterName": "httpExample",
+                          "parameterTypeTokenRange": {
+                            "startIndex": 1,
+                            "endIndex": 2
+                          },
+                          "isOptional": false
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.WillReceiveHttpRequest#request:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly request: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "request",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.WillReceiveHttpRequest#response:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly response: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "response",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    }
+                  ],
+                  "extendsTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "implementsTokenRanges": []
+                },
+                {
+                  "kind": "Class",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.WillSendHttpRequest:class",
+                  "docComment": "/**\n * Defines an example that expects to send an HTTP request. Use this to test HTTP servers.\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export declare class WillSendHttpRequest extends "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "AnyInteractionDescriptor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.AnyInteractionDescriptor:class"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": " "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/http/WillSendHttpRequest.ts",
+                  "releaseTag": "Public",
+                  "isAbstract": false,
+                  "name": "WillSendHttpRequest",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "Constructor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.WillSendHttpRequest:constructor(1)",
+                      "docComment": "/**\n * Defines an example that expects to send an HTTP request. Use this to test HTTP servers.\n *\n * @param httpExample - \n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "constructor(httpExample: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "HttpExample",
+                          "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.HttpExample:interface"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ");"
+                        }
+                      ],
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [
+                        {
+                          "parameterName": "httpExample",
+                          "parameterTypeTokenRange": {
+                            "startIndex": 1,
+                            "endIndex": 2
+                          },
+                          "isOptional": false
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.WillSendHttpRequest#request:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly request: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "request",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.WillSendHttpRequest#response:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly response: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "response",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    }
+                  ],
+                  "extendsTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "implementsTokenRanges": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "Namespace",
           "canonicalReference": "@contract-case/case-definition-dsl!matchers:namespace",
           "docComment": "",
           "excerptTokens": [],
@@ -4565,1182 +5741,6 @@
                       "isOptional": false,
                       "isAbstract": false,
                       "name": "toJSON"
-                    }
-                  ],
-                  "extendsTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "implementsTokenRanges": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "Namespace",
-          "canonicalReference": "@contract-case/case-definition-dsl!mocks:namespace",
-          "docComment": "",
-          "excerptTokens": [],
-          "fileUrlPath": "src/index-api-extractor.ts",
-          "releaseTag": "None",
-          "name": "mocks",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Namespace",
-              "canonicalReference": "@contract-case/case-definition-dsl!mocks.base:namespace",
-              "docComment": "",
-              "excerptTokens": [],
-              "fileUrlPath": "src/interactions/index-api-extractor.ts",
-              "releaseTag": "None",
-              "name": "base",
-              "preserveMemberOrder": false,
-              "members": [
-                {
-                  "kind": "Class",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:class",
-                  "docComment": "/**\n * The base class for all ContractCase Mock Descriptors. Extend this if you are implementing your own mock type.\n *\n * If you are using the included example types from ContractCase (or any extension libraries), you do not need to read the documentation for this class.\n *\n * Mock description type strings beginning with `_case:` are reserved for the default ContractCase matchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case for a matching behaviour that is already provided by a core ContractCase mock.\n *\n * @public\n */\n",
-                  "excerptTokens": [
-                    {
-                      "kind": "Content",
-                      "text": "export declare abstract class AnyInteractionDescriptor "
-                    }
-                  ],
-                  "fileUrlPath": "src/interactions/base/AnyInteractionDescriptor.ts",
-                  "releaseTag": "Public",
-                  "isAbstract": true,
-                  "name": "AnyInteractionDescriptor",
-                  "preserveMemberOrder": false,
-                  "members": [
-                    {
-                      "kind": "Constructor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:constructor(1)",
-                      "docComment": "/**\n * The base class for all ContractCase Mock Descriptors. Extend this if you are implementing your own mock type.\n *\n * If you are using the included example types from ContractCase (or any extension libraries), you do not need to read the documentation for this class.\n *\n * Mock description type strings beginning with `_case:` are reserved for the default ContractCase matchers. Only use a types prefixed with `_case:` if you wish to create a DSL for a special case for a matching behaviour that is already provided by a core ContractCase mock.\n *\n * @param mockType - The type string for this mock description (see [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework) for a description of these strings).\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "constructor(mockType: "
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "string"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ", setup: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "ContractCaseCoreSetup",
-                          "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreSetup:interface"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ");"
-                        }
-                      ],
-                      "releaseTag": "Public",
-                      "isProtected": false,
-                      "overloadIndex": 1,
-                      "parameters": [
-                        {
-                          "parameterName": "mockType",
-                          "parameterTypeTokenRange": {
-                            "startIndex": 1,
-                            "endIndex": 2
-                          },
-                          "isOptional": false
-                        },
-                        {
-                          "parameterName": "setup",
-                          "parameterTypeTokenRange": {
-                            "startIndex": 3,
-                            "endIndex": 4
-                          },
-                          "isOptional": false
-                        }
-                      ]
-                    },
-                    {
-                      "kind": "Method",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor#stringify:member(1)",
-                      "docComment": "/**\n * This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.\n *\n * You shouldn't need to override this method.\n *\n * @returns A JSON string representation of this mock.\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "stringify(): "
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "string"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isStatic": false,
-                      "returnTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "releaseTag": "Public",
-                      "isProtected": false,
-                      "overloadIndex": 1,
-                      "parameters": [],
-                      "isOptional": false,
-                      "isAbstract": false,
-                      "name": "stringify"
-                    },
-                    {
-                      "kind": "Method",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor#toJSON:member(1)",
-                      "docComment": "/**\n * Only override this method if you are writing a matcher in a language other than TypeScript.\n *\n * It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n *\n * It isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n *\n * Calling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n *\n * WARNING: Do not return a string from this method. You must instead return an object that can be serialised to JSON following the matcher format described in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework).\n *\n * @returns An object in the matcher format described [in the Extending ContractCase documentation](https://case.contract-testing.io/docs/reference/plugin-framework).\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "toJSON(): "
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "unknown"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isStatic": false,
-                      "returnTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "releaseTag": "Public",
-                      "isProtected": false,
-                      "overloadIndex": 1,
-                      "parameters": [],
-                      "isOptional": false,
-                      "isAbstract": false,
-                      "name": "toJSON"
-                    }
-                  ],
-                  "implementsTokenRanges": []
-                },
-                {
-                  "kind": "Interface",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreBehaviour:interface",
-                  "docComment": "/**\n * This type defines the core behaviour that ContractCase has with this mock.\n *\n * If you are using the included example types from ContractCase (or any extension libraries), you do not need to use this class (or understand this documentation).\n *\n * This documentation is only necessary for people extending ContractCase to include new mock types.\n *\n * See the definitions in the case-entities-internal package for more details.\n *\n * @public\n */\n",
-                  "excerptTokens": [
-                    {
-                      "kind": "Content",
-                      "text": "export interface ContractCaseCoreBehaviour "
-                    }
-                  ],
-                  "fileUrlPath": "src/interactions/base/AnyInteractionDescriptor.ts",
-                  "releaseTag": "Public",
-                  "name": "ContractCaseCoreBehaviour",
-                  "preserveMemberOrder": false,
-                  "members": [
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreBehaviour#mockType:member",
-                      "docComment": "/**\n * The type of this mock. Usually this is inverted on read vs write, for example, a written MOCK_HTTP_CLIENT might become a MOCK_HTTP_SERVER during reading.\n *\n * This will almost always be the same as the top level type for your mock during read - but if it is different, ContractCase will respect this value.\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly mockType: "
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "string"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "mockType",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      }
-                    },
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreBehaviour#stateVariables:member",
-                      "docComment": "/**\n * Whether or not this mock mode will invoke state handlers. If set to `\"default\"` then ContractCase will not invoke or require the state handlers and will use the default values for all state variables. If set to `\"state\"`, then ContractCase will invoke the state handlers and require the expected variables to be returned.\n *\n * All other values are errors.\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly stateVariables: "
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "string"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "stateVariables",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      }
-                    },
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreBehaviour#triggers:member",
-                      "docComment": "/**\n * Whether or not this mock mode needs to be triggered by user-provided code. If `\"provided\"` then ContractCase will require the user to provide a trigger and a test function (eg, for testing an HTTP Client, code that will invoke it must be provided). If `\"generated\"`, then ContractCase will not require user provided triggers as it will generate them (eg, if the system under test is an HTTP server, ContractCase will generate client calls).\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly triggers: "
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "string"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "triggers",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      }
-                    }
-                  ],
-                  "extendsTokenRanges": []
-                },
-                {
-                  "kind": "Interface",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreSetup:interface",
-                  "docComment": "/**\n * @public\n */\n",
-                  "excerptTokens": [
-                    {
-                      "kind": "Content",
-                      "text": "export interface ContractCaseCoreSetup "
-                    }
-                  ],
-                  "fileUrlPath": "src/interactions/base/AnyInteractionDescriptor.ts",
-                  "releaseTag": "Public",
-                  "name": "ContractCaseCoreSetup",
-                  "preserveMemberOrder": false,
-                  "members": [
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreSetup#read:member",
-                      "docComment": "/**\n * Defines how the ContractCase core will behave when reading (ie, verifying) a interaction of this type.\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly read: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "ContractCaseCoreBehaviour",
-                          "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreBehaviour:interface"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "read",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      }
-                    },
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreSetup#write:member",
-                      "docComment": "/**\n * Defines how the ContractCase core will behave when writing (ie, defining) an interaction of this type.\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly write: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "ContractCaseCoreBehaviour",
-                          "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.ContractCaseCoreBehaviour:interface"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "write",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      }
-                    }
-                  ],
-                  "extendsTokenRanges": []
-                }
-              ]
-            },
-            {
-              "kind": "Namespace",
-              "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions:namespace",
-              "docComment": "",
-              "excerptTokens": [],
-              "fileUrlPath": "src/interactions/index-api-extractor.ts",
-              "releaseTag": "None",
-              "name": "functions",
-              "preserveMemberOrder": false,
-              "members": [
-                {
-                  "kind": "Interface",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExample:interface",
-                  "docComment": "/**\n * Example descriptor for a function execution\n *\n * @public\n */\n",
-                  "excerptTokens": [
-                    {
-                      "kind": "Content",
-                      "text": "export interface FunctionExecutionExample "
-                    }
-                  ],
-                  "fileUrlPath": "src/interactions/functions/types.ts",
-                  "releaseTag": "Public",
-                  "name": "FunctionExecutionExample",
-                  "preserveMemberOrder": false,
-                  "members": [
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExample#arguments:member",
-                      "docComment": "/**\n * An array of expected function arguments (or test equivalence matchers for those arguments)\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly arguments: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "[]"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "arguments",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 3
-                      }
-                    },
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExample#functionName:member",
-                      "docComment": "/**\n * The name of the function to be executed. Doubles as the handle used by registerFunction.\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly functionName: "
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "string"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "functionName",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      }
-                    },
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExample#returnValue:member",
-                      "docComment": "/**\n * A test equivalence matcher for the return value from this function\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly returnValue: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "returnValue",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      }
-                    }
-                  ],
-                  "extendsTokenRanges": []
-                },
-                {
-                  "kind": "Interface",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExampleWithHandle:interface",
-                  "docComment": "/**\n * Example descriptor for a function execution that can be called by ContractCase\n *\n * @public\n */\n",
-                  "excerptTokens": [
-                    {
-                      "kind": "Content",
-                      "text": "export interface FunctionExecutionExampleWithHandle "
-                    }
-                  ],
-                  "fileUrlPath": "src/interactions/functions/types.ts",
-                  "releaseTag": "Public",
-                  "name": "FunctionExecutionExampleWithHandle",
-                  "preserveMemberOrder": false,
-                  "members": [
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExampleWithHandle#arguments:member",
-                      "docComment": "/**\n * An array of expected function arguments (or test equivalence matchers for those arguments)\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly arguments: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "[]"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "arguments",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 3
-                      }
-                    },
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExampleWithHandle#returnValue:member",
-                      "docComment": "/**\n * A test equivalence matcher for the return value from this function\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly returnValue: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "returnValue",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      }
-                    }
-                  ],
-                  "extendsTokenRanges": []
-                },
-                {
-                  "kind": "Class",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillCallFunction:class",
-                  "docComment": "/**\n * Defines an example that executes a registered function with specific arguments\n *\n * @public\n */\n",
-                  "excerptTokens": [
-                    {
-                      "kind": "Content",
-                      "text": "export declare class WillCallFunction extends "
-                    },
-                    {
-                      "kind": "Reference",
-                      "text": "AnyInteractionDescriptor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:class"
-                    },
-                    {
-                      "kind": "Content",
-                      "text": " "
-                    }
-                  ],
-                  "fileUrlPath": "src/interactions/functions/MockFunctionExecution.ts",
-                  "releaseTag": "Public",
-                  "isAbstract": false,
-                  "name": "WillCallFunction",
-                  "preserveMemberOrder": false,
-                  "members": [
-                    {
-                      "kind": "Constructor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillCallFunction:constructor(1)",
-                      "docComment": "/**\n * Defines an example that executes a registered function with specific arguments\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "constructor(example: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "FunctionExecutionExample",
-                          "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExample:interface"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ");"
-                        }
-                      ],
-                      "releaseTag": "Public",
-                      "isProtected": false,
-                      "overloadIndex": 1,
-                      "parameters": [
-                        {
-                          "parameterName": "example",
-                          "parameterTypeTokenRange": {
-                            "startIndex": 1,
-                            "endIndex": 2
-                          },
-                          "isOptional": false
-                        }
-                      ]
-                    },
-                    {
-                      "kind": "Property",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillCallFunction#functionName:member",
-                      "docComment": "",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly functionName: "
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "string"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "functionName",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "isStatic": false,
-                      "isProtected": false,
-                      "isAbstract": false
-                    },
-                    {
-                      "kind": "Property",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillCallFunction#request:member",
-                      "docComment": "",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly request: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "request",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "isStatic": false,
-                      "isProtected": false,
-                      "isAbstract": false
-                    },
-                    {
-                      "kind": "Property",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillCallFunction#response:member",
-                      "docComment": "",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly response: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "response",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "isStatic": false,
-                      "isProtected": false,
-                      "isAbstract": false
-                    }
-                  ],
-                  "extendsTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "implementsTokenRanges": []
-                },
-                {
-                  "kind": "Class",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillReceiveFunctionCall:class",
-                  "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @public\n */\n",
-                  "excerptTokens": [
-                    {
-                      "kind": "Content",
-                      "text": "export declare class WillReceiveFunctionCall extends "
-                    },
-                    {
-                      "kind": "Reference",
-                      "text": "AnyInteractionDescriptor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:class"
-                    },
-                    {
-                      "kind": "Content",
-                      "text": " "
-                    }
-                  ],
-                  "fileUrlPath": "src/interactions/functions/MockFunctionCall.ts",
-                  "releaseTag": "Public",
-                  "isAbstract": false,
-                  "name": "WillReceiveFunctionCall",
-                  "preserveMemberOrder": false,
-                  "members": [
-                    {
-                      "kind": "Constructor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillReceiveFunctionCall:constructor(1)",
-                      "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "constructor(example: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "FunctionExecutionExample",
-                          "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.FunctionExecutionExample:interface"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ");"
-                        }
-                      ],
-                      "releaseTag": "Public",
-                      "isProtected": false,
-                      "overloadIndex": 1,
-                      "parameters": [
-                        {
-                          "parameterName": "example",
-                          "parameterTypeTokenRange": {
-                            "startIndex": 1,
-                            "endIndex": 2
-                          },
-                          "isOptional": false
-                        }
-                      ]
-                    },
-                    {
-                      "kind": "Property",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillReceiveFunctionCall#functionName:member",
-                      "docComment": "",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly functionName: "
-                        },
-                        {
-                          "kind": "Content",
-                          "text": "string"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "functionName",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "isStatic": false,
-                      "isProtected": false,
-                      "isAbstract": false
-                    },
-                    {
-                      "kind": "Property",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillReceiveFunctionCall#request:member",
-                      "docComment": "",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly request: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "request",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "isStatic": false,
-                      "isProtected": false,
-                      "isAbstract": false
-                    },
-                    {
-                      "kind": "Property",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.functions.WillReceiveFunctionCall#response:member",
-                      "docComment": "",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly response: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "response",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "isStatic": false,
-                      "isProtected": false,
-                      "isAbstract": false
-                    }
-                  ],
-                  "extendsTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "implementsTokenRanges": []
-                }
-              ]
-            },
-            {
-              "kind": "Namespace",
-              "canonicalReference": "@contract-case/case-definition-dsl!mocks.http:namespace",
-              "docComment": "",
-              "excerptTokens": [],
-              "fileUrlPath": "src/interactions/index-api-extractor.ts",
-              "releaseTag": "None",
-              "name": "http",
-              "preserveMemberOrder": false,
-              "members": [
-                {
-                  "kind": "Interface",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.HttpExample:interface",
-                  "docComment": "/**\n * @public\n */\n",
-                  "excerptTokens": [
-                    {
-                      "kind": "Content",
-                      "text": "export interface HttpExample "
-                    }
-                  ],
-                  "fileUrlPath": "src/interactions/http/types.ts",
-                  "releaseTag": "Public",
-                  "name": "HttpExample",
-                  "preserveMemberOrder": false,
-                  "members": [
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.HttpExample#request:member",
-                      "docComment": "/**\n * A test equivalence matcher that will match an HTTP request (recommended: the Test Equivalence Matcher `HttpRequest`)\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly request: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "request",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      }
-                    },
-                    {
-                      "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.HttpExample#response:member",
-                      "docComment": "/**\n * A test equivalence matcher that will match an HTTP response (recommended: the Test Equivalence Matcher `HttpResponse`)\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly response: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "response",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      }
-                    }
-                  ],
-                  "extendsTokenRanges": []
-                },
-                {
-                  "kind": "Class",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.WillReceiveHttpRequest:class",
-                  "docComment": "/**\n * Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.\n *\n * @public\n */\n",
-                  "excerptTokens": [
-                    {
-                      "kind": "Content",
-                      "text": "export declare class WillReceiveHttpRequest extends "
-                    },
-                    {
-                      "kind": "Reference",
-                      "text": "AnyInteractionDescriptor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:class"
-                    },
-                    {
-                      "kind": "Content",
-                      "text": " "
-                    }
-                  ],
-                  "fileUrlPath": "src/interactions/http/WillReceiveHttpRequest.ts",
-                  "releaseTag": "Public",
-                  "isAbstract": false,
-                  "name": "WillReceiveHttpRequest",
-                  "preserveMemberOrder": false,
-                  "members": [
-                    {
-                      "kind": "Constructor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.WillReceiveHttpRequest:constructor(1)",
-                      "docComment": "/**\n * Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.\n *\n * @param httpExample - an {@link mocks.http.HttpExample}\n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "constructor(httpExample: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "HttpExample",
-                          "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.HttpExample:interface"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ");"
-                        }
-                      ],
-                      "releaseTag": "Public",
-                      "isProtected": false,
-                      "overloadIndex": 1,
-                      "parameters": [
-                        {
-                          "parameterName": "httpExample",
-                          "parameterTypeTokenRange": {
-                            "startIndex": 1,
-                            "endIndex": 2
-                          },
-                          "isOptional": false
-                        }
-                      ]
-                    },
-                    {
-                      "kind": "Property",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.WillReceiveHttpRequest#request:member",
-                      "docComment": "",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly request: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "request",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "isStatic": false,
-                      "isProtected": false,
-                      "isAbstract": false
-                    },
-                    {
-                      "kind": "Property",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.WillReceiveHttpRequest#response:member",
-                      "docComment": "",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly response: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "response",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "isStatic": false,
-                      "isProtected": false,
-                      "isAbstract": false
-                    }
-                  ],
-                  "extendsTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "implementsTokenRanges": []
-                },
-                {
-                  "kind": "Class",
-                  "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.WillSendHttpRequest:class",
-                  "docComment": "/**\n * Defines an example that expects to send an HTTP request. Use this to test HTTP servers.\n *\n * @public\n */\n",
-                  "excerptTokens": [
-                    {
-                      "kind": "Content",
-                      "text": "export declare class WillSendHttpRequest extends "
-                    },
-                    {
-                      "kind": "Reference",
-                      "text": "AnyInteractionDescriptor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.base.AnyInteractionDescriptor:class"
-                    },
-                    {
-                      "kind": "Content",
-                      "text": " "
-                    }
-                  ],
-                  "fileUrlPath": "src/interactions/http/WillSendHttpRequest.ts",
-                  "releaseTag": "Public",
-                  "isAbstract": false,
-                  "name": "WillSendHttpRequest",
-                  "preserveMemberOrder": false,
-                  "members": [
-                    {
-                      "kind": "Constructor",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.WillSendHttpRequest:constructor(1)",
-                      "docComment": "/**\n * Defines an example that expects to send an HTTP request. Use this to test HTTP servers.\n *\n * @param httpExample - \n */\n",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "constructor(httpExample: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "HttpExample",
-                          "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.HttpExample:interface"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ");"
-                        }
-                      ],
-                      "releaseTag": "Public",
-                      "isProtected": false,
-                      "overloadIndex": 1,
-                      "parameters": [
-                        {
-                          "parameterName": "httpExample",
-                          "parameterTypeTokenRange": {
-                            "startIndex": 1,
-                            "endIndex": 2
-                          },
-                          "isOptional": false
-                        }
-                      ]
-                    },
-                    {
-                      "kind": "Property",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.WillSendHttpRequest#request:member",
-                      "docComment": "",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly request: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "request",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "isStatic": false,
-                      "isProtected": false,
-                      "isAbstract": false
-                    },
-                    {
-                      "kind": "Property",
-                      "canonicalReference": "@contract-case/case-definition-dsl!mocks.http.WillSendHttpRequest#response:member",
-                      "docComment": "",
-                      "excerptTokens": [
-                        {
-                          "kind": "Content",
-                          "text": "readonly response: "
-                        },
-                        {
-                          "kind": "Reference",
-                          "text": "AnyMatcherOrData",
-                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
-                        },
-                        {
-                          "kind": "Content",
-                          "text": ";"
-                        }
-                      ],
-                      "isReadonly": true,
-                      "isOptional": false,
-                      "releaseTag": "Public",
-                      "name": "response",
-                      "propertyTypeTokenRange": {
-                        "startIndex": 1,
-                        "endIndex": 2
-                      },
-                      "isStatic": false,
-                      "isProtected": false,
-                      "isAbstract": false
                     }
                   ],
                   "extendsTokenRange": {

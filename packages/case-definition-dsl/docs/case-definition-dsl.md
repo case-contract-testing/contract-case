@@ -29,14 +29,14 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[matchers](./case-definition-dsl.matchers.md)
+[interactions](./case-definition-dsl.interactions.md)
 
 </td><td>
 
 </td></tr>
 <tr><td>
 
-[mocks](./case-definition-dsl.mocks.md)
+[matchers](./case-definition-dsl.matchers.md)
 
 </td><td>
 

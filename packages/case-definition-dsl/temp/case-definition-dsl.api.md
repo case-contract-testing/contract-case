@@ -460,6 +460,15 @@ class InStateWithVariables extends AnyState {
     readonly variables: Record<string, AnyMatcherOrData>;
 }
 
+declare namespace interactions {
+    export {
+        base,
+        functions,
+        http
+    }
+}
+export { interactions }
+
 declare namespace matchers {
     export {
         arrays,
@@ -474,15 +483,6 @@ declare namespace matchers {
     }
 }
 export { matchers }
-
-declare namespace mocks {
-    export {
-        base,
-        functions,
-        http
-    }
-}
-export { mocks }
 
 declare namespace modifiers {
     export {

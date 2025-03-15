@@ -20,8 +20,8 @@
  * {@link https://case.contract-testing.io | the full documentation}
  *
  */
-import * as mocks from './interactions/index-api-extractor';
+import * as interactions from './interactions/index-api-extractor';
 import * as matchers from './matchers/index-api-extractor';
 import * as states from './states';
 
-export { mocks, states, matchers };
+export { interactions, states, matchers };
