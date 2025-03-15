@@ -1,64 +1,33 @@
 {
   "targetDefaults": {
     "prebuild": {
-      "dependsOn": [
-        "^prebuild"
-      ]
+      "dependsOn": ["^prebuild"]
     },
     "test": {
-      "dependsOn": [
-        "downloadContracts",
-        "build"
-      ],
+      "dependsOn": ["downloadContracts", "build"],
       "cache": true
     },
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ],
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"],
       "cache": true
     },
     "build:docs": {
-      "dependsOn": [
-        "^build",
-        "^build:docs",
-        "build"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
+      "dependsOn": ["^build", "^build:docs", "build"],
+      "outputs": ["{projectRoot}/dist"]
     },
     "build:docs:local": {
-      "dependsOn": [
-        "^build",
-        "^build:docs:local",
-        "build"
-      ],
-      "outputs": [
-        "{projectRoot}/docs"
-      ]
+      "dependsOn": ["^build", "^build:docs:local", "build"],
+      "outputs": ["{projectRoot}/docs"]
     },
     "package": {
-      "dependsOn": [
-        "build",
-        "^package"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ],
+      "dependsOn": ["build", "^package"],
+      "outputs": ["{projectRoot}/dist"],
       "cache": true
     },
     "publish:maven": {
-      "dependsOn": [
-        "package",
-        "^publish:maven"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
+      "dependsOn": ["package", "^build", "^publish:maven"],
+      "outputs": ["{projectRoot}/dist"]
     },
     "lint": {
       "cache": true
@@ -69,13 +38,8 @@
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],
-    "production": [
-      "default"
-    ]
+    "production": ["default"]
   }
 }
