@@ -54,6 +54,9 @@
       "sourceMap": true
     },
     "targets": {
+      "js": {
+        "npm": "@contract-case/case-definition-dsl"
+      },
       "java": {
         "package": "io.contract_testing.contractcase.definitions",
         "maven": {
