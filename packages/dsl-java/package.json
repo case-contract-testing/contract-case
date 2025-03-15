@@ -30,7 +30,8 @@
     "rimraf": "^6.0.1"
   },
   "dependencies": {
-    "@contract-case/case-connector": "0.10.0"
+    "@contract-case/case-connector": "0.10.0",
+    "@contract-case/case-definition-dsl": "0.18.0"
   },
   "nx": {
     "tasksRunnerOptions": {
@@ -55,7 +56,8 @@
       },
       "build": {
         "dependsOn": [
-          "^build"
+          "^build",
+          "^package"
         ],
         "outputs": [
           "{projectRoot}/build"

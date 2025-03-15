@@ -8,15 +8,16 @@ import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSu
 import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.Trigger;
 
-import io.contract_testing.contractcase.definitions.matchers.AnyString;
-import io.contract_testing.contractcase.definitions.matchers.HttpRequest;
-import io.contract_testing.contractcase.definitions.matchers.HttpRequestExample;
-import io.contract_testing.contractcase.definitions.matchers.HttpResponse;
-import io.contract_testing.contractcase.definitions.matchers.HttpResponseExample;
-import io.contract_testing.contractcase.definitions.matchers.StateVariable;
-import io.contract_testing.contractcase.definitions.matchers.StringPrefix;
-import io.contract_testing.contractcase.definitions.mocks.http.HttpExample;
-import io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest;
+
+import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;
+import io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest;
+import io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable;
+import io.contract_testing.contractcase.definitions.matchers.http.HttpRequest;
+import io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample;
+import io.contract_testing.contractcase.definitions.matchers.http.HttpResponse;
+import io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample;
+import io.contract_testing.contractcase.definitions.matchers.strings.AnyString;
+import io.contract_testing.contractcase.definitions.matchers.strings.StringPrefix;
 import io.contract_testing.contractcase.definitions.states.InState;
 import io.contract_testing.contractcase.definitions.states.InStateWithVariables;
 import java.util.List;

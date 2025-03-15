@@ -14,8 +14,8 @@ version = "0.3.0" // x-release-please-version
 sourceCompatibility = '17'
 
 repositories {
-    mavenCentral()
     mavenLocal()
+    mavenCentral()
 }
 
 tasks.withType(Javadoc).configureEach {
@@ -29,7 +29,9 @@ def grpcVersion = "1.71.0"
 def protobufVersion = "4.30.0"
 
 dependencies {
-    api "io.contract-testing.contractcase:definitions:${caseCoreVersion}"
+    api("io.contract-testing.contractcase:definitions:${caseCoreVersion}") {
+        changing = true
+    }
     implementation 'com.diogonunes:JColor:5.5.1'
     implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
     implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"

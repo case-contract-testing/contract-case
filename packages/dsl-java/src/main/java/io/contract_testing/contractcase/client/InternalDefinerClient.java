@@ -5,7 +5,7 @@ import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.ma
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.contract_testing.contractcase.LogPrinter;
-import io.contract_testing.contractcase.definitions.matchers.AnyMatcher;
+import io.contract_testing.contractcase.definitions.matchers.base.AnyMatcher;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;

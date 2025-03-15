@@ -7,15 +7,16 @@ import io.contract_testing.contractcase.ContractCaseConfig.ContractCaseConfigBui
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
-import io.contract_testing.contractcase.definitions.matchers.AnyString;
-import io.contract_testing.contractcase.definitions.matchers.HttpRequest;
-import io.contract_testing.contractcase.definitions.matchers.HttpRequestExample;
-import io.contract_testing.contractcase.definitions.matchers.HttpResponse;
-import io.contract_testing.contractcase.definitions.matchers.HttpResponseExample;
-import io.contract_testing.contractcase.definitions.matchers.NamedMatch;
-import io.contract_testing.contractcase.definitions.matchers.StateVariable;
-import io.contract_testing.contractcase.definitions.mocks.http.HttpExample;
-import io.contract_testing.contractcase.definitions.mocks.http.WillSendHttpRequest;
+
+import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;
+import io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest;
+import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;
+import io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable;
+import io.contract_testing.contractcase.definitions.matchers.http.HttpRequest;
+import io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample;
+import io.contract_testing.contractcase.definitions.matchers.http.HttpResponse;
+import io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample;
+import io.contract_testing.contractcase.definitions.matchers.strings.AnyString;
 import io.contract_testing.contractcase.definitions.states.InState;
 import io.contract_testing.contractcase.definitions.states.InStateWithVariables;
 import io.contract_testing.contractcase.test.httpclient.implementation.User;

@@ -4,11 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.contract_testing.contractcase.definitions.mocks.base.AnyMockDescriptor;
+import io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor;
 import io.contract_testing.contractcase.definitions.states.AnyState;
 import java.util.List;
 
-public class InteractionDefinition<M extends AnyMockDescriptor> {
+public class InteractionDefinition<M extends AnyInteractionDescriptor> {
 
   private final List<? extends AnyState> states;
   private final M definition;

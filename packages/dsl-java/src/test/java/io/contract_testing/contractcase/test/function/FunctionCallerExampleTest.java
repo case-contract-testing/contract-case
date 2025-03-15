@@ -8,10 +8,11 @@ import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.PublishType;
-import io.contract_testing.contractcase.definitions.matchers.AnyInteger;
-import io.contract_testing.contractcase.definitions.matchers.AnyNull;
-import io.contract_testing.contractcase.definitions.mocks.functions.FunctionExecutionExample;
-import io.contract_testing.contractcase.definitions.mocks.functions.WillCallFunction;
+
+import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
+import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
+import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
+import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
 import io.contract_testing.contractcase.definitions.states.InState;
 import java.util.List;
 import org.junit.jupiter.api.AfterAll;
