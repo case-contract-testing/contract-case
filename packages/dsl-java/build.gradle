@@ -62,6 +62,9 @@ test {
     useJUnitPlatform()
     testLogging {
         showStandardStreams = true
+        events("failed", "standard_out", "standard_error")
+        showStackTraces = true
+        exceptionFormat = "full"
     }
 }
 
