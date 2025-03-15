@@ -75,7 +75,7 @@
     "@types/jest": "^29.5.12",
     "jsii": "^5.7.4",
     "jsii-docgen": "^10.6.1",
-    "jsii-pacmak": "^1.108.0",
+    "@contract-case/jsii-pacmak": "^0.0.0",
     "mkdirp": "^3.0.1",
     "prettier": "3.4.2",
     "publib": "^0.2.955",
