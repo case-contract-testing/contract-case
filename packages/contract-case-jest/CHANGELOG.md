@@ -29,6 +29,46 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.13.0...@contract-case/contract-case-jest-v0.19.0) (2025-03-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* The `mocks` module has been renamed `interactions`; and `AnyMockDescriptor` has been renamed `AnyInteractionDescriptor`. You may need to update your imports
+* Replace runExample / runRejectingExample / runThrowingExample with runInteraction / runRejectingInteraction / runThrowingInteraction
+* Rename TriggerSetup to InteractionSetup for consistency
+
+### Features
+
+* Add ability for the current version to be generated from the git sha ([dd70365](https://github.com/case-contract-testing/contract-case/commit/dd703650fd058d34f6d772011b74faec10b93074))
+
+
+### Bug Fixes
+
+* Poke through CASE_CONNECTOR_CLIENT to improve debugging ([5e06ce2](https://github.com/case-contract-testing/contract-case/commit/5e06ce2a5096a63ce5b2a786f03ca076dcf1fa9a))
+
+
+### Code Refactoring
+
+* Rename TriggerSetup to InteractionSetup for consistency ([3bbec69](https://github.com/case-contract-testing/contract-case/commit/3bbec69b4bd62c6678a642db90e65ff376aca73d))
+* Replace runExample / runRejectingExample / runThrowingExample with runInteraction / runRejectingInteraction / runThrowingInteraction ([a37e0e8](https://github.com/case-contract-testing/contract-case/commit/a37e0e8258672894e702aebdb5d9cddce90923b4))
+* The `mocks` module has been renamed `interactions`; and `AnyMockDescriptor` has been renamed `AnyInteractionDescriptor`. You may need to update your imports ([f3f4b0d](https://github.com/case-contract-testing/contract-case/commit/f3f4b0dafb6f9be2a5055fe198dda03025b5682b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.10.0 to 0.19.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.18.0 to 0.19.0
+    * @contract-case/case-definition-dsl bumped from 0.18.0 to 0.19.0
+    * @contract-case/case-entities-internal bumped from 0.18.0 to 0.19.0
+    * @contract-case/case-plugin-base bumped from 0.18.0 to 0.19.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.18.0 to 0.19.0
+    * @contract-case/cli bumped from 0.2.6 to 0.19.0
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.1.1 to 0.19.0
+
 ## [0.13.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.12.5...@contract-case/contract-case-jest-v0.13.0) (2024-10-17)
 
 

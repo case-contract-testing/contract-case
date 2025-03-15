@@ -23,6 +23,23 @@
   * devDependencies
     * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
 
+## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.2.6...@contract-case/cli-v0.19.0) (2025-03-15)
+
+
+### Bug Fixes
+
+* Poke through CASE_CONNECTOR_CLIENT to improve debugging ([5e06ce2](https://github.com/case-contract-testing/contract-case/commit/5e06ce2a5096a63ce5b2a786f03ca076dcf1fa9a))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.10.0 to 0.19.0
+    * @contract-case/case-core bumped from 0.18.0 to 0.19.0
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.1.1 to 0.19.0
+
 ## [0.2.6](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.2.5...@contract-case/cli-v0.2.6) (2024-10-17)
 
 

@@ -1,5 +1,46 @@
 # Changelog
 
+## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/v0.18.0...v0.19.0) (2025-03-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* The `mocks` module has been renamed `interactions`; and `AnyMockDescriptor` has been renamed `AnyInteractionDescriptor`. You may need to update your imports
+* Replace runExample / runRejectingExample / runThrowingExample with runInteraction / runRejectingInteraction / runThrowingInteraction
+* Allow different tests to have different values for the same default state variable. Contracts using state variables from the previous version will need to be regnerated
+* Add ability for matchers to validate their own content. This is a breaking change for any plugin authors, as matcher Executor implementations now need to provide validation functions
+* Move the matchers to packages grouped around related functionality - please update your imports following the matcher documentation
+
+### Features
+
+* Add ability for matchers to validate their own content. This is a breaking change for any plugin authors, as matcher Executor implementations now need to provide validation functions ([afaa8d7](https://github.com/case-contract-testing/contract-case/commit/afaa8d75d81e45ca7609f89b1e17819183bc59b2))
+* Add ability for the current version to be generated from the git sha ([dd70365](https://github.com/case-contract-testing/contract-case/commit/dd703650fd058d34f6d772011b74faec10b93074))
+* Expose docs-json for auto-documentation purposes ([2ff4e97](https://github.com/case-contract-testing/contract-case/commit/2ff4e97501bc29af4af085d7a751b752bad8e82c))
+* Run parameter validators ahead of the self-check, allowing early warning of configuration mistakes in example interactions ([186d2e5](https://github.com/case-contract-testing/contract-case/commit/186d2e58eff512d37e53425ac353b231d15250a8))
+
+
+### Bug Fixes
+
+* Add debugging information to the broker 403 error ([a8cbb70](https://github.com/case-contract-testing/contract-case/commit/a8cbb70703fb19ac0351c038edeb23545b980ec3))
+* Allow different tests to have different values for the same default state variable. Contracts using state variables from the previous version will need to be regnerated ([2984d2b](https://github.com/case-contract-testing/contract-case/commit/2984d2baf29406fab884c5fffc790b6022621047))
+* Change the "-&gt;" in interaction names to "returns" ([e1c3f29](https://github.com/case-contract-testing/contract-case/commit/e1c3f29bb6803dff59f615b75b055cc3c9d184b7))
+* Fix an issue where if the verifier was called with multiple contracts, they would inappropriately run concurrently ([83a8edd](https://github.com/case-contract-testing/contract-case/commit/83a8eddaf9a87231506cc39fc3439325923dd4bc))
+* Improve logging when multiple contracts are verified ([9f3f4a2](https://github.com/case-contract-testing/contract-case/commit/9f3f4a249eeafdb4da57aef11807ff3e23f544d3))
+
+
+### Code Refactoring
+
+* Move the matchers to packages grouped around related functionality - please update your imports following the matcher documentation ([1edbda0](https://github.com/case-contract-testing/contract-case/commit/1edbda04c1fc6bcee19bfb13beb30980714bbfb6))
+* Replace runExample / runRejectingExample / runThrowingExample with runInteraction / runRejectingInteraction / runThrowingInteraction ([a37e0e8](https://github.com/case-contract-testing/contract-case/commit/a37e0e8258672894e702aebdb5d9cddce90923b4))
+* The `mocks` module has been renamed `interactions`; and `AnyMockDescriptor` has been renamed `AnyInteractionDescriptor`. You may need to update your imports ([f3f4b0d](https://github.com/case-contract-testing/contract-case/commit/f3f4b0dafb6f9be2a5055fe198dda03025b5682b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.1.1 to 0.19.0
+
 ## [0.18.0](https://github.com/case-contract-testing/contract-case/compare/v0.17.1...v0.18.0) (2024-10-17)
 
 

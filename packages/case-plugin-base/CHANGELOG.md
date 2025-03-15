@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.18.0...@contract-case/case-plugin-base-v0.19.0) (2025-03-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add ability for matchers to validate their own content. This is a breaking change for any plugin authors, as matcher Executor implementations now need to provide validation functions
+
+### Features
+
+* Add ability for matchers to validate their own content. This is a breaking change for any plugin authors, as matcher Executor implementations now need to provide validation functions ([afaa8d7](https://github.com/case-contract-testing/contract-case/commit/afaa8d75d81e45ca7609f89b1e17819183bc59b2))
+* Add ability for the current version to be generated from the git sha ([dd70365](https://github.com/case-contract-testing/contract-case/commit/dd703650fd058d34f6d772011b74faec10b93074))
+* Run parameter validators ahead of the self-check, allowing early warning of configuration mistakes in example interactions ([186d2e5](https://github.com/case-contract-testing/contract-case/commit/186d2e58eff512d37e53425ac353b231d15250a8))
+
+
+### Bug Fixes
+
+* Change the "-&gt;" in interaction names to "returns" ([e1c3f29](https://github.com/case-contract-testing/contract-case/commit/e1c3f29bb6803dff59f615b75b055cc3c9d184b7))
+* Improve logging when multiple contracts are verified ([9f3f4a2](https://github.com/case-contract-testing/contract-case/commit/9f3f4a249eeafdb4da57aef11807ff3e23f544d3))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.18.0 to 0.19.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.1.0 to 0.19.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.1.1 to 0.19.0
+
 ## [0.18.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.17.1...@contract-case/case-plugin-base-v0.18.0) (2024-10-17)
 
 
