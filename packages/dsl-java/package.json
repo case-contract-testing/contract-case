@@ -17,7 +17,8 @@
   "scripts": {
     "build": "rimraf build && bash install-connector.sh && bash -c './gradlew build testClasses -x test'",
     "compile": "bash -c './gradlew build testClasses -x test'",
-    "test": "bash -c './gradlew test'"
+    "test": "bash -c './gradlew test'",
+    "test:local": "bash -c './gradlew test'"
   },
   "funding": {
     "type": "individual",
