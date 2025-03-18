@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.19.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.19.0...@contract-case/dsl-java-v0.19.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* Downgrade protobuf version to avoid NoClassDefFoundError ([828ed4b](https://github.com/case-contract-testing/contract-case/commit/828ed4be99cc4081fa97c12243c9b730a5af4d5e))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.19.0 to 0.19.1
+    * @contract-case/case-definition-dsl bumped from 0.19.0 to 0.19.1
+
 ## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.3.0...@contract-case/dsl-java-v0.19.0) (2025-03-15)
 
 
