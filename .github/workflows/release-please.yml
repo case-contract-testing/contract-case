@@ -28,7 +28,7 @@ jobs:
 
   publish:
     needs: [release-please]
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     if: ${{ needs.release-please.outputs.release_created }}
     steps:
       # The logic below handles the npm publication:
