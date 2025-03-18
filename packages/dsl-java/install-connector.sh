@@ -3,6 +3,10 @@ set -eu
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)" # Figure out where the script is running
 
+####
+# This script copies in the built connector from the case-connector package
+####
+
 # Copies proto files from the main repo, assumed to be ../contract-case
 MAIN_REPO_LOCATION=$SCRIPT_DIR/../..
 

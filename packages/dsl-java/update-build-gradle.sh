@@ -1,7 +1,11 @@
 #!/bin/bash
 set -eu
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)" # Figure out where the script is running
+
+####
+# This script updates the core version in build gradle
+####
+
 
 # Update the caseCoreVersion (may be a no-op)
 #
