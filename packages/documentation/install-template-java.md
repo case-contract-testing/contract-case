@@ -1,8 +1,8 @@
 ```gradle
 // gradle short
 dependencies {
-    testImplementation 'io.contract-testing.contractcase:contract-case:0.19.0'
-    testImplementation 'io.contract-testing.contractcase:definitions:0.19.0'
+    testImplementation 'io.contract-testing.contractcase:contract-case:VERSION_HERE'
+    testImplementation 'io.contract-testing.contractcase:definitions:VERSION_HERE'
 }
 ```
 
@@ -11,7 +11,7 @@ dependencies {
 <dependency>
     <groupId>io.contract-testing.contractcase</groupId>
     <artifactId>contract-case</artifactId>
-    <version>0.19.0</version>
+    <version>VERSION_HERE</version>
     <scope>test</scope>
 </dependency>
 <dependency>
