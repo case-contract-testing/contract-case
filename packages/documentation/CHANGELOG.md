@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.1](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.19.0...documentation-v0.19.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **docs:** Correct install instructions for java ([e615234](https://github.com/case-contract-testing/contract-case/commit/e6152341b8322a86698b752128a2c69de918ac23))
+
 ## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.0.8...documentation-v0.19.0) (2025-03-15)
 
 

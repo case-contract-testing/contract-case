@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.19.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.19.0...@contract-case/case-core-plugin-function-v0.19.1) (2025-03-18)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-core-plugin-function:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from ^0.19.0 to ^0.19.1
+    * @contract-case/case-plugin-base bumped from ^0.19.0 to ^0.19.1
+    * @contract-case/case-plugin-dsl-types bumped from ^0.19.0 to ^0.19.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.19.0 to 0.19.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.19.0 to 0.19.1
+
 ## [0.19.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.18.0...@contract-case/case-core-plugin-function-v0.19.0) (2025-03-15)
 
 
