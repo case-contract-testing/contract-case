@@ -84,6 +84,10 @@ jar {
                 'Specification-Version': version,
         )
     }
+    into("META-INF/maven/$project.group/$project.name") {
+        from { generatePomFileForContractcasePublication }
+        rename { it.replace('pom-default.xml', 'pom.xml') }
+    }
 }
 
 sourceSets {
