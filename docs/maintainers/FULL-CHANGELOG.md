@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.19.2](https://github.com/case-contract-testing/contract-case/compare/v0.19.1...v0.19.2) (2025-03-19)
+
+
+### Bug Fixes
+
+* **dsl-java:** Add pom to distributed jar, improving behaviour on some build systems ([934ddc9](https://github.com/case-contract-testing/contract-case/commit/934ddc9cb3ba9e7117f91babdf3c0ee115190628))
+* **dsl-java:** Improve error messages when the core connection fails ([dec7792](https://github.com/case-contract-testing/contract-case/commit/dec7792e7028e43a7eb850e85033d6d7b9b486d7))
+* **dsl-java:** Wait for the Core to be available before trying to call it; fixing flakiness on faster machines ([b388612](https://github.com/case-contract-testing/contract-case/commit/b3886123637d5267db019653bd3ee3f4004ba72e))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.19.1 to 0.19.2
+
 ## [0.19.1](https://github.com/case-contract-testing/contract-case/compare/v0.19.0...v0.19.1) (2025-03-18)
 
 
