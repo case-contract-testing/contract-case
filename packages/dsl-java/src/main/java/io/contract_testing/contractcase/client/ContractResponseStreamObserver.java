@@ -7,7 +7,6 @@ import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.ma
 import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapResultResponse;
 
 import com.google.protobuf.AbstractMessage;
-import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.GeneratedMessageV3;
 import io.contract_testing.contractcase.ContractCaseCoreError;
 import io.contract_testing.contractcase.LogLevel;
@@ -22,6 +21,8 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle.Stage;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 
@@ -236,12 +237,16 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
                """
             + "   " + t.getMessage() + """
                ------------------------
+               With stack trace:
+                             
+               """
+               + "   " + getStackTrace(t) + """
                \n
                If you are unable to resolve this locally, or if
                you suspect a bug, please open an issue here:
                \n
-               https://github.com/case-contract-testing/contract-case/issues/new
-            """);
+                  https://github.com/case-contract-testing/contract-case/issues/new
+              """);
       } else {
         System.err.println("ContractCase failed: " + status);
         t.printStackTrace();
@@ -278,5 +283,19 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
           "Unrecognised state handler stage while trying to run '" + stateName +
               "'");
     };
+  }
+
+  /**
+   * Convenience method to get a stack trace and make it a string
+   *
+   * @param t a Throwable to get the stack trace from
+   * @return the stack trace of the throwable
+   */
+  @NotNull
+  private static String getStackTrace(Throwable t) {
+    StringWriter sw = new StringWriter();
+    PrintWriter pw = new PrintWriter(sw);
+    t.printStackTrace(pw);
+    return sw.toString();
   }
 }
