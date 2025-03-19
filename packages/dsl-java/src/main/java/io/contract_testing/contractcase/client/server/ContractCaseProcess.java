@@ -305,8 +305,8 @@ public class ContractCaseProcess {
   }
 
   /**
-   * This is like the {@link StreamSink}, but it works on readers. This code exists in case the
-   * child process prints more than we're expecting.
+   * This is like the {@link StreamSink}, but it works on readers. This code exists to protect against the
+   * child process printing more than we're expecting.
    */
   private static final class ReaderSink extends Thread {
 
