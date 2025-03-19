@@ -61,7 +61,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
         .usePlaintext()
         .build();
     this.worker = SendingWorker.create(createConnection(
-        ContractCaseGrpc.newStub(channel),
+        ContractCaseGrpc.newStub(channel).withWaitForReady(),
         new ContractResponseStreamObserver<>(
             this,
             logPrinter,
