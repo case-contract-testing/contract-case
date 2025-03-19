@@ -49,12 +49,6 @@ public class ContractCaseProcess {
    */
   private Thread shutdownHook;
 
-  // Hook JVM and terminate on exit
-  // Consider making process shutdown?
-  // Function that starts the process if it's missing
-  // Stub for extracting the packages
-  // Autogenerate the package extractor
-
   public synchronized void start() {
     this.startRuntimeIfNeeded();
     if (this.childProcess == null && overridePort == 0) {
