@@ -2,13 +2,11 @@ package io.contract_testing.contractcase.test.function;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.contract_testing.contractcase.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.ContractDefiner;
-import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.PublishType;
-
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
@@ -16,17 +14,23 @@ import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
 import io.contract_testing.contractcase.definitions.states.InState;
 import java.util.List;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class FunctionCallerExampleTest {
 
-  private static final ContractDefiner contract = new ContractDefiner(
-      ContractCaseConfigBuilder.aContractCaseConfig()
-      .consumerName("Java Function Caller Example")
-      .providerName("Java Function Execution Example")
-      .publish(PublishType.NEVER)
-      .contractDir("temp-contracts")
-      .build());
+  private static ContractDefiner contract;
+
+  @BeforeAll
+  static void before() {
+    contract = new ContractDefiner(
+        ContractCaseConfigBuilder.aContractCaseConfig()
+            .consumerName("Java Function Caller Example")
+            .providerName("Java Function Execution Example")
+            .publish(PublishType.NEVER)
+            .contractDir("temp-contracts")
+            .build());
+  }
 
   @AfterAll
   static void after() {
@@ -98,9 +102,6 @@ public class FunctionCallerExampleTest {
             })
     );
   }
-
-
-
 
 
 }
