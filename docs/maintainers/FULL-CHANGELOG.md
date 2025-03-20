@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.20.0](https://github.com/case-contract-testing/contract-case/compare/v0.19.2...v0.20.0) (2025-03-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Contracts are now hashed to create the filename. This is a breaking change, because the default contractDir now stores contracts in subdirs (by provider name) and allows overwriting the contract file. This improves monorepo support. See the configuration documentation for details.
+
+### Features
+
+* **core:** Contracts are now hashed to create the filename. This is a breaking change, because the default contractDir now stores contracts in subdirs (by provider name) and allows overwriting the contract file. This improves monorepo support. See the configuration documentation for details. ([b2a078d](https://github.com/case-contract-testing/contract-case/commit/b2a078d18631c15caf27706a672c49d040a47790))
+* **core:** Reading contracts from a directory is now recursive ([0bfd11f](https://github.com/case-contract-testing/contract-case/commit/0bfd11f91e3790dddf84a63fc9b9cdf05dd4882c))
+
+
+### Bug Fixes
+
+* **core:** Report full path of the written contract in the logs ([3f13e09](https://github.com/case-contract-testing/contract-case/commit/3f13e091f1ee3cebe161eff9740e00e5947b4bd3))
+* **dsl-java:** Retry connection in the event of a failure ([6f4e027](https://github.com/case-contract-testing/contract-case/commit/6f4e0279d90f4aefac48016a4d41756c781db326))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.19.2 to 0.20.0
+
 ## [0.19.2](https://github.com/case-contract-testing/contract-case/compare/v0.19.1...v0.19.2) (2025-03-19)
 
 
