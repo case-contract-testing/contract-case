@@ -25,7 +25,7 @@ public class HttpApiExampleVerifyTest {
   private static final ContractVerifier contract = new ContractVerifier(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
       .providerName("http request provider")
       .publish(PublishType.NEVER)
-      .contractDir("../contract-case-jest/case-contracts")
+      .contractDir("../contract-case-jest/case-contracts/http-request-provider/")
       .build());
 
   Trigger<String> getHealth = (setupInfo) -> {
