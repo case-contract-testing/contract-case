@@ -1,8 +1,9 @@
-package io.contract_testing.contractcase.client;
+package io.contract_testing.contractcase.client.rpc;
 
 import com.google.protobuf.StringValue;
 import io.contract_testing.contractcase.ContractCaseCoreError;
 import io.contract_testing.contractcase.LogPrinter;
+import io.contract_testing.contractcase.client.MaintainerLog;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.grpc.ContractCaseGrpc.ContractCaseStub;
@@ -14,7 +15,7 @@ import io.grpc.stub.StreamObserver;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
-class RpcForDefinition extends AbstractRpcConnector<DefinitionRequest, Builder> {
+public class RpcForDefinition extends AbstractRpcConnector<DefinitionRequest, Builder> {
 
   public RpcForDefinition(@NotNull LogPrinter logPrinter,
       ConfigHandle configHandle) {

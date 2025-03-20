@@ -1,4 +1,4 @@
-package io.contract_testing.contractcase.client;
+package io.contract_testing.contractcase.client.rpc;
 
 import static io.contract_testing.contractcase.client.MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER;
 
@@ -29,7 +29,7 @@ import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import org.jetbrains.annotations.NotNull;
 
-class ConnectorIncomingMapper {
+public class ConnectorIncomingMapper {
 
   static String map(StringValue s) {
     if (s == null) {

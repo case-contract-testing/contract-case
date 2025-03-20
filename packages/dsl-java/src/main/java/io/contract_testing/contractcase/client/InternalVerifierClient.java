@@ -2,6 +2,9 @@ package io.contract_testing.contractcase.client;
 
 import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.LogPrinter;
+import io.contract_testing.contractcase.client.rpc.ConfigHandle;
+import io.contract_testing.contractcase.client.rpc.ConnectorOutgoingMapper;
+import io.contract_testing.contractcase.client.rpc.RpcForVerification;
 import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.ContractCaseConnectorConfig;
@@ -9,7 +12,6 @@ import io.contract_testing.contractcase.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.AvailableContractDefinitions;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginVerificationRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RegisterFunction;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RunVerification;

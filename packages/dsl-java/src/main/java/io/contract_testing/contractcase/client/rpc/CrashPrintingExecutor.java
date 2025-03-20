@@ -1,4 +1,4 @@
-package io.contract_testing.contractcase.client;
+package io.contract_testing.contractcase.client.rpc;
 
 import io.contract_testing.contractcase.BoundaryCrashReporter;
 import java.util.concurrent.ExecutorService;

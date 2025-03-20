@@ -1,11 +1,9 @@
-package io.contract_testing.contractcase.client;
+package io.contract_testing.contractcase.client.rpc;
 
 import com.google.protobuf.StringValue;
 import io.contract_testing.contractcase.LogPrinter;
 import io.contract_testing.contractcase.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseGrpc.ContractCaseStub;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest.Builder;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.InvokeFunction;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.InvokeTest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
@@ -15,7 +13,7 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 
-class RpcForVerification extends AbstractRpcConnector<VerificationRequest, VerificationRequest.Builder> {
+public class RpcForVerification extends AbstractRpcConnector<VerificationRequest, VerificationRequest.Builder> {
 
   public RpcForVerification(
       @NotNull LogPrinter logPrinter,

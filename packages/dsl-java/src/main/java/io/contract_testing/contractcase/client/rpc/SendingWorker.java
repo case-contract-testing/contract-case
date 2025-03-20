@@ -1,6 +1,7 @@
-package io.contract_testing.contractcase.client;
+package io.contract_testing.contractcase.client.rpc;
 
 import io.contract_testing.contractcase.LogLevel;
+import io.contract_testing.contractcase.client.MaintainerLog;
 import io.grpc.stub.StreamObserver;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;

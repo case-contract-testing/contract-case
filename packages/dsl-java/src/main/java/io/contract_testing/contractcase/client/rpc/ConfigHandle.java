@@ -1,6 +1,6 @@
-package io.contract_testing.contractcase.client;
+package io.contract_testing.contractcase.client.rpc;
 
-import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.CONTRACT_CASE_TRIGGER_AND_TEST;
+import static io.contract_testing.contractcase.client.rpc.ConnectorOutgoingMapper.CONTRACT_CASE_TRIGGER_AND_TEST;
 
 import io.contract_testing.contractcase.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.edge.ConnectorStateHandler;
@@ -9,7 +9,7 @@ import io.contract_testing.contractcase.edge.ITriggerFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-class ConfigHandle {
+public class ConfigHandle {
 
   public void setConnectorConfig(ContractCaseConnectorConfig boundaryConfig) {
     this.boundaryConfig = boundaryConfig;
@@ -17,7 +17,7 @@ class ConfigHandle {
 
   private ContractCaseConnectorConfig boundaryConfig;
 
-  ConfigHandle(ContractCaseConnectorConfig boundaryConfig) {
+  public ConfigHandle(ContractCaseConnectorConfig boundaryConfig) {
     this.boundaryConfig = boundaryConfig;
   }
 

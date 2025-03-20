@@ -1,4 +1,4 @@
-package io.contract_testing.contractcase.client;
+package io.contract_testing.contractcase.client.rpc;
 
 import static io.contract_testing.contractcase.client.MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER;
 
@@ -13,6 +13,7 @@ import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 import io.contract_testing.contractcase.ContractCaseCoreError;
 import io.contract_testing.contractcase.LogLevel;
+import io.contract_testing.contractcase.client.MaintainerLog;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.edge.ConnectorResult;
@@ -37,13 +38,13 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.TriggerFunctionH
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 
-class ConnectorOutgoingMapper {
+public class ConnectorOutgoingMapper {
 
   public static final String CONTRACT_CASE_TRIGGER_AND_TEST = "ContractCase::TriggerAndTest";
 
   private static final ObjectMapper objectMapper = new ObjectMapper();
 
-  static StringValue map(String s) {
+  public static StringValue map(String s) {
     if (s == null) {
       return null;
     }
@@ -57,7 +58,7 @@ class ConnectorOutgoingMapper {
     return BoolValue.newBuilder().setValue(s).build();
   }
 
-  static ContractCaseConfig mapConfig(final @NotNull ContractCaseConnectorConfig config) {
+  public static ContractCaseConfig mapConfig(final @NotNull ContractCaseConnectorConfig config) {
     var builder = ContractCaseConfig.newBuilder();
 
     if (config.getBrokerBasicAuth() != null) {
@@ -157,7 +158,7 @@ class ConnectorOutgoingMapper {
 
 
   @NotNull
-  static ContractCaseStream.DefinitionRequest.Builder mapRunInteractionRequest(JsonNode definition,
+  public static ContractCaseStream.DefinitionRequest.Builder mapRunInteractionRequest(JsonNode definition,
       @NotNull ContractCaseConnectorConfig runConfig) {
     final var structBuilder = getStructBuilder(definition);
     return DefinitionRequest.newBuilder()
@@ -167,7 +168,7 @@ class ConnectorOutgoingMapper {
             .build());
   }
 
-  static ContractCaseStream.DefinitionRequest.Builder mapRunRejectingInteractionRequest(JsonNode definition,
+ public static ContractCaseStream.DefinitionRequest.Builder mapRunRejectingInteractionRequest(JsonNode definition,
       ContractCaseConnectorConfig runConfig) {
     final var structBuilder = getStructBuilder(definition);
     return DefinitionRequest.newBuilder()

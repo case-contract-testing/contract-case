@@ -1,16 +1,17 @@
-package io.contract_testing.contractcase.client;
+package io.contract_testing.contractcase.client.rpc;
 
-import static io.contract_testing.contractcase.client.ConnectorIncomingMapper.mapMatchErrorRequest;
-import static io.contract_testing.contractcase.client.ConnectorIncomingMapper.mapMessageErrorRequest;
-import static io.contract_testing.contractcase.client.ConnectorIncomingMapper.mapPrintableTestTitle;
-import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapResult;
-import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapResultResponse;
+import static io.contract_testing.contractcase.client.rpc.ConnectorIncomingMapper.mapMatchErrorRequest;
+import static io.contract_testing.contractcase.client.rpc.ConnectorIncomingMapper.mapMessageErrorRequest;
+import static io.contract_testing.contractcase.client.rpc.ConnectorIncomingMapper.mapPrintableTestTitle;
+import static io.contract_testing.contractcase.client.rpc.ConnectorOutgoingMapper.mapResult;
+import static io.contract_testing.contractcase.client.rpc.ConnectorOutgoingMapper.mapResultResponse;
 
 import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.GeneratedMessageV3;
 import io.contract_testing.contractcase.ContractCaseCoreError;
 import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.LogPrinter;
+import io.contract_testing.contractcase.client.MaintainerLog;
 import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.ConnectorStateHandler;
 import io.contract_testing.contractcase.edge.ConnectorSuccess;

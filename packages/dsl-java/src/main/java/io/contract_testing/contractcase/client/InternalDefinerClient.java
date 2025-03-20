@@ -1,10 +1,13 @@
 package io.contract_testing.contractcase.client;
 
-import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapRunInteractionRequest;
-import static io.contract_testing.contractcase.client.ConnectorOutgoingMapper.mapRunRejectingInteractionRequest;
+import static io.contract_testing.contractcase.client.rpc.ConnectorOutgoingMapper.mapRunInteractionRequest;
+import static io.contract_testing.contractcase.client.rpc.ConnectorOutgoingMapper.mapRunRejectingInteractionRequest;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.contract_testing.contractcase.LogPrinter;
+import io.contract_testing.contractcase.client.rpc.ConfigHandle;
+import io.contract_testing.contractcase.client.rpc.ConnectorOutgoingMapper;
+import io.contract_testing.contractcase.client.rpc.RpcForDefinition;
 import io.contract_testing.contractcase.definitions.matchers.base.AnyMatcher;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;

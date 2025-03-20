@@ -1,7 +1,10 @@
-package io.contract_testing.contractcase.client;
+package io.contract_testing.contractcase.client.rpc;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import com.google.protobuf.AbstractMessage;
-import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.GeneratedMessage.Builder;
 import com.google.protobuf.GeneratedMessageV3;
 import com.google.protobuf.StringValue;
@@ -9,6 +12,7 @@ import io.contract_testing.contractcase.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.ContractCaseCoreError;
 import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.LogPrinter;
+import io.contract_testing.contractcase.client.MaintainerLog;
 import io.contract_testing.contractcase.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
@@ -23,6 +27,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -59,9 +64,10 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
     this.channel = ManagedChannelBuilder
         .forAddress("localhost", ContractCaseProcess.getInstance().getPortNumber())
         .usePlaintext()
+        .enableRetry()
         .build();
     this.worker = SendingWorker.create(createConnection(
-        ContractCaseGrpc.newStub(channel).withWaitForReady(),
+        ContractCaseGrpc.newStub(channel),
         new ContractResponseStreamObserver<>(
             this,
             logPrinter,
@@ -70,7 +76,6 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
         )
     ));
   }
-
   abstract StreamObserver<T> createConnection(ContractCaseStub asyncStub,
       ContractResponseStreamObserver<T, B> contractResponseStreamObserver);
 
@@ -84,7 +89,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
   /**
    * Executes a call to the core, and waits for the result. You don't need to set any ID on the
-   * request, this function will generate an ID, and call {@link #setId(Builder, StringValue)} to
+   * request, this function will generate an ID, and call {@link #setId(B, StringValue)} to
    * set it.
    * <p>
    * This method doesn't actually do the sending, it defers to the worker. This method then blocks
@@ -95,13 +100,13 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
    *                prefixed to the generated ID.
    * @return the result returned from the core.
    */
-  ConnectorResult executeCallAndWait(B builder, String reason) {
+  public ConnectorResult executeCallAndWait(B builder, String reason) {
     return this.executeCallAndWait(builder, reason, DEFAULT_TIMEOUT_SECONDS);
   }
 
   /**
    * Executes a call to the core, and waits for the result. You don't need to set any ID on the
-   * request, this function will generate an ID, and call {@link #setId(Builder, StringValue)} to
+   * request, this function will generate an ID, and call {@link AbstractRpcConnector#setId(B, StringValue)} to
    * set it.
    * <p>
    * This method doesn't actually do the sending, it defers to the worker. This method then blocks
@@ -115,7 +120,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
    *                       whether it was the main connection or a general timeout.
    * @return the result returned from the core.
    */
-  ConnectorResult executeCallAndWait(B builder, String reason, int timeoutSeconds) {
+  public ConnectorResult executeCallAndWait(B builder, String reason, int timeoutSeconds) {
     final var id =
         "[" + reason + " " + nextId.getAndIncrement() + " " + Thread.currentThread().getName()
             + "]";
