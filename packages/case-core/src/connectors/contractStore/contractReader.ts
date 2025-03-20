@@ -34,6 +34,37 @@ export const readContract = (pathToContract: string): DownloadedContract => {
   return contract;
 };
 
+type ReadDescriptor = {
+  contents: Buffer;
+  filePath: string;
+};
+
+const readFile = (filePath: string): ReadDescriptor => {
+  try {
+    return { contents: fs.readFileSync(filePath), filePath };
+  } catch (e) {
+    throw new CaseConfigurationError(
+      `Unable to load contract file from disk at '${filePath}': ${
+        (e as Error).message
+      }.\n\nThis is almost certainly a race condition where the files were deleted during the directory read.`,
+    );
+  }
+};
+
+const readDir = (pathToDir: string): ReadDescriptor[] =>
+  fs
+    .readdirSync(pathToDir)
+    .flatMap((file) => {
+      const filePath = path.join(pathToDir, file);
+      const stat = fs.statSync(filePath);
+      if (stat.isDirectory()) {
+        return readDir(filePath);
+      }
+
+      return [readFile(filePath)];
+    })
+    .filter((f): f is Contents<Buffer> => f !== null);
+
 const readContractsFromDir = (
   pathToDir: string,
   context: DataContext,
@@ -49,30 +80,7 @@ const readContractsFromDir = (
     );
   }
 
-  const files = fs.readdirSync(pathToDir);
-
-  const buffers = files
-    .map((file) => {
-      const filePath = path.join(pathToDir, file);
-      const stat = fs.statSync(filePath);
-      if (stat.isDirectory()) {
-        return null;
-      }
-      let contents: Buffer;
-      try {
-        contents = fs.readFileSync(filePath);
-      } catch (e) {
-        throw new CaseConfigurationError(
-          `Unable to load contract file from disk at '${filePath}': ${
-            (e as Error).message
-          }\n\n.This is almost certainly a race condition where the files were deleted during the directory read.`,
-        );
-      }
-      return { contents, filePath };
-    })
-    .filter((f): f is Contents<Buffer> => f !== null);
-
-  const jsonContracts = buffers
+  const jsonContracts = readDir(pathToDir)
     .filter(Boolean)
     .map((l) => ({ contents: l.contents.toString(), filePath: l.filePath }))
     .map((s) => {
