@@ -55,8 +55,12 @@ export interface ContractCaseBoundaryConfig {
   readonly logLevel?: string;
   /**
    * The directory where the contract will be written. If you provide this, ContractCase
-   * will generate the filename for you (unless `contractFilename` is specified,
-   * in which case this setting is ignored)
+   * will store contracts in subdirectories for each provider, and the
+   * filename is automatically generated from the consumer name and a hash of the contract contents:
+   *
+   * `${consumerName}-${hashOfContract}.case.json`.
+   *
+   * Note: if `contractFilename` is specified, this setting is ignored.
    */
   readonly contractDir?: string;
 

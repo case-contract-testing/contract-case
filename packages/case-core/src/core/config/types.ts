@@ -50,8 +50,10 @@ export interface BaseCaseConfig {
   logLevel?: LogLevel;
   /**
    * The directory where the contract will be written. If you provide this, ContractCase
-   * will generate the filename for you (unless `contractFilename` is specified,
-   * in which case this setting is ignored)
+   * will store contracts in subdirectories for each provider, and the
+   * filename is automatically generated from the consumer name and a hash of the contract contents:
+   *
+   * `${consumerName}-${hashOfContract}.case.json`.
    */
   contractDir: string;
   /**

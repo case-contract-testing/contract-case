@@ -278,11 +278,13 @@ export type MatchContextWithoutLookup = Omit<
  */
 export interface ContractFileConfig {
   /**
-   * The current test run ID (used to name files uniquely if multiple contract runs are running in parallel)
+   * The current test run ID
    */
   '_case:currentRun:context:testRunId': string;
   /**
-   * The directory that the contract file(s) is/are in.
+   * The directory for contract files.
+   *
+   * Note that they may be in a subdirectory of this dir
    */
   '_case:currentRun:context:contractDir': string;
   /**
@@ -290,7 +292,11 @@ export interface ContractFileConfig {
    */
   '_case:currentRun:context:contractFilename'?: string;
   /**
-   * Whether we should allow overwriting the contract file
+   * Whether we should allow overwriting the contract file.
+   *
+   * This setting is ignored (assumed true) if contractDir is set
+   *
+   * Currently, this setting is only used internally, it is not exposed to users.
    */
   '_case:currentRun:context:overwriteFile'?: boolean;
 }

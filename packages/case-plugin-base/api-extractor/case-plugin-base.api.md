@@ -494,7 +494,7 @@ export class VerifyTriggerReturnObjectError extends Error {
 
 // Warnings were encountered during analysis:
 //
-// src/context/types.ts:490:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
+// src/context/types.ts:496:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

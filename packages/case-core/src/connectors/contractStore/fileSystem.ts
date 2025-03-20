@@ -2,6 +2,7 @@ import filenamify from 'filenamify';
 import slug from 'slug';
 import { mkdirp } from 'mkdirp';
 
+import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -10,10 +11,7 @@ import {
   HasContractFileConfig,
   CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
-import {
-  CaseContractDescription,
-  ContractData,
-} from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import type { WriteContract } from '../../core/types';
 
 const EXTENSION = '.case.json' as const;
@@ -64,23 +62,19 @@ const isCaseContractConfig = (
 const escapeFileName = (pathString: string) =>
   filenamify(pathString, { maxLength: MAX_FILENAME_LENGTH });
 
-const makeFilename = (
-  description: CaseContractDescription,
-  config: HasContractFileConfig,
-) =>
-  escapeFileName(
-    `${slug(`${description.consumerName}-${description.providerName}`)}-${
-      config['_case:currentRun:context:testRunId']
-    }${EXTENSION}`,
+const hashContract = (contract: ContractData) =>
+  crypto.createHash('sha256').update(JSON.stringify(contract)).digest('hex');
+
+const makeFileNameByHash = (contract: ContractData) =>
+  path.join(
+    escapeFileName(slug(contract.description.providerName)),
+    `${escapeFileName(slug(contract.description.consumerName))}-${hashContract(contract)}${EXTENSION}`,
   );
 
-const makePath = (
-  description: CaseContractDescription,
-  config: HasContractFileConfig,
-) =>
+const makePath = (contract: ContractData, config: HasContractFileConfig) =>
   path.join(
     config['_case:currentRun:context:contractDir'],
-    makeFilename(description, config),
+    makeFileNameByHash(contract),
   );
 
 const stripStateVariables = (contract: ContractData): ContractData => ({
@@ -116,7 +110,7 @@ export const writeContract: WriteContract = (
   const pathToFile = path.resolve(
     context['_case:currentRun:context:contractFilename']
       ? context['_case:currentRun:context:contractFilename']
-      : makePath(contract.description, context),
+      : makePath(contract, context),
   );
 
   if (!pathToFile.endsWith(EXTENSION)) {
@@ -142,6 +136,7 @@ export const writeContract: WriteContract = (
 
   if (
     fs.existsSync(pathToFile) &&
+    context['_case:currentRun:context:contractFilename'] &&
     !context['_case:currentRun:context:overwriteFile']
   ) {
     context.logger.error(
