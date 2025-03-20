@@ -113,9 +113,11 @@ export const writeContract: WriteContract = (
     );
   }
 
-  const pathToFile = context['_case:currentRun:context:contractFilename']
-    ? context['_case:currentRun:context:contractFilename']
-    : makePath(contract.description, context);
+  const pathToFile = path.resolve(
+    context['_case:currentRun:context:contractFilename']
+      ? context['_case:currentRun:context:contractFilename']
+      : makePath(contract.description, context),
+  );
 
   if (!pathToFile.endsWith(EXTENSION)) {
     context.logger.warn(
