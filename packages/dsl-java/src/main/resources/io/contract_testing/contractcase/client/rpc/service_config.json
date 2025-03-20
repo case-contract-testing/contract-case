@@ -1,0 +1,20 @@
+{
+  "methodConfig": [
+    {
+      "name": [
+        {
+          "service": "ContractCase"
+        }
+      ],
+      "retryPolicy": {
+        "maxAttempts": 10,
+        "initialBackoff": "0.01s",
+        "maxBackoff": "4s",
+        "backoffMultiplier": 2,
+        "retryableStatusCodes": [
+          "UNAVAILABLE"
+        ]
+      }
+    }
+  ]
+}

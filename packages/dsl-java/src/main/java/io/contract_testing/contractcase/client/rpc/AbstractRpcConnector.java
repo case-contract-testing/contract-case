@@ -5,7 +5,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.google.protobuf.AbstractMessage;
-import com.google.protobuf.GeneratedMessage.Builder;
 import com.google.protobuf.GeneratedMessageV3;
 import com.google.protobuf.StringValue;
 import io.contract_testing.contractcase.ContractCaseConfigurationError;
@@ -63,6 +62,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
       @NotNull RunTestCallback runTestCallback) {
     this.channel = ManagedChannelBuilder
         .forAddress("localhost", ContractCaseProcess.getInstance().getPortNumber())
+        .defaultServiceConfig(readServiceConfig())
         .usePlaintext()
         .enableRetry()
         .build();
@@ -76,6 +76,27 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
         )
     ));
   }
+
+  protected Map<String, ?> readServiceConfig() {
+    // Service config has a low initial retry, since we know we're on the same machine
+    var resource = AbstractRpcConnector.class.getResourceAsStream(
+        "service_config.json");
+
+    if (resource == null) {
+      throw new ContractCaseCoreError(
+          "Unable to read the service config resource. This indicates that the ContractCase jar was built incorrectly.");
+    }
+    return new Gson()
+        .fromJson(
+            new JsonReader(
+                new InputStreamReader(
+                    resource,
+                    UTF_8
+                )),
+            Map.class
+        );
+  }
+
   abstract StreamObserver<T> createConnection(ContractCaseStub asyncStub,
       ContractResponseStreamObserver<T, B> contractResponseStreamObserver);
 
@@ -89,8 +110,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
   /**
    * Executes a call to the core, and waits for the result. You don't need to set any ID on the
-   * request, this function will generate an ID, and call {@link #setId(B, StringValue)} to
-   * set it.
+   * request, this function will generate an ID, and call {@link #setId(B, StringValue)} to set it.
    * <p>
    * This method doesn't actually do the sending, it defers to the worker. This method then blocks
    * until the response arrives. The timeout for this method is {@link #DEFAULT_TIMEOUT_SECONDS}
@@ -106,8 +126,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
   /**
    * Executes a call to the core, and waits for the result. You don't need to set any ID on the
-   * request, this function will generate an ID, and call {@link AbstractRpcConnector#setId(B, StringValue)} to
-   * set it.
+   * request, this function will generate an ID, and call
+   * {@link AbstractRpcConnector#setId(B, StringValue)} to set it.
    * <p>
    * This method doesn't actually do the sending, it defers to the worker. This method then blocks
    * until the response arrives.
