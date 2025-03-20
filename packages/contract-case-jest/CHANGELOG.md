@@ -29,6 +29,32 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.20.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.19.2...@contract-case/contract-case-jest-v0.20.0) (2025-03-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Contracts are now hashed to create the filename. This is a breaking change, because the default contractDir now stores contracts in subdirs (by provider name) and allows overwriting the contract file. This improves monorepo support. See the configuration documentation for details.
+
+### Features
+
+* **core:** Contracts are now hashed to create the filename. This is a breaking change, because the default contractDir now stores contracts in subdirs (by provider name) and allows overwriting the contract file. This improves monorepo support. See the configuration documentation for details. ([b2a078d](https://github.com/case-contract-testing/contract-case/commit/b2a078d18631c15caf27706a672c49d040a47790))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-definition-dsl bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-entities-internal bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-plugin-base bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.19.2 to 0.20.0
+    * @contract-case/cli bumped from 0.19.2 to 0.20.0
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.19.2 to 0.20.0
+
 ## [0.19.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.19.1...@contract-case/contract-case-jest-v0.19.2) (2025-03-19)
 
 

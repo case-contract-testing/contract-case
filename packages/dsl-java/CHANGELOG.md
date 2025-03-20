@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.20.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.19.2...@contract-case/dsl-java-v0.20.0) (2025-03-20)
+
+
+### Bug Fixes
+
+* **dsl-java:** Retry connection in the event of a failure ([6f4e027](https://github.com/case-contract-testing/contract-case/commit/6f4e0279d90f4aefac48016a4d41756c781db326))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-definition-dsl bumped from 0.19.2 to 0.20.0
+
 ## [0.19.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.19.1...@contract-case/dsl-java-v0.19.2) (2025-03-19)
 
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.20.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.19.2...@contract-case/case-plugin-base-v0.20.0) (2025-03-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Contracts are now hashed to create the filename. This is a breaking change, because the default contractDir now stores contracts in subdirs (by provider name) and allows overwriting the contract file. This improves monorepo support. See the configuration documentation for details.
+
+### Features
+
+* **core:** Contracts are now hashed to create the filename. This is a breaking change, because the default contractDir now stores contracts in subdirs (by provider name) and allows overwriting the contract file. This improves monorepo support. See the configuration documentation for details. ([b2a078d](https://github.com/case-contract-testing/contract-case/commit/b2a078d18631c15caf27706a672c49d040a47790))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.19.2 to 0.20.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.19.2 to 0.20.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.19.2 to 0.20.0
+
 ## [0.19.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.19.1...@contract-case/case-plugin-base-v0.19.2) (2025-03-19)
 
 

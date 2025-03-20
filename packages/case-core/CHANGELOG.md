@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.20.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.19.2...@contract-case/case-core-v0.20.0) (2025-03-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Contracts are now hashed to create the filename. This is a breaking change, because the default contractDir now stores contracts in subdirs (by provider name) and allows overwriting the contract file. This improves monorepo support. See the configuration documentation for details.
+
+### Features
+
+* **core:** Contracts are now hashed to create the filename. This is a breaking change, because the default contractDir now stores contracts in subdirs (by provider name) and allows overwriting the contract file. This improves monorepo support. See the configuration documentation for details. ([b2a078d](https://github.com/case-contract-testing/contract-case/commit/b2a078d18631c15caf27706a672c49d040a47790))
+* **core:** Reading contracts from a directory is now recursive ([0bfd11f](https://github.com/case-contract-testing/contract-case/commit/0bfd11f91e3790dddf84a63fc9b9cdf05dd4882c))
+
+
+### Bug Fixes
+
+* **core:** Report full path of the written contract in the logs ([3f13e09](https://github.com/case-contract-testing/contract-case/commit/3f13e091f1ee3cebe161eff9740e00e5947b4bd3))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-core-plugin-http bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-entities-internal bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-plugin-base bumped from 0.19.2 to 0.20.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.19.2 to 0.20.0
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from ^0.19.2 to ^0.20.0
+    * @contract-case/case-maintainer-config bumped from 0.19.2 to 0.20.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.19.2 to 0.20.0
+
 ## [0.19.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.19.1...@contract-case/case-core-v0.19.2) (2025-03-19)
 
 

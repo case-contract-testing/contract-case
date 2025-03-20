@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.20.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.19.2...documentation-v0.20.0) (2025-03-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Contracts are now hashed to create the filename. This is a breaking change, because the default contractDir now stores contracts in subdirs (by provider name) and allows overwriting the contract file. This improves monorepo support. See the configuration documentation for details.
+
+### Features
+
+* **core:** Contracts are now hashed to create the filename. This is a breaking change, because the default contractDir now stores contracts in subdirs (by provider name) and allows overwriting the contract file. This improves monorepo support. See the configuration documentation for details. ([b2a078d](https://github.com/case-contract-testing/contract-case/commit/b2a078d18631c15caf27706a672c49d040a47790))
+
 ## [0.19.2](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.19.1...documentation-v0.19.2) (2025-03-19)
 
 
