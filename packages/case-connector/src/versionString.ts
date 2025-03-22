@@ -1,4 +1,4 @@
-import packageJson from '../package.json' with { type: 'json' };
+import packageJson from '../package.json';
 
 export const versionString: string =
   packageJson.version != null
