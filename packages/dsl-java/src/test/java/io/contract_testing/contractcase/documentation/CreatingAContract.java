@@ -3,10 +3,10 @@ package io.contract_testing.contractcase.documentation;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import io.contract_testing.contractcase.ContractDefiner;
-import io.contract_testing.contractcase.ContractCaseConfig.ContractCaseConfigBuilder;
-import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
+import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.InteractionDefinition;
-import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 
 import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;
 import io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest;

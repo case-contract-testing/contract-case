@@ -1,6 +1,11 @@
 package io.contract_testing.contractcase;
 
-import io.contract_testing.contractcase.edge.ContractCaseConnectorConfig;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig;
+import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig;
+import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig;
+import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
+import io.contract_testing.contractcase.internal.BoundaryTriggerMapper;
+import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
 import org.jetbrains.annotations.NotNull;
 
 class ConnectorConfigMapper {

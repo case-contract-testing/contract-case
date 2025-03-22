@@ -2,13 +2,13 @@ package io.contract_testing.contractcase.test.httpclient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.contract_testing.contractcase.ContractCaseConfig;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
-import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
-import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
-import io.contract_testing.contractcase.PublishType;
-import io.contract_testing.contractcase.Trigger;
+import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.PublishType;
+import io.contract_testing.contractcase.configuration.Trigger;
 
 import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;
 import io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest;

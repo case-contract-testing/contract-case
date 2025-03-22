@@ -2,12 +2,12 @@ package io.contract_testing.contractcase.test.function;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.contract_testing.contractcase.ContractCaseConfig;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
-import io.contract_testing.contractcase.IndividualSuccessTestConfig;
-import io.contract_testing.contractcase.InvokableFunctions;
-import io.contract_testing.contractcase.PublishType;
+import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig;
+import io.contract_testing.contractcase.configuration.InvokableFunctions;
+import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;

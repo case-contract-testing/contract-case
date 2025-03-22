@@ -1,22 +1,30 @@
 package io.contract_testing.contractcase;
 
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction0;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction1;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction2;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction3;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction4;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction5;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction6;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction7;
-import io.contract_testing.contractcase.client.InternalVerifierClient;
-import io.contract_testing.contractcase.client.server.ContractCaseProcess;
-import io.contract_testing.contractcase.edge.BasicRunTestCallback;
-import io.contract_testing.contractcase.edge.BoundaryCrashReporter;
-import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper;
-import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
-import io.contract_testing.contractcase.edge.ConnectorResult;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig;
+import io.contract_testing.contractcase.configuration.ContractDescription;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction0;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction2;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction3;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction4;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction5;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction6;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction7;
+import io.contract_testing.contractcase.internal.ConnectorResultMapper;
+import io.contract_testing.contractcase.internal.client.InternalVerifierClient;
+import io.contract_testing.contractcase.internal.client.server.ContractCaseProcess;
+import io.contract_testing.contractcase.internal.edge.default_implementations.BasicRunTestCallback;
+import io.contract_testing.contractcase.internal.edge.BoundaryCrashReporter;
+import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper;
+import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
+import io.contract_testing.contractcase.internal.edge.ConnectorResult;
+import io.contract_testing.contractcase.internal.edge.default_implementations.LogPrinterStandardOut;
+import io.contract_testing.contractcase.logs.LogPrinter;
 import java.util.List;
 
+/**
+ * Verifies one or more contracts against a single provider
+ */
 public class ContractVerifier implements AutoCloseable {
 
   private final InternalVerifierClient verifier;
@@ -26,7 +34,7 @@ public class ContractVerifier implements AutoCloseable {
   private final BasicRunTestCallback runTestCallback;
 
   public ContractVerifier(final ContractCaseConfig config) {
-    LogPrinter logPrinter = new LogPrinter();
+    LogPrinter logPrinter = new LogPrinterStandardOut();
     ContractCaseProcess.getInstance().start();
     this.config = config;
 

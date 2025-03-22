@@ -20,8 +20,7 @@ repositories {
 
 tasks.withType(Javadoc).configureEach {
     exclude('io/contract_testing/contractcase/grpc')
-    exclude('io/contract_testing/contractcase/edge')
-    exclude('io/contract_testing/contractcase/client')
+    exclude('io/contract_testing/contractcase/internal')
     options.addStringOption('Xdoclint:-missing', '-quiet')
 }
 

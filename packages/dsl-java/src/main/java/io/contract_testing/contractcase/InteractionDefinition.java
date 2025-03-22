@@ -8,25 +8,25 @@ import io.contract_testing.contractcase.definitions.interactions.base.AnyInterac
 import io.contract_testing.contractcase.definitions.states.AnyState;
 import java.util.List;
 
-public class InteractionDefinition<M extends AnyInteractionDescriptor> {
+/**
+ * Describes an interaction, used during contract definition.
+ * @param <I> The type of the interaction
+ */
+public class InteractionDefinition<I extends AnyInteractionDescriptor> {
 
   private final List<? extends AnyState> states;
-  private final M definition;
+  private final I definition;
 
-  public InteractionDefinition(List<? extends AnyState> states, M definition) {
+  public InteractionDefinition(List<? extends AnyState> states, I definition) {
     this.states = List.copyOf(states);
     this.definition = definition;
-  }
-
-  Object getDefinition() {
-    return definition;
   }
 
   public List<? extends AnyState> getStates() {
     return List.copyOf(states);
   }
 
-  public JsonNode toJSON() {
+  JsonNode toJSON() {
     var mapper = new ObjectMapper();
     ObjectNode node = mapper.createObjectNode();
     try {
@@ -46,7 +46,6 @@ public class InteractionDefinition<M extends AnyInteractionDescriptor> {
       throw new RuntimeException(e);
     }
     return node;
-
   }
 
 

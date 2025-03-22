@@ -1,26 +1,33 @@
 package io.contract_testing.contractcase;
 
-import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
-import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction0;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction1;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction2;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction3;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction4;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction5;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction6;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction7;
-import io.contract_testing.contractcase.client.InternalDefinerClient;
-import io.contract_testing.contractcase.client.server.ContractCaseProcess;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig;
+import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig;
+import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig;
+import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction0;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction2;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction3;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction4;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction5;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction6;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction7;
 import io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor;
-import io.contract_testing.contractcase.edge.BoundaryCrashReporter;
-import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper;
-import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
+import io.contract_testing.contractcase.internal.ConnectorResultMapper;
+import io.contract_testing.contractcase.internal.client.InternalDefinerClient;
+import io.contract_testing.contractcase.internal.client.server.ContractCaseProcess;
+import io.contract_testing.contractcase.internal.edge.BoundaryCrashReporter;
+import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper;
+import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
+import io.contract_testing.contractcase.internal.edge.default_implementations.LogPrinterStandardOut;
+import io.contract_testing.contractcase.logs.LogPrinter;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Allows contracts to be defined. Each contract between a consumer and a provider will have one
- * instance of a contract definer.
+ * Allows contracts to be defined by a consumer.
+ * <p>
+ * Each contract between a consumer and a provider will have one instance of a contract definer.
  */
 public class ContractDefiner {
 
@@ -40,7 +47,7 @@ public class ContractDefiner {
   public ContractDefiner(final @NotNull ContractCaseConfig config) {
     ContractCaseProcess.getInstance().start();
 
-    LogPrinter logPrinter = new LogPrinter();
+    LogPrinter logPrinter = new LogPrinterStandardOut();
     this.config = config;
 
     InternalDefinerClient definer = null;

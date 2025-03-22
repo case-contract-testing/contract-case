@@ -1,10 +1,11 @@
 package io.contract_testing.contractcase;
 
-import io.contract_testing.contractcase.edge.ConnectorExceptionMapper;
-import io.contract_testing.contractcase.edge.ConnectorResult;
-import io.contract_testing.contractcase.edge.ConnectorStateHandler;
-import io.contract_testing.contractcase.edge.ConnectorSuccess;
-import io.contract_testing.contractcase.edge.ConnectorSuccessWithMap;
+import io.contract_testing.contractcase.configuration.StateHandler;
+import io.contract_testing.contractcase.internal.edge.ConnectorExceptionMapper;
+import io.contract_testing.contractcase.internal.edge.ConnectorResult;
+import io.contract_testing.contractcase.internal.edge.ConnectorStateHandler;
+import io.contract_testing.contractcase.internal.edge.ConnectorSuccess;
+import io.contract_testing.contractcase.internal.edge.ConnectorSuccessWithMap;
 import java.util.HashMap;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;

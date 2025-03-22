@@ -2,11 +2,11 @@ package io.contract_testing.contractcase.test.function;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.contract_testing.contractcase.ContractCaseConfig.ContractCaseConfigBuilder;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.ContractDefiner;
-import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.InteractionDefinition;
-import io.contract_testing.contractcase.PublishType;
+import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;

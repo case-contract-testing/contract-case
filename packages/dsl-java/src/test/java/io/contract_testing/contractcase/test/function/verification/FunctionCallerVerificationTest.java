@@ -2,12 +2,12 @@ package io.contract_testing.contractcase.test.function.verification;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.contract_testing.contractcase.ContractCaseConfig;
-import io.contract_testing.contractcase.ContractCaseConfig.ContractCaseConfigBuilder;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.ContractVerifier;
-import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction1;
-import io.contract_testing.contractcase.PublishType;
-import io.contract_testing.contractcase.StateHandler;
+import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
+import io.contract_testing.contractcase.configuration.PublishType;
+import io.contract_testing.contractcase.configuration.StateHandler;
 import java.util.HashMap;
 import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
