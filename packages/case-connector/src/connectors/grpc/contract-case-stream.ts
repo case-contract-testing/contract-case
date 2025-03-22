@@ -13,6 +13,10 @@ export function main(): void {
   const server = new Server();
 
   getPort().then((freePort) => {
+    server.addService(ContractCaseService, {
+      contractDefinition,
+      contractVerification,
+    });
     server.bindAsync(
       `0.0.0.0:${freePort}`,
       ServerCredentials.createInsecure(),
@@ -29,10 +33,5 @@ export function main(): void {
         }
       },
     );
-
-    server.addService(ContractCaseService, {
-      contractDefinition,
-      contractVerification,
-    });
   });
 }
