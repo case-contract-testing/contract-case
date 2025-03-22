@@ -76,7 +76,7 @@ public class ContractDefiner {
           config,
           "DEFINER_LOAD_PLUGIN"
       ), pluginNames));
-    } catch (Throwable e) {
+    } catch (Exception e) {
       BoundaryCrashReporter.handleAndRethrow(e);
     }
   }
@@ -97,7 +97,7 @@ public class ContractDefiner {
           definition.toJSON(),
           ConnectorConfigMapper.mapSuccessExample(additionalConfig, TEST_RUN_ID)
       ));
-    } catch (Throwable e) {
+    } catch (Exception e) {
       BoundaryCrashReporter.handleAndRethrow(e);
     }
   }
@@ -152,7 +152,7 @@ public class ContractDefiner {
           definition.toJSON(),
           ConnectorConfigMapper.mapFailingExample(additionalConfig, TEST_RUN_ID)
       ));
-    } catch (Throwable e) {
+    } catch (Exception e) {
       BoundaryCrashReporter.handleAndRethrow(e);
     }
   }
@@ -252,7 +252,7 @@ public class ContractDefiner {
       ConnectorResultMapper.mapVoid(definer.registerFunction(
           functionName, connectorFunction
       ));
-    } catch (Throwable e) {
+    } catch (Exception e) {
       BoundaryCrashReporter.handleAndRethrow(e);
     }
   }

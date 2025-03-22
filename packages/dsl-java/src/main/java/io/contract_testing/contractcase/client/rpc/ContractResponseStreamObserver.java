@@ -283,7 +283,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
   /**
    * Convenience method to get a stack trace and make it a string
    *
-   * @param t a Throwable to get the stack trace from
+   * @param t a Exception to get the stack trace from
    * @return the stack trace of the throwable
    */
   @NotNull

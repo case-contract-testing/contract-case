@@ -20,8 +20,8 @@ public interface Trigger<T> {
    *              running mock, etc.)
    * @return the returned business object from your client code, for verification by your
    * {@link TestResponseFunction}
-   * @throws Throwable Any exception thrown by your code in the event of an error
+   * @throws Exception Any exception thrown by your code in the event of an error
    */
-  T call(final @NotNull InteractionSetup setup) throws Throwable;
+  T call(final @NotNull InteractionSetup setup) throws Exception;
 }
 // end-example

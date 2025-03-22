@@ -32,7 +32,7 @@ class ConnectorStateHandlerMapper {
             return new ConnectorSuccess();
           }
           return new ConnectorSuccessWithMap(config);
-        } catch (Throwable e) {
+        } catch (Exception e) {
           return ConnectorExceptionMapper.mapAsStateFailure(e);
         }
       }
@@ -43,7 +43,7 @@ class ConnectorStateHandlerMapper {
           handler.teardown();
 
           return new ConnectorSuccess();
-        } catch (Throwable e) {
+        } catch (Exception e) {
           return ConnectorExceptionMapper.mapAsStateFailure(e);
         }
       }

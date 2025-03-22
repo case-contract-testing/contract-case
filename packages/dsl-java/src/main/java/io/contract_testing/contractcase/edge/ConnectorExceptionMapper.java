@@ -15,7 +15,7 @@ public class ConnectorExceptionMapper {
         Collectors.joining("\n"));
   }
 
-  public static ConnectorFailure map(Throwable e) {
+  public static ConnectorFailure map(Exception e) {
     var failure = new ConnectorFailure(
         e instanceof ContractCaseConfigurationError
             ? ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR
@@ -31,7 +31,7 @@ public class ConnectorExceptionMapper {
     return failure;
   }
 
-  public static ConnectorFailure mapAsTriggerFailure(Throwable e) {
+  public static ConnectorFailure mapAsTriggerFailure(Exception e) {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_TRIGGER_ERROR,
         "Trigger function failed: " + e.getMessage(),
@@ -39,7 +39,7 @@ public class ConnectorExceptionMapper {
     );
   }
 
-  public static ConnectorFailure mapAsVerifyFailure(Throwable e) {
+  public static ConnectorFailure mapAsVerifyFailure(Exception e) {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR,
         "Verification failed: " + e.getMessage(),
@@ -47,7 +47,7 @@ public class ConnectorExceptionMapper {
     );
   }
 
-  public static ConnectorResult mapAsStateFailure(Throwable e) {
+  public static ConnectorResult mapAsStateFailure(Exception e) {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
         "State handler failed: " + e.getMessage(),

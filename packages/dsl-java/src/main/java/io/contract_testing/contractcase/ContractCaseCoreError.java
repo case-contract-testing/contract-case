@@ -49,13 +49,13 @@ public class ContractCaseCoreError extends RuntimeException {
    * <p>
    * Only use this if you are handling an exception that is itself the core error (eg, an exception
    * deserialised from a core communication). It exists to avoid deeply nesting exceptions. Most of
-   * the time, you'll want {@link ContractCaseCoreError(String, Throwable)} instead.
+   * the time, you'll want {@link ContractCaseCoreError(String, Exception)} instead.
    * <p>
    * Not part of the user-facing interface.
    *
    * @param e the error (which may be a ContractCaseCoreError).
    */
-  public ContractCaseCoreError(Throwable e) {
+  public ContractCaseCoreError(Exception e) {
     super(e.getMessage());
     if (e instanceof ContractCaseCoreError) {
       this.location = ((ContractCaseCoreError) e).getLocation();

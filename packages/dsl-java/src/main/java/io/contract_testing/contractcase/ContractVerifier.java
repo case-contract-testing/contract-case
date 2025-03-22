@@ -42,7 +42,7 @@ public class ContractVerifier implements AutoCloseable {
           logPrinter,
           new BoundaryVersionGenerator().getVersions()
       );
-    } catch (Throwable e) {
+    } catch (Exception e) {
       BoundaryCrashReporter.handleAndRethrow(e);
     }
     this.verifier = verification;
@@ -54,7 +54,7 @@ public class ContractVerifier implements AutoCloseable {
           config,
           "VERIFICATION_LOAD_PLUGIN"
       ), pluginNames));
-    } catch (Throwable e) {
+    } catch (Exception e) {
       BoundaryCrashReporter.handleAndRethrow(e);
     }
   }
@@ -62,7 +62,7 @@ public class ContractVerifier implements AutoCloseable {
   public List<ContractDescription> availableContractDescriptions() {
     try {
       return ConnectorResultMapper.mapListAvailableContracts(this.verifier.availableContractDescriptions());
-    } catch (Throwable e) {
+    } catch (Exception e) {
       BoundaryCrashReporter.handleAndRethrow(e);
       // This is actually unreachable, since the above method always throws
       return List.of();
@@ -73,14 +73,14 @@ public class ContractVerifier implements AutoCloseable {
     try {
       ConnectorResultMapper.mapVoid(this.verifier.runVerification(
           ConnectorConfigMapper.map(configOverrides, "VERIFICATION")));
-    } catch (Throwable e) {
+    } catch (Exception e) {
       BoundaryCrashReporter.handleAndRethrow(e);
     }
     var failures = runTestCallback.getFailures();
     if (!failures.isEmpty()) {
       try {
         ConnectorResultMapper.mapVoid(ConnectorResult.toConnectorResult(failures.get(0)));
-      } catch (Throwable e) {
+      } catch (Exception e) {
         BoundaryCrashReporter.handleAndRethrow(e);
       }
 
@@ -155,7 +155,7 @@ public class ContractVerifier implements AutoCloseable {
       ConnectorResultMapper.mapVoid(verifier.registerFunction(
           functionName, connectorFunction
       ));
-    } catch (Throwable e) {
+    } catch (Exception e) {
       BoundaryCrashReporter.handleAndRethrow(e);
     }
   }

@@ -18,7 +18,7 @@ class CrashPrintingExecutor implements AutoCloseable {
     return executor.submit(() -> {
       try {
         task.run();
-      } catch (Throwable e) {
+      } catch (Exception e) {
         BoundaryCrashReporter.printCrashMessage(e);
       }
     });

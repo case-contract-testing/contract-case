@@ -16,20 +16,20 @@ class BoundaryTriggerMapper {
       InteractionSetup interactionSetup;
       try {
         interactionSetup = InteractionSetup.from(connectorSetupInfo);
-      } catch (Throwable e) {
+      } catch (Exception e) {
         return ConnectorExceptionMapper.map(e);
       }
 
       T ret;
       try {
         ret = trigger.call(interactionSetup);
-      } catch (Throwable e) {
+      } catch (Exception e) {
         return ConnectorExceptionMapper.mapAsTriggerFailure(e);
       }
 
       try {
         testResponseFunction.call(ret, interactionSetup);
-      } catch (Throwable e) {
+      } catch (Exception e) {
         return ConnectorExceptionMapper.mapAsVerifyFailure(e);
       }
 
@@ -43,17 +43,17 @@ class BoundaryTriggerMapper {
       InteractionSetup interactionSetup;
       try {
         interactionSetup = InteractionSetup.from(connectorSetupInfo);
-      } catch (Throwable e) {
+      } catch (Exception e) {
         return ConnectorExceptionMapper.map(e);
       }
       try {
         trigger.call(interactionSetup);
         return ConnectorExceptionMapper.mapAsTriggerFailure(
             new RuntimeException("Expected the trigger to fail, but it did not"));
-      } catch (Throwable triggerException) {
+      } catch (Exception triggerException) {
         try {
           testErrorResponseFunction.call(triggerException, interactionSetup);
-        } catch (Throwable verifyException) {
+        } catch (Exception verifyException) {
           return ConnectorExceptionMapper.mapAsVerifyFailure(verifyException);
         }
       }

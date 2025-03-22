@@ -45,7 +45,7 @@ public class BoundaryCrashReporter {
    * Will rethrow the exception, printing a crash report if appropriate
    * @param e the throwable to maybe rethrow
    */
-  public static void handleAndRethrow(Throwable e) {
+  public static void handleAndRethrow(Exception e) {
     // This method should not call BoundaryResultMapper
     if (e instanceof ContractCaseConfigurationError) {
       throw (ContractCaseConfigurationError) e;
@@ -62,7 +62,7 @@ public class BoundaryCrashReporter {
    *
    * @param e the throwable to print the crash report for
    */
-  public static void printCrashMessage(Throwable e) {
+  public static void printCrashMessage(Exception e) {
     if (e instanceof ContractCaseCoreError) {
       System.err.println(
           CRASH_MESSAGE_START
