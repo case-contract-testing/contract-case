@@ -11,7 +11,7 @@ src/main/resources/io/contract_testing/contractcase/internal/client/server
 .gradle
 node_modules/
 coverage/
-logs/
+!logs/
 test-reports/
 yarn.lock
 ui-test-cases/target/*
