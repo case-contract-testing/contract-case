@@ -1,6 +1,7 @@
 package io.contract_testing.contractcase;
 
 import io.contract_testing.contractcase.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
+import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction0;
 import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction2;
@@ -16,6 +17,10 @@ import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper;
 import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Allows contracts to be defined. Each contract between a consumer and a provider will have one
+ * instance of a contract definer.
+ */
 public class ContractDefiner {
 
   private static final String TEST_RUN_ID = "JAVA";
@@ -23,6 +28,14 @@ public class ContractDefiner {
   private final ContractCaseConfig config;
 
 
+  /**
+   * Constructs a ContractDefiner with the provided configuration. Configurations can be overridden
+   * during the test runs (see
+   * {@link #runInteraction(InteractionDefinition, IndividualSuccessTestConfig)} and
+   * {@link #runThrowingInteraction(InteractionDefinition, IndividualFailedTestConfig)}).
+   *
+   * @param config the configuration for this contract.
+   */
   public ContractDefiner(final @NotNull ContractCaseConfig config) {
     ContractCaseProcess.getInstance().start();
 
@@ -36,16 +49,26 @@ public class ContractDefiner {
           logPrinter,
           new BoundaryVersionGenerator().getVersions()
       );
-    } catch (Throwable e) {
+    } catch (Exception e) {
       BoundaryCrashReporter.handleAndRethrow(e);
     }
     this.definer = definer;
   }
 
+  /**
+   * Ends this contract definition and writes the contract. If the contract definition was not
+   * successful (eg, a test failed), this will throw an appropriate ContractCase exception.
+   */
   public void endRecord() {
     ConnectorResultMapper.mapVoid(this.definer.endRecord());
   }
 
+  /**
+   * Loads one or more plugins.
+   *
+   * @param pluginNames The names of the plugins to load. Can be a path to the package, or the name
+   *                    of a package that has previously been installed with npm.
+   */
   public void loadPlugins(String... pluginNames) {
     try {
       ConnectorResultMapper.mapVoid(this.definer.loadPlugins(ConnectorConfigMapper.map(
@@ -57,7 +80,16 @@ public class ContractDefiner {
     }
   }
 
-  public <T, M extends AnyInteractionDescriptor> void runInteraction(InteractionDefinition<M> definition,
+  /**
+   * Runs an interaction test and adds it to the contract.
+   *
+   * @param definition       The definition of this interaction
+   * @param additionalConfig Any additional configuration, will override configuration given in the
+   *                         constructor.
+   * @param <T>              Inferred return type from the trigger (ie, what your API call returns)
+   * @param <I>              Inferred interaction type (ie, what kind of interaction this is)
+   */
+  public <T, I extends AnyInteractionDescriptor> void runInteraction(InteractionDefinition<I> definition,
       final @NotNull IndividualSuccessTestConfig<T> additionalConfig) {
     try {
       ConnectorResultMapper.mapVoid(definer.runInteraction(
@@ -69,12 +101,30 @@ public class ContractDefiner {
     }
   }
 
-  public <T, M extends AnyInteractionDescriptor> void runInteraction(InteractionDefinition<M> definition,
+  /**
+   * Runs an interaction test and adds it to the contract. Convenience method so you don't have to
+   * call {@code .build()} so often.
+   *
+   * @param definition       The definition of this interaction
+   * @param additionalConfig Any additional configuration, but as a builder.
+   * @param <T>              Inferred return type from the trigger (ie, what your API call returns)
+   * @param <I>              Inferred interaction type (ie, what kind of interaction this is)
+   */
+  public <T, I extends AnyInteractionDescriptor> void runInteraction(InteractionDefinition<I> definition,
       final @NotNull IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder<T> additionalConfig) {
     this.runInteraction(definition, additionalConfig.build());
   }
 
-  public <M extends AnyInteractionDescriptor> void runInteraction(InteractionDefinition<M> definition) {
+
+  /**
+   * Runs an interaction test and adds it to the contract without additional configuration. If you
+   * need config for this interaction, use
+   * {@link #runInteraction(InteractionDefinition, IndividualSuccessTestConfigBuilder)}
+   *
+   * @param definition The definition of this interaction
+   * @param <I>        Inferred interaction type (ie, what kind of interaction this is)
+   */
+  public <I extends AnyInteractionDescriptor> void runInteraction(InteractionDefinition<I> definition) {
     this.runInteraction(
         definition,
         IndividualSuccessTestConfig
@@ -84,7 +134,17 @@ public class ContractDefiner {
     );
   }
 
-  public <T, M extends AnyInteractionDescriptor> void runThrowingInteraction(InteractionDefinition<M> definition,
+
+  /**
+   * Runs an interaction test where the trigger is expected to throw an error on success, and adds
+   * it to the contract. If you need config for this interaction, use
+   *
+   * @param definition       The definition of this interaction
+   * @param additionalConfig Any additional configuration
+   * @param <T>              Inferred return type from the trigger (ie, what your API call returns)
+   * @param <I>              Inferred interaction type (ie, what kind of interaction this is)
+   */
+  public <T, I extends AnyInteractionDescriptor> void runThrowingInteraction(InteractionDefinition<I> definition,
       IndividualFailedTestConfig<T> additionalConfig) {
     try {
       ConnectorResultMapper.mapVoid(definer.runRejectingInteraction(
@@ -96,12 +156,30 @@ public class ContractDefiner {
     }
   }
 
-  public <T, M extends AnyInteractionDescriptor> void runThrowingInteraction(InteractionDefinition<M> definition,
+  /**
+   * Runs an interaction test where the trigger is expected to throw an error on success, and adds
+   * it to the contract if it successfully throws.
+   *
+   * @param definition       The definition of this interaction
+   * @param additionalConfig Any additional configuration
+   * @param <T>              Inferred return type from the trigger (ie, what your API call returns)
+   * @param <I>              Inferred interaction type (ie, what kind of interaction this is)
+   */
+  public <T, I extends AnyInteractionDescriptor> void runThrowingInteraction(InteractionDefinition<I> definition,
       IndividualFailedTestConfigBuilder<T> additionalConfig) {
     this.runThrowingInteraction(definition, additionalConfig.build());
   }
 
-  public <M extends AnyInteractionDescriptor> void runThrowingInteraction(InteractionDefinition<M> definition) {
+  /**
+   * Runs an interaction test where the trigger is expected to throw an error on success, and adds
+   * it to the contract if it successfully throws. If you need additional configuration, use
+   * {@link #runThrowingInteraction(InteractionDefinition, IndividualFailedTestConfigBuilder)}
+   * instead.
+   *
+   * @param definition The definition of this interaction
+   * @param <I>        Inferred interaction type (ie, what kind of interaction this is)
+   */
+  public <I extends AnyInteractionDescriptor> void runThrowingInteraction(InteractionDefinition<I> definition) {
     this.runThrowingInteraction(
         definition,
         IndividualFailedTestConfig

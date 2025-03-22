@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,9 +33,13 @@ public class ContractCaseConfig {
   public final LogLevel logLevel;
 
   /**
-   * The directory where the contract will be written. If you provide this, ContractCase will
-   * generate the filename for you (unless `contractFilename` is specified, in which case this
-   * setting is ignored)
+   * The directory where the contract will be written. If you provide this, ContractCase will store
+   * contracts in subdirectories for each provider, and the filename is automatically generated from
+   * the consumer name and a hash of the contract contents:
+   * <p>
+   * <code>${consumerName}-${hashOfContract}.case.json</code>
+   * <p>
+   * Note: if {@link #contractFilename} is specified, this setting is ignored.
    */
   public final String contractDir;
 
@@ -96,23 +101,25 @@ public class ContractCaseConfig {
 
   /**
    * The mockConfig Map is keyed by plugin short names (eg 'http'), and contains arbitrary
-   * configuration for plugins.
+   * configuration for plugins. For information on appropriate settings, see the documentation for
+   * the kind of interaction you're setting up.
    */
   public final Map<String, Map<String, String>> mockConfig;
 
   /**
    * Define the trigger and test function (if any) for this interaction pair.
    * <p>
-   * See <a href="https://case.contract-testing.io/docs/reference/triggers">the trigger
-   * reference</a> and {@link TriggerGroups} for details.
+   * See <a href="https://case.contract-testing.io/docs/defining-contracts/http-client/triggers">the
+   * trigger reference</a> and {@link TriggerGroups} for details.
    */
   public final TriggerGroups triggers;
 
   /**
    * State setup and teardown handlers for any states this test requires.
    * <p>
-   * See <a href="https://case.contract-testing.io/docs/reference/state-handlers/">writing state
-   * handlers</a> for more details
+   * See <a
+   * href="https://case.contract-testing.io/docs/verifying-contracts/http-server/state-handlers">writing
+   * state handlers</a> for more details
    */
   public final Map<String, StateHandler> stateHandlers;
 
@@ -145,8 +152,8 @@ public class ContractCaseConfig {
     this.brokerBasicAuth = brokerBasicAuth;
     this.baseUrlUnderTest = baseUrlUnderTest;
     this.triggers = triggers;
-    this.stateHandlers = stateHandlers;
-    this.mockConfig = mockConfig;
+    this.stateHandlers = stateHandlers != null ? Collections.unmodifiableMap(stateHandlers) : null;
+    this.mockConfig = mockConfig != null ? Collections.unmodifiableMap(mockConfig) : null;
     this.autoVersionFrom = autoVersionFrom;
   }
 
@@ -249,71 +256,116 @@ public class ContractCaseConfig {
       return new ContractCaseConfigBuilder();
     }
 
+    /**
+     * @see ContractCaseConfig#providerName
+     */
     public ContractCaseConfigBuilder providerName(String providerName) {
       this.providerName = providerName;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#consumerName
+     */
     public ContractCaseConfigBuilder consumerName(String consumerName) {
       this.consumerName = consumerName;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#logLevel
+     */
     public ContractCaseConfigBuilder logLevel(LogLevel logLevel) {
       this.logLevel = logLevel;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#contractDir
+     */
     public ContractCaseConfigBuilder contractDir(String contractDir) {
       this.contractDir = contractDir;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#contractFilename
+     */
     public ContractCaseConfigBuilder contractFilename(String contractFilename) {
       this.contractFilename = contractFilename;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#printResults
+     */
     public ContractCaseConfigBuilder printResults(Boolean printResults) {
       this.printResults = printResults;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#throwOnFail
+     */
     public ContractCaseConfigBuilder throwOnFail(Boolean throwOnFail) {
       this.throwOnFail = throwOnFail;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#publish
+     */
     public ContractCaseConfigBuilder publish(PublishType publish) {
       this.publish = publish;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#brokerBaseUrl
+     */
     public ContractCaseConfigBuilder brokerBaseUrl(String brokerBaseUrl) {
       this.brokerBaseUrl = brokerBaseUrl;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#brokerCiAccessToken
+     */
     public ContractCaseConfigBuilder brokerCiAccessToken(String brokerCiAccessToken) {
       this.brokerCiAccessToken = brokerCiAccessToken;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#brokerBasicAuth
+     */
     public ContractCaseConfigBuilder brokerBasicAuth(BrokerBasicAuthCredentials brokerBasicAuth) {
       this.brokerBasicAuth = brokerBasicAuth;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#baseUrlUnderTest
+     */
+    @Deprecated()
     public ContractCaseConfigBuilder baseUrlUnderTest(String baseUrlUnderTest) {
       this.baseUrlUnderTest = baseUrlUnderTest;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#triggers
+     */
     public ContractCaseConfigBuilder triggers(TriggerGroups triggers) {
       this.triggers = triggers;
       return this;
     }
 
+    /**
+     * Convenience method for adding state handlers one at a time.
+     *
+     * @see ContractCaseConfig#stateHandlers
+     */
     public ContractCaseConfigBuilder stateHandler(String stateName, StateHandler stateHandler) {
       if (this.stateHandlers.containsKey(stateName)) {
         throw new ContractCaseConfigurationError("The state with name '" + stateName
@@ -324,16 +376,28 @@ public class ContractCaseConfig {
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#mockConfig
+     */
     public ContractCaseConfigBuilder mockConfig(String mockShortName, Map<String, String> config) {
       this.mockConfig.put(mockShortName, Map.copyOf(config));
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#autoVersionFrom
+     */
     public ContractCaseConfigBuilder autoVersionFrom(AutoVersionFrom autoVersionFrom) {
       this.autoVersionFrom = autoVersionFrom;
       return this;
     }
 
+
+    /**
+     * Builds an immutable {@link ContractCaseConfig}
+     *
+     * @return the built config
+     */
     public ContractCaseConfig build() {
       return new ContractCaseConfig(
           providerName,

@@ -1,5 +1,8 @@
 package io.contract_testing.contractcase;
 
+/**
+ * Used internally to print crash reports. Not part of the exposed interface for users.
+ */
 public class BoundaryCrashReporter {
 
   static final String CRASH_MESSAGE_START = """
@@ -33,6 +36,10 @@ public class BoundaryCrashReporter {
       ---------------------------------------------------
       """;
 
+  /**
+   * Will rethrow the exception, printing a crash report if appropriate
+   * @param e the throwable to maybe rethrow
+   */
   public static void handleAndRethrow(Throwable e) {
     // This method should not call BoundaryResultMapper
     if (e instanceof ContractCaseConfigurationError) {
@@ -45,6 +52,11 @@ public class BoundaryCrashReporter {
     throw new ContractCaseCoreError(e);
   }
 
+  /**
+   * Will print a crash report for the given exception.
+   *
+   * @param e the throwable to print the crash report for
+   */
   public static void printCrashMessage(Throwable e) {
     if (e instanceof ContractCaseCoreError) {
       System.err.println(
