@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.20.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.20.0...@contract-case/case-connector-v0.20.1) (2025-03-22)
+
+
+### Bug Fixes
+
+* **case-connector:** Add the service to the server before starting, reducing chance of UNAVAILABLE errors ([39f3194](https://github.com/case-contract-testing/contract-case/commit/39f3194b86b1dd8632d29f3d9bc25d8a75655566))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.20.0 to 0.20.1
+    * @contract-case/case-connector-proto bumped from 0.20.0 to 0.20.1
+    * @contract-case/case-entities-internal bumped from 0.20.0 to 0.20.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.20.0 to 0.20.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.20.0 to 0.20.1
+
 ## [0.20.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.19.2...@contract-case/case-connector-v0.20.0) (2025-03-20)
 
 
