@@ -247,8 +247,10 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
    * Sends a response to the core
    *
    * @param response the actual response
-   * @param id The message being replied to
-   * @param logLevel
+   * @param id       The message being replied to
+   * @param logLevel passed in so that the acknowledgement messages aren't logged, otherwise it's
+   *                 very noisy. Either one of MAINTAINER_DEBUG in most cases, or
+   *                 DEEP_MAINTAINER_DEBUG for noisest logs.
    */
   void sendResponse(ResultResponse response, String id, LogLevel logLevel) {
     sendResponse(makeResponse(response), id, logLevel);
