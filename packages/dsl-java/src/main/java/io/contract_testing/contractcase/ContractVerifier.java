@@ -34,7 +34,11 @@ public class ContractVerifier implements AutoCloseable {
   private final BasicRunTestCallback runTestCallback;
 
   public ContractVerifier(final ContractCaseConfig config) {
-    LogPrinter logPrinter = new LogPrinterStandardOut();
+    this(config, new LogPrinterStandardOut());
+  }
+
+  public ContractVerifier(ContractCaseConfig config,
+      LogPrinter logPrinter) {
     ContractCaseProcess.getInstance().start();
     this.config = config;
 

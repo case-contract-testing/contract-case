@@ -41,13 +41,27 @@ public class ContractDefiner {
    * during the test runs (see
    * {@link #runInteraction(InteractionDefinition, IndividualSuccessTestConfig)} and
    * {@link #runThrowingInteraction(InteractionDefinition, IndividualFailedTestConfig)}).
+   * <p>
+   * This uses the default logPrinter implementation, which goes to standard out.
    *
    * @param config the configuration for this contract.
    */
   public ContractDefiner(final @NotNull ContractCaseConfig config) {
+    this(config, new LogPrinterStandardOut());
+  }
+
+  /**
+   * Constructs a ContractDefiner with the provided configuration. Configurations can be overridden
+   * during the test runs (see
+   * {@link #runInteraction(InteractionDefinition, IndividualSuccessTestConfig)} and
+   * {@link #runThrowingInteraction(InteractionDefinition, IndividualFailedTestConfig)}).
+   *
+   * @param config the configuration for this contract.
+   * @param logPrinter custom logging implementation if you want to report separately
+   */
+  public ContractDefiner(final @NotNull ContractCaseConfig config, LogPrinter logPrinter) {
     ContractCaseProcess.getInstance().start();
 
-    LogPrinter logPrinter = new LogPrinterStandardOut();
     this.config = config;
 
     InternalDefinerClient definer = null;
