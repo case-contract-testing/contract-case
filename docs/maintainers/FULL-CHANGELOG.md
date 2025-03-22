@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.20.1](https://github.com/case-contract-testing/contract-case/compare/v0.20.0...v0.20.1) (2025-03-22)
+
+
+### Bug Fixes
+
+* **case-connector:** Add the service to the server before starting, reducing chance of UNAVAILABLE errors ([39f3194](https://github.com/case-contract-testing/contract-case/commit/39f3194b86b1dd8632d29f3d9bc25d8a75655566))
+* **dsl-java:** Always flush standard error when doing maintenance logs ([85dc3ed](https://github.com/case-contract-testing/contract-case/commit/85dc3eda230a904cf8f9c36493a82ebf24e40740))
+* **dsl-java:** Fail fast rather than timing out if the core connection fails ([fcec040](https://github.com/case-contract-testing/contract-case/commit/fcec040699bae850894c530fa60e8e9bedfce1ea))
+* **dsl-java:** Fix configuration that caused the retry introduced in the previous version not to be applied ([78ae904](https://github.com/case-contract-testing/contract-case/commit/78ae904ffcf7e5cd4707efd928bf99802ed41f65))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.20.0 to 0.20.1
+
 ## [0.20.0](https://github.com/case-contract-testing/contract-case/compare/v0.19.2...v0.20.0) (2025-03-20)
 
 
