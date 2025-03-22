@@ -5,6 +5,9 @@ import io.contract_testing.contractcase.ContractCaseCoreError;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * Maps exceptions between the internal {@link ConnectorResult} type and java exceptions (and back).
+ */
 public class ConnectorExceptionMapper {
 
   public static String stackTraceToString(Throwable e) {

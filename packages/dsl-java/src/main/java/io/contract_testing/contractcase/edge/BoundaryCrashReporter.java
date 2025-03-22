@@ -1,4 +1,9 @@
-package io.contract_testing.contractcase;
+package io.contract_testing.contractcase.edge;
+
+import io.contract_testing.contractcase.ContractCaseConfigurationError;
+import io.contract_testing.contractcase.ContractCaseCoreError;
+import io.contract_testing.contractcase.ContractCaseExpectationsNotMet;
+import io.contract_testing.contractcase.edge.ConnectorExceptionMapper;
 
 /**
  * Used internally to print crash reports. Not part of the exposed interface for users.

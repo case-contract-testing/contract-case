@@ -3,7 +3,7 @@ package io.contract_testing.contractcase;
 import java.util.Map;
 
 /**
- * Helper class to enable user-provided state handlers
+ * User-provided state setup and teardown functions.
  */
 public class StateHandler {
 

@@ -13,6 +13,7 @@ import io.contract_testing.contractcase.InvokableFunctions.InvokableFunction7;
 import io.contract_testing.contractcase.client.InternalDefinerClient;
 import io.contract_testing.contractcase.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor;
+import io.contract_testing.contractcase.edge.BoundaryCrashReporter;
 import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper;
 import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import org.jetbrains.annotations.NotNull;

@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase;
 
+import io.contract_testing.contractcase.edge.ConnectorExceptionMapper;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import org.jetbrains.annotations.NotNull;
