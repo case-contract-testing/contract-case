@@ -1,6 +1,5 @@
 package io.contract_testing.contractcase;
 
-import io.contract_testing.contractcase.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import java.util.HashMap;
 import java.util.Map;
 

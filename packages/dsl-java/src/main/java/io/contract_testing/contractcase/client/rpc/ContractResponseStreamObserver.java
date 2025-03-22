@@ -20,7 +20,6 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractResponse
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractResponse.KindCase;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle.Stage;
-import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import java.io.PrintWriter;
 import java.io.StringWriter;

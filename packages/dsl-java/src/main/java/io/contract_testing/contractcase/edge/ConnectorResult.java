@@ -1,6 +1,5 @@
 package io.contract_testing.contractcase.edge;
 
-import java.util.concurrent.Semaphore;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class ConnectorResult {

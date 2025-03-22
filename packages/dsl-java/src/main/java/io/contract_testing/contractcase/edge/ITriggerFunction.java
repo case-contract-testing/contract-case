@@ -1,6 +1,5 @@
 package io.contract_testing.contractcase.edge;
 
-import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 
 public interface ITriggerFunction {

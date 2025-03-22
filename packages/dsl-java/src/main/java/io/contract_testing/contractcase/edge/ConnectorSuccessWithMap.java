@@ -1,6 +1,5 @@
 package io.contract_testing.contractcase.edge;
 
-import java.util.Collections;
 import java.util.Map;
 
 public class ConnectorSuccessWithMap extends ConnectorResult {

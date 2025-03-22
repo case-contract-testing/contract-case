@@ -21,7 +21,6 @@ import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseGrpc;
 import io.contract_testing.contractcase.grpc.ContractCaseGrpc.ContractCaseStub;
-import io.contract_testing.contractcase.grpc.ContractCaseStream;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BoundaryResult;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
 import io.grpc.ManagedChannel;
