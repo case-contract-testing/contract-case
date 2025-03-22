@@ -3,6 +3,11 @@ package io.contract_testing.contractcase;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Configures a single test for an API call that is expected to succeed during his test.
+ *
+ * @param <T> The return type of your API client code (eg {@code User} or other domain object)
+ */
 public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
 
   public final Trigger<T> trigger;
