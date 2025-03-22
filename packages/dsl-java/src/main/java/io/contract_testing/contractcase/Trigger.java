@@ -4,6 +4,12 @@ import org.jetbrains.annotations.NotNull;
 
 
 // example-extract _trigger-type
+
+/**
+ * Allows the framework to invoke your code-under-test
+ *
+ * @param <T> The type of the object returned by your code under test (eg, your API call)
+ */
 public interface Trigger<T> {
 
   /**
