@@ -27,6 +27,7 @@ public class MaintainerLog {
       System.err.println(lineNumber + ": " + line);
       lineNumber += 1;
     });
+    System.err.flush();
   }
 
   public static void log(LogLevel logLevel, String s) {
