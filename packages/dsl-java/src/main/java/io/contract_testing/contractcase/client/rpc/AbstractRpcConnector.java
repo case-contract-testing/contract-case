@@ -13,6 +13,7 @@ import io.contract_testing.contractcase.LogLevel;
 import io.contract_testing.contractcase.LogPrinter;
 import io.contract_testing.contractcase.client.MaintainerLog;
 import io.contract_testing.contractcase.client.server.ContractCaseProcess;
+import io.contract_testing.contractcase.edge.ConnectorExceptionMapper;
 import io.contract_testing.contractcase.edge.ConnectorFailure;
 import io.contract_testing.contractcase.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
@@ -20,11 +21,11 @@ import io.contract_testing.contractcase.edge.ConnectorResult;
 import io.contract_testing.contractcase.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseGrpc;
 import io.contract_testing.contractcase.grpc.ContractCaseGrpc.ContractCaseStub;
+import io.contract_testing.contractcase.grpc.ContractCaseStream;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BoundaryResult;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -45,7 +46,6 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   private final ConcurrentMap<String, CompletableFuture<BoundaryResult>> responseFutures = new ConcurrentHashMap<>();
   private final AtomicInteger nextId = new AtomicInteger();
   private final SendingWorker<T> worker;
-  private Status errorStatus;
 
   private final ManagedChannel channel;
 
@@ -54,6 +54,9 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
 
   private static final int DEFAULT_TIMEOUT_SECONDS = 60;
+
+  // Used to indicate that a boundary result has
+  private volatile BoundaryResult failedResult;
 
 
   public AbstractRpcConnector(
@@ -144,12 +147,9 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
     final var id =
         "[" + reason + " " + nextId.getAndIncrement() + " " + Thread.currentThread().getName()
             + "]";
-    if (errorStatus != null) {
-      return new ConnectorFailure(
-          ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
-          "ContractCase's internal connection failed before execution: " + errorStatus,
-          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
-      );
+    if (failedResult != null) {
+      // We've already failed, so we don't want to send anything
+      return ConnectorIncomingMapper.mapBoundaryResult(failedResult);
     }
 
     var future = new CompletableFuture<BoundaryResult>();
@@ -158,21 +158,10 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
     try {
       MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Waiting for: " + id);
-      var mappedResult = ConnectorIncomingMapper.mapBoundaryResult(future.get(
+      return ConnectorIncomingMapper.mapBoundaryResult(future.get(
           timeoutSeconds * (long) 1000,
           TimeUnit.SECONDS
       ));
-
-      if (errorStatus != null) {
-        return new ConnectorFailure(
-            ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
-            "ContractCase's internal connection failed while waiting for a request '" + id + "':"
-                + errorStatus,
-            MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
-        );
-      }
-
-      return mappedResult;
     } catch (TimeoutException e) {
       MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Timed out waiting for: " + id);
       MaintainerLog.log(
@@ -180,14 +169,6 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
           "Remaining futures: " + responseFutures.keySet()
       );
 
-      if (errorStatus != null) {
-        return new ConnectorFailure(
-            ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
-            "ContractCase's internal connection failed while waiting for a request '" + id + "':"
-                + errorStatus,
-            MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
-        );
-      }
       return new ConnectorFailure(
           ConnectorFailureKindConstants.CASE_CORE_ERROR,
           "Timed out waiting for internal connection to ContractCase for message '" + id + "'",
@@ -210,6 +191,20 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
           MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
       );
     }
+  }
+
+  /**
+   * Used when the core has an error to cancel all waiting callbacks.
+   * <p>
+   * If this method is called, it means there are no more responses coming, so we cancel all
+   * in-flight messages.
+   *
+   * @param e the error to cancel them all with.
+   */
+  void cancelAll(ContractCaseCoreError e) {
+    var result = ConnectorOutgoingMapper.mapResult(ConnectorExceptionMapper.map(e));
+    this.failedResult = result;
+    this.responseFutures.forEach((key, value) -> value.complete(result));
   }
 
   void completeWait(String id, BoundaryResult result) {
@@ -253,9 +248,6 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
     sendResponse(makeResponse(response), id, logLevel);
   }
 
-  public void setErrorStatus(Status errorStatus) {
-    this.errorStatus = errorStatus;
-  }
 
   public void close() {
     worker.close();
