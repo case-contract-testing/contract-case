@@ -18,7 +18,7 @@ export function main(): void {
       contractVerification,
     });
     server.bindAsync(
-      `0.0.0.0:${freePort}`,
+      `[::1]:${freePort}`,
       ServerCredentials.createInsecure(),
       (error, port) => {
         if (error != null) {
