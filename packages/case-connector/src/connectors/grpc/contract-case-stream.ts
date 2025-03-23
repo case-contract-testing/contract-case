@@ -24,7 +24,11 @@ export function main(): void {
         if (error != null) {
           // Console used here because there's nothing sensible we can do with this error
           // eslint-disable-next-line no-console
-          console.error(`[${versionString}]`, `Unable to start: ${error}`);
+          console.error(
+            `[${versionString}]`,
+            `ContractCase's internal server was unable to start: ${error}`,
+          );
+          process.exit(1);
         } else {
           // This is needed to communicate with clients
           // Must have the port number after the `:`
