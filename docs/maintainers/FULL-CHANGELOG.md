@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/v0.20.1...v0.21.0) (2025-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dsl-java:** Move configuration and error classes out to their own packages; you will need to update your imports
+
+### Features
+
+* **dsl-java:** Allow custom log printers to be passed in ([69647d0](https://github.com/case-contract-testing/contract-case/commit/69647d090648a165b111a884424ff0a84c7e8a07))
+
+
+### Bug Fixes
+
+* **connector:** Start the connector on ipv6 ([#925](https://github.com/case-contract-testing/contract-case/issues/925)) ([e502231](https://github.com/case-contract-testing/contract-case/commit/e502231983f094d492dc141d4467f6dbb4d0315f))
+
+
+### Code Refactoring
+
+* **dsl-java:** Move configuration and error classes out to their own packages; you will need to update your imports ([0528878](https://github.com/case-contract-testing/contract-case/commit/0528878c6b611a9b1e6083a9ca5f2073e01f6203))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.20.1 to 0.21.0
+
 ## [0.20.1](https://github.com/case-contract-testing/contract-case/compare/v0.20.0...v0.20.1) (2025-03-22)
 
 
