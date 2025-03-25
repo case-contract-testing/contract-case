@@ -224,8 +224,9 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
         System.err.println("""
             ContractCase was unable to contact its internal server.
                This is either a conflict while starting the server,
-               a crash while the server was running, or a bug in
-               ContractCase.
+               a problem with the test runner (eg, no localhost
+               network access), a crash while the server was running,
+               or a bug in ContractCase.
                
                \n
                There may be additional context in the rest of
@@ -234,8 +235,9 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
                --- Error message is ---
                """
             + "   " + t.getMessage() + """
-            ------------------------
-            With stack trace:
+            \n
+               ------------------------
+               With stack trace:
                           
             """
             + "   " + getStackTrace(t) + """
