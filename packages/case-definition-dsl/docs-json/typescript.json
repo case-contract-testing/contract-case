@@ -3,7 +3,7 @@
   "language": "typescript",
   "metadata": {
     "packageName": "@contract-case/case-definition-dsl",
-    "packageVersion": "0.20.1"
+    "packageVersion": "0.21.0"
   },
   "apiReference": {
     "constructs": [],
@@ -176,7 +176,7 @@
                     "displayName": "ContractCaseCoreSetup",
                     "fqn": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreSetup",
                     "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.20.1",
+                    "packageVersion": "0.21.0",
                     "submodule": "interactions"
                   }
                 ]
@@ -699,7 +699,7 @@
                     "displayName": "ArrayLengthOptions",
                     "fqn": "@contract-case/case-definition-dsl.matchers.arrays.ArrayLengthOptions",
                     "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.20.1",
+                    "packageVersion": "0.21.0",
                     "submodule": "matchers"
                   }
                 ]
@@ -1196,7 +1196,7 @@
                     "displayName": "HttpRequestExample",
                     "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpRequestExample",
                     "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.20.1",
+                    "packageVersion": "0.21.0",
                     "submodule": "matchers"
                   }
                 ]
@@ -1315,7 +1315,7 @@
                     "displayName": "HttpResponseExample",
                     "fqn": "@contract-case/case-definition-dsl.matchers.http.HttpResponseExample",
                     "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.20.1",
+                    "packageVersion": "0.21.0",
                     "submodule": "matchers"
                   }
                 ]
@@ -2225,7 +2225,7 @@
                     "displayName": "FunctionExecutionExample",
                     "fqn": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample",
                     "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.20.1",
+                    "packageVersion": "0.21.0",
                     "submodule": "interactions"
                   }
                 ]
@@ -2322,7 +2322,7 @@
                     "displayName": "FunctionExecutionExample",
                     "fqn": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample",
                     "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.20.1",
+                    "packageVersion": "0.21.0",
                     "submodule": "interactions"
                   }
                 ]
@@ -2419,7 +2419,7 @@
                     "displayName": "HttpExample",
                     "fqn": "@contract-case/case-definition-dsl.interactions.http.HttpExample",
                     "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.20.1",
+                    "packageVersion": "0.21.0",
                     "submodule": "interactions"
                   }
                 ]
@@ -2507,7 +2507,7 @@
                     "displayName": "HttpExample",
                     "fqn": "@contract-case/case-definition-dsl.interactions.http.HttpExample",
                     "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.20.1",
+                    "packageVersion": "0.21.0",
                     "submodule": "interactions"
                   }
                 ]
@@ -2743,7 +2743,7 @@
                   "displayName": "ContractCaseCoreBehaviour",
                   "fqn": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreBehaviour",
                   "packageName": "@contract-case/case-definition-dsl",
-                  "packageVersion": "0.20.1",
+                  "packageVersion": "0.21.0",
                   "submodule": "interactions"
                 }
               ]
@@ -2765,7 +2765,7 @@
                   "displayName": "ContractCaseCoreBehaviour",
                   "fqn": "@contract-case/case-definition-dsl.interactions.base.ContractCaseCoreBehaviour",
                   "packageName": "@contract-case/case-definition-dsl",
-                  "packageVersion": "0.20.1",
+                  "packageVersion": "0.21.0",
                   "submodule": "interactions"
                 }
               ]
