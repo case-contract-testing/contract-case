@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.20.1...@contract-case/case-connector-v0.21.0) (2025-03-25)
+
+
+### Bug Fixes
+
+* **connector:** Start the connector on ipv6 ([#925](https://github.com/case-contract-testing/contract-case/issues/925)) ([e502231](https://github.com/case-contract-testing/contract-case/commit/e502231983f094d492dc141d4467f6dbb4d0315f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core bumped from 0.20.1 to 0.21.0
+    * @contract-case/case-connector-proto bumped from 0.20.1 to 0.21.0
+    * @contract-case/case-entities-internal bumped from 0.20.1 to 0.21.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.20.1 to 0.21.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.20.1 to 0.21.0
+
 ## [0.20.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.20.0...@contract-case/case-connector-v0.20.1) (2025-03-22)
 
 

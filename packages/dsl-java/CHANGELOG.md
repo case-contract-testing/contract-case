@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.20.1...@contract-case/dsl-java-v0.21.0) (2025-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dsl-java:** Move configuration and error classes out to their own packages; you will need to update your imports
+
+### Features
+
+* **dsl-java:** Allow custom log printers to be passed in ([69647d0](https://github.com/case-contract-testing/contract-case/commit/69647d090648a165b111a884424ff0a84c7e8a07))
+
+
+### Code Refactoring
+
+* **dsl-java:** Move configuration and error classes out to their own packages; you will need to update your imports ([0528878](https://github.com/case-contract-testing/contract-case/commit/0528878c6b611a9b1e6083a9ca5f2073e01f6203))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.20.1 to 0.21.0
+    * @contract-case/case-definition-dsl bumped from 0.20.1 to 0.21.0
+
 ## [0.20.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.20.0...@contract-case/dsl-java-v0.20.1) (2025-03-22)
 
 
