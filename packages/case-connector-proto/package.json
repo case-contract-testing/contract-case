@@ -39,7 +39,7 @@
     "prettier": "3.4.2",
     "rimraf": "^6.0.1",
     "source-map-loader": "^5.0.0",
-    "terser-webpack-plugin": "^5.3.10",
+    "terser-webpack-plugin": "^5.3.14",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2"
   },
