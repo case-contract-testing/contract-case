@@ -12,6 +12,9 @@ const mapConfig = (options: unknown): CaseConfig => {
   // undefined so this abomination can go away
   if (options != null && typeof options === 'object') {
     return {
+      ...('contractDir' in options && typeof options.contractDir === 'string'
+        ? { contractDir: options.contractDir }
+        : {}),
       ...('logLevel' in options && typeof options.logLevel === 'string'
         ? { logLevel: options.logLevel as LogLevel }
         : {}),
@@ -52,6 +55,7 @@ program
   .description('download contracts from a a broker')
   .argument('<provider-name>', 'Name of the provider to download contracts for')
   .option('-l, --log-level <level>', 'log level')
+  .option('--contract-dir', 'directory to download contracts to')
   .option(
     '--broker-ci-access-token',
     'broker CI token (recommended over username + password)',
