@@ -6,7 +6,7 @@
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs",
   "license": "BSD-3-Clause",
-  "main": "build/index.js",
+  "main": "dist/src/index.js",
   "publishConfig": {
     "access": "public"
   },

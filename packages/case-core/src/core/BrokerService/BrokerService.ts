@@ -176,14 +176,17 @@ export class BrokerService {
     serviceName: string,
     environment: string,
     context: DataContext,
+    versionOverride?: string,
   ): Promise<DeployCheckResult> {
+    const versionToCheck =
+      versionOverride != null
+        ? versionOverride
+        : this.environment.version(context);
+    context.logger.debug(
+      `Checking whether '${serviceName}' at version '${versionToCheck}' can be deployed to '${environment}'`,
+    );
     return this.broker
-      .canDeploy(
-        serviceName,
-        this.environment.version(context),
-        environment,
-        context,
-      )
+      .canDeploy(serviceName, versionToCheck, environment, context)
       .then((response) => {
         logNotices(response, context);
         return response;

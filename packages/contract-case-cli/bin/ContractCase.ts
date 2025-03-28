@@ -6,4 +6,4 @@
  * BSD-3-Clause license
  */
 
-import '../src';
+import '../src/index.js';

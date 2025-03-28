@@ -1,2 +1,2 @@
-export * from './DownloadContracts/index.js';
+export * from './core/index.js';
 export * from './handleError.js';
