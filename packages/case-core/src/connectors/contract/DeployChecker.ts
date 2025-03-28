@@ -57,12 +57,12 @@ export class DeployChecker {
   ): Promise<boolean> {
     if (serviceName === '' || serviceName == null) {
       throw new CaseConfigurationError(
-        'Must provide a service name in order to check can-i-deploy',
+        'Must provide a service name in order to check can-deploy',
       );
     }
     if (environment === '' || environment == null) {
       throw new CaseConfigurationError(
-        'Must provide an environment to deploy to in order to check can-i-deploy',
+        'Must provide an environment to deploy to in order to check can-deploy',
       );
     }
     return this.broker

@@ -96,7 +96,7 @@ commonOptions(
 
 commonOptions(
   program
-    .command('can-i-deploy')
+    .command('can-deploy')
     .description('Ask the broker if it is safe to deploy')
     .argument('<service-name>', 'Name of the service to check')
     .requiredOption('-e, --environment', 'environment to check against')
