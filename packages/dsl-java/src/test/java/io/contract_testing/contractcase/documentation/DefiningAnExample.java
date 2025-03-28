@@ -1,13 +1,11 @@
 package io.contract_testing.contractcase.documentation;
 
-import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.Trigger;
-
-
 import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;
 import io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest;
 import io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable;
@@ -33,6 +31,50 @@ public class DefiningAnExample {
           .consumerName("Example-Client")
           .providerName("Example-Server")
           .build());
+
+
+  public void testIntroToMatchers() {
+    contract.runInteraction(
+        new InteractionDefinition<>(
+            List.of(
+                new InState("Server is up"),
+                new InState("A user with id \"foo\" exists")
+            ),
+            new WillSendHttpRequest(HttpExample.builder()
+                .request(
+                    new HttpRequest(HttpRequestExample.builder()
+                        .method("GET")
+                        .path("/users/foo")
+                        .build())
+                )
+                .response(new HttpResponse(
+                    // example-extract _matchers-intro
+                    HttpResponseExample.builder()
+                        .status(200)
+                        .body(
+                            Map.ofEntries(
+                                Map.entry("userId", "foo"),
+                                // You can read this as "this test covers any 'name' property
+                                // which is a string (for example, 'john smith').
+                                Map.entry("name", new AnyString("john smith"))
+                            )
+                        )
+                        // end-example
+
+
+                        .build()))
+                .build())
+        ),
+        // ignore-extract
+        IndividualSuccessTestConfigBuilder.<String>builder()
+            .withProviderName("Java Example HTTP Server")
+            .withTrigger(getHealth)
+            .withTestResponse((status, setupInfo) -> {
+            })
+        // end-ignore
+    );
+
+  }
 
 
   public void testGetUser() {

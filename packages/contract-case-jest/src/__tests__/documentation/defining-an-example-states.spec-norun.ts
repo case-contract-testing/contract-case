@@ -51,6 +51,32 @@ defineContract(
           });
         });
         // end-example
+
+        it('behaves as expected with a matcher', async () => {
+          await contract.runInteraction({
+            states: [
+              inState('Server is up'),
+              inState('A user with id "foo" exists'),
+            ],
+            definition: willSendHttpRequest({
+              request: {
+                method: 'GET',
+                path: '/users/foo',
+              },
+              // example-extract _matchers-intro
+              response: {
+                body: {
+                  userId: 'foo',
+                  // You can read this as "this test covers any 'name' property
+                  // which is a string (for example, 'john smith').
+                  name: anyString('john smith'),
+                },
+                status: 200,
+              },
+              // end-example
+            }),
+          });
+        });
       });
 
       it('behaves as expected', async () => {

@@ -5,6 +5,9 @@ sidebar_position: 6
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import IntroJs from '../../examples/generated/\_matchers-intro.ts.mdx';
+import IntroJava from '../../examples/generated/\_matchers-intro.java.mdx';
+
 import NoVarsJs from '../../examples/generated/\_matchers-state-no-vars.ts.mdx';
 import NoVarsJava from '../../examples/generated/\_matchers-state-no-vars.java.mdx';
 
@@ -42,20 +45,19 @@ For example, the consumer might expect that the user name was a valid, non-empty
 
 We can express the non-empty string state with the `anyString(example?: string)` Test Equivalence Matcher:
 
-```ts
-body: {
-    userId: 'foo',
-    // You can read this as
-    //   "this test covers any name property that is a string (eg 'john smith').
-    name: anyString('john smith'),
-},
-```
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <IntroJs/>
+  </TabItem>
+  <TabItem value="java" label="Java">
+   <IntroJava/>
+  </TabItem>
+</Tabs>
 
 This means that the test will pass if any non-empty string is returned as the `name`. The test would fail if a complex object or other data type was returned there.
 
-The example passed in to the matcher here is used as the specific data during
-contract definition - when the provider returns this object, it will reify it
-into:
+We pass in an example ("John Smith") to the matcher so that we can have some data during contract definition.
+When the mocked provider responds during a contract definition, it will use the examples: 
 
 ```
 {
@@ -63,6 +65,8 @@ into:
   name: 'john smith',
 }
 ```
+
+During contract verification, any value that passes the matchers will be accepted.
 
 ### Do I need to use matchers?
 

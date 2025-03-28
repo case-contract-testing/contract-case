@@ -1,0 +1,12 @@
+```java
+                    HttpResponseExample.builder()
+                        .status(200)
+                        .body(
+                            Map.ofEntries(
+                                Map.entry("userId", "foo"),
+                                // You can read this as "this test covers any 'name' property
+                                // which is a string (for example, 'john smith').
+                                Map.entry("name", new AnyString("john smith"))
+                            )
+                        )
+```

@@ -1,5 +1,6 @@
 ```java
-    contract.runVerification(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+    contract.runVerification(
+        ContractCaseConfigBuilder.aContractCaseConfig()
             // State handlers are keyed by the name of the state.
             // This must match exactly between the name defined in the
             // contract, and the state handler at verification time.
@@ -28,8 +29,8 @@
                     () -> {
                       // Any teardown for the state 'A user exists' goes here
                     }
+                )
             )
-        )
-        .build()
+            .build()
     );
 ```
