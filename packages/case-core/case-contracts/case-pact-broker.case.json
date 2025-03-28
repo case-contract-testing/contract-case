@@ -509,6 +509,144 @@
         ]
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
+    },
+    "variable:default:token::test[6]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "TOKEN",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
+    },
+    "variable:default:serviceName::test[6]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "fooService",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
+    },
+    "variable:default:version::test[6]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "v1.0.0",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
+    },
+    "matcher:a (200) response with body an object shaped like {summary: an object shaped like {deployable: true,reason: <any string>,success: <any number>,failed: 0,unknown: 0}}": {
+      "status": 200,
+      "body": {
+        "summary": {
+          "deployable": true,
+          "reason": {
+            "_case:matcher:type": "_case:MatchString",
+            "_case:matcher:example": "someString",
+            "_case:matcher:resolvesTo": "string",
+            "_case:context:matchBy": "type"
+          },
+          "success": {
+            "_case:matcher:type": "_case:MatchNumber",
+            "_case:matcher:example": 1.1,
+            "_case:matcher:resolvesTo": "number",
+            "_case:context:matchBy": "type"
+          },
+          "failed": 0,
+          "unknown": 0
+        }
+      },
+      "_case:matcher:type": "_case:HttpResponseMatcher"
+    },
+    "matcher:an http \"GET\" request to \"/can-i-deploy\"?pacticipant={{serviceName}}&version={{version}}&environment=\"prod\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} without a body": {
+      "method": "GET",
+      "path": "/can-i-deploy",
+      "query": {
+        "pacticipant": {
+          "_case:matcher:type": "_case:ContextVariable",
+          "_case:matcher:variableName": "serviceName"
+        },
+        "version": {
+          "_case:matcher:type": "_case:ContextVariable",
+          "_case:matcher:variableName": "version"
+        },
+        "environment": "prod"
+      },
+      "headers": {
+        "accept": "application/hal+json",
+        "authorization": {
+          "_case:matcher:type": "_case:StringPrefix",
+          "_case:matcher:prefix": "Bearer ",
+          "_case:matcher:suffix": {
+            "_case:matcher:type": "_case:ContextVariable",
+            "_case:matcher:variableName": "token"
+          },
+          "_case:matcher:resolvesTo": "string"
+        }
+      },
+      "_case:matcher:type": "_case:HttpRequestMatcher"
+    },
+    "variable:default:token::test[7]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "TOKEN",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
+    },
+    "variable:default:serviceName::test[7]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "fooService",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
+    },
+    "variable:default:version::test[7]": {
+      "_case:matcher:type": "_case:CascadingContext",
+      "_case:matcher:child": {
+        "_case:matcher:type": "_case:CascadingContext",
+        "_case:matcher:child": "v1.0.0",
+        "_case:context:matchBy": "type"
+      },
+      "_case:context:matchBy": "type"
+    },
+    "matcher:a (200) response with body an object shaped like {summary: an object shaped like {deployable: false,reason: <any string>,success: <any number>,failed: <any number>,unknown: <any number>}}": {
+      "status": 200,
+      "body": {
+        "summary": {
+          "deployable": false,
+          "reason": {
+            "_case:matcher:type": "_case:MatchString",
+            "_case:matcher:example": "someString",
+            "_case:matcher:resolvesTo": "string",
+            "_case:context:matchBy": "type"
+          },
+          "success": {
+            "_case:matcher:type": "_case:MatchNumber",
+            "_case:matcher:example": 1.1,
+            "_case:matcher:resolvesTo": "number",
+            "_case:context:matchBy": "type"
+          },
+          "failed": {
+            "_case:matcher:type": "_case:MatchNumber",
+            "_case:matcher:example": 1.1,
+            "_case:matcher:resolvesTo": "number",
+            "_case:context:matchBy": "type"
+          },
+          "unknown": {
+            "_case:matcher:type": "_case:MatchNumber",
+            "_case:matcher:example": 1.1,
+            "_case:matcher:resolvesTo": "number",
+            "_case:context:matchBy": "type"
+          }
+        }
+      },
+      "_case:matcher:type": "_case:HttpResponseMatcher"
     }
   },
   "examples": [
@@ -1222,6 +1360,228 @@
           "_case:matcher:uniqueName": "a (403) response without a body",
           "_case:matcher:child": {
             "status": 403,
+            "_case:matcher:type": "_case:HttpResponseMatcher"
+          }
+        },
+        "_case:mock:type": "_case:MockHttpServer",
+        "_case:run:context:setup": {
+          "write": {
+            "type": "_case:MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "_case:MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:StateWithVariables",
+          "stateName": "auth token is valid",
+          "variables": {
+            "token": {
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "TOKEN",
+              "_case:context:matchBy": "type"
+            }
+          }
+        },
+        {
+          "_case:state:type": "_case:StateWithVariables",
+          "stateName": "Safe to deploy to prod",
+          "variables": {
+            "serviceName": {
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "fooService",
+              "_case:context:matchBy": "type"
+            },
+            "version": {
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "v1.0.0",
+              "_case:context:matchBy": "type"
+            }
+          }
+        }
+      ],
+      "mock": {
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "an http \"GET\" request to \"/can-i-deploy\"?pacticipant={{serviceName}}&version={{version}}&environment=\"prod\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} without a body",
+          "_case:matcher:child": {
+            "method": "GET",
+            "path": "/can-i-deploy",
+            "query": {
+              "pacticipant": {
+                "_case:matcher:type": "_case:ContextVariable",
+                "_case:matcher:variableName": "serviceName"
+              },
+              "version": {
+                "_case:matcher:type": "_case:ContextVariable",
+                "_case:matcher:variableName": "version"
+              },
+              "environment": "prod"
+            },
+            "headers": {
+              "accept": "application/hal+json",
+              "authorization": {
+                "_case:matcher:type": "_case:StringPrefix",
+                "_case:matcher:prefix": "Bearer ",
+                "_case:matcher:suffix": {
+                  "_case:matcher:type": "_case:ContextVariable",
+                  "_case:matcher:variableName": "token"
+                },
+                "_case:matcher:resolvesTo": "string"
+              }
+            },
+            "_case:matcher:type": "_case:HttpRequestMatcher"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {summary: an object shaped like {deployable: true,reason: <any string>,success: <any number>,failed: 0,unknown: 0}}",
+          "_case:matcher:child": {
+            "status": 200,
+            "body": {
+              "summary": {
+                "deployable": true,
+                "reason": {
+                  "_case:matcher:type": "_case:MatchString",
+                  "_case:matcher:example": "someString",
+                  "_case:matcher:resolvesTo": "string",
+                  "_case:context:matchBy": "type"
+                },
+                "success": {
+                  "_case:matcher:type": "_case:MatchNumber",
+                  "_case:matcher:example": 1.1,
+                  "_case:matcher:resolvesTo": "number",
+                  "_case:context:matchBy": "type"
+                },
+                "failed": 0,
+                "unknown": 0
+              }
+            },
+            "_case:matcher:type": "_case:HttpResponseMatcher"
+          }
+        },
+        "_case:mock:type": "_case:MockHttpServer",
+        "_case:run:context:setup": {
+          "write": {
+            "type": "_case:MockHttpServer",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "read": {
+            "type": "_case:MockHttpClient",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:StateWithVariables",
+          "stateName": "auth token is valid",
+          "variables": {
+            "token": {
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "TOKEN",
+              "_case:context:matchBy": "type"
+            }
+          }
+        },
+        {
+          "_case:state:type": "_case:StateWithVariables",
+          "stateName": "Not safe to deploy to prod",
+          "variables": {
+            "serviceName": {
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "fooService",
+              "_case:context:matchBy": "type"
+            },
+            "version": {
+              "_case:matcher:type": "_case:CascadingContext",
+              "_case:matcher:child": "v1.0.0",
+              "_case:context:matchBy": "type"
+            }
+          }
+        }
+      ],
+      "mock": {
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "an http \"GET\" request to \"/can-i-deploy\"?pacticipant={{serviceName}}&version={{version}}&environment=\"prod\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} without a body",
+          "_case:matcher:child": {
+            "method": "GET",
+            "path": "/can-i-deploy",
+            "query": {
+              "pacticipant": {
+                "_case:matcher:type": "_case:ContextVariable",
+                "_case:matcher:variableName": "serviceName"
+              },
+              "version": {
+                "_case:matcher:type": "_case:ContextVariable",
+                "_case:matcher:variableName": "version"
+              },
+              "environment": "prod"
+            },
+            "headers": {
+              "accept": "application/hal+json",
+              "authorization": {
+                "_case:matcher:type": "_case:StringPrefix",
+                "_case:matcher:prefix": "Bearer ",
+                "_case:matcher:suffix": {
+                  "_case:matcher:type": "_case:ContextVariable",
+                  "_case:matcher:variableName": "token"
+                },
+                "_case:matcher:resolvesTo": "string"
+              }
+            },
+            "_case:matcher:type": "_case:HttpRequestMatcher"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {summary: an object shaped like {deployable: false,reason: <any string>,success: <any number>,failed: <any number>,unknown: <any number>}}",
+          "_case:matcher:child": {
+            "status": 200,
+            "body": {
+              "summary": {
+                "deployable": false,
+                "reason": {
+                  "_case:matcher:type": "_case:MatchString",
+                  "_case:matcher:example": "someString",
+                  "_case:matcher:resolvesTo": "string",
+                  "_case:context:matchBy": "type"
+                },
+                "success": {
+                  "_case:matcher:type": "_case:MatchNumber",
+                  "_case:matcher:example": 1.1,
+                  "_case:matcher:resolvesTo": "number",
+                  "_case:context:matchBy": "type"
+                },
+                "failed": {
+                  "_case:matcher:type": "_case:MatchNumber",
+                  "_case:matcher:example": 1.1,
+                  "_case:matcher:resolvesTo": "number",
+                  "_case:context:matchBy": "type"
+                },
+                "unknown": {
+                  "_case:matcher:type": "_case:MatchNumber",
+                  "_case:matcher:example": 1.1,
+                  "_case:matcher:resolvesTo": "number",
+                  "_case:context:matchBy": "type"
+                }
+              }
+            },
             "_case:matcher:type": "_case:HttpResponseMatcher"
           }
         },

@@ -61,6 +61,17 @@ export interface WireForVerificationRequest {
   providerVersionTags: string[];
 }
 
+export interface WireCanIDeployResponse {
+  matrix: unknown[];
+  summary: {
+    deployable: boolean | null;
+    failed: number;
+    reason: string;
+    success: number;
+    unknown: number;
+  };
+}
+
 export interface WireForVerificationResponse {
   _embedded: {
     pacts: WireContractForVerification[];

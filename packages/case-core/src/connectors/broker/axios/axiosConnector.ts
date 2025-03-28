@@ -5,7 +5,11 @@ import { unmarshallSuccess, unmarshallFailure } from './marshaller';
 import { BasicAuth } from './types';
 
 type HttpConnector = {
-  authedGet: <T>(path: string, context: LogContext) => Promise<T>;
+  authedGet: <R>(
+    path: string,
+    params: Record<string, string>,
+    context: LogContext,
+  ) => Promise<R>;
   authedPut: <T, R>(
     path: string,
     content: T,
@@ -34,7 +38,11 @@ export const makeAxiosConnector = (
   baseurl: string,
   auth: string | BasicAuth,
 ): HttpConnector => ({
-  authedGet: (path: string, context: LogContext) => {
+  authedGet: (
+    path: string,
+    params: Record<string, string>,
+    context: LogContext,
+  ) => {
     const url = `${baseurl}${path}`;
     context.logger.deepMaintainerDebug(`GET:`, url);
     return axios
@@ -42,10 +50,12 @@ export const makeAxiosConnector = (
         ...(typeof auth !== 'string' ? { auth } : {}),
         headers: withAuthHeaders(
           {
-            //   Accept: 'application/json',
+            Accept: 'application/hal+json',
           },
           auth,
         ),
+        // include parameters if there were any
+        ...(Object.keys(params).length > 0 ? { params } : {}),
       })
       .then(unmarshallSuccess, unmarshallFailure)
       .then((response) => {

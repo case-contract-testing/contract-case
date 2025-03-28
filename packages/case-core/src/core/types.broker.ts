@@ -29,6 +29,11 @@ export type ContractLink = {
   name: string;
 };
 
+export type DeployCheckSuccess = { deployable: true };
+export type DeployCheckFailure = { deployable: false; reason: string };
+
+export type DeployCheckResult = DeployCheckSuccess | DeployCheckFailure;
+
 export type MakeBrokerApi = (context: DataContext) => BrokerApi;
 
 export interface BrokerApi {
@@ -62,6 +67,13 @@ export interface BrokerApi {
     serviceName: string,
     context: LogContext,
   ) => Promise<ContractLink[]>;
+
+  canDeploy: (
+    serviceName: string,
+    serviceVersion: string,
+    environment: string,
+    context: LogContext,
+  ) => Promise<DeployCheckResult>;
 }
 
 interface BrokerNotice {

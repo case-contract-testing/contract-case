@@ -10,6 +10,7 @@ import {
 import {
   and,
   anyBoolean,
+  anyNumber,
   anyString,
   arrayContains,
   arrayEachEntryMatches,
@@ -514,6 +515,118 @@ describe('broker client', () => {
                   ),
                 testErrorResponse: (error) => {
                   expect((error as BrokerError).code).toBe(API_NOT_AUTHORISED);
+                },
+              }));
+          });
+        });
+      });
+      describe('deploy checks', () => {
+        describe('can-i-deploy', () => {
+          describe('with a valid auth token', () => {
+            it('understands success', () =>
+              contract.runInteraction({
+                states: [
+                  stateAuthTokenValid,
+                  inState('Safe to deploy to prod', {
+                    serviceName: 'fooService',
+                    version: 'v1.0.0',
+                  }),
+                ],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'GET',
+                    path: '/can-i-deploy',
+                    query: {
+                      pacticipant: stateVariable('serviceName'),
+                      version: stateVariable('version'),
+                      environment: 'prod',
+                    },
+                    headers: {
+                      accept: 'application/hal+json',
+                      authorization: stringPrefix(
+                        'Bearer ',
+                        stateVariable('token'),
+                      ),
+                    },
+                  },
+                  response: {
+                    status: 200,
+                    body: {
+                      summary: {
+                        deployable: true,
+                        reason: anyString(),
+                        success: anyNumber(),
+                        failed: 0,
+                        unknown: 0,
+                      },
+                    },
+                  },
+                }),
+                trigger: (config) =>
+                  makeBrokerApiForTest(
+                    config.mock['baseUrl'],
+                    config.stateVariables['token'] as string,
+                  ).canDeploy(
+                    config.stateVariables['serviceName'],
+                    config.stateVariables['version'],
+                    'prod',
+                    emptyContext,
+                  ),
+                testResponse: (data) => {
+                  expect(data.deployable).toBe(true);
+                },
+              }));
+            it('understands failure', () =>
+              contract.runInteraction({
+                states: [
+                  stateAuthTokenValid,
+                  inState('Not safe to deploy to prod', {
+                    serviceName: 'fooService',
+                    version: 'v1.0.0',
+                  }),
+                ],
+                definition: willSendHttpRequest({
+                  request: {
+                    method: 'GET',
+                    path: '/can-i-deploy',
+                    query: {
+                      pacticipant: stateVariable('serviceName'),
+                      version: stateVariable('version'),
+                      environment: 'prod',
+                    },
+                    headers: {
+                      accept: 'application/hal+json',
+                      authorization: stringPrefix(
+                        'Bearer ',
+                        stateVariable('token'),
+                      ),
+                    },
+                  },
+                  response: {
+                    status: 200,
+                    body: {
+                      summary: {
+                        deployable: false,
+                        reason: anyString(),
+                        success: anyNumber(),
+                        failed: anyNumber(),
+                        unknown: anyNumber(),
+                      },
+                    },
+                  },
+                }),
+                trigger: (config) =>
+                  makeBrokerApiForTest(
+                    config.mock['baseUrl'],
+                    config.stateVariables['token'] as string,
+                  ).canDeploy(
+                    config.stateVariables['serviceName'],
+                    config.stateVariables['version'],
+                    'prod',
+                    emptyContext,
+                  ),
+                testResponse: (data) => {
+                  expect(data.deployable).toBe(false);
                 },
               }));
           });

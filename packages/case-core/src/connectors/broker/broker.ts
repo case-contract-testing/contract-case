@@ -10,6 +10,7 @@ import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/cont
 import { makeAxiosConnector } from './axios';
 import { BasicAuth } from './axios/types';
 import {
+  WireCanIDeployResponse,
   WireForVerificationRequest,
   WireForVerificationResponse,
   WireRequestForPublicationAdvanced,
@@ -210,7 +211,7 @@ export const makeBrokerApi: MakeBrokerApi = (
 
     downloadContract: (url: string, logContext: LogContext) => {
       if (err !== undefined) throw err;
-      return makeAxiosConnector(url, auth).authedGet('', logContext);
+      return makeAxiosConnector(url, auth).authedGet('', {}, logContext);
     },
 
     urlsForVerification: (serviceName: string, logContext: LogContext) => {
@@ -254,6 +255,59 @@ export const makeBrokerApi: MakeBrokerApi = (
           );
 
           return d._embedded.pacts.map((contract) => contract._links.self);
+        });
+    },
+
+    canDeploy: (
+      serviceName: string,
+      serviceVersion: string,
+      environment: string,
+      logContext: LogContext,
+    ) => {
+      if (err !== undefined) throw err;
+
+      logContext.logger.debug(
+        `Asking if it's safe to deploy '${serviceName}' at version '${serviceVersion}' to '${environment}', using broker at ${baseUrl}`,
+      );
+      return server
+        .authedGet<WireCanIDeployResponse>(
+          '/can-i-deploy',
+          {
+            pacticipant: serviceName,
+            version: serviceVersion,
+            environment,
+          },
+          logContext,
+        )
+        .then((data) => {
+          logContext.logger.maintainerDebug(
+            `Can-I-Deploy returned with`,
+            JSON.stringify(data, undefined, 2),
+          );
+          if (
+            data.summary.deployable === true &&
+            (data.summary.failed !== 0 || data.summary.unknown !== 0)
+          ) {
+            logContext.logger.warn(
+              `!!!! The broker is not behaving as it is documented !!!!`,
+            );
+            logContext.logger.warn(
+              `The broker said it was safe to deploy but had a non zero count of services in state failed (${data.summary.failed}) or unknown (${data.summary.unknown})`,
+            );
+            logContext.logger.warn(
+              `Please raise this with the maintainers of the broker you are using`,
+            );
+          }
+          if (data.summary.deployable !== true) {
+            logContext.logger.debug(
+              "The broker said it's not safe to deploy. Here's the matrix from the broker, which may be useful:",
+              data.matrix,
+            );
+          }
+          return {
+            deployable: data.summary.deployable === true,
+            reason: `${data.summary.reason}\nsuccess (${data.summary.success}), failed (${data.summary.failed}), unknown / never-verified (${data.summary.unknown}) services`,
+          };
         });
     },
   };
