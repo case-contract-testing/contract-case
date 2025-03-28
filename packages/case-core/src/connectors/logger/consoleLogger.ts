@@ -6,7 +6,7 @@ import {
   shouldLog,
   locationString,
 } from '@contract-case/case-plugin-base';
-import { caseVersion } from '../../entities/caseVersion';
+import { caseVersion } from '../../entities/versionString';
 import { LogPrinter } from './types';
 
 const caseVersionString = (parentVersions: string[] = []) =>

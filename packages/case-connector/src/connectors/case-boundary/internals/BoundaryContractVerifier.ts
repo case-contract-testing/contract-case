@@ -24,7 +24,7 @@ import {
   BoundarySuccess,
   BoundarySuccessWithAny,
 } from './boundary/index.js';
-import { versionString } from '../../../versionString.js';
+import { versionString } from '../../../entities/versionString.js';
 import { BoundaryInvokableFunction } from './types.js';
 
 class CoreInvoker implements IInvokeCoreTest {

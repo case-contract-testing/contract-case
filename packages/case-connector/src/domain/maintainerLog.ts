@@ -1,5 +1,5 @@
 import { LogLevel } from '@contract-case/case-core';
-import { versionString } from '../versionString.js';
+import { versionString } from '../entities/versionString.js';
 
 export const connectorDebugLog = (
   logLevel: LogLevel,

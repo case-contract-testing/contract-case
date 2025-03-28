@@ -62,6 +62,7 @@
       "bump-patch-for-minor-pre-major": true
     },
     "packages/case-core": {
+      "extra-files": ["src/entities/versionString.ts", "package.json"],
       "component": "@contract-case/case-core",
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
@@ -110,6 +111,7 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/contract-case-cli": {
+      "extra-files": ["src/entities/versionString.ts", "package.json"],
       "component": "@contract-case/cli",
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
@@ -137,12 +139,14 @@
     },
     "packages/contract-case-jest": {
       "component": "@contract-case/contract-case-jest",
+      "extra-files": ["src/entities/versionString.ts", "package.json"],
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"
     },
     "packages/case-connector": {
       "component": "@contract-case/case-connector",
+      "extra-files": ["src/entities/versionString.ts", "package.json"],
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"

@@ -3,6 +3,6 @@
   "compilerOptions": {
     "outDir": "dist/"
   },
-  "include": ["package.json", "src/**/*.ts", "bin"],
+  "include": ["src/**/*.ts", "bin"],
   "exclude": ["jest.config.ts", "dist/**/*.js", "coverage", "dist"]
 }

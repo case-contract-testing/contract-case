@@ -23,7 +23,7 @@ import {
   PublishContractResult,
   PublishVerificationResult,
 } from '../../core/types';
-import { caseVersion } from '../../entities/caseVersion';
+import { caseVersion } from '../../entities/versionString';
 
 const trimSlash = (str: string | undefined): string => {
   if (typeof str !== 'string') return '';

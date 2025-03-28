@@ -10,7 +10,7 @@ import {
   IResultPrinter,
   BoundaryResult,
 } from './boundary/index.js';
-import { versionString } from '../../../versionString.js';
+import { versionString } from '../../../entities/versionString.js';
 import {
   convertConfig,
   jsErrorToFailure,

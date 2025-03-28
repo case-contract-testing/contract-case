@@ -1,5 +1,5 @@
 import { AnyCaseMatcherOrData } from '@contract-case/case-core';
-import { versionString } from '../versionString.js';
+import { versionString } from '../entities/versionString.js';
 import { mapConfig, mapConfigNoId } from './config.js';
 import {
   ContractCaseConnectorConfig,

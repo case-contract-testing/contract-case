@@ -4,7 +4,7 @@ import getPort from 'get-port';
 
 import { contractDefinition } from './contractDefinition.js';
 import { contractVerification } from './contractVerification.js';
-import { versionString } from '../../versionString.js';
+import { versionString } from '../../entities/versionString.js';
 import { maintainerLog } from '../../domain/maintainerLog.js';
 
 type ServerInfo = { port: string; address: string };
@@ -34,7 +34,7 @@ const bind = (
  * Starts a gRPC server for defining and verifying ContractCase contracts
  */
 export function main(): void {
-  maintainerLog(`Starting ContractCase connector @ ${versionString}`);
+  maintainerLog(`Starting ContractCase ${versionString}`);
   const server = new Server();
 
   getPort().then((freePort) => {

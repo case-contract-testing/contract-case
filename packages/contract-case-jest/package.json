@@ -88,7 +88,6 @@
     "@contract-case/case-plugin-dsl-types": "0.21.0",
     "@contract-case/cli": "0.21.0",
     "chalk": "^4.1.2",
-    "read-pkg-up": "^7.0.1",
     "ts-node": "^10.9.1"
   }
 }

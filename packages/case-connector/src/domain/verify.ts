@@ -6,7 +6,7 @@ import {
   IResultPrinter,
   IRunTestCallback,
 } from '../entities/types.js';
-import { versionString } from '../versionString.js';
+import { versionString } from '../entities/versionString.js';
 import { ContractCaseConnectorConfig, VerificationId } from './types.js';
 import { mapConfig, mapConfigNoId } from './config.js';
 import {

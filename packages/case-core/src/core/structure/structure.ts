@@ -11,7 +11,7 @@ import {
   AnyCaseMatcherOrData,
   LookupableMatcher,
 } from '@contract-case/case-plugin-dsl-types';
-import { caseVersion } from '../../entities/caseVersion';
+import { caseVersion } from '../../entities/versionString';
 import { addMock, addMatcher } from './lookup';
 
 import { addLookup, findLookup } from './lookup/internals';

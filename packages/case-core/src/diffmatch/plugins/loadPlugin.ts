@@ -11,7 +11,7 @@ import {
 import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 
 import { CoreNumberMatcher } from '@contract-case/case-entities-internal';
-import { caseVersion } from '../../entities/caseVersion';
+import { caseVersion } from '../../entities/versionString';
 import { MockSetupFns } from './types';
 import { MatcherExecutors } from '../matching/MatcherExecutors';
 
