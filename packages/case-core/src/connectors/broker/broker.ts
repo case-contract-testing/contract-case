@@ -307,6 +307,7 @@ export const makeBrokerApi: MakeBrokerApi = (
           return {
             deployable: data.summary.deployable === true,
             reason: `${data.summary.reason}\nsuccess (${data.summary.success}), failed (${data.summary.failed}), unknown / never-verified (${data.summary.unknown}) services`,
+            notices: data.notices,
           };
         });
     },

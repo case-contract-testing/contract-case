@@ -29,8 +29,11 @@ export type ContractLink = {
   name: string;
 };
 
-export type DeployCheckSuccess = { deployable: true };
-export type DeployCheckFailure = { deployable: false; reason: string };
+export type DeployCheckSuccess = { deployable: true } & HasBrokerNotices;
+export type DeployCheckFailure = {
+  deployable: false;
+  reason: string;
+} & HasBrokerNotices;
 
 export type DeployCheckResult = DeployCheckSuccess | DeployCheckFailure;
 
@@ -92,6 +95,8 @@ export interface PublishVerificationResult {
   logs: Array<BrokerNotice>;
 }
 
-export interface PublishContractResult {
+export interface HasBrokerNotices {
   notices: Array<BrokerNotice>;
 }
+
+export type PublishContractResult = HasBrokerNotices;

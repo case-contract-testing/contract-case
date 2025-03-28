@@ -1,3 +1,5 @@
+import { HasBrokerNotices } from '../../core/types.broker';
+
 interface WireNotice {
   text: string;
 }
@@ -61,7 +63,7 @@ export interface WireForVerificationRequest {
   providerVersionTags: string[];
 }
 
-export interface WireCanIDeployResponse {
+export interface WireCanIDeployResponse extends HasBrokerNotices {
   matrix: unknown[];
   summary: {
     deployable: boolean | null;
