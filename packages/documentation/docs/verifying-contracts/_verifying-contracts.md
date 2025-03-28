@@ -1,35 +1,28 @@
-Once you've written your contract, you'll want to verify it against the provider.
+In [contract definition](../defining-contracts/), we produced a contract made of expected request / response pairs,
+and confirmed that the consumer works correctly if those expectations are met by the provider.
 
-## Downloading contracts to verify
+Contract **verification** (described in this section) confirms that the provider
+actually meets those expectations. The output of contract verification is
+the information that this version of the provider is compatible with the consumer(s)
+which generated the contract.
 
-To verify a contract, you will need to download contracts first:
+:::tip What does verification mean?
+Because contract verification checks that a provider meets the expectations of a given contract,
+you can think of contract verification as asking "can these two services communicate with each other?"
+:::
 
-```bash
-export CASE_BROKER_CI_TOKEN="$YOUR_BROKER_CI_TOKEN"
-export CASE_BROKER_BASEURL="https://$YOUR_BROKER_BASE_URL"
+Because contracts often don't change between versions, it's normal for multiple
+versions of the consumer to be covered by one contract. You don't need to
+de-duplicate contracts - ContractCase will hash them for you automatically.
 
-npx @contract-case/cli download-contracts "$YOUR_SERVICE_NAME"
-```
+## Multiple verifications.
 
-Alternatively, it can be used directly in a script in your package.json:
+Even if you have only one consumer,
+It's common to verify more than one contract at once - usually you want the
+contracts currently deployed in each environment, and the last N versions (to enable safe rollbacks). For convenience, ContractCase will verify all available contracts for the configured
+provider during a single `verifyContract` call.
 
-```
-  "pretest": "ContractCase download-contracts \"$YOUR_SERVICE_NAME\""
-```
-
-Note that currently the downloader only downloads contracts with the following selectors:
-
-```
-    {
-        mainBranch: true,
-    },
-    {
-        deployedOrReleased: true,
-    },
-    { latest: true },
-```
-
-The downloaded contracts will be in `./temp-contracts`
+If you have multiple consumers, you would run verifications for all consumers of the current provider too. For convenience, you can leave out the `consumerName` during a `verifyContract` call, and ContractCase will verify all contracts for this provider.
 
 ## Verifying a contract
 
