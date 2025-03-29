@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.21.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.21.0...@contract-case/case-definition-dsl-v0.21.1) (2025-03-29)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-definition-dsl:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.21.0 to 0.21.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.21.0 to 0.21.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.21.0 to 0.21.1
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.21.0 to 0.21.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.21.0 to 0.21.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.21.0 to 0.21.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.21.0 to 0.21.1
+
 ## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.20.1...@contract-case/case-definition-dsl-v0.21.0) (2025-03-25)
 
 

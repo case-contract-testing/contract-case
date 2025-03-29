@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.21.1](https://github.com/case-contract-testing/contract-case/compare/v0.21.0...v0.21.1) (2025-03-29)
+
+
+### Features
+
+* **cli:** Add ability to invoke can-i-deploy from the CLI ([b2351ca](https://github.com/case-contract-testing/contract-case/commit/b2351cabd548d6b62b631fd45966cc2263325276))
+* **cli:** Add option to specify the download directory ([dd95f1b](https://github.com/case-contract-testing/contract-case/commit/dd95f1bbe346d5339e7e155b75227371d68390d0))
+* **connector:** Expose a CJS version as `@contract-case/case-connector/cjs` ([bbc490d](https://github.com/case-contract-testing/contract-case/commit/bbc490d0f92afb9a936be615e9663a8c27478cc7))
+* **core:** Add ability to ask broker if it is safe to deploy ([17a3ec5](https://github.com/case-contract-testing/contract-case/commit/17a3ec5ecb7d5676137a4f7cd84dc4bb3e68d67b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.21.0 to 0.21.1
+
 ## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/v0.20.1...v0.21.0) (2025-03-25)
 
 
