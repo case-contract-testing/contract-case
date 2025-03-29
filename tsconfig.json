@@ -1,9 +1,10 @@
-{
+t{
   "extends": "@contract-case/case-maintainer-config/tsconfig.json",
   "include": [
     "**/*.ts",
     "packages/case-connector/src/connectors/grpc/contract-case-stream.mts",
-    "packages/case-connector/bin/case-connector.mts"
+    "packages/case-connector/bin/case-connector.mts",
+    "packages/contract-case-jest/bin/ContractCase.mts"
   ],
   "exclude": [
     "jest.config.ts",
