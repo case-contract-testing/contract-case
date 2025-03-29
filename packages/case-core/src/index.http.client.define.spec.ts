@@ -26,14 +26,10 @@ const contractDetails = {
   providerName: 'http response provider',
 };
 
-// Normally you can just let Case set a filename for you.
-const FILENAME = `case-contracts/http-response-consumer-http-response-provider-12.case.json`;
-
 describe('e2e http consumer driven', () => {
   beforeAll(() => {
     // Delete the contract file first
     try {
-      fs.rmSync(FILENAME);
       fs.mkdirSync('case-contracts');
     } catch (e) {
       // We don't care if this fails
@@ -44,7 +40,6 @@ describe('e2e http consumer driven', () => {
       ...contractDetails,
       config: {
         printResults: false, // Set this to true for you own tests
-        contractFilename: FILENAME, // Usually you will not need to provide a filename
       },
     },
     (contract) => {

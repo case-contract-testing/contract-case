@@ -12,7 +12,7 @@ import {
   CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
 import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
-import type { WriteContract } from '../../core/types';
+import type { DownloadedContract, WriteContract } from '../../core/types';
 
 const EXTENSION = '.case.json' as const;
 /**
@@ -62,8 +62,21 @@ const isCaseContractConfig = (
 const escapeFileName = (pathString: string) =>
   filenamify(pathString, { maxLength: MAX_FILENAME_LENGTH });
 
-const hashContract = (contract: ContractData) =>
-  crypto.createHash('sha256').update(JSON.stringify(contract)).digest('hex');
+const extractData = (contract: ContractData | DownloadedContract) => {
+  if ('_links' in contract) {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const { _links, createdAt, metadata, ...contractWithoutBroker } = contract;
+    return contractWithoutBroker;
+  }
+  const { metadata, ...stableContract } = contract;
+  return stableContract;
+};
+
+const hashContract = (contract: ContractData | DownloadedContract): string =>
+  crypto
+    .createHash('sha256')
+    .update(JSON.stringify(extractData(contract)))
+    .digest('hex');
 
 const makeFileNameByHash = (contract: ContractData) =>
   path.join(
