@@ -12,4 +12,6 @@ Don't depend on this directly unless you are writing a custom wrapper for Contra
 This package exists to work around [this JSii](https://github.com/aws/jsii/issues/4133)
 bug, by exposing the communication layer as a gRPC service.
 
+Additionally, it exposes the boundary layer as `@contract-case/case-connector` for ESM imports, and `@contract-case/case-connector/cjs` for CJS imports.
+
 For details of the protocol schema, see the case-connector-proto package.

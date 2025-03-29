@@ -1,6 +1,11 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts", "src/**/*.js", "bin/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "bin/**/*.mts",
+    "src/connectors/grpc/contract-case-stream.mts"
+  ],
   "exclude": [
     "jest.config.ts",
     "dist/**/*.js",

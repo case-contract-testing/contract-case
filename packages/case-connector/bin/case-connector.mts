@@ -6,6 +6,6 @@
  * BSD-3-Clause license
  */
 
-import { main } from '../src/connectors/grpc/contract-case-stream.js';
+import { main } from '../src/connectors/grpc/contract-case-stream.mjs';
 
 main();

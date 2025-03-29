@@ -2,10 +2,13 @@
   "extends": "@contract-case/case-maintainer-config/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
-    "outDir": "dist/",
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": false
+    "outDir": "dist/"
   },
-  "include": ["src/**/*.ts", "bin"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "bin/**/*.mts",
+    "src/connectors/grpc/contract-case-stream.mts"
+  ],
   "exclude": ["jest.config.ts", "dist/**/*.js", "coverage", "dist"]
 }

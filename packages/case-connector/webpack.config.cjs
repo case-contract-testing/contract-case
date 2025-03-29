@@ -7,7 +7,7 @@ module.exports = {
   mode: 'production',
   entry: {
     caseconnector: {
-      import: './dist/bin/case-connector.js',
+      import: './dist/bin/case-connector.mjs',
       filename: 'case-connector.js',
     },
   },
