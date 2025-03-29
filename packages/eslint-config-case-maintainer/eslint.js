@@ -19,6 +19,19 @@ const compat = new FlatCompat({
 });
 
 module.exports = [
+  {
+    ignores: [
+      'dist/**/*.js',
+      'dist/',
+      'dist/**/*.ts',
+      'coverage/',
+      'coverage-verify/',
+      'eslint.config.mjs',
+    ],
+  },
+  {
+    files: ['src/**/*.ts', 'src/**/*.mts', 'bin/**/*.ts', 'bin/**/*.mts'],
+  },
   js.configs.recommended,
   ...compat.extends('plugin:import/typescript'),
   prettier,
@@ -977,10 +990,8 @@ module.exports = [
     },
   },
   {
-    files: ['src/**/*.ts'],
-  },
-  {
-    files: ['example/**/*.ts'],
+    files: ['example/**/*.ts', 'example/**/*.mts'],
+    ignores: ['dist/'],
     parserOptions: {
       ecmaVersion: 2018,
       sourceType: 'module',
@@ -993,14 +1004,16 @@ module.exports = [
     },
   },
   {
-    files: ['src/__tests__/**/*.ts'],
+    files: ['src/__tests__/**/*.ts', 'src/__tests__/**/*.mts'],
+    ignores: ['dist/'],
     rules: {
       'no-restricted-imports': 'off',
     },
   },
 
   {
-    files: ['src/connectors/**/*.ts'],
+    files: ['src/connectors/**/*.ts', 'src/connectors/**/*.mts'],
+    ignores: ['dist/'],
     rules: {
       'no-restricted-imports': [
         'error',
@@ -1009,7 +1022,8 @@ module.exports = [
     },
   },
   {
-    files: ['src/core/**/*.ts'],
+    files: ['src/core/**/*.ts', 'src/core/**/*.mts'],
+    ignores: ['dist/'],
     rules: {
       'no-restricted-imports': [
         'error',
@@ -1025,7 +1039,8 @@ module.exports = [
     },
   },
   {
-    files: ['src/diffmatch/**/*.ts'],
+    files: ['src/diffmatch/**/*.ts', 'src/diffmatch/**/*.mts'],
+    ignores: ['dist/'],
     rules: {
       'no-restricted-imports': [
         'error',
@@ -1043,7 +1058,8 @@ module.exports = [
     },
   },
   {
-    files: ['src/entities/**/*.ts'],
+    files: ['src/entities/**/*.ts', 'src/entities/**/*.mts'],
+    ignores: ['dist/'],
     rules: {
       'no-restricted-imports': [
         'error',
@@ -1064,13 +1080,15 @@ module.exports = [
   },
   {
     files: ['*.js'],
+    ignores: ['dist/'],
     rules: {
       '@typescript-eslint/no-var-requires': 'off',
     },
   },
   ...compat.extends('plugin:jest/recommended'),
   {
-    files: ['**/*.test.ts', '**/*.spec.ts'],
+    files: ['**/*.test.ts', '**/*.spec.ts', '**/*.spec.mts', '**/*.test.mts'],
+    ignores: ['dist/'],
     languageOptions: {
       globals: {
         ...globals.jest,
