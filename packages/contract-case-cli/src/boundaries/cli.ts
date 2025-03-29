@@ -61,13 +61,13 @@ const commonOptions = (command: Command) =>
       '--broker-ci-access-token',
       'broker CI token (recommended over username + password)',
     )
-    .option('--broker-base-url', 'broker base URL')
+    .option('--broker-base-url <baseurl>', 'broker base URL')
     .option(
-      '--broker-username',
+      '--broker-username <username>',
       'broker basic auth username. Do not supply this if you are also using a broker CI token. Must be supplied with --broker-password',
     )
     .option(
-      '--broker-password',
+      '--broker-password <password>',
       'broker basic auth password. Do not supply this if you are also using a broker CI token. Must be supplied with --broker-username',
     );
 
@@ -79,7 +79,7 @@ commonOptions(
       '<provider-name>',
       'Name of the provider to download contracts for',
     )
-    .option('--contract-dir', 'directory to download contracts to'),
+    .option('--contract-dir <dir>', 'directory to download contracts to'),
 ).action((providerName, options) =>
   Promise.resolve()
     .then(() => downloadContracts(providerName, mapConfig(options)))
@@ -99,9 +99,12 @@ commonOptions(
     .command('can-deploy')
     .description('Ask the broker if it is safe to deploy')
     .argument('<service-name>', 'Name of the service to check')
-    .requiredOption('-e, --environment', 'environment to check against')
+    .requiredOption(
+      '-e, --environment <environment>',
+      'environment to check against',
+    )
     .option(
-      '--override-version',
+      '--override-version <version>',
       'override the version detection and instead query this specific version',
     ),
 ).action((providerName, options) =>
