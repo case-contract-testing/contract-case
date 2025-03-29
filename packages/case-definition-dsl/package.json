@@ -129,12 +129,6 @@
       }
     }
   },
-  "bundledDependencies": [
-    "@contract-case/case-entities-internal",
-    "@contract-case/case-plugin-dsl-types",
-    "@contract-case/case-core-plugin-http-dsl",
-    "@contract-case/case-core-plugin-function-dsl"
-  ],
   "bundleDependencies": [
     "@contract-case/case-entities-internal",
     "@contract-case/case-plugin-dsl-types",
