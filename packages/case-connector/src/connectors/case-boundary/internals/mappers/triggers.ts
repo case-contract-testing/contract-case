@@ -35,7 +35,6 @@ const mapSetupInfo = ({
 
 export const mapTrigger =
   (trigger: ITriggerFunction) =>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (config: BaseSetupInfo): Promise<void> =>
     trigger.trigger(mapSetupInfo(config)).then((result) => {
       switch (result.resultType) {
@@ -53,7 +52,6 @@ export const mapTrigger =
 
 export const mapTriggers = (
   triggers: Record<string, ITriggerFunction>,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Record<string, (config: BaseSetupInfo) => Promise<void>> =>
   Object.entries(triggers)
     .map(([key, value]) => ({ [`${key}`]: mapTrigger(value) }))
