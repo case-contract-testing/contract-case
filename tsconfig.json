@@ -1,4 +1,4 @@
-t{
+{
   "extends": "@contract-case/case-maintainer-config/tsconfig.json",
   "include": [
     "**/*.ts",
