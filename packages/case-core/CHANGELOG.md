@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.21.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.21.0...@contract-case/case-core-v0.21.1) (2025-03-29)
+
+
+### Features
+
+* **cli:** Add ability to invoke can-i-deploy from the CLI ([b2351ca](https://github.com/case-contract-testing/contract-case/commit/b2351cabd548d6b62b631fd45966cc2263325276))
+* **core:** Add ability to ask broker if it is safe to deploy ([17a3ec5](https://github.com/case-contract-testing/contract-case/commit/17a3ec5ecb7d5676137a4f7cd84dc4bb3e68d67b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.21.0 to 0.21.1
+    * @contract-case/case-core-plugin-http bumped from 0.21.0 to 0.21.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.21.0 to 0.21.1
+    * @contract-case/case-entities-internal bumped from 0.21.0 to 0.21.1
+    * @contract-case/case-plugin-base bumped from 0.21.0 to 0.21.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.21.0 to 0.21.1
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from ^0.21.0 to ^0.21.1
+    * @contract-case/case-maintainer-config bumped from 0.21.0 to 0.21.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.21.0 to 0.21.1
+
 ## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.20.1...@contract-case/case-core-v0.21.0) (2025-03-25)
 
 

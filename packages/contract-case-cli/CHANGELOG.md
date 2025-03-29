@@ -23,6 +23,24 @@
   * devDependencies
     * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
 
+## [0.21.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.21.0...@contract-case/cli-v0.21.1) (2025-03-29)
+
+
+### Features
+
+* **cli:** Add ability to invoke can-i-deploy from the CLI ([b2351ca](https://github.com/case-contract-testing/contract-case/commit/b2351cabd548d6b62b631fd45966cc2263325276))
+* **cli:** Add option to specify the download directory ([dd95f1b](https://github.com/case-contract-testing/contract-case/commit/dd95f1bbe346d5339e7e155b75227371d68390d0))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.21.0 to 0.21.1
+    * @contract-case/case-core bumped from 0.21.0 to 0.21.1
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.21.0 to 0.21.1
+
 ## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.20.1...@contract-case/cli-v0.21.0) (2025-03-25)
 
 
