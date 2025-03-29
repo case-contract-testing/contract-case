@@ -1,4 +1,4 @@
-import { BoundaryStateHandler } from '@contract-case/case-connector';
+import { BoundaryStateHandler } from '@contract-case/case-connector/cjs';
 import { StateHandler, StateHandlers } from '../../../../../entities/types.js';
 import { MappedStateHandler } from './MappedStateHandler.js';
 import { ContractCaseConfigurationError } from '../../../../../entities/index.js';

@@ -2,7 +2,7 @@ import {
   BoundaryInvokableFunction,
   BoundaryResult,
   BoundarySuccessWithAny,
-} from '@contract-case/case-connector';
+} from '@contract-case/case-connector/cjs';
 import { makeBoundaryFailure } from './jsErrorToBoundary.js';
 
 type InvokeableFunction =

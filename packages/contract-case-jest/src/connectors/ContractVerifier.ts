@@ -5,7 +5,7 @@ import {
   BoundarySuccess,
   IInvokeCoreTest,
   IRunTestCallback,
-} from '@contract-case/case-connector';
+} from '@contract-case/case-connector/cjs';
 import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import { defaultPrinter } from './defaultTestPrinter.js';
 

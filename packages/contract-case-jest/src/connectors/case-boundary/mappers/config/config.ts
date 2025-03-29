@@ -1,4 +1,4 @@
-import { ContractCaseBoundaryConfig } from '@contract-case/case-connector';
+import { ContractCaseBoundaryConfig } from '@contract-case/case-connector/cjs';
 import {
   ContractCaseConfig,
   ContractCaseVerifierConfig,

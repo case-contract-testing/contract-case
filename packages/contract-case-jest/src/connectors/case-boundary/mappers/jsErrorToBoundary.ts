@@ -1,4 +1,4 @@
-import { BoundaryFailure } from '@contract-case/case-connector';
+import { BoundaryFailure } from '@contract-case/case-connector/cjs';
 
 export const makeBoundaryFailure = (error: Error): BoundaryFailure =>
   new BoundaryFailure(

@@ -1,4 +1,4 @@
-import { BoundaryCrashMessage } from '@contract-case/case-connector';
+import { BoundaryCrashMessage } from '@contract-case/case-connector/cjs';
 import { crashPrinter } from './defaultTestPrinter.js';
 
 export const errorHandler = (e: Error): never => {

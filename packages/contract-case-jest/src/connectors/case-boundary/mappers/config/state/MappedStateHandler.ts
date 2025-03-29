@@ -3,8 +3,11 @@ import {
   BoundarySuccessWithMap,
   BoundarySuccess,
   BoundaryStateHandler,
-} from '@contract-case/case-connector';
-import { SetupFunction, TeardownFunction } from '../../../../../entities/types.js';
+} from '@contract-case/case-connector/cjs';
+import {
+  SetupFunction,
+  TeardownFunction,
+} from '../../../../../entities/types.js';
 import { makeBoundaryFailure } from '../../jsErrorToBoundary.js';
 
 export class MappedStateHandler extends BoundaryStateHandler {

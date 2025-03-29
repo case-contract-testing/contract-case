@@ -4,7 +4,7 @@ import {
   BoundarySuccessWithAny,
   BoundaryFailureKindConstants,
   BoundaryResultTypeConstants,
-} from '@contract-case/case-connector';
+} from '@contract-case/case-connector/cjs';
 import {
   ContractCaseConfigurationError,
   ContractCaseCoreError,

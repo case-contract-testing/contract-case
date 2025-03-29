@@ -4,7 +4,7 @@ import {
   BoundaryFailure,
   ITriggerFunction,
   BoundarySetupInfo,
-} from '@contract-case/case-connector';
+} from '@contract-case/case-connector/cjs';
 import {
   Trigger,
   TestErrorResponseFunction,

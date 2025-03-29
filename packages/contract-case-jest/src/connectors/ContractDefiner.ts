@@ -2,7 +2,7 @@ import {
   BoundaryAnyMatcher,
   BoundaryContractDefiner,
   BoundaryMockDefinition,
-} from '@contract-case/case-connector';
+} from '@contract-case/case-connector/cjs';
 import { interactions } from '@contract-case/case-definition-dsl';
 
 import { defaultPrinter } from './defaultTestPrinter.js';
