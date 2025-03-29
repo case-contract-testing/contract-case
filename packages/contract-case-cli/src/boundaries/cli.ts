@@ -52,7 +52,7 @@ const mapConfig = (options: unknown): CaseConfig => {
 program
   .name('ContractCase')
   .description('CLI to interact with contract files and contract brokers')
-  .version(`@contract-case/cli@${versionString}`);
+  .version(`${versionString}`);
 
 const commonOptions = (command: Command) =>
   command

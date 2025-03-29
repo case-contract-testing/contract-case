@@ -40,6 +40,7 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "postbuild": "chmod +x dist/bin/*.js",
     "coverage": "lcov-result-merger '*/lcov.info' combined-coverage.info",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
