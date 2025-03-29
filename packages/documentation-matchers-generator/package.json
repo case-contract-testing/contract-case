@@ -39,8 +39,8 @@
   "scripts": {
     "build": "rimraf {dist,output} && tsc --project tsconfig.build.json && npm run build:docs",
     "build:docs": "node dist/src/index.js",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write "

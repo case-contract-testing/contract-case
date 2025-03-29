@@ -18,24 +18,39 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
+// The way eslint does ignores is no longer very intuitive
+// see https://github.com/eslint/eslint/discussions/18304
+// It's not ideal to do this, but we extract it here
+// so we can set it on every rule.
+
+const ignores = [
+  'dist/**/*.js',
+  'dist/**',
+  'dist/**/*.ts',
+  'coverage/**',
+  'coverage-verify/',
+  'package/**',
+  'build/**/*.js',
+  'build/**',
+  'build/src/**',
+  'eslint.config.mjs',
+  'webpack.config.cjs',
+  'jest.config.ts',
+];
+
 module.exports = [
   {
-    ignores: [
-      'dist/**/*.js',
-      'dist/',
-      'dist/**/*.ts',
-      'coverage/',
-      'coverage-verify/',
-      'eslint.config.mjs',
-    ],
+    ignores,
   },
   {
     files: ['src/**/*.ts', 'src/**/*.mts', 'bin/**/*.ts', 'bin/**/*.mts'],
+    ignores,
   },
-  js.configs.recommended,
-  ...compat.extends('plugin:import/typescript'),
+  { ...js.configs.recommended, ignores },
+  ...compat.extends('plugin:import/typescript').map((c) => ({ ...c, ignores })),
   prettier,
   {
+    ignores,
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -991,7 +1006,7 @@ module.exports = [
   },
   {
     files: ['example/**/*.ts', 'example/**/*.mts'],
-    ignores: ['dist/'],
+    ignores,
     parserOptions: {
       ecmaVersion: 2018,
       sourceType: 'module',
@@ -1005,7 +1020,7 @@ module.exports = [
   },
   {
     files: ['src/__tests__/**/*.ts', 'src/__tests__/**/*.mts'],
-    ignores: ['dist/'],
+    ignores,
     rules: {
       'no-restricted-imports': 'off',
     },
@@ -1013,7 +1028,7 @@ module.exports = [
 
   {
     files: ['src/connectors/**/*.ts', 'src/connectors/**/*.mts'],
-    ignores: ['dist/'],
+    ignores,
     rules: {
       'no-restricted-imports': [
         'error',
@@ -1023,7 +1038,7 @@ module.exports = [
   },
   {
     files: ['src/core/**/*.ts', 'src/core/**/*.mts'],
-    ignores: ['dist/'],
+    ignores,
     rules: {
       'no-restricted-imports': [
         'error',
@@ -1040,7 +1055,7 @@ module.exports = [
   },
   {
     files: ['src/diffmatch/**/*.ts', 'src/diffmatch/**/*.mts'],
-    ignores: ['dist/'],
+    ignores,
     rules: {
       'no-restricted-imports': [
         'error',
@@ -1059,7 +1074,7 @@ module.exports = [
   },
   {
     files: ['src/entities/**/*.ts', 'src/entities/**/*.mts'],
-    ignores: ['dist/'],
+    ignores,
     rules: {
       'no-restricted-imports': [
         'error',
@@ -1080,7 +1095,7 @@ module.exports = [
   },
   {
     files: ['*.js'],
-    ignores: ['dist/'],
+    ignores,
     rules: {
       '@typescript-eslint/no-var-requires': 'off',
     },
@@ -1088,7 +1103,7 @@ module.exports = [
   ...compat.extends('plugin:jest/recommended'),
   {
     files: ['**/*.test.ts', '**/*.spec.ts', '**/*.spec.mts', '**/*.test.mts'],
-    ignores: ['dist/'],
+    ignores,
     languageOptions: {
       globals: {
         ...globals.jest,
@@ -1112,4 +1127,5 @@ module.exports = [
       ],
     },
   },
+  { ignores },
 ];
