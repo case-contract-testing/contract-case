@@ -1,5 +1,6 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": { "module": "Node16", "moduleResolution": "node16" },
   "include": ["src/**/*.ts", "bin"],
   "exclude": [
     "jest.config.ts",
@@ -8,6 +9,7 @@
     "src/__tests__/*",
     "**/*.spec.verify.ts",
     "**/*.spec.ts",
+    "**/*.spec-dont-run.ts",
     "**/*.test.ts",
     "coverage"
   ]

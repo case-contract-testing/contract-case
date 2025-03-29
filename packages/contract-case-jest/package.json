@@ -1,7 +1,6 @@
 {
   "name": "@contract-case/contract-case-jest",
   "version": "0.21.0",
-  "type": "module",
   "description": "ContractCase contract testing suite",
   "keywords": [
     "testing",
@@ -17,7 +16,7 @@
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "bin": {
-    "ContractCase": "./bin/ContractCase.ts"
+    "ContractCase": "./dist/bin/ContractCase.mjs"
   },
   "directories": {
     "src": "src",
