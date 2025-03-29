@@ -69,7 +69,6 @@ const emptyContext: DataContext = {
   '_case:currentRun:context:autoVersionFrom': 'TAG',
 };
 
-const contractFilename = 'case-contracts/case-pact-broker.case.json';
 const uploadingContract = makeContractStore(emptyContext).readContract(
   'case-contracts/contract-for-broker-upload-test.json',
 ).contents;
@@ -85,9 +84,7 @@ const makeBrokerApiForTest = (
 
 describe('broker client', () => {
   beforeAll(() => {
-    // Delete the contract file first
     try {
-      fs.rmSync(contractFilename);
       fs.mkdirSync('case-contracts');
     } catch (e) {
       // Ignore any errors deleting the file and making the directory
@@ -135,9 +132,7 @@ describe('broker client', () => {
     {
       consumerName: 'Case',
       providerName: 'Pact Broker',
-      config: {
-        contractFilename,
-      },
+      config: {},
     },
     (contract) => {
       const stateAuthTokenValid = inState('auth token is valid', {
