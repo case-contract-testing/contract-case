@@ -56,6 +56,9 @@ Java:
 
 Next:
 
+- [ ] Reasoning about required-for-deploy
+- [ ] Document that you can mix contract types
+
 - [x] Don't throw exceptions in the DSL - it won't be handled correctly by JSii.
 - [x] Fix variables so that you can have different defaults for different states
 - [ ] State handlers in the grpc connector aren't given the configuration
@@ -123,9 +126,9 @@ Good for when I don't want to think
 - [ ] case-context ? Maybe move this out
 - [ ] case-contract format ? maybe move this out too
 - [ ] Extending case
-- [ ] Vs e2e
+- [x] Vs e2e
 - [x] Vs schema
-- [ ] Vs pact
+- [x] Vs pact
 - [ ] API coverage
 - [ ] Confirm understood client
 - [ ] Ways to write contracts easily
@@ -133,9 +136,9 @@ Good for when I don't want to think
 - [ ] Write specific responses
 - [ ] Brokers
 - [ ] Example types
-- [ ] Matchers: Auto-generate matcher documentation
+- [x] Matchers: Auto-generate matcher documentation
 - [ ] Verifying contracts
-- [ ] Deployment checks
+- [x] Deployment checks
 - [x] Documentation for config object
 - [x] Documentation for states
 - [ ] Documentation for verification
@@ -165,7 +168,7 @@ Good for when I don't want to think
 
 ## Notes from refactor:
 
-- [ ] Add a way to configure individual mocks
+- [x] Add a way to configure individual mocks
 - [ ] Rename all the repeated types so they're not confusing
 - [x] Rename case:matcher to \_case:matcher
 - [x] Rename all case:matcher:matcher to case:matcher:child
