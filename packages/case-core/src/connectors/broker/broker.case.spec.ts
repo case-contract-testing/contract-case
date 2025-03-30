@@ -1,5 +1,3 @@
-import * as fs from 'node:fs';
-
 import { willSendHttpRequest } from '@contract-case/case-core-plugin-http-dsl';
 import {
   DataContext,
@@ -83,14 +81,6 @@ const makeBrokerApiForTest = (
   } as MatchContext);
 
 describe('broker client', () => {
-  beforeAll(() => {
-    try {
-      fs.mkdirSync('case-contracts');
-    } catch (e) {
-      // Ignore any errors deleting the file and making the directory
-    }
-  });
-
   describe('with missing configuration', () => {
     it('fails with no token', () => {
       expect(() =>
