@@ -170,7 +170,7 @@ export const makeBrokerApi: MakeBrokerApi = (
               contract,
             );
             throw new CaseConfigurationError(
-              `The contract between '${contract.description.consumerName}' and '${contract.description.providerName}' doesn't have a links section. It may not have been downloaded from a broker, which means we can't publish verification status`,
+              `Trying to publish verification status for the contract between '${contract.description.consumerName}' and '${contract.description.providerName}', but it doesn't have a links section.\n\nThis usually means it wasn't downloaded from a broker. We can't publish verification status for non-brokered contracts.`,
             );
           }
           if (
