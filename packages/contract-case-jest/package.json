@@ -39,10 +39,11 @@
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write ",
+    "pretest": "rimraf temp-contracts && ContractCase download-contracts \"http request provider\" --contract-dir=temp-contracts && ContractCase download-contracts \"http response provider\" --contract-dir=temp-contracts",
     "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
     "test:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_publish=false jest",
-    "test:verify": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true  CASE_publish=NEVER jest --testMatch '**/?(*.)+(spec.verify).[tj]s' --coverageDirectory=./coverage-verify/",
-    "test:local:verify": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_publish=NEVER jest --testMatch '**/?(*.)+(spec.verify).[tj]s' --coverageDirectory=./coverage-verify/"
+    "test:verify": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_contractDir=./case-contracts jest --testMatch '**/?(*.)+(spec.verify).[tj]s' --coverageDirectory=./coverage-verify/",
+    "test:local:verify": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_publish=false CASE_contractDir=./case-contracts jest --testMatch '**/?(*.)+(spec.verify).[tj]s' --coverageDirectory=./coverage-verify/"
   },
   "funding": {
     "type": "individual",
@@ -55,6 +56,7 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
+    "@contract-case/cli": "0.21.0",
     "@contract-case/eslint-config-case-maintainer": "0.21.0",
     "@grpc/grpc-js": "^1.13.1",
     "@grpc/proto-loader": "^0.7.13",
@@ -73,7 +75,7 @@
     "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "5.5.4"
+    "typescript": "5.8.2"
   },
   "peerDependencies": {
     "jest": "^29.4.3"

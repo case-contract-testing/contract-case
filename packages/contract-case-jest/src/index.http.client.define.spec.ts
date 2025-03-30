@@ -1,4 +1,3 @@
-import * as fs from 'node:fs';
 // These imports are our code under test
 import api from './__tests__/client/http.js';
 import { ApiError } from './__tests__/client/entities/apiErrors.js';
@@ -22,24 +21,10 @@ const contractDetails = {
   providerName: 'http response provider',
 };
 
-// Normally you can just let Case set a filename for you.
-const FILENAME = `case-contracts/http-response-consumer-http-response-provider-12.case.json`;
-
 describe('e2e http consumer driven', () => {
-  beforeAll(() => {
-    // Delete the contract file first
-    try {
-      fs.rmSync(FILENAME);
-      fs.mkdirSync('case-contracts');
-    } catch (e) {
-      // We don't care if this fails
-    }
-  }, 30000);
   defineContract(
     {
       ...contractDetails,
-      // Usually you will not need to provide a filename
-      contractFilename: FILENAME,
     },
     (contract) => {
       describe('health get', () => {

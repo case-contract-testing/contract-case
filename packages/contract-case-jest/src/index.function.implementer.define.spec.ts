@@ -1,26 +1,12 @@
 /* eslint-disable jest/expect-expect */
-import * as fs from 'node:fs';
 import { defineContract, willReceiveFunctionCall } from './index.js';
 
-// Normally you can just let Case set a filename for you.
-const FILENAME = `case-contracts/function-receiver.case.json`;
-
 describe('function receiver', () => {
-  beforeAll(() => {
-    // Delete the contract file first
-    try {
-      fs.rmSync(FILENAME);
-      fs.mkdirSync('case-contracts');
-    } catch (e) {
-      // We don't care if this fails
-    }
-  }, 30000);
   defineContract(
     {
       consumerName: 'function execution',
       providerName: 'function definer',
       // Usually you will not need to provide a filename
-      contractFilename: FILENAME,
     },
     (contract) => {
       describe('function with no args', () => {

@@ -84,3 +84,4 @@ build
 .vscode-test
 
 .nx/cache
+.nx/workspace-data

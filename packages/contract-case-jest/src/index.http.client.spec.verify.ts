@@ -21,6 +21,7 @@ describe('Server verification', () => {
     baseService,
     userRepository: { get: (id) => mockGetUser(id) },
   };
+  // END SERVER SETUP
 
   beforeAll(
     async () => {

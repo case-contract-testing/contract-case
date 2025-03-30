@@ -1,5 +1,4 @@
 /* eslint-disable jest/expect-expect */
-import * as fs from 'node:fs';
 
 // These imports are our code under test
 import type * as http from 'node:http';
@@ -19,19 +18,7 @@ import {
   defineContract,
 } from './index.js';
 
-// Normally you just let Case set filename and test-run-id for you
-const TEST_RUN_ID = 'PDC';
-const FILENAME = `case-contracts/http-request-consumer-http-request-provider-${TEST_RUN_ID}.case.json`;
-
 describe('e2e http provider driven', () => {
-  beforeAll(() => {
-    try {
-      fs.rmSync(FILENAME);
-      fs.mkdirSync('case-contracts');
-    } catch (e) {
-      // We don't care if this fails
-    }
-  }, 30000);
   describe('test and write contract', () => {
     // CODE UNDER TEST SETUP BOILERPLATE
     let server: http.Server;
@@ -117,8 +104,6 @@ describe('e2e http provider driven', () => {
             baseUrlUnderTest: `http://localhost:${port}`,
           },
         },
-        // remove the following lines for your own tests
-        testRunId: TEST_RUN_ID, // Remove this for your own tests
       },
       (contract) => {
         describe('health get', () => {

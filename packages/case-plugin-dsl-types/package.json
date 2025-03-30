@@ -58,7 +58,7 @@
     "eslint": "^9.22.0",
     "prettier": "3.4.2",
     "rimraf": "^6.0.1",
-    "typescript": "5.5.4"
+    "typescript": "5.8.2"
   },
   "nx": {
     "tasksRunnerOptions": {
