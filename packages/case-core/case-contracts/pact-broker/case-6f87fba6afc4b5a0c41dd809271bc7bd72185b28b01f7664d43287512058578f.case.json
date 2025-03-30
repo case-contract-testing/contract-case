@@ -224,86 +224,6 @@
       },
       "_case:context:matchBy": "type"
     },
-    "matcher:a (200) response without a body": {
-      "status": 200,
-      "_case:matcher:type": "_case:HttpResponseMatcher"
-    },
-    "matcher:an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"} without a body": {
-      "method": "PUT",
-      "path": {
-        "_case:matcher:type": "_case:StringPrefix",
-        "_case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
-        "_case:matcher:suffix": {
-          "_case:matcher:type": "_case:MatchString",
-          "_case:matcher:example": "1.2.3",
-          "_case:matcher:resolvesTo": "string",
-          "_case:context:matchBy": "type"
-        },
-        "_case:matcher:resolvesTo": "string"
-      },
-      "headers": {
-        "accept": "application/json",
-        "authorization": {
-          "_case:matcher:type": "_case:StringPrefix",
-          "_case:matcher:prefix": "Bearer ",
-          "_case:matcher:suffix": {
-            "_case:matcher:type": "_case:ContextVariable",
-            "_case:matcher:variableName": "token"
-          },
-          "_case:matcher:resolvesTo": "string"
-        }
-      },
-      "_case:matcher:type": "_case:HttpRequestMatcher"
-    },
-    "variable:default:invalidToken::test[3]": {
-      "_case:matcher:type": "_case:CascadingContext",
-      "_case:matcher:child": {
-        "_case:matcher:type": "_case:CascadingContext",
-        "_case:matcher:child": "TOKEN",
-        "_case:context:matchBy": "type"
-      },
-      "_case:context:matchBy": "type"
-    },
-    "matcher:a (403) response without a body": {
-      "status": 403,
-      "_case:matcher:type": "_case:HttpResponseMatcher"
-    },
-    "matcher:an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"} without a body": {
-      "method": "PUT",
-      "path": {
-        "_case:matcher:type": "_case:StringPrefix",
-        "_case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
-        "_case:matcher:suffix": {
-          "_case:matcher:type": "_case:MatchString",
-          "_case:matcher:example": "1.2.3",
-          "_case:matcher:resolvesTo": "string",
-          "_case:context:matchBy": "type"
-        },
-        "_case:matcher:resolvesTo": "string"
-      },
-      "headers": {
-        "accept": "application/json",
-        "authorization": {
-          "_case:matcher:type": "_case:StringPrefix",
-          "_case:matcher:prefix": "Bearer ",
-          "_case:matcher:suffix": {
-            "_case:matcher:type": "_case:ContextVariable",
-            "_case:matcher:variableName": "invalidToken"
-          },
-          "_case:matcher:resolvesTo": "string"
-        }
-      },
-      "_case:matcher:type": "_case:HttpRequestMatcher"
-    },
-    "variable:default:token::test[4]": {
-      "_case:matcher:type": "_case:CascadingContext",
-      "_case:matcher:child": {
-        "_case:matcher:type": "_case:CascadingContext",
-        "_case:matcher:child": "TOKEN",
-        "_case:context:matchBy": "type"
-      },
-      "_case:context:matchBy": "type"
-    },
     "matcher:a (200) response with body an object shaped like {notices: an array containing an object shaped like {type: \"debug\",text: <any string>}, / an array containing an object shaped like {type: \"info\",text: <any string>},}": {
       "status": 200,
       "body": {
@@ -439,7 +359,7 @@
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
     },
-    "variable:default:token::test[5]": {
+    "variable:default:token::test[3]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -447,6 +367,10 @@
         "_case:context:matchBy": "type"
       },
       "_case:context:matchBy": "type"
+    },
+    "matcher:a (403) response without a body": {
+      "status": 403,
+      "_case:matcher:type": "_case:HttpResponseMatcher"
     },
     "matcher:an http \"POST\" request to \"/contracts/publish\" with the following headers an object shaped like {accept: \"application/hal+json\",authorization: \"Bearer {{token}}\"} and body an object shaped like {pacticipantName: <any string>,pacticipantVersionNumber: <any string>,branch: <any string>,tags: an array shaped like [] / an array of length min: 0, max: 0;,contracts: an array shaped like [an object shaped like {consumerName: <any string>,providerName: <any string>,specification: \"pact\",contentType: \"application/json\",content: <any string>}] / an array of length min: 1, max: 1;}": {
       "method": "POST",
@@ -510,7 +434,7 @@
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
     },
-    "variable:default:token::test[6]": {
+    "variable:default:token::test[4]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -519,7 +443,7 @@
       },
       "_case:context:matchBy": "type"
     },
-    "variable:default:serviceName::test[6]": {
+    "variable:default:serviceName::test[4]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -528,7 +452,7 @@
       },
       "_case:context:matchBy": "type"
     },
-    "variable:default:version::test[6]": {
+    "variable:default:version::test[4]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -588,7 +512,7 @@
       },
       "_case:matcher:type": "_case:HttpRequestMatcher"
     },
-    "variable:default:token::test[7]": {
+    "variable:default:token::test[5]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -597,7 +521,7 @@
       },
       "_case:context:matchBy": "type"
     },
-    "variable:default:serviceName::test[7]": {
+    "variable:default:serviceName::test[5]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -606,7 +530,7 @@
       },
       "_case:context:matchBy": "type"
     },
-    "variable:default:version::test[7]": {
+    "variable:default:version::test[5]": {
       "_case:matcher:type": "_case:CascadingContext",
       "_case:matcher:child": {
         "_case:matcher:type": "_case:CascadingContext",
@@ -941,146 +865,6 @@
                 "_case:context:matchBy": "type"
               }
             },
-            "_case:matcher:type": "_case:HttpResponseMatcher"
-          }
-        },
-        "_case:mock:type": "_case:MockHttpServer",
-        "_case:run:context:setup": {
-          "write": {
-            "type": "_case:MockHttpServer",
-            "stateVariables": "default",
-            "triggers": "provided"
-          },
-          "read": {
-            "type": "_case:MockHttpClient",
-            "stateVariables": "state",
-            "triggers": "generated"
-          }
-        }
-      },
-      "result": "VERIFIED"
-    },
-    {
-      "states": [
-        {
-          "_case:state:type": "_case:StateWithVariables",
-          "stateName": "auth token is valid",
-          "variables": {
-            "token": {
-              "_case:matcher:type": "_case:CascadingContext",
-              "_case:matcher:child": "TOKEN",
-              "_case:context:matchBy": "type"
-            }
-          }
-        }
-      ],
-      "mock": {
-        "request": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{token}}\"} without a body",
-          "_case:matcher:child": {
-            "method": "PUT",
-            "path": {
-              "_case:matcher:type": "_case:StringPrefix",
-              "_case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
-              "_case:matcher:suffix": {
-                "_case:matcher:type": "_case:MatchString",
-                "_case:matcher:example": "1.2.3",
-                "_case:matcher:resolvesTo": "string",
-                "_case:context:matchBy": "type"
-              },
-              "_case:matcher:resolvesTo": "string"
-            },
-            "headers": {
-              "accept": "application/json",
-              "authorization": {
-                "_case:matcher:type": "_case:StringPrefix",
-                "_case:matcher:prefix": "Bearer ",
-                "_case:matcher:suffix": {
-                  "_case:matcher:type": "_case:ContextVariable",
-                  "_case:matcher:variableName": "token"
-                },
-                "_case:matcher:resolvesTo": "string"
-              }
-            },
-            "_case:matcher:type": "_case:HttpRequestMatcher"
-          }
-        },
-        "response": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (200) response without a body",
-          "_case:matcher:child": {
-            "status": 200,
-            "_case:matcher:type": "_case:HttpResponseMatcher"
-          }
-        },
-        "_case:mock:type": "_case:MockHttpServer",
-        "_case:run:context:setup": {
-          "write": {
-            "type": "_case:MockHttpServer",
-            "stateVariables": "default",
-            "triggers": "provided"
-          },
-          "read": {
-            "type": "_case:MockHttpClient",
-            "stateVariables": "state",
-            "triggers": "generated"
-          }
-        }
-      },
-      "result": "VERIFIED"
-    },
-    {
-      "states": [
-        {
-          "_case:state:type": "_case:StateWithVariables",
-          "stateName": "auth token is not valid",
-          "variables": {
-            "invalidToken": {
-              "_case:matcher:type": "_case:CascadingContext",
-              "_case:matcher:child": "TOKEN",
-              "_case:context:matchBy": "type"
-            }
-          }
-        }
-      ],
-      "mock": {
-        "request": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "an http \"PUT\" request to \"/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/<any string>\" with the following headers an object shaped like {accept: \"application/json\",authorization: \"Bearer {{invalidToken}}\"} without a body",
-          "_case:matcher:child": {
-            "method": "PUT",
-            "path": {
-              "_case:matcher:type": "_case:StringPrefix",
-              "_case:matcher:prefix": "/pacts/provider/http%20request%20provider/consumer/http%20request%20consumer/version/",
-              "_case:matcher:suffix": {
-                "_case:matcher:type": "_case:MatchString",
-                "_case:matcher:example": "1.2.3",
-                "_case:matcher:resolvesTo": "string",
-                "_case:context:matchBy": "type"
-              },
-              "_case:matcher:resolvesTo": "string"
-            },
-            "headers": {
-              "accept": "application/json",
-              "authorization": {
-                "_case:matcher:type": "_case:StringPrefix",
-                "_case:matcher:prefix": "Bearer ",
-                "_case:matcher:suffix": {
-                  "_case:matcher:type": "_case:ContextVariable",
-                  "_case:matcher:variableName": "invalidToken"
-                },
-                "_case:matcher:resolvesTo": "string"
-              }
-            },
-            "_case:matcher:type": "_case:HttpRequestMatcher"
-          }
-        },
-        "response": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (403) response without a body",
-          "_case:matcher:child": {
-            "status": 403,
             "_case:matcher:type": "_case:HttpResponseMatcher"
           }
         },

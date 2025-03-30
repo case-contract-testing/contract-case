@@ -94,34 +94,6 @@ export const makeBrokerApi: MakeBrokerApi = (
     publishContract: (
       contract: ContractData,
       version: string,
-      logContext: LogContext,
-    ) => {
-      if (err !== undefined) throw err;
-      // TODO: Make this a first class object
-      logContext.logger.debug(
-        `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`,
-      );
-
-      const path = `/pacts/provider/${encodeURIComponent(
-        contract.description.providerName,
-      )}/consumer/${encodeURIComponent(
-        contract.description.consumerName,
-      )}/version/${encodeURIComponent(version)}`;
-
-      logContext.logger.maintainerDebug(`Publish path is: ${path}`);
-
-      return server.authedPut(path, contract, logContext).then((d) => {
-        logContext.logger.debug(`Published successfully`);
-        logContext.logger.deepMaintainerDebug(
-          `Published result was`,
-          JSON.stringify(d),
-        );
-      });
-    },
-
-    publishContractAdvanced: (
-      contract: ContractData,
-      version: string,
       branch: string | false,
       logContext: LogContext,
     ) => {

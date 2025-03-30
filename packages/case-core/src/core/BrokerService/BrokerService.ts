@@ -136,7 +136,7 @@ export class BrokerService {
         this.environment.isCi())
     ) {
       return this.broker
-        .publishContractAdvanced(
+        .publishContract(
           contract,
           this.environment.version(context),
           this.environment.branch(),
