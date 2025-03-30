@@ -56,8 +56,9 @@ Java:
 
 Next:
 
-- [ ] Reasoning about required-for-deploy
-- [ ] Document that you can mix contract types
+- [ ] Reasoning about required-for-deploy so that client-providers are better matched
+- [ ] Document that you can mix interaction types
+- [ ] Do a configuration error message like the crash message, so that misconfigurations don't result in stack traces
 
 - [x] Don't throw exceptions in the DSL - it won't be handled correctly by JSii.
 - [x] Fix variables so that you can have different defaults for different states
@@ -81,7 +82,7 @@ Next:
 Tidiness:
 
 - [ ] Perhaps separate the DSL's needs in the definition package and the pretty-format, bit too.
-- [ ] Rename handle -> functonName in the registerFunction() calls
+- [ ] Rename handle -> functionName in the registerFunction() calls
 
   - [x] Classes for matchers
   - [x] Classes for mocks
