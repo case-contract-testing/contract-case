@@ -36,6 +36,14 @@ versions, as they are listed in source code / generated documentation.
 
 ## Todo list
 
+Next:
+
+- [ ] Reasoning about required-for-deploy so that client-providers are better matched
+- [ ] Document that you can mix interaction types
+- [ ] Do a configuration error message like the crash message, so that misconfigurations don't result in stack traces
+- [ ] Ensure original stack traces are maintained across boundaries and implement `originalStack` function.
+- [ ] Add way to say 'I need this field and I don't care what's in it'
+
 Document
 
 - [ ] `namedLookup` for looking up a named segment
@@ -53,12 +61,6 @@ Java:
 - [ ] Should we catch JUnit failures and remap them so that contract case can render them?
 - [ ] More idiomatic logging - at the moment, you have to set standard out as the logger
 - [ ] Kill Boundary layer - it's unnecessary, we should map straight to Connector
-
-Next:
-
-- [ ] Reasoning about required-for-deploy so that client-providers are better matched
-- [ ] Document that you can mix interaction types
-- [ ] Do a configuration error message like the crash message, so that misconfigurations don't result in stack traces
 
 - [x] Don't throw exceptions in the DSL - it won't be handled correctly by JSii.
 - [x] Fix variables so that you can have different defaults for different states
