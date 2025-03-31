@@ -59,10 +59,7 @@ const actuallyWriteContract = (
   context: HasContractFileConfig,
 ) => {
   context.logger.maintainerDebug(`Writing contract to '${pathToFile}'`);
-  fs.writeFileSync(
-    pathToFile,
-    JSON.stringify(stripStateVariables(contract), undefined, 2),
-  );
+  fs.writeFileSync(pathToFile, JSON.stringify(contract, undefined, 2));
   return pathToFile;
 };
 
@@ -110,4 +107,4 @@ const internalWriteContract = (
 export const writeContract: WriteContract = (
   contract: ContractData,
   context: DataContext,
-): string => internalWriteContract(contract, context);
+): string => internalWriteContract(stripStateVariables(contract), context);
