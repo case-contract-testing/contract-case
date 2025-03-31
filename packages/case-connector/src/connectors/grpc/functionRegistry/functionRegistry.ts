@@ -22,6 +22,8 @@ export const makeFunctionRegistry = (): FunctionRegistry => {
             BoundaryFailureKindConstants.CASE_CONFIGURATION_ERROR,
             `There's no available function with the name '${name}'`,
             'core connector',
+            // TODO: Need to allow the core to tell the DSL to log its call site
+            '',
           );
         }
         return coreFunctions[name](...args);

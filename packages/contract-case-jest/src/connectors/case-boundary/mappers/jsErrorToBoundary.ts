@@ -5,4 +5,6 @@ export const makeBoundaryFailure = (error: Error): BoundaryFailure =>
     error.name,
     error.message,
     error.stack ?? 'no-stack-trace',
+    // TODO: Properly propagate stack traces
+    error.stack ?? 'no-stack-trace',
   );

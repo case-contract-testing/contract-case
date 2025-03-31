@@ -15,11 +15,19 @@ export class BoundaryFailure extends BoundaryResult {
 
   readonly location: string;
 
-  constructor(kind: string, message: string, location: string) {
+  readonly originalStackTrace: string;
+
+  constructor(
+    kind: string,
+    message: string,
+    location: string,
+    originalStackTrace: string,
+  ) {
     super(RESULT_FAILURE);
     this.resultType = RESULT_FAILURE;
     this.kind = kind;
     this.message = message;
     this.location = location;
+    this.originalStackTrace = originalStackTrace;
   }
 }

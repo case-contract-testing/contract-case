@@ -67,11 +67,20 @@ export const mapFailingTrigger =
                   err.name,
                   err.message,
                   err.stack ?? 'no-stack',
+                  // TODO: Properly propagate stack traces
+                  err.stack ?? 'no-stack',
                 ),
             ),
       )
       .catch<BoundaryResult>(
-        (e) => new BoundaryFailure(e.name, e.message, e.stack ?? 'no-stack'),
+        (e) =>
+          new BoundaryFailure(
+            e.name,
+            e.message,
+            e.stack ?? 'no-stack',
+            // TODO: Properly propagate stack traces
+            e.stack ?? 'no-stack',
+          ),
       );
 
 export const mapSuccessTrigger =
@@ -93,7 +102,14 @@ export const mapSuccessTrigger =
         },
       )
       .catch<BoundaryResult>(
-        (e) => new BoundaryFailure(e.name, e.message, e.stack ?? 'no-stack'),
+        (e) =>
+          new BoundaryFailure(
+            e.name,
+            e.message,
+            e.stack ?? 'no-stack',
+            // TODO: Properly propagate stack traces
+            e.stack ?? 'no-stack',
+          ),
       );
 
 export const mapTriggers = (

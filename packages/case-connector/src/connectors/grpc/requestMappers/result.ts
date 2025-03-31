@@ -55,6 +55,8 @@ export const mapResult = (
         unbox(wireFailure.getKind()),
         unbox(wireFailure.getMessage()),
         unbox(wireFailure.getLocation()),
+        // TODO Implement stack trace passing
+        '',
       );
     }
     default:

@@ -11,6 +11,8 @@ export const makeCoreError = (
     BoundaryFailureKindConstants.CASE_CORE_ERROR,
     message,
     location,
+    // TODO: Implement stack trace passing
+    '',
   );
 
 export const makeConfigurationError = (
@@ -21,4 +23,6 @@ export const makeConfigurationError = (
     BoundaryFailureKindConstants.CASE_CONFIGURATION_ERROR,
     message,
     location,
+    // TODO: Implement stack trace passing
+    '',
   );

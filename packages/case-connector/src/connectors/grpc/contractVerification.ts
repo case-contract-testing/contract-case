@@ -72,6 +72,7 @@ export const contractVerification = (
           BoundaryFailureKindConstants.CASE_CORE_ERROR,
           `[${e.name}] ${e.message}`,
           e.stack ?? 'ContractCase Connector',
+          e.stack ?? 'ContractCase Connector',
         ),
       ),
     );
@@ -162,6 +163,7 @@ export const contractVerification = (
                     BoundaryFailureKindConstants.CASE_CORE_ERROR,
                     `Unable to create verifier: ${(e as Error).message}`,
                     'ContractCase Connector',
+                    (e as Error).stack ?? 'ContractCase Connector',
                   ),
                 ),
               );
