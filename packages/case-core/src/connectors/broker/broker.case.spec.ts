@@ -339,18 +339,16 @@ describe('broker client', () => {
                             ),
                           }),
                         ),
-                        {
-                          notices: [
-                            {
-                              type: 'debug',
-                              text: 'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main',
-                            },
-                            {
-                              type: 'info',
-                              text: 'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.',
-                            },
-                          ],
-                        },
+                        [
+                          {
+                            type: 'debug',
+                            text: 'Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main',
+                          },
+                          {
+                            type: 'info',
+                            text: 'Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar.',
+                          },
+                        ],
                       ),
                     },
                   },
@@ -467,6 +465,7 @@ describe('broker client', () => {
                         failed: 0,
                         unknown: 0,
                       },
+                      notices: [],
                     },
                   },
                 }),
@@ -520,6 +519,7 @@ describe('broker client', () => {
                         failed: anyNumber(),
                         unknown: anyNumber(),
                       },
+                      notices: [],
                     },
                   },
                 }),

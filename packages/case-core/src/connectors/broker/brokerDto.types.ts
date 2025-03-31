@@ -1,6 +1,12 @@
-import { HasBrokerNotices } from '../../core/types.broker';
-
-interface WireNotice {
+export interface WireNotice {
+  type:
+    | 'debug'
+    | 'info'
+    | 'warning'
+    | 'prompt'
+    | 'success'
+    | 'error'
+    | 'danger';
   text: string;
 }
 
@@ -79,4 +85,11 @@ export interface WireForVerificationResponse {
     pacts: WireContractForVerification[];
   };
   _links: WireSelfLink;
+}
+export interface WirePublishResult {
+  notices: Array<WireNotice>;
+}
+
+export interface HasBrokerNotices {
+  notices: Array<WireNotice>;
 }

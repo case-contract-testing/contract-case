@@ -262,18 +262,16 @@
               }
             ]
           },
-          "_case:matcher:example": {
-            "notices": [
-              {
-                "type": "debug",
-                "text": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main"
-              },
-              {
-                "type": "info",
-                "text": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar."
-              }
-            ]
-          }
+          "_case:matcher:example": [
+            {
+              "type": "debug",
+              "text": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main"
+            },
+            {
+              "type": "info",
+              "text": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar."
+            }
+          ]
         }
       },
       "_case:matcher:type": "_case:HttpResponseMatcher"
@@ -461,7 +459,7 @@
       },
       "_case:context:matchBy": "type"
     },
-    "matcher:a (200) response with body an object shaped like {summary: an object shaped like {deployable: true,reason: <any string>,success: <any number>,failed: 0,unknown: 0}}": {
+    "matcher:a (200) response with body an object shaped like {summary: an object shaped like {deployable: true,reason: <any string>,success: <any number>,failed: 0,unknown: 0},notices: an array shaped like [] / an array of length min: 0, max: 0;}": {
       "status": 200,
       "body": {
         "summary": {
@@ -480,7 +478,8 @@
           },
           "failed": 0,
           "unknown": 0
-        }
+        },
+        "notices": []
       },
       "_case:matcher:type": "_case:HttpResponseMatcher"
     },
@@ -539,7 +538,7 @@
       },
       "_case:context:matchBy": "type"
     },
-    "matcher:a (200) response with body an object shaped like {summary: an object shaped like {deployable: false,reason: <any string>,success: <any number>,failed: <any number>,unknown: <any number>}}": {
+    "matcher:a (200) response with body an object shaped like {summary: an object shaped like {deployable: false,reason: <any string>,success: <any number>,failed: <any number>,unknown: <any number>},notices: an array shaped like [] / an array of length min: 0, max: 0;}": {
       "status": 200,
       "body": {
         "summary": {
@@ -568,7 +567,8 @@
             "_case:matcher:resolvesTo": "number",
             "_case:context:matchBy": "type"
           }
-        }
+        },
+        "notices": []
       },
       "_case:matcher:type": "_case:HttpResponseMatcher"
     }
@@ -1025,18 +1025,16 @@
                     }
                   ]
                 },
-                "_case:matcher:example": {
-                  "notices": [
-                    {
-                      "type": "debug",
-                      "text": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main"
-                    },
-                    {
-                      "type": "info",
-                      "text": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar."
-                    }
-                  ]
-                }
+                "_case:matcher:example": [
+                  {
+                    "type": "debug",
+                    "text": "Created Foo version dc5eb529230038a4673b8c971395bd2922d8b240 with branch main and tags main"
+                  },
+                  {
+                    "type": "info",
+                    "text": "Pact published for Foo version dc5eb529230038a4673b8c971395bd2922d8b240 and provider Bar."
+                  }
+                ]
               }
             },
             "_case:matcher:type": "_case:HttpResponseMatcher"
@@ -1228,7 +1226,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {summary: an object shaped like {deployable: true,reason: <any string>,success: <any number>,failed: 0,unknown: 0}}",
+          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {summary: an object shaped like {deployable: true,reason: <any string>,success: <any number>,failed: 0,unknown: 0},notices: an array shaped like [] / an array of length min: 0, max: 0;}",
           "_case:matcher:child": {
             "status": 200,
             "body": {
@@ -1248,7 +1246,8 @@
                 },
                 "failed": 0,
                 "unknown": 0
-              }
+              },
+              "notices": []
             },
             "_case:matcher:type": "_case:HttpResponseMatcher"
           }
@@ -1334,7 +1333,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {summary: an object shaped like {deployable: false,reason: <any string>,success: <any number>,failed: <any number>,unknown: <any number>}}",
+          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {summary: an object shaped like {deployable: false,reason: <any string>,success: <any number>,failed: <any number>,unknown: <any number>},notices: an array shaped like [] / an array of length min: 0, max: 0;}",
           "_case:matcher:child": {
             "status": 200,
             "body": {
@@ -1364,7 +1363,8 @@
                   "_case:matcher:resolvesTo": "number",
                   "_case:context:matchBy": "type"
                 }
-              }
+              },
+              "notices": []
             },
             "_case:matcher:type": "_case:HttpResponseMatcher"
           }

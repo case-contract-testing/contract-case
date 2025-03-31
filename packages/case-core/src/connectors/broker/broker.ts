@@ -13,17 +13,13 @@ import {
   WireCanIDeployResponse,
   WireForVerificationRequest,
   WireForVerificationResponse,
+  WirePublishResult,
   WireRequestForPublicationAdvanced,
   WireRequestPublishVerificationResults,
 } from './brokerDto.types';
-import {
-  BrokerApi,
-  DownloadedContract,
-  MakeBrokerApi,
-  PublishContractResult,
-  PublishVerificationResult,
-} from '../../core/types';
+import { BrokerApi, DownloadedContract, MakeBrokerApi } from '../../core/types';
 import { caseVersion } from '../../entities/versionString';
+import { logNotices } from './logNotices';
 
 const trimSlash = (str: string | undefined): string => {
   if (typeof str !== 'string') return '';
@@ -102,28 +98,31 @@ export const makeBrokerApi: MakeBrokerApi = (
         `Publishing contract for ${contract.description.consumerName}@${version} -> ${contract.description.providerName} to broker at ${baseUrl}`,
       );
 
-      return server.authedPost<
-        WireRequestForPublicationAdvanced,
-        PublishContractResult
-      >(
-        '/contracts/publish',
-        {
-          pacticipantName: contract.description.consumerName,
-          pacticipantVersionNumber: version,
-          ...(branch !== false ? { branch } : {}),
-          tags: [],
-          contracts: [
-            {
-              consumerName: contract.description.consumerName,
-              providerName: contract.description.providerName,
-              specification: 'pact', // TODO: Replace this with '_case::contract' when the broker supports it
-              contentType: 'application/json',
-              content: Buffer.from(JSON.stringify(contract)).toString('base64'),
-            },
-          ],
-        },
-        logContext,
-      );
+      return server
+        .authedPost<WireRequestForPublicationAdvanced, WirePublishResult>(
+          '/contracts/publish',
+          {
+            pacticipantName: contract.description.consumerName,
+            pacticipantVersionNumber: version,
+            ...(branch !== false ? { branch } : {}),
+            tags: [],
+            contracts: [
+              {
+                consumerName: contract.description.consumerName,
+                providerName: contract.description.providerName,
+                specification: 'pact', // TODO: Replace this with '_case::contract' when the broker supports it
+                contentType: 'application/json',
+                content: Buffer.from(JSON.stringify(contract)).toString(
+                  'base64',
+                ),
+              },
+            ],
+          },
+          logContext,
+        )
+        .then((data) => {
+          logNotices(data.notices, logContext);
+        });
     },
 
     publishVerificationResults: (
@@ -164,7 +163,7 @@ export const makeBrokerApi: MakeBrokerApi = (
           )
             .authedPost<
               WireRequestPublishVerificationResults,
-              PublishVerificationResult
+              WirePublishResult
             >(
               '',
               {
@@ -276,10 +275,10 @@ export const makeBrokerApi: MakeBrokerApi = (
               data.matrix,
             );
           }
+          logNotices(data.notices, logContext);
           return {
             deployable: data.summary.deployable === true,
             reason: `${data.summary.reason}\nsuccess (${data.summary.success}), failed (${data.summary.failed}), unknown / never-verified (${data.summary.unknown}) services`,
-            notices: data.notices,
           };
         });
     },

@@ -2,9 +2,7 @@ import {
   MatchContext,
   addLocation,
   CaseConfigurationError,
-  CaseCoreError,
   DataContext,
-  LogContext,
 } from '@contract-case/case-plugin-base';
 import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import {
@@ -12,46 +10,10 @@ import {
   DeployCheckResult,
   DownloadedContract,
   DownloadedContracts,
-  HasBrokerNotices,
 } from '../types.broker';
 import { BuildEnvironment } from '../types.environment';
 import { downloadCaseContracts } from './downloadCaseContracts';
 
-const logNotices = (response: HasBrokerNotices, context: LogContext) => {
-  response.notices.forEach((notice) => {
-    switch (notice.type) {
-      case 'debug':
-        context.logger.debug(`[From Broker] ${notice.text}`);
-        break;
-      case 'info':
-        context.logger.debug(`[From Broker] ${notice.text}`);
-        break;
-      case 'prompt':
-        context.logger.warn(`[From Broker] ${notice.text}`);
-        break;
-      case 'success':
-        context.logger.debug(`[From Broker] ${notice.text}`);
-        break;
-      case 'error':
-        context.logger.error(`[From Broker] ${notice.text}`);
-        break;
-      case 'danger':
-        context.logger.error(`[From Broker] [DANGER] ${notice.text}`);
-        break;
-      case 'warning':
-        context.logger.warn(`[From Broker] ${notice.text}`);
-        break;
-      default:
-        throw new CaseCoreError(
-          `The broker returned a log level ('${
-            notice.type
-          }') that Case doesn't know how to handle.\n\nThe problem is in the following notice object:\n\n${JSON.stringify(
-            notice,
-          )}`,
-        );
-    }
-  });
-};
 export class BrokerService {
   broker: BrokerApi;
 
@@ -142,9 +104,7 @@ export class BrokerService {
           this.environment.branch(),
           addLocation(':PublishingContractAdvanced', context),
         )
-        .then((publishResults) => {
-          logNotices(publishResults, addLocation('BrokerResponse', context));
-        });
+        .then(() => {});
     }
     const message = `Configuration property 'publish' was set to the unexpected value '${context['_case:currentRun:context:publish']}'`;
     context.logger.error(message);
@@ -185,11 +145,11 @@ export class BrokerService {
     context.logger.debug(
       `Checking whether '${serviceName}' at version '${versionToCheck}' can be deployed to '${environment}'`,
     );
-    return this.broker
-      .canDeploy(serviceName, versionToCheck, environment, context)
-      .then((response) => {
-        logNotices(response, context);
-        return response;
-      });
+    return this.broker.canDeploy(
+      serviceName,
+      versionToCheck,
+      environment,
+      context,
+    );
   }
 }

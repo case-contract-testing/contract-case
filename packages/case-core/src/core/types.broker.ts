@@ -30,11 +30,11 @@ export type ContractLink = {
   name: string;
 };
 
-export type DeployCheckSuccess = { deployable: true } & HasBrokerNotices;
+export type DeployCheckSuccess = { deployable: true };
 export type DeployCheckFailure = {
   deployable: false;
   reason: string;
-} & HasBrokerNotices;
+};
 
 export type DeployCheckResult = DeployCheckSuccess | DeployCheckFailure;
 
@@ -46,7 +46,7 @@ export interface BrokerApi {
     version: string,
     branch: string | false,
     logContext: LogContext,
-  ) => Promise<PublishContractResult>;
+  ) => Promise<unknown>;
 
   publishVerificationResults: (
     contract: DownloadedContract,
@@ -54,7 +54,7 @@ export interface BrokerApi {
     version: string,
     branch: string | false,
     logContext: LogContext,
-  ) => Promise<PublishVerificationResult>;
+  ) => Promise<unknown>;
 
   downloadContract: (
     url: string,
@@ -73,25 +73,3 @@ export interface BrokerApi {
     context: LogContext,
   ) => Promise<DeployCheckResult>;
 }
-
-interface BrokerNotice {
-  type:
-    | 'debug'
-    | 'info'
-    | 'warning'
-    | 'prompt'
-    | 'success'
-    | 'error'
-    | 'danger';
-  text: string;
-}
-
-export interface PublishVerificationResult {
-  logs: Array<BrokerNotice>;
-}
-
-export interface HasBrokerNotices {
-  notices: Array<BrokerNotice>;
-}
-
-export type PublishContractResult = HasBrokerNotices;
