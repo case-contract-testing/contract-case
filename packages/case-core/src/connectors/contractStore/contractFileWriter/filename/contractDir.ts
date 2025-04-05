@@ -10,17 +10,26 @@ import { EXTENSION, MAX_FILENAME_LENGTH } from './types';
 const escapeFileName = (pathString: string) =>
   filenamify(pathString, { maxLength: MAX_FILENAME_LENGTH });
 
-const makeFileNameByHash = (contract: ContractData) =>
+const makeFileName = (contract: ContractData, suffix: string) =>
   path.join(
     escapeFileName(slug(contract.description.providerName)),
-    `${escapeFileName(slug(contract.description.consumerName))}-${hashContract(contract)}${EXTENSION}`,
+    `${escapeFileName(slug(contract.description.consumerName))}-${suffix}${EXTENSION}`,
   );
 
-export const makePath = (
+export const makeHashPath = (
   contract: ContractData,
   config: HasContractFileConfig,
 ): string =>
   path.join(
     config['_case:currentRun:context:contractDir'],
-    makeFileNameByHash(contract),
+    makeFileName(contract, hashContract(contract)),
+  );
+
+export const makeMainPath = (
+  contract: ContractData,
+  config: HasContractFileConfig,
+): string =>
+  path.join(
+    config['_case:currentRun:context:contractDir'],
+    makeFileName(contract, 'main'),
   );

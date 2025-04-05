@@ -11,7 +11,7 @@ import {
 import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import type { WriteContract } from '../../../core/types';
 import { isHasContractFileConfig } from './contextValidator';
-import { generateFileName } from './filename';
+import { generateFileName, generateMainContractPath } from './filename';
 
 /**
  * Strips any state-provided values from the contract.
@@ -58,6 +58,18 @@ const actuallyWriteContract = (
   contract: ContractData,
   context: HasContractFileConfig,
 ) => {
+  if (
+    fs.existsSync(pathToFile) &&
+    context['_case:currentRun:context:contractFilename'] &&
+    !context['_case:currentRun:context:overwriteFile']
+  ) {
+    context.logger.error(
+      `Can't write to '${pathToFile}, as it already exists'`,
+    );
+    throw new CaseConfigurationError(`The file ${pathToFile} already exists`);
+  }
+
+  createDirectory(pathToFile, context);
   context.logger.maintainerDebug(`Writing contract to '${pathToFile}'`);
   fs.writeFileSync(pathToFile, JSON.stringify(contract, undefined, 2));
   return pathToFile;
@@ -87,19 +99,16 @@ const internalWriteContract = (
   }
 
   const pathToFile = generateFileName(contract, context);
-  if (
-    fs.existsSync(pathToFile) &&
-    context['_case:currentRun:context:contractFilename'] &&
-    !context['_case:currentRun:context:overwriteFile']
-  ) {
-    context.logger.error(
-      `Can't write to '${pathToFile}, as it already exists'`,
-    );
-    throw new CaseConfigurationError(`The file ${pathToFile} already exists`);
-  }
 
-  createDirectory(pathToFile, context);
   actuallyWriteContract(pathToFile, contract, context);
+
+  if (context['_case:currentRun:context:contractFilename'] === undefined) {
+    actuallyWriteContract(
+      generateMainContractPath(contract, context),
+      contract,
+      context,
+    );
+  }
 
   return pathToFile;
 };
