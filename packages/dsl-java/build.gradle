@@ -44,7 +44,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
     implementation 'org.jetbrains:annotations:26.0.2'
 
-    testImplementation 'com.google.protobuf:protobuf-gradle-plugin:0.9.4'
+    testImplementation 'com.google.protobuf:protobuf-gradle-plugin:0.9.5'
 
     // Execution of tests
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
