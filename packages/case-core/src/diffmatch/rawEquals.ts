@@ -1,6 +1,16 @@
 import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 
+/**
+ * This function compares two json-serialisable objects or values,
+ * and returns true if they are deeply equal. It's called `rawEquality` because
+ * it ignores ContractCase's matcher types, with no additional behaviour.
+ *
+ * @param a - one value to compare
+ * @param b - another value to compare
+ * @returns true if `a` is deeply equal to `b`, false otherwise
+ * @throws CaseConfigurationError if the values are not json serialisable.
+ */
 export const rawEquality = (
   a: AnyCaseMatcherOrData | undefined,
   b: AnyCaseMatcherOrData | undefined,

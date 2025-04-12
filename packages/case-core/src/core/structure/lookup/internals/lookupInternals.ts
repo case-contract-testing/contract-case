@@ -7,7 +7,7 @@ import {
   AnyCaseMatcherOrData,
   isLookupableMatcher,
 } from '@contract-case/case-plugin-dsl-types';
-import { rawEquality } from './rawEquals';
+import { rawEquality } from '../../../../diffmatch/rawEquals';
 import type { LookupMap, LookupType } from './types';
 import { lookupName, stripType } from './lookupName';
 

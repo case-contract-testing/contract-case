@@ -1,4 +1,4 @@
-import { and, anyString, anyNumber } from '../../../../boundaries';
+import { and, anyString, anyNumber } from '../boundaries';
 import { rawEquality } from './rawEquals';
 
 describe('raw equals', () => {
