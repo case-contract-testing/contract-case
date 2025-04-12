@@ -8,7 +8,6 @@ export * from './context/types';
 export * from './logger/types';
 export * from './matchers/types';
 export * from './mocks/types';
-export * from './contract.types';
 
 /**
  * Describes the plugin name and version

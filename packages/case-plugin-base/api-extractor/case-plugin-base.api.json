@@ -590,7 +590,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "src/contract.types.ts",
+          "fileUrlPath": "src/context/contract.types.ts",
           "releaseTag": "Public",
           "name": "CaseExample",
           "typeTokenRange": {

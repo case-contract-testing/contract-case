@@ -1,7 +1,7 @@
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
-import { MatchContext } from '../context/types';
 import { MatchResult } from './errors.types';
 import { IsCaseNodeForType } from './utility.types';
+import { MatchContext } from '../context/types';
 
 /**
  * Checks a matcher against some actual data and returns a Promise containing a MatchResult.

@@ -2,7 +2,7 @@ import {
   AnyMockDescriptor,
   AnyState,
 } from '@contract-case/case-plugin-dsl-types';
-import { CaseError } from './matchers/types';
+import { CaseError } from '../matchers/errors.types';
 
 // TODO: Move these CaseExample types back into the core package
 // They're only in the base, because of the result printer type on the context
