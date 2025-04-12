@@ -1,6 +1,6 @@
-import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import * as crypto from 'crypto';
 import { DownloadedContract } from '../../../core/types.broker';
+import { ContractData } from '../../../entities/types';
 
 const extractData = (contract: ContractData | DownloadedContract) => {
   if ('_links' in contract) {

@@ -6,8 +6,8 @@ import {
   MatchContext,
   addLocation,
   CaseConfigurationError,
+  CaseExample,
 } from '@contract-case/case-plugin-base';
-import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { AnyState } from '@contract-case/case-plugin-dsl-types';
 
 const stateTeardownHandler = (

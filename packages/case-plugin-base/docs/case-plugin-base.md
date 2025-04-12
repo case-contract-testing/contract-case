@@ -605,6 +605,19 @@ Union of all error data types.
 </td></tr>
 <tr><td>
 
+[CaseExample](./case-plugin-base.caseexample.md)
+
+
+</td><td>
+
+All states of Examples.
+
+This isn't really part of the plugin interface; it's only here because the ResultPrinter needs it.
+
+
+</td></tr>
+<tr><td>
+
 [CaseMatcherFor](./case-plugin-base.casematcherfor.md)
 
 

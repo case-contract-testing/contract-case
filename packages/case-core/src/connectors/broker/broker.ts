@@ -6,7 +6,6 @@ import {
   DataContext,
   LogContext,
 } from '@contract-case/case-plugin-base';
-import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { makeAxiosConnector } from './axios';
 import { BasicAuth } from './axios/types';
 import {
@@ -20,6 +19,7 @@ import {
 import { BrokerApi, DownloadedContract, MakeBrokerApi } from '../../core/types';
 import { caseVersion } from '../../entities/versionString';
 import { logNotices } from './logNotices';
+import { ContractData } from '../../entities/types';
 
 const trimSlash = (str: string | undefined): string => {
   if (typeof str !== 'string') return '';

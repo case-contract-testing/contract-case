@@ -38,6 +38,13 @@ export class CaseCoreError extends Error {
 // @public
 export type CaseError = MatchingError | ConfigurationError | TriggerError | VerificationError | RawMatchError;
 
+// Warning: (ae-forgotten-export) The symbol "SuccessfulCaseExample" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "FailedCaseExample" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "PendingCaseExample" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type CaseExample = SuccessfulCaseExample | FailedCaseExample | PendingCaseExample;
+
 // @public
 export class CaseFailedAssertionError extends Error {
     constructor(matchResult: MatchResult);
@@ -491,10 +498,6 @@ export class VerifyTriggerReturnObjectError extends Error {
     // (undocumented)
     cause: unknown;
 }
-
-// Warnings were encountered during analysis:
-//
-// src/context/types.ts:496:3 - (ae-forgotten-export) The symbol "CaseExample" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -1,10 +1,10 @@
 import { HasContractFileConfig } from '@contract-case/case-plugin-base';
-import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 
 import * as path from 'path';
 
 import { makeHashPath, makeMainPath } from './contractDir';
 import { EXTENSION, MAX_FILENAME_LENGTH } from './types';
+import { ContractData } from '../../../../entities/types';
 
 const warnIfLong = (pathToFile: string, context: HasContractFileConfig) => {
   if (!pathToFile.endsWith(EXTENSION)) {

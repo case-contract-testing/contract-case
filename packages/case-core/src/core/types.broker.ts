@@ -1,5 +1,5 @@
 import { DataContext, LogContext } from '@contract-case/case-plugin-base';
-import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { ContractData } from '../entities/contract/types';
 
 export interface DownloadedContract extends ContractData {
   createdAt: string;

@@ -8,10 +8,10 @@ import {
   CaseConfigurationError,
   HasContractFileConfig,
 } from '@contract-case/case-plugin-base';
-import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import type { WriteContract } from '../../../core/types';
 import { isHasContractFileConfig } from './contextValidator';
 import { generateFileName, generateMainContractPath } from './filename';
+import { ContractData } from '../../../entities/types';
 
 /**
  * Strips any state-provided values from the contract.

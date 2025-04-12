@@ -1,20 +1,18 @@
 import {
   CaseError,
+  CaseExample,
   MatchContextWithoutLookup,
 } from '@contract-case/case-plugin-base';
-import {
-  CaseContractDescription,
-  ContractData,
-  CaseExample,
-} from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import {
   AnyCaseMatcherOrData,
   LookupableMatcher,
 } from '@contract-case/case-plugin-dsl-types';
+
 import { caseVersion } from '../../entities/versionString';
 import { addMock, addMatcher } from './lookup';
 
 import { addLookup, findLookup } from './lookup/internals';
+import { CaseContractDescription, ContractData } from '../../entities/types';
 
 /**
  * Internal function to generate a variable name from the current test, for lookup purposes.

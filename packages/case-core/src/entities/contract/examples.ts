@@ -1,7 +1,11 @@
 import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
-import { CaseCoreError } from '../../errors';
-import { CaseError } from '../../matchers/errors.types';
-import type { CaseExample, ExampleNames } from './types';
+import {
+  CaseCoreError,
+  CaseError,
+  CaseExample,
+} from '@contract-case/case-plugin-base';
+
+import type { ExampleNames } from './types';
 
 const getRequestName = (index: string, mock: AnyMockDescriptor) => {
   if (!('request' in mock)) {

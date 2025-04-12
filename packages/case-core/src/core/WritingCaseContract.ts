@@ -10,19 +10,20 @@ import {
   CaseFailedAssertionError,
   makeResults,
   ERROR_TYPE_CONFIGURATION,
-} from '@contract-case/case-plugin-base';
-import {
-  CaseContractDescription,
   CaseExample,
-} from '@contract-case/case-plugin-base/dist/src/core/contract/types';
-import { exampleToNames } from '@contract-case/case-plugin-base/dist/src/core/contract';
+} from '@contract-case/case-plugin-base';
+
 import { BaseCaseContract } from './BaseCaseContract';
 import { addExample, getFailures, hasFailure } from './structure';
 import type { TestInvoker } from './executeExample/types';
 import type { CaseConfig, WriterDependencies } from './types';
 import { configToRunContext } from './config';
 import { executeExample } from './executeExample';
-import { SETUP_VARIABLE_STATE } from '../entities/types';
+import {
+  CaseContractDescription,
+  SETUP_VARIABLE_STATE,
+} from '../entities/types';
+import { exampleToNames } from '../entities';
 
 export class WritingCaseContract extends BaseCaseContract {
   private testIndex = 0;

@@ -6,8 +6,8 @@ import {
   MatchContext,
   CaseConfigurationError,
   addLocation,
+  CaseExample,
 } from '@contract-case/case-plugin-base';
-import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import {
   AnyCaseMatcherOrData,
   AnyState,

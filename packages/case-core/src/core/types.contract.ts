@@ -1,5 +1,5 @@
 import { DataContext } from '@contract-case/case-plugin-base';
-import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { ContractData } from '../entities/types';
 
 export type WriteContract = (
   contract: ContractData,

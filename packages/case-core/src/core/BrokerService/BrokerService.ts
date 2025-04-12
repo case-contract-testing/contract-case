@@ -4,7 +4,6 @@ import {
   CaseConfigurationError,
   DataContext,
 } from '@contract-case/case-plugin-base';
-import { ContractData } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import {
   BrokerApi,
   DeployCheckResult,
@@ -13,6 +12,7 @@ import {
 } from '../types.broker';
 import { BuildEnvironment } from '../types.environment';
 import { downloadCaseContracts } from './downloadCaseContracts';
+import { ContractData } from '../../entities/types';
 
 export class BrokerService {
   broker: BrokerApi;

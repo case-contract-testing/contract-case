@@ -6,9 +6,8 @@ import {
   applyNodeToContext,
   MatchContext,
   addLocation,
+  CaseExample,
 } from '@contract-case/case-plugin-base';
-import { exampleToNames } from '@contract-case/case-plugin-base/dist/src/core/contract';
-import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { BaseCaseContract } from './BaseCaseContract';
 
 import type { MultiTestInvoker, RunTestCallback } from './executeExample/types';
@@ -19,6 +18,7 @@ import {
   ReaderDependencies,
 } from './types';
 import { executeExample } from './executeExample';
+import { exampleToNames } from '../entities';
 
 export class ReadingCaseContract extends BaseCaseContract {
   private mutex: Mutex;

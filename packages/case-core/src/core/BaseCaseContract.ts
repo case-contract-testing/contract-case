@@ -12,10 +12,6 @@ import {
   applyNodeToContext,
   MatchResult,
 } from '@contract-case/case-plugin-base';
-import {
-  ContractData,
-  CaseContractDescription,
-} from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { AnyCaseMatcher } from '@contract-case/case-entities-internal';
 import {
   AnyCaseMatcherOrData,
@@ -36,6 +32,7 @@ import { DEFAULT_TEST_ID } from './defaultTestId';
 import { traversals } from '../diffmatch';
 import { coreShapedLike } from '../entities';
 import { loadCorePlugins } from './plugins';
+import { ContractData, CaseContractDescription } from '../entities/types';
 
 type UserProvidedFunction = (...args: unknown[]) => Promise<unknown>;
 

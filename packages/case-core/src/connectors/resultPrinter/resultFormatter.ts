@@ -11,10 +11,10 @@ import {
   ERROR_TYPE_TEST_RESPONSE,
   ConfigurationError,
   ResultFormatter,
+  CaseExample,
 } from '@contract-case/case-plugin-base';
-import { exampleToNames } from '@contract-case/case-plugin-base/dist/src/core/contract';
-import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { ResultPrinter } from './types';
+import { exampleToNames } from '../../entities';
 
 const locationTitleLine = (
   location: Array<string>,

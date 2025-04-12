@@ -12,7 +12,6 @@ import {
   SetupInfoFor,
   AnyState,
 } from '@contract-case/case-plugin-dsl-types';
-import { CaseContractDescription } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { WritingCaseContract } from '../../core';
 
 import type {
@@ -24,6 +23,7 @@ import type { CaseConfig } from '../../core/types';
 import { writerDependencies } from '../dependencies';
 import { TestPrinter } from './types';
 import { configFromEnv } from '../../core/config';
+import { CaseContractDescription } from '../../entities/types';
 
 export type DefinitionSuccessExample<
   T extends AnyMockDescriptorType,

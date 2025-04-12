@@ -554,6 +554,51 @@
           }
         },
         {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!CaseExample:type",
+          "docComment": "/**\n * All states of Examples.\n *\n * This isn't really part of the plugin interface; it's only here because the ResultPrinter needs it.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type CaseExample = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SuccessfulCaseExample",
+              "canonicalReference": "@contract-case/case-plugin-base!~SuccessfulCaseExample:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
+              "text": "FailedCaseExample",
+              "canonicalReference": "@contract-case/case-plugin-base!~FailedCaseExample:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
+              "text": "PendingCaseExample",
+              "canonicalReference": "@contract-case/case-plugin-base!~PendingCaseExample:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/contract.types.ts",
+          "releaseTag": "Public",
+          "name": "CaseExample",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
           "kind": "Class",
           "canonicalReference": "@contract-case/case-plugin-base!CaseFailedAssertionError:class",
           "docComment": "/**\n * This is thrown by ContractCase core when expectations set up in the test were not met.\n *\n * If implementing a plugin, do not throw this during a matcher execution, instead return a {@link MatchResult} that contains the appropriate error.\n *\n * @public\n */\n",

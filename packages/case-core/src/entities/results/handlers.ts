@@ -10,11 +10,8 @@ import {
   ERROR_TYPE_TEST_RESPONSE,
   ERROR_TYPE_CONFIGURATION,
   CaseConfigurationError,
+  CaseExample,
 } from '@contract-case/case-plugin-base';
-// TODO: Move the "core" types back into the core package
-// They're only in the base, because of the result printer type on the context
-// eslint-disable-next-line no-restricted-imports
-import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 
 export const handleResult = (
   example: CaseExample,

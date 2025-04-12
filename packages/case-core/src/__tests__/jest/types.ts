@@ -1,5 +1,5 @@
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
-import { CaseContractDescription } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
+import { CaseContractDescription } from '@contract-case/case-plugin-base/case-core/src/entities/contract/types';
 import {
   ContractDefinerConnector,
   ContractVerifierConnector,

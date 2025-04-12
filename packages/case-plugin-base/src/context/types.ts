@@ -3,9 +3,9 @@ import {
   AnyCaseMatcher,
   AnyData,
 } from '@contract-case/case-plugin-dsl-types';
-import { CaseExample } from '../core/contract/types';
 import { LogLevel, Logger } from '../logger/types';
 import { CaseError, MatchResult } from '../matchers/errors.types';
+import { CaseExample } from '../contract.types';
 
 /**
  * Indicates that we are doing a general shape match in this context

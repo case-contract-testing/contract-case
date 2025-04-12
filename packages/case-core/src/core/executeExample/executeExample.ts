@@ -12,13 +12,10 @@ import {
   CaseFailedAssertionError,
   CaseCoreError,
   hasErrors,
+  CaseExample,
 } from '@contract-case/case-plugin-base';
-import {
-  makeFailedExample,
-  makeSuccessExample,
-} from '@contract-case/case-plugin-base/dist/src/core/contract';
-import { CaseExample } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
+
 import { setupExample } from './setup';
 import { findAndCallTrigger } from './triggers';
 import {
@@ -31,6 +28,7 @@ import { InvokingScaffold } from './types';
 import { Assertable } from '../../entities/types';
 import type { ReadingCaseContract } from '../ReadingCaseContract';
 import type { WritingCaseContract } from '../WritingCaseContract';
+import { makeFailedExample, makeSuccessExample } from '../../entities';
 
 const errorToFailedExample = (
   error: Error,

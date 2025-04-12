@@ -5,7 +5,6 @@
  */
 
 export * from './context';
-// export * from './core';
 export * from './errors';
 export * from './logger';
 export * from './matchers';

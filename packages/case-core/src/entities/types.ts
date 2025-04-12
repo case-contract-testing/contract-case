@@ -6,6 +6,7 @@ import { MatchResult } from '@contract-case/case-plugin-base';
 import { SetupInfoFor } from '@contract-case/case-plugin-dsl-types';
 
 export * from './states/types';
+export * from './contract/types';
 
 /**
  * Assertable holds a reference to the verifiable response of a mock.

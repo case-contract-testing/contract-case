@@ -7,7 +7,6 @@ import {
   constructDataContext,
   CaseCoreError,
 } from '@contract-case/case-plugin-base';
-import { CaseContractDescription } from '@contract-case/case-plugin-base/dist/src/core/contract/types';
 
 import type {
   CaseConfig,
@@ -24,6 +23,7 @@ import { readerDependencies } from '../dependencies';
 import { configFromEnv, configToRunContext } from '../../core/config';
 import { ContractStore } from '../../core/types.ContractReader';
 import { TestPrinter } from './types';
+import { CaseContractDescription } from '../../entities/types';
 
 const readContractFromStore = (
   config: CaseConfig,
