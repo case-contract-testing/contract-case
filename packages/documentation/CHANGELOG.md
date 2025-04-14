@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.22.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.21.0...documentation-v0.22.0) (2025-04-14)
+
+
+### Documentation
+
+* Improve documentation about deploy checks ([ddcc78e](https://github.com/case-contract-testing/contract-case/commit/ddcc78e4f4fafc2f889f7a24b77264eb26562cb8))
+* Improve information on sharing contracts ([cdbb277](https://github.com/case-contract-testing/contract-case/commit/cdbb277d474db16df7e48c23463bc96184f540d6))
+* Improve matchers page with examples in both languages ([bf92f72](https://github.com/case-contract-testing/contract-case/commit/bf92f723f5bbf3cd119b3cc3471c66b687070fed))
+
 ## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.20.1...documentation-v0.21.0) (2025-03-25)
 
 

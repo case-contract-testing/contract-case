@@ -1,5 +1,42 @@
 # Changelog
 
+## [0.22.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.21.0...@contract-case/case-core-v0.22.0) (2025-04-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** New behaviour of using contacts like snapshots - the new setting changedContracts changes the behaviour when contracts are changed. Either 'FAIL' for fail when a contract is changed, or 'OVERWRITE' for overwriting when a contract is changed. Default is to FAIL, so this is a breaking change.
+
+### Features
+
+* **cli:** Add ability to invoke can-i-deploy from the CLI ([b2351ca](https://github.com/case-contract-testing/contract-case/commit/b2351cabd548d6b62b631fd45966cc2263325276))
+* **core:** Add ability to ask broker if it is safe to deploy ([17a3ec5](https://github.com/case-contract-testing/contract-case/commit/17a3ec5ecb7d5676137a4f7cd84dc4bb3e68d67b))
+* **core:** New behaviour of using contacts like snapshots - the new setting changedContracts changes the behaviour when contracts are changed. Either 'FAIL' for fail when a contract is changed, or 'OVERWRITE' for overwriting when a contract is changed. Default is to FAIL, so this is a breaking change. ([b8dcd1f](https://github.com/case-contract-testing/contract-case/commit/b8dcd1f7ed16cfdeda22728da794a66e95f2870c))
+* **core:** Write a main contract file alongside the hashed contract file when in contractDir mode. Useful for spotting changes to the main branch ([afb2e66](https://github.com/case-contract-testing/contract-case/commit/afb2e66ab415d2447ee983585c39e66d67d4e0eb))
+
+
+### Bug Fixes
+
+* **core:** Contract hashes no longer include metadata or broker-provided fields. This means that broker downloaded contracts will match the uploaded hash ([60f4f5f](https://github.com/case-contract-testing/contract-case/commit/60f4f5f9c2fe3cfaecd3c90c4b5adb94f9dd3b65))
+* **core:** Improve error message when non-brokered contract verification is published ([0cfbfa0](https://github.com/case-contract-testing/contract-case/commit/0cfbfa0471cd7ca0a9eec8b3abc28b3c4183527d))
+* **core:** State-handler provided variables were accidentally included in the contract hash, now they aren't ([1f3045f](https://github.com/case-contract-testing/contract-case/commit/1f3045fb7b9bd6074fec6ec8aaefab9f7b638222))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-core-plugin-http bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-entities-internal bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-plugin-base bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.21.0 to 0.22.0
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-maintainer-config bumped from 0.21.0 to 0.22.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.21.0 to 0.22.0
+
 ## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.20.1...@contract-case/case-core-v0.21.0) (2025-03-25)
 
 

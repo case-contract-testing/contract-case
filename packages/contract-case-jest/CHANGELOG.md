@@ -29,6 +29,41 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.22.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.21.0...@contract-case/contract-case-jest-v0.22.0) (2025-04-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** New behaviour of using contacts like snapshots - the new setting changedContracts changes the behaviour when contracts are changed. Either 'FAIL' for fail when a contract is changed, or 'OVERWRITE' for overwriting when a contract is changed. Default is to FAIL, so this is a breaking change.
+
+### Features
+
+* **core:** New behaviour of using contacts like snapshots - the new setting changedContracts changes the behaviour when contracts are changed. Either 'FAIL' for fail when a contract is changed, or 'OVERWRITE' for overwriting when a contract is changed. Default is to FAIL, so this is a breaking change. ([b8dcd1f](https://github.com/case-contract-testing/contract-case/commit/b8dcd1f7ed16cfdeda22728da794a66e95f2870c))
+* **core:** Write a main contract file alongside the hashed contract file when in contractDir mode. Useful for spotting changes to the main branch ([afb2e66](https://github.com/case-contract-testing/contract-case/commit/afb2e66ab415d2447ee983585c39e66d67d4e0eb))
+
+
+### Bug Fixes
+
+* **core:** State-handler provided variables were accidentally included in the contract hash, now they aren't ([1f3045f](https://github.com/case-contract-testing/contract-case/commit/1f3045fb7b9bd6074fec6ec8aaefab9f7b638222))
+* Improve reporting of stack traces when triggers fail ([deedb53](https://github.com/case-contract-testing/contract-case/commit/deedb532cbd8e62926cb58da3392ce41135a6dd5))
+* **jest:** Expose package as CJS so that it plays better with jest ([34e8a3b](https://github.com/case-contract-testing/contract-case/commit/34e8a3b84b6b77a460dde5a76ae92a8e25acf504))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-definition-dsl bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-entities-internal bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-plugin-base bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.21.0 to 0.22.0
+    * @contract-case/cli bumped from 0.21.0 to 0.22.0
+  * devDependencies
+    * @contract-case/cli bumped from 0.21.0 to 0.22.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.21.0 to 0.22.0
+
 ## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.20.1...@contract-case/contract-case-jest-v0.21.0) (2025-03-25)
 
 

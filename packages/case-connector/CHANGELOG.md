@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.22.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.21.0...@contract-case/case-connector-v0.22.0) (2025-04-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** New behaviour of using contacts like snapshots - the new setting changedContracts changes the behaviour when contracts are changed. Either 'FAIL' for fail when a contract is changed, or 'OVERWRITE' for overwriting when a contract is changed. Default is to FAIL, so this is a breaking change.
+
+### Features
+
+* **cli:** Add ability to invoke can-i-deploy from the CLI ([b2351ca](https://github.com/case-contract-testing/contract-case/commit/b2351cabd548d6b62b631fd45966cc2263325276))
+* **connector:** Expose a CJS version as `@contract-case/case-connector/cjs` ([bbc490d](https://github.com/case-contract-testing/contract-case/commit/bbc490d0f92afb9a936be615e9663a8c27478cc7))
+* **core:** New behaviour of using contacts like snapshots - the new setting changedContracts changes the behaviour when contracts are changed. Either 'FAIL' for fail when a contract is changed, or 'OVERWRITE' for overwriting when a contract is changed. Default is to FAIL, so this is a breaking change. ([b8dcd1f](https://github.com/case-contract-testing/contract-case/commit/b8dcd1f7ed16cfdeda22728da794a66e95f2870c))
+
+
+### Bug Fixes
+
+* Improve reporting of stack traces when triggers fail ([deedb53](https://github.com/case-contract-testing/contract-case/commit/deedb532cbd8e62926cb58da3392ce41135a6dd5))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-core bumped from 0.21.0 to 0.22.0
+    * @contract-case/case-entities-internal bumped from 0.21.0 to 0.22.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.21.0 to 0.22.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.21.0 to 0.22.0
+
 ## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.20.1...@contract-case/case-connector-v0.21.0) (2025-03-25)
 
 
