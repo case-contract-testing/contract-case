@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/eslint-config-case-maintainer-v0.21.0...@contract-case/eslint-config-case-maintainer-v0.22.0) (2025-04-14)
+
+
+### Bug Fixes
+
+* **lint:** Ensure that bin and mts files are also linted ([652c4af](https://github.com/case-contract-testing/contract-case/commit/652c4af765c68642729f51b715212cce1eb5070a))
+
 ## [0.21.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/eslint-config-case-maintainer-v0.20.1...@contract-case/eslint-config-case-maintainer-v0.21.0) (2025-03-25)
 
 
