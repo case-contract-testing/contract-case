@@ -21,6 +21,7 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
       LogLevel logLevel,
       String contractDir,
       String contractFilename,
+      ChangedContractsBehaviour changedContractsBehaviour,
       Boolean printResults,
       Boolean throwOnFail,
       PublishType publish,
@@ -34,7 +35,9 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
       TestErrorResponseFunction testErrorResponse,
       Map<String, Map<String, String>> mockConfig,
       AutoVersionFrom autoVersionFrom) {
-    super(providerName, consumerName, logLevel, contractDir, contractFilename, printResults,
+    super(providerName, consumerName, logLevel, contractDir, contractFilename,
+        changedContractsBehaviour,
+        printResults,
         throwOnFail, publish, brokerBaseUrl, brokerCiAccessToken, brokerBasicAuth, baseUrlUnderTest,
         triggers, stateHandlers, mockConfig,
         autoVersionFrom
@@ -63,6 +66,7 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
     private TestErrorResponseFunction testErrorResponse;
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
     private AutoVersionFrom autoVersionFrom;
+    private ChangedContractsBehaviour changedContracts;
 
     private IndividualFailedTestConfigBuilder() {
     }
@@ -231,6 +235,11 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
       return this;
     }
 
+    public IndividualFailedTestConfigBuilder<T> changedContracts(ChangedContractsBehaviour changedContractsBehaviour) {
+      this.changedContracts = changedContractsBehaviour;
+      return this;
+    }
+
     public IndividualFailedTestConfig<T> build() {
       return new IndividualFailedTestConfig<>(
           providerName,
@@ -238,6 +247,7 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
           logLevel,
           contractDir,
           contractFilename,
+          changedContracts,
           printResults,
           throwOnFail,
           publish,

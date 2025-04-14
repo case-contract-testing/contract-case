@@ -89,6 +89,10 @@ class ConnectorConfigMapper {
       builder.contractFilename(config.contractFilename);
     }
 
+    if(config.changedContracts != null) {
+      builder.changedContracts(config.changedContracts);
+    }
+
     if (config.printResults != null) {
       builder.printResults(config.printResults);
     }
@@ -123,6 +127,7 @@ class ConnectorConfigMapper {
     if(config.autoVersionFrom != null) {
       builder.autoVersionFrom(config.autoVersionFrom);
     }
+
 
     config.mockConfig.forEach(builder::mockConfig);
 

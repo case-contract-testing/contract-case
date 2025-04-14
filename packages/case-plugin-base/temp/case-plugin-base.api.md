@@ -416,6 +416,8 @@ export interface RunContext extends Partial<InjectableContext & LogLevelContext 
     // (undocumented)
     '_case:currentRun:context:brokerCiAccessToken'?: string;
     // (undocumented)
+    '_case:currentRun:context:changedContracts'?: 'FAIL' | 'OVERWRITE';
+    // (undocumented)
     '_case:currentRun:context:connectorClient': string;
     // (undocumented)
     '_case:currentRun:context:defaultConfig': Record<string, AnyData>;

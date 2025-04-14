@@ -118,6 +118,13 @@ export class ContractCaseConfig extends jspb.Message {
     value?: google_protobuf_wrappers_pb.StringValue,
   ): ContractCaseConfig;
 
+  hasChangedContracts(): boolean;
+  clearChangedContracts(): void;
+  getChangedContracts(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setChangedContracts(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ContractCaseConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ContractCaseConfig.AsObject;
   static toObject(
@@ -160,6 +167,7 @@ export namespace ContractCaseConfig {
 
     mockConfigMap: Array<[string, string]>;
     autoVersionFrom?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    changedContracts?: google_protobuf_wrappers_pb.StringValue.AsObject;
   };
 
   export class UsernamePassword extends jspb.Message {

@@ -69,6 +69,17 @@ export interface ContractCaseConfig {
   readonly contractFilename?: string;
 
   /**
+   * What to do if contracts have changed:
+   *
+   * - `"OVERWRITE"`: Replace the previous contract file
+   * - `"FAIL"`: Fail if attempting to write a contract that's different
+   *   to the previous one
+   *
+   * Default: 'FAIL'
+   */
+  readonly changedContracts?: 'FAIL' | 'OVERWRITE';
+
+  /**
    * The test run ID, used in part to generate filenames and distinguish separate runs.
    * This generally shouldn't need to be set by users.
    *

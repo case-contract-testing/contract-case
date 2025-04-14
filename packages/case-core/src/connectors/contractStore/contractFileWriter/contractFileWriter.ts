@@ -8,31 +8,22 @@ import {
   CaseConfigurationError,
   HasContractFileConfig,
 } from '@contract-case/case-plugin-base';
-import type { WriteContract } from '../../../core/types';
+import type { DownloadedContract, WriteContract } from '../../../core/types';
 import { isHasContractFileConfig } from './contextValidator';
 import { generateFileName, generateMainContractPath } from './filename';
 import { ContractData } from '../../../entities/types';
+import { readContract } from '../contractReader';
+import { rawEquality } from '../../../diffmatch';
+import { stripForComparison, stripForWriting } from './stripForComparison';
 
-/**
- * Strips any state-provided values from the contract.
- *
- * This is important because these are provided by the (possibly non-hermetic)
- * state handlers present in some interaction types (eg, contracts defined by
- * http response consumers). The state-provided variables are part of the test
- * configuration, and not part of the contract.
- *
- * Note this doesn't strip state variable default values, only those from state
- * handlers.
- *
- * @param contract - the contract to strip variables from
- * @returns the contract without the state-provided variables
- */
-const stripStateVariables = (contract: ContractData): ContractData => ({
-  ...contract,
-  matcherLookup: Object.entries(contract.matcherLookup)
-    .filter(([key]) => !key.startsWith('variable:state'))
-    .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
-});
+const contractsEqual = (
+  existingContract: DownloadedContract,
+  contract: ContractData,
+) =>
+  rawEquality(
+    stripForComparison(existingContract),
+    stripForComparison(contract),
+  );
 
 const createDirectory = (
   pathToFile: string,
@@ -58,15 +49,41 @@ const actuallyWriteContract = (
   contract: ContractData,
   context: HasContractFileConfig,
 ) => {
-  if (
-    fs.existsSync(pathToFile) &&
-    context['_case:currentRun:context:contractFilename'] &&
-    !context['_case:currentRun:context:overwriteFile']
-  ) {
-    context.logger.error(
-      `Can't write to '${pathToFile}, as it already exists'`,
-    );
-    throw new CaseConfigurationError(`The file ${pathToFile} already exists`);
+  if (fs.existsSync(pathToFile)) {
+    if (
+      context['_case:currentRun:context:contractFilename'] &&
+      !context['_case:currentRun:context:overwriteFile']
+    ) {
+      context.logger.error(
+        `Can't write to '${pathToFile}, as it already exists'`,
+      );
+      throw new CaseConfigurationError(`The file ${pathToFile} already exists`);
+    }
+    const existingContract = readContract(pathToFile);
+
+    if (context['_case:currentRun:context:changedContracts'] === 'FAIL') {
+      if (!contractsEqual(existingContract, contract)) {
+        throw new CaseConfigurationError(
+          `
+        The existing contract in file:
+            ${pathToFile} 
+        didn't match the new contract being written.
+        
+        Please re-run your tests with one of:
+        
+        * The configuration property changedContracts is set to 'OVERWRITE'
+        * The environment variable CASE_changedContracts=OVERWRITE
+        
+        If you see this on consecutive runs, please check 
+        that your contract doesn't contain randomness 
+        during contract definition`,
+        );
+      }
+      context.logger.debug(
+        `No need to overwrite contract '${pathToFile}', as it is identical to this one`,
+      );
+      return pathToFile;
+    }
   }
 
   createDirectory(pathToFile, context);
@@ -98,11 +115,9 @@ const internalWriteContract = (
     );
   }
 
-  const pathToFile = generateFileName(contract, context);
-
-  actuallyWriteContract(pathToFile, contract, context);
-
   if (context['_case:currentRun:context:contractFilename'] === undefined) {
+    // If we haven't been given an explicit filename, we also write the main
+    // contract too
     actuallyWriteContract(
       generateMainContractPath(contract, context),
       contract,
@@ -110,10 +125,14 @@ const internalWriteContract = (
     );
   }
 
+  const pathToFile = generateFileName(contract, context);
+
+  actuallyWriteContract(pathToFile, contract, context);
+
   return pathToFile;
 };
 
 export const writeContract: WriteContract = (
   contract: ContractData,
   context: DataContext,
-): string => internalWriteContract(stripStateVariables(contract), context);
+): string => internalWriteContract(stripForWriting(contract), context);

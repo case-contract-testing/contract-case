@@ -2,6 +2,7 @@ package io.contract_testing.contractcase.internal.edge;
 
 import io.contract_testing.contractcase.configuration.AutoVersionFrom;
 import io.contract_testing.contractcase.configuration.BrokerBasicAuthCredentials;
+import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
@@ -38,6 +39,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       LogLevel logLevel,
       String contractDir,
       String contractFilename,
+      ChangedContractsBehaviour changedContractsBehaviour,
       Boolean printResults,
       Boolean throwOnFail,
       PublishType publish,
@@ -57,6 +59,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
         logLevel,
         contractDir,
         contractFilename,
+        changedContractsBehaviour,
         printResults,
         throwOnFail,
         publish,
@@ -112,6 +115,10 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
     throw new RuntimeException("This method should not be called");
   }
 
+  public ChangedContractsBehaviour getChangedContracts() {
+    return this.changedContracts;
+  }
+
   public static final class Builder {
 
     private String providerName;
@@ -133,6 +140,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
 
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
     private AutoVersionFrom autoVersionFrom;
+    private ChangedContractsBehaviour changedContracts;
 
     private Builder() {
     }
@@ -231,6 +239,11 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       return this;
     }
 
+    public Builder changedContracts(ChangedContractsBehaviour changedContractsBehaviour) {
+      this.changedContracts = changedContractsBehaviour;
+      return this;
+    }
+
 
     public ContractCaseConnectorConfig build() {
       return new ContractCaseConnectorConfig(
@@ -239,6 +252,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
           logLevel,
           contractDir,
           contractFilename,
+          changedContracts,
           printResults,
           throwOnFail,
           publish,

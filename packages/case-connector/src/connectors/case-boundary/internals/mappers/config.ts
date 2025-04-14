@@ -57,6 +57,22 @@ const mapAutoVersionFrom = (autoVersionFrom: string): 'TAG' | 'GIT_SHA' => {
   }
 };
 
+const mapChangedContracts = (
+  changedContracts: string,
+): 'FAIL' | 'OVERWRITE' => {
+  switch (changedContracts.toUpperCase()) {
+    case 'FAIL': {
+      return 'FAIL';
+    }
+    case 'OVERWRITE':
+      return 'OVERWRITE';
+    default:
+      throw new CaseConfigurationError(
+        `The changedContracts setting '${changedContracts}' is not a valid changed contracts setting`,
+      );
+  }
+};
+
 /**
  * SeparateConfig only exists because at one point these two things were separate.
  * At some point, we should refactor this so that the config shape doesn't need to
@@ -67,6 +83,19 @@ type SeparateConfig = {
   partialInvoker: Partial<TestInvoker<AnyMockDescriptorType, unknown>>;
 };
 
+/**
+ * Converts between the boundary config (which is less restricted) and a
+ * validated form of CaseConfig.
+ *
+ * Here, validated means "conforms to the typescript definition of CaseConfig".
+ *
+ * Mappers should throw `CaseConfigurationError` if the values in the boundary config
+ * can't be assigned to the CaseConfig.
+ *
+ * @internal
+ * @param param0 - A boundary config object
+ * @returns a validated case config object
+ */
 export const convertConfig = ({
   stateHandlers,
   triggerAndTest,
@@ -74,12 +103,16 @@ export const convertConfig = ({
   logLevel,
   publish,
   autoVersionFrom,
+  changedContracts,
   ...incoming
 }: ContractCaseBoundaryConfig): SeparateConfig => ({
   config: {
     ...incoming,
     ...(autoVersionFrom
       ? { autoVersionFrom: mapAutoVersionFrom(autoVersionFrom) }
+      : {}),
+    ...(changedContracts
+      ? { changedContracts: mapChangedContracts(changedContracts) }
       : {}),
     ...(logLevel ? { logLevel: mapLogLevel(logLevel) } : {}),
     ...(publish ? { publish: mapPublish(publish) } : {}),

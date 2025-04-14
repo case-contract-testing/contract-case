@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase.configuration;
 
+import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
       LogLevel logLevel,
       String contractDir,
       String contractFilename,
+      ChangedContractsBehaviour changedContractsBehaviour,
       Boolean printResults,
       Boolean throwOnFail,
       PublishType publish,
@@ -32,7 +34,9 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
       TestResponseFunction<T> testResponse,
       Map<String, Map<String, String>> mockConfig,
       AutoVersionFrom autoVersionFrom) {
-    super(providerName, consumerName, logLevel, contractDir, contractFilename, printResults,
+    super(providerName, consumerName, logLevel, contractDir, contractFilename,
+        changedContractsBehaviour,
+        printResults,
         throwOnFail, publish, brokerBaseUrl, brokerCiAccessToken, brokerBasicAuth, baseUrlUnderTest,
         triggers, stateHandlers, mockConfig,
         autoVersionFrom
@@ -63,6 +67,7 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
     private AutoVersionFrom autoVersionFrom;
 
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
+    private ChangedContractsBehaviour changedContracts;
 
     private IndividualSuccessTestConfigBuilder() {
     }
@@ -170,6 +175,11 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
       return this;
     }
 
+    public IndividualSuccessTestConfigBuilder<T> changedContracts(ChangedContractsBehaviour changedContractsBehaviour) {
+      this.changedContracts = changedContractsBehaviour;
+      return this;
+    }
+
     public IndividualSuccessTestConfig<T> build() {
       return new IndividualSuccessTestConfig<>(
           providerName,
@@ -177,6 +187,7 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
           logLevel,
           contractDir,
           contractFilename,
+          changedContracts,
           printResults,
           throwOnFail,
           publish,

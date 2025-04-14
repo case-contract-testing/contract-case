@@ -43,6 +43,10 @@ Next:
 - [ ] Do a configuration error message like the crash message, so that misconfigurations don't result in stack traces
 - [ ] Ensure original stack traces are maintained across boundaries and implement `originalStack` function.
 - [ ] Add way to say 'I need this field and I don't care what's in it'
+- [ ] Replace direct access of context in the core with selector methods, so that the logic is consistent and will read more fluently
+- [ ] Validate config - some settings can come as arbitrary strings (eg from env), and we could be more helpful if there are errors
+- [ ] Allow both `CASE_foo` and `CASE_FOO` environment variables (but fail if they're both set to different things).
+- [ ] Make sure that downloaded contracts don't write to `main`, and don't collide with local contracts.
 
 Document
 

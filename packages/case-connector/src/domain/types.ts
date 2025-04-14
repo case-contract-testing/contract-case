@@ -6,12 +6,16 @@ export type ConnectorStateHandler = BoundaryStateHandler;
 
 export type ConnectorTriggerFunction = ITriggerFunction;
 
+// TODO: This should be consolidated with the boundary
+// config types so that there's only one mapping layer here
+
 export type ContractCaseConnectorConfig = {
   providerName: string;
   consumerName: string;
   logLevel: string;
   contractDir: string;
   contractFilename: string;
+  changedContracts: string;
 
   publish: string;
   brokerCiAccessToken: string;

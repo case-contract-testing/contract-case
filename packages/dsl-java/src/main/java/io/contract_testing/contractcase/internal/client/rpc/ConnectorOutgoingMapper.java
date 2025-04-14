@@ -9,16 +9,8 @@ import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
-import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.configuration.LogLevel;
-import io.contract_testing.contractcase.internal.client.MaintainerLog;
-import io.contract_testing.contractcase.internal.edge.ConnectorFailure;
-import io.contract_testing.contractcase.internal.edge.ConnectorFailureKindConstants;
-import io.contract_testing.contractcase.internal.edge.ConnectorResult;
-import io.contract_testing.contractcase.internal.edge.ConnectorResultTypeConstants;
-import io.contract_testing.contractcase.internal.edge.ConnectorSuccessWithAny;
-import io.contract_testing.contractcase.internal.edge.ConnectorSuccessWithMap;
-import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
+import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.grpc.ContractCaseStream;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig.UsernamePassword;
@@ -33,6 +25,14 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.RunRejectingInte
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle.Stage;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.TriggerFunctionHandle;
+import io.contract_testing.contractcase.internal.client.MaintainerLog;
+import io.contract_testing.contractcase.internal.edge.ConnectorFailure;
+import io.contract_testing.contractcase.internal.edge.ConnectorFailureKindConstants;
+import io.contract_testing.contractcase.internal.edge.ConnectorResult;
+import io.contract_testing.contractcase.internal.edge.ConnectorResultTypeConstants;
+import io.contract_testing.contractcase.internal.edge.ConnectorSuccessWithAny;
+import io.contract_testing.contractcase.internal.edge.ConnectorSuccessWithMap;
+import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 
@@ -122,6 +122,10 @@ public class ConnectorOutgoingMapper {
     if (config.getContractFilename() != null) {
       builder.setContractFilename(ConnectorOutgoingMapper.map(config.getContractFilename()));
     }
+    if (config.getChangedContracts() != null) {
+      builder.setChangedContracts(ConnectorOutgoingMapper.map(
+          config.getChangedContracts().toString()));
+    }
     if (config.getLogLevel() != null) {
       builder.setLogLevel(ConnectorOutgoingMapper.map(config.getLogLevel().toString()));
     }
@@ -166,7 +170,8 @@ public class ConnectorOutgoingMapper {
             .build());
   }
 
- public static ContractCaseStream.DefinitionRequest.Builder mapRunRejectingInteractionRequest(JsonNode definition,
+  public static ContractCaseStream.DefinitionRequest.Builder mapRunRejectingInteractionRequest(
+      JsonNode definition,
       ContractCaseConnectorConfig runConfig) {
     final var structBuilder = getStructBuilder(definition);
     return DefinitionRequest.newBuilder()

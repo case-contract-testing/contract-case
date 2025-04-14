@@ -14,6 +14,7 @@ export const stringConfigArgs: Array<IsStringArg<keyof BaseCaseConfig>> = [
   'logLevel',
   'contractDir',
   'contractFilename',
+  'changedContracts',
   'testRunId',
   'printResults',
   'throwOnFail',
@@ -48,6 +49,7 @@ export interface BaseCaseConfig {
    * `"maintainerDebug" | "deepMaintainerDebug"` - debugging information for ContractCase maintainers
    */
   logLevel?: LogLevel;
+
   /**
    * The directory where the contract will be written. If you provide this, ContractCase
    * will store contracts in subdirectories for each provider, and the
@@ -56,12 +58,35 @@ export interface BaseCaseConfig {
    * `${consumerName}-${hashOfContract}.case.json`.
    */
   contractDir: string;
+
   /**
    * The filename where the contract will be written. If you
    * provide this, `contractDir` is ignored
    */
   contractFilename?: string;
+
+  /**
+   * What to do if contracts have changed?
+   *
+   * - `"OVERWRITE"`: Replace the previous contract file
+   * - `"FAIL"`: Fail if attempting to write a contract that's different
+   *   to the previous one
+   */
+  changedContracts: 'OVERWRITE' | 'FAIL';
+
+  /**
+   * An ID for the whole test run. This was originally used to generate
+   * filenames, but now that the contracts are hashed, this is no longer
+   * necessary.
+   *
+   * Probably we can remove this in a future version?
+   */
   testRunId: string;
+
+  /**
+   * Whether or not to print test results using the Result Printer (defaults to
+   * standard out)
+   */
   printResults: boolean;
 
   /**

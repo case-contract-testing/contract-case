@@ -110,7 +110,11 @@ export const makeBrokerApi: MakeBrokerApi = (
               {
                 consumerName: contract.description.consumerName,
                 providerName: contract.description.providerName,
-                specification: 'pact', // TODO: Replace this with '_case::contract' when the broker supports it
+                // We claim that this is a pact spec, because otherwise the pact
+                // broker won't accept it. However, this value has no effect on the
+                // broker's behaviour.
+                // TODO: Replace this with '_case::contract' when the broker supports it
+                specification: 'pact',
                 contentType: 'application/json',
                 content: Buffer.from(JSON.stringify(contract)).toString(
                   'base64',

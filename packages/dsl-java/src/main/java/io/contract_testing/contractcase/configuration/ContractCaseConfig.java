@@ -50,10 +50,25 @@ public class ContractCaseConfig {
   public final String contractFilename;
 
   /**
+   * What to do if contracts have changed:
+   * <ul>
+   *   <li>
+   *     {@link ChangedContractsBehaviour#OVERWRITE}: Replace the previous contract file
+   *   </li>
+   *   <li>
+   *     {@link ChangedContractsBehaviour#FAIL}: Fail if attempting to write a contract that's different to the previous one
+   *   </li>
+   * </ul>
+   * <p>
+   * Default: 'FAIL'
+   */
+  public final ChangedContractsBehaviour changedContracts;
+
+
+  /**
    * Whether results should be printed on standard out during the test run
    */
   public final Boolean printResults;
-
 
   /**
    * Whether the test should throw an error if the matching fails.
@@ -135,7 +150,9 @@ public class ContractCaseConfig {
    */
   @SuppressWarnings("doclint")
   protected ContractCaseConfig(String providerName, String consumerName, LogLevel logLevel,
-      String contractDir, String contractFilename, Boolean printResults, Boolean throwOnFail,
+      String contractDir, String contractFilename,
+      ChangedContractsBehaviour changedContracts,
+      Boolean printResults, Boolean throwOnFail,
       PublishType publish, String brokerBaseUrl, String brokerCiAccessToken,
       BrokerBasicAuthCredentials brokerBasicAuth, String baseUrlUnderTest, TriggerGroups triggers,
       Map<String, StateHandler> stateHandlers, Map<String, Map<String, String>> mockConfig,
@@ -145,6 +162,7 @@ public class ContractCaseConfig {
     this.logLevel = logLevel;
     this.contractDir = contractDir;
     this.contractFilename = contractFilename;
+    this.changedContracts = changedContracts;
     this.printResults = printResults;
     this.throwOnFail = throwOnFail;
     this.publish = publish;
@@ -246,6 +264,7 @@ public class ContractCaseConfig {
     private AutoVersionFrom autoVersionFrom;
 
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
+    private ChangedContractsBehaviour changedContracts;
 
     private ContractCaseConfigBuilder() {
     }
@@ -393,6 +412,11 @@ public class ContractCaseConfig {
       return this;
     }
 
+    public ContractCaseConfigBuilder changedContracts(ChangedContractsBehaviour changedContractsBehaviour) {
+      this.changedContracts = changedContractsBehaviour;
+      return this;
+    }
+
 
     /**
      * Builds an immutable {@link ContractCaseConfig}
@@ -406,7 +430,7 @@ public class ContractCaseConfig {
           logLevel,
           contractDir,
           contractFilename,
-          printResults,
+          changedContracts, printResults,
           throwOnFail,
           publish,
           brokerBaseUrl,

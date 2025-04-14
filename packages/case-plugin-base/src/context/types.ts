@@ -400,6 +400,7 @@ export interface RunContext
   // TODO: These are from CaseConfig and should be auto generated
   '_case:currentRun:context:throwOnFail'?: boolean;
   '_case:currentRun:context:brokerCiAccessToken'?: string;
+  '_case:currentRun:context:changedContracts'?: 'FAIL' | 'OVERWRITE';
   '_case:currentRun:context:autoVersionFrom'?: 'TAG' | 'GIT_SHA';
   '_case:currentRun:context:publish'?:
     | false

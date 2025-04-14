@@ -135,6 +135,7 @@ const mapAllConfigFields = (
   logLevel: unboxOrUndefined(config.getLogLevel()),
   contractDir: unboxOrUndefined(config.getContractDir()),
   contractFilename: unboxOrUndefined(config.getContractFilename()),
+  changedContracts: unboxOrUndefined(config.getChangedContracts()),
 
   publish: unboxOrUndefined(config.getPublish()),
   brokerCiAccessToken: unboxOrUndefined(config.getBrokerCiAccessToken()),

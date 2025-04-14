@@ -20,7 +20,7 @@ export interface UserNamePassword {
 /**
  * Configure a ContractCase run. See the [configuration documentation](https://case.contract-testing.io/docs/reference/configuring) for more details.
  *
- * Note that many of these types are more permissive than the reality - for
+ * Implementation note: many of these types are more permissive than the reality - for
  * example, the constrained string types are listed here as `string`, whereas
  * the core will only accept a limited number of values (eg, log level accepts
  * `'warn'` `'error'` etc, but not `'gibbons'`). Callers may rely on the
@@ -69,6 +69,17 @@ export interface ContractCaseBoundaryConfig {
    * provide this, `contractDir` is ignored
    */
   readonly contractFilename?: string;
+
+  /**
+   * What to do if contracts have changed?
+   *
+   * - `"OVERWRITE"`: Replace the previous contract file
+   * - `"FAIL"`: Fail if attempting to write a contract that's different
+   *   to the previous one
+   *
+   * Default: 'FAIL'
+   */
+  changedContracts?: string;
 
   /**
    * Unique ID for this segment of the test run - it must be unique within a

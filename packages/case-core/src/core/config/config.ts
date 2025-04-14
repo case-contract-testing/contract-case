@@ -31,6 +31,18 @@ export const configFromEnv = (): CaseConfig =>
     }))
     .reduce((acc, curr) => ({ ...acc, ...curr }), {});
 
+/**
+ * This function takes a CaseConfig object and turns it into the appropriate
+ * RunContext values.
+ *
+ * Most of the time, this is a passthrough of the config property
+ * to a corresponding currentRun:config property.
+ *
+ * Occasionally you'll want to do explicit processing beyond this, however.
+ *
+ * @param config - the configuration object to map
+ * @returns a Partial RunContext object with anything that was set by the Config
+ */
 export const configToRunContext = (config: CaseConfig): Partial<RunContext> =>
   Object.entries(config)
     .map(([k, v]) => ({
