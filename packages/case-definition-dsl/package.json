@@ -72,7 +72,7 @@
     "@contract-case/eslint-config-case-maintainer": "0.22.0",
     "@contract-case/jsii-pacmak": "^0.0.1",
     "@microsoft/api-documenter": "^7.26.17",
-    "@microsoft/api-extractor": "^7.52.1",
+    "@microsoft/api-extractor": "^7.52.4",
     "@types/jest": "^29.5.12",
     "eslint": "^9.23.0",
     "jsii": "^5.7.4",
