@@ -56,7 +56,7 @@
     "@microsoft/api-documenter": "^7.26.17",
     "@microsoft/api-extractor": "^7.52.1",
     "eslint": "^9.22.0",
-    "prettier": "3.4.2",
+    "prettier": "3.5.3",
     "rimraf": "^6.0.1",
     "typescript": "5.8.3"
   },
