@@ -11,10 +11,11 @@ import {
   makeResults,
   ERROR_TYPE_CONFIGURATION,
   CaseExample,
+  CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
 
 import { BaseCaseContract } from './BaseCaseContract';
-import { addExample, getFailures, hasFailure } from './structure';
+import { addExample, getFailures, hasFailure, isEmpty } from './structure';
 import type { TestInvoker } from './executeExample/types';
 import type { CaseConfig, WriterDependencies } from './types';
 import { configToRunContext } from './config';
@@ -179,17 +180,24 @@ export class WritingCaseContract extends BaseCaseContract {
   async endRecord(): Promise<void> {
     const writingContext = addLocation('WritingContract', this.initialContext);
     if (hasFailure(this.currentContract)) {
+      const failures = getFailures(this.currentContract);
       throw new CaseFailedAssertionError(
         makeResults(
           {
             type: ERROR_TYPE_CONFIGURATION,
-            message: 'There were contract failures',
+            message: `Unable to write contract: There were ${failures.length} contract failures`,
             code: 'FAIL',
             location: ['Writing Contract'],
             toString: () => 'There were contract failures',
           },
-          ...getFailures(this.currentContract),
+          ...failures,
         ),
+      );
+    }
+    if (isEmpty(this.currentContract)) {
+      throw new CaseConfigurationError(
+        'The contract was empty when endRecord was called, but it must have interactions in it before it can be written.\nEnsure that calls to define the contract are made before endRecord is called.',
+        writingContext,
       );
     }
     //  - if success, write contract

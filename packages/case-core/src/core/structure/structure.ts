@@ -59,6 +59,21 @@ export const addExample = (
   examples: [...contract.examples, example],
 });
 
+/**
+ * Whether the contract has any examples or not
+ *
+ * @param contract - a ContractData object
+ * @returns true if the contract has no examples
+ */
+export const isEmpty = (contract: ContractData): boolean =>
+  contract.examples.length === 0;
+
+/**
+ * Whether the contract has any examples that are failures
+ *
+ * @param contract - a ContractData object
+ * @returns true if the contract has any failed examples
+ */
 export const hasFailure = (contract: ContractData): boolean =>
   contract.examples.find((example) => example.result === 'FAILED') !==
   undefined;
