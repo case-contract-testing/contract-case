@@ -27,12 +27,12 @@ export const applyNodeToContext: (caseNodeOrData: AnyCaseMatcherOrData | AnyMock
 
 // @public
 export class CaseConfigurationError extends Error {
-    constructor(message: string, context?: Pick<DataContext, '_case:currentRun:context:location'>);
+    constructor(message: string, context?: LogLevelContext);
 }
 
 // @public
 export class CaseCoreError extends Error {
-    constructor(message: string, context?: Pick<DataContext, '_case:currentRun:context:location'>);
+    constructor(message: string, context?: LogLevelContext);
 }
 
 // @public
@@ -57,7 +57,7 @@ export type CaseMatcherFor<KnownMatcherDescriptors, T extends string> = Extract<
 
 // @public
 export class CaseTriggerError extends Error {
-    constructor(message: string, context?: Pick<DataContext, '_case:currentRun:context:location'>);
+    constructor(message: string, context?: LogLevelContext);
 }
 
 // @public
@@ -132,7 +132,6 @@ export const coreLookupMatcher: (uniqueName: string, child: AnyCaseMatcherOrData
 // Warning: (ae-forgotten-export) The symbol "InjectableContext" needs to be exported by the entry point index.d.ts
 // Warning: (ae-incompatible-release-tags) The symbol "DataContext" is marked as @public, but its signature references "ContractFileConfig" which is marked as @internal
 // Warning: (ae-incompatible-release-tags) The symbol "DataContext" is marked as @public, but its signature references "RunContext" which is marked as @internal
-// Warning: (ae-incompatible-release-tags) The symbol "DataContext" is marked as @public, but its signature references "LogLevelContext" which is marked as @internal
 //
 // @public
 export type DataContext = DefaultContext & Partial<InjectableContext> & Partial<ContractFileConfig> & RunContext & LogLevelContext & LogContext;
@@ -142,8 +141,6 @@ export type DataContext = DefaultContext & Partial<InjectableContext> & Partial<
 // @internal
 export type DataOrCaseNodeFor<KnownMatcherDescriptors, T extends string> = CaseMatcherFor<KnownMatcherDescriptors, T> | AnyLeafOrStructure;
 
-// Warning: (ae-incompatible-release-tags) The symbol "DefaultContext" is marked as @public, but its signature references "LogLevelContext" which is marked as @internal
-//
 // @public
 export type DefaultContext = LogLevelContext & {
     '_case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
@@ -229,7 +226,6 @@ export const locationString: (matchContext: LogLevelContext) => string;
 // @public
 export interface LogContext {
     logger: Logger;
-    // Warning: (ae-incompatible-release-tags) The symbol "makeLogger" is marked as @public, but its signature references "LogLevelContext" which is marked as @internal
     makeLogger: (m: LogLevelContext) => Logger;
     // Warning: (ae-incompatible-release-tags) The symbol "resultPrinter" is marked as @public, but its signature references "ResultFormatter" which is marked as @internal
     resultPrinter: ResultFormatter;
@@ -247,9 +243,7 @@ export interface Logger {
 // @public
 export type LogLevel = 'none' | 'error' | 'warn' | 'debug' | 'maintainerDebug' | 'deepMaintainerDebug';
 
-// Warning: (ae-internal-missing-underscore) The name "LogLevelContext" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export type LogLevelContext = {
     '_case:currentRun:context:parentVersions': Array<string>;
     '_case:currentRun:context:logLevel': LogLevel;

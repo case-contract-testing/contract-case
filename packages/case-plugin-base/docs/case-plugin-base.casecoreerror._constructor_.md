@@ -9,7 +9,7 @@ Constructs a new instance of the `CaseCoreError` class
 **Signature:**
 
 ```typescript
-constructor(message: string, context?: Pick<DataContext, '_case:currentRun:context:location'>);
+constructor(message: string, context?: LogLevelContext);
 ```
 
 ## Parameters
@@ -51,7 +51,7 @@ context
 
 </td><td>
 
-Pick&lt;[DataContext](./case-plugin-base.datacontext.md)<!-- -->, '\_case:currentRun:context:location'&gt;
+[LogLevelContext](./case-plugin-base.loglevelcontext.md)
 
 
 </td><td>

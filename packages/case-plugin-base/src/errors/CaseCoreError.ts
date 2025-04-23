@@ -1,8 +1,5 @@
-import type { DataContext } from '../context/types';
-
-const locationString = (
-  matchContext: Pick<DataContext, '_case:currentRun:context:location'>,
-) => `(at ${matchContext['_case:currentRun:context:location'].join('.')})`;
+import type { LogLevelContext } from '../context/types';
+import { errorLocationString } from './renderer';
 
 /**
  * Something went wrong in ContractCase internals.
@@ -14,11 +11,8 @@ const locationString = (
  * @public
  */
 export class CaseCoreError extends Error {
-  constructor(
-    message: string,
-    context?: Pick<DataContext, '_case:currentRun:context:location'>,
-  ) {
-    super(`${message}${context ? locationString(context) : ''}`);
+  constructor(message: string, context?: LogLevelContext) {
+    super(`${message}${context ? errorLocationString(context) : ''}`);
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = 'CaseCoreError';
   }

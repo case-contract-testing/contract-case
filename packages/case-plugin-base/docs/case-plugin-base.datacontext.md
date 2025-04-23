@@ -11,5 +11,5 @@ Convenience type for just the parts of the context that have data - everything i
 ```typescript
 export type DataContext = DefaultContext & Partial<InjectableContext> & Partial<ContractFileConfig> & RunContext & LogLevelContext & LogContext;
 ```
-**References:** [DefaultContext](./case-plugin-base.defaultcontext.md)<!-- -->, [LogContext](./case-plugin-base.logcontext.md)
+**References:** [DefaultContext](./case-plugin-base.defaultcontext.md)<!-- -->, [LogLevelContext](./case-plugin-base.loglevelcontext.md)<!-- -->, [LogContext](./case-plugin-base.logcontext.md)
 

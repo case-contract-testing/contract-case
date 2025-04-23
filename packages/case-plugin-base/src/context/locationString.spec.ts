@@ -1,4 +1,4 @@
-import { locationString } from './context';
+import { locationString } from './locationString';
 import type { DataContext } from './types';
 
 describe('location string function', () => {

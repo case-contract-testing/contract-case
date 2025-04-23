@@ -42,6 +42,9 @@ export const handleResult = (
       throw new CaseTriggerError(
         `The provided trigger function failed during execution:\n\n   ${triggerError.message}`,
         {
+          ...context,
+          // Need to override the location in the context with the location of
+          // the trigger error, because it happened at a different place
           '_case:currentRun:context:location': triggerError.location,
         },
       );

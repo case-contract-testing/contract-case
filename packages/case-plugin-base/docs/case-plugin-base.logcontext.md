@@ -64,7 +64,7 @@ Current logger
 
 </td><td>
 
-(m: LogLevelContext) =&gt; [Logger](./case-plugin-base.logger.md)
+(m: [LogLevelContext](./case-plugin-base.loglevelcontext.md)<!-- -->) =&gt; [Logger](./case-plugin-base.logger.md)
 
 
 </td><td>

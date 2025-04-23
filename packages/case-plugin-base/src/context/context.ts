@@ -19,7 +19,6 @@ import type {
 
 import { isCaseNode } from '../matchers/types';
 import { Logger } from '../logger/types';
-import { shouldLog } from '../logger/shouldLog';
 
 /**
  * `_case:currentRun:context:*` is not clobberable by child matchers
@@ -193,24 +192,3 @@ export const addLocation = (
       '_case:currentRun:context:location'
     ].concat([location]),
   });
-
-/**
- * Gets the string representation of the current context
- *
- * @internal
- */
-export const locationString = (matchContext: LogLevelContext): string =>
-  matchContext['_case:currentRun:context:location']
-    .filter(
-      (locationItem) =>
-        (locationItem.startsWith(':') &&
-          shouldLog(matchContext, 'maintainerDebug')) ||
-        !locationItem.startsWith(':'),
-    )
-    .reduce<string>(
-      (acc: string, curr: string) =>
-        curr.startsWith('[') || curr.startsWith(':') || acc === ''
-          ? `${acc}${curr}`
-          : `${acc}.${curr}`,
-      '',
-    );

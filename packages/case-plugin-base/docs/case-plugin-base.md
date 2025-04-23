@@ -697,6 +697,17 @@ The log levels available
 </td></tr>
 <tr><td>
 
+[LogLevelContext](./case-plugin-base.loglevelcontext.md)
+
+
+</td><td>
+
+LogLevelContext is the subset of the overall context object that's needed for logging. It exists so that it's possible to call log and error related functions no matter what context you're in.
+
+
+</td></tr>
+<tr><td>
+
 [MatchContext](./case-plugin-base.matchcontext.md)
 
 
