@@ -79,6 +79,8 @@ export const handleResult = (
     if (example.errors.some((i) => i.type === ERROR_TYPE_CONFIGURATION)) {
       throw new CaseConfigurationError(
         example.errors.map((e) => e.message).join(),
+        'DONT_ADD_LOCATION',
+        'UNDOCUMENTED',
       );
     }
   } else {

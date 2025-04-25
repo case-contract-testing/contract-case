@@ -1,4 +1,7 @@
-import { CaseConfigurationError } from '@contract-case/case-plugin-base';
+import {
+  CaseConfigurationError,
+  MatchContext,
+} from '@contract-case/case-plugin-base';
 
 type FieldDescriptor<T extends object> = {
   field: keyof T;
@@ -15,21 +18,28 @@ const assertPresentInternal = <T extends object>(
   data: T,
   { field, type, notNull }: FieldDescriptor<T>,
   name: string,
+  context: MatchContext,
 ) => {
   if (!(field in data)) {
     throw new CaseConfigurationError(
       `${name} must contain a '${String(field)}' key`,
+      context,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
 
   if (typeof data[field] !== type) {
     throw new CaseConfigurationError(
       `${name}'s ${String(field)} must be a ${type}`,
+      context,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
   if (notNull && data[field] === null) {
     throw new CaseConfigurationError(
       `${name}'s ${String(field)} must not be null`,
+      context,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
 };
@@ -38,16 +48,21 @@ const ifPresentInternal = <T extends object>(
   data: T,
   { field, type, notNull }: FieldDescriptor<T>,
   name: string,
+  context: MatchContext,
 ) => {
   if (field in data) {
     if (typeof data[field] !== type) {
       throw new CaseConfigurationError(
         `${name}'s ${String(field)} must be a ${type}`,
+        context,
+        'BAD_INTERACTION_DEFINITION',
       );
     }
     if (notNull && data[field] === null) {
       throw new CaseConfigurationError(
         `${name}'s ${String(field)} must not be null`,
+        context,
+        'BAD_INTERACTION_DEFINITION',
       );
     }
   }
@@ -56,9 +71,10 @@ const ifPresentInternal = <T extends object>(
 export const makeAssertionsOn = <T extends object>(
   data: T,
   name: string,
+  context: MatchContext,
 ): DataAssertions<T> => ({
-  assertFieldPresent: ({ field, type }: FieldDescriptor<T>) =>
-    assertPresentInternal(data, { field, type }, name),
-  assertIfFieldPresent: ({ field, type }: FieldDescriptor<T>) =>
-    ifPresentInternal(data, { field, type }, name),
+  assertFieldPresent: (descriptor: FieldDescriptor<T>) =>
+    assertPresentInternal(data, descriptor, name, context),
+  assertIfFieldPresent: (descriptor: FieldDescriptor<T>) =>
+    ifPresentInternal(data, descriptor, name, context),
 });

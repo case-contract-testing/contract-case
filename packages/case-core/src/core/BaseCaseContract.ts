@@ -126,7 +126,7 @@ export class BaseCaseContract {
         'When trying to register the duplicate, the userProvidedFunctions were:',
         this.userProvidedFunctions,
       );
-      throw new CaseConfigurationError(message);
+      throw new CaseConfigurationError(message, 'DONT_ADD_LOCATION');
     }
     this.initialContext.logger.debug(
       `Registered a user-provided invokable function with name '${handle}'`,
@@ -168,7 +168,7 @@ export class BaseCaseContract {
       context.logger.error(
         `lookupVariable was called without initialising the contract file. This should not be possible.`,
       );
-      throw new CaseConfigurationError(
+      throw new CaseCoreError(
         'Contract was not initialised at the time that lookupVariable was called',
       );
     }
@@ -178,6 +178,8 @@ export class BaseCaseContract {
     if (defaultVariable === undefined) {
       throw new CaseConfigurationError(
         `Variable '${name}' was requested but appears not to be set. Check that the variable is spelt correctly, and the states for this mock are correctly setup`,
+        context,
+        'BAD_INTERACTION_DEFINITION',
       );
     }
     return coreShapedLike(defaultVariable);
@@ -198,7 +200,7 @@ export class BaseCaseContract {
       context.logger.error(
         `addVariable was called by state '${stateName}' without initialising the contract file. This should not be possible.`,
       );
-      throw new CaseConfigurationError(
+      throw new CaseCoreError(
         'Contract was not initialised at the time that addVariable was called',
       );
     }
@@ -222,7 +224,7 @@ export class BaseCaseContract {
       context.logger.error(
         'saveNamedMatcher was called without initialising the contract file. This should not be possible.',
       );
-      throw new CaseConfigurationError(
+      throw new CaseCoreError(
         'Contract was not initialised at the time that saveNamedMatcher was called',
       );
     }
@@ -268,7 +270,15 @@ export class BaseCaseContract {
       return possibleMatch;
     }
     throw new CaseConfigurationError(
-      `Contract did not contain a matcher with the name '${uniqueName}'. Did you ask for it before it was defined?`,
+      `Contract did not contain a matcher with the name '${uniqueName}'. 
+          
+          This can happen if you have an interaction that asks for a 
+          named matcher before it has been defined.
+          
+          It can also happen if the named matcher has been misspelt
+          `,
+      context,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
 

@@ -66,7 +66,9 @@ export class BrokerService {
     const message = `Configuration property 'publish' was set to the unexpected value '${context['_case:currentRun:context:publish']}'`;
     context.logger.error(message);
 
-    return Promise.reject(new CaseConfigurationError(message));
+    return Promise.reject(
+      new CaseConfigurationError(message, 'DONT_ADD_LOCATION'),
+    );
   }
 
   publishContract(
@@ -109,7 +111,9 @@ export class BrokerService {
     const message = `Configuration property 'publish' was set to the unexpected value '${context['_case:currentRun:context:publish']}'`;
     context.logger.error(message);
 
-    return Promise.reject(new CaseConfigurationError(message));
+    return Promise.reject(
+      new CaseConfigurationError(message, 'DONT_ADD_LOCATION'),
+    );
   }
 
   async downloadContracts(

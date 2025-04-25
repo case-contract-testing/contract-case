@@ -105,12 +105,16 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     if (trigger === undefined && testResponse !== undefined) {
       throw new CaseConfigurationError(
         'The testResponse function was supplied, but this is not valid without also supplying `trigger`',
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
     }
 
     if (trigger !== undefined && testResponse === undefined) {
       throw new CaseConfigurationError(
         'There was a trigger supplied, but without a corresponding `testResponse` function',
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
     }
 
@@ -148,12 +152,16 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     if (trigger === undefined && testErrorResponse !== undefined) {
       throw new CaseConfigurationError(
         'The testErrorResponse function was supplied, but this is not valid without also supplying `trigger`',
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
     }
 
     if (trigger !== undefined && testErrorResponse === undefined) {
       throw new CaseConfigurationError(
         'There was a trigger supplied, but without a corresponding `testErrorResponse` function',
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
     }
 

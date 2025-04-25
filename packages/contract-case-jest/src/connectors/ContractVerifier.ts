@@ -6,7 +6,6 @@ import {
   IInvokeCoreTest,
   IRunTestCallback,
 } from '@contract-case/case-connector/cjs';
-import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import { defaultPrinter } from './defaultTestPrinter.js';
 
 import {
@@ -17,6 +16,7 @@ import {
   mapInvokeableFunction,
 } from './case-boundary/index.js';
 import {
+  ContractCaseConfigurationError,
   ContractCaseVerifierConfig,
   ContractDescription,
   RunTestCallback,
@@ -98,7 +98,7 @@ export class ContractVerifier {
     invokeableFn: (...args: any[]) => any,
   ): void {
     if (handle in this.invokeableFunctions) {
-      throw new CaseConfigurationError(
+      throw new ContractCaseConfigurationError(
         `The function named '${handle}' has already been registered. You must only register functions once`,
       );
     }

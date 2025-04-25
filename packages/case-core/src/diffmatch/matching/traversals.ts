@@ -147,6 +147,8 @@ const selfVerify = <T extends AnyCaseNodeType>(
         throw new CaseConfigurationError(
           // TODO document this extensively.
           `The matchers used have been given an example that doesn't pass the matcher: ${selfVerification[0]?.message} (at ${selfVerification[0]?.location})`,
+          'DONT_ADD_LOCATION',
+          'UNDOCUMENTED',
         );
       }
     });

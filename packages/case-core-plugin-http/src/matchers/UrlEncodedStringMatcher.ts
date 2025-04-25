@@ -48,6 +48,8 @@ const strip = (
   if (typeof result === 'string') return encodeURIComponent(result);
   throw new CaseConfigurationError(
     `Unable to URL encode '${result}' during stripMatchers, as it's not a string and therefore can't be URL encoded`,
+    matchContext,
+    'BAD_INTERACTION_DEFINITION',
   );
 };
 
@@ -73,6 +75,8 @@ export const UrlEncodedStringMatcher: MatcherExecutor<
       } catch (e) {
         throw new CaseConfigurationError(
           `The provided string example failed to decode as a URI: ${(e as Error).message}`,
+          matchContext,
+          'BAD_INTERACTION_DEFINITION',
         );
       }
     }),

@@ -96,6 +96,8 @@ export class BoundaryPluginLoader {
         (e) => {
           throw new CaseConfigurationError(
             `Unable to load plugin: ${e.message}`,
+            'DONT_ADD_LOCATION',
+            'UNDOCUMENTED',
           );
         },
       )

@@ -114,12 +114,16 @@ export class BoundaryContractDefiner {
       if (config.consumerName === undefined || config.consumerName === '') {
         throw new CaseConfigurationError(
           'Must provide a non-empty consumerName',
+          'DONT_ADD_LOCATION',
+          'INVALID_CONFIG',
         );
       }
 
       if (config.providerName === undefined || config.providerName === '') {
         throw new CaseConfigurationError(
           'Must provide a non-empty providerName',
+          'DONT_ADD_LOCATION',
+          'INVALID_CONFIG',
         );
       }
 

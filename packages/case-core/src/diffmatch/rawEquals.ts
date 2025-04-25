@@ -19,7 +19,9 @@ export const rawEquality = (a: unknown, b: unknown): boolean => {
     typeof a === 'symbol'
   ) {
     throw new CaseConfigurationError(
-      `It looks like an object of type '${typeof a}' was attempted to be serialised in the contract. This is unsupported`,
+      `It looks like an object of type '${typeof a}' was attempted to be compared for equality. This is unsupported`,
+      'DONT_ADD_LOCATION',
+      'UNDOCUMENTED',
     );
   }
   if (
@@ -28,7 +30,9 @@ export const rawEquality = (a: unknown, b: unknown): boolean => {
     typeof b === 'symbol'
   ) {
     throw new CaseConfigurationError(
-      `It looks like an object of type '${typeof b}' was attempted to be serialised in the contract. This is unsupported`,
+      `It looks like an object of type '${typeof b}' was attempted to be compared for equality. This is unsupported`,
+      'DONT_ADD_LOCATION',
+      'UNDOCUMENTED',
     );
   }
   if (typeof a !== typeof b) return false;

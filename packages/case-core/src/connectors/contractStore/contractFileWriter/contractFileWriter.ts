@@ -7,6 +7,7 @@ import {
   DataContext,
   CaseConfigurationError,
   HasContractFileConfig,
+  ErrorCodes,
 } from '@contract-case/case-plugin-base';
 import type { DownloadedContract, WriteContract } from '../../../core/types';
 import { isHasContractFileConfig } from './contextValidator';
@@ -39,6 +40,8 @@ const createDirectory = (
         `Failed trying to create contract directory '${dirName}': ${
           (e as Error).message
         }`,
+        context,
+        'DISK_IO_PROBLEM',
       );
     }
   }
@@ -57,7 +60,10 @@ const actuallyWriteContract = (
       context.logger.error(
         `Can't write to '${pathToFile}, as it already exists'`,
       );
-      throw new CaseConfigurationError(`The file ${pathToFile} already exists`);
+      throw new CaseConfigurationError(
+        `The file ${pathToFile} already exists`,
+        'DONT_ADD_LOCATION',
+      );
     }
     const existingContract = readContract(pathToFile);
 
@@ -77,6 +83,8 @@ const actuallyWriteContract = (
         If you see this on consecutive runs, please check 
         that your contract doesn't contain randomness 
         during contract definition`,
+          'DONT_ADD_LOCATION',
+          'OVERWRITE_CONTRACTS_NEEDED',
         );
       }
       context.logger.debug(
@@ -99,6 +107,8 @@ const internalWriteContract = (
   if (!isHasContractFileConfig(context)) {
     throw new CaseConfigurationError(
       'Unable to write contract without required configuration options set. See the error logs for more information.',
+      context,
+      ErrorCodes.configuration.INVALID_CONFIG,
     );
   }
   if (

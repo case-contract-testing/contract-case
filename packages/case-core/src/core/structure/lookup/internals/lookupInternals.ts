@@ -44,7 +44,9 @@ const unboxAllLookups = (
     typeof matcherOrData === 'symbol'
   ) {
     throw new CaseConfigurationError(
-      `It looks like an object of type '${typeof matcherOrData}' was attempted to be serialised in the contract. This is unsupported`,
+      `It looks like a value of type '${typeof matcherOrData}' was attempted to be serialised in the contract. This is unsupported`,
+      context,
+      'UNDOCUMENTED',
     );
   }
 
@@ -107,6 +109,8 @@ export const addLookup = (
 
       throw new CaseConfigurationError(
         `The ${lookupType} with the name '${stripType({ lookupType, name })}' has more than one definition, and they are not the same`,
+        context,
+        'UNDOCUMENTED',
       );
     } else {
       context.logger.deepMaintainerDebug(

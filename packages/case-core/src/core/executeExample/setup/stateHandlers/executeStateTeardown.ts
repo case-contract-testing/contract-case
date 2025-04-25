@@ -41,6 +41,8 @@ const stateTeardownHandler = (
           );
           throw new CaseConfigurationError(
             `State teardown '${state.stateName}' failed: ${e.message}. Please check the implementation of your state teardown handler`,
+            context,
+            'UNDOCUMENTED',
           );
         }),
   );
@@ -84,7 +86,9 @@ export const executeStateTeardown = (
             e.message,
           );
           throw new CaseConfigurationError(
-            `State teardown errored: ${e.message}`,
+            `State teardown function threw an error: ${e.message}`,
+            context,
+            'UNDOCUMENTED',
           );
         });
     },

@@ -37,17 +37,23 @@ const validatePrecondition = (
   if (baseUrl === undefined || baseUrl === '') {
     return new CaseConfigurationError(
       "Can't access a broker without specifying the base URL. Set the environment variable CASE_BROKER_BASEURL or the config property brokerBaseUrl",
+      'DONT_ADD_LOCATION',
+      'INVALID_CONFIG',
     );
   }
   if (typeof baseUrl !== 'string') {
     return new CaseConfigurationError(
       `Expected the baseurl to be a string, but it was '${typeof authToken}'`,
+      'DONT_ADD_LOCATION',
+      'INVALID_CONFIG',
     );
   }
 
   if (authToken === undefined && basicAuth === undefined) {
     return new CaseConfigurationError(
       "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN",
+      'DONT_ADD_LOCATION',
+      'INVALID_CONFIG',
     );
   }
 
@@ -55,11 +61,15 @@ const validatePrecondition = (
     if (authToken === '') {
       return new CaseConfigurationError(
         "Can't access a broker without an authorization token. Set the environment variable CASE_BROKER_CI_TOKEN",
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
     }
     if (typeof authToken !== 'string') {
       return new CaseConfigurationError(
         `Expected the authToken to be a string, but it was '${typeof authToken}'`,
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
     }
   }
@@ -67,6 +77,8 @@ const validatePrecondition = (
   if (authToken === undefined && basicAuth === undefined) {
     return new CaseConfigurationError(
       "Can't access a broker without an authorization token or basic auth set. Set the environment variable CASE_BROKER_CI_TOKEN",
+      'DONT_ADD_LOCATION',
+      'INVALID_CONFIG',
     );
   }
   return undefined;
@@ -146,6 +158,8 @@ export const makeBrokerApi: MakeBrokerApi = (
             );
             throw new CaseConfigurationError(
               `Trying to publish verification status for the contract between '${contract.description.consumerName}' and '${contract.description.providerName}', but it doesn't have a links section.\n\nThis usually means it wasn't downloaded from a broker. We can't publish verification status for non-brokered contracts.`,
+              'DONT_ADD_LOCATION',
+              'NON_BROKERED_CONTRACT',
             );
           }
           if (
@@ -157,6 +171,8 @@ export const makeBrokerApi: MakeBrokerApi = (
             );
             throw new CaseConfigurationError(
               `The contract between '${contract.description.consumerName}' and '${contract.description.providerName}' doesn't have a publish verification results URL, so we can't publish it.`,
+              'DONT_ADD_LOCATION',
+              'NON_BROKERED_CONTRACT',
             );
           }
         })

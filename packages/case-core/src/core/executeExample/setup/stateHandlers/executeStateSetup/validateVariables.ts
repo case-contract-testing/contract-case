@@ -22,9 +22,11 @@ export const validateVariables = async (
         throw new CaseConfigurationError(
           `The state setup for '${
             state.stateName
-          }' did not recieve any variables. Did you forget to return an object in the state setup function?  (Expected an object with keys ${Object.keys(
+          }' did not return any variables. Did you forget to return an object in the state setup function?  (Expected an object with keys ${Object.keys(
             state.variables,
           )})`,
+          context,
+          'UNDOCUMENTED',
         );
       }
       // Validate state setup variables
@@ -38,7 +40,7 @@ export const validateVariables = async (
           state.variables,
         )}], but the following were missing: [${missingVariables}]`;
         context.logger.error(message);
-        throw new CaseConfigurationError(message);
+        throw new CaseConfigurationError(message, context, 'UNDOCUMENTED');
       }
 
       const extraVariables = Object.keys(variables).filter(
@@ -68,6 +70,8 @@ export const validateVariables = async (
         });
         throw new CaseConfigurationError(
           `The state setup for '${state.stateName}' did not return the expected variables`,
+          context,
+          'UNDOCUMENTED',
         );
       }
       context.logger.debug(

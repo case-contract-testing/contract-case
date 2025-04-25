@@ -33,6 +33,7 @@ const addressToString = (address: string | net.AddressInfo | null) => {
 
 const validateHttpResponseData = (
   maybeHttpResponseData: unknown,
+  context: MatchContext,
 ): HttpResponseData => {
   if (
     maybeHttpResponseData === null ||
@@ -40,6 +41,8 @@ const validateHttpResponseData = (
   ) {
     throw new CaseConfigurationError(
       "Expected response description didn't resolve to a object",
+      context,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
   const data = maybeHttpResponseData as HttpResponseData;
@@ -47,6 +50,8 @@ const validateHttpResponseData = (
   if (!('status' in data)) {
     throw new CaseConfigurationError(
       "Expected response description didn't contain a 'status' key",
+      context,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
 
@@ -74,6 +79,7 @@ export const setupHttpResponseProducer = (
           responseMatcher,
           addLocation('expectedRequest', context),
         ),
+        addLocation('expectedRequest', context),
       ),
     )
     .then(

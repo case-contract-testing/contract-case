@@ -116,7 +116,11 @@ export class BoundaryContractVerifier {
     const { config } = convertConfig(this.constructorConfig);
 
     if (config.providerName === undefined || config.providerName === '') {
-      throw new CaseConfigurationError('Must provide a non-empty providerName');
+      throw new CaseConfigurationError(
+        'Must provide a non-empty providerName',
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
+      );
     }
 
     this.verifier = new ContractVerifierConnector(

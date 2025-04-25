@@ -18,6 +18,8 @@ export const readContract = (pathToContract: string): DownloadedContract => {
       `Unable to load contract file from disk at '${pathToContract}': ${
         (e as Error).message
       }`,
+      'DONT_ADD_LOCATION',
+      'DISK_IO_PROBLEM',
     );
   }
 
@@ -29,6 +31,7 @@ export const readContract = (pathToContract: string): DownloadedContract => {
       `Unable to parse contract file from disk at '${pathToContract}': ${
         (e as Error).message
       }`,
+      'DONT_ADD_LOCATION',
     );
   }
   return contract;
@@ -47,6 +50,8 @@ const readFile = (filePath: string): ReadDescriptor => {
       `Unable to load contract file from disk at '${filePath}': ${
         (e as Error).message
       }.\n\nThis is almost certainly a race condition where the files were deleted during the directory read.`,
+      'DONT_ADD_LOCATION',
+      'DISK_IO_PROBLEM',
     );
   }
 };
@@ -72,11 +77,15 @@ const readContractsFromDir = (
   if (!fs.existsSync(pathToDir)) {
     throw new CaseConfigurationError(
       `The directory '${pathToDir}' does not seem to exist, so can't read contracts from it`,
+      'DONT_ADD_LOCATION',
+      'DISK_IO_PROBLEM',
     );
   }
   if (!fs.statSync(pathToDir).isDirectory()) {
     throw new CaseConfigurationError(
       `'${pathToDir}' exists but is a not a directory, so can't read contracts from it`,
+      'DONT_ADD_LOCATION',
+      'DISK_IO_PROBLEM',
     );
   }
 

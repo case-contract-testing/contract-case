@@ -546,6 +546,15 @@ Represents an error because of the user supplied trigger
 </td></tr>
 <tr><td>
 
+[ErrorCodes](./case-plugin-base.errorcodes.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
 [MATCH\_BY\_EXACT](./case-plugin-base.match_by_exact.md)
 
 
@@ -637,6 +646,15 @@ Helper type to extract a case matcher descriptor out of a list of descriptors
 Checks a matcher against some actual data and returns a Promise containing a MatchResult.
 
 For checks beyond this matcher, use  to descend into any children.
+
+
+</td></tr>
+<tr><td>
+
+[ConfigurationErrorCode](./case-plugin-base.configurationerrorcode.md)
+
+
+</td><td>
 
 
 </td></tr>

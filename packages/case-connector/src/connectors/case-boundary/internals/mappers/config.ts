@@ -20,6 +20,8 @@ const mapLogLevel = (levelString: string): LogLevel => {
     default:
       throw new CaseConfigurationError(
         `The log level '${levelString}' is not a valid LogLevel`,
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
   }
 };
@@ -39,6 +41,8 @@ const mapPublish = (
     default:
       throw new CaseConfigurationError(
         `The publish value '${publishString}' is not a valid publish setting`,
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
   }
 };
@@ -53,6 +57,8 @@ const mapAutoVersionFrom = (autoVersionFrom: string): 'TAG' | 'GIT_SHA' => {
     default:
       throw new CaseConfigurationError(
         `The autoVersionFrom setting '${autoVersionFrom}' is not a valid auto version setting`,
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
   }
 };
@@ -69,6 +75,8 @@ const mapChangedContracts = (
     default:
       throw new CaseConfigurationError(
         `The changedContracts setting '${changedContracts}' is not a valid changed contracts setting`,
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
   }
 };

@@ -27,7 +27,8 @@ export const applyNodeToContext: (caseNodeOrData: AnyCaseMatcherOrData | AnyMock
 
 // @public
 export class CaseConfigurationError extends Error {
-    constructor(message: string, context?: LogLevelContext);
+    constructor(message: string, context: LogLevelContext | 'DONT_ADD_LOCATION', code?: ConfigurationErrorCode);
+    contractCaseErrorCode: ConfigurationErrorCode;
 }
 
 // @public
@@ -81,6 +82,9 @@ export interface ConfigurationError {
     // (undocumented)
     type: typeof ERROR_TYPE_CONFIGURATION;
 }
+
+// @public (undocumented)
+export type ConfigurationErrorCode = keyof (typeof ErrorCodes)['configuration'];
 
 // Warning: (ae-internal-missing-underscore) The name "constructDataContext" should be prefixed with an underscore because the declaration is marked as @internal
 //
@@ -165,6 +169,18 @@ export const ERROR_TYPE_TEST_RESPONSE: "TEST_RESPONSE_ERROR";
 
 // @public
 export const ERROR_TYPE_TRIGGER: "TRIGGER_FUNCTION_ERROR";
+
+// @public (undocumented)
+export const ErrorCodes: {
+    readonly configuration: {
+        readonly DISK_IO_PROBLEM: "DISK_IO_PROBLEM";
+        readonly BAD_INTERACTION_DEFINITION: "BAD_INTERACTION_DEFINITION";
+        readonly INVALID_CONFIG: "INVALID_CONFIG";
+        readonly NON_BROKERED_CONTRACT: "NON_BROKERED_CONTRACT";
+        readonly OVERWRITE_CONTRACTS_NEEDED: "OVERWRITE_CONTRACTS_NEEDED";
+        readonly UNDOCUMENTED: "UNDOCUMENTED";
+    };
+};
 
 // @public
 export const errorWhen: (test: boolean, err: CaseError | Array<CaseError>) => MatchResult;

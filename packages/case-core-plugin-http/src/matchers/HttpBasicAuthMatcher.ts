@@ -15,10 +15,16 @@ import {
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
-const encode = (username: string, password: string) => {
+const encode = (
+  username: string,
+  password: string,
+  matchContext: MatchContext,
+) => {
   if (username.includes(':')) {
     throw new CaseConfigurationError(
       `The username for basic auth was: '${username}', but it must not contain a ':' (See RFC 7617)`,
+      matchContext,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
   return Buffer.from(`${username}:${password}`).toString('base64');
@@ -99,16 +105,20 @@ const strip = (
   if (typeof username !== 'string') {
     throw new CaseConfigurationError(
       "The username for basic auth didn't resolve to a string, please check the definition",
+      matchContext,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
 
   if (typeof password !== 'string') {
     throw new CaseConfigurationError(
       "The password for basic auth didn't resolve to a string, please check the definition",
+      matchContext,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
 
-  return encode(username, password);
+  return encode(username, password, matchContext);
 };
 
 export const HttpBasicAuthMatcher: MatcherExecutor<

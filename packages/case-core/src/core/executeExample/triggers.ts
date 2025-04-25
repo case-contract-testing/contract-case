@@ -232,6 +232,8 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
           `The trigger configuration for\n     ${names.requestName}\n   is missing a test for\n     ${names.responseName}\n   However, the following response tests exist:\n${startsWith
             .map((s) => `        ${s.split('::')[1]}`)
             .join('\n')}`,
+          context,
+          'UNDOCUMENTED',
         );
       }
 
@@ -248,11 +250,15 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
           }\n However, tests for that response name do exist in the following configurations:\n${endsWith
             .map((s) => `        ${s.split('::')[0]}`)
             .join('\n')}`,
+          context,
+          'UNDOCUMENTED',
         );
       }
 
       throw new CaseConfigurationError(
         `Missing a trigger for:\n       ${names.requestName}\n  this should be paired with a test for:\n       ${names.responseName}`,
+        context,
+        'UNDOCUMENTED',
       );
     }
     throw new CaseConfigurationError(

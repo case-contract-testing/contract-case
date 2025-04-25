@@ -31,7 +31,8 @@ export const setupMockFunctionExecution = (
             return JSON.parse(s);
           } catch (e) {
             throw new CaseConfigurationError(
-              `Parsing error in argument number ${index} in function '${functionName}': ${(e as Error).message}\n   The argument was: ${s}`,
+              `Parsing error in argument number ${index} in function '${functionName}': ${(e as Error).message}\n   \n   This happens if non-JSON arguments are passed to the mock function.\n\n   The argument was: ${s}\n    `,
+              context,
             );
           }
         }),

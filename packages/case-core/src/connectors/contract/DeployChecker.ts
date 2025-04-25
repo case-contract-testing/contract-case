@@ -58,11 +58,15 @@ export class DeployChecker {
     if (serviceName === '' || serviceName == null) {
       throw new CaseConfigurationError(
         'Must provide a service name in order to check can-deploy',
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
     }
     if (environment === '' || environment == null) {
       throw new CaseConfigurationError(
         'Must provide an environment to deploy to in order to check can-deploy',
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
     }
     return this.broker

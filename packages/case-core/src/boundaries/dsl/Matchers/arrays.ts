@@ -44,6 +44,7 @@ export const arrayLength = (
   ) {
     throw new CaseConfigurationError(
       "Can't create an arrayLength matcher with minimum size 0 and maximum size not 0. Use a raw empty array instead. See the documentation for details.",
+      'DONT_ADD_LOCATION',
     );
     // TODO write documentation for this
   }

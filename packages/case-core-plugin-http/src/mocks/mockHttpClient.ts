@@ -80,17 +80,21 @@ const httpAgent = new http.Agent({
 
 const validateHttpRequestData = (
   maybeHttpRequestData: unknown,
+  context: MatchContext,
 ): HttpRequestData => {
   const data = maybeHttpRequestData as HttpRequestData;
   if (data === null || typeof data !== 'object') {
     throw new CaseConfigurationError(
       "Expected request description didn't resolve to a object",
+      context,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
 
   const { assertFieldPresent, assertIfFieldPresent } = makeAssertionsOn(
     data,
     'Expected request description',
+    context,
   );
   assertFieldPresent({ field: 'method', type: 'string' });
   assertFieldPresent({ field: 'path', type: 'string' });
@@ -122,6 +126,7 @@ export const setupHttpResponseConsumer = (
         requestMatcher,
         addLocation('expectedRequest', parentContext),
       ),
+      addLocation('expectedRequest', parentContext),
     );
 
     const { body, method, path, headers, query } = expectedRequest;

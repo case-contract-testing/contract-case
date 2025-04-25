@@ -43,6 +43,8 @@ const readContractFromStore = (
   }
   throw new CaseConfigurationError(
     'No contractFilename or contractDir specified. Must provide one of these so that Case can find the contract(s) to verify',
+    'DONT_ADD_LOCATION',
+    'INVALID_CONFIG',
   );
 };
 
@@ -115,6 +117,8 @@ export class ContractVerifierConnector {
     if (typeof mergedConfig.providerName !== 'string') {
       throw new CaseConfigurationError(
         `Must provide a providerName to verify (received '${mergedConfig.providerName}').`,
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
       );
     }
     this.context.logger.debug(
@@ -157,6 +161,7 @@ export class ContractVerifierConnector {
     if (contractsToVerify.length === 0) {
       throw new CaseConfigurationError(
         "No contracts were matched for verification. Try this run again with logLevel: 'debug' to find out more",
+        'DONT_ADD_LOCATION',
       );
     }
     if (mergedConfig.internals == null) {

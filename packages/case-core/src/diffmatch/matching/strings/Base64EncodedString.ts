@@ -64,6 +64,8 @@ const strip = (
   if (typeof result === 'string') return Buffer.from(result).toString('base64');
   throw new CaseConfigurationError(
     `Unable to base64 encode '${result}' during stripMatchers, as it's not a string and therefore can't be base64 encoded`,
+    matchContext,
+    'BAD_INTERACTION_DEFINITION',
   );
 };
 
@@ -89,6 +91,8 @@ export const Base64EncodedStringMatcher: MatcherExecutor<
       } catch (e) {
         throw new CaseConfigurationError(
           `The provided string example failed to decode as base64: ${(e as Error).message}`,
+          matchContext,
+          'BAD_INTERACTION_DEFINITION',
         );
       }
     }),

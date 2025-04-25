@@ -4,3 +4,4 @@ export * from './CaseFailedAssertionError';
 export * from './VerifyTriggerReturnObjectError';
 export * from './StripUnsupportedError';
 export * from './CaseTriggerError';
+export * from './ErrorCodes';

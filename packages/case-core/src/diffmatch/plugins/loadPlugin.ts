@@ -47,6 +47,8 @@ export const loadPlugin = <
   if (description.version === IN_PROGRESS) {
     throw new CaseConfigurationError(
       `The plugin '${description.humanReadableName}' reported its version to be LOAD_IN_PROGRESS, which is not valid. Contact the plugin authors to fix this.`,
+      'DONT_ADD_LOCATION',
+      'UNDOCUMENTED',
     );
   }
 
@@ -57,6 +59,8 @@ export const loadPlugin = <
     ) {
       throw new CaseConfigurationError(
         `Trying to load plugin '${description.humanReadableName}' at version '${description.version}', but it was previously loaded as version '${loadedPluginVersions[description.uniqueMachineName]}'.`,
+        'DONT_ADD_LOCATION',
+        'UNDOCUMENTED',
       );
     }
     context.logger.deepMaintainerDebug(
@@ -93,6 +97,8 @@ export const loadPlugin = <
         `Plugin '${description.humanReadableName}' @ ${plugin.description.version} 
         attempted to load a mock setup function for '${mockType}', 
         but one had already been loaded by plugin '${mockTypeToPluginHumanName[mockType]}'.`,
+        'DONT_ADD_LOCATION',
+        'UNDOCUMENTED',
       );
     }
     if (isCorePlugin(plugin)) {
@@ -108,6 +114,8 @@ export const loadPlugin = <
       if (isCoreType(mockType)) {
         throw new CaseConfigurationError(
           `Non-core plugin '${description.humanReadableName}' @ ${plugin.description.version} tried to load a core mock, '${mockType}'. This is an error in the plugin definition, please contact the plugin's authors`,
+          'DONT_ADD_LOCATION',
+          'UNDOCUMENTED',
         );
       }
       context.logger.debug(
@@ -132,6 +140,8 @@ export const loadPlugin = <
       if (pluginExecutorType in MatcherExecutors) {
         throw new CaseConfigurationError(
           `Plugin '${description.humanReadableName}' @ ${plugin.description.version} attempted to load a matcher executor for '${pluginExecutorType}', but one had already been loaded by plugin '${mockTypeToPluginHumanName[pluginExecutorType]}'.`,
+          'DONT_ADD_LOCATION',
+          'UNDOCUMENTED',
         );
       }
       if (pluginExecutorType.startsWith(`_case:`)) {

@@ -44,6 +44,7 @@ export const shouldLog = (
     default:
       throw new CaseConfigurationError(
         `Unknown log level '${context['_case:currentRun:context:logLevel']}'`,
+        context,
       );
   }
 };

@@ -4,12 +4,12 @@
 
 ## CaseConfigurationError.(constructor)
 
-Constructs a new instance of the `CaseConfigurationError` class
+Constructs a CaseConfigurationError.
 
 **Signature:**
 
 ```typescript
-constructor(message: string, context?: LogLevelContext);
+constructor(message: string, context: LogLevelContext | 'DONT_ADD_LOCATION', code?: ConfigurationErrorCode);
 ```
 
 ## Parameters
@@ -42,6 +42,8 @@ string
 
 </td><td>
 
+the message for this error
+
 
 </td></tr>
 <tr><td>
@@ -51,12 +53,28 @@ context
 
 </td><td>
 
-[LogLevelContext](./case-plugin-base.loglevelcontext.md)
+[LogLevelContext](./case-plugin-base.loglevelcontext.md) \| 'DONT\_ADD\_LOCATION'
 
 
 </td><td>
 
-_(Optional)_
+the match context, used to add '(at $location)' to the message. You can also pass 'DONT\_ADD\_LOCATION' if you don't want to append this to the message.
+
+
+</td></tr>
+<tr><td>
+
+code
+
+
+</td><td>
+
+[ConfigurationErrorCode](./case-plugin-base.configurationerrorcode.md)
+
+
+</td><td>
+
+_(Optional)_ an optional ConfigurationErrorCode to aid the user in debugging.
 
 
 </td></tr>

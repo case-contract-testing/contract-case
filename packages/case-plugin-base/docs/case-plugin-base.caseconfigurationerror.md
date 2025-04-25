@@ -35,7 +35,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[(constructor)(message, context)](./case-plugin-base.caseconfigurationerror._constructor_.md)
+[(constructor)(message, context, code)](./case-plugin-base.caseconfigurationerror._constructor_.md)
 
 
 </td><td>
@@ -43,7 +43,51 @@ Description
 
 </td><td>
 
-Constructs a new instance of the `CaseConfigurationError` class
+Constructs a CaseConfigurationError.
+
+
+</td></tr>
+</tbody></table>
+
+## Properties
+
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[contractCaseErrorCode](./case-plugin-base.caseconfigurationerror.contractcaseerrorcode.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[ConfigurationErrorCode](./case-plugin-base.configurationerrorcode.md)
+
+
+</td><td>
+
+The error code to help the user debug this
 
 
 </td></tr>

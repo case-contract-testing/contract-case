@@ -74,6 +74,8 @@ const strip = (
       `Unable to json stringify '${result}' during stripMatchers (${
         (parseError as Error).message
       })`,
+      matchContext,
+      'BAD_INTERACTION_DEFINITION',
     );
   }
   return encoded;

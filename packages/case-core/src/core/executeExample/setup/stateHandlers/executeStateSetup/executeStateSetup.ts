@@ -31,6 +31,8 @@ const stateSetupHandler =
       return Promise.reject(
         new CaseConfigurationError(
           `Missing state setup for '${state.stateName}'`,
+          'DONT_ADD_LOCATION',
+          'UNDOCUMENTED',
         ),
       );
     }
@@ -52,6 +54,8 @@ const stateSetupHandler =
         );
         throw new CaseConfigurationError(
           `State setup '${state.stateName}' failed with the following error: ${e.message}\n\nPlease check the implementation of your state setup handler`,
+          'DONT_ADD_LOCATION',
+          'UNDOCUMENTED',
         );
       });
   };
