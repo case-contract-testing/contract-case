@@ -55,7 +55,7 @@
   "devDependencies": {
     "@contract-case/eslint-config-case-maintainer": "0.22.0",
     "eslint": "^9.22.0",
-    "prettier": "3.4.2",
+    "prettier": "3.5.3",
     "rimraf": "^6.0.1",
     "typescript": "5.8.3"
   },
