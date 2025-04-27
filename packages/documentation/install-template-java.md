@@ -17,7 +17,7 @@ dependencies {
 <dependency>
     <groupId>io.contract-testing.contractcase</groupId>
     <artifactId>definitions</artifactId>
-    <version>0.19.0</version>
+    <version>VERSION_HERE</version>
     <scope>test</scope>
 </dependency>
 ```
