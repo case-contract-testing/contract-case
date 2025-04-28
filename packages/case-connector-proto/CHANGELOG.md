@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.23.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.22.0...@contract-case/case-connector-proto-v0.23.0) (2025-04-28)
+
+
+### Features
+
+* CaseConnectorErrors now come with an error code that can be used to programatically react to them. See the reference documentation for details. ([dee6d4d](https://github.com/case-contract-testing/contract-case/commit/dee6d4d36219edfad5dfa9f913b1f852666db289))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.22.0 to 0.23.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.22.0 to 0.23.0
+
 ## [0.22.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.21.0...@contract-case/case-connector-proto-v0.22.0) (2025-04-14)
 
 

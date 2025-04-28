@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.23.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.22.0...@contract-case/case-connector-v0.23.0) (2025-04-28)
+
+
+### Features
+
+* CaseConnectorErrors now come with an error code that can be used to programatically react to them. See the reference documentation for details. ([dee6d4d](https://github.com/case-contract-testing/contract-case/commit/dee6d4d36219edfad5dfa9f913b1f852666db289))
+
+
+### Bug Fixes
+
+* **core:** Improve the logging of location context ([500cbb7](https://github.com/case-contract-testing/contract-case/commit/500cbb7a1d3f14ee810bde2f3e3b2627acb29e96))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.22.0 to 0.23.0
+    * @contract-case/case-core bumped from 0.22.0 to 0.23.0
+    * @contract-case/case-entities-internal bumped from 0.22.0 to 0.23.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.22.0 to 0.23.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.22.0 to 0.23.0
+
 ## [0.22.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.21.0...@contract-case/case-connector-v0.22.0) (2025-04-14)
 
 
