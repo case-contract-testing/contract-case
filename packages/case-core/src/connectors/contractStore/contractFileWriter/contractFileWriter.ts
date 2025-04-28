@@ -72,7 +72,10 @@ const actuallyWriteContract = (
     }
   }
 
-  if (context['_case:currentRun:context:changedContracts'] === 'FAIL') {
+  if (
+    context['_case:currentRun:context:changedContracts'] === 'FAIL' &&
+    !context['_case:currentRun:context:overwriteFile']
+  ) {
     throw new CaseConfigurationError(
       `
     Tried to write a new contract to
