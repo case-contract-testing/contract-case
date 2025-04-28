@@ -17,13 +17,25 @@ import { readContract } from '../contractReader';
 import { rawEquality } from '../../../diffmatch';
 import { stripForComparison, stripForWriting } from './stripForComparison';
 
+const logContract = (
+  name: string,
+  contract: ContractData,
+  context: HasContractFileConfig,
+) => {
+  context.logger.maintainerDebug(
+    `${name} contract has ${contract.examples.length} interactions, ${Object.keys(contract.matcherLookup).length} lookups, and is between ${contract.description.consumerName} and ${contract.description.providerName}`,
+  );
+  return contract;
+};
+
 const contractsEqual = (
   existingContract: DownloadedContract,
   contract: ContractData,
+  context: HasContractFileConfig,
 ) =>
   rawEquality(
-    stripForComparison(existingContract),
-    stripForComparison(contract),
+    logContract('Existing', stripForComparison(existingContract), context),
+    logContract('New', stripForComparison(contract), context),
   );
 
 const createDirectory = (
@@ -47,31 +59,16 @@ const createDirectory = (
   }
 };
 
-const explicitFilename = (context: HasContractFileConfig) =>
-  context['_case:currentRun:context:contractFilename'];
-
 const actuallyWriteContract = (
   pathToFile: string,
   contract: ContractData,
   context: HasContractFileConfig,
 ) => {
   if (fs.existsSync(pathToFile)) {
-    if (
-      explicitFilename(context) &&
-      !context['_case:currentRun:context:overwriteFile']
-    ) {
-      context.logger.error(
-        `Can't write to '${pathToFile}, as it already exists'`,
-      );
-      throw new CaseConfigurationError(
-        `The file ${pathToFile} already exists`,
-        'DONT_ADD_LOCATION',
-      );
-    }
     const existingContract = readContract(pathToFile);
 
     if (context['_case:currentRun:context:changedContracts'] === 'FAIL') {
-      if (!contractsEqual(existingContract, contract)) {
+      if (!contractsEqual(existingContract, contract, context)) {
         throw new CaseConfigurationError(
           `
         The existing contract in file:
