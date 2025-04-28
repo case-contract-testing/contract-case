@@ -53,7 +53,7 @@
     "@types/current-git-branch": "^1.1.6",
     "@types/express": "^4.17.14",
     "@types/is-ci": "^3.0.0",
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^29.5.14",
     "@types/qs": "^6.9.17",
     "@types/slug": "^5.0.9",
     "body-parser": "^2.2.0",

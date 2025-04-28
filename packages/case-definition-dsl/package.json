@@ -73,7 +73,7 @@
     "@contract-case/jsii-pacmak": "^0.0.1",
     "@microsoft/api-documenter": "^7.26.17",
     "@microsoft/api-extractor": "^7.52.4",
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^29.5.14",
     "eslint": "^9.23.0",
     "jsii": "^5.7.4",
     "jsii-docgen": "^10.6.1",
