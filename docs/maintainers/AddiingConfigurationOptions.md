@@ -53,3 +53,7 @@ The core needs to know your configuration property
 
 1. For JS, this is `ContractCaseConfig` and the associated mapper to `ContractCaseBoundaryConfig`
 2. For Java, this is `ContractCaseConfig`, `IndividualFailedTestConfig`, `IndividualSuccessTestConfig`, `ContractCaseConnectorConfig`, and their associated builders. You will also need to add mappers in `ConnectorConfigMapper` and `ConnectorOutgoingMapper`.
+
+## Step 4: Add it to the documentation
+
+Add it to the configuration page in the reference section in `/packages/documentation` and and other pages.

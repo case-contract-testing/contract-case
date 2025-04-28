@@ -103,7 +103,17 @@ provide this, `contractDir` is ignored.
 This is provided mostly for debugging purposes, or if you have a custom workflow.
 It is generally recommended to use `contractDir` instead.
 
-When `contractFilename` is set, ContractCase will not overwrite an existing file.
+### `changedContracts` \["OVERWRITE" | "FAIL"]
+
+Default: `"FAIL"`
+
+What to do during definition when contracts have changed.
+
+By default, ContractCase runs in "snapshot test" mode - where contracts work
+like a snapshot test and must either remain the same, or be explicitly updated.
+
+- If `changedContracts` is set to `FAIL`, changes between the defined contract and the one currently on disk will fail the contract definition.
+- If `changedContracts` is set to `OVERWRITE`, then the contract on disk will be overwritten with the new contract.
 
 ## Broker options
 
