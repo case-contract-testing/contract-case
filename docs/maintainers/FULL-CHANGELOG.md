@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.23.0](https://github.com/case-contract-testing/contract-case/compare/v0.22.0...v0.23.0) (2025-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Updated the behaviour of `contractFilename` to be controlled by `changedContracts`, to match `contractDir`. This is a breaking change, as previously it assumed that overwriting contracts was forbidden with an explicit filename
+* **core:** Now writing a new contract for the first time requires changedContracts=OVERWRITE
+
+### Features
+
+* CaseConnectorErrors now come with an error code that can be used to programatically react to them. See the reference documentation for details. ([dee6d4d](https://github.com/case-contract-testing/contract-case/commit/dee6d4d36219edfad5dfa9f913b1f852666db289))
+* **core:** Now writing a new contract for the first time requires changedContracts=OVERWRITE ([fee2b4f](https://github.com/case-contract-testing/contract-case/commit/fee2b4f568ba2f23997a9edea61c1090b733d129))
+
+
+### Bug Fixes
+
+* **core:** Improve the logging of location context ([500cbb7](https://github.com/case-contract-testing/contract-case/commit/500cbb7a1d3f14ee810bde2f3e3b2627acb29e96))
+* **core:** Trying to define an empty contract now throws a CaseConfigurationError ([0f1d8a6](https://github.com/case-contract-testing/contract-case/commit/0f1d8a625cc8b4b452b58e9cfeda997ffb35c514))
+* **core:** Updated the behaviour of `contractFilename` to be controlled by `changedContracts`, to match `contractDir`. This is a breaking change, as previously it assumed that overwriting contracts was forbidden with an explicit filename ([1e00836](https://github.com/case-contract-testing/contract-case/commit/1e00836398a0c52d1e41cde17da1c61cdde43db1))
+* Improve logging of contract equality check ([1999430](https://github.com/case-contract-testing/contract-case/commit/19994302cc57bdd26094c5c6d4f53fa7e50b2edd))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.22.0 to 0.23.0
+
 ## [0.22.0](https://github.com/case-contract-testing/contract-case/compare/v0.21.0...v0.22.0) (2025-04-14)
 
 

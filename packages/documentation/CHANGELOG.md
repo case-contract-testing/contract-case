@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.22.0...documentation-v0.23.0) (2025-04-28)
+
+
+### Documentation
+
+* Document changedContracts option ([d7a75d4](https://github.com/case-contract-testing/contract-case/commit/d7a75d4dd73c4b93e854e6ec31fd5c8d4e1499b8))
+
 ## [0.22.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.21.0...documentation-v0.22.0) (2025-04-14)
 
 

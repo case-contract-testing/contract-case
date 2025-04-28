@@ -29,6 +29,29 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.23.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.22.0...@contract-case/contract-case-jest-v0.23.0) (2025-04-28)
+
+
+### Features
+
+* CaseConnectorErrors now come with an error code that can be used to programatically react to them. See the reference documentation for details. ([dee6d4d](https://github.com/case-contract-testing/contract-case/commit/dee6d4d36219edfad5dfa9f913b1f852666db289))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.22.0 to 0.23.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.22.0 to 0.23.0
+    * @contract-case/case-definition-dsl bumped from 0.22.0 to 0.23.0
+    * @contract-case/case-entities-internal bumped from 0.22.0 to 0.23.0
+    * @contract-case/case-plugin-base bumped from 0.22.0 to 0.23.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.22.0 to 0.23.0
+    * @contract-case/cli bumped from 0.22.0 to 0.23.0
+  * devDependencies
+    * @contract-case/cli bumped from 0.22.0 to 0.23.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.22.0 to 0.23.0
+
 ## [0.22.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.21.0...@contract-case/contract-case-jest-v0.22.0) (2025-04-14)
 
 
