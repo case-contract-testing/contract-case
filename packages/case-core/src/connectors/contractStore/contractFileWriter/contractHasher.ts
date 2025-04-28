@@ -1,7 +1,7 @@
 import * as crypto from 'crypto';
 import { DownloadedContract } from '../../../core/types.broker';
 import { ContractData } from '../../../entities/types';
-import { stripForComparison } from './stripForComparison';
+import { stripForComparison } from './contractNormaliser';
 
 export const hashContract = (
   contract: ContractData | DownloadedContract,

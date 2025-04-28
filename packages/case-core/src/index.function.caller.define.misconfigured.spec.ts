@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/dot-notation */
-import * as fs from 'node:fs';
 import { interactions } from '@contract-case/case-definition-dsl';
 import { BaseSetupInfo } from '@contract-case/case-plugin-dsl-types';
-import { defineInternalContract } from './__tests__/jest/jest';
+import { defineContractNoTeardown } from './__tests__/jest/jest';
 import { anyInteger, anyString } from './boundaries';
 
 const contractDetails = {
@@ -14,16 +13,7 @@ const contractDetails = {
 const FILENAME = `case-contracts/temp-function-caller.case.json`;
 
 describe('function executor', () => {
-  beforeAll(() => {
-    // Delete the contract file first
-    try {
-      fs.rmSync(FILENAME);
-      fs.mkdirSync('case-contracts');
-    } catch (e) {
-      // We don't care if this fails
-    }
-  }, 30000);
-  defineInternalContract(
+  defineContractNoTeardown(
     {
       ...contractDetails,
       config: {

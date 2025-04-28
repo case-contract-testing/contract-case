@@ -1,5 +1,19 @@
-import { DownloadedContract } from '../../../core/types.broker';
-import { ContractData } from '../../../entities/types';
+import { HasContractFileConfig } from '@contract-case/case-plugin-base';
+import { DownloadedContract } from '../../../../core/types.broker';
+import { rawEquality } from '../../../../diffmatch';
+import { ContractData } from '../../../../entities/types';
+import { stripDownloadedFields, emptyMetaData } from './stripper';
+
+const logContract = (
+  name: string,
+  contract: ContractData,
+  context: HasContractFileConfig,
+) => {
+  context.logger.maintainerDebug(
+    `${name} contract has ${contract.examples.length} interactions, ${Object.keys(contract.matcherLookup).length} lookups, and is between ${contract.description.consumerName} and ${contract.description.providerName}`,
+  );
+  return contract;
+};
 
 /**
  * Strips any state-provided values from the contract.
@@ -20,36 +34,6 @@ const stripStateVariables = (contract: ContractData): ContractData => ({
   matcherLookup: Object.entries(contract.matcherLookup)
     .filter(([key]) => !key.startsWith('variable:state'))
     .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
-});
-
-/**
- * Strips the fields that the broker adds to contracts.
- *
- * Used to remove the details about how to update a contract from the
- * actual contract for comparison.
- *
- * @param contract - either a DownloadedContract or a ContractData
- * @returns just the ContractData portion of the contract
- */
-const stripDownloadedFields = (
-  contract: DownloadedContract | ContractData,
-): ContractData => {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  const { _links, createdAt, ...rest } = contract as DownloadedContract;
-  return rest;
-};
-
-/**
- * Returns a copy of a ContractData object without the metadata.
- *
- * Useful for comparing contracts.
- *
- * @param contract - the contract to remove metadata from
- * @returns a copy of the contract with an empty metadata section
- */
-const emptyMetaData = (contract: ContractData): ContractData => ({
-  ...contract,
-  metadata: {},
 });
 
 /**
@@ -74,3 +58,20 @@ export const stripForComparison = (
  */
 export const stripForWriting = (contract: ContractData): ContractData =>
   stripStateVariables(contract);
+
+/**
+ * Compares two contracts for equality, ignoring metadata and broker details.
+ *
+ * @param existingContract - a contract from disk
+ * @param contract - the other contract to compare from
+ * @returns True if the contracts are logically the same
+ */
+export const contractsEqual = (
+  existingContract: DownloadedContract | ContractData,
+  contract: ContractData,
+  context: HasContractFileConfig,
+): boolean =>
+  rawEquality(
+    logContract('Existing', stripForComparison(existingContract), context),
+    logContract('New', stripForComparison(contract), context),
+  );

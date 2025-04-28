@@ -1,7 +1,7 @@
 /* eslint-disable jest/expect-expect */
 import * as fs from 'node:fs';
 import { interactions } from '@contract-case/case-definition-dsl';
-import { defineInternalContract } from './__tests__/jest/jest';
+import { defineContractNoTeardown } from './__tests__/jest/jest';
 import { anyString, anyNumber } from './boundaries';
 
 const contractDetails = {
@@ -22,7 +22,7 @@ describe('function receiver', () => {
       // We don't care if this fails
     }
   }, 30000);
-  defineInternalContract(
+  defineContractNoTeardown(
     {
       ...contractDetails,
       config: {

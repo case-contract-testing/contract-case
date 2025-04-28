@@ -55,7 +55,7 @@ export const defineContract = <T extends AnyMockDescriptorType>(
 /**
  * This is a copy of defineContract that doesn't do teardown - so that internal tests can fail.
  */
-export const defineInternalContract = <T extends AnyMockDescriptorType>(
+export const defineContractNoTeardown = <T extends AnyMockDescriptorType>(
   { config, ...contractConfig }: CaseJestConfig<T>,
   callback: DefineCaseJestCallback,
 ): void =>

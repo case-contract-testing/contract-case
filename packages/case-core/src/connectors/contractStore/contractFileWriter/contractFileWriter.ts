@@ -9,34 +9,12 @@ import {
   HasContractFileConfig,
   ErrorCodes,
 } from '@contract-case/case-plugin-base';
-import type { DownloadedContract, WriteContract } from '../../../core/types';
+import type { WriteContract } from '../../../core/types';
 import { isHasContractFileConfig } from './contextValidator';
 import { generateFileName, generateMainContractPath } from './filename';
 import { ContractData } from '../../../entities/types';
 import { readContract } from '../contractReader';
-import { rawEquality } from '../../../diffmatch';
-import { stripForComparison, stripForWriting } from './stripForComparison';
-
-const logContract = (
-  name: string,
-  contract: ContractData,
-  context: HasContractFileConfig,
-) => {
-  context.logger.maintainerDebug(
-    `${name} contract has ${contract.examples.length} interactions, ${Object.keys(contract.matcherLookup).length} lookups, and is between ${contract.description.consumerName} and ${contract.description.providerName}`,
-  );
-  return contract;
-};
-
-const contractsEqual = (
-  existingContract: DownloadedContract,
-  contract: ContractData,
-  context: HasContractFileConfig,
-) =>
-  rawEquality(
-    logContract('Existing', stripForComparison(existingContract), context),
-    logContract('New', stripForComparison(contract), context),
-  );
+import { contractsEqual, stripForWriting } from './contractNormaliser';
 
 const createDirectory = (
   pathToFile: string,
