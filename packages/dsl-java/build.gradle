@@ -24,7 +24,7 @@ tasks.withType(Javadoc).configureEach {
     options.addStringOption('Xdoclint:-missing', '-quiet')
 }
 
-def caseCoreVersion = "0.22.0"
+def caseCoreVersion = "0.23.0"
 def grpcVersion = "1.72.0"
 def protobufVersion = "3.25.2"
 
