@@ -1,4 +1,3 @@
-import * as fs from 'node:fs';
 // These imports are our code under test
 import {
   HttpRequestConsumerSetup,
@@ -22,21 +21,13 @@ const contractDetails = {
 const FILENAME = `case-contracts/internal-variable-tests.case.json`;
 
 describe('e2e http consumer driven', () => {
-  beforeAll(() => {
-    // Delete the contract file first
-    try {
-      fs.rmSync(FILENAME);
-      fs.mkdirSync('case-contracts');
-    } catch (e) {
-      // We don't care if this fails
-    }
-  });
   defineContract(
     {
       ...contractDetails,
       config: {
         printResults: false, // Set this to true for you own tests
         contractFilename: FILENAME, // Usually you will not need to provide a filename
+        changedContracts: 'OVERWRITE',
         publish: false,
       },
     },

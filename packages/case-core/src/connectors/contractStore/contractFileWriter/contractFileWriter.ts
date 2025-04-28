@@ -47,6 +47,9 @@ const createDirectory = (
   }
 };
 
+const explicitFilename = (context: HasContractFileConfig) =>
+  context['_case:currentRun:context:contractFilename'];
+
 const actuallyWriteContract = (
   pathToFile: string,
   contract: ContractData,
@@ -54,7 +57,7 @@ const actuallyWriteContract = (
 ) => {
   if (fs.existsSync(pathToFile)) {
     if (
-      context['_case:currentRun:context:contractFilename'] &&
+      explicitFilename(context) &&
       !context['_case:currentRun:context:overwriteFile']
     ) {
       context.logger.error(
@@ -92,6 +95,24 @@ const actuallyWriteContract = (
       );
       return pathToFile;
     }
+  }
+
+  if (context['_case:currentRun:context:changedContracts'] === 'FAIL') {
+    throw new CaseConfigurationError(
+      `
+    Tried to write a new contract to
+        ${pathToFile} 
+    But it didn't exist. This isn't allowed with changedContracts set to fail.
+    
+    While ContractCase is running in snapshot test mode, it's a failure to
+    create new contracts. You'll need to re-run your tests with one of:
+    
+    * The configuration property changedContracts is set to 'OVERWRITE'
+    * The environment variable CASE_changedContracts=OVERWRITE
+    `,
+      'DONT_ADD_LOCATION',
+      'OVERWRITE_CONTRACTS_NEEDED',
+    );
   }
 
   createDirectory(pathToFile, context);
