@@ -25,6 +25,8 @@ const mapSetup = <C extends Record<string, string>>(
     if (fn == null) {
       throw new ContractCaseConfigurationError(
         `getFunction was asked for '${name}', but it wasn't configured in this Interaction`,
+        '',
+        'UNDOCUMENTED',
       );
     }
     return (...args: unknown[]) =>
@@ -37,6 +39,8 @@ const mapSetup = <C extends Record<string, string>>(
     if (variable == null) {
       throw new ContractCaseConfigurationError(
         `getStateVariable was asked for '${name}', but it wasn't present in the setup`,
+        '',
+        'BAD_INTERACTION_DEFINITION',
       );
     }
     return variable;
@@ -69,6 +73,7 @@ export const mapFailingTrigger =
                   err.stack ?? 'no-stack',
                   // TODO: Properly propagate stack traces
                   err.stack ?? 'no-stack',
+                  err.contractCaseErrorCode ?? 'UNDOCUMENTED',
                 ),
             ),
       )
@@ -80,6 +85,7 @@ export const mapFailingTrigger =
             e.stack ?? 'no-stack',
             // TODO: Properly propagate stack traces
             e.stack ?? 'no-stack',
+            e.contractCaseErrorCode ?? 'UNDOCUMENTED',
           ),
       );
 
@@ -109,6 +115,7 @@ export const mapSuccessTrigger =
             e.stack ?? 'no-stack',
             // TODO: Properly propagate stack traces
             e.stack ?? 'no-stack',
+            e.contractCaseErrorCode ?? 'UNDOCUMENTED',
           ),
       );
 

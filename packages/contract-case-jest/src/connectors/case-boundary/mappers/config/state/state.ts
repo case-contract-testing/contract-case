@@ -26,6 +26,8 @@ const mapStateHandler = (
   }
   throw new ContractCaseConfigurationError(
     `The stateHandler '${name}' wasn't a function, or didn't have a setup / teardown property. Please check that it is the correct type.`,
+    undefined,
+    'BAD_CONFIG',
   );
 };
 

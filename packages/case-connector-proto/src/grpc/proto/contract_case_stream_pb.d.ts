@@ -324,6 +324,15 @@ export class ResultFailure extends jspb.Message {
   getLocation(): google_protobuf_wrappers_pb.StringValue | undefined;
   setLocation(value?: google_protobuf_wrappers_pb.StringValue): ResultFailure;
 
+  hasContractCaseErrorCode(): boolean;
+  clearContractCaseErrorCode(): void;
+  getContractCaseErrorCode():
+    | google_protobuf_wrappers_pb.StringValue
+    | undefined;
+  setContractCaseErrorCode(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): ResultFailure;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResultFailure.AsObject;
   static toObject(
@@ -350,6 +359,7 @@ export namespace ResultFailure {
     kind?: google_protobuf_wrappers_pb.StringValue.AsObject;
     message?: google_protobuf_wrappers_pb.StringValue.AsObject;
     location?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    contractCaseErrorCode?: google_protobuf_wrappers_pb.StringValue.AsObject;
   };
 }
 

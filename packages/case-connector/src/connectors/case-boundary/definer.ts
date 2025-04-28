@@ -58,6 +58,7 @@ export const getDefiner = (
     return makeConfigurationError(
       `${methodName} was called after the definer was closed, presumably by endRecord`,
       `case-connector::${methodName}`,
+      'INVALID_LIFECYCLE',
     );
   }
   return definerHandle;

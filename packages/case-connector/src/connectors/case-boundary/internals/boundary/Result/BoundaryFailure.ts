@@ -15,6 +15,8 @@ export class BoundaryFailure extends BoundaryResult {
 
   readonly location: string;
 
+  readonly contractCaseErrorCode: string;
+
   readonly originalStackTrace: string;
 
   constructor(
@@ -22,6 +24,7 @@ export class BoundaryFailure extends BoundaryResult {
     message: string,
     location: string,
     originalStackTrace: string,
+    contractCaseErrorCode: string,
   ) {
     super(RESULT_FAILURE);
     this.resultType = RESULT_FAILURE;
@@ -29,5 +32,6 @@ export class BoundaryFailure extends BoundaryResult {
     this.message = message;
     this.location = location;
     this.originalStackTrace = originalStackTrace;
+    this.contractCaseErrorCode = contractCaseErrorCode;
   }
 }

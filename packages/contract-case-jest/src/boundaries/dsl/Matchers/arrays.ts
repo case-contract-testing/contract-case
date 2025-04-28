@@ -7,7 +7,10 @@ import {
   ARRAY_CONTAINS_TYPE,
   CoreShapedArrayMatcher,
 } from '@contract-case/case-entities-internal';
-import { coreArrayLengthMatcher, coreShapedArrayMatcher } from './core/index.js';
+import {
+  coreArrayLengthMatcher,
+  coreShapedArrayMatcher,
+} from './core/index.js';
 import { ContractCaseConfigurationError } from '../../../entities/errors/ContractCaseConfigurationError.js';
 
 type ArrayLengthOptions = { minLength?: number; maxLength?: number };
@@ -19,7 +22,7 @@ type ArrayLengthOptions = { minLength?: number; maxLength?: number };
  */
 export const arrayEachEntryMatches = (
   matcher: AnyCaseMatcherOrData,
-  example?: Array<AnyCaseMatcherOrData>
+  example?: Array<AnyCaseMatcherOrData>,
 ): CoreArrayEachEntryMatches => ({
   '_case:matcher:type': ARRAY_EACH_ENTRY_MATCHES_TYPE,
   '_case:matcher:matcher': matcher,
@@ -32,7 +35,7 @@ export const arrayEachEntryMatches = (
  * @param options - `ArrayLengthOptions { minLength?: number; maxLength?: number }`
  */
 export const arrayLength = (
-  options: ArrayLengthOptions
+  options: ArrayLengthOptions,
 ): CoreArrayLengthMatcher => {
   const matcher = coreArrayLengthMatcher(options);
   if (
@@ -41,7 +44,8 @@ export const arrayLength = (
   ) {
     throw new ContractCaseConfigurationError(
       "Can't create an arrayLength matcher with minimum size 0 and maximum size not 0. Use a raw empty array instead. See the documentation for details.",
-      'arrayLength matcher'
+      'arrayLength matcher',
+      'BAD_INTERACTION_DEFINITION',
     );
     // TODO write documentation for this
   }
@@ -68,5 +72,5 @@ export const arrayContains = (
  * @param matchers - An array of matchers that describes the start of the array
  */
 export const arrayStartsWith = (
-  matchers: AnyCaseMatcherOrData[]
+  matchers: AnyCaseMatcherOrData[],
 ): CoreShapedArrayMatcher => coreShapedArrayMatcher(matchers);

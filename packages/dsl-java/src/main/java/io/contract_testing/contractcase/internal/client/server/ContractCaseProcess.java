@@ -67,7 +67,7 @@ public class ContractCaseProcess {
       } catch (NumberFormatException e) {
         throw new ContractCaseConfigurationError(
             "Unable to parse the custom port from '" + envOverridePort
-                + "'. Make sure CASE_CONNECTOR_OVERRIDE_PORT is set to an integer");
+                + "'. Make sure CASE_CONNECTOR_OVERRIDE_PORT is set to an integer", "INVALID_CONFIG");
       }
       return;
     }

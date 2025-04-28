@@ -77,7 +77,8 @@ public class InternalDefinerClient {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_CORE_ERROR,
         "stripMatchers not implemented", // TODO
-        MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
+        MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
+        "UNDOCUMENTED"
     );
   }
 

@@ -42,7 +42,10 @@ const makeResult = (result: BoundaryResult): WireBoundaryResult => {
         new WireResultFailure()
           .setKind(makeGrpcString(failure.kind))
           .setLocation(makeGrpcString(failure.location))
-          .setMessage(makeGrpcString(failure.message)),
+          .setMessage(makeGrpcString(failure.message))
+          .setContractCaseErrorCode(
+            makeGrpcString(failure.contractCaseErrorCode),
+          ),
       );
     }
     default:

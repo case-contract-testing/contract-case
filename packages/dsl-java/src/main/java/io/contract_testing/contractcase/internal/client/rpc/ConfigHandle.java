@@ -23,14 +23,14 @@ public class ConfigHandle {
     if (boundaryConfig.getConnectorStateHandlers() == null) {
       throw new ContractCaseConfigurationError(
           "No state handlers provided, you must provide a state handler that can run '" + stateName
-              + "'");
+              + "'", "INVALID_CONFIG");
     }
     var stateHandler = boundaryConfig.getConnectorStateHandlers().get(stateName);
 
     if (stateHandler == null) {
       throw new ContractCaseConfigurationError(
           "The state handler named '" + stateName
-              + "' was not provided in the configuration");
+              + "' was not provided in the configuration", "INVALID_CONFIG");
     }
     return stateHandler;
   }
@@ -41,7 +41,9 @@ public class ConfigHandle {
     if (trigger == null) {
       throw new ContractCaseConfigurationError(
           "The trigger function named '" + handle
-              + "' wasn't provided in the configuration, but is required by this test run");
+              + "' wasn't provided in the configuration, but is required by this test run",
+          "INVALID_CONFIG"
+      );
     }
     return trigger;
   }
@@ -56,7 +58,7 @@ public class ConfigHandle {
     if (triggerMap == null) {
       throw new ContractCaseConfigurationError(
           "No trigger functions were provided, unable to run the trigger function '" + handle
-              + "'");
+              + "'", "INVALID_CONFIG");
     }
     return triggerMap.get(handle);
   }

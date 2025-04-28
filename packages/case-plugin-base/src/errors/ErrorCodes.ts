@@ -39,6 +39,25 @@ export const ErrorCodes = {
     INVALID_CONFIG: 'INVALID_CONFIG' as const,
 
     /**
+     * A lifecycle method was called out of order.
+     *
+     * Check that your code has the method calls in the right order.
+     *
+     * Although care has been taken to prevent invalid lifecycle calls from
+     * being possible, there are still some cases where this can happen.
+     *
+     * For contract definition, it should be:
+     *
+     * 1. Begin definition
+     * 2. Multiple calls to runInteraction or your language's equivalent of runRejectingInteraction
+     * 3. End record (writing the contract).
+     *
+     * Check that you're not accidentally reusing test instances between runs.
+     *
+     */
+    INVALID_LIFECYCLE: 'INVALID_LIFECYCLE' as const,
+
+    /**
      * Tried to publish verification results for a contract that doesn't have
      * information on where to publish the verification results.
      *

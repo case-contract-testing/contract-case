@@ -38,7 +38,6 @@ public class HttpApiExampleTest {
       .consumerName("Java Example HTTP Client")
       .providerName("Java Example HTTP Server")
       .publish(PublishType.NEVER)
-      .contractDir("temp-contracts")
       .build());
 
   Trigger<String> getHealth = (setupInfo) -> {

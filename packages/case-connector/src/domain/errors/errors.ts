@@ -13,11 +13,13 @@ export const makeCoreError = (
     location,
     // TODO: Implement stack trace passing
     '',
+    'UNDOCUMENTED',
   );
 
 export const makeConfigurationError = (
   message: string,
   location: string,
+  caseConfigurationErrorCode: string,
 ): BoundaryFailure =>
   new BoundaryFailure(
     BoundaryFailureKindConstants.CASE_CONFIGURATION_ERROR,
@@ -25,4 +27,5 @@ export const makeConfigurationError = (
     location,
     // TODO: Implement stack trace passing
     '',
+    caseConfigurationErrorCode,
   );

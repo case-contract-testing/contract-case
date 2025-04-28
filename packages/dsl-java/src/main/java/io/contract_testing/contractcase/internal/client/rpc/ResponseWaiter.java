@@ -54,7 +54,8 @@ public class ResponseWaiter {
       return new ConnectorFailure(
           ConnectorFailureKindConstants.CASE_CORE_ERROR,
           "Message '" + id + "' wasn't in the response futures map. This shouldn't happen, and is a bug with the Java DSL",
-          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
+          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
+          id
       );
     }
 
@@ -74,7 +75,8 @@ public class ResponseWaiter {
       return new ConnectorFailure(
           ConnectorFailureKindConstants.CASE_CORE_ERROR,
           "Timed out waiting for internal connection to ContractCase for message '" + id + "'",
-          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
+          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
+          id
       );
     } catch (ExecutionException e) {
       MaintainerLog.log(
@@ -84,13 +86,15 @@ public class ResponseWaiter {
       return new ConnectorFailure(
           ConnectorFailureKindConstants.CASE_CORE_ERROR,
           "Failed waiting for a response '" + id + "':" + e.getMessage()  + "\n" + "Caused by: " + e.getCause(),
-          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
+          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
+          id
       );
     } catch (InterruptedException e) {
       return new ConnectorFailure(
           ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
           "ContractCase was interrupted during its run. This isn't really a configuration error, it usually happens if a user killed the run.",
-          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
+          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
+          id
       );
     } finally {
       responseFutures.remove(id);

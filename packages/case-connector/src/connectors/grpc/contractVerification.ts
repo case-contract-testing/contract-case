@@ -73,6 +73,7 @@ export const contractVerification = (
           `[${e.name}] ${e.message}`,
           e.stack ?? 'ContractCase Connector',
           e.stack ?? 'ContractCase Connector',
+          'UNDOCUMENTED',
         ),
       ),
     );
@@ -164,6 +165,7 @@ export const contractVerification = (
                     `Unable to create verifier: ${(e as Error).message}`,
                     'ContractCase Connector',
                     (e as Error).stack ?? 'ContractCase Connector',
+                    'UNDOCUMENTED',
                   ),
                 ),
               );

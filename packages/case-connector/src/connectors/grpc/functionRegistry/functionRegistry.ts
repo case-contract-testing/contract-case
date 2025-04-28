@@ -24,6 +24,7 @@ export const makeFunctionRegistry = (): FunctionRegistry => {
             'core connector',
             // TODO: Need to allow the core to tell the DSL to log its call site
             '',
+            'UNDOCUMENTED',
           );
         }
         return coreFunctions[name](...args);

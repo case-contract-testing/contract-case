@@ -280,7 +280,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   public <R> void registerFunction(String functionName, ConnectorInvokableFunction function) {
     if (this.registeredFunctions.containsKey(functionName)) {
       throw new ContractCaseConfigurationError("The function '"
-          + "' was already registered. Make sure you are only registering it once.");
+          + "' was already registered. Make sure you are only registering it once.", "UNDOCUMENTED");
     }
     this.registeredFunctions.put(functionName, function);
   }
@@ -299,7 +299,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
           ConnectorFailureKindConstants.CASE_CORE_ERROR,
           "The core asked us to invoke the function '" + functionName
               + "' but it didn't exist in our store",
-          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
+          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
+          functionName
       );
     }
     return method.apply(args);

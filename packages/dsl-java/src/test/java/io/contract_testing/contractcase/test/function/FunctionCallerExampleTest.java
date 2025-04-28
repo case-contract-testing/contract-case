@@ -26,9 +26,8 @@ public class FunctionCallerExampleTest {
     contract = new ContractDefiner(
         ContractCaseConfigBuilder.aContractCaseConfig()
             .consumerName("Java Function Caller Example")
-            .providerName("Java Function Execution Example")
+            .providerName("Java Function Implementer Example")
             .publish(PublishType.NEVER)
-            .contractDir("temp-contracts")
             .build());
   }
 

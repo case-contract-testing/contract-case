@@ -1,0 +1,116 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "Java Function Implementer Example",
+    "providerName": "Java Function Caller Example"
+  },
+  "metadata": {
+    "_case": {
+      "version": "0.22.0"
+    }
+  },
+  "matcherLookup": {
+    "matcher:a function invoked with 1 argument ( <any integer> )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        {
+          "_case:context:matchBy": "type",
+          "_case:matcher:example": 2,
+          "_case:matcher:resolvesTo": "number",
+          "_case:matcher:type": "_case:Integer"
+        }
+      ]
+    },
+    "matcher:\"2 pages\"": "2 pages",
+    "matcher:a function invoked with no arguments": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": []
+    },
+    "matcher:null": {
+      "_case:context:matchBy": "type",
+      "_case:matcher:example": null,
+      "_case:matcher:resolvesTo": "null",
+      "_case:matcher:type": "_case:MatchNull"
+    }
+  },
+  "examples": [
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionCaller",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          },
+          "write": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          }
+        },
+        "functionName": "PageNumbers",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a function invoked with 1 argument ( <any integer> )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              {
+                "_case:context:matchBy": "type",
+                "_case:matcher:example": 2,
+                "_case:matcher:resolvesTo": "number",
+                "_case:matcher:type": "_case:Integer"
+              }
+            ]
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "\"2 pages\"",
+          "_case:matcher:child": "2 pages"
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionCaller",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          },
+          "write": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          }
+        },
+        "functionName": "NoArgFunction",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "a function invoked with no arguments",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": []
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "null",
+          "_case:matcher:child": {
+            "_case:context:matchBy": "type",
+            "_case:matcher:example": null,
+            "_case:matcher:resolvesTo": "null",
+            "_case:matcher:type": "_case:MatchNull"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}

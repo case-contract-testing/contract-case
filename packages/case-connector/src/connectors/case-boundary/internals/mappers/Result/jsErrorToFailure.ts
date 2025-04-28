@@ -1,3 +1,4 @@
+import { CaseConfigurationError } from '@contract-case/case-core';
 import { maintainerLog } from '../../../../../domain/maintainerLog.js';
 import {
   BoundaryFailure,
@@ -13,6 +14,7 @@ export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
       e.message,
       e.stack ?? 'unknown location',
       e.stack ?? 'unknown location',
+      (e as CaseConfigurationError).contractCaseErrorCode ?? 'UNDOCUMENTED',
     );
   }
 
@@ -23,5 +25,6 @@ export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
     `Caught something that doesn't seem to be an error: ${e}`,
     target.stack,
     target.stack,
+    'UNDOCUMENTED',
   );
 };

@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
- * Maps exceptions between the internal {@link ConnectorResult} type and java exceptions (and back).
+ * Maps exceptions between the internal {@link ConnectorResult} type and java exceptions (and
+ * back).
  */
 public class ConnectorExceptionMapper {
 
@@ -22,7 +23,10 @@ public class ConnectorExceptionMapper {
             : ConnectorFailureKindConstants.CASE_CORE_ERROR
         ,
         e.getMessage(),
-        stackTraceToString(e)
+        stackTraceToString(e),
+        e instanceof ContractCaseConfigurationError
+            ? ((ContractCaseConfigurationError) e).getErrorCode()
+            : "UNDOCUMENTED"
     );
     if (failure.getResultType() == null) {
       throw new ContractCaseCoreError(
@@ -35,7 +39,10 @@ public class ConnectorExceptionMapper {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_TRIGGER_ERROR,
         "Trigger function failed: " + e.getMessage(),
-        stackTraceToString(e)
+        stackTraceToString(e),
+        e instanceof ContractCaseConfigurationError
+            ? ((ContractCaseConfigurationError) e).getErrorCode()
+            : "UNDOCUMENTED"
     );
   }
 
@@ -43,7 +50,10 @@ public class ConnectorExceptionMapper {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR,
         "Verification failed: " + e.getMessage(),
-        stackTraceToString(e)
+        stackTraceToString(e),
+        e instanceof ContractCaseConfigurationError
+            ? ((ContractCaseConfigurationError) e).getErrorCode()
+            : "UNDOCUMENTED"
     );
   }
 
@@ -51,7 +61,10 @@ public class ConnectorExceptionMapper {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
         "State handler failed: " + e.getMessage(),
-        stackTraceToString(e)
+        stackTraceToString(e),
+        e instanceof ContractCaseConfigurationError
+            ? ((ContractCaseConfigurationError) e).getErrorCode()
+            : "UNDOCUMENTED"
     );
   }
 }

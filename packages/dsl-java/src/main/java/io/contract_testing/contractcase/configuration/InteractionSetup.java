@@ -45,7 +45,9 @@ public class InteractionSetup {
               : "Currently defined variables are: \n"
                   + keys
                   .stream().map(s -> "    " + s)
-                  .collect(Collectors.joining("\n"))));
+                  .collect(Collectors.joining("\n"))),
+          "BAD_INTERACTION_DEFINITION"
+      );
     }
     return this.stateVariables.get(key);
   }
@@ -68,7 +70,7 @@ public class InteractionSetup {
               : "Currently defined setup values are: \n"
                   + keys
                   .stream().map(s -> "    " + s)
-                  .collect(Collectors.joining("\n"))));
+                  .collect(Collectors.joining("\n"))), "UNDOCUMENTED");
     }
     return this.mockSetup.get(key);
   }
@@ -84,7 +86,7 @@ public class InteractionSetup {
               : "Currently defined functions are: \n"
                   + keys
                   .stream().map(s -> "    " + s)
-                  .collect(Collectors.joining("\n"))));
+                  .collect(Collectors.joining("\n"))), "UNDOCUMENTED");
     }
     return (args) -> ConnectorResultMapper.mapSuccessWithAny(
         this.functions.get(name).invoke(args)

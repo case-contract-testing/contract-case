@@ -20,12 +20,17 @@ class ConnectorConfigMapper {
         builder.triggerAndTest(BoundaryTriggerMapper.map(config.trigger, config.testResponse));
       } else {
         throw new ContractCaseConfigurationError(
-            "Must specify `testResponse` if you are specifying a `trigger`");
+            "Must specify `testResponse` if you are specifying a `trigger`",
+            "INVALID_CONFIG"
+        );
+
       }
     } else {
       if (config.testResponse != null) {
         throw new ContractCaseConfigurationError(
-            "Must specify `trigger` if you are specifying a `testResponse` function");
+            "Must specify `trigger` if you are specifying a `testResponse` function",
+            "INVALID_CONFIG"
+        );
       }
     }
 
@@ -42,12 +47,16 @@ class ConnectorConfigMapper {
         builder.triggerAndTest(BoundaryTriggerMapper.map(config.trigger, config.testErrorResponse));
       } else {
         throw new ContractCaseConfigurationError(
-            "Must specify `testErrorResponse` if you are specifying a `trigger`");
+            "Must specify `testErrorResponse` if you are specifying a `trigger`",
+            "INVALID_CONFIG"
+        );
       }
     } else {
       if (config.testErrorResponse != null) {
         throw new ContractCaseConfigurationError(
-            "Must specify `trigger` if you are specifying a `testErrorResponse` function");
+            "Must specify `trigger` if you are specifying a `testErrorResponse` function",
+            "INVALID_CONFIG"
+        );
       }
     }
 
@@ -89,7 +98,7 @@ class ConnectorConfigMapper {
       builder.contractFilename(config.contractFilename);
     }
 
-    if(config.changedContracts != null) {
+    if (config.changedContracts != null) {
       builder.changedContracts(config.changedContracts);
     }
 
@@ -124,10 +133,9 @@ class ConnectorConfigMapper {
       builder.stateHandlers(ConnectorStateHandlerMapper.map(config.stateHandlers));
     }
 
-    if(config.autoVersionFrom != null) {
+    if (config.autoVersionFrom != null) {
       builder.autoVersionFrom(config.autoVersionFrom);
     }
-
 
     config.mockConfig.forEach(builder::mockConfig);
 

@@ -1,7 +1,12 @@
 export class ContractCaseConfigurationError extends Error {
   readonly location: string;
+  readonly contractCaseErrorCode: string;
 
-  constructor(message: string, location?: string | undefined) {
+  constructor(
+    message: string,
+    location: string | undefined,
+    contractCaseErrorCode: string,
+  ) {
     super(message);
 
     this.location =
@@ -12,5 +17,7 @@ export class ContractCaseConfigurationError extends Error {
     this.stack = this.location.startsWith('CaseConfigurationError')
       ? `Contract${this.location}`
       : this.location;
+
+    this.contractCaseErrorCode = contractCaseErrorCode;
   }
 }

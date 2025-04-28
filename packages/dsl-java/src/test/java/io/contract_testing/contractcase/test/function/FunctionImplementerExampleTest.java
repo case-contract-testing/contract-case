@@ -23,9 +23,8 @@ public class FunctionImplementerExampleTest {
   static final ObjectMapper mapper = new ObjectMapper();
   private static final ContractDefiner contract = new ContractDefiner(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
       .consumerName("Java Function Implementer Example")
-      .providerName("Java Function Execution Example")
+      .providerName("Java Function Caller Example")
       .publish(PublishType.NEVER)
-      .contractDir("temp-contracts")
       .build());
 
   @AfterAll

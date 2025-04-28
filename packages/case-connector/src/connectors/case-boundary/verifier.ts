@@ -65,6 +65,7 @@ export const getVerifier = (
     return makeConfigurationError(
       `${methodName} was called after the verifier was closed`,
       `case-connector::${methodName}`,
+      'INVALID_LIFECYCLE',
     );
   }
   return verifierHandle;

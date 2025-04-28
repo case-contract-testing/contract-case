@@ -390,7 +390,7 @@ public class ContractCaseConfig {
       if (this.stateHandlers.containsKey(stateName)) {
         throw new ContractCaseConfigurationError("The state with name '" + stateName
             + "' is already set. You should only set a state handler once for each state.\n   If you need a setup and teardown handler, use the convenience methods on "
-            + StateHandler.class.getName());
+            + StateHandler.class.getName(), "INVALID_CONFIG");
       }
       this.stateHandlers.put(stateName, stateHandler);
       return this;

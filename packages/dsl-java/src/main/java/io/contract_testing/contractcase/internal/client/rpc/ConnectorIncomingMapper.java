@@ -115,7 +115,8 @@ public class ConnectorIncomingMapper {
         return new ConnectorFailure(
             ConnectorIncomingMapper.map(wireFailure.getKind()),
             ConnectorIncomingMapper.map(wireFailure.getMessage()),
-            ConnectorIncomingMapper.map(wireFailure.getLocation())
+            ConnectorIncomingMapper.map(wireFailure.getLocation()),
+            ConnectorIncomingMapper.map(wireFailure.getContractCaseErrorCode())
         );
       }
       case SUCCESS -> {

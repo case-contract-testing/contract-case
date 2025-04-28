@@ -70,6 +70,7 @@ export const contractDefinition = (
           `[${e.name}] ${e.message}`,
           e.stack ?? 'ContractCase Connector',
           e.stack ?? 'ContractCase Connector',
+          'UNDOCUMENTED',
         ),
       ),
     );
@@ -121,6 +122,7 @@ export const contractDefinition = (
                   `Unable to create definer: ${(e as Error).message}`,
                   'ContractCase Connector',
                   (e as Error).stack ?? 'ContractCase Connector',
+                  'UNDOCUMENTED',
                 ),
               ),
             );

@@ -45,7 +45,8 @@ public class ConnectorInvokableFunctionMapper {
             ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
             "The registered function '" + functionName + "' accepts " + expectedArgumentCount
                 + " arguments, but instead received " + args.size() + " arguments",
-            MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
+            MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
+            functionName
         );
       } catch (Exception e) {
         var stackTraceFirstLines = Arrays.stream(e.getStackTrace())
@@ -55,7 +56,8 @@ public class ConnectorInvokableFunctionMapper {
             ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
             "The function '" + functionName + "' threw an exception: "
                 + e.getMessage() + "\n" + stackTraceFirstLines,
-            MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
+            MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
+            "UNDOCUMENTED"
         );
       }
     }

@@ -37,7 +37,7 @@ public  static void mapVoid(ConnectorResult result) {
       case ConnectorFailureKindConstants.CASE_BROKER_ERROR,
           ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
           ConnectorFailureKindConstants.CASE_TRIGGER_ERROR ->
-          throw new ContractCaseConfigurationError(result.getMessage(), result.getLocation());
+          throw new ContractCaseConfigurationError(result.getMessage(), result.getLocation(), result.getErrorCode());
       case ConnectorFailureKindConstants.CASE_CORE_ERROR ->
           throw new ContractCaseCoreError(result.getMessage(), result.getLocation());
       case ConnectorFailureKindConstants.CASE_FAILED_ASSERTION_ERROR,
