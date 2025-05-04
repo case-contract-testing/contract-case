@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.23.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.23.0...@contract-case/dsl-java-v0.23.1) (2025-05-04)
+
+
+### Bug Fixes
+
+* **java-dsl:** Fix problem where exceptions thrown in triggers would cause the test to hang ([0e6f686](https://github.com/case-contract-testing/contract-case/commit/0e6f68637445c6d7129bbda19ef40a823111e691))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.23.0 to 0.23.1
+    * @contract-case/case-definition-dsl bumped from 0.23.0 to 0.23.1
+
 ## [0.23.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.22.0...@contract-case/dsl-java-v0.23.0) (2025-04-28)
 
 
