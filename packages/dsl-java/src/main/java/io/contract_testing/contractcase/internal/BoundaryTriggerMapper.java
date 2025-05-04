@@ -57,6 +57,8 @@ public class BoundaryTriggerMapper {
       } catch (Exception triggerException) {
         try {
           testErrorResponseFunction.call(triggerException, interactionSetup);
+        } catch (AssertionError error) {
+          return ConnectorExceptionMapper.mapAsVerifyFailure(error);
         } catch (Exception verifyException) {
           return ConnectorExceptionMapper.mapAsVerifyFailure(verifyException);
         }

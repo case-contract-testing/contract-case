@@ -201,6 +201,7 @@ public class ConnectorOutgoingMapper {
                 .setKind(ConnectorOutgoingMapper.map(failure.getKind()))
                 .setLocation(ConnectorOutgoingMapper.map(failure.getLocation()))
                 .setMessage(ConnectorOutgoingMapper.map(failure.getMessage()))
+                .setContractCaseErrorCode(ConnectorOutgoingMapper.map(failure.getErrorCode()))
                 .build())
             .build();
       }
@@ -216,17 +217,16 @@ public class ConnectorOutgoingMapper {
                   .setPayload(map(((ConnectorSuccessWithAny) result).getPayload()))
                   .build())
               .build();
-      default -> {
-        yield ContractCaseStream.BoundaryResult.newBuilder()
-            .setFailure(ResultFailure.newBuilder()
-                .setKind(ConnectorOutgoingMapper.map(ConnectorFailureKindConstants.CASE_CORE_ERROR))
-                .setLocation(ConnectorOutgoingMapper.map(MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER))
-                .setMessage(ConnectorOutgoingMapper.map(
-                    "Tried to map an unknown result type: '" + resultType
-                ))
-                .build())
-            .build();
-      }
+      default -> ContractCaseStream.BoundaryResult.newBuilder()
+          .setFailure(ResultFailure.newBuilder()
+              .setKind(ConnectorOutgoingMapper.map(ConnectorFailureKindConstants.CASE_CORE_ERROR))
+              .setLocation(ConnectorOutgoingMapper.map(MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER))
+              .setMessage(ConnectorOutgoingMapper.map(
+                  "Tried to map an unknown result type: '" + resultType
+              ))
+              .setContractCaseErrorCode(ConnectorOutgoingMapper.map("UNDOCUMENTED"))
+              .build())
+          .build();
     };
   }
 

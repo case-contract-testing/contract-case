@@ -57,6 +57,15 @@ public class ConnectorExceptionMapper {
     );
   }
 
+  public static ConnectorFailure mapAsVerifyFailure(Error e) {
+    return new ConnectorFailure(
+        ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR,
+        "Verification failed: " + e.getMessage(),
+        stackTraceToString(e),
+        "UNDOCUMENTED"
+    );
+  }
+
   public static ConnectorResult mapAsStateFailure(Exception e) {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
