@@ -38,7 +38,7 @@ public class ConnectorExceptionMapper {
   public static ConnectorFailure mapAsTriggerFailure(Exception e) {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_TRIGGER_ERROR,
-        "Trigger function failed: " + e.getMessage(),
+        e.getMessage(),
         stackTraceToString(e),
         e instanceof ContractCaseConfigurationError
             ? ((ContractCaseConfigurationError) e).getErrorCode()
@@ -49,7 +49,7 @@ public class ConnectorExceptionMapper {
   public static ConnectorFailure mapAsVerifyFailure(Exception e) {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR,
-        "Verification failed: " + e.getMessage(),
+        e.getMessage(),
         stackTraceToString(e),
         e instanceof ContractCaseConfigurationError
             ? ((ContractCaseConfigurationError) e).getErrorCode()
@@ -60,7 +60,7 @@ public class ConnectorExceptionMapper {
   public static ConnectorFailure mapAsVerifyFailure(Error e) {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR,
-        "Verification failed: " + e.getMessage(),
+        e.getMessage(),
         stackTraceToString(e),
         "UNDOCUMENTED"
     );
@@ -69,7 +69,7 @@ public class ConnectorExceptionMapper {
   public static ConnectorResult mapAsStateFailure(Exception e) {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
-        "State handler failed: " + e.getMessage(),
+        e.getMessage(),
         stackTraceToString(e),
         e instanceof ContractCaseConfigurationError
             ? ((ContractCaseConfigurationError) e).getErrorCode()
