@@ -129,7 +129,7 @@ public class LogPrinterStandardOut implements LogPrinter {
         + whiteBright.format(
         description.getMessage())) + "\n\n" + spaces(
         12, white.format(
-            " - " + description.getLocation() + " ["
+            " - " + description.getLocationTag() + " ["
                 + description.getErrorTypeTag() + "]")));
   }
 

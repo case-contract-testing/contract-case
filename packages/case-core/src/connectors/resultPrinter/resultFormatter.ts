@@ -33,12 +33,17 @@ const camelToCapital = (camel: string) =>
 const makePrintError =
   (printer: ResultPrinter) =>
   (error: CaseError, context: DataContext): void => {
-    const locationTag = locationString({
-      ...context,
-      '_case:currentRun:context:location': Array.isArray(error.location)
-        ? error.location
-        : [],
-    });
+    const locationTag =
+      'userFacingStackTrace' in error &&
+      typeof error.userFacingStackTrace === 'string' &&
+      error.userFacingStackTrace !== ''
+        ? error.userFacingStackTrace
+        : locationString({
+            ...context,
+            '_case:currentRun:context:location': Array.isArray(error.location)
+              ? error.location
+              : [],
+          });
 
     const errorTypeTag =
       'matcher' in error ? error.matcher['_case:matcher:type'] : error.code;
