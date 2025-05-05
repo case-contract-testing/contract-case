@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.23.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.23.1...@contract-case/case-connector-proto-v0.23.2) (2025-05-05)
+
+
+### Features
+
+* **core,java:** Add user-facing stack traces so that the source of errors is clear ([c8234ad](https://github.com/case-contract-testing/contract-case/commit/c8234adeebfa9bcf764009f5c4cc6c22562eebf6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.23.1 to 0.23.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.23.1 to 0.23.2
+
 ## [0.23.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.23.0...@contract-case/case-connector-proto-v0.23.1) (2025-05-04)
 
 
