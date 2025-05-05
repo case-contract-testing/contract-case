@@ -2,6 +2,7 @@ package io.contract_testing.contractcase.internal.edge;
 
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
+import io.contract_testing.contractcase.exceptions.HasUserFacingStackTrace;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,12 @@ import java.util.stream.Collectors;
 public class ConnectorExceptionMapper {
 
   public static String stackTraceToString(Throwable e) {
+    if (e instanceof HasUserFacingStackTrace) {
+      var trace = ((HasUserFacingStackTrace) e).userFacingStackTrace();
+      if (!"".equals(trace)) {
+        return trace;
+      }
+    }
     return Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).collect(
         Collectors.joining("\n"));
   }
@@ -23,10 +30,11 @@ public class ConnectorExceptionMapper {
             : ConnectorFailureKindConstants.CASE_CORE_ERROR
         ,
         e.getMessage(),
-        stackTraceToString(e),
+        "",
         e instanceof ContractCaseConfigurationError
             ? ((ContractCaseConfigurationError) e).getErrorCode()
-            : "UNDOCUMENTED"
+            : "UNDOCUMENTED",
+        stackTraceToString(e)
     );
     if (failure.getResultType() == null) {
       throw new ContractCaseCoreError(
@@ -39,10 +47,11 @@ public class ConnectorExceptionMapper {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_TRIGGER_ERROR,
         e.getMessage(),
-        stackTraceToString(e),
+        "",
         e instanceof ContractCaseConfigurationError
             ? ((ContractCaseConfigurationError) e).getErrorCode()
-            : "UNDOCUMENTED"
+            : "UNDOCUMENTED",
+        stackTraceToString(e)
     );
   }
 
@@ -50,10 +59,11 @@ public class ConnectorExceptionMapper {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR,
         e.getMessage(),
-        stackTraceToString(e),
+        "",
         e instanceof ContractCaseConfigurationError
             ? ((ContractCaseConfigurationError) e).getErrorCode()
-            : "UNDOCUMENTED"
+            : "UNDOCUMENTED",
+        stackTraceToString(e)
     );
   }
 
@@ -61,8 +71,9 @@ public class ConnectorExceptionMapper {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR,
         e.getMessage(),
-        stackTraceToString(e),
-        "UNDOCUMENTED"
+        "",
+        "UNDOCUMENTED",
+        stackTraceToString(e)
     );
   }
 
@@ -70,10 +81,11 @@ public class ConnectorExceptionMapper {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
         e.getMessage(),
-        stackTraceToString(e),
+        "",
         e instanceof ContractCaseConfigurationError
             ? ((ContractCaseConfigurationError) e).getErrorCode()
-            : "UNDOCUMENTED"
+            : "UNDOCUMENTED",
+        stackTraceToString(e)
     );
   }
 }

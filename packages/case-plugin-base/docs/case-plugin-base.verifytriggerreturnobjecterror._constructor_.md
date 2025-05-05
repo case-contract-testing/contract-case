@@ -9,7 +9,7 @@ Constructs a new instance of the `VerifyTriggerReturnObjectError` class
 **Signature:**
 
 ```typescript
-constructor(cause: unknown);
+constructor(cause: unknown, userFacingStackTrace?: string);
 ```
 
 ## Parameters
@@ -41,6 +41,22 @@ unknown
 
 
 </td><td>
+
+
+</td></tr>
+<tr><td>
+
+userFacingStackTrace
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
 
 
 </td></tr>

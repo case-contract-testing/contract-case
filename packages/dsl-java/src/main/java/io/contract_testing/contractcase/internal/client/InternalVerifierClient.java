@@ -1,14 +1,6 @@
 package io.contract_testing.contractcase.internal.client;
 
 import io.contract_testing.contractcase.configuration.LogLevel;
-import io.contract_testing.contractcase.logs.LogPrinter;
-import io.contract_testing.contractcase.internal.client.rpc.ConfigHandle;
-import io.contract_testing.contractcase.internal.client.rpc.ConnectorOutgoingMapper;
-import io.contract_testing.contractcase.internal.client.rpc.RpcForVerification;
-import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
-import io.contract_testing.contractcase.internal.edge.ConnectorResult;
-import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
-import io.contract_testing.contractcase.internal.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.AvailableContractDefinitions;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginVerificationRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
@@ -16,6 +8,15 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginReques
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RegisterFunction;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RunVerification;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.VerificationRequest;
+import io.contract_testing.contractcase.internal.ConnectorResultMapper;
+import io.contract_testing.contractcase.internal.client.rpc.ConfigHandle;
+import io.contract_testing.contractcase.internal.client.rpc.ConnectorOutgoingMapper;
+import io.contract_testing.contractcase.internal.client.rpc.RpcForVerification;
+import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
+import io.contract_testing.contractcase.internal.edge.ConnectorResult;
+import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
+import io.contract_testing.contractcase.internal.edge.RunTestCallback;
+import io.contract_testing.contractcase.logs.LogPrinter;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
@@ -43,7 +44,7 @@ public class InternalVerifierClient implements AutoCloseable {
 
     // this is only here because we have to be able to map errors into exceptions
     // probably we should call begin outside the constructor to avoid this issue
-    RpcConnectorResultMapper.map(begin(ConnectorOutgoingMapper.mapConfig(boundaryConfig)));
+    ConnectorResultMapper.map(begin(ConnectorOutgoingMapper.mapConfig(boundaryConfig)));
   }
 
   public @NotNull ConnectorResult availableContractDescriptions() {
@@ -66,7 +67,10 @@ public class InternalVerifierClient implements AutoCloseable {
                 )
         ), "runVerification", VERIFY_TIMEOUT_SECONDS
     );
-    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Response from verification was: " + response.getResultType());
+    MaintainerLog.log(
+        LogLevel.MAINTAINER_DEBUG,
+        "Response from verification was: " + response.getResultType()
+    );
     return response;
   }
 
@@ -88,13 +92,15 @@ public class InternalVerifierClient implements AutoCloseable {
     rpcConnector.close();
   }
 
-  public ConnectorResult loadPlugins(ContractCaseConnectorConfig configOverrides, String[] pluginNames) {
+  public ConnectorResult loadPlugins(ContractCaseConnectorConfig configOverrides,
+      String[] pluginNames) {
     MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Beginning loadPlugin");
     return rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
             .setLoadPlugin(LoadPluginRequest.newBuilder()
                 .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides)))
         , "loadPlugins");
   }
+
   public ConnectorResult registerFunction(String functionName,
       ConnectorInvokableFunction function) {
     rpcConnector.registerFunction(functionName, function);

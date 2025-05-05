@@ -16,6 +16,13 @@ export class CaseConfigurationError extends Error {
   contractCaseErrorCode: ConfigurationErrorCode;
 
   /**
+   * If there's a user facing stack trace, this will be set to a non-empty string.
+   *
+   * The stack trace will have multiple lines separated by '\\n'
+   */
+  userFacingStackTrace: string;
+
+  /**
    * Constructs a CaseConfigurationError.
    *
    * @param message - the message for this error
@@ -28,6 +35,7 @@ export class CaseConfigurationError extends Error {
     message: string,
     context: LogLevelContext | 'DONT_ADD_LOCATION',
     code: ConfigurationErrorCode = ErrorCodes.configuration.UNDOCUMENTED,
+    userFacingStackTrace: string = '',
   ) {
     super(
       `${message}${context !== 'DONT_ADD_LOCATION' ? errorLocationString(context) : ''}`,
@@ -35,5 +43,6 @@ export class CaseConfigurationError extends Error {
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = 'CaseConfigurationError';
     this.contractCaseErrorCode = code;
+    this.userFacingStackTrace = userFacingStackTrace;
   }
 }

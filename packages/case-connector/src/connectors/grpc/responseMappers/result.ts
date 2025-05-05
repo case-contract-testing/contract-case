@@ -43,6 +43,7 @@ const makeResult = (result: BoundaryResult): WireBoundaryResult => {
           .setKind(makeGrpcString(failure.kind))
           .setLocation(makeGrpcString(failure.location))
           .setMessage(makeGrpcString(failure.message))
+          .setUserFacingStackTrace(makeGrpcString(failure.userFacingStackTrace))
           .setContractCaseErrorCode(
             makeGrpcString(failure.contractCaseErrorCode),
           ),

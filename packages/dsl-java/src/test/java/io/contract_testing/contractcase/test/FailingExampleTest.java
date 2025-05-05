@@ -21,6 +21,7 @@ import io.contract_testing.contractcase.definitions.matchers.http.HttpResponseEx
 import io.contract_testing.contractcase.definitions.states.InState;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.exceptions.ContractCaseExpectationsNotMet;
+import io.contract_testing.contractcase.exceptions.HasUserFacingStackTrace;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ public class FailingExampleTest {
       .consumerName("Java Example HTTP Client")
       .providerName("Java Example HTTP Server")
       .publish(PublishType.NEVER)
-      .logLevel(LogLevel.MAINTAINER_DEBUG)
+      //      .logLevel(LogLevel.MAINTAINER_DEBUG)
       .build());
 
   Trigger<String> getHealth = (setupInfo) -> {
@@ -67,7 +68,12 @@ public class FailingExampleTest {
                 assertThat(status).isEqualTo("up");
               })
       );
-    }).isInstanceOf(ContractCaseConfigurationError.class);
+    }).isInstanceOf(ContractCaseConfigurationError.class).satisfies((e) -> {
+          assertThat(((HasUserFacingStackTrace) e).userFacingStackTrace())
+              .contains("FailingExampleTest.java");
+        }
+    );
+    ;
     // Failure in throwing interaction trigger should fail with verify error, as the
     // trigger's failure is passed to it
     assertThatThrownBy(() -> {
@@ -93,14 +99,24 @@ public class FailingExampleTest {
                 assertThat(exception.getMessage()).isEqualTo("The server is not ready");
               })
       );
-    }).isInstanceOf(ContractCaseExpectationsNotMet.class);
-
+    }).isInstanceOf(ContractCaseExpectationsNotMet.class)
+        .satisfies((e) -> {
+          assertThat(((HasUserFacingStackTrace) e).userFacingStackTrace())
+              .contains("FailingExampleTest.java");
+            }
+        );
 
     // Recording contract should throw an error
-    assertThatThrownBy(contract::endRecord).isInstanceOf(ContractCaseExpectationsNotMet.class);
+    assertThatThrownBy(contract::endRecord).
+
+        isInstanceOf(ContractCaseExpectationsNotMet.class).satisfies((e) -> {
+              assertThat(((ContractCaseExpectationsNotMet) e).userFacingStackTrace()).isEqualTo(
+                  "");
+            }
+        );
+    ;
 
   }
-
 
 
 }

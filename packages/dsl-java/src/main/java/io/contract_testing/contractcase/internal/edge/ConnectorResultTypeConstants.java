@@ -25,15 +25,4 @@ public class ConnectorResultTypeConstants {
    */
   public static final String RESULT_FAILURE = "Failure";
 
-
-  private static void checkEqual(@NotNull String wrapper, @NotNull String boundary) {
-    if (!wrapper.equals(boundary)) {
-      throw new ContractCaseCoreError(
-          "Mismatched result type constants - the wrapper has '" + wrapper
-              + "', but the boundary expects '" + boundary
-              + "'. This is a bug in the ContractCase wrapper.",
-          "Java Wrapper"
-      );
-    }
-  }
 }

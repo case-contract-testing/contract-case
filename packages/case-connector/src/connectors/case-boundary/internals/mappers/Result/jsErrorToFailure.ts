@@ -12,8 +12,12 @@ export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
       BoundaryFailureKindConstants.jsNameToConstant[e.name] ||
         BoundaryFailureKindConstants.CASE_CORE_ERROR,
       e.message,
-      e.stack ?? 'unknown location',
-      e.stack ?? 'unknown location',
+      'location' in e && typeof e.location === 'string'
+        ? e.location
+        : 'unknown location',
+      'userFacingStackTrace' in e && typeof e.userFacingStackTrace === 'string'
+        ? e.userFacingStackTrace
+        : '',
       (e as CaseConfigurationError).contractCaseErrorCode ?? 'UNDOCUMENTED',
     );
   }
@@ -23,7 +27,7 @@ export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
   return new BoundaryFailure(
     'CaseCoreError',
     `Caught something that doesn't seem to be an error: ${e}`,
-    target.stack,
+    'case-connector',
     target.stack,
     'UNDOCUMENTED',
   );

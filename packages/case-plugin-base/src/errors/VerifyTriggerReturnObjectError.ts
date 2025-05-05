@@ -9,16 +9,21 @@ const MESSAGE = 'Failed while verifying object returned by trigger:';
 export class VerifyTriggerReturnObjectError extends Error {
   override cause: unknown;
 
-  constructor(cause: unknown) {
-    const maybeError = cause as Error;
+  userFacingStackTrace: string;
 
+  constructor(cause: unknown, userFacingStackTrace?: string) {
+    const maybeError = cause as Error;
     if (typeof maybeError === 'object' && 'message' in maybeError) {
-      super(`${MESSAGE}\n\n${maybeError.message}`);
-      if (maybeError.stack) this.stack = maybeError.stack;
+      super(`${MESSAGE}\n\n${maybeError.message}`, { cause });
+      this.userFacingStackTrace =
+        'userFacingStackTrace' in maybeError &&
+        typeof maybeError.userFacingStackTrace === 'string'
+          ? maybeError.userFacingStackTrace
+          : '';
     } else {
       super(`${MESSAGE}\n\n${cause}`);
+      this.userFacingStackTrace = userFacingStackTrace ?? '';
     }
-
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = 'VerifyTriggerReturnObjectError';
 

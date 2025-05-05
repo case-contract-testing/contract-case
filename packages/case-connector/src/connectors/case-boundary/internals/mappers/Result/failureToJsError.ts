@@ -1,6 +1,7 @@
 import {
   CaseCoreError,
   CaseConfigurationError,
+  ConfigurationErrorCode,
   CaseTriggerError,
   VerifyTriggerReturnObjectError,
 } from '@contract-case/case-core';
@@ -28,16 +29,35 @@ const makeLocation = (...locations: string[]) => ({
 const errorMessage = (message: string, location: string) =>
   `${message}\n    - at ${location}`;
 
-const makeError = (kind: ErrorType, message: string, location: string) => {
+const makeError = (
+  kind: ErrorType,
+  message: string,
+  location: string,
+  errorCode: ConfigurationErrorCode,
+  userFacingStackTrace: string,
+) => {
   switch (kind) {
     case 'CaseCoreError':
-      return new CaseCoreError(message, makeLocation(location));
+      return new CaseCoreError(
+        message,
+        makeLocation(location),
+        userFacingStackTrace,
+      );
     case 'CaseTriggerError':
-      return new CaseTriggerError(message, makeLocation(location));
+      return new CaseTriggerError(
+        message,
+        makeLocation(),
+        userFacingStackTrace,
+      );
     case 'CaseConfigurationError':
-      return new CaseConfigurationError(message, makeLocation(location));
+      return new CaseConfigurationError(
+        message,
+        makeLocation(location),
+        errorCode,
+        userFacingStackTrace,
+      );
     case 'VerifyTriggerReturnObjectError':
-      return new VerifyTriggerReturnObjectError(message);
+      return new VerifyTriggerReturnObjectError(message, userFacingStackTrace);
     default:
       return new CaseCoreError(
         `Unknown message kind '${kind}': Need to update makeError\nOriginal message: ${message}`,
@@ -55,12 +75,20 @@ export const failureToJsError = (
       case 'CaseTriggerError':
       case 'CaseConfigurationError':
       case 'VerifyTriggerReturnObjectError':
-        return makeError(result.kind, result.message, result.location);
+        return makeError(
+          result.kind,
+          result.message,
+          result.location,
+          result.contractCaseErrorCode as ConfigurationErrorCode,
+          result.userFacingStackTrace,
+        );
       default:
         return makeError(
           defaultError,
           errorMessage(`[${result.kind}]: ${result.message}`, result.location),
           result.location,
+          result.contractCaseErrorCode as ConfigurationErrorCode,
+          result.userFacingStackTrace,
         );
     }
   }

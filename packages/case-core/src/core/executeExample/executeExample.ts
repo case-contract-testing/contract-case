@@ -93,6 +93,13 @@ const assertableToExample = <T extends AnyMockDescriptorType>(
     },
   );
 
+const renderStackTrace = (e: unknown) => {
+  if (e != null && typeof e === 'object' && 'userFacingStackTrace' in e) {
+    return e.userFacingStackTrace;
+  }
+  return (e as Error).stack;
+};
+
 export const executeExample = <T extends AnyMockDescriptorType, R>(
   example: CaseExample,
   {
@@ -132,7 +139,8 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
           },
           async (error) => {
             context.logger.debug(
-              `This example failed while trying to invoke the trigger function: ${error.message}\n   ${(error as Error).stack}`,
+              `This example failed while trying to invoke the trigger function: "${error.message}"  Stack trace follows.`,
+              renderStackTrace(error as Error),
             );
 
             // We still need to drain the assertable

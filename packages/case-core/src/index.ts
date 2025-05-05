@@ -16,7 +16,10 @@ export * from './boundaries/types';
 export { CaseConfig } from './core/types';
 export { TestInvoker, MultiTestInvoker } from './core/executeExample/types';
 export { BrokerError } from './core';
-export { LogLevel } from '@contract-case/case-plugin-base';
+export {
+  LogLevel,
+  ConfigurationErrorCode,
+} from '@contract-case/case-plugin-base';
 
 export {
   CaseConfigurationError,

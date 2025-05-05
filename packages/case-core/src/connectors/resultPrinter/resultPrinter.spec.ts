@@ -1,5 +1,6 @@
 /* eslint-disable jest/expect-expect */
 import {
+  CaseTriggerError,
   matchingError,
   VerifyTriggerReturnObjectError,
 } from '@contract-case/case-plugin-base';
@@ -111,7 +112,7 @@ describe('result printer', () => {
     it('prints error details', () => {
       resultPrinter.printError(
         triggerError(
-          new Error('This error is expected to happen'),
+          new CaseTriggerError('This error is expected to happen'),
           EMPTY_MATCH_CONTEXT,
         ),
         EMPTY_DATA_CONTEXT,

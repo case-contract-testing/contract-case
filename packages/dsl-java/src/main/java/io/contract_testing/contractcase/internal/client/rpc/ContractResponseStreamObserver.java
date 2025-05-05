@@ -8,18 +8,20 @@ import static io.contract_testing.contractcase.internal.client.rpc.ConnectorOutg
 
 import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.GeneratedMessageV3;
-import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.configuration.LogLevel;
-import io.contract_testing.contractcase.logs.LogPrinter;
+import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractResponse;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractResponse.KindCase;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle.Stage;
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
 import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.internal.edge.ConnectorStateHandler;
 import io.contract_testing.contractcase.internal.edge.ConnectorSuccess;
 import io.contract_testing.contractcase.internal.edge.RunTestCallback;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractResponse;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractResponse.KindCase;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle.Stage;
+import io.contract_testing.contractcase.logs.LogPrinter;
+import io.grpc.Status;
+import io.grpc.Status.Code;
 import io.grpc.stub.StreamObserver;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -149,8 +151,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
             .getHandle());
         if (handle == null) {
           throw new ContractCaseCoreError(
-              "Received a trigger request message with a null trigger handle",
-              "Java Internal Connector"
+              "Received a trigger request message with a null trigger handle"
           );
         }
 
@@ -211,8 +212,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
       }
       case KIND_NOT_SET -> {
         throw new ContractCaseCoreError(
-            "Received a message with no kind set",
-            "Java Internal Connector"
+            "Received a message with no kind set"
         );
       }
     }
@@ -221,34 +221,36 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
   @Override
   public void onError(final Throwable t) {
     try {
-        System.err.println("""
-            ContractCase was unable to contact its internal server.
-               This is either a conflict while starting the server,
-               a problem with the test runner (eg, no localhost
-               network access), a crash while the server was running,
-               or a bug in ContractCase.
-               
-               \n
-               There may be additional context in the rest of
-               the log output.
-               
-               --- Error message is ---
-               """
-            + "   " + t.getMessage() + """
-            \n
-               ------------------------
-               With stack trace:
-                          
-            """
-            + "   " + getStackTrace(t) + """
-               \n
-               If you are unable to resolve this locally, or if
-               you suspect a bug, please open an issue here:
-               \n
-                   https://github.com/case-contract-testing/contract-case/issues/new
-              """);
-        rpcConnector.cancelAll(new ContractCaseCoreError("ContractCase failed while contacting its internal server: ",
-            t));
+      System.err.println("""
+          ContractCase was unable to contact its internal server.
+             This is either a conflict while starting the server,
+             a problem with the test runner (eg, no localhost
+             network access), a crash while the server was running,
+             or a bug in ContractCase.
+             
+             \n
+             There may be additional context in the rest of
+             the log output.
+             
+             --- Error message is ---
+             """
+          + "   " + t.getMessage() + """
+          \n
+             ------------------------
+             With stack trace:
+                        
+          """
+          + "   " + getStackTrace(t) + """
+           \n
+           If you are unable to resolve this locally, or if
+           you suspect a bug, please open an issue here:
+           \n
+               https://github.com/case-contract-testing/contract-case/issues/new
+          """);
+      rpcConnector.cancelAll(new ContractCaseCoreError(
+          "ContractCase failed while contacting its internal server: ",
+          t
+      ));
 
       executor.close();
     } finally {

@@ -7,10 +7,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.GeneratedMessageV3;
 import com.google.protobuf.StringValue;
+import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
-import io.contract_testing.contractcase.configuration.LogLevel;
-import io.contract_testing.contractcase.logs.LogPrinter;
+import io.contract_testing.contractcase.grpc.ContractCaseGrpc;
+import io.contract_testing.contractcase.grpc.ContractCaseGrpc.ContractCaseStub;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.BoundaryResult;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
 import io.contract_testing.contractcase.internal.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.internal.edge.ConnectorExceptionMapper;
@@ -19,10 +22,7 @@ import io.contract_testing.contractcase.internal.edge.ConnectorFailureKindConsta
 import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.internal.edge.RunTestCallback;
-import io.contract_testing.contractcase.grpc.ContractCaseGrpc;
-import io.contract_testing.contractcase.grpc.ContractCaseGrpc.ContractCaseStub;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.BoundaryResult;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
+import io.contract_testing.contractcase.logs.LogPrinter;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -279,8 +279,11 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
    */
   public <R> void registerFunction(String functionName, ConnectorInvokableFunction function) {
     if (this.registeredFunctions.containsKey(functionName)) {
-      throw new ContractCaseConfigurationError("The function '"
-          + "' was already registered. Make sure you are only registering it once.", "UNDOCUMENTED");
+      throw new ContractCaseConfigurationError(
+          "The function '"
+              + "' was already registered. Make sure you are only registering it once.",
+          "UNDOCUMENTED"
+      );
     }
     this.registeredFunctions.put(functionName, function);
   }
@@ -300,7 +303,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
           "The core asked us to invoke the function '" + functionName
               + "' but it didn't exist in our store",
           MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-          functionName
+          functionName,
+          ""
       );
     }
     return method.apply(args);

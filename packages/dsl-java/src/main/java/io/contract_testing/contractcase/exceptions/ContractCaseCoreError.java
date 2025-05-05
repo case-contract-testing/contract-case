@@ -13,34 +13,40 @@ import org.jetbrains.annotations.NotNull;
  * The constructors for this class are subject to change and not considered part of the external
  * interface. They should not be relied upon outside this library.
  */
-public class ContractCaseCoreError extends RuntimeException {
+public class ContractCaseCoreError extends RuntimeException implements HasUserFacingStackTrace {
 
   private final String location;
+  private final String userFacingStackTrace;
 
   /**
    * Constructs a {@code ContractCaseCoreError} with the given message. Not part of the user-facing
    * interface from this library.
+   * <p>
+   * For maintainers: Only use this if the Java DSL was the source of the error
    *
    * @param message Description of what went wrong.
    */
   public ContractCaseCoreError(@NotNull String message) {
     super(message);
-    this.location = Arrays.stream(Thread.currentThread().getStackTrace())
-        .map(StackTraceElement::toString)
-        .collect(
-            Collectors.joining("\n"));
+    this.location = "Java DSL";
+    this.userFacingStackTrace = "";
   }
 
   /**
    * Constructs a {@code ContractCaseCoreError} with the given message. Not part of the user-facing
    * interface from this library.
    *
-   * @param message  Description of what went wrong.
-   * @param location the location where the error happened
+   * @param message              Description of what went wrong.
+   * @param location             the location where the error happened
+   * @param userFacingStackTrace If there's a user facing stack trace, this should be it. If there
+   *                             isn't, this should be an empty string
    */
-  public ContractCaseCoreError(@NotNull String message, @NotNull String location) {
+  public ContractCaseCoreError(@NotNull String message,
+      @NotNull String location,
+      @NotNull String userFacingStackTrace) {
     super(message);
     this.location = location;
+    this.userFacingStackTrace = userFacingStackTrace;
   }
 
   /**
@@ -57,28 +63,23 @@ public class ContractCaseCoreError extends RuntimeException {
    */
   public ContractCaseCoreError(Exception e) {
     super(e.getMessage());
-    if (e instanceof ContractCaseCoreError) {
-      this.location = ((ContractCaseCoreError) e).getLocation();
-    } else {
-      this.location = ConnectorExceptionMapper.stackTraceToString(e);
-    }
+    this.location = "";
+    this.userFacingStackTrace = ConnectorExceptionMapper.stackTraceToString(e);
   }
 
   /**
    * Constructs a {@code ContractCaseCoreError} which has an underlying cause.
    * <p>
-   * Not part of the user-facing interface.
+   * Not part of the user-facing interface. For maintainers: Only use this if the Java DSL is the
+   * source of the error
    *
    * @param message The description of what went wrong
    * @param cause   the cause of this error
    */
   public ContractCaseCoreError(@NotNull String message, Throwable cause) {
     super(message + "(" + cause.getMessage() + ")", cause);
-    if (cause instanceof ContractCaseCoreError) {
-      this.location = ((ContractCaseCoreError) cause).getLocation();
-    } else {
-      this.location = ConnectorExceptionMapper.stackTraceToString(cause);
-    }
+    this.location = "Java DSL";
+    this.userFacingStackTrace = ConnectorExceptionMapper.stackTraceToString(cause);
   }
 
   /**
@@ -90,5 +91,10 @@ public class ContractCaseCoreError extends RuntimeException {
    */
   public String getLocation() {
     return location;
+  }
+
+  @Override
+  public String userFacingStackTrace() {
+    return userFacingStackTrace;
   }
 }

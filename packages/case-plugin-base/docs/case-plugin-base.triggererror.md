@@ -124,4 +124,21 @@ typeof [ERROR\_TYPE\_TRIGGER](./case-plugin-base.error_type_trigger.md)
 
 
 </td></tr>
+<tr><td>
+
+[userFacingStackTrace](./case-plugin-base.triggererror.userfacingstacktrace.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
 </tbody></table>

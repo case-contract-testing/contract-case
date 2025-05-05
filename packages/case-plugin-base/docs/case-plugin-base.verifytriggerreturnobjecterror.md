@@ -33,7 +33,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[(constructor)(cause)](./case-plugin-base.verifytriggerreturnobjecterror._constructor_.md)
+[(constructor)(cause, userFacingStackTrace)](./case-plugin-base.verifytriggerreturnobjecterror._constructor_.md)
 
 
 </td><td>
@@ -81,6 +81,23 @@ Description
 </td><td>
 
 unknown
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[userFacingStackTrace](./case-plugin-base.verifytriggerreturnobjecterror.userfacingstacktrace.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
 
 
 </td><td>

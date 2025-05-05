@@ -17,13 +17,13 @@ export class BoundaryFailure extends BoundaryResult {
 
   readonly contractCaseErrorCode: string;
 
-  readonly originalStackTrace: string;
+  readonly userFacingStackTrace: string;
 
   constructor(
     kind: string,
     message: string,
     location: string,
-    originalStackTrace: string,
+    userFacingStackTrace: string,
     contractCaseErrorCode: string,
   ) {
     super(RESULT_FAILURE);
@@ -31,7 +31,7 @@ export class BoundaryFailure extends BoundaryResult {
     this.kind = kind;
     this.message = message;
     this.location = location;
-    this.originalStackTrace = originalStackTrace;
+    this.userFacingStackTrace = userFacingStackTrace;
     this.contractCaseErrorCode = contractCaseErrorCode;
   }
 }

@@ -11,9 +11,16 @@ import { errorLocationString } from './renderer';
  * @public
  */
 export class CaseCoreError extends Error {
-  constructor(message: string, context?: LogLevelContext) {
+  userFacingStackTrace: string;
+
+  constructor(
+    message: string,
+    context?: LogLevelContext,
+    userFacingStackTrace?: string,
+  ) {
     super(`${message}${context ? errorLocationString(context) : ''}`);
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = 'CaseCoreError';
+    this.userFacingStackTrace = userFacingStackTrace ?? '';
   }
 }

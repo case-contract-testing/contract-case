@@ -63,6 +63,9 @@ message ResultFailure {
   // Error code for linking to documentation and programmatic wrappers.
   // If this is "UNDOCUMENTED" or blank, it should be ignored.
   google.protobuf.StringValue contract_case_error_code = 4;
+  // Stack trace as a string (multiline, separated with \n)
+  // If this is an empty string, there is no user-facing stack trace
+  google.protobuf.StringValue user_facing_stack_trace = 5;
 }
 
 message BoundaryResult {

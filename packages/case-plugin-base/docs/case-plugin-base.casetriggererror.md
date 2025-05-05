@@ -33,7 +33,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[(constructor)(message, context)](./case-plugin-base.casetriggererror._constructor_.md)
+[(constructor)(message, context, userFacingStackTrace)](./case-plugin-base.casetriggererror._constructor_.md)
 
 
 </td><td>
@@ -42,6 +42,48 @@ Description
 </td><td>
 
 Constructs a new instance of the `CaseTriggerError` class
+
+
+</td></tr>
+</tbody></table>
+
+## Properties
+
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[userFacingStackTrace](./case-plugin-base.casetriggererror.userfacingstacktrace.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
 
 
 </td></tr>

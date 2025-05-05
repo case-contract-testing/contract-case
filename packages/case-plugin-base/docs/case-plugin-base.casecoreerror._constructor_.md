@@ -9,7 +9,7 @@ Constructs a new instance of the `CaseCoreError` class
 **Signature:**
 
 ```typescript
-constructor(message: string, context?: LogLevelContext);
+constructor(message: string, context?: LogLevelContext, userFacingStackTrace?: string);
 ```
 
 ## Parameters
@@ -52,6 +52,22 @@ context
 </td><td>
 
 [LogLevelContext](./case-plugin-base.loglevelcontext.md)
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+userFacingStackTrace
+
+
+</td><td>
+
+string
 
 
 </td><td>

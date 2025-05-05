@@ -47,6 +47,7 @@ export const handleResult = (
           // the trigger error, because it happened at a different place
           '_case:currentRun:context:location': triggerError.location,
         },
+        triggerError.userFacingStackTrace,
       );
     }
     if (

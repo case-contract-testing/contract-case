@@ -169,6 +169,7 @@ export interface TriggerError {
   message: string;
   code: string;
   location: Array<string>;
+  userFacingStackTrace: string;
   toString: () => string;
 }
 

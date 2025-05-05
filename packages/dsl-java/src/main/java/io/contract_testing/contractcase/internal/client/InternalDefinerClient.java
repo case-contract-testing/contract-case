@@ -4,22 +4,23 @@ import static io.contract_testing.contractcase.internal.client.rpc.ConnectorOutg
 import static io.contract_testing.contractcase.internal.client.rpc.ConnectorOutgoingMapper.mapRunRejectingInteractionRequest;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.contract_testing.contractcase.logs.LogPrinter;
-import io.contract_testing.contractcase.internal.client.rpc.ConfigHandle;
-import io.contract_testing.contractcase.internal.client.rpc.ConnectorOutgoingMapper;
-import io.contract_testing.contractcase.internal.client.rpc.RpcForDefinition;
 import io.contract_testing.contractcase.definitions.matchers.base.AnyMatcher;
-import io.contract_testing.contractcase.internal.edge.ConnectorFailure;
-import io.contract_testing.contractcase.internal.edge.ConnectorFailureKindConstants;
-import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
-import io.contract_testing.contractcase.internal.edge.ConnectorResult;
-import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginDefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.EndDefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RegisterFunction;
+import io.contract_testing.contractcase.internal.ConnectorResultMapper;
+import io.contract_testing.contractcase.internal.client.rpc.ConfigHandle;
+import io.contract_testing.contractcase.internal.client.rpc.ConnectorOutgoingMapper;
+import io.contract_testing.contractcase.internal.client.rpc.RpcForDefinition;
+import io.contract_testing.contractcase.internal.edge.ConnectorFailure;
+import io.contract_testing.contractcase.internal.edge.ConnectorFailureKindConstants;
+import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
+import io.contract_testing.contractcase.internal.edge.ConnectorResult;
+import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
+import io.contract_testing.contractcase.logs.LogPrinter;
 import java.util.Arrays;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
@@ -42,7 +43,7 @@ public class InternalDefinerClient {
 
     // this is only here because we have to be able to map errors into exceptions
     // probably we should call begin outside the constructor to avoid this issue
-    RpcConnectorResultMapper.map(begin(ConnectorOutgoingMapper.mapConfig(boundaryConfig)));
+    ConnectorResultMapper.map(begin(ConnectorOutgoingMapper.mapConfig(boundaryConfig)));
   }
 
   public @NotNull ConnectorResult endRecord() {
@@ -78,7 +79,8 @@ public class InternalDefinerClient {
         ConnectorFailureKindConstants.CASE_CORE_ERROR,
         "stripMatchers not implemented", // TODO
         MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-        "UNDOCUMENTED"
+        "UNDOCUMENTED",
+        ""
     );
   }
 

@@ -9,7 +9,7 @@ Constructs a CaseConfigurationError.
 **Signature:**
 
 ```typescript
-constructor(message: string, context: LogLevelContext | 'DONT_ADD_LOCATION', code?: ConfigurationErrorCode);
+constructor(message: string, context: LogLevelContext | 'DONT_ADD_LOCATION', code?: ConfigurationErrorCode, userFacingStackTrace?: string);
 ```
 
 ## Parameters
@@ -75,6 +75,22 @@ code
 </td><td>
 
 _(Optional)_ an optional ConfigurationErrorCode to aid the user in debugging.
+
+
+</td></tr>
+<tr><td>
+
+userFacingStackTrace
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
 
 
 </td></tr>

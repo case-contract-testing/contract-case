@@ -202,6 +202,7 @@ public class ConnectorOutgoingMapper {
                 .setLocation(ConnectorOutgoingMapper.map(failure.getLocation()))
                 .setMessage(ConnectorOutgoingMapper.map(failure.getMessage()))
                 .setContractCaseErrorCode(ConnectorOutgoingMapper.map(failure.getErrorCode()))
+                .setUserFacingStackTrace(ConnectorOutgoingMapper.map(failure.getUserFacingStackTrace()))
                 .build())
             .build();
       }
@@ -225,6 +226,7 @@ public class ConnectorOutgoingMapper {
                   "Tried to map an unknown result type: '" + resultType
               ))
               .setContractCaseErrorCode(ConnectorOutgoingMapper.map("UNDOCUMENTED"))
+              .setUserFacingStackTrace(ConnectorOutgoingMapper.map("ConnectorOutgoingMapper"))
               .build())
           .build();
     };

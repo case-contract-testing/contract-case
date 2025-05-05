@@ -35,7 +35,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[(constructor)(message, context, code)](./case-plugin-base.caseconfigurationerror._constructor_.md)
+[(constructor)(message, context, code, userFacingStackTrace)](./case-plugin-base.caseconfigurationerror._constructor_.md)
 
 
 </td><td>
@@ -88,6 +88,27 @@ Description
 </td><td>
 
 The error code to help the user debug this
+
+
+</td></tr>
+<tr><td>
+
+[userFacingStackTrace](./case-plugin-base.caseconfigurationerror.userfacingstacktrace.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+If there's a user facing stack trace, this will be set to a non-empty string.
+
+The stack trace will have multiple lines separated by '<!-- -->\\<!-- -->n'
 
 
 </td></tr>

@@ -9,19 +9,22 @@ import org.jetbrains.annotations.NotNull;
  * or contract file. Should only be used to indicate a problem that the user (or the author of the
  * contract) can correct.
  */
-public class ContractCaseConfigurationError extends RuntimeException {
+public class ContractCaseConfigurationError extends RuntimeException implements
+    HasUserFacingStackTrace {
 
   private final String location;
 
   private final String contractCaseErrorCode;
 
+  private final String userFacingStackTrace;
+
   public ContractCaseConfigurationError(@NotNull String message,
       @NotNull String contractCaseErrorCode) {
     super(message);
-    this.location = Arrays.stream(Thread.currentThread().getStackTrace())
-        .map(StackTraceElement::toString).collect(
-            Collectors.joining());
+    this.location = "Java DSL";
     this.contractCaseErrorCode = contractCaseErrorCode;
+    this.userFacingStackTrace = "";
+
   }
 
   /**
@@ -32,10 +35,12 @@ public class ContractCaseConfigurationError extends RuntimeException {
    */
   public ContractCaseConfigurationError(@NotNull String message,
       @NotNull String location,
-      @NotNull String contractCaseErrorCode) {
+      @NotNull String contractCaseErrorCode,
+      @NotNull String userFacingStackTrace) {
     super(message);
     this.location = location;
     this.contractCaseErrorCode = contractCaseErrorCode;
+    this.userFacingStackTrace = userFacingStackTrace;
   }
 
   /**
@@ -55,5 +60,10 @@ public class ContractCaseConfigurationError extends RuntimeException {
    */
   public String getErrorCode() {
     return this.contractCaseErrorCode;
+  }
+
+  @Override
+  public String userFacingStackTrace() {
+    return userFacingStackTrace;
   }
 }

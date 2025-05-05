@@ -1,12 +1,12 @@
 package io.contract_testing.contractcase.internal.client.rpc;
 
-import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.configuration.LogLevel;
+import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.BoundaryResult;
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
 import io.contract_testing.contractcase.internal.edge.ConnectorFailure;
 import io.contract_testing.contractcase.internal.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.internal.edge.ConnectorResult;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.BoundaryResult;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -26,7 +26,6 @@ public class ResponseWaiter {
     final var id =
         "[" + reason + " " + nextId.getAndIncrement() + " " + Thread.currentThread().getName()
             + "]";
-
 
     var future = new CompletableFuture<BoundaryResult>();
     responseFutures.put(id, future);
@@ -50,12 +49,14 @@ public class ResponseWaiter {
   ConnectorResult awaitResponse(String id, int timeoutSeconds) {
     var future = responseFutures.get(id);
 
-    if(future == null) {
+    if (future == null) {
       return new ConnectorFailure(
           ConnectorFailureKindConstants.CASE_CORE_ERROR,
-          "Message '" + id + "' wasn't in the response futures map. This shouldn't happen, and is a bug with the Java DSL",
+          "Message '" + id
+              + "' wasn't in the response futures map. This shouldn't happen, and is a bug with the Java DSL",
           MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-          id
+          id,
+          ""
       );
     }
 
@@ -76,7 +77,8 @@ public class ResponseWaiter {
           ConnectorFailureKindConstants.CASE_CORE_ERROR,
           "Timed out waiting for internal connection to ContractCase for message '" + id + "'",
           MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-          id
+          id,
+          ""
       );
     } catch (ExecutionException e) {
       MaintainerLog.log(
@@ -85,16 +87,19 @@ public class ResponseWaiter {
       );
       return new ConnectorFailure(
           ConnectorFailureKindConstants.CASE_CORE_ERROR,
-          "Failed waiting for a response '" + id + "':" + e.getMessage()  + "\n" + "Caused by: " + e.getCause(),
+          "Failed waiting for a response '" + id + "':" + e.getMessage() + "\n" + "Caused by: "
+              + e.getCause(),
           MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-          id
+          id,
+          ""
       );
     } catch (InterruptedException e) {
       return new ConnectorFailure(
           ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
           "ContractCase was interrupted during its run. This isn't really a configuration error, it usually happens if a user killed the run.",
           MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-          id
+          id,
+         ""
       );
     } finally {
       responseFutures.remove(id);
@@ -104,10 +109,11 @@ public class ResponseWaiter {
   /**
    * Completes a wait (which is happening elsewhere) for a response.
    * <p>
-   * Note: We map between {@link BoundaryResult} and {@link ConnectorResult} inside {@link #awaitResponse)} because that way any errors that come from mapping
-   * will be propagated.
+   * Note: We map between {@link BoundaryResult} and {@link ConnectorResult} inside
+   * {@link #awaitResponse)} because that way any errors that come from mapping will be propagated.
    *
-   * @param id The ID of the response that's waiting (previously created with {@link #createAwait}
+   * @param id     The ID of the response that's waiting (previously created with
+   *               {@link #createAwait}
    * @param result The BoundaryResult to complete with.
    */
 
@@ -121,8 +127,7 @@ public class ResponseWaiter {
     if (future == null) {
       throw new ContractCaseCoreError(
           "There was no future with id '" + id
-              + "'. This is a bug in the wrapper or the boundary.",
-          MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER
+              + "'. This is a bug in the wrapper or the boundary."
       );
     }
     responseFutures.get(id).complete(result);

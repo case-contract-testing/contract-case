@@ -16,10 +16,6 @@ import { failedExpectationError } from '../../entities/results';
 import type { InvokingScaffold, Trigger } from './types';
 import { Assertable } from '../../entities/types';
 
-// TODO: Fully implement and move this function to a boundary - it should be a rendering concern
-const originalStackTrace = (e: Error): string =>
-  e.stack || "Stack property was missing; this shouldn't happen";
-
 const invokeTrigger = <T extends AnyMockDescriptorType, R>(
   trigger: Trigger<T, R>,
   testResponse: (data: R, config: Assertable<T>['config']) => unknown,
@@ -42,17 +38,14 @@ const invokeTrigger = <T extends AnyMockDescriptorType, R>(
         e instanceof VerifyTriggerReturnObjectError
       ) {
         context.logger.maintainerDebug(
-          `Trigger function received a case error (${e.name})`,
+          `Trigger function received a case error (${e.name}): ${e.message}`,
         );
         throw e;
       }
       context.logger.maintainerDebug(
-        `Trigger function received a non-case error (${e.name})`,
+        `Trigger function received a non-case error (${e.name}): ${e.message}`,
       );
-      throw new CaseTriggerError(
-        `${e.message}\n\n${originalStackTrace(e)}`,
-        context,
-      );
+      throw new CaseTriggerError(e.message, context, e.userFacingStackTrace);
     },
   );
 

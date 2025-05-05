@@ -27,13 +27,16 @@ export const applyNodeToContext: (caseNodeOrData: AnyCaseMatcherOrData | AnyMock
 
 // @public
 export class CaseConfigurationError extends Error {
-    constructor(message: string, context: LogLevelContext | 'DONT_ADD_LOCATION', code?: ConfigurationErrorCode);
+    constructor(message: string, context: LogLevelContext | 'DONT_ADD_LOCATION', code?: ConfigurationErrorCode, userFacingStackTrace?: string);
     contractCaseErrorCode: ConfigurationErrorCode;
+    userFacingStackTrace: string;
 }
 
 // @public
 export class CaseCoreError extends Error {
-    constructor(message: string, context?: LogLevelContext);
+    constructor(message: string, context?: LogLevelContext, userFacingStackTrace?: string);
+    // (undocumented)
+    userFacingStackTrace: string;
 }
 
 // @public
@@ -58,7 +61,9 @@ export type CaseMatcherFor<KnownMatcherDescriptors, T extends string> = Extract<
 
 // @public
 export class CaseTriggerError extends Error {
-    constructor(message: string, context?: LogLevelContext);
+    constructor(message: string, context?: LogLevelContext, userFacingStackTrace?: string);
+    // (undocumented)
+    userFacingStackTrace: string;
 }
 
 // @public
@@ -485,6 +490,8 @@ export interface TriggerError {
     toString: () => string;
     // (undocumented)
     type: typeof ERROR_TYPE_TRIGGER;
+    // (undocumented)
+    userFacingStackTrace: string;
 }
 
 // @public
@@ -507,9 +514,11 @@ export interface VerificationError {
 
 // @public
 export class VerifyTriggerReturnObjectError extends Error {
-    constructor(cause: unknown);
+    constructor(cause: unknown, userFacingStackTrace?: string);
     // (undocumented)
     cause: unknown;
+    // (undocumented)
+    userFacingStackTrace: string;
 }
 
 // (No @packageDocumentation comment for this package)

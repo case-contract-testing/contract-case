@@ -36,7 +36,8 @@ public class RpcForDefinition extends AbstractRpcConnector<DefinitionRequest, Bu
                 ConnectorFailureKindConstants.CASE_CORE_ERROR,
                 "runTest isn't valid during contract definition",
                 MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-                testName
+                testName,
+                ""
             );
           }
 

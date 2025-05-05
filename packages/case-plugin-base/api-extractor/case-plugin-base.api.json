@@ -364,6 +364,14 @@
                 },
                 {
                   "kind": "Content",
+                  "text": ", userFacingStackTrace?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
                   "text": ");"
                 }
               ],
@@ -394,6 +402,14 @@
                     "endIndex": 7
                   },
                   "isOptional": true
+                },
+                {
+                  "parameterName": "userFacingStackTrace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 8,
+                    "endIndex": 9
+                  },
+                  "isOptional": true
                 }
               ]
             },
@@ -420,6 +436,36 @@
               "isOptional": false,
               "releaseTag": "Public",
               "name": "contractCaseErrorCode",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@contract-case/case-plugin-base!CaseConfigurationError#userFacingStackTrace:member",
+              "docComment": "/**\n * If there's a user facing stack trace, this will be set to a non-empty string.\n *\n * The stack trace will have multiple lines separated by '\\\\n'\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "userFacingStackTrace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "userFacingStackTrace",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -484,6 +530,14 @@
                 },
                 {
                   "kind": "Content",
+                  "text": ", userFacingStackTrace?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
                   "text": ");"
                 }
               ],
@@ -506,8 +560,46 @@
                     "endIndex": 4
                   },
                   "isOptional": true
+                },
+                {
+                  "parameterName": "userFacingStackTrace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  },
+                  "isOptional": true
                 }
               ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@contract-case/case-plugin-base!CaseCoreError#userFacingStackTrace:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "userFacingStackTrace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "userFacingStackTrace",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
             }
           ],
           "extendsTokenRange": {
@@ -841,6 +933,14 @@
                 },
                 {
                   "kind": "Content",
+                  "text": ", userFacingStackTrace?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
                   "text": ");"
                 }
               ],
@@ -863,8 +963,46 @@
                     "endIndex": 4
                   },
                   "isOptional": true
+                },
+                {
+                  "parameterName": "userFacingStackTrace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  },
+                  "isOptional": true
                 }
               ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@contract-case/case-plugin-base!CaseTriggerError#userFacingStackTrace:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "userFacingStackTrace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "userFacingStackTrace",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
             }
           ],
           "extendsTokenRange": {
@@ -5066,6 +5204,33 @@
                 "startIndex": 1,
                 "endIndex": 3
               }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!TriggerError#userFacingStackTrace:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "userFacingStackTrace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "userFacingStackTrace",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
             }
           ],
           "extendsTokenRanges": []
@@ -5358,6 +5523,14 @@
                 },
                 {
                   "kind": "Content",
+                  "text": ", userFacingStackTrace?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
                   "text": ");"
                 }
               ],
@@ -5372,6 +5545,14 @@
                     "endIndex": 2
                   },
                   "isOptional": false
+                },
+                {
+                  "parameterName": "userFacingStackTrace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
                 }
               ]
             },
@@ -5397,6 +5578,36 @@
               "isOptional": false,
               "releaseTag": "Public",
               "name": "cause",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@contract-case/case-plugin-base!VerifyTriggerReturnObjectError#userFacingStackTrace:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "userFacingStackTrace: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "userFacingStackTrace",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2

@@ -7,9 +7,10 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * In a future version, we should integrate this with (eg) JUnit for nice reporting.
  */
-public class ContractCaseExpectationsNotMet extends RuntimeException {
+public class ContractCaseExpectationsNotMet extends RuntimeException implements HasUserFacingStackTrace{
 
   private final String location;
+  private final String userFacingStackTrace;
 
   /**
    * Constructs a {@code ContractCaseExpectationsNotMet} exception
@@ -18,11 +19,17 @@ public class ContractCaseExpectationsNotMet extends RuntimeException {
    * @param location Where it went wrong (usually a descriptor generated from the interaction +
    *                 matcher)
    */
-  public ContractCaseExpectationsNotMet(@NotNull String message, @NotNull String location) {
+  public ContractCaseExpectationsNotMet(@NotNull String message, @NotNull String location, @NotNull String userFacingStackTrace) {
     super(message);
     this.location = location;
+    this.userFacingStackTrace = userFacingStackTrace;
   }
   public String getLocation() {
     return location;
+  }
+
+  @Override
+  public String userFacingStackTrace() {
+    return userFacingStackTrace;
   }
 }

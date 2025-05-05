@@ -75,6 +75,7 @@ export const triggerError = (
   message: error.message,
   code: 'TriggerFunctionError',
   location: context['_case:currentRun:context:location'],
+  userFacingStackTrace: error.userFacingStackTrace,
 });
 
 /**

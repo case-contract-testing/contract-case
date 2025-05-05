@@ -46,7 +46,8 @@ public class ConnectorInvokableFunctionMapper {
             "The registered function '" + functionName + "' accepts " + expectedArgumentCount
                 + " arguments, but instead received " + args.size() + " arguments",
             MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-            functionName
+            functionName,
+            ""
         );
       } catch (Exception e) {
         var stackTraceFirstLines = Arrays.stream(e.getStackTrace())
@@ -57,7 +58,8 @@ public class ConnectorInvokableFunctionMapper {
             "The function '" + functionName + "' threw an exception: "
                 + e.getMessage() + "\n" + stackTraceFirstLines,
             MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-            "UNDOCUMENTED"
+            "UNDOCUMENTED",
+            stackTraceFirstLines
         );
       }
     }
@@ -86,7 +88,7 @@ public class ConnectorInvokableFunctionMapper {
 
   public static ConnectorInvokableFunction fromInvokableFunction(String functionName,
       InvokableFunction2 function) {
-    return new ConnectorInvokableFunction(functionName,2 ) {
+    return new ConnectorInvokableFunction(functionName, 2) {
       @Override
       protected String invoke(List<String> args) {
         return function.apply(
