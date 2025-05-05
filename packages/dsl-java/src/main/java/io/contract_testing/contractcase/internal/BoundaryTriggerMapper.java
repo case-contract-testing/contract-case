@@ -4,10 +4,10 @@ package io.contract_testing.contractcase.internal;
 import io.contract_testing.contractcase.configuration.InteractionSetup;
 import io.contract_testing.contractcase.configuration.TestErrorResponseFunction;
 import io.contract_testing.contractcase.configuration.TestResponseFunction;
+import io.contract_testing.contractcase.configuration.Trigger;
 import io.contract_testing.contractcase.internal.edge.ConnectorExceptionMapper;
 import io.contract_testing.contractcase.internal.edge.ConnectorSuccess;
 import io.contract_testing.contractcase.internal.edge.ITriggerFunction;
-import io.contract_testing.contractcase.configuration.Trigger;
 
 public class BoundaryTriggerMapper {
 
@@ -51,9 +51,11 @@ public class BoundaryTriggerMapper {
         return ConnectorExceptionMapper.map(e);
       }
       try {
-        trigger.call(interactionSetup);
+        var unexpectedResult = trigger.call(interactionSetup);
         return ConnectorExceptionMapper.mapAsTriggerFailure(
-            new RuntimeException("Expected the trigger to fail, but it did not"));
+            new RuntimeException(
+                "Expected the trigger to throw an exception, but it returned successfully. Result toString() was: "
+                    + unexpectedResult.toString()));
       } catch (Exception triggerException) {
         try {
           testErrorResponseFunction.call(triggerException, interactionSetup);
