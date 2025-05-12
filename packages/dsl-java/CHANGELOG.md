@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.23.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.23.1...@contract-case/dsl-java-v0.23.2) (2025-05-12)
+
+
+### Features
+
+* **core,java:** Add user-facing stack traces so that the source of errors is clear ([c8234ad](https://github.com/case-contract-testing/contract-case/commit/c8234adeebfa9bcf764009f5c4cc6c22562eebf6))
+
+
+### Bug Fixes
+
+* **java-dsl:** Correct the double-wrapping of exceptions, where a failure would be reported twice ([4b8999a](https://github.com/case-contract-testing/contract-case/commit/4b8999a1cb80bad5a6822d2b66d56ce824888556))
+* **java-dsl:** If an interaction that is supposed to error instead returns successfully, now the object returned is toString()ed in the error message ([3dbc2fe](https://github.com/case-contract-testing/contract-case/commit/3dbc2feab3ea9ea83205f94582a0c0e606d8b7d5))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.23.1 to 0.23.2
+    * @contract-case/case-definition-dsl bumped from 0.23.1 to 0.23.2
+
 ## [0.23.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.23.0...@contract-case/dsl-java-v0.23.1) (2025-05-04)
 
 

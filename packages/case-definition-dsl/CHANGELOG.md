@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.23.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.23.1...@contract-case/case-definition-dsl-v0.23.2) (2025-05-12)
+
+
+### Bug Fixes
+
+* **java-dsl:** Bump jsii version to get fix for aws/jsii[#4801](https://github.com/case-contract-testing/contract-case/issues/4801) - casuing console errors that weren't really errors ([a3924e7](https://github.com/case-contract-testing/contract-case/commit/a3924e7d6e426dc575e55f55c14626322a17ccd8))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.23.1 to 0.23.2
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.23.1 to 0.23.2
+    * @contract-case/case-entities-internal bumped from 0.23.1 to 0.23.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.23.1 to 0.23.2
+  * devDependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.23.1 to 0.23.2
+    * @contract-case/case-maintainer-config bumped from 0.23.1 to 0.23.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.23.1 to 0.23.2
+
 ## [0.23.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.23.0...@contract-case/case-definition-dsl-v0.23.1) (2025-05-04)
 
 
