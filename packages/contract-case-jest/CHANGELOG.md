@@ -29,6 +29,33 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.24.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.23.1...@contract-case/contract-case-jest-v0.24.0) (2025-05-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for node 18, as it is at end-of-life
+
+### Miscellaneous Chores
+
+* Drop support for node 18, as it is at end-of-life ([8cb3160](https://github.com/case-contract-testing/contract-case/commit/8cb3160912b50539b5c76d9e2dbd963f4ce4ade0))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.23.1 to 0.24.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.23.1 to 0.24.0
+    * @contract-case/case-definition-dsl bumped from 0.23.1 to 0.24.0
+    * @contract-case/case-entities-internal bumped from 0.23.1 to 0.24.0
+    * @contract-case/case-plugin-base bumped from 0.23.1 to 0.24.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.23.1 to 0.24.0
+    * @contract-case/cli bumped from 0.23.1 to 0.24.0
+  * devDependencies
+    * @contract-case/cli bumped from 0.23.1 to 0.24.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.23.1 to 0.24.0
+
 ## [0.23.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.23.0...@contract-case/contract-case-jest-v0.23.1) (2025-05-04)
 
 

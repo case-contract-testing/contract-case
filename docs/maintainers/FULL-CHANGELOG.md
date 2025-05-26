@@ -1,5 +1,40 @@
 # Changelog
 
+## [0.24.0](https://github.com/case-contract-testing/contract-case/compare/v0.23.1...v0.24.0) (2025-05-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for node 18, as it is at end-of-life
+* Drop support for node 18, as it is at end-of-life
+
+### Features
+
+* **core,java:** Add user-facing stack traces so that the source of errors is clear ([c8234ad](https://github.com/case-contract-testing/contract-case/commit/c8234adeebfa9bcf764009f5c4cc6c22562eebf6))
+
+
+### Bug Fixes
+
+* **java-dsl:** Add `throws Exception` to the signature of the response test methods, so you don't need to re-throw exceptions as `RuntimeException` ([4c49cce](https://github.com/case-contract-testing/contract-case/commit/4c49cce3c31b9943c58621b9c17b2324baeb73fa))
+* **java-dsl:** Bump jsii version to get fix for aws/jsii[#4801](https://github.com/case-contract-testing/contract-case/issues/4801) - casuing console errors that weren't really errors ([a3924e7](https://github.com/case-contract-testing/contract-case/commit/a3924e7d6e426dc575e55f55c14626322a17ccd8))
+* **java-dsl:** Correct the double-wrapping of exceptions, where a failure would be reported twice ([4b8999a](https://github.com/case-contract-testing/contract-case/commit/4b8999a1cb80bad5a6822d2b66d56ce824888556))
+* **java-dsl:** Drop unnecessary proto compilation dependencies from the pacakge ([11a0f5e](https://github.com/case-contract-testing/contract-case/commit/11a0f5e980eb2f93df7f9ed4f824feb70bb8a466))
+* **java-dsl:** Ensure that JUnit assertions are caught correctly ([27362a0](https://github.com/case-contract-testing/contract-case/commit/27362a0f6675622d7c85ad9147e466a345804a8c))
+* **java-dsl:** If an interaction that is supposed to error instead returns successfully, now the object returned is toString()ed in the error message ([3dbc2fe](https://github.com/case-contract-testing/contract-case/commit/3dbc2feab3ea9ea83205f94582a0c0e606d8b7d5))
+
+
+### Miscellaneous Chores
+
+* Drop support for node 18, as it is at end-of-life ([8cb3160](https://github.com/case-contract-testing/contract-case/commit/8cb3160912b50539b5c76d9e2dbd963f4ce4ade0))
+* Drop support for node 18, as it is at end-of-life ([fd91cd7](https://github.com/case-contract-testing/contract-case/commit/fd91cd7fd8e941ab386f19e971387dc4d22fd89c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.23.1 to 0.24.0
+
 ## [0.23.1](https://github.com/case-contract-testing/contract-case/compare/v0.23.0...v0.23.1) (2025-05-04)
 
 
