@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/eslint-config-case-maintainer-v0.23.1...@contract-case/eslint-config-case-maintainer-v0.24.0) (2025-05-26)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/eslint-config-case-maintainer:** Synchronize ContractCase versions
+
 ## [0.23.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/eslint-config-case-maintainer-v0.23.0...@contract-case/eslint-config-case-maintainer-v0.23.1) (2025-05-04)
 
 
