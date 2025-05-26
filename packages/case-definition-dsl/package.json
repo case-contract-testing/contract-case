@@ -74,7 +74,7 @@
     "@microsoft/api-extractor": "^7.52.7",
     "@types/jest": "^29.5.14",
     "eslint": "^9.23.0",
-    "jsii": "^5.8.8",
+    "jsii": "^5.8.10",
     "jsii-pacmak": "1.111.0",
     "jsii-docgen": "^10.7.2",
     "mkdirp": "^3.0.1",
