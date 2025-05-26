@@ -8,7 +8,6 @@ import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
-import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.Trigger;
 import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;
@@ -22,6 +21,8 @@ import io.contract_testing.contractcase.definitions.states.InState;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.exceptions.ContractCaseExpectationsNotMet;
 import io.contract_testing.contractcase.exceptions.HasUserFacingStackTrace;
+import io.contract_testing.contractcase.test.httpclient.implementation.YourApiClient;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -35,8 +36,16 @@ public class FailingExampleTest {
       //      .logLevel(LogLevel.MAINTAINER_DEBUG)
       .build());
 
-  Trigger<String> getHealth = (setupInfo) -> {
+  Trigger<String> triggerFails = (setupInfo) -> {
     throw new RuntimeException("This is meant to fail");
+  };
+
+  Trigger<String> getHealth = (setupInfo) -> {
+    try {
+      return new YourApiClient(setupInfo.getMockSetup("baseUrl")).getHealth();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   };
 
 
@@ -63,7 +72,7 @@ public class FailingExampleTest {
           ),
           IndividualSuccessTestConfigBuilder.<String>builder()
               .withProviderName("Java Example HTTP Server")
-              .withTrigger(getHealth)
+              .withTrigger(triggerFails)
               .withTestResponse((status, setupInfo) -> {
                 assertThat(status).isEqualTo("up");
               })
@@ -94,15 +103,48 @@ public class FailingExampleTest {
           ),
           IndividualFailedTestConfigBuilder.<String>builder()
               .withProviderName("Java Example HTTP Server")
-              .withTrigger(getHealth)
+              .withTrigger(triggerFails)
               .withTestErrorResponse((exception, setupInfo) -> {
                 assertThat(exception.getMessage()).isEqualTo("The server is not ready");
               })
       );
     }).isInstanceOf(ContractCaseExpectationsNotMet.class)
         .satisfies((e) -> {
-          assertThat(((HasUserFacingStackTrace) e).userFacingStackTrace())
-              .contains("FailingExampleTest.java");
+              assertThat(((HasUserFacingStackTrace) e).userFacingStackTrace())
+                  .contains("FailingExampleTest.java");
+            }
+        );
+
+    assertThatThrownBy(() -> {
+      contract.runInteraction(
+          new InteractionDefinition<>(
+              List.of(new InState("Server is broken")),
+              new WillSendHttpRequest(HttpExample.builder()
+
+                  .request(new NamedMatch(
+                      "Get health",
+                      new HttpRequest(HttpRequestExample.builder()
+                          .path("/health")
+                          .method("GET")
+                          .build())
+                  ))
+                  .response(new HttpResponse(HttpResponseExample.builder()
+                      .status(200)
+                      .body(Map.ofEntries(Map.entry("status", "up")))
+                      .build()))
+                  .build())
+          ),
+          IndividualSuccessTestConfigBuilder.<String>builder()
+              .withProviderName("Java Example HTTP Server")
+              .withTrigger(getHealth)
+              .withTestResponse((data, setupInfo) -> {
+                assertThat(data).isEqualTo("It doesn't equal this");
+              })
+      );
+    }).isInstanceOf(ContractCaseExpectationsNotMet.class)
+        .satisfies((e) -> {
+              assertThat(((HasUserFacingStackTrace) e).userFacingStackTrace())
+                  .contains("FailingExampleTest.java");
             }
         );
 
