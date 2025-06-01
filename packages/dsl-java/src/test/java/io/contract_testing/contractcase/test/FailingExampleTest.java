@@ -51,7 +51,7 @@ public class FailingExampleTest {
 
   @Test
   public void failingTrigger() {
-    // failure in runInteraction trigger should return configuration error
+    // exception in runInteraction trigger should return configuration error
     assertThatThrownBy(() -> {
       contract.runInteraction(
           new InteractionDefinition<>(
@@ -83,8 +83,8 @@ public class FailingExampleTest {
         }
     );
     ;
-    // Failure in throwing interaction trigger should fail with verify error, as the
-    // trigger's failure is passed to it
+    // exception in throwing interaction trigger should fail with verify error, as the
+    // trigger's failure is passed to the verify method, which should fail the assertion.
     assertThatThrownBy(() -> {
       contract.runThrowingInteraction(
           new InteractionDefinition<>(
@@ -109,6 +109,39 @@ public class FailingExampleTest {
               })
       );
     }).isInstanceOf(ContractCaseExpectationsNotMet.class)
+        .satisfies((e) -> {
+              assertThat(((HasUserFacingStackTrace) e).userFacingStackTrace())
+                  .contains("FailingExampleTest.java");
+            }
+        );
+
+    // Assertion error in failure trigger should fail the test with configuration error
+    assertThatThrownBy(() -> {
+      contract.runThrowingInteraction(
+          new InteractionDefinition<>(
+              List.of(new InState("Server is broken")),
+              new WillSendHttpRequest(HttpExample.builder()
+
+                  .request(new NamedMatch(
+                      "Get health",
+                      new HttpRequest(HttpRequestExample.builder()
+                          .path("/health")
+                          .method("GET")
+                          .build())
+                  ))
+                  .response(new HttpResponse(HttpResponseExample.builder().status(503).build()))
+                  .build())
+          ),
+          IndividualFailedTestConfigBuilder.<String>builder()
+              .withProviderName("Java Example HTTP Server")
+              .withTrigger((interactionSetup) -> {
+                throw new AssertionError("This is meant to fail");
+              })
+              .withTestErrorResponse((exception, setupInfo) -> {
+                assertThat(exception.getMessage()).isEqualTo("The server is not ready");
+              })
+      );
+    }).isInstanceOf(ContractCaseConfigurationError.class)
         .satisfies((e) -> {
               assertThat(((HasUserFacingStackTrace) e).userFacingStackTrace())
                   .contains("FailingExampleTest.java");
@@ -147,6 +180,43 @@ public class FailingExampleTest {
                   .contains("FailingExampleTest.java");
             }
         );
+
+    // Assertion error in success trigger should fail with configuration error
+    assertThatThrownBy(() -> {
+      contract.runInteraction(
+          new InteractionDefinition<>(
+              List.of(new InState("Server is up")),
+              new WillSendHttpRequest(HttpExample.builder()
+
+                  .request(new NamedMatch(
+                      "Get health",
+                      new HttpRequest(HttpRequestExample.builder()
+                          .path("/health")
+                          .method("GET")
+                          .build())
+                  ))
+                  .response(new HttpResponse(HttpResponseExample.builder()
+                      .status(200)
+                      .body(Map.ofEntries(Map.entry("status", "up")))
+                      .build()))
+                  .build())
+          ),
+          IndividualSuccessTestConfigBuilder.<String>builder()
+              .withProviderName("Java Example HTTP Server")
+              .withTrigger((interactionSetup) -> {
+                throw new AssertionError("This is meant to fail");
+              })
+              .withTestResponse((data, setupInfo) -> {
+                assertThat(data).isEqualTo("It doesn't equal this");
+              })
+      );
+    }).isInstanceOf(ContractCaseConfigurationError.class)
+        .satisfies((e) -> {
+              assertThat(((HasUserFacingStackTrace) e).userFacingStackTrace())
+                  .contains("FailingExampleTest.java");
+            }
+        );
+
 
     // Recording contract should throw an error
     assertThatThrownBy(contract::endRecord).

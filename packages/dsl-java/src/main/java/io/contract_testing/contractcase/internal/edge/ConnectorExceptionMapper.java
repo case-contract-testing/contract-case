@@ -55,6 +55,16 @@ public class ConnectorExceptionMapper {
     );
   }
 
+  public static ConnectorFailure mapAsTriggerFailure(Error e) {
+    return new ConnectorFailure(
+        ConnectorFailureKindConstants.CASE_TRIGGER_ERROR,
+        e.getMessage(),
+        "",
+        "UNDOCUMENTED",
+        stackTraceToString(e)
+    );
+  }
+
   public static ConnectorFailure mapAsVerifyFailure(Exception e) {
     return new ConnectorFailure(
         ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR,

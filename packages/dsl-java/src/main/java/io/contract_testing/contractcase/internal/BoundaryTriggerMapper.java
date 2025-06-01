@@ -27,6 +27,8 @@ public class BoundaryTriggerMapper {
       T ret;
       try {
         ret = trigger.call(interactionSetup);
+      } catch (AssertionError error) {
+        return ConnectorExceptionMapper.mapAsTriggerFailure(error);
       } catch (Exception e) {
         return ConnectorExceptionMapper.mapAsTriggerFailure(e);
       }
@@ -58,6 +60,8 @@ public class BoundaryTriggerMapper {
             new RuntimeException(
                 "Expected the trigger to throw an exception, but it returned successfully. Result toString() was: "
                     + unexpectedResult.toString()));
+      } catch (AssertionError error) {
+        return ConnectorExceptionMapper.mapAsTriggerFailure(error);
       } catch (Exception triggerException) {
         try {
           testErrorResponseFunction.call(triggerException, interactionSetup);
