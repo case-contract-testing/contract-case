@@ -81,7 +81,7 @@
     "prettier": "3.5.3",
     "publib": "^0.2.967",
     "rimraf": "^6.0.1",
-    "ts-jest": "^29.2.5",
+    "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2"
   },
   "dependencies": {
