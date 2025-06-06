@@ -13,11 +13,12 @@ import io.contract_testing.contractcase.configuration.InvokableFunctions.Invokab
 import io.contract_testing.contractcase.internal.ConnectorResultMapper;
 import io.contract_testing.contractcase.internal.client.InternalVerifierClient;
 import io.contract_testing.contractcase.internal.client.server.ContractCaseProcess;
-import io.contract_testing.contractcase.internal.edge.default_implementations.BasicRunTestCallback;
 import io.contract_testing.contractcase.internal.edge.BoundaryCrashReporter;
 import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper;
 import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import io.contract_testing.contractcase.internal.edge.ConnectorResult;
+import io.contract_testing.contractcase.internal.edge.RunTestCallback;
+import io.contract_testing.contractcase.internal.edge.default_implementations.BasicRunTestCallback;
 import io.contract_testing.contractcase.internal.edge.default_implementations.LogPrinterStandardOut;
 import io.contract_testing.contractcase.logs.LogPrinter;
 import java.util.List;
@@ -31,19 +32,27 @@ public class ContractVerifier implements AutoCloseable {
 
 
   private final ContractCaseConfig config;
-  private final BasicRunTestCallback runTestCallback;
+  private final RunTestCallback runTestCallback;
 
   public ContractVerifier(final ContractCaseConfig config) {
-    this(config, new LogPrinterStandardOut());
+    this(config, new LogPrinterStandardOut(), new BasicRunTestCallback());
+  }
+
+  public ContractVerifier(final ContractCaseConfig config, RunTestCallback runTestCallback) {
+    this(config, new LogPrinterStandardOut(), runTestCallback);
+  }
+
+  public ContractVerifier(final ContractCaseConfig config, LogPrinter logPrinter) {
+    this(config, logPrinter, new BasicRunTestCallback());
   }
 
   public ContractVerifier(ContractCaseConfig config,
-      LogPrinter logPrinter) {
+      LogPrinter logPrinter, RunTestCallback runTestCallback) {
     ContractCaseProcess.getInstance().start();
     this.config = config;
 
     InternalVerifierClient verification = null;
-    runTestCallback = new BasicRunTestCallback();
+    this.runTestCallback = runTestCallback;
     try {
       verification = new InternalVerifierClient(
           ConnectorConfigMapper.map(
