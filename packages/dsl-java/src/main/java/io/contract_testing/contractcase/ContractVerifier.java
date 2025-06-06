@@ -1,6 +1,7 @@
 package io.contract_testing.contractcase;
 
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.ContractDescription;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction0;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
@@ -88,6 +89,10 @@ public class ContractVerifier implements AutoCloseable {
       // This is actually unreachable, since the above method always throws
       return List.of();
     }
+  }
+
+  public void runVerification() {
+    this.runVerification(ContractCaseConfigBuilder.aContractCaseConfig().build());
   }
 
   public void runVerification(ContractCaseConfig configOverrides) {
