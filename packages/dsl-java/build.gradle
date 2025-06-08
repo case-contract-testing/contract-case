@@ -27,6 +27,7 @@ tasks.withType(Javadoc).configureEach {
 def caseCoreVersion = "0.24.0"
 def grpcVersion = "1.73.0"
 def protobufVersion = "3.25.2"
+def junitVersion = "5.13.0"
 
 dependencies {
     api("io.contract-testing.contractcase:definitions:${caseCoreVersion}") {
@@ -47,9 +48,10 @@ dependencies {
     testImplementation 'com.google.protobuf:protobuf-gradle-plugin:0.9.5'
 
     // Execution of tests
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testImplementation 'org.assertj:assertj-core:3.27.3'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.4'
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.13.0"
 
     // client implementation under test, in test.httpclient.implementation
     testImplementation 'org.apache.httpcomponents:fluent-hc:4.5.14'
