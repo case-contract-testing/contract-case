@@ -2,10 +2,11 @@ package io.contract_testing.contractcase.test.function;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.ContractDefiner;
-import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.InteractionDefinition;
+import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
+import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
@@ -41,7 +42,7 @@ public class FunctionCallerExampleTest {
   public void testNoArgFunction() {
     contract.runInteraction(
         new InteractionDefinition<>(
-            List.of(),
+            List.of(new InState("The map is null")),
             new WillCallFunction(FunctionExecutionExample.builder()
                 .arguments(List.of())
                 .returnValue(new AnyNull())
@@ -63,7 +64,7 @@ public class FunctionCallerExampleTest {
 
     contract.runInteraction(
         new InteractionDefinition<>(
-            List.of(),
+            List.of(new InState("The map is null")),
             new WillCallFunction(FunctionExecutionExample.builder()
                 .arguments(List.of(new AnyInteger(2)))
                 .returnValue("2 pages")
@@ -85,7 +86,10 @@ public class FunctionCallerExampleTest {
 
     contract.runInteraction(
         new InteractionDefinition<>(
-            List.of(new InState("The key 'foo' is set to 'bar'")),
+            List.of(
+                new InState("The map is not null"),
+                new InState("The key 'foo' is set to 'bar'")
+            ),
             new WillCallFunction(FunctionExecutionExample.builder()
                 .arguments(List.of("foo"))
                 .returnValue("bar")

@@ -1,9 +1,9 @@
 package io.contract_testing.contractcase.internal.client.server;
 
 
+import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
-import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -19,6 +19,13 @@ public class ContractCaseProcess {
   private static ContractCaseProcess instance;
   private int portNumber;
   private ReaderSink outputStreamSink;
+
+  /**
+   * This indicates that the shutdown has been triggered, it exists to prevent the crash printer
+   * from thinking that errors communicating with an intentionally-shutdown server are an error
+   * (instead, they indicate that the close() method wasn't called cleanly)
+   */
+  private volatile boolean shutdownTriggered = false;
 
   public static synchronized ContractCaseProcess getInstance() {
     if (instance == null) {
@@ -56,6 +63,10 @@ public class ContractCaseProcess {
 
   private int overridePort = 0;
 
+  public boolean processShutdownTriggered() {
+    return this.shutdownTriggered;
+  }
+
   private synchronized void startRuntimeIfNeeded() {
     var envOverridePort = System.getenv("CASE_CONNECTOR_OVERRIDE_PORT");
 
@@ -67,7 +78,9 @@ public class ContractCaseProcess {
       } catch (NumberFormatException e) {
         throw new ContractCaseConfigurationError(
             "Unable to parse the custom port from '" + envOverridePort
-                + "'. Make sure CASE_CONNECTOR_OVERRIDE_PORT is set to an integer", "INVALID_CONFIG");
+                + "'. Make sure CASE_CONNECTOR_OVERRIDE_PORT is set to an integer",
+            "INVALID_CONFIG"
+        );
       }
       return;
     }
@@ -106,12 +119,15 @@ public class ContractCaseProcess {
           StandardCharsets.UTF_8
       ));
       var firstLine = stdout.readLine();
-      if(firstLine == null ) {
-        throw new ContractCaseCoreError("Unable to start ContractCase internal server, output stream terminated unexpectedly");
+      if (firstLine == null) {
+        throw new ContractCaseCoreError(
+            "Unable to start ContractCase internal server, output stream terminated unexpectedly");
       }
       var splitLine = firstLine.split(":\\s*");
       if (splitLine.length != 2) {
-        throw new ContractCaseCoreError("Unable to start ContractCase internal server, first line wasn't in the expected format. Contents were: " + firstLine);
+        throw new ContractCaseCoreError(
+            "Unable to start ContractCase internal server, first line wasn't in the expected format. Contents were: "
+                + firstLine);
       }
 
       this.outputStreamSink = new ReaderSink(stdout);
@@ -137,6 +153,8 @@ public class ContractCaseProcess {
     // Todo: Tell child to exit
 
     MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Exiting...");
+
+    this.shutdownTriggered = true;
 
     // Cleaning up stdout (ensuring buffers are flushed, etc...)
     if (stdout != null) {
@@ -297,8 +315,8 @@ public class ContractCaseProcess {
   }
 
   /**
-   * This is like the {@link StreamSink}, but it works on readers. This code exists to protect against the
-   * child process printing more than we're expecting.
+   * This is like the {@link StreamSink}, but it works on readers. This code exists to protect
+   * against the child process printing more than we're expecting.
    */
   private static final class ReaderSink extends Thread {
 

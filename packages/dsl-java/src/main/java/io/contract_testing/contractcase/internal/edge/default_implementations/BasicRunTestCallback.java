@@ -16,7 +16,7 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Provides a no-frills test runner that has no knowledge of a test framwork.
+ * Provides a no-frills test runner that has no knowledge of a test framework.
  */
 public class BasicRunTestCallback implements RunTestCallback {
   private final List<ConnectorFailure> failures = new ArrayList<>();

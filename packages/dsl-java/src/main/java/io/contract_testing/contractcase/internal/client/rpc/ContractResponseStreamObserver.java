@@ -15,13 +15,12 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractResponse
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ResultResponse;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle.Stage;
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
+import io.contract_testing.contractcase.internal.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.internal.edge.ConnectorStateHandler;
 import io.contract_testing.contractcase.internal.edge.ConnectorSuccess;
 import io.contract_testing.contractcase.internal.edge.RunTestCallback;
 import io.contract_testing.contractcase.logs.LogPrinter;
-import io.grpc.Status;
-import io.grpc.Status.Code;
 import io.grpc.stub.StreamObserver;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -221,37 +220,53 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
   @Override
   public void onError(final Throwable t) {
     try {
-      System.err.println("""
-          ContractCase was unable to contact its internal server.
-             This is either a conflict while starting the server,
-             a problem with the test runner (eg, no localhost
-             network access), a crash while the server was running,
-             or a bug in ContractCase.
-             
+      if (ContractCaseProcess.getInstance().processShutdownTriggered()) {
+        System.err.println("""
+               ContractCase wasn't shutdown cleanly during a JVM exit.
+               
+                  \n
+                  This usually happens when a call to .close() was missed.
+
+                  \n
+                  To ensure that the right outputs from tests are recorded,
+                  make sure that you always call .close() on your instance(s)
+                  of ContractDefiner or ContractVerifier, even if tests
+                  throw an error.
+            """);
+      } else {
+        System.err.println("""
+            ContractCase was unable to contact its internal server.
+               This is either a conflict while starting the server,
+               a problem with the test runner (eg, no localhost
+               network access), a crash while the server was running,
+               or a bug in ContractCase.
+               
+               \n
+               There may be additional context in the rest of
+               the log output.
+               
+               --- Error message is ---
+               """
+            + "   " + t.getMessage() + """
+            \n
+               ------------------------
+               With stack trace:
+               \n
+            """
+            + "   " + getStackTrace(t) + """
              \n
-             There may be additional context in the rest of
-             the log output.
-             
-             --- Error message is ---
-             """
-          + "   " + t.getMessage() + """
-          \n
-             ------------------------
-             With stack trace:
-                        
-          """
-          + "   " + getStackTrace(t) + """
-           \n
-           If you are unable to resolve this locally, or if
-           you suspect a bug, please open an issue here:
-           \n
-               https://github.com/case-contract-testing/contract-case/issues/new
-          """);
+             If you are unable to resolve this locally, or if
+             you suspect a bug, please open an issue here:
+             \n
+                 https://github.com/case-contract-testing/contract-case/issues/new
+                 
+            """);
+
+      }
       rpcConnector.cancelAll(new ContractCaseCoreError(
           "ContractCase failed while contacting its internal server: ",
           t
       ));
-
       executor.close();
     } finally {
       rpcConnector.finishLatch.countDown();
