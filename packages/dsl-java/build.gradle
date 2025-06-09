@@ -51,7 +51,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testImplementation 'org.assertj:assertj-core:3.27.3'
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.13.0"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.13.1"
 
     // client implementation under test, in test.httpclient.implementation
     testImplementation 'org.apache.httpcomponents:fluent-hc:4.5.14'
