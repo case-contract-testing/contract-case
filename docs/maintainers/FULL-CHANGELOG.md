@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.24.1](https://github.com/case-contract-testing/contract-case/compare/v0.24.0...v0.24.1) (2025-06-09)
+
+
+### Bug Fixes
+
+* **java-dsl:** Add a no-argument version of runVerification(). This is a convenience function that implies no overridden configuration. ([8a68081](https://github.com/case-contract-testing/contract-case/commit/8a6808127050f0bdaed4cf292db7f16527a94e65))
+* **java-dsl:** Expose RunTestCallback - it was supposed to be exposed before, but was missed. This allows easy customisation of individual verification results ([db82fc3](https://github.com/case-contract-testing/contract-case/commit/db82fc3144ed47875e812bf392e24b077ec56eb9))
+* **java-dsl:** Now triggers can throw AssertionErrors if they wish to fail the test, regardless of whether an Exception is expected from the trigger or not ([36d4cfa](https://github.com/case-contract-testing/contract-case/commit/36d4cfa34e14b32f8272fd2ee3edfad5f26a5d97))
+* **java-dsl:** Print warning if the verifier hasn't been closed at the time the shutdown hook for the core process is triggered ([00ebe83](https://github.com/case-contract-testing/contract-case/commit/00ebe830a6ed04b67d952158d436728bd62d06b8))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.24.0 to 0.24.1
+
 ## [0.24.0](https://github.com/case-contract-testing/contract-case/compare/v0.23.1...v0.24.0) (2025-05-26)
 
 
