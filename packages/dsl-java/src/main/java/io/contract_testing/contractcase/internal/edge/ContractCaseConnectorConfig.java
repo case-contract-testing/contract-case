@@ -52,7 +52,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       Map<String, ? extends ITriggerFunction> triggerAndTests,
       ITriggerFunction triggerAndTest,
       Map<String, Map<String, String>> mockConfig,
-      AutoVersionFrom autoVersionFrom) {
+      AutoVersionFrom autoVersionFrom,
+      Map<String, String> adviceOverrides) {
     super(
         providerName,
         consumerName,
@@ -70,7 +71,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
         null,
         null,
         mockConfig,
-        autoVersionFrom
+        autoVersionFrom,
+        adviceOverrides
     );
     this.testRunId = testRunId;
     this.triggerAndTests = triggerAndTests;
@@ -141,6 +143,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
     private AutoVersionFrom autoVersionFrom;
     private ChangedContractsBehaviour changedContracts;
+    private Map<String, String> adviceOverrides;
 
     private Builder() {
     }
@@ -244,6 +247,11 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       return this;
     }
 
+    public Builder adviceOverrides(Map<String, String> adviceOverrides) {
+      this.adviceOverrides = adviceOverrides;
+      return this;
+    }
+
 
     public ContractCaseConnectorConfig build() {
       return new ContractCaseConnectorConfig(
@@ -265,7 +273,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
           triggerAndTests,
           triggerAndTest,
           mockConfig,
-          autoVersionFrom
+          autoVersionFrom,
+          adviceOverrides
       );
     }
 

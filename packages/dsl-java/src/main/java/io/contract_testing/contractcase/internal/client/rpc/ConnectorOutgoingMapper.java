@@ -155,6 +155,10 @@ public class ConnectorOutgoingMapper {
       });
     }
 
+    if(config.getAdviceOverrides() != null) {
+      config.getAdviceOverrides().forEach(builder::putAdviceOverrides);
+    }
+
     return builder.build();
   }
 

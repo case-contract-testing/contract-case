@@ -7,13 +7,16 @@ import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
+import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
 import io.contract_testing.contractcase.definitions.states.InState;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -29,6 +32,8 @@ public class FunctionCallerExampleTest {
             .consumerName("Java Function Caller Example")
             .providerName("Java Function Implementer Example")
             .publish(PublishType.NEVER)
+          //  .changedContracts(ChangedContractsBehaviour.OVERWRITE)
+            .adviceOverrides(Map.of("OVERWRITE_CONTRACTS_NEEDED", "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"))
             .build());
   }
 
@@ -45,7 +50,7 @@ public class FunctionCallerExampleTest {
             List.of(new InState("The map is null")),
             new WillCallFunction(FunctionExecutionExample.builder()
                 .arguments(List.of())
-                .returnValue(new AnyNull())
+                .returnValue(new NamedMatch("void", new AnyNull()))
                 .functionName("NoArgFunction")
                 .build())
         ),

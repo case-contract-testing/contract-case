@@ -1,6 +1,7 @@
 package io.contract_testing.contractcase.configuration;
 
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
+import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -144,6 +145,19 @@ public class ContractCaseConfig {
    */
   public final AutoVersionFrom autoVersionFrom;
 
+
+  /**
+   * This allows for advanced customisation of the advice that ContractCase prints when
+   * configuration errors or other issues happen. It's exposed so that enterprise users or people
+   * with common wrappers can customise the log and error output
+   * <p>
+   * Most users will not need to set this property
+   * <p>
+   * The key is the error code that you want to override the advice for, the value is the new string
+   * to use instead.
+   */
+  public final Map<String, String> adviceOverrides;
+
   /**
    * Don't construct this directly, use a {@link ContractCaseConfigBuilder} instead, obtained via
    * {@link ContractCaseConfigBuilder#aContractCaseConfig()}
@@ -156,7 +170,7 @@ public class ContractCaseConfig {
       PublishType publish, String brokerBaseUrl, String brokerCiAccessToken,
       BrokerBasicAuthCredentials brokerBasicAuth, String baseUrlUnderTest, TriggerGroups triggers,
       Map<String, StateHandler> stateHandlers, Map<String, Map<String, String>> mockConfig,
-      AutoVersionFrom autoVersionFrom) {
+      AutoVersionFrom autoVersionFrom, Map<String, String> adviceOverrides) {
     this.providerName = providerName;
     this.consumerName = consumerName;
     this.logLevel = logLevel;
@@ -174,6 +188,7 @@ public class ContractCaseConfig {
     this.stateHandlers = stateHandlers != null ? Collections.unmodifiableMap(stateHandlers) : null;
     this.mockConfig = mockConfig != null ? Collections.unmodifiableMap(mockConfig) : null;
     this.autoVersionFrom = autoVersionFrom;
+    this.adviceOverrides = adviceOverrides != null ? Collections.unmodifiableMap(adviceOverrides) : null;
   }
 
   public String getProviderName() {
@@ -236,6 +251,10 @@ public class ContractCaseConfig {
     return this.autoVersionFrom;
   }
 
+  public Map<String, String> getAdviceOverrides() {
+    return adviceOverrides;
+  }
+
   /**
    * Builder for {@link ContractCaseConfig} objects.
    * <p>
@@ -265,6 +284,8 @@ public class ContractCaseConfig {
 
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
     private ChangedContractsBehaviour changedContracts;
+
+    private Map<String,String> adviceOverrides;
 
     private ContractCaseConfigBuilder() {
     }
@@ -417,6 +438,11 @@ public class ContractCaseConfig {
       return this;
     }
 
+    public ContractCaseConfigBuilder adviceOverrides(Map<String, String> adviceOverrides) {
+      this.adviceOverrides = adviceOverrides;
+      return this;
+    }
+
 
     /**
      * Builds an immutable {@link ContractCaseConfig}
@@ -440,7 +466,8 @@ public class ContractCaseConfig {
           triggers,
           stateHandlers,
           mockConfig,
-          autoVersionFrom
+          autoVersionFrom,
+          adviceOverrides
       );
     }
   }

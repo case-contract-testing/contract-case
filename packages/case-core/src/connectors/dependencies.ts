@@ -20,6 +20,7 @@ const DEFAULT_CONFIG: Partial<BaseCaseConfig> = {
   printResults: true,
   testRunId: DEFAULT_TEST_ID,
   autoVersionFrom: 'TAG',
+  adviceOverrides: {},
 };
 
 export const writerDependencies: (

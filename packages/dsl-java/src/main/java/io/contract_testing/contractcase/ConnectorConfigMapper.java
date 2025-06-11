@@ -137,6 +137,10 @@ class ConnectorConfigMapper {
       builder.autoVersionFrom(config.autoVersionFrom);
     }
 
+    if(config.adviceOverrides != null) {
+      builder.adviceOverrides(config.adviceOverrides);
+    }
+
     config.mockConfig.forEach(builder::mockConfig);
 
     return builder;

@@ -33,13 +33,15 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
       Trigger<T> trigger,
       TestResponseFunction<T> testResponse,
       Map<String, Map<String, String>> mockConfig,
-      AutoVersionFrom autoVersionFrom) {
+      AutoVersionFrom autoVersionFrom,
+      Map<String, String> adviceOverrides) {
     super(providerName, consumerName, logLevel, contractDir, contractFilename,
         changedContractsBehaviour,
         printResults,
         throwOnFail, publish, brokerBaseUrl, brokerCiAccessToken, brokerBasicAuth, baseUrlUnderTest,
         triggers, stateHandlers, mockConfig,
-        autoVersionFrom
+        autoVersionFrom,
+        adviceOverrides
     );
     this.trigger = trigger;
     this.testResponse = testResponse;
@@ -68,6 +70,7 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
 
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
     private ChangedContractsBehaviour changedContracts;
+    private Map<String,String> adviceOverrides;
 
     private IndividualSuccessTestConfigBuilder() {
     }
@@ -180,6 +183,11 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
       return this;
     }
 
+    public IndividualSuccessTestConfigBuilder<T> adviceOverrides(Map<String, String> adviceOverrides) {
+      this.adviceOverrides = adviceOverrides;
+      return this;
+    }
+
     public IndividualSuccessTestConfig<T> build() {
       return new IndividualSuccessTestConfig<>(
           providerName,
@@ -200,7 +208,8 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
           trigger,
           testResponse,
           mockConfig,
-          autoVersionFrom
+          autoVersionFrom,
+          adviceOverrides
       );
     }
   }

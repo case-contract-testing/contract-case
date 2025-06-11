@@ -835,7 +835,8 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.toObject = functi
     baseUrlUnderTest: (f = msg.getBaseUrlUnderTest()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
     mockConfigMap: (f = msg.getMockConfigMap()) ? f.toObject(includeInstance, undefined) : [],
     autoVersionFrom: (f = msg.getAutoVersionFrom()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
-    changedContracts: (f = msg.getChangedContracts()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
+    changedContracts: (f = msg.getChangedContracts()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
+    adviceOverridesMap: (f = msg.getAdviceOverridesMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -963,6 +964,12 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.deserializeBinary
       var value = new google_protobuf_wrappers_pb.StringValue;
       reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
       msg.setChangedContracts(value);
+      break;
+    case 19:
+      var value = msg.getAdviceOverridesMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -1128,6 +1135,10 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.serializeBinaryTo
       f,
       google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
+  }
+  f = message.getAdviceOverridesMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(19, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -1969,6 +1980,28 @@ proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearCh
 proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.hasChangedContracts = function() {
   return jspb.Message.getField(this, 18) != null;
 };
+
+
+/**
+ * map<string, string> advice_overrides = 19;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.getAdviceOverridesMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 19, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.io.contract_testing.contractcase.grpc.ContractCaseConfig} returns this
+ */
+proto.io.contract_testing.contractcase.grpc.ContractCaseConfig.prototype.clearAdviceOverridesMap = function() {
+  this.getAdviceOverridesMap().clear();
+  return this;};
 
 
 

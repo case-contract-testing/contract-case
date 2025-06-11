@@ -37,6 +37,24 @@ const createDirectory = (
   }
 };
 
+const advice = (context: HasContractFileConfig) => {
+  if (
+    context['_case:currentRun:context:adviceOverrides'] &&
+    context['_case:currentRun:context:adviceOverrides'][
+      'OVERWRITE_CONTRACTS_NEEDED'
+    ] != null
+  ) {
+    return `\n        ${context['_case:currentRun:context:adviceOverrides'][
+      'OVERWRITE_CONTRACTS_NEEDED'
+    ].replaceAll('\n', '\n        ')}\n`;
+  }
+  return `\n
+        Please re-run your tests with one of:
+        
+        * The configuration property changedContracts is set to 'OVERWRITE'
+        * The environment variable CASE_changedContracts=OVERWRITE\n`;
+};
+
 const actuallyWriteContract = (
   pathToFile: string,
   contract: ContractData,
@@ -52,15 +70,10 @@ const actuallyWriteContract = (
         The existing contract in file:
             ${pathToFile} 
         didn't match the new contract being written.
-        
-        Please re-run your tests with one of:
-        
-        * The configuration property changedContracts is set to 'OVERWRITE'
-        * The environment variable CASE_changedContracts=OVERWRITE
-        
+        ${advice(context)}
         If you see this on consecutive runs, please check 
         that your contract doesn't contain randomness 
-        during contract definition`,
+        during contract definition\n\n`,
           'DONT_ADD_LOCATION',
           'OVERWRITE_CONTRACTS_NEEDED',
         );

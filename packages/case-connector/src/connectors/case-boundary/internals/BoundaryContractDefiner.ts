@@ -29,6 +29,8 @@ import {
 } from './boundary/index.js';
 import { versionString } from '../../../entities/versionString.js';
 import { BoundaryInvokableFunction } from './types.js';
+import { mergeConfig, mergeInvokers } from './mergers.js';
+import { connectorDebugLog } from '../../../domain/maintainerLog.js';
 
 type Definition = {
   states: Array<AnyState>;
@@ -127,6 +129,8 @@ export class BoundaryContractDefiner {
         );
       }
 
+      connectorDebugLog('maintainerDebug', 'BoundaryConfig mapped to', config);
+
       this.definer = new ContractDefinerConnector(
         {
           consumerName: config.consumerName,
@@ -153,9 +157,18 @@ export class BoundaryContractDefiner {
       }
 
       const { config, partialInvoker } = convertConfig(runConfig);
+      const { config: initialConfig, partialInvoker: initialInvoker } =
+        convertConfig(this.constructorConfig);
+
+      const mergedConfig = mergeConfig(initialConfig, config);
+
       await this.definer.runInteraction(
-        mapDefinition(definition, partialInvoker, config),
-        config,
+        mapDefinition(
+          definition,
+          mergeInvokers(initialInvoker, partialInvoker),
+          mergedConfig,
+        ),
+        mergedConfig,
       );
       return new BoundarySuccess();
     } catch (e) {
@@ -174,10 +187,22 @@ export class BoundaryContractDefiner {
           'Definer was undefined after it was initialised (runRejectingInteraction)',
         );
       }
+
       const { config, partialInvoker } = convertConfig(runConfig);
+      const { config: initialConfig, partialInvoker: initialInvoker } =
+        convertConfig(this.constructorConfig);
+
+      const mergedConfig = mergeConfig(initialConfig, config);
+
       await this.definer.runRejectingInteraction(
-        { ...mapDefinition(definition, partialInvoker, config) },
-        config,
+        {
+          ...mapDefinition(
+            definition,
+            mergeInvokers(initialInvoker, partialInvoker),
+            mergedConfig,
+          ),
+        },
+        mergedConfig,
       );
       return new BoundarySuccess();
     } catch (e) {

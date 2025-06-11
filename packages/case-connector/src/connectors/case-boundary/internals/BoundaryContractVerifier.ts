@@ -1,11 +1,8 @@
 import {
-  AnyMockDescriptorType,
-  CaseConfig,
   CaseConfigurationError,
   CaseCoreError,
   ContractVerifierConnector,
   RunTestCallback,
-  TestInvoker,
 } from '@contract-case/case-core';
 
 import {
@@ -29,6 +26,7 @@ import {
 } from './boundary/index.js';
 import { versionString } from '../../../entities/versionString.js';
 import { BoundaryInvokableFunction } from './types.js';
+import { mergeConfig, mergeInvokers } from './mergers.js';
 
 class CoreInvoker implements IInvokeCoreTest {
   private coreVerify: () => Promise<unknown>;
@@ -65,47 +63,6 @@ const wrapCallback =
       .then((result) => handleVoidResult(result, 'CaseCoreError'))
       .catch(jsErrorToFailure);
   };
-
-type NewType = Partial<TestInvoker<AnyMockDescriptorType, unknown>>;
-
-const mergeInvokers = (
-  initialInvoker: NewType,
-  partialInvoker: NewType,
-): NewType => ({
-  ...initialInvoker,
-  ...partialInvoker,
-  stateHandlers: {
-    ...initialInvoker.stateHandlers,
-    ...partialInvoker.stateHandlers,
-  },
-  triggers: {
-    ...initialInvoker.triggers,
-    ...partialInvoker.triggers,
-  },
-  triggerAndTests: {
-    ...initialInvoker.triggerAndTests,
-    ...partialInvoker.triggerAndTests,
-  },
-});
-
-const mergeConfig = (
-  initialConfig: CaseConfig,
-  config: CaseConfig,
-): CaseConfig => ({
-  ...initialConfig,
-  ...config,
-  ...('internals' in initialConfig || 'internals' in config
-    ? {
-        internals: {
-          ...initialConfig.internals,
-          ...config.internals,
-        } as { asyncVerification: boolean },
-      }
-    : {}),
-  ...('mockConfig' in initialConfig || 'mockConfig' in config
-    ? { mockConfig: { ...initialConfig.mockConfig, ...config.mockConfig } }
-    : {}),
-});
 
 /**
  * A BoundaryContractDefiner allows verifying contracts

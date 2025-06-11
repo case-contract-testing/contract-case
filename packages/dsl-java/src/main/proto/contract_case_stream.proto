@@ -39,6 +39,8 @@ message ContractCaseConfig {
   google.protobuf.StringValue auto_version_from = 17;
 
   google.protobuf.StringValue changed_contracts = 18;
+
+  map<string, string> advice_overrides = 19;
 }
 
 // Indicates a successful response with no payload

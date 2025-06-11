@@ -351,6 +351,7 @@ interface InjectableContext {
   '_case:currentRun:context:baseUrlUnderTest'?: string;
   '_case:currentRun:context:contractMode': 'write' | 'read';
   '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
+  '_case:currentRun:context:adviceOverrides': Record<string, string>;
 }
 
 /**

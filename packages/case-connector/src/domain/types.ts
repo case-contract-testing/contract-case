@@ -33,6 +33,8 @@ export type ContractCaseConnectorConfig = {
   mockConfig: Record<string, Record<string, unknown>>;
 
   autoVersionFrom: string;
+
+  adviceOverrides: Record<string, string>;
 };
 
 export type DefinitionId = string;

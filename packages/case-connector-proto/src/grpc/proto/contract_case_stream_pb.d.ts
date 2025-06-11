@@ -125,6 +125,9 @@ export class ContractCaseConfig extends jspb.Message {
     value?: google_protobuf_wrappers_pb.StringValue,
   ): ContractCaseConfig;
 
+  getAdviceOverridesMap(): jspb.Map<string, string>;
+  clearAdviceOverridesMap(): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ContractCaseConfig.AsObject;
   static toObject(
@@ -168,6 +171,8 @@ export namespace ContractCaseConfig {
     mockConfigMap: Array<[string, string]>;
     autoVersionFrom?: google_protobuf_wrappers_pb.StringValue.AsObject;
     changedContracts?: google_protobuf_wrappers_pb.StringValue.AsObject;
+
+    adviceOverridesMap: Array<[string, string]>;
   };
 
   export class UsernamePassword extends jspb.Message {

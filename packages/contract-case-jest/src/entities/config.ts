@@ -184,6 +184,19 @@ export interface ContractCaseConfig {
    * @defaultValue `TAG`
    */
   readonly autoVersionFrom?: 'TAG' | 'GIT_SHA';
+
+  /**
+   * This allows for advanced customisation of the advice that ContractCase
+   * prints when configuration errors or other issues happen. It's exposed so
+   * that enterprise users or people with common wrappers can customise the log
+   * and error output
+   *
+   * Most users will not need to set this property
+   *
+   * The key is the error code that you want to override the advice for, the
+   * value is the new string to use instead.
+   */
+  readonly adviceOverrides?: Record<string, string>;
 }
 
 export type ContractCaseVerifierConfig = Omit<

@@ -9,7 +9,7 @@ import java.util.Map;
  * Configures a single test for an API call that is expected to throw an error during this test. For example,
  * if your API client code throws a UserNotFound exception, you'll need this configuration.
  *
- * @param <T> The return type of your API client code (eg {@code User} or other domain object)
+ * @param <T> The return type of your API client code (e.g. {@code User} or other domain object)
  */
 public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
 
@@ -34,13 +34,15 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
       Trigger<T> trigger,
       TestErrorResponseFunction testErrorResponse,
       Map<String, Map<String, String>> mockConfig,
-      AutoVersionFrom autoVersionFrom) {
+      AutoVersionFrom autoVersionFrom,
+      Map<String, String> adviceOverrides) {
     super(providerName, consumerName, logLevel, contractDir, contractFilename,
         changedContractsBehaviour,
         printResults,
         throwOnFail, publish, brokerBaseUrl, brokerCiAccessToken, brokerBasicAuth, baseUrlUnderTest,
         triggers, stateHandlers, mockConfig,
-        autoVersionFrom
+        autoVersionFrom,
+        adviceOverrides
     );
     this.trigger = trigger;
     this.testErrorResponse = testErrorResponse;
@@ -61,12 +63,13 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
     private BrokerBasicAuthCredentials brokerBasicAuth;
     private String baseUrlUnderTest;
     private TriggerGroups triggers;
-    private Map<String, StateHandler> stateHandlers = new HashMap<>();
+    private final Map<String, StateHandler> stateHandlers = new HashMap<>();
     private Trigger<T> trigger;
     private TestErrorResponseFunction testErrorResponse;
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
     private AutoVersionFrom autoVersionFrom;
     private ChangedContractsBehaviour changedContracts;
+    private Map<String, String> adviceOverrides;
 
     private IndividualFailedTestConfigBuilder() {
     }
@@ -240,6 +243,11 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
       return this;
     }
 
+    public IndividualFailedTestConfigBuilder<T> adviceOverrides(Map<String, String> adviceOverrides) {
+      this.adviceOverrides = adviceOverrides;
+      return this;
+    }
+
     public IndividualFailedTestConfig<T> build() {
       return new IndividualFailedTestConfig<>(
           providerName,
@@ -260,7 +268,8 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
           trigger,
           testErrorResponse,
           mockConfig,
-          autoVersionFrom
+          autoVersionFrom,
+          adviceOverrides
       );
     }
   }

@@ -161,6 +161,16 @@ const mapAllConfigFields = (
   mockConfig: mapMockConfig(config.getMockConfigMap()),
 
   autoVersionFrom: unboxOrUndefined(config.getAutoVersionFrom()),
+  adviceOverrides: config
+    .getAdviceOverridesMap()
+    .toArray()
+    .reduce<Record<string, string>>(
+      (acc: Record<string, string>, [key, value]) => ({
+        ...acc,
+        [key]: value,
+      }),
+      {},
+    ),
 });
 
 export const mapConfig = (

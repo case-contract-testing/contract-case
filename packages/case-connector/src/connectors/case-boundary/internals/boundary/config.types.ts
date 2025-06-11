@@ -196,4 +196,17 @@ export interface ContractCaseBoundaryConfig {
      */
     readonly asyncVerification: boolean;
   };
+
+  /**
+   * This allows for advanced customisation of the advice that ContractCase
+   * prints when configuration errors or other issues happen. It's exposed so
+   * that enterprise users or people with common wrappers can customise the log
+   * and error output.
+   *
+   * This field is an object, where the key is the error code that you want to
+   * override the advice for, the value is the new string to use instead.
+   *
+   * Most users will not need to set this property.
+   */
+  readonly adviceOverrides?: Record<string, string>;
 }

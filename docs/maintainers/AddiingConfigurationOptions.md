@@ -44,8 +44,8 @@ The core needs to know your configuration property
 ## Step 2: Add to the CaseConnector packages
 
 1. Add it to `ContractCaseBoundaryConfig`. This should only contain primitive types, so that different connector implementations are possible. Keep this defined in the same order as the CaseConfig object. This object should be documented, and should specify what the default is.
-2. Add it to the `convertConfig` function. This function should validate the values can be assigned to the typescript CaseConfig, but do no other validation. It may also normalise if the result is unambiguous (eg, you can interpret `someProperty` as `SOME_PROPERTY`)
-3. Add it to the `.proto` version of the config object in `case-connector-proto`, then run `npm run build:proto` and `npm run lint:fix:proto=` in that package.
+2. Add it to the `convertConfig` function. This function should validate the values can be assigned to the typescript CaseConfig, but do no other validation. It may also normalise if the result is unambiguous (eg, you can interpret `someProperty` as `SOME_PROPERTY`). You can assume that the type passed in to this function is correct- if it's a `string` in the boundary config, then it's safe to use as a `string` in the `CaseConfig`.
+3. Add it to the `.proto` version of the config object in `case-connector-proto`, then run `npm run build:proto` and `npm run lint:fix:proto` in that package (this tool fails on the first run to indicate that it changed something. Run it again to confirm it is now fixed). Note also that the proto expects snake_case variable names.
 4. Add it to `ContractCaseConnectorConfig`, using the same rules as the boundary config. TODO: Replace the boundary config with the connector config so that we only have to do one mapping here.
 5. Add it to `mapAllConfigFields` in the grpc connector
 
