@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.24.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.24.1...@contract-case/case-plugin-base-v0.24.2) (2025-06-11)
+
+
+### Features
+
+* Add ability to override some configuration advice via adviceOverrides ([ef171e2](https://github.com/case-contract-testing/contract-case/commit/ef171e27225a6db1fd32e9c99c6d8b1ed3bd1a17))
+* **plugin:** Added convenience method for determining whether contracts can't be published in the current setup ([3b0c516](https://github.com/case-contract-testing/contract-case/commit/3b0c5163dfb40a4adf029d476c8587ec0df54379))
+
+
+### Bug Fixes
+
+* **cli:** Downloaded contracts no longer write a main contract file, as we can't tell which one is main ([9631a77](https://github.com/case-contract-testing/contract-case/commit/9631a77ec58a2f35d7f0825c27822260cf1987bd))
+* **plugins:** Add explicit error code for missing state handler and document it ([4e18264](https://github.com/case-contract-testing/contract-case/commit/4e1826455b4cd9f3d6d883614e612aa8645731b7))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.24.1 to 0.24.2
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.24.1 to 0.24.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.24.1 to 0.24.2
+
 ## [0.24.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.24.0...@contract-case/case-plugin-base-v0.24.1) (2025-06-09)
 
 

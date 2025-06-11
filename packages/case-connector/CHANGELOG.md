@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.24.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.24.1...@contract-case/case-connector-v0.24.2) (2025-06-11)
+
+
+### Features
+
+* Add ability to override some configuration advice via adviceOverrides ([ef171e2](https://github.com/case-contract-testing/contract-case/commit/ef171e27225a6db1fd32e9c99c6d8b1ed3bd1a17))
+
+
+### Bug Fixes
+
+* **boundary:** Fix an issue where state handlers set in the verifier constructor wouldn't be respected ([e5c0528](https://github.com/case-contract-testing/contract-case/commit/e5c05281f52264e7a9e584978ac2e374e4c33306))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.24.1 to 0.24.2
+    * @contract-case/case-core bumped from 0.24.1 to 0.24.2
+    * @contract-case/case-entities-internal bumped from 0.24.1 to 0.24.2
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.24.1 to 0.24.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.24.1 to 0.24.2
+
 ## [0.24.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.24.0...@contract-case/case-connector-v0.24.1) (2025-06-09)
 
 
