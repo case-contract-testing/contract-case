@@ -128,6 +128,17 @@ Adds the current location to the context
 </td></tr>
 <tr><td>
 
+[cantPublish(context)](./case-plugin-base.cantpublish.md)
+
+
+</td><td>
+
+True if this context can never publish results
+
+
+</td></tr>
+<tr><td>
+
 [combineResultPromises(results)](./case-plugin-base.combineresultpromises.md)
 
 

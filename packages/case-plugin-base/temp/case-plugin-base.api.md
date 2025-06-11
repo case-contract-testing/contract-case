@@ -26,6 +26,9 @@ export const addLocation: (location: string, context: MatchContext) => MatchCont
 export const applyNodeToContext: (caseNodeOrData: AnyCaseMatcherOrData | AnyMockDescriptor, context: MatchContext, runConfig?: Partial<RunContext>) => MatchContext;
 
 // @public
+export const cantPublish: (context: MatchContext) => boolean;
+
+// @public
 export class CaseConfigurationError extends Error {
     constructor(message: string, context: LogLevelContext | 'DONT_ADD_LOCATION', code?: ConfigurationErrorCode, userFacingStackTrace?: string);
     contractCaseErrorCode: ConfigurationErrorCode;

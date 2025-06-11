@@ -303,6 +303,48 @@
           "name": "addLocation"
         },
         {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!cantPublish:function(1)",
+          "docComment": "/**\n * True if this context can never publish results\n *\n * @param context - MatchContext\n *\n * @returns True if this context can never publish results; false if it might publish\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "cantPublish: (context: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MatchContext",
+              "canonicalReference": "@contract-case/case-plugin-base!MatchContext:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            }
+          ],
+          "fileUrlPath": "src/context/publish.accessors.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "context",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "cantPublish"
+        },
+        {
           "kind": "Class",
           "canonicalReference": "@contract-case/case-plugin-base!CaseConfigurationError:class",
           "docComment": "/**\n * Indicates that the user has configured ContractCase incorrectly.\n *\n * Throw this during mock setup if you encounter configuration errors.\n *\n * @public\n */\n",
