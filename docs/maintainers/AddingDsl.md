@@ -13,12 +13,12 @@ These are the rules that govern what can and can't go in a user-facing package. 
 to reduce fragmentation and to keep the user-facing layers light. Pull requests that
 break these rules won't be accepted.
 
-- **No functionality goes in your DSL.** The only purpose of your DSL layer is to make using ContractCase idiomatic in the target language.
-- **No functionality goes in the case-connector packages**. The only purpose of the case-connector
+- **No testing functionality goes in your DSL.** The only purpose of your DSL layer is to make using ContractCase idiomatic in the target language.
+- **No testing functionality goes in the case-connector packages**. The only purpose of the case-connector
   layer is to map between user-facing packages in various languages and `Case-Core`. It is necessary to do this mapping,
   because ContractCase has several layers of callbacks that could be arbitrarily
   deep, and we need to pass errors across them. See the Boundary Mappings section below. Long term, if a non-JSii language were to be supported, it would need its own `case-boundary`.
-- **Any new functionality goes in to Case-Core.** If you're wanting to build new
+- **Any new functionality goes in to Case-Core, or one of the core plugins.** If you're wanting to build new
   functionality, it should go there instead. See the other pages in the
   maintainers section for more on extending case-core.
 - **(Almost) no validation goes in your DSL or user-facing package.** The
@@ -27,7 +27,7 @@ break these rules won't be accepted.
   exceptions: Wherever possible, please use your language's type system to avoid the need
   for validation (for example, use enums where ContractCase expects a few
   different specific values of strings, like for `LogLevel`). Similarly, there may be cases where parse or serialisation errors make sense to be thrown as `ContractCaseConfigurationError` types inside your user-facing package. Use your judgement, and chat to us if you're not sure.
-- **No JSON matcher/mock example definitions go in your DSL.** The pure-json interaction and matcher definitions are already exposed by
+- **No hand-written JSON matcher/mock example definitions go in your DSL.** The pure-json interaction and matcher definitions are already exposed by
   other packages. You should not be creating JSON for Interactions or Matchers in your
   DSL, unless you are depending on those other translated boundary packages to do so. Long term, if a non-JSii language were to be supported, it would need its own JSON definitions (ideally, parsed from `@contract-case/case-entities-internal`).
 - **No types from `@contract-case/case-boundary` are to be exposed to users.** These types are internal implementation details.
