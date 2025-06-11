@@ -32,7 +32,7 @@ public class FunctionCallerExampleTest {
             .consumerName("Java Function Caller Example")
             .providerName("Java Function Implementer Example")
             .publish(PublishType.NEVER)
-          //  .changedContracts(ChangedContractsBehaviour.OVERWRITE)
+           // .changedContracts(ChangedContractsBehaviour.OVERWRITE)
             .adviceOverrides(Map.of("OVERWRITE_CONTRACTS_NEEDED", "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"))
             .build());
   }
