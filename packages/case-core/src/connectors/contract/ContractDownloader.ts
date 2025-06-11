@@ -55,6 +55,7 @@ export class ContractDownloader {
           return this.writeContract(c.contractData, {
             ...this.context,
             '_case:currentRun:context:overwriteFile': true,
+            '_case:currentRun:context:doNotWriteMainContract': true,
             '_case:currentRun:context:testRunId':
               c.contractData._links['pb:pact-version'].name,
           });

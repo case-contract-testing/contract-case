@@ -294,6 +294,10 @@ export interface ContractFileConfig {
    */
   '_case:currentRun:context:contractFilename'?: string;
   /**
+   * Don't write a main contract (used by the downloader, as it might not be the main)
+   */
+  '_case:currentRun:context:doNotWriteMainContract'?: boolean;
+  /**
    * Whether we should allow overwriting the contract file.
    *
    * This setting is ignored (assumed true) if contractDir is set

@@ -137,7 +137,10 @@ const internalWriteContract = (
     );
   }
 
-  if (context['_case:currentRun:context:contractFilename'] === undefined) {
+  if (
+    context['_case:currentRun:context:contractFilename'] === undefined &&
+    !context['_case:currentRun:context:doNotWriteMainContract']
+  ) {
     // If we haven't been given an explicit filename, we also write the main
     // contract too
     actuallyWriteContract(
