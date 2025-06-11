@@ -1,6 +1,7 @@
 package io.contract_testing.contractcase.internal.client.rpc;
 
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
+import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.internal.edge.ConnectorStateHandler;
 import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
 import io.contract_testing.contractcase.internal.edge.ITriggerFunction;
@@ -9,30 +10,38 @@ import org.jetbrains.annotations.Nullable;
 
 public class ConfigHandle {
 
+  private final ContractCaseConnectorConfig baseConfig;
+  private ContractCaseConnectorConfig configOverrides;
+
   public void setConnectorConfig(ContractCaseConnectorConfig boundaryConfig) {
-    this.boundaryConfig = boundaryConfig;
+    this.configOverrides = boundaryConfig;
   }
 
-  private ContractCaseConnectorConfig boundaryConfig;
-
-  public ConfigHandle(ContractCaseConnectorConfig boundaryConfig) {
-    this.boundaryConfig = boundaryConfig;
+  public ConfigHandle(ContractCaseConnectorConfig configOverrides) {
+    this.baseConfig = configOverrides;
+    this.configOverrides = configOverrides;
   }
 
   ConnectorStateHandler getStateHandler(String stateName) {
-    if (boundaryConfig.getConnectorStateHandlers() == null) {
-      throw new ContractCaseConfigurationError(
-          "No state handlers provided, you must provide a state handler that can run '" + stateName
-              + "'", "INVALID_CONFIG");
+    var override = getConnectorStateHandler(stateName, configOverrides);
+    var base = getConnectorStateHandler(stateName, baseConfig);
+    if (override != null) {
+      return override;
     }
-    var stateHandler = boundaryConfig.getConnectorStateHandlers().get(stateName);
+    if (base != null) {
+      return base;
+    }
+    throw new ContractCaseCoreError("Core asked for state '" + stateName
+        + "', but it didn't exist. This shouldn't happen, and indicates a config mapper is misbehaving somewhere");
+  }
 
-    if (stateHandler == null) {
-      throw new ContractCaseConfigurationError(
-          "The state handler named '" + stateName
-              + "' was not provided in the configuration", "INVALID_CONFIG");
+  @Nullable
+  private static ConnectorStateHandler getConnectorStateHandler(String stateName,
+      ContractCaseConnectorConfig source) {
+    if (source.getConnectorStateHandlers() == null) {
+      return null;
     }
-    return stateHandler;
+    return source.getConnectorStateHandlers().get(stateName);
   }
 
   @NotNull
@@ -51,10 +60,10 @@ public class ConfigHandle {
   @Nullable
   private ITriggerFunction getTriggerInternal(String handle) {
     if (handle.equals(ConnectorOutgoingMapper.CONTRACT_CASE_TRIGGER_AND_TEST)) {
-      return boundaryConfig.getTriggerAndTest();
+      return configOverrides.getTriggerAndTest();
     }
 
-    var triggerMap = boundaryConfig.getTriggerAndTests();
+    var triggerMap = configOverrides.getTriggerAndTests();
     if (triggerMap == null) {
       throw new ContractCaseConfigurationError(
           "No trigger functions were provided, unable to run the trigger function '" + handle

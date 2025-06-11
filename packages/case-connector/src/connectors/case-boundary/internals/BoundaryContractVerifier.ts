@@ -1,8 +1,11 @@
 import {
+  AnyMockDescriptorType,
+  CaseConfig,
   CaseConfigurationError,
   CaseCoreError,
   ContractVerifierConnector,
   RunTestCallback,
+  TestInvoker,
 } from '@contract-case/case-core';
 
 import {
@@ -62,6 +65,47 @@ const wrapCallback =
       .then((result) => handleVoidResult(result, 'CaseCoreError'))
       .catch(jsErrorToFailure);
   };
+
+type NewType = Partial<TestInvoker<AnyMockDescriptorType, unknown>>;
+
+const mergeInvokers = (
+  initialInvoker: NewType,
+  partialInvoker: NewType,
+): NewType => ({
+  ...initialInvoker,
+  ...partialInvoker,
+  stateHandlers: {
+    ...initialInvoker.stateHandlers,
+    ...partialInvoker.stateHandlers,
+  },
+  triggers: {
+    ...initialInvoker.triggers,
+    ...partialInvoker.triggers,
+  },
+  triggerAndTests: {
+    ...initialInvoker.triggerAndTests,
+    ...partialInvoker.triggerAndTests,
+  },
+});
+
+const mergeConfig = (
+  initialConfig: CaseConfig,
+  config: CaseConfig,
+): CaseConfig => ({
+  ...initialConfig,
+  ...config,
+  ...('internals' in initialConfig || 'internals' in config
+    ? {
+        internals: {
+          ...initialConfig.internals,
+          ...config.internals,
+        } as { asyncVerification: boolean },
+      }
+    : {}),
+  ...('mockConfig' in initialConfig || 'mockConfig' in config
+    ? { mockConfig: { ...initialConfig.mockConfig, ...config.mockConfig } }
+    : {}),
+});
 
 /**
  * A BoundaryContractDefiner allows verifying contracts
@@ -184,8 +228,8 @@ export class BoundaryContractVerifier {
         convertConfig(this.constructorConfig);
 
       const result = this.verifier.verifyContract(
-        { ...initialInvoker, ...partialInvoker },
-        { ...initialConfig, ...config },
+        mergeInvokers(initialInvoker, partialInvoker),
+        mergeConfig(initialConfig, config),
         mapInvokableFunctions(invokeableFns),
       );
       if (configOverrides.internals.asyncVerification) {
