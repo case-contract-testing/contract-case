@@ -305,7 +305,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!cantPublish:function(1)",
-          "docComment": "/**\n * True if this context can never publish results\n *\n * @param context - MatchContext\n *\n * @returns True if this context can never publish results; false if it might publish\n */\n",
+          "docComment": "/**\n * True if this context can never publish results. This is useful for determining whether warning logs should be printed if the verification won't have any effect\n *\n * @param context - MatchContext\n *\n * @returns True if this context can never publish results; false if it might publish\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

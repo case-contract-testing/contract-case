@@ -133,7 +133,7 @@ Adds the current location to the context
 
 </td><td>
 
-True if this context can never publish results
+True if this context can never publish results. This is useful for determining whether warning logs should be printed if the verification won't have any effect
 
 
 </td></tr>
