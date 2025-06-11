@@ -122,7 +122,30 @@ Converts actual data into a string, for printing
 
 </td><td>
 
-Adds the current location to the context
+Adds the current location to the context. Used to determine where we are when printing logs and errors.
+
+There are some semantics here:
+
+Locations are joined together with `.`<!-- -->. For example, calling:
+
+```
+    addLocation('b', addLocation('a', context))
+```
+will result in `"a.b"` being the location at print time.
+
+If the location is part of an iteration, put it in square brackets, for example `[2]` or `[keyName]`<!-- -->. This will prevent the location logger from adding `.` between consecutive locations. For example:
+
+```
+    addLocation('[1]', addLocation('a', context))
+```
+will result in `"a[1]"` being the location at print time.
+
+If the location starts with `:`<!-- -->, it's only logged during maintainer logs. For example:
+
+```
+    addLocation(':internalDetail', addLocation('a', context))
+```
+will result in `"a"` during normal and debug logging, but `a:internalDetail` when maintainer logging (or deeper) is enabled
 
 
 </td></tr>
