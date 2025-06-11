@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.24.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.24.1...@contract-case/case-core-v0.24.2) (2025-06-11)
+
+
+### Features
+
+* Add ability to override some configuration advice via adviceOverrides ([ef171e2](https://github.com/case-contract-testing/contract-case/commit/ef171e27225a6db1fd32e9c99c6d8b1ed3bd1a17))
+
+
+### Bug Fixes
+
+* **cli:** Downloaded contracts no longer write a main contract file, as we can't tell which one is main ([9631a77](https://github.com/case-contract-testing/contract-case/commit/9631a77ec58a2f35d7f0825c27822260cf1987bd))
+* **core:** Ignore non-json files in the contract dir ([ae5f8a8](https://github.com/case-contract-testing/contract-case/commit/ae5f8a807323a38ff016f1dc68f96f50835a4a57))
+* **core:** Improve debug logs when the required state handlers are missing ([a0d3292](https://github.com/case-contract-testing/contract-case/commit/a0d32928c269c51e05f4f7633537b22f5a5f7498))
+* **core:** Now the verifier no longer says it's publishing results when it's only finalising the rverification ([e8b275f](https://github.com/case-contract-testing/contract-case/commit/e8b275f20ae80e702de08bf4ce4f0c061bb4a94b))
+* **core:** The verifier no longer warns that it's not publishing contracts when you've explicitly told it not to ([673ebba](https://github.com/case-contract-testing/contract-case/commit/673ebba76237b70092c5f4646d552df3f13a37a8))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.24.1 to 0.24.2
+    * @contract-case/case-core-plugin-http bumped from 0.24.1 to 0.24.2
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.24.1 to 0.24.2
+    * @contract-case/case-entities-internal bumped from 0.24.1 to 0.24.2
+    * @contract-case/case-plugin-base bumped from 0.24.1 to 0.24.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.24.1 to 0.24.2
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.24.1 to 0.24.2
+    * @contract-case/case-maintainer-config bumped from 0.24.1 to 0.24.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.24.1 to 0.24.2
+
 ## [0.24.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.24.0...@contract-case/case-core-v0.24.1) (2025-06-09)
 
 

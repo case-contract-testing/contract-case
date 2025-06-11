@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.24.2](https://github.com/case-contract-testing/contract-case/compare/v0.24.1...v0.24.2) (2025-06-11)
+
+
+### Features
+
+* Add ability to override some configuration advice via adviceOverrides ([ef171e2](https://github.com/case-contract-testing/contract-case/commit/ef171e27225a6db1fd32e9c99c6d8b1ed3bd1a17))
+* **plugin:** Added convenience method for determining whether contracts can't be published in the current setup ([3b0c516](https://github.com/case-contract-testing/contract-case/commit/3b0c5163dfb40a4adf029d476c8587ec0df54379))
+
+
+### Bug Fixes
+
+* **boundary:** Fix an issue where state handlers set in the verifier constructor wouldn't be respected ([e5c0528](https://github.com/case-contract-testing/contract-case/commit/e5c05281f52264e7a9e584978ac2e374e4c33306))
+* **cli:** Downloaded contracts no longer write a main contract file, as we can't tell which one is main ([9631a77](https://github.com/case-contract-testing/contract-case/commit/9631a77ec58a2f35d7f0825c27822260cf1987bd))
+* **core:** Ignore non-json files in the contract dir ([ae5f8a8](https://github.com/case-contract-testing/contract-case/commit/ae5f8a807323a38ff016f1dc68f96f50835a4a57))
+* **core:** Improve debug logs when the required state handlers are missing ([a0d3292](https://github.com/case-contract-testing/contract-case/commit/a0d32928c269c51e05f4f7633537b22f5a5f7498))
+* **core:** Now the verifier no longer says it's publishing results when it's only finalising the rverification ([e8b275f](https://github.com/case-contract-testing/contract-case/commit/e8b275f20ae80e702de08bf4ce4f0c061bb4a94b))
+* **core:** The verifier no longer warns that it's not publishing contracts when you've explicitly told it not to ([673ebba](https://github.com/case-contract-testing/contract-case/commit/673ebba76237b70092c5f4646d552df3f13a37a8))
+* **plugins:** Add explicit error code for missing state handler and document it ([4e18264](https://github.com/case-contract-testing/contract-case/commit/4e1826455b4cd9f3d6d883614e612aa8645731b7))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.24.1 to 0.24.2
+
 ## [0.24.1](https://github.com/case-contract-testing/contract-case/compare/v0.24.0...v0.24.1) (2025-06-09)
 
 
