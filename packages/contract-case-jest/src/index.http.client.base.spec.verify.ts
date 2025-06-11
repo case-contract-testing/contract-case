@@ -16,7 +16,7 @@ describe('Server verification but with base config', () => {
   let server: http.Server;
   let mockHealthStatus = true;
   let mockGetUser: (id: string) => User | undefined = () => undefined;
-  const port = 8091;
+  const port = 8092;
   const serverDependencies: Dependencies = {
     healthService: {
       ready: () => mockHealthStatus,
