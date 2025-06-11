@@ -7,6 +7,7 @@ import {
   MatchContext,
   addLocation,
   CaseExample,
+  cantPublish,
 } from '@contract-case/case-plugin-base';
 import { BaseCaseContract } from './BaseCaseContract';
 
@@ -164,9 +165,9 @@ export class ReadingCaseContract extends BaseCaseContract {
       }),
     );
     runTestCb(
-      this.initialContext['_case:currentRun:context:publish']
-        ? 'Publishing verification results'
-        : 'Finalising contract',
+      cantPublish(this.initialContext)
+        ? 'Finalising verification'
+        : 'Publishing verification results',
       () => {
         this.initialContext.logger.maintainerDebug(
           'Test callback for ending record',
