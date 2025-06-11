@@ -26,7 +26,11 @@ const stateSetupHandler =
     const setupState = stateSetups[state.stateName];
     if (setupState === undefined) {
       context.logger.error(
-        `No state handler for '${state.stateName}' was defined`,
+        `This interaction needs the state handler for '${state.stateName}', but it wasn't defined. Enable debug logs to see which handlers are defined`,
+      );
+      context.logger.debug(
+        `The configured state handlers were:`,
+        Object.keys(stateSetups),
       );
       return Promise.reject(
         new CaseConfigurationError(
@@ -99,7 +103,7 @@ export const executeStateSetup = (
 
       if (variableSource === 'default') {
         context.logger.debug(
-          `No state setup needed, returning default state variables`,
+          `This interaction type doesn't use state setup; returning default state variables`,
         );
         return defaultVariables;
       }
