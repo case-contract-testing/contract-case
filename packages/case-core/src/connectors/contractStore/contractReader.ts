@@ -90,7 +90,15 @@ const readContractsFromDir = (
   }
 
   const jsonContracts = readDir(pathToDir)
-    .filter((l) => l.filePath.endsWith('.json'))
+    .filter((l) => {
+      const keep = l.filePath.endsWith('.json');
+      if (!keep) {
+        context.logger.debug(
+          `Skipping ${l.filePath} because it is not a .json file`,
+        );
+      }
+      return keep;
+    })
     .map((l) => ({ contents: l.contents.toString(), filePath: l.filePath }))
     .map((s) => {
       try {
