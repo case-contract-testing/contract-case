@@ -49,7 +49,8 @@ export const ErrorCodes = {
      * For contract definition, it should be:
      *
      * 1. Begin definition
-     * 2. Multiple calls to runInteraction or your language's equivalent of runRejectingInteraction
+     * 2. Multiple calls to runInteraction or your language's equivalent of
+     *    runRejectingInteraction
      * 3. End record (writing the contract).
      *
      * Check that you're not accidentally reusing test instances between runs.
@@ -57,6 +58,27 @@ export const ErrorCodes = {
      */
     INVALID_LIFECYCLE: 'INVALID_LIFECYCLE' as const,
 
+    /**
+     * The current interaction was configured to have a particular state setup
+     * handler, but it was missing.
+     *
+     * State handlers are functions that you define to set up a particular state
+     * within your code (for example, an interaction on an HTTP provider might
+     * have a state named `'User with id 123 exists'`).
+     *
+     * This error indicates that Contractcase was expecting a named state handler,
+     * but it couldn't find it.
+     *
+     * This usually indicates a misconfiguration - check that you have provided
+     * a state handler with the exact name of the handler that was missing in
+     * the configuration of your test.
+     *
+     * If you need help investigating this error, you can set the configuration
+     * property `logLevel` to `'DEBUG'` to see a list of the configured state
+     * handlers.
+     *
+     */
+    MISSING_STATE_HANDLER: 'MISSING_STATE_HANDLER' as const,
     /**
      * Tried to publish verification results for a contract that doesn't have
      * information on where to publish the verification results.

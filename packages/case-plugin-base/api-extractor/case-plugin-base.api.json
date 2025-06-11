@@ -2208,7 +2208,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    readonly configuration: {\n        readonly DISK_IO_PROBLEM: \"DISK_IO_PROBLEM\";\n        readonly BAD_INTERACTION_DEFINITION: \"BAD_INTERACTION_DEFINITION\";\n        readonly INVALID_CONFIG: \"INVALID_CONFIG\";\n        readonly INVALID_LIFECYCLE: \"INVALID_LIFECYCLE\";\n        readonly NON_BROKERED_CONTRACT: \"NON_BROKERED_CONTRACT\";\n        readonly OVERWRITE_CONTRACTS_NEEDED: \"OVERWRITE_CONTRACTS_NEEDED\";\n        readonly UNDOCUMENTED: \"UNDOCUMENTED\";\n    };\n}"
+              "text": "{\n    readonly configuration: {\n        readonly DISK_IO_PROBLEM: \"DISK_IO_PROBLEM\";\n        readonly BAD_INTERACTION_DEFINITION: \"BAD_INTERACTION_DEFINITION\";\n        readonly INVALID_CONFIG: \"INVALID_CONFIG\";\n        readonly INVALID_LIFECYCLE: \"INVALID_LIFECYCLE\";\n        readonly MISSING_STATE_HANDLER: \"MISSING_STATE_HANDLER\";\n        readonly NON_BROKERED_CONTRACT: \"NON_BROKERED_CONTRACT\";\n        readonly OVERWRITE_CONTRACTS_NEEDED: \"OVERWRITE_CONTRACTS_NEEDED\";\n        readonly UNDOCUMENTED: \"UNDOCUMENTED\";\n    };\n}"
             }
           ],
           "fileUrlPath": "src/errors/ErrorCodes.ts",

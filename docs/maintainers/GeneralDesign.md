@@ -6,6 +6,7 @@ extending or maintaining ContractCase.
 ## Values
 
 - User first: If misconfigurations happens, ContractCase will print helpful errors that assist the user in finding a solution
+  - Errors will say what's wrong at the start, followed by a longer explanation
 - Not magic: ContractCase prefers strict and fail-fast behaviour over "I guess you probably meant this".
   If there is a misconfiguration, and the user may have meant more than one thing, case will fail with with helpful errors.
 - One model: There's only one model for ContractCase. It's used in the contract file, to set contract tests, to extend with plugins, and to think about how tests work.
