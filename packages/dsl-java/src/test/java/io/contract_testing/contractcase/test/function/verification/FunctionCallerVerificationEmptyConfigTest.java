@@ -25,7 +25,7 @@ public class FunctionCallerVerificationEmptyConfigTest {
         ContractCaseConfigBuilder.aContractCaseConfig()
             .consumerName("Java Function Caller Example")
             .providerName("Java Function Execution Example")
-            .logLevel(LogLevel.DEBUG)
+             // .logLevel(LogLevel.DEBUG)
             .publish(PublishType.NEVER)
             .contractDir("verifiable-contracts")
             .printResults(true)
