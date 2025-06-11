@@ -90,7 +90,7 @@ const readContractsFromDir = (
   }
 
   const jsonContracts = readDir(pathToDir)
-    .filter(Boolean)
+    .filter((l) => l.filePath.endsWith('.json'))
     .map((l) => ({ contents: l.contents.toString(), filePath: l.filePath }))
     .map((s) => {
       try {
