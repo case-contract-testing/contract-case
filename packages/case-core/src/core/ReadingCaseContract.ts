@@ -231,13 +231,6 @@ export class ReadingCaseContract extends BaseCaseContract {
       this.initialContext.logger.maintainerDebug('Verification successful');
     }
 
-    if (!this.initialContext['_case:currentRun:context:brokerCiAccessToken']) {
-      this.initialContext.logger.warn(
-        'Not publishing verification results, as there is no brokerCiAccessToken set',
-      );
-      return;
-    }
-
     this.initialContext.logger.maintainerDebug(
       'Calling publishVerificationResults',
     );
