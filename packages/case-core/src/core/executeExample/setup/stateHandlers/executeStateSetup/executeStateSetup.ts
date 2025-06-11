@@ -26,7 +26,7 @@ const stateSetupHandler =
     const setupState = stateSetups[state.stateName];
     if (setupState === undefined) {
       context.logger.error(
-        `This interaction needs the state handler for '${state.stateName}', but it wasn't defined. Enable debug logs to see which handlers are defined`,
+        `Missing state setup for '${state.stateName}'. This interaction needs the state handler for '${state.stateName}', but it wasn't defined. Enable debug logs to see which handlers are defined`,
       );
       context.logger.debug(
         `The configured state handlers were:`,
@@ -34,9 +34,9 @@ const stateSetupHandler =
       );
       return Promise.reject(
         new CaseConfigurationError(
-          `Missing state setup for '${state.stateName}'`,
+          `Missing state setup for '${state.stateName}'. Please ensure you have configured this state handler`,
           'DONT_ADD_LOCATION',
-          'UNDOCUMENTED',
+          'MISSING_STATE_HANDLER',
         ),
       );
     }
