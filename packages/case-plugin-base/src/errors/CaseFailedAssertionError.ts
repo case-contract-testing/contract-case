@@ -13,7 +13,7 @@ export class CaseFailedAssertionError extends Error {
 
   constructor(matchResult: MatchResult) {
     super(
-      `ContractCase example failed to match the expectations: \n\n${matchResult
+      `Contract test interaction didn't match the expectation: \n\n${matchResult
         .map((r) => `   - ${r.message}`)
         .reduce((acc, curr) => `${acc}\n${curr}`)}`,
     );
