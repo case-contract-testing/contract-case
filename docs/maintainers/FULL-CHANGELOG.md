@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.24.3](https://github.com/case-contract-testing/contract-case/compare/v0.24.2...v0.24.3) (2025-06-15)
+
+
+### Bug Fixes
+
+* **core:** Improve clarity of verification failed message ([fcf8deb](https://github.com/case-contract-testing/contract-case/commit/fcf8deb11acf53a359540edbb83fbbb8eaa146f4))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.24.2 to 0.24.3
+
 ## [0.24.2](https://github.com/case-contract-testing/contract-case/compare/v0.24.1...v0.24.2) (2025-06-11)
 
 
