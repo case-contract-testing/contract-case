@@ -13,13 +13,24 @@ import {
   ERROR_TYPE_TEST_RESPONSE,
 } from '@contract-case/case-plugin-base';
 
+const renderUserFacingStacktrace = (error: unknown) => {
+  if (
+    error != null &&
+    typeof error === 'object' &&
+    'userFacingStackTrace' in error
+  ) {
+    return `\n\n${error.userFacingStackTrace}`;
+  }
+  return '';
+};
+
 /**
  * This represents a mismatch during a case execution that isn't covered by a
  * matcher (usually this is a misconfiguration that is not well described by a
  * {@link ../../entities/errors#CaseConfigurationError | CaseConfigurationError})
  *
  * @param message - The message that describes this error
- * @param actual - The actual value that was recieved
+ * @param actual - The actual value that was received
  * @param code - A code that can be looked up in the documentation. This should
  *                be a unique code specific to this kind of error that users
  *                could look up in the documentation for more information.
@@ -72,7 +83,7 @@ export const triggerError = (
   context: MatchContext,
 ): TriggerError => ({
   type: ERROR_TYPE_TRIGGER,
-  message: error.message,
+  message: `${error.message}${renderUserFacingStacktrace(error)}`,
   code: 'TriggerFunctionError',
   location: context['_case:currentRun:context:location'],
   userFacingStackTrace: error.userFacingStackTrace,
@@ -91,7 +102,7 @@ export const verificationError = (
   context: MatchContext,
 ): VerificationError => ({
   type: ERROR_TYPE_TEST_RESPONSE,
-  message: error.message,
+  message: `${error.message}${renderUserFacingStacktrace(error)}`,
   code: error.name,
   error,
   location: context['_case:currentRun:context:location'],
