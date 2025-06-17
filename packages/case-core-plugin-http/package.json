@@ -64,9 +64,9 @@
     "typescript": "5.8.3"
   },
   "dependencies": {
-    "@contract-case/case-core-plugin-http-dsl": "^0.24.2",
+    "@contract-case/case-core-plugin-http-dsl": "0.24.2",
     "@contract-case/case-plugin-dsl-types": "0.24.2",
-    "@contract-case/case-plugin-base": "^0.24.2",
+    "@contract-case/case-plugin-base": "0.24.2",
     "axios": "^1.8.4",
     "express": "^4.20.0",
     "qs": "^6.13.1"
