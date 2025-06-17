@@ -9,8 +9,13 @@ import { ContractCaseBoundaryConfig } from '../boundary/config.types.js';
 import { mapStateHandlers } from './stateHandlers.js';
 import { mapTrigger, mapTriggers } from './triggers.js';
 
-const mapLogLevel = (levelString: string): LogLevel => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const neverCalled = (_x: never) => {};
+
+const mapLogLevel = (maybeLevelString: string): LogLevel => {
+  const levelString = maybeLevelString as LogLevel;
   switch (levelString) {
+    case 'none':
     case 'warn':
     case 'error':
     case 'debug':
@@ -18,6 +23,8 @@ const mapLogLevel = (levelString: string): LogLevel => {
     case 'deepMaintainerDebug':
       return levelString;
     default:
+      // This is a check to ensure we have full coverage of the level strings
+      neverCalled(levelString);
       throw new CaseConfigurationError(
         `The log level '${levelString}' is not a valid LogLevel`,
         'DONT_ADD_LOCATION',
