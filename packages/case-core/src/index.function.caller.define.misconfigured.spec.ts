@@ -12,6 +12,22 @@ const contractDetails = {
 // Normally you can just let Case set a filename for you.
 const FILENAME = `case-contracts/temp-function-caller.case.json`;
 
+const invoke = (setup: BaseSetupInfo, handle: string, ...rest: string[]) => {
+  const f = setup.functions[handle];
+
+  if (f === undefined) {
+    throw new Error('No function was present for this functionHandle');
+  }
+
+  const result = JSON.parse(f(...rest));
+
+  if ('success' in result) {
+    return JSON.parse(result.success);
+  }
+
+  throw new Error(`Function didn't return success: ${JSON.stringify(result)}`);
+};
+
 describe('function executor', () => {
   defineContractNoTeardown(
     {
@@ -27,18 +43,21 @@ describe('function executor', () => {
     (contract) => {
       describe('function with no args', () => {
         it('returns nothing', () =>
-          contract.runInteraction({
-            definition: new interactions.functions.WillCallFunction({
-              arguments: [],
-              returnValue: null,
-              functionName: 'noArgs',
-            }),
-            trigger: async (setup: BaseSetupInfo) =>
-              setup.functions[setup.mock['functionHandle']]?.(),
-            testResponse: (result) => {
-              expect(result).toEqual('null');
+          contract.runInteraction(
+            {
+              definition: new interactions.functions.WillCallFunction({
+                arguments: [],
+                returnValue: null,
+                functionName: 'noArgs',
+              }),
+              trigger: async (setup: BaseSetupInfo) =>
+                invoke(setup, setup.mock['functionHandle']),
+              testResponse: (result) => {
+                expect(result).toEqual(null);
+              },
             },
-          }));
+            {},
+          ));
       });
 
       it('fails with wrong number of args', () =>
@@ -50,9 +69,9 @@ describe('function executor', () => {
               functionName: 'oneArg',
             }),
             trigger: async (setup: BaseSetupInfo) =>
-              setup.functions['oneArg']?.('1', '2'),
+              invoke(setup, 'oneArg', '1', '2'),
             testResponse: (result) => {
-              expect(result).toEqual('null');
+              expect(result).toEqual(null);
             },
           }),
         ).rejects.toThrow(
@@ -66,9 +85,10 @@ describe('function executor', () => {
               returnValue: null,
               functionName: 'twoArgs',
             }),
-            trigger: async (setup: any) => setup.functions['twoArgs']('1', '2'),
+            trigger: async (setup: BaseSetupInfo) =>
+              invoke(setup, 'twoArgs', '1', '2'),
             testResponse: (result) => {
-              expect(result).toEqual('null');
+              expect(result).toEqual(null);
             },
           }),
         ).rejects.toThrow("The function arguments didn't match"));

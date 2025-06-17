@@ -14,9 +14,12 @@ export const mapInvokeableFunction =
   (...args: string[]): Promise<BoundaryResult> =>
     Promise.resolve()
       .then(() => invokeableFn(...args.map((arg) => JSON.parse(arg))))
-      // Map void / undefined returns to null, as this is the boundary expectation
-      .then((result) => (result != null ? result : null))
-      .then((result) => JSON.stringify(result))
+      .then((result) =>
+        // Map void / undefined returns to null, as this is the boundary expectation
+        JSON.stringify({
+          success: JSON.stringify(result != null ? result : null),
+        }),
+      )
       .then(
         (result) => new BoundarySuccessWithAny(result),
         (e) => makeBoundaryFailure(e),

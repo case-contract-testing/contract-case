@@ -7,6 +7,9 @@ import {
 export const MOCK_FUNCTION_EXECUTION = '_case:MockFunctionExecution' as const;
 export const MOCK_FUNCTION_CALLER = '_case:MockFunctionCaller' as const;
 
+/**
+ * Describes a function that successfully returns a response
+ */
 export interface MockFunctionDescriptor {
   /** The arguments */
   request: AnyCaseMatcher;
@@ -15,6 +18,21 @@ export interface MockFunctionDescriptor {
   /** The name of the function, for use as a handle by `registerFunction` */
   functionName: string;
 }
+
+export interface ThrownError {
+  /** The type of the error response (ie, the class name of the exception) */
+  kind: AnyCaseMatcher;
+  /**
+   * The error message, if any
+   */
+  message?: AnyCaseMatcher;
+  /**
+   * The stack trace, as one whole string. Available for debugging, but not for matching.
+   */
+  stack?: string;
+}
+
+export type FunctionResponse = ThrownError | { success: AnyCaseMatcher };
 
 export interface MockFunctionCallerDescriptor
   extends HasTypeForMockDescriptor<typeof MOCK_FUNCTION_CALLER>,

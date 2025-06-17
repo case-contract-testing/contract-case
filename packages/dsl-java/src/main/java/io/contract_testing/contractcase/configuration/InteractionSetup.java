@@ -1,8 +1,12 @@
 package io.contract_testing.contractcase.configuration;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
+import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.internal.ConnectorResultMapper;
 import io.contract_testing.contractcase.internal.edge.ConnectorSetupInfo;
+import io.contract_testing.contractcase.internal.edge.FunctionReturnTypes;
 import io.contract_testing.contractcase.internal.edge.InvokeCoreFunction;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +23,14 @@ public class InteractionSetup {
   private final Map<String, String> stateVariables;
   private final Map<String, String> mockSetup;
   private final Map<String, InvokeCoreFunction> functions;
+  private final ObjectMapper mapper;
 
 
   private InteractionSetup(ConnectorSetupInfo connectorSetupInfo) {
     this.stateVariables = connectorSetupInfo.stateVariables();
     this.mockSetup = connectorSetupInfo.mockSetup();
     this.functions = connectorSetupInfo.functions();
+    this.mapper = new ObjectMapper();
   }
 
   /**
@@ -88,9 +94,18 @@ public class InteractionSetup {
                   .stream().map(s -> "    " + s)
                   .collect(Collectors.joining("\n"))), "UNDOCUMENTED");
     }
-    return (args) -> ConnectorResultMapper.mapSuccessWithAny(
-        this.functions.get(name).invoke(args)
-    );
+    return (args) -> {
+
+      var result = ConnectorResultMapper.mapSuccessWithAny(
+          this.functions.get(name).invoke(args)
+      );
+      try {
+        return ((FunctionReturnTypes.FunctionSuccess) mapper.readerFor(
+            FunctionReturnTypes.FunctionSuccess.class).readValue(result)).success();
+      } catch (JsonProcessingException e) {
+        throw new ContractCaseCoreError("Unable to read function result:", e);
+      }
+    };
   }
 
 

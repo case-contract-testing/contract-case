@@ -44,6 +44,7 @@ export const arrayLength = (
   ) {
     throw new ContractCaseConfigurationError(
       "Can't create an arrayLength matcher with minimum size 0 and maximum size not 0. Use a raw empty array instead. See the documentation for details.",
+      undefined,
       'arrayLength matcher',
       'BAD_INTERACTION_DEFINITION',
     );

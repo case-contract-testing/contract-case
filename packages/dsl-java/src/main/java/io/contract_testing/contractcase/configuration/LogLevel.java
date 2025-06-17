@@ -33,7 +33,7 @@ public enum LogLevel {
   MAINTAINER_DEBUG("maintainerDebug"),
 
   /**
-   * Logs very detailled debugging information for ContractCase maintainers. Take care publishing
+   * Logs very detailed debugging information for ContractCase maintainers. Take care publishing
    * this publicly, as this level may print your secrets.
    */
   DEEP_MAINTAINER_DEBUG("deepMaintainerDebug");

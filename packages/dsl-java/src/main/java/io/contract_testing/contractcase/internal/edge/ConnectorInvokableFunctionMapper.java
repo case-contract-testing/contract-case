@@ -1,6 +1,7 @@
 package io.contract_testing.contractcase.internal.edge;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction0;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction2;
@@ -11,6 +12,7 @@ import io.contract_testing.contractcase.configuration.InvokableFunctions.Invokab
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction7;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
+import io.contract_testing.contractcase.internal.edge.FunctionReturnTypes.FunctionSuccess;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,13 +25,23 @@ public class ConnectorInvokableFunctionMapper {
     private final String functionName;
     private final int expectedArgumentCount;
 
+    private final ObjectMapper mapper;
+
     ConnectorInvokableFunction(String functionName, int expectedArgumentCount) {
       this.functionName = functionName;
       this.expectedArgumentCount = expectedArgumentCount;
+      this.mapper = new ObjectMapper();
     }
+
 
     protected abstract String invoke(List<String> args) throws JsonProcessingException;
 
+    /**
+     * Called by the core to invoke a user-provided function.
+     *
+     * @param args The arguments for the function, as strings
+     * @return A ConnectorResult to indicate the result of running the function
+     */
     public ConnectorResult apply(List<String> args) {
       MaintainerLog.log(
           LogLevel.MAINTAINER_DEBUG,
@@ -39,7 +51,11 @@ public class ConnectorInvokableFunctionMapper {
       try {
         if (args.size() == expectedArgumentCount) {
           var result = invoke(args);
-          return new ConnectorSuccessWithAny(result != null ? result : "null");
+          return new ConnectorSuccessWithAny(
+              mapper.writeValueAsString(mapper.writeValueAsString(
+                  new FunctionSuccess(result != null ? result : "null")
+              ))
+          );
         }
         return new ConnectorFailure(
             ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
@@ -51,11 +67,10 @@ public class ConnectorInvokableFunctionMapper {
         );
       } catch (Exception e) {
         var stackTraceFirstLines = Arrays.stream(e.getStackTrace())
-            .limit(4)
             .map(StackTraceElement::toString).collect(Collectors.joining("\n"));
         return new ConnectorFailure(
             ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
-            "The function '" + functionName + "' threw an exception: "
+            "The function '" + functionName + "()' threw an exception: "
                 + e.getMessage() + "\n" + stackTraceFirstLines,
             MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
             "UNDOCUMENTED",

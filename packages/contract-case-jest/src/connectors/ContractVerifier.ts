@@ -101,6 +101,7 @@ export class ContractVerifier {
       throw new ContractCaseConfigurationError(
         `The function named '${handle}' has already been registered. You must only register functions once`,
         undefined,
+        undefined,
         'UNDOCUMENTED',
       );
     }

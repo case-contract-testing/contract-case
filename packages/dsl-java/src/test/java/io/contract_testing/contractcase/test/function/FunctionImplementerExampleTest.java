@@ -2,6 +2,7 @@ package io.contract_testing.contractcase.test.function;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
@@ -13,6 +14,7 @@ import io.contract_testing.contractcase.definitions.interactions.functions.WillR
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterAll;
@@ -25,6 +27,7 @@ public class FunctionImplementerExampleTest {
       .consumerName("Java Function Implementer Example")
       .providerName("Java Function Caller Example")
       .publish(PublishType.NEVER)
+      .changedContracts(ChangedContractsBehaviour.OVERWRITE)
       .build());
 
   @AfterAll
@@ -72,7 +75,7 @@ public class FunctionImplementerExampleTest {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, Integer.class);
-        return mapper.writeValueAsString(mapper.writeValueAsString(functionUnderTest.apply(arg1)));
+        return mapper.writeValueAsString(functionUnderTest.apply(arg1));
       } catch (JsonProcessingException e) {
         throw new RuntimeException("Unable to parse argument");
       }

@@ -26,12 +26,12 @@ const strip = (
   );
 
 const describe = (
-  { arguments: expectedArguments }: CoreFunctionArgumentsMatcher,
+  { arguments: expectedArguments, functionName }: CoreFunctionArgumentsMatcher,
   context: MatchContext,
 ): string =>
   expectedArguments.length === 0
-    ? 'a function invoked with no arguments'
-    : `a function invoked with ${expectedArguments.length} argument${expectedArguments.length === 1 ? '' : 's'} ( ${expectedArguments
+    ? `An invocation of ${functionName}()`
+    : `An invocation of ${functionName}( ${expectedArguments
         .map((arg, index) =>
           context.descendAndDescribe(arg, addLocation(`[${index}]`, context)),
         )

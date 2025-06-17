@@ -10,20 +10,20 @@ describe('verification', () => {
     (verifier) =>
       verifier.runVerification({
         triggers: new TriggerGroupMap()
-          .addTriggerGroup('a function invoked with no arguments', {
+          .addTriggerGroup('An invocation of NO ARG FUNCTION()', {
             trigger: async (setup: FunctionExecutorConfig) =>
               setup.getFunction(setup.mock.functionHandle)(),
             testResponses: {
-              null: (returnValue) => expect(returnValue).toBe(null),
+              'returning null': (returnValue) => expect(returnValue).toBe(null),
             },
           })
           .addTriggerGroup(
-            'a function invoked with 2 arguments ( "example", 2 )',
+            'An invocation of HAS ARGS FUNCTION( "example", 2 )',
             {
               trigger: async (setup: FunctionExecutorConfig) =>
                 setup.getFunction(setup.mock.functionHandle)('example', 2),
               testResponses: {
-                '"example2"': (returnValue) =>
+                'returning "example2"': (returnValue) =>
                   expect(returnValue).toEqual('example2'),
               },
             },

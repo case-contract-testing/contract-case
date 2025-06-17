@@ -37,7 +37,7 @@ Description
 
 </td><td>
 
-Defines an example that executes a registered function with specific arguments
+Defines an interaction that executes a registered function with specific arguments, expecting that interaction to return successfully
 
 </td></tr>
 </tbody></table>

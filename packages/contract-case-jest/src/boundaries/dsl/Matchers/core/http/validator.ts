@@ -5,6 +5,7 @@ const validateCodeNumber = (code: number): number => {
     throw new ContractCaseConfigurationError(
       `HTTP status code '${code}' is outside the valid range (100-599) for status codes`,
       'validateCodeNumber',
+      undefined,
       'BAD_INTERACTION_DEFINITION',
     );
   }
@@ -12,6 +13,7 @@ const validateCodeNumber = (code: number): number => {
     throw new ContractCaseConfigurationError(
       `HTTP status code '${code}' must be a whole integer`,
       'validateCodeNumber',
+      undefined,
       'BAD_INTERACTION_DEFINITION',
     );
   }
@@ -28,6 +30,7 @@ const validateCode = (code: number | string): number => {
       throw new ContractCaseConfigurationError(
         `'${typeof code}' is not a valid type for an HTTP status code`,
         'validateCode',
+        undefined,
         'BAD_INTERACTION_DEFINITION',
       );
   }
@@ -41,6 +44,7 @@ export const validateCodes = (
       throw new ContractCaseConfigurationError(
         `An empty array isn't a valid list of HTTP status codes`,
         'validateCodes',
+        undefined,
         'BAD_INTERACTION_DEFINITION',
       );
     }

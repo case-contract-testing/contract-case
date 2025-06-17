@@ -13,9 +13,9 @@ export class CaseFailedAssertionError extends Error {
 
   constructor(matchResult: MatchResult) {
     super(
-      `Contract test interaction didn't match the expectation: \n\n${matchResult
-        .map((r) => `   - ${r.message}`)
-        .reduce((acc, curr) => `${acc}\n${curr}`)}`,
+      `Test interaction didn't match the definition${matchResult.length > 1 ? 's' : ''}:\n\n${matchResult
+        .map((r) => `   - ${r.message.replaceAll('\n', '\n     ')}`)
+        .reduce((acc, curr) => `${acc}\n${curr}\n`)}`,
     );
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = 'CaseFailedAssertionError';

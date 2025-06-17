@@ -78,15 +78,15 @@ const assertableToExample = <T extends AnyMockDescriptorType>(
   assertable.assert().then(
     (matchResult) => {
       if (hasErrors(matchResult)) {
-        context.logger.debug(`This example failed the assertions`);
+        context.logger.debug(`This interaction failed the assertions`);
         return makeFailedExample(example, matchResult);
       }
-      context.logger.debug(`This example passed all assertions`);
+      context.logger.debug(`This interaction passed all assertions`);
       return makeSuccessExample(example);
     },
     (error) => {
       context.logger.debug(
-        `This example failed while trying to run the assertion`,
+        `This interaction failed while trying to run the assertion`,
       );
 
       return errorToFailedExample(error, example, context);
@@ -118,7 +118,10 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
   setupExample<T>(example, stateHandlers, context)
     .then(
       (assertable: Assertable<T>) => {
-        context.logger.debug(`Invoking trigger with`, assertable.config);
+        context.logger.debug(
+          `Invoking trigger with the following InteractionSetup`,
+          assertable.config,
+        );
         return findAndCallTrigger(
           example.mock as CaseMockDescriptorFor<AnyMockDescriptor, T>,
           {
@@ -139,7 +142,9 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
           },
           async (error) => {
             context.logger.debug(
-              `This example failed while trying to invoke the trigger function: "${error.message}"  Stack trace follows.`,
+              `This interaction failed while trying to invoke the trigger function.`,
+              error.message,
+              `Stack trace follows.`,
               renderStackTrace(error as Error),
             );
 

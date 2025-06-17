@@ -2828,49 +2828,9 @@
           }
         ],
         "docs": {
-          "summary": "Example descriptor for a function execution."
+          "summary": "Interaction descriptor for a function execution which returns successfully."
         },
         "usage": "import { interactions } from '@contract-case/case-definition-dsl'\n\nconst functionExecutionExample: interactions.functions.FunctionExecutionExample = { ... }"
-      },
-      {
-        "fqn": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle",
-        "displayName": "FunctionExecutionExampleWithHandle",
-        "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle",
-        "properties": [
-          {
-            "fqn": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle.property.arguments",
-            "displayName": "arguments",
-            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle.property.arguments",
-            "type": {
-              "formattingPattern": "%[]",
-              "types": [
-                {
-                  "formattingPattern": "any"
-                }
-              ]
-            },
-            "docs": {
-              "summary": "An array of expected function arguments (or test equivalence matchers for those arguments)."
-            },
-            "usage": "public readonly arguments: any[];"
-          },
-          {
-            "fqn": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle.property.returnValue",
-            "displayName": "returnValue",
-            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle.property.returnValue",
-            "type": {
-              "formattingPattern": "any"
-            },
-            "docs": {
-              "summary": "A test equivalence matcher for the return value from this function."
-            },
-            "usage": "public readonly returnValue: any;"
-          }
-        ],
-        "docs": {
-          "summary": "Example descriptor for a function execution that can be called by ContractCase."
-        },
-        "usage": "import { interactions } from '@contract-case/case-definition-dsl'\n\nconst functionExecutionExampleWithHandle: interactions.functions.FunctionExecutionExampleWithHandle = { ... }"
       },
       {
         "fqn": "@contract-case/case-definition-dsl.interactions.http.HttpExample",
@@ -3056,6 +3016,73 @@
         ],
         "docs": {},
         "usage": "import { matchers } from '@contract-case/case-definition-dsl'\n\nconst httpResponseExample: matchers.http.HttpResponseExample = { ... }"
+      },
+      {
+        "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample",
+        "displayName": "ThrowingFunctionExecutionExample",
+        "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample",
+        "properties": [
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.arguments",
+            "displayName": "arguments",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.arguments",
+            "type": {
+              "formattingPattern": "%[]",
+              "types": [
+                {
+                  "formattingPattern": "any"
+                }
+              ]
+            },
+            "docs": {
+              "summary": "An array of expected function arguments (or test equivalence matchers for those arguments)."
+            },
+            "usage": "public readonly arguments: any[];"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.functionName",
+            "displayName": "functionName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.functionName",
+            "type": {
+              "formattingPattern": "string"
+            },
+            "docs": {
+              "summary": "The name of the function to be executed.",
+              "remarks": "Doubles as the handle used by\nregisterFunction."
+            },
+            "usage": "public readonly functionName: string;"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.kind",
+            "displayName": "kind",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.kind",
+            "type": {
+              "formattingPattern": "any"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher for the class name of this exception."
+            },
+            "usage": "public readonly kind: any;"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.message",
+            "displayName": "message",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.message",
+            "optional": true,
+            "type": {
+              "formattingPattern": "any"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher for the message from this exception.",
+              "remarks": "In general, it's best to rely on the class of the exception instead of the specific error message"
+            },
+            "usage": "public readonly message: any;"
+          }
+        ],
+        "docs": {
+          "summary": "Interaction descriptor for a function execution that throws an error."
+        },
+        "usage": "import { interactions } from '@contract-case/case-definition-dsl'\n\nconst throwingFunctionExecutionExample: interactions.functions.ThrowingFunctionExecutionExample = { ... }"
       }
     ],
     "interfaces": [],

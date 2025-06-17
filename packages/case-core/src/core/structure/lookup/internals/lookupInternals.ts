@@ -31,8 +31,11 @@ const unboxAllLookups = (
   matcherOrData: AnyCaseMatcherOrData,
   context: MatchContextWithoutLookup,
 ): AnyCaseMatcherOrData => {
+  if (matcherOrData == null) {
+    // Coerces undefined
+    return null;
+  }
   if (
-    matcherOrData === null ||
     typeof matcherOrData === 'string' ||
     typeof matcherOrData === 'number' ||
     typeof matcherOrData === 'boolean'

@@ -15,9 +15,12 @@
       "arguments": [],
       "functionName": "NO ARG FUNCTION"
     },
-    "matcher:returning null": {
-      "_case:matcher:type": "_case:FunctionResultMatcher",
-      "success": null
+    "matcher:an object shaped like {success: json stringified 'null'}": {
+      "success": {
+        "_case:matcher:type": "_case:JsonEncoded",
+        "_case:matcher:child": null,
+        "_case:matcher:resolvesTo": "string"
+      }
     },
     "matcher:An invocation of HAS ARGS FUNCTION( \"example\", 2 )": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
@@ -27,9 +30,12 @@
       ],
       "functionName": "HAS ARGS FUNCTION"
     },
-    "matcher:returning \"example2\"": {
-      "_case:matcher:type": "_case:FunctionResultMatcher",
-      "success": "example2"
+    "matcher:an object shaped like {success: json stringified '\"example2\"'}": {
+      "success": {
+        "_case:matcher:type": "_case:JsonEncoded",
+        "_case:matcher:child": "example2",
+        "_case:matcher:resolvesTo": "string"
+      }
     }
   },
   "examples": [
@@ -60,10 +66,13 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "returning null",
+          "_case:matcher:uniqueName": "an object shaped like {success: json stringified 'null'}",
           "_case:matcher:child": {
-            "_case:matcher:type": "_case:FunctionResultMatcher",
-            "success": null
+            "success": {
+              "_case:matcher:type": "_case:JsonEncoded",
+              "_case:matcher:child": null,
+              "_case:matcher:resolvesTo": "string"
+            }
           }
         },
         "functionName": "NO ARG FUNCTION"
@@ -100,10 +109,13 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "returning \"example2\"",
+          "_case:matcher:uniqueName": "an object shaped like {success: json stringified '\"example2\"'}",
           "_case:matcher:child": {
-            "_case:matcher:type": "_case:FunctionResultMatcher",
-            "success": "example2"
+            "success": {
+              "_case:matcher:type": "_case:JsonEncoded",
+              "_case:matcher:child": "example2",
+              "_case:matcher:resolvesTo": "string"
+            }
           }
         },
         "functionName": "HAS ARGS FUNCTION"

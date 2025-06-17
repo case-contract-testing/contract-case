@@ -29,7 +29,7 @@ describe('function receiver', () => {
         // These tests are expected to be failing, so we don't want to print anything
         printResults: false,
         // Similarly, we don't want to log anything
-        logLevel: 'none',
+        logLevel: 'deepMaintainerDebug',
         contractFilename: FILENAME, // Usually you will not need to provide a filename
       },
     },
@@ -39,7 +39,9 @@ describe('function receiver', () => {
         // registering the function, and executing the test
         const NO_ARG_FUNCTION_HANDLE = 'NO ARG FUNCTION';
         beforeAll(() => {
-          contract.registerFunction(NO_ARG_FUNCTION_HANDLE, async () => null);
+          contract.registerFunction(NO_ARG_FUNCTION_HANDLE, async () => ({
+            success: 'null',
+          }));
         });
         describe('without the mockConfig property', () => {
           it('fails', () =>
@@ -86,7 +88,7 @@ describe('function receiver', () => {
           contract.registerFunction(FUNCTION_WITH_ARG_HANDLE, ((
             s: string,
             n: number,
-          ) => Promise.resolve(`${s}${n}`)) as (
+          ) => Promise.resolve({ success: `"${s}${n}"` })) as (
             ...args: any[]
           ) => Promise<any>);
         });

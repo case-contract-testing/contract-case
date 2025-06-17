@@ -14,14 +14,14 @@ export class VerifyTriggerReturnObjectError extends Error {
   constructor(cause: unknown, userFacingStackTrace?: string) {
     const maybeError = cause as Error;
     if (typeof maybeError === 'object' && 'message' in maybeError) {
-      super(`${MESSAGE}\n\n${maybeError.message}`, { cause });
+      super(`${MESSAGE}\n${maybeError.message}\n`, { cause });
       this.userFacingStackTrace =
         'userFacingStackTrace' in maybeError &&
         typeof maybeError.userFacingStackTrace === 'string'
           ? maybeError.userFacingStackTrace
           : '';
     } else {
-      super(`${MESSAGE}\n\n${cause}`);
+      super(`${MESSAGE}\n${cause}\n`);
       this.userFacingStackTrace = userFacingStackTrace ?? '';
     }
     Object.setPrototypeOf(this, new.target.prototype);

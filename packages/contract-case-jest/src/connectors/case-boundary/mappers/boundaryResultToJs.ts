@@ -19,13 +19,14 @@ export const mapFailureToJsError = (failure: BoundaryFailure): Error => {
       return new ContractCaseConfigurationError(
         failure.message,
         failure.location,
+        failure.userFacingStackTrace,
         failure.contractCaseErrorCode,
       );
     case BoundaryFailureKindConstants.CASE_FAILED_ASSERTION_ERROR:
     case BoundaryFailureKindConstants.CASE_VERIFY_RETURN_ERROR:
       return new ContractCaseExpectationsNotMet(
         failure.message,
-        failure.location,
+        failure.userFacingStackTrace,
       );
     case BoundaryFailureKindConstants.CASE_CORE_ERROR:
       return new ContractCaseCoreError(failure.message, failure.location);

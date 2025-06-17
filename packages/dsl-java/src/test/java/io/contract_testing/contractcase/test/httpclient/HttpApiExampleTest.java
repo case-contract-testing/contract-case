@@ -2,6 +2,7 @@ package io.contract_testing.contractcase.test.httpclient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
@@ -37,6 +38,7 @@ public class HttpApiExampleTest {
   private static final ContractDefiner contract = new ContractDefiner(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
       .consumerName("Java Example HTTP Client")
       .providerName("Java Example HTTP Server")
+//      .changedContracts(ChangedContractsBehaviour.OVERWRITE)
       .publish(PublishType.NEVER)
       .build());
 

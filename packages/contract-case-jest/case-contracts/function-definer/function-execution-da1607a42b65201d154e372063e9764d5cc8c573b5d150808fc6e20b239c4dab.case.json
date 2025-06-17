@@ -14,6 +14,13 @@
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": []
     },
+    "matcher:an object shaped like {success: json stringified 'null'}": {
+      "success": {
+        "_case:matcher:type": "_case:JsonEncoded",
+        "_case:matcher:child": null,
+        "_case:matcher:resolvesTo": "string"
+      }
+    },
     "matcher:a function invoked with 2 arguments ( \"example\", 2 )": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": [
@@ -21,7 +28,13 @@
         2
       ]
     },
-    "matcher:\"example2\"": "example2"
+    "matcher:an object shaped like {success: json stringified '\"example2\"'}": {
+      "success": {
+        "_case:matcher:type": "_case:JsonEncoded",
+        "_case:matcher:child": "example2",
+        "_case:matcher:resolvesTo": "string"
+      }
+    }
   },
   "examples": [
     {
@@ -48,7 +61,17 @@
             "arguments": []
           }
         },
-        "response": null,
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "an object shaped like {success: json stringified 'null'}",
+          "_case:matcher:child": {
+            "success": {
+              "_case:matcher:type": "_case:JsonEncoded",
+              "_case:matcher:child": null,
+              "_case:matcher:resolvesTo": "string"
+            }
+          }
+        },
         "functionName": "NO ARG FUNCTION"
       },
       "result": "VERIFIED"
@@ -82,8 +105,14 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "\"example2\"",
-          "_case:matcher:child": "example2"
+          "_case:matcher:uniqueName": "an object shaped like {success: json stringified '\"example2\"'}",
+          "_case:matcher:child": {
+            "success": {
+              "_case:matcher:type": "_case:JsonEncoded",
+              "_case:matcher:child": "example2",
+              "_case:matcher:resolvesTo": "string"
+            }
+          }
         },
         "functionName": "HAS ARGS FUNCTION"
       },

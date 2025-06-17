@@ -328,18 +328,12 @@ interface FunctionExecutionExample {
     readonly returnValue: AnyMatcherOrData;
 }
 
-// @public
-interface FunctionExecutionExampleWithHandle {
-    readonly arguments: AnyMatcherOrData[];
-    readonly returnValue: AnyMatcherOrData;
-}
-
 declare namespace functions {
     export {
         WillCallFunction,
         WillReceiveFunctionCall,
         FunctionExecutionExample,
-        FunctionExecutionExampleWithHandle
+        ThrowingFunctionExecutionExample
     }
 }
 
@@ -637,6 +631,14 @@ class StringSuffix extends AnyMatcher {
     readonly '_case:matcher:type': typeof STRING_SUFFIX_TYPE;
     constructor(prefix: AnyStringMatcher, suffix: string);
     toJSON(): unknown;
+}
+
+// @public
+interface ThrowingFunctionExecutionExample {
+    readonly arguments: AnyMatcherOrData[];
+    readonly functionName: string;
+    readonly kind: AnyMatcherOrData;
+    readonly message?: AnyMatcherOrData;
 }
 
 // @public

@@ -2,6 +2,8 @@ package io.contract_testing.contractcase.test.function;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
@@ -32,7 +34,8 @@ public class FunctionCallerExampleTest {
             .consumerName("Java Function Caller Example")
             .providerName("Java Function Implementer Example")
             .publish(PublishType.NEVER)
-           // .changedContracts(ChangedContractsBehaviour.OVERWRITE)
+        //    .logLevel(LogLevel.MAINTAINER_DEBUG)
+        //    .changedContracts(ChangedContractsBehaviour.OVERWRITE)
             .adviceOverrides(Map.of("OVERWRITE_CONTRACTS_NEEDED", "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"))
             .build());
   }
@@ -56,10 +59,10 @@ public class FunctionCallerExampleTest {
         ),
         IndividualSuccessTestConfigBuilder.<String>builder()
             .withTrigger((setupInfo) ->
-                setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
-                    .apply(List.of()))
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of())))
             .withTestResponse((result, setupInfo) -> {
-              assertThat(result).isEqualTo("null");
+              assertThat(result).isEqualTo(null);
             })
     );
   }
@@ -78,12 +81,44 @@ public class FunctionCallerExampleTest {
         ),
         IndividualSuccessTestConfigBuilder.<String>builder()
             .withTrigger((setupInfo) ->
-                setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
-                    .apply(List.of("2")))
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of("2"))))
             .withTestResponse((result, setupInfo) -> {
-              assertThat(result).isEqualTo("\"2 pages\"");
+              assertThat(result).isEqualTo("2 pages");
             })
     );
+  }
+
+  private String parse(String json) {
+    try {
+      return new ObjectMapper().readValue(json,String.class);
+    } catch (JsonProcessingException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  @Test
+  public void testThrowingFunction() {
+
+    contract.runInteraction(
+        new InteractionDefinition<>(
+            List.of(new InState("The map is null")),
+            new WillCallFunction(FunctionExecutionExample.builder()
+                .arguments(List.of(new AnyInteger(2)))
+                .returnValue("2 pages")
+                .functionName("PageNumbers")
+                .build())
+        ),
+        IndividualSuccessTestConfigBuilder.<String>builder()
+            .withTrigger((setupInfo) ->
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of("2"))))
+            .withTestResponse((result, setupInfo) -> {
+              assertThat(result).isEqualTo("2 pages");
+            })
+    );
+
   }
 
   @Test
@@ -103,10 +138,10 @@ public class FunctionCallerExampleTest {
         ),
         IndividualSuccessTestConfigBuilder.<String>builder()
             .withTrigger((setupInfo) ->
-                setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
-                    .apply(List.of("\"foo\"")))
+              parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of("\"foo\""))))
             .withTestResponse((result, setupInfo) -> {
-              assertThat(result).isEqualTo("\"bar\"");
+              assertThat(result).isEqualTo("bar");
             })
     );
   }

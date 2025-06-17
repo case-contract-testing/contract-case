@@ -10,9 +10,10 @@ export const mapInvokableFunction =
   (...args: unknown[]): Promise<string> =>
     Promise.resolve()
       .then(() => invokeableFn(...args.map((arg) => JSON.stringify(arg))))
-      .then((result) =>
-        handleSuccessAnyResult(result, 'CaseConfigurationError'),
-      )
+      .then((result) => {
+        maintainerLog('Result from invocation was:', result);
+        return handleSuccessAnyResult(result, 'CaseConfigurationError');
+      })
       .then((resultString) => {
         try {
           return JSON.parse(resultString);

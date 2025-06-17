@@ -61,10 +61,11 @@ export const setupMockFunctionCaller = (
               functionHandle,
               callerArguments,
             );
-            context.logger.debug(
+            context.logger.maintainerDebug(
               `Function '${functionHandle}' returned`,
               result,
             );
+
             return {
               actual: result,
               context: addLocation('returnValue', context),

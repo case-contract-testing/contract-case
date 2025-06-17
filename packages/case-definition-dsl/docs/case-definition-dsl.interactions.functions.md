@@ -52,16 +52,16 @@ Description
 
 </td><td>
 
-Example descriptor for a function execution
+Interaction descriptor for a function execution which returns successfully
 
 </td></tr>
 <tr><td>
 
-[FunctionExecutionExampleWithHandle](./case-definition-dsl.interactions.functions.functionexecutionexamplewithhandle.md)
+[ThrowingFunctionExecutionExample](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.md)
 
 </td><td>
 
-Example descriptor for a function execution that can be called by ContractCase
+Interaction descriptor for a function execution that throws an error
 
 </td></tr>
 </tbody></table>

@@ -12,9 +12,7 @@ export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
       BoundaryFailureKindConstants.jsNameToConstant[e.name] ||
         BoundaryFailureKindConstants.CASE_CORE_ERROR,
       e.message,
-      'location' in e && typeof e.location === 'string'
-        ? e.location
-        : 'unknown location',
+      'location' in e && typeof e.location === 'string' ? e.location : '',
       'userFacingStackTrace' in e && typeof e.userFacingStackTrace === 'string'
         ? e.userFacingStackTrace
         : '',

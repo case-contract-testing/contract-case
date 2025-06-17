@@ -48,6 +48,7 @@ export const mapSuccessConfig = <R, C extends Record<string, string>>({
     throw new ContractCaseConfigurationError(
       'If specifying a trigger function, you must also specify a testResponse function',
       undefined,
+      undefined,
       'INVALID_CONFIG',
     );
   }
@@ -55,6 +56,7 @@ export const mapSuccessConfig = <R, C extends Record<string, string>>({
   if (trigger === undefined && testResponse !== undefined) {
     throw new ContractCaseConfigurationError(
       'If specifying a testResponse function, you must also specify a trigger function',
+      undefined,
       undefined,
       'INVALID_CONFIG',
     );

@@ -2,7 +2,9 @@
               response: {
                 body: {
                   userId: 'foo',
-                  name: 'john smith',
+                  // You can read this as "this test covers any 'name' property
+                  // which is a string (for example, 'john smith').
+                  name: anyString('john smith'),
                 },
                 status: 200,
               },

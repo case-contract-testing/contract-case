@@ -21,10 +21,10 @@ public class FunctionCallerVerificationTest {
   private static final ContractVerifier contract = new ContractVerifier(
       ContractCaseConfigBuilder.aContractCaseConfig()
           .consumerName("Java Function Caller Example")
-          .providerName("Java Function Execution Example")
+          .providerName("Java Function Implementer Example")
           .publish(PublishType.NEVER)
-          .contractDir("verifiable-contracts")
           .build());
+  private HashMap<String, String> mockedStore;
 
 
   @Test
@@ -38,7 +38,7 @@ public class FunctionCallerVerificationTest {
         convertJsonIntegerArg((Integer num) -> num + " pages")
     );
 
-    var mockedStore = new HashMap<String, String>();
+    mockedStore = new HashMap<String, String>();
 
     contract.registerFunction(
         "keyValueStore",
@@ -55,7 +55,12 @@ public class FunctionCallerVerificationTest {
                   mockedStore.put("foo", "bar");
                 }
             )
-        )
+        ).stateHandler("The map is null", StateHandler.setupFunction((() -> {
+          mockedStore = null;
+        })))
+        .stateHandler("The map is not null", StateHandler.setupFunction((() -> {
+          mockedStore = new HashMap<>();
+        })))
         .build()
     );
 
@@ -66,7 +71,7 @@ public class FunctionCallerVerificationTest {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, Integer.class);
-        return mapper.writeValueAsString(mapper.writeValueAsString(functionUnderTest.apply(arg1)));
+        return mapper.writeValueAsString(functionUnderTest.apply(arg1));
       } catch (JsonProcessingException e) {
         throw new RuntimeException("Unable to parse argument");
       }
@@ -79,7 +84,7 @@ public class FunctionCallerVerificationTest {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, String.class);
-        return mapper.writeValueAsString(mapper.writeValueAsString(functionUnderTest.apply(arg1)));
+        return mapper.writeValueAsString(functionUnderTest.apply(arg1));
       } catch (JsonProcessingException e) {
         throw new RuntimeException("Unable to parse argument");
       }

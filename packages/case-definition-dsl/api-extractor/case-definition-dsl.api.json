@@ -511,7 +511,7 @@
                 {
                   "kind": "Interface",
                   "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExample:interface",
-                  "docComment": "/**\n * Example descriptor for a function execution\n *\n * @public\n */\n",
+                  "docComment": "/**\n * Interaction descriptor for a function execution which returns successfully\n *\n * @public\n */\n",
                   "excerptTokens": [
                     {
                       "kind": "Content",
@@ -615,22 +615,22 @@
                 },
                 {
                   "kind": "Interface",
-                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExampleWithHandle:interface",
-                  "docComment": "/**\n * Example descriptor for a function execution that can be called by ContractCase\n *\n * @public\n */\n",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample:interface",
+                  "docComment": "/**\n * Interaction descriptor for a function execution that throws an error\n *\n * @public\n */\n",
                   "excerptTokens": [
                     {
                       "kind": "Content",
-                      "text": "export interface FunctionExecutionExampleWithHandle "
+                      "text": "export interface ThrowingFunctionExecutionExample "
                     }
                   ],
                   "fileUrlPath": "src/interactions/functions/types.ts",
                   "releaseTag": "Public",
-                  "name": "FunctionExecutionExampleWithHandle",
+                  "name": "ThrowingFunctionExecutionExample",
                   "preserveMemberOrder": false,
                   "members": [
                     {
                       "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExampleWithHandle#arguments:member",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample#arguments:member",
                       "docComment": "/**\n * An array of expected function arguments (or test equivalence matchers for those arguments)\n */\n",
                       "excerptTokens": [
                         {
@@ -662,12 +662,39 @@
                     },
                     {
                       "kind": "PropertySignature",
-                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExampleWithHandle#returnValue:member",
-                      "docComment": "/**\n * A test equivalence matcher for the return value from this function\n */\n",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample#functionName:member",
+                      "docComment": "/**\n * The name of the function to be executed. Doubles as the handle used by registerFunction.\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
-                          "text": "readonly returnValue: "
+                          "text": "readonly functionName: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "functionName",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample#kind:member",
+                      "docComment": "/**\n * A test equivalence matcher for the class name of this exception\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly kind: "
                         },
                         {
                           "kind": "Reference",
@@ -682,7 +709,35 @@
                       "isReadonly": true,
                       "isOptional": false,
                       "releaseTag": "Public",
-                      "name": "returnValue",
+                      "name": "kind",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample#message:member",
+                      "docComment": "/**\n * A test equivalence matcher for the message from this exception. In general, it's best to rely on the class of the exception instead of the specific error message\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly message?: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": true,
+                      "releaseTag": "Public",
+                      "name": "message",
                       "propertyTypeTokenRange": {
                         "startIndex": 1,
                         "endIndex": 2
@@ -719,7 +774,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillCallFunction:constructor(1)",
-                      "docComment": "/**\n * Defines an example that executes a registered function with specific arguments\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
+                      "docComment": "/**\n * Defines an interaction that executes a registered function with specific arguments, expecting that interaction to return successfully\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",

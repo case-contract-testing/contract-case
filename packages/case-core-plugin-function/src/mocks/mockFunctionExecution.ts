@@ -1,6 +1,7 @@
 import {
   MockFunctionDescriptor,
   MOCK_FUNCTION_EXECUTION,
+  FunctionResponse,
 } from '@contract-case/case-core-plugin-function-dsl';
 import {
   CaseConfigurationError,
@@ -10,10 +11,61 @@ import {
 } from '@contract-case/case-plugin-base';
 import { AllSetup } from './types';
 
+const validateFunctionResponse = (
+  maybeFunctionResponse: unknown,
+  context: MatchContext,
+): FunctionResponse => {
+  if (
+    maybeFunctionResponse === null ||
+    typeof maybeFunctionResponse !== 'object'
+  ) {
+    const message = `Bad function return value in interaction. 
+        This interaction had a function response that wasn't an object. 
+        
+        Please update the function definition to be a ReturnValue or a FunctionThrows matcher.
+        `;
+
+    context.logger.error(
+      `${message}
+        The defined return type was:`,
+      maybeFunctionResponse,
+    );
+
+    throw new CaseConfigurationError(
+      message,
+      context,
+      'BAD_INTERACTION_DEFINITION',
+    );
+  }
+  const data = maybeFunctionResponse as FunctionResponse;
+
+  if ('success' in data) {
+    return data;
+  }
+  if ('errorKind' in data) {
+    return data;
+  }
+  const message = `Bad function return value in interaction. 
+      This interaction had a function response that didn't contain a 'success' or 'errorKind' key. 
+           
+        Please update the function definition to be a ReturnValue or a FunctionThrows matcher.`;
+
+  context.logger.error(
+    `${message}
+        The defined return type was:`,
+    maybeFunctionResponse,
+  );
+  throw new CaseConfigurationError(
+    message,
+    context,
+    'BAD_INTERACTION_DEFINITION',
+  );
+};
+
 export const setupMockFunctionExecution = (
   {
     request: expectedArguments,
-    response: returnValue,
+    response: expectedResponse,
     functionName,
   }: MockFunctionDescriptor,
   parentContext: MatchContext,
@@ -43,12 +95,40 @@ export const setupMockFunctionExecution = (
         data.actualArguments,
       );
 
-      const strippedReturnValue = context.descendAndStrip(
-        returnValue,
-        addLocation('returnValue', context),
+      const functionResponse = validateFunctionResponse(
+        context.descendAndStrip(
+          expectedResponse,
+          addLocation('returnValue', context),
+        ),
+        context,
       );
-      context.logger.debug('Returning', strippedReturnValue);
-      return JSON.stringify(strippedReturnValue);
+      context.logger.maintainerDebug('functionResponse was', functionResponse);
+
+      if ('success' in functionResponse) {
+        context.logger.debug('Returning', functionResponse.success);
+        return JSON.stringify({
+          success: functionResponse.success,
+        });
+      }
+
+      if ('errorKind' in functionResponse) {
+        context.logger.debug(
+          `Returning error of kind '${functionResponse.errorKind}'${'message' in functionResponse ? ` with message: ${functionResponse.message}` : ''}`,
+        );
+        return JSON.stringify({
+          errorKind: JSON.stringify(functionResponse.errorKind),
+          ...('message' in functionResponse
+            ? { message: JSON.stringify(functionResponse.message) }
+            : {}),
+        });
+      }
+      context.logger.debug('Bad function return type description. ');
+
+      throw new CaseConfigurationError(
+        "This interaction had a bad return type description. It must contain either a 'success' key (indicating a successful return), or a 'kind' ",
+        context,
+        'BAD_INTERACTION_DEFINITION',
+      );
     };
 
     return {

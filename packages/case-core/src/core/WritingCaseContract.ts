@@ -15,7 +15,14 @@ import {
 } from '@contract-case/case-plugin-base';
 
 import { BaseCaseContract } from './BaseCaseContract';
-import { addExample, getFailures, hasFailure, isEmpty } from './structure';
+import {
+  addExample,
+  getFailures,
+  getPendingCount,
+  getSuccessCount,
+  hasFailure,
+  isEmpty,
+} from './structure';
 import type { TestInvoker } from './executeExample/types';
 import type { CaseConfig, WriterDependencies } from './types';
 import { configToRunContext } from './config';
@@ -181,14 +188,19 @@ export class WritingCaseContract extends BaseCaseContract {
     const writingContext = addLocation('WritingContract', this.initialContext);
     if (hasFailure(this.currentContract)) {
       const failures = getFailures(this.currentContract);
+      const successCount = getSuccessCount(this.currentContract);
+      const pendingCount = getPendingCount(this.currentContract);
+      const totalCount = failures.length + successCount + pendingCount;
+
       throw new CaseFailedAssertionError(
         makeResults(
           {
             type: ERROR_TYPE_CONFIGURATION,
-            message: `Unable to write contract: There were ${failures.length} contract failures`,
+            message: `Unable to write contract: ${failures.length}/${totalCount} interactions failed${pendingCount !== 0 ? ` (${pendingCount} were pending)` : ''}`,
             code: 'FAIL',
             location: ['Writing Contract'],
-            toString: () => 'There were contract failures',
+            toString: () =>
+              `There were contract definition failures in ${failures.length}/${totalCount} interactions`,
           },
           ...failures,
         ),

@@ -84,6 +84,22 @@ export const getFailures = (contract: ContractData): CaseError[] =>
     .map((e) => e.errors)
     .flat();
 
+/**
+ * Counts the number of interactions that are VERIFIED (ie, have passed during this run, or previously before the contract was written)
+ * @param contract - a ContractData object
+ * @returns the number of interactions that are VERIFIED
+ */
+export const getSuccessCount = (contract: ContractData): number =>
+  contract.examples.filter((e) => e.result === 'VERIFIED').length;
+
+/**
+ * Counts the number of interactions that are PENDING (ie, not failed or verified)
+ * @param contract - a ContractData object
+ * @returns the number of interactions that are PENDING
+ */
+export const getPendingCount = (contract: ContractData): number =>
+  contract.examples.filter((e) => e.result === 'PENDING').length;
+
 export const findMatcher = (
   contract: ContractData,
   uniqueName: string,

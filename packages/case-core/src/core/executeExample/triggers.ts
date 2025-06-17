@@ -207,6 +207,23 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
           context,
         );
       }
+
+      if (triggerAndTests !== undefined) {
+        const possibleNames = Object.keys(triggerAndTests).filter((s) =>
+          s.startsWith(`${names.requestName}::`),
+        );
+        if (possibleNames.length > 0) {
+          context.logger.error('');
+        }
+        context.logger.error(
+          `No response handler for '${names.responseName}' provided. The request '${names.requestName}' is present`,
+        );
+        throw new CaseConfigurationError(
+          `No response handler provided for response:\n     ${names.responseName}`,
+          context,
+        );
+      }
+
       context.logger.error(
         `No trigger for request '${names.requestName}' provided`,
       );

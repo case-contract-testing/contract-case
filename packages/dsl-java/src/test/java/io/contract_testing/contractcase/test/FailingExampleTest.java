@@ -8,6 +8,7 @@ import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.Trigger;
 import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;
@@ -33,6 +34,7 @@ public class FailingExampleTest {
       .consumerName("Java Example HTTP Client")
       .providerName("Java Example HTTP Server")
       .publish(PublishType.NEVER)
+      .logLevel(LogLevel.NONE)
       //      .logLevel(LogLevel.MAINTAINER_DEBUG)
       .build());
 

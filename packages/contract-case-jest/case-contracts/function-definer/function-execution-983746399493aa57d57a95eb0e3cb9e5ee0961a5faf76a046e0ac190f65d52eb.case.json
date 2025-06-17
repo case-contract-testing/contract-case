@@ -10,18 +10,27 @@
     }
   },
   "matcherLookup": {
-    "matcher:a function invoked with no arguments": {
+    "matcher:An invocation of NO ARG FUNCTION()": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-      "arguments": []
+      "arguments": [],
+      "functionName": "NO ARG FUNCTION"
     },
-    "matcher:a function invoked with 2 arguments ( \"example\", 2 )": {
+    "matcher:returning null": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": null
+    },
+    "matcher:An invocation of HAS ARGS FUNCTION( \"example\", 2 )": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": [
         "example",
         2
-      ]
+      ],
+      "functionName": "HAS ARGS FUNCTION"
     },
-    "matcher:\"example2\"": "example2"
+    "matcher:returning \"example2\"": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": "example2"
+    }
   },
   "examples": [
     {
@@ -42,13 +51,21 @@
         },
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a function invoked with no arguments",
+          "_case:matcher:uniqueName": "An invocation of NO ARG FUNCTION()",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-            "arguments": []
+            "arguments": [],
+            "functionName": "NO ARG FUNCTION"
           }
         },
-        "response": null,
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning null",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": null
+          }
+        },
         "functionName": "NO ARG FUNCTION"
       },
       "result": "VERIFIED"
@@ -71,19 +88,23 @@
         },
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a function invoked with 2 arguments ( \"example\", 2 )",
+          "_case:matcher:uniqueName": "An invocation of HAS ARGS FUNCTION( \"example\", 2 )",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionArgumentsMatcher",
             "arguments": [
               "example",
               2
-            ]
+            ],
+            "functionName": "HAS ARGS FUNCTION"
           }
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "\"example2\"",
-          "_case:matcher:child": "example2"
+          "_case:matcher:uniqueName": "returning \"example2\"",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": "example2"
+          }
         },
         "functionName": "HAS ARGS FUNCTION"
       },

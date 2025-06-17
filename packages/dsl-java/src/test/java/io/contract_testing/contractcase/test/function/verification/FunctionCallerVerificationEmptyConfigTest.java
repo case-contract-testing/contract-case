@@ -16,18 +16,18 @@ import org.junit.jupiter.api.Test;
 public class FunctionCallerVerificationEmptyConfigTest {
 
   static final ObjectMapper mapper = new ObjectMapper();
+  private HashMap<String, String> mockedStore;
 
 
   @Test
   public void testVerifyRunsGlobalStateHandlers() {
-    final var mockedStore = new HashMap<String, String>();
+    mockedStore = new HashMap<String, String>();
     try (ContractVerifier contract = new ContractVerifier(
         ContractCaseConfigBuilder.aContractCaseConfig()
             .consumerName("Java Function Caller Example")
-            .providerName("Java Function Execution Example")
-             // .logLevel(LogLevel.DEBUG)
+            .providerName("Java Function Implementer Example")
+         //   .logLevel(LogLevel.MAINTAINER_DEBUG)
             .publish(PublishType.NEVER)
-            .contractDir("verifiable-contracts")
             .printResults(true)
             .throwOnFail(true)
             .stateHandler(
@@ -36,18 +36,28 @@ public class FunctionCallerVerificationEmptyConfigTest {
                       mockedStore.put("foo", "bar");
                     }
                 )
-            ).build())) {
-      contract.registerFunction("NoArgFunction", () -> {
+            ).stateHandler("The map is null", StateHandler.setupFunction((() -> {
+              mockedStore = null;
+            })))
+            .stateHandler("The map is not null", StateHandler.setupFunction((() -> {
+              mockedStore = new HashMap<>();
+            })))
+            .build())) {
+      contract.registerFunction("NoArgFunction", () ->
+
+      {
         return null;
       });
 
       contract.registerFunction(
           "PageNumbers",
+
           convertJsonIntegerArg((Integer num) -> num + " pages")
       );
 
       contract.registerFunction(
           "keyValueStore",
+
           convertJsonStringArgs((String key) -> mockedStore.get(key))
       );
 
@@ -61,7 +71,7 @@ public class FunctionCallerVerificationEmptyConfigTest {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, Integer.class);
-        return mapper.writeValueAsString(mapper.writeValueAsString(functionUnderTest.apply(arg1)));
+        return (mapper.writeValueAsString(functionUnderTest.apply(arg1)));
       } catch (JsonProcessingException e) {
         throw new RuntimeException("Unable to parse argument");
       }
@@ -74,7 +84,7 @@ public class FunctionCallerVerificationEmptyConfigTest {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, String.class);
-        return mapper.writeValueAsString(mapper.writeValueAsString(functionUnderTest.apply(arg1)));
+        return (mapper.writeValueAsString(functionUnderTest.apply(arg1)));
       } catch (JsonProcessingException e) {
         throw new RuntimeException("Unable to parse argument");
       }

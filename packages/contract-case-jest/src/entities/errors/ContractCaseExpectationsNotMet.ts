@@ -1,12 +1,14 @@
 export class ContractCaseExpectationsNotMet extends Error {
-  readonly location: string;
-
-  constructor(message: string, location: string) {
+  constructor(message: string, userFacingStacktrace: string) {
     super(message);
-    this.location = location;
 
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = 'ContractCaseExpectationsNotMet';
-    this.stack = location;
+
+    if (userFacingStacktrace != null && userFacingStacktrace !== '') {
+      this.stack = userFacingStacktrace.startsWith('CaseConfigurationError')
+        ? `Contract${userFacingStacktrace}`
+        : userFacingStacktrace;
+    }
   }
 }

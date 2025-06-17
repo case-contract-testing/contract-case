@@ -138,12 +138,15 @@ const selfVerify = <T extends AnyCaseNodeType>(
       getExecutor<T>(matcherOrData as CaseNodeFor<T>, parentMatchContext).check(
         descendAndStrip<T>(
           matcherOrData as CaseNodeFor<T>,
-          addLocation(':sefVerifyCheck', parentMatchContext),
+          addLocation(':selfVerifyCheck', parentMatchContext),
         ),
       ),
     )
     .then((selfVerification) => {
       if (hasErrors(selfVerification)) {
+        parentMatchContext.logger.deepMaintainerDebug(
+          'Self verification FAILED',
+        );
         throw new CaseConfigurationError(
           // TODO document this extensively.
           `The matchers used have been given an example that doesn't pass the matcher: ${selfVerification[0]?.message} (at ${selfVerification[0]?.location})`,
@@ -151,6 +154,9 @@ const selfVerify = <T extends AnyCaseNodeType>(
           'UNDOCUMENTED',
         );
       }
+      parentMatchContext.logger.deepMaintainerDebug(
+        'Self verification succeeded',
+      );
     });
 
 export const traversals: TraversalFns = {

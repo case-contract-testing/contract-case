@@ -2,6 +2,7 @@ import {
   functionArgumentsMatcher,
   MOCK_FUNCTION_EXECUTION,
   MOCK_FUNCTION_CALLER,
+  functionReturnSuccessMatcher,
 } from '@contract-case/case-core-plugin-function-dsl';
 import { AnyInteractionDescriptor } from '../base/AnyInteractionDescriptor';
 import { AnyMatcherOrData } from '../../types';
@@ -54,8 +55,11 @@ export class WillReceiveFunctionCall extends AnyInteractionDescriptor {
         triggers: 'provided',
       },
     });
-    this.request = functionArgumentsMatcher(example.arguments);
-    this.response = example.returnValue;
+    this.request = functionArgumentsMatcher(
+      example.arguments,
+      example.functionName,
+    );
+    this.response = functionReturnSuccessMatcher(example.returnValue);
     this.functionName = example.functionName;
   }
 }

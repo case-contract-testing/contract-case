@@ -4,7 +4,7 @@
 
 ## interactions.functions.FunctionExecutionExample interface
 
-Example descriptor for a function execution
+Interaction descriptor for a function execution which returns successfully
 
 **Signature:**
 

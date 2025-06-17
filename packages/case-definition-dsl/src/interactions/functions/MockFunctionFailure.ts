@@ -1,19 +1,20 @@
 import {
   functionArgumentsMatcher,
-  functionReturnSuccessMatcher,
+  functionThrowsErrorMatcher,
   MOCK_FUNCTION_EXECUTION,
   MOCK_FUNCTION_CALLER,
 } from '@contract-case/case-core-plugin-function-dsl';
 import { AnyInteractionDescriptor } from '../base/AnyInteractionDescriptor';
 import { AnyMatcherOrData } from '../../types';
-import { FunctionExecutionExample } from './types';
+import { ThrowingFunctionExecutionExample } from './types';
 
 /**
- * Defines an example that executes a registered function with specific arguments
+ * Defines an interaction that executes a registered function with specific arguments,
+ * expecting that function to throw an error
  *
  * @public
  */
-export class WillCallFunction extends AnyInteractionDescriptor {
+export class WillCallThrowingFunction extends AnyInteractionDescriptor {
   /** @internal */
   readonly '_case:mock:type': typeof MOCK_FUNCTION_EXECUTION;
 
@@ -38,12 +39,11 @@ export class WillCallFunction extends AnyInteractionDescriptor {
   readonly functionName: string;
 
   /**
-   * Defines an interaction that executes a registered function with specific arguments,
-   * expecting that interaction to return successfully
+   * Defines an example that executes a registered function with specific arguments
    *
    * @param example - a {@link mocks.functions.FunctionExecutionExample}
    */
-  constructor(example: FunctionExecutionExample) {
+  constructor(example: ThrowingFunctionExecutionExample) {
     super(MOCK_FUNCTION_EXECUTION, {
       write: {
         mockType: MOCK_FUNCTION_EXECUTION,
@@ -60,7 +60,7 @@ export class WillCallFunction extends AnyInteractionDescriptor {
       example.arguments,
       example.functionName,
     );
-    this.response = functionReturnSuccessMatcher(example.returnValue);
+    this.response = functionThrowsErrorMatcher(example.kind, example.message);
 
     this.functionName = example.functionName;
   }

@@ -2992,49 +2992,9 @@
           }
         ],
         "docs": {
-          "summary": "Example descriptor for a function execution."
+          "summary": "Interaction descriptor for a function execution which returns successfully."
         },
         "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;\n\nFunctionExecutionExample.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
-      },
-      {
-        "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExampleWithHandle",
-        "displayName": "FunctionExecutionExampleWithHandle",
-        "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle",
-        "properties": [
-          {
-            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExampleWithHandle.property.arguments",
-            "displayName": "arguments",
-            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle.property.arguments",
-            "type": {
-              "formattingPattern": "java.util.List<%>",
-              "types": [
-                {
-                  "formattingPattern": "java.lang.Object"
-                }
-              ]
-            },
-            "docs": {
-              "summary": "An array of expected function arguments (or test equivalence matchers for those arguments)."
-            },
-            "usage": "public java.util.List<java.lang.Object> getArguments();"
-          },
-          {
-            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExampleWithHandle.property.returnValue",
-            "displayName": "returnValue",
-            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExampleWithHandle.property.returnValue",
-            "type": {
-              "formattingPattern": "java.lang.Object"
-            },
-            "docs": {
-              "summary": "A test equivalence matcher for the return value from this function."
-            },
-            "usage": "public java.lang.Object getReturnValue();"
-          }
-        ],
-        "docs": {
-          "summary": "Example descriptor for a function execution that can be called by ContractCase."
-        },
-        "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExampleWithHandle;\n\nFunctionExecutionExampleWithHandle.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .returnValue(java.lang.Object)\n    .build();"
       },
       {
         "fqn": "io.contract_testing.contractcase.definitions.interactions.http.HttpExample",
@@ -3220,6 +3180,73 @@
         ],
         "docs": {},
         "usage": "import io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample;\n\nHttpResponseExample.builder()\n    .status(java.lang.Object)\n//  .body(java.lang.Object)\n//  .headers(java.lang.Object)\n//  .uniqueName(java.lang.String)\n    .build();"
+      },
+      {
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample",
+        "displayName": "ThrowingFunctionExecutionExample",
+        "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample",
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample.property.arguments",
+            "displayName": "arguments",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.arguments",
+            "type": {
+              "formattingPattern": "java.util.List<%>",
+              "types": [
+                {
+                  "formattingPattern": "java.lang.Object"
+                }
+              ]
+            },
+            "docs": {
+              "summary": "An array of expected function arguments (or test equivalence matchers for those arguments)."
+            },
+            "usage": "public java.util.List<java.lang.Object> getArguments();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample.property.functionName",
+            "displayName": "functionName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.functionName",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "The name of the function to be executed.",
+              "remarks": "Doubles as the handle used by\nregisterFunction."
+            },
+            "usage": "public java.lang.String getFunctionName();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample.property.kind",
+            "displayName": "kind",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.kind",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher for the class name of this exception."
+            },
+            "usage": "public java.lang.Object getKind();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample.property.message",
+            "displayName": "message",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.message",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher for the message from this exception.",
+              "remarks": "In general, it's best to rely on the class of the exception instead of the specific error message"
+            },
+            "usage": "public java.lang.Object getMessage();"
+          }
+        ],
+        "docs": {
+          "summary": "Interaction descriptor for a function execution that throws an error."
+        },
+        "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;\n\nThrowingFunctionExecutionExample.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .kind(java.lang.Object)\n//  .message(java.lang.Object)\n    .build();"
       }
     ],
     "interfaces": [],

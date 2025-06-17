@@ -25,21 +25,37 @@ const mapSetup = <C extends Record<string, string>>(
     if (fn == null) {
       throw new ContractCaseConfigurationError(
         `getFunction was asked for '${name}', but it wasn't configured in this Interaction`,
-        '',
+        undefined,
+        undefined,
         'UNDOCUMENTED',
       );
     }
     return (...args: unknown[]) =>
       Promise.resolve()
         .then(() => fn(...args.map((a) => JSON.stringify(a))))
-        .then((result) => mapSuccessWithAny(result));
+        .then((result) => {
+          const functionReturn = mapSuccessWithAny(result);
+          if (
+            functionReturn !== null &&
+            typeof functionReturn === 'object' &&
+            'success' in functionReturn
+          ) {
+            return JSON.parse(functionReturn.success as string);
+          }
+          throw new Error(
+            // TODO: This is definitely not right, and we should check to see
+            // if these fields exist
+            `${(functionReturn as Record<string, string>)?.['errorKind']}: ${(functionReturn as Record<string, string>)?.['message']} `,
+          );
+        });
   },
   getStateVariable: (name: string) => {
     const variable = setup.stateVariables[name];
     if (variable == null) {
       throw new ContractCaseConfigurationError(
         `getStateVariable was asked for '${name}', but it wasn't present in the setup`,
-        '',
+        undefined,
+        undefined,
         'BAD_INTERACTION_DEFINITION',
       );
     }
