@@ -27,7 +27,7 @@ describe('e2e http consumer driven', () => {
       config: {
         printResults: false, // Set this to true for you own tests
         contractFilename: FILENAME, // Usually you will not need to provide a filename
-        changedContracts: 'OVERWRITE',
+        //       changedContracts: 'OVERWRITE',
         publish: false,
       },
     },
