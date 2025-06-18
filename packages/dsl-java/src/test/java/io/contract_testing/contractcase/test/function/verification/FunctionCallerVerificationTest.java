@@ -55,6 +55,11 @@ public class FunctionCallerVerificationTest {
         convertJsonStringArgs((String key) -> mockedStore.get(key))
     );
 
+    contract.registerFunction(
+        "throwingFunction",
+        convertJsonStringArgs((String key) ->{ throw new CustomException("The message is ignored");})
+    );
+
     contract.runVerification(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
         //  .logLevel(LogLevel.MAINTAINER_DEBUG)
         .printResults(true)

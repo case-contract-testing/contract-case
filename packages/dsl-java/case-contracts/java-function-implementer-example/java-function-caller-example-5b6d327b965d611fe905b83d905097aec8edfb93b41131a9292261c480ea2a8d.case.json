@@ -6,7 +6,7 @@
   },
   "metadata": {
     "_case": {
-      "version": "0.24.2"
+      "version": "0.25.0"
     }
   },
   "matcherLookup": {
@@ -49,6 +49,48 @@
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": [],
       "functionName": "NoArgFunction"
+    },
+    "matcher:throwing a \"CustomException\"": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "errorClassName": "CustomException"
+    },
+    "matcher:An invocation of throwingFunction( <any integer> )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        {
+          "_case:context:matchBy": "type",
+          "_case:matcher:example": 2,
+          "_case:matcher:resolvesTo": "number",
+          "_case:matcher:type": "_case:Integer"
+        }
+      ],
+      "functionName": "throwingFunction"
+    },
+    "matcher:returning an object shaped like {a: an object shaped like {b: <any integer>},c: \"d\"}": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": {
+        "a": {
+          "b": {
+            "_case:context:matchBy": "type",
+            "_case:matcher:example": 2,
+            "_case:matcher:resolvesTo": "number",
+            "_case:matcher:type": "_case:Integer"
+          }
+        },
+        "c": "d"
+      }
+    },
+    "matcher:An invocation of complexReturn( <any integer> )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        {
+          "_case:context:matchBy": "type",
+          "_case:matcher:example": 2,
+          "_case:matcher:resolvesTo": "number",
+          "_case:matcher:type": "_case:Integer"
+        }
+      ],
+      "functionName": "complexReturn"
     },
     "matcher:returning \"bar\"": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
@@ -184,10 +226,10 @@
             "type": "_case:MockFunctionExecution"
           }
         },
-        "functionName": "PageNumbers",
+        "functionName": "throwingFunction",
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "An invocation of PageNumbers( <any integer> )",
+          "_case:matcher:uniqueName": "An invocation of throwingFunction( <any integer> )",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionArgumentsMatcher",
             "arguments": [
@@ -198,15 +240,74 @@
                 "_case:matcher:type": "_case:Integer"
               }
             ],
-            "functionName": "PageNumbers"
+            "functionName": "throwingFunction"
           }
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "returning \"2 pages\"",
+          "_case:matcher:uniqueName": "throwing a \"CustomException\"",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionResultMatcher",
-            "success": "2 pages"
+            "errorClassName": "CustomException"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The map is null"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "complexReturn",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of complexReturn( <any integer> )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              {
+                "_case:context:matchBy": "type",
+                "_case:matcher:example": 2,
+                "_case:matcher:resolvesTo": "number",
+                "_case:matcher:type": "_case:Integer"
+              }
+            ],
+            "functionName": "complexReturn"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning an object shaped like {a: an object shaped like {b: <any integer>},c: \"d\"}",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": {
+              "a": {
+                "b": {
+                  "_case:context:matchBy": "type",
+                  "_case:matcher:example": 2,
+                  "_case:matcher:resolvesTo": "number",
+                  "_case:matcher:type": "_case:Integer"
+                }
+              },
+              "c": "d"
+            }
           }
         }
       },

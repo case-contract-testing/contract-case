@@ -2306,6 +2306,103 @@
       },
       {
         "initializer": {
+          "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.Initializer",
+          "parameters": [
+            {
+              "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "%",
+                "types": [
+                  {
+                    "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample",
+                    "displayName": "ThrowingFunctionExecutionExample",
+                    "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample",
+                    "packageName": "@contract-case/case-definition-dsl",
+                    "packageVersion": "0.25.0",
+                    "submodule": "interactions"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- a {@link mocks.functions.FunctionExecutionExample }."
+              }
+            }
+          ],
+          "usage": "import { interactions } from '@contract-case/case-definition-dsl'\n\nnew interactions.functions.WillCallThrowingFunction(example: ThrowingFunctionExecutionExample)"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
+              "remarks": "You shouldn't need to override this method."
+            },
+            "usage": "public stringify(): string"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
+            },
+            "usage": "public toJSON(): any"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.property.functionName",
+            "displayName": "functionName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.property.functionName",
+            "type": {
+              "formattingPattern": "string"
+            },
+            "docs": {},
+            "usage": "public readonly functionName: string;"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.property.request",
+            "displayName": "request",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.property.request",
+            "type": {
+              "formattingPattern": "any"
+            },
+            "docs": {},
+            "usage": "public readonly request: any;"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.property.response",
+            "displayName": "response",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.property.response",
+            "type": {
+              "formattingPattern": "any"
+            },
+            "docs": {},
+            "usage": "public readonly response: any;"
+          }
+        ],
+        "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction",
+        "displayName": "WillCallThrowingFunction",
+        "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction",
+        "docs": {
+          "summary": "Defines an interaction that executes a registered function with specific arguments, expecting that function to throw an error."
+        }
+      },
+      {
+        "initializer": {
           "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.Initializer",
           "displayName": "Initializer",
           "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.Initializer",
@@ -3040,6 +3137,18 @@
             "usage": "public readonly arguments: any[];"
           },
           {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.errorClassName",
+            "displayName": "errorClassName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.errorClassName",
+            "type": {
+              "formattingPattern": "any"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher for the class name of this exception."
+            },
+            "usage": "public readonly errorClassName: any;"
+          },
+          {
             "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.functionName",
             "displayName": "functionName",
             "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.functionName",
@@ -3051,18 +3160,6 @@
               "remarks": "Doubles as the handle used by\nregisterFunction."
             },
             "usage": "public readonly functionName: string;"
-          },
-          {
-            "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.kind",
-            "displayName": "kind",
-            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.kind",
-            "type": {
-              "formattingPattern": "any"
-            },
-            "docs": {
-              "summary": "A test equivalence matcher for the class name of this exception."
-            },
-            "usage": "public readonly kind: any;"
           },
           {
             "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.message",

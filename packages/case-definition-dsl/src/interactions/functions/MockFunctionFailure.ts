@@ -60,7 +60,10 @@ export class WillCallThrowingFunction extends AnyInteractionDescriptor {
       example.arguments,
       example.functionName,
     );
-    this.response = functionThrowsErrorMatcher(example.kind, example.message);
+    this.response = functionThrowsErrorMatcher(
+      example.errorClassName,
+      example.message,
+    );
 
     this.functionName = example.functionName;
   }

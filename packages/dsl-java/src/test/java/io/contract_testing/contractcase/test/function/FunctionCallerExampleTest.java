@@ -8,14 +8,18 @@ import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
+import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
+import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
+import io.contract_testing.contractcase.definitions.interactions.functions.WillCallThrowingFunction;
 import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
 import io.contract_testing.contractcase.definitions.states.InState;
+import io.contract_testing.contractcase.exceptions.FunctionCompletedExceptionally;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.AfterAll;
@@ -34,7 +38,7 @@ public class FunctionCallerExampleTest {
             .providerName("Java Function Implementer Example")
             .publish(PublishType.NEVER)
             //    .logLevel(LogLevel.MAINTAINER_DEBUG)
-                .changedContracts(ChangedContractsBehaviour.OVERWRITE)
+            .changedContracts(ChangedContractsBehaviour.OVERWRITE)
             .adviceOverrides(Map.of(
                 "OVERWRITE_CONTRACTS_NEEDED",
                 "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"
@@ -138,6 +142,28 @@ public class FunctionCallerExampleTest {
             .withTestResponse((result, setupInfo) -> {
               assertThat(result.c).isEqualTo("d");
               assertThat(result.a).isEqualTo(new SecondLayer(2));
+            })
+    );
+  }
+
+  @Test
+  public void testThrowingInteraction() {
+
+    contract.runThrowingInteraction(
+        new InteractionDefinition<>(
+            List.of(new InState("The map is null")),
+            new WillCallThrowingFunction(ThrowingFunctionExecutionExample.builder()
+                .arguments(List.of(new AnyInteger(2)))
+                .errorClassName("CustomException")
+                .functionName("throwingFunction")
+                .build())
+        ),
+        IndividualFailedTestConfigBuilder.<FirstLayer>builder()
+            .withTrigger((setupInfo) ->
+                parseComplex(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of("2"))))
+            .withTestErrorResponse((exception, setupInfo) -> {
+              assertThat(((FunctionCompletedExceptionally) exception).getErrorClassName()).isEqualTo("CustomException");
             })
     );
 

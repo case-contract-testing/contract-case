@@ -26,6 +26,15 @@ Defines an example that executes a registered function with specific arguments
 </td></tr>
 <tr><td>
 
+[WillCallThrowingFunction](./case-definition-dsl.interactions.functions.willcallthrowingfunction.md)
+
+</td><td>
+
+Defines an interaction that executes a registered function with specific arguments, expecting that function to throw an error
+
+</td></tr>
+<tr><td>
+
 [WillReceiveFunctionCall](./case-definition-dsl.interactions.functions.willreceivefunctioncall.md)
 
 </td><td>

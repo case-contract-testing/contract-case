@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
+import io.contract_testing.contractcase.exceptions.FunctionCompletedExceptionally;
 import io.contract_testing.contractcase.internal.ConnectorResultMapper;
 import io.contract_testing.contractcase.internal.edge.ConnectorSetupInfo;
-import io.contract_testing.contractcase.internal.edge.FunctionReturnTypes;
 import io.contract_testing.contractcase.internal.edge.InvokeCoreFunction;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +81,10 @@ public class InteractionSetup {
     return this.mockSetup.get(key);
   }
 
+  private record EitherReturnType(String success, String errorClassName, String message) {
+
+  }
+
   public Function<List<String>, String> getFunction(String name) {
     if (this.functions.get(name) == null) {
       final var keys = new ArrayList<>(this.functions.keySet());
@@ -100,8 +104,17 @@ public class InteractionSetup {
           this.functions.get(name).invoke(args)
       );
       try {
-        return ((FunctionReturnTypes.FunctionSuccess) mapper.readerFor(
-            FunctionReturnTypes.FunctionSuccess.class).readValue(result)).success();
+        var parsedResult = ((EitherReturnType) mapper.readerFor(
+            EitherReturnType.class).readValue(result));
+        if (parsedResult.success() != null) {
+          return parsedResult.success();
+        }
+        throw new FunctionCompletedExceptionally(
+            mapper.readerFor(String.class).readValue(parsedResult.errorClassName()),
+            parsedResult.message() != null
+                ? mapper.readerFor(String.class).readValue(parsedResult.message())
+                : null
+        );
       } catch (JsonProcessingException e) {
         throw new ContractCaseCoreError("Unable to read function result:", e);
       }

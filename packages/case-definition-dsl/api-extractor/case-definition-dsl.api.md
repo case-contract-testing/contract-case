@@ -332,6 +332,7 @@ declare namespace functions {
     export {
         WillCallFunction,
         WillReceiveFunctionCall,
+        WillCallThrowingFunction,
         FunctionExecutionExample,
         ThrowingFunctionExecutionExample
     }
@@ -636,8 +637,8 @@ class StringSuffix extends AnyMatcher {
 // @public
 interface ThrowingFunctionExecutionExample {
     readonly arguments: AnyMatcherOrData[];
+    readonly errorClassName: AnyMatcherOrData;
     readonly functionName: string;
-    readonly kind: AnyMatcherOrData;
     readonly message?: AnyMatcherOrData;
 }
 
@@ -673,6 +674,32 @@ class WillCallFunction extends AnyInteractionDescriptor {
         };
     };
     constructor(example: FunctionExecutionExample);
+    // (undocumented)
+    readonly functionName: string;
+    // (undocumented)
+    readonly request: AnyMatcherOrData;
+    // (undocumented)
+    readonly response: AnyMatcherOrData;
+}
+
+// @public
+class WillCallThrowingFunction extends AnyInteractionDescriptor {
+    // @internal (undocumented)
+    readonly '_case:mock:type': typeof MOCK_FUNCTION_EXECUTION;
+    // @internal (undocumented)
+    readonly '_case:run:context:setup': {
+        write: {
+            type: typeof MOCK_FUNCTION_EXECUTION;
+            stateVariables: 'default';
+            triggers: 'provided';
+        };
+        read: {
+            type: typeof MOCK_FUNCTION_CALLER;
+            stateVariables: 'state';
+            triggers: 'generated';
+        };
+    };
+    constructor(example: ThrowingFunctionExecutionExample);
     // (undocumented)
     readonly functionName: string;
     // (undocumented)

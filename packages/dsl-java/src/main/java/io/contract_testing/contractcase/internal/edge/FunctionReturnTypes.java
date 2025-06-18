@@ -18,11 +18,11 @@ public class FunctionReturnTypes {
    * <p>
    * Most users will never need to use this type directly.
    *
-   * @param kind The class name of the exception it failed with
+   * @param errorClassName The class name of the exception it failed with
    * @param message The message, if any. May be null
    * @param stack The stack trace, never used for matching
    */
-  public record FunctionFailure(String kind, String message, String stack) {
+  public record FunctionFailure(String errorClassName, String message, String stack) {
 
   }
 }

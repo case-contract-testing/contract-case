@@ -48,9 +48,9 @@ const strip = (
         ),
       }
     : {
-        errorKind: matchContext.descendAndStrip(
-          matcher.errorKind,
-          addLocation(`errorKind`, matchContext),
+        errorClassName: matchContext.descendAndStrip(
+          matcher.errorClassName,
+          addLocation(`errorClassName`, matchContext),
         ),
         ...('message' in matcher
           ? {
@@ -72,8 +72,8 @@ const describe = (
         addLocation(`returnValue`, context),
       )}`
     : `throwing a ${context.descendAndDescribe(
-        matcher.errorKind,
-        addLocation(`errorKind`, context),
+        matcher.errorClassName,
+        addLocation(`errorClassName`, context),
       )}${
         'message' in matcher
           ? ` with message ${context.descendAndDescribe(
@@ -126,7 +126,7 @@ const check = async (
         );
       }
       // and it wasn't a success
-      if ('errorKind' in actual) {
+      if ('errorClassName' in actual) {
         return [
           matchingError(
             matcher,
@@ -149,11 +149,11 @@ const check = async (
       );
     } else {
       // We're expecting failure
-      if ('errorKind' in actual) {
+      if ('errorClassName' in actual) {
         return matchContext.descendAndCheck(
-          matcher.errorKind,
+          matcher.errorClassName,
           addLocation(`thrownErrorKind`, matchContext),
-          actual['errorKind'],
+          actual['errorClassName'],
         );
       }
       // But it was a success
@@ -187,18 +187,32 @@ const validate = (
         addLocation(`returnValue`, matchContext),
       );
     }
-    if (!('errorKind' in matcher)) {
+    if (!('errorClassName' in matcher)) {
       matchContext.logger.error(
-        `FunctionSuccess or FunctionResult matcher must have a 'success' or an 'errorKind' field. Matcher was:`,
+        `FunctionSuccess or FunctionResult matcher must have a 'success' or an 'errorClassName' field. Matcher was:`,
         matcher,
       );
       throw new CaseConfigurationError(
-        `FunctionSuccess or FunctionResult matcher must have a 'success' or an 'errorKind' field`,
+        `FunctionSuccess or FunctionResult matcher must have a 'success' or an 'errorClassName' field`,
         matchContext,
         'BAD_INTERACTION_DEFINITION',
       );
     }
-    throw new CaseCoreError('Not implemented', matchContext);
+    return Promise.resolve()
+      .then(() =>
+        matchContext.descendAndValidate(
+          matcher.errorClassName,
+          addLocation('errorClassName', matchContext),
+        ),
+      )
+      .then(async () => {
+        if ('message' in matcher && matcher.message != null) {
+          await matchContext.descendAndValidate(
+            matcher.errorClassName,
+            addLocation('errorClassName', matchContext),
+          );
+        }
+      });
   });
 
 export const FunctionResultMatcherExecutor: MatcherExecutor<

@@ -25,7 +25,7 @@ export interface CoreFunctionSuccessResultMatcher {
  */
 export interface CoreFunctionErrorResultMatcher {
   '_case:matcher:type': typeof FUNCTION_RESULT_MATCHER_TYPE;
-  errorKind: AnyCaseMatcherOrData;
+  errorClassName: AnyCaseMatcherOrData;
   message?: AnyCaseMatcherOrData;
 }
 
@@ -46,10 +46,10 @@ export const functionReturnSuccessMatcher = (
 });
 
 export const functionThrowsErrorMatcher = (
-  errorKind: AnyCaseMatcherOrData,
+  errorClassName: AnyCaseMatcherOrData,
   message?: AnyCaseMatcherOrData,
 ): CoreFunctionErrorResultMatcher => ({
   '_case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
-  errorKind,
+  errorClassName,
   ...(message != null ? { message } : {}),
 });

@@ -12,6 +12,7 @@ import io.contract_testing.contractcase.configuration.InvokableFunctions.Invokab
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction7;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
+import io.contract_testing.contractcase.internal.edge.FunctionReturnTypes.FunctionFailure;
 import io.contract_testing.contractcase.internal.edge.FunctionReturnTypes.FunctionSuccess;
 import java.util.Arrays;
 import java.util.List;
@@ -51,11 +52,24 @@ public class ConnectorInvokableFunctionMapper {
       try {
         if (args.size() == expectedArgumentCount) {
           var result = invoke(args);
-          return new ConnectorSuccessWithAny(
-              mapper.writeValueAsString(mapper.writeValueAsString(
-                  new FunctionSuccess(result != null ? result : "null")
-              ))
-          );
+          try {
+            return new ConnectorSuccessWithAny(
+                mapper.writeValueAsString(mapper.writeValueAsString(
+                    new FunctionSuccess(result != null ? result : "null")
+                ))
+            );
+          } catch (JsonProcessingException e) {
+            return new ConnectorFailure(
+                ConnectorFailureKindConstants.CASE_CORE_ERROR,
+                "The registered function '" + functionName
+                    + "' returned successfully (" + result
+                    + "), but there was an error serialising it: "
+                    + e.getMessage(),
+                functionName + " (called by " + MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER + ")",
+                "CORE_UNRECOVERABLE",
+                ""
+            );
+          }
         }
         return new ConnectorFailure(
             ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
@@ -66,16 +80,30 @@ public class ConnectorInvokableFunctionMapper {
             ""
         );
       } catch (Exception e) {
-        var stackTraceFirstLines = Arrays.stream(e.getStackTrace())
+        var userFacingStackTrace = Arrays.stream(e.getStackTrace())
             .map(StackTraceElement::toString).collect(Collectors.joining("\n"));
-        return new ConnectorFailure(
-            ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
-            "The function '" + functionName + "()' threw an exception: "
-                + e.getMessage() + "\n" + stackTraceFirstLines,
-            MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-            "UNDOCUMENTED",
-            stackTraceFirstLines
-        );
+
+        try {
+          return new ConnectorSuccessWithAny(
+              mapper.writeValueAsString(mapper.writeValueAsString(
+                  new FunctionFailure(
+                      e.getClass().getSimpleName(),
+                      e.getMessage(),
+                      userFacingStackTrace
+                  )
+              ))
+          );
+        } catch (JsonProcessingException ex) {
+          return new ConnectorFailure(
+              ConnectorFailureKindConstants.CASE_CORE_ERROR,
+              "The registered function '" + functionName
+                  + "' threw an exception, and there was an error serialising it:"
+                  + e.getMessage() + "\nError thrown was: ",
+              functionName + " (called by " + MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER + ")",
+              "CORE_UNRECOVERABLE",
+              userFacingStackTrace
+          );
+        }
       }
     }
   }

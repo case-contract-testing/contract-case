@@ -35,7 +35,7 @@ export interface ThrowingFunctionExecutionExample {
   /**
    * A test equivalence matcher for the class name of this exception
    */
-  readonly kind: AnyMatcherOrData;
+  readonly errorClassName: AnyMatcherOrData;
   /**
    * A test equivalence matcher for the message from this exception.
    * In general, it's best to rely on the class of the exception instead of the specific error message

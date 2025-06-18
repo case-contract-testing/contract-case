@@ -45,7 +45,7 @@ const mapSetup = <C extends Record<string, string>>(
           throw new Error(
             // TODO: This is definitely not right, and we should check to see
             // if these fields exist
-            `${(functionReturn as Record<string, string>)?.['errorKind']}: ${(functionReturn as Record<string, string>)?.['message']} `,
+            `${(functionReturn as Record<string, string>)?.['errorClassName']}: ${(functionReturn as Record<string, string>)?.['message']} `,
           );
         });
   },

@@ -42,11 +42,11 @@ const validateFunctionResponse = (
   if ('success' in data) {
     return data;
   }
-  if ('errorKind' in data) {
+  if ('errorClassName' in data) {
     return data;
   }
   const message = `Bad function return value in interaction. 
-      This interaction had a function response that didn't contain a 'success' or 'errorKind' key. 
+      This interaction had a function response that didn't contain a 'success' or 'errorClassName' key. 
            
         Please update the function definition to be a ReturnValue or a FunctionThrows matcher.`;
 
@@ -111,12 +111,12 @@ export const setupMockFunctionExecution = (
         });
       }
 
-      if ('errorKind' in functionResponse) {
+      if ('errorClassName' in functionResponse) {
         context.logger.debug(
-          `Returning error of kind '${functionResponse.errorKind}'${'message' in functionResponse ? ` with message: ${functionResponse.message}` : ''}`,
+          `Returning error of kind '${functionResponse.errorClassName}'${'message' in functionResponse ? ` with message: ${functionResponse.message}` : ''}`,
         );
         return JSON.stringify({
-          errorKind: JSON.stringify(functionResponse.errorKind),
+          errorClassName: JSON.stringify(functionResponse.errorClassName),
           ...('message' in functionResponse
             ? { message: JSON.stringify(functionResponse.message) }
             : {}),

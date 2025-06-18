@@ -63,6 +63,12 @@ public class FunctionCallerVerificationEmptyConfigTest {
           convertJsonStringArgs((String key) -> mockedStore.get(key))
       );
 
+
+      contract.registerFunction(
+          "throwingFunction",
+          convertJsonStringArgs((String key) ->{ throw new CustomException();})
+      );
+
       contract.registerFunction("complexReturn",
           convertJsonIntegerArg(
               (Integer v) ->
