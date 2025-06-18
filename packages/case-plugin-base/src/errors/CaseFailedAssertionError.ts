@@ -15,7 +15,7 @@ export class CaseFailedAssertionError extends Error {
     super(
       `Test interaction didn't match the definition${matchResult.length > 1 ? 's' : ''}:\n\n${matchResult
         .map((r) => `   - ${r.message.replaceAll('\n', '\n     ')}`)
-        .reduce((acc, curr) => `${acc}\n${curr}\n`)}`,
+        .reduce((acc, curr) => `${acc}\n${curr}\n`, '')}`,
     );
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = 'CaseFailedAssertionError';

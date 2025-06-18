@@ -78,7 +78,7 @@ const unboxAllLookups = (
     .map(([key, value]) => ({
       [key]: unboxAllLookups(matcherLookup, value, context),
     }))
-    .reduce((acc, curr) => ({ ...acc, ...curr }));
+    .reduce((acc, curr) => ({ ...acc, ...curr }), {});
 };
 
 export const addLookup = (

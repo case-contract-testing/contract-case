@@ -33,7 +33,7 @@ const expectErrorContaining = async (
       expect(
         (e.matchResult as MatchResult)
           .map((m) => m.toString())
-          .reduce((acc, m) => `${acc} ${m}`),
+          .reduce((acc, m) => `${acc} ${m}`, ''),
       ).toContain(expectedContent);
     },
   );
