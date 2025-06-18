@@ -1,6 +1,6 @@
 {
   "name": "case-documentation",
-  "version": "0.24.2",
+  "version": "0.25.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",

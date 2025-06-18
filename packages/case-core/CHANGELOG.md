@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.25.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.24.2...@contract-case/case-core-v0.25.0) (2025-06-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **function-plugin:** Fix an issue where serialisation in the function plugin would fail in some circumstances. This is a breaking change for users of function plugins - the contracts will need to be rewritten.
+
+### Bug Fixes
+
+* **core:** Include user facing stack traces in most errors, substantially improving debugging experience ([ba5c06e](https://github.com/case-contract-testing/contract-case/commit/ba5c06eb46fded0138837cbe26d5227bc672a245))
+* **function-plugin:** Fix an issue where serialisation in the function plugin would fail in some circumstances. This is a breaking change for users of function plugins - the contracts will need to be rewritten. ([6fd0ce2](https://github.com/case-contract-testing/contract-case/commit/6fd0ce2543fa682b870a00e812ccbb70bb3b5d2f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.24.2 to 0.25.0
+    * @contract-case/case-core-plugin-http bumped from 0.24.2 to 0.25.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.24.2 to 0.25.0
+    * @contract-case/case-entities-internal bumped from 0.24.2 to 0.25.0
+    * @contract-case/case-plugin-base bumped from 0.24.2 to 0.25.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.24.2 to 0.25.0
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.24.2 to 0.25.0
+    * @contract-case/case-maintainer-config bumped from 0.24.2 to 0.25.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.24.2 to 0.25.0
+
 ## [0.24.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.24.1...@contract-case/case-core-v0.24.2) (2025-06-11)
 
 
