@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-maintainer-config-v0.24.2...@contract-case/case-maintainer-config-v0.25.0) (2025-06-18)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-maintainer-config:** Synchronize ContractCase versions
+
 ## [0.24.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-maintainer-config-v0.24.1...@contract-case/case-maintainer-config-v0.24.2) (2025-06-11)
 
 

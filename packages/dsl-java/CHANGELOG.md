@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.25.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.24.2...@contract-case/dsl-java-v0.25.0) (2025-06-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **function-plugin:** Fix an issue where serialisation in the function plugin would fail in some circumstances. This is a breaking change for users of function plugins - the contracts will need to be rewritten.
+
+### Bug Fixes
+
+* **function-plugin:** Fix an issue where serialisation in the function plugin would fail in some circumstances. This is a breaking change for users of function plugins - the contracts will need to be rewritten. ([6fd0ce2](https://github.com/case-contract-testing/contract-case/commit/6fd0ce2543fa682b870a00e812ccbb70bb3b5d2f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.24.2 to 0.25.0
+    * @contract-case/case-definition-dsl bumped from 0.24.2 to 0.25.0
+
 ## [0.24.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.24.1...@contract-case/dsl-java-v0.24.2) (2025-06-11)
 
 
