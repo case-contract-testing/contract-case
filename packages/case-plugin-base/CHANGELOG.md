@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.25.0...@contract-case/case-plugin-base-v0.25.1) (2025-06-18)
+
+
+### Bug Fixes
+
+* **core:** Fix crash in core when rendering certain failure kinds ([bcbed47](https://github.com/case-contract-testing/contract-case/commit/bcbed478439af142b18476ce9178530634661ccb))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.0 to 0.25.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.25.0 to 0.25.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.0 to 0.25.1
+
 ## [0.25.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.24.2...@contract-case/case-plugin-base-v0.25.0) (2025-06-18)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/eslint-config-case-maintainer-v0.25.0...@contract-case/eslint-config-case-maintainer-v0.25.1) (2025-06-18)
+
+
+### Features
+
+* **lint:** Warn when reduce() is called without an initial value ([c5a43c3](https://github.com/case-contract-testing/contract-case/commit/c5a43c3534394e5e65e2c0b6f7ba48fa97c9e35e))
+
 ## [0.25.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/eslint-config-case-maintainer-v0.24.2...@contract-case/eslint-config-case-maintainer-v0.25.0) (2025-06-18)
 
 

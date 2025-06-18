@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.25.0...documentation-v0.25.1) (2025-06-18)
+
+
+### Miscellaneous Chores
+
+* **documentation:** Synchronize ContractCase versions
+
 ## [0.25.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.24.2...documentation-v0.25.0) (2025-06-18)
 
 
