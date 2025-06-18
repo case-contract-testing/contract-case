@@ -3,7 +3,7 @@
   "language": "java",
   "metadata": {
     "packageName": "@contract-case/case-definition-dsl",
-    "packageVersion": "0.25.0"
+    "packageVersion": "0.25.1"
   },
   "apiReference": {
     "constructs": [],
@@ -176,7 +176,7 @@
                     "displayName": "ContractCaseCoreBehaviour",
                     "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour",
                     "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.25.0",
+                    "packageVersion": "0.25.1",
                     "submodule": "interactions"
                   }
                 ]
@@ -198,7 +198,7 @@
                     "displayName": "ContractCaseCoreBehaviour",
                     "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour",
                     "packageName": "@contract-case/case-definition-dsl",
-                    "packageVersion": "0.25.0",
+                    "packageVersion": "0.25.1",
                     "submodule": "interactions"
                   }
                 ]
@@ -3038,7 +3038,7 @@
                   "displayName": "ContractCaseCoreBehaviour",
                   "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour",
                   "packageName": "@contract-case/case-definition-dsl",
-                  "packageVersion": "0.25.0",
+                  "packageVersion": "0.25.1",
                   "submodule": "interactions"
                 }
               ]
@@ -3060,7 +3060,7 @@
                   "displayName": "ContractCaseCoreBehaviour",
                   "fqn": "io.contract_testing.contractcase.definitions.interactions.base.ContractCaseCoreBehaviour",
                   "packageName": "@contract-case/case-definition-dsl",
-                  "packageVersion": "0.25.0",
+                  "packageVersion": "0.25.1",
                   "submodule": "interactions"
                 }
               ]
