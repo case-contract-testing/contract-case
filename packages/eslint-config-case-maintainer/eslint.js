@@ -662,6 +662,11 @@ module.exports = [
       'no-restricted-syntax': [
         'error',
         {
+          selector:
+            "CallExpression[arguments.length=1] > MemberExpression.callee > Identifier.property[name='reduce']",
+          message: 'Provide initialValue to .reduce().',
+        },
+        {
           selector: 'ForInStatement',
           message:
             'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
