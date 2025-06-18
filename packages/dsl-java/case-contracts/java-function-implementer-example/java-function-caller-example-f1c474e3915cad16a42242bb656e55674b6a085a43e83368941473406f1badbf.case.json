@@ -1,0 +1,300 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "Java Function Caller Example",
+    "providerName": "Java Function Implementer Example"
+  },
+  "metadata": {
+    "_case": {
+      "version": "0.24.2"
+    }
+  },
+  "matcherLookup": {
+    "matcher:returning \"2 pages\"": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": "2 pages"
+    },
+    "matcher:An invocation of PageNumbers( <any integer> )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        {
+          "_case:context:matchBy": "type",
+          "_case:matcher:example": 2,
+          "_case:matcher:resolvesTo": "number",
+          "_case:matcher:type": "_case:Integer"
+        }
+      ],
+      "functionName": "PageNumbers"
+    },
+    "matcher:void": {
+      "_case:context:matchBy": "type",
+      "_case:matcher:example": null,
+      "_case:matcher:resolvesTo": "null",
+      "_case:matcher:type": "_case:MatchNull"
+    },
+    "matcher:returning null": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": {
+        "_case:matcher:child": {
+          "_case:context:matchBy": "type",
+          "_case:matcher:example": null,
+          "_case:matcher:resolvesTo": "null",
+          "_case:matcher:type": "_case:MatchNull"
+        },
+        "_case:matcher:type": "_case:Lookup",
+        "_case:matcher:uniqueName": "void"
+      }
+    },
+    "matcher:An invocation of NoArgFunction()": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [],
+      "functionName": "NoArgFunction"
+    },
+    "matcher:returning an object shaped like {a: an object shaped like {b: <any integer>},c: \"d\"}": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": {
+        "a": {
+          "b": {
+            "_case:context:matchBy": "type",
+            "_case:matcher:example": 2,
+            "_case:matcher:resolvesTo": "number",
+            "_case:matcher:type": "_case:Integer"
+          }
+        },
+        "c": "d"
+      }
+    },
+    "matcher:An invocation of complexReturn( <any integer> )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        {
+          "_case:context:matchBy": "type",
+          "_case:matcher:example": 2,
+          "_case:matcher:resolvesTo": "number",
+          "_case:matcher:type": "_case:Integer"
+        }
+      ],
+      "functionName": "complexReturn"
+    },
+    "matcher:returning \"bar\"": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": "bar"
+    },
+    "matcher:An invocation of keyValueStore( \"foo\" )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        "foo"
+      ],
+      "functionName": "keyValueStore"
+    }
+  },
+  "examples": [
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The map is null"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "PageNumbers",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of PageNumbers( <any integer> )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              {
+                "_case:context:matchBy": "type",
+                "_case:matcher:example": 2,
+                "_case:matcher:resolvesTo": "number",
+                "_case:matcher:type": "_case:Integer"
+              }
+            ],
+            "functionName": "PageNumbers"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning \"2 pages\"",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": "2 pages"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The map is null"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "NoArgFunction",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of NoArgFunction()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "NoArgFunction"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning null",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": {
+              "_case:matcher:child": {
+                "_case:context:matchBy": "type",
+                "_case:matcher:example": null,
+                "_case:matcher:resolvesTo": "null",
+                "_case:matcher:type": "_case:MatchNull"
+              },
+              "_case:matcher:type": "_case:Lookup",
+              "_case:matcher:uniqueName": "void"
+            }
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The map is null"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "complexReturn",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of complexReturn( <any integer> )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              {
+                "_case:context:matchBy": "type",
+                "_case:matcher:example": 2,
+                "_case:matcher:resolvesTo": "number",
+                "_case:matcher:type": "_case:Integer"
+              }
+            ],
+            "functionName": "complexReturn"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning an object shaped like {a: an object shaped like {b: <any integer>},c: \"d\"}",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": {
+              "a": {
+                "b": {
+                  "_case:context:matchBy": "type",
+                  "_case:matcher:example": 2,
+                  "_case:matcher:resolvesTo": "number",
+                  "_case:matcher:type": "_case:Integer"
+                }
+              },
+              "c": "d"
+            }
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The map is not null"
+        },
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The key 'foo' is set to 'bar'"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "keyValueStore",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of keyValueStore( \"foo\" )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              "foo"
+            ],
+            "functionName": "keyValueStore"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning \"bar\"",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": "bar"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}
