@@ -9,7 +9,6 @@ import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
-import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
@@ -34,9 +33,12 @@ public class FunctionCallerExampleTest {
             .consumerName("Java Function Caller Example")
             .providerName("Java Function Implementer Example")
             .publish(PublishType.NEVER)
-        //    .logLevel(LogLevel.MAINTAINER_DEBUG)
-        //    .changedContracts(ChangedContractsBehaviour.OVERWRITE)
-            .adviceOverrides(Map.of("OVERWRITE_CONTRACTS_NEEDED", "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"))
+            //    .logLevel(LogLevel.MAINTAINER_DEBUG)
+                .changedContracts(ChangedContractsBehaviour.OVERWRITE)
+            .adviceOverrides(Map.of(
+                "OVERWRITE_CONTRACTS_NEEDED",
+                "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"
+            ))
             .build());
   }
 
@@ -91,31 +93,51 @@ public class FunctionCallerExampleTest {
 
   private String parse(String json) {
     try {
-      return new ObjectMapper().readValue(json,String.class);
+      return new ObjectMapper().readValue(json, String.class);
     } catch (JsonProcessingException e) {
       throw new RuntimeException(e);
     }
   }
 
+  public record SecondLayer(int b) {
+
+  }
+
+  public record FirstLayer(SecondLayer a, String c) {
+
+  }
+
+  private FirstLayer parseComplex(String json) {
+    try {
+      return new ObjectMapper().readValue(json, FirstLayer.class);
+    } catch (JsonProcessingException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   @Test
-  public void testThrowingFunction() {
+  public void testComplexReturn() {
 
     contract.runInteraction(
         new InteractionDefinition<>(
             List.of(new InState("The map is null")),
             new WillCallFunction(FunctionExecutionExample.builder()
                 .arguments(List.of(new AnyInteger(2)))
-                .returnValue("2 pages")
-                .functionName("PageNumbers")
+                .returnValue(
+                    Map.of(
+                        "a", Map.of("b", new AnyInteger(2)),
+                        "c", "d"
+                    ))
+                .functionName("complexReturn")
                 .build())
         ),
-        IndividualSuccessTestConfigBuilder.<String>builder()
+        IndividualSuccessTestConfigBuilder.<FirstLayer>builder()
             .withTrigger((setupInfo) ->
-                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                parseComplex(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
                     .apply(List.of("2"))))
             .withTestResponse((result, setupInfo) -> {
-              assertThat(result).isEqualTo("2 pages");
+              assertThat(result.c).isEqualTo("d");
+              assertThat(result.a).isEqualTo(new SecondLayer(2));
             })
     );
 
@@ -138,7 +160,7 @@ public class FunctionCallerExampleTest {
         ),
         IndividualSuccessTestConfigBuilder.<String>builder()
             .withTrigger((setupInfo) ->
-              parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
                     .apply(List.of("\"foo\""))))
             .withTestResponse((result, setupInfo) -> {
               assertThat(result).isEqualTo("bar");

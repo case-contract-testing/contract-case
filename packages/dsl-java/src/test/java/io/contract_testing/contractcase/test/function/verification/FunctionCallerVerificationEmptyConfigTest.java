@@ -8,6 +8,8 @@ import io.contract_testing.contractcase.configuration.InvokableFunctions.Invokab
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.StateHandler;
+import io.contract_testing.contractcase.test.function.FunctionCallerExampleTest.FirstLayer;
+import io.contract_testing.contractcase.test.function.FunctionCallerExampleTest.SecondLayer;
 import java.util.HashMap;
 import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
@@ -59,6 +61,14 @@ public class FunctionCallerVerificationEmptyConfigTest {
           "keyValueStore",
 
           convertJsonStringArgs((String key) -> mockedStore.get(key))
+      );
+
+      contract.registerFunction("complexReturn",
+          convertJsonIntegerArg(
+              (Integer v) ->
+                  new FirstLayer(
+                      new SecondLayer(10), "d")
+          )
       );
 
       contract.runVerification();
