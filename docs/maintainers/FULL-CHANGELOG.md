@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/v0.25.0...v0.25.1) (2025-06-18)
+
+
+### Features
+
+* **core:** Add ability to match throwing functions ([88f8978](https://github.com/case-contract-testing/contract-case/commit/88f8978e653a5a725cc58732d27348f2880fd484))
+
+
+### Bug Fixes
+
+* **core:** Fix crash in core when rendering certain failure kinds ([bcbed47](https://github.com/case-contract-testing/contract-case/commit/bcbed478439af142b18476ce9178530634661ccb))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.0 to 0.25.1
+
 ## [0.25.0](https://github.com/case-contract-testing/contract-case/compare/v0.24.2...v0.25.0) (2025-06-18)
 
 

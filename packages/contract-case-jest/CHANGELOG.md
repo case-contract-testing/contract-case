@@ -29,6 +29,29 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.25.0...@contract-case/contract-case-jest-v0.25.1) (2025-06-18)
+
+
+### Features
+
+* **core:** Add ability to match throwing functions ([88f8978](https://github.com/case-contract-testing/contract-case/commit/88f8978e653a5a725cc58732d27348f2880fd484))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.25.0 to 0.25.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.25.0 to 0.25.1
+    * @contract-case/case-definition-dsl bumped from 0.25.0 to 0.25.1
+    * @contract-case/case-entities-internal bumped from 0.25.0 to 0.25.1
+    * @contract-case/case-plugin-base bumped from 0.25.0 to 0.25.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.0 to 0.25.1
+    * @contract-case/cli bumped from 0.25.0 to 0.25.1
+  * devDependencies
+    * @contract-case/cli bumped from 0.25.0 to 0.25.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.0 to 0.25.1
+
 ## [0.25.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.24.2...@contract-case/contract-case-jest-v0.25.0) (2025-06-18)
 
 
