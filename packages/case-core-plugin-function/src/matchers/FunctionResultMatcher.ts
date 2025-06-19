@@ -31,6 +31,19 @@ const isObject = (
   !Array.isArray(actual) &&
   actual != null;
 
+type FunctionFailure = {
+  errorClassName: string;
+  message?: string | undefined;
+  stack?: string | undefined;
+};
+
+const isFunctionFailure = (
+  maybeFailure: unknown,
+): maybeFailure is FunctionFailure =>
+  isObject(maybeFailure) &&
+  'errorClassName' in maybeFailure &&
+  typeof maybeFailure['errorClassName'] === 'string';
+
 const strip = (
   matcher: CoreFunctionSuccessResultMatcher | CoreFunctionErrorResultMatcher,
   matchContext: MatchContext,
@@ -126,16 +139,22 @@ const check = async (
         );
       }
       // and it wasn't a success
-      if ('errorClassName' in actual) {
+      if (isFunctionFailure(actual)) {
+        matchContext.logger.error(
+          `Expected the function to return success, but it failed with an error (${actual.errorClassName})`,
+        );
+        if (actual.stack) {
+          matchContext.logger.error('Stack trace was:', actual.stack);
+        }
         return [
           matchingError(
             matcher,
             `Expected the function to return success, but it failed with an error`,
             describe(
               {
-                ...matcher,
-                ...actual,
-                '_case:matcher:type': matcher['_case:matcher:type'],
+                errorClassName: actual.errorClassName,
+                ...(actual.message ? { message: actual.message } : {}),
+                '_case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
               },
               addLocation(':describingActual', matchContext),
             ),
@@ -163,9 +182,8 @@ const check = async (
           `Expected the function to throw an error, but it returned successfully`,
           describe(
             {
-              ...matcher,
-              ...actual,
-              '_case:matcher:type': matcher['_case:matcher:type'],
+              success: actual?.['success'] ?? null,
+              '_case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
             },
             addLocation(':describingActual', matchContext),
           ),

@@ -22,7 +22,7 @@ import { FunctionResultMatcherExecutor } from './matchers';
 export * from './matchers';
 export * from './mocks';
 
-const CoreHttpPlugin: ContractCasePlugin<
+const CoreFunctionPlugin: ContractCasePlugin<
   typeof FUNCTION_ARGUMENTS_MATCHER_TYPE | typeof FUNCTION_RESULT_MATCHER_TYPE,
   typeof MOCK_FUNCTION_EXECUTION | typeof MOCK_FUNCTION_CALLER,
   CoreFunctionArgumentsMatcher,
@@ -40,4 +40,4 @@ const CoreHttpPlugin: ContractCasePlugin<
   },
 };
 
-export default CoreHttpPlugin;
+export default CoreFunctionPlugin;
