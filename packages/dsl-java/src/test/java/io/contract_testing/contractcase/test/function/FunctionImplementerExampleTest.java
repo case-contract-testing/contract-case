@@ -13,6 +13,7 @@ import io.contract_testing.contractcase.definitions.interactions.functions.Funct
 import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
+import io.contract_testing.contractcase.test.function.verification.CustomException;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -27,7 +28,6 @@ public class FunctionImplementerExampleTest {
       .consumerName("Java Function Implementer Example")
       .providerName("Java Function Caller Example")
       .publish(PublishType.NEVER)
-      .changedContracts(ChangedContractsBehaviour.OVERWRITE)
       .build());
 
   @AfterAll
@@ -50,6 +50,23 @@ public class FunctionImplementerExampleTest {
             .build())
     ));
   }
+
+  /*
+  @Test
+  public void testThrowingFunction() {
+    contract.registerFunction("throwingFunction", () -> {
+      throw new CustomException("Oh no");
+    });
+    contract.runInteraction(new InteractionDefinition<>(
+        List.of(),
+        new WillReceiveFunctionCall(FunctionExecutionExample.builder()
+            .arguments(List.of())
+            .returnValue(new AnyNull())
+            .functionName("throwingFunction")
+            .build())
+    ));
+  }
+  */
 
   @Test
   public void testOneArgFunction() {

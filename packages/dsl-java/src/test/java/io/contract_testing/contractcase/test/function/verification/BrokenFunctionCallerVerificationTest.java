@@ -24,6 +24,8 @@ public class BrokenFunctionCallerVerificationTest {
           .consumerName("Java Function Caller Example")
           .providerName("Java Function Implementer Example")
           .publish(PublishType.NEVER)
+          .printResults(false)
+          .logLevel(LogLevel.NONE)
           .contractDir("verifiable-contracts")
           .build());
 
@@ -50,7 +52,7 @@ public class BrokenFunctionCallerVerificationTest {
       assertThrows(ContractCaseConfigurationError.class, () -> {
         contract.runVerification(ContractCaseConfigBuilder.aContractCaseConfig()
             // Don't print any logs, otherwise CI logs get polluted with expected failures
-             .logLevel(LogLevel.NONE)
+            .logLevel(LogLevel.NONE)
             // Don't print results, otherwise CI logs get polluted with expected failures
             .printResults(false)
             .throwOnFail(true)
@@ -66,7 +68,7 @@ public class BrokenFunctionCallerVerificationTest {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, Integer.class);
-        return mapper.writeValueAsString(mapper.writeValueAsString(functionUnderTest.apply(arg1)));
+        return (mapper.writeValueAsString(functionUnderTest.apply(arg1)));
       } catch (JsonProcessingException e) {
         throw new RuntimeException("Unable to parse argument");
       }
@@ -79,7 +81,7 @@ public class BrokenFunctionCallerVerificationTest {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, String.class);
-        return mapper.writeValueAsString(mapper.writeValueAsString(functionUnderTest.apply(arg1)));
+        return (mapper.writeValueAsString(functionUnderTest.apply(arg1)));
       } catch (JsonProcessingException e) {
         throw new RuntimeException("Unable to parse argument");
       }
