@@ -116,9 +116,9 @@ export const setupMockFunctionExecution = (
           `Returning error of kind '${functionResponse.errorClassName}'${'message' in functionResponse ? ` with message: ${functionResponse.message}` : ''}`,
         );
         return JSON.stringify({
-          errorClassName: JSON.stringify(functionResponse.errorClassName),
+          errorClassName: functionResponse.errorClassName,
           ...('message' in functionResponse
-            ? { message: JSON.stringify(functionResponse.message) }
+            ? { message: functionResponse.message }
             : {}),
         });
       }

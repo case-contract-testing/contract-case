@@ -110,9 +110,9 @@ public class InteractionSetup {
           return parsedResult.success();
         }
         throw new FunctionCompletedExceptionally(
-            mapper.readerFor(String.class).readValue(parsedResult.errorClassName()),
+            parsedResult.errorClassName(),
             parsedResult.message() != null
-                ? mapper.readerFor(String.class).readValue(parsedResult.message())
+                ? parsedResult.message()
                 : null
         );
       } catch (JsonProcessingException e) {
