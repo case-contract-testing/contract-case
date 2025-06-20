@@ -2500,6 +2500,103 @@
       },
       {
         "initializer": {
+          "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer",
+          "parameters": [
+            {
+              "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.example",
+              "displayName": "example",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.example",
+              "type": {
+                "formattingPattern": "%",
+                "types": [
+                  {
+                    "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample",
+                    "displayName": "ThrowingFunctionExecutionExample",
+                    "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample",
+                    "packageName": "@contract-case/case-definition-dsl",
+                    "packageVersion": "0.25.1",
+                    "submodule": "interactions"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "- a {@link mocks.functions.FunctionExecutionExample }."
+              }
+            }
+          ],
+          "usage": "import { interactions } from '@contract-case/case-definition-dsl'\n\nnew interactions.functions.WillReceiveFunctionCallAndThrow(example: ThrowingFunctionExecutionExample)"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
+              "remarks": "You shouldn't need to override this method."
+            },
+            "usage": "public stringify(): string"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
+            },
+            "usage": "public toJSON(): any"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.property.functionName",
+            "displayName": "functionName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.property.functionName",
+            "type": {
+              "formattingPattern": "string"
+            },
+            "docs": {},
+            "usage": "public readonly functionName: string;"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.property.request",
+            "displayName": "request",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.property.request",
+            "type": {
+              "formattingPattern": "any"
+            },
+            "docs": {},
+            "usage": "public readonly request: any;"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.property.response",
+            "displayName": "response",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.property.response",
+            "type": {
+              "formattingPattern": "any"
+            },
+            "docs": {},
+            "usage": "public readonly response: any;"
+          }
+        ],
+        "fqn": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow",
+        "displayName": "WillReceiveFunctionCallAndThrow",
+        "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow",
+        "docs": {
+          "summary": "Defines an example that expects a function to be called with specific arguments."
+        }
+      },
+      {
+        "initializer": {
           "fqn": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest.Initializer",
           "displayName": "Initializer",
           "id": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest.Initializer",

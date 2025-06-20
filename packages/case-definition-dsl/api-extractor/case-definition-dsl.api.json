@@ -1216,6 +1216,163 @@
                     "endIndex": 2
                   },
                   "implementsTokenRanges": []
+                },
+                {
+                  "kind": "Class",
+                  "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCallAndThrow:class",
+                  "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export declare class WillReceiveFunctionCallAndThrow extends "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "AnyInteractionDescriptor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.base.AnyInteractionDescriptor:class"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": " "
+                    }
+                  ],
+                  "fileUrlPath": "src/interactions/functions/MockFunctionFailingCall.ts",
+                  "releaseTag": "Public",
+                  "isAbstract": false,
+                  "name": "WillReceiveFunctionCallAndThrow",
+                  "preserveMemberOrder": false,
+                  "members": [
+                    {
+                      "kind": "Constructor",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCallAndThrow:constructor(1)",
+                      "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "constructor(example: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "ThrowingFunctionExecutionExample",
+                          "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample:interface"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ");"
+                        }
+                      ],
+                      "releaseTag": "Public",
+                      "isProtected": false,
+                      "overloadIndex": 1,
+                      "parameters": [
+                        {
+                          "parameterName": "example",
+                          "parameterTypeTokenRange": {
+                            "startIndex": 1,
+                            "endIndex": 2
+                          },
+                          "isOptional": false
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCallAndThrow#functionName:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly functionName: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "functionName",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCallAndThrow#request:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly request: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "request",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    },
+                    {
+                      "kind": "Property",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCallAndThrow#response:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly response: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "response",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      },
+                      "isStatic": false,
+                      "isProtected": false,
+                      "isAbstract": false
+                    }
+                  ],
+                  "extendsTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "implementsTokenRanges": []
                 }
               ]
             },

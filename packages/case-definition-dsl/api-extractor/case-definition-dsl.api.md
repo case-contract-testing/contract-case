@@ -331,6 +331,7 @@ interface FunctionExecutionExample {
 declare namespace functions {
     export {
         WillCallFunction,
+        WillReceiveFunctionCallAndThrow,
         WillReceiveFunctionCall,
         WillCallThrowingFunction,
         FunctionExecutionExample,
@@ -726,6 +727,32 @@ class WillReceiveFunctionCall extends AnyInteractionDescriptor {
         };
     };
     constructor(example: FunctionExecutionExample);
+    // (undocumented)
+    readonly functionName: string;
+    // (undocumented)
+    readonly request: AnyMatcherOrData;
+    // (undocumented)
+    readonly response: AnyMatcherOrData;
+}
+
+// @public
+class WillReceiveFunctionCallAndThrow extends AnyInteractionDescriptor {
+    // @internal (undocumented)
+    readonly '_case:mock:type': typeof MOCK_FUNCTION_CALLER;
+    // @internal (undocumented)
+    readonly '_case:run:context:setup': {
+        write: {
+            type: typeof MOCK_FUNCTION_CALLER;
+            stateVariables: 'state';
+            triggers: 'generated';
+        };
+        read: {
+            type: typeof MOCK_FUNCTION_EXECUTION;
+            stateVariables: 'default';
+            triggers: 'provided';
+        };
+    };
+    constructor(example: ThrowingFunctionExecutionExample);
     // (undocumented)
     readonly functionName: string;
     // (undocumented)

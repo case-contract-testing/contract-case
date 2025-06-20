@@ -42,6 +42,15 @@ Defines an interaction that executes a registered function with specific argumen
 Defines an example that expects a function to be called with specific arguments
 
 </td></tr>
+<tr><td>
+
+[WillReceiveFunctionCallAndThrow](./case-definition-dsl.interactions.functions.willreceivefunctioncallandthrow.md)
+
+</td><td>
+
+Defines an example that expects a function to be called with specific arguments
+
+</td></tr>
 </tbody></table>
 
 ## Interfaces

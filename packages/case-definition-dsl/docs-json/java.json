@@ -2694,6 +2694,137 @@
       },
       {
         "initializer": {
+          "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer",
+          "displayName": "Initializer",
+          "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer",
+          "parameters": [
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.arguments",
+              "displayName": "arguments",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.arguments",
+              "type": {
+                "formattingPattern": "java.util.List<%>",
+                "types": [
+                  {
+                    "formattingPattern": "java.lang.Object"
+                  }
+                ]
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "An array of expected function arguments (or test equivalence matchers for those arguments)."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.errorClassName",
+              "displayName": "errorClassName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.errorClassName",
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test equivalence matcher for the class name of this exception."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.functionName",
+              "displayName": "functionName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.functionName",
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "The name of the function to be executed.",
+                "remarks": "Doubles as the handle used by\nregisterFunction."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.message",
+              "displayName": "message",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.message",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.Object"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A test equivalence matcher for the message from this exception.",
+                "remarks": "In general, it's best to rely on the class of the exception instead of the specific error message"
+              }
+            }
+          ],
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow;\n\nWillReceiveFunctionCallAndThrow.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .errorClassName(java.lang.Object)\n    .functionName(java.lang.String)\n//  .message(java.lang.Object)\n    .build();"
+        },
+        "interfaces": [],
+        "instanceMethods": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.stringify",
+            "displayName": "stringify",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.stringify",
+            "parameters": [],
+            "docs": {
+              "summary": "This method returns the entire example as a JSON string, as a convenience so that wrapper libraries don't need to figure out how to walk a tree of example objects.",
+              "remarks": "You shouldn't need to override this method."
+            },
+            "usage": "public java.lang.String stringify()"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.toJSON",
+            "displayName": "toJSON",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.toJSON",
+            "parameters": [],
+            "docs": {
+              "summary": "Only override this method if you are writing a matcher in a language other than TypeScript.",
+              "remarks": "It exists because the ContractCase matcher format is not legal in all languages that ContractCase supports.\n\nIt isn't called by any implementation directly, it's used on the javascript side by `JSON.stringify()`.\n\nCalling it from a wrapper library will return unhelpful results, as JSii can't map all objects that it returns.\n\nWARNING: Do not return a string from this method. You must instead return\nan object that can be serialised to JSON following the matcher format\ndescribed in [Extending ContractCase](https://case.contract-testing.io/docs/reference/plugin-framework)."
+            },
+            "usage": "public java.lang.Object toJSON()"
+          }
+        ],
+        "staticMethods": [],
+        "constants": [],
+        "properties": [
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.property.functionName",
+            "displayName": "functionName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.property.functionName",
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {},
+            "usage": "public java.lang.String getFunctionName();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.property.request",
+            "displayName": "request",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.property.request",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getRequest();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.property.response",
+            "displayName": "response",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.property.response",
+            "type": {
+              "formattingPattern": "java.lang.Object"
+            },
+            "docs": {},
+            "usage": "public java.lang.Object getResponse();"
+          }
+        ],
+        "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow",
+        "displayName": "WillReceiveFunctionCallAndThrow",
+        "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow",
+        "docs": {
+          "summary": "Defines an example that expects a function to be called with specific arguments."
+        }
+      },
+      {
+        "initializer": {
           "fqn": "io.contract_testing.contractcase.definitions.interactions.http.WillReceiveHttpRequest.Initializer",
           "displayName": "Initializer",
           "id": "@contract-case/case-definition-dsl.interactions.http.WillReceiveHttpRequest.Initializer",
