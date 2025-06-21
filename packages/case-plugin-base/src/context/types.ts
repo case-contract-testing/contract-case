@@ -494,22 +494,25 @@ export type MatchContext = DataContext &
   HasMakeLookupFn;
 
 /**
- * The result formatter is used for printing results. The core doesn't know how these are
+ * The result formatter is used for printing results. The core doesn't control how these are
  * formatted and printed - this is up to the host DSL wrappers.
+ *
+ * However, it does return a string that is close to what the host wrappers are expected to format.
+ * This is useful to be able to throw an error that looks the same as the host reporting.
  *
  * @internal
  */
 export type ResultFormatter = {
-  printError: (e: CaseError, context: DataContext) => void;
+  printError: (e: CaseError, context: DataContext) => string;
   printSuccessTitle: (
     example: CaseExample,
     index: string,
     context: DataContext,
-  ) => void;
+  ) => string;
   printFailureTitle: (
     example: CaseExample,
     index: string,
     context: DataContext,
-  ) => void;
-  printDownloadedContract: (filename: string, context: DataContext) => void;
+  ) => string;
+  printDownloadedContract: (filename: string, context: DataContext) => string;
 };

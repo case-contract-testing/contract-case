@@ -84,12 +84,12 @@ const describe = (
         matcher.success,
         addLocation(`returnValue`, context),
       )}`
-    : `throwing exception (${JSON.parse(
+    : `throwing a ${JSON.parse(
         context.descendAndDescribe(
           matcher.errorClassName,
           addLocation(`errorClassName`, context),
         ),
-      )})${
+      )}${
         'message' in matcher
           ? ` with message: ${context.descendAndDescribe(
               matcher.message,

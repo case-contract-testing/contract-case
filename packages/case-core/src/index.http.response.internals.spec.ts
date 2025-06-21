@@ -1,7 +1,6 @@
 import type * as http from 'http';
 import { willSendHttpRequest } from '@contract-case/case-core-plugin-http-dsl';
 import {
-  CaseFailedAssertionError,
   MatchResult,
   CaseConfigurationError,
   makeNoErrorResult,
@@ -14,6 +13,7 @@ import start from './__tests__/server/http/index';
 import { WritingCaseContract } from './core';
 import { writerDependencies } from './connectors/dependencies';
 import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
+import { CaseFailedAssertionError } from './entities';
 
 const PORT = 8284;
 

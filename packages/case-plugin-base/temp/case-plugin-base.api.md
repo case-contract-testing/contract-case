@@ -53,13 +53,6 @@ export type CaseError = MatchingError | ConfigurationError | TriggerError | Veri
 export type CaseExample = SuccessfulCaseExample | FailedCaseExample | PendingCaseExample;
 
 // @public
-export class CaseFailedAssertionError extends Error {
-    constructor(matchResult: MatchResult);
-    // (undocumented)
-    matchResult: MatchResult;
-}
-
-// @public
 export type CaseMatcherFor<KnownMatcherDescriptors, T extends string> = Extract<KnownMatcherDescriptors, IsCaseNodeForType<T>>;
 
 // @public
@@ -415,10 +408,10 @@ export interface RawMatchError {
 //
 // @internal
 export type ResultFormatter = {
-    printError: (e: CaseError, context: DataContext) => void;
-    printSuccessTitle: (example: CaseExample, index: string, context: DataContext) => void;
-    printFailureTitle: (example: CaseExample, index: string, context: DataContext) => void;
-    printDownloadedContract: (filename: string, context: DataContext) => void;
+    printError: (e: CaseError, context: DataContext) => string;
+    printSuccessTitle: (example: CaseExample, index: string, context: DataContext) => string;
+    printFailureTitle: (example: CaseExample, index: string, context: DataContext) => string;
+    printDownloadedContract: (filename: string, context: DataContext) => string;
 };
 
 // Warning: (ae-internal-missing-underscore) The name "RunContext" should be prefixed with an underscore because the declaration is marked as @internal

@@ -34,6 +34,7 @@ import { defaultPrinter } from '../../__tests__/jest/defaultTestPrinter';
 import { EMPTY_DATA_CONTEXT } from '../../__tests__/testContext';
 import { API_NOT_AUTHORISED } from './axios/apiErrors';
 import { BrokerError } from '../../core/BrokerService/BrokerError';
+import { makeResultFormatter } from '../../entities/resultPrinter';
 
 const emptyContext: DataContext = {
   logger: makeLogger(
@@ -44,14 +45,11 @@ const emptyContext: DataContext = {
     },
     defaultPrinter,
   ),
-  resultPrinter: {
-    printError(): void {},
-    printSuccessTitle(): void {},
-    printFailureTitle(): void {},
-    printDownloadedContract(): string[] {
-      return [];
-    },
-  },
+  resultPrinter: makeResultFormatter({
+    printMatchError: (): Promise<void> => Promise.resolve(),
+    printMessageError: (): Promise<void> => Promise.resolve(),
+    printTestTitle: (): Promise<void> => Promise.resolve(),
+  }),
   makeLogger: (context: LogLevelContext) => makeLogger(context, defaultPrinter),
   '_case:currentRun:context:location': ['DURING_TESTING'],
   '_case:currentRun:context:testName': 'mock in broker tests',

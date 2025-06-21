@@ -2,13 +2,13 @@ import chalk from 'chalk';
 import { Console } from 'node:console';
 import { LogLevel } from '@contract-case/case-plugin-base';
 import { LogPrinter } from '../../connectors/logger/types';
+import { TestPrinter } from '../../connectors/types';
 import {
   PrintableMatchError,
   PrintableMessageError,
   PrintableTestTitle,
   ResultPrinter,
-  TestPrinter,
-} from '../../connectors';
+} from '../../entities/types';
 
 const stdout = new Console({ stdout: process.stdout });
 

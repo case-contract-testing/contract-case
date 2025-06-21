@@ -9,7 +9,6 @@ import {
   CaseConfigurationError,
   StripUnsupportedError,
   CaseTriggerError,
-  CaseFailedAssertionError,
   CaseCoreError,
   hasErrors,
   CaseExample,
@@ -28,7 +27,11 @@ import { InvokingScaffold } from './types';
 import { Assertable } from '../../entities/types';
 import type { ReadingCaseContract } from '../ReadingCaseContract';
 import type { WritingCaseContract } from '../WritingCaseContract';
-import { makeFailedExample, makeSuccessExample } from '../../entities';
+import {
+  CaseFailedAssertionError,
+  makeFailedExample,
+  makeSuccessExample,
+} from '../../entities';
 
 const errorToFailedExample = (
   error: Error,

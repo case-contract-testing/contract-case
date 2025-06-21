@@ -43,19 +43,6 @@ Something went wrong in ContractCase internals.
 </td></tr>
 <tr><td>
 
-[CaseFailedAssertionError](./case-plugin-base.casefailedassertionerror.md)
-
-
-</td><td>
-
-This is thrown by ContractCase core when expectations set up in the test were not met.
-
-If implementing a plugin, do not throw this during a matcher execution, instead return a [MatchResult](./case-plugin-base.matchresult.md) that contains the appropriate error.
-
-
-</td></tr>
-<tr><td>
-
 [CaseTriggerError](./case-plugin-base.casetriggererror.md)
 
 

@@ -13,8 +13,14 @@ import {
   ResultFormatter,
   CaseExample,
 } from '@contract-case/case-plugin-base';
-import { ResultPrinter } from './types';
-import { exampleToNames } from '../../entities';
+import {
+  PrintableMatchError,
+  PrintableMessageError,
+  PrintableTestTitle,
+  ResultPrinter,
+} from './types';
+import { resultStringer } from './resultStringer';
+import { exampleToNames } from '..';
 
 const locationTitleLine = (
   location: Array<string>,
@@ -30,9 +36,56 @@ const locationTitleLine = (
 const camelToCapital = (camel: string) =>
   camel.replace(/([a-z])([A-Z])/g, '$1 $2').toLocaleUpperCase();
 
+interface StringingResultPrinter {
+  printMatchError(
+    MatchErrorDescription: PrintableMatchError,
+    context: DataContext,
+  ): string;
+  printMessageError(
+    messageErrorDetails: PrintableMessageError,
+    context: DataContext,
+  ): string;
+  printTestTitle(
+    titleDetails: PrintableTestTitle,
+    context: DataContext,
+  ): string;
+}
+
+const wrapResultPrinter = (printer: ResultPrinter): StringingResultPrinter => ({
+  printMatchError: (
+    matchErrorDescription: PrintableMatchError,
+    context: DataContext,
+  ): string => {
+    if (context['_case:currentRun:context:printResults']) {
+      printer.printMatchError(matchErrorDescription);
+    }
+    return resultStringer.stringMatchError(matchErrorDescription);
+  },
+  printMessageError: (
+    messageErrorDetails: PrintableMessageError,
+    context: DataContext,
+  ): string => {
+    if (context['_case:currentRun:context:printResults']) {
+      printer.printMessageError(messageErrorDetails);
+    }
+
+    return resultStringer.stringMessageError(messageErrorDetails);
+  },
+  printTestTitle: (
+    titleDetails: PrintableTestTitle,
+    context: DataContext,
+  ): string => {
+    if (context['_case:currentRun:context:printResults']) {
+      printer.printTestTitle(titleDetails);
+    }
+    return resultStringer.stringTestTitle(titleDetails);
+  },
+});
+
 const makePrintError =
-  (printer: ResultPrinter) =>
-  (error: CaseError, context: DataContext): void => {
+  (unwrappedPrinter: ResultPrinter) =>
+  (error: CaseError, context: DataContext): string => {
+    const printer = wrapResultPrinter(unwrappedPrinter);
     const locationTag =
       'userFacingStackTrace' in error &&
       typeof error.userFacingStackTrace === 'string' &&
@@ -48,11 +101,11 @@ const makePrintError =
     const errorTypeTag =
       'matcher' in error ? error.matcher['_case:matcher:type'] : error.code;
 
-    if (context['_case:currentRun:context:printResults']) {
-      switch (error.type) {
-        case ERROR_TYPE_MATCHING:
-        case ERROR_TYPE_RAW_MATCH:
-          printer.printMatchError({
+    switch (error.type) {
+      case ERROR_TYPE_MATCHING:
+      case ERROR_TYPE_RAW_MATCH:
+        return printer.printMatchError(
+          {
             kind: 'MATCHING ERROR',
             message: error.message,
             location: locationTitleLine(error.location, context),
@@ -60,30 +113,35 @@ const makePrintError =
             actual: actualToString(error.actual, 10),
             locationTag,
             errorTypeTag,
-          });
-
-          break;
-        case ERROR_TYPE_CONFIGURATION:
-        case ERROR_TYPE_TRIGGER:
-          printer.printMessageError({
+          },
+          context,
+        );
+      case ERROR_TYPE_CONFIGURATION:
+      case ERROR_TYPE_TRIGGER:
+        return printer.printMessageError(
+          {
             kind: camelToCapital(error.code),
             message: error.message,
             location: locationTitleLine(error.location, context),
             locationTag,
             errorTypeTag,
-          });
-          break;
-        case ERROR_TYPE_TEST_RESPONSE:
-          printer.printMessageError({
+          },
+          context,
+        );
+      case ERROR_TYPE_TEST_RESPONSE:
+        return printer.printMessageError(
+          {
             kind: 'ERROR VERIFYING RETURNED OBJECT',
             message: error.message,
             location: locationTitleLine(error.location, context),
             locationTag,
             errorTypeTag,
-          });
-          break;
-        default:
-          printer.printMessageError({
+          },
+          context,
+        );
+      default:
+        return printer.printMessageError(
+          {
             kind: 'ERROR',
             message: (error as Error).message,
             location:
@@ -96,49 +154,53 @@ const makePrintError =
                 : locationTitleLine([], context),
             locationTag,
             errorTypeTag,
-          });
-      }
+          },
+          context,
+        );
     }
   };
 
-const makePrintFailureTitle =
-  (printer: ResultPrinter) =>
-  (example: CaseExample, index: string, context: DataContext): void => {
-    if (context['_case:currentRun:context:printResults']) {
-      printer.printTestTitle({
+const makePrintFailureTitle = (unwrappedPrinter: ResultPrinter) => {
+  const printer = wrapResultPrinter(unwrappedPrinter);
+  return (example: CaseExample, index: string, context: DataContext): string =>
+    printer.printTestTitle(
+      {
         kind: 'failure',
         icon: `✘`,
         title: exampleToNames(example, index).mockName,
         additionalText: '   Error details follow:\n',
-      });
-    }
-  };
+      },
+      context,
+    );
+};
 
-const makePrintSuccessTitle =
-  (printer: ResultPrinter) =>
-  (example: CaseExample, index: string, context: DataContext): void => {
-    if (context['_case:currentRun:context:printResults']) {
-      printer.printTestTitle({
+const makePrintSuccessTitle = (unwrappedPrinter: ResultPrinter) => {
+  const printer = wrapResultPrinter(unwrappedPrinter);
+  return (example: CaseExample, index: string, context: DataContext): string =>
+    printer.printTestTitle(
+      {
         kind: 'success',
         icon: `✅`,
         title: exampleToNames(example, index).mockName,
         additionalText: '',
-      });
-    }
-  };
+      },
+      context,
+    );
+};
 
-const makePrintDownloadedContract =
-  (printer: ResultPrinter) =>
-  (filename: string, context: DataContext): void => {
-    if (context['_case:currentRun:context:printResults']) {
-      printer.printTestTitle({
+const makePrintDownloadedContract = (unwrappedPrinter: ResultPrinter) => {
+  const printer = wrapResultPrinter(unwrappedPrinter);
+  return (filename: string, context: DataContext): string =>
+    printer.printTestTitle(
+      {
         kind: 'success',
         icon: `📥`,
         title: `Downloaded contract ${filename}`,
         additionalText: '',
-      });
-    }
-  };
+      },
+      context,
+    );
+};
 
 export const makeResultFormatter: (p: ResultPrinter) => ResultFormatter = (
   printer,

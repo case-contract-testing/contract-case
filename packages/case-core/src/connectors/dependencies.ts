@@ -5,11 +5,11 @@ import { makeBrokerApi } from './broker';
 import { writeContract } from './contractStore';
 import { makeEnvironment } from './BuildEnvironment/BuildEnvironment';
 import { makeLogger } from './logger';
-import { makeResultFormatter } from './resultPrinter';
+import { makeResultFormatter } from '../entities/resultPrinter';
 import { DEFAULT_TEST_ID } from '../core';
 import { makeContractStore } from './contractStore/contractReader';
 import { LogPrinter } from './logger/types';
-import { ResultPrinter } from './resultPrinter/types';
+import { ResultPrinter } from '../entities/resultPrinter/types';
 import { BaseCaseConfig } from '../core/config/types';
 
 const DEFAULT_CONFIG: Partial<BaseCaseConfig> = {

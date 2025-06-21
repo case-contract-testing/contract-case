@@ -1,4 +1,4 @@
-import type { MatchResult } from '../matchers/errors.types';
+import { MatchResult } from '@contract-case/case-plugin-base';
 
 /**
  * This is thrown by ContractCase core when expectations set up in the test were not met.

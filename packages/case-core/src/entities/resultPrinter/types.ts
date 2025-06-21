@@ -28,3 +28,9 @@ export interface ResultPrinter {
   printMessageError(messageErrorDetails: PrintableMessageError): Promise<void>;
   printTestTitle(titleDetails: PrintableTestTitle): Promise<void>;
 }
+
+export interface ResultStringer {
+  stringMatchError(MatchErrorDescription: PrintableMatchError): string;
+  stringMessageError(messageErrorDetails: PrintableMessageError): string;
+  stringTestTitle(titleDetails: PrintableTestTitle): string;
+}

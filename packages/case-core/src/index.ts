@@ -21,10 +21,18 @@ export {
   ConfigurationErrorCode,
 } from '@contract-case/case-plugin-base';
 
+export { CaseFailedAssertionError } from './entities';
+
+export {
+  PrintableMatchError,
+  PrintableMessageError,
+  PrintableTestTitle,
+  ResultPrinter,
+} from './entities/types';
+
 export {
   CaseConfigurationError,
   CaseCoreError,
-  CaseFailedAssertionError,
   CaseTriggerError,
   VerifyTriggerReturnObjectError,
 } from '@contract-case/case-plugin-base';

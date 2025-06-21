@@ -15,8 +15,8 @@ import {
   failedExpectationError,
   triggerError,
   verificationError,
-} from '../../entities/results';
-import { AnyState } from '../../entities/types';
+} from '../results';
+import { AnyState } from '../types';
 import { makeResultFormatter } from './resultFormatter';
 
 const MOCK_EXAMPLE = {

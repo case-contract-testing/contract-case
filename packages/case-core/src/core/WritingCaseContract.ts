@@ -7,7 +7,6 @@ import {
   MatchContext,
   CaseCoreError,
   addLocation,
-  CaseFailedAssertionError,
   makeResults,
   ERROR_TYPE_CONFIGURATION,
   CaseExample,
@@ -31,7 +30,7 @@ import {
   CaseContractDescription,
   SETUP_VARIABLE_STATE,
 } from '../entities/types';
-import { exampleToNames } from '../entities';
+import { CaseFailedAssertionError, exampleToNames } from '../entities';
 
 export class WritingCaseContract extends BaseCaseContract {
   private testIndex = 0;

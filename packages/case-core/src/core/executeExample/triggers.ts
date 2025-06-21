@@ -8,13 +8,13 @@ import {
   CaseTriggerError,
   CaseConfigurationError,
   CaseCoreError,
-  CaseFailedAssertionError,
   makeResults,
 } from '@contract-case/case-plugin-base';
 import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
 import { failedExpectationError } from '../../entities/results';
 import type { InvokingScaffold, Trigger } from './types';
 import { Assertable } from '../../entities/types';
+import { CaseFailedAssertionError } from '../../entities';
 
 const invokeTrigger = <T extends AnyMockDescriptorType, R>(
   trigger: Trigger<T, R>,

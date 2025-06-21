@@ -5,13 +5,13 @@ import {
   CaseTriggerError,
   ERROR_TYPE_MATCHING,
   ERROR_TYPE_RAW_MATCH,
-  CaseFailedAssertionError,
   VerificationError,
   ERROR_TYPE_TEST_RESPONSE,
   ERROR_TYPE_CONFIGURATION,
   CaseConfigurationError,
   CaseExample,
 } from '@contract-case/case-plugin-base';
+import { CaseFailedAssertionError } from '../CaseFailedAssertionError';
 
 export const handleResult = (
   example: CaseExample,
