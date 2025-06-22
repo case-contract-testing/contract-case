@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.25.1...@contract-case/case-core-plugin-function-v0.25.2) (2025-06-22)
+
+
+### Bug Fixes
+
+* **function-plugin:** Correct error message when an exception is thrown ([afdd9b5](https://github.com/case-contract-testing/contract-case/commit/afdd9b517b7ee5daef8f82f26019579da468dc26))
+* **function-plugin:** Improve description of thrown errors ([2cfb5e4](https://github.com/case-contract-testing/contract-case/commit/2cfb5e4da3a1c8f747915bf3b64f5363dc2b42fa))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-plugin-base bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.1 to 0.25.2
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.25.1 to 0.25.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.1 to 0.25.2
+
 ## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.25.0...@contract-case/case-core-plugin-function-v0.25.1) (2025-06-18)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-plugin-base",
-  "version": "0.25.1",
+  "version": "0.25.2",
   "description": "Plugin framework for writing plugins for the ContractCase test framework",
   "keywords": [
     "testing",
@@ -51,8 +51,8 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "@contract-case/case-maintainer-config": "0.25.1",
-    "@contract-case/eslint-config-case-maintainer": "0.25.1",
+    "@contract-case/case-maintainer-config": "0.25.2",
+    "@contract-case/eslint-config-case-maintainer": "0.25.2",
     "@microsoft/api-documenter": "^7.26.26",
     "@microsoft/api-extractor": "^7.52.8",
     "@types/jest": "^29.5.14",
@@ -65,7 +65,7 @@
     "typescript": "5.8.3"
   },
   "dependencies": {
-    "@contract-case/case-plugin-dsl-types": "0.25.1",
+    "@contract-case/case-plugin-dsl-types": "0.25.2",
     "pretty-format": "^29.7.0"
   }
 }

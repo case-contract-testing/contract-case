@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.25.1...@contract-case/case-core-v0.25.2) (2025-06-22)
+
+
+### Features
+
+* **core:** Now exceptions thrown by the core have the same information as the failures it prints, substantially improving developer experience ([6319125](https://github.com/case-contract-testing/contract-case/commit/6319125fc69ded2f7534eaf39d00ef8405f1f4f0))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-core-plugin-http bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-entities-internal bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-plugin-base bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.1 to 0.25.2
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-maintainer-config bumped from 0.25.1 to 0.25.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.1 to 0.25.2
+
 ## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.25.0...@contract-case/case-core-v0.25.1) (2025-06-18)
 
 

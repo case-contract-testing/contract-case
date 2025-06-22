@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.25.1...@contract-case/dsl-java-v0.25.2) (2025-06-22)
+
+
+### Features
+
+* **core:** Now exceptions thrown by the core have the same information as the failures it prints, substantially improving developer experience ([6319125](https://github.com/case-contract-testing/contract-case/commit/6319125fc69ded2f7534eaf39d00ef8405f1f4f0))
+
+
+### Bug Fixes
+
+* **java-dsl:** Add exceptions to the InvokeableFunction classes, allowing easier definition of contracts on methods that have checked exceptions ([f378b26](https://github.com/case-contract-testing/contract-case/commit/f378b263e4ea0cc568510b222849b61d9ab90eaf))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-definition-dsl bumped from 0.25.1 to 0.25.2
+
 ## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.25.0...@contract-case/dsl-java-v0.25.1) (2025-06-18)
 
 
