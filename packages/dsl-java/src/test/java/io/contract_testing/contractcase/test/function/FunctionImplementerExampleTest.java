@@ -10,7 +10,9 @@ import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfi
 import io.contract_testing.contractcase.configuration.InvokableFunctions;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
+import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall;
+import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
 import io.contract_testing.contractcase.test.function.verification.CustomException;
@@ -58,9 +60,9 @@ public class FunctionImplementerExampleTest {
     });
     contract.runInteraction(new InteractionDefinition<>(
         List.of(),
-        new WillReceiveFunctionCall(FunctionExecutionExample.builder()
+        new WillReceiveFunctionCallAndThrow(ThrowingFunctionExecutionExample.builder()
             .arguments(List.of())
-            .returnValue(new AnyNull())
+            .errorClassName("CustomException")
             .functionName("throwingFunction")
             .build())
     ));
