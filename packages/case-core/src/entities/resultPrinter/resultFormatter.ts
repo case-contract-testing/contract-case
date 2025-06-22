@@ -51,6 +51,14 @@ interface StringingResultPrinter {
   ): string;
 }
 
+/**
+ * This function wraps a result printer so that it still delegates to the
+ * original {@link ResultPrinter}, but then returns the result of calling
+ * {@link resultStringer} with the same argument.
+ *
+ * @param printer - the {@link ResultPrinter} to wrap
+ * @returns a ResultPrinter that returns strings as described above
+ */
 const wrapResultPrinter = (printer: ResultPrinter): StringingResultPrinter => ({
   printMatchError: (
     matchErrorDescription: PrintableMatchError,
