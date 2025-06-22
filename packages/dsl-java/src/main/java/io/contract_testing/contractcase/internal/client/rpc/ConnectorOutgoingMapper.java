@@ -7,7 +7,6 @@ import com.google.protobuf.BoolValue;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
-import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
@@ -241,11 +240,6 @@ public class ConnectorOutgoingMapper {
         .setResult(mapResult(result)).build();
   }
 
-  private static Value mapMapToValue(Object payload) {
-    return Value.newBuilder()
-        .setStructValue(getStructBuilder(objectMapper.valueToTree(payload)).build())
-        .build();
-  }
 
   private static Struct mapMapToStruct(Map<String, Object> payload) {
     return getStructBuilder(objectMapper.valueToTree(payload)).build();

@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class ConnectorInvokableFunctionMapper {
 
 
-  public static abstract class ConnectorInvokableFunction {
+  public static abstract class ConnectorInvokableFunction<E extends Exception> {
 
     private final String functionName;
     private final int expectedArgumentCount;
@@ -35,7 +35,7 @@ public class ConnectorInvokableFunctionMapper {
     }
 
 
-    protected abstract String invoke(List<String> args) throws JsonProcessingException;
+    protected abstract String invoke(List<String> args) throws JsonProcessingException, E;
 
     /**
      * Called by the core to invoke a user-provided function.
@@ -109,31 +109,31 @@ public class ConnectorInvokableFunctionMapper {
   }
 
 
-  public static ConnectorInvokableFunction fromInvokableFunction(String functionName,
-      InvokableFunction0 function) {
-    return new ConnectorInvokableFunction(functionName, 0) {
+  public static <E extends Exception> ConnectorInvokableFunction<E> fromInvokableFunction(String functionName,
+      InvokableFunction0<E> function) {
+    return new ConnectorInvokableFunction<>(functionName, 0) {
       @Override
-      public String invoke(List<String> args) throws JsonProcessingException {
+      public String invoke(List<String> args) throws E {
         return function.apply();
       }
     };
   }
 
-  public static ConnectorInvokableFunction fromInvokableFunction(String functionName,
-      InvokableFunction1 function) {
-    return new ConnectorInvokableFunction(functionName, 1) {
+  public static <E extends Exception> ConnectorInvokableFunction<E> fromInvokableFunction(String functionName,
+      InvokableFunction1<E> function) {
+    return new ConnectorInvokableFunction<>(functionName, 1) {
       @Override
-      protected String invoke(List<String> args) {
+      protected String invoke(List<String> args) throws E {
         return function.apply(args.get(0));
       }
     };
   }
 
-  public static ConnectorInvokableFunction fromInvokableFunction(String functionName,
-      InvokableFunction2 function) {
-    return new ConnectorInvokableFunction(functionName, 2) {
+  public static <E extends Exception> ConnectorInvokableFunction<E> fromInvokableFunction(String functionName,
+      InvokableFunction2<E> function) {
+    return new ConnectorInvokableFunction<>(functionName, 2) {
       @Override
-      protected String invoke(List<String> args) {
+      protected String invoke(List<String> args) throws E {
         return function.apply(
             args.get(0),
             args.get(1)
@@ -142,11 +142,11 @@ public class ConnectorInvokableFunctionMapper {
     };
   }
 
-  public static ConnectorInvokableFunction fromInvokableFunction(String functionName,
-      InvokableFunction3 function) {
-    return new ConnectorInvokableFunction(functionName, 3) {
+  public static <E extends Exception> ConnectorInvokableFunction<E> fromInvokableFunction(String functionName,
+      InvokableFunction3<E> function) {
+    return new ConnectorInvokableFunction<>(functionName, 3) {
       @Override
-      protected String invoke(List<String> args) {
+      protected String invoke(List<String> args) throws E {
         return function.apply(
             args.get(0),
             args.get(1),
@@ -156,11 +156,11 @@ public class ConnectorInvokableFunctionMapper {
     };
   }
 
-  public static ConnectorInvokableFunction fromInvokableFunction(String functionName,
-      InvokableFunction4 function) {
-    return new ConnectorInvokableFunction(functionName, 4) {
+  public static <E extends Exception> ConnectorInvokableFunction<E> fromInvokableFunction(String functionName,
+      InvokableFunction4<E> function) {
+    return new ConnectorInvokableFunction<>(functionName, 4) {
       @Override
-      protected String invoke(List<String> args) {
+      protected String invoke(List<String> args) throws E {
         return function.apply(
             args.get(0),
             args.get(1),
@@ -171,11 +171,11 @@ public class ConnectorInvokableFunctionMapper {
     };
   }
 
-  public static ConnectorInvokableFunction fromInvokableFunction(String functionName,
-      InvokableFunction5 function) {
-    return new ConnectorInvokableFunction(functionName, 5) {
+  public static <E extends Exception> ConnectorInvokableFunction<E> fromInvokableFunction(String functionName,
+      InvokableFunction5<E> function) {
+    return new ConnectorInvokableFunction<>(functionName, 5) {
       @Override
-      protected String invoke(List<String> args) {
+      protected String invoke(List<String> args) throws E {
         return function.apply(
             args.get(0),
             args.get(1),
@@ -187,11 +187,11 @@ public class ConnectorInvokableFunctionMapper {
     };
   }
 
-  public static ConnectorInvokableFunction fromInvokableFunction(String functionName,
-      InvokableFunction6 function) {
-    return new ConnectorInvokableFunction(functionName, 6) {
+  public static <E extends Exception> ConnectorInvokableFunction<E> fromInvokableFunction(String functionName,
+      InvokableFunction6<E> function) {
+    return new ConnectorInvokableFunction<>(functionName, 6) {
       @Override
-      protected String invoke(List<String> args) {
+      protected String invoke(List<String> args) throws E {
         return function.apply(
             args.get(0),
             args.get(1),
@@ -201,14 +201,18 @@ public class ConnectorInvokableFunctionMapper {
             args.get(5)
         );
       }
-    };
+    }
+
+        ;
   }
 
-  public static ConnectorInvokableFunction fromInvokableFunction(String functionName,
-      InvokableFunction7 function) {
-    return new ConnectorInvokableFunction(functionName, 7) {
+  public static <E extends
+      Exception> ConnectorInvokableFunction<E> fromInvokableFunction(String functionName,
+      InvokableFunction7<E> function
+  ) {
+    return new ConnectorInvokableFunction<>(functionName, 7) {
       @Override
-      protected String invoke(List<String> args) {
+      protected String invoke(List<String> args) throws E {
         return function.apply(
             args.get(0),
             args.get(1),

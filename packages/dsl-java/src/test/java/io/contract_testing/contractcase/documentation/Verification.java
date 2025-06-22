@@ -2,8 +2,8 @@ package io.contract_testing.contractcase.documentation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.ContractVerifier;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.StateHandler;
@@ -81,7 +81,7 @@ public class Verification {
 
   }
 
-  private static @NotNull <R> InvokableFunction1
+  private static @NotNull <R> InvokableFunction1<?>
   convertJsonIntegerArg(Function<Integer, R> functionUnderTest) {
     return (String a) -> {
       try {
@@ -94,7 +94,7 @@ public class Verification {
   }
 
   @NotNull
-  private static <R> InvokableFunction1
+  private static <R> InvokableFunction1<?>
   convertJsonStringArgs(Function<String, R> functionUnderTest) {
     return (String a) -> {
       try {

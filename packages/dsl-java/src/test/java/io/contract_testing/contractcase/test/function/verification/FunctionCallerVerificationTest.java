@@ -35,12 +35,13 @@ public class FunctionCallerVerificationTest {
       return null;
     });
 
-    contract.registerFunction("complexReturn",
-      convertJsonIntegerArg(
-          (Integer v) ->
-              new FirstLayer(
-                  new SecondLayer(10), "d")
-      )
+    contract.registerFunction(
+        "complexReturn",
+        convertJsonIntegerArg(
+            (Integer v) ->
+                new FirstLayer(
+                    new SecondLayer(10), "d")
+        )
     );
 
     contract.registerFunction(
@@ -57,7 +58,9 @@ public class FunctionCallerVerificationTest {
 
     contract.registerFunction(
         "throwingFunction",
-        convertJsonStringArgs((String key) ->{ throw new CustomException("The message is ignored");})
+        convertJsonStringArgs((String key) -> {
+          throw new CustomException("The message is ignored");
+        })
     );
 
     contract.runVerification(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
@@ -81,7 +84,7 @@ public class FunctionCallerVerificationTest {
 
   }
 
-  private static @NotNull <R> InvokableFunction1
+  private static @NotNull <R> InvokableFunction1<?>
   convertJsonIntegerArg(Function<Integer, R> functionUnderTest) {
     return (String a) -> {
       try {
@@ -94,8 +97,10 @@ public class FunctionCallerVerificationTest {
   }
 
   @NotNull
-  private static <R> InvokableFunction1
-  convertJsonStringArgs(Function<String, R> functionUnderTest) {
+
+
+  private static <R, E extends Exception> InvokableFunction1<E>
+  convertJsonStringArgs(InvokableFunction1<E> functionUnderTest) {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, String.class);

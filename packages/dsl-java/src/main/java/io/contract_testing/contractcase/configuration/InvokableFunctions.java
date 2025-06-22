@@ -3,50 +3,57 @@ package io.contract_testing.contractcase.configuration;
 public class InvokableFunctions {
 
   @FunctionalInterface
-  public interface InvokableFunction0 {
+  public interface InvokableFunction0<E extends Exception> {
 
-    String apply();
+    String apply() throws E;
   }
 
   @FunctionalInterface
-  public interface InvokableFunction1 {
+  public interface InvokableFunction1<E extends Exception> {
 
-    String apply(String a);
+    String apply(String a) throws E;
   }
 
   @FunctionalInterface
-  public interface InvokableFunction2 {
+  public interface InvokableFunction2<E extends Exception> {
 
-    String apply(String a, String b);
+    String apply(String a, String b) throws E;
   }
 
   @FunctionalInterface
-  public interface InvokableFunction3 {
+  public interface InvokableFunction3<E extends Exception> {
 
-    String apply(String a, String b, String c);
+    String apply(String a, String b, String c) throws E;
   }
 
   @FunctionalInterface
-  public interface InvokableFunction4 {
+  public interface InvokableFunction4<E extends Exception> {
 
-    String apply(String a, String b, String c, String d);
+    String apply(String a, String b, String c, String d) throws E;
   }
 
   @FunctionalInterface
-  public interface InvokableFunction5 {
+  public interface InvokableFunction5<E extends Exception> {
 
-    String apply(String a, String b, String c, String d, String e);
+    String apply(String a, String b, String c, String d, String e) throws E;
   }
 
   @FunctionalInterface
-  public interface InvokableFunction6 {
+  public interface InvokableFunction6<E extends Exception> {
 
-    String apply(String a, String b, String c, String d, String e, String f);
+    String apply(String a, String b, String c, String d, String e, String f)
+        throws E;
   }
 
   @FunctionalInterface
-  public interface InvokableFunction7 {
+  public interface InvokableFunction7<E extends Exception> {
 
-    String apply(String a, String b, String c, String d, String e, String f, String g);
+    String apply(String a,
+        String b,
+        String c,
+        String d,
+        String e,
+        String f,
+        String g) throws E;
   }
 }

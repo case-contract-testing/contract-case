@@ -46,7 +46,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
    * <p/>
    * This should probably be moved somewhere other than the connector.
    */
-  private final Map<String, ConnectorInvokableFunction> registeredFunctions = new ConcurrentHashMap<>();
+  private final Map<String, ConnectorInvokableFunction<?>> registeredFunctions = new ConcurrentHashMap<>();
 
   private final ResponseWaiter responseWaiter = new ResponseWaiter();
 
@@ -277,7 +277,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
    * @param functionName The name (ie, handle) of the function that the Core can use as a callback
    * @param function     The actual function that can be invoked
    */
-  public <R> void registerFunction(String functionName, ConnectorInvokableFunction function) {
+  public <E extends Exception> void registerFunction(String functionName, ConnectorInvokableFunction<E> function) {
     if (this.registeredFunctions.containsKey(functionName)) {
       throw new ContractCaseConfigurationError(
           "The function '"

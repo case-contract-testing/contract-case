@@ -119,7 +119,7 @@ public class ContractVerifier implements AutoCloseable {
   }
 
 
-  public void registerFunction(String functionName, InvokableFunction0 function) {
+  public <E extends Exception> void registerFunction(String functionName, InvokableFunction0<E> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function

@@ -41,9 +41,7 @@ public class ResponseWaiter {
    * @param result the error to cancel them all with.
    */
   void cancelAll(BoundaryResult result) {
-    this.responseFutures.forEach((key, value) -> {
-      value.complete(result);
-    });
+    this.responseFutures.forEach((key, value) -> value.complete(result));
   }
 
   ConnectorResult awaitResponse(String id, int timeoutSeconds) {

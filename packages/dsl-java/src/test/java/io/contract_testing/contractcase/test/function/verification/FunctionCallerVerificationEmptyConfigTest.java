@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.ContractVerifier;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
-import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.StateHandler;
 import io.contract_testing.contractcase.test.function.FunctionCallerExampleTest.FirstLayer;
@@ -28,7 +27,7 @@ public class FunctionCallerVerificationEmptyConfigTest {
         ContractCaseConfigBuilder.aContractCaseConfig()
             .consumerName("Java Function Caller Example")
             .providerName("Java Function Implementer Example")
-         //   .logLevel(LogLevel.MAINTAINER_DEBUG)
+            //   .logLevel(LogLevel.MAINTAINER_DEBUG)
             .publish(PublishType.NEVER)
             .printResults(true)
             .throwOnFail(true)
@@ -63,13 +62,15 @@ public class FunctionCallerVerificationEmptyConfigTest {
           convertJsonStringArgs((String key) -> mockedStore.get(key))
       );
 
-
       contract.registerFunction(
           "throwingFunction",
-          convertJsonStringArgs((String key) ->{ throw new CustomException();})
+          convertJsonStringArgs((String key) -> {
+            throw new CustomException();
+          })
       );
 
-      contract.registerFunction("complexReturn",
+      contract.registerFunction(
+          "complexReturn",
           convertJsonIntegerArg(
               (Integer v) ->
                   new FirstLayer(
@@ -95,8 +96,8 @@ public class FunctionCallerVerificationEmptyConfigTest {
   }
 
   @NotNull
-  private static <R> InvokableFunction1
-  convertJsonStringArgs(Function<String, R> functionUnderTest) {
+  private static <R, E extends Exception> InvokableFunction1<E>
+  convertJsonStringArgs(InvokableFunction1<E> functionUnderTest) {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, String.class);
