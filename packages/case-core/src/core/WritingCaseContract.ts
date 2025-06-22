@@ -191,11 +191,14 @@ export class WritingCaseContract extends BaseCaseContract {
       const pendingCount = getPendingCount(this.currentContract);
       const totalCount = failures.length + successCount + pendingCount;
 
+      const message = `Unable to write contract: ${failures.length}/${totalCount} interactions failed${pendingCount !== 0 ? ` (${pendingCount} were pending)` : ''}\nSee the other failing tests for details`;
+
       throw new CaseFailedAssertionError(
+        message,
         makeResults(
           {
             type: ERROR_TYPE_CONFIGURATION,
-            message: `Unable to write contract: ${failures.length}/${totalCount} interactions failed${pendingCount !== 0 ? ` (${pendingCount} were pending)` : ''}`,
+            message,
             code: 'FAIL',
             location: ['Writing Contract'],
             toString: () =>

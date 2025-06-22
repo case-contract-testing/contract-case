@@ -5,8 +5,10 @@ import {
   ResultStringer,
 } from './types';
 
+const baseSpaces = 3;
+
 const spaces = (size: number, str: string) => {
-  const space = new Array(size).fill(' ').join('');
+  const space = new Array(size + baseSpaces).fill(' ').join('');
   return `${space}${str.replace(/\n/g, `\n${space}`)}`;
 };
 
@@ -20,14 +22,13 @@ export const resultStringer: ResultStringer = {
     locationTag,
     errorTypeTag,
   }: PrintableMatchError): string =>
-    // This is done as one line to prevent it splitting when multiple tests are running
-    `${spaces(6, `${` ${kind} `} ${location} ${message}`)}\n${spaces(
-      9,
+    `${spaces(0, `${`[${kind}]`}${location}${message}`)}\n${spaces(
+      3,
       `Expected something like:\n${spaces(3, expected)}`,
     )}\n${spaces(
-      9,
-      `Actual:\n${spaces(3, actual)}\n\n${spaces(
-        12,
+      3,
+      `Actual:\n${spaces(3, actual)}\n${spaces(
+        6,
         `${` - ${locationTag} [${errorTypeTag}]`}`,
       )}`,
     )}\n\n`,
@@ -38,9 +39,8 @@ export const resultStringer: ResultStringer = {
     locationTag,
     errorTypeTag,
   }: PrintableMessageError): string =>
-    // This is done as one line to prevent it splitting when multiple tests are running
-    `${spaces(6, `${` ${kind} `} ${location} ${message}`)}\n\n${spaces(
-      12,
+    `${spaces(0, `${`[${kind}] `}${location}${message}`)}\n${spaces(
+      3,
       `${` - ${locationTag} [${errorTypeTag}]`}`,
     )}\n\n`,
   stringTestTitle: ({
@@ -48,6 +48,5 @@ export const resultStringer: ResultStringer = {
     title,
     additionalText,
   }: PrintableTestTitle): string =>
-    // This is done as one line to prevent it splitting when multiple tests are running
-    spaces(3, `\n${icon} ${title}\n${additionalText}`),
+    spaces(0, `\n${icon} ${title}\n${additionalText}`),
 };

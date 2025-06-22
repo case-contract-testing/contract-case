@@ -51,7 +51,6 @@ public class FunctionImplementerExampleTest {
     ));
   }
 
-  /*
   @Test
   public void testThrowingFunction() {
     contract.registerFunction("throwingFunction", () -> {
@@ -66,7 +65,6 @@ public class FunctionImplementerExampleTest {
             .build())
     ));
   }
-  */
 
   @Test
   public void testOneArgFunction() {

@@ -26,10 +26,14 @@ export const handleResult = (
       exampleIndex,
       context,
     );
+    // The result formatter here returns what it logs, so
+    // we can keep the error message consistent
     context.resultPrinter.printFailureTitle(example, exampleIndex, context);
-    example.errors.forEach((e) => {
-      context.resultPrinter.printError(e, context);
-    });
+    const errors = example.errors
+      .map((e) => context.resultPrinter.printError(e, context))
+      .reduce((acc, curr) => `${acc}\n${curr}`, '');
+    const errorMessage = `${errors}`;
+
     // Warning: **ALL** error types must be checked in this function
     // TODO: This should be refactored so that it's not possible to reach the end
     // without checking all types
@@ -40,7 +44,7 @@ export const handleResult = (
 
     if (triggerError) {
       throw new CaseTriggerError(
-        `The provided trigger function failed during execution:\n\n   ${triggerError.message}`,
+        `The provided trigger function failed during execution:\n\n${errorMessage}`,
         {
           ...context,
           // Need to override the location in the context with the location of
@@ -62,7 +66,7 @@ export const handleResult = (
           `Throwing a CaseFailedAssertionError with`,
           example.errors,
         );
-        throw new CaseFailedAssertionError(example.errors);
+        throw new CaseFailedAssertionError(errorMessage, example.errors);
       } else {
         context.logger.maintainerDebug(
           `Not erroring because throwOnFail is false`,
@@ -79,7 +83,7 @@ export const handleResult = (
 
     if (example.errors.some((i) => i.type === ERROR_TYPE_CONFIGURATION)) {
       throw new CaseConfigurationError(
-        example.errors.map((e) => e.message).join(),
+        errorMessage,
         'DONT_ADD_LOCATION',
         'UNDOCUMENTED',
       );

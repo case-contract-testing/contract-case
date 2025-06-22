@@ -27,11 +27,11 @@ const locationTitleLine = (
   context: LogLevelContext,
 ) =>
   Array.isArray(location) && location.length > 3
-    ? ` ${locationString({
+    ? ` (at ${locationString({
         ...context,
         '_case:currentRun:context:location': location.slice(2),
-      })}: `
-    : '';
+      })}) `
+    : ' ';
 
 const camelToCapital = (camel: string) =>
   camel.replace(/([a-z])([A-Z])/g, '$1 $2').toLocaleUpperCase();

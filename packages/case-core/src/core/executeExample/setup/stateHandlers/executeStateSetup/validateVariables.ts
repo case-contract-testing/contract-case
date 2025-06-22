@@ -65,11 +65,11 @@ export const validateVariables = async (
           `The state setup for '${state.stateName}' returned a value that didn't match the expected matcher:`,
         );
 
-        matchResult.forEach((e) => {
-          context.resultPrinter.printError(e, context);
-        });
+        const errorMessages = matchResult
+          .map((e) => context.resultPrinter.printError(e, context))
+          .reduce((acc, curr) => `${acc}\n${curr}`, '');
         throw new CaseConfigurationError(
-          `The state setup for '${state.stateName}' did not return the expected variables`,
+          `The state setup for '${state.stateName}' did not return the expected variables:\n${errorMessages}`,
           context,
           'UNDOCUMENTED',
         );

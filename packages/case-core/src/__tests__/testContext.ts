@@ -3,6 +3,7 @@ import {
   DataContext,
   MatchContext,
 } from '@contract-case/case-plugin-base';
+import { makeResultFormatter } from '../entities/resultPrinter';
 
 export const MAINTAINER_TEST_CONTEXT = {
   testRunId: 'MAINTAINER',
@@ -40,12 +41,11 @@ export const EMPTY_DATA_CONTEXT: DataContext = {
   '_case:currentRun:context:defaultConfig': {},
   '_case:currentRun:context:autoVersionFrom': 'TAG',
   logger: EMPTY_LOGGER,
-  resultPrinter: {
-    printError(): void {},
-    printSuccessTitle(): void {},
-    printFailureTitle(): void {},
-    printDownloadedContract(): void {},
-  },
+  resultPrinter: makeResultFormatter({
+    printMatchError: () => Promise.resolve(),
+    printMessageError: () => Promise.resolve(),
+    printTestTitle: () => Promise.resolve(),
+  }),
   makeLogger(): Logger {
     return EMPTY_LOGGER;
   },

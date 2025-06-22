@@ -58,6 +58,7 @@ const invokeFailingTrigger = <T extends AnyMockDescriptorType, R>(
   trigger(config).then(
     (data) => {
       throw new CaseFailedAssertionError(
+        `Expected the provided trigger to throw an error, but instead it was ${data}'`,
         makeResults(
           failedExpectationError(
             `Expected the provided trigger to throw an error, but instead it was ${data}'`,
