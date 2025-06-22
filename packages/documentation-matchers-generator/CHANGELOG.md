@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/documentation-matchers-generator-v0.25.1...@contract-case/documentation-matchers-generator-v0.25.2) (2025-06-22)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/documentation-matchers-generator:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-definition-dsl bumped from 0.25.1 to 0.25.2
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.1 to 0.25.2
+
 ## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/documentation-matchers-generator-v0.25.0...@contract-case/documentation-matchers-generator-v0.25.1) (2025-06-18)
 
 

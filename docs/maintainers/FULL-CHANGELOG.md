@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/v0.25.1...v0.25.2) (2025-06-22)
+
+
+### Features
+
+* **core:** Now exceptions thrown by the core have the same information as the failures it prints, substantially improving developer experience ([6319125](https://github.com/case-contract-testing/contract-case/commit/6319125fc69ded2f7534eaf39d00ef8405f1f4f0))
+* **DSL:** Add WillReceiveFunctionCallAndThrow, for defining contracts of throwing functions at the implementer side of the contract ([4f01609](https://github.com/case-contract-testing/contract-case/commit/4f01609c5b4544cc50ef0312ed7e1fc657a74e40))
+
+
+### Bug Fixes
+
+* **function-plugin:** Correct error message when an exception is thrown ([afdd9b5](https://github.com/case-contract-testing/contract-case/commit/afdd9b517b7ee5daef8f82f26019579da468dc26))
+* **function-plugin:** Improve description of thrown errors ([2cfb5e4](https://github.com/case-contract-testing/contract-case/commit/2cfb5e4da3a1c8f747915bf3b64f5363dc2b42fa))
+* **java-dsl:** Add exceptions to the InvokeableFunction classes, allowing easier definition of contracts on methods that have checked exceptions ([f378b26](https://github.com/case-contract-testing/contract-case/commit/f378b263e4ea0cc568510b222849b61d9ab90eaf))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.1 to 0.25.2
+
 ## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/v0.25.0...v0.25.1) (2025-06-18)
 
 

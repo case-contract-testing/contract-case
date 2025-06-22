@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.25.1...@contract-case/case-definition-dsl-v0.25.2) (2025-06-22)
+
+
+### Features
+
+* **DSL:** Add WillReceiveFunctionCallAndThrow, for defining contracts of throwing functions at the implementer side of the contract ([4f01609](https://github.com/case-contract-testing/contract-case/commit/4f01609c5b4544cc50ef0312ed7e1fc657a74e40))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-entities-internal bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.1 to 0.25.2
+  * devDependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-maintainer-config bumped from 0.25.1 to 0.25.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.1 to 0.25.2
+
 ## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.25.0...@contract-case/case-definition-dsl-v0.25.1) (2025-06-18)
 
 

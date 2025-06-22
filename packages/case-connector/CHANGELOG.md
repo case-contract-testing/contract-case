@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.25.1...@contract-case/case-connector-v0.25.2) (2025-06-22)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-connector:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-core bumped from 0.25.1 to 0.25.2
+    * @contract-case/case-entities-internal bumped from 0.25.1 to 0.25.2
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.25.1 to 0.25.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.1 to 0.25.2
+
 ## [0.25.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.25.0...@contract-case/case-connector-v0.25.1) (2025-06-18)
 
 
