@@ -80,9 +80,11 @@ public class ContractDefiner {
   /**
    * Ends this contract definition and writes the contract. If the contract definition was not
    * successful (eg, a test failed), this will throw an appropriate ContractCase exception.
+   *
+   * @return A ContractWriteSuccess which describes the written contract
    */
-  public void endRecord() {
-    ConnectorResultMapper.mapVoid(this.definer.endRecord());
+  public ContractWriteSuccess endRecord() {
+   return ConnectorResultMapper.mapSuccessWithAny(this.definer.endRecord(), ContractWriteSuccess.class);
   }
 
   /**

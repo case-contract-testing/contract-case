@@ -9,9 +9,17 @@ import {
   HasContractFileConfig,
   ErrorCodes,
 } from '@contract-case/case-plugin-base';
-import type { WriteContract } from '../../../core/types';
+import type {
+  WriteContract,
+  WrittenContractFileDetails,
+} from '../../../core/types';
 import { isHasContractFileConfig } from './contextValidator';
-import { generateFileName, generateMainContractPath } from './filename';
+import {
+  consumerSlug,
+  generateFileName,
+  generateMainContractPath,
+  providerSlug,
+} from './filename';
 import { ContractData } from '../../../entities/types';
 import { readContract } from '../contractReader';
 import { contractsEqual, stripForWriting } from './contractNormaliser';
@@ -115,7 +123,7 @@ const actuallyWriteContract = (
 const internalWriteContract = (
   contract: ContractData,
   context: DataContext,
-): string => {
+): WrittenContractFileDetails => {
   if (!isHasContractFileConfig(context)) {
     throw new CaseConfigurationError(
       'Unable to write contract without required configuration options set. See the error logs for more information.',
@@ -137,27 +145,37 @@ const internalWriteContract = (
     );
   }
 
-  if (
+  const initialContract =
     context['_case:currentRun:context:contractFilename'] === undefined &&
     !context['_case:currentRun:context:doNotWriteMainContract']
-  ) {
-    // If we haven't been given an explicit filename, we also write the main
-    // contract too
+      ? [
+          // If we haven't been given an explicit filename,
+          // we also write the main contract too
+          actuallyWriteContract(
+            generateMainContractPath(contract, context),
+            contract,
+            context,
+          ),
+        ]
+      : [];
+
+  const hashedContract = [
     actuallyWriteContract(
-      generateMainContractPath(contract, context),
+      generateFileName(contract, context),
       contract,
       context,
-    );
-  }
+    ),
+  ];
 
-  const pathToFile = generateFileName(contract, context);
-
-  actuallyWriteContract(pathToFile, contract, context);
-
-  return pathToFile;
+  return {
+    consumerSlug: consumerSlug(contract),
+    providerSlug: providerSlug(contract),
+    contractPaths: [...initialContract, ...hashedContract],
+  };
 };
 
 export const writeContract: WriteContract = (
   contract: ContractData,
   context: DataContext,
-): string => internalWriteContract(stripForWriting(contract), context);
+): WrittenContractFileDetails =>
+  internalWriteContract(stripForWriting(contract), context);

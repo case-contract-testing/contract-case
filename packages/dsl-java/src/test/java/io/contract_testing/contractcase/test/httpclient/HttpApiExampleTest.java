@@ -236,7 +236,10 @@ public class HttpApiExampleTest {
 
   @AfterAll
   static void after() {
-    contract.endRecord();
+    var description = contract.endRecord();
+    assertThat(description.consumerSlug()).isEqualTo("java-example-http-client");
+    assertThat(description.providerSlug()).isEqualTo("java-example-http-server");
+    assertThat(description.contractPaths().size()).isEqualTo(2);
   }
 
 }

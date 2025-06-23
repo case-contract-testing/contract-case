@@ -258,7 +258,7 @@ export class BoundaryContractDefiner {
         }
         return this.definer.endRecord();
       })
-      .then(() => new BoundarySuccess())
+      .then((result) => new BoundarySuccessWithAny(JSON.stringify(result)))
       .catch((e) => jsErrorToFailure(e));
   }
 }

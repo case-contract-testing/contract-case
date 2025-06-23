@@ -62,8 +62,11 @@ export class ContractDownloader {
         }),
       )
       .then((filenames) => {
-        filenames.forEach((filename) =>
-          this.resultPrinter.printDownloadedContract(filename, this.context),
+        filenames.forEach((details) =>
+          this.resultPrinter.printDownloadedContract(
+            details.contractPaths.join('; '),
+            this.context,
+          ),
         );
       });
   }

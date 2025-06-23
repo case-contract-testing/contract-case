@@ -1,6 +1,8 @@
 package io.contract_testing.contractcase.internal;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.configuration.ContractDescription;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
@@ -55,11 +57,11 @@ public class ConnectorResultMapper {
               result.getErrorCode(),
               result.getUserFacingStackTrace()
           );
-      case ConnectorFailureKindConstants.CASE_CORE_ERROR ->
-          throw new ContractCaseCoreError(result.getMessage(),
-              result.getLocation(),
-              result.getUserFacingStackTrace()
-          );
+      case ConnectorFailureKindConstants.CASE_CORE_ERROR -> throw new ContractCaseCoreError(
+          result.getMessage(),
+          result.getLocation(),
+          result.getUserFacingStackTrace()
+      );
       case ConnectorFailureKindConstants.CASE_FAILED_ASSERTION_ERROR,
           ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR ->
           throw new ContractCaseExpectationsNotMet(result.getMessage(), result.getLocation(),
@@ -84,7 +86,27 @@ public class ConnectorResultMapper {
       mapFailure((ConnectorFailure) result);
     }
     throw new ContractCaseCoreError(
-        "Unexpected non-void ConnectorResult type '" + resultType + "'"
+        "Unexpected non-any ConnectorResult type '" + resultType + "'"
+    );
+  }
+
+  public static <T> T mapSuccessWithAny(ConnectorResult result, Class<T> type) {
+    final var resultType = result.getResultType();
+    if (resultType.equals(ConnectorResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD)) {
+      var payload = ((ConnectorSuccessWithAny) result).getPayload();
+      try {
+        return new ObjectMapper().readValue(payload, type);
+      } catch (JsonProcessingException e) {
+        throw new ContractCaseCoreError(
+            "Unable to deserialise result from: " + payload, e
+        );
+      }
+    }
+    if (resultType.equals(ConnectorResultTypeConstants.RESULT_FAILURE)) {
+      mapFailure((ConnectorFailure) result);
+    }
+    throw new ContractCaseCoreError(
+        "Unexpected non-any ConnectorResult type '" + resultType + "'"
     );
   }
 

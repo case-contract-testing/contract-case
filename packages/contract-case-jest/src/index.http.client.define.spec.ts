@@ -266,5 +266,21 @@ describe('e2e http consumer driven', () => {
         });
       });
     },
+    (details) => {
+      // It's kind of annoying to test this inside a harness, so we
+      // do it here. This just asserts that the details object contains
+      // the expected results.
+
+      // eslint-disable-next-line jest/no-standalone-expect
+      expect(details.consumerSlug).toBe('http-response-consumer');
+      // eslint-disable-next-line jest/no-standalone-expect
+      expect(details.providerSlug).toBe('http-response-provider');
+      // eslint-disable-next-line jest/no-standalone-expect
+      expect(details.contractPaths).toHaveLength(2);
+      details.contractPaths.forEach((path) => {
+        // eslint-disable-next-line jest/no-standalone-expect
+        expect(path.endsWith('.case.json')).toBeTruthy();
+      });
+    },
   );
 });

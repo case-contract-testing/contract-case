@@ -10,10 +10,16 @@ import { ContractData } from '../../../../entities/types';
 const escapeFileName = (pathString: string) =>
   filenamify(pathString, { maxLength: MAX_FILENAME_LENGTH });
 
+export const providerSlug = (contract: ContractData): string =>
+  escapeFileName(slug(contract.description.providerName));
+
+export const consumerSlug = (contract: ContractData): string =>
+  escapeFileName(slug(contract.description.consumerName));
+
 const makeFileName = (contract: ContractData, suffix: string) =>
   path.join(
-    escapeFileName(slug(contract.description.providerName)),
-    `${escapeFileName(slug(contract.description.consumerName))}-${suffix}${EXTENSION}`,
+    providerSlug(contract),
+    `${consumerSlug(contract)}-${suffix}${EXTENSION}`,
   );
 
 export const makeHashPath = (

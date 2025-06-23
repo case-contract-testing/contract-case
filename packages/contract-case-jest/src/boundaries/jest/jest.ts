@@ -2,7 +2,7 @@
 /* eslint-disable jest/no-export */
 import { ContractCaseDefiner } from '../../connectors/ContractDefiner.js';
 import { ContractVerifier } from '../../connectors/ContractVerifier.js';
-import { RunTestCallback } from '../../entities/index.js';
+import { ContractWriteSuccess, RunTestCallback } from '../../entities/index.js';
 import type {
   ContractCaseJestConfig,
   ContractCaseJestVerifierConfig,
@@ -19,9 +19,20 @@ const runJestTest: RunTestCallback = (
   it(`${testName}`, () => verify(), TIMEOUT);
 };
 
+/**
+ * Convenience wrapper for defining contracts
+ *
+ * @param config - Configuration for this definition run (may be overridden in individual tests)
+ * @param callback - The test definitions
+ * @param onContractDefineSuccess - An optional callback to call if the contract was written successfully
+ * @returns
+ */
 export const defineContract = (
   config: ContractCaseJestConfig,
   callback: DefineCaseJestCallback,
+  onContractDefineSuccess: (
+    details: ContractWriteSuccess,
+  ) => Promise<void> | void = () => {},
 ): void =>
   describe(`Case contract definition`, () => {
     const contract = new ContractCaseDefiner({
@@ -30,7 +41,7 @@ export const defineContract = (
       ...config,
     });
 
-    afterAll(() => contract.endRecord(), TIMEOUT);
+    afterAll(() => contract.endRecord().then(onContractDefineSuccess), TIMEOUT);
 
     describe(`between ${config.consumerName} and ${config.providerName}`, () => {
       jest.setTimeout(TIMEOUT);

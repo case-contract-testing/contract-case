@@ -9,6 +9,7 @@ import { defaultPrinter } from './defaultTestPrinter.js';
 
 import {
   ContractCaseConfig,
+  ContractWriteSuccess,
   IndividualFailedTestConfig,
   IndividualSuccessTestConfig,
   versionString,
@@ -83,10 +84,10 @@ export class ContractCaseDefiner {
       .catch(errorHandler);
   }
 
-  endRecord(): Promise<unknown> {
+  endRecord(): Promise<ContractWriteSuccess> {
     return this.boundaryDefiner
       .endRecord()
-      .then(mapSuccess)
+      .then((result) => mapSuccessWithAny<ContractWriteSuccess>(result))
       .catch(errorHandler);
   }
 

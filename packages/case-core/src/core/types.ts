@@ -17,6 +17,20 @@ export * from './types.environment';
 
 export { CaseConfig } from './config/types';
 
+/**
+ * Returned by the core after a successful write of a contract
+ */
+export interface ContractWriteSuccess {
+  /* The path(s) to the contract files written */
+  contractPaths: Array<string>;
+  /* The consumer slug (ie, the consumer part of the filename), normalised
+   * however ContractCase chose to normalise it */
+  consumerSlug: string;
+  /* The provider slug (ie, the provider part of the filepath), normalised
+   * however ContractCase chose to normalise it */
+  providerSlug: string;
+}
+
 export type MakeBrokerService = (context: DataContext) => BrokerService;
 
 export interface ReaderDependencies {

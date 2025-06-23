@@ -23,7 +23,11 @@ import {
   isEmpty,
 } from './structure';
 import type { TestInvoker } from './executeExample/types';
-import type { CaseConfig, WriterDependencies } from './types';
+import type {
+  CaseConfig,
+  ContractWriteSuccess,
+  WriterDependencies,
+} from './types';
 import { configToRunContext } from './config';
 import { executeExample } from './executeExample';
 import {
@@ -183,7 +187,7 @@ export class WritingCaseContract extends BaseCaseContract {
     return example;
   }
 
-  async endRecord(): Promise<void> {
+  async endRecord(): Promise<ContractWriteSuccess> {
     const writingContext = addLocation('WritingContract', this.initialContext);
     if (hasFailure(this.currentContract)) {
       const failures = getFailures(this.currentContract);
@@ -215,11 +219,14 @@ export class WritingCaseContract extends BaseCaseContract {
       );
     }
     //  - if success, write contract
-    const fileName = this.dependencies.writeContract(
+    const contractDetails = this.dependencies.writeContract(
       this.currentContract,
       writingContext,
     );
-    writingContext.logger.debug(`Wrote contract file: ${fileName}`);
+
+    contractDetails.contractPaths.forEach((fileName) => {
+      writingContext.logger.debug(`Wrote contract file: ${fileName}`);
+    });
 
     await this.dependencies
       .makeBrokerService(writingContext)
@@ -230,5 +237,6 @@ export class WritingCaseContract extends BaseCaseContract {
           this.initialContext,
         ),
       );
+    return contractDetails;
   }
 }

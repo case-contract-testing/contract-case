@@ -18,7 +18,7 @@ import type {
   MultiTestInvoker,
   Trigger,
 } from '../../core/executeExample/types';
-import type { CaseConfig } from '../../core/types';
+import type { CaseConfig, ContractWriteSuccess } from '../../core/types';
 
 import { writerDependencies } from '../dependencies';
 import { TestPrinter } from './types';
@@ -184,7 +184,7 @@ export class ContractDefinerConnector<M extends AnyMockDescriptorType> {
     );
   }
 
-  endRecord(): Promise<unknown> {
+  endRecord(): Promise<ContractWriteSuccess> {
     return this.contract.endRecord();
   }
 
