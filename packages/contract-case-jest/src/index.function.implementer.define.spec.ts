@@ -6,7 +6,7 @@ describe('function receiver', () => {
     {
       consumerName: 'function execution',
       providerName: 'function definer',
-      logLevel: 'maintainerDebug',
+      // logLevel: 'maintainerDebug',
       //     changedContracts: 'OVERWRITE',
       // Usually you will not need to provide a filename
     },
