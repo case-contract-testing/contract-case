@@ -1,6 +1,9 @@
 .DS_Store
 Thumbs.db
 
+# Cursor keeps making this
+bin
+
 # ContractCase core connector
 
 src/main/resources/io/contract_testing/contractcase/internal/client/server
