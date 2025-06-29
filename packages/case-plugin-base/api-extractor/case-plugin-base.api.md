@@ -176,6 +176,7 @@ export const ERROR_TYPE_TRIGGER: "TRIGGER_FUNCTION_ERROR";
 export const ErrorCodes: {
     readonly configuration: {
         readonly DISK_IO_PROBLEM: "DISK_IO_PROBLEM";
+        readonly BAD_DSL_DECLARATION: "BAD_DSL_DECLARATION";
         readonly BAD_INTERACTION_DEFINITION: "BAD_INTERACTION_DEFINITION";
         readonly INVALID_CONFIG: "INVALID_CONFIG";
         readonly INVALID_LIFECYCLE: "INVALID_LIFECYCLE";

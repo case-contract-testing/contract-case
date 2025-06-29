@@ -10,6 +10,12 @@ export const ErrorCodes = {
     DISK_IO_PROBLEM: 'DISK_IO_PROBLEM',
 
     /**
+     * Used by the generator when the plugin declares a DSL
+     * that doesn't conform to the expected types.
+     */
+    BAD_DSL_DECLARATION: 'BAD_DSL_DECLARATION',
+
+    /**
      * Used when an interaction definition isn't valid.
      *
      * Because interaction definitions are very flexible,
@@ -30,6 +36,7 @@ export const ErrorCodes = {
      *
      */
     BAD_INTERACTION_DEFINITION: 'BAD_INTERACTION_DEFINITION',
+
     /**
      * Used for when a configuration value is outside its normal range. The error message alongside this code should
      * tell you what specifically went wrong.

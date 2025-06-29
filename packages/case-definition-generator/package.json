@@ -1,0 +1,68 @@
+{
+  "name": "@contract-case/definition-generator",
+  "version": "0.25.2",
+  "description": "Generates DSL source files for use with ContractCase",
+  "keywords": [
+    "testing",
+    "api",
+    "pact",
+    "contracttesting",
+    "contract-testing",
+    "contractcase"
+  ],
+  "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
+  "homepage": "https://case.contract-testing.io",
+  "license": "BSD-3-Clause",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "directories": {
+    "src": "src",
+    "dist": "dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/case-contract-testing/case.git"
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
+    "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
+    "format:check": "npm run format:base -- --list-different",
+    "format:fix": "npm run format:base -- --write "
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/TimothyJones"
+  },
+  "engines": {
+    "node": ">=14.21.2"
+  },
+  "bugs": {
+    "url": "https://github.com/case-contract-testing/case/issues"
+  },
+  "devDependencies": {
+    "@contract-case/case-maintainer-config": "0.25.2",
+    "@contract-case/eslint-config-case-maintainer": "0.25.2",
+    "prettier": "3.5.3",
+    "rimraf": "^6.0.1",
+    "typescript": "5.8.3",
+    "@types/jest": "^30.0.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.22.0",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.3.4",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "@contract-case/case-plugin-base": "0.25.2",
+    "@contract-case/case-plugin-dsl-types": "0.25.2"
+  }
+}

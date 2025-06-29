@@ -18,7 +18,8 @@ type ArrayLengthOptions = { minLength?: number; maxLength?: number };
 /**
  * Matches an array where each element matches the provided matcher.
  *
- * @param matcher - The example object, array, primitive or matcher to match against
+ * @param matcher - The matcher to match against each element of the array
+ * @param example - (Optional) Example data to use instead of the generated one
  */
 export const arrayEachEntryMatches = (
   matcher: AnyCaseMatcherOrData,
