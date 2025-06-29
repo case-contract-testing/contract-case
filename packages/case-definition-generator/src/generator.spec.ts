@@ -1,5 +1,5 @@
 import { generateDslCode } from './generator';
-import { generateJavaDslCode } from './javaGenerator';
+import { generateJavaDslCode } from './java/javaGenerator';
 import { MatcherDslDeclaration } from './typeSystem/types';
 
 const matcherDefinition: MatcherDslDeclaration = {
