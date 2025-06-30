@@ -59,7 +59,7 @@
     "@contract-case/cli": "0.25.2",
     "@contract-case/eslint-config-case-maintainer": "0.25.2",
     "@grpc/grpc-js": "^1.13.3",
-    "@grpc/proto-loader": "^0.7.13",
+    "@grpc/proto-loader": "^0.7.15",
     "@types/body-parser": "^1.19.2",
     "@types/express": "^4.17.14",
     "@types/jest": "^30.0.0",
