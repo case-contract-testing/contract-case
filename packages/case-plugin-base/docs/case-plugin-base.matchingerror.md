@@ -56,6 +56,25 @@ The actual data that was encountered (could be an english description, or the ra
 </td></tr>
 <tr><td>
 
+[annotations?](./case-plugin-base.matchingerror.annotations.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[ErrorAnnotations](./case-plugin-base.errorannotations.md)
+
+
+</td><td>
+
+_(Optional)_ Optional annotations to show alongside the actual value. You can use this to provide some context, like "expected an exception".
+
+
+</td></tr>
+<tr><td>
+
 [expected](./case-plugin-base.matchingerror.expected.md)
 
 
@@ -167,3 +186,4 @@ typeof [ERROR\_TYPE\_MATCHING](./case-plugin-base.error_type_matching.md)
 
 </td></tr>
 </tbody></table>
+

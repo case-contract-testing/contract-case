@@ -58,6 +58,25 @@ What actually happened (in most cases this will be an English string that descri
 </td></tr>
 <tr><td>
 
+[annotations?](./case-plugin-base.rawmatcherror.annotations.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[ErrorAnnotations](./case-plugin-base.errorannotations.md)
+
+
+</td><td>
+
+_(Optional)_ Optional annotations to show alongside the actual value. You can use this to provide some context, like "expected an exception".
+
+
+</td></tr>
+<tr><td>
+
 [code](./case-plugin-base.rawmatcherror.code.md)
 
 
@@ -167,3 +186,4 @@ typeof [ERROR\_TYPE\_RAW\_MATCH](./case-plugin-base.error_type_raw_match.md)
 
 </td></tr>
 </tbody></table>
+

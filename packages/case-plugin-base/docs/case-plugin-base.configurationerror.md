@@ -125,3 +125,4 @@ typeof [ERROR\_TYPE\_CONFIGURATION](./case-plugin-base.error_type_configuration.
 
 </td></tr>
 </tbody></table>
+

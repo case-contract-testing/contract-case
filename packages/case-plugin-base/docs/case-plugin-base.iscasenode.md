@@ -47,6 +47,7 @@ a matcher or data
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 maybeMatcher is AnyCaseMatcher

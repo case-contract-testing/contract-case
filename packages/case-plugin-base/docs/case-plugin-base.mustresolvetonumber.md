@@ -63,6 +63,7 @@ the current [MatchContext](./case-plugin-base.matchcontext.md)
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 number

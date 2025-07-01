@@ -52,6 +52,7 @@ MatchResult or `Promise<MatchResult>` objects
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [MatchResult](./case-plugin-base.matchresult.md)

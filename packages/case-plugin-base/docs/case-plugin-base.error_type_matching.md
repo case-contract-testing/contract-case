@@ -4,7 +4,7 @@
 
 ## ERROR\_TYPE\_MATCHING variable
 
-Represents an error from a matcher
+Represents an error from a matcher. The values passed to `actual` and `expected` in a matching error are automatically serialised for pretty printing in error messages.
 
 **Signature:**
 

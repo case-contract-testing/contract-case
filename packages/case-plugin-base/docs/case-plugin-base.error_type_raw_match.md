@@ -4,7 +4,7 @@
 
 ## ERROR\_TYPE\_RAW\_MATCH variable
 
-Represents an error that would be from a matcher, but there's no physical matcher
+Represents an error that would be from a matcher, but there's no physical matcher. Otherwise identical to [ERROR\_TYPE\_MATCHING](./case-plugin-base.error_type_matching.md)<!-- -->.
 
 **Signature:**
 

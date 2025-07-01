@@ -47,6 +47,7 @@ a [MatchResult](./case-plugin-base.matchresult.md) object
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 boolean

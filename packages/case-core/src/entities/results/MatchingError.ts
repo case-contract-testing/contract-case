@@ -1,8 +1,5 @@
 import {
   MatchContext,
-  CaseError,
-  ERROR_TYPE_RAW_MATCH,
-  locationString,
   ConfigurationError,
   ERROR_TYPE_CONFIGURATION,
   CaseTriggerError,
@@ -23,36 +20,6 @@ const renderUserFacingStacktrace = (error: unknown) => {
   }
   return '';
 };
-
-/**
- * This represents a mismatch during a case execution that isn't covered by a
- * matcher (usually this is a misconfiguration that is not well described by a
- * {@link ../../entities/errors#CaseConfigurationError | CaseConfigurationError})
- *
- * @param message - The message that describes this error
- * @param actual - The actual value that was received
- * @param code - A code that can be looked up in the documentation. This should
- *                be a unique code specific to this kind of error that users
- *                could look up in the documentation for more information.
- * @param context - The match context this occurred in
- * @param expected - An optional expected value (might be a description of what was expected)
- * @returns CaseError
- */
-export const failedExpectationError = (
-  message: string,
-  actual: unknown,
-  code: string,
-  context: MatchContext,
-  expected: unknown,
-): CaseError => ({
-  type: ERROR_TYPE_RAW_MATCH,
-  message,
-  expected,
-  actual,
-  code,
-  location: context['_case:currentRun:context:location'],
-  toString: () => `${locationString(context)}: ${message}`,
-});
 
 /**
  * This represents an error during execution of an example due to user configuration.

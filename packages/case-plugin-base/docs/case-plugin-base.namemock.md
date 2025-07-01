@@ -63,6 +63,7 @@ the [MatchContext](./case-plugin-base.matchcontext.md) for this run
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 M
