@@ -53,6 +53,7 @@ const check = async (
       'Failing because actual appears not to be an array of function arguments. Actual is:',
       actual,
     );
+    // This is a CoreError because the ArgumentsMatcher is an internal matcher
     throw new CaseCoreError(
       'Expected a function call to receive a number of arguments, please ensure your example is correctly defined.',
       matchContext,
@@ -78,12 +79,16 @@ const check = async (
       matchingError(
         matcher,
         `The function expected ${matcher.arguments.length} argument${matcher.arguments.length === 1 ? '' : 's'}, but received ${actual.length} argument${actual.length === 1 ? '' : 's'}`,
-        describe(
-          { ...matcher, arguments: actual },
-          addLocation(':describingActual', matchContext),
-        ),
+        actual,
         matchContext,
-        describe(matcher, addLocation(':describingExpected', matchContext)),
+        matchContext.descendAndStrip(
+          matcher.arguments,
+          addLocation(':stripExpected', matchContext),
+        ),
+        {
+          actual: 'Arguments',
+          expected: `${matcher.arguments.length} arguments`,
+        },
       ),
     ),
     errorWhen(
@@ -91,12 +96,13 @@ const check = async (
       matchingError(
         matcher,
         `The function arguments didn't match`,
-        describe(
-          { ...matcher, arguments: actual },
-          addLocation(':describingActual', matchContext),
-        ),
+        actual,
         matchContext,
-        describe(matcher, addLocation(':describingExpected', matchContext)),
+        matchContext.descendAndStrip(
+          matcher.arguments,
+          addLocation(':stripExpected', matchContext),
+        ),
+        { actual: 'Arguments', expected: 'Arguments' },
       ),
     ),
     argResults,

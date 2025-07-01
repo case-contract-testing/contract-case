@@ -98,6 +98,36 @@ const describe = (
           : ''
       }`;
 
+const parseActualSuccess = (
+  actual: unknown,
+  matchContext: MatchContext,
+): unknown => {
+  if (!isObject(actual)) {
+    throw new CaseCoreError(
+      `FunctionResultMatcher check() received a non-object response from a function. This indicates a bug in the function wrapper lib. What was returned was: ${actual}`,
+    );
+  }
+  if (typeof actual['success'] !== 'string') {
+    const message =
+      "The function return value (success) wasn't a string. This is a bug in the language specific wrapper.";
+    matchContext.logger.error(`${message} The actual value was:`, actual);
+    throw new CaseCoreError(message, matchContext);
+  }
+  try {
+    return JSON.parse(actual['success']);
+  } catch (e) {
+    const message =
+      "The function return value didn't parse as JSON. This is a bug in the language specific wrapper.";
+    matchContext.logger.error(
+      `${message} The error was:`,
+      e,
+      'The actual was:',
+      actual['success'],
+    );
+    throw new CaseCoreError(message, matchContext, (e as Error).stack);
+  }
+};
+
 const check = async (
   matcher: CoreFunctionSuccessResultMatcher | CoreFunctionErrorResultMatcher,
   matchContext: MatchContext,
@@ -113,27 +143,7 @@ const check = async (
     if (isSuccessResult(matcher)) {
       // We're expecting success
       if ('success' in actual) {
-        if (typeof actual['success'] !== 'string') {
-          const message =
-            "The function return value (success) wasn't a string. This is a bug in the language specific wrapper.";
-          matchContext.logger.error(`${message} The actual value was:`, actual);
-          throw new CaseCoreError(message, matchContext);
-        }
-        let parsedActual;
-        try {
-          parsedActual = JSON.parse(actual['success']);
-        } catch (e) {
-          const message =
-            "The function return value didn't parse as JSON. This is a bug in the language specific wrapper.";
-          matchContext.logger.error(
-            `${message} The error was:`,
-            e,
-            'The actual was:',
-            actual['success'],
-          );
-          throw new CaseCoreError(message, matchContext, (e as Error).stack);
-        }
-
+        const parsedActual = parseActualSuccess(actual, matchContext);
         return matchContext.descendAndCheck(
           matcher.success,
           addLocation(`returnValue`, matchContext),
@@ -152,16 +162,16 @@ const check = async (
           matchingError(
             matcher,
             `Expected the function to return success, but it failed with an error`,
-            describe(
-              {
-                errorClassName: actual.errorClassName,
-                ...(actual.message ? { message: actual.message } : {}),
-                '_case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
-              },
-              addLocation(':describingActual', matchContext),
-            ),
+            parseActualSuccess(actual, matchContext),
             matchContext,
-            describe(matcher, addLocation('describingExpected', matchContext)),
+            matchContext.descendAndStrip(
+              matcher,
+              addLocation(':strippingExpected', matchContext),
+            ),
+            {
+              actual: 'Function threw an error',
+              expected: 'Successfully returned',
+            },
           ),
         ];
       }
@@ -182,15 +192,16 @@ const check = async (
         matchingError(
           matcher,
           `Expected the function to throw an error, but it returned successfully`,
-          describe(
-            {
-              success: actual?.['success'] ?? null,
-              '_case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
-            },
-            addLocation(':describingActual', matchContext),
-          ),
+          actual['success'],
           matchContext,
-          describe(matcher, addLocation('describingExpected', matchContext)),
+          matchContext.descendAndStrip(
+            matcher,
+            addLocation(':strippingExpected', matchContext),
+          ),
+          {
+            actual: 'Successfully returned',
+            expected: 'Error thrown',
+          },
         ),
       ];
     }
