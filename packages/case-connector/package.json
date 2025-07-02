@@ -7,14 +7,8 @@
   "homepage": "https://case.contract-testing.io/docs",
   "license": "BSD-3-Clause",
   "exports": {
-    ".": {
-      "types": "./dist/src/index.d.ts",
-      "default": "./dist/src/index.js"
-    },
-    "./cjs": {
-      "types": "./dist/cjs/src/index.d.ts",
-      "default": "./dist/cjs/src/index.js"
-    }
+    ".": "./dist/src/index.js",
+    "./cjs": "./dist/cjs/src/index.js"
   },
   "publishConfig": {
     "access": "public"
