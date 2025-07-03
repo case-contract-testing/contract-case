@@ -46,7 +46,7 @@
     "build:proto:js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/connectors/grpc --grpc_out=grpc_js:src/connectors/grpc ./proto/contract_case_stream.proto",
     "build:proto:ts": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/connectors/grpc --grpc_out=grpc_js:src/connectors/grpc --plugin=protoc-gen-grpc=../../node_modules/grpc_tools_node_protoc_ts/bin/protoc-gen-ts ./proto/contract_case_stream.proto",
     "build": "rimraf {dist,package} && duel --project tsconfig.build.json && bash -c ./script/write-cjs-package.sh && webpack-cli",
-    "postbuild": "attw --ignore-rules cjs-resolves-to-esm --pack || attw --ignore-rules cjs-resolves-to-esm --pack -f json",
+    "postbuild": "attw  --pack || attw  --pack -f json",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "lint:fix:proto": "protolint --fix ./proto",

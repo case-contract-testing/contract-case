@@ -8,6 +8,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)" # Figure out where the 
 
 DEST_DIR="$SCRIPT_DIR/../dist/cjs/package.json"
 
-echo '{ "type": "commonjs" }' > "$DEST_DIR"
+# echo '{ "type": "commonjs" }' > "$DEST_DIR"
 
-echo "[ ] Wrote package.json to $DEST_DIR"
+# echo "[ ] Wrote package.json to $DEST_DIR"
