@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.25.3](https://github.com/case-contract-testing/contract-case/compare/v0.25.2...v0.25.3) (2025-07-03)
+
+
+### Features
+
+* Add Jest 30 as a possible peer dependency ([0f3cc98](https://github.com/case-contract-testing/contract-case/commit/0f3cc9819d3868a20f59bb28fd3dc11a5f42ca73))
+* Now `definer.endRecord()` returns a `ContractWriteSuccess` object, which contains details of the written contract(s) ([7299895](https://github.com/case-contract-testing/contract-case/commit/7299895f8ec7a9d8b3e351111045f5c7b75eb1e8))
+* **plugin-base:** Added ability for matching errors to have context about what the data is, allowing more specific error messages ([150c0d6](https://github.com/case-contract-testing/contract-case/commit/150c0d6745afe0ba3b60819510fdc11346578c4d))
+
+
+### Bug Fixes
+
+* **connector:** Correct types read when moduleresolution is node ([ff29e62](https://github.com/case-contract-testing/contract-case/commit/ff29e62a8040c97eaa86ed2dcb09bed8cb940036))
+* **function-plugin:** Substantially improved error messages when functions throw instead of returning, or receive the wrong number of arguments ([d25d819](https://github.com/case-contract-testing/contract-case/commit/d25d819a8478b887e7fc1bb4a747d0c0bd4428dc))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.25.3
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/v0.25.1...v0.25.2) (2025-06-22)
 
 
