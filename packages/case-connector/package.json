@@ -6,10 +6,30 @@
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs",
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/src/index.cjs",
+  "main": "dist/src",
   "exports": {
-    ".": "./dist/src/index.js",
-    "./cjs": "./dist/cjs/src/index.cjs"
+    ".": {
+      "import": {
+        "types": "./dist/src/index.d.ts",
+        "default": "./dist/src/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/src/index.d.cts",
+        "default": "./dist/cjs/src/index.cjs"
+      },
+      "default": "./dist/src/index.js"
+    },
+    "./cjs": {
+      "import": {
+        "types": "./dist/src/index.d.ts",
+        "default": "./dist/src/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/src/index.d.cts",
+        "default": "./dist/cjs/src/index.cjs"
+      },
+      "default": "./dist/cjs/src/index.js"
+    }
   },
   "publishConfig": {
     "access": "public"
