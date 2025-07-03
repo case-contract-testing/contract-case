@@ -18,17 +18,6 @@
         "default": "./dist/cjs/src/index.cjs"
       },
       "default": "./dist/src/index.js"
-    },
-    "./cjs": {
-      "import": {
-        "types": "./dist/src/index.d.ts",
-        "default": "./dist/src/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/src/index.d.cts",
-        "default": "./dist/cjs/src/index.cjs"
-      },
-      "default": "./dist/cjs/src/index.js"
     }
   },
   "publishConfig": {
