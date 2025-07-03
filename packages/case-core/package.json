@@ -31,6 +31,7 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "postbuild": "attw --pack",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format:base": "prettier --parser typescript \"{src,bin}/**/*.ts\"",
@@ -52,6 +53,7 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@contract-case/case-definition-dsl": "0.25.2",
     "@contract-case/case-maintainer-config": "0.25.2",
     "@contract-case/eslint-config-case-maintainer": "0.25.2",

@@ -4,7 +4,8 @@
     "**/*.ts",
     "packages/case-connector/src/connectors/grpc/contract-case-stream.mts",
     "packages/case-connector/bin/case-connector.mts",
-    "packages/contract-case-jest/bin/ContractCase.mts"
+    "packages/contract-case-jest/bin/ContractCase.mts",
+    "packages/case-connector-proto/src/index.js"
   ],
   "exclude": [
     "jest.config.ts",
