@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.25.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.25.2...@contract-case/case-core-v0.25.3) (2025-07-03)
+
+
+### Features
+
+* Now `definer.endRecord()` returns a `ContractWriteSuccess` object, which contains details of the written contract(s) ([7299895](https://github.com/case-contract-testing/contract-case/commit/7299895f8ec7a9d8b3e351111045f5c7b75eb1e8))
+* **plugin-base:** Added ability for matching errors to have context about what the data is, allowing more specific error messages ([150c0d6](https://github.com/case-contract-testing/contract-case/commit/150c0d6745afe0ba3b60819510fdc11346578c4d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-core-plugin-http bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-entities-internal bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-plugin-base bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.2 to 0.25.3
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-maintainer-config bumped from 0.25.2 to 0.25.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.25.3
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.25.1...@contract-case/case-core-v0.25.2) (2025-06-22)
 
 

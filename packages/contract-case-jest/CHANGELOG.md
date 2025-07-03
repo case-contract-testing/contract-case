@@ -29,6 +29,30 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.25.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.25.2...@contract-case/contract-case-jest-v0.25.3) (2025-07-03)
+
+
+### Features
+
+* Add Jest 30 as a possible peer dependency ([0f3cc98](https://github.com/case-contract-testing/contract-case/commit/0f3cc9819d3868a20f59bb28fd3dc11a5f42ca73))
+* Now `definer.endRecord()` returns a `ContractWriteSuccess` object, which contains details of the written contract(s) ([7299895](https://github.com/case-contract-testing/contract-case/commit/7299895f8ec7a9d8b3e351111045f5c7b75eb1e8))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-definition-dsl bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-entities-internal bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-plugin-base bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.2 to 0.25.3
+    * @contract-case/cli bumped from 0.25.2 to 0.25.3
+  * devDependencies
+    * @contract-case/cli bumped from 0.25.2 to 0.25.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.25.3
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.25.1...@contract-case/contract-case-jest-v0.25.2) (2025-06-22)
 
 

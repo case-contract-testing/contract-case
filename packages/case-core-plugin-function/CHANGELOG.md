@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.25.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.25.2...@contract-case/case-core-plugin-function-v0.25.3) (2025-07-03)
+
+
+### Bug Fixes
+
+* **function-plugin:** Substantially improved error messages when functions throw instead of returning, or receive the wrong number of arguments ([d25d819](https://github.com/case-contract-testing/contract-case/commit/d25d819a8478b887e7fc1bb4a747d0c0bd4428dc))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-plugin-base bumped from 0.25.2 to 0.25.3
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.2 to 0.25.3
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.25.2 to 0.25.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.25.3
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.25.1...@contract-case/case-core-plugin-function-v0.25.2) (2025-06-22)
 
 
