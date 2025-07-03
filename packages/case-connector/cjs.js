@@ -31,5 +31,5 @@ var __exportStar =
         __createBinding(exports, m, p);
   };
 Object.defineProperty(exports, '__esModule', { value: true });
-__exportStar(require('./dist/cjs/src/index.cjs'), exports);
+__exportStar(require('./dist/cjs/src/index.js'), exports);
 //# sourceMappingURL=index.js.map
