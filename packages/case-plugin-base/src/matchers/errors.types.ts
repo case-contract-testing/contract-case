@@ -10,12 +10,17 @@ import { VerifyTriggerReturnObjectError } from '../errors/VerifyTriggerReturnObj
 // ************************************************************
 
 /**
- * Represents an error from a matcher
+ * Represents an error from a matcher. The values passed to `actual` and  `expected`
+ * in a matching error are automatically serialised for pretty printing in error messages.
+ *
  * @public
  */
 export const ERROR_TYPE_MATCHING = 'MATCHING_ERROR' as const;
+
 /**
- * Represents an error that would be from a matcher, but there's no physical matcher
+ * Represents an error that would be from a matcher, but there's no physical matcher.
+ * Otherwise identical to {@link ERROR_TYPE_MATCHING}.
+ *
  * @public
  */
 export const ERROR_TYPE_RAW_MATCH = 'RAW_MATCH_ERROR' as const;
@@ -37,6 +42,25 @@ export const ERROR_TYPE_TRIGGER = 'TRIGGER_FUNCTION_ERROR' as const;
  * @public
  */
 export const ERROR_TYPE_TEST_RESPONSE = 'TEST_RESPONSE_ERROR' as const;
+
+/**
+ * Optional human-readable annotations to show alongside the actual value. You
+ * can use this to provide some context with your error message,
+ * like "expected an exception".
+ * @public
+ */
+export interface ErrorAnnotations {
+  /**
+   * Additional information to display before the expected value.
+   * If this is undefined or missing, nothing is shown.
+   */
+  expected?: string | undefined;
+  /**
+   * Additional information to display before the actual value.
+   * If this is undefined or missing, nothing is shown.
+   */
+  actual?: string | undefined;
+}
 
 /**
  * Describes the data of an error encountered during a matcher execution. Don't
@@ -75,6 +99,11 @@ export interface MatchingError {
    * @returns A combination of the location and error messages.
    */
   toString: () => string;
+  /**
+   * Optional annotations to show alongside the actual value. You can use this
+   * to provide some context, like "expected an exception".
+   */
+  annotations?: ErrorAnnotations;
 }
 
 /**
@@ -113,6 +142,11 @@ export interface RawMatchError {
    */
   location: Array<string>;
   toString: () => string;
+  /**
+   * Optional annotations to show alongside the actual value. You can use this
+   * to provide some context, like "expected an exception".
+   */
+  annotations?: ErrorAnnotations;
 }
 
 /**

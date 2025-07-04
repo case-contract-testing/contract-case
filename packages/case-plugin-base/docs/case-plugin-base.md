@@ -187,7 +187,20 @@ Creates a matcher descriptor for a lookupable matcher.
 
 </td><td>
 
-Helper function that will return an error if the test condition is met, or a non-erroring [MatchResult](./case-plugin-base.matchresult.md) otherwise.
+Helper function that will return a [CaseError](./case-plugin-base.caseerror.md) if the test condition is met, or a non-erroring [MatchResult](./case-plugin-base.matchresult.md) otherwise.
+
+
+</td></tr>
+<tr><td>
+
+[failedExpectationError(message, actual, code, context, expected, annotations)](./case-plugin-base.failedexpectationerror.md)
+
+
+</td><td>
+
+This represents a mismatch during a case execution that isn't covered by a matcher (usually this is an expectation failure during a MockInteraction which means we can't run the matching engine for some reason).
+
+Most of the time you won't need to use this, because most matching errors come from matchers. Errors encountered during matcher execution should use [matchingError()](./case-plugin-base.matchingerror.md) instead.
 
 
 </td></tr>
@@ -272,7 +285,7 @@ Converts a matcher or data into a human friendly string for printing
 </td></tr>
 <tr><td>
 
-[matchingError(matcher, message, actual, context, expected)](./case-plugin-base.matchingerror.md)
+[matchingError(matcher, message, actual, context, expected, annotations)](./case-plugin-base.matchingerror.md)
 
 
 </td><td>
@@ -350,6 +363,17 @@ Don't create this directly, use `configurationError` to create one.
 </td><td>
 
 The part of the context that allows saving or looking up data bound to a specific context and contract
+
+
+</td></tr>
+<tr><td>
+
+[ErrorAnnotations](./case-plugin-base.errorannotations.md)
+
+
+</td><td>
+
+Optional human-readable annotations to show alongside the actual value. You can use this to provide some context with your error message, like "expected an exception".
 
 
 </td></tr>
@@ -528,7 +552,7 @@ Represents an error because of configuration during test execution
 
 </td><td>
 
-Represents an error from a matcher
+Represents an error from a matcher. The values passed to `actual` and `expected` in a matching error are automatically serialised for pretty printing in error messages.
 
 
 </td></tr>
@@ -539,7 +563,7 @@ Represents an error from a matcher
 
 </td><td>
 
-Represents an error that would be from a matcher, but there's no physical matcher
+Represents an error that would be from a matcher, but there's no physical matcher. Otherwise identical to [ERROR\_TYPE\_MATCHING](./case-plugin-base.error_type_matching.md)<!-- -->.
 
 
 </td></tr>
@@ -857,3 +881,4 @@ If any of the Matcher's properties fail validation, throw a CaseConfigurationErr
 
 </td></tr>
 </tbody></table>
+

@@ -6,7 +6,7 @@ import {
 import { CoreHttpStatusCodeMatcher } from './matchers.types';
 
 interface QueryObject {
-  [key: string]: undefined | string | string[] | QueryObject | QueryObject[];
+  [key: string]: undefined | string | QueryObject | (string | QueryObject)[];
 }
 
 export interface HttpRequestData {

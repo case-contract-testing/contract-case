@@ -1,6 +1,7 @@
 /* eslint-disable jest/expect-expect */
 import {
   CaseTriggerError,
+  failedExpectationError,
   matchingError,
   VerifyTriggerReturnObjectError,
 } from '@contract-case/case-plugin-base';
@@ -12,7 +13,6 @@ import { anyString } from '../../boundaries';
 import { defaultPrinter } from '../../__tests__/jest/defaultTestPrinter';
 import {
   configurationError,
-  failedExpectationError,
   triggerError,
   verificationError,
 } from '../results';
@@ -94,19 +94,52 @@ describe('result printer', () => {
     });
   });
 
-  describe('with a raw matching error', () => {
-    it('prints error details', () => {
-      resultPrinter.printError(
-        failedExpectationError(
-          "really, this isn't an error",
-          'Example error message details',
-          'SomeExampleFailure',
-          EMPTY_MATCH_CONTEXT,
-          'this was expected to happen',
-        ),
-        EMPTY_DATA_CONTEXT,
-      );
-    });
+  it('prints error details with annotations', () => {
+    resultPrinter.printError(
+      matchingError(
+        anyString('foo'),
+        'Example error message details',
+        "really, this isn't an error",
+        EMPTY_MATCH_CONTEXT,
+        'this was expected to happen',
+        {
+          actual: 'Some context about the actual',
+          expected: 'Some context about the expected',
+        },
+      ),
+      EMPTY_DATA_CONTEXT,
+    );
+  });
+});
+
+describe('with a raw matching error', () => {
+  it('prints error details', () => {
+    resultPrinter.printError(
+      failedExpectationError(
+        "really, this isn't an error",
+        'Example error message details',
+        'SomeExampleFailure',
+        EMPTY_MATCH_CONTEXT,
+        'this was expected to happen',
+      ),
+      EMPTY_DATA_CONTEXT,
+    );
+  });
+  it('prints error details with annotations', () => {
+    resultPrinter.printError(
+      failedExpectationError(
+        "really, this isn't an error",
+        'Example error message details',
+        'SomeExampleFailure',
+        EMPTY_MATCH_CONTEXT,
+        'this was expected to happen',
+        {
+          actual: 'Some context about the actual',
+          expected: 'Some context about the expected',
+        },
+      ),
+      EMPTY_DATA_CONTEXT,
+    );
   });
   describe('with a trigger error', () => {
     it('prints error details', () => {

@@ -6,7 +6,7 @@ plugins {
     id 'maven-publish'
     id 'org.jreleaser' version '1.18.0'
     id "com.google.protobuf" version "0.9.5"
-    id "com.github.spotbugs" version "6.2.0"
+    id "com.github.spotbugs" version "6.2.1"
 }
 group = 'io.contract-testing.contractcase'
 version = "0.25.2" // x-release-please-version
@@ -27,7 +27,7 @@ tasks.withType(Javadoc).configureEach {
 def caseCoreVersion = "0.25.2"
 def grpcVersion = "1.73.0"
 def protobufVersion = "3.25.2"
-def junitVersion = "5.13.1"
+def junitVersion = "5.13.2"
 
 dependencies {
     api("io.contract-testing.contractcase:definitions:${caseCoreVersion}") {
@@ -51,7 +51,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testImplementation 'org.assertj:assertj-core:3.27.3'
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.13.1"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.13.2"
 
     // client implementation under test, in test.httpclient.implementation
     testImplementation 'org.apache.httpcomponents:fluent-hc:4.5.14'

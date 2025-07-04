@@ -4,7 +4,7 @@
 
 ## errorWhen() function
 
-Helper function that will return an error if the test condition is met, or a non-erroring [MatchResult](./case-plugin-base.matchresult.md) otherwise.
+Helper function that will return a [CaseError](./case-plugin-base.caseerror.md) if the test condition is met, or a non-erroring [MatchResult](./case-plugin-base.matchresult.md) otherwise.
 
 **Signature:**
 
@@ -63,6 +63,7 @@ either an error or an array of errors
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [MatchResult](./case-plugin-base.matchresult.md)

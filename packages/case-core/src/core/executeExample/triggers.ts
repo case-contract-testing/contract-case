@@ -9,9 +9,9 @@ import {
   CaseConfigurationError,
   CaseCoreError,
   makeResults,
+  failedExpectationError,
 } from '@contract-case/case-plugin-base';
 import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
-import { failedExpectationError } from '../../entities/results';
 import type { InvokingScaffold, Trigger } from './types';
 import { Assertable } from '../../entities/types';
 import { CaseFailedAssertionError } from '../../entities';

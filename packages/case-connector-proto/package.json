@@ -5,7 +5,11 @@
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs",
   "license": "BSD-3-Clause",
-  "main": "dist/index.js",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "exports": {
+    ".": "./src/index.js"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -14,10 +18,10 @@
     "url": "git+ssh://git@github.com/case-contract-testing/case.git"
   },
   "scripts": {
-    "build:proto": "npm run build:proto:js && npm run build:proto:ts && npm run format:fix && npm run build",
+    "build:proto": "npm run build:proto:js && npm run build:proto:ts && npm run format:fix",
     "build:proto:js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/grpc --grpc_out=grpc_js:src/grpc ./proto/contract_case_stream.proto",
     "build:proto:ts": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/grpc --grpc_out=grpc_js:src/grpc --plugin=protoc-gen-grpc=../../node_modules/grpc_tools_node_protoc_ts/bin/protoc-gen-ts ./proto/contract_case_stream.proto",
-    "build": "rimraf {dist,package} && tsc --project tsconfig.build.json",
+    "build": "attw --pack --ignore-rules named-exports || attw --pack -f json",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "lint:fix:proto": "protolint --fix ./proto",
@@ -29,6 +33,7 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@contract-case/case-maintainer-config": "0.25.2",
     "@contract-case/eslint-config-case-maintainer": "0.25.2",
     "@types/google-protobuf": "^3.15.12",
@@ -38,16 +43,14 @@
     "prettier": "3.5.3",
     "rimraf": "^6.0.1",
     "source-map-loader": "^5.0.0",
-    "terser-webpack-plugin": "^5.3.14",
-    "ts-node": "^10.9.2"
+    "terser-webpack-plugin": "^5.3.14"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.13.3",
-    "@grpc/proto-loader": "^0.7.10",
+    "@grpc/proto-loader": "^0.7.15",
     "google-protobuf": "^3.21.4"
   },
   "stability": "stable",
-  "types": "build/index.d.ts",
   "nx": {
     "tasksRunnerOptions": {
       "default": {

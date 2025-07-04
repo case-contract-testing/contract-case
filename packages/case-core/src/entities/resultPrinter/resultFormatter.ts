@@ -22,20 +22,12 @@ import {
 import { resultStringer } from './resultStringer';
 import { exampleToNames } from '..';
 
-const locationTitleLine = (
-  location: Array<string>,
-  context: LogLevelContext,
-) =>
-  Array.isArray(location) && location.length > 3
-    ? ` (at ${locationString({
-        ...context,
-        '_case:currentRun:context:location': location.slice(2),
-      })}) `
-    : ' ';
-
-const camelToCapital = (camel: string) =>
-  camel.replace(/([a-z])([A-Z])/g, '$1 $2').toLocaleUpperCase();
-
+/**
+ * Like the regular ResultPrinter, but returns a string.
+ * This is an internal interface to this module- the
+ * exposed interface is {@link ResultFormatter}, which has
+ * a higher level abstraction.
+ */
 interface StringingResultPrinter {
   printMatchError(
     MatchErrorDescription: PrintableMatchError,
@@ -50,6 +42,20 @@ interface StringingResultPrinter {
     context: DataContext,
   ): string;
 }
+
+const locationTitleLine = (
+  location: Array<string>,
+  context: LogLevelContext,
+) =>
+  Array.isArray(location) && location.length > 3
+    ? ` (at ${locationString({
+        ...context,
+        '_case:currentRun:context:location': location.slice(2),
+      })}) `
+    : ' ';
+
+const camelToCapital = (camel: string) =>
+  camel.replace(/([a-z])([A-Z])/g, '$1 $2').toLocaleUpperCase();
 
 /**
  * This function wraps a result printer so that it still delegates to the
@@ -90,6 +96,9 @@ const wrapResultPrinter = (printer: ResultPrinter): StringingResultPrinter => ({
   },
 });
 
+const wrapWithAnnotation = (message: string, preamble?: string) =>
+  preamble ? `${preamble}:\n${message}` : message;
+
 const makePrintError =
   (unwrappedPrinter: ResultPrinter) =>
   (error: CaseError, context: DataContext): string => {
@@ -117,8 +126,14 @@ const makePrintError =
             kind: 'MATCHING ERROR',
             message: error.message,
             location: locationTitleLine(error.location, context),
-            expected: actualToString(error.expected, 10),
-            actual: actualToString(error.actual, 10),
+            expected: wrapWithAnnotation(
+              actualToString(error.expected, 10),
+              error.annotations?.expected,
+            ),
+            actual: wrapWithAnnotation(
+              actualToString(error.actual, 10),
+              error.annotations?.actual,
+            ),
             locationTag,
             errorTypeTag,
           },

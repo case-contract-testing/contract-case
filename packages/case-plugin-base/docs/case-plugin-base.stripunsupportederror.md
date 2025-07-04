@@ -48,3 +48,4 @@ Constructs a new instance of the `StripUnsupportedError` class
 
 </td></tr>
 </tbody></table>
+

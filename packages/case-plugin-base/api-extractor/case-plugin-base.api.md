@@ -172,6 +172,12 @@ export const ERROR_TYPE_TEST_RESPONSE: "TEST_RESPONSE_ERROR";
 // @public
 export const ERROR_TYPE_TRIGGER: "TRIGGER_FUNCTION_ERROR";
 
+// @public
+export interface ErrorAnnotations {
+    actual?: string | undefined;
+    expected?: string | undefined;
+}
+
 // @public (undocumented)
 export const ErrorCodes: {
     readonly configuration: {
@@ -189,6 +195,9 @@ export const ErrorCodes: {
 
 // @public
 export const errorWhen: (test: boolean, err: CaseError | Array<CaseError>) => MatchResult;
+
+// @public
+export const failedExpectationError: (message: string, actual: unknown, code: string, context: MatchContext, expected: unknown, annotations?: ErrorAnnotations) => CaseError;
 
 // Warning: (ae-internal-missing-underscore) The name "foldIntoContext" should be prefixed with an underscore because the declaration is marked as @internal
 //
@@ -319,6 +328,7 @@ export const matcherToString: <T>(actual: T, indent?: number) => string;
 // @public
 export interface MatchingError {
     actual: unknown;
+    annotations?: ErrorAnnotations;
     expected: unknown;
     location: Array<string>;
     matcher: AnyCaseMatcher;
@@ -329,7 +339,7 @@ export interface MatchingError {
 }
 
 // @public
-export const matchingError: (matcher: AnyCaseMatcher, message: string, actual: unknown, context: MatchContext, expected?: unknown) => CaseError;
+export const matchingError: (matcher: AnyCaseMatcher, message: string, actual: unknown, context: MatchContext, expected?: unknown, annotations?: ErrorAnnotations) => CaseError;
 
 // @public
 export type MatchResult = Array<CaseError>;
@@ -395,6 +405,7 @@ export interface RawLookupFns {
 // @public
 export interface RawMatchError {
     actual: unknown;
+    annotations?: ErrorAnnotations;
     code: string;
     expected: unknown;
     location: Array<string>;

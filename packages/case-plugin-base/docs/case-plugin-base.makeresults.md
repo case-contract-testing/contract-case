@@ -47,6 +47,7 @@ any [CaseError](./case-plugin-base.caseerror.md) objects. If none supplied, then
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [MatchResult](./case-plugin-base.matchresult.md)

@@ -65,4 +65,4 @@ var ContractCaseService = exports.ContractCaseService = {
   },
 };
 
-exports.ContractCaseClient = grpc.makeGenericClientConstructor(ContractCaseService);
+exports.ContractCaseClient = grpc.makeGenericClientConstructor(ContractCaseService, 'ContractCase');

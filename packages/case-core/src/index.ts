@@ -16,7 +16,7 @@ export * from './boundaries/types';
 export { CaseConfig } from './core/types';
 export { TestInvoker, MultiTestInvoker } from './core/executeExample/types';
 export { BrokerError } from './core';
-export {
+export type {
   LogLevel,
   ConfigurationErrorCode,
 } from '@contract-case/case-plugin-base';
@@ -36,7 +36,7 @@ export {
   CaseTriggerError,
   VerifyTriggerReturnObjectError,
 } from '@contract-case/case-plugin-base';
-export {
+export type {
   AnyMockDescriptorType,
   AnyMockDescriptor,
 } from '@contract-case/case-entities-internal';
@@ -47,4 +47,4 @@ export * from './connectors';
 
 export type HttpRequestConfig = HttpRequestConsumerSetup;
 
-export { BaseSetupInfo };
+export type { BaseSetupInfo };
