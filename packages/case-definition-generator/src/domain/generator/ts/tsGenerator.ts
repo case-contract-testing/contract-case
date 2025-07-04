@@ -1,11 +1,11 @@
 import {
   MatcherDslDeclaration,
   ParameterDeclaration,
-} from './typeSystem/types';
+} from '../../typeSystem/types';
 import {
   toCamelCase,
   toScreamingSnakeCase,
-} from './stringIdiomTransformations';
+} from '../../naming/stringIdiomTransformations';
 
 const getTsType = (
   paramType: string | { kind: string; type: string },

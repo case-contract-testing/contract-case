@@ -1,5 +1,5 @@
-import { getType } from '../typeSystem';
-import { LanguageTypes, MatcherDslDeclaration } from '../typeSystem/types';
+import { getType } from '../../typeSystem';
+import { LanguageTypes, MatcherDslDeclaration } from '../../typeSystem/types';
 import { addSingleConstructor } from './constructors';
 
 const javaLanguageTypes: LanguageTypes = {

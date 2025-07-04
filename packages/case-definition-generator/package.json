@@ -51,18 +51,19 @@
   "devDependencies": {
     "@contract-case/case-maintainer-config": "0.25.2",
     "@contract-case/eslint-config-case-maintainer": "0.25.2",
-    "prettier": "3.5.3",
-    "rimraf": "^6.0.1",
-    "typescript": "5.8.3",
     "@types/jest": "^30.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^9.22.0",
     "jest": "^30.0.0",
+    "prettier": "3.5.3",
+    "rimraf": "^6.0.1",
     "ts-jest": "^29.3.4",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "5.8.3"
   },
   "dependencies": {
     "@contract-case/case-plugin-base": "0.25.2",
-    "@contract-case/case-plugin-dsl-types": "0.25.2"
+    "@contract-case/case-plugin-dsl-types": "0.25.2",
+    "mkdirp": "^3.0.1"
   }
 }

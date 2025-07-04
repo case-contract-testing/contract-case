@@ -1,5 +1,5 @@
-import { getType } from '../typeSystem';
-import { LanguageTypes, ParameterDeclaration } from '../typeSystem/types';
+import { getType } from '../../typeSystem';
+import { LanguageTypes, ParameterDeclaration } from '../../typeSystem/types';
 
 const javaLanguageTypes: LanguageTypes = {
   array: (type) => `List<${type}>`,

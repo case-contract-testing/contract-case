@@ -1,6 +1,6 @@
-import { generateDslCode } from './generator';
+import { generateDslCode } from './ts/tsGenerator';
 import { generateJavaDslCode } from './java/javaGenerator';
-import { MatcherDslDeclaration } from './typeSystem/types';
+import { MatcherDslDeclaration } from '../typeSystem/types';
 
 const matcherDefinition: MatcherDslDeclaration = {
   name: 'ArrayEachEntryMatches',
