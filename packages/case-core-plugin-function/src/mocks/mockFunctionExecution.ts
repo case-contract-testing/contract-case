@@ -96,10 +96,7 @@ export const setupMockFunctionExecution = (
       );
 
       const functionResponse = validateFunctionResponse(
-        context.descendAndStrip(
-          expectedResponse,
-          addLocation('returnValue', context),
-        ),
+        context.descendAndStrip(expectedResponse, context),
         context,
       );
       context.logger.maintainerDebug('functionResponse was', functionResponse);

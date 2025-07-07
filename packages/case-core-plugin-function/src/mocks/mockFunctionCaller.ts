@@ -68,7 +68,7 @@ export const setupMockFunctionCaller = (
 
             return {
               actual: result,
-              context: addLocation('returnValue', context),
+              context,
               expected: returnValue,
             };
           } catch (e) {
