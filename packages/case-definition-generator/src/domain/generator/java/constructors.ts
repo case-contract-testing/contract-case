@@ -1,5 +1,6 @@
 import { getType } from '../../typeSystem';
 import { LanguageTypes, ParameterDeclaration } from '../../typeSystem/types';
+import { JavaConstructorDescriptor } from './types';
 
 const javaLanguageTypes: LanguageTypes = {
   array: (type) => `List<${type}>`,
@@ -92,32 +93,65 @@ export const constructorAssignments = (
 };
 
 /**
- * Generates a complete constructor with JavaDoc, signature, and body.
+ * Generates a complete constructor based on a JavaConstructorDescriptor.
+ * This function no longer makes decisions about what to generate - it simply
+ * renders the constructor as described by the descriptor.
  *
  * @param lines - Output array to append constructor lines to.
  * @param className - Name of the Java class for the constructor.
- * @param params - Parameters for this specific constructor.
- * @param namespace - Namespace prefix for the type value.
- * @param type - Type identifier for the matcher.
- * @param documentation - Documentation text for JavaDoc generation.
- * @param optionalParams - Optional parameters from the definition (used for null assignments).
+ * @param constructorDescriptor - Complete description of what to generate.
  *
  * Invariants:
  * - lines must be a mutable string array
  * - className must be a valid Java identifier
- * - params must be an array of valid ParameterDeclaration objects
- * - namespace and type must be non-empty strings
- * - optionalParams must be an array (defaults to empty array)
+ * - constructorDescriptor must be a valid JavaConstructorDescriptor
  *
  * Side Effects:
  * - Adds JavaDoc block if documentation is provided
  * - Adds constructor signature line
  * - Adds type assignment line
  * - Adds parameter assignment lines
- * - Adds null assignments for optional parameters not in params list
+ * - Adds null assignments for optional parameters as specified
  * - Adds constructor closing brace
  */
 export const addSingleConstructor = (
+  lines: string[],
+  className: string,
+  constructorDescriptor: JavaConstructorDescriptor,
+): void => {
+  // Add javadoc
+  generateConstructorJavadoc(
+    lines,
+    constructorDescriptor.documentation,
+    constructorDescriptor.parameters,
+  );
+
+  // Add constructor signature
+  lines.push(
+    `  public ${className}(${constructorParameters(constructorDescriptor.parameters)}) {`,
+  );
+
+  // Add type assignment
+  lines.push(`    this.type = "${constructorDescriptor.typeValue}";`);
+
+  // Add parameter assignments
+  constructorAssignments(lines, constructorDescriptor.parameters);
+
+  // Set optional params to null as specified by the descriptor
+  constructorDescriptor.optionalParamsToSetNull.forEach((param) => {
+    lines.push(`    this.${param.name} = null;`);
+  });
+
+  lines.push('  }');
+};
+
+/**
+ * Legacy function maintained for backward compatibility.
+ * Consider using addSingleConstructor with JavaConstructorDescriptor instead.
+ *
+ * @deprecated Use addSingleConstructor with JavaConstructorDescriptor instead
+ */
+export const addSingleConstructorLegacy = (
   lines: string[],
   className: string,
   params: ParameterDeclaration[],
@@ -126,27 +160,16 @@ export const addSingleConstructor = (
   documentation: string,
   optionalParams: ParameterDeclaration[] = [],
 ): void => {
-  // Add javadoc
-  generateConstructorJavadoc(lines, documentation, params);
+  const constructorDescriptor: JavaConstructorDescriptor = {
+    parameters: params,
+    documentation,
+    typeValue: `${namespace}:${type}`,
+    optionalParamsToSetNull:
+      optionalParams.length > 0 &&
+      !optionalParams.some((p) => params.includes(p))
+        ? optionalParams
+        : [],
+  };
 
-  // Add constructor signature
-  lines.push(`  public ${className}(${constructorParameters(params)}) {`);
-
-  // Add type assignment
-  lines.push(`    this.type = "${namespace}:${type}";`);
-
-  // Add parameter assignments
-  constructorAssignments(lines, params);
-
-  // Set optional params to null if this is the required-only constructor
-  if (
-    optionalParams.length > 0 &&
-    !optionalParams.some((p) => params.includes(p))
-  ) {
-    optionalParams.forEach((param) => {
-      lines.push(`    this.${param.name} = null;`);
-    });
-  }
-
-  lines.push('  }');
+  addSingleConstructor(lines, className, constructorDescriptor);
 };

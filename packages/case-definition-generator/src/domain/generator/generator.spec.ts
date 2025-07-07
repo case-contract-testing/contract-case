@@ -70,7 +70,7 @@ export const arrayEachEntryMatches = (matcher: AnyCaseMatcherOrData, example?: A
   });
   describe('java', () => {
     it('generates a matcher as expected', () => {
-      expect(generateJavaDslCode(matcherDefinition, '_case'))
+      expect(generateJavaDslCode(matcherDefinition, '_case').content)
         .toBe(`package io.contract_testing.contractcase.definitions;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -121,7 +121,9 @@ public class ArrayEachEntryMatches<M> {
 }`);
     });
     it('works for the other case too', () => {
-      expect(generateJavaDslCode(matcherContainsDefinition, '_case')).toBe(
+      expect(
+        generateJavaDslCode(matcherContainsDefinition, '_case').content,
+      ).toBe(
         `package io.contract_testing.contractcase.definitions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

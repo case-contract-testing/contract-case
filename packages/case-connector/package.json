@@ -6,10 +6,15 @@
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs",
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/src/index.js",
   "exports": {
-    ".": "./dist/src/index.js",
-    "./cjs": "./dist/cjs/src/index.js"
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    },
+    "./cjs": {
+      "types": "./dist/cjs/src/index.d.cts",
+      "default": "./dist/cjs/src/index.cjs"
+    }
   },
   "publishConfig": {
     "access": "public"
@@ -25,7 +30,7 @@
     "build:proto": "npm run build:proto:js && npm run build:proto:ts && npm run format:fix",
     "build:proto:js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/connectors/grpc --grpc_out=grpc_js:src/connectors/grpc ./proto/contract_case_stream.proto",
     "build:proto:ts": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/connectors/grpc --grpc_out=grpc_js:src/connectors/grpc --plugin=protoc-gen-grpc=../../node_modules/grpc_tools_node_protoc_ts/bin/protoc-gen-ts ./proto/contract_case_stream.proto",
-    "build": "rimraf {dist,package} && duel --project tsconfig.build.json && bash -c ./script/write-cjs-package.sh && webpack-cli",
+    "build": "rimraf {dist,package} && duel --project tsconfig.build.json && webpack-cli",
     "postbuild": "attw --ignore-rules cjs-resolves-to-esm --pack || attw --ignore-rules cjs-resolves-to-esm --pack -f json",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
