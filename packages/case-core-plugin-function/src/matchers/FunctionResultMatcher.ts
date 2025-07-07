@@ -12,24 +12,14 @@ import {
   matchingError,
   CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
-import {
-  AnyCaseMatcherOrData,
-  AnyData,
-} from '@contract-case/case-plugin-dsl-types';
+import { AnyData } from '@contract-case/case-plugin-dsl-types';
+import { isObject } from '../entities';
 
-const isSuccessResult = (
+export const isSuccessResult = (
   matcher: CoreFunctionSuccessResultMatcher | CoreFunctionErrorResultMatcher,
 ): matcher is CoreFunctionSuccessResultMatcher =>
   // this has to be !== undefined, since it could legitimately be 'null', indicating a void return
   'success' in matcher && matcher.success !== undefined;
-
-const isObject = (
-  actual: unknown,
-): actual is Record<string, AnyCaseMatcherOrData> => // the return type here is technically not correct
-  typeof actual === 'object' &&
-  actual === Object(actual) &&
-  !Array.isArray(actual) &&
-  actual != null;
 
 type FunctionFailure = {
   errorClassName: string;
