@@ -37,6 +37,7 @@ public class FunctionCallerExampleTest {
             .consumerName("Java Function Caller Example")
             .providerName("Java Function Implementer Example")
             .publish(PublishType.NEVER)
+            .changedContracts(ChangedContractsBehaviour.OVERWRITE)
             //    .logLevel(LogLevel.MAINTAINER_DEBUG)
             .adviceOverrides(Map.of(
                 "OVERWRITE_CONTRACTS_NEEDED",

@@ -94,8 +94,8 @@ const name = (
   context: MatchContext,
 ): string =>
   response.uniqueName
-    ? response.uniqueName
-    : `a (${context.descendAndDescribe(
+    ? `returns ${response.uniqueName}`
+    : `returns a (${context.descendAndDescribe(
         response.status,
         addLocation('status', context),
       )}) response ${

@@ -70,7 +70,7 @@ const describe = (
   context: MatchContext,
 ): string =>
   isSuccessResult(matcher)
-    ? `returning ${context.descendAndDescribe(
+    ? `returns ${context.descendAndDescribe(
         matcher.success,
         addLocation(`returnValue`, context),
       )}`

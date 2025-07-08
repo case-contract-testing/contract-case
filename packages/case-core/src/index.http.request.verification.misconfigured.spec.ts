@@ -86,7 +86,11 @@ describe('Server verification', () => {
                   // eslint-disable-next-line jest/no-conditional-expect
                   expect(e).toBeInstanceOf(errors[testName]);
                 } else {
-                  throw e;
+                  // If this happens, we failed, but we don't have the expected failure
+                  throw new Error(
+                    `Failed when we weren't expecting it. Could be due to misnamed test: ${testName}`,
+                    e,
+                  );
                 }
               },
             ),

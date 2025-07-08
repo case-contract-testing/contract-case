@@ -29,6 +29,7 @@ public class FunctionImplementerExampleTest {
   private static final ContractDefiner contract = new ContractDefiner(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
       .consumerName("Java Function Implementer Example")
       .providerName("Java Function Caller Example")
+   //   .changedContracts(ChangedContractsBehaviour.OVERWRITE)
       .publish(PublishType.NEVER)
       .build());
 

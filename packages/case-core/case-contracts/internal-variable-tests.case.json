@@ -19,7 +19,7 @@
       },
       "_case:context:matchBy": "type"
     },
-    "matcher:a (200) response with body an object shaped like {userId: {{userId}}}": {
+    "matcher:returns a (200) response with body an object shaped like {userId: {{userId}}}": {
       "status": 200,
       "body": {
         "userId": {
@@ -49,7 +49,7 @@
       },
       "_case:context:matchBy": "type"
     },
-    "matcher:a (404) response without a body": {
+    "matcher:returns a (404) response without a body": {
       "status": 404,
       "_case:matcher:type": "_case:HttpResponseMatcher"
     }
@@ -91,7 +91,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {userId: {{userId}}}",
+          "_case:matcher:uniqueName": "returns a (200) response with body an object shaped like {userId: {{userId}}}",
           "_case:matcher:child": {
             "status": 200,
             "body": {
@@ -155,7 +155,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (404) response without a body",
+          "_case:matcher:uniqueName": "returns a (404) response without a body",
           "_case:matcher:child": {
             "status": 404,
             "_case:matcher:type": "_case:HttpResponseMatcher"

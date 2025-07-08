@@ -16,10 +16,19 @@ verifyContract(
           trigger: (setup: HttpRequestConfig) =>
             api(setup.mock.baseUrl).health(),
           testResponses: {
+            'returns a (200) response with body an object shaped like {status: <any string>}':
+              (health) => expect(typeof health).toBe('string'),
             'a (200) response with body an object shaped like {status: <any string>}':
               (health) => expect(typeof health).toBe('string'),
           },
           testErrorResponses: {
+            'returns a (httpStatus 4XX | 5XX) response without a body': (e) => {
+              expect(e).toBeInstanceOf(ApiError);
+            },
+            'returns a (503) response with body an object shaped like {status: "down"}':
+              (e) => {
+                expect(e).toBeInstanceOf(ApiError);
+              },
             'a (httpStatus 4XX | 5XX) response without a body': (e) => {
               expect(e).toBeInstanceOf(ApiError);
             },
@@ -35,6 +44,10 @@ verifyContract(
             trigger: (config: HttpRequestConfig) =>
               api(config.mock.baseUrl).health(),
             testResponses: {
+              'returns a (200) response with body an object shaped like {status: "up"}':
+                (health) => {
+                  expect(health).toEqual('up');
+                },
               'a (200) response with body an object shaped like {status: "up"}':
                 (health) => {
                   expect(health).toEqual('up');
@@ -50,6 +63,12 @@ verifyContract(
                 setup.getStateVariable('userId'),
               ),
             testResponses: {
+              'returns a (200) response with body an object shaped like {userId: {{userId}}}':
+                (user, setup) => {
+                  expect(user).toEqual({
+                    userId: setup.getStateVariable('userId'),
+                  });
+                },
               'a (200) response with body an object shaped like {userId: {{userId}}}':
                 (user, setup) => {
                   expect(user).toEqual({
@@ -58,6 +77,9 @@ verifyContract(
                 },
             },
             testErrorResponses: {
+              'returns a (404) response without a body': (e) => {
+                expect(e).toBeInstanceOf(UserNotFoundConsumerError);
+              },
               'a (404) response without a body': (e) => {
                 expect(e).toBeInstanceOf(UserNotFoundConsumerError);
               },
@@ -70,6 +92,9 @@ verifyContract(
             trigger: (config: HttpRequestConfig) =>
               api(config.mock.baseUrl).getUserByPath('123'),
             testErrorResponses: {
+              'returns a (404) response without a body': (e) => {
+                expect(e).toBeInstanceOf(UserNotFoundConsumerError);
+              },
               'a (404) response without a body': (e) => {
                 expect(e).toBeInstanceOf(UserNotFoundConsumerError);
               },
@@ -84,6 +109,12 @@ verifyContract(
                 setup.getStateVariable('userId'),
               ),
             testResponses: {
+              'returns a (200) response with body an object shaped like {userId: {{userId}}}':
+                (user, setup) => {
+                  expect(user).toEqual({
+                    userId: setup.getStateVariable('userId'),
+                  });
+                },
               'a (200) response with body an object shaped like {userId: {{userId}}}':
                 (user, setup) => {
                   expect(user).toEqual({
@@ -92,6 +123,9 @@ verifyContract(
                 },
             },
             testErrorResponses: {
+              'returns a (404) response without a body': (e) => {
+                expect(e).toBeInstanceOf(UserNotFoundConsumerError);
+              },
               'a (404) response without a body': (e) => {
                 expect(e).toBeInstanceOf(UserNotFoundConsumerError);
               },
