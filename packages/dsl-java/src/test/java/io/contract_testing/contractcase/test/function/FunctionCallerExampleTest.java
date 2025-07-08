@@ -38,7 +38,6 @@ public class FunctionCallerExampleTest {
             .providerName("Java Function Implementer Example")
             .publish(PublishType.NEVER)
             //    .logLevel(LogLevel.MAINTAINER_DEBUG)
-            .changedContracts(ChangedContractsBehaviour.OVERWRITE)
             .adviceOverrides(Map.of(
                 "OVERWRITE_CONTRACTS_NEEDED",
                 "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"

@@ -1,0 +1,481 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "Java Repeated State Caller Example",
+    "providerName": "Java Repeated State Implementer Example"
+  },
+  "metadata": {
+    "_case": {
+      "version": "0.25.2"
+    }
+  },
+  "matcherLookup": {
+    "matcher:returning 0": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": 0
+    },
+    "matcher:An invocation of getValue()": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [],
+      "functionName": "getValue"
+    },
+    "matcher:returning 1": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": 1
+    },
+    "matcher:returning 2": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": 2
+    },
+    "matcher:returning 3": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": 3
+    },
+    "matcher:returning 4": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": 4
+    },
+    "matcher:returning 5": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": 5
+    },
+    "matcher:returning 6": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": 6
+    },
+    "matcher:returning 7": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": 7
+    },
+    "matcher:returning 8": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": 8
+    },
+    "matcher:returning 9": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": 9
+    }
+  },
+  "examples": [
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The value is 0"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "getValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of getValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "getValue"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning 0",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": 0
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The value is 1"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "getValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of getValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "getValue"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning 1",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": 1
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The value is 2"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "getValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of getValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "getValue"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning 2",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": 2
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The value is 3"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "getValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of getValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "getValue"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning 3",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": 3
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The value is 4"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "getValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of getValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "getValue"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning 4",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": 4
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The value is 5"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "getValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of getValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "getValue"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning 5",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": 5
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The value is 6"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "getValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of getValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "getValue"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning 6",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": 6
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The value is 7"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "getValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of getValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "getValue"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning 7",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": 7
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The value is 8"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "getValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of getValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "getValue"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning 8",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": 8
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The value is 9"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "getValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of getValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "getValue"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returning 9",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": 9
+          }
+        }
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}

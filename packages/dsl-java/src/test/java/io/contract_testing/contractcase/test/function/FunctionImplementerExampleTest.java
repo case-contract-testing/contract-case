@@ -88,7 +88,7 @@ public class FunctionImplementerExampleTest {
   }
 
   @NotNull
-  private static InvokableFunctions.InvokableFunction1 convertJsonArgs(Function<Integer, String> functionUnderTest) {
+  private static InvokableFunctions.InvokableFunction1<?> convertJsonArgs(Function<Integer, String> functionUnderTest) {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, Integer.class);
