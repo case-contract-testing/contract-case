@@ -100,27 +100,9 @@ export class ContractVerifierConnector {
     this.mutex = new Mutex();
   }
 
-  getAvailableContractDescriptions(): CaseContractDescription[] {
-    return this.contracts.map((link) => link.contents.description);
-  }
-
-  verifyContract<T extends AnyMockDescriptorType>(
-    invoker: MultiTestInvoker<T>,
-    configOverride = {},
-    invokeableFns: Record<
-      string,
-      (...args: unknown[]) => Promise<unknown>
-    > = {},
-  ): Promise<void> | undefined {
-    const mergedConfig = { ...this.config, ...configOverride };
-
-    if (typeof mergedConfig.providerName !== 'string') {
-      throw new CaseConfigurationError(
-        `Must provide a providerName to verify (received '${mergedConfig.providerName}').`,
-        'DONT_ADD_LOCATION',
-        'INVALID_CONFIG',
-      );
-    }
+  private filterContractsWithConfiguration(
+    mergedConfig: CaseConfig,
+  ): ContractFileFromDisk[] {
     this.context.logger.debug(
       `There are ${this.contracts.length} contracts loaded (this may include contracts that don't belong to this run)`,
     );
@@ -152,11 +134,38 @@ export class ContractVerifierConnector {
         );
       });
 
-    const contractsToVerify = caseContractsForProvider.filter(
+    return caseContractsForProvider.filter(
       (item) =>
         typeof mergedConfig.consumerName === 'undefined' ||
         item.contents.description?.consumerName === mergedConfig.consumerName,
     );
+  }
+
+  getAvailableContractDescriptions(): CaseContractDescription[] {
+    return this.filterContractsWithConfiguration(this.config).map(
+      (link) => link.contents.description,
+    );
+  }
+
+  verifyContract<T extends AnyMockDescriptorType>(
+    invoker: MultiTestInvoker<T>,
+    configOverride = {},
+    invokeableFns: Record<
+      string,
+      (...args: unknown[]) => Promise<unknown>
+    > = {},
+  ): Promise<void> | undefined {
+    const mergedConfig = { ...this.config, ...configOverride };
+
+    if (typeof mergedConfig.providerName !== 'string') {
+      throw new CaseConfigurationError(
+        `Must provide a providerName to verify (received '${mergedConfig.providerName}').`,
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
+      );
+    }
+    const contractsToVerify =
+      this.filterContractsWithConfiguration(configOverride);
 
     if (contractsToVerify.length === 0) {
       throw new CaseConfigurationError(

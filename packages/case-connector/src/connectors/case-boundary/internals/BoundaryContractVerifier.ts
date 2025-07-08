@@ -133,7 +133,7 @@ export class BoundaryContractVerifier {
   }
 
   /**
-   * Returns a description of all of the contracts that can be found by the configuration.
+   * Returns a description of all of the contracts that can be found by the current configuration.
    *
    * @returns either a `BoundaryFailure`, or a `BoundarySuccessWithAny` which contains an array of:
    * ```
