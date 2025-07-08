@@ -17,6 +17,7 @@ import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
 import io.contract_testing.contractcase.internal.edge.RunTestCallback;
 import io.contract_testing.contractcase.logs.LogPrinter;
+import java.util.Arrays;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
@@ -97,12 +98,15 @@ public class InternalVerifierClient implements AutoCloseable {
     MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Beginning loadPlugin");
     return rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
             .setLoadPlugin(LoadPluginRequest.newBuilder()
+                .addAllModuleNames(
+                    Arrays.stream(pluginNames).map(ConnectorOutgoingMapper::map).toList()
+                )
                 .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides)))
         , "loadPlugins");
   }
 
   public ConnectorResult registerFunction(String functionName,
-      ConnectorInvokableFunction function) {
+      ConnectorInvokableFunction<?> function) {
     rpcConnector.registerFunction(functionName, function);
     return rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
         .setRegisterFunction(RegisterFunction.newBuilder()

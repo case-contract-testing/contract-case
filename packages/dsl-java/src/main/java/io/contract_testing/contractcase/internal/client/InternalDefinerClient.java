@@ -106,7 +106,7 @@ public class InternalDefinerClient {
   }
 
   public ConnectorResult registerFunction(String functionName,
-      ConnectorInvokableFunction function) {
+      ConnectorInvokableFunction<?> function) {
     rpcConnector.registerFunction(functionName, function);
     return rpcConnector.executeCallAndWait(DefinitionRequest.newBuilder()
         .setRegisterFunction(RegisterFunction.newBuilder()
