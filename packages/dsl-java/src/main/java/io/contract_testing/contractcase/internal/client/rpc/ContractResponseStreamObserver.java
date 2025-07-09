@@ -27,6 +27,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import org.jetbrains.annotations.NotNull;
 
 class ContractResponseStreamObserver<T extends AbstractMessage, B extends GeneratedMessageV3.Builder<B>> implements
@@ -36,7 +38,16 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
   private final LogPrinter logPrinter;
   private final ConfigHandle configHandle;
   private final RunTestCallback runTestCallback;
+  /**
+   * An executor service for host-based work. Might have multiple threads,
+   * because the calls between the client and the host go back and forth.
+   */
   private final CrashPrintingExecutor hostWorker;
+
+  /**
+   * Used for logs, to ensure they're printed in the same order they arrive
+   */
+  private final CrashPrintingExecutor logWorker;
 
 
   public ContractResponseStreamObserver(
@@ -48,7 +59,8 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
     this.logPrinter = logPrinter;
     this.configHandle = configHandle;
     this.runTestCallback = runTestCallback;
-    this.hostWorker = new CrashPrintingExecutor(); // Executors.newCachedThreadPool();
+    this.hostWorker = new CrashPrintingExecutor(Executors.newCachedThreadPool());
+    this.logWorker =  new CrashPrintingExecutor(Executors.newSingleThreadExecutor());
   }
 
 
@@ -96,7 +108,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
       }
       case LOG_REQUEST -> {
         final var logRequest = coreResponse.getLogRequest();
-        hostWorker.submit(() -> {
+        logWorker.submit(() -> {
               var result = safeExecute(() -> {
                 logPrinter.log(
                     ConnectorIncomingMapper.map(logRequest.getLevel()),
@@ -122,7 +134,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
       }
       case PRINT_MATCH_ERROR_REQUEST -> {
         final var printMatchErrorRequest = coreResponse.getPrintMatchErrorRequest();
-        hostWorker.submit(() -> {
+        logWorker.submit(() -> {
           var result = safeExecute(() -> {
             logPrinter.printMatchError(
                 mapMatchErrorRequest(printMatchErrorRequest)
@@ -138,7 +150,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
         });
       }
       case PRINT_MESSAGE_ERROR_REQUEST -> {
-        hostWorker.submit(() -> {
+        logWorker.submit(() -> {
           var result = safeExecute(() -> {
             logPrinter.printMessageError(
                 mapMessageErrorRequest(
@@ -157,7 +169,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
       }
       case PRINT_TEST_TITLE_REQUEST -> {
         final var printTestTitleRequest = coreResponse.getPrintTestTitleRequest();
-        hostWorker.submit(() -> {
+        logWorker.submit(() -> {
           var result = safeExecute(() -> {
             logPrinter.printTestTitle(
                 mapPrintableTestTitle(printTestTitleRequest));
@@ -311,6 +323,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
           t
       ));
       hostWorker.close();
+      logWorker.close();
     } finally {
       rpcConnector.finishLatch.countDown();
     }

@@ -13,8 +13,8 @@ class CrashPrintingExecutor implements AutoCloseable {
 
   private final ExecutorService executor;
 
-  CrashPrintingExecutor() {
-    this.executor = Executors.newCachedThreadPool();
+  CrashPrintingExecutor(ExecutorService executor) {
+    this.executor = executor;
   }
 
   public Future<?> submit(Runnable task) {
