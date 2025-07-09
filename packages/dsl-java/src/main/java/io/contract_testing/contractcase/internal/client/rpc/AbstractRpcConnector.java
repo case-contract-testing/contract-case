@@ -236,7 +236,6 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
               + " may be a threading bug in the ContractCase java DSL.");
     }
     try {
-
       worker.send(setId(builder, ConnectorOutgoingMapper.map(id)), logLevel);
     } finally {
       sendMutex.release();
