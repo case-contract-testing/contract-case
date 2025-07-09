@@ -14,6 +14,7 @@ describe('verification', () => {
             trigger: async (setup: FunctionExecutorConfig) =>
               setup.getFunction(setup.mock.functionHandle)(),
             testResponses: {
+              'returns null': (returnValue) => expect(returnValue).toBe(null),
               'returning null': (returnValue) => expect(returnValue).toBe(null),
             },
           })
@@ -24,6 +25,8 @@ describe('verification', () => {
                 setup.getFunction(setup.mock.functionHandle)('example', 2),
               testResponses: {
                 'returning "example2"': (returnValue) =>
+                  expect(returnValue).toEqual('example2'),
+                'returns "example2"': (returnValue) =>
                   expect(returnValue).toEqual('example2'),
               },
             },
