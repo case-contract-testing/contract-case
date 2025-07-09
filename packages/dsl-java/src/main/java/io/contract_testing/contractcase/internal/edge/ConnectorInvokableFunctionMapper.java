@@ -80,9 +80,7 @@ public class ConnectorInvokableFunctionMapper {
             ""
         );
       } catch (Exception e) {
-        var userFacingStackTrace = Arrays.stream(e.getStackTrace())
-            .map(StackTraceElement::toString).collect(Collectors.joining("\n"));
-
+        var userFacingStackTrace = ConnectorExceptionMapper.stackTraceToString(e);
         try {
           return new ConnectorSuccessWithAny(
               mapper.writeValueAsString(mapper.writeValueAsString(
