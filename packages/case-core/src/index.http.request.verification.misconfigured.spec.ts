@@ -1,7 +1,6 @@
 import type * as http from 'node:http';
 
 import { CaseConfigurationError } from '@contract-case/case-plugin-base';
-import { Mutex } from 'async-mutex';
 import type { RunTestCallback } from './core/executeExample/types';
 import type { StateHandlers } from './entities/states/types';
 
@@ -46,7 +45,6 @@ describe('Server verification', () => {
       publish: false,
     },
     ['tests'],
-    new Mutex(),
   );
   beforeAll(async () => {
     server = await start(port, serverDependencies);

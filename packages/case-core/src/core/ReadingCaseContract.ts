@@ -51,7 +51,6 @@ export class ReadingCaseContract extends BaseCaseContract {
     }: ReaderDependencies,
     config: CaseConfig,
     parentVersions: string[],
-    mutex: Mutex,
   ) {
     super(
       contractFile.description,
@@ -65,7 +64,7 @@ export class ReadingCaseContract extends BaseCaseContract {
     this.makeBrokerService = makeBrokerService;
     this.links = contractFile;
     this.status = 'UNKNOWN';
-    this.mutex = mutex;
+    this.mutex = new Mutex();
   }
 
   /**
@@ -83,7 +82,10 @@ export class ReadingCaseContract extends BaseCaseContract {
     runTestCb: RunTestCallback,
   ): Promise<void> | undefined {
     this.initialContext.logger.maintainerDebug(
-      `Verifying contract between '${this.currentContract.description.consumerName}' and '${this.currentContract.description.providerName}'. There are '${this.currentContract.examples.length}' examples`,
+      `Verifying contract: '${this.currentContract.description.consumerName}' -> '${this.currentContract.description.providerName}'`,
+    );
+    this.initialContext.logger.maintainerDebug(
+      `This contract has ${this.currentContract.examples.length} interactions`,
     );
     const interactionFinishedIndicators: Promise<unknown>[] = [];
     const interactionFinishers: Array<() => void> = [];
@@ -91,7 +93,7 @@ export class ReadingCaseContract extends BaseCaseContract {
     this.currentContract.examples.forEach((example, index) => {
       if (example.result !== 'VERIFIED') {
         throw new CaseCoreError(
-          `Attempting to verify an interaction which was '${example.result}'. This should never happen in normal operation, and might be the result of a corrupted ContractCase file, a file that was not written by ContractCase, or a bug.`,
+          `Attempting to verify an interaction which didn't pass the consumer test ('${example.result}'). This should never happen in normal operation, and might be the result of a corrupted ContractCase file, a file that was not written by ContractCase, or a bug.`,
         );
       }
 

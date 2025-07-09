@@ -181,32 +181,44 @@ export class ContractVerifierConnector {
 
     if (contractsToVerify.length > 1) {
       this.context.logger.debug(
-        '*** Multiple contracts are being verified ***',
+        `*** There are ${contractsToVerify.length} contracts are being verified ***`,
       );
-      this.context.logger.debug(
-        'Note that the following debug log may contain interactions from any contract in any order',
-      );
+      this.context.logger.debug(`Take note of the contract number in the log`);
     }
-    const results = contractsToVerify.map((contractLink, index) => {
-      this.context.logger.debug(
-        `Verifying contract from file '${contractLink.filePath}'`,
-      );
-      const contractVerifier = new ReadingCaseContract(
-        contractLink.contents,
-        this.dependencies,
-        {
-          ...mergedConfig,
-          coreLogContextPrefix:
-            contractsToVerify.length > 1 ? `Contract[${index}]` : '',
-        },
-        this.parentVersions,
-        this.mutex,
-      );
-      Object.entries(invokeableFns).forEach(([key, value]) => {
-        contractVerifier.registerFunction(key, value);
-      });
-      return contractVerifier.verifyContract(invoker, this.callback);
-    });
+    const results = contractsToVerify.map((contractLink, index) =>
+      this.mutex.runExclusive(() => {
+        if (!contractLink?.contents?.description?.consumerName) {
+          this.context.logger.error(
+            `Contract in file '${contractLink.filePath}' appears to have no consumer name! It might not be a case contract`,
+          );
+        }
+
+        if (!contractLink?.contents?.description?.providerName) {
+          this.context.logger.error(
+            `Contract in file '${contractLink.filePath}' appears to have no provider name! It might not be a case contract`,
+          );
+        }
+
+        this.context.logger.debug(
+          `*** Verifying contract: '${contractLink.contents.description.consumerName}' -> '${contractLink.contents.description.consumerName}'`,
+        );
+        this.context.logger.debug(`Contract File: ${contractLink.filePath}`);
+        const contractVerifier = new ReadingCaseContract(
+          contractLink.contents,
+          this.dependencies,
+          {
+            ...mergedConfig,
+            coreLogContextPrefix:
+              contractsToVerify.length > 1 ? `Contract[${index}]` : '',
+          },
+          this.parentVersions,
+        );
+        Object.entries(invokeableFns).forEach(([key, value]) => {
+          contractVerifier.registerFunction(key, value);
+        });
+        return contractVerifier.verifyContract(invoker, this.callback);
+      }),
+    );
     if (mergedConfig.internals.asyncVerification) {
       this.context.logger.maintainerDebug(`Awaiting async verification`);
       return Promise.all(results).then(
