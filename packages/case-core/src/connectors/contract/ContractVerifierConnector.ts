@@ -103,6 +103,13 @@ export class ContractVerifierConnector {
   private filterContractsWithConfiguration(
     mergedConfig: CaseConfig,
   ): ContractFileFromDisk[] {
+    if (typeof mergedConfig.providerName !== 'string') {
+      throw new CaseConfigurationError(
+        `Must provide a providerName to verify (received '${mergedConfig.providerName}').`,
+        'DONT_ADD_LOCATION',
+        'INVALID_CONFIG',
+      );
+    }
     this.context.logger.debug(
       `There are ${this.contracts.length} contracts loaded (this may include contracts that don't belong to this run)`,
     );
@@ -157,15 +164,8 @@ export class ContractVerifierConnector {
   ): Promise<void> | undefined {
     const mergedConfig = { ...this.config, ...configOverride };
 
-    if (typeof mergedConfig.providerName !== 'string') {
-      throw new CaseConfigurationError(
-        `Must provide a providerName to verify (received '${mergedConfig.providerName}').`,
-        'DONT_ADD_LOCATION',
-        'INVALID_CONFIG',
-      );
-    }
     const contractsToVerify =
-      this.filterContractsWithConfiguration(configOverride);
+      this.filterContractsWithConfiguration(mergedConfig);
 
     if (contractsToVerify.length === 0) {
       throw new CaseConfigurationError(
