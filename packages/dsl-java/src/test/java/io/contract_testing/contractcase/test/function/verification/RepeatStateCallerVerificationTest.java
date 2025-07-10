@@ -3,6 +3,7 @@ package io.contract_testing.contractcase.test.function.verification;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.ContractVerifier;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.configuration.PublishType;
@@ -22,7 +23,6 @@ public class RepeatStateCallerVerificationTest {
       .providerName("Java Repeated State Implementer Example")
       .publish(PublishType.NEVER)
       .build());
-  private HashMap<String, String> mockedStore;
 
   Integer value = 0;
 
@@ -32,32 +32,20 @@ public class RepeatStateCallerVerificationTest {
       return "" + value;
     });
 
-    contract.runVerification(ContractCaseConfigBuilder.aContractCaseConfig()
+    ContractCaseConfigBuilder builder= ContractCaseConfigBuilder.aContractCaseConfig()
         //  .logLevel(LogLevel.MAINTAINER_DEBUG)
         .printResults(true)
-        .throwOnFail(true)
-        .stateHandler("The value is 1", StateHandler.setupFunction(() -> {
-          value = 1;
-        })).stateHandler("The value is 2", StateHandler.setupFunction(() -> {
-          value = 2;
-        })).stateHandler("The value is 3", StateHandler.setupFunction(() -> {
-          value = 3;
-        })).stateHandler("The value is 4", StateHandler.setupFunction(() -> {
-          value = 4;
-        })).stateHandler("The value is 5", StateHandler.setupFunction(() -> {
-          value = 5;
-        })).stateHandler("The value is 6", StateHandler.setupFunction(() -> {
-          value = 6;
-        })).stateHandler("The value is 7", StateHandler.setupFunction(() -> {
-          value = 7;
-        })).stateHandler("The value is 8", StateHandler.setupFunction(() -> {
-          value = 8;
-        })).stateHandler("The value is 9", StateHandler.setupFunction(() -> {
-          value = 9;
-        })).stateHandler("The value is 0", StateHandler.setupFunction(() -> {
-          value = 0;
-        }))
-        .build());
+        .throwOnFail(true);
+
+    for(int i =0 ; i < 23; i++) {
+      final int finValue = i;
+      builder.stateHandler("The value is " + i, StateHandler.setupFunction(() -> {
+        value = finValue;
+      }));
+    }
+
+
+    contract.runVerification(builder.build());
 
   }
 

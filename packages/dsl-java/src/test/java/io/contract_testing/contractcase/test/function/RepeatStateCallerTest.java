@@ -59,7 +59,7 @@ public class RepeatStateCallerTest {
 
   @Test
   public void writeTenStates() {
-    for(int i = 0; i < 10; i++ ) {
+    for(int i = 0; i < 23; i++ ) {
       final var value = i;
       contract.runInteraction(
           new InteractionDefinition<>(
