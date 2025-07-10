@@ -354,6 +354,11 @@ message InvokeFunction {
   repeated google.protobuf.StringValue arguments = 2;
 }
 
+message PrepareVerificationTests {
+  // Any configuration overrides for this verification
+  ContractCaseConfig config = 1;
+}
+
 message DefinitionRequest {
   google.protobuf.StringValue id = 1;
   oneof kind {
@@ -365,7 +370,7 @@ message DefinitionRequest {
     RunRejectingInteractionRequest run_rejecting_interaction = 4;
     // Host language wants to strip the matchers from a defintion
     StripMatchersRequest strip_matchers = 5;
-    // Host langauge has finished the definition
+    // Host language has finished the definition
     EndDefinitionRequest end_definition = 6;
     // Host is responding to a core call
     ResultResponse result_response = 7;
@@ -384,11 +389,12 @@ message VerificationRequest {
   oneof kind {
     // Host language wants to start a verification session
     // Used to do initial setup by the core - must be called before
-    // run_verification
+    // run_verification or prepare verification tests
     BeginVerificationRequest begin_verification = 2;
     // Host language wants to know what contracts are available
     AvailableContractDefinitions available_contract_definitions = 3;
-    // Host language wants to run a verification
+    // Host language wants to run a verification. 
+    // Alternative to prepare verification tests
     RunVerification run_verification = 4;
     // Host is responding to a core call
     ResultResponse result_response = 5;
@@ -401,6 +407,9 @@ message VerificationRequest {
     // Host wants to invoke an arbitrary function on the core,
     // learned about via SetupInfo
     InvokeFunction invoke_function = 11;
+    // Host language wants to run a verification. 
+    // Alternative to prepare verification tests
+    PrepareVerificationTests prepare_verification_tests = 12;
   }
 }
 

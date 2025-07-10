@@ -14,6 +14,7 @@ import { BaseCaseContract } from './BaseCaseContract';
 import type { MultiTestInvoker, RunTestCallback } from './executeExample/types';
 import type { CaseConfig } from './config/types';
 import {
+  ContractVerificationTest,
   DownloadedContract,
   MakeBrokerService,
   ReaderDependencies,
@@ -125,52 +126,21 @@ export class ReadingCaseContract extends BaseCaseContract {
         `Calling test callback for ${names.mockName}`,
       );
       runTestCb(names.mockName, () =>
-        this.mutex.runExclusive(() =>
-          Promise.resolve()
-            .then(() => {
-              // Set running context instead of inlining this, so that
-              // stripMatchers etc have access to the context
-              this.runningContext = applyNodeToContext(
-                example.mock,
-                this.initialContext,
-                {
-                  '_case:currentRun:context:testName': `${index}`,
-                  '_case:currentRun:context:contractMode': 'read',
-                  '_case:currentRun:context:location': [
-                    'verification',
-                    `interaction[${index}]`,
-                  ],
-                },
-              );
-              this.initialContext.logger.maintainerDebug(
-                `Run test callback for ${names.mockName}`,
-              );
-              return executeExample(
-                { ...example, result: 'PENDING' },
-                {
-                  ...invoker,
-                  names,
-                },
-                this,
-                this.runningContext,
-              );
-            })
-            .finally(() => {
-              this.initialContext.logger.deepMaintainerDebug(
-                `Interaction[${index}] type of finisher`,
-                interactionPromises[index],
-              );
-              this.initialContext.logger.maintainerDebug(
-                `Interaction[${index}] completed: ${names.mockName}`,
-              );
-              if (!interactionPromises[index]) {
-                this.initialContext.logger.error(
-                  `CoreError: Interaction[${index}] had no finisher. Please report this as a bug.`,
-                );
-              }
-              interactionPromises[index]?.r();
-            }),
-        ),
+        this.callExecuteExample(index, invoker, () => {
+          this.initialContext.logger.deepMaintainerDebug(
+            `Interaction[${index}] type of finisher`,
+            interactionPromises[index],
+          );
+          this.initialContext.logger.maintainerDebug(
+            `Interaction[${index}] completed: ${names.mockName}`,
+          );
+          if (!interactionPromises[index]) {
+            this.initialContext.logger.error(
+              `CoreError: Interaction[${index}] had no finisher. Please report this as a bug.`,
+            );
+          }
+          interactionPromises[index]?.r();
+        }),
       );
     });
     let publishFinished: () => void;
@@ -221,6 +191,104 @@ export class ReadingCaseContract extends BaseCaseContract {
       ]).then(() => {});
     }
     return undefined;
+  }
+
+  callExecuteExample<T extends AnyMockDescriptorType>(
+    index: number,
+    invoker: MultiTestInvoker<T>,
+    completionCallback: () => void = () => {},
+  ): Promise<void> {
+    return this.mutex.runExclusive(() =>
+      Promise.resolve()
+        .then(() => {
+          const example = this.currentContract.examples[index];
+          if (example == null) {
+            this.initialContext.logger.error(
+              `Somehow the example at index ${index} was undefined. This shouldn't happen, as calls to this function are meant to be based off the indexes. Examples follow:`,
+              this.currentContract.examples,
+            );
+            throw new CaseCoreError(
+              `Somehow the example at index ${index} was undefined. This is a bug, please see the log for details.`,
+            );
+          }
+          if (example.result !== 'VERIFIED') {
+            throw new CaseCoreError(
+              `Attempting to verify an interaction which didn't pass the consumer test ('${example.result}'). This should never happen in normal operation, and might be the result of a corrupted ContractCase file, a file that was not written by ContractCase, or a bug.`,
+            );
+          }
+
+          const names = exampleToNames(example, `${index}`);
+          // Set running context instead of inlining this, so that
+          // stripMatchers etc have access to the context
+          this.runningContext = applyNodeToContext(
+            example.mock,
+            this.initialContext,
+            {
+              '_case:currentRun:context:testName': `${index}`,
+              '_case:currentRun:context:contractMode': 'read',
+              '_case:currentRun:context:location': [
+                'verification',
+                `interaction[${index}]`,
+              ],
+            },
+          );
+          this.initialContext.logger.maintainerDebug(
+            `Run test callback for ${names.mockName}`,
+          );
+          return executeExample(
+            { ...example, result: 'PENDING' },
+            {
+              ...invoker,
+              names,
+            },
+            this,
+            this.runningContext,
+          );
+        })
+        .finally(completionCallback),
+    );
+  }
+
+  /**
+   * Verifies this contract
+   *
+   * @param invoker - The invoker for this test
+   * @param runTestCb - a callback to tell the test framework that we're running a test
+   * @returns a Promise if the verification if asyncVerification is set,
+   * otherwise undefined. Note that if asyncVerification is false, this method
+   * returns before the verification has finished, leaving it up to the test
+   * callbacks.
+   */
+  getTests<T extends AnyMockDescriptorType>(
+    invoker: MultiTestInvoker<T>,
+  ): Promise<ContractVerificationTest[]> {
+    return Promise.resolve().then(() => {
+      this.initialContext.logger.maintainerDebug(
+        `Generating tests for contract: '${this.currentContract.description.consumerName}' -> '${this.currentContract.description.providerName}'`,
+      );
+      this.initialContext.logger.maintainerDebug(
+        `This contract has ${this.currentContract.examples.length} interactions`,
+      );
+
+      return this.currentContract.examples.map((example, index) => {
+        const names = exampleToNames(example, `${index}`);
+        this.initialContext.logger.maintainerDebug(
+          `Preparing test framework's callback for: ${names.mockName} `,
+        );
+
+        let isPending = true;
+
+        return {
+          index,
+          testName: names.mockName,
+          isPending: (): boolean => isPending,
+          runTest: (): Promise<void> =>
+            this.callExecuteExample(index, invoker, () => {
+              isPending = false;
+            }),
+        };
+      });
+    });
   }
 
   recordExample(

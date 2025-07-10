@@ -19,6 +19,7 @@ import { ConnectorError } from '../../domain/errors/ConnectorError.js';
 import {
   availableContractDescriptions,
   beginVerification,
+  prepareVerificationTests,
   registerFunction,
   runVerification,
 } from '../../domain/verify.js';
@@ -382,6 +383,41 @@ export const contractVerification = (
                 makeResultResponse(result),
               );
             });
+          }
+          break;
+        case WireVerificationRequest.KindCase.PREPARE_VERIFICATION_TESTS:
+          {
+            const prepareVerificationRequest =
+              request.getPrepareVerificationTests();
+            if (prepareVerificationRequest == null) {
+              throw new ConnectorError(
+                'prepareVerification called with something that returned an undefined request',
+              );
+            }
+            if (verificationId === undefined) {
+              throw new ConnectorError(
+                'prepareVerification was called before beginVerification',
+              );
+            }
+
+            prepareVerificationTests(
+              verificationId,
+              mapConfig(
+                prepareVerificationRequest.getConfig(),
+                sendContractResponse,
+                functionRegistry,
+              ),
+            )
+              .then((result) =>
+                sendContractResponse(
+                  'maintainerDebug',
+                  getId(request),
+                  makeResultResponse(result),
+                ),
+              )
+              .catch((e) => {
+                sendUnexpectedError(request, e as Error, 'Run verification');
+              });
           }
           break;
         default:

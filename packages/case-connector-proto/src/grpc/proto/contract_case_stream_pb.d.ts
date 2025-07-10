@@ -1468,6 +1468,39 @@ export namespace InvokeFunction {
   };
 }
 
+export class PrepareVerificationTests extends jspb.Message {
+  hasConfig(): boolean;
+  clearConfig(): void;
+  getConfig(): ContractCaseConfig | undefined;
+  setConfig(value?: ContractCaseConfig): PrepareVerificationTests;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PrepareVerificationTests.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: PrepareVerificationTests,
+  ): PrepareVerificationTests.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: PrepareVerificationTests,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): PrepareVerificationTests;
+  static deserializeBinaryFromReader(
+    message: PrepareVerificationTests,
+    reader: jspb.BinaryReader,
+  ): PrepareVerificationTests;
+}
+
+export namespace PrepareVerificationTests {
+  export type AsObject = {
+    config?: ContractCaseConfig.AsObject;
+  };
+}
+
 export class DefinitionRequest extends jspb.Message {
   hasId(): boolean;
   clearId(): void;
@@ -1620,6 +1653,13 @@ export class VerificationRequest extends jspb.Message {
   getInvokeFunction(): InvokeFunction | undefined;
   setInvokeFunction(value?: InvokeFunction): VerificationRequest;
 
+  hasPrepareVerificationTests(): boolean;
+  clearPrepareVerificationTests(): void;
+  getPrepareVerificationTests(): PrepareVerificationTests | undefined;
+  setPrepareVerificationTests(
+    value?: PrepareVerificationTests,
+  ): VerificationRequest;
+
   getKindCase(): VerificationRequest.KindCase;
 
   serializeBinary(): Uint8Array;
@@ -1654,6 +1694,7 @@ export namespace VerificationRequest {
     invokeTest?: InvokeTest.AsObject;
     registerFunction?: RegisterFunction.AsObject;
     invokeFunction?: InvokeFunction.AsObject;
+    prepareVerificationTests?: PrepareVerificationTests.AsObject;
   };
 
   export enum KindCase {
@@ -1666,6 +1707,7 @@ export namespace VerificationRequest {
     INVOKE_TEST = 9,
     REGISTER_FUNCTION = 10,
     INVOKE_FUNCTION = 11,
+    PREPARE_VERIFICATION_TESTS = 12,
   }
 }
 

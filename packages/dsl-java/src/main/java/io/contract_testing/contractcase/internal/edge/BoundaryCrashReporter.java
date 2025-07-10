@@ -44,7 +44,9 @@ public class BoundaryCrashReporter {
    * Will rethrow the exception, printing a crash report if appropriate
    *
    * @param e the throwable to maybe rethrow
+   * @deprecated please use {@link #report(Exception)} instead, and throw the returned result
    */
+  @Deprecated()
   public static void handleAndRethrow(Exception e) {
     // This method should not call BoundaryResultMapper
     if (e instanceof ContractCaseConfigurationError) {
@@ -55,6 +57,27 @@ public class BoundaryCrashReporter {
     printCrashMessage(e);
 
     throw new ContractCaseCoreError(e);
+  }
+
+  /**
+   * Returns the exception to throw, printing a crash report if appropriate
+   *
+   * @param e the throwable to maybe print
+   */
+  public static RuntimeException report(Exception e) {
+    // This method should not call BoundaryResultMapper
+    if (e instanceof ContractCaseConfigurationError) {
+      return (ContractCaseConfigurationError) e;
+    } else if (e instanceof ContractCaseExpectationsNotMet) {
+      return (ContractCaseExpectationsNotMet) e;
+    }
+
+    printCrashMessage(e);
+
+    if (e instanceof ContractCaseCoreError) {
+      return (ContractCaseCoreError) e;
+    }
+    return new ContractCaseCoreError(e);
   }
 
   /**

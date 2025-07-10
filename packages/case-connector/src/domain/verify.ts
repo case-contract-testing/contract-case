@@ -85,5 +85,20 @@ export const runVerification = (
     );
   });
 
+export const prepareVerificationTests = (
+  verifierId: string,
+  config: ContractCaseConnectorConfig,
+): Promise<BoundaryResult> =>
+  Promise.resolve().then(() => {
+    const verifierHandle = getVerifier(verifierId, 'runVerification');
+    if (!('id' in verifierHandle)) {
+      return verifierHandle;
+    }
+    return verifierHandle.verifier.prepareVerificationTests(
+      mapConfig(config, verifierId),
+      verifierHandle.invokeableFunctions,
+    );
+  });
+
 export const endVerification = (verifierId: string): Promise<void> =>
   Promise.resolve().then(() => closeVerifier(verifierId));

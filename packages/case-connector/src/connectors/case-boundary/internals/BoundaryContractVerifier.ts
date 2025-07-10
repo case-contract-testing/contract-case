@@ -25,7 +25,10 @@ import {
   BoundarySuccessWithAny,
 } from './boundary/index.js';
 import { versionString } from '../../../entities/versionString.js';
-import { BoundaryInvokableFunction } from './types.js';
+import {
+  BoundaryContractVerificationTestHandle,
+  BoundaryInvokableFunction,
+} from './types.js';
 import { mergeConfig, mergeInvokers } from './mergers.js';
 
 class CoreInvoker implements IInvokeCoreTest {
@@ -148,7 +151,7 @@ export class BoundaryContractVerifier {
       this.initialiseVerifier();
       if (this.verifier === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised (getAvailableContractDescriptions)',
+          'Verifier was undefined after it was initialised (getAvailableContractDescriptions)',
         );
       }
 
@@ -176,7 +179,7 @@ export class BoundaryContractVerifier {
       this.initialiseVerifier();
       if (this.verifier === undefined) {
         throw new CaseCoreError(
-          'Definer was undefined after it was initialised (getAvailableContractDescriptions)',
+          'Verifier was undefined after it was initialised (getAvailableContractDescriptions)',
         );
       }
 
@@ -202,5 +205,53 @@ export class BoundaryContractVerifier {
       }
       throw e;
     }
+  }
+
+  prepareVerificationTests(
+    configOverrides: ContractCaseBoundaryConfig,
+    invokeableFns: Record<string, BoundaryInvokableFunction>,
+  ): Promise<BoundaryResult> {
+    return Promise.resolve()
+      .then(() => {
+        this.initialiseVerifier();
+        if (this.verifier === undefined) {
+          throw new CaseCoreError(
+            'Verifier was undefined after it was initialised (getAvailableContractDescriptions)',
+          );
+        }
+        const { config, partialInvoker } = convertConfig(configOverrides);
+        const { config: initialConfig, partialInvoker: initialInvoker } =
+          convertConfig(this.constructorConfig);
+
+        return this.verifier
+          .prepareVerificationTests(
+            mergeInvokers(initialInvoker, partialInvoker),
+            mergeConfig(initialConfig, config),
+            mapInvokableFunctions(invokeableFns),
+          )
+          .then(
+            (testHandles: BoundaryContractVerificationTestHandle[]) =>
+              new BoundarySuccessWithAny(JSON.stringify(testHandles)),
+          );
+      })
+      .catch((e) => Promise.resolve(jsErrorToFailure(e)));
+  }
+
+  runVerificationTest(
+    test: BoundaryContractVerificationTestHandle,
+  ): Promise<BoundaryResult> {
+    return Promise.resolve()
+      .then(() => {
+        this.initialiseVerifier();
+        if (this.verifier === undefined) {
+          throw new CaseCoreError(
+            'Verifier was undefined after it was initialised (getAvailableContractDescriptions)',
+          );
+        }
+        return this.verifier
+          .runPreparedTest(test)
+          .then(() => new BoundarySuccess());
+      })
+      .catch((e) => Promise.resolve(jsErrorToFailure(e)));
   }
 }

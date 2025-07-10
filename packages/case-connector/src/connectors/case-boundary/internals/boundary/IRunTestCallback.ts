@@ -10,10 +10,12 @@ export interface IInvokeCoreTest {
   /**
    * Call this to tell the ContractCase core to actually invoke the test.
    *
-   * Note that during verification, a failed verification doesn't return an error
-   * Result, but failed configuration or core bugs will. This is the intended default
-   * behaviour - as a failed verification doesn't necessarily indicate a problem
-   * in the code that is being verified.
+   * Note that by default during verification, a failed verification doesn't
+   * return an error Result, but failed configuration or core bugs will. This is
+   * the intended default behaviour - as a failed verification doesn't
+   * necessarily indicate a problem in the code that is being verified, it might
+   * be an expectation that is just not implemented yet, or it might be an old
+   * contract.
    *
    * @returns a promise that indicates the result of verifying this test (BoundaryResult)
    */

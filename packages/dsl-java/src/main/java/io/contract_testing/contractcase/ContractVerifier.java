@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.ContractDescription;
@@ -65,7 +66,7 @@ public class ContractVerifier implements AutoCloseable {
           new BoundaryVersionGenerator().getVersions()
       );
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
     this.verifier = verification;
   }
@@ -77,7 +78,7 @@ public class ContractVerifier implements AutoCloseable {
           "VERIFICATION_LOAD_PLUGIN"
       ), pluginNames));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
   }
 
@@ -85,9 +86,7 @@ public class ContractVerifier implements AutoCloseable {
     try {
       return ConnectorResultMapper.mapListAvailableContracts(this.verifier.availableContractDescriptions());
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
-      // This is actually unreachable, since the above method always throws
-      return List.of();
+      throw BoundaryCrashReporter.report(e);
     }
   }
 
@@ -95,21 +94,33 @@ public class ContractVerifier implements AutoCloseable {
     this.runVerification(ContractCaseConfigBuilder.aContractCaseConfig().build());
   }
 
+  public List<VerificationTestHandle> prepareVerification() {
+    return this.prepareVerification(ContractCaseConfigBuilder.aContractCaseConfig().build());
+  }
+
+  public List<VerificationTestHandle> prepareVerification(ContractCaseConfig configOverrides) {
+    try {
+      return ConnectorResultMapper.mapSuccessWithAny(this.verifier.prepareVerification(
+          ConnectorConfigMapper.map(configOverrides, "VERIFICATION")),  new TypeReference<List<VerificationTestHandle>>(){});
+    } catch (Exception e) {
+      throw BoundaryCrashReporter.report(e);
+    }
+  }
+
   public void runVerification(ContractCaseConfig configOverrides) {
     try {
       ConnectorResultMapper.mapVoid(this.verifier.runVerification(
           ConnectorConfigMapper.map(configOverrides, "VERIFICATION")));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
     var failures = runTestCallback.getFailures();
     if (!failures.isEmpty()) {
       try {
         ConnectorResultMapper.mapVoid(ConnectorResult.toConnectorResult(failures.get(0)));
       } catch (Exception e) {
-        BoundaryCrashReporter.handleAndRethrow(e);
+        throw BoundaryCrashReporter.report(e);
       }
-
     }
   }
 
@@ -119,56 +130,57 @@ public class ContractVerifier implements AutoCloseable {
   }
 
 
-  public <E extends Exception> void registerFunction(String functionName, InvokableFunction0<E> function) {
+  public <E extends Exception> void registerFunction(String functionName,
+      InvokableFunction0<E> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction1 function) {
+  public void registerFunction(String functionName, InvokableFunction1<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction2 function) {
+  public void registerFunction(String functionName, InvokableFunction2<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction3 function) {
+  public void registerFunction(String functionName, InvokableFunction3<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction4 function) {
+  public void registerFunction(String functionName, InvokableFunction4<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction5 function) {
+  public void registerFunction(String functionName, InvokableFunction5<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction6 function) {
+  public void registerFunction(String functionName, InvokableFunction6<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction7 function) {
+  public void registerFunction(String functionName, InvokableFunction7<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
@@ -176,13 +188,13 @@ public class ContractVerifier implements AutoCloseable {
   }
 
   private void registerFunctionInternal(String functionName,
-      ConnectorInvokableFunction connectorFunction) {
+      ConnectorInvokableFunction<?> connectorFunction) {
     try {
       ConnectorResultMapper.mapVoid(verifier.registerFunction(
           functionName, connectorFunction
       ));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
   }
 

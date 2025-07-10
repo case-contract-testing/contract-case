@@ -24,3 +24,12 @@ export * from './types.jsii-boundary.js';
 export type BoundaryInvokableFunction = (
   ...args: string[]
 ) => Promise<BoundaryResult>;
+
+/**
+ * Represents a test that can be called later
+ */
+export type BoundaryContractVerificationTestHandle = {
+  testName: string;
+  testIndex: number;
+  contractIndex: number;
+};
