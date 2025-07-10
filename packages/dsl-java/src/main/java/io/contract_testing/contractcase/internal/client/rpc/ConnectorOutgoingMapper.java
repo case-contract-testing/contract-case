@@ -188,7 +188,7 @@ public class ConnectorOutgoingMapper {
   @NotNull
   static ContractCaseStream.BoundaryResult mapResult(@NotNull ConnectorResult result) {
     var resultType = result.getResultType();
-    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Mapping result type: " + resultType);
+    // MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Mapping result type: " + resultType);
     if (resultType == null) {
       throw new ContractCaseCoreError("Got a null result type at: " + result);
     }

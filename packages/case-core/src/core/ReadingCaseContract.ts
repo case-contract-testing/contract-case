@@ -37,9 +37,6 @@ export class ReadingCaseContract extends BaseCaseContract {
    * @param readerDependencies - The dependencies for a contract reader (injected)
    * @param config - the CaseConfig for this run
    * @param parentVersions - the array of versions of all the ContractCase packages before this one
-   * @param mutex - a Mutex to use to ensure that only one test is run at once.
-   * this is injected, since the parent class might make more than one
-   * ReadingCaseContract objects (if verifying multiple contracts), but only one interaction can be run at once.
    */
   constructor(
     contractFile: DownloadedContract,
@@ -87,8 +84,7 @@ export class ReadingCaseContract extends BaseCaseContract {
     this.initialContext.logger.maintainerDebug(
       `This contract has ${this.currentContract.examples.length} interactions`,
     );
-    const interactionFinishedIndicators: Promise<unknown>[] = [];
-    const interactionFinishers: Array<() => void> = [];
+    const interactionPromises: Array<{ r: () => void; p: Promise<void> }> = [];
 
     this.currentContract.examples.forEach((example, index) => {
       if (example.result !== 'VERIFIED') {
@@ -102,61 +98,79 @@ export class ReadingCaseContract extends BaseCaseContract {
         `Preparing test framework's callback for: ${names.mockName} `,
       );
 
-      interactionFinishedIndicators.push(
-        new Promise<void>((resolve, reject) => {
-          const timeout = setTimeout(() => {
-            this.initialContext.logger.error(
-              `Timeout in interaction[${index}]`,
-            );
-            reject(new Error(names.mockName));
-          }, 30000);
+      let r: () => void = () => {
+        // This promise should be immediately overwritten by
+        // the resolution function in `immediatePromise` directly below
+        throw new CaseCoreError(
+          "An uninitialised promise resolver was called. This isn't supposed to be possible, as promises that don't do any read/write execute immediately",
+          this.initialContext,
+        );
+      };
+      const immediatePromise = new Promise<void>((resolve) => {
+        r = () => {
+          this.initialContext.logger.deepMaintainerDebug(
+            `Completion called for [${index}]`,
+          );
+          resolve();
+        };
+      });
 
-          interactionFinishers[index] = () => {
-            clearTimeout(timeout);
-            resolve();
-          };
-        }),
+      interactionPromises[index] = {
+        r,
+        p: immediatePromise,
+      };
+
+      // interactionFinishedIndicators.push();
+      this.initialContext.logger.deepMaintainerDebug(
+        `Calling test callback for ${names.mockName}`,
       );
       runTestCb(names.mockName, () =>
-        this.mutex
-          .runExclusive(() => {
-            // Set running context instead of inlining this, so that
-            // stripMatchers etc have access to the context
-            this.runningContext = applyNodeToContext(
-              example.mock,
-              this.initialContext,
-              {
-                '_case:currentRun:context:testName': `${index}`,
-                '_case:currentRun:context:contractMode': 'read',
-                '_case:currentRun:context:location': [
-                  'verification',
-                  `interaction[${index}]`,
-                ],
-              },
-            );
-            this.initialContext.logger.maintainerDebug(
-              `Run test callback for ${names.mockName}`,
-            );
-            return executeExample(
-              { ...example, result: 'PENDING' },
-              {
-                ...invoker,
-                names,
-              },
-              this,
-              this.runningContext,
-            );
-          })
-          .finally(() => {
-            this.initialContext.logger.deepMaintainerDebug(
-              `Interaction[${index}] type of finisher`,
-              interactionFinishers[index],
-            );
-            this.initialContext.logger.maintainerDebug(
-              `Interaction[${index}] completed: ${names.mockName}`,
-            );
-            interactionFinishers[index]?.();
-          }),
+        this.mutex.runExclusive(() =>
+          Promise.resolve()
+            .then(() => {
+              // Set running context instead of inlining this, so that
+              // stripMatchers etc have access to the context
+              this.runningContext = applyNodeToContext(
+                example.mock,
+                this.initialContext,
+                {
+                  '_case:currentRun:context:testName': `${index}`,
+                  '_case:currentRun:context:contractMode': 'read',
+                  '_case:currentRun:context:location': [
+                    'verification',
+                    `interaction[${index}]`,
+                  ],
+                },
+              );
+              this.initialContext.logger.maintainerDebug(
+                `Run test callback for ${names.mockName}`,
+              );
+              return executeExample(
+                { ...example, result: 'PENDING' },
+                {
+                  ...invoker,
+                  names,
+                },
+                this,
+                this.runningContext,
+              );
+            })
+            .finally(() => {
+              this.initialContext.logger.deepMaintainerDebug(
+                `Interaction[${index}] type of finisher`,
+                interactionPromises[index],
+              );
+              this.initialContext.logger.maintainerDebug(
+                `Interaction[${index}] completed: ${names.mockName}`,
+              );
+              if (!interactionPromises[index]) {
+                this.initialContext.logger.error(
+                  `CoreError: Interaction[${index}] had no finisher. Please report this as a bug.`,
+                );
+              }
+              interactionPromises[index]?.r();
+            }),
+        ),
       );
     });
     let publishFinished: () => void;
@@ -166,31 +180,43 @@ export class ReadingCaseContract extends BaseCaseContract {
         publishFinished = resolve;
       }),
     );
+    this.initialContext.logger.deepMaintainerDebug(
+      `Calling test callback for publish / finalise`,
+    );
     runTestCb(
       cantPublish(this.initialContext)
         ? 'Finalising verification'
         : 'Publishing verification results',
-      () => {
-        this.initialContext.logger.maintainerDebug(
-          'Test callback for ending record',
-        );
-        return Promise.allSettled(interactionFinishedIndicators)
-          .then(() => this.endRecord())
-          .finally(() => {
-            this.initialContext.logger.maintainerDebug(
-              `Publishing contract callback completed`,
-            );
-            publishFinished();
-          });
-      },
+      () =>
+        this.mutex.runExclusive(() => {
+          this.initialContext.logger.maintainerDebug(
+            'Test callback for ending record',
+          );
+          this.initialContext.logger.deepMaintainerDebug(
+            'Test callback for ending record',
+          );
+          return Promise.allSettled(interactionPromises.map(({ p }) => p))
+            .then(() => this.endRecord())
+            .finally(() => {
+              this.initialContext.logger.maintainerDebug(
+                `Publishing contract callback completed`,
+              );
+              publishFinished();
+            });
+        }),
     );
     if (
       this.initialContext['_case:currentRun:context:internals'] &&
       this.initialContext['_case:currentRun:context:internals']
         .asyncVerification
     ) {
+      this.initialContext.logger.deepMaintainerDebug(
+        `Async verification is on, waiting for`,
+        interactionPromises.map(({ p }) => p),
+        publishFinishedIndicators,
+      );
       return Promise.all([
-        ...interactionFinishedIndicators,
+        ...interactionPromises.map(({ p }) => p),
         ...publishFinishedIndicators,
       ]).then(() => {});
     }
