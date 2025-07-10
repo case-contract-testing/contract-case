@@ -84,7 +84,9 @@ export const contractVerification = (
   const functionRegistry = makeFunctionRegistry();
 
   call.on('data', (request: WireVerificationRequest) => {
-    maintainerLog('[RECEIVED]', JSON.stringify(request.toObject(), null, 2));
+    if (!request.getId()?.getValue().startsWith('printLog')) {
+      maintainerLog('[RECEIVED]', JSON.stringify(request.toObject(), null, 2));
+    }
     const type = request.getKindCase();
     try {
       switch (type) {

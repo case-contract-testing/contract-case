@@ -219,6 +219,7 @@ export class ContractVerifierConnector {
         return contractVerifier.verifyContract(invoker, this.callback);
       }),
     );
+
     if (mergedConfig.internals.asyncVerification) {
       this.context.logger.maintainerDebug(`Awaiting async verification`);
       return Promise.all(results).then(
@@ -231,6 +232,7 @@ export class ContractVerifierConnector {
           this.context.logger.maintainerDebug(
             `Async verification complete (Error: ${e.message})`,
           );
+
           throw e;
         },
       );
