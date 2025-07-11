@@ -118,9 +118,9 @@ export const mapSuccessTrigger =
           await testResponseFunction(data, mapSetup(setup));
           return new BoundarySuccess();
         },
-        () => {
+        (e) => {
           // TODO correct this return type
-          throw new Error('TRIGGER FAILED ');
+          throw new Error(`TRIGGER FAILED: ${e.message}`);
         },
       )
       .catch<BoundaryResult>(

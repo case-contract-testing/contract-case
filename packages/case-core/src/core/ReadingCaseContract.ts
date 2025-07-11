@@ -157,23 +157,22 @@ export class ReadingCaseContract extends BaseCaseContract {
       cantPublish(this.initialContext)
         ? 'Finalising verification'
         : 'Publishing verification results',
-      () =>
-        this.mutex.runExclusive(() => {
-          this.initialContext.logger.maintainerDebug(
-            'Test callback for ending record',
-          );
-          this.initialContext.logger.deepMaintainerDebug(
-            'Test callback for ending record',
-          );
-          return Promise.allSettled(interactionPromises.map(({ p }) => p))
-            .then(() => this.endRecord())
-            .finally(() => {
-              this.initialContext.logger.maintainerDebug(
-                `Publishing contract callback completed`,
-              );
-              publishFinished();
-            });
-        }),
+      () => {
+        this.initialContext.logger.maintainerDebug(
+          'Test callback for ending record',
+        );
+        this.initialContext.logger.deepMaintainerDebug(
+          'Test callback for ending record',
+        );
+        return Promise.allSettled(interactionPromises.map(({ p }) => p))
+          .then(() => this.endRecord())
+          .finally(() => {
+            this.initialContext.logger.maintainerDebug(
+              `Publishing contract callback completed`,
+            );
+            publishFinished();
+          });
+      },
     );
     if (
       this.initialContext['_case:currentRun:context:internals'] &&
@@ -245,7 +244,16 @@ export class ReadingCaseContract extends BaseCaseContract {
             this.runningContext,
           );
         })
-        .finally(completionCallback),
+        .finally(() => {
+          try {
+            completionCallback();
+          } catch (e) {
+            this.runningContext.logger.error(
+              `BUG: Error in completion callback: ${(e as Error).message}`,
+              e,
+            );
+          }
+        }),
     );
   }
 

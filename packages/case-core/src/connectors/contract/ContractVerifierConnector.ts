@@ -113,7 +113,7 @@ export class ContractVerifierConnector {
     this.callback = callback;
 
     this.mutex = new Mutex();
-    this.context.logger.deepMaintainerDebug('Constructed Verifier');
+    this.context.logger.deepMaintainerDebug('Constructed VerifierConnector');
   }
 
   private filterContractsWithConfiguration(
@@ -207,9 +207,13 @@ export class ContractVerifierConnector {
       },
       this.parentVersions,
     );
+    this.context.logger.deepMaintainerDebug(
+      `Registering ${Object.entries(invokeableFns).length} invokable functions`,
+    );
     Object.entries(invokeableFns).forEach(([key, value]) => {
       contractVerifier.registerFunction(key, value);
     });
+    this.context.logger.deepMaintainerDebug(`Verify contract`);
     return contractVerifier.verifyContract(invoker, this.callback);
   }
 
