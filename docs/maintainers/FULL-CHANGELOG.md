@@ -1,5 +1,39 @@
 # Changelog
 
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/v0.25.2...v0.26.0) (2025-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions
+
+### Features
+
+* Add Jest 30 as a possible peer dependency ([0f3cc98](https://github.com/case-contract-testing/contract-case/commit/0f3cc9819d3868a20f59bb28fd3dc11a5f42ca73))
+* **core:** Now contract verification is guaranteed to run contracts in order, instead of interleaving interactions ([0648101](https://github.com/case-contract-testing/contract-case/commit/06481012140d935fc1134d5351f97be97bfe65e3))
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions ([7f06209](https://github.com/case-contract-testing/contract-case/commit/7f062096bdad81e5d763429682b99f481f9405ce))
+* **java-dsl:** Now supports the prepareVerificationTests and runPreparedTest lifecycle for better integration with JUnit ([1408d46](https://github.com/case-contract-testing/contract-case/commit/1408d46a159978bec58bb4bb957b6979473534cb))
+* Now `definer.endRecord()` returns a `ContractWriteSuccess` object, which contains details of the written contract(s) ([7299895](https://github.com/case-contract-testing/contract-case/commit/7299895f8ec7a9d8b3e351111045f5c7b75eb1e8))
+* **plugin-base:** Added ability for matching errors to have context about what the data is, allowing more specific error messages ([150c0d6](https://github.com/case-contract-testing/contract-case/commit/150c0d6745afe0ba3b60819510fdc11346578c4d))
+
+
+### Bug Fixes
+
+* **connector:** Correct types read when moduleresolution is node ([ff29e62](https://github.com/case-contract-testing/contract-case/commit/ff29e62a8040c97eaa86ed2dcb09bed8cb940036))
+* **core:** availableContractDescriptions now respects the configuration and only returns the filtered set of contracts. This was the intended (and documented) behaviour before. If you need to see the ignored contracts, they're visible in a call to this method with a logLevel of DEBUG or lower. ([9c4e5a8](https://github.com/case-contract-testing/contract-case/commit/9c4e5a8639572797bfda6b502c0e28dfc10a0b2f))
+* **function-plugin:** Add debug logging of return value when caller is mocked ([cac45b5](https://github.com/case-contract-testing/contract-case/commit/cac45b5c95dcf6d875bf2c46c6dee4bc211e5c07))
+* **function-plugin:** No longer repeats `returnValue` twice in error location messages ([4a5d4dd](https://github.com/case-contract-testing/contract-case/commit/4a5d4dd03c0cdb450ed4f430b580e100cd008a44))
+* **function-plugin:** Substantially improved error messages when functions throw instead of returning, or receive the wrong number of arguments ([d25d819](https://github.com/case-contract-testing/contract-case/commit/d25d819a8478b887e7fc1bb4a747d0c0bd4428dc))
+* **java-dsl:** Ensure that user-facing stack traces include the cause if they are chained exceptions ([6ba5326](https://github.com/case-contract-testing/contract-case/commit/6ba5326ffd5e5fc4694133cb636e5a8b79e4954e))
+* **java-dsl:** Plugins were not passed to the core by the Verifier ([4791891](https://github.com/case-contract-testing/contract-case/commit/4791891d5201f8e6f2699deb5ca6c56731f35a14))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.26.0
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/v0.25.1...v0.25.2) (2025-06-22)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-connector-proto",
-  "version": "0.25.2",
+  "version": "0.26.0",
   "description": "Generated proto files for ContractCase's CaseConnector",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/docs",
@@ -34,8 +34,8 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@contract-case/case-maintainer-config": "0.25.2",
-    "@contract-case/eslint-config-case-maintainer": "0.25.2",
+    "@contract-case/case-maintainer-config": "0.26.0",
+    "@contract-case/eslint-config-case-maintainer": "0.26.0",
     "@types/google-protobuf": "^3.15.12",
     "@types/uuid": "^10.0.0",
     "grpc_tools_node_protoc_ts": "^5.3.3",
