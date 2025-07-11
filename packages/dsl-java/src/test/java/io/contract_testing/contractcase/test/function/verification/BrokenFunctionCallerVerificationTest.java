@@ -26,7 +26,7 @@ public class BrokenFunctionCallerVerificationTest {
           .providerName("Java Function Implementer Example")
           .publish(PublishType.NEVER)
           .printResults(false)
-          .logLevel(LogLevel.DEEP_MAINTAINER_DEBUG)
+    //      .logLevel(LogLevel.DEEP_MAINTAINER_DEBUG)
           .contractDir("verifiable-contracts")
           .build());
 

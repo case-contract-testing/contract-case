@@ -49,7 +49,7 @@ public class RepeatStateCallerJUnitWrapperVerificationTest {
           .consumerName("Java Repeated State Caller Example")
           .providerName("Java Repeated State Implementer Example")
           .publish(PublishType.NEVER)
-          .logLevel(LogLevel.DEEP_MAINTAINER_DEBUG)
+          //.logLevel(LogLevel.DEEP_MAINTAINER_DEBUG)
           .build(),
       callback
   );
