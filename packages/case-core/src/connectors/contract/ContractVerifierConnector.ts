@@ -170,6 +170,49 @@ export class ContractVerifierConnector {
     );
   }
 
+  internalVerifyContract<T extends AnyMockDescriptorType>(
+    index: number,
+    contractLink: ContractFileFromDisk,
+    invoker: MultiTestInvoker<T>,
+    contractsToVerify: ContractFileFromDisk[],
+    mergedConfig: CaseConfig,
+    invokeableFns: Record<
+      string,
+      (...args: unknown[]) => Promise<unknown>
+    > = {},
+  ): Promise<void> | undefined {
+    if (!contractLink?.contents?.description?.consumerName) {
+      this.context.logger.error(
+        `Contract in file '${contractLink.filePath}' appears to have no consumer name! It might not be a case contract`,
+      );
+    }
+
+    if (!contractLink?.contents?.description?.providerName) {
+      this.context.logger.error(
+        `Contract in file '${contractLink.filePath}' appears to have no provider name! It might not be a case contract`,
+      );
+    }
+
+    this.context.logger.debug(
+      `*** Verifying contract: '${contractLink.contents.description.consumerName}' -> '${contractLink.contents.description.consumerName}'`,
+    );
+    this.context.logger.debug(`Contract File: ${contractLink.filePath}`);
+    const contractVerifier = new ReadingCaseContract(
+      contractLink.contents,
+      this.dependencies,
+      {
+        ...mergedConfig,
+        coreLogContextPrefix:
+          contractsToVerify.length > 1 ? `Contract[${index}]` : '',
+      },
+      this.parentVersions,
+    );
+    Object.entries(invokeableFns).forEach(([key, value]) => {
+      contractVerifier.registerFunction(key, value);
+    });
+    return contractVerifier.verifyContract(invoker, this.callback);
+  }
+
   verifyContract<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
     configOverride = {},
@@ -201,40 +244,33 @@ export class ContractVerifierConnector {
       );
       this.context.logger.debug(`Take note of the contract number in the log`);
     }
-    const results = contractsToVerify.map((contractLink, index) =>
-      this.mutex.runExclusive(() => {
-        if (!contractLink?.contents?.description?.consumerName) {
-          this.context.logger.error(
-            `Contract in file '${contractLink.filePath}' appears to have no consumer name! It might not be a case contract`,
-          );
-        }
-
-        if (!contractLink?.contents?.description?.providerName) {
-          this.context.logger.error(
-            `Contract in file '${contractLink.filePath}' appears to have no provider name! It might not be a case contract`,
-          );
-        }
-
-        this.context.logger.debug(
-          `*** Verifying contract: '${contractLink.contents.description.consumerName}' -> '${contractLink.contents.description.consumerName}'`,
+    const results = contractsToVerify.map((contractLink, index) => {
+      if (mergedConfig.internals == null) {
+        throw new CaseCoreError(
+          'Verify contract was called with no internals set - this is an error in the caller, probably the language specific wrapper',
         );
-        this.context.logger.debug(`Contract File: ${contractLink.filePath}`);
-        const contractVerifier = new ReadingCaseContract(
-          contractLink.contents,
-          this.dependencies,
-          {
-            ...mergedConfig,
-            coreLogContextPrefix:
-              contractsToVerify.length > 1 ? `Contract[${index}]` : '',
-          },
-          this.parentVersions,
+      }
+      if (mergedConfig.internals.asyncVerification) {
+        return this.mutex.runExclusive(() =>
+          this.internalVerifyContract(
+            index,
+            contractLink,
+            invoker,
+            contractsToVerify,
+            mergedConfig,
+            invokeableFns,
+          ),
         );
-        Object.entries(invokeableFns).forEach(([key, value]) => {
-          contractVerifier.registerFunction(key, value);
-        });
-        return contractVerifier.verifyContract(invoker, this.callback);
-      }),
-    );
+      }
+      return this.internalVerifyContract(
+        index,
+        contractLink,
+        invoker,
+        contractsToVerify,
+        mergedConfig,
+        invokeableFns,
+      );
+    });
 
     if (mergedConfig.internals.asyncVerification) {
       this.context.logger.maintainerDebug(`Awaiting async verification`);
