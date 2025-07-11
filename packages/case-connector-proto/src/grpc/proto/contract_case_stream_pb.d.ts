@@ -1359,11 +1359,60 @@ export namespace StartTestEvent {
   };
 }
 
+export class PreparedTestHandle extends jspb.Message {
+  getContractIndex(): number;
+  setContractIndex(value: number): PreparedTestHandle;
+  getTestIndex(): number;
+  setTestIndex(value: number): PreparedTestHandle;
+
+  hasTestName(): boolean;
+  clearTestName(): void;
+  getTestName(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setTestName(
+    value?: google_protobuf_wrappers_pb.StringValue,
+  ): PreparedTestHandle;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PreparedTestHandle.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: PreparedTestHandle,
+  ): PreparedTestHandle.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: PreparedTestHandle,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): PreparedTestHandle;
+  static deserializeBinaryFromReader(
+    message: PreparedTestHandle,
+    reader: jspb.BinaryReader,
+  ): PreparedTestHandle;
+}
+
+export namespace PreparedTestHandle {
+  export type AsObject = {
+    contractIndex: number;
+    testIndex: number;
+    testName?: google_protobuf_wrappers_pb.StringValue.AsObject;
+  };
+}
+
 export class InvokeTest extends jspb.Message {
   hasInvokerId(): boolean;
   clearInvokerId(): void;
   getInvokerId(): google_protobuf_wrappers_pb.StringValue | undefined;
   setInvokerId(value?: google_protobuf_wrappers_pb.StringValue): InvokeTest;
+
+  hasPreparedTestHandle(): boolean;
+  clearPreparedTestHandle(): void;
+  getPreparedTestHandle(): PreparedTestHandle | undefined;
+  setPreparedTestHandle(value?: PreparedTestHandle): InvokeTest;
+
+  getTestCase(): InvokeTest.TestCase;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InvokeTest.AsObject;
@@ -1389,7 +1438,14 @@ export class InvokeTest extends jspb.Message {
 export namespace InvokeTest {
   export type AsObject = {
     invokerId?: google_protobuf_wrappers_pb.StringValue.AsObject;
+    preparedTestHandle?: PreparedTestHandle.AsObject;
   };
+
+  export enum TestCase {
+    TEST_NOT_SET = 0,
+    INVOKER_ID = 1,
+    PREPARED_TEST_HANDLE = 2,
+  }
 }
 
 export class RegisterFunction extends jspb.Message {

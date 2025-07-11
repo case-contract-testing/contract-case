@@ -5,6 +5,7 @@ import {
   VerificationRequest as WireVerificationRequest,
   ContractResponse as WireContractResponse,
   StartTestEvent as WireStartTestEvent,
+  InvokeTest,
 } from '@contract-case/case-connector-proto';
 import { UnreachableError } from './UnreachableError.js';
 import {
@@ -21,6 +22,7 @@ import {
   beginVerification,
   prepareVerificationTests,
   registerFunction,
+  runPreparedTest,
   runVerification,
 } from '../../domain/verify.js';
 import { maintainerLog } from '../../domain/maintainerLog.js';
@@ -40,6 +42,7 @@ import { makeLogPrinter, makeResultPrinter } from './printers.js';
 import { makeResultResponse } from './responseMappers/index.js';
 import { loadPlugin } from '../../domain/loadPlugin.js';
 import { makeFunctionRegistry } from './functionRegistry/index.js';
+import { unbox } from './requestMappers/values.js';
 
 const getId = (request: WireVerificationRequest): string => {
   const id = request.getId();
@@ -262,20 +265,62 @@ export const contractVerification = (
                 'Invoke test was called with an undefined invokeTest',
               );
             }
-            const wrappedInvokerId = invokeTestResponse.getInvokerId();
-            if (wrappedInvokerId == null) {
-              throw new ConnectorError(
-                'Invoke test was called with an undefined invoker ID',
-              );
+            const testType = invokeTestResponse.getTestCase();
+            switch (testType) {
+              case InvokeTest.TestCase.TEST_NOT_SET:
+                throw new ConnectorError(
+                  'Invoke test was called with an undefined test',
+                );
+              case InvokeTest.TestCase.INVOKER_ID:
+                {
+                  const wrappedInvokerId = invokeTestResponse.getInvokerId();
+                  if (wrappedInvokerId == null) {
+                    throw new ConnectorError(
+                      'Invoke test was called with an undefined invoker ID',
+                    );
+                  }
+                  const id = request.getId()?.getValue();
+                  resolveById(
+                    wrappedInvokerId.getValue(),
+                    // TODO: This should probably explode, there should always be an ID
+                    new BoundarySuccessWithAny(id ?? '!!NO_ID!!'),
+                  );
+                }
+                break;
+              case InvokeTest.TestCase.PREPARED_TEST_HANDLE:
+                {
+                  const preparedTestHandle =
+                    invokeTestResponse.getPreparedTestHandle();
+                  if (preparedTestHandle == null) {
+                    throw new ConnectorError(
+                      'Invoke test was called with an undefined preparedTestHandle',
+                    );
+                  }
+                  if (verificationId === undefined) {
+                    throw new ConnectorError(
+                      'runPreparedTest was called before beginVerification',
+                    );
+                  }
+                  runPreparedTest(verificationId, {
+                    testName: unbox(preparedTestHandle.getTestName()),
+                    testIndex: preparedTestHandle.getTestIndex(),
+                    contractIndex: preparedTestHandle.getContractIndex(),
+                  })
+                    .then((result) =>
+                      sendContractResponse(
+                        'maintainerDebug',
+                        getId(request),
+                        makeResultResponse(result),
+                      ),
+                    )
+                    .catch((e) => {
+                      sendUnexpectedError(request, e as Error, 'load plugin');
+                    });
+                }
+                break;
+              default:
+                throw new UnreachableError(testType);
             }
-
-            const id = request.getId()?.getValue();
-            resolveById(
-              wrappedInvokerId.getValue(),
-              // TODO: This should probably explode, there should always be an ID
-              new BoundarySuccessWithAny(id ?? '!!NO_ID!!'),
-            );
-            //     sendContractResponse(getId(request), makeResultResponse(result));
           }
           break;
         case WireVerificationRequest.KindCase.LOAD_PLUGIN:

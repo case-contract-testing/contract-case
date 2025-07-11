@@ -78,8 +78,7 @@ export class ContractVerifierConnector {
    *
    * @internal
    */
-  private contractVerificationHandles: ContractVerifierHandle[] | undefined =
-    undefined;
+  #contractVerificationHandles: ContractVerifierHandle[] | undefined;
 
   constructor(
     userConfig: CaseConfig,
@@ -114,6 +113,7 @@ export class ContractVerifierConnector {
     this.callback = callback;
 
     this.mutex = new Mutex();
+    this.context.logger.deepMaintainerDebug('Constructed Verifier');
   }
 
   private filterContractsWithConfiguration(
@@ -298,7 +298,7 @@ export class ContractVerifierConnector {
       );
       this.context.logger.debug(`Take note of the contract number in the log`);
     }
-    this.contractVerificationHandles = await Promise.all(
+    this.#contractVerificationHandles = await Promise.all(
       contractsToVerify.map((contractLink, index) =>
         Promise.resolve().then(() => {
           if (!contractLink?.contents?.description?.consumerName) {
@@ -340,7 +340,11 @@ export class ContractVerifierConnector {
         }),
       ),
     );
-    return this.contractVerificationHandles.flatMap((contractHandle) =>
+    this.context.logger.deepMaintainerDebug(
+      'prepared verification handles set to:',
+      this.#contractVerificationHandles,
+    );
+    return this.#contractVerificationHandles.flatMap((contractHandle) =>
       contractHandle.tests.map((testHandle) => ({
         testName: testHandle.testName,
         testIndex: testHandle.index,
@@ -359,14 +363,18 @@ export class ContractVerifierConnector {
    * default the test may have failedi f, but the promise can be successful).
    */
   async runPreparedTest(test: ContractVerificationTestHandle): Promise<void> {
+    const handles = this.#contractVerificationHandles;
     return Promise.resolve().then(() => {
-      if (this.contractVerificationHandles == null) {
+      if (handles == null) {
+        this.context.logger.deepMaintainerDebug(
+          'ERROR no contractVerificationHandles. Class was:',
+          this,
+        );
         throw new CaseCoreError(
           'runPreparedTest was called before prepareVerificationTests. This is probably a bug in the language DSL wrapper',
         );
       }
-      const contractHandle =
-        this.contractVerificationHandles[test.contractIndex];
+      const contractHandle = handles[test.contractIndex];
       this.context.logger.deepMaintainerDebug(
         'Run prepared test had contract handle',
         contractHandle,
@@ -374,7 +382,7 @@ export class ContractVerifierConnector {
       if (contractHandle == null) {
         this.context.logger.error(
           'BUG: Run prepared test invoked incorrectly. See exception for details. The contractVerificationHandles object is:',
-          this.contractVerificationHandles,
+          handles,
         );
         throw new CaseCoreError(
           `The contract handle ${test.contractIndex} was undefined. This is probably a bug in the language DSL wrapper`,
@@ -388,13 +396,65 @@ export class ContractVerifierConnector {
       if (testHandle == null) {
         this.context.logger.error(
           'BUG: Run prepared test invoked incorrectly. See exception for details. The contractVerificationHandles object is:',
-          this.contractVerificationHandles,
+          handles,
         );
         throw new CaseCoreError(
           `The testHandle ${test.testIndex} was undefined. This is probably a bug in the language DSL wrapper`,
         );
       }
       return testHandle.runTest();
+    });
+  }
+
+  /**
+   * Closes a verification
+   *
+   * @returns a successful promise if the verification closed successfully
+   */
+  async closePreparedVerification(): Promise<void> {
+    return Promise.resolve().then(() => {
+      if (this.#contractVerificationHandles == null) {
+        this.context.logger.maintainerDebug(
+          "Closing contract verifications, but they weren't prepared - assuming closed.",
+        );
+        // We don't need to close tests run with runVerification
+        return Promise.resolve();
+      }
+      const contractVerifiers = this.#contractVerificationHandles.reduce<
+        ReadingCaseContract[]
+      >((acc, curr) => {
+        acc[curr.index] = curr.verifier;
+        return acc;
+      }, []);
+
+      this.context.logger.maintainerDebug(
+        'Closing contract verifications',
+        contractVerifiers,
+      );
+
+      return Promise.allSettled(
+        contractVerifiers.map((v) =>
+          Promise.resolve().then(() => v.endRecord()),
+        ),
+      ).then((results) => {
+        const failures = results
+          .filter((result) => result.status === 'rejected')
+          .map(({ reason }) => reason);
+        if (failures.length > 0) {
+          this.context.logger.error(
+            `There were failures verifying ${failures.length} contracts`,
+          );
+          failures.forEach((failure) => {
+            this.context.logger.error(
+              `${
+                (failure as Error).name ? `${(failure as Error).name}: ` : ''
+              } ${(failure as Error).message}`,
+            );
+          });
+          this.context.logger.error(`Throwing only the first error`);
+          throw failures[0];
+        }
+      });
     });
   }
 }

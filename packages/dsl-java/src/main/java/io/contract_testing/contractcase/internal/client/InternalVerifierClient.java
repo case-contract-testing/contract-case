@@ -1,11 +1,14 @@
 package io.contract_testing.contractcase.internal.client;
 
+import io.contract_testing.contractcase.VerificationTestHandle;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.AvailableContractDefinitions;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginVerificationRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.InvokeTest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.PrepareVerificationTests;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.PreparedTestHandle;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RegisterFunction;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RunVerification;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.VerificationRequest;
@@ -115,7 +118,7 @@ public class InternalVerifierClient implements AutoCloseable {
   }
 
   public ConnectorResult prepareVerification(ContractCaseConnectorConfig configOverrides) {
-    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Verification run");
+    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Verification preparation");
     configHandle.setConnectorConfig(configOverrides);
     var response = rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
         .setPrepareVerificationTests(
@@ -127,7 +130,28 @@ public class InternalVerifierClient implements AutoCloseable {
     );
     MaintainerLog.log(
         LogLevel.MAINTAINER_DEBUG,
-        "Response from verification was: " + response.getResultType()
+        "Response from preparation was: " + response.getResultType()
+    );
+    return response;
+  }
+
+  public ConnectorResult runPreparedTest(VerificationTestHandle testHandle) {
+    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Verification runPreparedTest");
+    var response = rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
+        .setInvokeTest(
+            InvokeTest.newBuilder()
+                .setPreparedTestHandle(
+                    PreparedTestHandle.newBuilder()
+                        .setTestIndex(testHandle.testIndex())
+                        .setContractIndex(testHandle.contractIndex())
+                        .setTestName(ConnectorOutgoingMapper.map(testHandle.testName()))
+                        .build()
+                )
+        ), "runPreparedTest", VERIFY_TIMEOUT_SECONDS
+    );
+    MaintainerLog.log(
+        LogLevel.MAINTAINER_DEBUG,
+        "Response from runPreparedTest was: " + response.getResultType()
     );
     return response;
   }

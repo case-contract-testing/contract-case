@@ -335,11 +335,20 @@ message StartTestEvent {
   google.protobuf.StringValue invoker_id = 2;
 }
 
+message PreparedTestHandle {
+  int32 contract_index = 2;
+  int32 test_index = 3;
+  google.protobuf.StringValue test_name = 4; 
+}
+
 // From the Host to the Core, tells the core to execute the test it was given
 message InvokeTest {
   // Callback ID from the host language in a start test event
   // Used by the core to invoke a specific test
-  google.protobuf.StringValue invoker_id = 1;
+  oneof test {
+    google.protobuf.StringValue invoker_id = 1;
+    PreparedTestHandle prepared_test_handle = 2;
+  }
 }
 
 message RegisterFunction {

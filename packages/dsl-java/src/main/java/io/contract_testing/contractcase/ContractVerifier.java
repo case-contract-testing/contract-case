@@ -66,7 +66,8 @@ public class ContractVerifier implements AutoCloseable {
           new BoundaryVersionGenerator().getVersions()
       );
     } catch (Exception e) {
-      throw BoundaryCrashReporter.report(e);
+      // TODO: Move this setup to outside the constructor, safer not to throw in the constructor.
+      BoundaryCrashReporter.handleAndRethrow(e);
     }
     this.verifier = verification;
   }
@@ -100,8 +101,22 @@ public class ContractVerifier implements AutoCloseable {
 
   public List<VerificationTestHandle> prepareVerification(ContractCaseConfig configOverrides) {
     try {
-      return ConnectorResultMapper.mapSuccessWithAny(this.verifier.prepareVerification(
-          ConnectorConfigMapper.map(configOverrides, "VERIFICATION")),  new TypeReference<List<VerificationTestHandle>>(){});
+      return ConnectorResultMapper.mapSuccessWithAny(
+          this.verifier.prepareVerification(
+              ConnectorConfigMapper.map(configOverrides, "VERIFICATION")),
+          new TypeReference<List<VerificationTestHandle>>() {
+          }
+      );
+    } catch (Exception e) {
+      throw BoundaryCrashReporter.report(e);
+    }
+  }
+
+  public void runPreparedTest(VerificationTestHandle testHandle) {
+    try {
+      ConnectorResultMapper.mapVoid(
+          this.verifier.runPreparedTest(testHandle)
+      );
     } catch (Exception e) {
       throw BoundaryCrashReporter.report(e);
     }

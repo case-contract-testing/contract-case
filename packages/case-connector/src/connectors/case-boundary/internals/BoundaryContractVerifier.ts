@@ -117,22 +117,24 @@ export class BoundaryContractVerifier {
   }
 
   private initialiseVerifier() {
-    const { config } = convertConfig(this.constructorConfig);
+    if (this.verifier == null) {
+      const { config } = convertConfig(this.constructorConfig);
 
-    if (config.providerName === undefined || config.providerName === '') {
-      throw new CaseConfigurationError(
-        'Must provide a non-empty providerName',
-        'DONT_ADD_LOCATION',
-        'INVALID_CONFIG',
+      if (config.providerName === undefined || config.providerName === '') {
+        throw new CaseConfigurationError(
+          'Must provide a non-empty providerName',
+          'DONT_ADD_LOCATION',
+          'INVALID_CONFIG',
+        );
+      }
+
+      this.verifier = new ContractVerifierConnector(
+        config,
+        wrapCallback(this.callback),
+        wrapLogPrinter(this.logPrinter, this.resultPrinter),
+        [...this.parentVersions],
       );
     }
-
-    this.verifier = new ContractVerifierConnector(
-      config,
-      wrapCallback(this.callback),
-      wrapLogPrinter(this.logPrinter, this.resultPrinter),
-      [...this.parentVersions],
-    );
   }
 
   /**

@@ -14,6 +14,7 @@ import {
   createVerifier,
   getVerifier,
 } from '../connectors/case-boundary/verifier.js';
+import { BoundaryContractVerificationTestHandle } from '../connectors/case-boundary/internals/types.js';
 
 export const beginVerification = (
   config: ContractCaseConnectorConfig,
@@ -98,6 +99,18 @@ export const prepareVerificationTests = (
       mapConfig(config, verifierId),
       verifierHandle.invokeableFunctions,
     );
+  });
+
+export const runPreparedTest = (
+  verifierId: string,
+  preparedTestHandle: BoundaryContractVerificationTestHandle,
+): Promise<BoundaryResult> =>
+  Promise.resolve().then(() => {
+    const verifierHandle = getVerifier(verifierId, 'runVerification');
+    if (!('id' in verifierHandle)) {
+      return verifierHandle;
+    }
+    return verifierHandle.verifier.runVerificationTest(preparedTestHandle);
   });
 
 export const endVerification = (verifierId: string): Promise<void> =>

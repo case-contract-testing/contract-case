@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.ContractVerifier;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
+import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.StateHandler;
 import java.util.function.Function;
@@ -32,21 +33,23 @@ public class RepeatStateCallerPrepareVerificationTest {
       return "" + value;
     });
 
-    ContractCaseConfigBuilder builder= ContractCaseConfigBuilder.aContractCaseConfig()
+    ContractCaseConfigBuilder builder = ContractCaseConfigBuilder.aContractCaseConfig()
         //  .logLevel(LogLevel.MAINTAINER_DEBUG)
         .printResults(true)
         .throwOnFail(true);
 
-    for(int i =0 ; i < 23; i++) {
+    for (int i = 0; i < 23; i++) {
       final int finValue = i;
       builder.stateHandler("The value is " + i, StateHandler.setupFunction(() -> {
         value = finValue;
       }));
     }
 
-
     var tests = contract.prepareVerification(builder.build());
-    assertThat(tests).isEqualTo(0);
+    for (var test: tests) {
+      contract.runPreparedTest(test);
+    }
+    contract.close();
   }
 
   private static @NotNull <R> InvokableFunction1<?> convertJsonIntegerArg(Function<Integer, R> functionUnderTest) {
@@ -61,7 +64,6 @@ public class RepeatStateCallerPrepareVerificationTest {
   }
 
   @NotNull
-
   private static <R, E extends Exception> InvokableFunction1<E> convertJsonStringArgs(
       InvokableFunction1<E> functionUnderTest) {
     return (String a) -> {
