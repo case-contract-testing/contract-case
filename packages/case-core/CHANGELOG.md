@@ -1,5 +1,41 @@
 # Changelog
 
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.25.2...@contract-case/case-core-v0.26.0) (2025-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions
+
+### Features
+
+* **core:** Now contract verification is guaranteed to run contracts in order, instead of interleaving interactions ([0648101](https://github.com/case-contract-testing/contract-case/commit/06481012140d935fc1134d5351f97be97bfe65e3))
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions ([7f06209](https://github.com/case-contract-testing/contract-case/commit/7f062096bdad81e5d763429682b99f481f9405ce))
+* **java-dsl:** Now supports the prepareVerificationTests and runPreparedTest lifecycle for better integration with JUnit ([1408d46](https://github.com/case-contract-testing/contract-case/commit/1408d46a159978bec58bb4bb957b6979473534cb))
+* Now `definer.endRecord()` returns a `ContractWriteSuccess` object, which contains details of the written contract(s) ([7299895](https://github.com/case-contract-testing/contract-case/commit/7299895f8ec7a9d8b3e351111045f5c7b75eb1e8))
+* **plugin-base:** Added ability for matching errors to have context about what the data is, allowing more specific error messages ([150c0d6](https://github.com/case-contract-testing/contract-case/commit/150c0d6745afe0ba3b60819510fdc11346578c4d))
+
+
+### Bug Fixes
+
+* **core:** availableContractDescriptions now respects the configuration and only returns the filtered set of contracts. This was the intended (and documented) behaviour before. If you need to see the ignored contracts, they're visible in a call to this method with a logLevel of DEBUG or lower. ([9c4e5a8](https://github.com/case-contract-testing/contract-case/commit/9c4e5a8639572797bfda6b502c0e28dfc10a0b2f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-core-plugin-http bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-entities-internal bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-plugin-base bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.2 to 0.26.0
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-maintainer-config bumped from 0.25.2 to 0.26.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.26.0
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.25.1...@contract-case/case-core-v0.25.2) (2025-06-22)
 
 

@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.25.2...@contract-case/case-connector-proto-v0.26.0) (2025-07-11)
+
+
+### Features
+
+* **java-dsl:** Now supports the prepareVerificationTests and runPreparedTest lifecycle for better integration with JUnit ([1408d46](https://github.com/case-contract-testing/contract-case/commit/1408d46a159978bec58bb4bb957b6979473534cb))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.25.2 to 0.26.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.26.0
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.25.1...@contract-case/case-connector-proto-v0.25.2) (2025-06-22)
 
 
