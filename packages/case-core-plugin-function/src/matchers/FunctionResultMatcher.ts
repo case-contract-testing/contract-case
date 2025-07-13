@@ -152,7 +152,7 @@ const check = async (
           matchingError(
             matcher,
             `Expected the function to return success, but it failed with an error`,
-            parseActualSuccess(actual, matchContext),
+            actual,
             matchContext,
             matchContext.descendAndStrip(
               matcher,
