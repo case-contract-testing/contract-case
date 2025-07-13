@@ -23,6 +23,23 @@
   * devDependencies
     * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
 
+## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.26.0...@contract-case/cli-v0.26.1) (2025-07-13)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/cli:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-core bumped from 0.26.0 to 0.26.1
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.0 to 0.26.1
+
 ## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.25.2...@contract-case/cli-v0.26.0) (2025-07-11)
 
 
