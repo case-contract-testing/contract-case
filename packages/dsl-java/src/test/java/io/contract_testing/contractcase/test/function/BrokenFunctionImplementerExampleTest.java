@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
-import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig;
 import io.contract_testing.contractcase.configuration.InvokableFunctions;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
@@ -15,8 +14,8 @@ import io.contract_testing.contractcase.definitions.interactions.functions.Funct
 import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow;
-import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
+import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.exceptions.ContractCaseExpectationsNotMet;
 import io.contract_testing.contractcase.test.function.verification.CustomException;
 import java.util.List;
@@ -37,7 +36,7 @@ public class BrokenFunctionImplementerExampleTest {
       .providerName("Broken Java Function Caller Example")
       //   .changedContracts(ChangedContractsBehaviour.OVERWRITE)
       .publish(PublishType.NEVER)
-      .logLevel(LogLevel.NONE)
+      .logLevel(LogLevel.DEEP_MAINTAINER_DEBUG)
       .printResults(false)
       .build());
 
@@ -92,7 +91,21 @@ public class BrokenFunctionImplementerExampleTest {
                 .build())
         ))
     );
-    assertThrows(RuntimeException.class, contract::endRecord);
+
+    // When you call end record,
+    // it should throw an exception
+    assertThrows(ContractCaseExpectationsNotMet.class, contract::endRecord);
+
+    // When you try to set more interactions after calling endRecord, it should
+    // fail with a configuration error
+    assertThrows(ContractCaseConfigurationError.class, () -> contract.runInteraction(new InteractionDefinition<>(
+        List.of(),
+        new WillReceiveFunctionCallAndThrow(ThrowingFunctionExecutionExample.builder()
+            .arguments(List.of())
+            .errorClassName("CustomException")
+            .functionName("NoArgFunction")
+            .build())
+    )));
 
   }
 

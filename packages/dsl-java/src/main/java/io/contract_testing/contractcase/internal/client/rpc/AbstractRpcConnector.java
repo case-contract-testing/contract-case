@@ -56,6 +56,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
    */
   private static final Semaphore sendMutex = new Semaphore(1);
 
+  private volatile boolean askedToClose = false;
+
   /**
    * Used to wait for the underlying workers to stop during shutdown. If this is zero, the workers
    * have closed, and the connection is ready to be shutdown.
@@ -198,6 +200,15 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
       // We've already failed, so we don't want to send anything
       return ConnectorIncomingMapper.mapBoundaryResult(failedResult);
     }
+    if (askedToClose) {
+      return new ConnectorFailure(
+          ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
+          "Contract interactions aren't valid once close() or endRecord() has been called. Please check the order that you are invoking contract methods.",
+          "User code",
+          "UNDOCUMENTED",
+          ""
+      );
+    }
 
     var id = responseWaiter.createAwait(reason);
 
@@ -257,6 +268,10 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
 
 
   public void close() {
+    // We set this to prevent further interactions,
+    // but we don't need to abort as everything beyond here is safe to execute
+    // multiple times.
+    this.askedToClose = true;
     worker.close();
     try {
       finishLatch.await(5, TimeUnit.SECONDS);
@@ -276,7 +291,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
    * @param functionName The name (ie, handle) of the function that the Core can use as a callback
    * @param function     The actual function that can be invoked
    */
-  public <E extends Exception> void registerFunction(String functionName, ConnectorInvokableFunction<E> function) {
+  public <E extends Exception> void registerFunction(String functionName,
+      ConnectorInvokableFunction<E> function) {
     if (this.registeredFunctions.containsKey(functionName)) {
       throw new ContractCaseConfigurationError(
           "The function '"

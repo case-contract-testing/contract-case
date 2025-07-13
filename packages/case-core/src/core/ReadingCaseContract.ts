@@ -8,6 +8,7 @@ import {
   addLocation,
   CaseExample,
   cantPublish,
+  CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
 import { BaseCaseContract } from './BaseCaseContract';
 
@@ -30,6 +31,8 @@ export class ReadingCaseContract extends BaseCaseContract {
   private links: DownloadedContract;
 
   private status: 'UNKNOWN' | 'FAILED' | 'SUCCESS';
+
+  private contractClosed: boolean = false;
 
   /**
    * Constructs a ReadingCaseContract
@@ -79,6 +82,13 @@ export class ReadingCaseContract extends BaseCaseContract {
     invoker: MultiTestInvoker<T>,
     runTestCb: RunTestCallback,
   ): Promise<void> | undefined {
+    if (this.contractClosed) {
+      throw new CaseConfigurationError(
+        'Unable to write more interactions to the contract after endRecord() has been called',
+        this.initialContext,
+        'UNDOCUMENTED',
+      );
+    }
     this.initialContext.logger.maintainerDebug(
       `Verifying contract: '${this.currentContract.description.consumerName}' -> '${this.currentContract.description.providerName}'`,
     );
@@ -197,6 +207,13 @@ export class ReadingCaseContract extends BaseCaseContract {
     invoker: MultiTestInvoker<T>,
     completionCallback: () => void = () => {},
   ): Promise<void> {
+    if (this.contractClosed) {
+      throw new CaseConfigurationError(
+        'Unable to write more interactions to the contract after endRecord() has been called',
+        this.initialContext,
+        'UNDOCUMENTED',
+      );
+    }
     return this.mutex.runExclusive(() =>
       Promise.resolve()
         .then(() => {
@@ -258,7 +275,7 @@ export class ReadingCaseContract extends BaseCaseContract {
   }
 
   /**
-   * Verifies this contract
+   * Gets the tests that can be used later to verify the contract
    *
    * @param invoker - The invoker for this test
    * @param runTestCb - a callback to tell the test framework that we're running a test
@@ -321,6 +338,8 @@ export class ReadingCaseContract extends BaseCaseContract {
   }
 
   async endRecord(): Promise<void> {
+    this.contractClosed = true;
+
     const publishingContext = addLocation(
       'PublishingResults',
       this.initialContext,

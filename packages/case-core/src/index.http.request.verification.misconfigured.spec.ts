@@ -14,24 +14,14 @@ import { readerDependencies } from './connectors/dependencies';
 import { readContract } from './connectors/contractStore/contractReader';
 import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
 
-describe('Server verification', () => {
-  let server: http.Server;
-  let mockHealthStatus = true;
-  let mockGetUser: (id: string) => User | undefined = () => undefined;
-  const port = 8089;
-  const serverDependencies: Dependencies = {
-    healthService: {
-      ready: () => mockHealthStatus,
-    },
-    baseService,
-    userRepository: { get: (id) => mockGetUser(id) },
-  };
+const port = 8089;
 
-  const contract = readContract(
-    'case-contracts/contract-for-incorrectly-configured-examples.json',
-  );
+const contract = readContract(
+  'case-contracts/contract-for-incorrectly-configured-examples.json',
+);
 
-  const verifier = new ReadingCaseContract(
+const createVerifier = () =>
+  new ReadingCaseContract(
     contract,
     readerDependencies(defaultPrinter),
     {
@@ -46,6 +36,19 @@ describe('Server verification', () => {
     },
     ['tests'],
   );
+
+describe('Server verification', () => {
+  let server: http.Server;
+  let mockHealthStatus = true;
+  let mockGetUser: (id: string) => User | undefined = () => undefined;
+  const serverDependencies: Dependencies = {
+    healthService: {
+      ready: () => mockHealthStatus,
+    },
+    baseService,
+    userRepository: { get: (id) => mockGetUser(id) },
+  };
+
   beforeAll(async () => {
     server = await start(port, serverDependencies);
   });
@@ -125,7 +128,7 @@ describe('Server verification', () => {
           mockGetUser = () => undefined;
         },
       };
-      verifier.verifyContract(
+      createVerifier().verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
           'When Server is down, then an http "GET" request to "/health" without a body returns a (httpStatus 4XX | 5XX) response without a body':
@@ -166,7 +169,7 @@ describe('Server verification', () => {
           mockGetUser = () => undefined;
         },
       };
-      verifier.verifyContract(
+      createVerifier().verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
           'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} returns a (200) response with body an object shaped like {status: "up"}':
@@ -216,7 +219,7 @@ describe('Server verification', () => {
           mockGetUser = () => undefined;
         },
       };
-      verifier.verifyContract(
+      createVerifier().verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
           'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} returns a (200) response with body an object shaped like {status: "up"}':
@@ -260,7 +263,7 @@ describe('Server verification', () => {
           mockGetUser = () => undefined;
         },
       };
-      verifier.verifyContract(
+      createVerifier().verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
           [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
@@ -299,7 +302,7 @@ describe('Server verification', () => {
           mockGetUser = () => undefined;
         },
       };
-      verifier.verifyContract(
+      createVerifier().verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
           [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
@@ -339,7 +342,7 @@ describe('Server verification', () => {
           return { userId: 12 };
         },
       };
-      verifier.verifyContract(
+      createVerifier().verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({}),
       );
@@ -376,7 +379,7 @@ describe('Server verification', () => {
           return { userId: 12 };
         },
       };
-      verifier.verifyContract(
+      createVerifier().verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({
           [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
@@ -416,7 +419,7 @@ describe('Server verification', () => {
           return { userId: 12 };
         },
       };
-      verifier.verifyContract(
+      createVerifier().verifyContract(
         { stateHandlers },
         runJestTestExpectingErrors({}),
       );
