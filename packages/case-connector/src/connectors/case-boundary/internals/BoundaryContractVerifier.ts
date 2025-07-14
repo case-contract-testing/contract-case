@@ -212,31 +212,30 @@ export class BoundaryContractVerifier {
   prepareVerificationTests(
     configOverrides: ContractCaseBoundaryConfig,
     invokeableFns: Record<string, BoundaryInvokableFunction>,
-  ): Promise<BoundaryResult> {
-    return Promise.resolve()
-      .then(() => {
-        this.initialiseVerifier();
-        if (this.verifier === undefined) {
-          throw new CaseCoreError(
-            'Verifier was undefined after it was initialised (getAvailableContractDescriptions)',
-          );
-        }
-        const { config, partialInvoker } = convertConfig(configOverrides);
-        const { config: initialConfig, partialInvoker: initialInvoker } =
-          convertConfig(this.constructorConfig);
+  ): BoundaryResult {
+    try {
+      this.initialiseVerifier();
+      if (this.verifier === undefined) {
+        throw new CaseCoreError(
+          'Verifier was undefined after it was initialised (getAvailableContractDescriptions)',
+        );
+      }
+      const { config, partialInvoker } = convertConfig(configOverrides);
+      const { config: initialConfig, partialInvoker: initialInvoker } =
+        convertConfig(this.constructorConfig);
 
-        return this.verifier
-          .prepareVerificationTests(
+      return new BoundarySuccessWithAny(
+        JSON.stringify(
+          this.verifier.prepareVerificationTests(
             mergeInvokers(initialInvoker, partialInvoker),
             mergeConfig(initialConfig, config),
             mapInvokableFunctions(invokeableFns),
-          )
-          .then(
-            (testHandles: BoundaryContractVerificationTestHandle[]) =>
-              new BoundarySuccessWithAny(JSON.stringify(testHandles)),
-          );
-      })
-      .catch((e) => Promise.resolve(jsErrorToFailure(e)));
+          ),
+        ),
+      );
+    } catch (e) {
+      return jsErrorToFailure(e);
+    }
   }
 
   runVerificationTest(

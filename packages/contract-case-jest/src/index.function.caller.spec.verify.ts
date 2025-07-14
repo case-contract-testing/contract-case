@@ -8,7 +8,6 @@ describe('verification', () => {
     (verifier) => {
       verifier.registerFunction('zeroArgs', () => {});
       verifier.registerFunction('concatenate', (a, b) => `${a}${b}`);
-      return verifier.runVerification();
     },
   );
 });

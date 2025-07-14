@@ -32,7 +32,6 @@ public class ContractVerifier implements AutoCloseable {
 
   private final InternalVerifierClient verifier;
 
-
   private final ContractCaseConfig config;
   private final RunTestCallback runTestCallback;
 
@@ -59,15 +58,14 @@ public class ContractVerifier implements AutoCloseable {
       verification = new InternalVerifierClient(
           ConnectorConfigMapper.map(
               config,
-              "VERIFICATION"
-          ),
+              "VERIFICATION"),
           runTestCallback,
           logPrinter,
-          new BoundaryVersionGenerator().getVersions()
-      );
+          new BoundaryVersionGenerator().getVersions());
     } catch (Exception e) {
-      // TODO: Move this setup to outside the constructor, safer not to throw in the constructor.
-      BoundaryCrashReporter.handleAndRethrow(e);
+      // TODO: Move this setup to outside the constructor, safer not to throw in the
+      // constructor.
+      throw BoundaryCrashReporter.report(e);
     }
     this.verifier = verification;
   }
@@ -76,8 +74,7 @@ public class ContractVerifier implements AutoCloseable {
     try {
       ConnectorResultMapper.mapVoid(this.verifier.loadPlugins(ConnectorConfigMapper.map(
           config,
-          "VERIFICATION_LOAD_PLUGIN"
-      ), pluginNames));
+          "VERIFICATION_LOAD_PLUGIN"), pluginNames));
     } catch (Exception e) {
       throw BoundaryCrashReporter.report(e);
     }
@@ -105,18 +102,22 @@ public class ContractVerifier implements AutoCloseable {
           this.verifier.prepareVerification(
               ConnectorConfigMapper.map(configOverrides, "VERIFICATION")),
           new TypeReference<List<VerificationTestHandle>>() {
-          }
-      );
+          });
     } catch (Exception e) {
       throw BoundaryCrashReporter.report(e);
     }
   }
 
+  /**
+   * Runs a prepared test returned by {@link #prepareVerification()}.
+   * This method has the same semantics as {@link #runVerification()}.
+   *
+   * @param testHandle - the test to run
+   */
   public void runPreparedTest(VerificationTestHandle testHandle) {
     try {
       ConnectorResultMapper.mapVoid(
-          this.verifier.runPreparedTest(testHandle)
-      );
+          this.verifier.runPreparedTest(testHandle));
     } catch (Exception e) {
       throw BoundaryCrashReporter.report(e);
     }
@@ -144,70 +145,60 @@ public class ContractVerifier implements AutoCloseable {
     verifier.close();
   }
 
-
   public <E extends Exception> void registerFunction(String functionName,
       InvokableFunction0<E> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
-        function
-    ));
+        function));
   }
 
   public void registerFunction(String functionName, InvokableFunction1<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
-        function
-    ));
+        function));
   }
 
   public void registerFunction(String functionName, InvokableFunction2<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
-        function
-    ));
+        function));
   }
 
   public void registerFunction(String functionName, InvokableFunction3<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
-        function
-    ));
+        function));
   }
 
   public void registerFunction(String functionName, InvokableFunction4<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
-        function
-    ));
+        function));
   }
 
   public void registerFunction(String functionName, InvokableFunction5<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
-        function
-    ));
+        function));
   }
 
   public void registerFunction(String functionName, InvokableFunction6<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
-        function
-    ));
+        function));
   }
 
   public void registerFunction(String functionName, InvokableFunction7<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
-        function
-    ));
+        function));
   }
 
   private void registerFunctionInternal(String functionName,
       ConnectorInvokableFunction<?> connectorFunction) {
     try {
       ConnectorResultMapper.mapVoid(verifier.registerFunction(
-          functionName, connectorFunction
-      ));
+          functionName, connectorFunction));
     } catch (Exception e) {
       throw BoundaryCrashReporter.report(e);
     }

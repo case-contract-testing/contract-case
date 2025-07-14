@@ -78,16 +78,13 @@ describe('Server verification but with base config', () => {
     },
   };
 
-  verifyContract(
-    {
-      providerName: 'http response provider',
-      mockConfig: {
-        http: {
-          baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
-        },
+  verifyContract({
+    providerName: 'http response provider',
+    mockConfig: {
+      http: {
+        baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
       },
-      stateHandlers,
     },
-    (verifier) => verifier.runVerification({}),
-  );
+    stateHandlers,
+  });
 });

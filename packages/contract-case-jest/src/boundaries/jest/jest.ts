@@ -52,13 +52,22 @@ export const defineContract = (
 
 export const verifyContract = (
   config: ContractCaseJestVerifierConfig,
-  callback: VerifyCaseJestCallback,
+  setupCallback: VerifyCaseJestCallback = () => {},
 ): void => {
   if (!config.providerName) {
     throw new Error('Must specify a providerName to verify');
   }
   describe(`Provider verification for ${config.providerName}`, () => {
-    callback(new ContractVerifier(config, runJestTest));
+    const verifier = new ContractVerifier(config, runJestTest);
+
+    setupCallback(verifier);
+
+    const tests = verifier.prepareVerificationTests(config);
+
+    tests.forEach((verificationTest) => {
+      it(`${verificationTest.testName}`, () =>
+        verifier.runPreparedTest(verificationTest));
+    });
     it('[ContractCase Internals] Init', () => {});
   });
 };

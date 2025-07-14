@@ -34,3 +34,10 @@ export interface ContractDescription {
   consumerName: string;
   providerName: string;
 }
+
+export interface VerificationTestHandle {
+  filePath: string;
+  testName: string;
+  testIndex: number;
+  contractIndex: number;
+}

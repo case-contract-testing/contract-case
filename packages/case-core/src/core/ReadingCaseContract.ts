@@ -286,33 +286,31 @@ export class ReadingCaseContract extends BaseCaseContract {
    */
   getTests<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
-  ): Promise<ContractVerificationTest[]> {
-    return Promise.resolve().then(() => {
+  ): ContractVerificationTest[] {
+    this.initialContext.logger.maintainerDebug(
+      `Generating tests for contract: '${this.currentContract.description.consumerName}' -> '${this.currentContract.description.providerName}'`,
+    );
+    this.initialContext.logger.maintainerDebug(
+      `This contract has ${this.currentContract.examples.length} interactions`,
+    );
+
+    return this.currentContract.examples.map((example, index) => {
+      const names = exampleToNames(example, `${index}`);
       this.initialContext.logger.maintainerDebug(
-        `Generating tests for contract: '${this.currentContract.description.consumerName}' -> '${this.currentContract.description.providerName}'`,
-      );
-      this.initialContext.logger.maintainerDebug(
-        `This contract has ${this.currentContract.examples.length} interactions`,
+        `Preparing test framework's callback for: ${names.mockName} `,
       );
 
-      return this.currentContract.examples.map((example, index) => {
-        const names = exampleToNames(example, `${index}`);
-        this.initialContext.logger.maintainerDebug(
-          `Preparing test framework's callback for: ${names.mockName} `,
-        );
+      let isPending = true;
 
-        let isPending = true;
-
-        return {
-          index,
-          testName: names.mockName,
-          isPending: (): boolean => isPending,
-          runTest: (): Promise<void> =>
-            this.callExecuteExample(index, invoker, () => {
-              isPending = false;
-            }),
-        };
-      });
+      return {
+        index,
+        testName: names.mockName,
+        isPending: (): boolean => isPending,
+        runTest: (): Promise<void> =>
+          this.callExecuteExample(index, invoker, () => {
+            isPending = false;
+          }),
+      };
     });
   }
 

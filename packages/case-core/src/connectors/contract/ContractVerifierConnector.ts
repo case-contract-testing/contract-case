@@ -307,14 +307,14 @@ export class ContractVerifierConnector {
    * @param invokeableFns - any invokeable functions that should be registered
    * @returns
    */
-  async prepareVerificationTests<T extends AnyMockDescriptorType>(
+  prepareVerificationTests<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
     configOverride = {},
     invokeableFns: Record<
       string,
       (...args: unknown[]) => Promise<unknown>
     > = {},
-  ): Promise<ContractVerificationTestHandle[]> {
+  ): ContractVerificationTestHandle[] {
     const mergedConfig = { ...this.config, ...configOverride };
 
     const contractsToVerify =
@@ -338,48 +338,49 @@ export class ContractVerifierConnector {
       );
       this.context.logger.debug(`Take note of the contract number in the log`);
     }
-    this.#contractVerificationHandles = await Promise.all(
-      contractsToVerify.map((contractLink, index) =>
-        Promise.resolve().then(() => {
-          if (!contractLink?.contents?.description?.consumerName) {
-            this.context.logger.error(
-              `Contract in file '${contractLink.filePath}' appears to have no consumer name! It might not be a case contract`,
-            );
-          }
-
-          if (!contractLink?.contents?.description?.providerName) {
-            this.context.logger.error(
-              `Contract in file '${contractLink.filePath}' appears to have no provider name! It might not be a case contract`,
-            );
-          }
-
-          this.context.logger.debug(
-            `*** Preparing contract: '${contractLink.contents.description.consumerName}' -> '${contractLink.contents.description.consumerName}'`,
+    this.#contractVerificationHandles = contractsToVerify.map(
+      (contractLink, index) => {
+        if (!contractLink?.contents?.description?.consumerName) {
+          this.context.logger.error(
+            `Contract in file '${contractLink.filePath}' appears to have no consumer name! It might not be a case contract`,
           );
-          this.context.logger.debug(`Contract File: ${contractLink.filePath}`);
-          const contractVerifier = new ReadingCaseContract(
-            contractLink.contents,
-            this.dependencies,
-            {
-              ...mergedConfig,
-              coreLogContextPrefix:
-                contractsToVerify.length > 1 ? `Contract[${index}]` : '',
-            },
-            this.parentVersions,
-          );
-          Object.entries(invokeableFns).forEach(([key, value]) => {
-            contractVerifier.registerFunction(key, value);
-          });
+        }
 
-          return contractVerifier.getTests(invoker).then((tests) => ({
-            index,
-            tests,
-            verifier: contractVerifier,
-            filePath: contractLink.filePath,
-          }));
-        }),
-      ),
+        if (!contractLink?.contents?.description?.providerName) {
+          this.context.logger.error(
+            `Contract in file '${contractLink.filePath}' appears to have no provider name! It might not be a case contract`,
+          );
+        }
+
+        this.context.logger.debug(
+          `*** Preparing contract: '${contractLink.contents.description.consumerName}' -> '${contractLink.contents.description.consumerName}'`,
+        );
+        this.context.logger.debug(`Contract File: ${contractLink.filePath}`);
+        const contractVerifier = new ReadingCaseContract(
+          contractLink.contents,
+          this.dependencies,
+          {
+            ...mergedConfig,
+            coreLogContextPrefix:
+              contractsToVerify.length > 1 ? `Contract[${index}]` : '',
+          },
+          this.parentVersions,
+        );
+        Object.entries(invokeableFns).forEach(([key, value]) => {
+          contractVerifier.registerFunction(key, value);
+        });
+
+        const tests = contractVerifier.getTests(invoker);
+
+        return {
+          index,
+          tests,
+          verifier: contractVerifier,
+          filePath: contractLink.filePath,
+        };
+      },
     );
+
     this.context.logger.deepMaintainerDebug(
       'prepared verification handles set to:',
       this.#contractVerificationHandles,
