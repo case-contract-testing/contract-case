@@ -12,7 +12,7 @@
     "lerna": "^8.2.2"
   },
   "optionalDependencies": {
-    "@nx/nx-darwin-arm64": "21.2.2",
+    "@nx/nx-darwin-arm64": "21.3.0",
     "@nx/nx-darwin-x64": "20.5.0",
     "@nx/nx-linux-arm-gnueabihf": "21.2.2",
     "@nx/nx-linux-arm64-gnu": "20.7.0",
