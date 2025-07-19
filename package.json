@@ -4,9 +4,9 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.26.1",
+  "version": "0.27.0",
   "devDependencies": {
-    "@contract-case/eslint-config-case-maintainer": "0.26.1",
+    "@contract-case/eslint-config-case-maintainer": "0.27.0",
     "example-extractor": "^0.0.4",
     "jsii-docgen": "^10.7.5",
     "lerna": "^8.2.2"
