@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.26.1...@contract-case/case-connector-v0.27.0) (2025-07-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function
+
+### Code Refactoring
+
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function ([2f68f87](https://github.com/case-contract-testing/contract-case/commit/2f68f879768afcf9362f4f968ad037f0ff42dd9b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-core bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-entities-internal bumped from 0.26.1 to 0.27.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.26.1 to 0.27.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.1 to 0.27.0
+
 ## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.26.0...@contract-case/case-connector-v0.26.1) (2025-07-13)
 
 
