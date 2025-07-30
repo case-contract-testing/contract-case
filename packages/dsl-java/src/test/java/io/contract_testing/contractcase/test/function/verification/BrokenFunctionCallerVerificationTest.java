@@ -64,7 +64,7 @@ public class BrokenFunctionCallerVerificationTest {
     }
   }
 
-  private static @NotNull <R> InvokableFunction1
+  private static @NotNull <R> InvokableFunction1<?>
   convertJsonIntegerArg(Function<Integer, R> functionUnderTest) {
     return (String a) -> {
       try {
@@ -77,7 +77,7 @@ public class BrokenFunctionCallerVerificationTest {
   }
 
   @NotNull
-  private static <R> InvokableFunction1
+  private static <R> InvokableFunction1<?>
   convertJsonStringArgs(Function<String, R> functionUnderTest) {
     return (String a) -> {
       try {
