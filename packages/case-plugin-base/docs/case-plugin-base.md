@@ -362,6 +362,10 @@ Don't create this directly, use `configurationError` to create one.
 
 </td><td>
 
+These are the error codes, emitted by every CaseConfigurationError. The documentation here provides additional information that should hopefully help if the information in the error message is unclear.
+
+Some of the errors print advice. This advice can be overridden by setting an entry in the `adviceOverrides` configuration map (keyed by the error code that you want to override errors for). This feature exists for users who have wrapped ContractCase with some common boilerplate, or who have a dedicated team looking after their contract testing infrastructure.
+
 
 </td></tr>
 <tr><td>

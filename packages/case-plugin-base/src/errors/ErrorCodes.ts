@@ -1,3 +1,14 @@
+/**
+ * These are the error codes, emitted by every CaseConfigurationError.
+ * The documentation here provides additional information that should hopefully help if the
+ * information in the error message is unclear.
+ *
+ * Some of the errors print advice. This advice can be overridden by setting
+ * an entry in the `adviceOverrides` configuration map (keyed by the error code
+ * that you want to override errors for). This feature exists for users who have
+ * wrapped ContractCase with some common boilerplate, or who have a dedicated
+ * team looking after their contract testing infrastructure.
+ */
 export interface ConfigurationErrorCodes {
   /**
    * Used for when a file access problem happened trying to write a contract file.
@@ -48,8 +59,10 @@ export interface ConfigurationErrorCodes {
    * For contract definition, it should be:
    *
    * 1. Begin definition
+   *
    * 2. Multiple calls to runInteraction or your language's equivalent of
    *    runRejectingInteraction
+   *
    * 3. End record (writing the contract).
    *
    * Check that you're not accidentally reusing test instances between runs.
@@ -96,22 +109,33 @@ export interface ConfigurationErrorCodes {
    * To address this, you'll need to run contract definitions with
    * a changedContracts behaviour set to overwrite the contract instead of check.
    *
-   *  Please re-run your tests with one of:
+   * Please re-run your tests with one of:
    *
-   *   * The configuration property changedContracts is set to 'OVERWRITE'
-   *   * The environment variable CASE_changedContracts=OVERWRITE
+   * - The configuration property changedContracts is set to 'OVERWRITE'
    *
-   *   If you see this on consecutive runs, please check
-   *   that your contract doesn't contain randomness
-   *   during contract definition
+   * - The environment variable CASE_changedContracts=OVERWRITE
+   *
+   * If you see this on consecutive runs, please check
+   * that your contract doesn't contain randomness
+   * during contract definition
    */
   OVERWRITE_CONTRACTS_NEEDED: 'OVERWRITE_CONTRACTS_NEEDED';
   /**
    * Used when there is no additional documentation for this error code.
    *
-   * Long term, there should be none of these.
+   * Long term, this code should be removed, and all configuration errors should have documentation.
+   *
+   * This code doesn't have any behaviour when set as an `adviceOverride`.
    */
   UNDOCUMENTED: 'UNDOCUMENTED';
+  /**
+   * This error code is never emitted, it exists to allow the advice given in the crash reporter to be overridden.
+   *
+   * Hopefully, you didn't know the crash reporter exists - when ContractCase
+   * crashes, it prints the stack trace and asks the user to report the crash as
+   * a bug. This code can be used to replace the bug report request part of the crash report.
+   */
+  CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE';
 }
 
 export interface CoreErrorCodes {
@@ -129,19 +153,14 @@ export type ErrorCodeDefinitions = {
 export const ErrorCodes: ErrorCodeDefinitions = {
   configuration: {
     DISK_IO_PROBLEM: 'DISK_IO_PROBLEM',
-
     BAD_INTERACTION_DEFINITION: 'BAD_INTERACTION_DEFINITION',
     INVALID_CONFIG: 'INVALID_CONFIG',
-
     INVALID_LIFECYCLE: 'INVALID_LIFECYCLE',
-
     MISSING_STATE_HANDLER: 'MISSING_STATE_HANDLER',
-
     NON_BROKERED_CONTRACT: 'NON_BROKERED_CONTRACT',
-
     OVERWRITE_CONTRACTS_NEEDED: 'OVERWRITE_CONTRACTS_NEEDED',
-
     UNDOCUMENTED: 'UNDOCUMENTED',
+    CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE',
   },
   core: {
     CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE',

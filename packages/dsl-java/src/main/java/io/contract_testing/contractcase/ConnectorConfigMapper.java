@@ -5,6 +5,7 @@ import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.internal.BoundaryTriggerMapper;
+import io.contract_testing.contractcase.internal.edge.BoundaryCrashReporter;
 import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
 import org.jetbrains.annotations.NotNull;
 
@@ -139,6 +140,9 @@ class ConnectorConfigMapper {
 
     if(config.adviceOverrides != null) {
       builder.adviceOverrides(config.adviceOverrides);
+      if(config.adviceOverrides.containsKey("CASE_CRASH_ADVICE")) {
+        BoundaryCrashReporter.setAdvice(config.adviceOverrides.get("CASE_CRASH_ADVICE"));
+      }
     }
 
     config.mockConfig.forEach(builder::mockConfig);

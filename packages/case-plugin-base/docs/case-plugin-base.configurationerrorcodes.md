@@ -4,6 +4,10 @@
 
 ## ConfigurationErrorCodes interface
 
+These are the error codes, emitted by every CaseConfigurationError. The documentation here provides additional information that should hopefully help if the information in the error message is unclear.
+
+Some of the errors print advice. This advice can be overridden by setting an entry in the `adviceOverrides` configuration map (keyed by the error code that you want to override errors for). This feature exists for users who have wrapped ContractCase with some common boilerplate, or who have a dedicated team looking after their contract testing infrastructure.
+
 **Signature:**
 
 ```typescript
@@ -57,6 +61,27 @@ If you're getting this code, it means that the matching engine has discovered th
 Although the type system tries to prevent invalid interaction definitions, this isn't always possible in all target languages, so ContractCase's default plugins try to detect this and fail with a helpful error message.
 
 Usually this means you'll need to update your interaction definition. The error message should have more information.
+
+
+</td></tr>
+<tr><td>
+
+[CASE\_CRASH\_ADVICE](./case-plugin-base.configurationerrorcodes.case_crash_advice.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'CASE\_CRASH\_ADVICE'
+
+
+</td><td>
+
+This error code is never emitted, it exists to allow the advice given in the crash reporter to be overridden.
+
+Hopefully, you didn't know the crash reporter exists - when ContractCase crashes, it prints the stack trace and asks the user to report the crash as a bug. This code can be used to replace the bug report request part of the crash report.
 
 
 </td></tr>
@@ -125,7 +150,11 @@ Although care has been taken to prevent invalid lifecycle calls from being possi
 
 For contract definition, it should be:
 
-1. Begin definition 2. Multiple calls to runInteraction or your language's equivalent of runRejectingInteraction 3. End record (writing the contract).
+1. Begin definition
+
+2. Multiple calls to runInteraction or your language's equivalent of runRejectingInteraction
+
+3. End record (writing the contract).
 
 Check that you're not accidentally reusing test instances between runs.
 
@@ -202,7 +231,9 @@ To address this, you'll need to run contract definitions with a changedContracts
 
 Please re-run your tests with one of:
 
-\* The configuration property changedContracts is set to 'OVERWRITE' \* The environment variable CASE\_changedContracts=OVERWRITE
+- The configuration property changedContracts is set to 'OVERWRITE'
+
+- The environment variable CASE\_changedContracts=OVERWRITE
 
 If you see this on consecutive runs, please check that your contract doesn't contain randomness during contract definition
 
@@ -225,7 +256,9 @@ If you see this on consecutive runs, please check that your contract doesn't con
 
 Used when there is no additional documentation for this error code.
 
-Long term, there should be none of these.
+Long term, this code should be removed, and all configuration errors should have documentation.
+
+This code doesn't have any behaviour when set as an `adviceOverride`<!-- -->.
 
 
 </td></tr>

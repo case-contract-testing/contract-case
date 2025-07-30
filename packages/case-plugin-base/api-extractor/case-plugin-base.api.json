@@ -1358,7 +1358,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes:interface",
-          "docComment": "",
+          "docComment": "/**\n * These are the error codes, emitted by every CaseConfigurationError. The documentation here provides additional information that should hopefully help if the information in the error message is unclear.\n *\n * Some of the errors print advice. This advice can be overridden by setting an entry in the `adviceOverrides` configuration map (keyed by the error code that you want to override errors for). This feature exists for users who have wrapped ContractCase with some common boilerplate, or who have a dedicated team looking after their contract testing infrastructure.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1392,6 +1392,33 @@
               "isOptional": false,
               "releaseTag": "Public",
               "name": "BAD_INTERACTION_DEFINITION",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#CASE_CRASH_ADVICE:member",
+              "docComment": "/**\n * This error code is never emitted, it exists to allow the advice given in the crash reporter to be overridden.\n *\n * Hopefully, you didn't know the crash reporter exists - when ContractCase crashes, it prints the stack trace and asks the user to report the crash as a bug. This code can be used to replace the bug report request part of the crash report.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "CASE_CRASH_ADVICE: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'CASE_CRASH_ADVICE'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "CASE_CRASH_ADVICE",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -1454,7 +1481,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#INVALID_LIFECYCLE:member",
-              "docComment": "/**\n * A lifecycle method was called out of order.\n *\n * Check that your code has the method calls in the right order.\n *\n * Although care has been taken to prevent invalid lifecycle calls from being possible, there are still some cases where this can happen.\n *\n * For contract definition, it should be:\n *\n * 1. Begin definition 2. Multiple calls to runInteraction or your language's equivalent of runRejectingInteraction 3. End record (writing the contract).\n *\n * Check that you're not accidentally reusing test instances between runs.\n */\n",
+              "docComment": "/**\n * A lifecycle method was called out of order.\n *\n * Check that your code has the method calls in the right order.\n *\n * Although care has been taken to prevent invalid lifecycle calls from being possible, there are still some cases where this can happen.\n *\n * For contract definition, it should be:\n *\n * 1. Begin definition\n *\n * 2. Multiple calls to runInteraction or your language's equivalent of runRejectingInteraction\n *\n * 3. End record (writing the contract).\n *\n * Check that you're not accidentally reusing test instances between runs.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1535,7 +1562,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#OVERWRITE_CONTRACTS_NEEDED:member",
-              "docComment": "/**\n * The existing contract didn't match the new contract being written.\n *\n * This is an error when ContractCase is running in validate snapshot mode, where defined contracts are checked against the contract on disk, and a failure happens if the new contract is different.\n *\n * To address this, you'll need to run contract definitions with a changedContracts behaviour set to overwrite the contract instead of check.\n *\n * Please re-run your tests with one of:\n *\n * * The configuration property changedContracts is set to 'OVERWRITE' * The environment variable CASE_changedContracts=OVERWRITE\n *\n * If you see this on consecutive runs, please check that your contract doesn't contain randomness during contract definition\n */\n",
+              "docComment": "/**\n * The existing contract didn't match the new contract being written.\n *\n * This is an error when ContractCase is running in validate snapshot mode, where defined contracts are checked against the contract on disk, and a failure happens if the new contract is different.\n *\n * To address this, you'll need to run contract definitions with a changedContracts behaviour set to overwrite the contract instead of check.\n *\n * Please re-run your tests with one of:\n *\n * - The configuration property changedContracts is set to 'OVERWRITE'\n *\n * - The environment variable CASE_changedContracts=OVERWRITE\n *\n * If you see this on consecutive runs, please check that your contract doesn't contain randomness during contract definition\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -1562,7 +1589,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#UNDOCUMENTED:member",
-              "docComment": "/**\n * Used when there is no additional documentation for this error code.\n *\n * Long term, there should be none of these.\n */\n",
+              "docComment": "/**\n * Used when there is no additional documentation for this error code.\n *\n * Long term, this code should be removed, and all configuration errors should have documentation.\n *\n * This code doesn't have any behaviour when set as an `adviceOverride`.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

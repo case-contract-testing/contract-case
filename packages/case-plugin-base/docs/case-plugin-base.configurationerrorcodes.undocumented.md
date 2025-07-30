@@ -6,7 +6,9 @@
 
 Used when there is no additional documentation for this error code.
 
-Long term, there should be none of these.
+Long term, this code should be removed, and all configuration errors should have documentation.
+
+This code doesn't have any behaviour when set as an `adviceOverride`<!-- -->.
 
 **Signature:**
 

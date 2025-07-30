@@ -12,7 +12,9 @@ To address this, you'll need to run contract definitions with a changedContracts
 
 Please re-run your tests with one of:
 
-\* The configuration property changedContracts is set to 'OVERWRITE' \* The environment variable CASE\_changedContracts=OVERWRITE
+- The configuration property changedContracts is set to 'OVERWRITE'
+
+- The environment variable CASE\_changedContracts=OVERWRITE
 
 If you see this on consecutive runs, please check that your contract doesn't contain randomness during contract definition
 

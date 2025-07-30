@@ -20,7 +20,7 @@ public class BoundaryCrashReporter {
       The details are:
       """;
 
-  private static final String CRASH_MESSAGE_END = """
+  private volatile static String crashMessageAdvice = """
         
       Please open a bug report here:
       https://github.com/case-contract-testing/case/issues/new
@@ -30,8 +30,10 @@ public class BoundaryCrashReporter {
       * What you were doing when it failed
       * The results of re-running with logLevel: "maintainerDebug"
         
-      For bonus points and internet karma, a reproducible\s
-      code sample would be very helpful.
+      For bonus points and internet karma, a reproducible
+      code sample would be very helpful.""";
+
+  private static final String CRASH_MESSAGE_END = """
         
       Sorry about this.
         
@@ -94,7 +96,7 @@ public class BoundaryCrashReporter {
               + "\n"
               + ((ContractCaseCoreError) e).getLocation()
               + "\n\n"
-              + CRASH_MESSAGE_END);
+              + crashMessageAdvice + CRASH_MESSAGE_END);
     } else {
       System.err.println(
           CRASH_MESSAGE_START
@@ -105,7 +107,7 @@ public class BoundaryCrashReporter {
               + (e.getCause() != null ? "Caused by: " + e.getCause().toString() + "\n"
               + ConnectorExceptionMapper.stackTraceToString(e.getCause()) : "")
               + "\n\n"
-              + CRASH_MESSAGE_END);
+              + crashMessageAdvice + CRASH_MESSAGE_END);
     }
   }
 
@@ -117,7 +119,10 @@ public class BoundaryCrashReporter {
             + "\n"
             + failure.getLocation()
             + "\n\n"
-            + BoundaryCrashReporter.CRASH_MESSAGE_END);
+            + crashMessageAdvice + BoundaryCrashReporter.CRASH_MESSAGE_END);
   }
 
+  public synchronized static void setAdvice(String caseCrashAdvice) {
+    crashMessageAdvice = caseCrashAdvice;
+  }
 }

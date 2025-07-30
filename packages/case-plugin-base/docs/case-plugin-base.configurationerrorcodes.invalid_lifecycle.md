@@ -12,7 +12,11 @@ Although care has been taken to prevent invalid lifecycle calls from being possi
 
 For contract definition, it should be:
 
-1. Begin definition 2. Multiple calls to runInteraction or your language's equivalent of runRejectingInteraction 3. End record (writing the contract).
+1. Begin definition
+
+2. Multiple calls to runInteraction or your language's equivalent of runRejectingInteraction
+
+3. End record (writing the contract).
 
 Check that you're not accidentally reusing test instances between runs.
 
