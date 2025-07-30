@@ -15,6 +15,7 @@ import io.contract_testing.contractcase.definitions.interactions.functions.Funct
 import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillCallThrowingFunction;
+import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayContains;
 import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
@@ -72,6 +73,32 @@ public class FunctionCallerExampleTest {
             })
     );
   }
+/*
+  @Test
+  public void testSomeArgFunction() {
+    contract.runInteraction(
+        new InteractionDefinition<>(
+            List.of(new InState("The map is null")),
+            new WillCallFunction(FunctionExecutionExample.builder()
+                .arguments(List.of(Map.of(
+                    "one",
+                    new ArrayContains(List.of(
+                        Map.of("banana", "yellow")
+                    ))
+                )))
+                .returnValue(new NamedMatch("void", new AnyNull()))
+                .functionName("OneArgFunction")
+                .build())
+        ),
+        IndividualSuccessTestConfigBuilder.<String>builder()
+            .withTrigger((setupInfo) ->
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of("{ \"one\": [\"one\", \"two\", {\"banana\": \"yellow\"}]}"))))
+            .withTestResponse((result, setupInfo) -> {
+              assertThat(result).isEqualTo(null);
+            })
+    );
+  } */
 
   @Test
   public void testOneArgFunction() {
@@ -163,7 +190,8 @@ public class FunctionCallerExampleTest {
                 parseComplex(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
                     .apply(List.of("2"))))
             .withTestErrorResponse((exception, setupInfo) -> {
-              assertThat(((FunctionCompletedExceptionally) exception).getErrorClassName()).isEqualTo("CustomException");
+              assertThat(((FunctionCompletedExceptionally) exception).getErrorClassName()).isEqualTo(
+                  "CustomException");
             })
     );
 

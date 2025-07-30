@@ -3,7 +3,6 @@ import { Mutex } from 'async-mutex';
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import {
   applyNodeToContext,
-  nameMock,
   MatchContext,
   CaseCoreError,
   addLocation,
@@ -140,7 +139,7 @@ export class WritingCaseContract extends BaseCaseContract {
 
         const example: CaseExample = {
           states,
-          mock: nameMock(mockDescription, runContext),
+          mock: mockDescription,
           result: 'PENDING',
         };
 
@@ -171,7 +170,7 @@ export class WritingCaseContract extends BaseCaseContract {
         return r;
       })
       .catch((e) => {
-        runContext.logger.maintainerDebug('executeTest threw:', e);
+        runContext.logger.maintainerDebug('executeTest threw:', e, e.stack);
         throw e;
       });
   }

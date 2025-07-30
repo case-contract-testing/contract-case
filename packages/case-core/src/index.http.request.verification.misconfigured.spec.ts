@@ -91,7 +91,7 @@ describe('Server verification', () => {
                 } else {
                   // If this happens, we failed, but we don't have the expected failure
                   throw new Error(
-                    `Failed when we weren't expecting it. Could be due to misnamed test: ${testName}`,
+                    `Failed when we weren't expecting it. Could be due to misnamed test: ${testName}. Failure was: ${e.message}`,
                     e,
                   );
                 }

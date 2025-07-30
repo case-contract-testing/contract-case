@@ -6,7 +6,11 @@ import { MatchContext } from '../context/types';
 import { coreLookupMatcher } from '../matchers/lookup';
 
 const nameMatcher = (matcher: AnyCaseMatcherOrData, context: MatchContext) =>
-  coreLookupMatcher(context.descendAndDescribe(matcher, context), matcher);
+  typeof matcher === 'object' &&
+  matcher != null &&
+  '_case:matcher:uniqueName' in matcher
+    ? matcher
+    : coreLookupMatcher(context.descendAndDescribe(matcher, context), matcher);
 
 /**
  * Helper function that will name this mock if it isn't already named.

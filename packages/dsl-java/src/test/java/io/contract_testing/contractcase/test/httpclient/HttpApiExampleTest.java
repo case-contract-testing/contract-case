@@ -38,7 +38,7 @@ public class HttpApiExampleTest {
   private static final ContractDefiner contract = new ContractDefiner(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
       .consumerName("Java Example HTTP Client")
       .providerName("Java Example HTTP Server")
- //     .changedContracts(ChangedContractsBehaviour.OVERWRITE)
+      .changedContracts(ChangedContractsBehaviour.OVERWRITE)
       .publish(PublishType.NEVER)
       .build());
 

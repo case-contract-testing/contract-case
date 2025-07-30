@@ -15,6 +15,7 @@ import {
   CheckMatchFn,
   MatchResult,
   MatcherExecutor,
+  CaseConfigurationError,
 } from '@contract-case/case-plugin-base';
 import {
   AnyCaseMatcherOrData,
@@ -126,12 +127,25 @@ export const ArrayContains: MatcherExecutor<
   check,
   strip,
   validate: (matcher, matchContext) =>
-    Promise.all(
-      matcher['_case:matcher:matchers'].map((childMatcher, index) =>
-        matchContext.descendAndValidate(
-          childMatcher,
-          addLocation(`:arrayContains[${index}]`, matchContext),
+    Promise.resolve()
+      .then(() => {
+        if (!Array.isArray(matcher['_case:matcher:matchers'])) {
+          throw new CaseConfigurationError(
+            "The ArrayContains matchers was given something that wasn't an array",
+            matchContext,
+            'BAD_INTERACTION_DEFINITION',
+          );
+        }
+      })
+      .then(() =>
+        Promise.all(
+          matcher['_case:matcher:matchers'].map((childMatcher, index) =>
+            matchContext.descendAndValidate(
+              childMatcher,
+              addLocation(`:arrayContains[${index}]`, matchContext),
+            ),
+          ),
         ),
-      ),
-    ).then(() => {}),
+      )
+      .then(() => {}),
 };
