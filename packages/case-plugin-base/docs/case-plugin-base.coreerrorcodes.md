@@ -2,12 +2,55 @@
 
 [Home](./index.md) &gt; [@contract-case/case-plugin-base](./case-plugin-base.md) &gt; [CoreErrorCodes](./case-plugin-base.coreerrorcodes.md)
 
-## CoreErrorCodes type
+## CoreErrorCodes interface
 
 **Signature:**
 
 ```typescript
-export type CoreErrorCodes = {
-    CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE';
-};
+export interface CoreErrorCodes 
 ```
+
+## Properties
+
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[CASE\_CRASH\_ADVICE](./case-plugin-base.coreerrorcodes.case_crash_advice.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'CASE\_CRASH\_ADVICE'
+
+
+</td><td>
+
+Used to control the advice printed when ContractCase crashes.
+
+
+</td></tr>
+</tbody></table>
+

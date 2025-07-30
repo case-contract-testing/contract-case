@@ -377,6 +377,15 @@ The part of the context that allows saving or looking up data bound to a specifi
 </td></tr>
 <tr><td>
 
+[CoreErrorCodes](./case-plugin-base.coreerrorcodes.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
 [ErrorAnnotations](./case-plugin-base.errorannotations.md)
 
 
@@ -720,15 +729,6 @@ For checks beyond this matcher, use  to descend into any children.
 </td><td>
 
 Represents a plugin for the ContractCase contract testing framework. A plugin can defines custom matchers or mock setups for testing different cases.
-
-
-</td></tr>
-<tr><td>
-
-[CoreErrorCodes](./case-plugin-base.coreerrorcodes.md)
-
-
-</td><td>
 
 
 </td></tr>

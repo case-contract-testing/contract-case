@@ -2014,30 +2014,49 @@
           }
         },
         {
-          "kind": "TypeAlias",
-          "canonicalReference": "@contract-case/case-plugin-base!CoreErrorCodes:type",
+          "kind": "Interface",
+          "canonicalReference": "@contract-case/case-plugin-base!CoreErrorCodes:interface",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export type CoreErrorCodes = "
-            },
-            {
-              "kind": "Content",
-              "text": "{\n    CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE';\n}"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
+              "text": "export interface CoreErrorCodes "
             }
           ],
           "fileUrlPath": "src/errors/ErrorCodes.ts",
           "releaseTag": "Public",
           "name": "CoreErrorCodes",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!CoreErrorCodes#CASE_CRASH_ADVICE:member",
+              "docComment": "/**\n * Used to control the advice printed when ContractCase crashes.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "CASE_CRASH_ADVICE: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'CASE_CRASH_ADVICE'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "CASE_CRASH_ADVICE",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Function",
@@ -2458,7 +2477,7 @@
             {
               "kind": "Reference",
               "text": "CoreErrorCodes",
-              "canonicalReference": "@contract-case/case-plugin-base!CoreErrorCodes:type"
+              "canonicalReference": "@contract-case/case-plugin-base!CoreErrorCodes:interface"
             },
             {
               "kind": "Content",

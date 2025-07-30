@@ -145,9 +145,9 @@ export interface ContractLookupFns {
 export const CORE_PLUGIN_PREFIX: "_CaseCore:";
 
 // @public (undocumented)
-export type CoreErrorCodes = {
+export interface CoreErrorCodes {
     CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE';
-};
+}
 
 // @public
 export const coreLookupMatcher: (uniqueName: string, child: AnyCaseMatcherOrData) => LookupableMatcher;
