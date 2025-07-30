@@ -433,11 +433,17 @@ public class ContractCaseConfig {
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#changedContracts
+     */
     public ContractCaseConfigBuilder changedContracts(ChangedContractsBehaviour changedContractsBehaviour) {
       this.changedContracts = changedContractsBehaviour;
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#adviceOverrides
+     */
     public ContractCaseConfigBuilder adviceOverrides(Map<String, String> adviceOverrides) {
       this.adviceOverrides = adviceOverrides;
       return this;

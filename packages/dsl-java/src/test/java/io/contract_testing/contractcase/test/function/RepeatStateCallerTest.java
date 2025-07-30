@@ -4,12 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.contract_testing.contractcase.ContractCaseConnector;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
@@ -37,13 +39,14 @@ public class RepeatStateCallerTest {
 
   @BeforeAll
   static void before() {
+  //  ContractCaseConnector.setNodeJsPath("/Users/home/.nvm/versions/node/v22.4.1/bin/node");
     contract = new ContractDefiner(
         ContractCaseConfigBuilder.aContractCaseConfig()
             .consumerName("Java Repeated State Caller Example")
             .providerName("Java Repeated State Implementer Example")
             .publish(PublishType.NEVER)
-            //    .logLevel(LogLevel.MAINTAINER_DEBUG)
-            .changedContracts(ChangedContractsBehaviour.OVERWRITE)
+            // .logLevel(LogLevel.MAINTAINER_DEBUG)
+            // .changedContracts(ChangedContractsBehaviour.OVERWRITE)
             .adviceOverrides(Map.of(
                 "OVERWRITE_CONTRACTS_NEEDED",
                 "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"

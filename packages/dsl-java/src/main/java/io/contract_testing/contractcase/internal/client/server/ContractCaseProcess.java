@@ -27,6 +27,13 @@ public class ContractCaseProcess {
    */
   private volatile boolean shutdownTriggered = false;
 
+  /**
+   * This is the path to the node binary.
+   * Normally it's on the path, so we don't need to know what it is.
+   * Some users may need to override it.
+   */
+  private volatile String nodeJsPath = "node";
+
   public static synchronized ContractCaseProcess getInstance() {
     if (instance == null) {
       MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Creating process instance");
@@ -67,6 +74,14 @@ public class ContractCaseProcess {
     return this.shutdownTriggered;
   }
 
+  /**
+   * Sets the path to the node binary. Useful if node is in a non-standard location
+   */
+  public void setNodeJsPath(String path) {
+    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Setting new path to: " + path);
+    this.nodeJsPath = path;
+  }
+
   private synchronized void startRuntimeIfNeeded() {
     var envOverridePort = System.getenv("CASE_CONNECTOR_OVERRIDE_PORT");
 
@@ -89,10 +104,10 @@ public class ContractCaseProcess {
       MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Runtime is already started");
       return;
     }
-    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Starting runtime");
+    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Starting runtime using node at: " + nodeJsPath);
 
     final List<String> serverStartCommand = List.of(
-        "node",
+        nodeJsPath,
         ConnectorExtractor.extractCaseConnector()
     );
 
