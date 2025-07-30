@@ -166,49 +166,13 @@ export class BoundaryContractVerifier {
   }
 
   /**
-   * Run the verification of the contract(s) that can be found using the configuration provided.
+   * Prepares the verification of the contract(s) that can be found using the configuration provided.
    * If you want to filter the contract(s), use the configOverrides to specify a Consumer or Provider name.
    *
    * @param configOverrides - A `ContractCaseBoundaryConfig` that defines any config options to override (after the ones provided in the constructor are applied)
    *
-   * @returns `BoundarySuccess` if verification was successful, otherwise a `BoundaryFailure`
+   * @returns `BoundarySuccessWithAny` containing the prepared tests if the plan was successful, otherwise a `BoundaryFailure`
    */
-  runVerification(
-    configOverrides: ContractCaseBoundaryConfig,
-    invokeableFns: Record<string, BoundaryInvokableFunction>,
-  ): Promise<BoundaryResult> | BoundaryResult {
-    try {
-      this.initialiseVerifier();
-      if (this.verifier === undefined) {
-        throw new CaseCoreError(
-          'Verifier was undefined after it was initialised (getAvailableContractDescriptions)',
-        );
-      }
-
-      const { config, partialInvoker } = convertConfig(configOverrides);
-      const { config: initialConfig, partialInvoker: initialInvoker } =
-        convertConfig(this.constructorConfig);
-
-      const result = this.verifier.verifyContract(
-        mergeInvokers(initialInvoker, partialInvoker),
-        mergeConfig(initialConfig, config),
-        mapInvokableFunctions(invokeableFns),
-      );
-      if (configOverrides.internals.asyncVerification) {
-        return Promise.resolve(result).then(
-          () => new BoundarySuccess(),
-          (e: Error) => jsErrorToFailure(e),
-        );
-      }
-      return new BoundarySuccess();
-    } catch (e) {
-      if (configOverrides.internals.asyncVerification) {
-        return Promise.resolve(jsErrorToFailure(e));
-      }
-      throw e;
-    }
-  }
-
   prepareVerificationTests(
     configOverrides: ContractCaseBoundaryConfig,
     invokeableFns: Record<string, BoundaryInvokableFunction>,
@@ -253,6 +217,21 @@ export class BoundaryContractVerifier {
           .runPreparedTest(test)
           .then(() => new BoundarySuccess());
       })
+      .catch((e) => Promise.resolve(jsErrorToFailure(e)));
+  }
+
+  closePreparedVerification(): Promise<BoundaryResult> {
+    return Promise.resolve()
+      .then(() => {
+        this.initialiseVerifier();
+        if (this.verifier === undefined) {
+          throw new CaseCoreError(
+            'Verifier was undefined after it was initialised (getAvailableContractDescriptions)',
+          );
+        }
+        return this.verifier.closePreparedVerification();
+      })
+      .then(() => new BoundarySuccess())
       .catch((e) => Promise.resolve(jsErrorToFailure(e)));
   }
 }

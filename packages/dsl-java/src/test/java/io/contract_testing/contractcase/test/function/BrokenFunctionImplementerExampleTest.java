@@ -36,7 +36,7 @@ public class BrokenFunctionImplementerExampleTest {
       .providerName("Broken Java Function Caller Example")
       //   .changedContracts(ChangedContractsBehaviour.OVERWRITE)
       .publish(PublishType.NEVER)
-      .logLevel(LogLevel.DEEP_MAINTAINER_DEBUG)
+      .logLevel(LogLevel.NONE)
       .printResults(false)
       .build());
 

@@ -71,21 +71,6 @@ export const registerFunction = (
     return new BoundarySuccess();
   });
 
-export const runVerification = (
-  verifierId: string,
-  config: ContractCaseConnectorConfig,
-): Promise<BoundaryResult> =>
-  Promise.resolve().then(() => {
-    const verifierHandle = getVerifier(verifierId, 'runVerification');
-    if (!('id' in verifierHandle)) {
-      return verifierHandle;
-    }
-    return verifierHandle.verifier.runVerification(
-      mapConfig(config, verifierId),
-      verifierHandle.invokeableFunctions,
-    );
-  });
-
 export const prepareVerificationTests = (
   verifierId: string,
   config: ContractCaseConnectorConfig,

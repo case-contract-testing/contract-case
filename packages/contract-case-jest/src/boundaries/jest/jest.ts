@@ -68,6 +68,8 @@ export const verifyContract = (
       it(`${verificationTest.testName}`, () =>
         verifier.runPreparedTest(verificationTest));
     });
-    it('[ContractCase Internals] Init', () => {});
+    // TODO: Determine whether Jest runs tests in order always, and if not, do something else here.
+    it('Overall verification result', () =>
+      verifier.closePreparedVerification());
   });
 };

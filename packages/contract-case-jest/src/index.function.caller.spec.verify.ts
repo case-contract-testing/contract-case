@@ -4,6 +4,7 @@ describe('verification', () => {
   verifyContract(
     {
       providerName: 'function execution',
+      throwOnFail: true,
     },
     (verifier) => {
       verifier.registerFunction('zeroArgs', () => {});

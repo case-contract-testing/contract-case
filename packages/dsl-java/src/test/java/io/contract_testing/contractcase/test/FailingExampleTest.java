@@ -35,6 +35,7 @@ public class FailingExampleTest {
       .providerName("Java Example HTTP Server")
       .publish(PublishType.NEVER)
       .logLevel(LogLevel.NONE)
+      .printResults(false)
       //      .logLevel(LogLevel.MAINTAINER_DEBUG)
       .build());
 

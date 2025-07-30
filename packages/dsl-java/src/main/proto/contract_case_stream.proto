@@ -320,10 +320,11 @@ message AvailableContractDefinitions {
 
 // From the Host to the Core, instructs the core that the current verification
 // session is now configured, and asks it to execute the verification.
-message RunVerification {
+// No longer implemented
+// message RunVerification {
   // Any configuration overrides for this verification
-  ContractCaseConfig config = 1;
-}
+  //  ContractCaseConfig config = 1;
+// }
 
 // From the Core to the Host, instructs the host that a new test is starting.
 // This is useful for test frameworks reporting, and has no effect if it is
@@ -404,7 +405,8 @@ message VerificationRequest {
     AvailableContractDefinitions available_contract_definitions = 3;
     // Host language wants to run a verification. 
     // Alternative to prepare verification tests
-    RunVerification run_verification = 4;
+    // No longer implemented
+    // RunVerification run_verification = 4;
     // Host is responding to a core call
     ResultResponse result_response = 5;
     // Host wants to load a plugin

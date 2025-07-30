@@ -1,5 +1,3 @@
-import { Mutex } from 'async-mutex';
-
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import {
   CaseConfigurationError,
@@ -69,10 +67,6 @@ export class ContractVerifierConnector {
 
   parentVersions: string[];
 
-  // This is needed so that each contract runs one at a time
-  // (this connector can be passed multiple contracts)
-  private mutex: Mutex;
-
   /**
    * Internal links for the prepare / verify mode
    *
@@ -112,7 +106,6 @@ export class ContractVerifierConnector {
 
     this.callback = callback;
 
-    this.mutex = new Mutex();
     this.context.logger.deepMaintainerDebug('Constructed VerifierConnector');
   }
 
@@ -168,133 +161,6 @@ export class ContractVerifierConnector {
     return this.filterContractsWithConfiguration(this.config).map(
       (link) => link.contents.description,
     );
-  }
-
-  internalVerifyContract<T extends AnyMockDescriptorType>(
-    index: number,
-    contractLink: ContractFileFromDisk,
-    invoker: MultiTestInvoker<T>,
-    contractsToVerify: ContractFileFromDisk[],
-    mergedConfig: CaseConfig,
-    invokeableFns: Record<
-      string,
-      (...args: unknown[]) => Promise<unknown>
-    > = {},
-  ): Promise<void> | undefined {
-    if (!contractLink?.contents?.description?.consumerName) {
-      this.context.logger.error(
-        `Contract in file '${contractLink.filePath}' appears to have no consumer name! It might not be a case contract`,
-      );
-    }
-
-    if (!contractLink?.contents?.description?.providerName) {
-      this.context.logger.error(
-        `Contract in file '${contractLink.filePath}' appears to have no provider name! It might not be a case contract`,
-      );
-    }
-
-    this.context.logger.debug(
-      `*** Verifying contract: '${contractLink.contents.description.consumerName}' -> '${contractLink.contents.description.consumerName}'`,
-    );
-    this.context.logger.debug(`Contract File: ${contractLink.filePath}`);
-    const contractVerifier = new ReadingCaseContract(
-      contractLink.contents,
-      this.dependencies,
-      {
-        ...mergedConfig,
-        coreLogContextPrefix:
-          contractsToVerify.length > 1 ? `Contract[${index}]` : '',
-      },
-      this.parentVersions,
-    );
-    this.context.logger.deepMaintainerDebug(
-      `Registering ${Object.entries(invokeableFns).length} invokable functions`,
-    );
-    Object.entries(invokeableFns).forEach(([key, value]) => {
-      contractVerifier.registerFunction(key, value);
-    });
-    this.context.logger.deepMaintainerDebug(`Verify contract`);
-    return contractVerifier.verifyContract(invoker, this.callback);
-  }
-
-  verifyContract<T extends AnyMockDescriptorType>(
-    invoker: MultiTestInvoker<T>,
-    configOverride = {},
-    invokeableFns: Record<
-      string,
-      (...args: unknown[]) => Promise<unknown>
-    > = {},
-  ): Promise<void> | undefined {
-    const mergedConfig = { ...this.config, ...configOverride };
-
-    const contractsToVerify =
-      this.filterContractsWithConfiguration(mergedConfig);
-
-    if (contractsToVerify.length === 0) {
-      throw new CaseConfigurationError(
-        "No contracts were matched for verification. Try this run again with logLevel: 'debug' to find out more",
-        'DONT_ADD_LOCATION',
-      );
-    }
-    if (mergedConfig.internals == null) {
-      throw new CaseCoreError(
-        'Verify contract was called with no internals set - this is an error in the caller, probably the language specific wrapper',
-      );
-    }
-
-    if (contractsToVerify.length > 1) {
-      this.context.logger.debug(
-        `*** There are ${contractsToVerify.length} contracts being verified ***`,
-      );
-      this.context.logger.debug(`Take note of the contract number in the log`);
-    }
-    const results = contractsToVerify.map((contractLink, index) => {
-      if (mergedConfig.internals == null) {
-        throw new CaseCoreError(
-          'Verify contract was called with no internals set - this is an error in the caller, probably the language specific wrapper',
-        );
-      }
-      if (mergedConfig.internals.asyncVerification) {
-        return this.mutex.runExclusive(() =>
-          this.internalVerifyContract(
-            index,
-            contractLink,
-            invoker,
-            contractsToVerify,
-            mergedConfig,
-            invokeableFns,
-          ),
-        );
-      }
-      return this.internalVerifyContract(
-        index,
-        contractLink,
-        invoker,
-        contractsToVerify,
-        mergedConfig,
-        invokeableFns,
-      );
-    });
-
-    if (mergedConfig.internals.asyncVerification) {
-      this.context.logger.maintainerDebug(`Awaiting async verification`);
-      return Promise.all(results).then(
-        () => {
-          this.context.logger.maintainerDebug(
-            `Async verification complete (Success)`,
-          );
-        },
-        (e) => {
-          this.context.logger.maintainerDebug(
-            `Async verification complete (Error: ${e.message})`,
-          );
-
-          throw e;
-        },
-      );
-    }
-    this.context.logger.maintainerDebug(`Synchronous verification complete`);
-    return undefined;
   }
 
   /**

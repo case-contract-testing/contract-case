@@ -29,7 +29,16 @@ export type BoundaryInvokableFunction = (
  * Represents a test that can be called later
  */
 export type BoundaryContractVerificationTestHandle = {
+  /**
+   * The name of this test
+   */
   testName: string;
+  /**
+   * The index of this test in the contract
+   */
   testIndex: number;
+  /**
+   * The index of the contract in this run of contracts
+   */
   contractIndex: number;
 };

@@ -23,7 +23,6 @@ import {
   prepareVerificationTests,
   registerFunction,
   runPreparedTest,
-  runVerification,
 } from '../../domain/verify.js';
 import { maintainerLog } from '../../domain/maintainerLog.js';
 
@@ -206,39 +205,6 @@ export const contractVerification = (
                 e as Error,
                 'Available contract descriptions',
               );
-            });
-          break;
-        }
-        case WireVerificationRequest.KindCase.RUN_VERIFICATION: {
-          const runVerificationRequest = request.getRunVerification();
-          if (runVerificationRequest == null) {
-            throw new ConnectorError(
-              'runVerification called with something that returned an undefined request',
-            );
-          }
-          if (verificationId === undefined) {
-            throw new ConnectorError(
-              'runVerification was called before beginVerification',
-            );
-          }
-
-          runVerification(
-            verificationId,
-            mapConfig(
-              runVerificationRequest.getConfig(),
-              sendContractResponse,
-              functionRegistry,
-            ),
-          )
-            .then((result) =>
-              sendContractResponse(
-                'maintainerDebug',
-                getId(request),
-                makeResultResponse(result),
-              ),
-            )
-            .catch((e) => {
-              sendUnexpectedError(request, e as Error, 'Run verification');
             });
           break;
         }

@@ -1287,39 +1287,6 @@ export namespace AvailableContractDefinitions {
   export type AsObject = {};
 }
 
-export class RunVerification extends jspb.Message {
-  hasConfig(): boolean;
-  clearConfig(): void;
-  getConfig(): ContractCaseConfig | undefined;
-  setConfig(value?: ContractCaseConfig): RunVerification;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RunVerification.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: RunVerification,
-  ): RunVerification.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: RunVerification,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): RunVerification;
-  static deserializeBinaryFromReader(
-    message: RunVerification,
-    reader: jspb.BinaryReader,
-  ): RunVerification;
-}
-
-export namespace RunVerification {
-  export type AsObject = {
-    config?: ContractCaseConfig.AsObject;
-  };
-}
-
 export class StartTestEvent extends jspb.Message {
   hasTestName(): boolean;
   clearTestName(): void;
@@ -1679,11 +1646,6 @@ export class VerificationRequest extends jspb.Message {
     value?: AvailableContractDefinitions,
   ): VerificationRequest;
 
-  hasRunVerification(): boolean;
-  clearRunVerification(): void;
-  getRunVerification(): RunVerification | undefined;
-  setRunVerification(value?: RunVerification): VerificationRequest;
-
   hasResultResponse(): boolean;
   clearResultResponse(): void;
   getResultResponse(): ResultResponse | undefined;
@@ -1744,7 +1706,6 @@ export namespace VerificationRequest {
     id?: google_protobuf_wrappers_pb.StringValue.AsObject;
     beginVerification?: BeginVerificationRequest.AsObject;
     availableContractDefinitions?: AvailableContractDefinitions.AsObject;
-    runVerification?: RunVerification.AsObject;
     resultResponse?: ResultResponse.AsObject;
     loadPlugin?: LoadPluginRequest.AsObject;
     invokeTest?: InvokeTest.AsObject;
@@ -1757,7 +1718,6 @@ export namespace VerificationRequest {
     KIND_NOT_SET = 0,
     BEGIN_VERIFICATION = 2,
     AVAILABLE_CONTRACT_DEFINITIONS = 3,
-    RUN_VERIFICATION = 4,
     RESULT_RESPONSE = 5,
     LOAD_PLUGIN = 6,
     INVOKE_TEST = 9,

@@ -10,7 +10,6 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginReques
 import io.contract_testing.contractcase.grpc.ContractCaseStream.PrepareVerificationTests;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.PreparedTestHandle;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RegisterFunction;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.RunVerification;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.VerificationRequest;
 import io.contract_testing.contractcase.internal.ConnectorResultMapper;
 import io.contract_testing.contractcase.internal.client.rpc.ConfigHandle;
@@ -59,24 +58,6 @@ public class InternalVerifierClient implements AutoCloseable {
             .setAvailableContractDefinitions(AvailableContractDefinitions.newBuilder()),
         "availableContractDescriptions"
     );
-  }
-
-  public @NotNull ConnectorResult runVerification(ContractCaseConnectorConfig configOverrides) {
-    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Verification run");
-    configHandle.setConnectorConfig(configOverrides);
-    var response = rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
-        .setRunVerification(
-            RunVerification.newBuilder()
-                .setConfig(
-                    ConnectorOutgoingMapper.mapConfig(configOverrides)
-                )
-        ), "runVerification", VERIFY_TIMEOUT_SECONDS
-    );
-    MaintainerLog.log(
-        LogLevel.MAINTAINER_DEBUG,
-        "Response from verification was: " + response.getResultType()
-    );
-    return response;
   }
 
   private ConnectorResult begin(ContractCaseConfig wireConfig) {

@@ -4,6 +4,7 @@ import { FunctionExecutorConfig } from './index.js';
 
 describe('verification', () => {
   verifyContract({
+    throwOnFail: true,
     providerName: 'function definer',
     triggers: new TriggerGroupMap()
       .addTriggerGroup('An invocation of NO ARG FUNCTION()', {

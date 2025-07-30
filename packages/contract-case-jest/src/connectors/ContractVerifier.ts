@@ -111,30 +111,6 @@ export class ContractVerifier {
   }
 
   /**
-   * Run the verification of the contract(s) that can be found using the configuration provided.
-   * If you want to filter the contract(s), use the configOverrides to specify a Consumer or Provider name.
-   *
-   * @param configOverrides - A `ContractCaseVerifierConfig` that defines any config options to override (after the ones provided in the constructor are applied)
-   */
-  async runVerification(
-    configOverrides: Partial<ContractCaseVerifierConfig> = {},
-  ): Promise<void> {
-    try {
-      mapSuccess(
-        await this.boundaryVerifier.runVerification(
-          mapConfig({
-            ...this.config,
-            ...configOverrides,
-          } as ContractCaseVerifierConfig),
-          this.invokeableFunctions,
-        ),
-      );
-    } catch (e) {
-      errorHandler(e as Error);
-    }
-  }
-
-  /**
    * Get the tests to run during the verification of the contract(s),
    * that can be found using the configuration provided.
    *
@@ -175,6 +151,14 @@ export class ContractVerifier {
       mapSuccess(
         await this.boundaryVerifier.runVerificationTest(verificationTest),
       );
+    } catch (e) {
+      throw errorReporter(e as Error);
+    }
+  }
+
+  async closePreparedVerification(): Promise<void> {
+    try {
+      mapSuccess(await this.boundaryVerifier.closePreparedVerification());
     } catch (e) {
       throw errorReporter(e as Error);
     }
