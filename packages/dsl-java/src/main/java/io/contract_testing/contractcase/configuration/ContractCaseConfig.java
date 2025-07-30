@@ -155,6 +155,11 @@ public class ContractCaseConfig {
    * <p>
    * The key is the error code that you want to override the advice for, the value is the new string
    * to use instead.
+   * <p>
+   * Note that this doesn't override the whole error message, only the advice telling the user what
+   * to do to fix it.
+   * <p>
+   * For details on the valid codes, see <a href="https://github.com/case-contract-testing/contract-case/blob/main/packages/case-plugin-base/docs/case-plugin-base.configurationerrorcodes.md">the error code documentation</a>
    */
   public final Map<String, String> adviceOverrides;
 

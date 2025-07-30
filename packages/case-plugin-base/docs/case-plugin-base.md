@@ -357,6 +357,15 @@ Don't create this directly, use `configurationError` to create one.
 </td></tr>
 <tr><td>
 
+[ConfigurationErrorCodes](./case-plugin-base.configurationerrorcodes.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
 [ContractLookupFns](./case-plugin-base.contractlookupfns.md)
 
 
@@ -716,6 +725,15 @@ Represents a plugin for the ContractCase contract testing framework. A plugin ca
 </td></tr>
 <tr><td>
 
+[CoreErrorCodes](./case-plugin-base.coreerrorcodes.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
 [DataContext](./case-plugin-base.datacontext.md)
 
 
@@ -733,6 +751,15 @@ Convenience type for just the parts of the context that have data - everything i
 </td><td>
 
 The settings that are set as default context for a run
+
+
+</td></tr>
+<tr><td>
+
+[ErrorCodeDefinitions](./case-plugin-base.errorcodedefinitions.md)
+
+
+</td><td>
 
 
 </td></tr>

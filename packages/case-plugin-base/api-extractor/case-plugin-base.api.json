@@ -1331,16 +1331,16 @@
             },
             {
               "kind": "Content",
-              "text": "keyof (typeof "
+              "text": "keyof "
             },
             {
               "kind": "Reference",
-              "text": "ErrorCodes",
-              "canonicalReference": "@contract-case/case-plugin-base!ErrorCodes:var"
+              "text": "ErrorCodeDefinitions",
+              "canonicalReference": "@contract-case/case-plugin-base!ErrorCodeDefinitions:type"
             },
             {
               "kind": "Content",
-              "text": ")['configuration']"
+              "text": "['configuration']"
             },
             {
               "kind": "Content",
@@ -1354,6 +1354,240 @@
             "startIndex": 1,
             "endIndex": 4
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ConfigurationErrorCodes "
+            }
+          ],
+          "fileUrlPath": "src/errors/ErrorCodes.ts",
+          "releaseTag": "Public",
+          "name": "ConfigurationErrorCodes",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#BAD_INTERACTION_DEFINITION:member",
+              "docComment": "/**\n * Used when an interaction definition isn't valid.\n *\n * Because interaction definitions are very flexible, it's sometimes possible to pass the wrong matcher at an inappropriate time. For example, it could be possible to specify that an http response code must be a complex object - which should never be possible.\n *\n * If you're getting this code, it means that the matching engine has discovered that the expectations in your interaction aren't valid.\n *\n * Although the type system tries to prevent invalid interaction definitions, this isn't always possible in all target languages, so ContractCase's default plugins try to detect this and fail with a helpful error message.\n *\n * Usually this means you'll need to update your interaction definition. The error message should have more information.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "BAD_INTERACTION_DEFINITION: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'BAD_INTERACTION_DEFINITION'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "BAD_INTERACTION_DEFINITION",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#DISK_IO_PROBLEM:member",
+              "docComment": "/**\n * Used for when a file access problem happened trying to write a contract file. This usually means ContractCase has been given a bad path, is out of disk space, or some other I/O error has occurred.\n *\n * The error message should have additional information here.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "DISK_IO_PROBLEM: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'DISK_IO_PROBLEM'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "DISK_IO_PROBLEM",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#INVALID_CONFIG:member",
+              "docComment": "/**\n * Used for when a configuration value is outside its normal range. The error message alongside this code should tell you what specifically went wrong.\n *\n * In most cases this class of error is prevented with the type system.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "INVALID_CONFIG: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'INVALID_CONFIG'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "INVALID_CONFIG",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#INVALID_LIFECYCLE:member",
+              "docComment": "/**\n * A lifecycle method was called out of order.\n *\n * Check that your code has the method calls in the right order.\n *\n * Although care has been taken to prevent invalid lifecycle calls from being possible, there are still some cases where this can happen.\n *\n * For contract definition, it should be:\n *\n * 1. Begin definition 2. Multiple calls to runInteraction or your language's equivalent of runRejectingInteraction 3. End record (writing the contract).\n *\n * Check that you're not accidentally reusing test instances between runs.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "INVALID_LIFECYCLE: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'INVALID_LIFECYCLE'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "INVALID_LIFECYCLE",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#MISSING_STATE_HANDLER:member",
+              "docComment": "/**\n * The current interaction was configured to have a particular state setup handler, but it was missing.\n *\n * State handlers are functions that you define to set up a particular state within your code (for example, an interaction on an HTTP provider might have a state named `'User with id 123 exists'`).\n *\n * This error indicates that Contractcase was expecting a named state handler, but it couldn't find it.\n *\n * This usually indicates a misconfiguration - check that you have provided a state handler with the exact name of the handler that was missing in the configuration of your test.\n *\n * If you need help investigating this error, you can set the configuration property `logLevel` to `'DEBUG'` to see a list of the configured state handlers.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MISSING_STATE_HANDLER: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'MISSING_STATE_HANDLER'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "MISSING_STATE_HANDLER",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#NON_BROKERED_CONTRACT:member",
+              "docComment": "/**\n * Tried to publish verification results for a contract that doesn't have information on where to publish the verification results.\n *\n * This can happen if you're sharing contracts locally, but still have publishing verification results enabled.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "NON_BROKERED_CONTRACT: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'NON_BROKERED_CONTRACT'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "NON_BROKERED_CONTRACT",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#OVERWRITE_CONTRACTS_NEEDED:member",
+              "docComment": "/**\n * The existing contract didn't match the new contract being written.\n *\n * This is an error when ContractCase is running in validate snapshot mode, where defined contracts are checked against the contract on disk, and a failure happens if the new contract is different.\n *\n * To address this, you'll need to run contract definitions with a changedContracts behaviour set to overwrite the contract instead of check.\n *\n * Please re-run your tests with one of:\n *\n * * The configuration property changedContracts is set to 'OVERWRITE' * The environment variable CASE_changedContracts=OVERWRITE\n *\n * If you see this on consecutive runs, please check that your contract doesn't contain randomness during contract definition\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "OVERWRITE_CONTRACTS_NEEDED: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'OVERWRITE_CONTRACTS_NEEDED'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "OVERWRITE_CONTRACTS_NEEDED",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#UNDOCUMENTED:member",
+              "docComment": "/**\n * Used when there is no additional documentation for this error code.\n *\n * Long term, there should be none of these.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "UNDOCUMENTED: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'UNDOCUMENTED'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "UNDOCUMENTED",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "TypeAlias",
@@ -1780,6 +2014,32 @@
           }
         },
         {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!CoreErrorCodes:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type CoreErrorCodes = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE';\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/errors/ErrorCodes.ts",
+          "releaseTag": "Public",
+          "name": "CoreErrorCodes",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!coreLookupMatcher:function(1)",
           "docComment": "/**\n * Creates a matcher descriptor for a lookupable matcher.\n *\n * @remarks\n *\n * Useful if you want to automatically name lookupable matcher descriptors in your plugin.\n *\n * Note that lookup matchers must have identical contents when rendered.\n *\n * @param uniqueName - the name for this lookupable matcher\n *\n * @param child - the contents of this lookupable matcher\n *\n * @returns a {@link LookupableMatcher}\n *\n * @public\n */\n",
@@ -2174,6 +2434,50 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!ErrorCodeDefinitions:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ErrorCodeDefinitions = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    configuration: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ConfigurationErrorCodes",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    core: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CoreErrorCodes",
+              "canonicalReference": "@contract-case/case-plugin-base!CoreErrorCodes:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/errors/ErrorCodes.ts",
+          "releaseTag": "Public",
+          "name": "ErrorCodeDefinitions",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
           "kind": "Variable",
           "canonicalReference": "@contract-case/case-plugin-base!ErrorCodes:var",
           "docComment": "",
@@ -2183,8 +2487,9 @@
               "text": "ErrorCodes: "
             },
             {
-              "kind": "Content",
-              "text": "{\n    readonly configuration: {\n        readonly DISK_IO_PROBLEM: \"DISK_IO_PROBLEM\";\n        readonly BAD_INTERACTION_DEFINITION: \"BAD_INTERACTION_DEFINITION\";\n        readonly INVALID_CONFIG: \"INVALID_CONFIG\";\n        readonly INVALID_LIFECYCLE: \"INVALID_LIFECYCLE\";\n        readonly MISSING_STATE_HANDLER: \"MISSING_STATE_HANDLER\";\n        readonly NON_BROKERED_CONTRACT: \"NON_BROKERED_CONTRACT\";\n        readonly OVERWRITE_CONTRACTS_NEEDED: \"OVERWRITE_CONTRACTS_NEEDED\";\n        readonly UNDOCUMENTED: \"UNDOCUMENTED\";\n    };\n}"
+              "kind": "Reference",
+              "text": "ErrorCodeDefinitions",
+              "canonicalReference": "@contract-case/case-plugin-base!ErrorCodeDefinitions:type"
             }
           ],
           "fileUrlPath": "src/errors/ErrorCodes.ts",

@@ -7,7 +7,7 @@
 **Signature:**
 
 ```typescript
-export type ConfigurationErrorCode = keyof (typeof ErrorCodes)['configuration'];
+export type ConfigurationErrorCode = keyof ErrorCodeDefinitions['configuration'];
 ```
-**References:** [ErrorCodes](./case-plugin-base.errorcodes.md)
+**References:** [ErrorCodeDefinitions](./case-plugin-base.errorcodedefinitions.md)
 

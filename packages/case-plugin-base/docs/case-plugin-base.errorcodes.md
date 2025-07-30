@@ -7,16 +7,5 @@
 **Signature:**
 
 ```typescript
-ErrorCodes: {
-    readonly configuration: {
-        readonly DISK_IO_PROBLEM: "DISK_IO_PROBLEM";
-        readonly BAD_INTERACTION_DEFINITION: "BAD_INTERACTION_DEFINITION";
-        readonly INVALID_CONFIG: "INVALID_CONFIG";
-        readonly INVALID_LIFECYCLE: "INVALID_LIFECYCLE";
-        readonly MISSING_STATE_HANDLER: "MISSING_STATE_HANDLER";
-        readonly NON_BROKERED_CONTRACT: "NON_BROKERED_CONTRACT";
-        readonly OVERWRITE_CONTRACTS_NEEDED: "OVERWRITE_CONTRACTS_NEEDED";
-        readonly UNDOCUMENTED: "UNDOCUMENTED";
-    };
-}
+ErrorCodes: ErrorCodeDefinitions
 ```

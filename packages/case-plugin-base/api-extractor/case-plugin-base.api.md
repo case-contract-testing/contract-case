@@ -85,7 +85,19 @@ export interface ConfigurationError {
 }
 
 // @public (undocumented)
-export type ConfigurationErrorCode = keyof (typeof ErrorCodes)['configuration'];
+export type ConfigurationErrorCode = keyof ErrorCodeDefinitions['configuration'];
+
+// @public (undocumented)
+export interface ConfigurationErrorCodes {
+    BAD_INTERACTION_DEFINITION: 'BAD_INTERACTION_DEFINITION';
+    DISK_IO_PROBLEM: 'DISK_IO_PROBLEM';
+    INVALID_CONFIG: 'INVALID_CONFIG';
+    INVALID_LIFECYCLE: 'INVALID_LIFECYCLE';
+    MISSING_STATE_HANDLER: 'MISSING_STATE_HANDLER';
+    NON_BROKERED_CONTRACT: 'NON_BROKERED_CONTRACT';
+    OVERWRITE_CONTRACTS_NEEDED: 'OVERWRITE_CONTRACTS_NEEDED';
+    UNDOCUMENTED: 'UNDOCUMENTED';
+}
 
 // Warning: (ae-internal-missing-underscore) The name "constructDataContext" should be prefixed with an underscore because the declaration is marked as @internal
 //
@@ -131,6 +143,11 @@ export interface ContractLookupFns {
 
 // @public
 export const CORE_PLUGIN_PREFIX: "_CaseCore:";
+
+// @public (undocumented)
+export type CoreErrorCodes = {
+    CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE';
+};
 
 // @public
 export const coreLookupMatcher: (uniqueName: string, child: AnyCaseMatcherOrData) => LookupableMatcher;
@@ -179,18 +196,13 @@ export interface ErrorAnnotations {
 }
 
 // @public (undocumented)
-export const ErrorCodes: {
-    readonly configuration: {
-        readonly DISK_IO_PROBLEM: "DISK_IO_PROBLEM";
-        readonly BAD_INTERACTION_DEFINITION: "BAD_INTERACTION_DEFINITION";
-        readonly INVALID_CONFIG: "INVALID_CONFIG";
-        readonly INVALID_LIFECYCLE: "INVALID_LIFECYCLE";
-        readonly MISSING_STATE_HANDLER: "MISSING_STATE_HANDLER";
-        readonly NON_BROKERED_CONTRACT: "NON_BROKERED_CONTRACT";
-        readonly OVERWRITE_CONTRACTS_NEEDED: "OVERWRITE_CONTRACTS_NEEDED";
-        readonly UNDOCUMENTED: "UNDOCUMENTED";
-    };
+export type ErrorCodeDefinitions = {
+    configuration: ConfigurationErrorCodes;
+    core: CoreErrorCodes;
 };
+
+// @public (undocumented)
+export const ErrorCodes: ErrorCodeDefinitions;
 
 // @public
 export const errorWhen: (test: boolean, err: CaseError | Array<CaseError>) => MatchResult;
