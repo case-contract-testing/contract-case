@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.26.1...@contract-case/case-connector-proto-v0.27.0) (2025-07-30)
+
+
+### Bug Fixes
+
+* Deprecate runVerification, as it is now replaced with getTests and runPreparedTest ([24cd85a](https://github.com/case-contract-testing/contract-case/commit/24cd85a1bae6e29cdfa315ae1e122a588d01fdd9))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.26.1 to 0.27.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.1 to 0.27.0
+
 ## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.26.0...@contract-case/case-connector-proto-v0.26.1) (2025-07-13)
 
 
