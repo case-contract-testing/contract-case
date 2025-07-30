@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/v0.26.1...v0.27.0) (2025-07-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **java-dsl:** Deprecate `RunTestCallback`. It is no longer used, instead use `prepareVerification` and `runPreparedTest`. This is a breaking change if you were relying on custom behaviour of RunTestCallback
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function
+
+### Features
+
+* **java-dsl:** Add `ContractCaseConnector.setNodeJsPath()` to allow specifying the path of the nodejs executable ([f228755](https://github.com/case-contract-testing/contract-case/commit/f228755a7cd10cd5a1d94842dbf75dd14ba68535))
+* **java-dsl:** Allow overriding the crash advice with the `adviceOverride` `"CASE_CRASH_ADVICE"` ([60aceb3](https://github.com/case-contract-testing/contract-case/commit/60aceb36e7c7310c44eaa20e46c00d6bfb4f22d8))
+
+
+### Bug Fixes
+
+* Deprecate runVerification, as it is now replaced with getTests and runPreparedTest ([24cd85a](https://github.com/case-contract-testing/contract-case/commit/24cd85a1bae6e29cdfa315ae1e122a588d01fdd9))
+* **java-dsl:** Substantially improve javadoc for adviceOverrides ([01125db](https://github.com/case-contract-testing/contract-case/commit/01125dbc5a31b11e88f79eaaaa1fa7ebb6da068d))
+
+
+### Code Refactoring
+
+* **java-dsl:** Deprecate `RunTestCallback`. It is no longer used, instead use `prepareVerification` and `runPreparedTest`. This is a breaking change if you were relying on custom behaviour of RunTestCallback ([c7e6cb9](https://github.com/case-contract-testing/contract-case/commit/c7e6cb98d8c98e7fe53557bad23ae03aecf3cffc))
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function ([2f68f87](https://github.com/case-contract-testing/contract-case/commit/2f68f879768afcf9362f4f968ad037f0ff42dd9b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.1 to 0.27.0
+
 ## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/v0.26.0...v0.26.1) (2025-07-13)
 
 

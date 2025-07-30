@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.26.1...@contract-case/case-definition-dsl-v0.27.0) (2025-07-30)
+
+
+### Features
+
+* **java-dsl:** Allow overriding the crash advice with the `adviceOverride` `"CASE_CRASH_ADVICE"` ([60aceb3](https://github.com/case-contract-testing/contract-case/commit/60aceb36e7c7310c44eaa20e46c00d6bfb4f22d8))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-entities-internal bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.26.1 to 0.27.0
+  * devDependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-maintainer-config bumped from 0.26.1 to 0.27.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.1 to 0.27.0
+
 ## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.26.0...@contract-case/case-definition-dsl-v0.26.1) (2025-07-13)
 
 
