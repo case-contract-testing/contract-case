@@ -24,13 +24,12 @@ tasks.withType(Javadoc).configureEach {
     options.addStringOption('Xdoclint:-missing', '-quiet')
 }
 
-def caseCoreVersion = "0.26.1"
 def grpcVersion = "1.73.0"
 def protobufVersion = "3.25.2"
 def junitVersion = "5.13.3"
 
 dependencies {
-    api("io.contract-testing.contractcase:definitions:${caseCoreVersion}") {
+    api("io.contract-testing.contractcase:definitions:${version}") {
         changing = true
     }
     implementation 'com.diogonunes:JColor:5.5.1'
