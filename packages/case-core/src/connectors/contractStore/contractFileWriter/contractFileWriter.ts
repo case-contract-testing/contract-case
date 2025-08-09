@@ -147,7 +147,7 @@ const internalWriteContract = (
 
   const initialContract =
     context['_case:currentRun:context:contractFilename'] === undefined &&
-    !context['_case:currentRun:context:doNotWriteMainContract']
+    context['_case:currentRun:context:contractsToWrite'].includes('main')
       ? [
           // If we haven't been given an explicit filename,
           // we also write the main contract too
@@ -159,13 +159,17 @@ const internalWriteContract = (
         ]
       : [];
 
-  const hashedContract = [
-    actuallyWriteContract(
-      generateFileName(contract, context),
-      contract,
-      context,
-    ),
-  ];
+  const hashedContract = context[
+    '_case:currentRun:context:contractsToWrite'
+  ].includes('hash')
+    ? [
+        actuallyWriteContract(
+          generateFileName(contract, context),
+          contract,
+          context,
+        ),
+      ]
+    : [];
 
   return {
     consumerSlug: consumerSlug(contract),

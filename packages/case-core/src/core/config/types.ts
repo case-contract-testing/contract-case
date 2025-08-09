@@ -66,6 +66,14 @@ export interface BaseCaseConfig {
   contractFilename?: string;
 
   /**
+   * Which contracts to write:
+   *
+   * * `'main'`: The main contract file
+   * * `'hash'`: The contract file hashed by the contents
+   */
+  contractsToWrite: Array<'hash' | 'main'>;
+
+  /**
    * What to do if contracts have changed?
    *
    * - `"OVERWRITE"`: Replace the previous contract file

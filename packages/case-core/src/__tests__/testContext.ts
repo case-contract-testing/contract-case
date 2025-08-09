@@ -35,6 +35,7 @@ export const EMPTY_DATA_CONTEXT: DataContext = {
   '_case:context:matchBy': 'type',
   '_case:context:serialisableTo': 'json',
   '_case:currentRun:context:contractMode': 'write',
+  '_case:currentRun:context:contractsToWrite': ['hash', 'main'],
   '_case:currentRun:context:printResults': true,
   '_case:currentRun:context:testName': '',
   '_case:currentRun:context:variables': {},

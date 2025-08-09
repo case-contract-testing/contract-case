@@ -127,7 +127,7 @@ export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends st
 export interface ContractFileConfig {
     '_case:currentRun:context:contractDir': string;
     '_case:currentRun:context:contractFilename'?: string;
-    '_case:currentRun:context:doNotWriteMainContract'?: boolean;
+    '_case:currentRun:context:contractsToWrite': Array<'main' | 'hash'>;
     '_case:currentRun:context:overwriteFile'?: boolean;
     '_case:currentRun:context:testRunId': string;
 }
