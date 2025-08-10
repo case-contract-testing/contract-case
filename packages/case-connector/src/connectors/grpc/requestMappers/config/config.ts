@@ -121,6 +121,13 @@ const mapMockConfig = (
       {} as Record<string, Record<string, unknown>>,
     );
 
+const mapContractsToWrite = (
+  contractsToWrite: StringValue[],
+): string[] | undefined => {
+  const mapped = contractsToWrite.map((sv) => unbox(sv));
+  return mapped.length !== 0 ? mapped : undefined;
+};
+
 type WithUndefined<T> = {
   [P in keyof T]-?: T[P] | undefined;
 };
@@ -135,6 +142,7 @@ const mapAllConfigFields = (
   logLevel: unboxOrUndefined(config.getLogLevel()),
   contractDir: unboxOrUndefined(config.getContractDir()),
   contractFilename: unboxOrUndefined(config.getContractFilename()),
+  contractsToWrite: mapContractsToWrite(config.getContractsToWriteList()),
   changedContracts: unboxOrUndefined(config.getChangedContracts()),
 
   publish: unboxOrUndefined(config.getPublish()),

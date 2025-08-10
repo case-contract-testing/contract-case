@@ -1,9 +1,9 @@
 package io.contract_testing.contractcase.configuration;
 
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
-import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -159,23 +159,50 @@ public class ContractCaseConfig {
    * Note that this doesn't override the whole error message, only the advice telling the user what
    * to do to fix it.
    * <p>
-   * For details on the valid codes, see <a href="https://github.com/case-contract-testing/contract-case/blob/main/packages/case-plugin-base/docs/case-plugin-base.configurationerrorcodes.md">the error code documentation</a>
+   * For details on the valid codes, see <a
+   * href="https://github.com/case-contract-testing/contract-case/blob/main/packages/case-plugin-base/docs/case-plugin-base.configurationerrorcodes.md">the
+   * error code documentation</a>
    */
   public final Map<String, String> adviceOverrides;
+
+
+  /**
+   * Which contracts to write?
+   * <ul>
+   *   <li>"hash": The hashed contract, with a filename generated from a hash of the contents</li>
+   *   <li>"main": The main contract, ending in main.case.json</li>
+   * </ul>
+   * <p>
+   * It's recommended to write both.
+   * <p>
+   * Default: ["hash", "main"]
+   */
+  public final List<String> contractsToWrite;
 
   /**
    * Don't construct this directly, use a {@link ContractCaseConfigBuilder} instead, obtained via
    * {@link ContractCaseConfigBuilder#aContractCaseConfig()}
    */
   @SuppressWarnings("doclint")
-  protected ContractCaseConfig(String providerName, String consumerName, LogLevel logLevel,
-      String contractDir, String contractFilename,
+  protected ContractCaseConfig(String providerName,
+      String consumerName,
+      LogLevel logLevel,
+      String contractDir,
+      String contractFilename,
       ChangedContractsBehaviour changedContracts,
-      Boolean printResults, Boolean throwOnFail,
-      PublishType publish, String brokerBaseUrl, String brokerCiAccessToken,
-      BrokerBasicAuthCredentials brokerBasicAuth, String baseUrlUnderTest, TriggerGroups triggers,
-      Map<String, StateHandler> stateHandlers, Map<String, Map<String, String>> mockConfig,
-      AutoVersionFrom autoVersionFrom, Map<String, String> adviceOverrides) {
+      Boolean printResults,
+      Boolean throwOnFail,
+      PublishType publish,
+      String brokerBaseUrl,
+      String brokerCiAccessToken,
+      BrokerBasicAuthCredentials brokerBasicAuth,
+      String baseUrlUnderTest,
+      TriggerGroups triggers,
+      Map<String, StateHandler> stateHandlers,
+      Map<String, Map<String, String>> mockConfig,
+      AutoVersionFrom autoVersionFrom,
+      Map<String, String> adviceOverrides,
+      List<String> contractsToWrite) {
     this.providerName = providerName;
     this.consumerName = consumerName;
     this.logLevel = logLevel;
@@ -193,7 +220,10 @@ public class ContractCaseConfig {
     this.stateHandlers = stateHandlers != null ? Collections.unmodifiableMap(stateHandlers) : null;
     this.mockConfig = mockConfig != null ? Collections.unmodifiableMap(mockConfig) : null;
     this.autoVersionFrom = autoVersionFrom;
-    this.adviceOverrides = adviceOverrides != null ? Collections.unmodifiableMap(adviceOverrides) : null;
+    this.adviceOverrides =
+        adviceOverrides != null ? Collections.unmodifiableMap(adviceOverrides) : null;
+    this.contractsToWrite =
+        contractsToWrite != null ? Collections.unmodifiableList(contractsToWrite) : null;
   }
 
   public String getProviderName() {
@@ -214,6 +244,11 @@ public class ContractCaseConfig {
 
   public String getContractFilename() {
     return contractFilename;
+  }
+
+
+  public List<String> getContractsToWrite() {
+    return contractsToWrite;
   }
 
   public Boolean getPrintResults() {
@@ -290,7 +325,8 @@ public class ContractCaseConfig {
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
     private ChangedContractsBehaviour changedContracts;
 
-    private Map<String,String> adviceOverrides;
+    private Map<String, String> adviceOverrides;
+    private List<String> contractsToWrite;
 
     private ContractCaseConfigBuilder() {
     }
@@ -456,6 +492,14 @@ public class ContractCaseConfig {
 
 
     /**
+     * @see ContractCaseConfig#contractsToWrite
+     */
+    public ContractCaseConfigBuilder contractsToWrite(List<ContractToWrite> contractsToWrite) {
+      this.contractsToWrite = contractsToWrite.stream().map(ContractToWrite::toString).toList();
+      return this;
+    }
+
+    /**
      * Builds an immutable {@link ContractCaseConfig}
      *
      * @return the built config
@@ -478,7 +522,8 @@ public class ContractCaseConfig {
           stateHandlers,
           mockConfig,
           autoVersionFrom,
-          adviceOverrides
+          adviceOverrides,
+          contractsToWrite
       );
     }
   }

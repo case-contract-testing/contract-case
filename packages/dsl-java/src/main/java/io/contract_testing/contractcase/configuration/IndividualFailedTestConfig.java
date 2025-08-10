@@ -1,13 +1,15 @@
 package io.contract_testing.contractcase.configuration;
 
-import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.ContractDefiner;
+import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
- * Configures a single test for an API call that is expected to throw an error during this test. For example,
- * if your API client code throws a UserNotFound exception, you'll need this configuration.
+ * Configures a single test for an API call that is expected to throw an error during this test. For
+ * example, if your API client code throws a UserNotFound exception, you'll need this
+ * configuration.
  *
  * @param <T> The return type of your API client code (e.g. {@code User} or other domain object)
  */
@@ -35,14 +37,15 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
       TestErrorResponseFunction testErrorResponse,
       Map<String, Map<String, String>> mockConfig,
       AutoVersionFrom autoVersionFrom,
-      Map<String, String> adviceOverrides) {
+      Map<String, String> adviceOverrides,
+      List<String> contractsToWrite) {
     super(providerName, consumerName, logLevel, contractDir, contractFilename,
         changedContractsBehaviour,
         printResults,
         throwOnFail, publish, brokerBaseUrl, brokerCiAccessToken, brokerBasicAuth, baseUrlUnderTest,
         triggers, stateHandlers, mockConfig,
         autoVersionFrom,
-        adviceOverrides
+        adviceOverrides, contractsToWrite
     );
     this.trigger = trigger;
     this.testErrorResponse = testErrorResponse;
@@ -70,12 +73,14 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
     private AutoVersionFrom autoVersionFrom;
     private ChangedContractsBehaviour changedContracts;
     private Map<String, String> adviceOverrides;
+    private List<String> contractsToWrite;
 
     private IndividualFailedTestConfigBuilder() {
     }
 
     /**
      * Creates a builder for configuring a test that you expect to fail.
+     *
      * @param <T> the return type of the trigger function (on success).
      */
     public static <T> IndividualFailedTestConfigBuilder<T> builder() {
@@ -215,7 +220,8 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
 
     /**
      * Provides the test function to test an exception thrown in your trigger. If you aren't
-     * expecting a trigger to be thrown, you should use {@link ContractDefiner#runInteraction} instead.
+     * expecting a trigger to be thrown, you should use {@link ContractDefiner#runInteraction}
+     * instead.
      */
     public IndividualFailedTestConfigBuilder<T> withTestErrorResponse(
         TestErrorResponseFunction testErrorResponse) {
@@ -248,6 +254,16 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
       return this;
     }
 
+
+
+    /**
+     * @see ContractCaseConfig#contractsToWrite
+     */
+    public IndividualFailedTestConfigBuilder<T> contractsToWrite(List<String> contractsToWrite) {
+      this.contractsToWrite = contractsToWrite;
+      return this;
+    }
+
     public IndividualFailedTestConfig<T> build() {
       return new IndividualFailedTestConfig<>(
           providerName,
@@ -269,7 +285,8 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
           testErrorResponse,
           mockConfig,
           autoVersionFrom,
-          adviceOverrides
+          adviceOverrides,
+          contractsToWrite
       );
     }
   }

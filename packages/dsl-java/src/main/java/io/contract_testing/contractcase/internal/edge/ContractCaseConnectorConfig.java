@@ -10,6 +10,7 @@ import io.contract_testing.contractcase.configuration.StateHandler;
 import io.contract_testing.contractcase.configuration.TriggerGroups;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ContractCaseConnectorConfig extends ContractCaseConfig {
@@ -53,7 +54,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       ITriggerFunction triggerAndTest,
       Map<String, Map<String, String>> mockConfig,
       AutoVersionFrom autoVersionFrom,
-      Map<String, String> adviceOverrides) {
+      Map<String, String> adviceOverrides,
+      List<String> contractsToWrite) {
     super(
         providerName,
         consumerName,
@@ -72,7 +74,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
         null,
         mockConfig,
         autoVersionFrom,
-        adviceOverrides
+        adviceOverrides,
+        contractsToWrite
     );
     this.testRunId = testRunId;
     this.triggerAndTests = triggerAndTests;
@@ -144,6 +147,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
     private AutoVersionFrom autoVersionFrom;
     private ChangedContractsBehaviour changedContracts;
     private Map<String, String> adviceOverrides;
+
+    private List<String> contractsToWrite;
 
     private Builder() {
     }
@@ -252,6 +257,11 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       return this;
     }
 
+    public Builder contractsToWrite(List<String> contractsToWrite) {
+      this.contractsToWrite = contractsToWrite;
+      return this;
+    }
+
 
     public ContractCaseConnectorConfig build() {
       return new ContractCaseConnectorConfig(
@@ -274,7 +284,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
           triggerAndTest,
           mockConfig,
           autoVersionFrom,
-          adviceOverrides
+          adviceOverrides,
+          contractsToWrite
       );
     }
 

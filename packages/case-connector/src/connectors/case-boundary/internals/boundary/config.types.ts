@@ -71,6 +71,14 @@ export interface ContractCaseBoundaryConfig {
   readonly contractFilename?: string;
 
   /**
+   * Which contracts to write:
+   *
+   * * `'main'`: The main contract file
+   * * `'hash'`: The contract file hashed by the contents
+   */
+  readonly contractsToWrite?: Array<string>;
+
+  /**
    * What to do if contracts have changed?
    *
    * - `"OVERWRITE"`: Replace the previous contract file
@@ -79,7 +87,7 @@ export interface ContractCaseBoundaryConfig {
    *
    * Default: 'FAIL'
    */
-  changedContracts?: string;
+  readonly changedContracts?: string;
 
   /**
    * Unique ID for this segment of the test run - it must be unique within a

@@ -127,6 +127,15 @@ export class ContractCaseConfig extends jspb.Message {
 
   getAdviceOverridesMap(): jspb.Map<string, string>;
   clearAdviceOverridesMap(): void;
+  clearContractsToWriteList(): void;
+  getContractsToWriteList(): Array<google_protobuf_wrappers_pb.StringValue>;
+  setContractsToWriteList(
+    value: Array<google_protobuf_wrappers_pb.StringValue>,
+  ): ContractCaseConfig;
+  addContractsToWrite(
+    value?: google_protobuf_wrappers_pb.StringValue,
+    index?: number,
+  ): google_protobuf_wrappers_pb.StringValue;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ContractCaseConfig.AsObject;
@@ -173,6 +182,7 @@ export namespace ContractCaseConfig {
     changedContracts?: google_protobuf_wrappers_pb.StringValue.AsObject;
 
     adviceOverridesMap: Array<[string, string]>;
+    contractsToWriteList: Array<google_protobuf_wrappers_pb.StringValue.AsObject>;
   };
 
   export class UsernamePassword extends jspb.Message {
@@ -1287,45 +1297,6 @@ export namespace AvailableContractDefinitions {
   export type AsObject = {};
 }
 
-export class StartTestEvent extends jspb.Message {
-  hasTestName(): boolean;
-  clearTestName(): void;
-  getTestName(): google_protobuf_wrappers_pb.StringValue | undefined;
-  setTestName(value?: google_protobuf_wrappers_pb.StringValue): StartTestEvent;
-
-  hasInvokerId(): boolean;
-  clearInvokerId(): void;
-  getInvokerId(): google_protobuf_wrappers_pb.StringValue | undefined;
-  setInvokerId(value?: google_protobuf_wrappers_pb.StringValue): StartTestEvent;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StartTestEvent.AsObject;
-  static toObject(
-    includeInstance: boolean,
-    msg: StartTestEvent,
-  ): StartTestEvent.AsObject;
-  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
-  static extensionsBinary: {
-    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
-  };
-  static serializeBinaryToWriter(
-    message: StartTestEvent,
-    writer: jspb.BinaryWriter,
-  ): void;
-  static deserializeBinary(bytes: Uint8Array): StartTestEvent;
-  static deserializeBinaryFromReader(
-    message: StartTestEvent,
-    reader: jspb.BinaryReader,
-  ): StartTestEvent;
-}
-
-export namespace StartTestEvent {
-  export type AsObject = {
-    testName?: google_protobuf_wrappers_pb.StringValue.AsObject;
-    invokerId?: google_protobuf_wrappers_pb.StringValue.AsObject;
-  };
-}
-
 export class PreparedTestHandle extends jspb.Message {
   getContractIndex(): number;
   setContractIndex(value: number): PreparedTestHandle;
@@ -1770,11 +1741,6 @@ export class ContractResponse extends jspb.Message {
   getResultResponse(): ResultResponse | undefined;
   setResultResponse(value?: ResultResponse): ContractResponse;
 
-  hasStartTestEvent(): boolean;
-  clearStartTestEvent(): void;
-  getStartTestEvent(): StartTestEvent | undefined;
-  setStartTestEvent(value?: StartTestEvent): ContractResponse;
-
   hasInvokeFunction(): boolean;
   clearInvokeFunction(): void;
   getInvokeFunction(): InvokeFunction | undefined;
@@ -1813,7 +1779,6 @@ export namespace ContractResponse {
     printTestTitleRequest?: PrintTestTitleRequest.AsObject;
     triggerFunctionRequest?: TriggerFunctionRequest.AsObject;
     resultResponse?: ResultResponse.AsObject;
-    startTestEvent?: StartTestEvent.AsObject;
     invokeFunction?: InvokeFunction.AsObject;
   };
 
@@ -1826,7 +1791,6 @@ export namespace ContractResponse {
     PRINT_TEST_TITLE_REQUEST = 6,
     TRIGGER_FUNCTION_REQUEST = 7,
     RESULT_RESPONSE = 8,
-    START_TEST_EVENT = 9,
     INVOKE_FUNCTION = 10,
   }
 }

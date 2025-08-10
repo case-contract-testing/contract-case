@@ -69,13 +69,23 @@ export interface ContractCaseConfig {
   readonly contractFilename?: string;
 
   /**
+   * Which contracts to write:
+   *
+   * * `'main'`: The main contract file
+   * * `'hash'`: The contract file hashed by the contents
+   *
+   * @defaultValue ['hash', 'main']
+   */
+  readonly contractsToWrite?: Array<'hash' | 'main'>;
+
+  /**
    * What to do if contracts have changed:
    *
    * - `"OVERWRITE"`: Replace the previous contract file
    * - `"FAIL"`: Fail if attempting to write a contract that's different
    *   to the previous one
    *
-   * Default: 'FAIL'
+   * @defaultValue 'FAIL'
    */
   readonly changedContracts?: 'FAIL' | 'OVERWRITE';
 
