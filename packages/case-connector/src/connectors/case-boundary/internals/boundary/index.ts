@@ -4,6 +4,5 @@ export * from './ConfigLogLevelConstants.js';
 export * from './ConfigPublishConstants.js';
 export * from './config.types.js';
 export * from './ILogPrinter.js';
-export * from './IRunTestCallback.js';
 export * from './ITriggerFunction.js';
 export * from './StateHandler.js';

@@ -17,7 +17,6 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHand
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
 import io.contract_testing.contractcase.internal.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.internal.edge.ConnectorExceptionMapper;
-import io.contract_testing.contractcase.internal.edge.ConnectorFailure;
 import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.internal.edge.ConnectorStateHandler;
 import io.contract_testing.contractcase.internal.edge.ConnectorSuccess;
@@ -216,25 +215,6 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
       case RESULT_RESPONSE -> {
         rpcConnector.completeWait(requestId, coreResponse.getResultResponse().getResult());
       }
-      case START_TEST_EVENT -> {
-        var startTestEvent = coreResponse.getStartTestEvent();
-        var testName = startTestEvent.getTestName().getValue();
-
-        hostWorker.submit(() -> {
-          rpcConnector.sendResponse(
-              mapResultResponse(
-                  new ConnectorFailure(
-                      "CASE_CORE_ERROR",
-                      "Java wrapper received a Start Test event, but this method is deprecated and shouldn't have been called",
-                      MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-                      "UNDOCUMENTED",
-                      ""
-                  )
-              ),
-              requestId, LogLevel.MAINTAINER_DEBUG
-          );
-        });
-      }
       case INVOKE_FUNCTION -> {
         var invokeFunctionEvent = coreResponse.getInvokeFunction();
 
@@ -355,7 +335,7 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
   /**
    * Convenience method to get a stack trace and make it a string
    *
-   * @param t a Exception to get the stack trace from
+   * @param t an Exception to get the stack trace from
    * @return the stack trace of the throwable
    */
   @NotNull

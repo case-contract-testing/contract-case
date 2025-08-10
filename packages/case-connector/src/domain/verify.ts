@@ -4,7 +4,6 @@ import {
   BoundarySuccess,
   ILogPrinter,
   IResultPrinter,
-  IRunTestCallback,
 } from '../entities/types.js';
 import { versionString } from '../entities/versionString.js';
 import { ContractCaseConnectorConfig, VerificationId } from './types.js';
@@ -18,18 +17,14 @@ import { BoundaryContractVerificationTestHandle } from '../connectors/case-bound
 
 export const beginVerification = (
   config: ContractCaseConnectorConfig,
-  callback: IRunTestCallback,
   callbackPrinter: ILogPrinter,
   resultPrinter: IResultPrinter,
   callerVersions: string[],
 ): VerificationId =>
-  createVerifier(
-    mapConfigNoId(config),
-    callback,
-    callbackPrinter,
-    resultPrinter,
-    [...callerVersions, versionString],
-  );
+  createVerifier(mapConfigNoId(config), callbackPrinter, resultPrinter, [
+    ...callerVersions,
+    versionString,
+  ]);
 
 export const availableContractDescriptions = (
   verifierId: string,

@@ -1,20 +1,16 @@
 import { ServerDuplexStream } from '@grpc/grpc-js';
 
-import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb.js';
 import {
   VerificationRequest as WireVerificationRequest,
   ContractResponse as WireContractResponse,
-  StartTestEvent as WireStartTestEvent,
   InvokeTest,
 } from '@contract-case/case-connector-proto';
 import { UnreachableError } from './UnreachableError.js';
 import {
   BoundaryFailure,
   BoundaryFailureKindConstants,
-  BoundaryResult,
   BoundarySuccess,
   BoundarySuccessWithAny,
-  IInvokeCoreTest,
 } from '../../entities/types.js';
 import { ConnectorError } from '../../domain/errors/ConnectorError.js';
 import {
@@ -31,11 +27,7 @@ import {
   mapConfig,
   mapResult,
 } from './requestMappers/index.js';
-import {
-  makeResolvableId,
-  resolveById,
-  waitForResolution,
-} from './promiseHandler/promiseHandler.js';
+import { resolveById } from './promiseHandler/promiseHandler.js';
 import { makeSendContractResponse } from './sendContractResponse.js';
 import { makeLogPrinter, makeResultPrinter } from './printers.js';
 import { makeResultResponse } from './responseMappers/index.js';
@@ -113,45 +105,6 @@ export const contractVerification = (
                   sendContractResponse,
                   functionRegistry,
                 ),
-                {
-                  runTest: (testName: string, invoker: IInvokeCoreTest) => {
-                    const invokerId = makeResolvableId(
-                      async () => {},
-                      (result: BoundaryResult): BoundaryResult => {
-                        // TODO: Replace this with a nice 'isBoundarySuccessWithAny' function
-                        if (result.resultType === 'SuccessAny') {
-                          const id = `${
-                            (result as BoundarySuccessWithAny).payload
-                          }`;
-                          invoker.verify().then((verificationResult) => {
-                            sendContractResponse(
-                              'maintainerDebug',
-                              id,
-                              makeResultResponse(verificationResult),
-                            );
-                          });
-                        }
-                        return result;
-                      },
-                    );
-
-                    return waitForResolution(
-                      makeResolvableId((id: string) =>
-                        sendContractResponse(
-                          'maintainerDebug',
-                          id,
-                          new WireContractResponse().setStartTestEvent(
-                            new WireStartTestEvent()
-                              .setTestName(new StringValue().setValue(testName))
-                              .setInvokerId(
-                                new StringValue().setValue(invokerId),
-                              ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                },
                 makeLogPrinter(sendContractResponse),
                 makeResultPrinter(sendContractResponse),
                 beginVerificationRequest

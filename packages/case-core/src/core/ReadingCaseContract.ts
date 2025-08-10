@@ -143,7 +143,6 @@ export class ReadingCaseContract extends BaseCaseContract {
    * Gets the tests that can be used later to verify the contract
    *
    * @param invoker - The invoker for this test
-   * @param runTestCb - a callback to tell the test framework that we're running a test
    * @returns a Promise if the verification if asyncVerification is set,
    * otherwise undefined. Note that if asyncVerification is false, this method
    * returns before the verification has finished, leaving it up to the test

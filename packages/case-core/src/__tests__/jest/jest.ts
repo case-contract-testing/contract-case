@@ -1,7 +1,6 @@
 /* eslint-disable jest/no-export */
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import type { CaseConfig } from '../../core/types';
-import type { RunTestCallback } from '../../core/executeExample/types';
 import type {
   CaseJestConfig,
   DefineCaseJestCallback,
@@ -15,14 +14,6 @@ import {
 import { defaultPrinter } from './defaultTestPrinter';
 
 const TIMEOUT = 30000;
-
-const runJestTest: RunTestCallback = (
-  testName: string,
-  verify: () => Promise<unknown>,
-): void => {
-  // eslint-disable-next-line jest/expect-expect
-  it(`${testName}`, () => verify(), TIMEOUT);
-};
 
 export const defineContract = <T extends AnyMockDescriptorType>(
   { config, ...contractConfig }: CaseJestConfig<T>,
@@ -96,7 +87,6 @@ export const verifyContract = (
             asyncVerification: false,
           },
         },
-        runJestTest,
         defaultPrinter,
         ['local-jest-wrapper'],
       ),

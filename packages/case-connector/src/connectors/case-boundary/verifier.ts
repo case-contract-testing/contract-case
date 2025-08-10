@@ -2,7 +2,6 @@ import { v4 as uuid4 } from 'uuid';
 import {
   BoundaryContractVerifier,
   ContractCaseBoundaryConfig,
-  IRunTestCallback,
   ILogPrinter,
   IResultPrinter,
   BoundaryFailure,
@@ -29,7 +28,6 @@ const VERIFYING_CONTRACTS: Record<string, VerificationContainer> = {};
 
 export const createVerifier = (
   config: Omit<ContractCaseBoundaryConfig, 'testRunId'>,
-  callback: IRunTestCallback,
   callbackPrinter: ILogPrinter,
   resultPrinter: IResultPrinter,
   callerVersions: string[],
@@ -39,7 +37,6 @@ export const createVerifier = (
     id,
     verifier: new BoundaryContractVerifier(
       { ...config, testRunId: id },
-      callback,
       callbackPrinter,
       resultPrinter,
       callerVersions,

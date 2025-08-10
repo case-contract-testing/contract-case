@@ -12,10 +12,7 @@ import type {
   ContractVerificationTest,
   ReaderDependencies,
 } from '../../core/types';
-import type {
-  MultiTestInvoker,
-  RunTestCallback,
-} from '../../core/executeExample/types';
+import type { MultiTestInvoker } from '../../core/executeExample/types';
 import { ReadingCaseContract } from '../../core/ReadingCaseContract';
 
 import { readerDependencies } from '../dependencies';
@@ -59,8 +56,6 @@ export class ContractVerifierConnector {
 
   config: CaseConfig;
 
-  callback: RunTestCallback;
-
   dependencies: ReaderDependencies;
 
   context: DataContext;
@@ -76,7 +71,6 @@ export class ContractVerifierConnector {
 
   constructor(
     userConfig: CaseConfig,
-    callback: RunTestCallback,
     printer: TestPrinter,
     parentVersions: string[],
     dependencies = readerDependencies(printer),
@@ -103,8 +97,6 @@ export class ContractVerifierConnector {
     const store = this.dependencies.makeContractStore(this.context);
 
     this.contracts = readContractFromStore(this.config, store);
-
-    this.callback = callback;
 
     this.context.logger.deepMaintainerDebug('Constructed VerifierConnector');
   }

@@ -1,10 +1,6 @@
 import {
   BoundaryContractVerifier,
   BoundaryInvokableFunction,
-  BoundaryResult,
-  BoundarySuccess,
-  IInvokeCoreTest,
-  IRunTestCallback,
 } from '@contract-case/case-connector/cjs';
 import { defaultPrinter } from './defaultTestPrinter.js';
 
@@ -12,7 +8,6 @@ import {
   mapSuccess,
   mapConfig,
   mapSuccessWithAny,
-  makeBoundaryFailure,
   mapInvokeableFunction,
   mapVerificationTestHandles,
 } from './case-boundary/index.js';
@@ -20,25 +15,10 @@ import {
   ContractCaseConfigurationError,
   ContractCaseVerifierConfig,
   ContractDescription,
-  RunTestCallback,
   VerificationTestHandle,
   versionString,
 } from '../entities/index.js';
 import { errorHandler, errorReporter } from './handler.js';
-
-const mapCallback = (callback: RunTestCallback): IRunTestCallback => ({
-  runTest: async (
-    testName: string,
-    invoker: IInvokeCoreTest,
-  ): Promise<BoundaryResult> => {
-    try {
-      callback(testName, () => invoker.verify().then(mapSuccess));
-    } catch (e) {
-      return makeBoundaryFailure(e as Error);
-    }
-    return new BoundarySuccess();
-  },
-});
 
 export class ContractVerifier {
   private boundaryVerifier: BoundaryContractVerifier;
@@ -47,18 +27,13 @@ export class ContractVerifier {
 
   private invokeableFunctions: Record<string, BoundaryInvokableFunction>;
 
-  constructor(
-    config: ContractCaseVerifierConfig,
-    callback: RunTestCallback,
-    printer = defaultPrinter,
-  ) {
+  constructor(config: ContractCaseVerifierConfig, printer = defaultPrinter) {
     this.config = config;
     this.invokeableFunctions = {};
 
     try {
       this.boundaryVerifier = new BoundaryContractVerifier(
         mapConfig(config),
-        mapCallback(callback),
         printer,
         printer,
         [versionString],

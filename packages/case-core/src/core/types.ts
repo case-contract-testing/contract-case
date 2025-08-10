@@ -49,14 +49,20 @@ export interface ContractVerificationTest {
    */
   isPending: () => boolean;
   /**
-   * Has the same semantics as the promise passed to RunTestCallback, but
-   * only runs this test. The promise will reject if there is a configuration or
-   * core error, and by default it will resolve successfully regardless of
-   * whether the test passes. This is because a failing contract verification
-   * shouldn't necessarily fail the verifier build.
+   * Call this to tell the ContractCase core to actually invoke the test.
    *
-   * @returns a successful promise if the test shouldn't throw an exception,
-   * or a rejecting promise with the exception
+   * Note that by default during verification, a failed verification test doesn't
+   * necessarily reject the promise, but failed configuration or core bugs will.
+   *
+   * This is the intended default behaviour - as a failed verification doesn't
+   * necessarily indicate a problem in the code that is being verified.
+   * For example, it might be an expectation that is not implemented yet, or it
+   * might be an old contract.
+   *
+   * This behaviour can be changed with the configuration setting `throwOnFail`
+   *
+   * @returns a successful promise that indicates the result of this test, with the
+   * caveats above. If the promise rejects, it indicates the why in the enclosed exception
    */
   runTest: () => Promise<void>;
 }

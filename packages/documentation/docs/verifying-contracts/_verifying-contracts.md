@@ -15,6 +15,13 @@ Because contracts often don't change between versions, it's normal for multiple
 versions of the consumer to be covered by one contract. You don't need to
 de-duplicate contracts - ContractCase will hash them for you automatically.
 
+Note that by default during verification, a failed verification doesn't
+throw an error, but failed configuration or core bugs will. This is
+the intended default behaviour - as a failed verification doesn't
+necessarily indicate a problem in the code that is being verified, it might
+be an expectation that is just not implemented yet, or it might be an old
+contract.
+
 ## Multiple verifications.
 
 Even if you have only one consumer,

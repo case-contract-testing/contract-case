@@ -2,7 +2,7 @@
 /* eslint-disable jest/no-export */
 import { ContractCaseDefiner } from '../../connectors/ContractDefiner.js';
 import { ContractVerifier } from '../../connectors/ContractVerifier.js';
-import { ContractWriteSuccess, RunTestCallback } from '../../entities/index.js';
+import { ContractWriteSuccess } from '../../entities/index.js';
 import type {
   ContractCaseJestConfig,
   ContractCaseJestVerifierConfig,
@@ -11,14 +11,6 @@ import type {
 } from './types.js';
 
 const TIMEOUT = 30000;
-
-const runJestTest: RunTestCallback = (
-  testName: string,
-  verify: () => Promise<unknown>,
-): void => {
-  it(`${testName}`, () => verify(), TIMEOUT);
-};
-
 /**
  * Convenience wrapper for defining contracts
  *
@@ -58,7 +50,7 @@ export const verifyContract = (
     throw new Error('Must specify a providerName to verify');
   }
   describe(`Provider verification for ${config.providerName}`, () => {
-    const verifier = new ContractVerifier(config, runJestTest);
+    const verifier = new ContractVerifier(config);
 
     setupCallback(verifier);
 
