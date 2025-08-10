@@ -43,6 +43,7 @@ public class ContractVerifier implements AutoCloseable {
    * @param config
    * @param runTestCallback
    */
+  @Deprecated(since= "0.27.0", forRemoval = true)
   public ContractVerifier(final ContractCaseConfig config, RunTestCallback runTestCallback) {
     this(config, new LogPrinterStandardOut(), runTestCallback);
   }
@@ -57,6 +58,7 @@ public class ContractVerifier implements AutoCloseable {
    * @param config
    * @param runTestCallback
    */
+  @Deprecated(since= "0.27.0", forRemoval = true)
   public ContractVerifier(ContractCaseConfig config,
       LogPrinter logPrinter, RunTestCallback runTestCallback) {
     ContractCaseProcess.getInstance().start();

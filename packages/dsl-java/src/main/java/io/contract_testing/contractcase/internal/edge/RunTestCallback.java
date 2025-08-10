@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
  * {@link
  * ContractVerifier#prepareVerification()}
  */
+@Deprecated(since= "0.27.0", forRemoval = true)
 public interface RunTestCallback {
 
   @NotNull ConnectorResult runTest(@NotNull String testName,
