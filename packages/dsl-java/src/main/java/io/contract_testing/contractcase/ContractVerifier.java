@@ -71,7 +71,6 @@ public class ContractVerifier implements AutoCloseable {
               config,
               "VERIFICATION"
           ),
-          runTestCallback,
           logPrinter,
           new BoundaryVersionGenerator().getVersions()
       );

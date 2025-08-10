@@ -17,17 +17,16 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHand
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
 import io.contract_testing.contractcase.internal.client.server.ContractCaseProcess;
 import io.contract_testing.contractcase.internal.edge.ConnectorExceptionMapper;
+import io.contract_testing.contractcase.internal.edge.ConnectorFailure;
 import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.internal.edge.ConnectorStateHandler;
 import io.contract_testing.contractcase.internal.edge.ConnectorSuccess;
-import io.contract_testing.contractcase.internal.edge.RunTestCallback;
 import io.contract_testing.contractcase.logs.LogPrinter;
 import io.grpc.stub.StreamObserver;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Set;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,10 +36,9 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
   private final AbstractRpcConnector<T, B> rpcConnector;
   private final LogPrinter logPrinter;
   private final ConfigHandle configHandle;
-  private final RunTestCallback runTestCallback;
   /**
-   * An executor service for host-based work. Might have multiple threads,
-   * because the calls between the client and the host go back and forth.
+   * An executor service for host-based work. Might have multiple threads, because the calls between
+   * the client and the host go back and forth.
    */
   private final CrashPrintingExecutor hostWorker;
 
@@ -53,14 +51,13 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
   public ContractResponseStreamObserver(
       final @NotNull AbstractRpcConnector<T, B> rpcConnector,
       final @NotNull LogPrinter logPrinter,
-      final @NotNull ConfigHandle configHandle,
-      final @NotNull RunTestCallback runTestCallback) {
+      final @NotNull ConfigHandle configHandle
+  ) {
     this.rpcConnector = rpcConnector;
     this.logPrinter = logPrinter;
     this.configHandle = configHandle;
-    this.runTestCallback = runTestCallback;
     this.hostWorker = new CrashPrintingExecutor(Executors.newCachedThreadPool());
-    this.logWorker =  new CrashPrintingExecutor(Executors.newSingleThreadExecutor());
+    this.logWorker = new CrashPrintingExecutor(Executors.newSingleThreadExecutor());
   }
 
 
@@ -224,15 +221,15 @@ class ContractResponseStreamObserver<T extends AbstractMessage, B extends Genera
         var testName = startTestEvent.getTestName().getValue();
 
         hostWorker.submit(() -> {
-          ConnectorResult invokeTest = safeExecute(() -> runTestCallback.runTest(
-              testName,
-              () -> rpcConnector.executeCallAndWait(
-                  rpcConnector.makeInvokeTest(
-                      startTestEvent.getInvokerId()), "invokeTest")
-          ));
           rpcConnector.sendResponse(
               mapResultResponse(
-                  invokeTest
+                  new ConnectorFailure(
+                      "CASE_CORE_ERROR",
+                      "Java wrapper received a Start Test event, but this method is deprecated and shouldn't have been called",
+                      MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
+                      "UNDOCUMENTED",
+                      ""
+                  )
               ),
               requestId, LogLevel.MAINTAINER_DEBUG
           );

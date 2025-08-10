@@ -34,7 +34,6 @@ public class InternalVerifierClient implements AutoCloseable {
 
   public InternalVerifierClient(
       ContractCaseConnectorConfig boundaryConfig,
-      @NotNull RunTestCallback callback,
       @NotNull LogPrinter logPrinter,
       @NotNull List<String> parentVersions) {
 
@@ -42,8 +41,7 @@ public class InternalVerifierClient implements AutoCloseable {
     this.configHandle = new ConfigHandle(boundaryConfig);
     this.rpcConnector = new RpcForVerification(
         logPrinter,
-        configHandle,
-        callback
+        configHandle
     );
 
     // this is only here because we have to be able to map errors into exceptions
