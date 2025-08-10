@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-export */
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import type { CaseConfig } from '../../core/types';
 import type {
