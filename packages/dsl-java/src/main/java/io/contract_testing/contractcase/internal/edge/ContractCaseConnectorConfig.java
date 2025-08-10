@@ -4,6 +4,7 @@ import io.contract_testing.contractcase.configuration.AutoVersionFrom;
 import io.contract_testing.contractcase.configuration.BrokerBasicAuthCredentials;
 import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
+import io.contract_testing.contractcase.configuration.ContractToWrite;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.StateHandler;
@@ -55,7 +56,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       Map<String, Map<String, String>> mockConfig,
       AutoVersionFrom autoVersionFrom,
       Map<String, String> adviceOverrides,
-      List<String> contractsToWrite) {
+      List<ContractToWrite> contractsToWrite) {
     super(
         providerName,
         consumerName,
@@ -148,7 +149,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
     private ChangedContractsBehaviour changedContracts;
     private Map<String, String> adviceOverrides;
 
-    private List<String> contractsToWrite;
+    private List<ContractToWrite> contractsToWrite;
 
     private Builder() {
     }
@@ -257,7 +258,7 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       return this;
     }
 
-    public Builder contractsToWrite(List<String> contractsToWrite) {
+    public Builder contractsToWrite(List<ContractToWrite> contractsToWrite) {
       this.contractsToWrite = contractsToWrite;
       return this;
     }

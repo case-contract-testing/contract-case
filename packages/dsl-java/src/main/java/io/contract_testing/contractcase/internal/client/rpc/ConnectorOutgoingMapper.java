@@ -8,6 +8,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
 import com.google.protobuf.util.JsonFormat;
+import io.contract_testing.contractcase.configuration.ContractToWrite;
 import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.grpc.ContractCaseStream;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
@@ -156,6 +157,7 @@ public class ConnectorOutgoingMapper {
     if (config.getContractsToWrite() != null) {
       builder.addAllContractsToWrite(config.getContractsToWrite()
           .stream()
+          .map(ContractToWrite::toString)
           .map(ConnectorOutgoingMapper::map)
           .toList());
     }

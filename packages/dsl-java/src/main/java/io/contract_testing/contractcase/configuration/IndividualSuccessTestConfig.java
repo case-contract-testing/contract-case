@@ -1,6 +1,5 @@
 package io.contract_testing.contractcase.configuration;
 
-import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +35,7 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
       Map<String, Map<String, String>> mockConfig,
       AutoVersionFrom autoVersionFrom,
       Map<String, String> adviceOverrides,
-      List<String> contractsToWrite) {
+      List<ContractToWrite> contractsToWrite) {
     super(providerName, consumerName, logLevel, contractDir, contractFilename,
         changedContractsBehaviour,
         printResults,
@@ -74,7 +73,7 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
     private ChangedContractsBehaviour changedContracts;
     private Map<String,String> adviceOverrides;
-    private List<String> contractsToWrite;
+    private List<ContractToWrite> contractsToWrite;
 
     private IndividualSuccessTestConfigBuilder() {
     }
@@ -195,7 +194,7 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
     /**
      * @see ContractCaseConfig#contractsToWrite
      */
-    public IndividualSuccessTestConfigBuilder<T> contractsToWrite(List<String> contractsToWrite) {
+    public IndividualSuccessTestConfigBuilder<T> contractsToWrite(List<ContractToWrite> contractsToWrite) {
       this.contractsToWrite = contractsToWrite;
       return this;
     }

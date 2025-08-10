@@ -38,7 +38,7 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
       Map<String, Map<String, String>> mockConfig,
       AutoVersionFrom autoVersionFrom,
       Map<String, String> adviceOverrides,
-      List<String> contractsToWrite) {
+      List<ContractToWrite> contractsToWrite) {
     super(providerName, consumerName, logLevel, contractDir, contractFilename,
         changedContractsBehaviour,
         printResults,
@@ -73,7 +73,7 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
     private AutoVersionFrom autoVersionFrom;
     private ChangedContractsBehaviour changedContracts;
     private Map<String, String> adviceOverrides;
-    private List<String> contractsToWrite;
+    private List<ContractToWrite> contractsToWrite;
 
     private IndividualFailedTestConfigBuilder() {
     }
@@ -259,7 +259,7 @@ public class IndividualFailedTestConfig<T> extends ContractCaseConfig {
     /**
      * @see ContractCaseConfig#contractsToWrite
      */
-    public IndividualFailedTestConfigBuilder<T> contractsToWrite(List<String> contractsToWrite) {
+    public IndividualFailedTestConfigBuilder<T> contractsToWrite(List<ContractToWrite> contractsToWrite) {
       this.contractsToWrite = contractsToWrite;
       return this;
     }

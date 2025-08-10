@@ -177,7 +177,7 @@ public class ContractCaseConfig {
    * <p>
    * Default: ["hash", "main"]
    */
-  public final List<String> contractsToWrite;
+  public final List<ContractToWrite> contractsToWrite;
 
   /**
    * Don't construct this directly, use a {@link ContractCaseConfigBuilder} instead, obtained via
@@ -202,7 +202,7 @@ public class ContractCaseConfig {
       Map<String, Map<String, String>> mockConfig,
       AutoVersionFrom autoVersionFrom,
       Map<String, String> adviceOverrides,
-      List<String> contractsToWrite) {
+      List<ContractToWrite> contractsToWrite) {
     this.providerName = providerName;
     this.consumerName = consumerName;
     this.logLevel = logLevel;
@@ -247,7 +247,7 @@ public class ContractCaseConfig {
   }
 
 
-  public List<String> getContractsToWrite() {
+  public List<ContractToWrite> getContractsToWrite() {
     return contractsToWrite;
   }
 
@@ -326,7 +326,7 @@ public class ContractCaseConfig {
     private ChangedContractsBehaviour changedContracts;
 
     private Map<String, String> adviceOverrides;
-    private List<String> contractsToWrite;
+    private List<ContractToWrite> contractsToWrite;
 
     private ContractCaseConfigBuilder() {
     }
@@ -495,7 +495,7 @@ public class ContractCaseConfig {
      * @see ContractCaseConfig#contractsToWrite
      */
     public ContractCaseConfigBuilder contractsToWrite(List<ContractToWrite> contractsToWrite) {
-      this.contractsToWrite = contractsToWrite.stream().map(ContractToWrite::toString).toList();
+      this.contractsToWrite = contractsToWrite;
       return this;
     }
 
