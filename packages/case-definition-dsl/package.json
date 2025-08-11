@@ -75,7 +75,7 @@
     "@types/jest": "^30.0.0",
     "jest": "^30.0.4",
     "eslint": "^9.23.0",
-    "jsii": "^5.8.16",
+    "jsii": "^5.9.2",
     "jsii-pacmak": "1.112.0",
     "jsii-docgen": "^10.7.5",
     "mkdirp": "^3.0.1",
