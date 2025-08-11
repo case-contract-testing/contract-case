@@ -98,6 +98,6 @@
     }
   },
   "dependencies": {
-    "pretty-format": "^29.7.0"
+    "pretty-format": "^30.0.5"
   }
 }
