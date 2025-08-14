@@ -156,7 +156,8 @@ export class ContractVerifierConnector {
   }
 
   /**
-   * This is an alternative to verifyContract. Instead of running the verification immediately,
+   * This is the main entry point to verifying contract(s). It doesn't run the
+   * verification immediately,
    * it returns a list of tests which can be called later with
    * {@link ContractVerifierConnector#runPreparedTest}.
    *
@@ -255,11 +256,10 @@ export class ContractVerifierConnector {
 
   /**
    * Runs a prepared test returned by {@link prepareVerificationTests}.
-   * Promises returned by this have the same semantics as verifyContract.
    *
    * @param test - the test to run
-   * @returns a successful promise if the test ran (like verifyContract, by
-   * default the test may have failedi f, but the promise can be successful).
+   * @returns a successful promise if the test ran. This doesn't necessarily
+   * mean that the test passed.
    */
   async runPreparedTest(test: ContractVerificationTestHandle): Promise<void> {
     const handles = this.#contractVerificationHandles;
