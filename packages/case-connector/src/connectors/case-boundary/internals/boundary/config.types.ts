@@ -192,18 +192,7 @@ export interface ContractCaseBoundaryConfig {
    *
    * It should never be exposed to end-users.
    */
-  readonly internals: {
-    /**
-     * Whether to run verification synchronously, or asynchronously (returning a
-     * promise that completes when all verification is complete). Most languages
-     * will want asynchronous verification, so that `verifyContract()` fails correctly.
-     *
-     * Note that if asyncVerification is false, verification method
-     * returns before the verification has finished, leaving it up to the test
-     * callbacks.
-     */
-    readonly asyncVerification: boolean;
-  };
+  readonly internals: {};
 
   /**
    * This allows for advanced customisation of the advice that ContractCase

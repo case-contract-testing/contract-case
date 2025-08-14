@@ -7,16 +7,12 @@ export const mapConfig = (
 ): ContractCaseBoundaryConfig => ({
   ...config,
   testRunId,
-  internals: {
-    asyncVerification: true,
-  },
+  internals: {},
 });
 
 export const mapConfigNoId = (
   config: ContractCaseConnectorConfig,
 ): Omit<ContractCaseBoundaryConfig, 'testRunId'> => ({
   ...config,
-  internals: {
-    asyncVerification: true,
-  },
+  internals: {},
 });

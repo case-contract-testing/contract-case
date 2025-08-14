@@ -143,10 +143,8 @@ export class ReadingCaseContract extends BaseCaseContract {
    * Gets the tests that can be used later to verify the contract
    *
    * @param invoker - The invoker for this test
-   * @returns a Promise if the verification if asyncVerification is set,
-   * otherwise undefined. Note that if asyncVerification is false, this method
-   * returns before the verification has finished, leaving it up to the test
-   * callbacks.
+   * @returns a list of {@link ContractVerificationTest}s that can be run later
+   * with the `runTest` callback on the ContractVerificationTest
    */
   getTests<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,

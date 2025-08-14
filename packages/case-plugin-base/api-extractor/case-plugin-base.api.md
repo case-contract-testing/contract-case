@@ -460,9 +460,7 @@ export interface RunContext extends Partial<InjectableContext & LogLevelContext 
     // (undocumented)
     '_case:currentRun:context:defaultConfig': Record<string, AnyData>;
     // (undocumented)
-    '_case:currentRun:context:internals'?: {
-        asyncVerification: boolean;
-    };
+    '_case:currentRun:context:internals'?: {};
     // (undocumented)
     '_case:currentRun:context:printResults': boolean;
     // (undocumented)

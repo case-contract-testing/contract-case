@@ -45,7 +45,7 @@ export const mergeConfig = (
         internals: {
           ...initialConfig.internals,
           ...config.internals,
-        } as { asyncVerification: boolean },
+        },
       }
     : {}),
   ...('mockConfig' in initialConfig || 'mockConfig' in config

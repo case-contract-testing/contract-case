@@ -82,9 +82,7 @@ export const verifyContract = (
       new ContractVerifierConnector(
         {
           ...config,
-          internals: {
-            asyncVerification: false,
-          },
+          internals: {},
         },
         defaultPrinter,
         ['local-jest-wrapper'],

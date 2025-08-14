@@ -424,9 +424,7 @@ export interface RunContext
     password: string;
   };
   '_case:currentRun:context:brokerBaseUrl'?: string;
-  '_case:currentRun:context:internals'?: {
-    asyncVerification: boolean;
-  };
+  '_case:currentRun:context:internals'?: {};
 }
 
 /**
