@@ -77,7 +77,7 @@
     "eslint": "^9.23.0",
     "jsii": "^5.9.2",
     "jsii-pacmak": "1.112.0",
-    "jsii-docgen": "^10.7.5",
+    "jsii-docgen": "^10.8.0",
     "mkdirp": "^3.0.1",
     "prettier": "3.5.3",
     "publib": "^0.2.998",
