@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.27.0...@contract-case/dsl-java-v0.27.1) (2025-08-20)
+
+
+### Features
+
+* **core:** Control which contracts are written with contractsToWrite. Possible values are 'hash' and 'main', defaulting to both ([e7e18a3](https://github.com/case-contract-testing/contract-case/commit/e7e18a35b81b8150097706cc18c2c52512352ad6))
+
+
+### Bug Fixes
+
+* **core:** Fix an issue where type errors in interaction definitions would fail the test, but not prevent the contract from being written ([34b56ae](https://github.com/case-contract-testing/contract-case/commit/34b56ae11d090eca4a0842afdb12eb3d6f6d608e))
+* Improve documentation for deprecated fields, and mark them as `forRemoval` ([7d6cbe1](https://github.com/case-contract-testing/contract-case/commit/7d6cbe1af7a1d50fa651056a24011cca9eebda6a))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-definition-dsl bumped from 0.27.0 to 0.27.1
+
 ## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.26.1...@contract-case/dsl-java-v0.27.0) (2025-07-30)
 
 
