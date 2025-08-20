@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.27.0...@contract-case/case-connector-v0.27.1) (2025-08-20)
+
+
+### Features
+
+* **core:** Control which contracts are written with contractsToWrite. Possible values are 'hash' and 'main', defaulting to both ([e7e18a3](https://github.com/case-contract-testing/contract-case/commit/e7e18a35b81b8150097706cc18c2c52512352ad6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-core bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-entities-internal bumped from 0.27.0 to 0.27.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.0 to 0.27.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.0 to 0.27.1
+
 ## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.26.1...@contract-case/case-connector-v0.27.0) (2025-07-30)
 
 

@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.27.0...@contract-case/case-core-v0.27.1) (2025-08-20)
+
+
+### Bug Fixes
+
+* **core:** Fix an issue where type errors in interaction definitions would fail the test, but not prevent the contract from being written ([34b56ae](https://github.com/case-contract-testing/contract-case/commit/34b56ae11d090eca4a0842afdb12eb3d6f6d608e))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-core-plugin-http bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-entities-internal bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-plugin-base bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.0 to 0.27.1
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-maintainer-config bumped from 0.27.0 to 0.27.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.0 to 0.27.1
+
 ## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.26.1...@contract-case/case-core-v0.27.0) (2025-07-30)
 
 
