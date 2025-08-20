@@ -51,6 +51,11 @@ const readContractFromStore = (
   );
 };
 
+type VerifiableContract = {
+  contract: ContractFileFromDisk;
+  config: CaseConfig;
+};
+
 export class ContractVerifierConnector {
   contracts: ContractFileFromDisk[];
 
@@ -103,7 +108,7 @@ export class ContractVerifierConnector {
 
   private filterContractsWithConfiguration(
     mergedConfig: CaseConfig,
-  ): ContractFileFromDisk[] {
+  ): VerifiableContract[] {
     if (typeof mergedConfig.providerName !== 'string') {
       throw new CaseConfigurationError(
         `Must provide a providerName to verify (received '${mergedConfig.providerName}').`,
@@ -142,16 +147,18 @@ export class ContractVerifierConnector {
         );
       });
 
-    return caseContractsForProvider.filter(
-      (item) =>
-        typeof mergedConfig.consumerName === 'undefined' ||
-        item.contents.description?.consumerName === mergedConfig.consumerName,
-    );
+    return caseContractsForProvider
+      .filter(
+        (item) =>
+          typeof mergedConfig.consumerName === 'undefined' ||
+          item.contents.description?.consumerName === mergedConfig.consumerName,
+      )
+      .map((contract) => ({ contract, config: mergedConfig }));
   }
 
   getAvailableContractDescriptions(): CaseContractDescription[] {
     return this.filterContractsWithConfiguration(this.config).map(
-      (link) => link.contents.description,
+      (verifiableContract) => verifiableContract.contract.contents.description,
     );
   }
 
@@ -198,28 +205,30 @@ export class ContractVerifierConnector {
       this.context.logger.debug(`Take note of the contract number in the log`);
     }
     this.#contractVerificationHandles = contractsToVerify.map(
-      (contractLink, index) => {
-        if (!contractLink?.contents?.description?.consumerName) {
+      (verifiableContract, index) => {
+        if (!verifiableContract.contract.contents?.description?.consumerName) {
           this.context.logger.error(
-            `Contract in file '${contractLink.filePath}' appears to have no consumer name! It might not be a case contract`,
+            `Contract in file '${verifiableContract.contract.filePath}' appears to have no consumer name! It might not be a case contract`,
           );
         }
 
-        if (!contractLink?.contents?.description?.providerName) {
+        if (!verifiableContract.contract.contents?.description?.providerName) {
           this.context.logger.error(
-            `Contract in file '${contractLink.filePath}' appears to have no provider name! It might not be a case contract`,
+            `Contract in file '${verifiableContract.contract.filePath}' appears to have no provider name! It might not be a case contract`,
           );
         }
 
         this.context.logger.debug(
-          `*** Preparing contract: '${contractLink.contents.description.consumerName}' -> '${contractLink.contents.description.consumerName}'`,
+          `*** Preparing contract: '${verifiableContract.contract.contents.description.consumerName}' -> '${verifiableContract.contract.contents.description.consumerName}'`,
         );
-        this.context.logger.debug(`Contract File: ${contractLink.filePath}`);
+        this.context.logger.debug(
+          `Contract File: ${verifiableContract.contract.filePath}`,
+        );
         const contractVerifier = new ReadingCaseContract(
-          contractLink.contents,
+          verifiableContract.contract.contents,
           this.dependencies,
           {
-            ...mergedConfig,
+            ...verifiableContract.config,
             coreLogContextPrefix:
               contractsToVerify.length > 1 ? `Contract[${index}]` : '',
           },
@@ -235,7 +244,7 @@ export class ContractVerifierConnector {
           index,
           tests,
           verifier: contractVerifier,
-          filePath: contractLink.filePath,
+          filePath: verifiableContract.contract.filePath,
         };
       },
     );
