@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.27.1...@contract-case/case-core-v0.27.2) (2025-08-26)
+
+
+### Bug Fixes
+
+* **core:** Now preserves underscores in consumer / provider names when generating filenames ([5d9e8eb](https://github.com/case-contract-testing/contract-case/commit/5d9e8eb4c4d1f7249f6cdd47febe26dfbf65acce))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-core-plugin-http bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-entities-internal bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-plugin-base bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.1 to 0.27.2
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-maintainer-config bumped from 0.27.1 to 0.27.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.1 to 0.27.2
+
 ## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.27.0...@contract-case/case-core-v0.27.1) (2025-08-20)
 
 
