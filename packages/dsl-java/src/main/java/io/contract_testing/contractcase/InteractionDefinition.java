@@ -6,10 +6,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor;
 import io.contract_testing.contractcase.definitions.states.AnyState;
+import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import java.util.List;
 
 /**
  * Describes an interaction, used during contract definition.
+ *
  * @param <I> The type of the interaction
  */
 public class InteractionDefinition<I extends AnyInteractionDescriptor> {
@@ -31,20 +33,27 @@ public class InteractionDefinition<I extends AnyInteractionDescriptor> {
     ObjectNode node = mapper.createObjectNode();
     try {
       node.set("definition", mapper.valueToTree(mapper.readTree(definition.stringify())));
-      node.set("states",
+    } catch (JsonProcessingException e) {
+      throw new ContractCaseCoreError(
+          "Unable to convert definition to JSON - is the definition corrupt?",
+          e);
+    }
+    node.set(
+        "states",
         mapper.createArrayNode()
             .addAll(this.states.stream()
                 .<JsonNode>map((state) -> {
                   try {
                     return mapper.valueToTree(mapper.readTree(state.stringify()));
                   } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
+                    throw new ContractCaseCoreError(
+                        "Unable to convert state to JSON - is the interaction corrupt?",
+                        e);
                   }
                 })
-                .toList()));
-    } catch (JsonProcessingException e) {
-      throw new RuntimeException(e);
-    }
+                .toList())
+    );
+
     return node;
   }
 
