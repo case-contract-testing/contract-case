@@ -111,7 +111,7 @@ public class ContractDefiner {
    * the expected return value in the {@code testResponse} function.
    * <p>
    * This version parses the returned json. If you need custom processing, instead use
-   * {@link #stripMatchers(Object).
+   * {@link #stripMatchers(Object)}.
    *
    * @param definition Some example definition that may or may not contain matchers
    * @param <T>        The type of your definition object
