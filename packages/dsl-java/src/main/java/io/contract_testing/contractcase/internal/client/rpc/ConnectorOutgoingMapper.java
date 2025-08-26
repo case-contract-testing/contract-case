@@ -23,6 +23,7 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.RunInteractionRe
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RunRejectingInteractionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle.Stage;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.StripMatchersRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.TriggerFunctionHandle;
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
 import io.contract_testing.contractcase.internal.edge.ConnectorFailure;
@@ -173,7 +174,7 @@ public class ConnectorOutgoingMapper {
   @NotNull
   public static ContractCaseStream.DefinitionRequest.Builder mapRunInteractionRequest(JsonNode definition,
       @NotNull ContractCaseConnectorConfig runConfig) {
-    final var structBuilder = getStructBuilder(definition);
+    final var structBuilder = toStructBuilder(definition);
     return DefinitionRequest.newBuilder()
         .setRunInteraction(RunInteractionRequest.newBuilder()
             .setConfig(ConnectorOutgoingMapper.mapConfig(runConfig)) // TODO handle additional state handlers or triggers
@@ -184,11 +185,21 @@ public class ConnectorOutgoingMapper {
   public static ContractCaseStream.DefinitionRequest.Builder mapRunRejectingInteractionRequest(
       JsonNode definition,
       ContractCaseConnectorConfig runConfig) {
-    final var structBuilder = getStructBuilder(definition);
+    final var structBuilder = toStructBuilder(definition);
     return DefinitionRequest.newBuilder()
         .setRunRejectingInteraction(RunRejectingInteractionRequest.newBuilder()
             .setConfig(ConnectorOutgoingMapper.mapConfig(runConfig)) // TODO handle additional state handlers or triggers
             .setExampleDefinition(structBuilder)
+            .build());
+  }
+
+
+  public static ContractCaseStream.DefinitionRequest.Builder mapStripMatchersRequest(
+      JsonNode definition
+  ) {
+    return DefinitionRequest.newBuilder()
+        .setStripMatchers(StripMatchersRequest.newBuilder()
+            .setMatcherOrData(toStructBuilder(definition))
             .build());
   }
 
@@ -250,11 +261,11 @@ public class ConnectorOutgoingMapper {
 
 
   private static Struct mapMapToStruct(Map<String, Object> payload) {
-    return getStructBuilder(objectMapper.valueToTree(payload)).build();
+    return toStructBuilder(objectMapper.valueToTree(payload)).build();
   }
 
   @NotNull
-  private static Struct.Builder getStructBuilder(JsonNode definition) {
+  private static Struct.Builder toStructBuilder(JsonNode definition) {
     final var structBuilder = Struct.newBuilder();
 
     try {

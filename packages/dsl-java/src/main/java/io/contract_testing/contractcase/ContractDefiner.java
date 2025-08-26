@@ -1,5 +1,8 @@
 package io.contract_testing.contractcase;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig;
 import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
@@ -14,6 +17,8 @@ import io.contract_testing.contractcase.configuration.InvokableFunctions.Invokab
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction6;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction7;
 import io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor;
+import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
+import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.internal.ConnectorResultMapper;
 import io.contract_testing.contractcase.internal.client.InternalDefinerClient;
 import io.contract_testing.contractcase.internal.client.server.ContractCaseProcess;
@@ -35,6 +40,7 @@ public class ContractDefiner {
   private final InternalDefinerClient definer;
   private final ContractCaseConfig config;
 
+  private final ObjectMapper mapper = new ObjectMapper();
 
   /**
    * Constructs a ContractDefiner with the provided configuration. Configurations can be overridden
@@ -56,7 +62,7 @@ public class ContractDefiner {
    * {@link #runInteraction(InteractionDefinition, IndividualSuccessTestConfig)} and
    * {@link #runThrowingInteraction(InteractionDefinition, IndividualFailedTestConfig)}).
    *
-   * @param config the configuration for this contract.
+   * @param config     the configuration for this contract.
    * @param logPrinter custom logging implementation if you want to report separately
    */
   public ContractDefiner(final @NotNull ContractCaseConfig config, LogPrinter logPrinter) {
@@ -77,6 +83,63 @@ public class ContractDefiner {
     this.definer = definer;
   }
 
+
+  /**
+   * Strips the matchers from an example definition. Useful if you need to reuse the definition of
+   * the expected return value in the {@code testResponse} function.
+   * <p>
+   * This version returns a JSON string for use in custom deserialization.
+   * <p>
+   * If your object can be naively mapped from the json, there's also
+   * {@link #stripMatchers(Object, Class)} for convenience.
+   *
+   * @param definition Some example definition that may or may not contain matchers
+   * @param <T>        The type of your definition object
+   * @return The JSON string that represents the value without the matchers
+   */
+  public <T> String stripMatchers(T definition) {
+    try {
+      return ConnectorResultMapper.mapSuccessWithAny(
+          this.definer.stripMatchers(
+              toJson(definition)
+          )
+      );
+    } catch (Exception e) {
+      throw BoundaryCrashReporter.report(e);
+    }
+  }
+
+
+  /**
+   * Strips the matchers from an example definition. Useful if you need to reuse the definition of
+   * the expected return value in the {@code testResponse} function.
+   * <p>
+   * This version parses the returned json. If you need custom processing, instead use
+   * {@link #stripMatchers(Object).
+   *
+   * @param definition Some example definition that may or may not contain matchers
+   * @param <T>        The type of your definition object
+   * @return The JSON string that represents the value without the matchers
+   */
+  public <T> T stripMatchers(Object definition, Class<T> clazz) {
+    try {
+      try {
+        return mapper.readValue(
+            ConnectorResultMapper.mapSuccessWithAny(
+                this.definer.stripMatchers(
+                    toJson(definition)
+                )),
+            clazz
+        );
+      } catch (JsonProcessingException e) {
+        throw new ContractCaseConfigurationError("Unable to parse response as '" + clazz.getName() + "'. Are you sure that the provided example represents an object of this type?" , e);
+      }
+    } catch (Exception e) {
+      throw BoundaryCrashReporter.report(e);
+    }
+  }
+
+
   /**
    * Ends this contract definition and writes the contract. If the contract definition was not
    * successful (eg, a test failed), this will throw an appropriate ContractCase exception.
@@ -84,7 +147,10 @@ public class ContractDefiner {
    * @return A ContractWriteSuccess which describes the written contract
    */
   public ContractWriteSuccess endRecord() {
-   return ConnectorResultMapper.mapSuccessWithAny(this.definer.endRecord(), ContractWriteSuccess.class);
+    return ConnectorResultMapper.mapSuccessWithAny(
+        this.definer.endRecord(),
+        ContractWriteSuccess.class
+    );
   }
 
   /**
@@ -277,6 +343,17 @@ public class ContractDefiner {
       ));
     } catch (Exception e) {
       throw BoundaryCrashReporter.report(e);
+    }
+  }
+
+  private JsonNode toJson(Object o) {
+    try {
+      return mapper.valueToTree(mapper.readTree(mapper.writeValueAsString(o)));
+    } catch (JsonProcessingException e) {
+      throw new ContractCaseCoreError(
+          "Unable to convert object to JSON. Is the definition corrupt?",
+          e
+      );
     }
   }
 }

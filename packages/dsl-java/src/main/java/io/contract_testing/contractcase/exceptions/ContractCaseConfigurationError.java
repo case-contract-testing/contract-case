@@ -1,6 +1,7 @@
 package io.contract_testing.contractcase.exceptions;
 
 import java.util.Arrays;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,7 +25,19 @@ public class ContractCaseConfigurationError extends RuntimeException implements
     this.location = "Java DSL";
     this.contractCaseErrorCode = contractCaseErrorCode;
     this.userFacingStackTrace = "";
+  }
 
+  /**
+   * For use only within function that return directly to the user
+   * @param message  The detail message
+   * @param cause What caused this error
+   */
+  public ContractCaseConfigurationError(@NotNull String message,
+     @NotNull Throwable cause) {
+    super(message, cause);
+    this.location = "Java DSL";
+    this.contractCaseErrorCode = "UNDOCUMENTED";
+    this.userFacingStackTrace = "";
   }
 
   /**

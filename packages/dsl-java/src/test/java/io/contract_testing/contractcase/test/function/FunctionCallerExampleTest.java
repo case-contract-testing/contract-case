@@ -10,12 +10,12 @@ import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
 import io.contract_testing.contractcase.definitions.interactions.functions.WillCallThrowingFunction;
-import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayContains;
 import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
@@ -149,16 +149,18 @@ public class FunctionCallerExampleTest {
   @Test
   public void testComplexReturn() {
 
+    var returnValueDefinition = Map.of(
+        "a", Map.of("b", new AnyInteger(2).toJSON()),
+        "c", "d"
+    );
+
     contract.runInteraction(
         new InteractionDefinition<>(
             List.of(new InState("The map is null")),
             new WillCallFunction(FunctionExecutionExample.builder()
                 .arguments(List.of(new AnyInteger(2)))
                 .returnValue(
-                    Map.of(
-                        "a", Map.of("b", new AnyInteger(2)),
-                        "c", "d"
-                    ))
+                    returnValueDefinition)
                 .functionName("complexReturn")
                 .build())
         ),
@@ -169,6 +171,10 @@ public class FunctionCallerExampleTest {
             .withTestResponse((result, setupInfo) -> {
               assertThat(result.c).isEqualTo("d");
               assertThat(result.a).isEqualTo(new SecondLayer(2));
+
+              assertThat(parseComplex(contract.stripMatchers(returnValueDefinition))).isEqualTo(result);
+              assertThat(contract.stripMatchers(returnValueDefinition,FirstLayer.class)).isEqualTo(result);
+
             })
     );
   }
