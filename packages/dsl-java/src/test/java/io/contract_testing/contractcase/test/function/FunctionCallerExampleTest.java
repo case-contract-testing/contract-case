@@ -150,7 +150,7 @@ public class FunctionCallerExampleTest {
   public void testComplexReturn() {
 
     var returnValueDefinition = Map.of(
-        "a", Map.of("b", new AnyInteger(2).toJSON()),
+        "a", Map.of("b", new AnyInteger(2)),
         "c", "d"
     );
 

@@ -83,7 +83,6 @@ public class ContractDefiner {
     this.definer = definer;
   }
 
-
   /**
    * Strips the matchers from an example definition. Useful if you need to reuse the definition of
    * the expected return value in the {@code testResponse} function.
@@ -101,14 +100,11 @@ public class ContractDefiner {
     try {
       return ConnectorResultMapper.mapSuccessWithAny(
           this.definer.stripMatchers(
-              toJson(definition)
-          )
-      );
+              toJson(definition)));
     } catch (Exception e) {
       throw BoundaryCrashReporter.report(e);
     }
   }
-
 
   /**
    * Strips the matchers from an example definition. Useful if you need to reuse the definition of
@@ -127,18 +123,17 @@ public class ContractDefiner {
         return mapper.readValue(
             ConnectorResultMapper.mapSuccessWithAny(
                 this.definer.stripMatchers(
-                    toJson(definition)
-                )),
+                    toJson(definition))),
             clazz
         );
       } catch (JsonProcessingException e) {
-        throw new ContractCaseConfigurationError("Unable to parse response as '" + clazz.getName() + "'. Are you sure that the provided example represents an object of this type?" , e);
+        throw new ContractCaseConfigurationError("Unable to parse response as '" + clazz.getName()
+            + "'. Are you sure that the provided example represents an object of this type?", e);
       }
     } catch (Exception e) {
       throw BoundaryCrashReporter.report(e);
     }
   }
-
 
   /**
    * Ends this contract definition and writes the contract. If the contract definition was not
@@ -205,7 +200,6 @@ public class ContractDefiner {
     this.runInteraction(definition, additionalConfig.build());
   }
 
-
   /**
    * Runs an interaction test and adds it to the contract without additional configuration. If you
    * need config for this interaction, use
@@ -217,13 +211,11 @@ public class ContractDefiner {
   public <I extends AnyInteractionDescriptor> void runInteraction(InteractionDefinition<I> definition) {
     this.runInteraction(
         definition,
-        IndividualSuccessTestConfig
-            .IndividualSuccessTestConfigBuilder
+        IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder
             .builder()
             .build()
     );
   }
-
 
   /**
    * Runs an interaction test where the trigger is expected to throw an error on success, and adds
@@ -272,8 +264,7 @@ public class ContractDefiner {
   public <I extends AnyInteractionDescriptor> void runThrowingInteraction(InteractionDefinition<I> definition) {
     this.runThrowingInteraction(
         definition,
-        IndividualFailedTestConfig
-            .IndividualFailedTestConfigBuilder
+        IndividualFailedTestConfig.IndividualFailedTestConfigBuilder
             .builder()
             .build()
     );
@@ -339,8 +330,7 @@ public class ContractDefiner {
       ConnectorInvokableFunction<?> connectorFunction) {
     try {
       ConnectorResultMapper.mapVoid(definer.registerFunction(
-          functionName, connectorFunction
-      ));
+          functionName, connectorFunction));
     } catch (Exception e) {
       throw BoundaryCrashReporter.report(e);
     }
@@ -348,12 +338,80 @@ public class ContractDefiner {
 
   private JsonNode toJson(Object o) {
     try {
-      return mapper.valueToTree(mapper.readTree(mapper.writeValueAsString(o)));
+      Object processedObject = jsiiPreProcess(o);
+      return mapper.valueToTree(mapper.readTree(mapper.writeValueAsString(processedObject)));
     } catch (JsonProcessingException e) {
       throw new ContractCaseCoreError(
           "Unable to convert object to JSON. Is the definition corrupt?",
           e
       );
     }
+  }
+
+  private Object jsiiPreProcess(Object obj) {
+    // So, it turns out that JSII objects don't serialise naturally when
+    // we pass them to an object mapper.
+    // This function exists to call the serialiser on the JSII object,
+    // if it's there - meaning that we can serialise the matchers.
+    // We'll use this until we can remove JSII entirely - until then, it's
+    // a bit of a land mine - if objects are passed that have a `toJSON` method,
+    // it'll call it.
+    if (obj == null) {
+      return null;
+    }
+
+    // Check if the object has a toJSON method
+    try {
+      java.lang.reflect.Method toJsonMethod = obj.getClass().getMethod("toJSON");
+      if (toJsonMethod != null) {
+        // Call the toJSON method first
+        Object result = toJsonMethod.invoke(obj);
+        // Recursively process the result in case it also has nested objects with toJSON
+        // methods
+        return jsiiPreProcess(result);
+      }
+    } catch (NoSuchMethodException e) {
+      // No toJSON method found, continue with normal processing
+    } catch (Exception e) {
+      // If there's an error calling toJSON, fall back to normal serialization
+      // Log the error but don't fail the entire operation
+    }
+
+    if (obj instanceof java.util.Map<?, ?> map) {
+      java.util.Map<Object, Object> processedMap = new java.util.HashMap<>();
+      for (java.util.Map.Entry<?, ?> entry : map.entrySet()) {
+        processedMap.put(
+            jsiiPreProcess(entry.getKey()),
+            jsiiPreProcess(entry.getValue())
+        );
+      }
+      return processedMap;
+    }
+
+
+    if (obj instanceof java.util.Collection<?> collection) {
+      java.util.List<Object> processedList = new java.util.ArrayList<>();
+      for (Object item : collection) {
+        processedList.add(jsiiPreProcess(item));
+      }
+      return processedList;
+    }
+
+
+    if (obj.getClass().isArray()) {
+      int length = java.lang.reflect.Array.getLength(obj);
+      Object[] processedArray = new Object[length];
+      for (int i = 0; i < length; i++) {
+        processedArray[i] = jsiiPreProcess(java.lang.reflect.Array.get(obj, i));
+      }
+      return processedArray;
+    }
+
+    // For complex objects without toJSON method, we need to process their fields
+    // recursively, but this isn't really practical. So we just return the original
+
+    // For primitive types and other objects without toJSON, return as-is
+    // Jackson will handle the serialization of these objects
+    return obj;
   }
 }
