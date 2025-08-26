@@ -72,7 +72,7 @@ public class ContractDefiner {
           new BoundaryVersionGenerator().getVersions()
       );
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
     this.definer = definer;
   }
@@ -100,7 +100,7 @@ public class ContractDefiner {
           "DEFINER_LOAD_PLUGIN"
       ), pluginNames));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
   }
 
@@ -121,7 +121,7 @@ public class ContractDefiner {
           ConnectorConfigMapper.mapSuccessExample(additionalConfig, TEST_RUN_ID)
       ));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
   }
 
@@ -176,7 +176,7 @@ public class ContractDefiner {
           ConnectorConfigMapper.mapFailingExample(additionalConfig, TEST_RUN_ID)
       ));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
   }
 
@@ -213,56 +213,56 @@ public class ContractDefiner {
     );
   }
 
-  public void registerFunction(String functionName, InvokableFunction0 function) {
+  public void registerFunction(String functionName, InvokableFunction0<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction1 function) {
+  public void registerFunction(String functionName, InvokableFunction1<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction2 function) {
+  public void registerFunction(String functionName, InvokableFunction2<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction3 function) {
+  public void registerFunction(String functionName, InvokableFunction3<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction4 function) {
+  public void registerFunction(String functionName, InvokableFunction4<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction5 function) {
+  public void registerFunction(String functionName, InvokableFunction5<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction6 function) {
+  public void registerFunction(String functionName, InvokableFunction6<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction7 function) {
+  public void registerFunction(String functionName, InvokableFunction7<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
@@ -270,13 +270,13 @@ public class ContractDefiner {
   }
 
   private void registerFunctionInternal(String functionName,
-      ConnectorInvokableFunction connectorFunction) {
+      ConnectorInvokableFunction<?> connectorFunction) {
     try {
       ConnectorResultMapper.mapVoid(definer.registerFunction(
           functionName, connectorFunction
       ));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
   }
 }

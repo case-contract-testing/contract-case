@@ -39,8 +39,9 @@ public class ContractVerifier implements AutoCloseable {
   /**
    * Creates a ContractVerifier with the provided configuration and LogPrinter
    *
-   * @param config
-   * @param runTestCallback
+   * @param config The configuration
+   * @param logPrinter Implementation to use when printing logs
+   * @param runTestCallback Ignored
    * @deprecated Deprecated as RunTestCallback is ignored
    */
   @Deprecated(since = "0.27.0", forRemoval = true)
@@ -52,8 +53,8 @@ public class ContractVerifier implements AutoCloseable {
   /**
    * Creates a ContractVerifier with the provided configuration.
    *
-   * @param config
-   * @param runTestCallback
+   * @param config The configuration
+   * @param runTestCallback Ignored
    * @deprecated Deprecated as RunTestCallback is ignored
    */
   @Deprecated(since = "0.27.0", forRemoval = true)
@@ -78,7 +79,7 @@ public class ContractVerifier implements AutoCloseable {
     } catch (Exception e) {
       // TODO: Move this setup to outside the constructor, safer not to throw in the
       // constructor.
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
     this.verifier = verification;
   }
