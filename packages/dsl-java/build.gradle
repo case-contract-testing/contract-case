@@ -80,6 +80,7 @@ javadoc {
 }
 
 spotbugs {
+    excludeFilter = file('spotbugs-exclude.xml')
     onlyAnalyze = ['io.contract_testing.contractcase.*','io.contract_testing.contractcase.client.*', 'io.contract_testing.contractcase.client.server.*','io.contract_testing.contractcase.edge.*' ]
 }
 
