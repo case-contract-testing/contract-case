@@ -8,7 +8,7 @@ const darkTheme = themes.dracula;
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'ContractCase Contract Testing',
-  tagline: 'Contracts by Example',
+  tagline: 'Contracts by Example: Move Fast and Keep Things Working',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -20,7 +20,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'case-contract-testing', // Usually your GitHub org/user name.
-  projectName: 'case', // Usually your repo name.
+  projectName: 'contract-case', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
@@ -128,7 +128,11 @@ const config = {
             items: [
               {
                 label: 'npm',
-                href: 'https://www.npmjs.com/package/@case-contract-testing/case',
+                href: 'https://www.npmjs.com/package/@contract-case/contract-case-jest',
+              },
+              {
+                label: 'Maven Central',
+                href: 'https://central.sonatype.com/artifact/io.contract-testing.contractcase/contract-case',
               },
             ],
           },
@@ -137,11 +141,11 @@ const config = {
             items: [
               {
                 label: 'Report a bug',
-                href: 'https://github.com/case-contract-testing/case/issues/new',
+                href: 'https://github.com/case-contract-testing/contract-case/issues/new',
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/case-contract-testing/case',
+                href: 'https://github.com/case-contract-testing/contract-case',
               },
             ],
           },
