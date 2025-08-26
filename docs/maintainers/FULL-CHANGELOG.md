@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/v0.27.1...v0.27.2) (2025-08-26)
+
+
+### Features
+
+* **java-dsl:** Connect stripMatchers functions in the Java DSL ([3b05f37](https://github.com/case-contract-testing/contract-case/commit/3b05f379cba54991f664fc88b6922fddc99259f8))
+
+
+### Bug Fixes
+
+* **core:** Now preserves underscores in consumer / provider names when generating filenames ([5d9e8eb](https://github.com/case-contract-testing/contract-case/commit/5d9e8eb4c4d1f7249f6cdd47febe26dfbf65acce))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.1 to 0.27.2
+
 ## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/v0.27.0...v0.27.1) (2025-08-20)
 
 

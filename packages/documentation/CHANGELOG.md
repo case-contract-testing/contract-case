@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.27.1...documentation-v0.27.2) (2025-08-26)
+
+
+### Documentation
+
+* Update links and tagline ([f7944eb](https://github.com/case-contract-testing/contract-case/commit/f7944ebfb18b1a2f637e3798a828b4209b2d02b0))
+
 ## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.27.0...documentation-v0.27.1) (2025-08-20)
 
 

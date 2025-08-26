@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-core",
-  "version": "0.27.1",
+  "version": "0.27.2",
   "description": "Core functionality for the ContractCase contract testing suite",
   "keywords": [
     "testing",
@@ -54,9 +54,9 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@contract-case/case-definition-dsl": "0.27.1",
-    "@contract-case/case-maintainer-config": "0.27.1",
-    "@contract-case/eslint-config-case-maintainer": "0.27.1",
+    "@contract-case/case-definition-dsl": "0.27.2",
+    "@contract-case/case-maintainer-config": "0.27.2",
+    "@contract-case/eslint-config-case-maintainer": "0.27.2",
     "@types/current-git-branch": "^1.1.6",
     "@types/express": "^4.17.14",
     "@types/git-rev-sync": "^2.0.2",
@@ -77,12 +77,12 @@
     "typescript": "5.8.3"
   },
   "dependencies": {
-    "@contract-case/case-core-plugin-function": "0.27.1",
-    "@contract-case/case-core-plugin-http": "0.27.1",
-    "@contract-case/case-core-plugin-http-dsl": "0.27.1",
-    "@contract-case/case-entities-internal": "0.27.1",
-    "@contract-case/case-plugin-base": "0.27.1",
-    "@contract-case/case-plugin-dsl-types": "0.27.1",
+    "@contract-case/case-core-plugin-function": "0.27.2",
+    "@contract-case/case-core-plugin-http": "0.27.2",
+    "@contract-case/case-core-plugin-http-dsl": "0.27.2",
+    "@contract-case/case-entities-internal": "0.27.2",
+    "@contract-case/case-plugin-base": "0.27.2",
+    "@contract-case/case-plugin-dsl-types": "0.27.2",
     "absolute-version": "^2.0.0",
     "async-mutex": "^0.5.0",
     "axios": "^1.11.0",
