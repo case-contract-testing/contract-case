@@ -57,7 +57,7 @@
     "rimraf": "^6.0.1",
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   },
   "dependencies": {
     "@contract-case/case-core-plugin-function-dsl": "0.27.2",
