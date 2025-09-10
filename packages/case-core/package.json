@@ -70,7 +70,7 @@
     "express": "^4.21.0",
     "jest": "^30.0.5",
     "lcov-result-merger": "^5.0.1",
-    "prettier": "3.5.3",
+    "prettier": "3.6.2",
     "rimraf": "^6.0.1",
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",

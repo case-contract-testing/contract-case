@@ -79,7 +79,7 @@
     "jsii-pacmak": "1.112.0",
     "jsii-docgen": "^10.8.0",
     "mkdirp": "^3.0.1",
-    "prettier": "3.5.3",
+    "prettier": "3.6.2",
     "publib": "^0.2.998",
     "rimraf": "^6.0.1",
     "ts-jest": "^29.3.4",
