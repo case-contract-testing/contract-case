@@ -79,7 +79,7 @@
     "get-port": "^7.1.0",
     "google-protobuf": "^3.21.4",
     "pretty-format": "^30.0.5",
-    "uuid": "^11.1.0"
+    "uuid": "^13.0.0"
   },
   "stability": "stable",
   "nx": {
