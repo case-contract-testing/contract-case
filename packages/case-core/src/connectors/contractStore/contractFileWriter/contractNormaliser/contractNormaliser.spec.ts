@@ -21,7 +21,10 @@ describe('Contract equality', () => {
   });
 
   it('sees contracts with different metadata as equal', () => {
-    const hasMetadata = { ...EMPTY_CONTRACT, metadata: { foo: 'wheee' } };
+    const hasMetadata = {
+      ...EMPTY_CONTRACT,
+      metadata: { foo: 'wheee', _case: {} },
+    };
     expect(contractsEqual(hasMetadata, EMPTY_CONTRACT, CONTEXT)).toBe(true);
     expect(contractsEqual(EMPTY_CONTRACT, hasMetadata, CONTEXT)).toBe(true);
   });

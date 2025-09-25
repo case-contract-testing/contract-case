@@ -23,6 +23,7 @@ import {
 import { ContractData } from '../../../entities/types';
 import { readContract } from '../contractReader';
 import { contractsEqual, stripForWriting } from './contractNormaliser';
+import { hashContract } from './contractHasher';
 
 const createDirectory = (
   pathToFile: string,
@@ -116,7 +117,24 @@ const actuallyWriteContract = (
 
   createDirectory(pathToFile, context);
   context.logger.maintainerDebug(`Writing contract to '${pathToFile}'`);
-  fs.writeFileSync(pathToFile, JSON.stringify(contract, undefined, 2));
+  fs.writeFileSync(
+    pathToFile,
+    JSON.stringify(
+      {
+        ...contract,
+        metadata: {
+          ...contract.metadata,
+          _case: {
+            // eslint-disable-next-line no-underscore-dangle
+            ...contract.metadata._case,
+            hash: hashContract(contract),
+          },
+        },
+      },
+      undefined,
+      2,
+    ),
+  );
   return pathToFile;
 };
 
