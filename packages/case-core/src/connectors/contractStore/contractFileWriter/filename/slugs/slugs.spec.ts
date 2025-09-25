@@ -8,7 +8,7 @@ const consumerContract = (consumerName: string): ContractData => ({
     consumerName,
     providerName: 'someProvider',
   },
-  metadata: {},
+  metadata: { _case: {} },
   matcherLookup: {},
   examples: [],
 });
@@ -19,7 +19,7 @@ const providerContract = (providerName: string): ContractData => ({
     consumerName: 'someConsumer',
     providerName,
   },
-  metadata: {},
+  metadata: { _case: {} },
   matcherLookup: {},
   examples: [],
 });

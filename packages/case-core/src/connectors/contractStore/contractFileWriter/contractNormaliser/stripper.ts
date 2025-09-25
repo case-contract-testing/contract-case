@@ -1,5 +1,5 @@
 import { DownloadedContract } from '../../../../core/types.broker';
-import { ContractData } from '../../../../entities/types';
+import { ContractData, ContractMetadata } from '../../../../entities/types';
 
 /**
  * Strips the fields that the broker adds to contracts.
@@ -28,5 +28,5 @@ export const stripDownloadedFields = (
  */
 export const emptyMetaData = (contract: ContractData): ContractData => ({
   ...contract,
-  metadata: {},
+  metadata: {} as ContractMetadata,
 });

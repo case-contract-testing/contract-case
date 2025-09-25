@@ -12,6 +12,13 @@ export type ExampleNames = {
   responseName: string;
 };
 
+export type ContractMetadata = Record<
+  string,
+  string | Record<string, string>
+> & {
+  _case: Record<string, string>;
+};
+
 /**
  * Describes the actual contract format
  */
@@ -34,7 +41,7 @@ export interface ContractData {
    *
    * This field must never affect ContractCase behaviour
    */
-  metadata: Record<string, string | Record<string, string>>;
+  metadata: ContractMetadata;
   /**
    * A lookup map of matchers and other named entities defined in this contract
    */
