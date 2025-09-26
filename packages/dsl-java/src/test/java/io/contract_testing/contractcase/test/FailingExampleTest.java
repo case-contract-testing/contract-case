@@ -138,7 +138,9 @@ public class FailingExampleTest {
           IndividualFailedTestConfigBuilder.<String>builder()
               .withProviderName("Java Example HTTP Server")
               .withTrigger((interactionSetup) -> {
-                throw new AssertionError("This is meant to fail");
+                // This assertion is expected to fail
+                assertThat(interactionSetup.toString()).isEqualTo("This is meant to fail");
+                throw new RuntimeException("This shouldn't be reachable");
               })
               .withTestErrorResponse((exception, setupInfo) -> {
                 assertThat(exception.getMessage()).isEqualTo("The server is not ready");
