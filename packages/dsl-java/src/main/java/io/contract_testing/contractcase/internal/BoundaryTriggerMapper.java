@@ -61,6 +61,17 @@ public class BoundaryTriggerMapper {
                 "Expected the trigger to throw an exception, but it returned successfully. Result toString() was: "
                     + unexpectedResult.toString()));
       } catch (AssertionError error) {
+
+/*
+    //  If we want to map JUnit exceptions, it's something like this:
+    //    implementation 'org.opentest4j:opentest4j:1.3.0'
+
+        var cause = error.getCause();
+        if(cause != null) {
+          if(cause instanceof AssertionFailedError) {
+            return ConnectorExceptionMapper.mapAsTriggerFailure()
+          }
+        }*/
         return ConnectorExceptionMapper.mapAsTriggerFailure(error);
       } catch (Exception triggerException) {
         try {
