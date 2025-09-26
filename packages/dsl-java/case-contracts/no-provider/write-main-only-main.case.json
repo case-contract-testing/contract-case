@@ -1,0 +1,91 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "Write Main Only",
+    "providerName": "No Provider"
+  },
+  "metadata": {
+    "_case": {
+      "version": "0.27.0"
+    }
+  },
+  "matcherLookup": {
+    "matcher:void": {
+      "_case:context:matchBy": "type",
+      "_case:matcher:example": null,
+      "_case:matcher:resolvesTo": "null",
+      "_case:matcher:type": "_case:MatchNull"
+    },
+    "matcher:returns null": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": {
+        "_case:matcher:child": {
+          "_case:context:matchBy": "type",
+          "_case:matcher:example": null,
+          "_case:matcher:resolvesTo": "null",
+          "_case:matcher:type": "_case:MatchNull"
+        },
+        "_case:matcher:type": "_case:Lookup",
+        "_case:matcher:uniqueName": "void"
+      }
+    },
+    "matcher:An invocation of NoArgFunction()": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [],
+      "functionName": "NoArgFunction"
+    }
+  },
+  "examples": [
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The map is null"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "NoArgFunction",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of NoArgFunction()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [],
+            "functionName": "NoArgFunction"
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returns null",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": {
+              "_case:matcher:child": {
+                "_case:context:matchBy": "type",
+                "_case:matcher:example": null,
+                "_case:matcher:resolvesTo": "null",
+                "_case:matcher:type": "_case:MatchNull"
+              },
+              "_case:matcher:type": "_case:Lookup",
+              "_case:matcher:uniqueName": "void"
+            }
+          }
+        }
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}

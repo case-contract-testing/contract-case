@@ -1,26 +1,24 @@
 import { ServerDuplexStream } from '@grpc/grpc-js';
 
-import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb.js';
 import {
   VerificationRequest as WireVerificationRequest,
   ContractResponse as WireContractResponse,
-  StartTestEvent as WireStartTestEvent,
+  InvokeTest,
 } from '@contract-case/case-connector-proto';
 import { UnreachableError } from './UnreachableError.js';
 import {
   BoundaryFailure,
   BoundaryFailureKindConstants,
-  BoundaryResult,
   BoundarySuccess,
   BoundarySuccessWithAny,
-  IInvokeCoreTest,
 } from '../../entities/types.js';
 import { ConnectorError } from '../../domain/errors/ConnectorError.js';
 import {
   availableContractDescriptions,
   beginVerification,
+  prepareVerificationTests,
   registerFunction,
-  runVerification,
+  runPreparedTest,
 } from '../../domain/verify.js';
 import { maintainerLog } from '../../domain/maintainerLog.js';
 
@@ -29,16 +27,13 @@ import {
   mapConfig,
   mapResult,
 } from './requestMappers/index.js';
-import {
-  makeResolvableId,
-  resolveById,
-  waitForResolution,
-} from './promiseHandler/promiseHandler.js';
+import { resolveById } from './promiseHandler/promiseHandler.js';
 import { makeSendContractResponse } from './sendContractResponse.js';
 import { makeLogPrinter, makeResultPrinter } from './printers.js';
 import { makeResultResponse } from './responseMappers/index.js';
 import { loadPlugin } from '../../domain/loadPlugin.js';
 import { makeFunctionRegistry } from './functionRegistry/index.js';
+import { unbox } from './requestMappers/values.js';
 
 const getId = (request: WireVerificationRequest): string => {
   const id = request.getId();
@@ -84,7 +79,9 @@ export const contractVerification = (
   const functionRegistry = makeFunctionRegistry();
 
   call.on('data', (request: WireVerificationRequest) => {
-    maintainerLog('[RECEIVED]', JSON.stringify(request.toObject(), null, 2));
+    if (!request.getId()?.getValue().startsWith('printLog')) {
+      maintainerLog('[RECEIVED]', JSON.stringify(request.toObject(), null, 2));
+    }
     const type = request.getKindCase();
     try {
       switch (type) {
@@ -108,45 +105,6 @@ export const contractVerification = (
                   sendContractResponse,
                   functionRegistry,
                 ),
-                {
-                  runTest: (testName: string, invoker: IInvokeCoreTest) => {
-                    const invokerId = makeResolvableId(
-                      async () => {},
-                      (result: BoundaryResult): BoundaryResult => {
-                        // TODO: Replace this with a nice 'isBoundarySuccessWithAny' function
-                        if (result.resultType === 'SuccessAny') {
-                          const id = `${
-                            (result as BoundarySuccessWithAny).payload
-                          }`;
-                          invoker.verify().then((verificationResult) => {
-                            sendContractResponse(
-                              'maintainerDebug',
-                              id,
-                              makeResultResponse(verificationResult),
-                            );
-                          });
-                        }
-                        return result;
-                      },
-                    );
-
-                    return waitForResolution(
-                      makeResolvableId((id: string) =>
-                        sendContractResponse(
-                          'maintainerDebug',
-                          id,
-                          new WireContractResponse().setStartTestEvent(
-                            new WireStartTestEvent()
-                              .setTestName(new StringValue().setValue(testName))
-                              .setInvokerId(
-                                new StringValue().setValue(invokerId),
-                              ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                },
                 makeLogPrinter(sendContractResponse),
                 makeResultPrinter(sendContractResponse),
                 beginVerificationRequest
@@ -203,39 +161,6 @@ export const contractVerification = (
             });
           break;
         }
-        case WireVerificationRequest.KindCase.RUN_VERIFICATION: {
-          const runVerificationRequest = request.getRunVerification();
-          if (runVerificationRequest == null) {
-            throw new ConnectorError(
-              'runVerification called with something that returned an undefined request',
-            );
-          }
-          if (verificationId === undefined) {
-            throw new ConnectorError(
-              'runVerification was called before beginVerification',
-            );
-          }
-
-          runVerification(
-            verificationId,
-            mapConfig(
-              runVerificationRequest.getConfig(),
-              sendContractResponse,
-              functionRegistry,
-            ),
-          )
-            .then((result) =>
-              sendContractResponse(
-                'maintainerDebug',
-                getId(request),
-                makeResultResponse(result),
-              ),
-            )
-            .catch((e) => {
-              sendUnexpectedError(request, e as Error, 'Run verification');
-            });
-          break;
-        }
         case WireVerificationRequest.KindCase.RESULT_RESPONSE:
           {
             const resultPrinterResponse = request.getResultResponse();
@@ -259,20 +184,62 @@ export const contractVerification = (
                 'Invoke test was called with an undefined invokeTest',
               );
             }
-            const wrappedInvokerId = invokeTestResponse.getInvokerId();
-            if (wrappedInvokerId == null) {
-              throw new ConnectorError(
-                'Invoke test was called with an undefined invoker ID',
-              );
+            const testType = invokeTestResponse.getTestCase();
+            switch (testType) {
+              case InvokeTest.TestCase.TEST_NOT_SET:
+                throw new ConnectorError(
+                  'Invoke test was called with an undefined test',
+                );
+              case InvokeTest.TestCase.INVOKER_ID:
+                {
+                  const wrappedInvokerId = invokeTestResponse.getInvokerId();
+                  if (wrappedInvokerId == null) {
+                    throw new ConnectorError(
+                      'Invoke test was called with an undefined invoker ID',
+                    );
+                  }
+                  const id = request.getId()?.getValue();
+                  resolveById(
+                    wrappedInvokerId.getValue(),
+                    // TODO: This should probably explode, there should always be an ID
+                    new BoundarySuccessWithAny(id ?? '!!NO_ID!!'),
+                  );
+                }
+                break;
+              case InvokeTest.TestCase.PREPARED_TEST_HANDLE:
+                {
+                  const preparedTestHandle =
+                    invokeTestResponse.getPreparedTestHandle();
+                  if (preparedTestHandle == null) {
+                    throw new ConnectorError(
+                      'Invoke test was called with an undefined preparedTestHandle',
+                    );
+                  }
+                  if (verificationId === undefined) {
+                    throw new ConnectorError(
+                      'runPreparedTest was called before beginVerification',
+                    );
+                  }
+                  runPreparedTest(verificationId, {
+                    testName: unbox(preparedTestHandle.getTestName()),
+                    testIndex: preparedTestHandle.getTestIndex(),
+                    contractIndex: preparedTestHandle.getContractIndex(),
+                  })
+                    .then((result) =>
+                      sendContractResponse(
+                        'maintainerDebug',
+                        getId(request),
+                        makeResultResponse(result),
+                      ),
+                    )
+                    .catch((e) => {
+                      sendUnexpectedError(request, e as Error, 'load plugin');
+                    });
+                }
+                break;
+              default:
+                throw new UnreachableError(testType);
             }
-
-            const id = request.getId()?.getValue();
-            resolveById(
-              wrappedInvokerId.getValue(),
-              // TODO: This should probably explode, there should always be an ID
-              new BoundarySuccessWithAny(id ?? '!!NO_ID!!'),
-            );
-            //     sendContractResponse(getId(request), makeResultResponse(result));
           }
           break;
         case WireVerificationRequest.KindCase.LOAD_PLUGIN:
@@ -380,6 +347,41 @@ export const contractVerification = (
                 makeResultResponse(result),
               );
             });
+          }
+          break;
+        case WireVerificationRequest.KindCase.PREPARE_VERIFICATION_TESTS:
+          {
+            const prepareVerificationRequest =
+              request.getPrepareVerificationTests();
+            if (prepareVerificationRequest == null) {
+              throw new ConnectorError(
+                'prepareVerification called with something that returned an undefined request',
+              );
+            }
+            if (verificationId === undefined) {
+              throw new ConnectorError(
+                'prepareVerification was called before beginVerification',
+              );
+            }
+
+            prepareVerificationTests(
+              verificationId,
+              mapConfig(
+                prepareVerificationRequest.getConfig(),
+                sendContractResponse,
+                functionRegistry,
+              ),
+            )
+              .then((result) =>
+                sendContractResponse(
+                  'maintainerDebug',
+                  getId(request),
+                  makeResultResponse(result),
+                ),
+              )
+              .catch((e) => {
+                sendUnexpectedError(request, e as Error, 'Run verification');
+              });
           }
           break;
         default:

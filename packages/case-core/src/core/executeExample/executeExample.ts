@@ -12,6 +12,7 @@ import {
   CaseCoreError,
   hasErrors,
   CaseExample,
+  nameMock,
 } from '@contract-case/case-plugin-base';
 import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
 
@@ -104,7 +105,7 @@ const renderStackTrace = (e: unknown) => {
 };
 
 export const executeExample = <T extends AnyMockDescriptorType, R>(
-  example: CaseExample,
+  unnamedExample: CaseExample,
   {
     stateHandlers = {},
     trigger,
@@ -118,9 +119,17 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
   contract: WritingCaseContract | ReadingCaseContract,
   context: MatchContext,
 ): Promise<void> =>
-  setupExample<T>(example, stateHandlers, context)
+  Promise.resolve()
+    .then(() => ({
+      ...unnamedExample,
+      mock: nameMock(unnamedExample.mock, context),
+    }))
+    .then(async (example) => ({
+      assertable: await setupExample<T>(example, stateHandlers, context),
+      example,
+    }))
     .then(
-      (assertable: Assertable<T>) => {
+      ({ assertable, example }) => {
         context.logger.debug(
           `Invoking trigger with the following InteractionSetup`,
           assertable.config,
@@ -177,7 +186,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
           error,
         );
         const resultingExample = makeFailedExample(
-          example,
+          unnamedExample,
           makeResults(configurationError(error, context)),
         );
         context.logger.deepMaintainerDebug(

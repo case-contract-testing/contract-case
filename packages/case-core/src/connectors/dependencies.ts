@@ -15,6 +15,7 @@ import { BaseCaseConfig } from '../core/config/types';
 const DEFAULT_CONFIG: Partial<BaseCaseConfig> = {
   logLevel: 'warn',
   contractDir: 'case-contracts',
+  contractsToWrite: ['hash', 'main'],
   changedContracts: 'FAIL',
   publish: 'ONLY_IN_CI',
   printResults: true,

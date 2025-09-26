@@ -17,9 +17,9 @@ public class RpcForVerification extends AbstractRpcConnector<VerificationRequest
 
   public RpcForVerification(
       @NotNull LogPrinter logPrinter,
-      @NotNull ConfigHandle configHandle,
-      @NotNull RunTestCallback callback) {
-    super(logPrinter, configHandle, callback);
+      @NotNull ConfigHandle configHandle
+      ) {
+    super(logPrinter, configHandle);
   }
 
   @Override

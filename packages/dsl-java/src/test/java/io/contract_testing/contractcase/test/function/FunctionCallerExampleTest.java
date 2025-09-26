@@ -10,6 +10,7 @@ import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
+import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
 import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
@@ -37,8 +38,8 @@ public class FunctionCallerExampleTest {
             .consumerName("Java Function Caller Example")
             .providerName("Java Function Implementer Example")
             .publish(PublishType.NEVER)
-            //    .logLevel(LogLevel.MAINTAINER_DEBUG)
             .changedContracts(ChangedContractsBehaviour.OVERWRITE)
+            //    .logLevel(LogLevel.MAINTAINER_DEBUG)
             .adviceOverrides(Map.of(
                 "OVERWRITE_CONTRACTS_NEEDED",
                 "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"
@@ -72,6 +73,32 @@ public class FunctionCallerExampleTest {
             })
     );
   }
+/*
+  @Test
+  public void testSomeArgFunction() {
+    contract.runInteraction(
+        new InteractionDefinition<>(
+            List.of(new InState("The map is null")),
+            new WillCallFunction(FunctionExecutionExample.builder()
+                .arguments(List.of(Map.of(
+                    "one",
+                    new ArrayContains(List.of(
+                        Map.of("banana", "yellow")
+                    ))
+                )))
+                .returnValue(new NamedMatch("void", new AnyNull()))
+                .functionName("OneArgFunction")
+                .build())
+        ),
+        IndividualSuccessTestConfigBuilder.<String>builder()
+            .withTrigger((setupInfo) ->
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of("{ \"one\": [\"one\", \"two\", {\"banana\": \"yellow\"}]}"))))
+            .withTestResponse((result, setupInfo) -> {
+              assertThat(result).isEqualTo(null);
+            })
+    );
+  } */
 
   @Test
   public void testOneArgFunction() {
@@ -122,16 +149,18 @@ public class FunctionCallerExampleTest {
   @Test
   public void testComplexReturn() {
 
+    var returnValueDefinition = Map.of(
+        "a", Map.of("b", new AnyInteger(2)),
+        "c", "d"
+    );
+
     contract.runInteraction(
         new InteractionDefinition<>(
             List.of(new InState("The map is null")),
             new WillCallFunction(FunctionExecutionExample.builder()
                 .arguments(List.of(new AnyInteger(2)))
                 .returnValue(
-                    Map.of(
-                        "a", Map.of("b", new AnyInteger(2)),
-                        "c", "d"
-                    ))
+                    returnValueDefinition)
                 .functionName("complexReturn")
                 .build())
         ),
@@ -142,6 +171,10 @@ public class FunctionCallerExampleTest {
             .withTestResponse((result, setupInfo) -> {
               assertThat(result.c).isEqualTo("d");
               assertThat(result.a).isEqualTo(new SecondLayer(2));
+
+              assertThat(parseComplex(contract.stripMatchers(returnValueDefinition))).isEqualTo(result);
+              assertThat(contract.stripMatchers(returnValueDefinition,FirstLayer.class)).isEqualTo(result);
+
             })
     );
   }
@@ -163,7 +196,8 @@ public class FunctionCallerExampleTest {
                 parseComplex(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
                     .apply(List.of("2"))))
             .withTestErrorResponse((exception, setupInfo) -> {
-              assertThat(((FunctionCompletedExceptionally) exception).getErrorClassName()).isEqualTo("CustomException");
+              assertThat(((FunctionCompletedExceptionally) exception).getErrorClassName()).isEqualTo(
+                  "CustomException");
             })
     );
 

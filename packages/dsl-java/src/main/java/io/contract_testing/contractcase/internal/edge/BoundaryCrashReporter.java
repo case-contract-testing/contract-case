@@ -20,7 +20,7 @@ public class BoundaryCrashReporter {
       The details are:
       """;
 
-  private static final String CRASH_MESSAGE_END = """
+  private volatile static String crashMessageAdvice = """
         
       Please open a bug report here:
       https://github.com/case-contract-testing/case/issues/new
@@ -30,8 +30,10 @@ public class BoundaryCrashReporter {
       * What you were doing when it failed
       * The results of re-running with logLevel: "maintainerDebug"
         
-      For bonus points and internet karma, a reproducible\s
-      code sample would be very helpful.
+      For bonus points and internet karma, a reproducible
+      code sample would be very helpful.""";
+
+  private static final String CRASH_MESSAGE_END = """
         
       Sorry about this.
         
@@ -41,20 +43,24 @@ public class BoundaryCrashReporter {
       """;
 
   /**
-   * Will rethrow the exception, printing a crash report if appropriate
+   * Returns the exception to throw, printing a crash report if appropriate
    *
-   * @param e the throwable to maybe rethrow
+   * @param e the throwable to maybe print
    */
-  public static void handleAndRethrow(Exception e) {
+  public static RuntimeException report(Exception e) {
     // This method should not call BoundaryResultMapper
     if (e instanceof ContractCaseConfigurationError) {
-      throw (ContractCaseConfigurationError) e;
+      return (ContractCaseConfigurationError) e;
     } else if (e instanceof ContractCaseExpectationsNotMet) {
-      throw (ContractCaseExpectationsNotMet) e;
+      return (ContractCaseExpectationsNotMet) e;
     }
+
     printCrashMessage(e);
 
-    throw new ContractCaseCoreError(e);
+    if (e instanceof ContractCaseCoreError) {
+      return (ContractCaseCoreError) e;
+    }
+    return new ContractCaseCoreError(e);
   }
 
   /**
@@ -71,7 +77,7 @@ public class BoundaryCrashReporter {
               + "\n"
               + ((ContractCaseCoreError) e).getLocation()
               + "\n\n"
-              + CRASH_MESSAGE_END);
+              + crashMessageAdvice + CRASH_MESSAGE_END);
     } else {
       System.err.println(
           CRASH_MESSAGE_START
@@ -82,7 +88,7 @@ public class BoundaryCrashReporter {
               + (e.getCause() != null ? "Caused by: " + e.getCause().toString() + "\n"
               + ConnectorExceptionMapper.stackTraceToString(e.getCause()) : "")
               + "\n\n"
-              + CRASH_MESSAGE_END);
+              + crashMessageAdvice + CRASH_MESSAGE_END);
     }
   }
 
@@ -94,7 +100,10 @@ public class BoundaryCrashReporter {
             + "\n"
             + failure.getLocation()
             + "\n\n"
-            + BoundaryCrashReporter.CRASH_MESSAGE_END);
+            + crashMessageAdvice + BoundaryCrashReporter.CRASH_MESSAGE_END);
   }
 
+  public synchronized static void setAdvice(String caseCrashAdvice) {
+    crashMessageAdvice = caseCrashAdvice;
+  }
 }

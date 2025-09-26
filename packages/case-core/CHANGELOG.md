@@ -1,5 +1,142 @@
 # Changelog
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.27.1...@contract-case/case-core-v0.27.2) (2025-08-26)
+
+
+### Bug Fixes
+
+* **core:** Now preserves underscores in consumer / provider names when generating filenames ([5d9e8eb](https://github.com/case-contract-testing/contract-case/commit/5d9e8eb4c4d1f7249f6cdd47febe26dfbf65acce))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-core-plugin-http bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-entities-internal bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-plugin-base bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.1 to 0.27.2
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-maintainer-config bumped from 0.27.1 to 0.27.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.1 to 0.27.2
+
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.27.0...@contract-case/case-core-v0.27.1) (2025-08-20)
+
+
+### Bug Fixes
+
+* **core:** Fix an issue where type errors in interaction definitions would fail the test, but not prevent the contract from being written ([34b56ae](https://github.com/case-contract-testing/contract-case/commit/34b56ae11d090eca4a0842afdb12eb3d6f6d608e))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-core-plugin-http bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-entities-internal bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-plugin-base bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.0 to 0.27.1
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-maintainer-config bumped from 0.27.0 to 0.27.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.0 to 0.27.1
+
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.26.1...@contract-case/case-core-v0.27.0) (2025-07-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function
+
+### Bug Fixes
+
+* Deprecate runVerification, as it is now replaced with getTests and runPreparedTest ([24cd85a](https://github.com/case-contract-testing/contract-case/commit/24cd85a1bae6e29cdfa315ae1e122a588d01fdd9))
+
+
+### Code Refactoring
+
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function ([2f68f87](https://github.com/case-contract-testing/contract-case/commit/2f68f879768afcf9362f4f968ad037f0ff42dd9b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-core-plugin-http bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-entities-internal bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-plugin-base bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.26.1 to 0.27.0
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-maintainer-config bumped from 0.26.1 to 0.27.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.1 to 0.27.0
+
+## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.26.0...@contract-case/case-core-v0.26.1) (2025-07-13)
+
+
+### Features
+
+* **core:** Now will throw configuration exceptions if you try to write more to a written contract ([6bb2b03](https://github.com/case-contract-testing/contract-case/commit/6bb2b03be0464d42a64e99912bf7fc9be1e28a7d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-core-plugin-http bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-entities-internal bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-plugin-base bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.26.0 to 0.26.1
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-maintainer-config bumped from 0.26.0 to 0.26.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.0 to 0.26.1
+
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.25.2...@contract-case/case-core-v0.26.0) (2025-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions
+
+### Features
+
+* **core:** Now contract verification is guaranteed to run contracts in order, instead of interleaving interactions ([0648101](https://github.com/case-contract-testing/contract-case/commit/06481012140d935fc1134d5351f97be97bfe65e3))
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions ([7f06209](https://github.com/case-contract-testing/contract-case/commit/7f062096bdad81e5d763429682b99f481f9405ce))
+* **java-dsl:** Now supports the prepareVerificationTests and runPreparedTest lifecycle for better integration with JUnit ([1408d46](https://github.com/case-contract-testing/contract-case/commit/1408d46a159978bec58bb4bb957b6979473534cb))
+* Now `definer.endRecord()` returns a `ContractWriteSuccess` object, which contains details of the written contract(s) ([7299895](https://github.com/case-contract-testing/contract-case/commit/7299895f8ec7a9d8b3e351111045f5c7b75eb1e8))
+* **plugin-base:** Added ability for matching errors to have context about what the data is, allowing more specific error messages ([150c0d6](https://github.com/case-contract-testing/contract-case/commit/150c0d6745afe0ba3b60819510fdc11346578c4d))
+
+
+### Bug Fixes
+
+* **core:** availableContractDescriptions now respects the configuration and only returns the filtered set of contracts. This was the intended (and documented) behaviour before. If you need to see the ignored contracts, they're visible in a call to this method with a logLevel of DEBUG or lower. ([9c4e5a8](https://github.com/case-contract-testing/contract-case/commit/9c4e5a8639572797bfda6b502c0e28dfc10a0b2f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-core-plugin-http bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-entities-internal bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-plugin-base bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.2 to 0.26.0
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-maintainer-config bumped from 0.25.2 to 0.26.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.26.0
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.25.1...@contract-case/case-core-v0.25.2) (2025-06-22)
 
 

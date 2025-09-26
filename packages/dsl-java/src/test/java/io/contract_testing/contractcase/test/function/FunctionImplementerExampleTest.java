@@ -29,6 +29,7 @@ public class FunctionImplementerExampleTest {
   private static final ContractDefiner contract = new ContractDefiner(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
       .consumerName("Java Function Implementer Example")
       .providerName("Java Function Caller Example")
+   //   .changedContracts(ChangedContractsBehaviour.OVERWRITE)
       .publish(PublishType.NEVER)
       .build());
 
@@ -88,7 +89,7 @@ public class FunctionImplementerExampleTest {
   }
 
   @NotNull
-  private static InvokableFunctions.InvokableFunction1 convertJsonArgs(Function<Integer, String> functionUnderTest) {
+  private static InvokableFunctions.InvokableFunction1<?> convertJsonArgs(Function<Integer, String> functionUnderTest) {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, Integer.class);

@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-maintainer-config",
-  "version": "0.25.2",
+  "version": "0.27.2",
   "description": "Shared configuration for ContractCase modules. For eslint config, see @contract-case/eslint-config-case-maintainer",
   "keywords": [
     "contractcase"
@@ -31,7 +31,7 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "prettier": "^3.5.3"
+    "prettier": "^3.6.2"
   },
   "dependencies": {}
 }

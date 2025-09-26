@@ -1,8 +1,8 @@
 package io.contract_testing.contractcase.configuration;
 
-import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,14 +34,16 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
       TestResponseFunction<T> testResponse,
       Map<String, Map<String, String>> mockConfig,
       AutoVersionFrom autoVersionFrom,
-      Map<String, String> adviceOverrides) {
+      Map<String, String> adviceOverrides,
+      List<ContractToWrite> contractsToWrite) {
     super(providerName, consumerName, logLevel, contractDir, contractFilename,
         changedContractsBehaviour,
         printResults,
         throwOnFail, publish, brokerBaseUrl, brokerCiAccessToken, brokerBasicAuth, baseUrlUnderTest,
         triggers, stateHandlers, mockConfig,
         autoVersionFrom,
-        adviceOverrides
+        adviceOverrides,
+        contractsToWrite
     );
     this.trigger = trigger;
     this.testResponse = testResponse;
@@ -71,6 +73,7 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
     private final Map<String, Map<String, String>> mockConfig = new HashMap<>();
     private ChangedContractsBehaviour changedContracts;
     private Map<String,String> adviceOverrides;
+    private List<ContractToWrite> contractsToWrite;
 
     private IndividualSuccessTestConfigBuilder() {
     }
@@ -188,6 +191,14 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
       return this;
     }
 
+    /**
+     * @see ContractCaseConfig#contractsToWrite
+     */
+    public IndividualSuccessTestConfigBuilder<T> contractsToWrite(List<ContractToWrite> contractsToWrite) {
+      this.contractsToWrite = contractsToWrite;
+      return this;
+    }
+
     public IndividualSuccessTestConfig<T> build() {
       return new IndividualSuccessTestConfig<>(
           providerName,
@@ -209,7 +220,8 @@ public class IndividualSuccessTestConfig<T> extends ContractCaseConfig {
           testResponse,
           mockConfig,
           autoVersionFrom,
-          adviceOverrides
+          adviceOverrides,
+          contractsToWrite
       );
     }
   }

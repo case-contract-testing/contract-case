@@ -81,7 +81,9 @@ export const contractDefinition = (
   const functionRegistry = makeFunctionRegistry();
 
   call.on('data', (request: WireDefinitionRequest) => {
-    maintainerLog('[RECEIVED]', JSON.stringify(request.toObject(), null, 2));
+    if (!request.getId()?.getValue().startsWith('printLog')) {
+      maintainerLog('[RECEIVED]', JSON.stringify(request.toObject(), null, 2));
+    }
     const type = request.getKindCase();
     switch (type) {
       case WireDefinitionRequest.KindCase.KIND_NOT_SET:

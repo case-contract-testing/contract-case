@@ -31,6 +31,42 @@ export interface ContractWriteSuccess {
   providerSlug: string;
 }
 
+/**
+ * Returned by the core when the verifier asks to get the tests
+ */
+export interface ContractVerificationTest {
+  /**
+   * The index for this test. Can be used by the the test runner to actually run this test
+   */
+  index: number;
+  /**
+   * The name of this test, for display
+   */
+  testName: string;
+  /**
+   * Whether or not the test is pending
+   * @returns true if this test has been run, false otherwise
+   */
+  isPending: () => boolean;
+  /**
+   * Call this to tell the ContractCase core to actually invoke the test.
+   *
+   * Note that by default during verification, a failed verification test doesn't
+   * necessarily reject the promise, but failed configuration or core bugs will.
+   *
+   * This is the intended default behaviour - as a failed verification doesn't
+   * necessarily indicate a problem in the code that is being verified.
+   * For example, it might be an expectation that is not implemented yet, or it
+   * might be an old contract.
+   *
+   * This behaviour can be changed with the configuration setting `throwOnFail`
+   *
+   * @returns a successful promise that indicates the result of this test, with the
+   * caveats above. If the promise rejects, it indicates the why in the enclosed exception
+   */
+  runTest: () => Promise<void>;
+}
+
 export type MakeBrokerService = (context: DataContext) => BrokerService;
 
 export interface ReaderDependencies {

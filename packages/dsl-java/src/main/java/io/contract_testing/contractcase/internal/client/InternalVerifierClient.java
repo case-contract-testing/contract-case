@@ -1,12 +1,15 @@
 package io.contract_testing.contractcase.internal.client;
 
+import io.contract_testing.contractcase.VerificationTestHandle;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.AvailableContractDefinitions;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginVerificationRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.InvokeTest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.LoadPluginRequest;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.PrepareVerificationTests;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.PreparedTestHandle;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RegisterFunction;
-import io.contract_testing.contractcase.grpc.ContractCaseStream.RunVerification;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.VerificationRequest;
 import io.contract_testing.contractcase.internal.ConnectorResultMapper;
 import io.contract_testing.contractcase.internal.client.rpc.ConfigHandle;
@@ -17,6 +20,7 @@ import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
 import io.contract_testing.contractcase.internal.edge.RunTestCallback;
 import io.contract_testing.contractcase.logs.LogPrinter;
+import java.util.Arrays;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,7 +34,6 @@ public class InternalVerifierClient implements AutoCloseable {
 
   public InternalVerifierClient(
       ContractCaseConnectorConfig boundaryConfig,
-      @NotNull RunTestCallback callback,
       @NotNull LogPrinter logPrinter,
       @NotNull List<String> parentVersions) {
 
@@ -38,8 +41,7 @@ public class InternalVerifierClient implements AutoCloseable {
     this.configHandle = new ConfigHandle(boundaryConfig);
     this.rpcConnector = new RpcForVerification(
         logPrinter,
-        configHandle,
-        callback
+        configHandle
     );
 
     // this is only here because we have to be able to map errors into exceptions
@@ -54,24 +56,6 @@ public class InternalVerifierClient implements AutoCloseable {
             .setAvailableContractDefinitions(AvailableContractDefinitions.newBuilder()),
         "availableContractDescriptions"
     );
-  }
-
-  public @NotNull ConnectorResult runVerification(ContractCaseConnectorConfig configOverrides) {
-    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Verification run");
-    configHandle.setConnectorConfig(configOverrides);
-    var response = rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
-        .setRunVerification(
-            RunVerification.newBuilder()
-                .setConfig(
-                    ConnectorOutgoingMapper.mapConfig(configOverrides)
-                )
-        ), "runVerification", VERIFY_TIMEOUT_SECONDS
-    );
-    MaintainerLog.log(
-        LogLevel.MAINTAINER_DEBUG,
-        "Response from verification was: " + response.getResultType()
-    );
-    return response;
   }
 
   private ConnectorResult begin(ContractCaseConfig wireConfig) {
@@ -97,15 +81,57 @@ public class InternalVerifierClient implements AutoCloseable {
     MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Beginning loadPlugin");
     return rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
             .setLoadPlugin(LoadPluginRequest.newBuilder()
+                .addAllModuleNames(
+                    Arrays.stream(pluginNames).map(ConnectorOutgoingMapper::map).toList()
+                )
                 .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides)))
         , "loadPlugins");
   }
 
   public ConnectorResult registerFunction(String functionName,
-      ConnectorInvokableFunction function) {
+      ConnectorInvokableFunction<?> function) {
     rpcConnector.registerFunction(functionName, function);
     return rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
         .setRegisterFunction(RegisterFunction.newBuilder()
             .setHandle(ConnectorOutgoingMapper.map(functionName))), "registerFunction");
+  }
+
+  public ConnectorResult prepareVerification(ContractCaseConnectorConfig configOverrides) {
+    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Verification preparation");
+    configHandle.setConnectorConfig(configOverrides);
+    var response = rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
+        .setPrepareVerificationTests(
+            PrepareVerificationTests.newBuilder()
+                .setConfig(
+                    ConnectorOutgoingMapper.mapConfig(configOverrides)
+                )
+        ), "prepareVerification", VERIFY_TIMEOUT_SECONDS
+    );
+    MaintainerLog.log(
+        LogLevel.MAINTAINER_DEBUG,
+        "Response from preparation was: " + response.getResultType()
+    );
+    return response;
+  }
+
+  public ConnectorResult runPreparedTest(VerificationTestHandle testHandle) {
+    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Verification runPreparedTest");
+    var response = rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
+        .setInvokeTest(
+            InvokeTest.newBuilder()
+                .setPreparedTestHandle(
+                    PreparedTestHandle.newBuilder()
+                        .setTestIndex(testHandle.testIndex())
+                        .setContractIndex(testHandle.contractIndex())
+                        .setTestName(ConnectorOutgoingMapper.map(testHandle.testName()))
+                        .build()
+                )
+        ), "runPreparedTest", VERIFY_TIMEOUT_SECONDS
+    );
+    MaintainerLog.log(
+        LogLevel.MAINTAINER_DEBUG,
+        "Response from runPreparedTest was: " + response.getResultType()
+    );
+    return response;
   }
 }

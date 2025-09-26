@@ -1,8 +1,16 @@
 package io.contract_testing.contractcase.internal.edge;
 
+import io.contract_testing.contractcase.ContractVerifier;
+import io.contract_testing.contractcase.VerificationTestHandle;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @deprecated This interface is no longer called. Instead, use
+ * {@link
+ * ContractVerifier#prepareVerification()}
+ */
+@Deprecated(since= "0.27.0", forRemoval = true)
 public interface RunTestCallback {
 
   @NotNull ConnectorResult runTest(@NotNull String testName,

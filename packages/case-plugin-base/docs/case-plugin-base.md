@@ -357,12 +357,34 @@ Don't create this directly, use `configurationError` to create one.
 </td></tr>
 <tr><td>
 
+[ConfigurationErrorCodes](./case-plugin-base.configurationerrorcodes.md)
+
+
+</td><td>
+
+These are the error codes, emitted by every CaseConfigurationError. The documentation here provides additional information that should hopefully help if the information in the error message is unclear.
+
+Some of the errors print advice. This advice can be overridden by setting an entry in the `adviceOverrides` configuration map (keyed by the error code that you want to override errors for). This feature exists for users who have wrapped ContractCase with some common boilerplate, or who have a dedicated team looking after their contract testing infrastructure.
+
+
+</td></tr>
+<tr><td>
+
 [ContractLookupFns](./case-plugin-base.contractlookupfns.md)
 
 
 </td><td>
 
 The part of the context that allows saving or looking up data bound to a specific context and contract
+
+
+</td></tr>
+<tr><td>
+
+[CoreErrorCodes](./case-plugin-base.coreerrorcodes.md)
+
+
+</td><td>
 
 
 </td></tr>
@@ -733,6 +755,15 @@ Convenience type for just the parts of the context that have data - everything i
 </td><td>
 
 The settings that are set as default context for a run
+
+
+</td></tr>
+<tr><td>
+
+[ErrorCodeDefinitions](./case-plugin-base.errorcodedefinitions.md)
+
+
+</td><td>
 
 
 </td></tr>

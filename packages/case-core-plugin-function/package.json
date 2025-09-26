@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-core-plugin-function",
-  "version": "0.25.2",
+  "version": "0.27.2",
   "description": "ContractCase core function plugin, allowing validation of arbitrary functions",
   "keywords": [
     "testing",
@@ -48,20 +48,20 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "@contract-case/case-maintainer-config": "0.25.2",
-    "@contract-case/eslint-config-case-maintainer": "0.25.2",
+    "@contract-case/case-maintainer-config": "0.27.2",
+    "@contract-case/eslint-config-case-maintainer": "0.27.2",
     "@types/jest": "^30.0.0",
     "eslint": "^9.22.0",
-    "jest": "^30.0.2",
-    "prettier": "3.5.3",
+    "jest": "^30.0.5",
+    "prettier": "3.6.2",
     "rimraf": "^6.0.1",
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   },
   "dependencies": {
-    "@contract-case/case-core-plugin-function-dsl": "0.25.2",
-    "@contract-case/case-plugin-base": "0.25.2",
-    "@contract-case/case-plugin-dsl-types": "0.25.2"
+    "@contract-case/case-core-plugin-function-dsl": "0.27.2",
+    "@contract-case/case-plugin-base": "0.27.2",
+    "@contract-case/case-plugin-dsl-types": "0.27.2"
   }
 }

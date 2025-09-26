@@ -1,5 +1,104 @@
 # Changelog
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.27.1...@contract-case/case-core-plugin-http-v0.27.2) (2025-08-26)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-core-plugin-http:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-plugin-base bumped from 0.27.1 to 0.27.2
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.1 to 0.27.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.1 to 0.27.2
+
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.27.0...@contract-case/case-core-plugin-http-v0.27.1) (2025-08-20)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-core-plugin-http:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-plugin-base bumped from 0.27.0 to 0.27.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.0 to 0.27.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.0 to 0.27.1
+
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.26.1...@contract-case/case-core-plugin-http-v0.27.0) (2025-07-30)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-core-plugin-http:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-plugin-base bumped from 0.26.1 to 0.27.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.26.1 to 0.27.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.1 to 0.27.0
+
+## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.26.0...@contract-case/case-core-plugin-http-v0.26.1) (2025-07-13)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-core-plugin-http:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-plugin-base bumped from 0.26.0 to 0.26.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.26.0 to 0.26.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.0 to 0.26.1
+
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.25.2...@contract-case/case-core-plugin-http-v0.26.0) (2025-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions
+
+### Features
+
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions ([7f06209](https://github.com/case-contract-testing/contract-case/commit/7f062096bdad81e5d763429682b99f481f9405ce))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-plugin-base bumped from 0.25.2 to 0.26.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.25.2 to 0.26.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.26.0
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.25.1...@contract-case/case-core-plugin-http-v0.25.2) (2025-06-22)
 
 

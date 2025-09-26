@@ -51,5 +51,18 @@ const checkStringContextFieldsPresent = (
 
 export const isHasContractFileConfig = (
   context: DataContext,
-): context is HasContractFileConfig =>
-  checkStringContextFieldsPresent(context, 'testRunId', 'contractDir');
+): context is HasContractFileConfig => {
+  if (!('_case:currentRun:context:contractsToWrite' in context)) {
+    context.logger.error(
+      `contractsToWrite should be present, but it was missing`,
+    );
+    context.logger.maintainerDebug('Problem context was', context);
+    return false;
+  }
+  if (!Array.isArray(context['_case:currentRun:context:contractsToWrite'])) {
+    context.logger.error(`contractsToWrite should be an array, but it wasn't`);
+    context.logger.maintainerDebug('Problem context was', context);
+    return false;
+  }
+  return checkStringContextFieldsPresent(context, 'testRunId', 'contractDir');
+};

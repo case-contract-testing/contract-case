@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/dot-notation */
 import { interactions } from '@contract-case/case-definition-dsl';
 import { BaseSetupInfo } from '@contract-case/case-plugin-dsl-types';
 import { defineContractNoTeardown } from './__tests__/jest/jest';

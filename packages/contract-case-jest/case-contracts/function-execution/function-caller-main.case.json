@@ -10,7 +10,7 @@
     }
   },
   "matcherLookup": {
-    "matcher:returning null": {
+    "matcher:returns null": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
       "success": null
     },
@@ -19,7 +19,7 @@
       "arguments": [],
       "functionName": "zeroArgs"
     },
-    "matcher:returning \"example2\"": {
+    "matcher:returns \"example2\"": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
       "success": "example2"
     },
@@ -60,7 +60,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "returning null",
+          "_case:matcher:uniqueName": "returns null",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionResultMatcher",
             "success": null
@@ -100,7 +100,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "returning \"example2\"",
+          "_case:matcher:uniqueName": "returns \"example2\"",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionResultMatcher",
             "success": "example2"

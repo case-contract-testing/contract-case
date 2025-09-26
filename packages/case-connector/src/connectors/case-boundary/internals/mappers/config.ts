@@ -88,6 +88,24 @@ const mapChangedContracts = (
   }
 };
 
+const ALLOWED_CHANGED_CONTRACTS_VALUES = ['hash', 'main'] as const;
+
+const mapContractsToWrite = (
+  contractsToWrite: Array<string>,
+): Array<'hash' | 'main'> =>
+  contractsToWrite
+    .map((s) => s.toLowerCase())
+    .map((s) => {
+      if (!ALLOWED_CHANGED_CONTRACTS_VALUES.includes(s as 'hash' | 'main')) {
+        throw new CaseConfigurationError(
+          `The contractsToWrite setting '${s}' is not a valid changed contracts setting. Allowed values are: ${ALLOWED_CHANGED_CONTRACTS_VALUES.join(', ')}`,
+          'DONT_ADD_LOCATION',
+          'INVALID_CONFIG',
+        );
+      }
+      return s;
+    }) as Array<'hash' | 'main'>;
+
 /**
  * SeparateConfig only exists because at one point these two things were separate.
  * At some point, we should refactor this so that the config shape doesn't need to
@@ -119,10 +137,14 @@ export const convertConfig = ({
   publish,
   autoVersionFrom,
   changedContracts,
+  contractsToWrite,
   ...incoming
 }: ContractCaseBoundaryConfig): SeparateConfig => ({
   config: {
     ...incoming,
+    ...(contractsToWrite
+      ? { contractsToWrite: mapContractsToWrite(contractsToWrite) }
+      : {}),
     ...(autoVersionFrom
       ? { autoVersionFrom: mapAutoVersionFrom(autoVersionFrom) }
       : {}),

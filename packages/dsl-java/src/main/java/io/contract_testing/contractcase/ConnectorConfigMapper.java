@@ -5,6 +5,7 @@ import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.internal.BoundaryTriggerMapper;
+import io.contract_testing.contractcase.internal.edge.BoundaryCrashReporter;
 import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
 import org.jetbrains.annotations.NotNull;
 
@@ -137,8 +138,21 @@ class ConnectorConfigMapper {
       builder.autoVersionFrom(config.autoVersionFrom);
     }
 
-    if(config.adviceOverrides != null) {
+    if (config.adviceOverrides != null) {
       builder.adviceOverrides(config.adviceOverrides);
+      if (config.adviceOverrides.containsKey("CASE_CRASH_ADVICE")) {
+        BoundaryCrashReporter.setAdvice(config.adviceOverrides.get("CASE_CRASH_ADVICE"));
+      }
+    }
+
+    if (config.contractsToWrite != null) {
+      if (config.contractsToWrite.size() == 0) {
+        throw new ContractCaseConfigurationError(
+            "If the configuration option contractsToWrite is provided, it must not be empty",
+            "UNDOCUMENTED"
+        );
+      }
+      builder.contractsToWrite(config.contractsToWrite);
     }
 
     config.mockConfig.forEach(builder::mockConfig);

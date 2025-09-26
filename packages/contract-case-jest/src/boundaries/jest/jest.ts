@@ -2,7 +2,7 @@
 /* eslint-disable jest/no-export */
 import { ContractCaseDefiner } from '../../connectors/ContractDefiner.js';
 import { ContractVerifier } from '../../connectors/ContractVerifier.js';
-import { ContractWriteSuccess, RunTestCallback } from '../../entities/index.js';
+import { ContractWriteSuccess } from '../../entities/index.js';
 import type {
   ContractCaseJestConfig,
   ContractCaseJestVerifierConfig,
@@ -11,14 +11,6 @@ import type {
 } from './types.js';
 
 const TIMEOUT = 30000;
-
-const runJestTest: RunTestCallback = (
-  testName: string,
-  verify: () => Promise<unknown>,
-): void => {
-  it(`${testName}`, () => verify(), TIMEOUT);
-};
-
 /**
  * Convenience wrapper for defining contracts
  *
@@ -52,13 +44,24 @@ export const defineContract = (
 
 export const verifyContract = (
   config: ContractCaseJestVerifierConfig,
-  callback: VerifyCaseJestCallback,
+  setupCallback: VerifyCaseJestCallback = () => {},
 ): void => {
   if (!config.providerName) {
     throw new Error('Must specify a providerName to verify');
   }
   describe(`Provider verification for ${config.providerName}`, () => {
-    callback(new ContractVerifier(config, runJestTest));
-    it('[ContractCase Internals] Init', () => {});
+    const verifier = new ContractVerifier(config);
+
+    setupCallback(verifier);
+
+    const tests = verifier.prepareVerificationTests(config);
+
+    tests.forEach((verificationTest) => {
+      it(`${verificationTest.testName}`, () =>
+        verifier.runPreparedTest(verificationTest));
+    });
+    // TODO: Determine whether Jest runs tests in order always, and if not, do something else here.
+    it('Overall verification result', () =>
+      verifier.closePreparedVerification());
   });
 };

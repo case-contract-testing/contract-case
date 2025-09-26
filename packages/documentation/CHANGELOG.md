@@ -1,5 +1,40 @@
 # Changelog
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.27.1...documentation-v0.27.2) (2025-08-26)
+
+
+### Documentation
+
+* Update links and tagline ([f7944eb](https://github.com/case-contract-testing/contract-case/commit/f7944ebfb18b1a2f637e3798a828b4209b2d02b0))
+
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.27.0...documentation-v0.27.1) (2025-08-20)
+
+
+### Miscellaneous Chores
+
+* **documentation:** Synchronize ContractCase versions
+
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.26.1...documentation-v0.27.0) (2025-07-30)
+
+
+### Miscellaneous Chores
+
+* **documentation:** Synchronize ContractCase versions
+
+## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.26.0...documentation-v0.26.1) (2025-07-13)
+
+
+### Miscellaneous Chores
+
+* **documentation:** Synchronize ContractCase versions
+
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.25.2...documentation-v0.26.0) (2025-07-11)
+
+
+### Miscellaneous Chores
+
+* **documentation:** Synchronize ContractCase versions
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.25.1...documentation-v0.25.2) (2025-06-22)
 
 

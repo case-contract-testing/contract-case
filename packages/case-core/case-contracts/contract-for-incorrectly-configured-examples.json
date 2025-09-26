@@ -126,7 +126,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {status: \"up\"}",
+          "_case:matcher:uniqueName": "returns a (200) response with body an object shaped like {status: \"up\"}",
           "_case:matcher:child": {
             "status": 200,
             "body": {
@@ -170,7 +170,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {status: <any string>}",
+          "_case:matcher:uniqueName": "returns a (200) response with body an object shaped like {status: <any string>}",
           "_case:matcher:child": {
             "status": 200,
             "body": {
@@ -218,7 +218,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (httpStatus 4XX | 5XX) response without a body",
+          "_case:matcher:uniqueName": "returns a (httpStatus 4XX | 5XX) response without a body",
           "_case:matcher:child": {
             "status": {
               "_case:matcher:type": "_case:HttpStatusCode",
@@ -264,7 +264,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (503) response with body an object shaped like {status: \"down\"}",
+          "_case:matcher:uniqueName": "returns a (503) response with body an object shaped like {status: \"down\"}",
           "_case:matcher:child": {
             "status": 503,
             "body": {
@@ -327,7 +327,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (200) response with body an object shaped like {userId: ${userId}}",
+          "_case:matcher:uniqueName": "returns a (200) response with body an object shaped like {userId: ${userId}}",
           "_case:matcher:child": {
             "status": 200,
             "body": {
@@ -383,7 +383,7 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a (404) response without a body",
+          "_case:matcher:uniqueName": "returns a (404) response without a body",
           "_case:matcher:child": {
             "status": 404,
             "_case:matcher:type": "_case:HttpResponseMatcher"

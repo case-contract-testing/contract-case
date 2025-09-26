@@ -25,12 +25,14 @@ export type StateHandler = SetupFunction | SetupTeardown;
 
 export type StateHandlers = Record<string, StateHandler>;
 
-export type RunTestCallback = (
-  testName: string,
-  verify: () => Promise<unknown>,
-) => void;
-
 export interface ContractDescription {
   consumerName: string;
   providerName: string;
+}
+
+export interface VerificationTestHandle {
+  filePath: string;
+  testName: string;
+  testIndex: number;
+  contractIndex: number;
 }

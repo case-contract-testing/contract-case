@@ -1,5 +1,3 @@
-import { Mutex } from 'async-mutex';
-
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import {
   CaseConfigurationError,
@@ -11,19 +9,24 @@ import {
 import type {
   CaseConfig,
   ContractFileFromDisk,
+  ContractVerificationTest,
   ReaderDependencies,
 } from '../../core/types';
-import type {
-  MultiTestInvoker,
-  RunTestCallback,
-} from '../../core/executeExample/types';
+import type { MultiTestInvoker } from '../../core/executeExample/types';
 import { ReadingCaseContract } from '../../core/ReadingCaseContract';
 
 import { readerDependencies } from '../dependencies';
 import { configFromEnv, configToRunContext } from '../../core/config';
 import { ContractStore } from '../../core/types.ContractReader';
-import { TestPrinter } from './types';
+import { ContractVerificationTestHandle, TestPrinter } from './types';
 import { CaseContractDescription } from '../../entities/types';
+
+type ContractVerifierHandle = {
+  index: number;
+  verifier: ReadingCaseContract;
+  tests: ContractVerificationTest[];
+  filePath: string;
+};
 
 const readContractFromStore = (
   config: CaseConfig,
@@ -48,12 +51,15 @@ const readContractFromStore = (
   );
 };
 
+type VerifiableContract = {
+  contract: ContractFileFromDisk;
+  config: CaseConfig;
+};
+
 export class ContractVerifierConnector {
   contracts: ContractFileFromDisk[];
 
   config: CaseConfig;
-
-  callback: RunTestCallback;
 
   dependencies: ReaderDependencies;
 
@@ -61,13 +67,15 @@ export class ContractVerifierConnector {
 
   parentVersions: string[];
 
-  // This is needed so that each contract runs one at a time
-  // (this connector can be passed multiple contracts)
-  private mutex: Mutex;
+  /**
+   * Internal links for the prepare / verify mode
+   *
+   * @internal
+   */
+  #contractVerificationHandles: ContractVerifierHandle[] | undefined;
 
   constructor(
     userConfig: CaseConfig,
-    callback: RunTestCallback,
     printer: TestPrinter,
     parentVersions: string[],
     dependencies = readerDependencies(printer),
@@ -95,25 +103,12 @@ export class ContractVerifierConnector {
 
     this.contracts = readContractFromStore(this.config, store);
 
-    this.callback = callback;
-
-    this.mutex = new Mutex();
+    this.context.logger.deepMaintainerDebug('Constructed VerifierConnector');
   }
 
-  getAvailableContractDescriptions(): CaseContractDescription[] {
-    return this.contracts.map((link) => link.contents.description);
-  }
-
-  verifyContract<T extends AnyMockDescriptorType>(
-    invoker: MultiTestInvoker<T>,
-    configOverride = {},
-    invokeableFns: Record<
-      string,
-      (...args: unknown[]) => Promise<unknown>
-    > = {},
-  ): Promise<void> | undefined {
-    const mergedConfig = { ...this.config, ...configOverride };
-
+  private filterContractsWithConfiguration(
+    mergedConfig: CaseConfig,
+  ): VerifiableContract[] {
     if (typeof mergedConfig.providerName !== 'string') {
       throw new CaseConfigurationError(
         `Must provide a providerName to verify (received '${mergedConfig.providerName}').`,
@@ -152,11 +147,44 @@ export class ContractVerifierConnector {
         );
       });
 
-    const contractsToVerify = caseContractsForProvider.filter(
-      (item) =>
-        typeof mergedConfig.consumerName === 'undefined' ||
-        item.contents.description?.consumerName === mergedConfig.consumerName,
+    return caseContractsForProvider
+      .filter(
+        (item) =>
+          typeof mergedConfig.consumerName === 'undefined' ||
+          item.contents.description?.consumerName === mergedConfig.consumerName,
+      )
+      .map((contract) => ({ contract, config: mergedConfig }));
+  }
+
+  getAvailableContractDescriptions(): CaseContractDescription[] {
+    return this.filterContractsWithConfiguration(this.config).map(
+      (verifiableContract) => verifiableContract.contract.contents.description,
     );
+  }
+
+  /**
+   * This is the main entry point to verifying contract(s). It doesn't run the
+   * verification immediately,
+   * it returns a list of tests which can be called later with
+   * {@link ContractVerifierConnector#runPreparedTest}.
+   *
+   * @param invoker - The MultiTestInvoker for this run
+   * @param configOverride - any overridden config from when this runner was created
+   * @param invokeableFns - any invokeable functions that should be registered
+   * @returns
+   */
+  prepareVerificationTests<T extends AnyMockDescriptorType>(
+    invoker: MultiTestInvoker<T>,
+    configOverride = {},
+    invokeableFns: Record<
+      string,
+      (...args: unknown[]) => Promise<unknown>
+    > = {},
+  ): ContractVerificationTestHandle[] {
+    const mergedConfig = { ...this.config, ...configOverride };
+
+    const contractsToVerify =
+      this.filterContractsWithConfiguration(mergedConfig);
 
     if (contractsToVerify.length === 0) {
       throw new CaseConfigurationError(
@@ -166,55 +194,175 @@ export class ContractVerifierConnector {
     }
     if (mergedConfig.internals == null) {
       throw new CaseCoreError(
-        'Verify contract was called with no internals set - this is an error in the caller, probably the language specific wrapper',
+        'prepareVerification was called with no internals set - this is an error in the caller, probably the language specific wrapper',
       );
     }
 
     if (contractsToVerify.length > 1) {
       this.context.logger.debug(
-        '*** Multiple contracts are being verified ***',
+        `*** There are ${contractsToVerify.length} contracts being prepared for verification ***`,
       );
-      this.context.logger.debug(
-        'Note that the following debug log may contain interactions from any contract in any order',
-      );
+      this.context.logger.debug(`Take note of the contract number in the log`);
     }
-    const results = contractsToVerify.map((contractLink, index) => {
-      this.context.logger.debug(
-        `Verifying contract from file '${contractLink.filePath}'`,
+    this.#contractVerificationHandles = contractsToVerify.map(
+      (verifiableContract, index) => {
+        if (!verifiableContract.contract.contents?.description?.consumerName) {
+          this.context.logger.error(
+            `Contract in file '${verifiableContract.contract.filePath}' appears to have no consumer name! It might not be a case contract`,
+          );
+        }
+
+        if (!verifiableContract.contract.contents?.description?.providerName) {
+          this.context.logger.error(
+            `Contract in file '${verifiableContract.contract.filePath}' appears to have no provider name! It might not be a case contract`,
+          );
+        }
+
+        this.context.logger.debug(
+          `*** Preparing contract: '${verifiableContract.contract.contents.description.consumerName}' -> '${verifiableContract.contract.contents.description.consumerName}'`,
+        );
+        this.context.logger.debug(
+          `Contract File: ${verifiableContract.contract.filePath}`,
+        );
+        const contractVerifier = new ReadingCaseContract(
+          verifiableContract.contract.contents,
+          this.dependencies,
+          {
+            ...verifiableContract.config,
+            coreLogContextPrefix:
+              contractsToVerify.length > 1 ? `Contract[${index}]` : '',
+          },
+          this.parentVersions,
+        );
+        Object.entries(invokeableFns).forEach(([key, value]) => {
+          contractVerifier.registerFunction(key, value);
+        });
+
+        const tests = contractVerifier.getTests(invoker);
+
+        return {
+          index,
+          tests,
+          verifier: contractVerifier,
+          filePath: verifiableContract.contract.filePath,
+        };
+      },
+    );
+
+    this.context.logger.deepMaintainerDebug(
+      'prepared verification handles set to:',
+      this.#contractVerificationHandles,
+    );
+    return this.#contractVerificationHandles.flatMap((contractHandle) =>
+      contractHandle.tests.map((testHandle) => ({
+        testName: testHandle.testName,
+        testIndex: testHandle.index,
+        contractIndex: contractHandle.index,
+        filePath: contractHandle.filePath,
+      })),
+    );
+  }
+
+  /**
+   * Runs a prepared test returned by {@link prepareVerificationTests}.
+   *
+   * @param test - the test to run
+   * @returns a successful promise if the test ran. This doesn't necessarily
+   * mean that the test passed.
+   */
+  async runPreparedTest(test: ContractVerificationTestHandle): Promise<void> {
+    const handles = this.#contractVerificationHandles;
+    return Promise.resolve().then(() => {
+      if (handles == null) {
+        this.context.logger.deepMaintainerDebug(
+          'ERROR no contractVerificationHandles. Class was:',
+          this,
+        );
+        throw new CaseCoreError(
+          'runPreparedTest was called before prepareVerificationTests. This is probably a bug in the language DSL wrapper',
+        );
+      }
+      const contractHandle = handles[test.contractIndex];
+      this.context.logger.deepMaintainerDebug(
+        'Run prepared test had contract handle',
+        contractHandle,
       );
-      const contractVerifier = new ReadingCaseContract(
-        contractLink.contents,
-        this.dependencies,
-        {
-          ...mergedConfig,
-          coreLogContextPrefix:
-            contractsToVerify.length > 1 ? `Contract[${index}]` : '',
-        },
-        this.parentVersions,
-        this.mutex,
+      if (contractHandle == null) {
+        this.context.logger.error(
+          'BUG: Run prepared test invoked incorrectly. See exception for details. The contractVerificationHandles object is:',
+          handles,
+        );
+        throw new CaseCoreError(
+          `The contract handle ${test.contractIndex} was undefined. This is probably a bug in the language DSL wrapper`,
+        );
+      }
+      const testHandle = contractHandle.tests[test.testIndex];
+      this.context.logger.deepMaintainerDebug(
+        'Run prepared test had testHandle',
+        testHandle,
       );
-      Object.entries(invokeableFns).forEach(([key, value]) => {
-        contractVerifier.registerFunction(key, value);
-      });
-      return contractVerifier.verifyContract(invoker, this.callback);
+      if (testHandle == null) {
+        this.context.logger.error(
+          'BUG: Run prepared test invoked incorrectly. See exception for details. The contractVerificationHandles object is:',
+          handles,
+        );
+        throw new CaseCoreError(
+          `The testHandle ${test.testIndex} was undefined. This is probably a bug in the language DSL wrapper`,
+        );
+      }
+      return testHandle.runTest();
     });
-    if (mergedConfig.internals.asyncVerification) {
-      this.context.logger.maintainerDebug(`Awaiting async verification`);
-      return Promise.all(results).then(
-        () => {
-          this.context.logger.maintainerDebug(
-            `Async verification complete (Success)`,
-          );
-        },
-        (e) => {
-          this.context.logger.maintainerDebug(
-            `Async verification complete (Error: ${e.message})`,
-          );
-          throw e;
-        },
+  }
+
+  /**
+   * Closes a verification
+   *
+   * @returns a successful promise if the verification closed successfully
+   */
+  async closePreparedVerification(): Promise<void> {
+    return Promise.resolve().then(() => {
+      if (this.#contractVerificationHandles == null) {
+        this.context.logger.maintainerDebug(
+          "Closing contract verifications, but they weren't prepared - assuming closed.",
+        );
+        // We don't need to close tests run with runVerification
+        return Promise.resolve();
+      }
+      const contractVerifiers = this.#contractVerificationHandles.reduce<
+        ReadingCaseContract[]
+      >((acc, curr) => {
+        acc[curr.index] = curr.verifier;
+        return acc;
+      }, []);
+
+      this.context.logger.maintainerDebug(
+        'Closing contract verifications',
+        contractVerifiers,
       );
-    }
-    this.context.logger.maintainerDebug(`Synchronous verification complete`);
-    return undefined;
+
+      return Promise.allSettled(
+        contractVerifiers.map((v) =>
+          Promise.resolve().then(() => v.endRecord()),
+        ),
+      ).then((results) => {
+        const failures = results
+          .filter((result) => result.status === 'rejected')
+          .map(({ reason }) => reason);
+        if (failures.length > 0) {
+          this.context.logger.error(
+            `There were failures verifying ${failures.length} contracts`,
+          );
+          failures.forEach((failure) => {
+            this.context.logger.error(
+              `${
+                (failure as Error).name ? `${(failure as Error).name}: ` : ''
+              } ${(failure as Error).message}`,
+            );
+          });
+          this.context.logger.error(`Throwing only the first error`);
+          throw failures[0];
+        }
+      });
+    });
   }
 }

@@ -15,6 +15,7 @@ export type ContractCaseConnectorConfig = {
   logLevel: string;
   contractDir: string;
   contractFilename: string;
+  contractsToWrite: Array<string>;
   changedContracts: string;
 
   publish: string;

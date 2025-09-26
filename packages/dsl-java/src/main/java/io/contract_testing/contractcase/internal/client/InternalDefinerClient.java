@@ -4,7 +4,6 @@ import static io.contract_testing.contractcase.internal.client.rpc.ConnectorOutg
 import static io.contract_testing.contractcase.internal.client.rpc.ConnectorOutgoingMapper.mapRunRejectingInteractionRequest;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.contract_testing.contractcase.definitions.matchers.base.AnyMatcher;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.BeginDefinitionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.DefinitionRequest;
@@ -15,8 +14,6 @@ import io.contract_testing.contractcase.internal.ConnectorResultMapper;
 import io.contract_testing.contractcase.internal.client.rpc.ConfigHandle;
 import io.contract_testing.contractcase.internal.client.rpc.ConnectorOutgoingMapper;
 import io.contract_testing.contractcase.internal.client.rpc.RpcForDefinition;
-import io.contract_testing.contractcase.internal.edge.ConnectorFailure;
-import io.contract_testing.contractcase.internal.edge.ConnectorFailureKindConstants;
 import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
@@ -73,15 +70,11 @@ public class InternalDefinerClient {
         ), "runRejectingInteraction");
   }
 
-  public @NotNull ConnectorResult stripMatchers(final @NotNull AnyMatcher matcherOrData) {
-    // TODO: Implement this
-    return new ConnectorFailure(
-        ConnectorFailureKindConstants.CASE_CORE_ERROR,
-        "stripMatchers not implemented", // TODO
-        MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-        "UNDOCUMENTED",
-        ""
-    );
+  public @NotNull ConnectorResult stripMatchers(final @NotNull JsonNode matcherOrData) {
+    return rpcConnector.executeCallAndWait(
+        (
+            ConnectorOutgoingMapper.mapStripMatchersRequest(matcherOrData)
+        ), "stripMatchers");
   }
 
   private ConnectorResult begin(final ContractCaseConfig wireConfig) {
@@ -106,7 +99,7 @@ public class InternalDefinerClient {
   }
 
   public ConnectorResult registerFunction(String functionName,
-      ConnectorInvokableFunction function) {
+      ConnectorInvokableFunction<?> function) {
     rpcConnector.registerFunction(functionName, function);
     return rpcConnector.executeCallAndWait(DefinitionRequest.newBuilder()
         .setRegisterFunction(RegisterFunction.newBuilder()

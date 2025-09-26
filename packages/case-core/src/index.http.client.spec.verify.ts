@@ -77,7 +77,13 @@ describe('Server verification', () => {
         },
       };
 
-      verifier.verifyContract({ stateHandlers });
+      verifier
+        .prepareVerificationTests({ stateHandlers })
+        .forEach((verification) =>
+          // eslint-disable-next-line jest/expect-expect
+          it(`${verification.testName}`, () =>
+            verifier.runPreparedTest(verification)),
+        );
     },
   );
 });

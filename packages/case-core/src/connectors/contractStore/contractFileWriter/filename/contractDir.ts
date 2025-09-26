@@ -1,20 +1,10 @@
 import { HasContractFileConfig } from '@contract-case/case-plugin-base';
 
-import filenamify from 'filenamify';
-import slug from 'slug';
 import * as path from 'path';
 import { hashContract } from '../contractHasher';
-import { EXTENSION, MAX_FILENAME_LENGTH } from './types';
+import { EXTENSION } from './types';
 import { ContractData } from '../../../../entities/types';
-
-const escapeFileName = (pathString: string) =>
-  filenamify(pathString, { maxLength: MAX_FILENAME_LENGTH });
-
-export const providerSlug = (contract: ContractData): string =>
-  escapeFileName(slug(contract.description.providerName));
-
-export const consumerSlug = (contract: ContractData): string =>
-  escapeFileName(slug(contract.description.consumerName));
+import { consumerSlug, providerSlug } from './slugs';
 
 const makeFileName = (contract: ContractData, suffix: string) =>
   path.join(

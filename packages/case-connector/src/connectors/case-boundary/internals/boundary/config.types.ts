@@ -71,6 +71,14 @@ export interface ContractCaseBoundaryConfig {
   readonly contractFilename?: string;
 
   /**
+   * Which contracts to write:
+   *
+   * * `'main'`: The main contract file
+   * * `'hash'`: The contract file hashed by the contents
+   */
+  readonly contractsToWrite?: Array<string>;
+
+  /**
    * What to do if contracts have changed?
    *
    * - `"OVERWRITE"`: Replace the previous contract file
@@ -79,7 +87,7 @@ export interface ContractCaseBoundaryConfig {
    *
    * Default: 'FAIL'
    */
-  changedContracts?: string;
+  readonly changedContracts?: string;
 
   /**
    * Unique ID for this segment of the test run - it must be unique within a
@@ -184,18 +192,7 @@ export interface ContractCaseBoundaryConfig {
    *
    * It should never be exposed to end-users.
    */
-  readonly internals: {
-    /**
-     * Whether to run verification synchronously, or asynchronously (returning a
-     * promise that completes when all verification is complete). Most languages
-     * will want asynchronous verification, so that `verifyContract()` fails correctly.
-     *
-     * Note that if asyncVerification is false, verification method
-     * returns before the verification has finished, leaving it up to the test
-     * callbacks.
-     */
-    readonly asyncVerification: boolean;
-  };
+  readonly internals: {};
 
   /**
    * This allows for advanced customisation of the advice that ContractCase

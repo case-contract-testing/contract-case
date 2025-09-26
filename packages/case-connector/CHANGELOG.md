@@ -1,5 +1,116 @@
 # Changelog
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.27.1...@contract-case/case-connector-v0.27.2) (2025-08-26)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-connector:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-core bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-entities-internal bumped from 0.27.1 to 0.27.2
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.1 to 0.27.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.1 to 0.27.2
+
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.27.0...@contract-case/case-connector-v0.27.1) (2025-08-20)
+
+
+### Features
+
+* **core:** Control which contracts are written with contractsToWrite. Possible values are 'hash' and 'main', defaulting to both ([e7e18a3](https://github.com/case-contract-testing/contract-case/commit/e7e18a35b81b8150097706cc18c2c52512352ad6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-core bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-entities-internal bumped from 0.27.0 to 0.27.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.0 to 0.27.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.0 to 0.27.1
+
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.26.1...@contract-case/case-connector-v0.27.0) (2025-07-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function
+
+### Bug Fixes
+
+* Deprecate runVerification, as it is now replaced with getTests and runPreparedTest ([24cd85a](https://github.com/case-contract-testing/contract-case/commit/24cd85a1bae6e29cdfa315ae1e122a588d01fdd9))
+
+
+### Code Refactoring
+
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function ([2f68f87](https://github.com/case-contract-testing/contract-case/commit/2f68f879768afcf9362f4f968ad037f0ff42dd9b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-core bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-entities-internal bumped from 0.26.1 to 0.27.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.26.1 to 0.27.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.1 to 0.27.0
+
+## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.26.0...@contract-case/case-connector-v0.26.1) (2025-07-13)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-connector:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-core bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-entities-internal bumped from 0.26.0 to 0.26.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.26.0 to 0.26.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.0 to 0.26.1
+
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.25.2...@contract-case/case-connector-v0.26.0) (2025-07-11)
+
+
+### Features
+
+* **java-dsl:** Now supports the prepareVerificationTests and runPreparedTest lifecycle for better integration with JUnit ([1408d46](https://github.com/case-contract-testing/contract-case/commit/1408d46a159978bec58bb4bb957b6979473534cb))
+* Now `definer.endRecord()` returns a `ContractWriteSuccess` object, which contains details of the written contract(s) ([7299895](https://github.com/case-contract-testing/contract-case/commit/7299895f8ec7a9d8b3e351111045f5c7b75eb1e8))
+
+
+### Bug Fixes
+
+* **connector:** Correct types read when moduleresolution is node ([ff29e62](https://github.com/case-contract-testing/contract-case/commit/ff29e62a8040c97eaa86ed2dcb09bed8cb940036))
+* **core:** availableContractDescriptions now respects the configuration and only returns the filtered set of contracts. This was the intended (and documented) behaviour before. If you need to see the ignored contracts, they're visible in a call to this method with a logLevel of DEBUG or lower. ([9c4e5a8](https://github.com/case-contract-testing/contract-case/commit/9c4e5a8639572797bfda6b502c0e28dfc10a0b2f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-core bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-entities-internal bumped from 0.25.2 to 0.26.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.25.2 to 0.26.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.26.0
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.25.1...@contract-case/case-connector-v0.25.2) (2025-06-22)
 
 

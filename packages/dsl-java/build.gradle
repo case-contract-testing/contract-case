@@ -4,12 +4,12 @@ plugins {
     id 'java-library'
     id 'java-library-distribution'
     id 'maven-publish'
-    id 'org.jreleaser' version '1.18.0'
+    id 'org.jreleaser' version '1.20.0'
     id "com.google.protobuf" version "0.9.5"
-    id "com.github.spotbugs" version "6.2.1"
+    id "com.github.spotbugs" version "6.4.0"
 }
 group = 'io.contract-testing.contractcase'
-version = "0.25.2" // x-release-please-version
+version = "0.27.2" // x-release-please-version
 
 sourceCompatibility = '17'
 
@@ -24,13 +24,12 @@ tasks.withType(Javadoc).configureEach {
     options.addStringOption('Xdoclint:-missing', '-quiet')
 }
 
-def caseCoreVersion = "0.25.2"
-def grpcVersion = "1.73.0"
+def grpcVersion = "1.75.0"
 def protobufVersion = "3.25.2"
-def junitVersion = "5.13.2"
+def junitVersion = "5.13.4"
 
 dependencies {
-    api("io.contract-testing.contractcase:definitions:${caseCoreVersion}") {
+    api("io.contract-testing.contractcase:definitions:${version}") {
         changing = true
     }
     implementation 'com.diogonunes:JColor:5.5.1'
@@ -42,21 +41,21 @@ dependencies {
     implementation "io.grpc:grpc-stub:${grpcVersion}"
     implementation "io.grpc:grpc-netty-shaded:${grpcVersion}"
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.1'
-    implementation 'org.jetbrains:annotations:26.0.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.20.0'
+    implementation 'org.jetbrains:annotations:26.0.2-1'
 
     testImplementation 'com.google.protobuf:protobuf-gradle-plugin:0.9.5'
 
     // Execution of tests
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testImplementation 'org.assertj:assertj-core:3.27.3'
+    testImplementation 'org.assertj:assertj-core:3.27.4'
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.13.2"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.13.4"
 
     // client implementation under test, in test.httpclient.implementation
     testImplementation 'org.apache.httpcomponents:fluent-hc:4.5.14'
-    testCompileOnly 'org.projectlombok:lombok:1.18.38'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.38'
+    testCompileOnly 'org.projectlombok:lombok:1.18.40'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.40'
 
 }
 
@@ -81,6 +80,7 @@ javadoc {
 }
 
 spotbugs {
+    excludeFilter = file('spotbugs-exclude.xml')
     onlyAnalyze = ['io.contract_testing.contractcase.*','io.contract_testing.contractcase.client.*', 'io.contract_testing.contractcase.client.server.*','io.contract_testing.contractcase.edge.*' ]
 }
 
@@ -206,8 +206,8 @@ jreleaser {
             nexus2 {
                 'maven-central' {
                     active = 'ALWAYS'
-                    url = 'https://s01.oss.sonatype.org/service/local'
-                    snapshotUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+                    url = 'https://ossrh-staging-api.central.sonatype.com/service/local/'
+                    snapshotUrl = 'https://central.sonatype.com/repository/maven-snapshots/'
                     closeRepository = true
                     releaseRepository = true
                     username = System.getenv("MAVEN_USERNAME")

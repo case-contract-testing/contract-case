@@ -96,10 +96,7 @@ export const setupMockFunctionExecution = (
       );
 
       const functionResponse = validateFunctionResponse(
-        context.descendAndStrip(
-          expectedResponse,
-          addLocation('returnValue', context),
-        ),
+        context.descendAndStrip(expectedResponse, context),
         context,
       );
       context.logger.maintainerDebug('functionResponse was', functionResponse);
@@ -122,7 +119,10 @@ export const setupMockFunctionExecution = (
             : {}),
         });
       }
-      context.logger.debug('Bad function return type description. ');
+      context.logger.error(
+        'Bad function return type description.',
+        functionResponse,
+      );
 
       throw new CaseConfigurationError(
         "This interaction had a bad return type description. It must contain either a 'success' key (indicating a successful return), or a 'kind' ",

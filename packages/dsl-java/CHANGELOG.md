@@ -1,5 +1,121 @@
 # Changelog
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.27.1...@contract-case/dsl-java-v0.27.2) (2025-08-26)
+
+
+### Features
+
+* **java-dsl:** Connect stripMatchers functions in the Java DSL ([3b05f37](https://github.com/case-contract-testing/contract-case/commit/3b05f379cba54991f664fc88b6922fddc99259f8))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-definition-dsl bumped from 0.27.1 to 0.27.2
+
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.27.0...@contract-case/dsl-java-v0.27.1) (2025-08-20)
+
+
+### Features
+
+* **core:** Control which contracts are written with contractsToWrite. Possible values are 'hash' and 'main', defaulting to both ([e7e18a3](https://github.com/case-contract-testing/contract-case/commit/e7e18a35b81b8150097706cc18c2c52512352ad6))
+
+
+### Bug Fixes
+
+* **core:** Fix an issue where type errors in interaction definitions would fail the test, but not prevent the contract from being written ([34b56ae](https://github.com/case-contract-testing/contract-case/commit/34b56ae11d090eca4a0842afdb12eb3d6f6d608e))
+* Improve documentation for deprecated fields, and mark them as `forRemoval` ([7d6cbe1](https://github.com/case-contract-testing/contract-case/commit/7d6cbe1af7a1d50fa651056a24011cca9eebda6a))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-definition-dsl bumped from 0.27.0 to 0.27.1
+
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.26.1...@contract-case/dsl-java-v0.27.0) (2025-07-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **java-dsl:** Deprecate `RunTestCallback`. It is no longer used, instead use `prepareVerification` and `runPreparedTest`. This is a breaking change if you were relying on custom behaviour of RunTestCallback
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function
+
+### Features
+
+* **java-dsl:** Add `ContractCaseConnector.setNodeJsPath()` to allow specifying the path of the nodejs executable ([f228755](https://github.com/case-contract-testing/contract-case/commit/f228755a7cd10cd5a1d94842dbf75dd14ba68535))
+* **java-dsl:** Allow overriding the crash advice with the `adviceOverride` `"CASE_CRASH_ADVICE"` ([60aceb3](https://github.com/case-contract-testing/contract-case/commit/60aceb36e7c7310c44eaa20e46c00d6bfb4f22d8))
+
+
+### Bug Fixes
+
+* Deprecate runVerification, as it is now replaced with getTests and runPreparedTest ([24cd85a](https://github.com/case-contract-testing/contract-case/commit/24cd85a1bae6e29cdfa315ae1e122a588d01fdd9))
+* **java-dsl:** Substantially improve javadoc for adviceOverrides ([01125db](https://github.com/case-contract-testing/contract-case/commit/01125dbc5a31b11e88f79eaaaa1fa7ebb6da068d))
+
+
+### Code Refactoring
+
+* **java-dsl:** Deprecate `RunTestCallback`. It is no longer used, instead use `prepareVerification` and `runPreparedTest`. This is a breaking change if you were relying on custom behaviour of RunTestCallback ([c7e6cb9](https://github.com/case-contract-testing/contract-case/commit/c7e6cb98d8c98e7fe53557bad23ae03aecf3cffc))
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function ([2f68f87](https://github.com/case-contract-testing/contract-case/commit/2f68f879768afcf9362f4f968ad037f0ff42dd9b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-definition-dsl bumped from 0.26.1 to 0.27.0
+
+## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.26.0...@contract-case/dsl-java-v0.26.1) (2025-07-13)
+
+
+### Features
+
+* **core:** Now will throw configuration exceptions if you try to write more to a written contract ([6bb2b03](https://github.com/case-contract-testing/contract-case/commit/6bb2b03be0464d42a64e99912bf7fc9be1e28a7d))
+
+
+### Bug Fixes
+
+* **function-plugin:** Correct regression where unexpected thrown exceptions from the code under test would be incorrectly reported as a crash ([65f194a](https://github.com/case-contract-testing/contract-case/commit/65f194a6538cf95584fc6a95a6df4e1fccbc15c9))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-definition-dsl bumped from 0.26.0 to 0.26.1
+
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.25.2...@contract-case/dsl-java-v0.26.0) (2025-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions
+
+### Features
+
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions ([7f06209](https://github.com/case-contract-testing/contract-case/commit/7f062096bdad81e5d763429682b99f481f9405ce))
+* **java-dsl:** Now supports the prepareVerificationTests and runPreparedTest lifecycle for better integration with JUnit ([1408d46](https://github.com/case-contract-testing/contract-case/commit/1408d46a159978bec58bb4bb957b6979473534cb))
+* Now `definer.endRecord()` returns a `ContractWriteSuccess` object, which contains details of the written contract(s) ([7299895](https://github.com/case-contract-testing/contract-case/commit/7299895f8ec7a9d8b3e351111045f5c7b75eb1e8))
+
+
+### Bug Fixes
+
+* **java-dsl:** Ensure that user-facing stack traces include the cause if they are chained exceptions ([6ba5326](https://github.com/case-contract-testing/contract-case/commit/6ba5326ffd5e5fc4694133cb636e5a8b79e4954e))
+* **java-dsl:** Plugins were not passed to the core by the Verifier ([4791891](https://github.com/case-contract-testing/contract-case/commit/4791891d5201f8e6f2699deb5ca6c56731f35a14))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-definition-dsl bumped from 0.25.2 to 0.26.0
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.25.1...@contract-case/dsl-java-v0.25.2) (2025-06-22)
 
 

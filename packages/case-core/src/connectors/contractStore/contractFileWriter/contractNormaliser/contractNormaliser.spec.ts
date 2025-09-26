@@ -1,4 +1,5 @@
 import { willSendHttpRequest } from '@contract-case/case-core-plugin-http-dsl';
+import { HasContractFileConfig } from '@contract-case/case-plugin-base';
 import { EMPTY_MATCH_CONTEXT } from '../../../../__tests__/testContext';
 import { addExample, makeContract } from '../../../../core/structure';
 import { contractsEqual } from './contractNormaliser';
@@ -11,7 +12,8 @@ describe('Contract equality', () => {
     ...EMPTY_MATCH_CONTEXT,
     '_case:currentRun:context:testRunId': 'contractEqualitySpec',
     '_case:currentRun:context:contractDir': '/dev/null',
-  };
+    '_case:currentRun:context:contractsToWrite': ['hash', 'main'],
+  } satisfies HasContractFileConfig;
 
   const EMPTY_CONTRACT = makeContract({ consumerName, providerName });
   it('sees equal contracts as equal', () => {
@@ -19,7 +21,10 @@ describe('Contract equality', () => {
   });
 
   it('sees contracts with different metadata as equal', () => {
-    const hasMetadata = { ...EMPTY_CONTRACT, metadata: { foo: 'wheee' } };
+    const hasMetadata = {
+      ...EMPTY_CONTRACT,
+      metadata: { foo: 'wheee', _case: {} },
+    };
     expect(contractsEqual(hasMetadata, EMPTY_CONTRACT, CONTEXT)).toBe(true);
     expect(contractsEqual(EMPTY_CONTRACT, hasMetadata, CONTEXT)).toBe(true);
   });

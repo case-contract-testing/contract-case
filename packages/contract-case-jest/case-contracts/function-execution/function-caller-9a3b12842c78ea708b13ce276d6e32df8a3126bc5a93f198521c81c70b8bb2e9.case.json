@@ -10,17 +10,26 @@
     }
   },
   "matcherLookup": {
-    "matcher:a function invoked with no arguments": {
-      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-      "arguments": []
+    "matcher:returns null": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": null
     },
-    "matcher:\"example2\"": "example2",
-    "matcher:a function invoked with 2 arguments ( \"example\", 2 )": {
+    "matcher:An invocation of zeroArgs()": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [],
+      "functionName": "zeroArgs"
+    },
+    "matcher:returns \"example2\"": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": "example2"
+    },
+    "matcher:An invocation of concatenate( \"example\", 2 )": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": [
         "example",
         2
-      ]
+      ],
+      "functionName": "concatenate"
     }
   },
   "examples": [
@@ -42,13 +51,21 @@
         },
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a function invoked with no arguments",
+          "_case:matcher:uniqueName": "An invocation of zeroArgs()",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-            "arguments": []
+            "arguments": [],
+            "functionName": "zeroArgs"
           }
         },
-        "response": null,
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returns null",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": null
+          }
+        },
         "functionName": "zeroArgs"
       },
       "result": "VERIFIED"
@@ -71,19 +88,23 @@
         },
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "a function invoked with 2 arguments ( \"example\", 2 )",
+          "_case:matcher:uniqueName": "An invocation of concatenate( \"example\", 2 )",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionArgumentsMatcher",
             "arguments": [
               "example",
               2
-            ]
+            ],
+            "functionName": "concatenate"
           }
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "\"example2\"",
-          "_case:matcher:child": "example2"
+          "_case:matcher:uniqueName": "returns \"example2\"",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": "example2"
+          }
         },
         "functionName": "concatenate"
       },

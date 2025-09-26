@@ -1,5 +1,95 @@
 # Changelog
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.27.1...@contract-case/case-plugin-base-v0.27.2) (2025-08-26)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-plugin-base:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.1 to 0.27.2
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.1 to 0.27.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.1 to 0.27.2
+
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.27.0...@contract-case/case-plugin-base-v0.27.1) (2025-08-20)
+
+
+### Bug Fixes
+
+* **core:** Fix an issue where type errors in interaction definitions would fail the test, but not prevent the contract from being written ([34b56ae](https://github.com/case-contract-testing/contract-case/commit/34b56ae11d090eca4a0842afdb12eb3d6f6d608e))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.0 to 0.27.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.0 to 0.27.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.0 to 0.27.1
+
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.26.1...@contract-case/case-plugin-base-v0.27.0) (2025-07-30)
+
+
+### Features
+
+* **java-dsl:** Allow overriding the crash advice with the `adviceOverride` `"CASE_CRASH_ADVICE"` ([60aceb3](https://github.com/case-contract-testing/contract-case/commit/60aceb36e7c7310c44eaa20e46c00d6bfb4f22d8))
+
+
+### Bug Fixes
+
+* **java-dsl:** Substantially improve javadoc for adviceOverrides ([01125db](https://github.com/case-contract-testing/contract-case/commit/01125dbc5a31b11e88f79eaaaa1fa7ebb6da068d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.26.1 to 0.27.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.26.1 to 0.27.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.1 to 0.27.0
+
+## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.26.0...@contract-case/case-plugin-base-v0.26.1) (2025-07-13)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-plugin-base:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.26.0 to 0.26.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.26.0 to 0.26.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.0 to 0.26.1
+
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.25.2...@contract-case/case-plugin-base-v0.26.0) (2025-07-11)
+
+
+### Features
+
+* **plugin-base:** Added ability for matching errors to have context about what the data is, allowing more specific error messages ([150c0d6](https://github.com/case-contract-testing/contract-case/commit/150c0d6745afe0ba3b60819510fdc11346578c4d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.2 to 0.26.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.25.2 to 0.26.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.26.0
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.25.1...@contract-case/case-plugin-base-v0.25.2) (2025-06-22)
 
 

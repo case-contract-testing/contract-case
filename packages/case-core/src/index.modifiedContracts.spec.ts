@@ -27,6 +27,15 @@ describe('With an existing contract', () => {
 
       describe('Contract writing', () => {
         it('Fails if the contract would change', async () => {
+          // Early fail this test if the overwrite behaviour is being overridden
+          // This isn't part of the test, it just stops the tests being stamped on if there's
+          // an errant environment variable
+          if (process.env['CASE_changedContracts']) {
+            throw new Error(
+              "Failing test, this test isn't meant to write contracts. Please unset CASE_changedContracts and run again",
+            );
+          }
+
           await contract.runInteraction({
             states: [state],
             definition: willSendHttpRequest({
@@ -68,6 +77,15 @@ describe('With no prior contract', () => {
 
       describe('Contract writing', () => {
         it('Fails if the contract would change', async () => {
+          // Early fail this test if the overwrite behaviour is being overridden
+          // This isn't part of the test, it just stops the tests being stamped on if there's
+          // an errant environment variable
+          if (process.env['CASE_changedContracts']) {
+            throw new Error(
+              "Failing test, this test isn't meant to write contracts. Please unset CASE_changedContracts and run again",
+            );
+          }
+
           await contract.runInteraction({
             states: [state],
             definition: willSendHttpRequest({

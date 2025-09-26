@@ -4,7 +4,6 @@ import {
   BoundarySuccess,
   ILogPrinter,
   IResultPrinter,
-  IRunTestCallback,
 } from '../entities/types.js';
 import { versionString } from '../entities/versionString.js';
 import { ContractCaseConnectorConfig, VerificationId } from './types.js';
@@ -14,21 +13,18 @@ import {
   createVerifier,
   getVerifier,
 } from '../connectors/case-boundary/verifier.js';
+import { BoundaryContractVerificationTestHandle } from '../connectors/case-boundary/internals/types.js';
 
 export const beginVerification = (
   config: ContractCaseConnectorConfig,
-  callback: IRunTestCallback,
   callbackPrinter: ILogPrinter,
   resultPrinter: IResultPrinter,
   callerVersions: string[],
 ): VerificationId =>
-  createVerifier(
-    mapConfigNoId(config),
-    callback,
-    callbackPrinter,
-    resultPrinter,
-    [...callerVersions, versionString],
-  );
+  createVerifier(mapConfigNoId(config), callbackPrinter, resultPrinter, [
+    ...callerVersions,
+    versionString,
+  ]);
 
 export const availableContractDescriptions = (
   verifierId: string,
@@ -70,7 +66,7 @@ export const registerFunction = (
     return new BoundarySuccess();
   });
 
-export const runVerification = (
+export const prepareVerificationTests = (
   verifierId: string,
   config: ContractCaseConnectorConfig,
 ): Promise<BoundaryResult> =>
@@ -79,10 +75,22 @@ export const runVerification = (
     if (!('id' in verifierHandle)) {
       return verifierHandle;
     }
-    return verifierHandle.verifier.runVerification(
+    return verifierHandle.verifier.prepareVerificationTests(
       mapConfig(config, verifierId),
       verifierHandle.invokeableFunctions,
     );
+  });
+
+export const runPreparedTest = (
+  verifierId: string,
+  preparedTestHandle: BoundaryContractVerificationTestHandle,
+): Promise<BoundaryResult> =>
+  Promise.resolve().then(() => {
+    const verifierHandle = getVerifier(verifierId, 'runVerification');
+    if (!('id' in verifierHandle)) {
+      return verifierHandle;
+    }
+    return verifierHandle.verifier.runVerificationTest(preparedTestHandle);
   });
 
 export const endVerification = (verifierId: string): Promise<void> =>

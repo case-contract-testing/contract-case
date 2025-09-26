@@ -1,5 +1,80 @@
 # Changelog
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.27.1...@contract-case/case-connector-proto-v0.27.2) (2025-08-26)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-connector-proto:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.1 to 0.27.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.1 to 0.27.2
+
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.27.0...@contract-case/case-connector-proto-v0.27.1) (2025-08-20)
+
+
+### Features
+
+* **core:** Control which contracts are written with contractsToWrite. Possible values are 'hash' and 'main', defaulting to both ([e7e18a3](https://github.com/case-contract-testing/contract-case/commit/e7e18a35b81b8150097706cc18c2c52512352ad6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.0 to 0.27.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.0 to 0.27.1
+
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.26.1...@contract-case/case-connector-proto-v0.27.0) (2025-07-30)
+
+
+### Bug Fixes
+
+* Deprecate runVerification, as it is now replaced with getTests and runPreparedTest ([24cd85a](https://github.com/case-contract-testing/contract-case/commit/24cd85a1bae6e29cdfa315ae1e122a588d01fdd9))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.26.1 to 0.27.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.1 to 0.27.0
+
+## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.26.0...@contract-case/case-connector-proto-v0.26.1) (2025-07-13)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-connector-proto:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.26.0 to 0.26.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.0 to 0.26.1
+
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.25.2...@contract-case/case-connector-proto-v0.26.0) (2025-07-11)
+
+
+### Features
+
+* **java-dsl:** Now supports the prepareVerificationTests and runPreparedTest lifecycle for better integration with JUnit ([1408d46](https://github.com/case-contract-testing/contract-case/commit/1408d46a159978bec58bb4bb957b6979473534cb))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.25.2 to 0.26.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.26.0
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.25.1...@contract-case/case-connector-proto-v0.25.2) (2025-06-22)
 
 

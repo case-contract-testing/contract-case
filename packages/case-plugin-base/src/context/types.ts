@@ -294,9 +294,15 @@ export interface ContractFileConfig {
    */
   '_case:currentRun:context:contractFilename'?: string;
   /**
-   * Don't write a main contract (used by the downloader, as it might not be the main)
+   * Which contracts to write:
+   *
+   * * `'main'` Will write the main contract file
+   * * `'hash'` Will write the contract file, hashed by the contents
+   *
+   * These should never include a ',', in case we want to allow them
+   * to be specified by an environment variable
    */
-  '_case:currentRun:context:doNotWriteMainContract'?: boolean;
+  '_case:currentRun:context:contractsToWrite': Array<'main' | 'hash'>;
   /**
    * Whether we should allow overwriting the contract file.
    *
@@ -418,9 +424,7 @@ export interface RunContext
     password: string;
   };
   '_case:currentRun:context:brokerBaseUrl'?: string;
-  '_case:currentRun:context:internals'?: {
-    asyncVerification: boolean;
-  };
+  '_case:currentRun:context:internals'?: {};
 }
 
 /**

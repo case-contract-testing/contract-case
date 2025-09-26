@@ -9,6 +9,7 @@ import {
   addLocation,
 } from '@contract-case/case-plugin-base';
 import { AllSetup } from './types';
+import { isObject } from '../entities';
 
 const validateArray = (maybeArray: unknown, context: MatchContext) => {
   if (!Array.isArray(maybeArray)) {
@@ -66,9 +67,24 @@ export const setupMockFunctionCaller = (
               result,
             );
 
+            if (isObject(result)) {
+              if ('success' in result) {
+                context.logger.debug(
+                  `Function '${functionHandle}' returned`,
+                  result['success'],
+                );
+              }
+
+              if ('errorClassName' in result) {
+                context.logger.debug(
+                  `Function '${functionHandle}' threw error of kind '${result['errorClassName']}'${'message' in result ? ` with message: ${result['message']}` : ''}`,
+                );
+              }
+            }
+
             return {
               actual: result,
-              context: addLocation('returnValue', context),
+              context,
               expected: returnValue,
             };
           } catch (e) {

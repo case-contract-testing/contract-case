@@ -43,52 +43,47 @@ describe('Server verification', () => {
   );
   // END SERVER SETUP BOILERPLATE
 
-  verifyContract(
-    {
-      providerName: 'http response provider',
-      mockConfig: {
-        http: {
-          baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
+  verifyContract({
+    providerName: 'http response provider',
+    mockConfig: {
+      http: {
+        baseUrlUnderTest: `http://localhost:${port}`,
+      },
+    },
+    // example-extract _verifying-state-handlers
+    stateHandlers: {
+      // State handlers are keyed by the name of the state.
+      // This must match exactly between the name defined in the
+      // contract, and the state handler at verification time.
+
+      // A state handler either returns void, or variables.
+      //
+      // It generally has the type:
+      //  {
+      //    setup:    () => Promise<void> | void
+      //    teardown: () => Promise | void
+      //  }
+      //
+      // If you only need a setup handler, you can use:
+      //
+      //   () => Promise<void> | void
+      //
+      // instead.
+      //
+      // If your state returns variables, return an object where the
+      // keys are the variable names instead of void.
+      'Server is up': () => {
+        // Any setup for the state 'Server is up' goes here
+      },
+      'A user exists': {
+        setup: () => {
+          // Any setup for the state 'A user exists' goes here
+        },
+        teardown: () => {
+          // Any teardown for the state 'A user exists' goes here
         },
       },
     },
-    (verifier) =>
-      // example-extract _verifying-state-handlers
-      verifier.runVerification({
-        stateHandlers: {
-          // State handlers are keyed by the name of the state.
-          // This must match exactly between the name defined in the
-          // contract, and the state handler at verification time.
-
-          // A state handler either returns void, or variables.
-          //
-          // It generally has the type:
-          //  {
-          //    setup:    () => Promise<void> | void
-          //    teardown: () => Promise | void
-          //  }
-          //
-          // If you only need a setup handler, you can use:
-          //
-          //   () => Promise<void> | void
-          //
-          // instead.
-          //
-          // If your state returns variables, return an object where the
-          // keys are the variable names instead of void.
-          'Server is up': () => {
-            // Any setup for the state 'Server is up' goes here
-          },
-          'A user exists': {
-            setup: () => {
-              // Any setup for the state 'A user exists' goes here
-            },
-            teardown: () => {
-              // Any teardown for the state 'A user exists' goes here
-            },
-          },
-        },
-      }),
     // end-example
-  );
+  });
 });

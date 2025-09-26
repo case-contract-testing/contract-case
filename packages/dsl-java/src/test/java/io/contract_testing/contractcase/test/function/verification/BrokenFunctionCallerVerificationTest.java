@@ -12,6 +12,7 @@ import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import java.util.HashMap;
 import java.util.function.Function;
+import lombok.extern.java.Log;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,7 @@ public class BrokenFunctionCallerVerificationTest {
           .providerName("Java Function Implementer Example")
           .publish(PublishType.NEVER)
           .printResults(false)
-          .logLevel(LogLevel.NONE)
+    //      .logLevel(LogLevel.DEEP_MAINTAINER_DEBUG)
           .contractDir("verifiable-contracts")
           .build());
 
@@ -63,7 +64,7 @@ public class BrokenFunctionCallerVerificationTest {
     }
   }
 
-  private static @NotNull <R> InvokableFunction1
+  private static @NotNull <R> InvokableFunction1<?>
   convertJsonIntegerArg(Function<Integer, R> functionUnderTest) {
     return (String a) -> {
       try {
@@ -76,7 +77,7 @@ public class BrokenFunctionCallerVerificationTest {
   }
 
   @NotNull
-  private static <R> InvokableFunction1
+  private static <R> InvokableFunction1<?>
   convertJsonStringArgs(Function<String, R> functionUnderTest) {
     return (String a) -> {
       try {

@@ -15,3 +15,18 @@ export const errorHandler = (e: Error): never => {
       throw e;
   }
 };
+
+export const errorReporter = (e: Error): Error => {
+  switch (e.name) {
+    case 'ContractCaseCoreError':
+    case 'CaseCoreError':
+      crashPrinter(
+        BoundaryCrashMessage.CRASH_MESSAGE_START,
+        e,
+        BoundaryCrashMessage.CRASH_MESSAGE_END,
+      );
+      return e;
+    default:
+      return e;
+  }
+};

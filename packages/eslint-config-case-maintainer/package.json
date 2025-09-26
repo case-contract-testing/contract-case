@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/eslint-config-case-maintainer",
-  "version": "0.25.2",
+  "version": "0.27.2",
   "description": "eslint settings for contract-case modules. Only useful for ContractCase maintainers",
   "keywords": [
     "contractcase"
@@ -33,12 +33,12 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",
-    "prettier": "3.5.3"
+    "prettier": "3.6.2"
   },
   "dependencies": {
     "@eslint/js": "^9.27.0",
-    "@typescript-eslint/eslint-plugin": "^8.31.1",
-    "@typescript-eslint/parser": "^8.35.0",
+    "@typescript-eslint/eslint-plugin": "^8.36.0",
+    "@typescript-eslint/parser": "^8.42.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-import-resolver-typescript": "^4.3.4",
     "eslint-plugin-import": "^2.31.0",

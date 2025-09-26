@@ -1,5 +1,8 @@
 package io.contract_testing.contractcase;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig;
 import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
@@ -14,6 +17,8 @@ import io.contract_testing.contractcase.configuration.InvokableFunctions.Invokab
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction6;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction7;
 import io.contract_testing.contractcase.definitions.interactions.base.AnyInteractionDescriptor;
+import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
+import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.internal.ConnectorResultMapper;
 import io.contract_testing.contractcase.internal.client.InternalDefinerClient;
 import io.contract_testing.contractcase.internal.client.server.ContractCaseProcess;
@@ -35,6 +40,7 @@ public class ContractDefiner {
   private final InternalDefinerClient definer;
   private final ContractCaseConfig config;
 
+  private final ObjectMapper mapper = new ObjectMapper();
 
   /**
    * Constructs a ContractDefiner with the provided configuration. Configurations can be overridden
@@ -56,7 +62,7 @@ public class ContractDefiner {
    * {@link #runInteraction(InteractionDefinition, IndividualSuccessTestConfig)} and
    * {@link #runThrowingInteraction(InteractionDefinition, IndividualFailedTestConfig)}).
    *
-   * @param config the configuration for this contract.
+   * @param config     the configuration for this contract.
    * @param logPrinter custom logging implementation if you want to report separately
    */
   public ContractDefiner(final @NotNull ContractCaseConfig config, LogPrinter logPrinter) {
@@ -72,9 +78,61 @@ public class ContractDefiner {
           new BoundaryVersionGenerator().getVersions()
       );
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
     this.definer = definer;
+  }
+
+  /**
+   * Strips the matchers from an example definition. Useful if you need to reuse the definition of
+   * the expected return value in the {@code testResponse} function.
+   * <p>
+   * This version returns a JSON string for use in custom deserialization.
+   * <p>
+   * If your object can be naively mapped from the json, there's also
+   * {@link #stripMatchers(Object, Class)} for convenience.
+   *
+   * @param definition Some example definition that may or may not contain matchers
+   * @param <T>        The type of your definition object
+   * @return The JSON string that represents the value without the matchers
+   */
+  public <T> String stripMatchers(T definition) {
+    try {
+      return ConnectorResultMapper.mapSuccessWithAny(
+          this.definer.stripMatchers(
+              toJson(definition)));
+    } catch (Exception e) {
+      throw BoundaryCrashReporter.report(e);
+    }
+  }
+
+  /**
+   * Strips the matchers from an example definition. Useful if you need to reuse the definition of
+   * the expected return value in the {@code testResponse} function.
+   * <p>
+   * This version parses the returned json. If you need custom processing, instead use
+   * {@link #stripMatchers(Object)}.
+   *
+   * @param definition Some example definition that may or may not contain matchers
+   * @param <T>        The type of your definition object
+   * @return The JSON string that represents the value without the matchers
+   */
+  public <T> T stripMatchers(Object definition, Class<T> clazz) {
+    try {
+      try {
+        return mapper.readValue(
+            ConnectorResultMapper.mapSuccessWithAny(
+                this.definer.stripMatchers(
+                    toJson(definition))),
+            clazz
+        );
+      } catch (JsonProcessingException e) {
+        throw new ContractCaseConfigurationError("Unable to parse response as '" + clazz.getName()
+            + "'. Are you sure that the provided example represents an object of this type?", e);
+      }
+    } catch (Exception e) {
+      throw BoundaryCrashReporter.report(e);
+    }
   }
 
   /**
@@ -84,7 +142,10 @@ public class ContractDefiner {
    * @return A ContractWriteSuccess which describes the written contract
    */
   public ContractWriteSuccess endRecord() {
-   return ConnectorResultMapper.mapSuccessWithAny(this.definer.endRecord(), ContractWriteSuccess.class);
+    return ConnectorResultMapper.mapSuccessWithAny(
+        this.definer.endRecord(),
+        ContractWriteSuccess.class
+    );
   }
 
   /**
@@ -100,7 +161,7 @@ public class ContractDefiner {
           "DEFINER_LOAD_PLUGIN"
       ), pluginNames));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
   }
 
@@ -121,7 +182,7 @@ public class ContractDefiner {
           ConnectorConfigMapper.mapSuccessExample(additionalConfig, TEST_RUN_ID)
       ));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
   }
 
@@ -139,7 +200,6 @@ public class ContractDefiner {
     this.runInteraction(definition, additionalConfig.build());
   }
 
-
   /**
    * Runs an interaction test and adds it to the contract without additional configuration. If you
    * need config for this interaction, use
@@ -151,13 +211,11 @@ public class ContractDefiner {
   public <I extends AnyInteractionDescriptor> void runInteraction(InteractionDefinition<I> definition) {
     this.runInteraction(
         definition,
-        IndividualSuccessTestConfig
-            .IndividualSuccessTestConfigBuilder
+        IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder
             .builder()
             .build()
     );
   }
-
 
   /**
    * Runs an interaction test where the trigger is expected to throw an error on success, and adds
@@ -176,7 +234,7 @@ public class ContractDefiner {
           ConnectorConfigMapper.mapFailingExample(additionalConfig, TEST_RUN_ID)
       ));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
   }
 
@@ -206,63 +264,62 @@ public class ContractDefiner {
   public <I extends AnyInteractionDescriptor> void runThrowingInteraction(InteractionDefinition<I> definition) {
     this.runThrowingInteraction(
         definition,
-        IndividualFailedTestConfig
-            .IndividualFailedTestConfigBuilder
+        IndividualFailedTestConfig.IndividualFailedTestConfigBuilder
             .builder()
             .build()
     );
   }
 
-  public void registerFunction(String functionName, InvokableFunction0 function) {
+  public void registerFunction(String functionName, InvokableFunction0<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction1 function) {
+  public void registerFunction(String functionName, InvokableFunction1<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction2 function) {
+  public void registerFunction(String functionName, InvokableFunction2<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction3 function) {
+  public void registerFunction(String functionName, InvokableFunction3<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction4 function) {
+  public void registerFunction(String functionName, InvokableFunction4<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction5 function) {
+  public void registerFunction(String functionName, InvokableFunction5<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction6 function) {
+  public void registerFunction(String functionName, InvokableFunction6<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
     ));
   }
 
-  public void registerFunction(String functionName, InvokableFunction7 function) {
+  public void registerFunction(String functionName, InvokableFunction7<?> function) {
     registerFunctionInternal(functionName, ConnectorInvokableFunctionMapper.fromInvokableFunction(
         functionName,
         function
@@ -270,13 +327,91 @@ public class ContractDefiner {
   }
 
   private void registerFunctionInternal(String functionName,
-      ConnectorInvokableFunction connectorFunction) {
+      ConnectorInvokableFunction<?> connectorFunction) {
     try {
       ConnectorResultMapper.mapVoid(definer.registerFunction(
-          functionName, connectorFunction
-      ));
+          functionName, connectorFunction));
     } catch (Exception e) {
-      BoundaryCrashReporter.handleAndRethrow(e);
+      throw BoundaryCrashReporter.report(e);
     }
+  }
+
+  private JsonNode toJson(Object o) {
+    try {
+      Object processedObject = jsiiPreProcess(o);
+      return mapper.valueToTree(mapper.readTree(mapper.writeValueAsString(processedObject)));
+    } catch (JsonProcessingException e) {
+      throw new ContractCaseCoreError(
+          "Unable to convert object to JSON. Is the definition corrupt?",
+          e
+      );
+    }
+  }
+
+  private Object jsiiPreProcess(Object obj) {
+    // So, it turns out that JSII objects don't serialise naturally when
+    // we pass them to an object mapper.
+    // This function exists to call the serialiser on the JSII object,
+    // if it's there - meaning that we can serialise the matchers.
+    // We'll use this until we can remove JSII entirely - until then, it's
+    // a bit of a land mine - if objects are passed that have a `toJSON` method,
+    // it'll call it.
+    if (obj == null) {
+      return null;
+    }
+
+    // Check if the object has a toJSON method
+    try {
+      java.lang.reflect.Method toJsonMethod = obj.getClass().getMethod("toJSON");
+      if (toJsonMethod != null) {
+        // Call the toJSON method first
+        Object result = toJsonMethod.invoke(obj);
+        // Recursively process the result in case it also has nested objects with toJSON
+        // methods
+        return jsiiPreProcess(result);
+      }
+    } catch (NoSuchMethodException e) {
+      // No toJSON method found, continue with normal processing
+    } catch (Exception e) {
+      // If there's an error calling toJSON, fall back to normal serialization
+      // Log the error but don't fail the entire operation
+    }
+
+    if (obj instanceof java.util.Map<?, ?> map) {
+      java.util.Map<Object, Object> processedMap = new java.util.HashMap<>();
+      for (java.util.Map.Entry<?, ?> entry : map.entrySet()) {
+        processedMap.put(
+            jsiiPreProcess(entry.getKey()),
+            jsiiPreProcess(entry.getValue())
+        );
+      }
+      return processedMap;
+    }
+
+
+    if (obj instanceof java.util.Collection<?> collection) {
+      java.util.List<Object> processedList = new java.util.ArrayList<>();
+      for (Object item : collection) {
+        processedList.add(jsiiPreProcess(item));
+      }
+      return processedList;
+    }
+
+
+    if (obj.getClass().isArray()) {
+      int length = java.lang.reflect.Array.getLength(obj);
+      Object[] processedArray = new Object[length];
+      for (int i = 0; i < length; i++) {
+        processedArray[i] = jsiiPreProcess(java.lang.reflect.Array.get(obj, i));
+      }
+      return processedArray;
+    }
+
+    // For complex objects without toJSON method, we need to process their fields
+    // recursively, but this isn't really practical. So we just return the original
+
+    // For primitive types and other objects without toJSON, return as-is
+    // Jackson will handle the serialization of these objects
+    return obj;
   }
 }

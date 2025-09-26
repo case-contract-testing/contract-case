@@ -29,6 +29,136 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.27.1...@contract-case/contract-case-jest-v0.27.2) (2025-08-26)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/contract-case-jest:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-definition-dsl bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-entities-internal bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-plugin-base bumped from 0.27.1 to 0.27.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.1 to 0.27.2
+    * @contract-case/cli bumped from 0.27.1 to 0.27.2
+  * devDependencies
+    * @contract-case/cli bumped from 0.27.1 to 0.27.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.1 to 0.27.2
+
+## [0.27.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.27.0...@contract-case/contract-case-jest-v0.27.1) (2025-08-20)
+
+
+### Features
+
+* **core:** Control which contracts are written with contractsToWrite. Possible values are 'hash' and 'main', defaulting to both ([e7e18a3](https://github.com/case-contract-testing/contract-case/commit/e7e18a35b81b8150097706cc18c2c52512352ad6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-definition-dsl bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-entities-internal bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-plugin-base bumped from 0.27.0 to 0.27.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.0 to 0.27.1
+    * @contract-case/cli bumped from 0.27.0 to 0.27.1
+  * devDependencies
+    * @contract-case/cli bumped from 0.27.0 to 0.27.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.0 to 0.27.1
+
+## [0.27.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.26.1...@contract-case/contract-case-jest-v0.27.0) (2025-07-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function
+
+### Bug Fixes
+
+* Deprecate runVerification, as it is now replaced with getTests and runPreparedTest ([24cd85a](https://github.com/case-contract-testing/contract-case/commit/24cd85a1bae6e29cdfa315ae1e122a588d01fdd9))
+
+
+### Code Refactoring
+
+* **jest-dsl:** Change `verifyContract` to use `prepareVerificationTests` and `runPreparedTest`. This changes the behaviour of the verification callback. You no longer need to call `runVerification` in this function ([2f68f87](https://github.com/case-contract-testing/contract-case/commit/2f68f879768afcf9362f4f968ad037f0ff42dd9b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-definition-dsl bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-entities-internal bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-plugin-base bumped from 0.26.1 to 0.27.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.26.1 to 0.27.0
+    * @contract-case/cli bumped from 0.26.1 to 0.27.0
+  * devDependencies
+    * @contract-case/cli bumped from 0.26.1 to 0.27.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.1 to 0.27.0
+
+## [0.26.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.26.0...@contract-case/contract-case-jest-v0.26.1) (2025-07-13)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/contract-case-jest:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-definition-dsl bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-entities-internal bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-plugin-base bumped from 0.26.0 to 0.26.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.26.0 to 0.26.1
+    * @contract-case/cli bumped from 0.26.0 to 0.26.1
+  * devDependencies
+    * @contract-case/cli bumped from 0.26.0 to 0.26.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.26.0 to 0.26.1
+
+## [0.26.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.25.2...@contract-case/contract-case-jest-v0.26.0) (2025-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions
+
+### Features
+
+* Add Jest 30 as a possible peer dependency ([0f3cc98](https://github.com/case-contract-testing/contract-case/commit/0f3cc9819d3868a20f59bb28fd3dc11a5f42ca73))
+* **core:** Removed the assumption that every interaction response can be described by "returns". This is a breaking change, because it needs contracts to be re-written, and http contracts with automatically named triggers will have to change triggers from \`"a (200) ..."\` to \`"returns a (200) ..."\`. If you need to stay compatible with contracts from before this version, you will need to provide both names in your trigger definitions ([7f06209](https://github.com/case-contract-testing/contract-case/commit/7f062096bdad81e5d763429682b99f481f9405ce))
+* Now `definer.endRecord()` returns a `ContractWriteSuccess` object, which contains details of the written contract(s) ([7299895](https://github.com/case-contract-testing/contract-case/commit/7299895f8ec7a9d8b3e351111045f5c7b75eb1e8))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-definition-dsl bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-entities-internal bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-plugin-base bumped from 0.25.2 to 0.26.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.25.2 to 0.26.0
+    * @contract-case/cli bumped from 0.25.2 to 0.26.0
+  * devDependencies
+    * @contract-case/cli bumped from 0.25.2 to 0.26.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.25.2 to 0.26.0
+
 ## [0.25.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.25.1...@contract-case/contract-case-jest-v0.25.2) (2025-06-22)
 
 

@@ -66,6 +66,14 @@ export interface BaseCaseConfig {
   contractFilename?: string;
 
   /**
+   * Which contracts to write:
+   *
+   * * `'main'`: The main contract file
+   * * `'hash'`: The contract file hashed by the contents
+   */
+  contractsToWrite: Array<'hash' | 'main'>;
+
+  /**
    * What to do if contracts have changed?
    *
    * - `"OVERWRITE"`: Replace the previous contract file
@@ -158,14 +166,7 @@ export interface BaseCaseConfig {
    *
    * It should never need to be exposed to end-users.
    */
-  internals: {
-    /**
-     * Whether to run verification synchronously, or asynchronously (returning a
-     * promise that completes when all verification is complete). Most languages
-     * will want asynchronous verification, so that `verifyContract()` fails correctly.
-     */
-    asyncVerification: boolean;
-  };
+  internals: {};
 
   /**
    * A string to add at the start of the log context when initialising it.

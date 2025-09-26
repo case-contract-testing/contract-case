@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractVerifier;
+import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.InteractionSetup;
 import io.contract_testing.contractcase.configuration.TestErrorResponseFunction;
@@ -66,11 +67,19 @@ public class HttpApiExampleVerifyTest {
       "a (200) response with body an object shaped like {userId: {{userId}}}",
       (s, setupInfo) -> {
         assertThat(s.userId()).isEqualTo(setupInfo.getStateVariable("userId"));
+      },
+      "returns a (200) response with body an object shaped like {userId: {{userId}}}",
+      (s, setupInfo) -> {
+        assertThat(s.userId()).isEqualTo(setupInfo.getStateVariable("userId"));
       }
   );
   ;
   private final Map<String, TestErrorResponseFunction> userErrorTests = Map.of(
       "a (404) response without a body",
+      (e, setupInfo) -> {
+        assertThat(e.getMessage()).isEqualTo("User not found");
+      },
+      "returns a (404) response without a body",
       (e, setupInfo) -> {
         assertThat(e.getMessage()).isEqualTo("User not found");
       }
@@ -92,6 +101,10 @@ public class HttpApiExampleVerifyTest {
                         "a (200) response with body an object shaped like {status: \"up\"}",
                         (String result, InteractionSetup interactionSetup) -> {
                           assertThat(result).isEqualTo("up");
+                        },
+                        "returns a (200) response with body an object shaped like {status: \"up\"}",
+                        (String result, InteractionSetup interactionSetup) -> {
+                          assertThat(result).isEqualTo("up");
                         }
                     ),
                     new HashMap<>()
@@ -104,6 +117,10 @@ public class HttpApiExampleVerifyTest {
                         "a (200) response with body an object shaped like {status: <any string>}",
                         (result, setupInfo) -> {
                           assertThat(result).isInstanceOf(String.class);
+                        },
+                        "returns a (200) response with body an object shaped like {status: <any string>}",
+                        (result, setupInfo) -> {
+                          assertThat(result).isInstanceOf(String.class);
                         }
                     ),
                     Map.of(
@@ -112,6 +129,14 @@ public class HttpApiExampleVerifyTest {
                           assertThat(e.getMessage()).isEqualTo("The server is not ready");
                         },
                         "a (503) response with body an object shaped like {status: \"down\"}",
+                        (e, setupInfo) -> {
+                          assertThat(e.getMessage()).isEqualTo("The server is not ready");
+                        },
+                        "returns a (httpStatus 4XX | 5XX) response without a body",
+                        (e, setupInfo) -> {
+                          assertThat(e.getMessage()).isEqualTo("The server is not ready");
+                        },
+                        "returns a (503) response with body an object shaped like {status: \"down\"}",
                         (e, setupInfo) -> {
                           assertThat(e.getMessage()).isEqualTo("The server is not ready");
                         }

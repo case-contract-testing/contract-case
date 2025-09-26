@@ -1,8 +1,6 @@
 import type * as http from 'node:http';
 
 import { CaseConfigurationError } from '@contract-case/case-plugin-base';
-import { Mutex } from 'async-mutex';
-import type { RunTestCallback } from './core/executeExample/types';
 import type { StateHandlers } from './entities/states/types';
 
 import start from './__tests__/server/http/connectors/web';
@@ -14,25 +12,16 @@ import { ReadingCaseContract } from './core';
 import { readerDependencies } from './connectors/dependencies';
 import { readContract } from './connectors/contractStore/contractReader';
 import { defaultPrinter } from './__tests__/jest/defaultTestPrinter';
+import { ContractVerificationTest } from './core/types';
 
-describe('Server verification', () => {
-  let server: http.Server;
-  let mockHealthStatus = true;
-  let mockGetUser: (id: string) => User | undefined = () => undefined;
-  const port = 8089;
-  const serverDependencies: Dependencies = {
-    healthService: {
-      ready: () => mockHealthStatus,
-    },
-    baseService,
-    userRepository: { get: (id) => mockGetUser(id) },
-  };
+const port = 8089;
 
-  const contract = readContract(
-    'case-contracts/contract-for-incorrectly-configured-examples.json',
-  );
+const contract = readContract(
+  'case-contracts/contract-for-incorrectly-configured-examples.json',
+);
 
-  const verifier = new ReadingCaseContract(
+const createVerifier = () =>
+  new ReadingCaseContract(
     contract,
     readerDependencies(defaultPrinter),
     {
@@ -46,8 +35,20 @@ describe('Server verification', () => {
       publish: false,
     },
     ['tests'],
-    new Mutex(),
   );
+
+describe('Server verification', () => {
+  let server: http.Server;
+  let mockHealthStatus = true;
+  let mockGetUser: (id: string) => User | undefined = () => undefined;
+  const serverDependencies: Dependencies = {
+    healthService: {
+      ready: () => mockHealthStatus,
+    },
+    baseService,
+    userRepository: { get: (id) => mockGetUser(id) },
+  };
+
   beforeAll(async () => {
     server = await start(port, serverDependencies);
   });
@@ -67,13 +68,15 @@ describe('Server verification', () => {
 
   describe('with a file contract', () => {
     // JEST BOILERPLATE
-    const runJestTestExpectingErrors =
-      (errors: Record<string, Function>): RunTestCallback =>
-      (testName: string, verify: () => Promise<unknown>): void => {
+    const runJestTestExpectingErrors = (
+      tests: ContractVerificationTest[],
+      errors: Record<string, Function>,
+    ): void =>
+      tests.forEach(({ runTest, testName }) =>
         it(
           `${testName}`,
           () =>
-            verify().then(
+            runTest().then(
               () => {
                 if (errors[testName] !== undefined) {
                   throw new Error(
@@ -86,13 +89,17 @@ describe('Server verification', () => {
                   // eslint-disable-next-line jest/no-conditional-expect
                   expect(e).toBeInstanceOf(errors[testName]);
                 } else {
-                  throw e;
+                  // If this happens, we failed, but we don't have the expected failure
+                  throw new Error(
+                    `Failed when we weren't expecting it. Could be due to misnamed test: ${testName}. Failure was: ${e.message}`,
+                    e,
+                  );
                 }
               },
             ),
           60000,
-        );
-      };
+        ),
+      );
 
     // END JEST BOILERPLATE
 
@@ -123,15 +130,13 @@ describe('Server verification', () => {
           mockGetUser = () => undefined;
         },
       };
-      verifier.verifyContract(
-        { stateHandlers },
-        runJestTestExpectingErrors({
-          'When Server is down, then an http "GET" request to "/health" without a body returns a (httpStatus 4XX | 5XX) response without a body':
-            CaseConfigurationError,
-          'When Server is down, then an http "GET" request to "/health" without a body returns a (503) response with body an object shaped like {status: "down"}':
-            CaseConfigurationError,
-        }),
-      );
+      const verifier = createVerifier();
+      runJestTestExpectingErrors(verifier.getTests({ stateHandlers }), {
+        'When Server is down, then an http "GET" request to "/health" without a body returns a (httpStatus 4XX | 5XX) response without a body':
+          CaseConfigurationError,
+        'When Server is down, then an http "GET" request to "/health" without a body returns a (503) response with body an object shaped like {status: "down"}':
+          CaseConfigurationError,
+      });
     });
 
     describe('contract verification with state that fails', () => {
@@ -164,19 +169,17 @@ describe('Server verification', () => {
           mockGetUser = () => undefined;
         },
       };
-      verifier.verifyContract(
-        { stateHandlers },
-        runJestTestExpectingErrors({
-          'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} returns a (200) response with body an object shaped like {status: "up"}':
-            CaseConfigurationError,
-          'When Server is up, then an http "GET" request to "/health" without a body returns a (200) response with body an object shaped like {status: <any string>}':
-            CaseConfigurationError,
-          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
-            CaseConfigurationError,
-          'When Server is up and No users exist, then an http "GET" request to "/users/123" without a body returns a (404) response without a body':
-            CaseConfigurationError,
-        }),
-      );
+      const verifier = createVerifier();
+      runJestTestExpectingErrors(verifier.getTests({ stateHandlers }), {
+        'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} returns a (200) response with body an object shaped like {status: "up"}':
+          CaseConfigurationError,
+        'When Server is up, then an http "GET" request to "/health" without a body returns a (200) response with body an object shaped like {status: <any string>}':
+          CaseConfigurationError,
+        [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
+          CaseConfigurationError,
+        'When Server is up and No users exist, then an http "GET" request to "/users/123" without a body returns a (404) response without a body':
+          CaseConfigurationError,
+      });
     });
 
     describe('contract verification with state teardown that fails', () => {
@@ -214,19 +217,17 @@ describe('Server verification', () => {
           mockGetUser = () => undefined;
         },
       };
-      verifier.verifyContract(
-        { stateHandlers },
-        runJestTestExpectingErrors({
-          'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} returns a (200) response with body an object shaped like {status: "up"}':
-            CaseConfigurationError,
-          'When Server is up, then an http "GET" request to "/health" without a body returns a (200) response with body an object shaped like {status: <any string>}':
-            CaseConfigurationError,
-          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
-            CaseConfigurationError,
-          'When Server is up and No users exist, then an http "GET" request to "/users/123" without a body returns a (404) response without a body':
-            CaseConfigurationError,
-        }),
-      );
+      const verifier = createVerifier();
+      runJestTestExpectingErrors(verifier.getTests({ stateHandlers }), {
+        'When Server is up, then an http "GET" request to "/health" without a body with the following headers an object shaped like {accept: "application/json"} returns a (200) response with body an object shaped like {status: "up"}':
+          CaseConfigurationError,
+        'When Server is up, then an http "GET" request to "/health" without a body returns a (200) response with body an object shaped like {status: <any string>}':
+          CaseConfigurationError,
+        [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
+          CaseConfigurationError,
+        'When Server is up and No users exist, then an http "GET" request to "/users/123" without a body returns a (404) response without a body':
+          CaseConfigurationError,
+      });
     });
 
     describe('contract verification missing a variable', () => {
@@ -258,13 +259,11 @@ describe('Server verification', () => {
           mockGetUser = () => undefined;
         },
       };
-      verifier.verifyContract(
-        { stateHandlers },
-        runJestTestExpectingErrors({
-          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
-            CaseConfigurationError,
-        }),
-      );
+      const verifier = createVerifier();
+      runJestTestExpectingErrors(verifier.getTests({ stateHandlers }), {
+        [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
+          CaseConfigurationError,
+      });
     });
 
     describe('contract verification with the wrong type of a variable', () => {
@@ -297,13 +296,11 @@ describe('Server verification', () => {
           mockGetUser = () => undefined;
         },
       };
-      verifier.verifyContract(
-        { stateHandlers },
-        runJestTestExpectingErrors({
-          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
-            CaseConfigurationError,
-        }),
-      );
+      const verifier = createVerifier();
+      runJestTestExpectingErrors(verifier.getTests({ stateHandlers }), {
+        [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
+          CaseConfigurationError,
+      });
     });
 
     describe('contract verification with unexpected variables', () => {
@@ -337,10 +334,8 @@ describe('Server verification', () => {
           return { userId: 12 };
         },
       };
-      verifier.verifyContract(
-        { stateHandlers },
-        runJestTestExpectingErrors({}),
-      );
+      const verifier = createVerifier();
+      runJestTestExpectingErrors(verifier.getTests({ stateHandlers }), {});
     });
 
     describe('contract verification with empty variables', () => {
@@ -374,13 +369,11 @@ describe('Server verification', () => {
           return { userId: 12 };
         },
       };
-      verifier.verifyContract(
-        { stateHandlers },
-        runJestTestExpectingErrors({
-          [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
-            CaseConfigurationError,
-        }),
-      );
+      const verifier = createVerifier();
+      runJestTestExpectingErrors(verifier.getTests({ stateHandlers }), {
+        [`When Server is up and A user exists, then an http "GET" request to "/users/\${userId}" without a body returns a (200) response with body an object shaped like {userId: \${userId}}`]:
+          CaseConfigurationError,
+      });
     });
 
     describe('contract verification with more variables than expected', () => {
@@ -414,10 +407,8 @@ describe('Server verification', () => {
           return { userId: 12 };
         },
       };
-      verifier.verifyContract(
-        { stateHandlers },
-        runJestTestExpectingErrors({}),
-      );
+      const verifier = createVerifier();
+      runJestTestExpectingErrors(verifier.getTests({ stateHandlers }), {});
     });
   });
 });

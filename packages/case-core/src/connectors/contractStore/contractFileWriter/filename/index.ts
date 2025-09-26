@@ -1,2 +1,2 @@
 export * from './filename';
-export { consumerSlug, providerSlug } from './contractDir';
+export { consumerSlug, providerSlug } from './slugs';

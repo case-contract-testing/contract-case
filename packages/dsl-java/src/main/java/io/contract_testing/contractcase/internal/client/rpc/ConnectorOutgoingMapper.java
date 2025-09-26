@@ -8,7 +8,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
 import com.google.protobuf.util.JsonFormat;
-import io.contract_testing.contractcase.configuration.LogLevel;
+import io.contract_testing.contractcase.configuration.ContractToWrite;
 import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.grpc.ContractCaseStream;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.ContractCaseConfig;
@@ -23,6 +23,7 @@ import io.contract_testing.contractcase.grpc.ContractCaseStream.RunInteractionRe
 import io.contract_testing.contractcase.grpc.ContractCaseStream.RunRejectingInteractionRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.StateHandlerHandle.Stage;
+import io.contract_testing.contractcase.grpc.ContractCaseStream.StripMatchersRequest;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.TriggerFunctionHandle;
 import io.contract_testing.contractcase.internal.client.MaintainerLog;
 import io.contract_testing.contractcase.internal.edge.ConnectorFailure;
@@ -154,7 +155,15 @@ public class ConnectorOutgoingMapper {
       });
     }
 
-    if(config.getAdviceOverrides() != null) {
+    if (config.getContractsToWrite() != null) {
+      builder.addAllContractsToWrite(config.getContractsToWrite()
+          .stream()
+          .map(ContractToWrite::toString)
+          .map(ConnectorOutgoingMapper::map)
+          .toList());
+    }
+
+    if (config.getAdviceOverrides() != null) {
       config.getAdviceOverrides().forEach(builder::putAdviceOverrides);
     }
 
@@ -165,7 +174,7 @@ public class ConnectorOutgoingMapper {
   @NotNull
   public static ContractCaseStream.DefinitionRequest.Builder mapRunInteractionRequest(JsonNode definition,
       @NotNull ContractCaseConnectorConfig runConfig) {
-    final var structBuilder = getStructBuilder(definition);
+    final var structBuilder = toStructBuilder(definition);
     return DefinitionRequest.newBuilder()
         .setRunInteraction(RunInteractionRequest.newBuilder()
             .setConfig(ConnectorOutgoingMapper.mapConfig(runConfig)) // TODO handle additional state handlers or triggers
@@ -176,7 +185,7 @@ public class ConnectorOutgoingMapper {
   public static ContractCaseStream.DefinitionRequest.Builder mapRunRejectingInteractionRequest(
       JsonNode definition,
       ContractCaseConnectorConfig runConfig) {
-    final var structBuilder = getStructBuilder(definition);
+    final var structBuilder = toStructBuilder(definition);
     return DefinitionRequest.newBuilder()
         .setRunRejectingInteraction(RunRejectingInteractionRequest.newBuilder()
             .setConfig(ConnectorOutgoingMapper.mapConfig(runConfig)) // TODO handle additional state handlers or triggers
@@ -185,10 +194,20 @@ public class ConnectorOutgoingMapper {
   }
 
 
+  public static ContractCaseStream.DefinitionRequest.Builder mapStripMatchersRequest(
+      JsonNode definition
+  ) {
+    return DefinitionRequest.newBuilder()
+        .setStripMatchers(StripMatchersRequest.newBuilder()
+            .setMatcherOrData(toStructBuilder(definition))
+            .build());
+  }
+
+
   @NotNull
   static ContractCaseStream.BoundaryResult mapResult(@NotNull ConnectorResult result) {
     var resultType = result.getResultType();
-    MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Mapping result type: " + resultType);
+    // MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Mapping result type: " + resultType);
     if (resultType == null) {
       throw new ContractCaseCoreError("Got a null result type at: " + result);
     }
@@ -242,11 +261,11 @@ public class ConnectorOutgoingMapper {
 
 
   private static Struct mapMapToStruct(Map<String, Object> payload) {
-    return getStructBuilder(objectMapper.valueToTree(payload)).build();
+    return toStructBuilder(objectMapper.valueToTree(payload)).build();
   }
 
   @NotNull
-  private static Struct.Builder getStructBuilder(JsonNode definition) {
+  private static Struct.Builder toStructBuilder(JsonNode definition) {
     final var structBuilder = Struct.newBuilder();
 
     try {

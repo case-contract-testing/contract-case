@@ -45,47 +45,43 @@ describe('Server verification', () => {
   );
   // END SERVER SETUP BOILERPLATE
 
-  verifyContract(
-    {
-      providerName: 'http response provider',
-      mockConfig: {
-        http: {
-          baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
-        },
+  const stateHandlers: StateHandlers = {
+    'Server is up': () => {
+      mockHealthStatus = true;
+    },
+    'Server is down': () => {
+      mockHealthStatus = false;
+    },
+    'A user exists': {
+      setup: () => {
+        const userId = '42';
+        mockGetUser = (id) => {
+          if (id === userId)
+            return {
+              userId,
+              name: 'John',
+            };
+          return undefined;
+        };
+        return { userId };
+      },
+      teardown: () => {
+        mockGetUser = () => undefined;
       },
     },
-    (verifier) => {
-      const stateHandlers: StateHandlers = {
-        'Server is up': () => {
-          mockHealthStatus = true;
-        },
-        'Server is down': () => {
-          mockHealthStatus = false;
-        },
-        'A user exists': {
-          setup: () => {
-            const userId = '42';
-            mockGetUser = (id) => {
-              if (id === userId)
-                return {
-                  userId,
-                  name: 'John',
-                };
-              return undefined;
-            };
-            return { userId };
-          },
-          teardown: () => {
-            mockGetUser = () => undefined;
-          },
-        },
-        'No users exist': () => {
-          mockGetUser = () => undefined;
-          return { userId: '12' };
-        },
-      };
-
-      return verifier.runVerification({ stateHandlers });
+    'No users exist': () => {
+      mockGetUser = () => undefined;
+      return { userId: '12' };
     },
-  );
+  };
+
+  verifyContract({
+    providerName: 'http response provider',
+    mockConfig: {
+      http: {
+        baseUrlUnderTest: `http://localhost:${port}`, // Replace this with your own server URL
+      },
+    },
+    stateHandlers,
+  });
 });

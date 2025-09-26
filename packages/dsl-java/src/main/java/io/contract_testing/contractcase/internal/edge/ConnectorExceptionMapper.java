@@ -3,6 +3,8 @@ package io.contract_testing.contractcase.internal.edge;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
 import io.contract_testing.contractcase.exceptions.HasUserFacingStackTrace;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -19,8 +21,9 @@ public class ConnectorExceptionMapper {
         return trace;
       }
     }
-    return Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).collect(
-        Collectors.joining("\n"));
+    StringWriter stringWriter = new StringWriter();
+    e.printStackTrace(new PrintWriter(stringWriter));
+    return stringWriter.toString();
   }
 
   public static ConnectorFailure map(Exception e) {

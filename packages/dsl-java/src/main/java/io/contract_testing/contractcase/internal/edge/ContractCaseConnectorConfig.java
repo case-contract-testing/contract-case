@@ -4,12 +4,14 @@ import io.contract_testing.contractcase.configuration.AutoVersionFrom;
 import io.contract_testing.contractcase.configuration.BrokerBasicAuthCredentials;
 import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
+import io.contract_testing.contractcase.configuration.ContractToWrite;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.StateHandler;
 import io.contract_testing.contractcase.configuration.TriggerGroups;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ContractCaseConnectorConfig extends ContractCaseConfig {
@@ -53,7 +55,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       ITriggerFunction triggerAndTest,
       Map<String, Map<String, String>> mockConfig,
       AutoVersionFrom autoVersionFrom,
-      Map<String, String> adviceOverrides) {
+      Map<String, String> adviceOverrides,
+      List<ContractToWrite> contractsToWrite) {
     super(
         providerName,
         consumerName,
@@ -72,7 +75,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
         null,
         mockConfig,
         autoVersionFrom,
-        adviceOverrides
+        adviceOverrides,
+        contractsToWrite
     );
     this.testRunId = testRunId;
     this.triggerAndTests = triggerAndTests;
@@ -144,6 +148,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
     private AutoVersionFrom autoVersionFrom;
     private ChangedContractsBehaviour changedContracts;
     private Map<String, String> adviceOverrides;
+
+    private List<ContractToWrite> contractsToWrite;
 
     private Builder() {
     }
@@ -252,6 +258,11 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
       return this;
     }
 
+    public Builder contractsToWrite(List<ContractToWrite> contractsToWrite) {
+      this.contractsToWrite = contractsToWrite;
+      return this;
+    }
+
 
     public ContractCaseConnectorConfig build() {
       return new ContractCaseConnectorConfig(
@@ -274,7 +285,8 @@ public class ContractCaseConnectorConfig extends ContractCaseConfig {
           triggerAndTest,
           mockConfig,
           autoVersionFrom,
-          adviceOverrides
+          adviceOverrides,
+          contractsToWrite
       );
     }
 

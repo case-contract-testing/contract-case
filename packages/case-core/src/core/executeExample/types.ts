@@ -11,11 +11,6 @@ import {
 } from '@contract-case/case-plugin-dsl-types';
 import { AnyState, Assertable, ExampleNames } from '../../entities/types';
 
-export type RunTestCallback = (
-  testName: string,
-  verify: () => Promise<unknown>,
-) => void;
-
 // TODO: We shouldn't need to custom handle this type - it should be
 // calculated from the plugins somehow, or generalised
 export type HttpRequestConfig = Assertable<typeof MOCK_HTTP_SERVER>['config'];

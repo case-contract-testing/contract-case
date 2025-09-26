@@ -35,7 +35,7 @@ export const mapConfig = ({
     ? { testRunId }
     : { testRunId: 'test-run-id-missing' }),
   ...rest,
-  internals: { asyncVerification: false },
+  internals: {},
 });
 
 export const mapSuccessConfig = <R, C extends Record<string, string>>({

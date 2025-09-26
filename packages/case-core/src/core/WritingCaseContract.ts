@@ -3,7 +3,6 @@ import { Mutex } from 'async-mutex';
 import { AnyMockDescriptorType } from '@contract-case/case-entities-internal';
 import {
   applyNodeToContext,
-  nameMock,
   MatchContext,
   CaseCoreError,
   addLocation,
@@ -43,6 +42,12 @@ export class WritingCaseContract extends BaseCaseContract {
 
   private dependencies: WriterDependencies;
 
+  /**
+   * Indicates that the contract has been closed by endRecord.
+   * After this, no new interactions can be written to the contract
+   */
+  private contractClosed: boolean = false;
+
   constructor(
     description: CaseContractDescription,
     dependencies: WriterDependencies,
@@ -77,6 +82,14 @@ export class WritingCaseContract extends BaseCaseContract {
   ): Promise<unknown> {
     const thisIndex = this.testIndex;
     this.testIndex += 1;
+
+    if (this.contractClosed) {
+      throw new CaseConfigurationError(
+        'Unable to write more interactions to the contract after endRecord() has been called',
+        this.initialContext,
+        'UNDOCUMENTED',
+      );
+    }
 
     const runContext = applyNodeToContext(
       mockDescription,
@@ -126,7 +139,7 @@ export class WritingCaseContract extends BaseCaseContract {
 
         const example: CaseExample = {
           states,
-          mock: nameMock(mockDescription, runContext),
+          mock: mockDescription,
           result: 'PENDING',
         };
 
@@ -157,7 +170,7 @@ export class WritingCaseContract extends BaseCaseContract {
         return r;
       })
       .catch((e) => {
-        runContext.logger.maintainerDebug('executeTest threw:', e);
+        runContext.logger.maintainerDebug('executeTest threw:', e, e.stack);
         throw e;
       });
   }
@@ -189,6 +202,7 @@ export class WritingCaseContract extends BaseCaseContract {
 
   async endRecord(): Promise<ContractWriteSuccess> {
     const writingContext = addLocation('WritingContract', this.initialContext);
+    this.contractClosed = true;
     if (hasFailure(this.currentContract)) {
       const failures = getFailures(this.currentContract);
       const successCount = getSuccessCount(this.currentContract);

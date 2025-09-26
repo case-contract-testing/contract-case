@@ -38,10 +38,16 @@ versions, as they are listed in source code / generated documentation.
 
 Next:
 
+- [ ] Different verifications with specific configuration, so that you can do "main fails, everything else is just recorded as failure"
+- [ ] Arbitrary behaviour on verification - probably a callback to the host language
+- [ ] Name contracts, so that they can be described in logs
+- [ ] Group the verification handles, so they can be reported in groups in host languages
+- [ ] Generate Matchers and remove JSii
+- [ ] Improve snapshot mismatch error by saying how the snapshot doesn't match
 - [ ] Reasoning about required-for-deploy so that client-providers are better matched
 - [ ] Document that you can mix interaction types
 - [ ] Do a configuration error message like the crash message, so that misconfigurations don't result in stack traces
-- [ ] Ensure original stack traces are maintained across boundaries and implement `originalStack` function.
+- [x] Ensure original stack traces are maintained across boundaries and implement `originalStack` function.
 - [ ] Add way to say 'I need this field and I don't care what's in it'
 - [ ] Replace direct access of context in the core with selector methods, so that the logic is consistent and will read more fluently
 - [ ] Validate config - some settings can come as arbitrary strings (eg from env), and we could be more helpful if there are errors
@@ -89,7 +95,6 @@ Tidiness:
 
 - [ ] Perhaps separate the DSL's needs in the definition package and the pretty-format, bit too.
 - [ ] Rename handle -> functionName in the registerFunction() calls
-
   - [x] Classes for matchers
   - [x] Classes for mocks
   - [x] Types for contract definition
