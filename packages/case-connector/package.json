@@ -78,7 +78,7 @@
     "@grpc/proto-loader": "^0.7.15",
     "get-port": "^7.1.0",
     "google-protobuf": "^3.21.4",
-    "pretty-format": "^30.0.5",
+    "pretty-format": "^30.2.0",
     "uuid": "^13.0.0"
   },
   "stability": "stable",

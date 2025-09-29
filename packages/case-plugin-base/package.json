@@ -66,6 +66,6 @@
   },
   "dependencies": {
     "@contract-case/case-plugin-dsl-types": "0.27.2",
-    "pretty-format": "^30.0.5"
+    "pretty-format": "^30.2.0"
   }
 }
