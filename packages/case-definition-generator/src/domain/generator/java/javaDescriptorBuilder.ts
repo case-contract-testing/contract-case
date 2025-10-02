@@ -1,3 +1,4 @@
+import * as path from 'node:path';
 import { getType } from '../../typeSystem';
 import { LanguageTypes, MatcherDslDeclaration } from '../../typeSystem/types';
 import {
@@ -121,20 +122,40 @@ const createConstructorDescriptors = (
   return constructors;
 };
 
+const MATCHER_PACKAGE_PATH = [
+  'io',
+  'contract_testing',
+  'contractcase',
+  'definitions',
+  'matchers',
+];
+
+const toJavaPackageName = (namespace: string) =>
+  namespace.toLowerCase().replace(/[^a-z]/, '_');
+
 /**
  * Builds a complete JavaDescriptor from a MatcherDslDeclaration.
  * This function contains all the decision-making logic about what to generate,
  * separated from the actual generation logic.
  *
  * @param definition - Complete matcher declaration containing name, type, documentation, and parameters
- * @param namespace - Namespace prefix for the matcher type identifier
+ * @param category - the category for this matcher, used for grouing
+ * @param namespace - Namespace prefix for the matcher type
  * @returns JavaDescriptor containing all information needed to generate the Java class
  */
 export const buildJavaDescriptor = (
   definition: MatcherDslDeclaration,
+  category: string,
   namespace: string,
 ): JavaDescriptor => ({
-  packageName: 'io.contract_testing.contractcase.definitions',
+  packageName: `${MATCHER_PACKAGE_PATH.join('.')}.${toJavaPackageName(category)}`,
+  basePath: path.join(
+    'src',
+    'main',
+    'java',
+    ...MATCHER_PACKAGE_PATH,
+    toJavaPackageName(category),
+  ),
   imports: determineImports(definition),
   className: definition.name,
   classDocumentation: definition.documentation,

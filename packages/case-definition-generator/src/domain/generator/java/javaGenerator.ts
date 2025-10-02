@@ -1,20 +1,11 @@
-import { LanguageTypes, MatcherDslDeclaration } from '../../typeSystem/types';
+import path from 'path';
+import { MatcherDslDeclaration } from '../../typeSystem/types';
 import { GeneratedFile } from '../types';
 import { buildJavaDescriptor } from './javaDescriptorBuilder';
 import { renderJavaClass } from './javaRenderer';
 
-const javaLanguageTypes: LanguageTypes = {
-  array: (type) => `List<${type}>`,
-  data: 'Object',
-  matcher: 'M',
-};
-
 /**
  * Generates complete Java DSL class code for a ContractCase matcher definition.
- *
- * This function now uses the new architecture that separates decision-making
- * (buildJavaDescriptor) from rendering (renderJavaClass), providing better
- * separation of concerns and testability.
  *
  * The generated class will always have:
  * - At least one constructor (required parameters only)
@@ -25,23 +16,24 @@ const javaLanguageTypes: LanguageTypes = {
  * @returns GeneratedFile object containing the Java class source code and relative path
  *
  * @param definition - Complete matcher declaration containing name, type, documentation, and parameters.
+ * @param category - the group for this matcher (eg `"arrays"`, etc). Doesn't have to be globally unique
  * @param namespace - Namespace prefix for the matcher type identifier. In core
  * plugins this will be `_case`, in other plugins this should be something
  * unique to your organisation or plugin. Must not be empty.
  *
  */
-export function generateJavaDslCode(
+export const generateJavaDslCode = (
   definition: MatcherDslDeclaration,
+  category: string,
   namespace: string,
-): GeneratedFile {
-  // Build the descriptor containing all decisions about what to generate
-  const descriptor = buildJavaDescriptor(definition, namespace);
-
-  // Render the Java class based on the descriptor
-  const content = renderJavaClass(descriptor);
-
+): GeneratedFile => {
+  const descriptor = buildJavaDescriptor(definition, category, namespace);
   return {
-    content,
-    relativePath: `${definition.name}.java`,
+    content: renderJavaClass(descriptor),
+    entityNames: [descriptor.className],
+    relativePath: path.join(
+      descriptor.basePath,
+      `${descriptor.className}.java`,
+    ),
   };
-}
+};

@@ -11,7 +11,9 @@ export const makeGenerator = (
 ): DslGenerator => ({
   process: (plugin: PluginDslDeclaration): void => {
     plugin.matchers.forEach((matcher) => {
-      fileWriter.write(generateJavaDslCode(matcher, plugin.namespace));
+      fileWriter.write(
+        generateJavaDslCode(matcher, plugin.category, plugin.namespace),
+      );
     });
   },
 });

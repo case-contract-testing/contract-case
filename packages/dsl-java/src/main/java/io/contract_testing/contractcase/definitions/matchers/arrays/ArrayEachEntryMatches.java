@@ -1,8 +1,9 @@
-package io.contract_testing.contractcase.definitions;
+package io.contract_testing.contractcase.definitions.matchers.arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * Matches an array where each element matches the provided matcher.
@@ -19,7 +20,7 @@ public class ArrayEachEntryMatches<M> {
 
   @JsonInclude(Include.NON_NULL)
   @JsonProperty("_case:matcher:example")
-  final Object example;
+  final List<Object> example;
 
   /**
    * Matches an array where each element matches the provided matcher.
@@ -38,9 +39,10 @@ public class ArrayEachEntryMatches<M> {
    * @param matcher The matcher to match against each element of the array.
    * @param example Example data to use instead of the generated one
    */
-  public ArrayEachEntryMatches(M matcher, Object example) {
+  public ArrayEachEntryMatches(M matcher, List<Object> example) {
     this.type = "_case:ArrayEachEntryLike";
     this.matcher = matcher;
     this.example = example;
   }
+
 }

@@ -36,6 +36,8 @@ export type JavaConstructorDescriptor = {
 export type JavaDescriptor = {
   /** Package name for the Java class */
   packageName: string;
+  /** The base path relative to the java source root */
+  basePath: string;
   /** List of import statements needed */
   imports: string[];
   /** Name of the Java class */

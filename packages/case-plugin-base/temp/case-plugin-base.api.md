@@ -89,6 +89,7 @@ export type ConfigurationErrorCode = keyof ErrorCodeDefinitions['configuration']
 
 // @public
 export interface ConfigurationErrorCodes {
+    BAD_DSL_DECLARATION: 'BAD_DSL_DECLARATION';
     BAD_INTERACTION_DEFINITION: 'BAD_INTERACTION_DEFINITION';
     CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE';
     DISK_IO_PROBLEM: 'DISK_IO_PROBLEM';

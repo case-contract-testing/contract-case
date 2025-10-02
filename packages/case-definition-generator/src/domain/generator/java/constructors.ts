@@ -119,7 +119,6 @@ export const addSingleConstructor = (
   className: string,
   constructorDescriptor: JavaConstructorDescriptor,
 ): void => {
-  // Add javadoc
   generateConstructorJavadoc(
     lines,
     constructorDescriptor.documentation,
@@ -143,33 +142,4 @@ export const addSingleConstructor = (
   });
 
   lines.push('  }');
-};
-
-/**
- * Legacy function maintained for backward compatibility.
- * Consider using addSingleConstructor with JavaConstructorDescriptor instead.
- *
- * @deprecated Use addSingleConstructor with JavaConstructorDescriptor instead
- */
-export const addSingleConstructorLegacy = (
-  lines: string[],
-  className: string,
-  params: ParameterDeclaration[],
-  namespace: string,
-  type: string,
-  documentation: string,
-  optionalParams: ParameterDeclaration[] = [],
-): void => {
-  const constructorDescriptor: JavaConstructorDescriptor = {
-    parameters: params,
-    documentation,
-    typeValue: `${namespace}:${type}`,
-    optionalParamsToSetNull:
-      optionalParams.length > 0 &&
-      !optionalParams.some((p) => params.includes(p))
-        ? optionalParams
-        : [],
-  };
-
-  addSingleConstructor(lines, className, constructorDescriptor);
 };

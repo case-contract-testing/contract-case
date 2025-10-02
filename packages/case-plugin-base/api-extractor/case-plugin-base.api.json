@@ -1372,6 +1372,33 @@
           "members": [
             {
               "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#BAD_DSL_DECLARATION:member",
+              "docComment": "/**\n * Used when the DSL declaration to generate matchers is not\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "BAD_DSL_DECLARATION: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'BAD_DSL_DECLARATION'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "BAD_DSL_DECLARATION",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#BAD_INTERACTION_DEFINITION:member",
               "docComment": "/**\n * Used when an interaction definition isn't valid.\n *\n * Because interaction definitions are very flexible, it's sometimes possible to pass the wrong matcher at an inappropriate time. For example, it could be possible to specify that an http response code must be a complex object - which should never be possible.\n *\n * If you're getting this code, it means that the matching engine has discovered that the expectations in your interaction aren't valid.\n *\n * Although the type system tries to prevent invalid interaction definitions, this isn't always possible in all target languages, so ContractCase's default plugins try to detect this and fail with a helpful error message.\n *\n * Usually this means you'll need to update your interaction definition. The error message should have more information.\n */\n",
               "excerptTokens": [

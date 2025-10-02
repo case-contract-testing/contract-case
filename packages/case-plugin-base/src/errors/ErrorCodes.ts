@@ -20,6 +20,11 @@ export interface ConfigurationErrorCodes {
   DISK_IO_PROBLEM: 'DISK_IO_PROBLEM';
 
   /**
+   * Used when the DSL declaration to generate matchers is not
+   */
+  BAD_DSL_DECLARATION: 'BAD_DSL_DECLARATION';
+
+  /**
    * Used when an interaction definition isn't valid.
    *
    * Because interaction definitions are very flexible,
@@ -154,6 +159,7 @@ export const ErrorCodes: ErrorCodeDefinitions = {
   configuration: {
     DISK_IO_PROBLEM: 'DISK_IO_PROBLEM',
     BAD_INTERACTION_DEFINITION: 'BAD_INTERACTION_DEFINITION',
+    BAD_DSL_DECLARATION: 'BAD_DSL_DECLARATION',
     INVALID_CONFIG: 'INVALID_CONFIG',
     INVALID_LIFECYCLE: 'INVALID_LIFECYCLE',
     MISSING_STATE_HANDLER: 'MISSING_STATE_HANDLER',

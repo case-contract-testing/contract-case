@@ -7,6 +7,7 @@ import {
   GeneratedFile,
   GeneratedFileWriter,
 } from '../../domain/generator/types';
+import { GeneratorLogger } from '../../domain/types';
 
 const createDirectory = (pathToFile: string) => {
   const dirName = path.dirname(pathToFile);
@@ -25,9 +26,17 @@ const createDirectory = (pathToFile: string) => {
   }
 };
 
-export const makeFileWriter = (): GeneratedFileWriter => ({
+export const makeFileWriter = (
+  basePath: string,
+  logger: GeneratorLogger,
+): GeneratedFileWriter => ({
   write: (generatedFile: GeneratedFile): void => {
-    createDirectory(generatedFile.relativePath);
-    fs.writeFileSync(generatedFile.relativePath, generatedFile.content);
+    const fullPath = path.join(basePath, generatedFile.relativePath);
+    logger.info(
+      `[${generatedFile.entityNames.join(',')}] written in ${fullPath}`,
+    );
+
+    createDirectory(fullPath);
+    fs.writeFileSync(fullPath, generatedFile.content);
   },
 });

@@ -1,4 +1,7 @@
-import { CaseConfigurationError } from '@contract-case/case-plugin-base';
+import {
+  CaseConfigurationError,
+  CaseCoreError,
+} from '@contract-case/case-plugin-base';
 
 /**
  * Takes a camel-case string, for example, camelCaseString and returns an all
@@ -11,7 +14,9 @@ export const toScreamingSnakeCase = (name: string): string => {
   for (let i = 0; i < name.length; i += 1) {
     const char = name[i];
     if (char == null) {
-      throw new Error(`Bad string: ${name}`);
+      throw new CaseCoreError(
+        `Illegal null contained in string in toScreamingSnakeCase(). String wass '${name}'`,
+      );
     }
     const isUpper = char === char.toUpperCase() && char !== char.toLowerCase();
     if (i > 0 && isUpper && name[i - 1] !== '_') {
@@ -31,10 +36,8 @@ export const toCamelCase = (name: string): string => {
   if (typeof name === 'string' && name.length > 2) {
     const firstCharacter = name[0];
     if (firstCharacter == null) {
-      throw new CaseConfigurationError(
+      throw new CaseCoreError(
         `The string '${name}' is empty, but somehow has a null first character`,
-        'DONT_ADD_LOCATION',
-        'BAD_DSL_DECLARATION',
       );
     }
 

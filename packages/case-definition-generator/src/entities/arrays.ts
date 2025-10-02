@@ -1,7 +1,16 @@
 import { MatcherDslDeclaration } from '../domain/typeSystem/types';
 
 export type PluginDslDeclaration = {
+  /**
+   * The author's namespace for this matcher.
+   * This is the prefix that the type
+   * constants in this package will have.
+   */
   namespace: string;
+  /** The category within the namespace,
+   * used for grouping related matchers
+   * together (eg arrays) */
+  category: string;
   matchers: MatcherDslDeclaration[];
 };
 
@@ -41,7 +50,8 @@ const matcherContainsDefinition: MatcherDslDeclaration = {
 };
 
 const arrays: PluginDslDeclaration = {
-  namespace: 'arrays',
+  namespace: '_case',
+  category: 'arrays',
   matchers: [matcherContainsDefinition, matcherDefinition],
 };
 

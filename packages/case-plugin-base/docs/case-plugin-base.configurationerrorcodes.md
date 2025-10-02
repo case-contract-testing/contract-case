@@ -39,6 +39,25 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[BAD\_DSL\_DECLARATION](./case-plugin-base.configurationerrorcodes.bad_dsl_declaration.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'BAD\_DSL\_DECLARATION'
+
+
+</td><td>
+
+Used when the DSL declaration to generate matchers is not
+
+
+</td></tr>
+<tr><td>
+
 [BAD\_INTERACTION\_DEFINITION](./case-plugin-base.configurationerrorcodes.bad_interaction_definition.md)
 
 
