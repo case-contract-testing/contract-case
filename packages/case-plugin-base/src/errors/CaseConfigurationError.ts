@@ -38,7 +38,7 @@ export class CaseConfigurationError extends Error {
     userFacingStackTrace: string = '',
   ) {
     super(
-      `${message}${context !== 'DONT_ADD_LOCATION' ? errorLocationString(context) : ''}`,
+      `${message}${context !== 'DONT_ADD_LOCATION' ? `\n${errorLocationString(context)}` : ''}`,
     );
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = 'CaseConfigurationError';
