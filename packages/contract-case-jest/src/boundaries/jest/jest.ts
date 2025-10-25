@@ -51,6 +51,7 @@ export const verifyContract = (
   }
   describe(`Provider verification for ${config.providerName}`, () => {
     const verifier = new ContractVerifier(config);
+    jest.setTimeout(TIMEOUT);
 
     setupCallback(verifier);
 
