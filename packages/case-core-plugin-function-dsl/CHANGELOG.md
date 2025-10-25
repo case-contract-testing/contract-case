@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-dsl-v0.27.2...@contract-case/case-core-plugin-function-dsl-v0.27.3) (2025-10-25)
+
+
+### Features
+
+* **functions:** Add ability to give a collection of arguments an invocation name ([021d2d4](https://github.com/case-contract-testing/contract-case/commit/021d2d496644a1a1930ddb5cebbc419b2ae0c141))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.2 to 0.27.3
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.2 to 0.27.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.2 to 0.27.3
+
 ## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-dsl-v0.27.1...@contract-case/case-core-plugin-function-dsl-v0.27.2) (2025-08-26)
 
 

@@ -29,6 +29,34 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.27.2...@contract-case/contract-case-jest-v0.27.3) (2025-10-25)
+
+
+### Features
+
+* **jest:** Allow specifying a custom jest timeout, instead of always overriding to 30s ([a577a3f](https://github.com/case-contract-testing/contract-case/commit/a577a3f76041d985a818b62e37079d15fb7c41fa))
+
+
+### Bug Fixes
+
+* **jest:** Set the timeout to 30 seconds during verification (was previously just jest's default) ([257837a](https://github.com/case-contract-testing/contract-case/commit/257837a771dcf254525f26dc825c9e929f714356))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-definition-dsl bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-entities-internal bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-plugin-base bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.2 to 0.27.3
+    * @contract-case/cli bumped from 0.27.2 to 0.27.3
+  * devDependencies
+    * @contract-case/cli bumped from 0.27.2 to 0.27.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.2 to 0.27.3
+
 ## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.27.1...@contract-case/contract-case-jest-v0.27.2) (2025-08-26)
 
 
