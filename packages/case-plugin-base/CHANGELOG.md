@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.27.2...@contract-case/case-plugin-base-v0.27.3) (2025-10-25)
+
+
+### Features
+
+* **core:** Add MISSING_TRIGGER_FUNCTION and MISSING_TEST_FUNCTION error codes ([f27b3e0](https://github.com/case-contract-testing/contract-case/commit/f27b3e0cf9c19050a83bf77c636b83286be3c627))
+* **core:** Contracts now contain the hash in their metadata ([a5b4b92](https://github.com/case-contract-testing/contract-case/commit/a5b4b92a35713fca055d99e96727ca567106a0f3))
+
+
+### Bug Fixes
+
+* **core:** Error formatting improvement - add a newline to separate the location from the cause of configuration errors ([a099ef3](https://github.com/case-contract-testing/contract-case/commit/a099ef310adcadc2b09e2da7c051991926f14d02))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.2 to 0.27.3
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.2 to 0.27.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.2 to 0.27.3
+
 ## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-base-v0.27.1...@contract-case/case-plugin-base-v0.27.2) (2025-08-26)
 
 

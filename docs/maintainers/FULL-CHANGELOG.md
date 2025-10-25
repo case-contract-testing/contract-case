@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/v0.27.2...v0.27.3) (2025-10-25)
+
+
+### Features
+
+* **core:** Add MISSING_TRIGGER_FUNCTION and MISSING_TEST_FUNCTION error codes ([f27b3e0](https://github.com/case-contract-testing/contract-case/commit/f27b3e0cf9c19050a83bf77c636b83286be3c627))
+* **core:** Add overrideable advice for FAKE_NEVER_CALLED configuration error ([aa1f33f](https://github.com/case-contract-testing/contract-case/commit/aa1f33fcc66436b44137fac1f276ed36a9d3d539))
+* **core:** Contracts now contain the hash in their metadata ([a5b4b92](https://github.com/case-contract-testing/contract-case/commit/a5b4b92a35713fca055d99e96727ca567106a0f3))
+* **functions:** Add ability to give a collection of arguments an invocation name ([021d2d4](https://github.com/case-contract-testing/contract-case/commit/021d2d496644a1a1930ddb5cebbc419b2ae0c141))
+* **jest:** Allow specifying a custom jest timeout, instead of always overriding to 30s ([a577a3f](https://github.com/case-contract-testing/contract-case/commit/a577a3f76041d985a818b62e37079d15fb7c41fa))
+
+
+### Bug Fixes
+
+* **core:** Correct and substantially improve error reporing for missing triggers ([305f13b](https://github.com/case-contract-testing/contract-case/commit/305f13b5a1e0fdb6f176ff9fd43a559050cbc545))
+* **core:** Error formatting improvement - add a newline to separate the location from the cause of configuration errors ([a099ef3](https://github.com/case-contract-testing/contract-case/commit/a099ef310adcadc2b09e2da7c051991926f14d02))
+* **core:** Now specific configuration error codes are exposed when they're available ([4b346f8](https://github.com/case-contract-testing/contract-case/commit/4b346f82189b337fb0a9d4659263b08991deb507))
+* **jest:** Set the timeout to 30 seconds during verification (was previously just jest's default) ([257837a](https://github.com/case-contract-testing/contract-case/commit/257837a771dcf254525f26dc825c9e929f714356))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.2 to 0.27.3
+
 ## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/v0.27.1...v0.27.2) (2025-08-26)
 
 

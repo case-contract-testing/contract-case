@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-dsl-types-v0.27.2...@contract-case/case-plugin-dsl-types-v0.27.3) (2025-10-25)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-plugin-dsl-types:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.2 to 0.27.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.2 to 0.27.3
+
 ## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-plugin-dsl-types-v0.27.1...@contract-case/case-plugin-dsl-types-v0.27.2) (2025-08-26)
 
 

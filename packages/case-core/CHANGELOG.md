@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.27.2...@contract-case/case-core-v0.27.3) (2025-10-25)
+
+
+### Features
+
+* **core:** Contracts now contain the hash in their metadata ([a5b4b92](https://github.com/case-contract-testing/contract-case/commit/a5b4b92a35713fca055d99e96727ca567106a0f3))
+
+
+### Bug Fixes
+
+* **core:** Correct and substantially improve error reporing for missing triggers ([305f13b](https://github.com/case-contract-testing/contract-case/commit/305f13b5a1e0fdb6f176ff9fd43a559050cbc545))
+* **core:** Now specific configuration error codes are exposed when they're available ([4b346f8](https://github.com/case-contract-testing/contract-case/commit/4b346f82189b337fb0a9d4659263b08991deb507))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-core-plugin-http bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-entities-internal bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-plugin-base bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.2 to 0.27.3
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-maintainer-config bumped from 0.27.2 to 0.27.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.2 to 0.27.3
+
 ## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.27.1...@contract-case/case-core-v0.27.2) (2025-08-26)
 
 

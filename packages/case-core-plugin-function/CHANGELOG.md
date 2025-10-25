@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.27.2...@contract-case/case-core-plugin-function-v0.27.3) (2025-10-25)
+
+
+### Features
+
+* **core:** Add overrideable advice for FAKE_NEVER_CALLED configuration error ([aa1f33f](https://github.com/case-contract-testing/contract-case/commit/aa1f33fcc66436b44137fac1f276ed36a9d3d539))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-plugin-base bumped from 0.27.2 to 0.27.3
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.2 to 0.27.3
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.2 to 0.27.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.2 to 0.27.3
+
 ## [0.27.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.27.1...@contract-case/case-core-plugin-function-v0.27.2) (2025-08-26)
 
 
