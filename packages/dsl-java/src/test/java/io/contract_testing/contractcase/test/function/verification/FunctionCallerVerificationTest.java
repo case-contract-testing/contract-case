@@ -1,12 +1,12 @@
 package io.contract_testing.contractcase.test.function.verification;
 
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.ContractVerifier;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
-import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.StateHandler;
 import io.contract_testing.contractcase.test.function.FunctionCallerExampleTest.FirstLayer;
@@ -98,7 +98,6 @@ public class FunctionCallerVerificationTest {
   }
 
   @NotNull
-
 
   private static <R, E extends Exception> InvokableFunction1<E>
   convertJsonStringArgs(InvokableFunction1<E> functionUnderTest) {

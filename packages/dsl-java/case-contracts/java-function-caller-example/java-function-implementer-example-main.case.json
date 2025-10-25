@@ -6,7 +6,8 @@
   },
   "metadata": {
     "_case": {
-      "version": "0.25.2"
+      "version": "0.27.2",
+      "hash": "818bad8eac72f8d7038dfa81ef168b3ca22f8d42ea410069ab38b70f0ca79ce5"
     }
   },
   "matcherLookup": {
