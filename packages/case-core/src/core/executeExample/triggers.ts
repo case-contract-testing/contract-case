@@ -175,7 +175,7 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
         );
       }
     }
-    if (triggers !== undefined) {
+    if (triggers !== undefined && Object.keys(triggers).length > 0) {
       const req = triggers[names.requestName];
       if (req !== undefined) {
         context.logger.maintainerDebug(
@@ -209,42 +209,32 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
         );
       }
 
-      if (triggerAndTests !== undefined) {
-        const possibleNames = Object.keys(triggerAndTests).filter((s) =>
-          s.startsWith(`${names.requestName}::`),
-        );
-        if (possibleNames.length > 0) {
-          context.logger.error('');
-        }
-        context.logger.error(
-          `No response handler for '${names.responseName}' provided. The request '${names.requestName}' is present`,
-        );
-        throw new CaseConfigurationError(
-          `No response handler provided for response:\n     ${names.responseName}`,
-          context,
-        );
-      }
-
       context.logger.error(
         `No trigger for request '${names.requestName}' provided`,
       );
       throw new CaseConfigurationError(
         `No trigger provided for request:\n     ${names.requestName}`,
         context,
+        'MISSING_TRIGGER_FUNCTION',
       );
     }
     if (triggerAndTests !== undefined) {
+      // We've failed to find the right trigger, and want to return
+      // helpful information about which triggers might be available
       const allFunctions = Object.keys(triggerAndTests);
       const startsWith = allFunctions.filter((s) =>
         s.startsWith(`${names.requestName}::`),
       );
       if (startsWith.length > 0) {
+        // We have the request, but we don't have this response
         throw new CaseConfigurationError(
           `The trigger configuration for\n     ${names.requestName}\n   is missing a test for\n     ${names.responseName}\n   However, the following response tests exist:\n${startsWith
             .map((s) => `        ${s.split('::')[1]}`)
-            .join('\n')}`,
+            .join(
+              '\n',
+            )}\n\nPlease check that you have configured the appropriate testResponse / testErrorResponse functions\n`,
           context,
-          'UNDOCUMENTED',
+          'MISSING_TEST_FUNCTION',
         );
       }
 
@@ -253,6 +243,7 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
       );
 
       if (endsWith.length > 0) {
+        // We have the response test, but we don't have the trigger
         throw new CaseConfigurationError(
           `Missing a trigger pair for request:\n     ${
             names.requestName
@@ -260,20 +251,23 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
             names.responseName
           }\n However, tests for that response name do exist in the following configurations:\n${endsWith
             .map((s) => `        ${s.split('::')[0]}`)
-            .join('\n')}`,
+            .join(
+              '\n',
+            )}\n\nPlease check that you have configured the appropriate trigger function\n`,
           context,
-          'UNDOCUMENTED',
+          'MISSING_TRIGGER_FUNCTION',
         );
       }
 
       throw new CaseConfigurationError(
         `Missing a trigger for:\n       ${names.requestName}\n  this should be paired with a test for:\n       ${names.responseName}`,
         context,
-        'UNDOCUMENTED',
+        'MISSING_TRIGGER_FUNCTION',
       );
     }
     throw new CaseConfigurationError(
       `No trigger or trigger map provided for:\n     ${names.requestName}\n  You must set a trigger or a trigger map`,
       context,
+      'MISSING_TRIGGER_FUNCTION',
     );
   });
