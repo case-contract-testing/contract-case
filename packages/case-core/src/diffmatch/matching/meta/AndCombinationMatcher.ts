@@ -27,7 +27,7 @@ const strip: StripMatcherFn<CoreAndCombinationMatcher> = (
         );
       } catch (e) {
         if (e instanceof StripUnsupportedError) {
-          matchContext.logger.maintainerDebug(
+          matchContext.logger.deepMaintainerDebug(
             `AndCombinationMatcher is ignoring StripUnsupportedError from ${
               isCaseNode(additionalMatcher)
                 ? additionalMatcher['_case:matcher:type']
