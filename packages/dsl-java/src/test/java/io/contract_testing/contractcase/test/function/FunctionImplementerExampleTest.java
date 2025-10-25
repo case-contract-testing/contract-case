@@ -79,6 +79,7 @@ public class FunctionImplementerExampleTest {
             List.of(),
             new WillReceiveFunctionCall(FunctionExecutionExample.builder()
                 .arguments(List.of(new AnyInteger(2)))
+                .invocationName("page message")
                 .returnValue("2 pages")
                 .functionName("PageNumbers")
                 .build())

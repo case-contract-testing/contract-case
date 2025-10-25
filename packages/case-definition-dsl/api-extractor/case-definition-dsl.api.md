@@ -325,6 +325,8 @@ class FunctionArguments extends AnyMatcher {
 interface FunctionExecutionExample {
     readonly arguments: AnyMatcherOrData[];
     readonly functionName: string;
+    readonly invocationName?: string;
+    readonly responseName?: string;
     readonly returnValue: AnyMatcherOrData;
 }
 
@@ -640,7 +642,9 @@ interface ThrowingFunctionExecutionExample {
     readonly arguments: AnyMatcherOrData[];
     readonly errorClassName: AnyMatcherOrData;
     readonly functionName: string;
+    readonly invocationName?: string;
     readonly message?: AnyMatcherOrData;
+    readonly responseName?: string;
 }
 
 // @public

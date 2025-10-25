@@ -2374,9 +2374,35 @@
               "docs": {
                 "summary": "A test equivalence matcher for the return value from this function."
               }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.Initializer.parameter.invocationName",
+              "displayName": "invocationName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.Initializer.parameter.invocationName",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A name for this specific combination of arguments - must be unique in this contract."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction.Initializer.parameter.responseName",
+              "displayName": "responseName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallFunction.Initializer.parameter.responseName",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A name for this specific return value - must be unique in this contract."
+              }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;\n\nWillCallFunction.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;\n\nWillCallFunction.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n//  .invocationName(java.lang.String)\n//  .responseName(java.lang.String)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
@@ -2493,6 +2519,19 @@
               }
             },
             {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallThrowingFunction.Initializer.parameter.invocationName",
+              "displayName": "invocationName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.Initializer.parameter.invocationName",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A name for this specific combination of arguments - must be unique in this contract."
+              }
+            },
+            {
               "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallThrowingFunction.Initializer.parameter.message",
               "displayName": "message",
               "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.Initializer.parameter.message",
@@ -2505,9 +2544,22 @@
                 "summary": "A test equivalence matcher for the message from this exception.",
                 "remarks": "In general, it's best to rely on the class of the exception instead of the specific error message"
               }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillCallThrowingFunction.Initializer.parameter.responseName",
+              "displayName": "responseName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillCallThrowingFunction.Initializer.parameter.responseName",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A name for this specific exception, must be unique in this."
+              }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillCallThrowingFunction;\n\nWillCallThrowingFunction.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .errorClassName(java.lang.Object)\n    .functionName(java.lang.String)\n//  .message(java.lang.Object)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillCallThrowingFunction;\n\nWillCallThrowingFunction.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .errorClassName(java.lang.Object)\n    .functionName(java.lang.String)\n//  .invocationName(java.lang.String)\n//  .message(java.lang.Object)\n//  .responseName(java.lang.String)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
@@ -2622,9 +2674,35 @@
               "docs": {
                 "summary": "A test equivalence matcher for the return value from this function."
               }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.Initializer.parameter.invocationName",
+              "displayName": "invocationName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.Initializer.parameter.invocationName",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A name for this specific combination of arguments - must be unique in this contract."
+              }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall.Initializer.parameter.responseName",
+              "displayName": "responseName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCall.Initializer.parameter.responseName",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A name for this specific return value - must be unique in this contract."
+              }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall;\n\nWillReceiveFunctionCall.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall;\n\nWillReceiveFunctionCall.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n//  .invocationName(java.lang.String)\n//  .responseName(java.lang.String)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
@@ -2741,6 +2819,19 @@
               }
             },
             {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.invocationName",
+              "displayName": "invocationName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.invocationName",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A name for this specific combination of arguments - must be unique in this contract."
+              }
+            },
+            {
               "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.message",
               "displayName": "message",
               "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.message",
@@ -2753,9 +2844,22 @@
                 "summary": "A test equivalence matcher for the message from this exception.",
                 "remarks": "In general, it's best to rely on the class of the exception instead of the specific error message"
               }
+            },
+            {
+              "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.responseName",
+              "displayName": "responseName",
+              "id": "@contract-case/case-definition-dsl.interactions.functions.WillReceiveFunctionCallAndThrow.Initializer.parameter.responseName",
+              "optional": true,
+              "type": {
+                "formattingPattern": "java.lang.String"
+              },
+              "variadic": false,
+              "docs": {
+                "summary": "A name for this specific exception, must be unique in this."
+              }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow;\n\nWillReceiveFunctionCallAndThrow.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .errorClassName(java.lang.Object)\n    .functionName(java.lang.String)\n//  .message(java.lang.Object)\n    .build();"
+          "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow;\n\nWillReceiveFunctionCallAndThrow.Builder.create()\n    .arguments(java.util.List<java.lang.Object>)\n    .errorClassName(java.lang.Object)\n    .functionName(java.lang.String)\n//  .invocationName(java.lang.String)\n//  .message(java.lang.Object)\n//  .responseName(java.lang.String)\n    .build();"
         },
         "interfaces": [],
         "instanceMethods": [
@@ -3251,12 +3355,38 @@
               "summary": "A test equivalence matcher for the return value from this function."
             },
             "usage": "public java.lang.Object getReturnValue();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample.property.invocationName",
+            "displayName": "invocationName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample.property.invocationName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "A name for this specific combination of arguments - must be unique in this contract."
+            },
+            "usage": "public java.lang.String getInvocationName();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample.property.responseName",
+            "displayName": "responseName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample.property.responseName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "A name for this specific return value - must be unique in this contract."
+            },
+            "usage": "public java.lang.String getResponseName();"
           }
         ],
         "docs": {
           "summary": "Interaction descriptor for a function execution which returns successfully."
         },
-        "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;\n\nFunctionExecutionExample.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n    .build();"
+        "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;\n\nFunctionExecutionExample.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .functionName(java.lang.String)\n    .returnValue(java.lang.Object)\n//  .invocationName(java.lang.String)\n//  .responseName(java.lang.String)\n    .build();"
       },
       {
         "fqn": "io.contract_testing.contractcase.definitions.interactions.http.HttpExample",
@@ -3491,6 +3621,19 @@
             "usage": "public java.lang.String getFunctionName();"
           },
           {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample.property.invocationName",
+            "displayName": "invocationName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.invocationName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "A name for this specific combination of arguments - must be unique in this contract."
+            },
+            "usage": "public java.lang.String getInvocationName();"
+          },
+          {
             "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample.property.message",
             "displayName": "message",
             "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.message",
@@ -3503,12 +3646,25 @@
               "remarks": "In general, it's best to rely on the class of the exception instead of the specific error message"
             },
             "usage": "public java.lang.Object getMessage();"
+          },
+          {
+            "fqn": "io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample.property.responseName",
+            "displayName": "responseName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.responseName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "java.lang.String"
+            },
+            "docs": {
+              "summary": "A name for this specific exception, must be unique in this."
+            },
+            "usage": "public java.lang.String getResponseName();"
           }
         ],
         "docs": {
           "summary": "Interaction descriptor for a function execution that throws an error."
         },
-        "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;\n\nThrowingFunctionExecutionExample.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .errorClassName(java.lang.Object)\n    .functionName(java.lang.String)\n//  .message(java.lang.Object)\n    .build();"
+        "usage": "import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;\n\nThrowingFunctionExecutionExample.builder()\n    .arguments(java.util.List<java.lang.Object>)\n    .errorClassName(java.lang.Object)\n    .functionName(java.lang.String)\n//  .invocationName(java.lang.String)\n//  .message(java.lang.Object)\n//  .responseName(java.lang.String)\n    .build();"
       }
     ],
     "interfaces": [],

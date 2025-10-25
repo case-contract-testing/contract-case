@@ -84,6 +84,23 @@ The name of the function to be executed. Doubles as the handle used by registerF
 </td></tr>
 <tr><td>
 
+[invocationName?](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.invocationname.md)
+
+</td><td>
+
+`readonly`
+
+</td><td>
+
+string
+
+</td><td>
+
+_(Optional)_ A name for this specific combination of arguments - must be unique in this contract.
+
+</td></tr>
+<tr><td>
+
 [message?](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.message.md)
 
 </td><td>
@@ -97,6 +114,23 @@ AnyMatcherOrData
 </td><td>
 
 _(Optional)_ A test equivalence matcher for the message from this exception. In general, it's best to rely on the class of the exception instead of the specific error message
+
+</td></tr>
+<tr><td>
+
+[responseName?](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.responsename.md)
+
+</td><td>
+
+`readonly`
+
+</td><td>
+
+string
+
+</td><td>
+
+_(Optional)_ A name for this specific exception, must be unique in this
 
 </td></tr>
 </tbody></table>

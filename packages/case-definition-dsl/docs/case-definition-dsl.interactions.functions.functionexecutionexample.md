@@ -67,6 +67,40 @@ The name of the function to be executed. Doubles as the handle used by registerF
 </td></tr>
 <tr><td>
 
+[invocationName?](./case-definition-dsl.interactions.functions.functionexecutionexample.invocationname.md)
+
+</td><td>
+
+`readonly`
+
+</td><td>
+
+string
+
+</td><td>
+
+_(Optional)_ A name for this specific combination of arguments - must be unique in this contract.
+
+</td></tr>
+<tr><td>
+
+[responseName?](./case-definition-dsl.interactions.functions.functionexecutionexample.responsename.md)
+
+</td><td>
+
+`readonly`
+
+</td><td>
+
+string
+
+</td><td>
+
+_(Optional)_ A name for this specific return value - must be unique in this contract.
+
+</td></tr>
+<tr><td>
+
 [returnValue](./case-definition-dsl.interactions.functions.functionexecutionexample.returnvalue.md)
 
 </td><td>

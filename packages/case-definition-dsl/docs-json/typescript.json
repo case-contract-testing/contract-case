@@ -3019,6 +3019,32 @@
               "summary": "A test equivalence matcher for the return value from this function."
             },
             "usage": "public readonly returnValue: any;"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample.property.invocationName",
+            "displayName": "invocationName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample.property.invocationName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "string"
+            },
+            "docs": {
+              "summary": "A name for this specific combination of arguments - must be unique in this contract."
+            },
+            "usage": "public readonly invocationName: string;"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample.property.responseName",
+            "displayName": "responseName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.FunctionExecutionExample.property.responseName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "string"
+            },
+            "docs": {
+              "summary": "A name for this specific return value - must be unique in this contract."
+            },
+            "usage": "public readonly responseName: string;"
           }
         ],
         "docs": {
@@ -3259,6 +3285,19 @@
             "usage": "public readonly functionName: string;"
           },
           {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.invocationName",
+            "displayName": "invocationName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.invocationName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "string"
+            },
+            "docs": {
+              "summary": "A name for this specific combination of arguments - must be unique in this contract."
+            },
+            "usage": "public readonly invocationName: string;"
+          },
+          {
             "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.message",
             "displayName": "message",
             "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.message",
@@ -3271,6 +3310,19 @@
               "remarks": "In general, it's best to rely on the class of the exception instead of the specific error message"
             },
             "usage": "public readonly message: any;"
+          },
+          {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.responseName",
+            "displayName": "responseName",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.responseName",
+            "optional": true,
+            "type": {
+              "formattingPattern": "string"
+            },
+            "docs": {
+              "summary": "A name for this specific exception, must be unique in this."
+            },
+            "usage": "public readonly responseName: string;"
           }
         ],
         "docs": {

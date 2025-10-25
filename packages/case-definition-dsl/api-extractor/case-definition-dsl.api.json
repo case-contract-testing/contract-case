@@ -584,6 +584,60 @@
                     },
                     {
                       "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExample#invocationName:member",
+                      "docComment": "/**\n * A name for this specific combination of arguments - must be unique in this contract.\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly invocationName?: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": true,
+                      "releaseTag": "Public",
+                      "name": "invocationName",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExample#responseName:member",
+                      "docComment": "/**\n * A name for this specific return value - must be unique in this contract.\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly responseName?: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": true,
+                      "releaseTag": "Public",
+                      "name": "responseName",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
                       "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.FunctionExecutionExample#returnValue:member",
                       "docComment": "/**\n * A test equivalence matcher for the return value from this function\n */\n",
                       "excerptTokens": [
@@ -717,6 +771,33 @@
                     },
                     {
                       "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample#invocationName:member",
+                      "docComment": "/**\n * A name for this specific combination of arguments - must be unique in this contract.\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly invocationName?: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": true,
+                      "releaseTag": "Public",
+                      "name": "invocationName",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
                       "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample#message:member",
                       "docComment": "/**\n * A test equivalence matcher for the message from this exception. In general, it's best to rely on the class of the exception instead of the specific error message\n */\n",
                       "excerptTokens": [
@@ -738,6 +819,33 @@
                       "isOptional": true,
                       "releaseTag": "Public",
                       "name": "message",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample#responseName:member",
+                      "docComment": "/**\n * A name for this specific exception, must be unique in this\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly responseName?: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "string"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": true,
+                      "releaseTag": "Public",
+                      "name": "responseName",
                       "propertyTypeTokenRange": {
                         "startIndex": 1,
                         "endIndex": 2

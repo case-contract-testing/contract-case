@@ -58,8 +58,12 @@ export class WillReceiveFunctionCall extends AnyInteractionDescriptor {
     this.request = functionArgumentsMatcher(
       example.arguments,
       example.functionName,
+      example.invocationName,
     );
-    this.response = functionReturnSuccessMatcher(example.returnValue);
+    this.response = functionReturnSuccessMatcher(
+      example.returnValue,
+      example.responseName,
+    );
     this.functionName = example.functionName;
   }
 }
