@@ -16,6 +16,21 @@ import {
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
+const advice = (context: MatchContext) => {
+  if (
+    context['_case:currentRun:context:adviceOverrides'] &&
+    context['_case:currentRun:context:adviceOverrides']['FAKE_NEVER_CALLED'] !=
+      null
+  ) {
+    return context['_case:currentRun:context:adviceOverrides'][
+      'FAKE_NEVER_CALLED'
+    ];
+  }
+  return `Please ensure you are calling the mock function`;
+};
+
+const ARGUMENTS_ARRAY_TITLE = 'Arguments (index in array is index of argument)';
+
 const strip = (
   matcher: CoreFunctionArgumentsMatcher,
   matchContext: MatchContext,
@@ -44,8 +59,9 @@ const check = async (
 ): Promise<MatchResult> => {
   if (!actual) {
     throw new CaseConfigurationError(
-      'The expected function was never invoked. Please ensure you are calling the mock function',
+      `The expected function was never invoked. ${advice(matchContext)}`,
       matchContext,
+      'FAKE_NEVER_CALLED',
     );
   }
   if (!Array.isArray(actual)) {
@@ -86,8 +102,9 @@ const check = async (
           addLocation(':stripExpected', matchContext),
         ),
         {
-          actual: 'Arguments',
-          expected: `${matcher.arguments.length} arguments`,
+          actual: ARGUMENTS_ARRAY_TITLE,
+
+          expected: `${matcher.arguments.length} ${ARGUMENTS_ARRAY_TITLE}`,
         },
       ),
     ),
@@ -102,7 +119,10 @@ const check = async (
           matcher.arguments,
           addLocation(':stripExpected', matchContext),
         ),
-        { actual: 'Arguments', expected: 'Arguments' },
+        {
+          actual: ARGUMENTS_ARRAY_TITLE,
+          expected: ARGUMENTS_ARRAY_TITLE,
+        },
       ),
     ),
     argResults,
