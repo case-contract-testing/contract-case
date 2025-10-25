@@ -1453,6 +1453,33 @@
             },
             {
               "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#FAKE_NEVER_CALLED:member",
+              "docComment": "/**\n * The fake function set up by contract case was never called.\n *\n * This usually means there's an error in the trigger code under test. It means there was an expectation set up the trigger code would call a function (eg an endpoint, or a function call), but no such call ever arrived.\n *\n * Depending on the interaction type, this may mean that you are calling the wrong endpoint, a different service, or simply not making any calls.\n *\n * Check that your code under test is correctly calling the fake service set up by this interaction.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "FAKE_NEVER_CALLED: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'FAKE_NEVER_CALLED'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "FAKE_NEVER_CALLED",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#INVALID_CONFIG:member",
               "docComment": "/**\n * Used for when a configuration value is outside its normal range. The error message alongside this code should tell you what specifically went wrong.\n *\n * In most cases this class of error is prevented with the type system.\n */\n",
               "excerptTokens": [
@@ -1527,6 +1554,60 @@
               "isOptional": false,
               "releaseTag": "Public",
               "name": "MISSING_STATE_HANDLER",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#MISSING_TEST_FUNCTION:member",
+              "docComment": "/**\n * The current interaction needs a response test defined, but there wasn't one configured.\n *\n * After the code under test has been called, the response from it must be tested. You provide a test-response or test-error-response function to check that the code under test has correctly understood the response.\n *\n * This error is most likely to be experienced:\n *\n * - If you've provided a `testResponse` but you need to provide a `testErrorResponse` (or vice versa). - If you're verifying a contract that needs triggers provided (for example, an HTTP server contract), and you don't have the test response implemented.\n *\n * In the latter case, response tests need to be keyed exactly by the name of the response - for example, \"throwing a UserNotFound Exception\" or \"returns null\".\n *\n * Check that your CaseConfig has the appropriate response test functions set.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MISSING_TEST_FUNCTION: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'MISSING_TEST_FUNCTION'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "MISSING_TEST_FUNCTION",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#MISSING_TRIGGER_FUNCTION:member",
+              "docComment": "/**\n * The current interaction needs a trigger defined, but there wasn't one configured.\n *\n * Trigger functions are what ContractCase uses to kick off an interaction. They're used to trigger the code under test.\n *\n * This error is most likely to be experienced:\n *\n * - If you've forgotten the `trigger` part of a `runInteraction` - If you're verifying a contract that needs triggers provided (for example, an HTTP server contract).\n *\n * In the latter case, triggers need to be keyed exactly by the name of the request - for example, \"A request to get user\".\n *\n * Check that your CaseConfig has the appropriate triggers set.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MISSING_TRIGGER_FUNCTION: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'MISSING_TRIGGER_FUNCTION'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "MISSING_TRIGGER_FUNCTION",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2

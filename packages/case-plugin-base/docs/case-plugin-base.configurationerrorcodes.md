@@ -108,6 +108,31 @@ The error message should have additional information here.
 </td></tr>
 <tr><td>
 
+[FAKE\_NEVER\_CALLED](./case-plugin-base.configurationerrorcodes.fake_never_called.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'FAKE\_NEVER\_CALLED'
+
+
+</td><td>
+
+The fake function set up by contract case was never called.
+
+This usually means there's an error in the trigger code under test. It means there was an expectation set up the trigger code would call a function (eg an endpoint, or a function call), but no such call ever arrived.
+
+Depending on the interaction type, this may mean that you are calling the wrong endpoint, a different service, or simply not making any calls.
+
+Check that your code under test is correctly calling the fake service set up by this interaction.
+
+
+</td></tr>
+<tr><td>
+
 [INVALID\_CONFIG](./case-plugin-base.configurationerrorcodes.invalid_config.md)
 
 
@@ -184,6 +209,64 @@ This error indicates that Contractcase was expecting a named state handler, but 
 This usually indicates a misconfiguration - check that you have provided a state handler with the exact name of the handler that was missing in the configuration of your test.
 
 If you need help investigating this error, you can set the configuration property `logLevel` to `'DEBUG'` to see a list of the configured state handlers.
+
+
+</td></tr>
+<tr><td>
+
+[MISSING\_TEST\_FUNCTION](./case-plugin-base.configurationerrorcodes.missing_test_function.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'MISSING\_TEST\_FUNCTION'
+
+
+</td><td>
+
+The current interaction needs a response test defined, but there wasn't one configured.
+
+After the code under test has been called, the response from it must be tested. You provide a test-response or test-error-response function to check that the code under test has correctly understood the response.
+
+This error is most likely to be experienced:
+
+- If you've provided a `testResponse` but you need to provide a `testErrorResponse` (or vice versa). - If you're verifying a contract that needs triggers provided (for example, an HTTP server contract), and you don't have the test response implemented.
+
+In the latter case, response tests need to be keyed exactly by the name of the response - for example, "throwing a UserNotFound Exception" or "returns null".
+
+Check that your CaseConfig has the appropriate response test functions set.
+
+
+</td></tr>
+<tr><td>
+
+[MISSING\_TRIGGER\_FUNCTION](./case-plugin-base.configurationerrorcodes.missing_trigger_function.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'MISSING\_TRIGGER\_FUNCTION'
+
+
+</td><td>
+
+The current interaction needs a trigger defined, but there wasn't one configured.
+
+Trigger functions are what ContractCase uses to kick off an interaction. They're used to trigger the code under test.
+
+This error is most likely to be experienced:
+
+- If you've forgotten the `trigger` part of a `runInteraction` - If you're verifying a contract that needs triggers provided (for example, an HTTP server contract).
+
+In the latter case, triggers need to be keyed exactly by the name of the request - for example, "A request to get user".
+
+Check that your CaseConfig has the appropriate triggers set.
 
 
 </td></tr>
