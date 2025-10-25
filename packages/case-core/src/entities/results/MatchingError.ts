@@ -8,6 +8,7 @@ import {
   VerifyTriggerReturnObjectError,
   VerificationError,
   ERROR_TYPE_TEST_RESPONSE,
+  ConfigurationErrorCode,
 } from '@contract-case/case-plugin-base';
 
 const renderUserFacingStacktrace = (error: unknown) => {
@@ -29,12 +30,14 @@ const renderUserFacingStacktrace = (error: unknown) => {
  * @returns ExecutionError
  */
 export const configurationError = (
-  error: Error,
+  error: Error & { contractCaseErrorCode?: ConfigurationErrorCode },
   context: MatchContext,
 ): ConfigurationError => ({
   type: ERROR_TYPE_CONFIGURATION,
   message: error.message,
-  code: 'ConfigurationError',
+  code: error?.contractCaseErrorCode
+    ? error.contractCaseErrorCode
+    : 'ConfigurationError',
   location: context['_case:currentRun:context:location'],
 });
 
