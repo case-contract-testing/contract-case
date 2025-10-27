@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.27.4](https://github.com/case-contract-testing/contract-case/compare/v0.27.3...v0.27.4) (2025-10-27)
+
+
+### Bug Fixes
+
+* **java-dsl:** Move jetbrains annotations to the correct (compileOnly) scope ([4af9222](https://github.com/case-contract-testing/contract-case/commit/4af92220ebc9d8fd788e44b67b5a46c346715636))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.3 to 0.27.4
+
 ## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/v0.27.2...v0.27.3) (2025-10-25)
 
 

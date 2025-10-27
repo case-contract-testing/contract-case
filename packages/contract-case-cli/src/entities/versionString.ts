@@ -1,4 +1,4 @@
 const packageName = '@contract-case/cli';
-const version = '0.27.3'; // x-release-please-version
+const version = '0.27.4'; // x-release-please-version
 
 export const versionString = `${packageName}@${version}`;
