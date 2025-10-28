@@ -175,10 +175,13 @@ export class ContractVerifierConnector {
    * it returns a list of tests which can be called later with
    * {@link ContractVerifierConnector#runPreparedTest}.
    *
+   * It's invalid to call this function multiple times, as once it has been called
+   * the tests are prepared. If you do, you'll get a CaseCoreError thrown instead.
+   *
    * @param invoker - The MultiTestInvoker for this run
    * @param configOverride - any overridden config from when this runner was created
    * @param invokeableFns - any invokeable functions that should be registered
-   * @returns
+   * @returns an array of {@link ContractVerificationTestHandle}s
    */
   prepareVerificationTests<T extends AnyMockDescriptorType>(
     invoker: MultiTestInvoker<T>,
@@ -189,6 +192,16 @@ export class ContractVerifierConnector {
     > = {},
   ): ContractVerificationTestHandle[] {
     const mergedConfig = { ...this.config, ...configOverride };
+
+    if (this.#contractVerificationHandles) {
+      this.context.logger.maintainerDebug(
+        'Invalid call to prepareVerification tests. Existing contents of this.#contractVerificationHandles:',
+        this.#contractVerificationHandles,
+      );
+      throw new CaseCoreError(
+        "prepareVerificationTests was called, but it looks like a previous run has already been started. It's not valid to call this function multiple times in a run.",
+      );
+    }
 
     const contractsToVerify =
       this.filterContractsWithConfiguration(mergedConfig);
