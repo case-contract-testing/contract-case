@@ -156,6 +156,13 @@ export class ContractVerifierConnector {
       .map((contract) => ({ contract, config: mergedConfig }));
   }
 
+  /**
+   * Get the contract descriptors that would be targetted by the current configuration.
+   *
+   * Useful for some filtering use cases, and for confirming that configuration is correct.
+   *
+   * @returns The available {@link CaseContractDescription}s.
+   */
   getAvailableContractDescriptions(): CaseContractDescription[] {
     return this.filterContractsWithConfiguration(this.config).map(
       (verifiableContract) => verifiableContract.contract.contents.description,
