@@ -113,6 +113,11 @@ const getContractVerifierHandles = <T extends AnyMockDescriptorType>(
   });
 };
 
+type VerificationConfig<T extends AnyMockDescriptorType> = {
+  invoker: MultiTestInvoker<T>;
+  configOverride: CaseConfig;
+};
+
 export class ContractVerifierConnector {
   contracts: ContractFileFromDisk[];
 
@@ -235,21 +240,18 @@ export class ContractVerifierConnector {
    * It's invalid to call this function multiple times, as once it has been called
    * the tests are prepared. If you do, you'll get a CaseCoreError thrown instead.
    *
-   * @param invoker - The MultiTestInvoker for this run
+   * @param verificationConfigs - One or more (invoker , configOverride) pairs, potentially selecting different subsections of the contract
    * @param configOverride - any overridden config from when this runner was created
    * @param invokeableFns - any invokeable functions that should be registered
    * @returns an array of {@link ContractVerificationTestHandle}s
    */
-  prepareVerificationTests<T extends AnyMockDescriptorType>(
-    invoker: MultiTestInvoker<T>,
-    configOverride = {},
+  prepareMultiVerificationTests<T extends AnyMockDescriptorType>(
+    verificationConfigs: VerificationConfig<T>[],
     invokeableFns: Record<
       string,
       (...args: unknown[]) => Promise<unknown>
     > = {},
   ): ContractVerificationTestHandle[] {
-    const mergedConfig = { ...this.config, ...configOverride };
-
     if (this.#contractVerificationHandles) {
       this.context.logger.maintainerDebug(
         'Invalid call to prepareVerification tests. Existing contents of this.#contractVerificationHandles:',
@@ -260,15 +262,23 @@ export class ContractVerifierConnector {
       );
     }
 
-    this.#contractVerificationHandles = getContractVerifierHandles(
-      this.context,
-      this.filterContractsWithConfiguration(mergedConfig),
-      {
-        config: mergedConfig,
-        dependencies: this.dependencies,
-        parentVersions: this.parentVersions,
-        invoker,
-        invokeableFns,
+    this.#contractVerificationHandles = verificationConfigs.flatMap(
+      (verificationConfig) => {
+        const mergedConfig = {
+          ...this.config,
+          ...verificationConfig.configOverride,
+        };
+        return getContractVerifierHandles(
+          this.context,
+          this.filterContractsWithConfiguration(mergedConfig),
+          {
+            config: mergedConfig,
+            dependencies: this.dependencies,
+            parentVersions: this.parentVersions,
+            invoker: verificationConfig.invoker,
+            invokeableFns,
+          },
+        );
       },
     );
 
@@ -283,6 +293,34 @@ export class ContractVerifierConnector {
         contractIndex: contractHandle.index,
         filePath: contractHandle.filePath,
       })),
+    );
+  }
+
+  /**
+   * This is the main entry point to verifying contract(s). It doesn't run the
+   * verification immediately,
+   * it returns a list of tests which can be called later with
+   * {@link ContractVerifierConnector#runPreparedTest}.
+   *
+   * It's invalid to call this function multiple times, as once it has been called
+   * the tests are prepared. If you do, you'll get a CaseCoreError thrown instead.
+   *
+   * @param invoker - The MultiTestInvoker for this run
+   * @param configOverride - any overridden config from when this runner was created
+   * @param invokeableFns - any invokeable functions that should be registered
+   * @returns an array of {@link ContractVerificationTestHandle}s
+   */
+  prepareVerificationTests<T extends AnyMockDescriptorType>(
+    invoker: MultiTestInvoker<T>,
+    configOverride = {},
+    invokeableFns: Record<
+      string,
+      (...args: unknown[]) => Promise<unknown>
+    > = {},
+  ): ContractVerificationTestHandle[] {
+    return this.prepareMultiVerificationTests(
+      [{ invoker, configOverride }],
+      invokeableFns,
     );
   }
 
