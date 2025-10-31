@@ -14,6 +14,7 @@ import { MakeEnvironment } from './types.environment';
 export * from './types.broker';
 export * from './types.contract';
 export * from './types.environment';
+export * from './types.ContractReader';
 
 export { CaseConfig } from './config/types';
 

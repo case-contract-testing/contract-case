@@ -11,15 +11,16 @@ import type {
   ContractFileFromDisk,
   ContractVerificationTest,
   ReaderDependencies,
-} from '../../core/types';
-import type { MultiTestInvoker } from '../../core/executeExample/types';
-import { ReadingCaseContract } from '../../core/ReadingCaseContract';
+} from '../../../core/types';
+import type { MultiTestInvoker } from '../../../core/executeExample/types';
+import { ReadingCaseContract } from '../../../core/ReadingCaseContract';
 
-import { readerDependencies } from '../dependencies';
-import { configFromEnv, configToRunContext } from '../../core/config';
-import { ContractStore } from '../../core/types.ContractReader';
-import { ContractVerificationTestHandle, TestPrinter } from './types';
-import { CaseContractDescription } from '../../entities/types';
+import { readerDependencies } from '../../dependencies';
+import { configFromEnv, configToRunContext } from '../../../core/config';
+import { ContractVerificationTestHandle } from './types';
+import { CaseContractDescription } from '../../../entities/types';
+import { TestPrinter } from '../types';
+import { readContractFromStore } from './readFromStore';
 
 type ContractVerifierHandle = {
   index: number;
@@ -28,32 +29,88 @@ type ContractVerifierHandle = {
   filePath: string;
 };
 
-const readContractFromStore = (
-  config: CaseConfig,
-  reader: ContractStore,
-): ContractFileFromDisk[] => {
-  if (
-    config.contractFilename !== undefined &&
-    typeof config.contractFilename === 'string'
-  ) {
-    return [reader.readContract(config.contractFilename)];
-  }
-  if (
-    config.contractDir !== undefined &&
-    typeof config.contractDir === 'string'
-  ) {
-    return reader.readContractsFromDir(config.contractDir);
-  }
-  throw new CaseConfigurationError(
-    'No contractFilename or contractDir specified. Must provide one of these so that Case can find the contract(s) to verify',
-    'DONT_ADD_LOCATION',
-    'INVALID_CONFIG',
-  );
-};
-
 type VerifiableContract = {
   contract: ContractFileFromDisk;
   config: CaseConfig;
+};
+
+type VerifierConstructorInfo<T extends AnyMockDescriptorType> = {
+  config: CaseConfig;
+  dependencies: ReaderDependencies;
+  parentVersions: string[];
+  invoker: MultiTestInvoker<T>;
+  invokeableFns: Record<string, (...args: unknown[]) => Promise<unknown>>;
+};
+
+const getContractVerifierHandles = <T extends AnyMockDescriptorType>(
+  context: DataContext,
+  contractsToVerify: VerifiableContract[],
+  constructorInfo: VerifierConstructorInfo<T>,
+) => {
+  if (contractsToVerify.length === 0) {
+    throw new CaseConfigurationError(
+      "No contracts were matched for verification. Try this run again with logLevel: 'debug' to find out more",
+      'DONT_ADD_LOCATION',
+    );
+  }
+  if (constructorInfo.config.internals == null) {
+    context.logger.maintainerDebug(
+      'config object was missing internals. Object is:',
+      constructorInfo.config,
+    );
+    throw new CaseCoreError(
+      'prepareVerification was called with no internals set - this is an error in the caller, probably the language specific wrapper',
+    );
+  }
+
+  if (contractsToVerify.length > 1) {
+    context.logger.debug(
+      `*** There are ${contractsToVerify.length} contracts being prepared for verification ***`,
+    );
+    context.logger.debug(`Take note of the contract number in the log`);
+  }
+  return contractsToVerify.map((verifiableContract, index) => {
+    if (!verifiableContract.contract.contents?.description?.consumerName) {
+      context.logger.error(
+        `Contract in file '${verifiableContract.contract.filePath}' appears to have no consumer name! It might not be a case contract`,
+      );
+    }
+
+    if (!verifiableContract.contract.contents?.description?.providerName) {
+      context.logger.error(
+        `Contract in file '${verifiableContract.contract.filePath}' appears to have no provider name! It might not be a case contract`,
+      );
+    }
+
+    context.logger.debug(
+      `*** Preparing contract: '${verifiableContract.contract.contents.description.consumerName}' -> '${verifiableContract.contract.contents.description.consumerName}'`,
+    );
+    context.logger.debug(
+      `Contract File: ${verifiableContract.contract.filePath}`,
+    );
+    const contractVerifier = new ReadingCaseContract(
+      verifiableContract.contract.contents,
+      constructorInfo.dependencies,
+      {
+        ...verifiableContract.config,
+        coreLogContextPrefix:
+          contractsToVerify.length > 1 ? `Contract[${index}]` : '',
+      },
+      constructorInfo.parentVersions,
+    );
+    Object.entries(constructorInfo.invokeableFns).forEach(([key, value]) => {
+      contractVerifier.registerFunction(key, value);
+    });
+
+    const tests = contractVerifier.getTests(constructorInfo.invoker);
+
+    return {
+      index,
+      tests,
+      verifier: contractVerifier,
+      filePath: verifiableContract.contract.filePath,
+    };
+  });
 };
 
 export class ContractVerifierConnector {
@@ -203,69 +260,15 @@ export class ContractVerifierConnector {
       );
     }
 
-    const contractsToVerify =
-      this.filterContractsWithConfiguration(mergedConfig);
-
-    if (contractsToVerify.length === 0) {
-      throw new CaseConfigurationError(
-        "No contracts were matched for verification. Try this run again with logLevel: 'debug' to find out more",
-        'DONT_ADD_LOCATION',
-      );
-    }
-    if (mergedConfig.internals == null) {
-      throw new CaseCoreError(
-        'prepareVerification was called with no internals set - this is an error in the caller, probably the language specific wrapper',
-      );
-    }
-
-    if (contractsToVerify.length > 1) {
-      this.context.logger.debug(
-        `*** There are ${contractsToVerify.length} contracts being prepared for verification ***`,
-      );
-      this.context.logger.debug(`Take note of the contract number in the log`);
-    }
-    this.#contractVerificationHandles = contractsToVerify.map(
-      (verifiableContract, index) => {
-        if (!verifiableContract.contract.contents?.description?.consumerName) {
-          this.context.logger.error(
-            `Contract in file '${verifiableContract.contract.filePath}' appears to have no consumer name! It might not be a case contract`,
-          );
-        }
-
-        if (!verifiableContract.contract.contents?.description?.providerName) {
-          this.context.logger.error(
-            `Contract in file '${verifiableContract.contract.filePath}' appears to have no provider name! It might not be a case contract`,
-          );
-        }
-
-        this.context.logger.debug(
-          `*** Preparing contract: '${verifiableContract.contract.contents.description.consumerName}' -> '${verifiableContract.contract.contents.description.consumerName}'`,
-        );
-        this.context.logger.debug(
-          `Contract File: ${verifiableContract.contract.filePath}`,
-        );
-        const contractVerifier = new ReadingCaseContract(
-          verifiableContract.contract.contents,
-          this.dependencies,
-          {
-            ...verifiableContract.config,
-            coreLogContextPrefix:
-              contractsToVerify.length > 1 ? `Contract[${index}]` : '',
-          },
-          this.parentVersions,
-        );
-        Object.entries(invokeableFns).forEach(([key, value]) => {
-          contractVerifier.registerFunction(key, value);
-        });
-
-        const tests = contractVerifier.getTests(invoker);
-
-        return {
-          index,
-          tests,
-          verifier: contractVerifier,
-          filePath: verifiableContract.contract.filePath,
-        };
+    this.#contractVerificationHandles = getContractVerifierHandles(
+      this.context,
+      this.filterContractsWithConfiguration(mergedConfig),
+      {
+        config: mergedConfig,
+        dependencies: this.dependencies,
+        parentVersions: this.parentVersions,
+        invoker,
+        invokeableFns,
       },
     );
 
