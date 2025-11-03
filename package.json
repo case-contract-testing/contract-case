@@ -14,7 +14,7 @@
   "optionalDependencies": {
     "@nx/nx-darwin-arm64": "21.6.6",
     "@nx/nx-darwin-x64": "21.6.6",
-    "@nx/nx-linux-arm-gnueabihf": "21.6.6",
+    "@nx/nx-linux-arm-gnueabihf": "22.0.2",
     "@nx/nx-linux-arm64-gnu": "21.6.6",
     "@nx/nx-linux-arm64-musl": "21.6.6",
     "@nx/nx-linux-x64-gnu": "21.6.6",
