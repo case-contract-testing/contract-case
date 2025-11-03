@@ -26,7 +26,7 @@ tasks.withType(Javadoc).configureEach {
 
 def grpcVersion = "1.76.0"
 def protobufVersion = "3.25.2"
-def junitVersion = "6.0.0"
+def junitVersion = "6.0.1"
 
 dependencies {
     api("io.contract-testing.contractcase:definitions:${version}") {
