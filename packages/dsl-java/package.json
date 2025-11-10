@@ -28,7 +28,7 @@
     "url": "https://github.com/case-contract-testing/contract-case/issues"
   },
   "devDependencies": {
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.1.0"
   },
   "dependencies": {
     "@contract-case/case-connector": "0.27.3",
