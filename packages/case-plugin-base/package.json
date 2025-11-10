@@ -56,7 +56,7 @@
     "@microsoft/api-documenter": "^7.27.0",
     "@microsoft/api-extractor": "^7.52.13",
     "@types/jest": "^30.0.0",
-    "eslint": "^9.22.0",
+    "eslint": "^9.39.1",
     "jest": "^30.0.5",
     "prettier": "3.6.2",
     "rimraf": "^6.0.1",
