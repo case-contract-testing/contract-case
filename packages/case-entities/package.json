@@ -57,7 +57,7 @@
     "@types/qs": "^6.9.17",
     "@types/slug": "^5.0.9",
     "body-parser": "^2.2.0",
-    "eslint": "^9.22.0",
+    "eslint": "^9.39.1",
     "jest": "^30.0.5",
     "prettier": "3.6.2",
     "rimraf": "^6.1.0",
