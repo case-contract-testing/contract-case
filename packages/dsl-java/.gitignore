@@ -1,7 +1,7 @@
 .DS_Store
 Thumbs.db
 
-# Some gradle target keeps making this, not sure why
+# Cursor keeps making this
 bin
 
 # ContractCase core connector
