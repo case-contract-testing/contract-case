@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.27.4](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.27.3...@contract-case/dsl-java-v0.27.4) (2025-11-13)
+
+
+### Bug Fixes
+
+* **java-dsl:** Move jetbrains annotations to the correct (compileOnly) scope ([4af9222](https://github.com/case-contract-testing/contract-case/commit/4af92220ebc9d8fd788e44b67b5a46c346715636))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.27.3 to 0.27.4
+    * @contract-case/case-definition-dsl bumped from 0.27.3 to 0.27.4
+
 ## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.27.2...@contract-case/dsl-java-v0.27.3) (2025-10-25)
 
 
