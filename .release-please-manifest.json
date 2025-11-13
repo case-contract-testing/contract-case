@@ -1,6 +1,7 @@
 {
   "packages/case-core": "0.27.3",
   "packages/case-definition-dsl": "0.27.3",
+  "packages/case-definition-generator": "0.27.3",
   "packages/case-core-plugin-http": "0.27.3",
   "packages/case-core-plugin-http-dsl": "0.27.3",
   "packages/case-core-plugin-function": "0.27.3",

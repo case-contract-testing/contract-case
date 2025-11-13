@@ -15,6 +15,7 @@
         "@contract-case/case-plugin-base",
         "@contract-case/case-plugin-dsl-types",
         "@contract-case/case-definition-dsl",
+        "@contract-case/case-definition-generator",
         "@contract-case/cli",
         "documentation",
         "@contract-case/contract-case-jest",
@@ -51,6 +52,12 @@
     },
     "packages/documentation-matchers-generator": {
       "component": "@contract-case/documentation-matchers-generator",
+      "changelog-path": "CHANGELOG.md",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true
+    },
+    "packages/case-definition-generator": {
+      "component": "@contract-case/case-definition-generator",
       "changelog-path": "CHANGELOG.md",
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true
