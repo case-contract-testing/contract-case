@@ -15,9 +15,18 @@ export interface ConfigurationErrorCodes {
    * This usually means ContractCase has been given a bad path, is out of disk
    * space, or some other I/O error has occurred.
    *
-   * The error message should have additional information here.
+   * The error message should have additional information.
    */
   DISK_IO_PROBLEM: 'DISK_IO_PROBLEM';
+
+  /**
+   * Used when the DSL declaration to generate matchers for a particular language is not valid.
+   *
+   * This usually means that the DSL declaration doesn't match the expected format.
+   *
+   * See the error message alongside this code for additional information.
+   */
+  BAD_DSL_DECLARATION: 'BAD_DSL_DECLARATION';
 
   /**
    * Used when an interaction definition isn't valid.
@@ -209,6 +218,7 @@ export const ErrorCodes: ErrorCodeDefinitions = {
     DISK_IO_PROBLEM: 'DISK_IO_PROBLEM',
     BAD_INTERACTION_DEFINITION: 'BAD_INTERACTION_DEFINITION',
     FAKE_NEVER_CALLED: 'FAKE_NEVER_CALLED',
+    BAD_DSL_DECLARATION: 'BAD_DSL_DECLARATION',
     INVALID_CONFIG: 'INVALID_CONFIG',
     INVALID_LIFECYCLE: 'INVALID_LIFECYCLE',
     MISSING_STATE_HANDLER: 'MISSING_STATE_HANDLER',

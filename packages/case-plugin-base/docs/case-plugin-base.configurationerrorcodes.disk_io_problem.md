@@ -6,7 +6,7 @@
 
 Used for when a file access problem happened trying to write a contract file. This usually means ContractCase has been given a bad path, is out of disk space, or some other I/O error has occurred.
 
-The error message should have additional information here.
+The error message should have additional information.
 
 **Signature:**
 

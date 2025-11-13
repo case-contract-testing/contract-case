@@ -39,6 +39,29 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[BAD\_DSL\_DECLARATION](./case-plugin-base.configurationerrorcodes.bad_dsl_declaration.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'BAD\_DSL\_DECLARATION'
+
+
+</td><td>
+
+Used when the DSL declaration to generate matchers for a particular language is not valid.
+
+This usually means that the DSL declaration doesn't match the expected format.
+
+See the error message alongside this code for additional information.
+
+
+</td></tr>
+<tr><td>
+
 [BAD\_INTERACTION\_DEFINITION](./case-plugin-base.configurationerrorcodes.bad_interaction_definition.md)
 
 
@@ -102,7 +125,7 @@ Hopefully, you didn't know the crash reporter exists - when ContractCase crashes
 
 Used for when a file access problem happened trying to write a contract file. This usually means ContractCase has been given a bad path, is out of disk space, or some other I/O error has occurred.
 
-The error message should have additional information here.
+The error message should have additional information.
 
 
 </td></tr>
