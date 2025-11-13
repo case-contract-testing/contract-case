@@ -17,21 +17,17 @@ import { ReadingCaseContract } from '../../../core/ReadingCaseContract';
 
 import { readerDependencies } from '../../dependencies';
 import { configFromEnv, configToRunContext } from '../../../core/config';
-import { ContractVerificationTestHandle } from './types';
+import { ContractVerificationTestHandle, VerifiableContract } from './types';
 import { CaseContractDescription } from '../../../entities/types';
 import { TestPrinter } from '../types';
 import { readContractFromStore } from './readFromStore';
+import { filterContractsWithConfiguration } from './contractFilter';
 
 type ContractVerifierHandle = {
   index: number;
   verifier: ReadingCaseContract;
   tests: ContractVerificationTest[];
   filePath: string;
-};
-
-type VerifiableContract = {
-  contract: ContractFileFromDisk;
-  config: CaseConfig;
 };
 
 type VerifierConstructorInfo<T extends AnyMockDescriptorType> = {
@@ -168,56 +164,6 @@ export class ContractVerifierConnector {
     this.context.logger.deepMaintainerDebug('Constructed VerifierConnector');
   }
 
-  private filterContractsWithConfiguration(
-    mergedConfig: CaseConfig,
-  ): VerifiableContract[] {
-    if (typeof mergedConfig.providerName !== 'string') {
-      throw new CaseConfigurationError(
-        `Must provide a providerName to verify (received '${mergedConfig.providerName}').`,
-        'DONT_ADD_LOCATION',
-        'INVALID_CONFIG',
-      );
-    }
-    this.context.logger.debug(
-      `There are ${this.contracts.length} contracts loaded (this may include contracts that don't belong to this run)`,
-    );
-    this.contracts
-      .filter(
-        (item) =>
-          item.contents.description?.providerName !== mergedConfig.providerName,
-      )
-      .forEach((item) => {
-        this.context.logger.debug(
-          `Skipping ${item.filePath} because it is not for the provider '${mergedConfig.providerName}' (It was for '${item.contents.description?.providerName}' instead)`,
-        );
-      });
-
-    const caseContractsForProvider = this.contracts.filter(
-      (item) =>
-        item.contents.description?.providerName === mergedConfig.providerName,
-    );
-
-    caseContractsForProvider
-      .filter(
-        (item) =>
-          typeof mergedConfig.consumerName !== 'undefined' &&
-          item.contents.description?.consumerName !== mergedConfig.consumerName,
-      )
-      .forEach((item) => {
-        this.context.logger.debug(
-          `Skipping ${item.filePath} because it is not for the consumer '${mergedConfig.consumerName}' (It was for '${item.contents.description?.consumerName}' instead)`,
-        );
-      });
-
-    return caseContractsForProvider
-      .filter(
-        (item) =>
-          typeof mergedConfig.consumerName === 'undefined' ||
-          item.contents.description?.consumerName === mergedConfig.consumerName,
-      )
-      .map((contract) => ({ contract, config: mergedConfig }));
-  }
-
   /**
    * Get the contract descriptors that would be targetted by the current configuration.
    *
@@ -226,7 +172,11 @@ export class ContractVerifierConnector {
    * @returns The available {@link CaseContractDescription}s.
    */
   getAvailableContractDescriptions(): CaseContractDescription[] {
-    return this.filterContractsWithConfiguration(this.config).map(
+    return filterContractsWithConfiguration(
+      this.context,
+      this.contracts,
+      this.config,
+    ).map(
       (verifiableContract) => verifiableContract.contract.contents.description,
     );
   }
@@ -270,7 +220,11 @@ export class ContractVerifierConnector {
         };
         return getContractVerifierHandles(
           this.context,
-          this.filterContractsWithConfiguration(mergedConfig),
+          filterContractsWithConfiguration(
+            this.context,
+            this.contracts,
+            mergedConfig,
+          ),
           {
             config: mergedConfig,
             dependencies: this.dependencies,
