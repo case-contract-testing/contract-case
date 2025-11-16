@@ -33,7 +33,7 @@
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true jest",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write "
@@ -55,15 +55,17 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.22.0",
     "jest": "^30.0.0",
-    "prettier": "3.5.3",
     "rimraf": "^6.0.1",
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
     "typescript": "5.8.3"
   },
   "dependencies": {
+    "@amplication/java-ast": "^0.0.2",
     "@contract-case/case-plugin-base": "0.27.3",
     "@contract-case/case-plugin-dsl-types": "0.27.3",
-    "mkdirp": "^3.0.1"
+    "mkdirp": "^3.0.1",
+    "prettier": "^3.5.3",
+    "prettier-plugin-java": "^2.7.7"
   }
 }

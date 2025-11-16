@@ -2,6 +2,7 @@ import { mkdirp } from 'mkdirp';
 
 import * as fs from 'fs';
 import * as path from 'path';
+import chalk from 'chalk';
 import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import {
   GeneratedFile,
@@ -32,8 +33,9 @@ export const makeFileWriter = (
 ): GeneratedFileWriter => ({
   write: (generatedFile: GeneratedFile): void => {
     const fullPath = path.join(basePath, generatedFile.relativePath);
+    // TODO: Extract this nicely
     logger.info(
-      `[${generatedFile.entityNames.join(',')}] written in ${fullPath}`,
+      `[${chalk.blueBright(generatedFile.entityNames.join(','))}] written in ${fullPath}`,
     );
 
     createDirectory(fullPath);

@@ -1,22 +1,21 @@
 import {
   MatcherDslDeclaration,
   ParameterDeclaration,
+  ParameterType,
 } from '../../typeSystem/types';
 import {
   toCamelCase,
   toScreamingSnakeCase,
 } from '../../naming/stringIdiomTransformations';
 
-const getTsType = (
-  paramType: string | { kind: string; type: string },
-): string => {
+const getTsType = (paramType: ParameterType): string => {
   if (typeof paramType === 'string') {
     return paramType;
   }
   if (paramType.kind === 'array') {
     return `${paramType.type}[]`;
   }
-  return paramType.type;
+  return getTsType(paramType.type);
 };
 
 export const generateDslCode = (

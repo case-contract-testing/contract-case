@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`generator java generates a matcher as expected 1`] = `
+"package io.contract_testing.contractcase.definitions.matchers.tests;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
+import java.lang.String;
+import java.util.List;
+import javax.annotation.Nullable;
+import javax.annotation.Nullable;
+import lombok.Builder;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Getter;
+import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * Matches an array where each element matches the provided matcher.
+ */
+public class ArrayEachEntryMatches<M> {
+
+  /**
+   * Internal type boilerplate
+   */
+  @Getter
+  @JsonProperty("_case:matcher:type")
+  private final String type;
+
+  /**
+   * The matcher to match against each element of the array.
+   */
+  @Getter
+  @JsonProperty("_case:matcher:matcher")
+  private final M matcher;
+
+  /**
+   * Example data to use instead of the generated one
+   */
+  @Nullable
+  @JsonInclude(Include.NON_NULL)
+  @Getter
+  @JsonProperty("_case:matcher:example")
+  private final List<Object> example;
+
+  @Builder
+  public ArrayEachEntryMatches(@NotNull final M matcher) {
+    this.type = "_case:ArrayEachEntryLike";
+    this.matcher = matcher;
+    this.example = null;
+  }
+
+  @Builder
+  public ArrayEachEntryMatches(
+    @NotNull final M matcher,
+    @Nullable final List<Object> example
+  ) {
+    this.type = "_case:ArrayEachEntryLike";
+    this.matcher = matcher;
+    this.example = example;
+  }
+}
+"
+`;
+
+exports[`generator java works for the other case too 1`] = `
+"package io.contract_testing.contractcase.definitions.matchers.tests;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.String;
+import java.util.List;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * Matches an Array which contains elements that match the given matchers. Note that two different matchers may be satisfied by the same item in the array.
+ */
+public class ArrayContains<M> {
+
+  /**
+   * Internal type boilerplate
+   */
+  @Getter
+  @JsonProperty("_case:matcher:type")
+  private final String type;
+
+  /**
+   * Any number of matchers, each of which must be found inside the array, in any order.
+   */
+  @Getter
+  @JsonProperty("_case:matcher:matchers")
+  private final List<M> matchers;
+
+  @Builder
+  public ArrayContains(@NotNull final List<M> matchers) {
+    this.type = "_case:ArrayContains";
+    this.matchers = matchers;
+  }
+}
+"
+`;

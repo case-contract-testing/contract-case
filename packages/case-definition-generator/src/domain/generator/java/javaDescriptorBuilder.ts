@@ -1,52 +1,10 @@
 import * as path from 'node:path';
-import { getType } from '../../typeSystem';
-import { LanguageTypes, MatcherDslDeclaration } from '../../typeSystem/types';
+import { MatcherDslDeclaration } from '../../typeSystem/types';
 import {
   JavaDescriptor,
   JavaFieldDescriptor,
   JavaConstructorDescriptor,
 } from './types';
-
-const javaLanguageTypes: LanguageTypes = {
-  array: (type) => `List<${type}>`,
-  data: 'Object',
-  matcher: 'M',
-};
-
-/**
- * Determines which imports are needed based on the matcher definition.
- *
- * @param definition - The matcher definition to analyze
- * @returns Array of import statements needed
- */
-const determineImports = (definition: MatcherDslDeclaration): string[] => {
-  const imports: string[] = [];
-
-  // Check if any parameters are optional (need JsonInclude imports)
-  if (definition.params.some((p) => p.optional)) {
-    imports.push('import com.fasterxml.jackson.annotation.JsonInclude;');
-    imports.push(
-      'import com.fasterxml.jackson.annotation.JsonInclude.Include;',
-    );
-  }
-
-  // Always need JsonProperty
-  imports.push('import com.fasterxml.jackson.annotation.JsonProperty;');
-
-  // Check if any parameters are array types (need List import)
-  if (
-    definition.params.some(
-      (p) =>
-        typeof p.type === 'object' &&
-        p.type.kind &&
-        p.type.kind.toLowerCase() === 'array',
-    )
-  ) {
-    imports.push('import java.util.List;');
-  }
-
-  return imports;
-};
 
 /**
  * Creates field descriptors for all the fields that need to be generated.
@@ -56,35 +14,25 @@ const determineImports = (definition: MatcherDslDeclaration): string[] => {
  */
 const createFieldDescriptors = (
   definition: MatcherDslDeclaration,
-): JavaFieldDescriptor[] => {
-  const fields: JavaFieldDescriptor[] = [];
-
-  // Add the type field (always present)
-  fields.push({
+): JavaFieldDescriptor[] => [
+  {
     name: 'type',
-    javaType: 'String',
+    type: 'String',
+    documentation: 'Internal type boilerplate',
     jsonPropertyName: '_case:matcher:type',
-    needsJsonInclude: false,
-    isFinal: true,
-  });
-
-  // Add fields for each parameter
-  definition.params.forEach((param) => {
-    const javaType = getType(param.type, javaLanguageTypes);
-    const isOptional = !!param.optional;
-
-    fields.push({
-      name: param.name,
-      javaType,
-      jsonPropertyName: `_case:matcher:${param.name}`,
-      needsJsonInclude: isOptional,
-      isFinal: true,
-    });
-  });
-
-  return fields;
-};
-
+    optional: false,
+  },
+  ...definition.params.map((param) => ({
+    name: param.name,
+    type: param.type,
+    documentation: param.documentation,
+    jsonPropertyName:
+      param.jsonPropertyName != null
+        ? param.jsonPropertyName
+        : `_case:matcher:${param.name}`,
+    optional: !!param.optional,
+  })),
+];
 /**
  * Creates constructor descriptors for all the constructors that need to be generated.
  *
@@ -139,7 +87,7 @@ const toJavaPackageName = (namespace: string) =>
  * separated from the actual generation logic.
  *
  * @param definition - Complete matcher declaration containing name, type, documentation, and parameters
- * @param category - the category for this matcher, used for grouing
+ * @param category - the category for this matcher, used for grouping files together
  * @param namespace - Namespace prefix for the matcher type
  * @returns JavaDescriptor containing all information needed to generate the Java class
  */
@@ -156,7 +104,6 @@ export const buildJavaDescriptor = (
     ...MATCHER_PACKAGE_PATH,
     toJavaPackageName(category),
   ),
-  imports: determineImports(definition),
   className: definition.name,
   classDocumentation: definition.documentation,
   genericTypeParameter: 'M',

@@ -22,14 +22,14 @@ import { renderJavaClass } from './javaRenderer';
  * unique to your organisation or plugin. Must not be empty.
  *
  */
-export const generateJavaDslCode = (
+export const generateJavaDslCode = async (
   definition: MatcherDslDeclaration,
   category: string,
   namespace: string,
-): GeneratedFile => {
+): Promise<GeneratedFile> => {
   const descriptor = buildJavaDescriptor(definition, category, namespace);
   return {
-    content: renderJavaClass(descriptor),
+    content: await renderJavaClass(descriptor),
     entityNames: [descriptor.className],
     relativePath: path.join(
       descriptor.basePath,

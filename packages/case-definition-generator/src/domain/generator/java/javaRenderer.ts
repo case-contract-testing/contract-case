@@ -1,133 +1,229 @@
-import { JavaDescriptor, JavaFieldDescriptor } from './types';
-import { addSingleConstructor } from './constructors';
+import {
+  Class,
+  Field,
+  Parameter,
+  Type,
+  Access,
+  Annotation,
+  ClassReference,
+  Writer,
+  CodeBlock,
+} from '@amplication/java-ast';
+import {
+  CaseConfigurationError,
+  CaseCoreError,
+} from '@contract-case/case-plugin-base';
+import prettier from 'prettier';
+import {
+  JavaDescriptor,
+  JavaFieldDescriptor,
+  JavaConstructorDescriptor,
+} from './types';
+import { isTypeContainer, ParameterType } from '../../typeSystem/types';
 
-/**
- * Renders the package declaration and import statements.
- *
- * @param lines - Output array to append lines to
- * @param descriptor - JavaDescriptor containing package and import information
- */
-const renderPackageAndImports = (
-  lines: string[],
-  descriptor: JavaDescriptor,
-): void => {
-  // Package declaration
-  lines.push(`package ${descriptor.packageName};`);
-  lines.push('');
-
-  // Imports
-  descriptor.imports.forEach((importStatement) => {
-    lines.push(importStatement);
-  });
-  lines.push('');
+export const getJavaType = (
+  parameterType: ParameterType,
+  packageName: string,
+): Type => {
+  if (isTypeContainer(parameterType)) {
+    return Type.list(getJavaType(parameterType.type, packageName));
+  }
+  switch (parameterType) {
+    case 'AnyCaseMatcherOrData':
+      return Type.reference(
+        new ClassReference({
+          name: 'M',
+          packageName,
+        }),
+      );
+    case 'AnyData':
+      return Type.object();
+    case 'String':
+      return Type.string();
+    case 'Integer':
+      return Type.integer();
+    default:
+      throw new CaseConfigurationError(
+        `Unknown parameter type for Java: ${parameterType}`,
+        'DONT_ADD_LOCATION',
+        'BAD_DSL_DECLARATION',
+      );
+  }
 };
 
 /**
- * Renders class documentation if present.
+ * Creates a Java field from a field descriptor
  *
- * @param lines - Output array to append lines to
- * @param descriptor - JavaDescriptor containing class documentation
+ * @param fieldDescriptor - Field descriptor containing all field information
+ * @returns Field AST node
  */
-const renderClassDocumentation = (
-  lines: string[],
-  descriptor: JavaDescriptor,
-): void => {
-  if (descriptor.classDocumentation) {
-    lines.push('/**');
-    lines.push(` * ${descriptor.classDocumentation}`);
-    lines.push(' *');
-    lines.push(
-      ` * @param <${descriptor.genericTypeParameter}> Any matcher or data`,
+const createField = (
+  fieldDescriptor: JavaFieldDescriptor,
+  packageName: string,
+): Field => {
+  const annotations: Annotation[] = [];
+
+  if (fieldDescriptor.optional) {
+    annotations.push(
+      new Annotation({
+        reference: new ClassReference({
+          name: 'Nullable',
+          packageName: 'javax.annotation',
+        }),
+      }),
     );
-    lines.push(' */');
+    annotations.push(
+      new Annotation({
+        reference: new ClassReference({
+          name: 'JsonInclude',
+          packageName: 'com.fasterxml.jackson.annotation',
+        }),
+        argument: new CodeBlock({
+          code: 'Include.NON_NULL',
+          references: [
+            new ClassReference({
+              name: 'Include',
+              packageName: 'com.fasterxml.jackson.annotation.JsonInclude',
+            }),
+          ],
+        }),
+      }),
+    );
   }
-};
 
-/**
- * Renders the class declaration.
- *
- * @param lines - Output array to append lines to
- * @param descriptor - JavaDescriptor containing class information
- */
-const renderClassDeclaration = (
-  lines: string[],
-  descriptor: JavaDescriptor,
-): void => {
-  lines.push(
-    `public class ${descriptor.className}<${descriptor.genericTypeParameter}> {`,
+  annotations.push(
+    new Annotation({
+      reference: new ClassReference({
+        name: 'Getter',
+        packageName: 'lombok',
+      }),
+    }),
+    new Annotation({
+      reference: new ClassReference({
+        name: 'JsonProperty',
+        packageName: 'com.fasterxml.jackson.annotation',
+      }),
+      argument: new CodeBlock({
+        code: `"${fieldDescriptor.jsonPropertyName}"`,
+      }),
+    }),
   );
-};
 
-/**
- * Renders a single field with its annotations.
- *
- * @param lines - Output array to append lines to
- * @param field - Field descriptor containing all field information
- */
-const renderField = (lines: string[], field: JavaFieldDescriptor): void => {
-  lines.push('');
-  if (field.needsJsonInclude) {
-    lines.push('  @JsonInclude(Include.NON_NULL)');
-  }
-  lines.push(`  @JsonProperty("${field.jsonPropertyName}")`);
-  const finalKeyword = field.isFinal ? 'final ' : '';
-  lines.push(`  ${finalKeyword}${field.javaType} ${field.name};`);
-};
-
-/**
- * Renders all fields defined in the descriptor.
- *
- * @param lines - Output array to append lines to
- * @param descriptor - JavaDescriptor containing field information
- */
-const renderFields = (lines: string[], descriptor: JavaDescriptor): void => {
-  descriptor.fields.forEach((field) => {
-    renderField(lines, field);
+  return new Field({
+    name: fieldDescriptor.name,
+    type: getJavaType(fieldDescriptor.type, packageName),
+    access: Access.Private,
+    javadoc: fieldDescriptor.documentation,
+    final_: true,
+    annotations,
   });
 };
 
 /**
- * Renders all constructors defined in the descriptor.
+ * Creates a Java constructor from a constructor descriptor
  *
- * @param lines - Output array to append lines to
- * @param descriptor - JavaDescriptor containing constructor information
+ * @param constructorDescriptor - Constructor descriptor containing all constructor information
+ * @param className - Name of the class for the constructor
+ * @returns Method AST node configured as a constructor
  */
-const renderConstructors = (
-  lines: string[],
-  descriptor: JavaDescriptor,
-): void => {
-  descriptor.constructors.forEach((constructor) => {
-    addSingleConstructor(lines, descriptor.className, constructor);
+const createConstructor = (
+  constructorDescriptor: JavaConstructorDescriptor,
+  packageName: string,
+): Class.Constructor => {
+  const bodyStatements: string[] = [];
+  bodyStatements.push(`this.type = "${constructorDescriptor.typeValue}";`);
+  constructorDescriptor.parameters.forEach((param) => {
+    bodyStatements.push(`this.${param.name} = ${param.name};`);
   });
+  constructorDescriptor.optionalParamsToSetNull.forEach((param) => {
+    bodyStatements.push(`this.${param.name} = null;`);
+  });
+
+  return {
+    access: Access.Public,
+    annotations: [
+      new Annotation({
+        reference: new ClassReference({
+          name: 'Builder',
+          packageName: 'lombok',
+        }),
+      }),
+    ],
+    parameters: constructorDescriptor.parameters.map(
+      (param) =>
+        new Parameter({
+          final_: true,
+          name: param.name,
+          annotations: param.optional
+            ? [
+                new Annotation({
+                  reference: new ClassReference({
+                    name: 'Nullable',
+                    packageName: 'javax.annotation',
+                  }),
+                }),
+              ]
+            : [
+                new Annotation({
+                  reference: new ClassReference({
+                    name: 'NotNull',
+                    packageName: 'org.jetbrains.annotations',
+                  }),
+                }),
+              ],
+          docs: param.documentation,
+          type: getJavaType(param.type, packageName),
+        }),
+    ),
+    body: new CodeBlock({ code: bodyStatements.join('\n    ') }),
+  };
 };
 
 /**
- * Renders the class closing brace.
- *
- * @param lines - Output array to append lines to
- */
-const renderClassClosing = (lines: string[]): void => {
-  lines.push('');
-  lines.push('}');
-};
-
-/**
- * Renders a complete Java class based on a JavaDescriptor.
+ * Renders a complete Java class based on a JavaDescriptor
  * This function contains only generation logic and makes no decisions
  * about what to generate - it simply renders what is described in the descriptor.
  *
  * @param descriptor - Complete description of the Java class to generate
  * @returns Complete Java class source code as a string
  */
-export function renderJavaClass(descriptor: JavaDescriptor): string {
-  const lines: string[] = [];
+export function renderJavaClass(descriptor: JavaDescriptor): Promise<string> {
+  // Create the main class
+  const javaClass = new Class({
+    name: descriptor.className,
+    packageName: descriptor.packageName,
+    access: Access.Public,
+    typeParameters: [descriptor.genericTypeParameter],
+    javadoc: descriptor.classDocumentation || '',
+  });
 
-  renderPackageAndImports(lines, descriptor);
-  renderClassDocumentation(lines, descriptor);
-  renderClassDeclaration(lines, descriptor);
-  renderFields(lines, descriptor);
-  renderConstructors(lines, descriptor);
-  renderClassClosing(lines);
+  // Add all fields
+  descriptor.fields.forEach((fieldDescriptor) => {
+    javaClass.addField(createField(fieldDescriptor, descriptor.packageName));
+  });
 
-  return lines.join('\n');
+  // Add constructors using addConstructor method
+  descriptor.constructors.forEach((constructorDescriptor) => {
+    const constructor = createConstructor(
+      constructorDescriptor,
+      descriptor.packageName,
+    );
+
+    javaClass.addConstructor(constructor);
+  });
+
+  // Generate the Java code
+  const writer = new Writer({ packageName: descriptor.packageName });
+  javaClass.write(writer);
+
+  const code = writer.toString();
+
+  return prettier
+    .format(code, { parser: 'java', plugins: ['prettier-plugin-java'] })
+    .then((formatted) => formatted)
+    .catch((err) => {
+      throw new CaseCoreError(
+        `Error formatting Java code. This means that there's a bug in the Java code generator. Error was: ${err.message}\n\nBroken code was: ${code}`,
+      );
+    });
 }

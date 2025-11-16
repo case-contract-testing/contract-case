@@ -1,4 +1,4 @@
-import { ParameterDeclaration } from '../../typeSystem/types';
+import { ParameterDeclaration, ParameterType } from '../../typeSystem/types';
 
 /**
  * Describes a Java field that needs to be generated
@@ -6,14 +6,14 @@ import { ParameterDeclaration } from '../../typeSystem/types';
 export type JavaFieldDescriptor = {
   /** The field name */
   name: string;
-  /** The Java type for this field */
-  javaType: string;
+  /** The type of the field */
+  type: ParameterType;
+  /** Documentation for the field */
+  documentation: string;
   /** The JSON property name for the \@JsonProperty annotation */
   jsonPropertyName: string;
-  /** Whether this field needs \@JsonInclude(Include.NON_NULL) annotation */
-  needsJsonInclude: boolean;
-  /** Whether this field is final */
-  isFinal: boolean;
+  /** Whether this field is optional */
+  optional: boolean;
 };
 
 /**
@@ -38,8 +38,6 @@ export type JavaDescriptor = {
   packageName: string;
   /** The base path relative to the java source root */
   basePath: string;
-  /** List of import statements needed */
-  imports: string[];
   /** Name of the Java class */
   className: string;
   /** Class-level documentation (optional) */
