@@ -25,6 +25,10 @@ const strip: StripMatcherFn<CoreArrayLengthMatcher> = (
   throw new StripUnsupportedError(matcher, matchContext);
 };
 
+const isInfinite = (matcher: CoreArrayLengthMatcher) =>
+  matcher['_case:matcher:maxLength'] === ARRAY_LENGTH_PARAMETER_INFINITE ||
+  !('_case:matcher:maxLength' in matcher);
+
 const check: CheckMatchFn<CoreArrayLengthMatcher> = (
   matcher: CoreArrayLengthMatcher,
   matchContext: MatchContext,
@@ -33,8 +37,8 @@ const check: CheckMatchFn<CoreArrayLengthMatcher> = (
   Array.isArray(actual)
     ? combineResults(
         errorWhen(
-          matcher['_case:matcher:maxLength'] !==
-            ARRAY_LENGTH_PARAMETER_INFINITE &&
+          !isInfinite(matcher) &&
+            typeof matcher['_case:matcher:maxLength'] !== 'string' &&
             actual.length > matcher['_case:matcher:maxLength'],
           matchingError(
             matcher,
@@ -45,7 +49,7 @@ const check: CheckMatchFn<CoreArrayLengthMatcher> = (
           ),
         ),
         errorWhen(
-          actual.length < matcher['_case:matcher:minLength'],
+          actual.length < (matcher['_case:matcher:minLength'] ?? 1),
           matchingError(
             matcher,
             `Array length of '${actual.length}' is under the minimum length of ${matcher['_case:matcher:minLength']}`,
