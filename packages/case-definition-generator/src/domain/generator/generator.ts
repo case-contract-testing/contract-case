@@ -10,11 +10,22 @@ export const makeGenerator = (
   fileWriter: GeneratedFileWriter,
 ): DslGenerator => ({
   process: (plugin: PluginDslDeclaration): Promise<void> =>
-    Promise.all(
-      plugin.matchers.map((matcher) =>
-        generateJavaDslCode(matcher, plugin.category, plugin.namespace).then(
-          (file) => fileWriter.write(file),
-        ),
+    Promise.all([
+      ...plugin.matchers.map((matcher) =>
+        generateJavaDslCode(
+          { ...matcher, kind: 'matcher' },
+          plugin.category,
+          plugin.namespace,
+        ).then((file) => fileWriter.write(file)),
       ),
-    ).then(() => {}),
+      ...(plugin.states
+        ? plugin.states.map((state) =>
+            generateJavaDslCode(
+              { ...state, kind: 'state' },
+              plugin.category,
+              plugin.namespace,
+            ).then((file) => fileWriter.write(file)),
+          )
+        : []),
+    ]).then(() => {}),
 });

@@ -6,21 +6,23 @@ import {
   JavaConstructorDescriptor,
 } from './types';
 import { convertMarkdownToJavadoc } from './documentation';
+import { InternalObjectDeclaration } from '../../typeSystem/internals';
 
 /**
  * Creates field descriptors for all the fields that need to be generated.
  *
  * @param definition - The matcher definition containing parameters
+ * @param kind - What kind of object we're creating
  * @returns Array of field descriptors
  */
 const createFieldDescriptors = (
-  definition: MatcherDslDeclaration,
+  definition: InternalObjectDeclaration,
 ): JavaFieldDescriptor[] => [
   {
     name: 'type',
     type: 'string',
-    documentation: 'ContractCase\'s internal type for this element',
-    jsonPropertyName: '_case:matcher:type',
+    documentation: "ContractCase's internal type for this element",
+    jsonPropertyName: `_case:${definition.kind}:type`,
     optional: false,
   },
   ...definition.params.map((param) => ({
@@ -30,10 +32,11 @@ const createFieldDescriptors = (
     jsonPropertyName:
       param.jsonPropertyName != null
         ? param.jsonPropertyName
-        : `_case:matcher:${param.name}`,
+        : `_case:${definition.kind}:${param.name}`,
     optional: !!param.optional,
   })),
 ];
+
 /**
  * Creates constructor descriptors for all the constructors that need to be generated.
  *
@@ -71,16 +74,54 @@ const createConstructorDescriptors = (
   return constructors;
 };
 
-const MATCHER_PACKAGE_PATH = [
-  'io',
-  'contract_testing',
-  'contractcase',
-  'definitions',
-  'matchers',
-];
+const PACKAGE_PATH = ['io', 'contract_testing', 'contractcase', 'dsl'];
 
 const toJavaPackageName = (namespace: string) =>
   namespace.toLowerCase().replace(/[^a-z]/, '_');
+
+/**
+ * Gets the package names (as an array of strings) for a given object
+ * @param definition - The definition of the DSL object
+ * @param category - The category that the object is in
+ * @returns Array of package names
+ */
+const packageFor = (
+  definition: InternalObjectDeclaration,
+  category: string,
+): string[] => {
+  switch (definition.kind) {
+    case 'matcher':
+      return [...PACKAGE_PATH, 'matchers', toJavaPackageName(category)];
+    case 'state':
+      return [...PACKAGE_PATH, 'states'];
+    default:
+      throw new Error(
+        `Unknown kind of object in packageFor: ${(definition as InternalObjectDeclaration).kind}`,
+      );
+  }
+};
+
+/**
+ * Gets the path for this object
+ * @param definition - The definition of the DSL object
+ * @param category - The category that the object is in
+ * @returns The path for this object
+ */
+const pathFor = (
+  definition: InternalObjectDeclaration,
+  category: string,
+): string =>
+  path.join('src', 'main', 'java', ...packageFor(definition, category));
+
+const baseJavaObject = (
+  definition: InternalObjectDeclaration,
+  category: string,
+) => ({
+  packageName: packageFor(definition, category).join('.'),
+  basePath: pathFor(definition, category),
+  className: definition.name,
+  classDocumentation: convertMarkdownToJavadoc(definition.documentation),
+});
 
 /**
  * Builds a complete JavaDescriptor from a MatcherDslDeclaration.
@@ -93,27 +134,21 @@ const toJavaPackageName = (namespace: string) =>
  * @returns JavaDescriptor containing all information needed to generate the Java class
  */
 export const buildJavaDescriptor = (
-  definition: MatcherDslDeclaration,
+  definition: InternalObjectDeclaration,
   category: string,
   namespace: string,
 ): JavaDescriptor => ({
-  packageName: `${MATCHER_PACKAGE_PATH.join('.')}.${toJavaPackageName(category)}`,
-  basePath: path.join(
-    'src',
-    'main',
-    'java',
-    ...MATCHER_PACKAGE_PATH,
-    toJavaPackageName(category),
-  ),
-  className: definition.name,
-  classDocumentation: convertMarkdownToJavadoc(definition.documentation),
+  ...baseJavaObject(definition, category),
   genericTypeParameter: 'M',
   fields: createFieldDescriptors(definition),
   constructors: createConstructorDescriptors(definition, namespace),
   currentRunModifiers:
+    'currentRunModifiers' in definition &&
     definition.currentRunModifiers != null
       ? definition.currentRunModifiers
       : {},
   contextModifiers:
-    definition.contextModifiers != null ? definition.contextModifiers : {},
+    'contextModifiers' in definition && definition.contextModifiers != null
+      ? definition.contextModifiers
+      : {},
 });

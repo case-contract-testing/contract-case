@@ -29,7 +29,6 @@ const objects: PluginDslDeclaration = {
       ],
     },
   ],
-  dataObjects: [],
 };
 
 export default objects;

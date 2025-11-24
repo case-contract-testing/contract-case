@@ -1,8 +1,11 @@
 import path from 'path';
-import { MatcherDslDeclaration } from '../../typeSystem/types';
 import { GeneratedFile } from '../types';
 import { buildJavaDescriptor } from './javaDescriptorBuilder';
 import { renderJavaClass } from './javaRenderer';
+import {
+  InternalMatcherDslDeclaration,
+  InternalStateObjectDeclaration,
+} from '../../typeSystem/internals';
 
 /**
  * Generates complete Java DSL class code for a ContractCase matcher definition.
@@ -23,7 +26,7 @@ import { renderJavaClass } from './javaRenderer';
  *
  */
 export const generateJavaDslCode = async (
-  definition: MatcherDslDeclaration,
+  definition: InternalMatcherDslDeclaration | InternalStateObjectDeclaration,
   category: string,
   namespace: string,
 ): Promise<GeneratedFile> => {

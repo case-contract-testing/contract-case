@@ -72,7 +72,6 @@ const primitives: PluginDslDeclaration = {
       },
     },
   ],
-  dataObjects: [],
 };
 
 export default primitives;

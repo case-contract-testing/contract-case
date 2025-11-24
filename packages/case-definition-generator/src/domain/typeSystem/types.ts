@@ -11,8 +11,15 @@ export type PluginDslDeclaration = {
    * used for grouping related matchers
    * together (eg arrays) */
   category: string;
+  /**
+   * An array of all the matcher DSL objects declared by this
+   * plugin.
+   * 
+   * Note that these don't need to map 1:1 to your matcher
+   * executors. 
+   */
   matchers: MatcherDslDeclaration[];
-  dataObjects: DataObjectDeclaration[];
+  states?: StateObjectDeclaration[];
 };
 
 /**
@@ -111,8 +118,8 @@ export type ParameterDeclaration = {
   jsonPropertyName?: string;
 };
 
-/** Defines the DSL for a matcher. Note that more than one Matcher DSL can point to the same matcher implementation */
-export type MatcherDslDeclaration = {
+/** Defines an object. */
+export type DslObjectDeclaration = {
   /*
    * The name of the DSL matcher, in CamelCase with no spaces.
    *
@@ -131,14 +138,25 @@ export type MatcherDslDeclaration = {
    * names in the DSL for the same matcher.
    */
   type: string;
+
   /**
-   * Documentation for this matcher. Yes, this is required. We're not sorry about that,
+   * Documentation for this object. Yes, this is required. We're not sorry about that,
    * and hopefully the users of your plugin won't be sorry about it either.
    */
   documentation: string;
+
   /** An ordered array of parameter declarations. If any parameters are optional, they must be at the end. */
   params: ParameterDeclaration[];
+};
 
+/**
+ * Defines the DSL for a matcher.
+ *
+ * Note that more than one Matcher DSL can point
+ * to the same matcher implementation - that is, you might have
+ * multiple DSL objects with the same type.
+ */
+export type MatcherDslDeclaration = DslObjectDeclaration & {
   /**
    * A map of constant parameters to add to the matcher. These are parameters that are always the same for all instances of the matcher.
    *
@@ -169,20 +187,5 @@ export type MatcherDslDeclaration = {
   currentRunModifiers?: Record<string, string>;
 };
 
-/** Defines the DSL for a matcher. Note that more than one Matcher DSL can point to the same matcher implementation */
-export type DataObjectDeclaration = {
-  /*
-   * The name of the DSL matcher, in CamelCase with no spaces.
-   *
-   * This is used to generate the type names, etc. Must
-   * be unique within your plugin, across all declarations.
-   */
-  name: string;
-  /**
-   * Documentation for this matcher. Yes, this is required. We're not sorry about that,
-   * and hopefully the users of your plugin won't be sorry about it either.
-   */
-  documentation: string;
-  /** An ordered array of property declarations. */
-  properties: ParameterDeclaration[];
-};
+
+export type StateObjectDeclaration = DslObjectDeclaration; 

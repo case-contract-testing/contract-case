@@ -40,7 +40,6 @@ const modifiers: PluginDslDeclaration = {
       ],
     },
   ],
-  dataObjects: [],
 };
 
 export default modifiers;

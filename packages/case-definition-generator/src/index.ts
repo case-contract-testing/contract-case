@@ -8,6 +8,7 @@ import modifiers from './entities/modifiers';
 import objects from './entities/objects';
 import primitives from './entities/primitives';
 import strings from './entities/strings';
+import core from './entities/core';
 
 // TODO: Correct this path
 const writer = makeFileWriter(
@@ -24,3 +25,4 @@ generator.process(modifiers);
 generator.process(objects);
 generator.process(primitives);
 generator.process(strings);
+generator.process(core);

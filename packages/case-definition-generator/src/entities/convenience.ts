@@ -91,14 +91,13 @@ const functions: PluginDslDeclaration = {
       name: 'WithExample',
       type: 'CascadingContext',
       documentation: `Adds an example to the provided matcher. Useful when you have a complicated
-  set of constraints and ContractCase can't figure out what the best example should be. 
+set of constraints and ContractCase can't figure out what the best example should be. 
  
 The most common use case for this matcher is for providing a clear example for array matchers.
 
- The provided example must be matchable by the child matcher. 
+The provided example must be matchable by the child matcher. 
  
- Note that WithExample completely overrides the generated example that would normally be produced by the child matcher.
- `,
+Note that WithExample completely overrides the generated example that would normally be produced by the child matcher.`,
       params: [
         {
           name: 'child',
@@ -113,7 +112,6 @@ The most common use case for this matcher is for providing a clear example for a
       ],
     },
   ],
-  dataObjects: [],
 };
 
 export default functions;
