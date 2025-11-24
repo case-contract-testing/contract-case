@@ -62,14 +62,14 @@ const arrays: PluginDslDeclaration = {
           name: 'minLength',
           documentation: `The minimum length for the array. Must be greater than zero, 
             otherwise empty arrays pass, which means you wouldn't be testing the array contents.`,
-          type: 'Integer',
+          type: 'integer',
           optional: true,
         },
         {
           name: 'maxLength',
           documentation:
             'The maximum length for the array. Must be greater than minimum length',
-          type: 'Integer',
+          type: 'integer',
           optional: true,
         },
       ],

@@ -17,16 +17,49 @@ export type PluginDslDeclaration = {
 
 /**
  * ParameterType tells us what type a parameter is.
+ *
+ * Possible string values:
+ * - `'AnyCaseMatcherOrData'`: Matches arbitrary
+ *    data or a ContractCase matcher.
+ *    This is ContractCase's most generic unknown type.
+ * - `'AnyData'`: Matches any data value only, ie, can't be a matcher.
+ * - `'integer'`: Matches integer numbers
+ * - `'string'`: Matches string values
+ * - `'boolean'`: Matches boolean values
+ * - `'number'`: Matches any numeric value.
+ *    Because the contract serialises to json, this
+ *    practically means double precision floating point; although
+ *    the json spec doesn't actually specify, most implementations
+ *    are restricted to double precision floating point.
+ * - `'null'`: Matches `null` values. Friends don't let friends match
+ *    null values.
+ *
+ * See {@link TypeContainer} for complex types.
  */
 export type ParameterType =
   | TypeContainer
   | 'AnyCaseMatcherOrData'
   | 'AnyData'
-  | 'Integer'
-  | 'String';
+  | 'integer'
+  | 'string'
+  | 'boolean'
+  | 'number'
+  | 'null';
 
+/**
+ * Indicates a container type.
+ *
+ * Currently only supports arrays, but in the future may allow specific
+ * matchers.
+ *
+ * Implementations should switch on `kind` and fail if they get a kind that they
+ * don't recognise.
+ *
+ * If you have a use-case that needs more complex container types, please raise
+ * an issue.
+ */
 export type TypeContainer = {
-  /** What kind of container this is */
+  /** What kind of container this is. Future unions of this type will always have this parameter */
   kind: 'array';
   /** The type of the elements contained within this container */
   type: ParameterType;
@@ -50,7 +83,15 @@ export const isTypeContainer = (
  * Declares a parameter for a matcher
  */
 export type ParameterDeclaration = {
-  /** The name of the parameter, used for documentation, actual method declaration, and any builders */
+  /** The name of the parameter, used for documentation, actual method
+   * declaration, and any builders.
+   *
+   * Note that there are some reserved names or names with side effects:
+   *
+   * - `type`: Reserved for the matcher type.
+   * - `example`: Allowed, but will be used as the rendered example for this node.
+   * - `resolvesTo`: Allowed, but will control what ContractCase thinks the example's type is.
+   */
   name: string;
   /**
    * Documentation for the parameter.
@@ -97,6 +138,35 @@ export type MatcherDslDeclaration = {
   documentation: string;
   /** An ordered array of parameter declarations. If any parameters are optional, they must be at the end. */
   params: ParameterDeclaration[];
+
+  /**
+   * A map of constant parameters to add to the matcher. These are parameters that are always the same for all instances of the matcher.
+   *
+   * See the notes about reserved names on {@link ParameterDeclaration}
+   *
+   * Currently only strings are supported. If you have a more complex use case, please raise an issue.
+   */
+  constantParams?: Record<string, string | null> & {
+    /**
+     * If specified, sets the `matcher:resolvesTo` value.
+     *
+     * This tells ContractCase that the example will always resolve to this specific type.
+     */
+    resolvesTo?: Extract<
+      ParameterType,
+      'string' | 'boolean' | 'number' | 'integer' | 'null'
+    >;
+  };
+  /**
+   * A map of context modifiers to add to the context object.
+   * These control ContractCase's matching behaviour
+   */
+  contextModifiers?: Record<string, string>;
+  /**
+   * A map of modifiers to add to the current run context. These can be used to
+   * add matchers that change the user configuration below it. Most of the time you won't need to provide these.
+   */
+  currentRunModifiers?: Record<string, string>;
 };
 
 /** Defines the DSL for a matcher. Note that more than one Matcher DSL can point to the same matcher implementation */

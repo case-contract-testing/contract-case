@@ -16,7 +16,7 @@ const functions: PluginDslDeclaration = {
           jsonPropertyName: 'functionName',
           documentation:
             'The name of the function to match the arguments against.',
-          type: 'String',
+          type: 'string',
         },
         {
           name: 'arguments',

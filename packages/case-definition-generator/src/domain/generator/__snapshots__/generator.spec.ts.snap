@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import javax.annotation.Nullable;
 import lombok.Builder;
@@ -24,10 +25,11 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Matches an array where each element matches the provided matcher.
  */
+@Generated("@contract-case/case-definition-generator")
 public class ArrayEachEntryMatches<M> {
 
   /**
-   * Internal type boilerplate
+   * ContractCase's internal type for this element
    */
   @Getter
   @JsonProperty("_case:matcher:type")
@@ -76,6 +78,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.String;
 import java.util.List;
+import javax.annotation.Generated;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
@@ -84,10 +87,11 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Matches an Array which contains elements that match the given matchers. Note that two different matchers may be satisfied by the same item in the array.
  */
+@Generated("@contract-case/case-definition-generator")
 public class ArrayContains<M> {
 
   /**
-   * Internal type boilerplate
+   * ContractCase's internal type for this element
    */
   @Getter
   @JsonProperty("_case:matcher:type")

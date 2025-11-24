@@ -5,6 +5,7 @@ import {
   JavaFieldDescriptor,
   JavaConstructorDescriptor,
 } from './types';
+import { convertMarkdownToJavadoc } from './documentation';
 
 /**
  * Creates field descriptors for all the fields that need to be generated.
@@ -17,15 +18,15 @@ const createFieldDescriptors = (
 ): JavaFieldDescriptor[] => [
   {
     name: 'type',
-    type: 'String',
-    documentation: 'Internal type boilerplate',
+    type: 'string',
+    documentation: 'ContractCase\'s internal type for this element',
     jsonPropertyName: '_case:matcher:type',
     optional: false,
   },
   ...definition.params.map((param) => ({
     name: param.name,
     type: param.type,
-    documentation: param.documentation,
+    documentation: convertMarkdownToJavadoc(param.documentation),
     jsonPropertyName:
       param.jsonPropertyName != null
         ? param.jsonPropertyName
@@ -52,7 +53,7 @@ const createConstructorDescriptors = (
   // First constructor (required params only)
   constructors.push({
     parameters: requiredParams,
-    documentation: definition.documentation,
+    documentation: convertMarkdownToJavadoc(definition.documentation),
     typeValue,
     optionalParamsToSetNull: optionalParams,
   });
@@ -61,7 +62,7 @@ const createConstructorDescriptors = (
   if (optionalParams.length > 0) {
     constructors.push({
       parameters: [...requiredParams, ...optionalParams],
-      documentation: definition.documentation,
+      documentation: convertMarkdownToJavadoc(definition.documentation),
       typeValue,
       optionalParamsToSetNull: [],
     });
@@ -105,8 +106,14 @@ export const buildJavaDescriptor = (
     toJavaPackageName(category),
   ),
   className: definition.name,
-  classDocumentation: definition.documentation,
+  classDocumentation: convertMarkdownToJavadoc(definition.documentation),
   genericTypeParameter: 'M',
   fields: createFieldDescriptors(definition),
   constructors: createConstructorDescriptors(definition, namespace),
+  currentRunModifiers:
+    definition.currentRunModifiers != null
+      ? definition.currentRunModifiers
+      : {},
+  contextModifiers:
+    definition.contextModifiers != null ? definition.contextModifiers : {},
 });

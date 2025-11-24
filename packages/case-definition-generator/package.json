@@ -64,6 +64,8 @@
     "@amplication/java-ast": "^0.0.2",
     "@contract-case/case-plugin-base": "0.27.3",
     "@contract-case/case-plugin-dsl-types": "0.27.3",
+    "@types/commonmark": "^0.27.10",
+    "commonmark": "^0.31.2",
     "mkdirp": "^3.0.1",
     "prettier": "^3.5.3",
     "prettier-plugin-java": "^2.7.7"

@@ -38,10 +38,16 @@ export const getJavaType = (
       );
     case 'AnyData':
       return Type.object();
-    case 'String':
+    case 'string':
       return Type.string();
-    case 'Integer':
+    case 'integer':
       return Type.integer();
+    case 'number':
+      return Type.double();
+    case 'boolean':
+      return Type.boolean();
+    case 'null':
+      return Type.object();
     default:
       throw new CaseConfigurationError(
         `Unknown parameter type for Java: ${parameterType}`,
@@ -120,6 +126,61 @@ const createField = (
 };
 
 /**
+ * Creates a Java context field
+ *
+ * @param contextPrefix - The place in the context to add this variable when serialised
+ * @param name - The name of the constant
+ * @param value - The value of the constant
+ * @returns Field AST node
+ */
+const createConstantField = (
+  contextPrefix: string,
+  name: string,
+  value: string,
+): Field =>
+  new Field({
+    name,
+    type: Type.string(),
+    access: Access.Public,
+    final_: true,
+    initializer: new CodeBlock({
+      code: `"${value}"`,
+    }),
+    annotations: [
+      new Annotation({
+        reference: new ClassReference({
+          name: 'Getter',
+          packageName: 'lombok',
+        }),
+      }),
+      new Annotation({
+        reference: new ClassReference({
+          name: 'JsonProperty',
+          packageName: 'com.fasterxml.jackson.annotation',
+        }),
+        argument: new CodeBlock({
+          code: `"${contextPrefix}:${name}"`,
+        }),
+      }),
+      new Annotation({
+        reference: new ClassReference({
+          name: 'JsonInclude',
+          packageName: 'com.fasterxml.jackson.annotation',
+        }),
+        argument: new CodeBlock({
+          code: 'Include.ALWAYS',
+          references: [
+            new ClassReference({
+              name: 'Include',
+              packageName: 'com.fasterxml.jackson.annotation.JsonInclude',
+            }),
+          ],
+        }),
+      }),
+    ],
+  });
+
+/**
  * Creates a Java constructor from a constructor descriptor
  *
  * @param constructorDescriptor - Constructor descriptor containing all constructor information
@@ -195,11 +256,34 @@ export function renderJavaClass(descriptor: JavaDescriptor): Promise<string> {
     access: Access.Public,
     typeParameters: [descriptor.genericTypeParameter],
     javadoc: descriptor.classDocumentation || '',
+    annotations: [
+      new Annotation({
+        reference: new ClassReference({
+          name: 'Generated',
+          packageName: 'javax.annotation',
+        }),
+        argument: new CodeBlock({
+          code: `"@contract-case/case-definition-generator"`,
+        }),
+      }),
+    ],
   });
 
   // Add all fields
   descriptor.fields.forEach((fieldDescriptor) => {
     javaClass.addField(createField(fieldDescriptor, descriptor.packageName));
+  });
+
+  Object.entries(descriptor.contextModifiers).forEach(([name, value]) => {
+    javaClass.addField(createConstantField('_case:context', name, value));
+  });
+
+  Object.entries(descriptor.currentRunModifiers).forEach(([name, value]) => {
+    javaClass.addField(
+      // Note that context fields always have the internal `_case` prefix
+      // as that's the intended audience
+      createConstantField('_case:currentRun:context', name, value),
+    );
   });
 
   // Add constructors using addConstructor method

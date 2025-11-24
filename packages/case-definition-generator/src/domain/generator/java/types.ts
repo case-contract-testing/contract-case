@@ -48,4 +48,8 @@ export type JavaDescriptor = {
   fields: JavaFieldDescriptor[];
   /** All constructors that need to be generated */
   constructors: JavaConstructorDescriptor[];
+  /** Modifiers to add to the current run context */
+  currentRunModifiers: Record<string, string>;
+  /** Modifiers to add to the context object */
+  contextModifiers: Record<string, string>;
 };

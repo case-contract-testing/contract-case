@@ -35,7 +35,7 @@ const functions: PluginDslDeclaration = {
           jsonPropertyName: '_case:currentRun:context:logLevel',
           documentation:
             'The new LogLevel. One of "none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainerDebug". see [LogLevel](https://case.contract-testing.io/docs/reference/configuring#loglevel-none--error--warn--debug--maintainerdebug) for details',
-          type: 'String',
+          type: 'string',
         },
         {
           name: 'child',
@@ -54,7 +54,7 @@ const functions: PluginDslDeclaration = {
           name: 'uniqueName',
           documentation:
             'The name you can use to lookup this matcher later. If you have two matcher with the same unique name, their contents must be identical.',
-          type: 'String',
+          type: 'string',
         },
         {
           name: 'child',
@@ -71,7 +71,7 @@ const functions: PluginDslDeclaration = {
         {
           name: 'uniqueName',
           documentation: 'The name you gave to a previous call of NamedMatch',
-          type: 'String',
+          type: 'string',
         },
       ],
     },
@@ -83,7 +83,7 @@ const functions: PluginDslDeclaration = {
         {
           name: 'variableName',
           documentation: 'The name of the variable',
-          type: 'String',
+          type: 'string',
         },
       ],
     },
