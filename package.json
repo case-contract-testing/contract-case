@@ -8,7 +8,7 @@
   "devDependencies": {
     "@contract-case/eslint-config-case-maintainer": "0.27.3",
     "example-extractor": "^0.0.4",
-    "jsii-docgen": "^10.8.0",
+    "jsii-docgen": "^10.11.4",
     "lerna": "^9.0.0"
   },
   "optionalDependencies": {
