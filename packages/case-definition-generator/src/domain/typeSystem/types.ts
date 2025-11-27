@@ -14,9 +14,9 @@ export type PluginDslDeclaration = {
   /**
    * An array of all the matcher DSL objects declared by this
    * plugin.
-   * 
+   *
    * Note that these don't need to map 1:1 to your matcher
-   * executors. 
+   * executors.
    */
   matchers: MatcherDslDeclaration[];
   states?: StateObjectDeclaration[];
@@ -187,5 +187,4 @@ export type MatcherDslDeclaration = DslObjectDeclaration & {
   currentRunModifiers?: Record<string, string>;
 };
 
-
-export type StateObjectDeclaration = DslObjectDeclaration; 
+export type StateObjectDeclaration = DslObjectDeclaration;

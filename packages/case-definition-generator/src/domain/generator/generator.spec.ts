@@ -1,8 +1,9 @@
 import { generateDslCode } from './ts/tsGenerator';
 import { generateJavaDslCode } from './java/javaGenerator';
-import { MatcherDslDeclaration } from '../typeSystem/types';
+import { InternalObjectDeclaration } from '../typeSystem/internals';
 
-const matcherDefinition: MatcherDslDeclaration = {
+const matcherDefinition: InternalObjectDeclaration = {
+  kind: 'matcher',
   name: 'ArrayEachEntryMatches',
   type: 'ArrayEachEntryLike',
   documentation:
@@ -22,7 +23,8 @@ const matcherDefinition: MatcherDslDeclaration = {
   ],
 };
 
-const matcherContainsDefinition: MatcherDslDeclaration = {
+const matcherContainsDefinition: InternalObjectDeclaration = {
+  kind: 'matcher',
   name: 'ArrayContains',
   type: 'ArrayContains',
   documentation:

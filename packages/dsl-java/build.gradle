@@ -35,6 +35,8 @@ dependencies {
     implementation 'com.diogonunes:JColor:5.5.1'
     implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
     implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
+    implementation 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
     compileOnly "com.google.protobuf:protoc:${protobufVersion}"
     compileOnly "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
     implementation "io.grpc:grpc-core:${grpcVersion}"

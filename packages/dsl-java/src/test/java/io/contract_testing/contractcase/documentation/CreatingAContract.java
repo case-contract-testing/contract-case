@@ -236,7 +236,7 @@ public class CreatingAContract {
                         .getUserQuery(interactionSetup.getStateVariable("userId")))
             .withTestResponse(
                 (user, config) -> {
-                  assertThat(user).isEqualTo(new User("foo", ""));
+                  assertThat(user).isEqualTo(new User("foo", "", List.of()));
                 })
     );
     // end-example
@@ -291,7 +291,7 @@ public class CreatingAContract {
             // end-example
             .withTestResponse(
                 (user, config) -> {
-                  assertThat(user).isEqualTo(new User("foo", ""));
+                  assertThat(user).isEqualTo(new User("foo", "", List.of()));
                 })
     );
 

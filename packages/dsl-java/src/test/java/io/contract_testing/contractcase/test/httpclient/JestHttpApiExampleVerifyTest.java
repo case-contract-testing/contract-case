@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractVerifier;
-import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.InteractionSetup;
 import io.contract_testing.contractcase.configuration.TestErrorResponseFunction;
@@ -21,9 +20,14 @@ import java.util.Map;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
-public class HttpApiExampleVerifyTest {
+public class JestHttpApiExampleVerifyTest {
 
+  /**
+   * This test verifies the contract defined by the Jest integration
+   * It's a contract for the client, so it's verified by triggers
+   */
   private static final ContractVerifier contract = new ContractVerifier(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+      // TODO: This contract must have the wrong name? Confirm and correct this
       .providerName("http request provider")
       .publish(PublishType.NEVER)
       .contractDir("../contract-case-jest/case-contracts/http-request-provider/")

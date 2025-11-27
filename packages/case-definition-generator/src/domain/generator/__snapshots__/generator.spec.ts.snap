@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`generator java generates a matcher as expected 1`] = `
-"package io.contract_testing.contractcase.definitions.matchers.tests;
+"package io.contract_testing.contractcase.dsl.matchers.tests;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -72,7 +72,7 @@ public class ArrayEachEntryMatches<M> {
 `;
 
 exports[`generator java works for the other case too 1`] = `
-"package io.contract_testing.contractcase.definitions.matchers.tests;
+"package io.contract_testing.contractcase.dsl.matchers.tests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;

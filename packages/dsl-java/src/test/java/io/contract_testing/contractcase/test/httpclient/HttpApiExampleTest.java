@@ -2,17 +2,17 @@ package io.contract_testing.contractcase.test.httpclient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
-import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
+import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.Trigger;
-
 import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;
 import io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest;
+import io.contract_testing.contractcase.dsl.matchers.arrays.ArrayEachEntryMatches;
 import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;
 import io.contract_testing.contractcase.definitions.matchers.convenience.ReferenceMatch;
 import io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable;
@@ -24,9 +24,9 @@ import io.contract_testing.contractcase.definitions.matchers.strings.AnyString;
 import io.contract_testing.contractcase.definitions.matchers.strings.StringPrefix;
 import io.contract_testing.contractcase.definitions.states.InState;
 import io.contract_testing.contractcase.definitions.states.InStateWithVariables;
-import io.contract_testing.contractcase.test.httpclient.implementation.YourApiClient;
 import io.contract_testing.contractcase.test.httpclient.implementation.User;
 import io.contract_testing.contractcase.test.httpclient.implementation.UserNotFoundException;
+import io.contract_testing.contractcase.test.httpclient.implementation.YourApiClient;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -151,7 +151,12 @@ public class HttpApiExampleTest {
                     .status(200)
                     .body(Map.ofEntries(
                         Map.entry("name", new AnyString("john smith")),
-                        Map.entry("userId", new StateVariable("userId"))
+                        Map.entry("userId", new StateVariable("userId")),
+                        Map.entry("tags",
+                            ArrayEachEntryMatches.builder()
+                                .matcher(new AnyString("someTag"))
+                                .build()
+                        )
                     ))
                     .build()))
                 .build())
@@ -197,8 +202,8 @@ public class HttpApiExampleTest {
         IndividualSuccessTestConfigBuilder.<User>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
-                return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
-                    .getUserQuery(setupInfo.getStateVariable("userId"));
+              return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
+                  .getUserQuery(setupInfo.getStateVariable("userId"));
             })
             .withTestResponse((user, setupInfo) -> {
               assertThat(user.userId()).isEqualTo(setupInfo.getStateVariable("userId"));
@@ -224,8 +229,8 @@ public class HttpApiExampleTest {
         IndividualFailedTestConfigBuilder.<User>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
-                return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
-                    .getUserQuery(setupInfo.getStateVariable("userId"));
+              return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
+                  .getUserQuery(setupInfo.getStateVariable("userId"));
             })
             .withTestErrorResponse((exception, setupInfo) -> {
               assertThat(exception.getClass()).isEqualTo(UserNotFoundException.class);
