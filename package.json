@@ -20,7 +20,8 @@
     "@nx/nx-linux-x64-gnu": "21.6.6",
     "@nx/nx-linux-x64-musl": "21.6.6",
     "@nx/nx-win32-arm64-msvc": "21.6.6",
-    "@nx/nx-win32-x64-msvc": "21.6.6"
+    "@nx/nx-win32-x64-msvc": "21.6.6",
+    "@oxc-parser/binding-linux-x64-gnu": "0.99.0"
   },
   "scripts": {
     "package": "lerna run package",
