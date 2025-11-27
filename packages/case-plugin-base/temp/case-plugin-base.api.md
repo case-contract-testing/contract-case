@@ -84,7 +84,7 @@ export interface ConfigurationError {
     type: typeof ERROR_TYPE_CONFIGURATION;
 }
 
-// @public (undocumented)
+// @public
 export type ConfigurationErrorCode = keyof ErrorCodeDefinitions['configuration'];
 
 // @public
@@ -149,7 +149,7 @@ export interface ContractLookupFns {
 // @public
 export const CORE_PLUGIN_PREFIX: "_CaseCore:";
 
-// @public (undocumented)
+// @public
 export interface CoreErrorCodes {
     CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE';
 }
@@ -200,13 +200,13 @@ export interface ErrorAnnotations {
     expected?: string | undefined;
 }
 
-// @public (undocumented)
+// @public
 export type ErrorCodeDefinitions = {
     configuration: ConfigurationErrorCodes;
     core: CoreErrorCodes;
 };
 
-// @public (undocumented)
+// @public
 export const ErrorCodes: ErrorCodeDefinitions;
 
 // @public

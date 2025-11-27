@@ -1,7 +1,7 @@
 import {
   AnyCaseMatcherOrData,
   LOOKUP_MATCHER_TYPE,
-  LookupableMatcher,
+  type LookupableMatcher,
 } from '@contract-case/case-plugin-dsl-types';
 
 /**
@@ -15,7 +15,7 @@ import {
  *
  * @param uniqueName - the name for this lookupable matcher
  * @param child - the contents of this lookupable matcher
- * @returns a {@link LookupableMatcher}
+ * @returns a {@link @contract-case/case-plugin-dsl-types#LookupableMatcher}
  */
 export const coreLookupMatcher = (
   uniqueName: string,

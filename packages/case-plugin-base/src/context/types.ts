@@ -252,6 +252,8 @@ export interface TraversalFns {
  * LogLevelContext is the subset of the overall context object that's needed for
  * logging. It exists so that it's possible to call log and error related
  * functions no matter what context you're in.
+ *
+ * @public
  */
 export type LogLevelContext = {
   '_case:currentRun:context:parentVersions': Array<string>;

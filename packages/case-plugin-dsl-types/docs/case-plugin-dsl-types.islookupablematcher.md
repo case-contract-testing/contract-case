@@ -47,6 +47,7 @@ the matcher or data in question
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 maybeMatcher is [LookupableMatcher](./case-plugin-dsl-types.lookupablematcher.md)

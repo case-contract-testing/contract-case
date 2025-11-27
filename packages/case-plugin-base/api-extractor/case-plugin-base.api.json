@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.52.13",
+    "toolVersion": "7.55.1",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -113,6 +113,22 @@
         {
           "tagName": "@virtual",
           "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@jsx",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@jsxRuntime",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@jsxFrag",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@jsxImportSource",
+          "syntaxKind": "block"
         },
         {
           "tagName": "@betaDocumentation",
@@ -305,7 +321,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!cantPublish:function(1)",
-          "docComment": "/**\n * True if this context can never publish results. This is useful for determining whether warning logs should be printed if the verification won't have any effect\n *\n * @param context - MatchContext\n *\n * @returns True if this context can never publish results; false if it might publish\n */\n",
+          "docComment": "/**\n * True if this context can never publish results. This is useful for determining whether warning logs should be printed if the verification won't have any effect\n *\n * @param context - MatchContext\n *\n * @returns True if this context can never publish results; false if it might publish\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -716,7 +732,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!CaseExample:type",
-          "docComment": "/**\n * All states of Examples.\n *\n * This isn't really part of the plugin interface; it's only here because the ResultPrinter needs it.\n */\n",
+          "docComment": "/**\n * All states of Examples.\n *\n * This isn't really part of the plugin interface; it's only here because the ResultPrinter needs it.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1323,7 +1339,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCode:type",
-          "docComment": "",
+          "docComment": "/**\n * Any configuration error code.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1358,7 +1374,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes:interface",
-          "docComment": "/**\n * These are the error codes, emitted by every CaseConfigurationError. The documentation here provides additional information that should hopefully help if the information in the error message is unclear.\n *\n * Some of the errors print advice. This advice can be overridden by setting an entry in the `adviceOverrides` configuration map (keyed by the error code that you want to override errors for). This feature exists for users who have wrapped ContractCase with some common boilerplate, or who have a dedicated team looking after their contract testing infrastructure.\n */\n",
+          "docComment": "/**\n * These are the error codes, emitted by every CaseConfigurationError. The documentation here provides additional information that should hopefully help if the information in the error message is unclear.\n *\n * Some of the errors print advice. This advice can be overridden by setting an entry in the `adviceOverrides` configuration map (keyed by the error code that you want to override errors for). This feature exists for users who have wrapped ContractCase with some common boilerplate, or who have a dedicated team looking after their contract testing infrastructure.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2151,7 +2167,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!CoreErrorCodes:interface",
-          "docComment": "",
+          "docComment": "/**\n * Describes error codes from Core Erorrs (ie, when the framework is broken).\n *\n * Mostly here so that adviceOverrides can override the crash advice, which you may want to do in corporate environments where you have a team looking after your test infrastructure.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2196,7 +2212,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!coreLookupMatcher:function(1)",
-          "docComment": "/**\n * Creates a matcher descriptor for a lookupable matcher.\n *\n * @remarks\n *\n * Useful if you want to automatically name lookupable matcher descriptors in your plugin.\n *\n * Note that lookup matchers must have identical contents when rendered.\n *\n * @param uniqueName - the name for this lookupable matcher\n *\n * @param child - the contents of this lookupable matcher\n *\n * @returns a {@link LookupableMatcher}\n *\n * @public\n */\n",
+          "docComment": "/**\n * Creates a matcher descriptor for a lookupable matcher.\n *\n * @remarks\n *\n * Useful if you want to automatically name lookupable matcher descriptors in your plugin.\n *\n * Note that lookup matchers must have identical contents when rendered.\n *\n * @param uniqueName - the name for this lookupable matcher\n *\n * @param child - the contents of this lookupable matcher\n *\n * @returns a {@link @contract-case/case-plugin-dsl-types#LookupableMatcher}\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2590,7 +2606,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!ErrorCodeDefinitions:type",
-          "docComment": "",
+          "docComment": "/**\n * A convenience type for all the error codes emitted by ContractCase.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2634,7 +2650,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@contract-case/case-plugin-base!ErrorCodes:var",
-          "docComment": "",
+          "docComment": "/**\n * A corresponding lookup object for the error codes, allowing easy programmatic use.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3528,7 +3544,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!LogLevelContext:type",
-          "docComment": "/**\n * LogLevelContext is the subset of the overall context object that's needed for logging. It exists so that it's possible to call log and error related functions no matter what context you're in.\n */\n",
+          "docComment": "/**\n * LogLevelContext is the subset of the overall context object that's needed for logging. It exists so that it's possible to call log and error related functions no matter what context you're in.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

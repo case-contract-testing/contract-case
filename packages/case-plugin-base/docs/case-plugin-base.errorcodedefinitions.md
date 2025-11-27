@@ -4,6 +4,8 @@
 
 ## ErrorCodeDefinitions type
 
+A convenience type for all the error codes emitted by ContractCase.
+
 **Signature:**
 
 ```typescript

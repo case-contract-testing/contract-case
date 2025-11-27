@@ -4,6 +4,10 @@
 
 ## CoreErrorCodes interface
 
+Describes error codes from Core Erorrs (ie, when the framework is broken).
+
+Mostly here so that adviceOverrides can override the crash advice, which you may want to do in corporate environments where you have a team looking after your test infrastructure.
+
 **Signature:**
 
 ```typescript

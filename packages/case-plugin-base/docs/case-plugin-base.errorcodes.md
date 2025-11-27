@@ -4,6 +4,8 @@
 
 ## ErrorCodes variable
 
+A corresponding lookup object for the error codes, allowing easy programmatic use.
+
 **Signature:**
 
 ```typescript

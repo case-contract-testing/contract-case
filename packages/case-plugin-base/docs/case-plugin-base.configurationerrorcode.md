@@ -4,6 +4,8 @@
 
 ## ConfigurationErrorCode type
 
+Any configuration error code.
+
 **Signature:**
 
 ```typescript

@@ -47,6 +47,7 @@ The value to be checked.
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 maybeMock is [AnyMockDescriptor](./case-plugin-dsl-types.anymockdescriptor.md)

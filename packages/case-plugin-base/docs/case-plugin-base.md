@@ -386,6 +386,10 @@ The part of the context that allows saving or looking up data bound to a specifi
 
 </td><td>
 
+Describes error codes from Core Erorrs (ie, when the framework is broken).
+
+Mostly here so that adviceOverrides can override the crash advice, which you may want to do in corporate environments where you have a team looking after your test infrastructure.
+
 
 </td></tr>
 <tr><td>
@@ -618,6 +622,8 @@ Represents an error because of the user supplied trigger
 
 </td><td>
 
+A corresponding lookup object for the error codes, allowing easy programmatic use.
+
 
 </td></tr>
 <tr><td>
@@ -723,6 +729,8 @@ For checks beyond this matcher, use  to descend into any children.
 
 </td><td>
 
+Any configuration error code.
+
 
 </td></tr>
 <tr><td>
@@ -764,6 +772,8 @@ The settings that are set as default context for a run
 
 
 </td><td>
+
+A convenience type for all the error codes emitted by ContractCase.
 
 
 </td></tr>
