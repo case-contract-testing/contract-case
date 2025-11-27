@@ -12,6 +12,8 @@ import { CaseError } from '../matchers/errors.types';
  *
  * This isn't really part of the plugin interface; it's only here
  * because the ResultPrinter needs it, and the context holds the result printer.
+ *
+ * @public
  */
 interface BaseCaseExample {
   readonly states: AnyState[];
@@ -28,6 +30,8 @@ interface BaseCaseExample {
  *
  * This isn't really part of the plugin interface; it's only here
  * because the ResultPrinter needs it, and the context holds the result printer.
+ *
+ * @public
  */
 interface SuccessfulCaseExample extends BaseCaseExample {
   readonly result: 'VERIFIED';
@@ -42,6 +46,8 @@ interface SuccessfulCaseExample extends BaseCaseExample {
  *
  * This isn't really part of the plugin interface; it's only here
  * because the ResultPrinter needs it, and the context holds the result printer.
+ *
+ * @public
  */
 interface PendingCaseExample extends BaseCaseExample {
   readonly result: 'PENDING';
@@ -57,6 +63,8 @@ interface PendingCaseExample extends BaseCaseExample {
  *
  * This isn't really part of the plugin interface; it's only here
  * because the ResultPrinter needs it, and the context holds the result printer.
+ *
+ * @public
  */
 interface FailedCaseExample extends BaseCaseExample {
   readonly result: 'FAILED';
@@ -68,6 +76,8 @@ interface FailedCaseExample extends BaseCaseExample {
  *
  * This isn't really part of the plugin interface; it's only here
  * because the ResultPrinter needs it.
+ *
+ * @public
  */
 export type CaseExample =
   | SuccessfulCaseExample

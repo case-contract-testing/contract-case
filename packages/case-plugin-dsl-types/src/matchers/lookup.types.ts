@@ -8,6 +8,7 @@ export const LOOKUP_MATCHER_TYPE = '_case:Lookup' as const;
 
 /**
  * The matcher descriptor for a lookupable matcher
+ *
  * @public
  */
 export interface LookupableMatcher {

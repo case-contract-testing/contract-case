@@ -5,6 +5,7 @@ import { MatchContext } from './types';
  * determining whether warning logs should be printed if the verification won't
  * have any effect
  *
+ * @public
  * @param context - MatchContext
  * @returns True if this context can never publish results; false if it might publish
  */

@@ -8,6 +8,8 @@
  * that you want to override errors for). This feature exists for users who have
  * wrapped ContractCase with some common boilerplate, or who have a dedicated
  * team looking after their contract testing infrastructure.
+ *
+ * @public
  */
 export interface ConfigurationErrorCodes {
   /**
@@ -201,6 +203,15 @@ export interface ConfigurationErrorCodes {
   CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE';
 }
 
+/**
+ * Describes error codes from Core Erorrs (ie, when the framework is broken).
+ *
+ * Mostly here so that adviceOverrides can override the crash advice, which
+ * you may want to do in corporate environments where you have a team looking
+ * after your test infrastructure.
+ *
+ * @public
+ */
 export interface CoreErrorCodes {
   /**
    * Used to control the advice printed when ContractCase crashes.
@@ -208,11 +219,21 @@ export interface CoreErrorCodes {
   CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE';
 }
 
+/**
+ * A convenience type for all the error codes emitted by ContractCase.
+ *
+ * @public
+ */
 export type ErrorCodeDefinitions = {
   configuration: ConfigurationErrorCodes;
   core: CoreErrorCodes;
 };
 
+/**
+ * A corresponding lookup object for the error codes, allowing easy programmatic use.
+ *
+ * @public
+ */
 export const ErrorCodes: ErrorCodeDefinitions = {
   configuration: {
     DISK_IO_PROBLEM: 'DISK_IO_PROBLEM',
@@ -234,5 +255,10 @@ export const ErrorCodes: ErrorCodeDefinitions = {
   },
 };
 
+/**
+ * Any configuration error code.
+ *
+ * @public
+ */
 export type ConfigurationErrorCode =
   keyof ErrorCodeDefinitions['configuration'];
