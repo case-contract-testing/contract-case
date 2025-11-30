@@ -6,7 +6,7 @@ import {
 /**
  * Takes a variable name in either camelCase or PascalCase,
  * and returns an all caps, snake case string, for example
- * `camelCaseString` -> `CAMEL_CASE_STRING`.
+ * `'camelCaseString' -> 'CAMEL_CASE_STRING'`.
  *
  * @param name - a string to turn into SCREAMING_SNAKE_CASE
  * @returns the SCREAMING_SNAKE_CASE representation
