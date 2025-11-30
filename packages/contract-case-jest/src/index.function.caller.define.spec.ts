@@ -9,6 +9,7 @@ describe('function executor', () => {
     {
       consumerName: 'function caller',
       providerName: 'function execution',
+      changedContracts: 'OVERWRITE',
     },
     (contract) => {
       describe('function with no args', () => {

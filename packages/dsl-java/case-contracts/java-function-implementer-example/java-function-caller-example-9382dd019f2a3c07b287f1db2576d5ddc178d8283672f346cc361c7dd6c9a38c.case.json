@@ -7,24 +7,13 @@
   "metadata": {
     "_case": {
       "version": "0.27.3",
-      "hash": "f11d5db80aca1d83d9988142f35cef097a6299759cea20ecc9fadb8cff6471e7"
+      "hash": "9382dd019f2a3c07b287f1db2576d5ddc178d8283672f346cc361c7dd6c9a38c"
     }
   },
   "matcherLookup": {
     "matcher:returns \"2 pages\"": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
       "success": "2 pages"
-    },
-    "matcher:An invocation of PageNumbers( <any integer> )": {
-      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-      "arguments": [
-        {
-          "_case:context:matchBy": "type",
-          "_case:matcher:example": 2,
-          "_case:matcher:resolvesTo": "number",
-          "_case:matcher:type": "_case:Integer"
-        }
-      ]
     },
     "matcher:void": {
       "_case:context:matchBy": "type",
@@ -45,24 +34,9 @@
         "_case:matcher:uniqueName": "void"
       }
     },
-    "matcher:An invocation of NoArgFunction()": {
-      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-      "arguments": []
-    },
     "matcher:throwing a CustomException": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
       "errorClassName": "CustomException"
-    },
-    "matcher:An invocation of throwingFunction( <any integer> )": {
-      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-      "arguments": [
-        {
-          "_case:context:matchBy": "type",
-          "_case:matcher:example": 2,
-          "_case:matcher:resolvesTo": "number",
-          "_case:matcher:type": "_case:Integer"
-        }
-      ]
     },
     "matcher:returns an object shaped like {a: an object shaped like {b: <any integer>},c: \"d\"}": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
@@ -78,26 +52,9 @@
         "c": "d"
       }
     },
-    "matcher:An invocation of complexReturn( <any integer> )": {
-      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-      "arguments": [
-        {
-          "_case:context:matchBy": "type",
-          "_case:matcher:example": 2,
-          "_case:matcher:resolvesTo": "number",
-          "_case:matcher:type": "_case:Integer"
-        }
-      ]
-    },
     "matcher:returns \"bar\"": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
       "success": "bar"
-    },
-    "matcher:An invocation of keyValueStore( \"foo\" )": {
-      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-      "arguments": [
-        "foo"
-      ]
     }
   },
   "examples": [
@@ -124,19 +81,16 @@
         },
         "functionName": "PageNumbers",
         "request": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "An invocation of PageNumbers( <any integer> )",
-          "_case:matcher:child": {
-            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-            "arguments": [
-              {
-                "_case:context:matchBy": "type",
-                "_case:matcher:example": 2,
-                "_case:matcher:resolvesTo": "number",
-                "_case:matcher:type": "_case:Integer"
-              }
-            ]
-          }
+          "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+          "_case:matcher:uniqueName": "PageNumbers",
+          "arguments": [
+            {
+              "_case:context:matchBy": "type",
+              "_case:matcher:example": 2,
+              "_case:matcher:resolvesTo": "number",
+              "_case:matcher:type": "_case:Integer"
+            }
+          ]
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
@@ -172,12 +126,9 @@
         },
         "functionName": "NoArgFunction",
         "request": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "An invocation of NoArgFunction()",
-          "_case:matcher:child": {
-            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-            "arguments": []
-          }
+          "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+          "_case:matcher:uniqueName": "NoArgFunction",
+          "arguments": []
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
@@ -222,19 +173,16 @@
         },
         "functionName": "throwingFunction",
         "request": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "An invocation of throwingFunction( <any integer> )",
-          "_case:matcher:child": {
-            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-            "arguments": [
-              {
-                "_case:context:matchBy": "type",
-                "_case:matcher:example": 2,
-                "_case:matcher:resolvesTo": "number",
-                "_case:matcher:type": "_case:Integer"
-              }
-            ]
-          }
+          "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+          "_case:matcher:uniqueName": "throwingFunction",
+          "arguments": [
+            {
+              "_case:context:matchBy": "type",
+              "_case:matcher:example": 2,
+              "_case:matcher:resolvesTo": "number",
+              "_case:matcher:type": "_case:Integer"
+            }
+          ]
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
@@ -270,19 +218,16 @@
         },
         "functionName": "complexReturn",
         "request": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "An invocation of complexReturn( <any integer> )",
-          "_case:matcher:child": {
-            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-            "arguments": [
-              {
-                "_case:context:matchBy": "type",
-                "_case:matcher:example": 2,
-                "_case:matcher:resolvesTo": "number",
-                "_case:matcher:type": "_case:Integer"
-              }
-            ]
-          }
+          "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+          "_case:matcher:uniqueName": "complexReturn",
+          "arguments": [
+            {
+              "_case:context:matchBy": "type",
+              "_case:matcher:example": 2,
+              "_case:matcher:resolvesTo": "number",
+              "_case:matcher:type": "_case:Integer"
+            }
+          ]
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
@@ -332,14 +277,11 @@
         },
         "functionName": "keyValueStore",
         "request": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "An invocation of keyValueStore( \"foo\" )",
-          "_case:matcher:child": {
-            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-            "arguments": [
-              "foo"
-            ]
-          }
+          "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+          "_case:matcher:uniqueName": "keyValueStore",
+          "arguments": [
+            "foo"
+          ]
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",

@@ -14,7 +14,10 @@ import {
 } from '@contract-case/case-core-plugin-function-dsl';
 
 import { FunctionArgumentMatcherExecutor } from './matchers/FunctionArgumentsMatcher';
-import { setupMockFunctionCaller, setupMockFunctionExecution } from './mocks';
+import {
+  mockFunctionCallerExecutor,
+  mockFunctionExecutionExecutor,
+} from './mocks';
 import { AllDescriptors, AllSetup } from './mocks/types';
 import { description } from './description';
 import { FunctionResultMatcherExecutor } from './matchers';
@@ -35,8 +38,8 @@ const CoreFunctionPlugin: ContractCasePlugin<
     [FUNCTION_RESULT_MATCHER_TYPE]: FunctionResultMatcherExecutor,
   },
   setupMocks: {
-    [MOCK_FUNCTION_EXECUTION]: setupMockFunctionExecution,
-    [MOCK_FUNCTION_CALLER]: setupMockFunctionCaller,
+    [MOCK_FUNCTION_EXECUTION]: mockFunctionExecutionExecutor,
+    [MOCK_FUNCTION_CALLER]: mockFunctionCallerExecutor,
   },
 };
 

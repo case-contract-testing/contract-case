@@ -58,7 +58,6 @@ export class WillCallFunction extends AnyInteractionDescriptor {
     });
     this.request = functionArgumentsMatcher(
       example.arguments,
-      example.functionName,
       example.invocationName,
     );
     this.response = functionReturnSuccessMatcher(

@@ -1,12 +1,16 @@
 import {
   MOCK_FUNCTION_CALLER,
+  MockFunctionCallerDescriptor,
   MockFunctionDescriptor,
 } from '@contract-case/case-core-plugin-function-dsl';
 import {
   CaseConfigurationError,
   MatchContext,
   MockData,
+  MockExecutor,
   addLocation,
+  defaultNameMock,
+  providePluginContext,
 } from '@contract-case/case-plugin-base';
 import { AllSetup } from './types';
 import { isObject } from '../entities';
@@ -27,9 +31,20 @@ export const setupMockFunctionCaller = (
     response: returnValue,
     functionName: functionHandle,
   }: MockFunctionDescriptor,
-  context: MatchContext,
+  outerContext: MatchContext,
 ): Promise<MockData<AllSetup, typeof MOCK_FUNCTION_CALLER>> =>
-  Promise.resolve().then(() => {
+  Promise.resolve(
+    providePluginContext(outerContext, {
+      functionName: functionHandle,
+    }),
+  ).then((context) => {
+    if (!functionHandle) {
+      throw new CaseConfigurationError(
+        'There was no functionName set to use as a handle to call this function. Please check the contract definition for this test.',
+        context,
+        'BAD_INTERACTION_DEFINITION',
+      );
+    }
     const callerArguments = validateArray(
       context.descendAndStrip(
         expectedArguments,
@@ -52,12 +67,6 @@ export const setupMockFunctionCaller = (
               `Invoking function by handle '${functionHandle}', with arguments`,
               callerArguments,
             );
-            if (!functionHandle) {
-              throw new CaseConfigurationError(
-                'There was no functionName set to use as a handle to call this function. Please check the contract definition for this test.',
-                context,
-              );
-            }
             const result = await context.invokeFunctionByHandle(
               functionHandle,
               callerArguments,
@@ -103,3 +112,21 @@ export const setupMockFunctionCaller = (
         }),
     };
   });
+
+export const mockFunctionCallerExecutor: MockExecutor<
+  typeof MOCK_FUNCTION_CALLER,
+  MockFunctionCallerDescriptor,
+  AllSetup
+> = {
+  executor: setupMockFunctionCaller,
+  ensureMatchersAreNamed: (
+    descriptor: MockFunctionCallerDescriptor,
+    parentContext: MatchContext,
+  ) =>
+    defaultNameMock(
+      descriptor,
+      providePluginContext(parentContext, {
+        functionName: descriptor.functionName,
+      }),
+    ),
+};

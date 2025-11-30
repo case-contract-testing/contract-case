@@ -57,7 +57,6 @@ export class WillReceiveFunctionCallAndThrow extends AnyInteractionDescriptor {
     });
     this.request = functionArgumentsMatcher(
       example.arguments,
-      example.functionName,
       example.invocationName,
     );
     this.response = functionThrowsErrorMatcher(

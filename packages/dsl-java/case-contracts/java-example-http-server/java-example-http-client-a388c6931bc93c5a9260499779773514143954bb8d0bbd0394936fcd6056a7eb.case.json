@@ -1,0 +1,73 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "Java Example HTTP Client",
+    "providerName": "Java Example HTTP Server"
+  },
+  "metadata": {
+    "_case": {
+      "version": "0.27.3",
+      "hash": "a388c6931bc93c5a9260499779773514143954bb8d0bbd0394936fcd6056a7eb"
+    }
+  },
+  "matcherLookup": {
+    "matcher:returns a (200) response with body an object shaped like {status: \"up\"}": {
+      "_case:matcher:type": "_case:HttpResponseMatcher",
+      "body": {
+        "status": "up"
+      },
+      "status": 200
+    },
+    "matcher:Get health": {
+      "_case:matcher:type": "_case:HttpRequestMatcher",
+      "method": "GET",
+      "path": "/health"
+    }
+  },
+  "examples": [
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "Server is up"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockHttpClient",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockHttpClient"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockHttpServer"
+          }
+        },
+        "request": {
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:HttpRequestMatcher",
+            "method": "GET",
+            "path": "/health"
+          },
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "Get health"
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returns a (200) response with body an object shaped like {status: \"up\"}",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:HttpResponseMatcher",
+            "body": {
+              "status": "up"
+            },
+            "status": 200
+          }
+        }
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}

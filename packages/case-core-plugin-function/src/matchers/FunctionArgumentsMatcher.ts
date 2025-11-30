@@ -15,6 +15,7 @@ import {
   hasErrors,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
+import { getFunctionName } from './getFunctionName';
 
 const advice = (context: MatchContext) => {
   if (
@@ -41,12 +42,12 @@ const strip = (
   );
 
 const describe = (
-  { arguments: expectedArguments, functionName }: CoreFunctionArgumentsMatcher,
+  { arguments: expectedArguments }: CoreFunctionArgumentsMatcher,
   context: MatchContext,
 ): string =>
   expectedArguments.length === 0
-    ? `An invocation of ${functionName}()`
-    : `An invocation of ${functionName}( ${expectedArguments
+    ? `An invocation of ${getFunctionName(context)}()`
+    : `An invocation of ${getFunctionName(context)}( ${expectedArguments
         .map((arg, index) =>
           context.descendAndDescribe(arg, addLocation(`[${index}]`, context)),
         )

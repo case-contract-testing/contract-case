@@ -2,12 +2,16 @@ import {
   MockFunctionDescriptor,
   MOCK_FUNCTION_EXECUTION,
   FunctionResponse,
+  MockFunctionExecutionDescriptor,
 } from '@contract-case/case-core-plugin-function-dsl';
 import {
   CaseConfigurationError,
   MatchContext,
   MockData,
+  MockExecutor,
   addLocation,
+  defaultNameMock,
+  providePluginContext,
 } from '@contract-case/case-plugin-base';
 import { AllSetup } from './types';
 
@@ -62,7 +66,7 @@ const validateFunctionResponse = (
   );
 };
 
-export const setupMockFunctionExecution = (
+const setupMockFunctionExecution = (
   {
     request: expectedArguments,
     response: expectedResponse,
@@ -71,7 +75,12 @@ export const setupMockFunctionExecution = (
   parentContext: MatchContext,
 ): Promise<MockData<AllSetup, typeof MOCK_FUNCTION_EXECUTION>> =>
   Promise.resolve(
-    addLocation(`mockFunction[${functionName}]`, parentContext),
+    addLocation(
+      `mockFunction[${functionName}]`,
+      providePluginContext(parentContext, {
+        functionName,
+      }),
+    ),
   ).then((context) => {
     // create mock function
     let data: { actualArguments: unknown[] } | null = null;
@@ -153,3 +162,21 @@ export const setupMockFunctionExecution = (
         }),
     };
   });
+
+export const mockFunctionExecutionExecutor: MockExecutor<
+  typeof MOCK_FUNCTION_EXECUTION,
+  MockFunctionExecutionDescriptor,
+  AllSetup
+> = {
+  executor: setupMockFunctionExecution,
+  ensureMatchersAreNamed: (
+    descriptor: MockFunctionExecutionDescriptor,
+    parentContext: MatchContext,
+  ) =>
+    defaultNameMock(
+      descriptor,
+      providePluginContext(parentContext, {
+        functionName: descriptor.functionName,
+      }),
+    ),
+};

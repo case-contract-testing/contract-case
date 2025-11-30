@@ -9,7 +9,6 @@ export const FUNCTION_RESULT_MATCHER_TYPE =
 export interface CoreFunctionArgumentsMatcher {
   '_case:matcher:type': typeof FUNCTION_ARGUMENTS_MATCHER_TYPE;
   arguments: AnyCaseMatcherOrData[];
-  functionName: string;
 }
 
 /**
@@ -31,13 +30,11 @@ export interface CoreFunctionErrorResultMatcher {
 
 export const functionArgumentsMatcher = (
   expectedArguments: AnyCaseMatcherOrData[],
-  functionName: string,
   invocationName: string | undefined,
 ): CoreFunctionArgumentsMatcher => ({
   '_case:matcher:type': FUNCTION_ARGUMENTS_MATCHER_TYPE,
   ...(invocationName ? { '_case:matcher:uniqueName': invocationName } : {}),
   arguments: expectedArguments,
-  functionName,
 });
 
 export const functionReturnSuccessMatcher = (

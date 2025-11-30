@@ -6,7 +6,8 @@
   },
   "metadata": {
     "_case": {
-      "version": "case-internal-tests"
+      "version": "case-internal-tests",
+      "hash": "74d8aa637e1f5f672b583ba38c86060aa9330e96b5181e17095073afce265011"
     }
   },
   "matcherLookup": {

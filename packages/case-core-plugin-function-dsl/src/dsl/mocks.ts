@@ -9,6 +9,8 @@ export const MOCK_FUNCTION_CALLER = '_case:MockFunctionCaller' as const;
 
 /**
  * Describes a function that successfully returns a response
+ *
+ * This is a convenience type that is common to all the descriptors in this plugin
  */
 export interface MockFunctionDescriptor {
   /** The arguments */

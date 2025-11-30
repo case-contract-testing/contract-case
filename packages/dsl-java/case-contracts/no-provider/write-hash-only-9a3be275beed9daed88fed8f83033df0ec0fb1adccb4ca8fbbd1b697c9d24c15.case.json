@@ -1,13 +1,13 @@
 {
   "contractType": "case::contract",
   "description": {
-    "consumerName": "Write Main Only",
+    "consumerName": "Write Hash Only",
     "providerName": "No Provider"
   },
   "metadata": {
     "_case": {
       "version": "0.27.3",
-      "hash": "c6ce0d331de493a3804f643e71049fc47c3cff4138928a4cefec02ba1a3bb4b5"
+      "hash": "9a3be275beed9daed88fed8f83033df0ec0fb1adccb4ca8fbbd1b697c9d24c15"
     }
   },
   "matcherLookup": {
