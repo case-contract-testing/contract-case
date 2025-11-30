@@ -2,7 +2,7 @@ import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 import { MatcherExecutors } from '../matching/MatcherExecutors';
 import { loadPlugin } from './loadPlugin';
 import { EMPTY_MATCH_CONTEXT } from '../../__tests__/testContext';
-import { MockSetupFns } from './types';
+import { AllMockExecutors } from './types';
 
 describe('plugin loader', () => {
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('plugin loader', () => {
   describe('with LOAD_IN_PROGRESS as the version name', () => {
     it('throws a configuration error', () => {
       expect(() => {
-        loadPlugin({} as MockSetupFns, EMPTY_MATCH_CONTEXT, {
+        loadPlugin({} as AllMockExecutors, EMPTY_MATCH_CONTEXT, {
           description: {
             humanReadableName: 'Empty test plugin',
             version: 'LOAD_IN_PROGRESS',
@@ -31,7 +31,7 @@ describe('plugin loader', () => {
   describe('with a valid version', () => {
     it('loads an empty plugin', () => {
       expect(() => {
-        loadPlugin({} as MockSetupFns, EMPTY_MATCH_CONTEXT, {
+        loadPlugin({} as AllMockExecutors, EMPTY_MATCH_CONTEXT, {
           description: {
             humanReadableName: 'Empty test plugin',
             version: '0.0.0',

@@ -12,7 +12,6 @@ import {
   CaseCoreError,
   hasErrors,
   CaseExample,
-  nameMock,
 } from '@contract-case/case-plugin-base';
 import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
 
@@ -33,6 +32,7 @@ import {
   makeFailedExample,
   makeSuccessExample,
 } from '../../entities';
+import { getNamedVariant } from '../plugins/mockExecutors';
 
 const errorToFailedExample = (
   error: Error,
@@ -122,7 +122,10 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
   Promise.resolve()
     .then(() => ({
       ...unnamedExample,
-      mock: nameMock(unnamedExample.mock, context),
+      // Type assertion here because
+      // we can't know all the mock types ahead of
+      // time due to plugins loading.
+      mock: getNamedVariant(unnamedExample.mock as AnyMockDescriptor, context),
     }))
     .then(async (example) => ({
       assertable: await setupExample<T>(example, stateHandlers, context),
@@ -183,7 +186,7 @@ export const executeExample = <T extends AnyMockDescriptorType, R>(
       (error) => {
         context.logger.maintainerDebug(
           'An error was thrown by setupExample',
-          error,
+          error.stack,
         );
         const resultingExample = makeFailedExample(
           unnamedExample,

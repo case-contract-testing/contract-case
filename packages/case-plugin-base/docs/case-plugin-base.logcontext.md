@@ -4,13 +4,16 @@
 
 ## LogContext interface
 
-Part of the context with the logger attached. Useful if you just want to pass the logging functions to something. This is used in a few places where the whole context isn't available (eg, before the context has been constructed).
+Part of the context with the logger attached. Useful if you just want to pass the logging functions to something.
+
+This is used in a few places where the whole context isn't available (eg, before the context has been constructed), and where you don't care what context the caller is coming from, but you want to be able to log things.
 
 **Signature:**
 
 ```typescript
-export interface LogContext 
+export interface LogContext extends LogLevelContext 
 ```
+**Extends:** [LogLevelContext](./case-plugin-base.loglevelcontext.md)
 
 ## Properties
 

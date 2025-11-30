@@ -1,7 +1,6 @@
 import {
   AnyCaseMatcherOrData,
-  AnyMockDescriptor,
-  CaseMockDescriptorFor,
+  InternalContractCaseCoreSetup,
   SetupInfoFor,
 } from '@contract-case/case-plugin-dsl-types';
 import { MatchContext } from '../context/types';
@@ -64,10 +63,42 @@ export type MockData<AllSetupInfo, T extends string> = {
  * @returns - a Promise of the {@link MockData} resulting from this execution
  */
 export type MockExecutorFn<
-  AllMockDescriptors extends AnyMockDescriptor,
+  Descriptor extends IsMockDescriptorForType<T>,
   AllSetupInfo,
   T extends string,
 > = (
-  mock: CaseMockDescriptorFor<AllMockDescriptors, T>,
+  mock: Descriptor,
   context: MatchContext,
 ) => Promise<MockData<AllSetupInfo, T>>;
+
+/**
+ * The base type for a case matcher descriptor that has this string constant
+ * @public
+ */
+export interface IsMockDescriptorForType<T extends string> {
+  '_case:mock:type': T;
+  '_case:run:context:setup': InternalContractCaseCoreSetup;
+}
+
+/**
+ * Describes a mock executor for a plugin
+ */
+export type MockExecutor<
+  MockType extends string,
+  Descriptor extends IsMockDescriptorForType<MockType>,
+  AllSetupInfo,
+> = {
+  /** The actual executor that will set up the mock in a listening state */
+  executor: MockExecutorFn<Descriptor, AllSetupInfo, MockType>;
+  /**
+   * A function that will ensure that any sub-interactions have unique names
+   *
+   * If you don't have any plugin-provided context, and you're using the default
+   * `request` and `response` properties, you can use the `defaultNameMock`
+   * function from this package.
+   */
+  ensureMatchersAreNamed: (
+    mock: Descriptor,
+    context: MatchContext,
+  ) => Descriptor;
+};

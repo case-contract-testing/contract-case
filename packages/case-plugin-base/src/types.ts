@@ -1,7 +1,7 @@
-import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
+import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
 import { MatcherExecutor } from './matchers/types';
 import { CaseMatcherFor, IsCaseNodeForType } from './matchers/utility.types';
-import { MockExecutorFn } from './mocks/executors.types';
+import { IsMockDescriptorForType, MockExecutor } from './mocks/executors.types';
 
 export * from './corePlugins';
 export * from './context/types';
@@ -72,7 +72,7 @@ export type ContractCasePlugin<
   MatcherTypes extends string,
   MockTypes extends string,
   MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>,
-  MockDescriptors extends AnyMockDescriptor,
+  MockDescriptors extends IsMockDescriptorForType<MockTypes>,
   AllSetupInfo,
 > = {
   description: PluginDescription;
@@ -85,6 +85,10 @@ export type ContractCasePlugin<
   };
 
   setupMocks: {
-    [T in MockTypes]: MockExecutorFn<MockDescriptors, AllSetupInfo, T>;
+    [T in MockTypes]: MockExecutor<
+      T,
+      CaseMockDescriptorFor<MockDescriptors, T>,
+      AllSetupInfo
+    >;
   };
 };

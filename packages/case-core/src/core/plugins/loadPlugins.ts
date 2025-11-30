@@ -4,9 +4,9 @@ import {
   ContractCasePlugin,
   DataContext,
   IsCaseNodeForType,
+  IsMockDescriptorForType,
   MatchContext,
 } from '@contract-case/case-plugin-base';
-import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 
 import { loadPlugin } from '../../diffmatch';
 import { MockExecutors } from './mockExecutors';
@@ -20,7 +20,7 @@ export const loadPlugins = <
   MatchT extends string,
   MockT extends string,
   MatchD extends IsCaseNodeForType<MatchT>,
-  MockD extends AnyMockDescriptor,
+  MockD extends IsMockDescriptorForType<MockT>,
 >(
   context: DataContext,
   plugins: Array<ContractCasePlugin<MatchT, MockT, MatchD, MockD, unknown>>,

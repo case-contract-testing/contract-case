@@ -182,6 +182,17 @@ Creates a matcher descriptor for a lookupable matcher.
 </td></tr>
 <tr><td>
 
+[defaultNameMock(mock, context)](./case-plugin-base.defaultnamemock.md)
+
+
+</td><td>
+
+Helper function that will name this mock if it isn't already named.
+
+
+</td></tr>
+<tr><td>
+
 [errorWhen(test, err)](./case-plugin-base.errorwhen.md)
 
 
@@ -318,12 +329,12 @@ During a matcher execution, this function can be called to ensure that the provi
 </td></tr>
 <tr><td>
 
-[nameMock(mock, context)](./case-plugin-base.namemock.md)
+[providePluginContext(parentContext, providedContext)](./case-plugin-base.provideplugincontext.md)
 
 
 </td><td>
 
-Helper function that will name this mock if it isn't already named.
+Overwrites the value of '\_case:currentRun:context:pluginProvided' with the provided context. Generally you want to call this once per interaction executor entry function.
 
 
 </td></tr>
@@ -416,12 +427,25 @@ The base type for a case matcher descriptor that has this string constant
 </td></tr>
 <tr><td>
 
+[IsMockDescriptorForType](./case-plugin-base.ismockdescriptorfortype.md)
+
+
+</td><td>
+
+The base type for a case matcher descriptor that has this string constant
+
+
+</td></tr>
+<tr><td>
+
 [LogContext](./case-plugin-base.logcontext.md)
 
 
 </td><td>
 
-Part of the context with the logger attached. Useful if you just want to pass the logging functions to something. This is used in a few places where the whole context isn't available (eg, before the context has been constructed).
+Part of the context with the logger attached. Useful if you just want to pass the logging functions to something.
+
+This is used in a few places where the whole context isn't available (eg, before the context has been constructed), and where you don't care what context the caller is coming from, but you want to be able to log things.
 
 
 </td></tr>
@@ -808,6 +832,10 @@ The log levels available
 
 LogLevelContext is the subset of the overall context object that's needed for logging. It exists so that it's possible to call log and error related functions no matter what context you're in.
 
+Note that this is subtly different to LogContext, as it doesn't have the logger attached.
+
+You probably want [LogContext](./case-plugin-base.logcontext.md) instead.
+
 
 </td></tr>
 <tr><td>
@@ -840,6 +868,17 @@ Describes the result of calling a matcher executor. If there are no errors, the 
 </td><td>
 
 Represents the data produced by an invocation of a mock, ready for assertion.
+
+
+</td></tr>
+<tr><td>
+
+[MockExecutor](./case-plugin-base.mockexecutor.md)
+
+
+</td><td>
+
+Describes a mock executor for a plugin
 
 
 </td></tr>

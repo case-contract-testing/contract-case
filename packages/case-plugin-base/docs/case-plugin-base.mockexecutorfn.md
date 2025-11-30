@@ -13,7 +13,7 @@ Additionally, any listeners (eg http servers) that the mock requires should be
 **Signature:**
 
 ```typescript
-export type MockExecutorFn<AllMockDescriptors extends AnyMockDescriptor, AllSetupInfo, T extends string> = (mock: CaseMockDescriptorFor<AllMockDescriptors, T>, context: MatchContext) => Promise<MockData<AllSetupInfo, T>>;
+export type MockExecutorFn<Descriptor extends IsMockDescriptorForType<T>, AllSetupInfo, T extends string> = (mock: Descriptor, context: MatchContext) => Promise<MockData<AllSetupInfo, T>>;
 ```
-**References:** [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->, [MockData](./case-plugin-base.mockdata.md)
+**References:** [IsMockDescriptorForType](./case-plugin-base.ismockdescriptorfortype.md)<!-- -->, [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->, [MockData](./case-plugin-base.mockdata.md)
 

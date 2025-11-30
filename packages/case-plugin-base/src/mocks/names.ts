@@ -5,6 +5,14 @@ import {
 import { MatchContext } from '../context/types';
 import { coreLookupMatcher } from '../matchers/lookup';
 
+/**
+ * Helper function that will generate and save a name for this matcher if it
+ * isn't already named.
+ *
+ * @param matcher - a matcher object
+ * @param context - the {@link MatchContext} for this run
+ * @returns a matcher object guaranteed to have a uniqueName
+ */
 const nameMatcher = (matcher: AnyCaseMatcherOrData, context: MatchContext) =>
   typeof matcher === 'object' &&
   matcher != null &&
@@ -24,7 +32,7 @@ const nameMatcher = (matcher: AnyCaseMatcherOrData, context: MatchContext) =>
  * @param context - the {@link MatchContext} for this run
  * @returns a mock descriptor object where the request and response are guaranteed to be named.
  */
-export const nameMock = <M extends AnyMockDescriptor>(
+export const defaultNameMock = <M extends AnyMockDescriptor>(
   mock: M,
   context: MatchContext,
 ): M => ({

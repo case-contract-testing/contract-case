@@ -1780,8 +1780,12 @@
             },
             {
               "kind": "Reference",
-              "text": "AnyMockDescriptor",
-              "canonicalReference": "@contract-case/case-plugin-dsl-types!AnyMockDescriptor:type"
+              "text": "IsMockDescriptorForType",
+              "canonicalReference": "@contract-case/case-plugin-base!IsMockDescriptorForType:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<MockTypes>"
             },
             {
               "kind": "Content",
@@ -1820,12 +1824,21 @@
             },
             {
               "kind": "Reference",
-              "text": "MockExecutorFn",
-              "canonicalReference": "@contract-case/case-plugin-base!MockExecutorFn:type"
+              "text": "MockExecutor",
+              "canonicalReference": "@contract-case/case-plugin-base!MockExecutor:type"
             },
             {
               "kind": "Content",
-              "text": "<MockDescriptors, AllSetupInfo, T>;\n    };\n}"
+              "text": "<T, "
+            },
+            {
+              "kind": "Reference",
+              "text": "CaseMockDescriptorFor",
+              "canonicalReference": "@contract-case/case-plugin-dsl-types!CaseMockDescriptorFor:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<MockDescriptors, T>, AllSetupInfo>;\n    };\n}"
             },
             {
               "kind": "Content",
@@ -1873,7 +1886,7 @@
               "typeParameterName": "MockDescriptors",
               "constraintTokenRange": {
                 "startIndex": 8,
-                "endIndex": 9
+                "endIndex": 10
               },
               "defaultTypeTokenRange": {
                 "startIndex": 0,
@@ -1893,8 +1906,8 @@
             }
           ],
           "typeTokenRange": {
-            "startIndex": 10,
-            "endIndex": 19
+            "startIndex": 11,
+            "endIndex": 22
           }
         },
         {
@@ -2415,6 +2428,86 @@
             "startIndex": 1,
             "endIndex": 9
           }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!defaultNameMock:function(1)",
+          "docComment": "/**\n * Helper function that will name this mock if it isn't already named.\n *\n * @remarks\n *\n * You probably don't need to use this function, it is used by ContractCase internals. TODO: it could be moved to the core.\n *\n * @param mock - a Mock Descriptor object\n *\n * @param context - the {@link MatchContext} for this run\n *\n * @returns a mock descriptor object where the request and response are guaranteed to be named.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "defaultNameMock: <M extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "AnyMockDescriptor",
+              "canonicalReference": "@contract-case/case-plugin-dsl-types!AnyMockDescriptor:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">(mock: "
+            },
+            {
+              "kind": "Content",
+              "text": "M"
+            },
+            {
+              "kind": "Content",
+              "text": ", context: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MatchContext",
+              "canonicalReference": "@contract-case/case-plugin-base!MatchContext:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "M"
+            }
+          ],
+          "fileUrlPath": "src/mocks/names.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 7,
+            "endIndex": 8
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "mock",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "context",
+              "parameterTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "isOptional": false
+            }
+          ],
+          "typeParameters": [
+            {
+              "typeParameterName": "M",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "defaultNameMock"
         },
         {
           "kind": "Variable",
@@ -3204,12 +3297,115 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "@contract-case/case-plugin-base!LogContext:interface",
-          "docComment": "/**\n * Part of the context with the logger attached. Useful if you just want to pass the logging functions to something. This is used in a few places where the whole context isn't available (eg, before the context has been constructed).\n *\n * @public\n */\n",
+          "canonicalReference": "@contract-case/case-plugin-base!IsMockDescriptorForType:interface",
+          "docComment": "/**\n * The base type for a case matcher descriptor that has this string constant\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export interface LogContext "
+              "text": "export interface IsMockDescriptorForType<T extends "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": "> "
+            }
+          ],
+          "fileUrlPath": "src/mocks/executors.types.ts",
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "IsMockDescriptorForType",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!IsMockDescriptorForType#\"_case:mock:type\":member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "'_case:mock:type': "
+                },
+                {
+                  "kind": "Content",
+                  "text": "T"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "\"_case:mock:type\"",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!IsMockDescriptorForType#\"_case:run:context:setup\":member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "'_case:run:context:setup': "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "InternalContractCaseCoreSetup",
+                  "canonicalReference": "@contract-case/case-plugin-dsl-types!InternalContractCaseCoreSetup:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "\"_case:run:context:setup\"",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@contract-case/case-plugin-base!LogContext:interface",
+          "docComment": "/**\n * Part of the context with the logger attached. Useful if you just want to pass the logging functions to something.\n *\n * This is used in a few places where the whole context isn't available (eg, before the context has been constructed), and where you don't care what context the caller is coming from, but you want to be able to log things.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface LogContext extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "LogLevelContext",
+              "canonicalReference": "@contract-case/case-plugin-base!LogLevelContext:type"
+            },
+            {
+              "kind": "Content",
+              "text": " "
             }
           ],
           "fileUrlPath": "src/context/types.ts",
@@ -3315,7 +3511,12 @@
               }
             }
           ],
-          "extendsTokenRanges": []
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
         },
         {
           "kind": "Interface",
@@ -3544,7 +3745,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!LogLevelContext:type",
-          "docComment": "/**\n * LogLevelContext is the subset of the overall context object that's needed for logging. It exists so that it's possible to call log and error related functions no matter what context you're in.\n *\n * @public\n */\n",
+          "docComment": "/**\n * LogLevelContext is the subset of the overall context object that's needed for logging. It exists so that it's possible to call log and error related functions no matter what context you're in.\n *\n * Note that this is subtly different to LogContext, as it doesn't have the logger attached.\n *\n * You probably want {@link LogContext} instead.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4615,17 +4816,121 @@
         },
         {
           "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!MockExecutor:type",
+          "docComment": "/**\n * Describes a mock executor for a plugin\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type MockExecutor<MockType extends "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", Descriptor extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "IsMockDescriptorForType",
+              "canonicalReference": "@contract-case/case-plugin-base!IsMockDescriptorForType:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<MockType>"
+            },
+            {
+              "kind": "Content",
+              "text": ", AllSetupInfo> = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    executor: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MockExecutorFn",
+              "canonicalReference": "@contract-case/case-plugin-base!MockExecutorFn:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<Descriptor, AllSetupInfo, MockType>;\n    ensureMatchersAreNamed: (mock: Descriptor, context: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MatchContext",
+              "canonicalReference": "@contract-case/case-plugin-base!MatchContext:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => Descriptor;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/mocks/executors.types.ts",
+          "releaseTag": "Public",
+          "name": "MockExecutor",
+          "typeParameters": [
+            {
+              "typeParameterName": "MockType",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            },
+            {
+              "typeParameterName": "Descriptor",
+              "constraintTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            },
+            {
+              "typeParameterName": "AllSetupInfo",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "typeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 11
+          }
+        },
+        {
+          "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!MockExecutorFn:type",
           "docComment": "/**\n * A function that will set up and run a mock.\n *\n * During the execution of this function, you should validate the mock descriptor is correctly formed, and any configuration properties on the context that your plugin requires are present and correctly formed.\n *\n * Additionally, any listeners (eg http servers) that the mock requires should be\n *\n * @param mock - The mock descriptor object that the user provides\n *\n * @param context - The {@link MatchContext} object for this run\n *\n * @typeParam AllMockDescriptors - All known MockDescriptor objects\n *\n * @typeParam AllSetupInfo - All known SetupInfo objects\n *\n * @typeParam T - the type of the mock descriptor that this function consumes\n *\n * @returns - a Promise of the {@link MockData} resulting from this execution\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export type MockExecutorFn<AllMockDescriptors extends "
+              "text": "export type MockExecutorFn<Descriptor extends "
             },
             {
               "kind": "Reference",
-              "text": "AnyMockDescriptor",
-              "canonicalReference": "@contract-case/case-plugin-dsl-types!AnyMockDescriptor:type"
+              "text": "IsMockDescriptorForType",
+              "canonicalReference": "@contract-case/case-plugin-base!IsMockDescriptorForType:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<T>"
             },
             {
               "kind": "Content",
@@ -4641,16 +4946,7 @@
             },
             {
               "kind": "Content",
-              "text": "(mock: "
-            },
-            {
-              "kind": "Reference",
-              "text": "CaseMockDescriptorFor",
-              "canonicalReference": "@contract-case/case-plugin-dsl-types!CaseMockDescriptorFor:type"
-            },
-            {
-              "kind": "Content",
-              "text": "<AllMockDescriptors, T>, context: "
+              "text": "(mock: Descriptor, context: "
             },
             {
               "kind": "Reference",
@@ -4689,10 +4985,10 @@
           "name": "MockExecutorFn",
           "typeParameters": [
             {
-              "typeParameterName": "AllMockDescriptors",
+              "typeParameterName": "Descriptor",
               "constraintTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               },
               "defaultTypeTokenRange": {
                 "startIndex": 0,
@@ -4713,8 +5009,8 @@
             {
               "typeParameterName": "T",
               "constraintTokenRange": {
-                "startIndex": 3,
-                "endIndex": 4
+                "startIndex": 4,
+                "endIndex": 5
               },
               "defaultTypeTokenRange": {
                 "startIndex": 0,
@@ -4723,8 +5019,8 @@
             }
           ],
           "typeTokenRange": {
-            "startIndex": 5,
-            "endIndex": 14
+            "startIndex": 6,
+            "endIndex": 13
           }
         },
         {
@@ -4938,86 +5234,6 @@
           }
         },
         {
-          "kind": "Function",
-          "canonicalReference": "@contract-case/case-plugin-base!nameMock:function(1)",
-          "docComment": "/**\n * Helper function that will name this mock if it isn't already named.\n *\n * @remarks\n *\n * You probably don't need to use this function, it is used by ContractCase internals. TODO: it could be moved to the core.\n *\n * @param mock - a Mock Descriptor object\n *\n * @param context - the {@link MatchContext} for this run\n *\n * @returns a mock descriptor object where the request and response are guaranteed to be named.\n *\n * @public\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "nameMock: <M extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "AnyMockDescriptor",
-              "canonicalReference": "@contract-case/case-plugin-dsl-types!AnyMockDescriptor:type"
-            },
-            {
-              "kind": "Content",
-              "text": ">(mock: "
-            },
-            {
-              "kind": "Content",
-              "text": "M"
-            },
-            {
-              "kind": "Content",
-              "text": ", context: "
-            },
-            {
-              "kind": "Reference",
-              "text": "MatchContext",
-              "canonicalReference": "@contract-case/case-plugin-base!MatchContext:type"
-            },
-            {
-              "kind": "Content",
-              "text": ") => "
-            },
-            {
-              "kind": "Content",
-              "text": "M"
-            }
-          ],
-          "fileUrlPath": "src/mocks/names.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 7,
-            "endIndex": 8
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "mock",
-              "parameterTypeTokenRange": {
-                "startIndex": 3,
-                "endIndex": 4
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "context",
-              "parameterTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "isOptional": false
-            }
-          ],
-          "typeParameters": [
-            {
-              "typeParameterName": "M",
-              "constraintTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "defaultTypeTokenRange": {
-                "startIndex": 0,
-                "endIndex": 0
-              }
-            }
-          ],
-          "name": "nameMock"
-        },
-        {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!PluginDescription:type",
           "docComment": "/**\n * Describes the plugin name and version\n *\n * @public\n */\n",
@@ -5042,6 +5258,70 @@
             "startIndex": 1,
             "endIndex": 2
           }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!providePluginContext:function(1)",
+          "docComment": "/**\n * Overwrites the value of '_case:currentRun:context:pluginProvided' with the provided context. Generally you want to call this once per interaction executor entry function.\n *\n * @param parentContext - Context to extend with provided context\n *\n * @param providedContext - Context that your plugin is providing\n *\n * @returns A copy of the context, with the given plugin-provided context set.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "providePluginContext: (parentContext: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MatchContext",
+              "canonicalReference": "@contract-case/case-plugin-base!MatchContext:type"
+            },
+            {
+              "kind": "Content",
+              "text": ", providedContext: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, string>"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "MatchContext",
+              "canonicalReference": "@contract-case/case-plugin-base!MatchContext:type"
+            }
+          ],
+          "fileUrlPath": "src/context/pluginConfig.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 7
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "parentContext",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "providedContext",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "providePluginContext"
         },
         {
           "kind": "Interface",

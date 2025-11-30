@@ -10,7 +10,7 @@ import {
 } from '@contract-case/case-plugin-base';
 import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
 
-import { MockSetupFns } from '../../../../../diffmatch/types';
+import { AllMockExecutors } from '../../../../../diffmatch/types';
 
 const inferMock = <T extends AnyMockDescriptorType>(
   mock: CaseMockDescriptorFor<AnyMockDescriptor, T>,
@@ -40,7 +40,7 @@ const inferMock = <T extends AnyMockDescriptorType>(
 
 const executeMock = <T extends AnyMockDescriptorType>(
   mock: CaseMockDescriptorFor<AnyMockDescriptor, T>,
-  MockSetup: MockSetupFns,
+  MockSetup: AllMockExecutors,
   context: MatchContext,
 ) => {
   const mockType: T = mock['_case:mock:type'];
@@ -51,14 +51,18 @@ const executeMock = <T extends AnyMockDescriptorType>(
     );
   }
 
-  const executor = MockSetup[mockType];
-  if (!executor) {
+  const interactionImplementation = MockSetup[mockType];
+  if (!interactionImplementation) {
     context.logger.maintainerDebug(
-      'Error: Missing setup function for mock.',
+      'Error: Missing interaction executor function for',
       mock,
     );
     throw new CaseCoreError(
-      `Missing setup function for mock type '${mockType}'. This might mean the plugin that supports this mock type is not loaded. If the mock type is a core type, this is an`,
+      `Missing interaction executor function for interaction type '${mockType}'. 
+      
+      If the interaction type is a core type, this is an error in ContractCase.
+     
+      Alternatively, it may just mean that you need to load the plugin for the interaction type.`,
       context,
     );
   }
@@ -69,16 +73,19 @@ const executeMock = <T extends AnyMockDescriptorType>(
         : mock['_case:mock:type']
     }`,
   );
-  return executor(mock, addLocation(mockType, context));
+  return interactionImplementation.executor(
+    mock,
+    addLocation(mockType, context),
+  );
 };
 
 export const mockExecutor = <T extends AnyMockDescriptorType>(
   mock: CaseMockDescriptorFor<AnyMockDescriptor, T>,
-  MockSetup: MockSetupFns,
+  allMockExecutors: AllMockExecutors,
   context: MatchContext,
 ): Promise<MockData<unknown, T>> =>
   executeMock(
     inferMock(mock, addLocation('inference', context)),
-    MockSetup,
+    allMockExecutors,
     context,
   );

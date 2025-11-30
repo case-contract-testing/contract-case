@@ -17,7 +17,10 @@ import {
   MOCK_HTTP_SERVER,
   URL_ENCODED_STRING_TYPE,
 } from '@contract-case/case-core-plugin-http-dsl';
-import { ContractCasePlugin } from '@contract-case/case-plugin-base';
+import {
+  ContractCasePlugin,
+  defaultNameMock,
+} from '@contract-case/case-plugin-base';
 import {
   HttpBasicAuthMatcher,
   HttpRequestMatcher,
@@ -48,8 +51,14 @@ const CoreHttpPlugin: ContractCasePlugin<
     [URL_ENCODED_STRING_TYPE]: UrlEncodedStringMatcher,
   },
   setupMocks: {
-    [MOCK_HTTP_CLIENT]: setupHttpResponseConsumer,
-    [MOCK_HTTP_SERVER]: setupHttpResponseProducer,
+    [MOCK_HTTP_CLIENT]: {
+      executor: setupHttpResponseConsumer,
+      ensureMatchersAreNamed: defaultNameMock,
+    },
+    [MOCK_HTTP_SERVER]: {
+      executor: setupHttpResponseProducer,
+      ensureMatchersAreNamed: defaultNameMock,
+    },
   },
 };
 

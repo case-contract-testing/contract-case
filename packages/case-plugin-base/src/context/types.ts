@@ -249,19 +249,6 @@ export interface TraversalFns {
 }
 
 /**
- * LogLevelContext is the subset of the overall context object that's needed for
- * logging. It exists so that it's possible to call log and error related
- * functions no matter what context you're in.
- *
- * @public
- */
-export type LogLevelContext = {
-  '_case:currentRun:context:parentVersions': Array<string>;
-  '_case:currentRun:context:logLevel': LogLevel;
-  '_case:currentRun:context:location': Array<string>;
-};
-
-/**
  * The parts of the context that don't have the lookup functions
  *
  * @remarks
@@ -386,10 +373,18 @@ export interface HasBaseUrlUnderTest {
  * @internal
  */
 export interface MockConfig {
+  /**
+   * User provided configuration to control the behaviour of the mock
+   */
   '_case:currentRun:context:mockConfig': Record<
     string,
     Record<string, unknown>
   >;
+  /**
+   * Plugin provided context. Use this to pass context from your mock executor
+   * down to your matchers.
+   */
+  '_case:currentRun:context:pluginProvided'?: Record<string, unknown>;
 }
 
 /**
@@ -460,13 +455,33 @@ export interface HttpTestContext {
 }
 
 /**
- * Part of the context with the logger attached. Useful if you just want to pass
- * the logging functions to something. This is used in a few places where the whole
- * context isn't available (eg, before the context has been constructed).
+ * LogLevelContext is the subset of the overall context object that's needed for
+ * logging. It exists so that it's possible to call log and error related
+ * functions no matter what context you're in.
+ *
+ * Note that this is subtly different to LogContext, as it doesn't have the logger attached.
+ *
+ * You probably want {@link LogContext} instead.
  *
  * @public
  */
-export interface LogContext {
+export type LogLevelContext = {
+  '_case:currentRun:context:parentVersions': Array<string>;
+  '_case:currentRun:context:logLevel': LogLevel;
+  '_case:currentRun:context:location': Array<string>;
+};
+
+/**
+ * Part of the context with the logger attached. Useful if you just want to pass
+ * the logging functions to something.
+ *
+ * This is used in a few places where the whole context isn't available (eg, before
+ * the context has been constructed), and where you don't care what context
+ * the caller is coming from, but you want to be able to log things.
+ *
+ * @public
+ */
+export interface LogContext extends LogLevelContext {
   /** Current logger */
   logger: Logger;
   /** Used for printing results (should not be called by plugins) */

@@ -2,9 +2,9 @@ import {
   ContractCasePlugin,
   DataContext,
   IsCaseNodeForType,
+  IsMockDescriptorForType,
   constructDataContext,
 } from '@contract-case/case-plugin-base';
-import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 import type { CaseConfig } from '../../core/types';
 
 import { configFromEnv, configToRunContext } from '../../core/config';
@@ -40,7 +40,7 @@ export class PluginLoader {
     MatchT extends string,
     MockT extends string,
     MatchD extends IsCaseNodeForType<MatchT>,
-    MockD extends AnyMockDescriptor,
+    MockD extends IsMockDescriptorForType<MockT>,
   >(
     plugins: Array<ContractCasePlugin<MatchT, MockT, MatchD, MockD, unknown>>,
   ): void {

@@ -6,6 +6,10 @@
 
 LogLevelContext is the subset of the overall context object that's needed for logging. It exists so that it's possible to call log and error related functions no matter what context you're in.
 
+Note that this is subtly different to LogContext, as it doesn't have the logger attached.
+
+You probably want [LogContext](./case-plugin-base.logcontext.md) instead.
+
 **Signature:**
 
 ```typescript

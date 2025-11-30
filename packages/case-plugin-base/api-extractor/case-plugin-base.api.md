@@ -11,6 +11,7 @@ import { AnyLeafOrStructure } from '@contract-case/case-plugin-dsl-types';
 import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 import { AnyState } from '@contract-case/case-plugin-dsl-types';
 import { CaseMockDescriptorFor } from '@contract-case/case-plugin-dsl-types';
+import { InternalContractCaseCoreSetup } from '@contract-case/case-plugin-dsl-types';
 import { LookupableMatcher } from '@contract-case/case-plugin-dsl-types';
 import { SetupInfoFor } from '@contract-case/case-plugin-dsl-types';
 
@@ -115,13 +116,13 @@ export const constructDataContext: (makeLogger: (c: LogLevelContext) => Logger, 
 export const constructMatchContext: (traversals: TraversalFns, makeLogger: (c: LogLevelContext) => Logger, makeLookup: (c: MatchContextWithoutLookup) => ContractLookupFns, resultPrinter: ResultFormatter, runConfig: Partial<RunContext>, defaults: Record<string, AnyData>, parentVersions: Array<string>) => MatchContext;
 
 // @public
-export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends string, MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>, MockDescriptors extends AnyMockDescriptor, AllSetupInfo> = {
+export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends string, MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>, MockDescriptors extends IsMockDescriptorForType<MockTypes>, AllSetupInfo> = {
     description: PluginDescription;
     matcherExecutors: {
         [T in MatcherTypes]: MatcherExecutor<T, CaseMatcherFor<MatcherDescriptors, T>>;
     };
     setupMocks: {
-        [T in MockTypes]: MockExecutorFn<MockDescriptors, AllSetupInfo, T>;
+        [T in MockTypes]: MockExecutor<T, CaseMockDescriptorFor<MockDescriptors, T>, AllSetupInfo>;
     };
 };
 
@@ -178,6 +179,9 @@ export type DefaultContext = LogLevelContext & {
     '_case:currentRun:context:connectorClient': string;
     '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
 };
+
+// @public
+export const defaultNameMock: <M extends AnyMockDescriptor>(mock: M, context: MatchContext) => M;
 
 // @public
 export const ERROR_TYPE_CONFIGURATION: "CONFIGURATION_ERROR";
@@ -264,13 +268,21 @@ export interface IsCaseNodeForType<T extends string> {
     '_case:matcher:type': T;
 }
 
+// @public
+export interface IsMockDescriptorForType<T extends string> {
+    // (undocumented)
+    '_case:mock:type': T;
+    // (undocumented)
+    '_case:run:context:setup': InternalContractCaseCoreSetup;
+}
+
 // Warning: (ae-internal-missing-underscore) The name "locationString" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
 export const locationString: (matchContext: LogLevelContext) => string;
 
 // @public
-export interface LogContext {
+export interface LogContext extends LogLevelContext {
     logger: Logger;
     makeLogger: (m: LogLevelContext) => Logger;
     // Warning: (ae-incompatible-release-tags) The symbol "resultPrinter" is marked as @public, but its signature references "ResultFormatter" which is marked as @internal
@@ -364,8 +376,8 @@ export type MatchResult = Array<CaseError>;
 //
 // @internal
 export interface MockConfig {
-    // (undocumented)
     '_case:currentRun:context:mockConfig': Record<string, Record<string, unknown>>;
+    '_case:currentRun:context:pluginProvided'?: Record<string, unknown>;
 }
 
 // @public
@@ -375,7 +387,13 @@ export type MockData<AllSetupInfo, T extends string> = {
 };
 
 // @public
-export type MockExecutorFn<AllMockDescriptors extends AnyMockDescriptor, AllSetupInfo, T extends string> = (mock: CaseMockDescriptorFor<AllMockDescriptors, T>, context: MatchContext) => Promise<MockData<AllSetupInfo, T>>;
+export type MockExecutor<MockType extends string, Descriptor extends IsMockDescriptorForType<MockType>, AllSetupInfo> = {
+    executor: MockExecutorFn<Descriptor, AllSetupInfo, MockType>;
+    ensureMatchersAreNamed: (mock: Descriptor, context: MatchContext) => Descriptor;
+};
+
+// @public
+export type MockExecutorFn<Descriptor extends IsMockDescriptorForType<T>, AllSetupInfo, T extends string> = (mock: Descriptor, context: MatchContext) => Promise<MockData<AllSetupInfo, T>>;
 
 // @public
 export type MockOutput = {
@@ -394,15 +412,15 @@ export const mustResolveToString: (matcher: AnyCaseMatcherOrData, context: Match
 export type NameMatcherFn<T> = (matcher: T, matchContext: MatchContext) => string;
 
 // @public
-export const nameMock: <M extends AnyMockDescriptor>(mock: M, context: MatchContext) => M;
-
-// @public
 export type PluginDescription = {
     humanReadableName: string;
     shortName: string;
     uniqueMachineName: string;
     version: string;
 };
+
+// @public
+export const providePluginContext: (parentContext: MatchContext, providedContext: Record<string, string>) => MatchContext;
 
 // Warning: (ae-internal-missing-underscore) The name "RawLookupFns" should be prefixed with an underscore because the declaration is marked as @internal
 //

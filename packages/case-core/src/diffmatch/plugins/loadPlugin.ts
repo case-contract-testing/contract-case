@@ -4,15 +4,19 @@ import {
   ContractCasePlugin,
   IsCaseNodeForType,
   LogContext,
-  MockExecutorFn,
   CORE_PLUGIN_PREFIX,
   MatcherExecutor,
+  IsMockDescriptorForType,
+  MockExecutor,
 } from '@contract-case/case-plugin-base';
-import { AnyMockDescriptor } from '@contract-case/case-plugin-dsl-types';
 
 import { CoreNumberMatcher } from '@contract-case/case-entities-internal';
+import {
+  AnyMockDescriptor,
+  CaseMockDescriptorFor,
+} from '@contract-case/case-plugin-dsl-types';
 import { caseVersion } from '../../entities/versionString';
-import { MockSetupFns } from './types';
+import { AllMockExecutors } from './types';
 import { MatcherExecutors } from '../matching/MatcherExecutors';
 
 const mockTypeToPluginHumanName: Record<string, string> = {};
@@ -23,7 +27,7 @@ const isCorePlugin = <
   MatchT extends string,
   MockT extends string,
   MatchD extends IsCaseNodeForType<MatchT>,
-  MockD extends AnyMockDescriptor,
+  MockD extends IsMockDescriptorForType<MockT>,
 >(
   plugin: ContractCasePlugin<MatchT, MockT, MatchD, MockD, unknown>,
 ): boolean =>
@@ -33,13 +37,23 @@ const isCoreType = (type: string): boolean => type.startsWith('_case:');
 
 const IN_PROGRESS = 'LOAD_IN_PROGRESS';
 
+/**
+ * Loads a plugin into the cor
+ *
+ * Warning: This function mutates the value of MockExecutors
+ *
+ * @param MockExecutors - The mock executors to load into
+ * @param context - The logging context
+ * @param plugin - The plugin to load
+ * @returns
+ */
 export const loadPlugin = <
   MatchT extends string,
   MockT extends string,
   MatchD extends IsCaseNodeForType<MatchT>,
-  MockD extends AnyMockDescriptor,
+  MockD extends IsMockDescriptorForType<MockT>,
 >(
-  MockExecutors: MockSetupFns,
+  MockExecutors: AllMockExecutors,
   context: LogContext,
   plugin: ContractCasePlugin<MatchT, MockT, MatchD, MockD, unknown>,
 ): void => {
@@ -124,13 +138,15 @@ export const loadPlugin = <
     }
 
     // We cheat the type system here - we can't actually
-    // do any type checking so we just tell typescript it's any known type.
+    // do any type checking so we just tell typescript it's any known type,
+    // by claiming it's the MockHttpServer, even though it's probably not.
     // Additionally, we disable param-reassign, because here we intend to do it
+    // so that we can mutate the input object.
     // eslint-disable-next-line no-param-reassign
-    MockExecutors[mockType as '_case:MockHttpServer'] = setup as MockExecutorFn<
-      AnyMockDescriptor,
-      unknown,
-      '_case:MockHttpServer'
+    MockExecutors[mockType as '_case:MockHttpServer'] = setup as MockExecutor<
+      '_case:MockHttpServer',
+      CaseMockDescriptorFor<AnyMockDescriptor, '_case:MockHttpServer'>,
+      unknown
     >;
     mockTypeToPluginHumanName[mockType] = description.humanReadableName;
   });

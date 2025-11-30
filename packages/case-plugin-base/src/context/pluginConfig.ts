@@ -1,6 +1,23 @@
 import { CaseConfigurationError } from '../errors';
 import { PluginDescription } from '../types';
-import { DataContext } from './types';
+import { DataContext, MatchContext } from './types';
+
+/**
+ * Overwrites the value of '_case:currentRun:context:pluginProvided'
+ * with the provided context. Generally you want to call this once per
+ * interaction executor entry function.
+ *
+ * @param parentContext - Context to extend with provided context
+ * @param providedContext - Context that your plugin is providing
+ * @returns A copy of the context, with the given plugin-provided context set.
+ */
+export const providePluginContext = (
+  parentContext: MatchContext,
+  providedContext: Record<string, string>,
+): MatchContext => ({
+  ...parentContext,
+  '_case:currentRun:context:pluginProvided': providedContext,
+});
 
 /**
  * Gets the plugin configuration (the mockConfig object keyed by your plugin

@@ -9,15 +9,15 @@ Represents a plugin for the ContractCase contract testing framework. A plugin ca
 **Signature:**
 
 ```typescript
-export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends string, MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>, MockDescriptors extends AnyMockDescriptor, AllSetupInfo> = {
+export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends string, MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>, MockDescriptors extends IsMockDescriptorForType<MockTypes>, AllSetupInfo> = {
     description: PluginDescription;
     matcherExecutors: {
         [T in MatcherTypes]: MatcherExecutor<T, CaseMatcherFor<MatcherDescriptors, T>>;
     };
     setupMocks: {
-        [T in MockTypes]: MockExecutorFn<MockDescriptors, AllSetupInfo, T>;
+        [T in MockTypes]: MockExecutor<T, CaseMockDescriptorFor<MockDescriptors, T>, AllSetupInfo>;
     };
 };
 ```
-**References:** [IsCaseNodeForType](./case-plugin-base.iscasenodefortype.md)<!-- -->, [PluginDescription](./case-plugin-base.plugindescription.md)<!-- -->, [MatcherExecutor](./case-plugin-base.matcherexecutor.md)<!-- -->, [CaseMatcherFor](./case-plugin-base.casematcherfor.md)<!-- -->, [MockExecutorFn](./case-plugin-base.mockexecutorfn.md)
+**References:** [IsCaseNodeForType](./case-plugin-base.iscasenodefortype.md)<!-- -->, [IsMockDescriptorForType](./case-plugin-base.ismockdescriptorfortype.md)<!-- -->, [PluginDescription](./case-plugin-base.plugindescription.md)<!-- -->, [MatcherExecutor](./case-plugin-base.matcherexecutor.md)<!-- -->, [CaseMatcherFor](./case-plugin-base.casematcherfor.md)<!-- -->, [MockExecutor](./case-plugin-base.mockexecutor.md)
 
