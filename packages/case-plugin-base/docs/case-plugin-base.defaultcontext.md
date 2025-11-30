@@ -10,12 +10,12 @@ The settings that are set as default context for a run
 
 ```typescript
 export type DefaultContext = LogLevelContext & {
-    '_case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
-    '_case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
-    '_case:currentRun:context:contractMode': 'write' | 'read';
-    '_case:currentRun:context:printResults': boolean;
-    '_case:currentRun:context:connectorClient': string;
-    '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
+    readonly '_case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
+    readonly '_case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
+    readonly '_case:currentRun:context:contractMode': 'write' | 'read';
+    readonly '_case:currentRun:context:printResults': boolean;
+    readonly '_case:currentRun:context:connectorClient': string;
+    readonly '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
 };
 ```
 **References:** [LogLevelContext](./case-plugin-base.loglevelcontext.md)<!-- -->, [MATCH\_BY\_TYPE](./case-plugin-base.match_by_type.md)<!-- -->, [MATCH\_BY\_EXACT](./case-plugin-base.match_by_exact.md)<!-- -->, [SERIALISABLE\_TO\_JSON](./case-plugin-base.serialisable_to_json.md)

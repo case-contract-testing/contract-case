@@ -31,6 +31,7 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "test": "jest",
     "lint": "eslint --ext .ts",
     "lint:fix": "eslint --fix --ext .ts",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",

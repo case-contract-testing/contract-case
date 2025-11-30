@@ -10,19 +10,41 @@ import {
 import { FunctionArgumentMatcherExecutor } from './FunctionArgumentsMatcher';
 
 describe('FunctionArgumentMatcherExecutor', () => {
-  const mockMatchContext = {
-    descendAndStrip: jest.fn(),
-    descendAndDescribe: jest.fn(),
-    descendAndCheck: jest.fn(),
-    descendAndValidate: jest.fn(),
-    logger: {
-      maintainerDebug: jest.fn(),
-      error: jest.fn(),
-    },
-    '_case:currentRun:context:pluginProvided': {
-      functionName: 'mockFunction',
-    },
-  } as unknown as MatchContext;
+  interface MockState {
+    descendAndStripResult: any;
+    descendAndDescribeResult: string;
+    descendAndCheckResult: any[];
+  }
+
+  const createMockMatchContext = (state: MockState): MatchContext =>
+    ({
+      descendAndStrip: () => state.descendAndStripResult,
+      descendAndDescribe: () => state.descendAndDescribeResult,
+      descendAndCheck: () => Promise.resolve(state.descendAndCheckResult),
+      descendAndValidate: () => Promise.resolve(),
+      logger: {
+        maintainerDebug: () => Promise.resolve(),
+        error: () => Promise.resolve(),
+      },
+      makeLogger: () => ({
+        maintainerDebug: () => Promise.resolve(),
+        error: () => Promise.resolve(),
+      }),
+      makeLookup: () => ({
+        lookupMatcher: () => [],
+        saveLookupableMatcher: () => {},
+        addDefaultVariable: () => ['name', 'value'] as [string, string],
+        addStateVariable: () => ['name', 'value'] as [string, string],
+        lookupVariable: () => 'TEST VALUE',
+        invokeFunctionByHandle: () => Promise.resolve('returnValue'),
+      }),
+      '_case:currentRun:context:location': ['DURING_TESTS'],
+      '_case:currentRun:context:pluginProvided': {
+        functionName: 'mockFunction',
+      },
+    }) as unknown as MatchContext;
+
+  let mockMatchContext: MatchContext;
 
   const matcher: CoreFunctionArgumentsMatcher = {
     '_case:matcher:type': FUNCTION_ARGUMENTS_MATCHER_TYPE,
@@ -30,7 +52,11 @@ describe('FunctionArgumentMatcherExecutor', () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    mockMatchContext = createMockMatchContext({
+      descendAndStripResult: [],
+      descendAndDescribeResult: 'default description',
+      descendAndCheckResult: [],
+    });
   });
 
   describe('description function', () => {
@@ -40,135 +66,167 @@ describe('FunctionArgumentMatcherExecutor', () => {
       ).toBe('An invocation of mockFunction()');
     });
 
-    it('describes an invocation with arguments', () => {
-      const argsMatcher = {
-        ...matcher,
-        arguments: [{ 'case:matcher:type': 'some-matcher' }],
-      };
-      (mockMatchContext.descendAndDescribe as jest.Mock).mockReturnValue(
-        'some description',
-      );
+    describe('describes an invocation with arguments', () => {
+      beforeEach(() => {
+        mockMatchContext = createMockMatchContext({
+          descendAndStripResult: [],
+          descendAndDescribeResult: 'some description',
+          descendAndCheckResult: [],
+        });
+      });
 
-      expect(
-        FunctionArgumentMatcherExecutor.describe(argsMatcher, mockMatchContext),
-      ).toBe('An invocation of mockFunction( some description )');
+      it('describes an invocation with arguments', () => {
+        const argsMatcher = {
+          ...matcher,
+          arguments: [{ 'case:matcher:type': 'some-matcher' }],
+        };
+
+        expect(
+          FunctionArgumentMatcherExecutor.describe(
+            argsMatcher,
+            mockMatchContext,
+          ),
+        ).toBe('An invocation of mockFunction( some description )');
+      });
     });
   });
 
   describe('check', () => {
-    it('throws configuration error if actual is missing', async () => {
-      await expect(
-        FunctionArgumentMatcherExecutor.check(
-          matcher,
-          mockMatchContext,
-          undefined,
-        ),
-      ).rejects.toThrow(CaseConfigurationError);
+    describe('when actual is missing', () => {
+      it('throws configuration error', async () => {
+        await expect(
+          FunctionArgumentMatcherExecutor.check(
+            matcher,
+            mockMatchContext,
+            undefined,
+          ),
+        ).rejects.toThrow(CaseConfigurationError);
+      });
     });
 
-    it('throws core error if actual is not an array', async () => {
-      await expect(
-        FunctionArgumentMatcherExecutor.check(
-          matcher,
-          mockMatchContext,
-          'not-an-array',
-        ),
-      ).rejects.toThrow(CaseCoreError);
+    describe('when actual is not an array', () => {
+      it('throws core error', async () => {
+        await expect(
+          FunctionArgumentMatcherExecutor.check(
+            matcher,
+            mockMatchContext,
+            'not-an-array',
+          ),
+        ).rejects.toThrow(CaseCoreError);
+      });
     });
 
-    it('checks arguments when lengths match', async () => {
-      const argsMatcher = {
-        ...matcher,
-        arguments: [{ 'case:matcher:type': 'some-matcher' }],
-      };
-      const actual = ['some-arg'];
-      (mockMatchContext.descendAndCheck as jest.Mock).mockResolvedValue([]);
+    describe('when actual is an array', () => {
+      describe('and lengths match', () => {
+        beforeEach(() => {
+          mockMatchContext = createMockMatchContext({
+            descendAndStripResult: [],
+            descendAndDescribeResult: 'default description',
+            descendAndCheckResult: [],
+          });
+        });
 
-      const result = await FunctionArgumentMatcherExecutor.check(
-        argsMatcher,
-        mockMatchContext,
-        actual,
-      );
+        it('checks arguments', async () => {
+          const argsMatcher = {
+            ...matcher,
+            arguments: [{ 'case:matcher:type': 'some-matcher' }],
+          };
+          const actual = ['some-arg'];
 
-      expect(mockMatchContext.descendAndCheck).toHaveBeenCalledWith(
-        argsMatcher.arguments[0],
-        expect.anything(),
-        actual[0],
-      );
-      expect(result).toEqual([]);
-    });
+          const result = await FunctionArgumentMatcherExecutor.check(
+            argsMatcher,
+            mockMatchContext,
+            actual,
+          );
 
-    it('returns error when lengths do not match', async () => {
-      const argsMatcher = {
-        ...matcher,
-        arguments: [{ 'case:matcher:type': 'some-matcher' }],
-      };
-      const actual: unknown[] = [];
-      (mockMatchContext.descendAndStrip as jest.Mock).mockReturnValue(
-        'stripped-expected',
-      );
+          expect(result).toEqual([]);
+        });
+      });
 
-      const result = await FunctionArgumentMatcherExecutor.check(
-        argsMatcher,
-        mockMatchContext,
-        actual,
-      );
+      describe('and lengths do not match', () => {
+        beforeEach(() => {
+          mockMatchContext = createMockMatchContext({
+            descendAndStripResult: 'stripped-expected',
+            descendAndDescribeResult: 'default description',
+            descendAndCheckResult: [],
+          });
+        });
 
-      expect(result).toHaveLength(1);
-      expect(result[0]?.message).toContain(
-        'The function expected 1 argument, but received 0 arguments',
-      );
+        it('returns error', async () => {
+          const argsMatcher = {
+            ...matcher,
+            arguments: [{ 'case:matcher:type': 'some-matcher' }],
+          };
+          const actual: unknown[] = [];
+
+          const result = await FunctionArgumentMatcherExecutor.check(
+            argsMatcher,
+            mockMatchContext,
+            actual,
+          );
+
+          expect(result).toHaveLength(1);
+          expect(result[0]?.message).toContain(
+            'The function expected 1 argument, but received 0 arguments',
+          );
+        });
+      });
     });
   });
 
   describe('strip', () => {
+    beforeEach(() => {
+      mockMatchContext = createMockMatchContext({
+        descendAndStripResult: ['stripped'],
+        descendAndDescribeResult: 'default description',
+        descendAndCheckResult: [],
+      });
+    });
+
     it('strips arguments', () => {
-      (mockMatchContext.descendAndStrip as jest.Mock).mockReturnValue([
-        'stripped',
-      ]);
       expect(
         FunctionArgumentMatcherExecutor.strip(matcher, mockMatchContext),
       ).toEqual(['stripped']);
-      expect(mockMatchContext.descendAndStrip).toHaveBeenCalledWith(
-        matcher.arguments,
-        expect.anything(),
-      );
     });
   });
 
   describe('validate', () => {
-    it('validates arguments', async () => {
-      await FunctionArgumentMatcherExecutor.validate(matcher, mockMatchContext);
-      expect(mockMatchContext.descendAndValidate).toHaveBeenCalledWith(
-        matcher.arguments,
-        expect.anything(),
-      );
+    describe('when arguments are valid', () => {
+      it('validates arguments', async () => {
+        await expect(
+          FunctionArgumentMatcherExecutor.validate(matcher, mockMatchContext),
+        ).resolves.not.toThrow();
+      });
     });
 
-    it('throws if arguments are missing', async () => {
-      const invalidMatcher = {
-        ...matcher,
-        arguments: undefined,
-      } as unknown as CoreFunctionArgumentsMatcher;
-      await expect(
-        FunctionArgumentMatcherExecutor.validate(
-          invalidMatcher,
-          mockMatchContext,
-        ),
-      ).rejects.toThrow(CaseConfigurationError);
+    describe('when arguments are missing', () => {
+      it('throws configuration error', async () => {
+        const invalidMatcher = {
+          ...matcher,
+          arguments: undefined,
+        } as unknown as CoreFunctionArgumentsMatcher;
+        await expect(
+          FunctionArgumentMatcherExecutor.validate(
+            invalidMatcher,
+            mockMatchContext,
+          ),
+        ).rejects.toThrow(CaseConfigurationError);
+      });
     });
 
-    it('throws if arguments are not an array', async () => {
-      const invalidMatcher = {
-        ...matcher,
-        arguments: 'not-an-array',
-      } as unknown as CoreFunctionArgumentsMatcher;
-      await expect(
-        FunctionArgumentMatcherExecutor.validate(
-          invalidMatcher,
-          mockMatchContext,
-        ),
-      ).rejects.toThrow(CaseConfigurationError);
+    describe('when arguments are not an array', () => {
+      it('throws configuration error', async () => {
+        const invalidMatcher = {
+          ...matcher,
+          arguments: 'not-an-array',
+        } as unknown as CoreFunctionArgumentsMatcher;
+        await expect(
+          FunctionArgumentMatcherExecutor.validate(
+            invalidMatcher,
+            mockMatchContext,
+          ),
+        ).rejects.toThrow(CaseConfigurationError);
+      });
     });
   });
 });

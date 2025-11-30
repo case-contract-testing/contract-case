@@ -271,17 +271,17 @@ export interface ContractFileConfig {
   /**
    * The current test run ID
    */
-  '_case:currentRun:context:testRunId': string;
+  readonly '_case:currentRun:context:testRunId': string;
   /**
    * The directory for contract files.
    *
    * Note that they may be in a subdirectory of this dir
    */
-  '_case:currentRun:context:contractDir': string;
+  readonly '_case:currentRun:context:contractDir': string;
   /**
    * The filename for the contract file (if known)
    */
-  '_case:currentRun:context:contractFilename'?: string;
+  readonly '_case:currentRun:context:contractFilename'?: string;
   /**
    * Which contracts to write:
    *
@@ -291,7 +291,7 @@ export interface ContractFileConfig {
    * These should never include a ',', in case we want to allow them
    * to be specified by an environment variable
    */
-  '_case:currentRun:context:contractsToWrite': Array<'main' | 'hash'>;
+  readonly '_case:currentRun:context:contractsToWrite': Array<'main' | 'hash'>;
   /**
    * Whether we should allow overwriting the contract file.
    *
@@ -299,7 +299,7 @@ export interface ContractFileConfig {
    *
    * Currently, this setting is only used internally, it is not exposed to users.
    */
-  '_case:currentRun:context:overwriteFile'?: boolean;
+  readonly '_case:currentRun:context:overwriteFile'?: boolean;
 }
 
 /**
@@ -315,30 +315,32 @@ export type HasContractFileConfig = DataContext & ContractFileConfig;
  * @public
  */
 export type DefaultContext = LogLevelContext & {
-  '_case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
+  readonly '_case:context:matchBy':
+    | typeof MATCH_BY_TYPE
+    | typeof MATCH_BY_EXACT;
   /**
    * What the contract must be serialisable to - used by matchers for excluding
    * values of number (etc) that are not valid in json
    */
-  '_case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
+  readonly '_case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
   /**
    * Whether we are currently writing (ie, defining) or reading (ie, verifying) a contract.
    * This is only different to 'define' and 'verify' to avoid confusing terminology internally
    */
-  '_case:currentRun:context:contractMode': 'write' | 'read';
+  readonly '_case:currentRun:context:contractMode': 'write' | 'read';
   /**
    * Whether or not we should print results during this run
    */
-  '_case:currentRun:context:printResults': boolean;
+  readonly '_case:currentRun:context:printResults': boolean;
   /**
    * What's the connector client (ie, host language) for this run?
    */
-  '_case:currentRun:context:connectorClient': string;
+  readonly '_case:currentRun:context:connectorClient': string;
 
   /**
    * How to generate the version for the system under test
    */
-  '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
+  readonly '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
 };
 
 /**
@@ -400,28 +402,31 @@ export interface RunContext
       ContractFileConfig &
       MockConfig
   > {
-  '_case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
-  '_case:currentRun:context:printResults': boolean;
-  '_case:currentRun:context:variables': Record<string, AnyCaseMatcherOrData>;
-  '_case:currentRun:context:defaultConfig': Record<string, AnyData>;
-  '_case:currentRun:context:connectorClient': string;
+  readonly '_case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
+  readonly '_case:currentRun:context:printResults': boolean;
+  readonly '_case:currentRun:context:variables': Record<
+    string,
+    AnyCaseMatcherOrData
+  >;
+  readonly '_case:currentRun:context:defaultConfig': Record<string, AnyData>;
+  readonly '_case:currentRun:context:connectorClient': string;
   // TODO: These are from CaseConfig and should be auto generated
-  '_case:currentRun:context:throwOnFail'?: boolean;
-  '_case:currentRun:context:brokerCiAccessToken'?: string;
-  '_case:currentRun:context:changedContracts'?: 'FAIL' | 'OVERWRITE';
-  '_case:currentRun:context:autoVersionFrom'?: 'TAG' | 'GIT_SHA';
-  '_case:currentRun:context:publish'?:
+  readonly '_case:currentRun:context:throwOnFail'?: boolean;
+  readonly '_case:currentRun:context:brokerCiAccessToken'?: string;
+  readonly '_case:currentRun:context:changedContracts'?: 'FAIL' | 'OVERWRITE';
+  readonly '_case:currentRun:context:autoVersionFrom'?: 'TAG' | 'GIT_SHA';
+  readonly '_case:currentRun:context:publish'?:
     | false
     | true
     | 'ONLY_IN_CI'
     | 'NEVER'
     | 'ALWAYS';
-  '_case:currentRun:context:brokerBasicAuth'?: {
+  readonly '_case:currentRun:context:brokerBasicAuth'?: {
     username: string;
     password: string;
   };
-  '_case:currentRun:context:brokerBaseUrl'?: string;
-  '_case:currentRun:context:internals'?: {};
+  readonly '_case:currentRun:context:brokerBaseUrl'?: string;
+  readonly '_case:currentRun:context:internals'?: {};
 }
 
 /**
@@ -466,9 +471,9 @@ export interface HttpTestContext {
  * @public
  */
 export type LogLevelContext = {
-  '_case:currentRun:context:parentVersions': Array<string>;
-  '_case:currentRun:context:logLevel': LogLevel;
-  '_case:currentRun:context:location': Array<string>;
+  readonly '_case:currentRun:context:parentVersions': Array<string>;
+  readonly '_case:currentRun:context:logLevel': LogLevel;
+  readonly '_case:currentRun:context:location': Array<string>;
 };
 
 /**

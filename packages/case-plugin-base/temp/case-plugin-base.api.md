@@ -130,11 +130,11 @@ export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends st
 //
 // @internal
 export interface ContractFileConfig {
-    '_case:currentRun:context:contractDir': string;
-    '_case:currentRun:context:contractFilename'?: string;
-    '_case:currentRun:context:contractsToWrite': Array<'main' | 'hash'>;
-    '_case:currentRun:context:overwriteFile'?: boolean;
-    '_case:currentRun:context:testRunId': string;
+    readonly '_case:currentRun:context:contractDir': string;
+    readonly '_case:currentRun:context:contractFilename'?: string;
+    readonly '_case:currentRun:context:contractsToWrite': Array<'main' | 'hash'>;
+    readonly '_case:currentRun:context:overwriteFile'?: boolean;
+    readonly '_case:currentRun:context:testRunId': string;
 }
 
 // @public
@@ -172,12 +172,12 @@ export type DataOrCaseNodeFor<KnownMatcherDescriptors, T extends string> = CaseM
 
 // @public
 export type DefaultContext = LogLevelContext & {
-    '_case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
-    '_case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
-    '_case:currentRun:context:contractMode': 'write' | 'read';
-    '_case:currentRun:context:printResults': boolean;
-    '_case:currentRun:context:connectorClient': string;
-    '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
+    readonly '_case:context:matchBy': typeof MATCH_BY_TYPE | typeof MATCH_BY_EXACT;
+    readonly '_case:context:serialisableTo': typeof SERIALISABLE_TO_JSON;
+    readonly '_case:currentRun:context:contractMode': 'write' | 'read';
+    readonly '_case:currentRun:context:printResults': boolean;
+    readonly '_case:currentRun:context:connectorClient': string;
+    readonly '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';
 };
 
 // @public
@@ -303,9 +303,9 @@ export type LogLevel = 'none' | 'error' | 'warn' | 'debug' | 'maintainerDebug' |
 
 // @public
 export type LogLevelContext = {
-    '_case:currentRun:context:parentVersions': Array<string>;
-    '_case:currentRun:context:logLevel': LogLevel;
-    '_case:currentRun:context:location': Array<string>;
+    readonly '_case:currentRun:context:parentVersions': Array<string>;
+    readonly '_case:currentRun:context:logLevel': LogLevel;
+    readonly '_case:currentRun:context:location': Array<string>;
 };
 
 // @public
@@ -465,34 +465,34 @@ export type ResultFormatter = {
 // @internal
 export interface RunContext extends Partial<InjectableContext & LogLevelContext & HasBaseUrlUnderTest & ContractFileConfig & MockConfig> {
     // (undocumented)
-    '_case:currentRun:context:autoVersionFrom'?: 'TAG' | 'GIT_SHA';
+    readonly '_case:currentRun:context:autoVersionFrom'?: 'TAG' | 'GIT_SHA';
     // (undocumented)
-    '_case:currentRun:context:brokerBaseUrl'?: string;
+    readonly '_case:currentRun:context:brokerBaseUrl'?: string;
     // (undocumented)
-    '_case:currentRun:context:brokerBasicAuth'?: {
+    readonly '_case:currentRun:context:brokerBasicAuth'?: {
         username: string;
         password: string;
     };
     // (undocumented)
-    '_case:currentRun:context:brokerCiAccessToken'?: string;
+    readonly '_case:currentRun:context:brokerCiAccessToken'?: string;
     // (undocumented)
-    '_case:currentRun:context:changedContracts'?: 'FAIL' | 'OVERWRITE';
+    readonly '_case:currentRun:context:changedContracts'?: 'FAIL' | 'OVERWRITE';
     // (undocumented)
-    '_case:currentRun:context:connectorClient': string;
+    readonly '_case:currentRun:context:connectorClient': string;
     // (undocumented)
-    '_case:currentRun:context:defaultConfig': Record<string, AnyData>;
+    readonly '_case:currentRun:context:defaultConfig': Record<string, AnyData>;
     // (undocumented)
-    '_case:currentRun:context:internals'?: {};
+    readonly '_case:currentRun:context:internals'?: {};
     // (undocumented)
-    '_case:currentRun:context:printResults': boolean;
+    readonly '_case:currentRun:context:printResults': boolean;
     // (undocumented)
-    '_case:currentRun:context:publish'?: false | true | 'ONLY_IN_CI' | 'NEVER' | 'ALWAYS';
+    readonly '_case:currentRun:context:publish'?: false | true | 'ONLY_IN_CI' | 'NEVER' | 'ALWAYS';
     // (undocumented)
-    '_case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
+    readonly '_case:currentRun:context:testName': string | 'OUTSIDE_TESTS';
     // (undocumented)
-    '_case:currentRun:context:throwOnFail'?: boolean;
+    readonly '_case:currentRun:context:throwOnFail'?: boolean;
     // (undocumented)
-    '_case:currentRun:context:variables': Record<string, AnyCaseMatcherOrData>;
+    readonly '_case:currentRun:context:variables': Record<string, AnyCaseMatcherOrData>;
 }
 
 // @public

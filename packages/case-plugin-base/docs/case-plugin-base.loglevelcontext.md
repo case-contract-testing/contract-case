@@ -14,9 +14,9 @@ You probably want [LogContext](./case-plugin-base.logcontext.md) instead.
 
 ```typescript
 export type LogLevelContext = {
-    '_case:currentRun:context:parentVersions': Array<string>;
-    '_case:currentRun:context:logLevel': LogLevel;
-    '_case:currentRun:context:location': Array<string>;
+    readonly '_case:currentRun:context:parentVersions': Array<string>;
+    readonly '_case:currentRun:context:logLevel': LogLevel;
+    readonly '_case:currentRun:context:location': Array<string>;
 };
 ```
 **References:** [LogLevel](./case-plugin-base.loglevel.md)

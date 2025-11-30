@@ -2387,7 +2387,7 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    '_case:context:matchBy': typeof "
+              "text": " & {\n    readonly '_case:context:matchBy': typeof "
             },
             {
               "kind": "Reference",
@@ -2405,7 +2405,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    '_case:context:serialisableTo': typeof "
+              "text": ";\n    readonly '_case:context:serialisableTo': typeof "
             },
             {
               "kind": "Reference",
@@ -2414,7 +2414,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    '_case:currentRun:context:contractMode': 'write' | 'read';\n    '_case:currentRun:context:printResults': boolean;\n    '_case:currentRun:context:connectorClient': string;\n    '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';\n}"
+              "text": ";\n    readonly '_case:currentRun:context:contractMode': 'write' | 'read';\n    readonly '_case:currentRun:context:printResults': boolean;\n    readonly '_case:currentRun:context:connectorClient': string;\n    readonly '_case:currentRun:context:autoVersionFrom': 'TAG' | 'GIT_SHA';\n}"
             },
             {
               "kind": "Content",
@@ -3753,7 +3753,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    '_case:currentRun:context:parentVersions': "
+              "text": "{\n    readonly '_case:currentRun:context:parentVersions': "
             },
             {
               "kind": "Reference",
@@ -3762,7 +3762,7 @@
             },
             {
               "kind": "Content",
-              "text": "<string>;\n    '_case:currentRun:context:logLevel': "
+              "text": "<string>;\n    readonly '_case:currentRun:context:logLevel': "
             },
             {
               "kind": "Reference",
@@ -3771,7 +3771,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    '_case:currentRun:context:location': "
+              "text": ";\n    readonly '_case:currentRun:context:location': "
             },
             {
               "kind": "Reference",

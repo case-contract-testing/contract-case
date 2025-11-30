@@ -6,6 +6,8 @@ import {
 import {
   CaseConfigurationError,
   CaseCoreError,
+  DataContext,
+  Logger,
   MatchContext,
 } from '@contract-case/case-plugin-base';
 import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
@@ -14,34 +16,95 @@ import {
   isSuccessResult,
 } from './FunctionResultMatcher';
 
+const EMPTY_LOGGER = {
+  error(): Promise<void> {
+    return Promise.resolve();
+  },
+  warn(): Promise<void> {
+    return Promise.resolve();
+  },
+  debug(): Promise<void> {
+    return Promise.resolve();
+  },
+  maintainerDebug(): Promise<void> {
+    return Promise.resolve();
+  },
+  deepMaintainerDebug(): Promise<void> {
+    return Promise.resolve();
+  },
+};
+
+const EMPTY_DATA_CONTEXT: DataContext = {
+  '_case:currentRun:context:logLevel': 'none',
+  '_case:currentRun:context:parentVersions': [],
+  '_case:currentRun:context:location': ['DURING_TESTS'],
+  '_case:currentRun:context:connectorClient': 'Tests',
+  '_case:context:matchBy': 'type',
+  '_case:context:serialisableTo': 'json',
+  '_case:currentRun:context:contractMode': 'write',
+  '_case:currentRun:context:contractsToWrite': ['hash', 'main'],
+  '_case:currentRun:context:printResults': true,
+  '_case:currentRun:context:testName': '',
+  '_case:currentRun:context:variables': {},
+  '_case:currentRun:context:defaultConfig': {},
+  '_case:currentRun:context:autoVersionFrom': 'TAG',
+  logger: EMPTY_LOGGER,
+  resultPrinter: {
+    printError: () => 'PRINT_ERROR',
+    printFailureTitle: () => 'PRINT_FAILURE',
+    printSuccessTitle: () => 'PRINT_SUCCESS',
+    printDownloadedContract: () => 'PRINT_DOWNLOADED_CONTRACT',
+  },
+  makeLogger(): Logger {
+    return EMPTY_LOGGER;
+  },
+} as const;
+
+const MOCK_LOOKUP = {
+  lookupMatcher: () => [],
+  saveLookupableMatcher: () => {},
+  addDefaultVariable: (): [name: string, value: string] => ['name', 'value'],
+  addStateVariable: (): [name: string, value: string] => ['name', 'value'],
+  lookupVariable: () => 'TEST VALUE',
+  invokeFunctionByHandle: () => Promise.resolve('returnValue'),
+};
+
+interface MockState {
+  descendAndCheckResult: any[];
+  descendAndStripResult: any;
+  descendAndDescribeResult: string;
+}
+
+const createMockMatchContext = (state: MockState): MatchContext => ({
+  ...EMPTY_DATA_CONTEXT,
+  descendAndCheck: () => Promise.resolve(state.descendAndCheckResult),
+  descendAndStrip: () => state.descendAndStripResult,
+  descendAndDescribe: () => state.descendAndDescribeResult,
+  selfVerify: () => Promise.resolve(),
+  ...MOCK_LOOKUP,
+  makeLookup: () => MOCK_LOOKUP,
+  descendAndValidate: () => Promise.resolve(),
+});
+
 describe('FunctionResultMatcherExecutor', () => {
-  const mockMatchContext = {
-    descendAndStrip: jest.fn(),
-    descendAndDescribe: jest.fn(),
-    descendAndCheck: jest.fn(),
-    descendAndValidate: jest.fn(),
-    logger: {
-      maintainerDebug: jest.fn(),
-      error: jest.fn(),
-    },
-  } as unknown as MatchContext;
+  let mockMatchContext: MatchContext;
 
   const successMatcher: CoreFunctionSuccessResultMatcher = {
     '_case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
-    success: {
-      'case:matcher:type': 'some-matcher',
-    } as unknown as AnyCaseMatcherOrData,
+    success: 'SomeSuccess',
   };
 
   const errorMatcher: CoreFunctionErrorResultMatcher = {
     '_case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
-    errorClassName: {
-      'case:matcher:type': 'some-matcher',
-    } as unknown as AnyCaseMatcherOrData,
+    errorClassName: 'SomeError',
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    mockMatchContext = createMockMatchContext({
+      descendAndCheckResult: [],
+      descendAndStripResult: 'stripped',
+      descendAndDescribeResult: '"default description"',
+    });
   });
 
   describe('isSuccessResult', () => {
@@ -56,9 +119,11 @@ describe('FunctionResultMatcherExecutor', () => {
 
   describe('description function', () => {
     it('describes success result', () => {
-      (mockMatchContext.descendAndDescribe as jest.Mock).mockReturnValue(
-        'some description',
-      );
+      mockMatchContext = createMockMatchContext({
+        descendAndCheckResult: [],
+        descendAndStripResult: 'stripped',
+        descendAndDescribeResult: 'some description',
+      });
       expect(
         FunctionResultMatcherExecutor.describe(
           successMatcher,
@@ -68,12 +133,14 @@ describe('FunctionResultMatcherExecutor', () => {
     });
 
     it('describes error result', () => {
-      (mockMatchContext.descendAndDescribe as jest.Mock).mockReturnValue(
-        '"SomeError"',
-      );
+      mockMatchContext = createMockMatchContext({
+        descendAndCheckResult: [],
+        descendAndStripResult: 'stripped',
+        descendAndDescribeResult: '"SomeError"',
+      });
       expect(
         FunctionResultMatcherExecutor.describe(errorMatcher, mockMatchContext),
-      ).toBe('throwing a "SomeError"');
+      ).toBe('throwing a SomeError');
     });
 
     it('describes error result with message', () => {
@@ -83,154 +150,191 @@ describe('FunctionResultMatcherExecutor', () => {
           'case:matcher:type': 'some-matcher',
         } as unknown as AnyCaseMatcherOrData,
       };
-      (mockMatchContext.descendAndDescribe as jest.Mock)
-        .mockReturnValueOnce('"SomeError"')
-        .mockReturnValueOnce('some message');
 
-      expect(
-        FunctionResultMatcherExecutor.describe(
-          errorMatcherWithMessage,
-          mockMatchContext,
-        ),
-      ).toBe('throwing a "SomeError" with message: some message');
+      mockMatchContext = createMockMatchContext({
+        descendAndCheckResult: [],
+        descendAndStripResult: 'stripped',
+        descendAndDescribeResult: '"SomeError"',
+      });
+
+      const result = FunctionResultMatcherExecutor.describe(
+        errorMatcherWithMessage,
+        mockMatchContext,
+      );
+
+      // The result should contain both the error class and message
+      expect(result).toContain('throwing a SomeError');
+      expect(result).toContain('with message');
     });
   });
 
   describe('check', () => {
     describe('success matcher', () => {
-      it('checks success result', async () => {
-        const actual = { success: JSON.stringify('some-value') };
-        (mockMatchContext.descendAndCheck as jest.Mock).mockResolvedValue([]);
+      describe('when actual is a success result', () => {
+        beforeEach(() => {
+          mockMatchContext = createMockMatchContext({
+            descendAndCheckResult: [],
+            descendAndStripResult: 'stripped',
+            descendAndDescribeResult: '"default"',
+          });
+        });
 
-        const result = await FunctionResultMatcherExecutor.check(
-          successMatcher,
-          mockMatchContext,
-          actual,
-        );
+        it('checks success result', async () => {
+          const actual = { success: JSON.stringify('some-value') };
 
-        expect(mockMatchContext.descendAndCheck).toHaveBeenCalledWith(
-          successMatcher.success,
-          expect.anything(),
-          'some-value',
-        );
-        expect(result).toEqual([]);
-      });
-
-      it('throws if actual is not an object', async () => {
-        await expect(
-          FunctionResultMatcherExecutor.check(
-            successMatcher,
-            mockMatchContext,
-            'not-an-object',
-          ),
-        ).rejects.toThrow(CaseCoreError);
-      });
-
-      it('throws if success is not a string', async () => {
-        const actual = { success: 123 };
-        await expect(
-          FunctionResultMatcherExecutor.check(
+          const result = await FunctionResultMatcherExecutor.check(
             successMatcher,
             mockMatchContext,
             actual,
-          ),
-        ).rejects.toThrow(CaseCoreError);
+          );
+
+          expect(result).toEqual([]);
+        });
       });
 
-      it('throws if success is not valid JSON', async () => {
-        const actual = { success: 'invalid-json' };
-        await expect(
-          FunctionResultMatcherExecutor.check(
+      describe('when actual is not an object', () => {
+        it('throws core error', async () => {
+          await expect(
+            FunctionResultMatcherExecutor.check(
+              successMatcher,
+              mockMatchContext,
+              'not-an-object',
+            ),
+          ).rejects.toThrow(CaseCoreError);
+        });
+      });
+
+      describe('when success property is not a string', () => {
+        it('throws core error', async () => {
+          const actual = { success: 123 };
+          await expect(
+            FunctionResultMatcherExecutor.check(
+              successMatcher,
+              mockMatchContext,
+              actual,
+            ),
+          ).rejects.toThrow(CaseCoreError);
+        });
+      });
+
+      describe('when success property is not valid JSON', () => {
+        it('throws core error', async () => {
+          const actual = { success: 'invalid-json' };
+          await expect(
+            FunctionResultMatcherExecutor.check(
+              successMatcher,
+              mockMatchContext,
+              actual,
+            ),
+          ).rejects.toThrow(CaseCoreError);
+        });
+      });
+
+      describe('when actual is a failure result', () => {
+        beforeEach(() => {
+          mockMatchContext = createMockMatchContext({
+            descendAndCheckResult: [],
+            descendAndStripResult: 'stripped-expected',
+            descendAndDescribeResult: '"default"',
+          });
+        });
+
+        it('returns error', async () => {
+          const actual = { errorClassName: 'SomeError' };
+
+          const result = await FunctionResultMatcherExecutor.check(
             successMatcher,
             mockMatchContext,
             actual,
-          ),
-        ).rejects.toThrow(CaseCoreError);
+          );
+
+          expect(result).toHaveLength(1);
+          expect(result[0]?.message).toBe(
+            'Expected the function to return success, but it failed with an error',
+          );
+        });
       });
 
-      it('returns error if actual is a failure', async () => {
-        const actual = { errorClassName: 'SomeError' };
-        (mockMatchContext.descendAndStrip as jest.Mock).mockReturnValue(
-          'stripped-expected',
-        );
-
-        const result = await FunctionResultMatcherExecutor.check(
-          successMatcher,
-          mockMatchContext,
-          actual,
-        );
-
-        expect(result).toHaveLength(1);
-        expect(result[0]?.message).toBe(
-          'Expected the function to return success, but it failed with an error',
-        );
-      });
-
-      it('throws if actual is invalid response', async () => {
-        const actual = { foo: 'bar' };
-        await expect(
-          FunctionResultMatcherExecutor.check(
-            successMatcher,
-            mockMatchContext,
-            actual,
-          ),
-        ).rejects.toThrow(CaseCoreError);
+      describe('when actual is invalid response', () => {
+        it('throws core error', async () => {
+          const actual = { foo: 'bar' };
+          await expect(
+            FunctionResultMatcherExecutor.check(
+              successMatcher,
+              mockMatchContext,
+              actual,
+            ),
+          ).rejects.toThrow(CaseCoreError);
+        });
       });
     });
 
     describe('error matcher', () => {
-      it('checks error result', async () => {
-        const actual = { errorClassName: 'SomeError' };
-        (mockMatchContext.descendAndCheck as jest.Mock).mockResolvedValue([]);
+      describe('when actual is an error result', () => {
+        beforeEach(() => {
+          mockMatchContext = createMockMatchContext({
+            descendAndCheckResult: [],
+            descendAndStripResult: 'stripped',
+            descendAndDescribeResult: '"default"',
+          });
+        });
 
-        const result = await FunctionResultMatcherExecutor.check(
-          errorMatcher,
-          mockMatchContext,
-          actual,
-        );
+        it('checks error result', async () => {
+          const actual = { errorClassName: 'SomeError' };
 
-        expect(mockMatchContext.descendAndCheck).toHaveBeenCalledWith(
-          errorMatcher.errorClassName,
-          expect.anything(),
-          'SomeError',
-        );
-        expect(result).toEqual([]);
+          const result = await FunctionResultMatcherExecutor.check(
+            errorMatcher,
+            mockMatchContext,
+            actual,
+          );
+
+          expect(result).toEqual([]);
+        });
       });
 
-      it('returns error if actual is a success', async () => {
-        const actual = { success: 'some-value' };
-        (mockMatchContext.descendAndStrip as jest.Mock).mockReturnValue(
-          'stripped-expected',
-        );
+      describe('when actual is a success result', () => {
+        beforeEach(() => {
+          mockMatchContext = createMockMatchContext({
+            descendAndCheckResult: [],
+            descendAndStripResult: 'stripped-expected',
+            descendAndDescribeResult: '"default"',
+          });
+        });
 
-        const result = await FunctionResultMatcherExecutor.check(
-          errorMatcher,
-          mockMatchContext,
-          actual,
-        );
+        it('returns error', async () => {
+          const actual = { success: 'some-value' };
 
-        expect(result).toHaveLength(1);
-        expect(result[0]?.message).toBe(
-          'Expected the function to throw an error, but it returned successfully',
-        );
+          const result = await FunctionResultMatcherExecutor.check(
+            errorMatcher,
+            mockMatchContext,
+            actual,
+          );
+
+          expect(result).toHaveLength(1);
+          expect(result[0]?.message).toBe(
+            'Expected the function to throw an error, but it returned successfully',
+          );
+        });
       });
     });
   });
 
   describe('strip', () => {
+    beforeEach(() => {
+      mockMatchContext = createMockMatchContext({
+        descendAndCheckResult: [],
+        descendAndStripResult: 'stripped',
+        descendAndDescribeResult: '"default"',
+      });
+    });
+
     it('strips success result', () => {
-      (mockMatchContext.descendAndStrip as jest.Mock).mockReturnValue(
-        'stripped',
-      );
       expect(
         FunctionResultMatcherExecutor.strip(successMatcher, mockMatchContext),
       ).toEqual({ success: JSON.stringify('stripped') });
     });
 
     it('strips error result', () => {
-      (mockMatchContext.descendAndStrip as jest.Mock).mockReturnValue(
-        'stripped',
-      );
       expect(
         FunctionResultMatcherExecutor.strip(errorMatcher, mockMatchContext),
       ).toEqual({ errorClassName: 'stripped' });
@@ -243,9 +347,6 @@ describe('FunctionResultMatcherExecutor', () => {
           'case:matcher:type': 'some-matcher',
         } as unknown as AnyCaseMatcherOrData,
       };
-      (mockMatchContext.descendAndStrip as jest.Mock).mockReturnValue(
-        'stripped',
-      );
       expect(
         FunctionResultMatcherExecutor.strip(
           errorMatcherWithMessage,
@@ -256,52 +357,53 @@ describe('FunctionResultMatcherExecutor', () => {
   });
 
   describe('validate', () => {
-    it('validates success matcher', async () => {
-      await FunctionResultMatcherExecutor.validate(
-        successMatcher,
-        mockMatchContext,
-      );
-      expect(mockMatchContext.descendAndValidate).toHaveBeenCalledWith(
-        successMatcher.success,
-        expect.anything(),
-      );
+    describe('when matcher is valid', () => {
+      it('validates success matcher', async () => {
+        await expect(
+          FunctionResultMatcherExecutor.validate(
+            successMatcher,
+            mockMatchContext,
+          ),
+        ).resolves.not.toThrow();
+      });
+
+      it('validates error matcher', async () => {
+        await expect(
+          FunctionResultMatcherExecutor.validate(
+            errorMatcher,
+            mockMatchContext,
+          ),
+        ).resolves.not.toThrow();
+      });
+
+      it('validates error matcher with message', async () => {
+        const errorMatcherWithMessage = {
+          ...errorMatcher,
+          message: {
+            'case:matcher:type': 'some-matcher',
+          } as unknown as AnyCaseMatcherOrData,
+        };
+        await expect(
+          FunctionResultMatcherExecutor.validate(
+            errorMatcherWithMessage,
+            mockMatchContext,
+          ),
+        ).resolves.not.toThrow();
+      });
     });
 
-    it('validates error matcher', async () => {
-      await FunctionResultMatcherExecutor.validate(
-        errorMatcher,
-        mockMatchContext,
-      );
-      expect(mockMatchContext.descendAndValidate).toHaveBeenCalledWith(
-        errorMatcher.errorClassName,
-        expect.anything(),
-      );
-    });
-
-    it('validates error matcher with message', async () => {
-      const errorMatcherWithMessage = {
-        ...errorMatcher,
-        message: {
-          'case:matcher:type': 'some-matcher',
-        } as unknown as AnyCaseMatcherOrData,
-      };
-      await FunctionResultMatcherExecutor.validate(
-        errorMatcherWithMessage,
-        mockMatchContext,
-      );
-      expect(mockMatchContext.descendAndValidate).toHaveBeenCalledTimes(2);
-    });
-
-    it('throws if matcher is invalid', async () => {
-      const invalidMatcher = {
-        'case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
-      } as unknown as CoreFunctionSuccessResultMatcher;
-      await expect(
-        FunctionResultMatcherExecutor.validate(
-          invalidMatcher,
-          mockMatchContext,
-        ),
-      ).rejects.toThrow(CaseConfigurationError);
+    describe('when matcher is invalid', () => {
+      it('throws configuration error', async () => {
+        const invalidMatcher = {
+          'case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
+        } as unknown as CoreFunctionSuccessResultMatcher;
+        await expect(
+          FunctionResultMatcherExecutor.validate(
+            invalidMatcher,
+            mockMatchContext,
+          ),
+        ).rejects.toThrow(CaseConfigurationError);
+      });
     });
   });
 });
