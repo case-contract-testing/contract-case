@@ -4,8 +4,10 @@ import {
 } from '@contract-case/case-plugin-base';
 
 /**
- * Takes a camel-case string, for example, camelCaseString and returns an all
- * caps, snake case string, for example CAMEL_CASE_STRING
+ * Takes a variable name in either camelCase or PascalCase,
+ * and returns an all caps, snake case string, for example
+ * `camelCaseString` -> `CAMEL_CASE_STRING`.
+ *
  * @param name - a string to turn into SCREAMING_SNAKE_CASE
  * @returns the SCREAMING_SNAKE_CASE representation
  */
@@ -28,8 +30,11 @@ export const toScreamingSnakeCase = (name: string): string => {
 };
 
 /**
- * Takes a PascalCase string and lowercases the first character, eg to `camelCase`
- * @param name - a string in PascalCase to be replaced with camelCase
+ * Takes a PascalCase string or a SCREAMING_SNAKE_CASE string, and lowercases
+ * and converts to camelCase. For example, `SOME_EXAMPLE` becomes `someExample`
+ * and `OtherExample` becomes `otherExample`.
+ *
+ * @param name - a string in PascalCase or SCREAMING_SNAKE_CASE to be replaced with camelCase
  * @returns the camelCase version
  */
 export const toCamelCase = (name: string): string => {
@@ -41,10 +46,23 @@ export const toCamelCase = (name: string): string => {
       );
     }
 
+    // handle SREAMING_SNAKE_CASE
+    if (name.includes('_') || name === name.toUpperCase()) {
+      return name
+        .split('_')
+        .map((word, index) => {
+          if (index === 0) {
+            return word.toLowerCase();
+          }
+          return `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}`;
+        })
+        .join('');
+    }
+
     return `${firstCharacter.toLowerCase()}${name.slice(1)}`;
   }
   throw new CaseConfigurationError(
-    `Tried to get the camelCaseName from '${name}', but it wasn't a string or was too short`,
+    `Tried to get the camelCaseName from '${name}', but it wasn't a string or was less than 3 characters long`,
     'DONT_ADD_LOCATION',
     'BAD_DSL_DECLARATION',
   );

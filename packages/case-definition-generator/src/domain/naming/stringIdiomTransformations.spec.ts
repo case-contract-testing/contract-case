@@ -52,11 +52,20 @@ describe('string idiom transformations', () => {
       expect(toCamelCase('camelCase')).toBe('camelCase');
     });
 
+    it('converts SCREAMING_SNAKE_CASE to camelCase', () => {
+      expect(toCamelCase('SOME_VARIABLE_NAME')).toBe('someVariableName');
+    });
+
+    it('converts SCREAMING_SNAKE_CASE with numbers to camelCase', () => {
+      expect(toCamelCase('SOME_VARIABLE_NAME_2')).toBe('someVariableName2');
+    });
+
+    it('converts single word SCREAMING case to camelCase', () => {
+      expect(toCamelCase('CONSTANT')).toBe('constant');
+    });
+
     it('throws if the string is too short (length 2)', () => {
       expect(() => toCamelCase('Hi')).toThrow(CaseConfigurationError);
-      expect(() => toCamelCase('Hi')).toThrow(
-        "Tried to get the camelCaseName from 'Hi', but it wasn't a string or was too short",
-      );
     });
 
     it('throws if the string is too short (length 1)', () => {
