@@ -29,7 +29,7 @@ export const toScreamingSnakeCase = (name: string): string => {
 
 /**
  * Takes a PascalCase string and lowercases the first character, eg to `camelCase`
- * @param name - a string in camelCase to be replaced with camelCase
+ * @param name - a string in PascalCase to be replaced with camelCase
  * @returns the camelCase version
  */
 export const toCamelCase = (name: string): string => {
@@ -37,7 +37,7 @@ export const toCamelCase = (name: string): string => {
     const firstCharacter = name[0];
     if (firstCharacter == null) {
       throw new CaseCoreError(
-        `The string '${name}' is empty, but somehow has a null first character`,
+        `The string '${name}' is not empty, but somehow has a null first character`,
       );
     }
 
