@@ -2,6 +2,8 @@ package io.contract_testing.contractcase.dsl.matchers.arrays;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.String;
 import java.util.List;
 import javax.annotation.Generated;
@@ -16,7 +18,8 @@ import org.jetbrains.annotations.NotNull;
  * Note that two different matchers may be satisfied by the same item in the array.
  */
 @Generated("@contract-case/case-definition-generator")
-public class ArrayContains<M> {
+@ContractCaseDsl
+public class ArrayContains<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

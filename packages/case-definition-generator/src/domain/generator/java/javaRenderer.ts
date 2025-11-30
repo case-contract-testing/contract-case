@@ -240,6 +240,23 @@ const createConstructor = (
   };
 };
 
+const interfaceFor = (kind: 'matcher' | 'state'): ClassReference => {
+  switch (kind) {
+    case 'matcher':
+      return new ClassReference({
+        name: 'DslMatcher',
+        packageName: 'io.contract_testing.contractcase.dsl',
+      });
+    case 'state':
+      return new ClassReference({
+        name: 'DslState',
+        packageName: 'io.contract_testing.contractcase.dsl',
+      });
+    default:
+      throw new CaseCoreError(`Unknown kind for interface in java: ${kind}`);
+  }
+};
+
 /**
  * Renders a complete Java class based on a JavaDescriptor
  * This function contains only generation logic and makes no decisions
@@ -256,6 +273,7 @@ export function renderJavaClass(descriptor: JavaDescriptor): Promise<string> {
     access: Access.Public,
     typeParameters: [descriptor.genericTypeParameter],
     javadoc: descriptor.classDocumentation || '',
+    implements_: [interfaceFor(descriptor.kind)],
     annotations: [
       new Annotation({
         reference: new ClassReference({

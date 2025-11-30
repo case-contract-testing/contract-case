@@ -3,6 +3,8 @@ package io.contract_testing.contractcase.dsl.matchers.convenience;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.String;
 import javax.annotation.Generated;
 import lombok.Builder;
@@ -17,7 +19,8 @@ import org.jetbrains.annotations.NotNull;
  * set of constraints and ContractCase can't figure out what the best example should be.<p>The most common use case for this matcher is for providing a clear example for array matchers.<p>The provided example must be matchable by the child matcher.<p>Note that WithExample completely overrides the generated example that would normally be produced by the child matcher.
  */
 @Generated("@contract-case/case-definition-generator")
-public class WithExample<M> {
+@ContractCaseDsl
+public class WithExample<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

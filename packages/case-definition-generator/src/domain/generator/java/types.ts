@@ -40,6 +40,11 @@ export type JavaDescriptor = {
   basePath: string;
   /** Name of the Java class */
   className: string;
+  /**
+   * What kind of object this is describing (used for selecting things like
+   * interfaces to extend)
+   */
+  kind: 'matcher' | 'state';
   /** Class-level documentation (optional) */
   classDocumentation?: string;
   /** Generic type parameter for the class (e.g., "M") */

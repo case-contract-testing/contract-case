@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -28,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class ArrayEachEntryMatches<M> {
+public class ArrayEachEntryMatches<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -79,6 +80,7 @@ exports[`generator java works for the other case too 1`] = `
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.String;
 import java.util.List;
 import javax.annotation.Generated;
@@ -92,7 +94,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class ArrayContains<M> {
+public class ArrayContains<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

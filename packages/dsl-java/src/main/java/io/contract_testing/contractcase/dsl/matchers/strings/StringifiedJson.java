@@ -2,6 +2,8 @@ package io.contract_testing.contractcase.dsl.matchers.strings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.String;
 import javax.annotation.Generated;
 import lombok.Builder;
@@ -13,7 +15,8 @@ import org.jetbrains.annotations.NotNull;
  * Matches a JSON.stringify()ed version of the given object.
  */
 @Generated("@contract-case/case-definition-generator")
-public class StringifiedJson<M> {
+@ContractCaseDsl
+public class StringifiedJson<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

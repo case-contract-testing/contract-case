@@ -2,6 +2,8 @@ package io.contract_testing.contractcase.dsl.matchers.objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.String;
 import javax.annotation.Generated;
 import lombok.Builder;
@@ -13,7 +15,8 @@ import org.jetbrains.annotations.NotNull;
  * Matches an object where each key matches the provided matcher
  */
 @Generated("@contract-case/case-definition-generator")
-public class ObjectEachKeyMatches<M> {
+@ContractCaseDsl
+public class ObjectEachKeyMatches<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

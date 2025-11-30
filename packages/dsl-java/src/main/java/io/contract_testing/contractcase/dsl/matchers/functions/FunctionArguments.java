@@ -3,6 +3,8 @@ package io.contract_testing.contractcase.dsl.matchers.functions;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.String;
 import java.util.List;
 import javax.annotation.Generated;
@@ -14,10 +16,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Matches function arguments, for use with a MockFunctionCall / MockFunctionExecution.<p>Usually you don't need to use this matcher directly, the mock creates it for you.
+ * Matches function arguments, for use with a MockFunctionCall / MockFunctionExecution.
  */
 @Generated("@contract-case/case-definition-generator")
-public class FunctionArguments<M> {
+@ContractCaseDsl
+public class FunctionArguments<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

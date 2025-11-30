@@ -3,6 +3,8 @@ package io.contract_testing.contractcase.dsl.matchers.arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -18,7 +20,8 @@ import org.jetbrains.annotations.NotNull;
  * Matches an array where each element matches the provided matcher. This is like ArrayEachEntryMatches, but you can override the example.
  */
 @Generated("@contract-case/case-definition-generator")
-public class ArrayEachEntryMatchesWithExample<M> {
+@ContractCaseDsl
+public class ArrayEachEntryMatchesWithExample<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

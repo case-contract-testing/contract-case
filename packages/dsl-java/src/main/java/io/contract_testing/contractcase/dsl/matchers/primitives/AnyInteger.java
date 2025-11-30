@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.Integer;
 import java.lang.String;
 import javax.annotation.Generated;
@@ -19,7 +21,8 @@ import org.jetbrains.annotations.NotNull;
  * }</pre>
  */
 @Generated("@contract-case/case-definition-generator")
-public class AnyInteger<M> {
+@ContractCaseDsl
+public class AnyInteger<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

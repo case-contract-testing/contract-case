@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.String;
 import javax.annotation.Generated;
 import lombok.Builder;
@@ -18,7 +20,8 @@ import org.jetbrains.annotations.NotNull;
  * type alone), unless overridden with other matchers. Use this to switch out of the default {@code exactlyLike} matching.
  */
 @Generated("@contract-case/case-definition-generator")
-public class ShapedLike<M> {
+@ContractCaseDsl
+public class ShapedLike<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

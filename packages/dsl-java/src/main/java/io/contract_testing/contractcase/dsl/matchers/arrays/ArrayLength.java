@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.Integer;
 import java.lang.String;
 import javax.annotation.Generated;
@@ -24,7 +26,8 @@ import lombok.Getter;
  * Matches an Array whose length is within the specified range (or 1-infinity if not specified).
  */
 @Generated("@contract-case/case-definition-generator")
-public class ArrayLength<M> {
+@ContractCaseDsl
+public class ArrayLength<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

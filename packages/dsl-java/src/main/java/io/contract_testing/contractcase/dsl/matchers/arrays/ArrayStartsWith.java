@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.String;
 import java.util.List;
 import javax.annotation.Generated;
@@ -18,7 +20,8 @@ import lombok.Getter;
  * Matches an Array which starts with the provided array of matchers - any additional elements in the array are ignored.
  */
 @Generated("@contract-case/case-definition-generator")
-public class ArrayStartsWith<M> {
+@ContractCaseDsl
+public class ArrayStartsWith<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

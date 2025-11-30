@@ -2,6 +2,8 @@ package io.contract_testing.contractcase.dsl.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslState;
 import java.lang.String;
 import javax.annotation.Generated;
 import lombok.Builder;
@@ -14,7 +16,8 @@ import org.jetbrains.annotations.NotNull;
  * that needs to run in a particular named state.
  */
 @Generated("@contract-case/case-definition-generator")
-public class InState<M> {
+@ContractCaseDsl
+public class InState<M> implements DslState {
 
   /**
    * ContractCase's internal type for this element

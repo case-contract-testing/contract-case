@@ -3,6 +3,8 @@ package io.contract_testing.contractcase.dsl.matchers.convenience;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.String;
 import javax.annotation.Generated;
 import lombok.Builder;
@@ -16,7 +18,8 @@ import org.jetbrains.annotations.NotNull;
  * Alters the ContractCase log level below this matcher. Useful for debugging.<p>This has no effect on matching.<p>Note that this log level matcher will be saved into the contract, so it will also affect the log level during verification. Usually you will want to remove the use of this matcher before saving the contract.
  */
 @Generated("@contract-case/case-definition-generator")
-public class ChangeLogLevel<M> {
+@ContractCaseDsl
+public class ChangeLogLevel<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

@@ -2,6 +2,8 @@ package io.contract_testing.contractcase.dsl.matchers.convenience;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
+import io.contract_testing.contractcase.dsl.DslMatcher;
 import java.lang.String;
 import java.util.List;
 import javax.annotation.Generated;
@@ -16,7 +18,8 @@ import org.jetbrains.annotations.NotNull;
  * plugins.<p>For best results, wrap the And matcher in a WithExample matcher.
  */
 @Generated("@contract-case/case-definition-generator")
-public class And<M> {
+@ContractCaseDsl
+public class And<M> implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element

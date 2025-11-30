@@ -121,6 +121,7 @@ const baseJavaObject = (
   basePath: pathFor(definition, category),
   className: definition.name,
   classDocumentation: convertMarkdownToJavadoc(definition.documentation),
+  kind: definition.kind,
 });
 
 /**
