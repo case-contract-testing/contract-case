@@ -129,6 +129,7 @@ const strings: PluginDslDeclaration = {
       },
     },
   ],
+  interactions: [],
 };
 
 export default strings;

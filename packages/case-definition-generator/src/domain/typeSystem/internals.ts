@@ -1,7 +1,15 @@
-import { MatcherDslDeclaration, StateObjectDeclaration } from './types';
+import {
+  InteractionDslDeclaration,
+  MatcherDslDeclaration,
+  StateObjectDeclaration,
+} from './types';
 
 export type InternalMatcherDslDeclaration = MatcherDslDeclaration & {
   kind: 'matcher';
+};
+
+export type InternalInteractionDslDeclaration = InteractionDslDeclaration & {
+  kind: 'interaction';
 };
 
 export type InternalStateObjectDeclaration = StateObjectDeclaration & {
@@ -10,4 +18,5 @@ export type InternalStateObjectDeclaration = StateObjectDeclaration & {
 
 export type InternalObjectDeclaration =
   | InternalStateObjectDeclaration
-  | InternalMatcherDslDeclaration;
+  | InternalMatcherDslDeclaration
+  | InternalInteractionDslDeclaration;

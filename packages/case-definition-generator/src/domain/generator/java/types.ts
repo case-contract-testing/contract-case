@@ -1,5 +1,9 @@
 import { ParameterDeclaration, ParameterType } from '../../typeSystem/types';
 
+interface RecursiveRecord {
+  [key: string]: string | RecursiveRecord;
+}
+
 /**
  * Describes a Java field that needs to be generated
  */
@@ -14,6 +18,12 @@ export type JavaFieldDescriptor = {
   jsonPropertyName: string;
   /** Whether this field is optional */
   optional: boolean;
+  /**
+   * If this is specified, then this is a constant field, and
+   * shouldn't be used in the constructor. Additionally, it should be
+   * initialised to the value specified here.
+   */
+  initialValue?: string | RecursiveRecord;
 };
 
 /**
@@ -44,9 +54,9 @@ export type JavaDescriptor = {
    * What kind of object this is describing (used for selecting things like
    * interfaces to extend)
    */
-  kind: 'matcher' | 'state';
-  /** Class-level documentation (optional) */
-  classDocumentation?: string;
+  kind: 'matcher' | 'state' | 'interaction';
+  /** Class-level documentation */
+  classDocumentation: string;
   /** Generic type parameter for the class (e.g., "M") */
   genericTypeParameter: string;
   /** All fields that need to be generated */

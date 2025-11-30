@@ -90,6 +90,7 @@ const arrays: PluginDslDeclaration = {
       ],
     },
   ],
+  interactions: [],
 };
 
 export default arrays;

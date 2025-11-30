@@ -27,5 +27,14 @@ export const makeGenerator = (
             ).then((file) => fileWriter.write(file)),
           )
         : []),
+      ...(plugin.interactions
+        ? plugin.interactions.map((interaction) =>
+            generateJavaDslCode(
+              { ...interaction, kind: 'interaction' },
+              plugin.category,
+              plugin.namespace,
+            ).then((file) => fileWriter.write(file)),
+          )
+        : []),
     ]).then(() => {}),
 });

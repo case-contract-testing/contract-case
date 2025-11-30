@@ -29,6 +29,7 @@ const objects: PluginDslDeclaration = {
       ],
     },
   ],
+  interactions: [],
 };
 
 export default objects;

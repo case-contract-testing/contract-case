@@ -105,6 +105,107 @@ const functions: PluginDslDeclaration = {
       ],
     },
   ],
+  interactions: [
+    {
+      name: 'WillReceiveFunctionCall',
+      type: 'MockFunctionCaller',
+      documentation: `Defines an example that expects a function to be called with specific arguments`,
+      params: [
+        {
+          name: 'arguments',
+          jsonPropertyName: 'request',
+          documentation:
+            'The arguments expected by this function. Generally will be a FunctionArgumentsMatcher',
+          type: 'AnyCaseMatcherOrData',
+        },
+        {
+          name: 'returnValue',
+          jsonPropertyName: 'response',
+          documentation:
+            'The return value of this function. Generally will be a FunctionReturnValueMatcher',
+          type: 'AnyCaseMatcherOrData',
+        },
+      ],
+      setup: {
+        write: {
+          type: '_case:MockFunctionCaller',
+          stateVariables: 'state',
+          triggers: 'generated',
+        },
+        read: {
+          type: '_case:MockFunctionExecution',
+          stateVariables: 'default',
+          triggers: 'provided',
+        },
+      },
+    },
+    {
+      name: 'WillCallFunction',
+      type: 'MockFunctionExecution',
+      documentation: `Defines an example that executes a registered function with specific arguments`,
+      params: [
+        {
+          name: 'arguments',
+          jsonPropertyName: 'request',
+          documentation:
+            'The arguments expected by this function. Generally will be a FunctionArgumentsMatcher',
+          type: 'AnyCaseMatcherOrData',
+        },
+        {
+          name: 'returnValue',
+          jsonPropertyName: 'response',
+          documentation:
+            'The return value of this function. Generally will be a FunctionReturnValueMatcher',
+          type: 'AnyCaseMatcherOrData',
+        },
+      ],
+      setup: {
+        write: {
+          type: '_case:MockFunctionExecution',
+          stateVariables: 'default',
+          triggers: 'provided',
+        },
+        read: {
+          type: '_case:MockFunctionCaller',
+          stateVariables: 'state',
+          triggers: 'generated',
+        },
+      },
+    },
+    {
+      name: 'WillReceiveFunctionCallAndThrow',
+      type: 'MockFunctionCaller',
+      documentation: `Defines an example that throws an error from a registered function with specific arguments`,
+      params: [
+        {
+          name: 'arguments',
+          jsonPropertyName: 'request',
+          documentation:
+            'The arguments expected by this function. Generally will be a FunctionArgumentsMatcher',
+          type: 'AnyCaseMatcherOrData',
+        },
+        {
+          name: 'error',
+          jsonPropertyName: 'response',
+          documentation:
+            'The error thrown by this function. Generally will be a FunctionReturnValueMatcher',
+          type: 'AnyCaseMatcherOrData',
+        },
+      ],
+      setup: {
+        write: {
+          type: '_case:MockFunctionCaller',
+          stateVariables: 'state',
+          triggers: 'generated',
+        },
+        read: {
+          type: '_case:MockFunctionExecution',
+          stateVariables: 'default',
+          triggers: 'provided',
+        },
+      },
+    },
+  ],
 };
 
 export default functions;

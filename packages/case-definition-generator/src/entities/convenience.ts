@@ -112,6 +112,7 @@ Note that WithExample completely overrides the generated example that would norm
       ],
     },
   ],
+  interactions: [],
 };
 
 export default functions;

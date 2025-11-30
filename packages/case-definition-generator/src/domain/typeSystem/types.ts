@@ -1,3 +1,5 @@
+import { InternalContractCaseCoreSetup } from '@contract-case/case-plugin-dsl-types';
+
 export * from './typeSystem.types';
 
 export type PluginDslDeclaration = {
@@ -16,9 +18,24 @@ export type PluginDslDeclaration = {
    * plugin.
    *
    * Note that these don't need to map 1:1 to your matcher
-   * executors.
+   * executors - multiple matcher DSL objects may share the same type.
    */
   matchers: MatcherDslDeclaration[];
+  /**
+   * An array of all the interaction DSL objects declared by this
+   * plugin.
+   *
+   * Note that, like matchers, these don't need to map 1:1 to your
+   * mock executors - you can have multiple interaction DSL objects
+   * point to the same executor, but with different properties.
+   */
+  interactions: InteractionDslDeclaration[];
+
+  /**
+   * This allows your plugin to describe extra state objects.
+   * Most users won't want to do this, as state objects need to be
+   * known by the core engine.
+   */
   states?: StateObjectDeclaration[];
 };
 
@@ -51,7 +68,8 @@ export type ParameterType =
   | 'string'
   | 'boolean'
   | 'number'
-  | 'null';
+  | 'null'
+  | 'json';
 
 /**
  * Indicates a container type.
@@ -124,7 +142,7 @@ export type DslObjectDeclaration = {
    * The name of the DSL matcher, in CamelCase with no spaces.
    *
    * This is used to generate the type names, etc. Must
-   * be unique within your plugin,  across all declarations.
+   * be unique within your plugin, across all declarations.
    */
   name: string;
   /**
@@ -132,8 +150,10 @@ export type DslObjectDeclaration = {
    * Along with the namespace, this is what ContractCase uses to
    * determine which implementation to use at match time.
    *
-   * Although these must be globally unique for matcher implementations,
-   * more than one MatcherDslDeclaration can share the same type constant.
+   * Although these must be globally unique for matcher _implementations_,
+   * here we're defining the matcher _DSL_. This means that more
+   * than one MatcherDslDeclaration can share the same type constant.
+   *
    * This is useful if you want to have different defaults or different
    * names in the DSL for the same matcher.
    */
@@ -188,3 +208,10 @@ export type MatcherDslDeclaration = DslObjectDeclaration & {
 };
 
 export type StateObjectDeclaration = DslObjectDeclaration;
+
+export type InteractionDslDeclaration = DslObjectDeclaration & {
+  /**
+   * Controls the behaviour of the mocked interaction for definition and verification
+   */
+  setup: InternalContractCaseCoreSetup;
+};

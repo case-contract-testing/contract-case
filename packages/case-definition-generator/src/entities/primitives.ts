@@ -72,6 +72,7 @@ const primitives: PluginDslDeclaration = {
       },
     },
   ],
+  interactions: [],
 };
 
 export default primitives;

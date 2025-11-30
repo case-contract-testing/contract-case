@@ -44,6 +44,7 @@ example run.`,
       that needs to run in a particular named state.`,
     },
   ],
+  interactions: [],
 };
 
 export default core;

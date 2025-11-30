@@ -9,17 +9,15 @@ import {
   Writer,
   CodeBlock,
 } from '@amplication/java-ast';
-import {
-  CaseConfigurationError,
-  CaseCoreError,
-} from '@contract-case/case-plugin-base';
 import prettier from 'prettier';
+import { CaseCoreError } from '@contract-case/case-plugin-base';
 import {
   JavaDescriptor,
   JavaFieldDescriptor,
   JavaConstructorDescriptor,
 } from './types';
 import { isTypeContainer, ParameterType } from '../../typeSystem/types';
+import { UnreachableError } from '../../../entities/errors/unreachableError';
 
 export const getJavaType = (
   parameterType: ParameterType,
@@ -48,14 +46,37 @@ export const getJavaType = (
       return Type.boolean();
     case 'null':
       return Type.object();
+    case 'json':
+      return Type.object();
     default:
-      throw new CaseConfigurationError(
+      throw new UnreachableError(
         `Unknown parameter type for Java: ${parameterType}`,
-        'DONT_ADD_LOCATION',
-        'BAD_DSL_DECLARATION',
+        parameterType,
       );
   }
 };
+
+interface RecursiveRecord {
+  [key: string]: string | RecursiveRecord;
+}
+
+/**
+ * Converts a string or recursive record to a Java Map.ofEntries declaration
+ *
+ * @param initialValue - The string or recursive record to convert
+ * @returns The Java code string
+ */
+function toJavaCode(initialValue: string | RecursiveRecord): string {
+  if (typeof initialValue === 'string') {
+    return JSON.stringify(initialValue);
+  }
+  return `Map.ofEntries(${Object.entries(initialValue)
+    .map(
+      ([key, value]) =>
+        `Map.entry(${JSON.stringify(key)}, ${toJavaCode(value)})`,
+    )
+    .join(', ')})`;
+}
 
 /**
  * Creates a Java field from a field descriptor
@@ -122,6 +143,22 @@ const createField = (
     javadoc: fieldDescriptor.documentation,
     final_: true,
     annotations,
+    ...(fieldDescriptor.initialValue
+      ? {
+          initializer: new CodeBlock({
+            code: toJavaCode(fieldDescriptor.initialValue),
+            references:
+              typeof fieldDescriptor.initialValue !== 'string'
+                ? [
+                    new ClassReference({
+                      name: 'Map',
+                      packageName: 'java.util',
+                    }),
+                  ]
+                : [],
+          }),
+        }
+      : {}),
   });
 };
 
@@ -240,7 +277,9 @@ const createConstructor = (
   };
 };
 
-const interfaceFor = (kind: 'matcher' | 'state'): ClassReference => {
+const interfaceFor = (
+  kind: 'matcher' | 'state' | 'interaction',
+): ClassReference => {
   switch (kind) {
     case 'matcher':
       return new ClassReference({
@@ -252,8 +291,16 @@ const interfaceFor = (kind: 'matcher' | 'state'): ClassReference => {
         name: 'DslState',
         packageName: 'io.contract_testing.contractcase.dsl',
       });
+    case 'interaction':
+      return new ClassReference({
+        name: 'DslInteraction',
+        packageName: 'io.contract_testing.contractcase.dsl',
+      });
     default:
-      throw new CaseCoreError(`Unknown kind for interface in java: ${kind}`);
+      throw new UnreachableError(
+        `Unknown kind for interface in java: ${kind}`,
+        kind,
+      );
   }
 };
 
