@@ -1526,7 +1526,7 @@
               "displayName": "statusCode",
               "id": "@contract-case/case-definition-dsl.matchers.http.HttpStatusCode.Initializer.parameter.statusCode",
               "type": {
-                "formattingPattern": "% OR %",
+                "formattingPattern": "%|%",
                 "types": [
                   {
                     "formattingPattern": "java.lang.String"
@@ -1547,7 +1547,7 @@
               }
             }
           ],
-          "usage": "import io.contract_testing.contractcase.definitions.matchers.http.HttpStatusCode;\n\nnew HttpStatusCode(java.lang.String OR java.util.List<java.lang.String> statusCode);"
+          "usage": "import io.contract_testing.contractcase.definitions.matchers.http.HttpStatusCode;\n\nnew HttpStatusCode(java.lang.String|java.util.List<java.lang.String> statusCode);"
         },
         "interfaces": [],
         "instanceMethods": [
