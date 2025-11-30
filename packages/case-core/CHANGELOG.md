@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.27.3...@contract-case/case-core-v0.28.0) (2025-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* Now plugins can control how the unique name constraint is set up. However, this is a breaking change for existing plugin authors, as now a mock executor is two functions. This is the beginning of the work needed to move away from requiring every interaction to have a request / response pair.
+
+### Features
+
+* Now plugins can control how the unique name constraint is set up. However, this is a breaking change for existing plugin authors, as now a mock executor is two functions. This is the beginning of the work needed to move away from requiring every interaction to have a request / response pair. ([bfcb019](https://github.com/case-contract-testing/contract-case/commit/bfcb0194ceafd94b3ed8eb46744bcb36de7bad8f))
+
+
+### Bug Fixes
+
+* **core:** Now the core ArrayLength matcher knows the default values (previously, it was the matcher DSL) ([1d7704a](https://github.com/case-contract-testing/contract-case/commit/1d7704a7d69961aee7b884dc3e59573efd772069))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-core-plugin-http bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-entities-internal bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-plugin-base bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.3 to 0.28.0
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-maintainer-config bumped from 0.27.3 to 0.28.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.3 to 0.28.0
+
 ## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.27.2...@contract-case/case-core-v0.27.3) (2025-10-25)
 
 

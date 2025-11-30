@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.27.3...@contract-case/dsl-java-v0.28.0) (2025-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* In order to support the upcoming replacement of JSii, the function invocation matcher has changed to no longer have the function name associated with it, it is now injected by the plugin at runtime. This is not a functional change, but it is still a breaking change as contracts with function plugins will have different definitions and will need to be updated.
+
+### Features
+
+* **java:** Generated DSL classes now all have the ContractCaseDsl annotation on the class, to assist with custom serialisation ([77f3fca](https://github.com/case-contract-testing/contract-case/commit/77f3fcaa550c90b12fe43d240e60afc39dd80a9b))
+
+
+### Bug Fixes
+
+* **java-dsl:** Move jetbrains annotations to the correct (compileOnly) scope ([4af9222](https://github.com/case-contract-testing/contract-case/commit/4af92220ebc9d8fd788e44b67b5a46c346715636))
+
+
+### Code Refactoring
+
+* In order to support the upcoming replacement of JSii, the function invocation matcher has changed to no longer have the function name associated with it, it is now injected by the plugin at runtime. This is not a functional change, but it is still a breaking change as contracts with function plugins will have different definitions and will need to be updated. ([d1e5762](https://github.com/case-contract-testing/contract-case/commit/d1e57627e85609b4cbdf7d3b7d61bd6f0a97af29))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-definition-dsl bumped from 0.27.3 to 0.28.0
+
 ## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.27.2...@contract-case/dsl-java-v0.27.3) (2025-10-25)
 
 
