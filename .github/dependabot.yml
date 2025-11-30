@@ -22,3 +22,98 @@ updates:
     directory: "/packages/dsl-java" # Location of package manifests
     schedule:
       interval: "weekly"
+
+  - package-ecosystem: npm
+    directory: /packages/case-connector-proto
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-connector
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-core-plugin-function-dsl
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-core-plugin-function
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-core-plugin-http-dsl
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-core-plugin-http
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-core
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-definition-dsl
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-definition-generator
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-entities
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-maintainer-config
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-plugin-base
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/case-plugin-dsl-types
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/contract-case-cli
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/contract-case-jest
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/documentation-matchers-generator
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/documentation
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/dsl-java
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/eslint-config-case-maintainer
+    schedule:
+      interval: daily
