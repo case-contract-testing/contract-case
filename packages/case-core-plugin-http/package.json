@@ -33,6 +33,7 @@
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "test": "jest",
     "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write "
