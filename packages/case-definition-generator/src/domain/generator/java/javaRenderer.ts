@@ -266,6 +266,12 @@ export function renderJavaClass(descriptor: JavaDescriptor): Promise<string> {
           code: `"@contract-case/case-definition-generator"`,
         }),
       }),
+      new Annotation({
+        reference: new ClassReference({
+          name: 'ContractCaseDsl',
+          packageName: 'io.contract_testing.contractcase.dsl',
+        }),
+      }),
     ],
   });
 

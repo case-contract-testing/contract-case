@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -26,6 +27,7 @@ import org.jetbrains.annotations.NotNull;
  * Matches an array where each element matches the provided matcher.
  */
 @Generated("@contract-case/case-definition-generator")
+@ContractCaseDsl
 public class ArrayEachEntryMatches<M> {
 
   /**
@@ -76,6 +78,7 @@ exports[`generator java works for the other case too 1`] = `
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import java.lang.String;
 import java.util.List;
 import javax.annotation.Generated;
@@ -88,6 +91,7 @@ import org.jetbrains.annotations.NotNull;
  * Matches an Array which contains elements that match the given matchers. Note that two different matchers may be satisfied by the same item in the array.
  */
 @Generated("@contract-case/case-definition-generator")
+@ContractCaseDsl
 public class ArrayContains<M> {
 
   /**
