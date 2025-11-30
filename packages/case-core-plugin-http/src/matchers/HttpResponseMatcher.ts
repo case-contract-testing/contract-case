@@ -8,10 +8,10 @@ import {
   mustResolveToNumber,
   MatchResult,
   CaseCoreError,
-  combineResults,
   makeNoErrorResult,
   MatcherExecutor,
   isCaseNode,
+  combineResultPromises,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { validateCodes } from './codeValidator';
@@ -64,8 +64,8 @@ const check = async (
     );
   }
 
-  return combineResults(
-    ...(await Promise.all([
+  return combineResultPromises(
+    ...[
       matchContext.descendAndCheck(
         matcher.status,
         addLocation('status', matchContext),
@@ -85,7 +85,7 @@ const check = async (
             actual.body,
           )
         : makeNoErrorResult(),
-    ])),
+    ],
   );
 };
 

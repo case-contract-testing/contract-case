@@ -10,10 +10,9 @@ import {
   MatchResult,
   CaseConfigurationError,
   CaseCoreError,
-  combineResults,
-  CaseError,
   makeResults,
   MatcherExecutor,
+  combineResultPromises,
 } from '@contract-case/case-plugin-base';
 import {
   AnyData,
@@ -81,8 +80,8 @@ const check = async (
       matchContext,
     );
   }
-  return combineResults(
-    ...(await Promise.all<CaseError[]>([
+  return combineResultPromises(
+    ...[
       matchContext.descendAndCheck(
         matcher.method,
         addLocation('method', matchContext),
@@ -114,7 +113,7 @@ const check = async (
             actual.body,
           )
         : Promise.resolve(makeResults()),
-    ])),
+    ],
   );
 };
 
