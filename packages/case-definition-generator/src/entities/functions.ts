@@ -188,7 +188,7 @@ const functions: PluginDslDeclaration = {
           name: 'error',
           jsonPropertyName: 'response',
           documentation:
-            'The error thrown by this function. Generally will be a FunctionReturnValueMatcher',
+            'The error thrown by this function. Generally will be a FunctionThrownError or a NamedFunctionThrownError',
           type: 'AnyCaseMatcherOrData',
         },
       ],
@@ -202,6 +202,39 @@ const functions: PluginDslDeclaration = {
           type: '_case:MockFunctionExecution',
           stateVariables: 'default',
           triggers: 'provided',
+        },
+      },
+    },
+    {
+      name: 'WillCallThrowingFunction',
+      type: 'MockFunctionExecution',
+      documentation: `Defines an example that throws an error from a registered function with specific arguments`,
+      params: [
+        {
+          name: 'arguments',
+          jsonPropertyName: 'request',
+          documentation:
+            'The arguments expected by this function. Generally will be a FunctionArgumentsMatcher',
+          type: 'AnyCaseMatcherOrData',
+        },
+        {
+          name: 'error',
+          jsonPropertyName: 'response',
+          documentation:
+            'The error thrown by this function. Generally will be a FunctionReturnValueMatcher',
+          type: 'AnyCaseMatcherOrData',
+        },
+      ],
+      setup: {
+        write: {
+          type: '_case:MockFunctionExecution',
+          stateVariables: 'default',
+          triggers: 'provided',
+        },
+        read: {
+          type: '_case:MockFunctionCaller',
+          stateVariables: 'state',
+          triggers: 'generated',
         },
       },
     },
