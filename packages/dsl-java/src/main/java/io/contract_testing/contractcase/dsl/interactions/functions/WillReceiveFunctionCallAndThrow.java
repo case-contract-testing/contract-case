@@ -19,11 +19,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Defines an example that expects a function to be called with specific arguments
+ * Defines an example that throws an error from a registered function with specific arguments
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class WillReceiveFunctionCall<M> implements DslInteraction {
+public class WillReceiveFunctionCallAndThrow<M> implements DslInteraction {
 
   /**
    * ContractCase's internal type for this element
@@ -64,19 +64,19 @@ public class WillReceiveFunctionCall<M> implements DslInteraction {
   private final M arguments;
 
   /**
-   * The return value of this function. Generally will be a FunctionReturnValueMatcher
+   * The error thrown by this function. Generally will be a FunctionThrownError or a NamedFunctionThrownError
    */
   @Getter
   @JsonProperty("response")
-  private final M returnValue;
+  private final M error;
 
   @Builder
-  public WillReceiveFunctionCall(
+  public WillReceiveFunctionCallAndThrow(
     @NotNull final M arguments,
-    @NotNull final M returnValue
+    @NotNull final M error
   ) {
     this.type = "_case:MockFunctionCaller";
     this.arguments = arguments;
-    this.returnValue = returnValue;
+    this.error = error;
   }
 }

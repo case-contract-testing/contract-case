@@ -189,6 +189,9 @@ export type MatcherDslDeclaration = DslObjectDeclaration & {
      * If specified, sets the `matcher:resolvesTo` value.
      *
      * This tells ContractCase that the example will always resolve to this specific type.
+     *
+     * It's mostly useful for generating a type-safe DSL, although some matchers
+     * may also read it for validation purposes.
      */
     resolvesTo?: Extract<
       ParameterType,

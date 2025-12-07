@@ -8,6 +8,7 @@ import modifiers from './entities/modifiers';
 import objects from './entities/objects';
 import primitives from './entities/primitives';
 import strings from './entities/strings';
+import http from './entities/http';
 import core from './entities/core';
 
 // TODO: Correct this path
@@ -26,3 +27,4 @@ generator.process(objects);
 generator.process(primitives);
 generator.process(strings);
 generator.process(core);
+generator.process(http);

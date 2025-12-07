@@ -19,11 +19,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Defines an example that expects a function to be called with specific arguments
+ * Defines an example that executes a registered function with specific arguments
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class WillReceiveFunctionCall<M> implements DslInteraction {
+public class WillCallFunction<M> implements DslInteraction {
 
   /**
    * ContractCase's internal type for this element
@@ -41,17 +41,17 @@ public class WillReceiveFunctionCall<M> implements DslInteraction {
     Map.entry(
       "write",
       Map.ofEntries(
-        Map.entry("type", "_case:MockFunctionCaller"),
-        Map.entry("stateVariables", "state"),
-        Map.entry("triggers", "generated")
+        Map.entry("type", "_case:MockFunctionExecution"),
+        Map.entry("stateVariables", "default"),
+        Map.entry("triggers", "provided")
       )
     ),
     Map.entry(
       "read",
       Map.ofEntries(
-        Map.entry("type", "_case:MockFunctionExecution"),
-        Map.entry("stateVariables", "default"),
-        Map.entry("triggers", "provided")
+        Map.entry("type", "_case:MockFunctionCaller"),
+        Map.entry("stateVariables", "state"),
+        Map.entry("triggers", "generated")
       )
     )
   );
@@ -71,11 +71,11 @@ public class WillReceiveFunctionCall<M> implements DslInteraction {
   private final M returnValue;
 
   @Builder
-  public WillReceiveFunctionCall(
+  public WillCallFunction(
     @NotNull final M arguments,
     @NotNull final M returnValue
   ) {
-    this.type = "_case:MockFunctionCaller";
+    this.type = "_case:MockFunctionExecution";
     this.arguments = arguments;
     this.returnValue = returnValue;
   }
