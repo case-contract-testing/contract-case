@@ -385,6 +385,13 @@ export interface MockConfig {
   /**
    * Plugin provided context. Use this to pass context from your mock executor
    * down to your matchers.
+   *
+   * This should only be used for sharing
+   * information about the contract definition (eg, allowing matchers
+   * to communicate to children deep in the matching tree).
+   *
+   * Do not use this to pass information about the actual data received from
+   * the code under test. For that, use the `actual` parameter.
    */
   '_case:currentRun:context:pluginProvided'?: Record<string, unknown>;
 }

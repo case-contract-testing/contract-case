@@ -23,7 +23,10 @@ import { Logger } from '../logger/types';
 /**
  * `_case:currentRun:context:*` is not clobberable by child matchers
  *  (with the exception of _case:currentRun:context:logLevel).
- * `_case:context:*` is clobberable by child matchers
+ *
+ * `_case:context:*` is clobberable by child matchers. This means if you set
+ * any `_case:context:*` properties on a matcher, they will override the current
+ * context before the matcher is applied.
  */
 const DEFAULT_CONTEXT: DefaultContext = {
   '_case:currentRun:context:parentVersions': [],
@@ -58,7 +61,15 @@ const updateFunctions = (context: MatchContext) => {
 };
 
 /**
- * Folds this case matcher into the context
+ * Folds this case matcher into the context. This is called by the core
+ * before invoking the matcher's executor.
+ *
+ * This means that if you set any `_case:context:*` properties on a matcher,
+ * they will override the current context before the matcher is applied.
+ *
+ * For example, if you have a context object with `_case:context:matchBy: 'exact'`
+ * and you set `_case:context:matchBy: 'type'` on a matcher, the matcher will receive
+ * context for matching with `_case:context:matchBy: 'type'` instead of `'exact'`.
  *
  * @internal
  *
