@@ -15,6 +15,7 @@ export class UriEncodedString extends AnyMatcher {
   /** @internal */
   readonly '_case:matcher:child': AnyStringMatcher;
 
+  // TODO: The `accepts` concept is unused, we should remove it
   /** @internal */
   readonly '_case:matcher:accepts' = 'string';
 

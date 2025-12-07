@@ -13,6 +13,7 @@ import {
 export interface CoreUrlEncodedStringMatcher {
   '_case:matcher:type': typeof URL_ENCODED_STRING_TYPE;
   '_case:matcher:child': AnyCaseMatcherOrData;
+  // TODO: The `accepts` concept is unused, we should remove it
   '_case:matcher:accepts': 'string';
   '_case:matcher:resolvesTo': 'string';
 }

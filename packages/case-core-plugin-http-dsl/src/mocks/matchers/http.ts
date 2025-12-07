@@ -48,6 +48,7 @@ export const coreUrlEncodedString = (
 ): CoreUrlEncodedStringMatcher => ({
   '_case:matcher:type': URL_ENCODED_STRING_TYPE,
   '_case:matcher:child': child,
+  // TODO: The `accepts` concept is unused, we should remove it
   '_case:matcher:accepts': 'string',
   '_case:matcher:resolvesTo': 'string',
 });

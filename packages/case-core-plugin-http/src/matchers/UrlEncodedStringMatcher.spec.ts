@@ -83,11 +83,13 @@ const createMockMatchContext = (state: MockState): MatchContext => ({
 describe('UrlEncodedStringMatcher', () => {
   let mockMatchContext: MatchContext;
 
+  // TODO: We should replace this literal with a use of a generated type.
   const matcher: CoreUrlEncodedStringMatcher = {
     '_case:matcher:type': URL_ENCODED_STRING_TYPE,
     '_case:matcher:child': {
       '_case:matcher:type': 'some-child-matcher',
     } as any,
+    // TODO: The `accepts` concept is unused, we should remove it
     '_case:matcher:accepts': 'string',
     '_case:matcher:resolvesTo': 'string',
   };
@@ -160,9 +162,9 @@ describe('UrlEncodedStringMatcher', () => {
           descendAndStripResult: 123,
           descendAndDescribeResult: 'description',
         });
-        expect(() =>
-          UrlEncodedStringMatcher.strip(matcher, context),
-        ).toThrow(CaseConfigurationError);
+        expect(() => UrlEncodedStringMatcher.strip(matcher, context)).toThrow(
+          CaseConfigurationError,
+        );
       });
     });
   });
