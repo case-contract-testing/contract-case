@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/v0.27.3...v0.28.0) (2025-12-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* In order to support the upcoming replacement of JSii, the function invocation matcher has changed to no longer have the function name associated with it, it is now injected by the plugin at runtime. This is not a functional change, but it is still a breaking change as contracts with function plugins will have different definitions and will need to be updated.
+* Now plugins can control how the unique name constraint is set up. However, this is a breaking change for existing plugin authors, as now a mock executor is two functions. This is the beginning of the work needed to move away from requiring every interaction to have a request / response pair.
+
+### Features
+
+* **java:** Generated DSL classes now all have the ContractCaseDsl annotation on the class, to assist with custom serialisation ([77f3fca](https://github.com/case-contract-testing/contract-case/commit/77f3fcaa550c90b12fe43d240e60afc39dd80a9b))
+* Now plugins can control how the unique name constraint is set up. However, this is a breaking change for existing plugin authors, as now a mock executor is two functions. This is the beginning of the work needed to move away from requiring every interaction to have a request / response pair. ([bfcb019](https://github.com/case-contract-testing/contract-case/commit/bfcb0194ceafd94b3ed8eb46744bcb36de7bad8f))
+
+
+### Bug Fixes
+
+* **core:** Now the core ArrayLength matcher knows the default values (previously, it was the matcher DSL) ([1d7704a](https://github.com/case-contract-testing/contract-case/commit/1d7704a7d69961aee7b884dc3e59573efd772069))
+* **java-dsl:** Move jetbrains annotations to the correct (compileOnly) scope ([4af9222](https://github.com/case-contract-testing/contract-case/commit/4af92220ebc9d8fd788e44b67b5a46c346715636))
+
+
+### Code Refactoring
+
+* In order to support the upcoming replacement of JSii, the function invocation matcher has changed to no longer have the function name associated with it, it is now injected by the plugin at runtime. This is not a functional change, but it is still a breaking change as contracts with function plugins will have different definitions and will need to be updated. ([d1e5762](https://github.com/case-contract-testing/contract-case/commit/d1e57627e85609b4cbdf7d3b7d61bd6f0a97af29))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.3 to 0.28.0
+
 ## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/v0.27.2...v0.27.3) (2025-10-25)
 
 
