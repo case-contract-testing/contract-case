@@ -148,8 +148,14 @@ export class BaseCaseContract {
           callerArguments,
         );
         const invokeableFn = this.userProvidedFunctions[handle];
+        const advice =
+          context['_case:currentRun:context:adviceOverrides']?.[
+            'MISSING_REGISTERED_FUNCTION'
+          ] ??
+          `Make sure you have used registerFunction to define a function with this handle when setting up your test`;
+
         if (invokeableFn == null) {
-          const message = `Tried to invoke a user-provided function with the handle '${handle}', but it didn't exist\nMake sure you have used registerFunction to define a function with this handle when setting up your test`;
+          const message = `Tried to invoke a user-provided function with the handle '${handle}', but it didn't exist\n${advice}`;
           context.logger.error(message);
           context.logger.deepMaintainerDebug(
             'When trying to add the duplicate, the userProvidedFunctions were:',
