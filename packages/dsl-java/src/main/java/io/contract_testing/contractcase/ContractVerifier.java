@@ -18,7 +18,6 @@ import io.contract_testing.contractcase.internal.client.server.ContractCaseProce
 import io.contract_testing.contractcase.internal.edge.BoundaryCrashReporter;
 import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper;
 import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
-import io.contract_testing.contractcase.internal.edge.RunTestCallback;
 import io.contract_testing.contractcase.internal.edge.default_implementations.LogPrinterStandardOut;
 import io.contract_testing.contractcase.logs.LogPrinter;
 import java.util.List;
@@ -36,37 +35,11 @@ public class ContractVerifier implements AutoCloseable {
     this(config, new LogPrinterStandardOut());
   }
 
-  /**
-   * Creates a ContractVerifier with the provided configuration and LogPrinter
-   *
-   * @param config The configuration
-   * @param logPrinter Implementation to use when printing logs
-   * @param runTestCallback Ignored
-   * @deprecated Deprecated as RunTestCallback is ignored
-   */
-  @Deprecated(since = "0.27.0", forRemoval = true)
-  public ContractVerifier(ContractCaseConfig config,
-      LogPrinter logPrinter, RunTestCallback runTestCallback) {
-    this(config, logPrinter);
-  }
-
-  /**
-   * Creates a ContractVerifier with the provided configuration.
-   *
-   * @param config The configuration
-   * @param runTestCallback Ignored
-   * @deprecated Deprecated as RunTestCallback is ignored
-   */
-  @Deprecated(since = "0.27.0", forRemoval = true)
-  public ContractVerifier(final ContractCaseConfig config, RunTestCallback runTestCallback) {
-    this(config, new LogPrinterStandardOut());
-  }
-
   public ContractVerifier(final ContractCaseConfig config, LogPrinter logPrinter) {
     ContractCaseProcess.getInstance().start();
     this.config = config;
 
-    InternalVerifierClient verification = null;
+    InternalVerifierClient verification;
     try {
       verification = new InternalVerifierClient(
           ConnectorConfigMapper.map(
