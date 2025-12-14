@@ -10,20 +10,17 @@ import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.Trigger;
-import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;
-import io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest;
+import io.contract_testing.contractcase.dsl.interactions.http.WillSendHttpRequest;
 import io.contract_testing.contractcase.dsl.matchers.arrays.ArrayEachEntryMatches;
-import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;
-import io.contract_testing.contractcase.definitions.matchers.convenience.ReferenceMatch;
-import io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable;
-import io.contract_testing.contractcase.definitions.matchers.http.HttpRequest;
-import io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample;
-import io.contract_testing.contractcase.definitions.matchers.http.HttpResponse;
-import io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample;
-import io.contract_testing.contractcase.definitions.matchers.strings.AnyString;
-import io.contract_testing.contractcase.definitions.matchers.strings.StringPrefix;
-import io.contract_testing.contractcase.definitions.states.InState;
-import io.contract_testing.contractcase.definitions.states.InStateWithVariables;
+import io.contract_testing.contractcase.dsl.matchers.convenience.NamedMatch;
+import io.contract_testing.contractcase.dsl.matchers.convenience.ReferenceMatch;
+import io.contract_testing.contractcase.dsl.matchers.convenience.StateVariable;
+import io.contract_testing.contractcase.dsl.matchers.http.HttpRequest;
+import io.contract_testing.contractcase.dsl.matchers.http.HttpResponse;
+import io.contract_testing.contractcase.dsl.matchers.strings.AnyString;
+import io.contract_testing.contractcase.dsl.matchers.strings.StringPrefix;
+import io.contract_testing.contractcase.dsl.states.InState;
+import io.contract_testing.contractcase.dsl.states.InStateWithVariables;
 import io.contract_testing.contractcase.test.httpclient.implementation.User;
 import io.contract_testing.contractcase.test.httpclient.implementation.UserNotFoundException;
 import io.contract_testing.contractcase.test.httpclient.implementation.YourApiClient;
@@ -52,19 +49,19 @@ public class HttpApiExampleTest {
 
   NamedMatch GET_USER_VIA_QUERY = new NamedMatch(
       "Get user via query",
-      new HttpRequest(HttpRequestExample.builder()
+      HttpRequest.builder()
           .path("/users")
           .query(Map.of("id", new StateVariable("userId")))
           .method("GET")
-          .build())
+          .build()
   );
 
   NamedMatch GET_USER_VIA_PATH = new NamedMatch(
       "Get user via path",
-      new HttpRequest(HttpRequestExample.builder()
+      HttpRequest.builder()
           .path(new StringPrefix("/users/", new StateVariable("userId")))
           .method("GET")
-          .build())
+          .build()
   );
 
   @Test
@@ -72,19 +69,15 @@ public class HttpApiExampleTest {
     contract.runInteraction(
         new InteractionDefinition<>(
             List.of(new InState("Server is up")),
-            new WillSendHttpRequest(HttpExample.builder()
-                .request(new NamedMatch(
-                    "Get health",
-                    new HttpRequest(HttpRequestExample.builder()
-                        .path("/health")
-                        .method("GET")
-                        .build())
+            WillSendHttpRequest.builder()
+                .request(new NamedMatch("Get health",
+                    HttpRequest.builder().path("/health").method("GET").build()
                 ))
-                .response(new HttpResponse(HttpResponseExample.builder()
+                .response(HttpResponse.builder()
                     .status(200)
                     .body(Map.ofEntries(Map.entry("status", "up")))
-                    .build()))
-                .build())
+                    .build())
+                .build()
         ),
         IndividualSuccessTestConfigBuilder.<String>builder()
             .withProviderName("Java Example HTTP Server")
@@ -100,13 +93,13 @@ public class HttpApiExampleTest {
     contract.runInteraction(
         new InteractionDefinition<>(
             List.of(new InState("Server is down")),
-            new WillSendHttpRequest(HttpExample.builder()
+            WillSendHttpRequest.builder()
                 .request(new ReferenceMatch("Get health"))
-                .response(HttpResponse.Builder.create()
+                .response(HttpResponse.builder()
                     .status(200)
                     .body(Map.ofEntries(Map.entry("status", "down")))
                     .build())
-                .build())
+                .build()
         ),
         IndividualSuccessTestConfigBuilder.<String>builder()
             .withProviderName("Java Example HTTP Server")
@@ -122,10 +115,10 @@ public class HttpApiExampleTest {
     contract.runThrowingInteraction(
         new InteractionDefinition<>(
             List.of(new InState("Server is broken")),
-            new WillSendHttpRequest(HttpExample.builder()
+            WillSendHttpRequest.builder()
                 .request(new ReferenceMatch("Get health"))
-                .response(new HttpResponse(HttpResponseExample.builder().status(503).build()))
-                .build())
+                .response(HttpResponse.builder().status(503).build())
+                .build()
         ),
         IndividualFailedTestConfigBuilder.<String>builder()
             .withProviderName("Java Example HTTP Server")
@@ -136,7 +129,6 @@ public class HttpApiExampleTest {
     );
   }
 
-
   @Test
   public void testGetUserWithPathVariable() {
     contract.runInteraction(
@@ -145,28 +137,24 @@ public class HttpApiExampleTest {
                 new InState("Server is up"),
                 new InStateWithVariables("A user exists", Map.of("userId", "123"))
             ),
-            new WillSendHttpRequest(HttpExample.builder()
+            WillSendHttpRequest.builder()
                 .request(GET_USER_VIA_PATH)
-                .response(new HttpResponse(HttpResponseExample.builder()
-                    .status(200)
-                    .body(Map.ofEntries(
-                        Map.entry("name", new AnyString("john smith")),
-                        Map.entry("userId", new StateVariable("userId")),
-                        Map.entry("tags",
-                            ArrayEachEntryMatches.builder()
-                                .matcher(new AnyString("someTag"))
-                                .build()
-                        )
-                    ))
-                    .build()))
-                .build())
+                .response(HttpResponse.builder().status(200).body(Map.ofEntries(
+                    Map.entry("name", new AnyString("john smith")),
+                    Map.entry("userId", new StateVariable("userId")),
+                    Map.entry(
+                        "tags",
+                        ArrayEachEntryMatches.builder().matcher(new AnyString("someTag")).build()
+                    )
+                )).build())
+                .build()
         ),
         IndividualSuccessTestConfigBuilder.<User>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
               try {
-                return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
-                    .getUser(setupInfo.getStateVariable("userId"));
+                return new YourApiClient(setupInfo.getMockSetup("baseUrl")).getUser(setupInfo.getStateVariable(
+                    "userId"));
               } catch (IOException e) {
                 throw new RuntimeException(e);
               }
@@ -178,7 +166,6 @@ public class HttpApiExampleTest {
 
   }
 
-
   @Test
   public void testGetUserWithQueryVariable() {
 
@@ -188,22 +175,19 @@ public class HttpApiExampleTest {
                 new InState("Server is up"),
                 new InStateWithVariables("A user exists", Map.of("userId", "123"))
             ),
-            new WillSendHttpRequest(HttpExample.builder()
+            WillSendHttpRequest.builder()
                 .request(GET_USER_VIA_QUERY)
-                .response(new HttpResponse(HttpResponseExample.builder()
-                    .status(200)
-                    .body(Map.ofEntries(
-                        Map.entry("name", new AnyString("john smith")),
-                        Map.entry("userId", new StateVariable("userId"))
-                    ))
-                    .build()))
-                .build())
+                .response(HttpResponse.builder().status(200).body(Map.ofEntries(
+                    Map.entry("name", new AnyString("john smith")),
+                    Map.entry("userId", new StateVariable("userId"))
+                )).build())
+                .build()
         ),
         IndividualSuccessTestConfigBuilder.<User>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
-              return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
-                  .getUserQuery(setupInfo.getStateVariable("userId"));
+              return new YourApiClient(setupInfo.getMockSetup("baseUrl")).getUserQuery(setupInfo.getStateVariable(
+                  "userId"));
             })
             .withTestResponse((user, setupInfo) -> {
               assertThat(user.userId()).isEqualTo(setupInfo.getStateVariable("userId"));
@@ -213,31 +197,26 @@ public class HttpApiExampleTest {
 
   @Test
   public void testGetUserWithQueryVariableWhenUserNotExist() {
-    contract.runThrowingInteraction(
-        new InteractionDefinition<>(
+    contract.runThrowingInteraction(new InteractionDefinition<>(
             List.of(
                 new InState("Server is up"),
                 new InStateWithVariables("No users exist", Map.of("userId", "123"))
             ),
-            new WillSendHttpRequest(HttpExample.builder()
+            WillSendHttpRequest.builder()
                 .request(GET_USER_VIA_QUERY)
-                .response(new HttpResponse(HttpResponseExample.builder()
-                    .status(404).build())
-                ).build()
-            )
+                .response(HttpResponse.builder().status(404).build())
+                .build()
         ),
         IndividualFailedTestConfigBuilder.<User>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger((setupInfo) -> {
-              return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
-                  .getUserQuery(setupInfo.getStateVariable("userId"));
+              return new YourApiClient(setupInfo.getMockSetup("baseUrl")).getUserQuery(setupInfo.getStateVariable(
+                  "userId"));
             })
             .withTestErrorResponse((exception, setupInfo) -> {
               assertThat(exception.getClass()).isEqualTo(UserNotFoundException.class);
-            })
-    );
+            }));
   }
-
 
   @AfterAll
   static void after() {

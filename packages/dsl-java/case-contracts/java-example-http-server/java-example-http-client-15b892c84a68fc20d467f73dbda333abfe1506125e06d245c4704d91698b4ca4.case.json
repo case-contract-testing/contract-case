@@ -7,7 +7,7 @@
   "metadata": {
     "_case": {
       "version": "0.27.3",
-      "hash": "b9e79a7a21c5c21491ad7d8704c623fdc54c5cb31fc2444d3c4a5d6d729f40ff"
+      "hash": "15b892c84a68fc20d467f73dbda333abfe1506125e06d245c4704d91698b4ca4"
     }
   },
   "matcherLookup": {
@@ -22,14 +22,12 @@
         "name": {
           "_case:context:matchBy": "type",
           "_case:matcher:example": "john smith",
-          "_case:matcher:resolvesTo": "string",
           "_case:matcher:type": "_case:MatchString"
         },
         "tags": {
           "_case:matcher:matcher": {
             "_case:context:matchBy": "type",
             "_case:matcher:example": "someTag",
-            "_case:matcher:resolvesTo": "string",
             "_case:matcher:type": "_case:MatchString"
           },
           "_case:matcher:type": "_case:ArrayEachEntryLike"
@@ -46,7 +44,6 @@
       "method": "GET",
       "path": {
         "_case:matcher:prefix": "/users/",
-        "_case:matcher:resolvesTo": "string",
         "_case:matcher:suffix": {
           "_case:matcher:type": "_case:ContextVariable",
           "_case:matcher:variableName": "userId"
@@ -88,7 +85,6 @@
         "name": {
           "_case:context:matchBy": "type",
           "_case:matcher:example": "john smith",
-          "_case:matcher:resolvesTo": "string",
           "_case:matcher:type": "_case:MatchString"
         },
         "userId": {
@@ -154,7 +150,6 @@
             "method": "GET",
             "path": {
               "_case:matcher:prefix": "/users/",
-              "_case:matcher:resolvesTo": "string",
               "_case:matcher:suffix": {
                 "_case:matcher:type": "_case:ContextVariable",
                 "_case:matcher:variableName": "userId"
@@ -174,14 +169,12 @@
               "name": {
                 "_case:context:matchBy": "type",
                 "_case:matcher:example": "john smith",
-                "_case:matcher:resolvesTo": "string",
                 "_case:matcher:type": "_case:MatchString"
               },
               "tags": {
                 "_case:matcher:matcher": {
                   "_case:context:matchBy": "type",
                   "_case:matcher:example": "someTag",
-                  "_case:matcher:resolvesTo": "string",
                   "_case:matcher:type": "_case:MatchString"
                 },
                 "_case:matcher:type": "_case:ArrayEachEntryLike"
@@ -368,7 +361,6 @@
               "name": {
                 "_case:context:matchBy": "type",
                 "_case:matcher:example": "john smith",
-                "_case:matcher:resolvesTo": "string",
                 "_case:matcher:type": "_case:MatchString"
               },
               "userId": {

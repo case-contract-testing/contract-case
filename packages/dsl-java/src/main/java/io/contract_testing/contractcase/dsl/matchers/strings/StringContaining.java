@@ -3,11 +3,13 @@ package io.contract_testing.contractcase.dsl.matchers.strings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
 import java.lang.String;
-import javax.annotation.Generated;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
@@ -19,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class StringContaining<M> implements DslMatcher {
+public class StringContaining implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -27,6 +29,13 @@ public class StringContaining<M> implements DslMatcher {
   @Getter
   @JsonProperty("_case:matcher:type")
   private final String type;
+
+  /**
+   * Constant parameter resolvesTo
+   */
+  @Getter
+  @JsonProperty("_case:matcher:resolvesTo")
+  private final String resolvesTo = "string";
 
   /**
    * The substring that acceptable strings must contain

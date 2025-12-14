@@ -9,20 +9,12 @@ import io.contract_testing.contractcase.InteractionDefinition;
 import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.ContractToWrite;
-import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.PublishType;
-import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
-import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
-import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
-import io.contract_testing.contractcase.definitions.interactions.functions.WillCallThrowingFunction;
-import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;
-import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
-import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
-import io.contract_testing.contractcase.definitions.states.InState;
-import io.contract_testing.contractcase.exceptions.FunctionCompletedExceptionally;
+import io.contract_testing.contractcase.dsl.interactions.functions.WillCallFunction;
+import io.contract_testing.contractcase.dsl.matchers.primitives.AnyNull;
+import io.contract_testing.contractcase.dsl.states.InState;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -38,8 +30,9 @@ public class WriteHashOnlyTest {
             .consumerName("Write Hash Only")
             .providerName("No Provider")
             .publish(PublishType.NEVER)
+            .changedContracts(ChangedContractsBehaviour.OVERWRITE)
             .contractsToWrite(List.of(ContractToWrite.HASH))
-            //    .logLevel(LogLevel.MAINTAINER_DEBUG)
+            // .logLevel(LogLevel.MAINTAINER_DEBUG)
             .build());
   }
 
@@ -48,26 +41,22 @@ public class WriteHashOnlyTest {
     contract.endRecord();
   }
 
-
   @Test
   public void testNoArgFunction() {
     contract.runInteraction(
         new InteractionDefinition<>(
             List.of(new InState("The map is null")),
-            new WillCallFunction(FunctionExecutionExample.builder()
+            WillCallFunction.builder()
                 .arguments(List.of())
-                .returnValue(new NamedMatch("void", new AnyNull()))
+                .returnValue(new AnyNull())
                 .functionName("NoArgFunction")
-                .build())
-        ),
+                .build()),
         IndividualSuccessTestConfigBuilder.<String>builder()
-            .withTrigger((setupInfo) ->
-                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
-                    .apply(List.of())))
+            .withTrigger((setupInfo) -> parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                .apply(List.of())))
             .withTestResponse((result, setupInfo) -> {
               assertThat(result).isEqualTo(null);
-            })
-    );
+            }));
   }
 
   private String parse(String json) {
@@ -77,9 +66,5 @@ public class WriteHashOnlyTest {
       throw new RuntimeException(e);
     }
   }
-
-
-
-
 
 }

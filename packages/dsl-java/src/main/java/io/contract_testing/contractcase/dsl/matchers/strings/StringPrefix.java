@@ -6,14 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
+import java.lang.Object;
 import java.lang.String;
-import javax.annotation.Generated;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class StringPrefix<M> implements DslMatcher {
+public class StringPrefix implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -32,6 +32,13 @@ public class StringPrefix<M> implements DslMatcher {
   private final String type;
 
   /**
+   * Constant parameter resolvesTo
+   */
+  @Getter
+  @JsonProperty("_case:matcher:resolvesTo")
+  private final String resolvesTo = "string";
+
+  /**
    * The prefix to match. Must be a string.
    */
   @Getter
@@ -39,31 +46,19 @@ public class StringPrefix<M> implements DslMatcher {
   private final String prefix;
 
   /**
-   * The string suffix.<pre>{@code       May itself be a matcher, and will be passed the string with the prefix stripped.
-   *
-   *         If you don't mind what the suffix is, pass an `AnyString` matcher
-   * }</pre>
+   * The string suffix.<p>May itself be a matcher, and will be passed the string with the prefix stripped.<p>If you don't mind what the suffix is, pass an {@code AnyString} matcher
    */
   @Getter
   @JsonProperty("_case:matcher:suffix")
-  private final M suffix;
-
-  /**
-   * An example string to use during contract definition
-   */
-  @Getter
-  @JsonProperty("_case:matcher:example")
-  private final String example;
+  private final Object suffix;
 
   @Builder
   public StringPrefix(
     @NotNull final String prefix,
-    @NotNull final M suffix,
-    @NotNull final String example
+    @NotNull final Object suffix
   ) {
-    this.type = "_case:MatchStringPrefix";
+    this.type = "_case:StringPrefix";
     this.prefix = prefix;
     this.suffix = suffix;
-    this.example = example;
   }
 }

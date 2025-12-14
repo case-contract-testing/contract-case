@@ -10,30 +10,94 @@ import {
   CodeBlock,
 } from '@amplication/java-ast';
 import prettier from 'prettier';
-import { CaseCoreError } from '@contract-case/case-plugin-base';
+import {
+  CaseConfigurationError,
+  CaseCoreError,
+} from '@contract-case/case-plugin-base';
 import {
   JavaDescriptor,
   JavaFieldDescriptor,
   JavaConstructorDescriptor,
 } from './types';
-import { isTypeContainer, ParameterType } from '../../typeSystem/types';
+import {
+  isTypeContainer,
+  ParameterType,
+  isPassToMatcher,
+  PassToMatcher,
+  ParameterDeclaration,
+  MatcherReference,
+} from '../../typeSystem/types';
 import { UnreachableError } from '../../../entities/errors/unreachableError';
 
+/**
+ * Validates that a parameter type is not a pass to matcher
+ *
+ * @param t - The parameter type to validate
+ * @param context - The context in which the parameter type is used, used for error reporting
+ */
+const validateNotPassToMatcher = (
+  t: ParameterType,
+  context: string,
+): Exclude<ParameterType, PassToMatcher> => {
+  if (isPassToMatcher(t)) {
+    throw new CaseConfigurationError(
+      `Encountered a bad definition - a PassToMatcher is not valid as a parameter for ${context}`,
+      'DONT_ADD_LOCATION',
+      'BAD_DSL_DECLARATION',
+    );
+  }
+  return t;
+};
+
+const toMatcherPackageName = (namespace: string, category?: string): string => {
+  if (namespace === '_case') {
+    const CORE = 'io.contract_testing.contractcase.dsl';
+    return category ? `${CORE}.matchers.${category}` : CORE;
+  }
+  throw new CaseCoreError(
+    `Non core namespaces are currently not supported ${namespace}`,
+  );
+};
+
+const toClassReference = (matcherReference: MatcherReference) =>
+  new ClassReference({
+    name: matcherReference.name,
+    packageName: toMatcherPackageName(
+      matcherReference.namespace,
+      matcherReference.category,
+    ),
+  });
+
+/**
+ * Converts a ParameterType to a java type, where there's no passthrough matchers allowed
+ *
+ * @param parameterType - The type to convert to a Java type
+ * @param packageName - The current package name, used for class references
+ * @returns
+ */
 export const getJavaType = (
-  parameterType: ParameterType,
+  parameterType: Exclude<ParameterType, PassToMatcher>,
   packageName: string,
 ): Type => {
   if (isTypeContainer(parameterType)) {
-    return Type.list(getJavaType(parameterType.type, packageName));
+    return Type.list(
+      getJavaType(
+        validateNotPassToMatcher(parameterType.type, 'a TypeContainer'),
+        packageName,
+      ),
+    );
   }
   switch (parameterType) {
     case 'AnyCaseMatcherOrData':
-      return Type.reference(
+      return Type.object();
+    /* 
+       Type.reference(
         new ClassReference({
           name: 'M',
           packageName,
         }),
       );
+    */
     case 'AnyData':
       return Type.object();
     case 'string':
@@ -79,7 +143,7 @@ function toJavaCode(initialValue: string | RecursiveRecord): string {
 }
 
 /**
- * Creates a Java field from a field descriptor
+ * Creates an array of Java fields from a field descriptor
  *
  * @param fieldDescriptor - Field descriptor containing all field information
  * @returns Field AST node
@@ -88,8 +152,12 @@ const createField = (
   fieldDescriptor: JavaFieldDescriptor,
   packageName: string,
 ): Field => {
-  const annotations: Annotation[] = [];
+  // Sometimes, there might be more than one field described by this field
+  const javaType = isPassToMatcher(fieldDescriptor.type)
+    ? Type.reference(toClassReference(fieldDescriptor.type.matcherReference))
+    : getJavaType(fieldDescriptor.type, packageName);
 
+  const annotations: Annotation[] = [];
   if (fieldDescriptor.optional) {
     annotations.push(
       new Annotation({
@@ -138,7 +206,7 @@ const createField = (
 
   return new Field({
     name: fieldDescriptor.name,
-    type: getJavaType(fieldDescriptor.type, packageName),
+    type: javaType,
     access: Access.Private,
     javadoc: fieldDescriptor.documentation,
     final_: true,
@@ -218,6 +286,52 @@ const createConstantField = (
   });
 
 /**
+ * Creates a Java parameter from a parameter descriptor
+ *
+ * @param param - Parameter descriptor containing parameter information
+ * @param packageName - The current package name, used for class references
+ * @returns Parameter AST node
+ */
+const createParameter = (
+  param: ParameterDeclaration,
+  packageName: string,
+): Parameter => {
+  if (isPassToMatcher(param.type)) {
+    throw new CaseConfigurationError(
+      'Encountered a bad definition - a PassToMatcher is not valid as a parameter for createParameter',
+      'DONT_ADD_LOCATION',
+      'BAD_DSL_DECLARATION',
+    );
+  }
+
+  const javaType = getJavaType(param.type, packageName);
+
+  return new Parameter({
+    final_: true,
+    name: param.name,
+    annotations: param.optional
+      ? [
+          new Annotation({
+            reference: new ClassReference({
+              name: 'Nullable',
+              packageName: 'javax.annotation',
+            }),
+          }),
+        ]
+      : [
+          new Annotation({
+            reference: new ClassReference({
+              name: 'NotNull',
+              packageName: 'org.jetbrains.annotations',
+            }),
+          }),
+        ],
+    docs: param.documentation,
+    type: javaType,
+  });
+};
+
+/**
  * Creates a Java constructor from a constructor descriptor
  *
  * @param constructorDescriptor - Constructor descriptor containing all constructor information
@@ -229,9 +343,19 @@ const createConstructor = (
   packageName: string,
 ): Class.Constructor => {
   const bodyStatements: string[] = [];
+  const references: ClassReference[] = [];
   bodyStatements.push(`this.type = "${constructorDescriptor.typeValue}";`);
   constructorDescriptor.parameters.forEach((param) => {
-    bodyStatements.push(`this.${param.name} = ${param.name};`);
+    if (!isPassToMatcher(param.type)) {
+      bodyStatements.push(`this.${param.name} = ${param.name};`);
+    } else {
+      references.push(toClassReference(param.type.matcherReference));
+      bodyStatements.push(
+        `this.${param.name} = new ${param.type.matcherReference.name}(${param.type.exposedParams
+          .map((exposedParam) => exposedParam.name)
+          .join(', ')});`,
+      );
+    }
   });
   constructorDescriptor.optionalParamsToSetNull.forEach((param) => {
     bodyStatements.push(`this.${param.name} = null;`);
@@ -247,32 +371,14 @@ const createConstructor = (
         }),
       }),
     ],
-    parameters: constructorDescriptor.parameters.map(
-      (param) =>
-        new Parameter({
-          final_: true,
-          name: param.name,
-          annotations: param.optional
-            ? [
-                new Annotation({
-                  reference: new ClassReference({
-                    name: 'Nullable',
-                    packageName: 'javax.annotation',
-                  }),
-                }),
-              ]
-            : [
-                new Annotation({
-                  reference: new ClassReference({
-                    name: 'NotNull',
-                    packageName: 'org.jetbrains.annotations',
-                  }),
-                }),
-              ],
-          docs: param.documentation,
-          type: getJavaType(param.type, packageName),
-        }),
-    ),
+    parameters: constructorDescriptor.parameters.flatMap((param) => {
+      if (isPassToMatcher(param.type)) {
+        return param.type.exposedParams.map((exposedParam) =>
+          createParameter(exposedParam, packageName),
+        );
+      }
+      return [createParameter(param, packageName)];
+    }),
     body: new CodeBlock({ code: bodyStatements.join('\n    ') }),
   };
 };
@@ -284,17 +390,17 @@ const interfaceFor = (
     case 'matcher':
       return new ClassReference({
         name: 'DslMatcher',
-        packageName: 'io.contract_testing.contractcase.dsl',
+        packageName: toMatcherPackageName('_case'),
       });
     case 'state':
       return new ClassReference({
         name: 'DslState',
-        packageName: 'io.contract_testing.contractcase.dsl',
+        packageName: toMatcherPackageName('_case'),
       });
     case 'interaction':
       return new ClassReference({
         name: 'DslInteraction',
-        packageName: 'io.contract_testing.contractcase.dsl',
+        packageName: toMatcherPackageName('_case'),
       });
     default:
       throw new UnreachableError(
@@ -318,7 +424,7 @@ export function renderJavaClass(descriptor: JavaDescriptor): Promise<string> {
     name: descriptor.className,
     packageName: descriptor.packageName,
     access: Access.Public,
-    typeParameters: [descriptor.genericTypeParameter],
+    //   typeParameters: [descriptor.genericTypeParameter],
     javadoc: descriptor.classDocumentation || '',
     implements_: [interfaceFor(descriptor.kind)],
     annotations: [
@@ -334,7 +440,7 @@ export function renderJavaClass(descriptor: JavaDescriptor): Promise<string> {
       new Annotation({
         reference: new ClassReference({
           name: 'ContractCaseDsl',
-          packageName: 'io.contract_testing.contractcase.dsl',
+          packageName: toMatcherPackageName('_case'),
         }),
       }),
     ],

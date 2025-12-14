@@ -2,22 +2,20 @@ package io.contract_testing.contractcase.test.function;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
-import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
+import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
+import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig;
 import io.contract_testing.contractcase.configuration.InvokableFunctions;
 import io.contract_testing.contractcase.configuration.PublishType;
-import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
-import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
-import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall;
-import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow;
-import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
-import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
+import io.contract_testing.contractcase.dsl.interactions.functions.WillReceiveFunctionCall;
+import io.contract_testing.contractcase.dsl.interactions.functions.WillReceiveFunctionCallAndThrow;
+import io.contract_testing.contractcase.dsl.interactions.functions.WillReceiveNamedArgumentsToFunctionCall;
+import io.contract_testing.contractcase.dsl.matchers.primitives.AnyInteger;
+import io.contract_testing.contractcase.dsl.matchers.primitives.AnyNull;
 import io.contract_testing.contractcase.test.function.verification.CustomException;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterAll;
@@ -26,18 +24,18 @@ import org.junit.jupiter.api.Test;
 public class FunctionImplementerExampleTest {
 
   static final ObjectMapper mapper = new ObjectMapper();
-  private static final ContractDefiner contract = new ContractDefiner(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
-      .consumerName("Java Function Implementer Example")
-      .providerName("Java Function Caller Example")
-   //   .changedContracts(ChangedContractsBehaviour.OVERWRITE)
-      .publish(PublishType.NEVER)
-      .build());
+  private static final ContractDefiner contract = new ContractDefiner(
+      ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+          .consumerName("Java Function Implementer Example")
+          .providerName("Java Function Caller Example")
+          .changedContracts(ChangedContractsBehaviour.OVERWRITE)
+          .publish(PublishType.NEVER)
+          .build());
 
   @AfterAll
   static void after() {
     contract.endRecord();
   }
-
 
   @Test
   public void testNoArgFunction() {
@@ -46,12 +44,11 @@ public class FunctionImplementerExampleTest {
     });
     contract.runInteraction(new InteractionDefinition<>(
         List.of(),
-        new WillReceiveFunctionCall(FunctionExecutionExample.builder()
+        WillReceiveFunctionCall.builder()
             .arguments(List.of())
             .returnValue(new AnyNull())
             .functionName("NoArgFunction")
-            .build())
-    ));
+            .build()));
   }
 
   @Test
@@ -61,12 +58,11 @@ public class FunctionImplementerExampleTest {
     });
     contract.runInteraction(new InteractionDefinition<>(
         List.of(),
-        new WillReceiveFunctionCallAndThrow(ThrowingFunctionExecutionExample.builder()
+        WillReceiveFunctionCallAndThrow.builder()
             .arguments(List.of())
             .errorClassName("CustomException")
             .functionName("throwingFunction")
-            .build())
-    ));
+            .build()));
   }
 
   @Test
@@ -76,17 +72,15 @@ public class FunctionImplementerExampleTest {
 
     contract.registerFunction("PageNumbers", convertJsonArgs(functionUnderTest));
     contract.runInteraction(new InteractionDefinition<>(
-            List.of(),
-            new WillReceiveFunctionCall(FunctionExecutionExample.builder()
-                .arguments(List.of(new AnyInteger(2)))
-                .invocationName("page message")
-                .returnValue("2 pages")
-                .functionName("PageNumbers")
-                .build())
-        ),
+        List.of(),
+        WillReceiveNamedArgumentsToFunctionCall.builder()
+            .arguments(List.of(new AnyInteger(2)))
+            .invocationName("page message")
+            .returnValue("2 pages")
+            .functionName("PageNumbers")
+            .build()),
         IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder.builder()
-            .build()
-    );
+            .build());
   }
 
   @NotNull
@@ -100,6 +94,5 @@ public class FunctionImplementerExampleTest {
       }
     };
   }
-
 
 }

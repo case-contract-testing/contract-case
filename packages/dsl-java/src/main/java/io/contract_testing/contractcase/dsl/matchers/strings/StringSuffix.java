@@ -3,11 +3,14 @@ package io.contract_testing.contractcase.dsl.matchers.strings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
+import java.lang.Object;
 import java.lang.String;
-import javax.annotation.Generated;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
@@ -19,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class StringSuffix<M> implements DslMatcher {
+public class StringSuffix implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -29,11 +32,18 @@ public class StringSuffix<M> implements DslMatcher {
   private final String type;
 
   /**
+   * Constant parameter resolvesTo
+   */
+  @Getter
+  @JsonProperty("_case:matcher:resolvesTo")
+  private final String resolvesTo = "string";
+
+  /**
    * The prefix to match. May itself be a matcher, and will be passed the string with the suffix stripped.
    */
   @Getter
   @JsonProperty("_case:matcher:prefix")
-  private final M prefix;
+  private final Object prefix;
 
   /**
    * The suffix to match. Must be a string, and acceptable strings will match this suffix exactly.
@@ -43,8 +53,11 @@ public class StringSuffix<M> implements DslMatcher {
   private final String suffix;
 
   @Builder
-  public StringSuffix(@NotNull final M prefix, @NotNull final String suffix) {
-    this.type = "_case:MatchStringSuffix";
+  public StringSuffix(
+    @NotNull final Object prefix,
+    @NotNull final String suffix
+  ) {
+    this.type = "_case:StringSuffix";
     this.prefix = prefix;
     this.suffix = suffix;
   }

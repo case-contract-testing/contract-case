@@ -7,7 +7,7 @@
   "metadata": {
     "_case": {
       "version": "0.27.3",
-      "hash": "b9e79a7a21c5c21491ad7d8704c623fdc54c5cb31fc2444d3c4a5d6d729f40ff"
+      "hash": "a034e57cff3351bdfc84da13b370395f7ab06b0797f82a741e519edc3b7b3f3b"
     }
   },
   "matcherLookup": {
@@ -22,14 +22,12 @@
         "name": {
           "_case:context:matchBy": "type",
           "_case:matcher:example": "john smith",
-          "_case:matcher:resolvesTo": "string",
           "_case:matcher:type": "_case:MatchString"
         },
         "tags": {
           "_case:matcher:matcher": {
             "_case:context:matchBy": "type",
             "_case:matcher:example": "someTag",
-            "_case:matcher:resolvesTo": "string",
             "_case:matcher:type": "_case:MatchString"
           },
           "_case:matcher:type": "_case:ArrayEachEntryLike"
@@ -46,12 +44,11 @@
       "method": "GET",
       "path": {
         "_case:matcher:prefix": "/users/",
-        "_case:matcher:resolvesTo": "string",
         "_case:matcher:suffix": {
           "_case:matcher:type": "_case:ContextVariable",
           "_case:matcher:variableName": "userId"
         },
-        "_case:matcher:type": "_case:StringPrefix"
+        "_case:matcher:type": "_case:MatchStringPrefix"
       }
     },
     "matcher:returns a (200) response with body an object shaped like {status: \"up\"}": {
@@ -88,7 +85,6 @@
         "name": {
           "_case:context:matchBy": "type",
           "_case:matcher:example": "john smith",
-          "_case:matcher:resolvesTo": "string",
           "_case:matcher:type": "_case:MatchString"
         },
         "userId": {
@@ -120,83 +116,6 @@
     }
   },
   "examples": [
-    {
-      "states": [
-        {
-          "_case:state:type": "_case:NamedState",
-          "stateName": "Server is up"
-        },
-        {
-          "_case:state:type": "_case:StateWithVariables",
-          "stateName": "A user exists",
-          "variables": {
-            "userId": "123"
-          }
-        }
-      ],
-      "mock": {
-        "_case:mock:type": "_case:MockHttpServer",
-        "_case:run:context:setup": {
-          "read": {
-            "stateVariables": "state",
-            "triggers": "generated",
-            "type": "_case:MockHttpClient"
-          },
-          "write": {
-            "stateVariables": "default",
-            "triggers": "provided",
-            "type": "_case:MockHttpServer"
-          }
-        },
-        "request": {
-          "_case:matcher:child": {
-            "_case:matcher:type": "_case:HttpRequestMatcher",
-            "method": "GET",
-            "path": {
-              "_case:matcher:prefix": "/users/",
-              "_case:matcher:resolvesTo": "string",
-              "_case:matcher:suffix": {
-                "_case:matcher:type": "_case:ContextVariable",
-                "_case:matcher:variableName": "userId"
-              },
-              "_case:matcher:type": "_case:StringPrefix"
-            }
-          },
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "Get user via path"
-        },
-        "response": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "returns a (200) response with body an object shaped like {name: <any string>,tags: an array where each entry matches <any string>,userId: {{userId}}}",
-          "_case:matcher:child": {
-            "_case:matcher:type": "_case:HttpResponseMatcher",
-            "body": {
-              "name": {
-                "_case:context:matchBy": "type",
-                "_case:matcher:example": "john smith",
-                "_case:matcher:resolvesTo": "string",
-                "_case:matcher:type": "_case:MatchString"
-              },
-              "tags": {
-                "_case:matcher:matcher": {
-                  "_case:context:matchBy": "type",
-                  "_case:matcher:example": "someTag",
-                  "_case:matcher:resolvesTo": "string",
-                  "_case:matcher:type": "_case:MatchString"
-                },
-                "_case:matcher:type": "_case:ArrayEachEntryLike"
-              },
-              "userId": {
-                "_case:matcher:type": "_case:ContextVariable",
-                "_case:matcher:variableName": "userId"
-              }
-            },
-            "status": 200
-          }
-        }
-      },
-      "result": "VERIFIED"
-    },
     {
       "states": [
         {
@@ -368,7 +287,6 @@
               "name": {
                 "_case:context:matchBy": "type",
                 "_case:matcher:example": "john smith",
-                "_case:matcher:resolvesTo": "string",
                 "_case:matcher:type": "_case:MatchString"
               },
               "userId": {

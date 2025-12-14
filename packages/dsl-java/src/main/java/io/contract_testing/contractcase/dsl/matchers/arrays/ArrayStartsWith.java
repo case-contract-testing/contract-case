@@ -6,12 +6,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
+import java.lang.Object;
 import java.lang.String;
 import java.util.List;
-import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import javax.annotation.Nullable;
-import lombok.Builder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import lombok.Getter;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class ArrayStartsWith<M> implements DslMatcher {
+public class ArrayStartsWith implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -37,16 +37,10 @@ public class ArrayStartsWith<M> implements DslMatcher {
   @JsonInclude(Include.NON_NULL)
   @Getter
   @JsonProperty("_case:matcher:children")
-  private final List<M> children;
+  private final List<Object> children;
 
   @Builder
-  public ArrayStartsWith() {
-    this.type = "_case:ArrayShape";
-    this.children = null;
-  }
-
-  @Builder
-  public ArrayStartsWith(@Nullable final List<M> children) {
+  public ArrayStartsWith(@Nullable final List<Object> children) {
     this.type = "_case:ArrayShape";
     this.children = children;
   }

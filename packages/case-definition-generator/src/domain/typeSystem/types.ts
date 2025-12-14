@@ -8,11 +8,11 @@ export type PluginDslDeclaration = {
    * This is the prefix that the type
    * constants in this package will have.
    */
-  namespace: string;
+  readonly namespace: string;
   /** The category within the namespace,
    * used for grouping related matchers
    * together (eg arrays) */
-  category: string;
+  readonly category: string;
   /**
    * An array of all the matcher DSL objects declared by this
    * plugin.
@@ -20,7 +20,7 @@ export type PluginDslDeclaration = {
    * Note that these don't need to map 1:1 to your matcher
    * executors - multiple matcher DSL objects may share the same type.
    */
-  matchers: MatcherDslDeclaration[];
+  readonly matchers: MatcherDslDeclaration[];
   /**
    * An array of all the interaction DSL objects declared by this
    * plugin.
@@ -29,14 +29,14 @@ export type PluginDslDeclaration = {
    * mock executors - you can have multiple interaction DSL objects
    * point to the same executor, but with different properties.
    */
-  interactions: InteractionDslDeclaration[];
+  readonly interactions: InteractionDslDeclaration[];
 
   /**
    * This allows your plugin to describe extra state objects.
    * Most users won't want to do this, as state objects need to be
    * known by the core engine.
    */
-  states?: StateObjectDeclaration[];
+  readonly states?: StateObjectDeclaration[];
 };
 
 /**
@@ -62,6 +62,7 @@ export type PluginDslDeclaration = {
  */
 export type ParameterType =
   | TypeContainer
+  | PassToMatcher
   | 'AnyCaseMatcherOrData'
   | 'AnyData'
   | 'integer'
@@ -85,9 +86,44 @@ export type ParameterType =
  */
 export type TypeContainer = {
   /** What kind of container this is. Future unions of this type will always have this parameter */
-  kind: 'array';
+  readonly kind: 'array';
   /** The type of the elements contained within this container */
-  type: ParameterType;
+  readonly type: ParameterType;
+};
+
+/** A MatcherReference uniquely identifies a matcher and allows generated code to import and use it */
+export type MatcherReference = {
+  /** The name of the matcher to pass the parameters to */
+  readonly name: string;
+  /** The category of the matcher */
+  readonly category: string;
+  /** The namespace of the matcher */
+  readonly namespace: string;
+};
+
+/**
+ * Indicates a parameter type which assigns the given parameter(s) to a matcher.
+ *
+ * This is useful for making composite matchers.
+ *
+ * See the definition of the core function plugin for an example.
+ */
+export type PassToMatcher = {
+  /** What kind of container this is. Future unions of this type will always have this parameter */
+  readonly kind: 'PassToMatcher';
+  /**
+   * The type of the parameters to pass to the matcher.
+   *
+   * These are passed to the matcher's constructor in order.
+   *
+   * Make sure they are correct, and in the correct order - no checking of the
+   * parameters is done by the generator. We recommend that you generally
+   * only reference matchers within the same package, to avoid breaking changes.
+   */
+  readonly exposedParams: ParameterDeclaration[];
+
+  /** Identifies the matcher to pass these parameters to */
+  readonly matcherReference: MatcherReference;
 };
 
 /**
@@ -100,9 +136,12 @@ export type TypeContainer = {
 export const isTypeContainer = (
   parameterType: ParameterType,
 ): parameterType is TypeContainer =>
-  typeof parameterType === 'object' &&
-  parameterType.kind &&
-  typeof parameterType.kind === 'string';
+  typeof parameterType === 'object' && parameterType.kind === 'array';
+
+export const isPassToMatcher = (
+  parameterType: ParameterType,
+): parameterType is PassToMatcher =>
+  typeof parameterType === 'object' && parameterType.kind === 'PassToMatcher';
 
 /**
  * Declares a parameter for a matcher
@@ -117,23 +156,23 @@ export type ParameterDeclaration = {
    * - `example`: Allowed, but will be used as the rendered example for this node.
    * - `resolvesTo`: Allowed, but will control what ContractCase thinks the example's type is.
    */
-  name: string;
+  readonly name: string;
   /**
    * Documentation for the parameter.
    *
    * Yes, this is required. We're sorry about that,
    * but hopefully the users of your plugin won't be.
    */
-  documentation: string;
+  readonly documentation: string;
   /** Type of this parameter */
-  type: ParameterType;
+  readonly type: ParameterType;
   /**
    * If set, whether or not this parameter is optional. Optional parameters must
    * be the last ones in order. Defaults to required if not set
    */
-  optional?: boolean;
+  readonly optional?: boolean;
   /** If set, will override the generated json property name for this parameter */
-  jsonPropertyName?: string;
+  readonly jsonPropertyName?: string;
 };
 
 /** Defines an object. */
@@ -144,7 +183,7 @@ export type DslObjectDeclaration = {
    * This is used to generate the type names, etc. Must
    * be unique within your plugin, across all declarations.
    */
-  name: string;
+  readonly name: string;
   /**
    * The type constant for your matcher, without the namespace.
    * Along with the namespace, this is what ContractCase uses to
@@ -157,16 +196,16 @@ export type DslObjectDeclaration = {
    * This is useful if you want to have different defaults or different
    * names in the DSL for the same matcher.
    */
-  type: string;
+  readonly type: string;
 
   /**
    * Documentation for this object. Yes, this is required. We're not sorry about that,
    * and hopefully the users of your plugin won't be sorry about it either.
    */
-  documentation: string;
+  readonly documentation: string;
 
   /** An ordered array of parameter declarations. If any parameters are optional, they must be at the end. */
-  params: ParameterDeclaration[];
+  readonly params: ParameterDeclaration[];
 };
 
 /**
@@ -184,7 +223,7 @@ export type MatcherDslDeclaration = DslObjectDeclaration & {
    *
    * Currently only strings are supported. If you have a more complex use case, please raise an issue.
    */
-  constantParams?: Record<string, string | null> & {
+  readonly constantParams?: Record<string, string | null> & {
     /**
      * If specified, sets the `matcher:resolvesTo` value.
      *
@@ -193,7 +232,7 @@ export type MatcherDslDeclaration = DslObjectDeclaration & {
      * It's mostly useful for generating a type-safe DSL, although some matchers
      * may also read it for validation purposes.
      */
-    resolvesTo?: Extract<
+    readonly resolvesTo?: Extract<
       ParameterType,
       'string' | 'boolean' | 'number' | 'integer' | 'null'
     >;
@@ -202,12 +241,12 @@ export type MatcherDslDeclaration = DslObjectDeclaration & {
    * A map of context modifiers to add to the context object.
    * These control ContractCase's matching behaviour
    */
-  contextModifiers?: Record<string, string>;
+  readonly contextModifiers?: Record<string, string>;
   /**
    * A map of modifiers to add to the current run context. These can be used to
    * add matchers that change the user configuration below it. Most of the time you won't need to provide these.
    */
-  currentRunModifiers?: Record<string, string>;
+  readonly currentRunModifiers?: Record<string, string>;
 };
 
 export type StateObjectDeclaration = DslObjectDeclaration;
@@ -216,5 +255,5 @@ export type InteractionDslDeclaration = DslObjectDeclaration & {
   /**
    * Controls the behaviour of the mocked interaction for definition and verification
    */
-  setup: InternalContractCaseCoreSetup;
+  readonly setup: InternalContractCaseCoreSetup;
 };

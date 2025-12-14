@@ -1,31 +1,32 @@
 package io.contract_testing.contractcase.logs;
 
+import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Data class to hold data for a test title print line.
  */
-public interface PrintableTestTitle extends software.amazon.jsii.JsiiSerializable {
+public interface PrintableTestTitle {
 
   /**
    * Any additional text to print after the title (may include newlines).
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getAdditionalText();
+  @NotNull String getAdditionalText();
 
   /**
    * An icon for the start of the line (usually a single character emoji, but could be any string).
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getIcon();
+  @NotNull String getIcon();
 
   /**
    * Either 'success' to indicate success, or 'failure' to indicate failure.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getKind();
+  @NotNull String getKind();
 
   /**
    * The title to print (will not include newlines).
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getTitle();
+  @NotNull String getTitle();
 
   /**
    * @return a {@link Builder} of {@link PrintableTestTitle}
@@ -37,12 +38,12 @@ public interface PrintableTestTitle extends software.amazon.jsii.JsiiSerializabl
   /**
    * A builder for {@link PrintableTestTitle}
    */
-  final class Builder implements software.amazon.jsii.Builder<PrintableTestTitle> {
+  final class Builder {
 
-    java.lang.String additionalText;
-    java.lang.String icon;
-    java.lang.String kind;
-    java.lang.String title;
+    String additionalText;
+    String icon;
+    String kind;
+    String title;
 
     /**
      * Sets the value of {@link PrintableTestTitle#getAdditionalText}
@@ -51,7 +52,7 @@ public interface PrintableTestTitle extends software.amazon.jsii.JsiiSerializabl
      *                       This parameter is required.
      * @return {@code this}
      */
-    public Builder additionalText(java.lang.String additionalText) {
+    public Builder additionalText(String additionalText) {
       this.additionalText = additionalText;
       return this;
     }
@@ -63,7 +64,7 @@ public interface PrintableTestTitle extends software.amazon.jsii.JsiiSerializabl
      *             any string). This parameter is required.
      * @return {@code this}
      */
-    public Builder icon(java.lang.String icon) {
+    public Builder icon(String icon) {
       this.icon = icon;
       return this;
     }
@@ -75,7 +76,7 @@ public interface PrintableTestTitle extends software.amazon.jsii.JsiiSerializabl
      *             parameter is required.
      * @return {@code this}
      */
-    public Builder kind(java.lang.String kind) {
+    public Builder kind(String kind) {
       this.kind = kind;
       return this;
     }
@@ -86,7 +87,7 @@ public interface PrintableTestTitle extends software.amazon.jsii.JsiiSerializabl
      * @param title The title to print (will not include newlines). This parameter is required.
      * @return {@code this}
      */
-    public Builder title(java.lang.String title) {
+    public Builder title(String title) {
       this.title = title;
       return this;
     }
@@ -97,7 +98,6 @@ public interface PrintableTestTitle extends software.amazon.jsii.JsiiSerializabl
      * @return a new instance of {@link PrintableTestTitle}
      * @throws NullPointerException if any required attribute was not provided
      */
-    @Override
     public PrintableTestTitle build() {
       return new PrintableTestTitleImpl(this);
     }
@@ -109,23 +109,23 @@ public interface PrintableTestTitle extends software.amazon.jsii.JsiiSerializabl
   final class PrintableTestTitleImpl implements
       PrintableTestTitle {
 
-    private final java.lang.String additionalText;
-    private final java.lang.String icon;
-    private final java.lang.String kind;
-    private final java.lang.String title;
+    private final String additionalText;
+    private final String icon;
+    private final String kind;
+    private final String title;
 
     /**
      * Constructor that initializes the object based on literal property values passed by the
      * {@link Builder}.
      */
     private PrintableTestTitleImpl(final Builder builder) {
-      this.additionalText = java.util.Objects.requireNonNull(
+      this.additionalText = Objects.requireNonNull(
           builder.additionalText,
           "additionalText is required"
       );
-      this.icon = java.util.Objects.requireNonNull(builder.icon, "icon is required");
-      this.kind = java.util.Objects.requireNonNull(builder.kind, "kind is required");
-      this.title = java.util.Objects.requireNonNull(builder.title, "title is required");
+      this.icon = Objects.requireNonNull(builder.icon, "icon is required");
+      this.kind = Objects.requireNonNull(builder.kind, "kind is required");
+      this.title = Objects.requireNonNull(builder.title, "title is required");
     }
 
     @Override

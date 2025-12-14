@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
 import java.lang.String;
-import javax.annotation.Generated;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
 
@@ -20,7 +22,7 @@ import lombok.Getter;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class AnyNull<M> implements DslMatcher {
+public class AnyNull implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -28,6 +30,13 @@ public class AnyNull<M> implements DslMatcher {
   @Getter
   @JsonProperty("_case:matcher:type")
   private final String type;
+
+  /**
+   * Constant parameter resolvesTo
+   */
+  @Getter
+  @JsonProperty("_case:matcher:resolvesTo")
+  private final String resolvesTo = "null";
 
   @Getter
   @JsonProperty("_case:context:matchBy")

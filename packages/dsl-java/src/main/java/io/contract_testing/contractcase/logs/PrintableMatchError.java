@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase.logs;
 
+import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -10,44 +11,44 @@ public interface PrintableMatchError {
   /**
    * A string representation of the actual data received (may contain newlines).
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getActual();
+  @NotNull String getActual();
 
   /**
    * The machine-readable type for the cause of this error, for printing after the error message to
    * make it easy to search for.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getErrorTypeTag();
+  @NotNull String getErrorTypeTag();
 
   /**
    * A string representation of the expected data (may contain newlines).
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getExpected();
+  @NotNull String getExpected();
 
   /**
    * The red highlighted blob, eg "MATCHING ERROR" or "TRIGGER FUNCTION ERROR".
    * <p>
    * Could be any string.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getKind();
+  @NotNull String getKind();
 
   /**
    * The location the error happened, for printing at the top of the error message.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getLocation();
+  @NotNull String getLocation();
 
   /**
    * The tag line for the location the error happened, for printing after the error message.
    * <p>
    * This might have more information than the <code>location</code> above.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getLocationTag();
+  @NotNull String getLocationTag();
 
   /**
    * A summary of the error.
    * <p>
    * Could be any string.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getMessage();
+  @NotNull String getMessage();
 
   /**
    * @return a {@link Builder} of {@link PrintableMatchError}
@@ -59,15 +60,15 @@ public interface PrintableMatchError {
   /**
    * A builder for {@link PrintableMatchError}
    */
-  final class Builder implements software.amazon.jsii.Builder<PrintableMatchError> {
+  final class Builder {
 
-    java.lang.String actual;
-    java.lang.String errorTypeTag;
-    java.lang.String expected;
-    java.lang.String kind;
-    java.lang.String location;
-    java.lang.String locationTag;
-    java.lang.String message;
+    String actual;
+    String errorTypeTag;
+    String expected;
+    String kind;
+    String location;
+    String locationTag;
+    String message;
 
     /**
      * Sets the value of {@link PrintableMatchError#getActual}
@@ -76,7 +77,7 @@ public interface PrintableMatchError {
      *               This parameter is required.
      * @return {@code this}
      */
-    public Builder actual(java.lang.String actual) {
+    public Builder actual(String actual) {
       this.actual = actual;
       return this;
     }
@@ -89,7 +90,7 @@ public interface PrintableMatchError {
      *                     required.
      * @return {@code this}
      */
-    public Builder errorTypeTag(java.lang.String errorTypeTag) {
+    public Builder errorTypeTag(String errorTypeTag) {
       this.errorTypeTag = errorTypeTag;
       return this;
     }
@@ -101,7 +102,7 @@ public interface PrintableMatchError {
      *                 parameter is required.
      * @return {@code this}
      */
-    public Builder expected(java.lang.String expected) {
+    public Builder expected(String expected) {
       this.expected = expected;
       return this;
     }
@@ -113,7 +114,7 @@ public interface PrintableMatchError {
      *             parameter is required. Could be any string.
      * @return {@code this}
      */
-    public Builder kind(java.lang.String kind) {
+    public Builder kind(String kind) {
       this.kind = kind;
       return this;
     }
@@ -125,7 +126,7 @@ public interface PrintableMatchError {
      *                 message. This parameter is required.
      * @return {@code this}
      */
-    public Builder location(java.lang.String location) {
+    public Builder location(String location) {
       this.location = location;
       return this;
     }
@@ -138,7 +139,7 @@ public interface PrintableMatchError {
      *                    information than the <code>location</code> above.
      * @return {@code this}
      */
-    public Builder locationTag(java.lang.String locationTag) {
+    public Builder locationTag(String locationTag) {
       this.locationTag = locationTag;
       return this;
     }
@@ -149,7 +150,7 @@ public interface PrintableMatchError {
      * @param message A summary of the error. This parameter is required. Could be any string.
      * @return {@code this}
      */
-    public Builder message(java.lang.String message) {
+    public Builder message(String message) {
       this.message = message;
       return this;
     }
@@ -160,7 +161,6 @@ public interface PrintableMatchError {
      * @return a new instance of {@link PrintableMatchError}
      * @throws NullPointerException if any required attribute was not provided
      */
-    @Override
     public PrintableMatchError build() {
       return new PrintableMatchErrorImpl(this);
     }
@@ -172,13 +172,13 @@ public interface PrintableMatchError {
   final class PrintableMatchErrorImpl implements
       PrintableMatchError {
 
-    private final java.lang.String actual;
-    private final java.lang.String errorTypeTag;
-    private final java.lang.String expected;
-    private final java.lang.String kind;
-    private final java.lang.String location;
-    private final java.lang.String locationTag;
-    private final java.lang.String message;
+    private final String actual;
+    private final String errorTypeTag;
+    private final String expected;
+    private final String kind;
+    private final String location;
+    private final String locationTag;
+    private final String message;
 
 
     /**
@@ -186,53 +186,53 @@ public interface PrintableMatchError {
      * {@link Builder}.
      */
     private PrintableMatchErrorImpl(final Builder builder) {
-      this.actual = java.util.Objects.requireNonNull(builder.actual, "actual is required");
-      this.errorTypeTag = java.util.Objects.requireNonNull(
+      this.actual = Objects.requireNonNull(builder.actual, "actual is required");
+      this.errorTypeTag = Objects.requireNonNull(
           builder.errorTypeTag,
           "errorTypeTag is required"
       );
-      this.expected = java.util.Objects.requireNonNull(builder.expected, "expected is required");
-      this.kind = java.util.Objects.requireNonNull(builder.kind, "kind is required");
-      this.location = java.util.Objects.requireNonNull(builder.location, "location is required");
-      this.locationTag = java.util.Objects.requireNonNull(
+      this.expected = Objects.requireNonNull(builder.expected, "expected is required");
+      this.kind = Objects.requireNonNull(builder.kind, "kind is required");
+      this.location = Objects.requireNonNull(builder.location, "location is required");
+      this.locationTag = Objects.requireNonNull(
           builder.locationTag,
           "locationTag is required"
       );
-      this.message = java.util.Objects.requireNonNull(builder.message, "message is required");
+      this.message = Objects.requireNonNull(builder.message, "message is required");
     }
 
     @Override
-    public java.lang.@NotNull String getActual() {
+    public @NotNull String getActual() {
       return this.actual;
     }
 
     @Override
-    public java.lang.@NotNull String getErrorTypeTag() {
+    public @NotNull String getErrorTypeTag() {
       return this.errorTypeTag;
     }
 
     @Override
-    public java.lang.@NotNull String getExpected() {
+    public @NotNull String getExpected() {
       return this.expected;
     }
 
     @Override
-    public java.lang.@NotNull String getKind() {
+    public @NotNull String getKind() {
       return this.kind;
     }
 
     @Override
-    public java.lang.@NotNull String getLocation() {
+    public @NotNull String getLocation() {
       return this.location;
     }
 
     @Override
-    public java.lang.@NotNull String getLocationTag() {
+    public @NotNull String getLocationTag() {
       return this.locationTag;
     }
 
     @Override
-    public java.lang.@NotNull String getMessage() {
+    public @NotNull String getMessage() {
       return this.message;
     }
 

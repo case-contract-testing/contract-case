@@ -7,13 +7,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslInteraction;
-import io.contract_testing.contractcase.dsl.matchers.functions.FunctionArguments;
-import io.contract_testing.contractcase.dsl.matchers.functions.FunctionReturnValue;
+import io.contract_testing.contractcase.dsl.matchers.functions.FunctionNamedArguments;
+import io.contract_testing.contractcase.dsl.matchers.functions.FunctionThrownError;
 import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Nullable;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
@@ -23,13 +24,15 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * Defines an example that executes a registered function with specific arguments
+ * Defines an example that throws an error from a registered function with specific arguments
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class WillCallFunction implements DslInteraction {
+public class WillCallThrowingFunctionWithNamedArguments
+  implements DslInteraction {
 
   /**
    * ContractCase's internal type for this element
@@ -74,24 +77,26 @@ public class WillCallFunction implements DslInteraction {
    */
   @Getter
   @JsonProperty("request")
-  private final FunctionArguments arguments;
+  private final FunctionNamedArguments arguments;
 
   /**
-   * The return value of this function.
+   * The error thrown by this function. Generally will be a FunctionReturnValueMatcher
    */
   @Getter
   @JsonProperty("response")
-  private final FunctionReturnValue returnValue;
+  private final FunctionThrownError error;
 
   @Builder
-  public WillCallFunction(
+  public WillCallThrowingFunctionWithNamedArguments(
     @NotNull final String functionName,
+    @NotNull final String invocationName,
     @NotNull final List<Object> arguments,
-    @NotNull final Object returnValue
+    @NotNull final Object errorClassName,
+    @Nullable final Object message
   ) {
     this.type = "_case:MockFunctionExecution";
     this.functionName = functionName;
-    this.arguments = new FunctionArguments(arguments);
-    this.returnValue = new FunctionReturnValue(returnValue);
+    this.arguments = new FunctionNamedArguments(invocationName, arguments);
+    this.error = new FunctionThrownError(errorClassName, message);
   }
 }

@@ -3,11 +3,14 @@ package io.contract_testing.contractcase.dsl.matchers.http;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
+import java.lang.Object;
 import java.lang.String;
-import javax.annotation.Generated;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
@@ -22,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class BasicAuthUserNamePassword<M> implements DslMatcher {
+public class BasicAuthUserNamePassword implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -32,23 +35,30 @@ public class BasicAuthUserNamePassword<M> implements DslMatcher {
   private final String type;
 
   /**
+   * Constant parameter resolvesTo
+   */
+  @Getter
+  @JsonProperty("_case:matcher:resolvesTo")
+  private final String resolvesTo = "string";
+
+  /**
    * The username to match
    */
   @Getter
   @JsonProperty("_case:matcher:username")
-  private final M username;
+  private final Object username;
 
   /**
    * The password to match
    */
   @Getter
   @JsonProperty("_case:matcher:password")
-  private final M password;
+  private final Object password;
 
   @Builder
   public BasicAuthUserNamePassword(
-    @NotNull final M username,
-    @NotNull final M password
+    @NotNull final Object username,
+    @NotNull final Object password
   ) {
     this.type = "_case:HttpBasicAuth";
     this.username = username;

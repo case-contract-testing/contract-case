@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
-import javax.annotation.Generated;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class ArrayEachEntryMatchesWithExample<M> implements DslMatcher {
+public class ArrayEachEntryMatchesWithExample implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -35,7 +35,7 @@ public class ArrayEachEntryMatchesWithExample<M> implements DslMatcher {
    */
   @Getter
   @JsonProperty("_case:matcher:matcher")
-  private final M matcher;
+  private final Object matcher;
 
   /**
    * Example data to use instead of the generated one
@@ -46,7 +46,7 @@ public class ArrayEachEntryMatchesWithExample<M> implements DslMatcher {
 
   @Builder
   public ArrayEachEntryMatchesWithExample(
-    @NotNull final M matcher,
+    @NotNull final Object matcher,
     @NotNull final List<Object> example
   ) {
     this.type = "_case:ArrayEachEntryLike";

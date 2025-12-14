@@ -1,5 +1,6 @@
 package io.contract_testing.contractcase.logs;
 
+import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -11,33 +12,33 @@ public interface PrintableMessageError {
    * The machine-readable type for the cause of this error, for printing after the error message to
    * make it easy to search for.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getErrorTypeTag();
+  @NotNull String getErrorTypeTag();
 
   /**
    * The red highlighted blob, eg "MATCHING ERROR" or "TRIGGER FUNCTION ERROR".
    * <p>
    * Could be any string.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getKind();
+  @NotNull String getKind();
 
   /**
    * The location the error happened, for printing at the top of the error message.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getLocation();
+  @NotNull String getLocation();
 
   /**
    * The tag line for the location the error happened, for printing after the error message.
    * <p>
    * This might have more information than the <code>location</code> above.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getLocationTag();
+  @NotNull String getLocationTag();
 
   /**
    * A summary of the error.
    * <p>
    * Could be any string.
    */
-  @org.jetbrains.annotations.NotNull java.lang.String getMessage();
+  @NotNull String getMessage();
 
   /**
    * @return a {@link Builder} of {@link PrintableMessageError}
@@ -49,13 +50,13 @@ public interface PrintableMessageError {
   /**
    * A builder for {@link PrintableMessageError}
    */
-  final class Builder implements software.amazon.jsii.Builder<PrintableMessageError> {
+  final class Builder {
 
-    java.lang.String errorTypeTag;
-    java.lang.String kind;
-    java.lang.String location;
-    java.lang.String locationTag;
-    java.lang.String message;
+    String errorTypeTag;
+    String kind;
+    String location;
+    String locationTag;
+    String message;
 
     /**
      * Sets the value of {@link PrintableMessageError#getErrorTypeTag}
@@ -65,7 +66,7 @@ public interface PrintableMessageError {
      *                     required.
      * @return {@code this}
      */
-    public Builder errorTypeTag(java.lang.String errorTypeTag) {
+    public Builder errorTypeTag(String errorTypeTag) {
       this.errorTypeTag = errorTypeTag;
       return this;
     }
@@ -77,7 +78,7 @@ public interface PrintableMessageError {
      *             parameter is required. Could be any string.
      * @return {@code this}
      */
-    public Builder kind(java.lang.String kind) {
+    public Builder kind(String kind) {
       this.kind = kind;
       return this;
     }
@@ -89,7 +90,7 @@ public interface PrintableMessageError {
      *                 message. This parameter is required.
      * @return {@code this}
      */
-    public Builder location(java.lang.String location) {
+    public Builder location(String location) {
       this.location = location;
       return this;
     }
@@ -102,7 +103,7 @@ public interface PrintableMessageError {
      *                    information than the <code>location</code> above.
      * @return {@code this}
      */
-    public Builder locationTag(java.lang.String locationTag) {
+    public Builder locationTag(String locationTag) {
       this.locationTag = locationTag;
       return this;
     }
@@ -113,7 +114,7 @@ public interface PrintableMessageError {
      * @param message A summary of the error. This parameter is required. Could be any string.
      * @return {@code this}
      */
-    public Builder message(java.lang.String message) {
+    public Builder message(String message) {
       this.message = message;
       return this;
     }
@@ -124,7 +125,6 @@ public interface PrintableMessageError {
      * @return a new instance of {@link PrintableMessageError}
      * @throws NullPointerException if any required attribute was not provided
      */
-    @Override
     public PrintableMessageError build() {
       return new PrintableMessageErrorImpl(this);
     }
@@ -136,52 +136,52 @@ public interface PrintableMessageError {
   final class PrintableMessageErrorImpl implements
       PrintableMessageError {
 
-    private final java.lang.String errorTypeTag;
-    private final java.lang.String kind;
-    private final java.lang.String location;
-    private final java.lang.String locationTag;
-    private final java.lang.String message;
+    private final String errorTypeTag;
+    private final String kind;
+    private final String location;
+    private final String locationTag;
+    private final String message;
 
     /**
      * Constructor that initializes the object based on literal property values passed by the
      * {@link Builder}.
      */
     private PrintableMessageErrorImpl(final Builder builder) {
-      this.errorTypeTag = java.util.Objects.requireNonNull(
+      this.errorTypeTag = Objects.requireNonNull(
           builder.errorTypeTag,
           "errorTypeTag is required"
       );
-      this.kind = java.util.Objects.requireNonNull(builder.kind, "kind is required");
-      this.location = java.util.Objects.requireNonNull(builder.location, "location is required");
-      this.locationTag = java.util.Objects.requireNonNull(
+      this.kind = Objects.requireNonNull(builder.kind, "kind is required");
+      this.location = Objects.requireNonNull(builder.location, "location is required");
+      this.locationTag = Objects.requireNonNull(
           builder.locationTag,
           "locationTag is required"
       );
-      this.message = java.util.Objects.requireNonNull(builder.message, "message is required");
+      this.message = Objects.requireNonNull(builder.message, "message is required");
     }
 
     @Override
-    public java.lang.@NotNull String getErrorTypeTag() {
+    public @NotNull String getErrorTypeTag() {
       return this.errorTypeTag;
     }
 
     @Override
-    public java.lang.@NotNull String getKind() {
+    public @NotNull String getKind() {
       return this.kind;
     }
 
     @Override
-    public java.lang.@NotNull String getLocation() {
+    public @NotNull String getLocation() {
       return this.location;
     }
 
     @Override
-    public java.lang.@NotNull String getLocationTag() {
+    public @NotNull String getLocationTag() {
       return this.locationTag;
     }
 
     @Override
-    public java.lang.@NotNull String getMessage() {
+    public @NotNull String getMessage() {
       return this.message;
     }
 

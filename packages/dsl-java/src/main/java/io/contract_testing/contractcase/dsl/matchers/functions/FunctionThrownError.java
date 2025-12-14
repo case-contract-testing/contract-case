@@ -7,16 +7,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
+import java.lang.Object;
 import java.lang.String;
-import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import javax.annotation.Nullable;
 import lombok.Builder;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -24,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class FunctionThrownError<M> implements DslMatcher {
+public class FunctionThrownError implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -38,7 +37,7 @@ public class FunctionThrownError<M> implements DslMatcher {
    */
   @Getter
   @JsonProperty("errorClassName")
-  private final M errorClassName;
+  private final Object errorClassName;
 
   /**
    * The message for the expected error, if any
@@ -47,19 +46,12 @@ public class FunctionThrownError<M> implements DslMatcher {
   @JsonInclude(Include.NON_NULL)
   @Getter
   @JsonProperty("message")
-  private final M message;
-
-  @Builder
-  public FunctionThrownError(@NotNull final M errorClassName) {
-    this.type = "_case:FunctionResultMatcher";
-    this.errorClassName = errorClassName;
-    this.message = null;
-  }
+  private final Object message;
 
   @Builder
   public FunctionThrownError(
-    @NotNull final M errorClassName,
-    @Nullable final M message
+    @NotNull final Object errorClassName,
+    @Nullable final Object message
   ) {
     this.type = "_case:FunctionResultMatcher";
     this.errorClassName = errorClassName;

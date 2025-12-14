@@ -10,11 +10,9 @@ import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.InvokableFunctions;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
-import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
-import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
-import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCall;
-import io.contract_testing.contractcase.definitions.interactions.functions.WillReceiveFunctionCallAndThrow;
-import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
+import io.contract_testing.contractcase.dsl.interactions.functions.WillReceiveFunctionCall;
+import io.contract_testing.contractcase.dsl.interactions.functions.WillReceiveFunctionCallAndThrow;
+import io.contract_testing.contractcase.dsl.matchers.primitives.AnyNull;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.exceptions.ContractCaseExpectationsNotMet;
 import io.contract_testing.contractcase.test.function.verification.CustomException;
@@ -25,30 +23,33 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests functions called by ContractCase that don't do what you say they will. Each example should
+ * Tests functions called by ContractCase that don't do what you say they will.
+ * Each example should
  * fail.
  */
 public class BrokenFunctionImplementerExampleTest {
 
   static final ObjectMapper mapper = new ObjectMapper();
-  private static final ContractDefiner contract = new ContractDefiner(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
-      .consumerName("Broken Java Function Implementer Example")
-      .providerName("Broken Java Function Caller Example")
-      //   .changedContracts(ChangedContractsBehaviour.OVERWRITE)
-      .publish(PublishType.NEVER)
-      .logLevel(LogLevel.NONE)
-      .printResults(false)
-      .build());
+  private static final ContractDefiner contract = new ContractDefiner(
+      ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+          .consumerName("Broken Java Function Implementer Example")
+          .providerName("Broken Java Function Caller Example")
+          // .changedContracts(ChangedContractsBehaviour.OVERWRITE)
+          .publish(PublishType.NEVER)
+          .logLevel(LogLevel.NONE)
+          .printResults(false)
+          .build());
 
   @AfterAll
   static void after() {
 
   }
 
-
   /**
-   * These are all in one test, against the usual pattern of putting tests in separate functions.
-   * The reason for this is to ensure that we call endRecord() at the end, and can assert that it
+   * These are all in one test, against the usual pattern of putting tests in
+   * separate functions.
+   * The reason for this is to ensure that we call endRecord() at the end, and can
+   * assert that it
    * fails.
    */
   @Test
@@ -69,14 +70,11 @@ public class BrokenFunctionImplementerExampleTest {
         ContractCaseExpectationsNotMet.class,
         () -> contract.runInteraction(new InteractionDefinition<>(
             List.of(),
-            new WillReceiveFunctionCall(FunctionExecutionExample.builder()
+            WillReceiveFunctionCall.builder()
                 .arguments(List.of())
                 .returnValue(new AnyNull())
                 .functionName("throwingFunction")
-
-                .build())
-        ))
-    );
+                .build())));
 
     // When you call a function that you say should throw, but it returns
     // successfully, we should get an ExpectationsNotMet
@@ -84,13 +82,11 @@ public class BrokenFunctionImplementerExampleTest {
         ContractCaseExpectationsNotMet.class,
         () -> contract.runInteraction(new InteractionDefinition<>(
             List.of(),
-            new WillReceiveFunctionCallAndThrow(ThrowingFunctionExecutionExample.builder()
+            WillReceiveFunctionCallAndThrow.builder()
                 .arguments(List.of())
                 .errorClassName("CustomException")
                 .functionName("NoArgFunction")
-                .build())
-        ))
-    );
+                .build())));
 
     // When you call end record,
     // it should throw an exception
@@ -98,17 +94,16 @@ public class BrokenFunctionImplementerExampleTest {
 
     // When you try to set more interactions after calling endRecord, it should
     // fail with a configuration error
-    assertThrows(ContractCaseConfigurationError.class, () -> contract.runInteraction(new InteractionDefinition<>(
-        List.of(),
-        new WillReceiveFunctionCallAndThrow(ThrowingFunctionExecutionExample.builder()
-            .arguments(List.of())
-            .errorClassName("CustomException")
-            .functionName("NoArgFunction")
-            .build())
-    )));
+    assertThrows(ContractCaseConfigurationError.class,
+        () -> contract.runInteraction(new InteractionDefinition<>(
+            List.of(),
+            WillReceiveFunctionCallAndThrow.builder()
+                .arguments(List.of())
+                .errorClassName("CustomException")
+                .functionName("NoArgFunction")
+                .build())));
 
   }
-
 
   @NotNull
   private static InvokableFunctions.InvokableFunction1<?> convertJsonArgs(Function<Integer, String> functionUnderTest) {
@@ -121,6 +116,5 @@ public class BrokenFunctionImplementerExampleTest {
       }
     };
   }
-
 
 }

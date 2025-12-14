@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
+import java.lang.Object;
 import java.lang.String;
-import javax.annotation.Generated;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
@@ -20,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class WithExample<M> implements DslMatcher {
+public class WithExample implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -34,17 +35,20 @@ public class WithExample<M> implements DslMatcher {
    */
   @Getter
   @JsonProperty("_case:matcher:child")
-  private final M child;
+  private final Object child;
 
   /**
    * The example to use when stripping the matchers
    */
   @Getter
   @JsonProperty("_case:matcher:example")
-  private final M example;
+  private final Object example;
 
   @Builder
-  public WithExample(@NotNull final M child, @NotNull final M example) {
+  public WithExample(
+    @NotNull final Object child,
+    @NotNull final Object example
+  ) {
     this.type = "_case:CascadingContext";
     this.child = child;
     this.example = example;

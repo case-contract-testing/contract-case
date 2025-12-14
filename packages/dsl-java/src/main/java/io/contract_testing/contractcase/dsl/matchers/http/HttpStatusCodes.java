@@ -4,9 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
+import java.lang.Object;
 import java.lang.String;
 import java.util.List;
-import javax.annotation.Generated;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
@@ -22,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class HttpStatusCodes<M> implements DslMatcher {
+public class HttpStatusCodes implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -36,10 +37,10 @@ public class HttpStatusCodes<M> implements DslMatcher {
    */
   @Getter
   @JsonProperty("_case:matcher:rule")
-  private final List<M> statusCodes;
+  private final List<Object> statusCodes;
 
   @Builder
-  public HttpStatusCodes(@NotNull final List<M> statusCodes) {
+  public HttpStatusCodes(@NotNull final List<Object> statusCodes) {
     this.type = "_case:HttpStatusCode";
     this.statusCodes = statusCodes;
   }

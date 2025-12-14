@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslInteraction;
-import io.contract_testing.contractcase.dsl.matchers.functions.FunctionArguments;
+import io.contract_testing.contractcase.dsl.matchers.functions.FunctionNamedArguments;
 import io.contract_testing.contractcase.dsl.matchers.functions.FunctionReturnValue;
 import jakarta.annotation.Generated;
 import java.lang.Object;
@@ -23,13 +23,14 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Defines an example that executes a registered function with specific arguments
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class WillCallFunction implements DslInteraction {
+public class WillCallFunctionWithNamedArguments implements DslInteraction {
 
   /**
    * ContractCase's internal type for this element
@@ -74,7 +75,7 @@ public class WillCallFunction implements DslInteraction {
    */
   @Getter
   @JsonProperty("request")
-  private final FunctionArguments arguments;
+  private final FunctionNamedArguments arguments;
 
   /**
    * The return value of this function.
@@ -84,14 +85,15 @@ public class WillCallFunction implements DslInteraction {
   private final FunctionReturnValue returnValue;
 
   @Builder
-  public WillCallFunction(
+  public WillCallFunctionWithNamedArguments(
     @NotNull final String functionName,
+    @NotNull final String invocationName,
     @NotNull final List<Object> arguments,
     @NotNull final Object returnValue
   ) {
     this.type = "_case:MockFunctionExecution";
     this.functionName = functionName;
-    this.arguments = new FunctionArguments(arguments);
+    this.arguments = new FunctionNamedArguments(invocationName, arguments);
     this.returnValue = new FunctionReturnValue(returnValue);
   }
 }

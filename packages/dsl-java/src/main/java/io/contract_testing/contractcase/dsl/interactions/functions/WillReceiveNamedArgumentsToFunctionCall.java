@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslInteraction;
-import io.contract_testing.contractcase.dsl.matchers.functions.FunctionArguments;
+import io.contract_testing.contractcase.dsl.matchers.functions.FunctionNamedArguments;
 import io.contract_testing.contractcase.dsl.matchers.functions.FunctionReturnValue;
 import jakarta.annotation.Generated;
 import java.lang.Object;
@@ -23,13 +23,14 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * Defines an example that executes a registered function with specific arguments
+ * Defines an example that expects a function to be called with specific arguments
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class WillCallFunction implements DslInteraction {
+public class WillReceiveNamedArgumentsToFunctionCall implements DslInteraction {
 
   /**
    * ContractCase's internal type for this element
@@ -47,23 +48,23 @@ public class WillCallFunction implements DslInteraction {
     Map.entry(
       "write",
       Map.ofEntries(
-        Map.entry("type", "_case:MockFunctionExecution"),
-        Map.entry("stateVariables", "default"),
-        Map.entry("triggers", "provided")
+        Map.entry("type", "_case:MockFunctionCaller"),
+        Map.entry("stateVariables", "state"),
+        Map.entry("triggers", "generated")
       )
     ),
     Map.entry(
       "read",
       Map.ofEntries(
-        Map.entry("type", "_case:MockFunctionCaller"),
-        Map.entry("stateVariables", "state"),
-        Map.entry("triggers", "generated")
+        Map.entry("type", "_case:MockFunctionExecution"),
+        Map.entry("stateVariables", "default"),
+        Map.entry("triggers", "provided")
       )
     )
   );
 
   /**
-   * The name of the function that will be called
+   * The name of the function to be called
    */
   @Getter
   @JsonProperty("functionName")
@@ -74,7 +75,7 @@ public class WillCallFunction implements DslInteraction {
    */
   @Getter
   @JsonProperty("request")
-  private final FunctionArguments arguments;
+  private final FunctionNamedArguments arguments;
 
   /**
    * The return value of this function.
@@ -84,14 +85,15 @@ public class WillCallFunction implements DslInteraction {
   private final FunctionReturnValue returnValue;
 
   @Builder
-  public WillCallFunction(
+  public WillReceiveNamedArgumentsToFunctionCall(
     @NotNull final String functionName,
+    @NotNull final String invocationName,
     @NotNull final List<Object> arguments,
     @NotNull final Object returnValue
   ) {
-    this.type = "_case:MockFunctionExecution";
+    this.type = "_case:MockFunctionCaller";
     this.functionName = functionName;
-    this.arguments = new FunctionArguments(arguments);
+    this.arguments = new FunctionNamedArguments(invocationName, arguments);
     this.returnValue = new FunctionReturnValue(returnValue);
   }
 }

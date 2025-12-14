@@ -12,7 +12,6 @@ import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import java.util.HashMap;
 import java.util.function.Function;
-import lombok.extern.java.Log;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 

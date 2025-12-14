@@ -1,35 +1,29 @@
-package io.contract_testing.contractcase.dsl.interactions.functions;
+package io.contract_testing.contractcase.dsl.interactions.http;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslInteraction;
-import io.contract_testing.contractcase.dsl.matchers.functions.FunctionArguments;
-import io.contract_testing.contractcase.dsl.matchers.functions.FunctionReturnValue;
 import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
-import java.util.List;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Defines an example that executes a registered function with specific arguments
+ * Defines an example that expects to send an HTTP response. Use this to define a contract at an HTTP server.
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class WillCallFunction implements DslInteraction {
+public class WillSendHttpRequest implements DslInteraction {
 
   /**
    * ContractCase's internal type for this element
@@ -47,7 +41,7 @@ public class WillCallFunction implements DslInteraction {
     Map.entry(
       "write",
       Map.ofEntries(
-        Map.entry("type", "_case:MockFunctionExecution"),
+        Map.entry("type", "_case:MockHttpServer"),
         Map.entry("stateVariables", "default"),
         Map.entry("triggers", "provided")
       )
@@ -55,7 +49,7 @@ public class WillCallFunction implements DslInteraction {
     Map.entry(
       "read",
       Map.ofEntries(
-        Map.entry("type", "_case:MockFunctionCaller"),
+        Map.entry("type", "_case:MockHttpClient"),
         Map.entry("stateVariables", "state"),
         Map.entry("triggers", "generated")
       )
@@ -63,35 +57,26 @@ public class WillCallFunction implements DslInteraction {
   );
 
   /**
-   * The name of the function that will be called
-   */
-  @Getter
-  @JsonProperty("functionName")
-  private final String functionName;
-
-  /**
-   * The arguments expected by this function.
+   * A test equivalence matcher that will match an HTTP request (recommended: the Test Equivalence Matcher {@code HttpRequest})
    */
   @Getter
   @JsonProperty("request")
-  private final FunctionArguments arguments;
+  private final Object request;
 
   /**
-   * The return value of this function.
+   * A test equivalence matcher that will match an HTTP response (recommended: the Test Equivalence Matcher {@code HttpResponse})
    */
   @Getter
   @JsonProperty("response")
-  private final FunctionReturnValue returnValue;
+  private final Object response;
 
   @Builder
-  public WillCallFunction(
-    @NotNull final String functionName,
-    @NotNull final List<Object> arguments,
-    @NotNull final Object returnValue
+  public WillSendHttpRequest(
+    @NotNull final Object request,
+    @NotNull final Object response
   ) {
-    this.type = "_case:MockFunctionExecution";
-    this.functionName = functionName;
-    this.arguments = new FunctionArguments(arguments);
-    this.returnValue = new FunctionReturnValue(returnValue);
+    this.type = "_case:MockHttpServer";
+    this.request = request;
+    this.response = response;
   }
 }

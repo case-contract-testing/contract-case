@@ -4,24 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.contract_testing.contractcase.ContractCaseConnector;
 import io.contract_testing.contractcase.ContractDefiner;
 import io.contract_testing.contractcase.InteractionDefinition;
-import io.contract_testing.contractcase.configuration.ChangedContractsBehaviour;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
-import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig.IndividualFailedTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
-import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
-import io.contract_testing.contractcase.definitions.interactions.functions.FunctionExecutionExample;
-import io.contract_testing.contractcase.definitions.interactions.functions.ThrowingFunctionExecutionExample;
-import io.contract_testing.contractcase.definitions.interactions.functions.WillCallFunction;
-import io.contract_testing.contractcase.definitions.interactions.functions.WillCallThrowingFunction;
-import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;
-import io.contract_testing.contractcase.definitions.matchers.primitives.AnyInteger;
-import io.contract_testing.contractcase.definitions.matchers.primitives.AnyNull;
-import io.contract_testing.contractcase.definitions.states.InState;
-import io.contract_testing.contractcase.exceptions.FunctionCompletedExceptionally;
+import io.contract_testing.contractcase.dsl.interactions.functions.WillCallFunction;
+import io.contract_testing.contractcase.dsl.states.InState;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.AfterAll;
@@ -31,7 +20,8 @@ import org.junit.jupiter.api.Test;
 public class RepeatStateCallerTest {
 
   /**
-   * This class tests the runner to make sure that state handlers don't interfere with each other
+   * This class tests the runner to make sure that state handlers don't interfere
+   * with each other
    * it does this by setting the same state repeatedly with different values
    */
 
@@ -39,7 +29,7 @@ public class RepeatStateCallerTest {
 
   @BeforeAll
   static void before() {
-  //  ContractCaseConnector.setNodeJsPath("/Users/home/.nvm/versions/node/v22.4.1/bin/node");
+    // ContractCaseConnector.setNodeJsPath("/Users/home/.nvm/versions/node/v22.4.1/bin/node");
     contract = new ContractDefiner(
         ContractCaseConfigBuilder.aContractCaseConfig()
             .consumerName("Java Repeated State Caller Example")
@@ -49,8 +39,7 @@ public class RepeatStateCallerTest {
             // .changedContracts(ChangedContractsBehaviour.OVERWRITE)
             .adviceOverrides(Map.of(
                 "OVERWRITE_CONTRACTS_NEEDED",
-                "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"
-            ))
+                "Please re-run this test, but:\nFirst uncomment the changedContracts line in this unit test"))
             .build());
   }
 
@@ -59,31 +48,26 @@ public class RepeatStateCallerTest {
     contract.endRecord();
   }
 
-
   @Test
   public void writeTenStates() {
-    for(int i = 0; i < 23; i++ ) {
+    for (int i = 0; i < 23; i++) {
       final var value = i;
       contract.runInteraction(
           new InteractionDefinition<>(
               List.of(new InState("The value is " + value)),
-              new WillCallFunction(FunctionExecutionExample.builder()
+              WillCallFunction.builder()
                   .arguments(List.of())
                   .returnValue(value)
                   .functionName("getValue")
-                  .build())
-          ),
+                  .build()),
           IndividualSuccessTestConfigBuilder.<String>builder()
-              .withTrigger((setupInfo) ->
-                  parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
-                      .apply(List.of())))
+              .withTrigger((setupInfo) -> parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                  .apply(List.of())))
               .withTestResponse((result, setupInfo) -> {
-                assertThat(result).isEqualTo( "" + value);
-              })
-      );
+                assertThat(result).isEqualTo("" + value);
+              }));
     }
   }
-
 
   private String parse(String json) {
     try {
@@ -92,9 +76,5 @@ public class RepeatStateCallerTest {
       throw new RuntimeException(e);
     }
   }
-
-
-
-
 
 }

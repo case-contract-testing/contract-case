@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
+import java.lang.Object;
 import java.lang.String;
-import javax.annotation.Generated;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
@@ -19,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class ChangeLogLevel<M> implements DslMatcher {
+public class ChangeLogLevel implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -40,12 +41,12 @@ public class ChangeLogLevel<M> implements DslMatcher {
    */
   @Getter
   @JsonProperty("_case:matcher:child")
-  private final M child;
+  private final Object child;
 
   @Builder
   public ChangeLogLevel(
     @NotNull final String logLevel,
-    @NotNull final M child
+    @NotNull final Object child
   ) {
     this.type = "_case:CascadingContext";
     this.logLevel = logLevel;

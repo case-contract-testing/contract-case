@@ -1,4 +1,6 @@
+import { CaseCoreError } from '@contract-case/case-plugin-base';
 import {
+  isPassToMatcher,
   MatcherDslDeclaration,
   ParameterDeclaration,
   ParameterType,
@@ -7,15 +9,22 @@ import {
   toCamelCase,
   toScreamingSnakeCase,
 } from '../../naming/stringIdiomTransformations';
+import { UnreachableError } from '../../../entities/errors/unreachableError';
 
 const getTsType = (paramType: ParameterType): string => {
   if (typeof paramType === 'string') {
     return paramType;
   }
   if (paramType.kind === 'array') {
-    return `${paramType.type}[]`;
+    return `${getTsType(paramType.type)}[]`;
   }
-  return getTsType(paramType.type);
+  if (isPassToMatcher(paramType)) {
+    throw new CaseCoreError('PassToMatcher is currently unimplemented');
+  }
+  throw new UnreachableError(
+    `Unknown parameter type for TypeScript: ${paramType}`,
+    paramType,
+  );
 };
 
 export const generateDslCode = (

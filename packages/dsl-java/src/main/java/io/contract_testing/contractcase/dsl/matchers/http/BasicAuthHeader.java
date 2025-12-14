@@ -2,11 +2,16 @@ package io.contract_testing.contractcase.dsl.matchers.http;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
+import java.lang.Object;
 import java.lang.String;
-import javax.annotation.Generated;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -17,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class BasicAuthHeader<M> implements DslMatcher {
+public class BasicAuthHeader implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -27,14 +32,28 @@ public class BasicAuthHeader<M> implements DslMatcher {
   private final String type;
 
   /**
+   * Constant parameter prefix
+   */
+  @Getter
+  @JsonProperty("_case:matcher:prefix")
+  private final String prefix = "Basic ";
+
+  /**
+   * Constant parameter resolvesTo
+   */
+  @Getter
+  @JsonProperty("_case:matcher:resolvesTo")
+  private final String resolvesTo = "string";
+
+  /**
    * The value part of the basic auth header. Usually this will be a BasicAuthUserNamePassword
    */
   @Getter
   @JsonProperty("_case:matcher:suffix")
-  private final M value;
+  private final Object value;
 
   @Builder
-  public BasicAuthHeader(@NotNull final M value) {
+  public BasicAuthHeader(@NotNull final Object value) {
     this.type = "_case:StringPrefix";
     this.value = value;
   }

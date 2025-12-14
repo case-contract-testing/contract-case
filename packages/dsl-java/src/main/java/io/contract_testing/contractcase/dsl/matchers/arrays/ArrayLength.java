@@ -9,14 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
+import jakarta.annotation.Generated;
 import java.lang.Integer;
 import java.lang.String;
-import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import javax.annotation.Nullable;
 import javax.annotation.Nullable;
 import javax.annotation.Nullable;
-import lombok.Builder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
@@ -27,7 +26,7 @@ import lombok.Getter;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class ArrayLength<M> implements DslMatcher {
+public class ArrayLength implements DslMatcher {
 
   /**
    * ContractCase's internal type for this element
@@ -54,13 +53,6 @@ public class ArrayLength<M> implements DslMatcher {
   @Getter
   @JsonProperty("_case:matcher:maxLength")
   private final Integer maxLength;
-
-  @Builder
-  public ArrayLength() {
-    this.type = "_case:ArrayLength";
-    this.minLength = null;
-    this.maxLength = null;
-  }
 
   @Builder
   public ArrayLength(

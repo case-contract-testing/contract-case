@@ -4,17 +4,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslInteraction;
+import io.contract_testing.contractcase.dsl.matchers.functions.FunctionArguments;
+import io.contract_testing.contractcase.dsl.matchers.functions.FunctionThrownError;
+import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
-import javax.annotation.Generated;
+import javax.annotation.Nullable;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
 import lombok.Getter;
+import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
-public class WillCallThrowingFunction<M> implements DslInteraction {
+public class WillCallThrowingFunction implements DslInteraction {
 
   /**
    * ContractCase's internal type for this element
@@ -57,26 +64,36 @@ public class WillCallThrowingFunction<M> implements DslInteraction {
   );
 
   /**
-   * The arguments expected by this function. Generally will be a FunctionArgumentsMatcher
+   * The name of the function that will be called
+   */
+  @Getter
+  @JsonProperty("functionName")
+  private final String functionName;
+
+  /**
+   * The arguments expected by this function.
    */
   @Getter
   @JsonProperty("request")
-  private final M arguments;
+  private final FunctionArguments arguments;
 
   /**
    * The error thrown by this function. Generally will be a FunctionReturnValueMatcher
    */
   @Getter
   @JsonProperty("response")
-  private final M error;
+  private final FunctionThrownError error;
 
   @Builder
   public WillCallThrowingFunction(
-    @NotNull final M arguments,
-    @NotNull final M error
+    @NotNull final String functionName,
+    @NotNull final List<Object> arguments,
+    @NotNull final Object errorClassName,
+    @Nullable final Object message
   ) {
     this.type = "_case:MockFunctionExecution";
-    this.arguments = arguments;
-    this.error = error;
+    this.functionName = functionName;
+    this.arguments = new FunctionArguments(arguments);
+    this.error = new FunctionThrownError(errorClassName, message);
   }
 }

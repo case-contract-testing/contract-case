@@ -46,6 +46,11 @@ public class FunctionCallerVerificationTest {
     );
 
     contract.registerFunction(
+        "OneArgFunction",
+        (String key) -> null
+    );
+
+    contract.registerFunction(
         "PageNumbers",
         convertJsonIntegerArg((Integer num) -> num + " pages")
     );

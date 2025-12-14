@@ -45,10 +45,7 @@ public class FunctionCallerVerificationEmptyConfigTest {
             })))
             .build())) {
       contract.registerFunction("NoArgFunction", () ->
-
-      {
-        return null;
-      });
+          null);
 
       contract.registerFunction(
           "PageNumbers",
@@ -67,6 +64,11 @@ public class FunctionCallerVerificationEmptyConfigTest {
           convertJsonStringArgs((String key) -> {
             throw new CustomException();
           })
+      );
+
+      contract.registerFunction(
+          "OneArgFunction",
+          (String key) -> null
       );
 
       contract.registerFunction(

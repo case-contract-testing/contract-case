@@ -9,16 +9,13 @@ import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.configuration.Trigger;
-import io.contract_testing.contractcase.definitions.interactions.http.HttpExample;
-import io.contract_testing.contractcase.definitions.interactions.http.WillSendHttpRequest;
-import io.contract_testing.contractcase.definitions.matchers.convenience.NamedMatch;
-import io.contract_testing.contractcase.definitions.matchers.convenience.StateVariable;
-import io.contract_testing.contractcase.definitions.matchers.http.HttpRequest;
-import io.contract_testing.contractcase.definitions.matchers.http.HttpRequestExample;
-import io.contract_testing.contractcase.definitions.matchers.http.HttpResponse;
-import io.contract_testing.contractcase.definitions.matchers.http.HttpResponseExample;
-import io.contract_testing.contractcase.definitions.matchers.strings.StringPrefix;
-import io.contract_testing.contractcase.definitions.states.InState;
+import io.contract_testing.contractcase.dsl.interactions.http.WillSendHttpRequest;
+import io.contract_testing.contractcase.dsl.matchers.convenience.NamedMatch;
+import io.contract_testing.contractcase.dsl.matchers.convenience.StateVariable;
+import io.contract_testing.contractcase.dsl.matchers.http.HttpRequest;
+import io.contract_testing.contractcase.dsl.matchers.http.HttpResponse;
+import io.contract_testing.contractcase.dsl.matchers.strings.StringPrefix;
+import io.contract_testing.contractcase.dsl.states.InState;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import io.contract_testing.contractcase.test.httpclient.implementation.YourApiClient;
 import java.io.IOException;
@@ -28,11 +25,12 @@ import org.junit.jupiter.api.Test;
 
 public class RewriteFailureTest {
 
-  private static final ContractDefiner contract = new ContractDefiner(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
-      .consumerName("Java Example HTTP Client")
-      .providerName("Java Example HTTP Server")
-      .publish(PublishType.NEVER)
-      .build());
+  private static final ContractDefiner contract = new ContractDefiner(
+      ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+          .consumerName("Java Example HTTP Client")
+          .providerName("Java Example HTTP Server")
+          .publish(PublishType.NEVER)
+          .build());
 
   Trigger<String> getHealth = (setupInfo) -> {
     try {
@@ -44,47 +42,42 @@ public class RewriteFailureTest {
 
   NamedMatch GET_USER_VIA_QUERY = new NamedMatch(
       "Get user via query",
-      new HttpRequest(HttpRequestExample.builder()
+      HttpRequest.builder()
           .path("/users")
           .query(Map.of("id", new StateVariable("userId")))
           .method("GET")
-          .build())
-  );
+          .build());
 
   NamedMatch GET_USER_VIA_PATH = new NamedMatch(
       "Get user via path",
-      new HttpRequest(HttpRequestExample.builder()
+      HttpRequest.builder()
           .path(new StringPrefix("/users/", new StateVariable("userId")))
           .method("GET")
-          .build())
-  );
+          .build());
 
   @Test
   public void failsWhenTryingToOverwrite() {
     contract.runInteraction(
         new InteractionDefinition<>(
             List.of(new InState("Server is up")),
-            new WillSendHttpRequest(HttpExample.builder()
+            WillSendHttpRequest.builder()
                 .request(new NamedMatch(
                     "Get health",
-                    new HttpRequest(HttpRequestExample.builder()
+                    HttpRequest.builder()
                         .path("/health")
                         .method("GET")
-                        .build())
-                ))
-                .response(new HttpResponse(HttpResponseExample.builder()
+                        .build()))
+                .response(HttpResponse.builder()
                     .status(200)
                     .body(Map.ofEntries(Map.entry("status", "up")))
-                    .build()))
-                .build())
-        ),
+                    .build())
+                .build()),
         IndividualSuccessTestConfigBuilder.<String>builder()
             .withProviderName("Java Example HTTP Server")
             .withTrigger(getHealth)
             .withTestResponse((status, setupInfo) -> {
               assertThat(status).isEqualTo("up");
-            })
-    );
+            }));
 
     assertThatThrownBy(contract::endRecord).matches((t) -> {
       assertThat(t).isInstanceOf(ContractCaseConfigurationError.class);
@@ -92,6 +85,5 @@ public class RewriteFailureTest {
       return true;
     });
   }
-
 
 }

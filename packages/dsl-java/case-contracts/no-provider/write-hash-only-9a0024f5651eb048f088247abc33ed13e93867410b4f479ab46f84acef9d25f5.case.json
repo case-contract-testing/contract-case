@@ -1,31 +1,22 @@
 {
   "contractType": "case::contract",
   "description": {
-    "consumerName": "Write Main Only",
+    "consumerName": "Write Hash Only",
     "providerName": "No Provider"
   },
   "metadata": {
     "_case": {
       "version": "0.27.3",
-      "hash": "d6b9a2a9fbcb3179c8c0fe02931cab2399257ecab9f3b5fe58e1fa1f5f503a56"
+      "hash": "9a0024f5651eb048f088247abc33ed13e93867410b4f479ab46f84acef9d25f5"
     }
   },
   "matcherLookup": {
-    "matcher:void": {
-      "_case:context:matchBy": "type",
-      "_case:matcher:resolvesTo": "null",
-      "_case:matcher:type": "_case:MatchNull"
-    },
     "matcher:returns null": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
       "success": {
-        "_case:matcher:child": {
-          "_case:context:matchBy": "type",
-          "_case:matcher:resolvesTo": "null",
-          "_case:matcher:type": "_case:MatchNull"
-        },
-        "_case:matcher:type": "_case:Lookup",
-        "_case:matcher:uniqueName": "void"
+        "_case:context:matchBy": "type",
+        "_case:matcher:resolvesTo": "null",
+        "_case:matcher:type": "_case:MatchNull"
       }
     },
     "matcher:An invocation of NoArgFunction()": {
@@ -70,13 +61,9 @@
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionResultMatcher",
             "success": {
-              "_case:matcher:child": {
-                "_case:context:matchBy": "type",
-                "_case:matcher:resolvesTo": "null",
-                "_case:matcher:type": "_case:MatchNull"
-              },
-              "_case:matcher:type": "_case:Lookup",
-              "_case:matcher:uniqueName": "void"
+              "_case:context:matchBy": "type",
+              "_case:matcher:resolvesTo": "null",
+              "_case:matcher:type": "_case:MatchNull"
             }
           }
         }
