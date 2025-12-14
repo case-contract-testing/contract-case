@@ -1,8 +1,6 @@
 package io.contract_testing.contractcase.dsl.matchers.functions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
@@ -11,9 +9,6 @@ import java.lang.String;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -48,6 +43,15 @@ public class FunctionNamedArguments implements DslMatcher {
   @JsonProperty("arguments")
   private final List<Object> arguments;
 
+  /**
+   * Matches function arguments, for use with a MockFunctionCall / MockFunctionExecution.<pre>{@code   This version names this combination of arguments, which is useful for naming specific invocations.
+   *
+   *   This is an internal matcher used by the function interactions, you generally don't need to invoke it directly unless you
+   *   are a plugin author.
+   * }</pre>
+   * @param uniqueName The unique name for this combination of arguments
+   * @param arguments An array of matchers that describe the expected function arguments in order.
+   */
   @Builder
   public FunctionNamedArguments(
     @NotNull final String uniqueName,

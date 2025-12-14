@@ -1,12 +1,7 @@
 package io.contract_testing.contractcase.dsl.matchers.http;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
@@ -14,13 +9,7 @@ import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import javax.annotation.Nullable;
-import javax.annotation.Nullable;
-import javax.annotation.Nullable;
-import javax.annotation.Nullable;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -64,6 +53,15 @@ public class HttpResponse implements DslMatcher {
   @JsonProperty("body")
   private final Object body;
 
+  /**
+     * Matches an HTTP response.
+     * @param status The HTTP status code accepted by this example (Recommended: Use the HttpStatusCode matcher)
+     * @param headers A dictionary object of header names and associated test-equivalence matcher values
+accepted by this example. 
+            
+If not provided, no header matching is performed
+     * @param body A dictionary object that describes the body for this response. If not provided, no body matching is performed.
+     */
   @Builder
   public HttpResponse(
     @NotNull final Object status,

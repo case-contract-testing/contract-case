@@ -1,8 +1,6 @@
 package io.contract_testing.contractcase.dsl.matchers.convenience;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
@@ -10,9 +8,6 @@ import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -44,6 +39,13 @@ public class NamedMatch implements DslMatcher {
   @JsonProperty("_case:matcher:child")
   private final Object child;
 
+  /**
+   * Saves the matcher below it with a unique name that can be used with lookups
+   * in tests after this one. Lookups can be made with the ReferenceMatch matcher.
+   *
+   * @param uniqueName The name you can use to lookup this matcher later. If you have two matcher with the same unique name, their contents must be identical.
+   * @param child The next matcher in the tree.
+   */
   @Builder
   public NamedMatch(
     @NotNull final String uniqueName,

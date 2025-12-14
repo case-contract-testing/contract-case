@@ -1,18 +1,12 @@
 package io.contract_testing.contractcase.dsl.matchers.http;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -52,6 +46,11 @@ public class BasicAuthHeader implements DslMatcher {
   @JsonProperty("_case:matcher:suffix")
   private final Object value;
 
+  /**
+   * Matches the value part of a basic auth header.<pre>{@code   Typically you'll want to pass a BasicAuthUserNamePassword matcher to this.
+   * }</pre>
+   * @param value The value part of the basic auth header. Usually this will be a BasicAuthUserNamePassword
+   */
   @Builder
   public BasicAuthHeader(@NotNull final Object value) {
     this.type = "_case:StringPrefix";

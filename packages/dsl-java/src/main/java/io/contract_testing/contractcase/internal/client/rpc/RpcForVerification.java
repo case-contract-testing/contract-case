@@ -2,7 +2,6 @@ package io.contract_testing.contractcase.internal.client.rpc;
 
 import com.google.protobuf.StringValue;
 import io.contract_testing.contractcase.logs.LogPrinter;
-import io.contract_testing.contractcase.internal.edge.RunTestCallback;
 import io.contract_testing.contractcase.grpc.ContractCaseGrpc.ContractCaseStub;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.InvokeFunction;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.InvokeTest;

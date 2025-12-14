@@ -1,16 +1,12 @@
 package io.contract_testing.contractcase.dsl.matchers.http;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -43,6 +39,11 @@ public class HttpStatusCode implements DslMatcher {
   @JsonProperty("_case:matcher:rule")
   private final Object statusCode;
 
+  /**
+   * Matches an HTTP status code.<p>This takes a string, so that you can relax matching,
+   * with {@code X}, eg {@code "4XX"} or {@code "5XX"}. This is useful for covering error handling in contracts.<p>If you need to match multiple specific statues, you can use the HttpStatusCodes matcher instead, which takes an array.
+   * @param statusCode The status code to match
+   */
   @Builder
   public HttpStatusCode(@NotNull final Object statusCode) {
     this.type = "_case:HttpStatusCode";

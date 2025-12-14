@@ -1,14 +1,12 @@
 package io.contract_testing.contractcase.dsl.matchers.functions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,6 +31,10 @@ public class FunctionReturnValue implements DslMatcher {
   @JsonProperty("success")
   private final Object returnValue;
 
+  /**
+   * Matches function return values, for use with a MockFunctionCall / MockFunctionExecution.
+   * @param returnValue The return value of this function
+   */
   @Builder
   public FunctionReturnValue(@NotNull final Object returnValue) {
     this.type = "_case:FunctionResultMatcher";

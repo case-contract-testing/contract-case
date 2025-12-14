@@ -1,10 +1,6 @@
 package io.contract_testing.contractcase.dsl.interactions.functions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslInteraction;
 import io.contract_testing.contractcase.dsl.matchers.functions.FunctionArguments;
@@ -16,12 +12,6 @@ import java.util.List;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -83,6 +73,12 @@ public class WillCallFunction implements DslInteraction {
   @JsonProperty("response")
   private final FunctionReturnValue returnValue;
 
+  /**
+   * Defines an example that executes a registered function with specific arguments
+   * @param functionName The name of the function that will be called
+   * @param arguments The arguments expected by this function. This should be an array containing the expectations for each parameter
+   * @param returnValue The return value of this function.
+   */
   @Builder
   public WillCallFunction(
     @NotNull final String functionName,

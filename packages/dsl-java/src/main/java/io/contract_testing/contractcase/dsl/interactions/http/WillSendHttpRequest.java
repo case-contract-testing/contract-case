@@ -1,9 +1,6 @@
 package io.contract_testing.contractcase.dsl.interactions.http;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslInteraction;
 import jakarta.annotation.Generated;
@@ -12,10 +9,6 @@ import java.lang.String;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -70,6 +63,11 @@ public class WillSendHttpRequest implements DslInteraction {
   @JsonProperty("response")
   private final Object response;
 
+  /**
+   * Defines an example that expects to send an HTTP response. Use this to define a contract at an HTTP server.
+   * @param request A test equivalence matcher that will match an HTTP request (recommended: the Test Equivalence Matcher `HttpRequest`)
+   * @param response A test equivalence matcher that will match an HTTP response (recommended: the Test Equivalence Matcher `HttpResponse`)
+   */
   @Builder
   public WillSendHttpRequest(
     @NotNull final Object request,

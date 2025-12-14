@@ -8,7 +8,7 @@ import {
   ClassReference,
   Writer,
   CodeBlock,
-} from '@amplication/java-ast';
+} from '@contract-case/java-ast';
 import prettier from 'prettier';
 import {
   CaseConfigurationError,
@@ -336,11 +336,13 @@ const createParameter = (
  *
  * @param constructorDescriptor - Constructor descriptor containing all constructor information
  * @param className - Name of the class for the constructor
+ * @param javadoc - Javadoc for the constructor
  * @returns Method AST node configured as a constructor
  */
 const createConstructor = (
   constructorDescriptor: JavaConstructorDescriptor,
   packageName: string,
+  javadoc: string,
 ): Class.Constructor => {
   const bodyStatements: string[] = [];
   const references: ClassReference[] = [];
@@ -363,6 +365,7 @@ const createConstructor = (
 
   return {
     access: Access.Public,
+    javadoc,
     annotations: [
       new Annotation({
         reference: new ClassReference({
@@ -468,6 +471,7 @@ export function renderJavaClass(descriptor: JavaDescriptor): Promise<string> {
     const constructor = createConstructor(
       constructorDescriptor,
       descriptor.packageName,
+      descriptor.classDocumentation,
     );
 
     javaClass.addConstructor(constructor);

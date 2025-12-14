@@ -1,8 +1,6 @@
 package io.contract_testing.contractcase.dsl.matchers.convenience;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
@@ -10,9 +8,6 @@ import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -44,6 +39,12 @@ public class WithExample implements DslMatcher {
   @JsonProperty("_case:matcher:example")
   private final Object example;
 
+  /**
+   * Adds an example to the provided matcher. Useful when you have a complicated
+   * set of constraints and ContractCase can't figure out what the best example should be.<p>The most common use case for this matcher is for providing a clear example for array matchers.<p>The provided example must be matchable by the child matcher.<p>Note that WithExample completely overrides the generated example that would normally be produced by the child matcher.
+   * @param child The matcher to add an example to
+   * @param example The example to use when stripping the matchers
+   */
   @Builder
   public WithExample(
     @NotNull final Object child,

@@ -3,16 +3,12 @@ package io.contract_testing.contractcase.dsl.matchers.modifiers;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -44,6 +40,12 @@ public class ExactlyLike implements DslMatcher {
   @JsonInclude(Include.ALWAYS)
   public final String matchBy = "exact";
 
+  /**
+   * Everything inside this matcher will be matched exactly, unless overridden
+   * with a generic matcher (eg {@code AnyString} or{@code  ShapedLike}). Use this to switch
+   * out of {@code shapedLike} and back to the default exact matching.
+   * @param child The object, array, primitive or matcher to match exactly
+   */
   @Builder
   public ExactlyLike(@NotNull final Object child) {
     this.type = "_case:CascadingContext";

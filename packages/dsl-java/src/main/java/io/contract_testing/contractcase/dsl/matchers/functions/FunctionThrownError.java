@@ -3,18 +3,13 @@ package io.contract_testing.contractcase.dsl.matchers.functions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import javax.annotation.Nullable;
-import javax.annotation.Nullable;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -48,6 +43,11 @@ public class FunctionThrownError implements DslMatcher {
   @JsonProperty("message")
   private final Object message;
 
+  /**
+   * Matches errors thrown from a function execution, for use with a MockFunctionCall / MockFunctionExecution.
+   * @param errorClassName The class name for the expected error (must resolve to a string)
+   * @param message The message for the expected error, if any
+   */
   @Builder
   public FunctionThrownError(
     @NotNull final Object errorClassName,

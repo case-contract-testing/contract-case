@@ -1,16 +1,12 @@
 package io.contract_testing.contractcase.dsl.matchers.strings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,6 +38,10 @@ public class StringifiedJson implements DslMatcher {
   @JsonProperty("_case:matcher:object")
   private final Object object;
 
+  /**
+   * Matches a JSON.stringify()ed version of the given object.
+   * @param object The object to stringify. May also contain matchers
+   */
   @Builder
   public StringifiedJson(@NotNull final Object object) {
     this.type = "_case:JsonEncoded";

@@ -1,14 +1,12 @@
 package io.contract_testing.contractcase.dsl.matchers.objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,6 +31,10 @@ public class ObjectEachValueMatches implements DslMatcher {
   @JsonProperty("_case:matcher:matcher")
   private final Object matcher;
 
+  /**
+   * Matches an object where each value matches the provided matcher
+   * @param matcher The matcher that all values must pass
+   */
   @Builder
   public ObjectEachValueMatches(@NotNull final Object matcher) {
     this.type = "_case:ObjectValuesMatch";

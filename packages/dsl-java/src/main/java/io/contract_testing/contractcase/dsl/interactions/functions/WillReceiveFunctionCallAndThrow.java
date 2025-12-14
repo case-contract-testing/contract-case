@@ -1,10 +1,6 @@
 package io.contract_testing.contractcase.dsl.interactions.functions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslInteraction;
 import io.contract_testing.contractcase.dsl.matchers.functions.FunctionArguments;
@@ -17,12 +13,6 @@ import java.util.Map;
 import javax.annotation.Nullable;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -84,6 +74,13 @@ public class WillReceiveFunctionCallAndThrow implements DslInteraction {
   @JsonProperty("response")
   private final FunctionThrownError error;
 
+  /**
+   * Defines an example that throws an error from a registered function with specific arguments
+   * @param functionName The name of the function that will be called
+   * @param arguments The arguments expected by this function. This should be an array containing the expectations for each parameter
+   * @param errorClassName The class name for the expected error (must resolve to a string)
+   * @param message The message for the expected error, if any
+   */
   @Builder
   public WillReceiveFunctionCallAndThrow(
     @NotNull final String functionName,

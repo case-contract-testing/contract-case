@@ -1,4 +1,5 @@
 import java.text.SimpleDateFormat
+import io.franzbecker.gradle.lombok.task.DelombokTask
 
 plugins {
     id 'java-library'
@@ -7,6 +8,7 @@ plugins {
     id 'org.jreleaser' version '1.21.0'
     id "com.google.protobuf" version "0.9.5"
     id "com.github.spotbugs" version "6.4.7"
+    id 'io.franzbecker.gradle-lombok' version '5.0.0'
 }
 group = 'io.contract-testing.contractcase'
 version = "0.27.3" // x-release-please-version
@@ -16,6 +18,22 @@ sourceCompatibility = '17'
 repositories {
     mavenLocal()
     mavenCentral()
+}
+
+
+
+task delombok(type: DelombokTask, dependsOn: [compileJava, 'generateProto']) {
+    ext.outputDir = file("$buildDir/delombok")
+    outputs.dir(outputDir)
+    inputs.files(sourceSets.main.java.srcDirs)
+    
+    doFirst {
+        outputDir.deleteDir()
+        sourceSets.main.java.srcDirs.each {
+            args(it)
+        }
+        args("-d", outputDir)
+    }
 }
 
 tasks.withType(Javadoc).configureEach {
@@ -73,6 +91,9 @@ test {
 }
 
 javadoc {
+    dependsOn delombok
+    source = delombok.outputDir
+    failOnError = false
     configure(options) {
         tags(
                 'apiNote:a:"API Note:"',

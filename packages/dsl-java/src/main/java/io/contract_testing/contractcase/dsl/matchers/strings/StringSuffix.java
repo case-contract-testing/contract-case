@@ -1,9 +1,6 @@
 package io.contract_testing.contractcase.dsl.matchers.strings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
@@ -11,10 +8,6 @@ import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -52,6 +45,11 @@ public class StringSuffix implements DslMatcher {
   @JsonProperty("_case:matcher:suffix")
   private final String suffix;
 
+  /**
+   * Matches a string that ends with the given suffix.
+   * @param prefix The prefix to match. May itself be a matcher, and will be passed the string with the suffix stripped.
+   * @param suffix The suffix to match. Must be a string, and acceptable strings will match this suffix exactly.
+   */
   @Builder
   public StringSuffix(
     @NotNull final Object prefix,

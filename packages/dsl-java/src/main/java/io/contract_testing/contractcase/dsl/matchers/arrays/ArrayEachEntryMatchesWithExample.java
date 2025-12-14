@@ -1,8 +1,6 @@
 package io.contract_testing.contractcase.dsl.matchers.arrays;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
@@ -11,9 +9,6 @@ import java.lang.String;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -44,6 +39,11 @@ public class ArrayEachEntryMatchesWithExample implements DslMatcher {
   @JsonProperty("_case:matcher:example")
   private final List<Object> example;
 
+  /**
+   * Matches an array where each element matches the provided matcher. This is like ArrayEachEntryMatches, but you can override the example.
+   * @param matcher The matcher to match against each element of the array.
+   * @param example Example data to use instead of the generated one
+   */
   @Builder
   public ArrayEachEntryMatchesWithExample(
     @NotNull final Object matcher,

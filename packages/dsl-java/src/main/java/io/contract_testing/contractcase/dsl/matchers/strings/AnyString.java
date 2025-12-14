@@ -3,17 +3,11 @@ package io.contract_testing.contractcase.dsl.matchers.strings;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
 import java.lang.String;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -50,6 +44,10 @@ public class AnyString implements DslMatcher {
   @JsonInclude(Include.ALWAYS)
   public final String matchBy = "type";
 
+  /**
+   * Matches any string.
+   * @param example An example string to use during contract definition
+   */
   @Builder
   public AnyString(@NotNull final String example) {
     this.type = "_case:MatchString";

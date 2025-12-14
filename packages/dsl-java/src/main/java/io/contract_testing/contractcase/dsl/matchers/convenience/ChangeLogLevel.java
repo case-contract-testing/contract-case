@@ -1,8 +1,6 @@
 package io.contract_testing.contractcase.dsl.matchers.convenience;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
@@ -10,9 +8,6 @@ import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -43,6 +38,11 @@ public class ChangeLogLevel implements DslMatcher {
   @JsonProperty("_case:matcher:child")
   private final Object child;
 
+  /**
+   * Alters the ContractCase log level below this matcher. Useful for debugging.<p>This has no effect on matching.<p>Note that this log level matcher will be saved into the contract, so it will also affect the log level during verification. Usually you will want to remove the use of this matcher before saving the contract.
+   * @param logLevel The new LogLevel. One of "none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainerDebug". see [LogLevel](https://case.contract-testing.io/docs/reference/configuring#loglevel-none--error--warn--debug--maintainerdebug) for details
+   * @param child The next matcher in the tree.
+   */
   @Builder
   public ChangeLogLevel(
     @NotNull final String logLevel,

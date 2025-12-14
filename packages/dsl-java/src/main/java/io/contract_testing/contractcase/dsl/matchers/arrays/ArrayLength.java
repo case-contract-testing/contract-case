@@ -1,11 +1,7 @@
 package io.contract_testing.contractcase.dsl.matchers.arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
@@ -13,12 +9,7 @@ import jakarta.annotation.Generated;
 import java.lang.Integer;
 import java.lang.String;
 import javax.annotation.Nullable;
-import javax.annotation.Nullable;
-import javax.annotation.Nullable;
-import javax.annotation.Nullable;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 
 /**
@@ -54,6 +45,12 @@ public class ArrayLength implements DslMatcher {
   @JsonProperty("_case:matcher:maxLength")
   private final Integer maxLength;
 
+  /**
+     * Matches an Array whose length is within the specified range (or 1-infinity if not specified).
+     * @param minLength The minimum length for the array. Must be greater than zero, 
+            otherwise empty arrays pass, which means you wouldn't be testing the array contents.
+     * @param maxLength The maximum length for the array. Must be greater than minimum length
+     */
   @Builder
   public ArrayLength(
     @Nullable final Integer minLength,

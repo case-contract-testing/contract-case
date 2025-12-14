@@ -18,7 +18,6 @@ import io.contract_testing.contractcase.internal.client.rpc.RpcForVerification;
 import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.internal.edge.ContractCaseConnectorConfig;
-import io.contract_testing.contractcase.internal.edge.RunTestCallback;
 import io.contract_testing.contractcase.logs.LogPrinter;
 import java.util.Arrays;
 import java.util.List;

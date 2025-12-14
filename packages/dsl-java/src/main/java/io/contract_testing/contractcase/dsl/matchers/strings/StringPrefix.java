@@ -1,9 +1,6 @@
 package io.contract_testing.contractcase.dsl.matchers.strings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
@@ -11,10 +8,6 @@ import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -52,6 +45,15 @@ public class StringPrefix implements DslMatcher {
   @JsonProperty("_case:matcher:suffix")
   private final Object suffix;
 
+  /**
+     * Matches a string that starts with the given prefix.
+     * @param prefix The prefix to match. Must be a string.
+     * @param suffix The string suffix. 
+          
+May itself be a matcher, and will be passed the string with the prefix stripped.
+            
+If you don't mind what the suffix is, pass an `AnyString` matcher
+     */
   @Builder
   public StringPrefix(
     @NotNull final String prefix,

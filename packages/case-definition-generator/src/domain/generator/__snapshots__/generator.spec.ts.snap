@@ -6,8 +6,6 @@ exports[`generator java generates a matcher as expected 1`] = `
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
@@ -15,10 +13,7 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import javax.annotation.Nullable;
-import javax.annotation.Nullable;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -52,6 +47,11 @@ public class ArrayEachEntryMatches implements DslMatcher {
   @JsonProperty("_case:matcher:example")
   private final List<Object> example;
 
+  /**
+   * Matches an array where each element matches the provided matcher.
+   * @param matcher The matcher to match against each element of the array.
+   * @param example Example data to use instead of the generated one
+   */
   @Builder
   public ArrayEachEntryMatches(
     @NotNull final Object matcher,
@@ -69,7 +69,6 @@ exports[`generator java works for the other case too 1`] = `
 "package io.contract_testing.contractcase.dsl.matchers.tests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
@@ -77,7 +76,6 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -102,6 +100,10 @@ public class ArrayContains implements DslMatcher {
   @JsonProperty("_case:matcher:matchers")
   private final List<Object> matchers;
 
+  /**
+   * Matches an Array which contains elements that match the given matchers. Note that two different matchers may be satisfied by the same item in the array.
+   * @param matchers Any number of matchers, each of which must be found inside the array, in any order.
+   */
   @Builder
   public ArrayContains(@NotNull final List<Object> matchers) {
     this.type = "_case:ArrayContains";

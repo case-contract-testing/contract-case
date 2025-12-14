@@ -1,16 +1,12 @@
 package io.contract_testing.contractcase.dsl.matchers.strings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
 import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -43,6 +39,11 @@ public class Base64Encoded implements DslMatcher {
   @JsonProperty("_case:matcher:child")
   private final Object child;
 
+  /**
+   * Matches a base64 encoded version of the given string or string matcher.<p>WARNING: Since many strings are accidentally decodable as base64, this matcher is
+   * best combined with a more restrictive string matcher (eg {@code StringifiedJson}).
+   * @param child The string or string matcher to encode.
+   */
   @Builder
   public Base64Encoded(@NotNull final Object child) {
     this.type = "_case:Base64Encoded";

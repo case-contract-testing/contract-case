@@ -1,8 +1,6 @@
 package io.contract_testing.contractcase.dsl.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslState;
 import jakarta.annotation.Generated;
@@ -10,9 +8,6 @@ import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -46,6 +41,14 @@ public class InStateWithVariables implements DslState {
   @JsonProperty("variables")
   private final Object variables;
 
+  /**
+     * A state descriptor for configuring an example
+     * that needs to run in a particular named state.
+     * @param stateName The name of the state used by this example. 
+This must match one of the state handlers provided in the configuration during the
+example run.
+     * @param variables A object where the keys are variable names, mapped to any data or matcher objects.
+     */
   @Builder
   public InStateWithVariables(
     @NotNull final String stateName,

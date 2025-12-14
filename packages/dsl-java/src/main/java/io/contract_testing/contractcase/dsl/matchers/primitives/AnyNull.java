@@ -3,15 +3,11 @@ package io.contract_testing.contractcase.dsl.matchers.primitives;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
 import java.lang.String;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Getter;
 import lombok.Getter;
 
 /**
@@ -43,6 +39,12 @@ public class AnyNull implements DslMatcher {
   @JsonInclude(Include.ALWAYS)
   public final String matchBy = "type";
 
+  /**
+   * Matches any null.<pre>{@code   How many is that? Well, one, probably.
+   *
+   *   Use this when you want to make a Trillion Dollar Mistake.
+   * }</pre>
+   */
   @Builder
   public AnyNull() {
     this.type = "_case:MatchNull";

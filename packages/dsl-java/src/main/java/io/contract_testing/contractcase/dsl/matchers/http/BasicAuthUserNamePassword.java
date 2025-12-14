@@ -1,9 +1,6 @@
 package io.contract_testing.contractcase.dsl.matchers.http;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.contract_testing.contractcase.dsl.ContractCaseDsl;
 import io.contract_testing.contractcase.dsl.DslMatcher;
 import jakarta.annotation.Generated;
@@ -11,10 +8,6 @@ import java.lang.Object;
 import java.lang.String;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -55,6 +48,14 @@ public class BasicAuthUserNamePassword implements DslMatcher {
   @JsonProperty("_case:matcher:password")
   private final Object password;
 
+  /**
+   * Matches the value part of a basic auth header.<pre>{@code   Use this as the parameter for a BasicAuthHeader matcher
+   *
+   *   This is useful in conjunction with the StateVariable matcher, to mock out auth at contract definition time.
+   * }</pre>
+   * @param username The username to match
+   * @param password The password to match
+   */
   @Builder
   public BasicAuthUserNamePassword(
     @NotNull final Object username,
