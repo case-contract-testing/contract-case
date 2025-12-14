@@ -27,8 +27,8 @@ const strings: PluginDslDeclaration = {
       type: 'Base64Encoded',
       documentation: `Matches a base64 encoded version of the given string or string matcher.
  
-      WARNING: Since many strings are accidentally decodable as base64, this matcher is
-        best combined with a more restrictive string matcher (eg \`StringifiedJson\`).
+WARNING: Since many strings are accidentally decodable as base64, this matcher is
+best combined with a more restrictive string matcher (eg \`StringifiedJson\`).
       `,
       params: [
         {
@@ -79,7 +79,7 @@ const strings: PluginDslDeclaration = {
     },
     {
       name: 'StringPrefix',
-      type: 'MatchStringPrefix',
+      type: 'StringPrefix',
       documentation: `Matches a string that starts with the given prefix.`,
       params: [
         {
@@ -91,15 +91,10 @@ const strings: PluginDslDeclaration = {
           name: 'suffix',
           documentation: `The string suffix. 
           
-          May itself be a matcher, and will be passed the string with the prefix stripped.
+May itself be a matcher, and will be passed the string with the prefix stripped.
             
-            If you don't mind what the suffix is, pass an \`AnyString\` matcher`,
+If you don't mind what the suffix is, pass an \`AnyString\` matcher`,
           type: 'AnyCaseMatcherOrData',
-        },
-        {
-          name: 'example',
-          documentation: 'An example string to use during contract definition',
-          type: 'string',
         },
       ],
       constantParams: {
@@ -108,7 +103,7 @@ const strings: PluginDslDeclaration = {
     },
     {
       name: 'StringSuffix',
-      type: 'MatchStringSuffix',
+      type: 'StringSuffix',
       documentation: `Matches a string that ends with the given suffix.`,
       params: [
         {

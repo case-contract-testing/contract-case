@@ -35,6 +35,9 @@ const primitives: PluginDslDeclaration = {
       contextModifiers: {
         matchBy: 'type',
       },
+      constantParams: {
+        resolvesTo: 'number',
+      },
     },
     {
       name: 'AnyNull',
@@ -46,7 +49,6 @@ const primitives: PluginDslDeclaration = {
       Use this when you want to make a Trillion Dollar Mistake.`,
       params: [],
       constantParams: {
-        example: null,
         resolvesTo: 'null',
       },
       contextModifiers: {

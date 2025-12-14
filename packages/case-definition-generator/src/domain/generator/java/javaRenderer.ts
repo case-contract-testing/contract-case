@@ -431,7 +431,7 @@ export function renderJavaClass(descriptor: JavaDescriptor): Promise<string> {
       new Annotation({
         reference: new ClassReference({
           name: 'Generated',
-          packageName: 'javax.annotation',
+          packageName: 'jakarta.annotation',
         }),
         argument: new CodeBlock({
           code: `"@contract-case/case-definition-generator"`,

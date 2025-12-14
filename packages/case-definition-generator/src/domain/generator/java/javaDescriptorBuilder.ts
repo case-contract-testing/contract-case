@@ -30,6 +30,19 @@ const createFieldDescriptors = (
     jsonPropertyName: `_case:${definition.kind === 'interaction' ? 'mock' : definition.kind}:type`,
     optional: false,
   },
+
+  ...('constantParams' in definition && definition.constantParams != null
+    ? Object.entries(definition.constantParams).map(
+        ([name, value]): JavaFieldDescriptor => ({
+          name,
+          type: 'string',
+          documentation: `Constant parameter ${name}`,
+          jsonPropertyName: `_case:matcher:${name}`,
+          optional: false,
+          initialValue: value,
+        }),
+      )
+    : []),
   ...('setup' in definition
     ? [
         {
@@ -75,6 +88,7 @@ const createConstructorDescriptors = (
     .filter((p) => !('initialValue' in p));
   const typeValue = `${namespace}:${definition.type}`;
 
+  /*
   // First constructor (required params only)
   constructors.push({
     parameters: requiredParams,
@@ -82,16 +96,15 @@ const createConstructorDescriptors = (
     typeValue,
     optionalParamsToSetNull: optionalParams,
   });
+  */
 
   // Second constructor (all params) if there are optional params
-  if (optionalParams.length > 0) {
-    constructors.push({
-      parameters: [...requiredParams, ...optionalParams],
-      documentation: convertMarkdownToJavadoc(definition.documentation),
-      typeValue,
-      optionalParamsToSetNull: [],
-    });
-  }
+  constructors.push({
+    parameters: [...requiredParams, ...optionalParams],
+    documentation: convertMarkdownToJavadoc(definition.documentation),
+    typeValue,
+    optionalParamsToSetNull: [],
+  });
 
   return constructors;
 };

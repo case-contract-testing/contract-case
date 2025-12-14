@@ -87,8 +87,10 @@ const namedArguments: ParameterDeclaration = {
     kind: 'PassToMatcher',
     exposedParams: [
       {
-        name: 'uniqueName',
-        documentation: 'The unique name for this combination of arguments',
+        name: 'invocationName',
+        jsonPropertyName: '_case:matcher:uniqueName',
+        documentation:
+          'The name for invocation (ie, this combination of arguments). Must be unique to this specific combination of arguments',
         type: 'string',
       },
       {

@@ -223,7 +223,7 @@ export type MatcherDslDeclaration = DslObjectDeclaration & {
    *
    * Currently only strings are supported. If you have a more complex use case, please raise an issue.
    */
-  readonly constantParams?: Record<string, string | null> & {
+  readonly constantParams?: Record<string, string> & {
     /**
      * If specified, sets the `matcher:resolvesTo` value.
      *

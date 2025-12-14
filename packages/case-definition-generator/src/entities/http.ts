@@ -227,7 +227,74 @@ If not provided, no header matching is performed`,
       },
     },
   ],
-  interactions: [],
+  interactions: [
+    {
+      name: 'WillReceiveHttpRequest',
+      type: 'MockHttpClient',
+      documentation: `Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.`,
+      params: [
+        {
+          name: 'request',
+          jsonPropertyName: 'request',
+          documentation:
+            'A test equivalence matcher that will match an HTTP request (recommended: the Test Equivalence Matcher `HttpRequest`)',
+          type: 'AnyCaseMatcherOrData',
+        },
+        {
+          name: 'response',
+          jsonPropertyName: 'response',
+          documentation:
+            'A test equivalence matcher that will match an HTTP response (recommended: the Test Equivalence Matcher `HttpResponse`)',
+          type: 'AnyCaseMatcherOrData',
+        },
+      ],
+      setup: {
+        write: {
+          type: '_case:MockHttpClient',
+          stateVariables: 'state',
+          triggers: 'generated',
+        },
+        read: {
+          type: '_case:MockHttpServer',
+          stateVariables: 'default',
+          triggers: 'provided',
+        },
+      },
+    },
+    {
+      name: 'WillSendHttpRequest',
+      type: 'MockHttpServer',
+      documentation: `Defines an example that expects to send an HTTP response. Use this to define a contract at an HTTP server.`,
+      params: [
+        {
+          name: 'request',
+          jsonPropertyName: 'request',
+          documentation:
+            'A test equivalence matcher that will match an HTTP request (recommended: the Test Equivalence Matcher `HttpRequest`)',
+          type: 'AnyCaseMatcherOrData',
+        },
+        {
+          name: 'response',
+          jsonPropertyName: 'response',
+          documentation:
+            'A test equivalence matcher that will match an HTTP response (recommended: the Test Equivalence Matcher `HttpResponse`)',
+          type: 'AnyCaseMatcherOrData',
+        },
+      ],
+      setup: {
+        write: {
+          type: '_case:MockHttpServer',
+          stateVariables: 'default',
+          triggers: 'provided',
+        },
+        read: {
+          type: '_case:MockHttpClient',
+          stateVariables: 'state',
+          triggers: 'generated',
+        },
+      },
+    },
+  ],
 };
 
 export default http;
