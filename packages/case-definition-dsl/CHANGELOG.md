@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.27.3...@contract-case/case-definition-dsl-v0.28.0) (2025-12-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **definition-dsl:** Deprecate io.contract_testing.contractcase.definitions, it is no longer published by this package. Ultimately, we will remove @contract-case/case-definition-dsl in favour of the new generator package. This is a breaking change because the definitions package is no longer required (or usable by) the java packages.
+* In order to support the upcoming replacement of JSii, the function invocation matcher has changed to no longer have the function name associated with it, it is now injected by the plugin at runtime. This is not a functional change, but it is still a breaking change as contracts with function plugins will have different definitions and will need to be updated.
+
+### Miscellaneous Chores
+
+* **definition-dsl:** Deprecate io.contract_testing.contractcase.definitions, it is no longer published by this package. Ultimately, we will remove @contract-case/case-definition-dsl in favour of the new generator package. This is a breaking change because the definitions package is no longer required (or usable by) the java packages. ([bf1c94c](https://github.com/case-contract-testing/contract-case/commit/bf1c94c8283301bfd5b0d4ef9251165b9ca1c9d1))
+
+
+### Code Refactoring
+
+* In order to support the upcoming replacement of JSii, the function invocation matcher has changed to no longer have the function name associated with it, it is now injected by the plugin at runtime. This is not a functional change, but it is still a breaking change as contracts with function plugins will have different definitions and will need to be updated. ([d1e5762](https://github.com/case-contract-testing/contract-case/commit/d1e57627e85609b4cbdf7d3b7d61bd6f0a97af29))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-entities-internal bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.3 to 0.28.0
+  * devDependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.27.3 to 0.28.0
+    * @contract-case/case-maintainer-config bumped from 0.27.3 to 0.28.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.3 to 0.28.0
+
 ## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-dsl-v0.27.2...@contract-case/case-definition-dsl-v0.27.3) (2025-10-25)
 
 

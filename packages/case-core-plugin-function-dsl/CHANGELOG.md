@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-dsl-v0.27.3...@contract-case/case-core-plugin-function-dsl-v0.28.0) (2025-12-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* In order to support the upcoming replacement of JSii, the function invocation matcher has changed to no longer have the function name associated with it, it is now injected by the plugin at runtime. This is not a functional change, but it is still a breaking change as contracts with function plugins will have different definitions and will need to be updated.
+
+### Code Refactoring
+
+* In order to support the upcoming replacement of JSii, the function invocation matcher has changed to no longer have the function name associated with it, it is now injected by the plugin at runtime. This is not a functional change, but it is still a breaking change as contracts with function plugins will have different definitions and will need to be updated. ([d1e5762](https://github.com/case-contract-testing/contract-case/commit/d1e57627e85609b4cbdf7d3b7d61bd6f0a97af29))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-plugin-dsl-types bumped from 0.27.3 to 0.28.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.27.3 to 0.28.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.3 to 0.28.0
+
 ## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-dsl-v0.27.2...@contract-case/case-core-plugin-function-dsl-v0.27.3) (2025-10-25)
 
 

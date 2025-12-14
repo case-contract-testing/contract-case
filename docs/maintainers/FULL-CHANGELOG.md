@@ -1,5 +1,48 @@
 # Changelog
 
+## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/v0.27.3...v0.28.0) (2025-12-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **java-dsl:** Remove the RunTestCallback versions of the Verifier constructor - they have been deprecated for several releases, and the RunTestCallback parameter was ignored anyway
+* **definition-dsl:** Deprecate io.contract_testing.contractcase.definitions, it is no longer published by this package. Ultimately, we will remove @contract-case/case-definition-dsl in favour of the new generator package. This is a breaking change because the definitions package is no longer required (or usable by) the java packages.
+* **java-dsl:** Remove JSii. This is a substantial ergonomic improvement, but it also means that the previous DSL classes in \`io.contract_testing.contractcase.definitions\` need to be replaced with the classes in \`io.contract_testing.contractcase.dsl\`. The functionality has been preserved, but there are minor differences in the way the DSL is expressed. Please see the documentation or official test code for examples of usage.
+* In order to support the upcoming replacement of JSii, the function invocation matcher has changed to no longer have the function name associated with it, it is now injected by the plugin at runtime. This is not a functional change, but it is still a breaking change as contracts with function plugins will have different definitions and will need to be updated.
+* Now plugins can control how the unique name constraint is set up. However, this is a breaking change for existing plugin authors, as now a mock executor is two functions. This is the beginning of the work needed to move away from requiring every interaction to have a request / response pair.
+
+### Features
+
+* Add a clear error code and documentation for when a function needs to be provided, but is missing ([59ad728](https://github.com/case-contract-testing/contract-case/commit/59ad728a76a9fc7a95691913a85f71cf0ebb2055))
+* **java:** Generated DSL classes now all have the ContractCaseDsl annotation on the class, to assist with custom serialisation ([77f3fca](https://github.com/case-contract-testing/contract-case/commit/77f3fcaa550c90b12fe43d240e60afc39dd80a9b))
+* Now plugins can control how the unique name constraint is set up. However, this is a breaking change for existing plugin authors, as now a mock executor is two functions. This is the beginning of the work needed to move away from requiring every interaction to have a request / response pair. ([bfcb019](https://github.com/case-contract-testing/contract-case/commit/bfcb0194ceafd94b3ed8eb46744bcb36de7bad8f))
+
+
+### Bug Fixes
+
+* **core:** Add Advice Override option for MISSING_REGISTERED_FUNCTION ([3ed93e0](https://github.com/case-contract-testing/contract-case/commit/3ed93e0ff43fb786a2a9e58bc76d6a213e49c129))
+* **core:** Now the core ArrayLength matcher knows the default values (previously, it was the matcher DSL) ([1d7704a](https://github.com/case-contract-testing/contract-case/commit/1d7704a7d69961aee7b884dc3e59573efd772069))
+* **java-dsl:** Move jetbrains annotations to the correct (compileOnly) scope ([4af9222](https://github.com/case-contract-testing/contract-case/commit/4af92220ebc9d8fd788e44b67b5a46c346715636))
+
+
+### Miscellaneous Chores
+
+* **definition-dsl:** Deprecate io.contract_testing.contractcase.definitions, it is no longer published by this package. Ultimately, we will remove @contract-case/case-definition-dsl in favour of the new generator package. This is a breaking change because the definitions package is no longer required (or usable by) the java packages. ([bf1c94c](https://github.com/case-contract-testing/contract-case/commit/bf1c94c8283301bfd5b0d4ef9251165b9ca1c9d1))
+
+
+### Code Refactoring
+
+* In order to support the upcoming replacement of JSii, the function invocation matcher has changed to no longer have the function name associated with it, it is now injected by the plugin at runtime. This is not a functional change, but it is still a breaking change as contracts with function plugins will have different definitions and will need to be updated. ([d1e5762](https://github.com/case-contract-testing/contract-case/commit/d1e57627e85609b4cbdf7d3b7d61bd6f0a97af29))
+* **java-dsl:** Remove JSii. This is a substantial ergonomic improvement, but it also means that the previous DSL classes in \`io.contract_testing.contractcase.definitions\` need to be replaced with the classes in \`io.contract_testing.contractcase.dsl\`. The functionality has been preserved, but there are minor differences in the way the DSL is expressed. Please see the documentation or official test code for examples of usage. ([6fa0d75](https://github.com/case-contract-testing/contract-case/commit/6fa0d75157de65a52cc41e297fd4fe0103de5cfc))
+* **java-dsl:** Remove the RunTestCallback versions of the Verifier constructor - they have been deprecated for several releases, and the RunTestCallback parameter was ignored anyway ([26a34d2](https://github.com/case-contract-testing/contract-case/commit/26a34d2b33d06adf2edfc61695a199c1aa4523e1))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.27.3 to 0.28.0
+
 ## [0.27.3](https://github.com/case-contract-testing/contract-case/compare/v0.27.2...v0.27.3) (2025-10-25)
 
 
