@@ -1577,6 +1577,33 @@
             },
             {
               "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#MISSING_REGISTERED_FUNCTION:member",
+              "docComment": "/**\n * The current interaction needs a user-provided function registered with ContractCase.\n *\n * When the contract expects a function that can be called by ContractCase, you must first register it with `registerFunction` so that it can be called during the interaction.\n *\n * If you experience this when verifying a new version of an existing contract, it may be because the contract has changed to expect a call to a function name that wasn't previously in the contract.\n *\n * Check that you have registered all the functions that the contract expects.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "MISSING_REGISTERED_FUNCTION: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'MISSING_REGISTERED_FUNCTION'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "MISSING_REGISTERED_FUNCTION",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#MISSING_STATE_HANDLER:member",
               "docComment": "/**\n * The current interaction was configured to have a particular state setup handler, but it was missing.\n *\n * State handlers are functions that you define to set up a particular state within your code (for example, an interaction on an HTTP provider might have a state named `'User with id 123 exists'`).\n *\n * This error indicates that Contractcase was expecting a named state handler, but it couldn't find it.\n *\n * This usually indicates a misconfiguration - check that you have provided a state handler with the exact name of the handler that was missing in the configuration of your test.\n *\n * If you need help investigating this error, you can set the configuration property `logLevel` to `'DEBUG'` to see a list of the configured state handlers.\n */\n",
               "excerptTokens": [

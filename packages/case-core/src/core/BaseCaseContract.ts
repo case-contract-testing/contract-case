@@ -155,7 +155,11 @@ export class BaseCaseContract {
             'When trying to add the duplicate, the userProvidedFunctions were:',
             this.userProvidedFunctions,
           );
-          throw new CaseConfigurationError(message, context);
+          throw new CaseConfigurationError(
+            message,
+            context,
+            'MISSING_REGISTERED_FUNCTION',
+          );
         }
         return invokeableFn;
       })

@@ -210,6 +210,31 @@ Check that you're not accidentally reusing test instances between runs.
 </td></tr>
 <tr><td>
 
+[MISSING\_REGISTERED\_FUNCTION](./case-plugin-base.configurationerrorcodes.missing_registered_function.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'MISSING\_REGISTERED\_FUNCTION'
+
+
+</td><td>
+
+The current interaction needs a user-provided function registered with ContractCase.
+
+When the contract expects a function that can be called by ContractCase, you must first register it with `registerFunction` so that it can be called during the interaction.
+
+If you experience this when verifying a new version of an existing contract, it may be because the contract has changed to expect a call to a function name that wasn't previously in the contract.
+
+Check that you have registered all the functions that the contract expects.
+
+
+</td></tr>
+<tr><td>
+
 [MISSING\_STATE\_HANDLER](./case-plugin-base.configurationerrorcodes.missing_state_handler.md)
 
 

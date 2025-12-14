@@ -157,6 +157,20 @@ export interface ConfigurationErrorCodes {
    */
   MISSING_TEST_FUNCTION: 'MISSING_TEST_FUNCTION';
   /**
+   * The current interaction needs a user-provided function registered with ContractCase.
+   *
+   * When the contract expects a function that can be called by ContractCase, you must first
+   * register it with `registerFunction` so that it can be called during the interaction.
+   *
+   * If you experience this when verifying a new version of an existing contract,
+   * it may be because the contract has changed to expect a call to a function name
+   * that wasn't previously in the contract.
+   *
+   * Check that you have registered all the functions that the contract expects.
+   *
+   */
+  MISSING_REGISTERED_FUNCTION: 'MISSING_REGISTERED_FUNCTION';
+  /**
    * Tried to publish verification results for a contract that doesn't have
    * information on where to publish the verification results.
    *
@@ -245,6 +259,7 @@ export const ErrorCodes: ErrorCodeDefinitions = {
     MISSING_STATE_HANDLER: 'MISSING_STATE_HANDLER',
     MISSING_TEST_FUNCTION: 'MISSING_TEST_FUNCTION',
     MISSING_TRIGGER_FUNCTION: 'MISSING_TRIGGER_FUNCTION',
+    MISSING_REGISTERED_FUNCTION: 'MISSING_REGISTERED_FUNCTION',
     NON_BROKERED_CONTRACT: 'NON_BROKERED_CONTRACT',
     OVERWRITE_CONTRACTS_NEEDED: 'OVERWRITE_CONTRACTS_NEEDED',
     UNDOCUMENTED: 'UNDOCUMENTED',
