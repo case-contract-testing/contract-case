@@ -16,24 +16,4 @@ new matchers.http.HttpResponse(responseExample: HttpResponseExample)
 | --- | --- | --- |
 | responseExample | `matchers.HttpResponseExample` | An HttpResponseExample that describes the response. |
   </TabItem>
-  <TabItem value="java" label="Java">
-```java
-import io.contract_testing.contractcase.definitions.matchers.http.HttpResponse;
-
-HttpResponse.Builder.create()
-    .status(java.lang.Object)
-//  .body(java.lang.Object)
-//  .headers(java.lang.Object)
-//  .uniqueName(java.lang.String)
-    .build();
-```
-
-#### Parameters <a name="Parameters" id="Parameters"></a>
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| status | `java.lang.Object` | Any test-equivalence matcher, string, or number for the HTTP status code accepted by this example (Recommended: Use the `HttpStatusCode` matcher). |
-| body | `java.lang.Object` | A test equivalence matcher or json object that describes the body for this response.<br/>If not provided, no body matching is performed. |
-| headers | `java.lang.Object` | A Map of header names and associated test-equivalence matcher values accepted by this example.<br/>If not provided, no header matching is performed |
-| uniqueName | `java.lang.String` | What unique name, if any, to give to this response. |
-  </TabItem>
 </Tabs>

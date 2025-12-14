@@ -16,20 +16,4 @@ new matchers.arrays.ArrayLength(options: ArrayLengthOptions)
 | --- | --- | --- |
 | options | `matchers.ArrayLengthOptions` | An `ArrayLengthOptions` object with optional minLength (default 1) and maxLength (default infinity) properties. |
   </TabItem>
-  <TabItem value="java" label="Java">
-```java
-import io.contract_testing.contractcase.definitions.matchers.arrays.ArrayLength;
-
-ArrayLength.Builder.create()
-//  .maxLength(java.lang.Number)
-//  .minLength(java.lang.Number)
-    .build();
-```
-
-#### Parameters <a name="Parameters" id="Parameters"></a>
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| maxLength | `java.lang.Number` | The maximum length for the array - must be greater than minimum length.<br/>Default infinity. |
-| minLength | `java.lang.Number` | The minimum length for the array - must be greater than zero, otherwise empty arrays pass and you wouldn't be testing the array contents.<br/>Default 1. |
-  </TabItem>
 </Tabs>

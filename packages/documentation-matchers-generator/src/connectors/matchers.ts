@@ -1,4 +1,3 @@
-import java from '@contract-case/case-definition-dsl/docs-json/java.json' with { type: 'json' };
 import ts from '@contract-case/case-definition-dsl/docs-json/typescript.json' with { type: 'json' };
 
 import { MatcherDoc, Parameter } from '../domain/types.js';
@@ -31,6 +30,7 @@ const extractModule = (id: string) => {
   return match[1];
 };
 
+/*
 const javaMatchers: Record<string, SingleLanguageMatcher> =
   java.apiReference.classes
     .filter((classDoc) => classDoc.id.includes('matcher'))
@@ -50,6 +50,7 @@ const javaMatchers: Record<string, SingleLanguageMatcher> =
       (acc, curr) => ({ ...acc, [curr.className]: curr }),
       {} as Record<string, SingleLanguageMatcher>,
     );
+*/
 
 const tsMatchers: Record<string, SingleLanguageMatcher> =
   ts.apiReference.classes
@@ -77,13 +78,15 @@ export const matchers: Array<MatcherDoc> = Object.keys(tsMatchers).map(
     if (!tsDetails) {
       throw new Error(`ERROR: ${key} has no tsDetails`);
     }
+    /* 
     const javaDetails = javaMatchers[key];
     if (!javaDetails) {
       throw new Error(`ERROR: ${key} has no javaDetails`);
     }
+    */
     return {
       ...tsDetails,
-      languages: [tsDetails, javaDetails],
+      languages: [tsDetails],
     };
   },
 );
