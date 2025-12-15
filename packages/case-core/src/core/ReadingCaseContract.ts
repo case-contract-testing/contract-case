@@ -8,6 +8,7 @@ import {
   addLocation,
   CaseExample,
   CaseConfigurationError,
+  ErrorCodes,
 } from '@contract-case/case-plugin-base';
 import { BaseCaseContract } from './BaseCaseContract';
 
@@ -22,6 +23,15 @@ import {
 import { executeExample } from './executeExample';
 import { exampleToNames } from '../entities';
 
+/**
+ * ReadingCaseContract deals with a single contract verification (read).
+ *
+ * It is the entry point for the actual verification process of a contract,
+ * but should be called from a connector. At the time of writing, the
+ * ContractVerifierConnector is the primary caller.
+ *
+ * @internal
+ */
 export class ReadingCaseContract extends BaseCaseContract {
   private mutex: Mutex;
 
@@ -29,9 +39,29 @@ export class ReadingCaseContract extends BaseCaseContract {
 
   private links: DownloadedContract;
 
+  /**
+   * What the verification status currently is.
+   *
+   * This is the true verification status; during a run it will be UNKNOWN
+   * if no current interactions have failed. It will be set to FAILED if
+   * any interaction fails.
+   *
+   * It can only be success once endRecord has been called.
+   */
   private status: 'UNKNOWN' | 'FAILED' | 'SUCCESS';
 
+  /**
+   * Indicates that the contract has been closed and verification is complete.
+   * Used to prevent attempts to calculate verification status twice.
+   */
   private contractClosed: boolean = false;
+
+  /**
+   * The tests passed back by a call to {@link ReadingCaseContract#getTests}
+   *
+   * Will be undefined if getTests has not been called.
+   */
+  private verificationTests: ContractVerificationTest[] | undefined = undefined;
 
   /**
    * Constructs a ReadingCaseContract
@@ -67,6 +97,14 @@ export class ReadingCaseContract extends BaseCaseContract {
     this.mutex = new Mutex();
   }
 
+  /**
+   * Calls the executeExample function for a specific interaction.
+   *
+   * @param index - The index of the interaction to execute
+   * @param invoker - The invoker for this test
+   * @param completionCallback - A callback to be called before completing the example
+   * @returns A promise that resolves when the interaction has been executed completely
+   */
   callExecuteExample<T extends AnyMockDescriptorType>(
     index: number,
     invoker: MultiTestInvoker<T>,
@@ -156,24 +194,28 @@ export class ReadingCaseContract extends BaseCaseContract {
       `This contract has ${this.currentContract.examples.length} interactions`,
     );
 
-    return this.currentContract.examples.map((example, index) => {
-      const names = exampleToNames(example, `${index}`);
-      this.initialContext.logger.maintainerDebug(
-        `Preparing test framework's callback for: ${names.mockName} `,
-      );
+    this.verificationTests = this.currentContract.examples.map(
+      (example, index) => {
+        const names = exampleToNames(example, `${index}`);
+        this.initialContext.logger.maintainerDebug(
+          `Preparing test framework's callback for: ${names.mockName} `,
+        );
 
-      let isPending = true;
+        let isPending = true;
 
-      return {
-        index,
-        testName: names.mockName,
-        isPending: (): boolean => isPending,
-        runTest: (): Promise<void> =>
-          this.callExecuteExample(index, invoker, () => {
-            isPending = false;
-          }),
-      };
-    });
+        return {
+          index,
+          testName: names.mockName,
+          isPending: (): boolean => isPending,
+          runTest: (): Promise<void> =>
+            this.callExecuteExample(index, invoker, () => {
+              isPending = false;
+            }),
+        };
+      },
+    );
+
+    return this.verificationTests;
   }
 
   recordExample(
@@ -198,32 +240,71 @@ export class ReadingCaseContract extends BaseCaseContract {
   }
 
   async endRecord(): Promise<void> {
-    this.contractClosed = true;
+    return Promise.resolve(
+      addLocation('PublishingResults', this.initialContext),
+    ).then((publishingContext) => {
+      this.contractClosed = true;
 
-    const publishingContext = addLocation(
-      'PublishingResults',
-      this.initialContext,
-    );
-    if (this.status === 'UNKNOWN') {
-      this.status = 'SUCCESS';
-    }
-    if (this.status === 'FAILED') {
-      // TODO: Print all failures
-      this.initialContext.logger.maintainerDebug('Verification failed');
-    } else {
-      this.initialContext.logger.maintainerDebug('Verification successful');
-    }
+      if (this.verificationTests == null) {
+        throw new CaseConfigurationError(
+          `No verification tests had been prepared; you must call prepareVerification before closing the contract with endRecord()
+This may be a bug in the language specifc DSL wrapper.`,
+          publishingContext,
+          ErrorCodes.configuration.INVALID_LIFECYCLE,
+        );
+      }
 
-    this.initialContext.logger.maintainerDebug(
-      'Calling publishVerificationResults',
-    );
-    await this.makeBrokerService(publishingContext).publishVerificationResults(
-      this.links,
-      this.status === 'SUCCESS',
-      addLocation(
-        `PublishingVerification(${this.currentContract.description.consumerName} -> ${this.currentContract.description.providerName})`,
-        this.initialContext,
-      ),
-    );
+      if (this.status === 'UNKNOWN') {
+        // No interactions have failed, let's see if we ran them all
+        const isComplete = this.verificationTests.every(
+          (test) => !test.isPending(),
+        );
+
+        if (isComplete) {
+          publishingContext.logger.maintainerDebug(
+            `All interactions have passed, marking verification successful`,
+          );
+
+          this.status = 'SUCCESS';
+        } else {
+          publishingContext.logger.error(
+            `Some interactions were still pending! This means that some of the test callbacks were not invoked. List follows:`,
+          );
+          this.verificationTests.forEach((test) => {
+            publishingContext.logger.error(
+              `Interaction ${test.isPending() ? 'PENDING' : 'COMPLETE'} ${test.testName}`,
+            );
+          });
+
+          throw new CaseConfigurationError(
+            `Some interactions were still pending when verification status was calculated. 
+            This means that some of the test callbacks were not invoked.
+            See the error logs for details.`,
+            publishingContext,
+            ErrorCodes.configuration.INVALID_LIFECYCLE,
+          );
+        }
+      }
+      if (this.status === 'FAILED') {
+        // TODO: Print all failures
+        publishingContext.logger.maintainerDebug('Verification failed');
+      } else {
+        publishingContext.logger.maintainerDebug('Verification successful');
+      }
+
+      publishingContext.logger.maintainerDebug(
+        'Calling publishVerificationResults',
+      );
+      return this.makeBrokerService(
+        publishingContext,
+      ).publishVerificationResults(
+        this.links,
+        this.status === 'SUCCESS',
+        addLocation(
+          `PublishingVerification(${this.currentContract.description.consumerName} -> ${this.currentContract.description.providerName})`,
+          publishingContext,
+        ),
+      );
+    });
   }
 }

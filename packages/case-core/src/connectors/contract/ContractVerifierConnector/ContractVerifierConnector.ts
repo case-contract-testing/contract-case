@@ -332,7 +332,8 @@ export class ContractVerifierConnector {
   /**
    * Closes a verification
    *
-   * @returns a successful promise if the verification closed successfully
+   * @returns a successful promise when the verification threw no errors. Note that this may not
+   * necessarily mean that the verification passed.
    */
   async closePreparedVerification(): Promise<void> {
     return Promise.resolve().then(() => {
