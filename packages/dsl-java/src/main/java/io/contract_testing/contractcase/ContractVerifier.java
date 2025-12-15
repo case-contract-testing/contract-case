@@ -76,6 +76,7 @@ public class ContractVerifier implements AutoCloseable {
     }
   }
 
+  @Deprecated
   public void runVerification() {
     this.runVerification(ContractCaseConfigBuilder.aContractCaseConfig().build());
   }
