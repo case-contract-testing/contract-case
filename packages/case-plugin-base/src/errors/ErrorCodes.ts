@@ -85,7 +85,7 @@ export interface ConfigurationErrorCodes {
    *
    * For contract definition, it should be:
    *
-   * 1. Begin definition
+   * 1. Begin definition (optionally load plugins, and register functions)
    *
    * 2. Multiple calls to runInteraction or your language's equivalent of
    *    runRejectingInteraction
@@ -94,6 +94,15 @@ export interface ConfigurationErrorCodes {
    *
    * Check that you're not accidentally reusing test instances between runs.
    *
+   * For contract verification, it should be:
+   *
+   * 1. Construct verifier (optionally load plugins, and register functions)
+   *
+   * 2. Call prepareVerification to get a list of test handles
+   *
+   * 3. Call each of those test handles to execute the interaction
+   *
+   * 4. Call closePreparedVerification (or close(), depending on your DSL)
    */
   INVALID_LIFECYCLE: 'INVALID_LIFECYCLE';
 
