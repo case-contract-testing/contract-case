@@ -41,7 +41,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   private final ManagedChannel channel;
 
   /**
-   * Contains any registered functions that can be called back to by the core server.
+   * Contains any registered functions that can be called back to by the core
+   * server.
    * <p/>
    * This should probably be moved somewhere other than the connector.
    */
@@ -50,7 +51,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   private final ResponseWaiter responseWaiter = new ResponseWaiter();
 
   /**
-   * Prevents multiple sends being called at once. Now that there's a full {@link SendingWorker}
+   * Prevents multiple sends being called at once. Now that there's a full
+   * {@link SendingWorker}
    * thread, this is probably unnecessary
    */
   private static final Semaphore sendMutex = new Semaphore(1);
@@ -58,7 +60,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   private volatile boolean askedToClose = false;
 
   /**
-   * Used to wait for the underlying workers to stop during shutdown. If this is zero, the workers
+   * Used to wait for the underlying workers to stop during shutdown. If this is
+   * zero, the workers
    * have closed, and the connection is ready to be shutdown.
    */
   protected final CountDownLatch finishLatch = new CountDownLatch(1);
@@ -66,11 +69,11 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   private static final int DEFAULT_TIMEOUT_SECONDS = 60;
 
   /**
-   * Used to indicate that the overall connection has failed, and no more sending should happen. If
+   * Used to indicate that the overall connection has failed, and no more sending
+   * should happen. If
    * this is set, all further sends will return immediately with this value.
    */
   private volatile BoundaryResult failedResult;
-
 
   public AbstractRpcConnector(
       @NotNull LogPrinter logPrinter,
@@ -86,13 +89,12 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
         new ContractResponseStreamObserver<>(
             this,
             logPrinter,
-            configHandle
-        )
-    ));
+            configHandle)));
   }
 
   protected Map<String, ?> readServiceConfig() {
-    // Service config has a low initial retry, since we know we're on the same machine
+    // Service config has a low initial retry, since we know we're on the same
+    // machine
     var resource = AbstractRpcConnector.class.getResourceAsStream(
         "service_config.json");
 
@@ -105,10 +107,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
             new JsonReader(
                 new InputStreamReader(
                     resource,
-                    UTF_8
-                )),
-            Map.class
-        );
+                    UTF_8)),
+            Map.class);
   }
 
   abstract StreamObserver<T> createConnection(ContractCaseStub asyncStub,
@@ -117,7 +117,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   /**
    * Set the message ID on the kind of messages that this connector sends.
    * <p>
-   * This exists so that we can share implementation between both the Definition and Verification
+   * This exists so that we can share implementation between both the Definition
+   * and Verification
    * RPCs without needing to share types.
    *
    * @param builder The builder for the core message type of this connector
@@ -129,18 +130,22 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   /**
    * Make a message builder for a response message with the provided response.
    * <p>
-   * This exists so that we can share implementation between both the Definition and Verification
+   * This exists so that we can share implementation between both the Definition
+   * and Verification
    * RPCs without needing to share types.
    *
    * @param response The {@link ResultResponse} to attach.
-   * @return A message builder with the provided {@link ResultResponse} already attached
+   * @return A message builder with the provided {@link ResultResponse} already
+   *         attached
    */
   abstract B makeResponse(ResultResponse response);
 
   /**
-   * Make a message builder for an InvokeTest message with the provided invoker ID.
+   * Make a message builder for an InvokeTest message with the provided invoker
+   * ID.
    * <p>
-   * This exists so that we can share implementation between both the Definition and Verification
+   * This exists so that we can share implementation between both the Definition
+   * and Verification
    * RPCs without needing to share types.
    *
    * @param invokerId The invoker identifier
@@ -149,9 +154,11 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   abstract B makeInvokeTest(StringValue invokerId);
 
   /**
-   * Make a message builder for an InvokeFunction message with the provided name and arguments.
+   * Make a message builder for an InvokeFunction message with the provided name
+   * and arguments.
    * <p>
-   * This exists so that we can share implementation between both the Definition and Verification
+   * This exists so that we can share implementation between both the Definition
+   * and Verification
    * RPCs without needing to share types.
    *
    * @param name The name of the function to invoke
@@ -161,14 +168,19 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   abstract B makeInvokeFunction(String name, List<String> args);
 
   /**
-   * Executes a call to the core, and waits for the result. You don't need to set any ID on the
-   * request, this function will generate an ID, and call {@link #setId(B, StringValue)} to set it.
+   * Executes a call to the core, and waits for the result. You don't need to set
+   * any ID on the
+   * request, this function will generate an ID, and call
+   * {@link #setId(B, StringValue)} to set it.
    * <p>
-   * This method doesn't actually do the sending, it defers to the worker. This method then blocks
-   * until the response arrives. The timeout for this method is {@link #DEFAULT_TIMEOUT_SECONDS}
+   * This method doesn't actually do the sending, it defers to the worker. This
+   * method then blocks
+   * until the response arrives. The timeout for this method is
+   * {@link #DEFAULT_TIMEOUT_SECONDS}
    *
    * @param builder A builder for the request to send
-   * @param reason  A short debugging string that represents the reason for the call. This is
+   * @param reason  A short debugging string that represents the reason for the
+   *                call. This is
    *                prefixed to the generated ID.
    * @return the result returned from the core.
    */
@@ -177,19 +189,25 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   }
 
   /**
-   * Executes a call to the core, and waits for the result. You don't need to set any ID on the
+   * Executes a call to the core, and waits for the result. You don't need to set
+   * any ID on the
    * request, this function will generate an ID, and call
    * {@link AbstractRpcConnector#setId(B, StringValue)} to set it.
    * <p>
-   * This method doesn't actually do the sending, it defers to the worker. This method then blocks
+   * This method doesn't actually do the sending, it defers to the worker. This
+   * method then blocks
    * until the response arrives.
    *
    * @param builder        A builder for the request to send
-   * @param reason         A short debugging string that represents the reason for the call. This is
+   * @param reason         A short debugging string that represents the reason for
+   *                       the call. This is
    *                       prefixed to the generated ID.
-   * @param timeoutSeconds How long to wait in seconds before failing the call with a
-   *                       CASE_CORE_ERROR or a CASE_CONFIGURATION_ERROR, based on a guess about
-   *                       whether it was the main connection or a general timeout.
+   * @param timeoutSeconds How long to wait in seconds before failing the call
+   *                       with a
+   *                       CASE_CORE_ERROR or a CASE_CONFIGURATION_ERROR, based on
+   *                       a guess about
+   *                       whether it was the main connection or a general
+   *                       timeout.
    * @return the result returned from the core.
    */
   public ConnectorResult executeCallAndWait(B builder, String reason, int timeoutSeconds) {
@@ -200,11 +218,10 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
     if (askedToClose) {
       return new ConnectorFailure(
           ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
-          "Contract interactions aren't valid once close() or endRecord() has been called. Please check the order that you are invoking contract methods.",
+          "Contract interactions aren't valid once close() or endRecord() has been called. Please check the order that you are invoking contract methods, and ensure you are not reusing a contract object for multiple complete lifecycles.",
           "User code",
           "UNDOCUMENTED",
-          ""
-      );
+          "");
     }
 
     var id = responseWaiter.createAwait(reason);
@@ -217,7 +234,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   /**
    * Used when the core has an error to cancel all waiting callbacks.
    * <p>
-   * If this method is called, it means there are no more responses coming, so we cancel all
+   * If this method is called, it means there are no more responses coming, so we
+   * cancel all
    * in-flight messages.
    *
    * @param e the error to cancel them all with.
@@ -228,11 +246,9 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
     responseWaiter.cancelAll(result);
   }
 
-
   void completeWait(String requestId, BoundaryResult result) {
     responseWaiter.completeAwait(requestId, result);
   }
-
 
   void sendResponse(B builder, String id, LogLevel logLevel) {
     try {
@@ -255,14 +271,14 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
    *
    * @param response the actual response
    * @param id       The message being replied to
-   * @param logLevel passed in so that the acknowledgement messages aren't logged, otherwise it's
+   * @param logLevel passed in so that the acknowledgement messages aren't logged,
+   *                 otherwise it's
    *                 very noisy. Either one of MAINTAINER_DEBUG in most cases, or
    *                 DEEP_MAINTAINER_DEBUG for noisest logs.
    */
   void sendResponse(ResultResponse response, String id, LogLevel logLevel) {
     sendResponse(makeResponse(response), id, logLevel);
   }
-
 
   public void close() {
     // We set this to prevent further interactions,
@@ -283,19 +299,19 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   }
 
   /**
-   * Called by the user facing DSL to register functions that the core can call back.
+   * Called by the user facing DSL to register functions that the core can call
+   * back.
    *
-   * @param functionName The name (ie, handle) of the function that the Core can use as a callback
+   * @param functionName The name (ie, handle) of the function that the Core can
+   *                     use as a callback
    * @param function     The actual function that can be invoked
    */
   public <E extends Exception> void registerFunction(String functionName,
       ConnectorInvokableFunction<E> function) {
     if (this.registeredFunctions.containsKey(functionName)) {
       throw new ContractCaseConfigurationError(
-          "The function '"
-              + "' was already registered. Make sure you are only registering it once.",
-          "UNDOCUMENTED"
-      );
+          "The function '" + functionName + "' was already registered. Make sure you are only registering it once.",
+          "UNDOCUMENTED");
     }
     this.registeredFunctions.put(functionName, function);
   }
@@ -305,7 +321,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
    *
    * @param functionName The name of the function
    * @param args         The arguments as strings
-   * @return A {@link ConnectorResult} indicating the result of invoking the function.
+   * @return A {@link ConnectorResult} indicating the result of invoking the
+   *         function.
    */
   ConnectorResult invokeFunction(String functionName, List<String> args) {
     var method = this.registeredFunctions.get(functionName);
@@ -316,8 +333,7 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
               + "' but it didn't exist in our store",
           MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
           functionName,
-          ""
-      );
+          "");
     }
     return method.apply(args);
   }

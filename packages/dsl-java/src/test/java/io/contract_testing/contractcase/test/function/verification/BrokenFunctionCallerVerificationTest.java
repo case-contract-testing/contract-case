@@ -9,29 +9,32 @@ import io.contract_testing.contractcase.configuration.ContractCaseConfig.Contrac
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.configuration.PublishType;
+import io.contract_testing.contractcase.configuration.StateHandler;
 import io.contract_testing.contractcase.exceptions.ContractCaseConfigurationError;
 import java.util.HashMap;
 import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class BrokenFunctionCallerVerificationTest {
 
   static final ObjectMapper mapper = new ObjectMapper();
 
-  private static final ContractVerifier contract = new ContractVerifier(
-      ContractCaseConfigBuilder.aContractCaseConfig()
-          .consumerName("Java Function Caller Example")
-          .providerName("Java Function Implementer Example")
-          .publish(PublishType.NEVER)
-          .printResults(false)
-    //      .logLevel(LogLevel.DEEP_MAINTAINER_DEBUG)
-          .contractDir("verifiable-contracts")
-          .build());
+  private ContractVerifier contract;
 
 
-  @Test
-  public void testVerifyThrowsAnErrorWithMissingStateHandlers() {
+  @BeforeEach
+  void setup() {
+    contract = new ContractVerifier(ContractCaseConfigBuilder.aContractCaseConfig()
+        .consumerName("Java Function Caller Example")
+        .providerName("Java Function Implementer Example")
+        .publish(PublishType.NEVER)
+        .printResults(false)
+        //      .logLevel(LogLevel.DEEP_MAINTAINER_DEBUG)
+        .contractDir("verifiable-contracts")
+        .build());
     contract.registerFunction("NoArgFunction", () -> {
       return null;
     });
@@ -48,23 +51,48 @@ public class BrokenFunctionCallerVerificationTest {
         convertJsonStringArgs((String key) -> mockedStore.get(key))
     );
 
+  }
+
+  @Test
+  public void testVerifyThrowsAnErrorWithMissingStateHandlers() {
+
     try {
       assertThrows(ContractCaseConfigurationError.class, () -> {
         contract.runVerification(ContractCaseConfigBuilder.aContractCaseConfig()
             // Don't print any logs, otherwise CI logs get polluted with expected failures
             .logLevel(LogLevel.NONE)
             // Don't print results, otherwise CI logs get polluted with expected failures
-            .printResults(false)
-            .throwOnFail(true)
-            .build());
+            .printResults(false).throwOnFail(true).build());
       });
     } finally {
       contract.close();
     }
   }
 
-  private static @NotNull <R> InvokableFunction1<?>
-  convertJsonIntegerArg(Function<Integer, R> functionUnderTest) {
+  @Test
+  public void testVerifyDoesntThrowAnErrorWithThrowOnFailFalse() {
+
+    try {
+
+      // This contract verification should fail, but we'll ignore it, because
+      // throwOnFail is set to false
+      contract.runVerification(ContractCaseConfigBuilder.aContractCaseConfig()
+          // Don't print any logs, otherwise CI logs get polluted with expected failures
+          .logLevel(LogLevel.NONE)
+          // Don't print results, otherwise CI logs get polluted with expected failures
+          .printResults(false).stateHandler(
+              "The map is null",
+              StateHandler.setupFunction(() -> {
+              })
+          ).stateHandler("The map is not null", StateHandler.setupFunction(() -> {}))
+          .stateHandler("The key 'foo' is set to 'bar'", StateHandler.setupFunction(() -> {}))
+          .throwOnFail(false).build());
+    } finally {
+      contract.close();
+    }
+  }
+
+  private static @NotNull <R> InvokableFunction1<?> convertJsonIntegerArg(Function<Integer, R> functionUnderTest) {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, Integer.class);
@@ -76,8 +104,7 @@ public class BrokenFunctionCallerVerificationTest {
   }
 
   @NotNull
-  private static <R> InvokableFunction1<?>
-  convertJsonStringArgs(Function<String, R> functionUnderTest) {
+  private static <R> InvokableFunction1<?> convertJsonStringArgs(Function<String, R> functionUnderTest) {
     return (String a) -> {
       try {
         var arg1 = mapper.readValue(a, String.class);
