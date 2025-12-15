@@ -1,5 +1,6 @@
 import { AnyCaseMatcher } from '@contract-case/case-plugin-dsl-types';
 import { VerifyTriggerReturnObjectError } from '../errors/VerifyTriggerReturnObjectError';
+import { ConfigurationErrorCode } from '../errors/ErrorCodes';
 
 // ************************************************************
 // Warning: **ALL** of the following error types must be listed
@@ -185,7 +186,7 @@ export interface ConfigurationError {
    * This should be a unique code specific to this kind of error that users
    * could look up in the documentation for more information.
    */
-  code: string;
+  code: ConfigurationErrorCode;
   location: Array<string>;
   toString: () => string;
 }

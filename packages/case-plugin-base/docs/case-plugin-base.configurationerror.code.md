@@ -9,5 +9,5 @@ The error code that is associated with this configuration error This should be a
 **Signature:**
 
 ```typescript
-code: string;
+code: ConfigurationErrorCode;
 ```

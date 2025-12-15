@@ -1198,8 +1198,9 @@
                   "text": "code: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "string"
+                  "kind": "Reference",
+                  "text": "ConfigurationErrorCode",
+                  "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCode:type"
                 },
                 {
                   "kind": "Content",

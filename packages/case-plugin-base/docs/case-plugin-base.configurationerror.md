@@ -47,7 +47,7 @@ Description
 
 </td><td>
 
-string
+[ConfigurationErrorCode](./case-plugin-base.configurationerrorcode.md)
 
 
 </td><td>

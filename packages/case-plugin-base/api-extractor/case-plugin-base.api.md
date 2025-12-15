@@ -74,7 +74,7 @@ export const combineResults: (...results: MatchResult[]) => MatchResult;
 
 // @public
 export interface ConfigurationError {
-    code: string;
+    code: ConfigurationErrorCode;
     // (undocumented)
     location: Array<string>;
     // (undocumented)
