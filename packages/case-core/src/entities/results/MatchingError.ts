@@ -37,7 +37,7 @@ export const configurationError = (
   message: error.message,
   code: error?.contractCaseErrorCode
     ? error.contractCaseErrorCode
-    : 'ConfigurationError',
+    : 'UNDOCUMENTED',
   location: context['_case:currentRun:context:location'],
 });
 

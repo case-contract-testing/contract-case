@@ -10,6 +10,7 @@ import {
   ERROR_TYPE_CONFIGURATION,
   CaseExample,
   CaseConfigurationError,
+  ConfigurationErrorCode,
 } from '@contract-case/case-plugin-base';
 
 import { BaseCaseContract } from './BaseCaseContract';
@@ -217,7 +218,9 @@ export class WritingCaseContract extends BaseCaseContract {
           {
             type: ERROR_TYPE_CONFIGURATION,
             message,
-            code: 'FAIL',
+            // This isn't really a configuration error, we just want to render it as such
+            // TODO: Replace this with a "Message" error type or similar.
+            code: 'FAILED_ASSERTIONS' as ConfigurationErrorCode,
             location: ['Writing Contract'],
             toString: () =>
               `There were contract definition failures in ${failures.length}/${totalCount} interactions`,

@@ -10,6 +10,7 @@ import {
   ERROR_TYPE_CONFIGURATION,
   CaseConfigurationError,
   CaseExample,
+  ConfigurationError,
 } from '@contract-case/case-plugin-base';
 import { CaseFailedAssertionError } from '../CaseFailedAssertionError';
 
@@ -81,11 +82,15 @@ export const handleResult = (
       throw verificationError.error;
     }
 
-    if (example.errors.some((i) => i.type === ERROR_TYPE_CONFIGURATION)) {
+    const configurationError: ConfigurationError | undefined =
+      example.errors.find((i) => i.type === ERROR_TYPE_CONFIGURATION) as
+        | ConfigurationError
+        | undefined;
+    if (configurationError) {
       throw new CaseConfigurationError(
         errorMessage,
         'DONT_ADD_LOCATION',
-        'UNDOCUMENTED',
+        configurationError.code ?? ('UNDOCUMENTED' as const),
       );
     }
   } else {
