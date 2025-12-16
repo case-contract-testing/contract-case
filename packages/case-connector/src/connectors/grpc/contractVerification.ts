@@ -16,6 +16,7 @@ import { ConnectorError } from '../../domain/errors/ConnectorError.js';
 import {
   availableContractDescriptions,
   beginVerification,
+  closePreparedVerification,
   prepareVerificationTests,
   registerFunction,
   runPreparedTest,
@@ -381,6 +382,46 @@ export const contractVerification = (
               )
               .catch((e) => {
                 sendUnexpectedError(request, e as Error, 'Run verification');
+              });
+          }
+          break;
+        case WireVerificationRequest.KindCase.END_VERIFICATION:
+          {
+            const endVerificationRequest = request.getEndVerification();
+            if (endVerificationRequest == null) {
+              throw new ConnectorError(
+                'endVerification called with something that returned an undefined request',
+              );
+            }
+            if (verificationId === undefined) {
+              throw new ConnectorError(
+                'endVerification was called before beginVerification',
+              );
+            }
+
+            const contractIndex =
+              endVerificationRequest.getContractIndicesList()[0];
+
+            if (contractIndex == null) {
+              throw new ConnectorError(
+                'contractIndex must be provided with an endVerificationRequest',
+              );
+            }
+
+            closePreparedVerification(verificationId, contractIndex)
+              .then((result) =>
+                sendContractResponse(
+                  'maintainerDebug',
+                  getId(request),
+                  makeResultResponse(result),
+                ),
+              )
+              .catch((e) => {
+                sendUnexpectedError(
+                  request,
+                  e as Error,
+                  'Close prepared verification',
+                );
               });
           }
           break;

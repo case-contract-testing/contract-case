@@ -93,5 +93,37 @@ export const runPreparedTest = (
     return verifierHandle.verifier.runVerificationTest(preparedTestHandle);
   });
 
-export const endVerification = (verifierId: string): Promise<void> =>
-  Promise.resolve().then(() => closeVerifier(verifierId));
+/**
+ * Will close a single contract verification that was previously prepared.
+ *
+ * Might be called multiple times during a verificaiton, but should
+ * only be called once per contractIndex.
+ *
+ * @param verifierId
+ * @param contractIndex
+ * @returns
+ */
+export const closePreparedVerification = (
+  verifierId: string,
+  contractIndex: number,
+): Promise<BoundaryResult> =>
+  Promise.resolve().then(() => {
+    const verifierHandle = getVerifier(verifierId, 'endVerification');
+    if (!('id' in verifierHandle)) {
+      return verifierHandle;
+    }
+
+    return verifierHandle.verifier.closePreparedVerification(contractIndex);
+  });
+
+/**
+ * Will disconnect the connected verifier and allow it to be garbage collected
+ *
+ * Currently not called.
+ */
+export const closeConnectedVerifier = (
+  verifierId: string,
+): Promise<BoundaryResult> =>
+  Promise.resolve()
+    .then(() => closeVerifier(verifierId))
+    .then(() => new BoundarySuccess());

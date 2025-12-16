@@ -1,6 +1,7 @@
 package io.contract_testing.contractcase;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import io.contract_testing.contractcase.ContractHandle.ContractHandleBuilder;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.ContractDescription;
@@ -20,7 +21,9 @@ import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunction
 import io.contract_testing.contractcase.internal.edge.ConnectorInvokableFunctionMapper.ConnectorInvokableFunction;
 import io.contract_testing.contractcase.internal.edge.default_implementations.LogPrinterStandardOut;
 import io.contract_testing.contractcase.logs.LogPrinter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Verifies one or more contracts against a single provider
@@ -98,6 +101,30 @@ public class ContractVerifier implements AutoCloseable {
     }
   }
 
+  public List<ContractHandle> prepareVerifications(ContractCaseConfig configOverrides) {
+    try {
+      var testHandles = prepareVerification(configOverrides);
+
+      Map<Integer, ContractHandle.ContractHandleBuilder> toContractHandles = new HashMap<>();
+      for (var testHandle : testHandles) {
+        var handleBuilder = toContractHandles.computeIfAbsent(
+            testHandle.contractIndex(),
+            (k) -> {
+              var builder = ContractHandle.builder();
+              builder.filePath(testHandle.filePath());
+              builder.contractIndex(testHandle.contractIndex());
+              return builder;
+            }
+        );
+        handleBuilder.testHandle(testHandle);
+      }
+
+      return toContractHandles.values().stream().map(ContractHandleBuilder::build).toList();
+    } catch (Exception e) {
+      throw BoundaryCrashReporter.report(e);
+    }
+  }
+
   /**
    * Runs a prepared test returned by {@link #prepareVerification()}. This method has the same
    * semantics as {@link #runVerification()}.
@@ -113,6 +140,15 @@ public class ContractVerifier implements AutoCloseable {
     }
   }
 
+  public void closePreparedVerification(ContractHandle contractHandle) {
+    try {
+      ConnectorResultMapper.mapVoid(
+          this.verifier.closePreparedVerification(contractHandle));
+    } catch (Exception e) {
+      throw BoundaryCrashReporter.report(e);
+    }
+  }
+
   /**
    * @param configOverrides the configuration to override what was initially set.
    * @deprecated Prefer preparing the list of tests with {@link #prepareVerification} and then
@@ -121,7 +157,9 @@ public class ContractVerifier implements AutoCloseable {
    */
   @Deprecated
   public void runVerification(ContractCaseConfig configOverrides) {
-    this.prepareVerification(configOverrides).forEach(this::runPreparedTest);
+    var handles = this.prepareVerifications(configOverrides);
+    handles.forEach((contract) -> contract.testHandles().forEach(this::runPreparedTest));
+    handles.forEach(this::closePreparedVerification);
     this.close();
   }
 

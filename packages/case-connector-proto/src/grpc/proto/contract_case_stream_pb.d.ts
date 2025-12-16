@@ -1495,6 +1495,39 @@ export namespace PrepareVerificationTests {
   };
 }
 
+export class EndVerificationRequest extends jspb.Message {
+  clearContractIndicesList(): void;
+  getContractIndicesList(): Array<number>;
+  setContractIndicesList(value: Array<number>): EndVerificationRequest;
+  addContractIndices(value: number, index?: number): number;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EndVerificationRequest.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: EndVerificationRequest,
+  ): EndVerificationRequest.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: EndVerificationRequest,
+    writer: jspb.BinaryWriter,
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): EndVerificationRequest;
+  static deserializeBinaryFromReader(
+    message: EndVerificationRequest,
+    reader: jspb.BinaryReader,
+  ): EndVerificationRequest;
+}
+
+export namespace EndVerificationRequest {
+  export type AsObject = {
+    contractIndicesList: Array<number>;
+  };
+}
+
 export class DefinitionRequest extends jspb.Message {
   hasId(): boolean;
   clearId(): void;
@@ -1649,6 +1682,11 @@ export class VerificationRequest extends jspb.Message {
     value?: PrepareVerificationTests,
   ): VerificationRequest;
 
+  hasEndVerification(): boolean;
+  clearEndVerification(): void;
+  getEndVerification(): EndVerificationRequest | undefined;
+  setEndVerification(value?: EndVerificationRequest): VerificationRequest;
+
   getKindCase(): VerificationRequest.KindCase;
 
   serializeBinary(): Uint8Array;
@@ -1683,6 +1721,7 @@ export namespace VerificationRequest {
     registerFunction?: RegisterFunction.AsObject;
     invokeFunction?: InvokeFunction.AsObject;
     prepareVerificationTests?: PrepareVerificationTests.AsObject;
+    endVerification?: EndVerificationRequest.AsObject;
   };
 
   export enum KindCase {
@@ -1695,6 +1734,7 @@ export namespace VerificationRequest {
     REGISTER_FUNCTION = 10,
     INVOKE_FUNCTION = 11,
     PREPARE_VERIFICATION_TESTS = 12,
+    END_VERIFICATION = 13,
   }
 }
 

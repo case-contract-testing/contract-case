@@ -236,9 +236,11 @@ export class BoundaryContractVerifier {
    *
    * @public
    *
+   * @param contractIndex - A contractIndex returned from {@link prepareVerificationTests}
+   *
    * @returns A Promise of `BoundarySuccess` if the test was successful, otherwise a `BoundaryFailure`.
    */
-  closePreparedVerification(): Promise<BoundaryResult> {
+  closePreparedVerification(contractIndex: number): Promise<BoundaryResult> {
     return Promise.resolve()
       .then(() => {
         this.initialiseVerifier();
@@ -247,7 +249,32 @@ export class BoundaryContractVerifier {
             'Verifier was undefined after it was initialised (getAvailableContractDescriptions)',
           );
         }
-        return this.verifier.closePreparedVerification();
+        return this.verifier.closePreparedVerification(contractIndex);
+      })
+      .then(() => new BoundarySuccess())
+      .catch((e) => Promise.resolve(jsErrorToFailure(e)));
+  }
+
+  /**
+   * Closes the prepared verification. This should be called after all tests have been run, and is the step that will
+   * publish verification results, etc.
+   *
+   * NEVER_THROWS: This method is defined to never throw or reject the promise.
+   *
+   * @public
+   *
+   * @returns A Promise of `BoundarySuccess` if the test was successful, otherwise a `BoundaryFailure`.
+   */
+  closeAllPreparedVerifications(): Promise<BoundaryResult> {
+    return Promise.resolve()
+      .then(() => {
+        this.initialiseVerifier();
+        if (this.verifier === undefined) {
+          throw new CaseCoreError(
+            'Verifier was undefined after it was initialised (getAvailableContractDescriptions)',
+          );
+        }
+        return this.verifier.closeAllPreparedVerifications();
       })
       .then(() => new BoundarySuccess())
       .catch((e) => Promise.resolve(jsErrorToFailure(e)));

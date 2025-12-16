@@ -328,17 +328,18 @@ message AvailableContractDefinitions {
 // session is now configured, and asks it to execute the verification.
 // No longer implemented
 // message RunVerification {
-  // Any configuration overrides for this verification
-  //  ContractCaseConfig config = 1;
+// Any configuration overrides for this verification
+//  ContractCaseConfig config = 1;
 // }
 
-// Deprecated StartTestEvent: From the Core to the Host, instructs the host that a new test is starting.
+// Deprecated StartTestEvent: From the Core to the Host, 
+// instructs the host that a new test is starting.
 // This is useful for test frameworks reporting, and has no effect if it is
 // acknowledged without taking any action.
 // message StartTestEvent {
-  // The name of this test (human readable)
+// The name of this test (human readable)
 //  google.protobuf.StringValue test_name = 1;
-  // An ID for a callback to the test invoker when the core is ready
+// An ID for a callback to the test invoker when the core is ready
 //  google.protobuf.StringValue invoker_id = 2;
 // }
 
@@ -382,6 +383,13 @@ message InvokeFunction {
 message PrepareVerificationTests {
   // Any configuration overrides for this verification
   ContractCaseConfig config = 1;
+}
+
+// From the Host to the Core, tells the core that the
+// host has finished running one or more verifications
+message EndVerificationRequest {
+  // The indices of the contracts that were verified
+  repeated int32 contract_indices = 1;
 }
 
 // Messages on the stream during contract definition.
@@ -440,6 +448,10 @@ message VerificationRequest {
     // Host language wants to run a verification. 
     // Alternative to prepare verification tests
     PrepareVerificationTests prepare_verification_tests = 12;
+    // Host language wants to finish running a verification.
+    // Call this after you've run all verifications prepared
+    // with prepare_verification_tests
+    EndVerificationRequest end_verification = 13;
   }
 }
 
