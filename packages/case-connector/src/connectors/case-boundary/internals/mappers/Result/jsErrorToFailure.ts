@@ -5,7 +5,13 @@ import {
   BoundaryFailureKindConstants,
 } from '../../boundary/index.js';
 
+/**
+ * Converts a javascript error to a BoundaryFailure. This method will never throw.
+ * @param e - The error to convert
+ * @returns The error mapped to a BoundaryFailure
+ */
 export const jsErrorToFailure = (e: unknown): BoundaryFailure => {
+  // NOTE: It must not be possible for this function to throw an error
   maintainerLog('Mapping error to failure:', e);
   if (e instanceof Error) {
     return new BoundaryFailure(
