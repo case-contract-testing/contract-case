@@ -335,7 +335,41 @@ export class ContractVerifierConnector {
    * @returns a successful promise when the verification threw no errors. Note that this may not
    * necessarily mean that the verification passed.
    */
-  async closePreparedVerification(): Promise<void> {
+  async closePreparedVerification(index: number): Promise<void> {
+    return Promise.resolve().then(() => {
+      if (this.#contractVerificationHandles == null) {
+        this.context.logger.maintainerDebug(
+          "Asked to close contract verifications, but they weren't prepared - assuming closed.",
+        );
+        return Promise.resolve();
+      }
+      const contractVerifierHandle = this.#contractVerificationHandles[index];
+      if (contractVerifierHandle == null) {
+        this.context.logger.error(
+          'BUG: Close prepared verification invoked incorrectly. See exception for details. The contractVerificationHandles object is:',
+          this.#contractVerificationHandles,
+        );
+        throw new CaseCoreError(
+          `The contract handle ${index} was undefined. This is probably a bug in the language DSL wrapper`,
+        );
+      }
+
+      this.context.logger.maintainerDebug(
+        `Closing contract verification for ${index}. Handle is:`,
+        contractVerifierHandle,
+      );
+
+      return contractVerifierHandle.verifier.endRecord();
+    });
+  }
+
+  /**
+   * Closes all verifications.
+   *
+   * @returns a successful promise when the verification threw no errors. Note that this may not
+   * necessarily mean that the verification passed.
+   */
+  async closeAllPreparedVerifications(): Promise<void> {
     return Promise.resolve().then(() => {
       if (this.#contractVerificationHandles == null) {
         this.context.logger.maintainerDebug(
@@ -365,9 +399,6 @@ export class ContractVerifierConnector {
           .filter((result) => result.status === 'rejected')
           .map(({ reason }) => reason);
         if (failures.length > 0) {
-          this.context.logger.error(
-            `There were failures verifying ${failures.length} contracts`,
-          );
           failures.forEach((failure) => {
             this.context.logger.error(
               `${
@@ -375,8 +406,34 @@ export class ContractVerifierConnector {
               } ${(failure as Error).message}`,
             );
           });
-          this.context.logger.error(`Throwing only the first error`);
-          throw failures[0];
+          if (failures.length === 1) {
+            this.context.logger.error(`A contract failed verification`);
+            throw failures[0];
+          }
+
+          const headMessage = `There were failures verifying ${failures.length} contracts:`;
+          this.context.logger.error(headMessage, failures);
+
+          const combinedMessage = [
+            headMessage,
+            ...failures.map(
+              (failure: Error) =>
+                `${failure.name ? `${failure.name}: ` : ''} ${failure.message}\n${failure.stack ? `\n${failure.stack}` : ''}`,
+            ),
+          ].join('\n');
+
+          const hasCoreErrors = failures.some(
+            (failure) => failure instanceof CaseCoreError,
+          );
+          if (hasCoreErrors) {
+            throw new CaseCoreError(combinedMessage);
+          }
+
+          // TODO: Introduce a proper error for multiple verification failures
+          throw new CaseConfigurationError(
+            combinedMessage,
+            'DONT_ADD_LOCATION',
+          );
         }
       });
     });
