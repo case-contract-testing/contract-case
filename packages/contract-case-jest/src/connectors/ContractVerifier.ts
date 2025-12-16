@@ -133,7 +133,7 @@ export class ContractVerifier {
 
   async closePreparedVerification(): Promise<void> {
     try {
-      mapSuccess(await this.boundaryVerifier.closePreparedVerification());
+      mapSuccess(await this.boundaryVerifier.closeAllPreparedVerifications());
     } catch (e) {
       throw errorReporter(e as Error);
     }
