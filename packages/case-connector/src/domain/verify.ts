@@ -96,12 +96,15 @@ export const runPreparedTest = (
 /**
  * Will close a single contract verification that was previously prepared.
  *
- * Might be called multiple times during a verificaiton, but should
+ * Closing means that it will do any publish steps that are currently configured,
+ * and will return the result of the verification run
+ *
+ * Might be called multiple times during a verification, but should
  * only be called once per contractIndex.
  *
- * @param verifierId
- * @param contractIndex
- * @returns
+ * @param verifierId - The id of the verifier to close
+ * @param contractIndex - The index of the contract (from a contract handle)
+ * @returns A {@link BoundaryResult} promise containing a VerificationResult.
  */
 export const closePreparedVerification = (
   verifierId: string,
