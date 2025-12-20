@@ -10,6 +10,7 @@ import { MakeContractStore } from './types.ContractReader';
 import { MakeBrokerApi } from './types.broker';
 import { WriteContract } from './types.contract';
 import { MakeEnvironment } from './types.environment';
+import { CaseContractDescription, ContractMetadata } from '../entities/types';
 
 export * from './types.broker';
 export * from './types.contract';
@@ -30,6 +31,43 @@ export interface ContractWriteSuccess {
   /* The provider slug (ie, the provider part of the filepath), normalised
    * however ContractCase chose to normalise it */
   providerSlug: string;
+}
+
+/**
+ * Returned by the core after a successful write of a contract
+ */
+export interface ContractVerificationResult {
+  /**
+   * The path to the contract file verified
+   */
+  contractPath: string;
+  /**
+   * The consumer slug (ie, the consumer part of the filename), normalised
+   * however ContractCase chose to normalise it
+   *
+   * This is useful for reasoning about parts of the contract path.
+   */
+  consumerSlug: string;
+  /**
+   * The provider slug (ie, the provider part of the filepath), normalised
+   * however ContractCase chose to normalise it.
+   *
+   * This is useful for reasoning about parts of the contract path.
+   * */
+  providerSlug: string;
+
+  /**
+   * The description of the contract, ie, providername or consumer name.
+   */
+  description: CaseContractDescription;
+  /**
+   * The result of the contract verification. Currently, COMPATIBLE means that
+   * the verification passed, and INCOMPATIBLE means that the verification has failed.
+   */
+  verificationResult: 'COMPATIBILE' | 'INCOMPATIBLE';
+
+  /** The metadata from this contract */
+  metadata: ContractMetadata;
 }
 
 /**

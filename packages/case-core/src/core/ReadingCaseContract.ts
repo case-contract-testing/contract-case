@@ -15,13 +15,15 @@ import { BaseCaseContract } from './BaseCaseContract';
 import type { MultiTestInvoker } from './executeExample/types';
 import type { CaseConfig } from './config/types';
 import {
+  ContractFileFromDisk,
+  ContractVerificationResult,
   ContractVerificationTest,
-  DownloadedContract,
   MakeBrokerService,
   ReaderDependencies,
 } from './types';
 import { executeExample } from './executeExample';
 import { exampleToNames } from '../entities';
+import { consumerSlug, providerSlug } from './slugs';
 
 /**
  * ReadingCaseContract deals with a single contract verification (read).
@@ -35,9 +37,14 @@ import { exampleToNames } from '../entities';
 export class ReadingCaseContract extends BaseCaseContract {
   private mutex: Mutex;
 
-  private makeBrokerService: MakeBrokerService;
+  private readonly makeBrokerService: MakeBrokerService;
 
-  private links: DownloadedContract;
+  /**
+   * The verifier has its own copy of the contract,
+   * because some of the BaseCaseContract methods modify
+   * the contract.
+   */
+  private readonly contractFileFromDisk: ContractFileFromDisk;
 
   /**
    * What the verification status currently is.
@@ -72,7 +79,7 @@ export class ReadingCaseContract extends BaseCaseContract {
    * @param parentVersions - the array of versions of all the ContractCase packages before this one
    */
   constructor(
-    contractFile: DownloadedContract,
+    contractFile: ContractFileFromDisk,
     {
       resultFormatter: resultPrinter,
       makeLogger,
@@ -83,16 +90,16 @@ export class ReadingCaseContract extends BaseCaseContract {
     parentVersions: string[],
   ) {
     super(
-      contractFile.description,
+      contractFile.contents.description,
       { throwOnFail: false, testRunId: 'VERIFIER', ...config },
       defaultConfig,
       resultPrinter,
       makeLogger,
       parentVersions,
     );
-    this.currentContract = contractFile;
+    this.currentContract = contractFile.contents;
     this.makeBrokerService = makeBrokerService;
-    this.links = contractFile;
+    this.contractFileFromDisk = contractFile;
     this.status = 'UNKNOWN';
     this.mutex = new Mutex();
   }
@@ -239,72 +246,84 @@ export class ReadingCaseContract extends BaseCaseContract {
     return example;
   }
 
-  async endRecord(): Promise<void> {
+  async endRecord(): Promise<ContractVerificationResult> {
     return Promise.resolve(
       addLocation('PublishingResults', this.initialContext),
-    ).then((publishingContext) => {
-      this.contractClosed = true;
+    )
+      .then((publishingContext) => {
+        this.contractClosed = true;
 
-      if (this.verificationTests == null) {
-        throw new CaseConfigurationError(
-          `No verification tests had been prepared; you must call prepareVerification before closing the contract with endRecord()
-This may be a bug in the language specifc DSL wrapper.`,
-          publishingContext,
-          ErrorCodes.configuration.INVALID_LIFECYCLE,
-        );
-      }
-
-      if (this.status === 'UNKNOWN') {
-        // No interactions have failed, let's see if we ran them all
-        const isComplete = this.verificationTests.every(
-          (test) => !test.isPending(),
-        );
-
-        if (isComplete) {
-          publishingContext.logger.maintainerDebug(
-            `All interactions have passed, marking verification successful`,
-          );
-
-          this.status = 'SUCCESS';
-        } else {
-          publishingContext.logger.error(
-            `Some interactions were still pending! This means that some of the test callbacks were not invoked. List follows:`,
-          );
-          this.verificationTests.forEach((test) => {
-            publishingContext.logger.error(
-              `Interaction ${test.isPending() ? 'PENDING' : 'COMPLETE'} ${test.testName}`,
-            );
-          });
-
+        if (this.verificationTests == null) {
           throw new CaseConfigurationError(
-            `Some interactions were still pending when verification status was calculated. 
-            This means that some of the test callbacks were not invoked.
-            See the error logs for details.`,
+            `No verification tests had been prepared; you must call prepareVerification before closing the contract with endRecord()
+This may be a bug in the language specifc DSL wrapper.`,
             publishingContext,
             ErrorCodes.configuration.INVALID_LIFECYCLE,
           );
         }
-      }
-      if (this.status === 'FAILED') {
-        // TODO: Print all failures
-        publishingContext.logger.maintainerDebug('Verification failed');
-      } else {
-        publishingContext.logger.maintainerDebug('Verification successful');
-      }
 
-      publishingContext.logger.maintainerDebug(
-        'Calling publishVerificationResults',
-      );
-      return this.makeBrokerService(
-        publishingContext,
-      ).publishVerificationResults(
-        this.links,
-        this.status === 'SUCCESS',
-        addLocation(
-          `PublishingVerification(${this.currentContract.description.consumerName} -> ${this.currentContract.description.providerName})`,
+        if (this.status === 'UNKNOWN') {
+          // No interactions have failed, let's see if we ran them all
+          const isComplete = this.verificationTests.every(
+            (test) => !test.isPending(),
+          );
+
+          if (isComplete) {
+            publishingContext.logger.maintainerDebug(
+              `All interactions have passed, marking verification successful`,
+            );
+
+            this.status = 'SUCCESS';
+          } else {
+            publishingContext.logger.error(
+              `Some interactions were still pending! This means that some of the test callbacks were not invoked. List follows:`,
+            );
+            this.verificationTests.forEach((test) => {
+              publishingContext.logger.error(
+                `Interaction ${test.isPending() ? 'PENDING' : 'COMPLETE'} ${test.testName}`,
+              );
+            });
+
+            throw new CaseConfigurationError(
+              `Some interactions were still pending when verification status was calculated. 
+            This means that some of the test callbacks were not invoked.
+            See the error logs for details.`,
+              publishingContext,
+              ErrorCodes.configuration.INVALID_LIFECYCLE,
+            );
+          }
+        }
+        if (this.status === 'FAILED') {
+          // TODO: Print all failures
+          publishingContext.logger.maintainerDebug('Verification failed');
+        } else {
+          publishingContext.logger.maintainerDebug('Verification successful');
+        }
+
+        publishingContext.logger.maintainerDebug(
+          'Calling publishVerificationResults',
+        );
+        return this.makeBrokerService(
           publishingContext,
-        ),
+        ).publishVerificationResults(
+          this.contractFileFromDisk.contents,
+          this.status === 'SUCCESS',
+          addLocation(
+            `PublishingVerification(${this.currentContract.description.consumerName} -> ${this.currentContract.description.providerName})`,
+            publishingContext,
+          ),
+        );
+      })
+      .then(
+        (): ContractVerificationResult => ({
+          metadata: this.contractFileFromDisk.contents.metadata,
+          contractPath: this.contractFileFromDisk.filePath,
+          description: this.contractFileFromDisk.contents.description,
+          consumerSlug: consumerSlug(this.contractFileFromDisk.contents),
+          providerSlug: providerSlug(this.contractFileFromDisk.contents),
+          verificationResult:
+            this.status === 'SUCCESS' ? 'COMPATIBILE' : 'INCOMPATIBLE',
+        }),
       );
-    });
   }
 }

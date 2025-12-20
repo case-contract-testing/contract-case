@@ -1,8 +1,13 @@
 import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 import { CaseExample } from '@contract-case/case-plugin-base';
 
+/**
+ * Describes a CaseContract.
+ */
 export interface CaseContractDescription {
+  /** The consumer that this contract is for */
   consumerName: string;
+  /** The provider that this contract is for */
   providerName: string;
 }
 

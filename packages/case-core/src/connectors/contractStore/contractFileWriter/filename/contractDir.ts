@@ -4,7 +4,7 @@ import * as path from 'path';
 import { hashContract } from '../contractHasher';
 import { EXTENSION } from './types';
 import { ContractData } from '../../../../entities/types';
-import { consumerSlug, providerSlug } from './slugs';
+import { consumerSlug, providerSlug } from '../../../../core/slugs';
 
 const makeFileName = (contract: ContractData, suffix: string) =>
   path.join(

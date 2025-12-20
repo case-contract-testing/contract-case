@@ -9,6 +9,7 @@ import {
 import type {
   CaseConfig,
   ContractFileFromDisk,
+  ContractVerificationResult,
   ContractVerificationTest,
   ReaderDependencies,
 } from '../../../core/types';
@@ -85,7 +86,7 @@ const getContractVerifierHandles = <T extends AnyMockDescriptorType>(
       `Contract File: ${verifiableContract.contract.filePath}`,
     );
     const contractVerifier = new ReadingCaseContract(
-      verifiableContract.contract.contents,
+      verifiableContract.contract,
       constructorInfo.dependencies,
       {
         ...verifiableContract.config,
@@ -335,19 +336,31 @@ export class ContractVerifierConnector {
    * @returns a successful promise when the verification threw no errors. Note that this may not
    * necessarily mean that the verification passed.
    */
-  async closePreparedVerification(index: number): Promise<void> {
+  async closePreparedVerification(
+    index: number,
+  ): Promise<ContractVerificationResult> {
     return Promise.resolve().then(() => {
       if (this.#contractVerificationHandles == null) {
-        this.context.logger.maintainerDebug(
-          "Asked to close contract verifications, but they weren't prepared - assuming closed.",
+        this.context.logger.error(
+          `Asked to close contract verifications with index ${index}, but they weren't prepared. This indicates incorrect lifecycle calls`,
         );
-        return Promise.resolve();
+        this.context.logger.maintainerDebug(
+          'Context at the time of this error was:',
+          this.context,
+        );
+        throw new CaseCoreError(
+          `The contractVerificationHandles were not present ${index} was undefined. This indicates incorrect lifecycle calls, and is probably a bug in the language DSL wrapper`,
+        );
       }
       const contractVerifierHandle = this.#contractVerificationHandles[index];
       if (contractVerifierHandle == null) {
         this.context.logger.error(
           'BUG: Close prepared verification invoked incorrectly. See exception for details. The contractVerificationHandles object is:',
           this.#contractVerificationHandles,
+        );
+        this.context.logger.maintainerDebug(
+          'Context at the time of this error was:',
+          this.context,
         );
         throw new CaseCoreError(
           `The contract handle ${index} was undefined. This is probably a bug in the language DSL wrapper`,

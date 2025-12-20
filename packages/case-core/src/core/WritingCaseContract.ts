@@ -36,6 +36,11 @@ import {
 } from '../entities/types';
 import { CaseFailedAssertionError, exampleToNames } from '../entities';
 
+/**
+ * Does definition (ie, writing) for exactly one contract, between
+ * one consumer and one provider. This is an internal class,
+ * external callers should use ContractDefinerConnector from the connectors subpackage.
+ */
 export class WritingCaseContract extends BaseCaseContract {
   private testIndex = 0;
 

@@ -251,7 +251,7 @@ export class BoundaryContractVerifier {
         }
         return this.verifier.closePreparedVerification(contractIndex);
       })
-      .then(() => new BoundarySuccess())
+      .then((result) => new BoundarySuccessWithAny(JSON.stringify(result)))
       .catch((e) => Promise.resolve(jsErrorToFailure(e)));
   }
 

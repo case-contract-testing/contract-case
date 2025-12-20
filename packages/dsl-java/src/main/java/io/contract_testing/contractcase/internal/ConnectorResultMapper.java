@@ -1,6 +1,5 @@
 package io.contract_testing.contractcase.internal;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,6 +13,7 @@ import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.internal.edge.ConnectorResultTypeConstants;
 import io.contract_testing.contractcase.internal.edge.ConnectorSuccessWithAny;
 import java.util.List;
+import java.util.function.Function;
 
 public class ConnectorResultMapper {
 
@@ -41,8 +41,7 @@ public class ConnectorResultMapper {
     throw new ContractCaseCoreError(
         "Unexpected non-void ConnectorResult type '" + resultType + "'",
         "ConnectorResultMapper.mapVoid",
-        ""
-    );
+        "");
   }
 
   private static void mapFailure(ConnectorFailure result) {
@@ -52,22 +51,19 @@ public class ConnectorResultMapper {
       case ConnectorFailureKindConstants.CASE_BROKER_ERROR,
           ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
           ConnectorFailureKindConstants.CASE_TRIGGER_ERROR ->
-          throw new ContractCaseConfigurationError(
-              result.getMessage(),
-              result.getLocation(),
-              result.getErrorCode(),
-              result.getUserFacingStackTrace()
-          );
+        throw new ContractCaseConfigurationError(
+            result.getMessage(),
+            result.getLocation(),
+            result.getErrorCode(),
+            result.getUserFacingStackTrace());
       case ConnectorFailureKindConstants.CASE_CORE_ERROR -> throw new ContractCaseCoreError(
           result.getMessage(),
           result.getLocation(),
-          result.getUserFacingStackTrace()
-      );
+          result.getUserFacingStackTrace());
       case ConnectorFailureKindConstants.CASE_FAILED_ASSERTION_ERROR,
           ConnectorFailureKindConstants.CASE_VERIFY_RETURN_ERROR ->
-          throw new ContractCaseExpectationsNotMet(result.getMessage(), result.getLocation(),
-              result.getUserFacingStackTrace()
-          );
+        throw new ContractCaseExpectationsNotMet(result.getMessage(), result.getLocation(),
+            result.getUserFacingStackTrace());
     }
 
     throw new ContractCaseCoreError(
@@ -87,8 +83,19 @@ public class ConnectorResultMapper {
       mapFailure((ConnectorFailure) result);
     }
     throw new ContractCaseCoreError(
-        "Unexpected non-any ConnectorResult type '" + resultType + "'"
-    );
+        "Unexpected non-any ConnectorResult type '" + resultType + "'");
+  }
+
+  public static <R> R mapSuccessWithAny(ConnectorResult result, Function<String, R> mapper) {
+    final var resultType = result.getResultType();
+    if (resultType.equals(ConnectorResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD)) {
+      return mapper.apply(((ConnectorSuccessWithAny) result).getPayload());
+    }
+    if (resultType.equals(ConnectorResultTypeConstants.RESULT_FAILURE)) {
+      mapFailure((ConnectorFailure) result);
+    }
+    throw new ContractCaseCoreError(
+        "Unexpected non-any ConnectorResult type '" + resultType + "'");
   }
 
   public static <T> T mapSuccessWithAny(ConnectorResult result, Class<T> type) {
@@ -99,16 +106,14 @@ public class ConnectorResultMapper {
         return new ObjectMapper().readValue(payload, type);
       } catch (JsonProcessingException e) {
         throw new ContractCaseCoreError(
-            "Unable to deserialise result from: " + payload, e
-        );
+            "Unable to deserialise result from: " + payload, e);
       }
     }
     if (resultType.equals(ConnectorResultTypeConstants.RESULT_FAILURE)) {
       mapFailure((ConnectorFailure) result);
     }
     throw new ContractCaseCoreError(
-        "Unexpected non-any ConnectorResult type '" + resultType + "'"
-    );
+        "Unexpected non-any ConnectorResult type '" + resultType + "'");
   }
 
   public static <T> T mapSuccessWithAny(ConnectorResult result, TypeReference<T> type) {
@@ -119,16 +124,14 @@ public class ConnectorResultMapper {
         return new ObjectMapper().readValue(payload, type);
       } catch (JsonProcessingException e) {
         throw new ContractCaseCoreError(
-            "Unable to deserialise result from: " + payload, e
-        );
+            "Unable to deserialise result from: " + payload, e);
       }
     }
     if (resultType.equals(ConnectorResultTypeConstants.RESULT_FAILURE)) {
       mapFailure((ConnectorFailure) result);
     }
     throw new ContractCaseCoreError(
-        "Unexpected non-any ConnectorResult type '" + resultType + "'"
-    );
+        "Unexpected non-any ConnectorResult type '" + resultType + "'");
   }
 
   public static List<ContractDescription> mapListAvailableContracts(ConnectorResult result) {

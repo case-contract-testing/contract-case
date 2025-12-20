@@ -16,9 +16,9 @@ import { ContractVerificationTest } from './core/types';
 
 const port = 8089;
 
-const contract = readContract(
-  'case-contracts/contract-for-incorrectly-configured-examples.json',
-);
+const filePath =
+  'case-contracts/contract-for-incorrectly-configured-examples.json';
+const contract = { contents: readContract(filePath), filePath };
 
 const createVerifier = () =>
   new ReadingCaseContract(

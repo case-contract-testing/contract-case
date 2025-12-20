@@ -1,6 +1,8 @@
 package io.contract_testing.contractcase.test.function.verification;
 
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.ContractVerifier;
@@ -21,7 +23,7 @@ public class FunctionCallerVerificationTest {
 
   static final ObjectMapper mapper = new ObjectMapper();
 
-  private static final ContractVerifier contract = new ContractVerifier(
+  private static final ContractVerifier verifier = new ContractVerifier(
       ContractCaseConfigBuilder.aContractCaseConfig()
           .consumerName("Java Function Caller Example")
           .providerName("Java Function Implementer Example")
@@ -32,11 +34,11 @@ public class FunctionCallerVerificationTest {
 
   @Test
   public void testVerify() throws InterruptedException {
-    contract.registerFunction("NoArgFunction", () -> {
+    verifier.registerFunction("NoArgFunction", () -> {
       return null;
     });
 
-    contract.registerFunction(
+    verifier.registerFunction(
         "complexReturn",
         convertJsonIntegerArg(
             (Integer v) ->
@@ -45,31 +47,31 @@ public class FunctionCallerVerificationTest {
         )
     );
 
-    contract.registerFunction(
+    verifier.registerFunction(
         "OneArgFunction",
         (String key) -> null
     );
 
-    contract.registerFunction(
+    verifier.registerFunction(
         "PageNumbers",
         convertJsonIntegerArg((Integer num) -> num + " pages")
     );
 
     mockedStore = new HashMap<String, String>();
 
-    contract.registerFunction(
+    verifier.registerFunction(
         "keyValueStore",
         convertJsonStringArgs((String key) -> mockedStore.get(key))
     );
 
-    contract.registerFunction(
+    verifier.registerFunction(
         "throwingFunction",
         convertJsonStringArgs((String key) -> {
           throw new CustomException("The message is ignored");
         })
     );
 
-    contract.runVerification(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
+    var contractHandles = verifier.prepareVerifications(ContractCaseConfig.ContractCaseConfigBuilder.aContractCaseConfig()
         //  .logLevel(LogLevel.MAINTAINER_DEBUG)
         .printResults(true)
         .throwOnFail(true)
@@ -87,6 +89,19 @@ public class FunctionCallerVerificationTest {
         })))
         .build()
     );
+
+    assertThat(contractHandles).isNotEmpty();
+    for (var contract : contractHandles) {
+      contract.testHandles().forEach(verifier::runPreparedTest);
+      var result = verifier.closePreparedVerification(contract);
+      assertThat(result.consumerSlug()).isEqualTo("java-function-caller-example");
+      assertThat(result.providerSlug()).isEqualTo("java-function-implementer-example");
+      assertThat(result.description().consumerName()).isEqualTo("Java Function Caller Example");
+      assertThat(result.description().providerName()).isEqualTo("Java Function Implementer Example");
+
+      assertThat(result.contractPath()).isNotNull();
+      assertThat(result.metadata().get("_case.version")).isNotNull();
+    }
 
   }
 
@@ -118,6 +133,6 @@ public class FunctionCallerVerificationTest {
 
   @AfterAll
   static void after() {
-    contract.close();
+    verifier.close();
   }
 }

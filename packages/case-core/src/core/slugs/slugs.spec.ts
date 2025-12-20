@@ -1,5 +1,5 @@
 /* eslint-disable jest/expect-expect */
-import { ContractData } from '../../../../../entities/types';
+import { ContractData } from '../../entities/types';
 import { consumerSlug, providerSlug } from './slugs';
 
 const consumerContract = (consumerName: string): ContractData => ({
