@@ -134,10 +134,15 @@ verifyContract(
           },
         },
       })
-      .forEach((verification) => {
-        // eslint-disable-next-line jest/expect-expect
-        it(`${verification.testName}`, () =>
-          verifier.runPreparedTest(verification));
+      .forEach((contract) => {
+        // eslint-disable-next-line no-underscore-dangle
+        describe(`Contract ${contract.metadata._case['hase']}`, () => {
+          contract.testHandles.forEach((testHandle) =>
+            // eslint-disable-next-line jest/expect-expect
+            it(`${testHandle.testName}`, () =>
+              verifier.runPreparedTest(testHandle)),
+          );
+        });
       });
   },
 );

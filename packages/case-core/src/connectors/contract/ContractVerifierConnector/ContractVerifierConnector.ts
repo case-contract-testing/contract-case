@@ -18,17 +18,36 @@ import { ReadingCaseContract } from '../../../core/ReadingCaseContract';
 
 import { readerDependencies } from '../../dependencies';
 import { configFromEnv, configToRunContext } from '../../../core/config';
-import { ContractVerificationTestHandle, VerifiableContract } from './types';
-import { CaseContractDescription } from '../../../entities/types';
+import {
+  VerificationTestHandle,
+  ContractVerificationHandle,
+  VerifiableContract,
+} from './types';
+import {
+  CaseContractDescription,
+  ContractMetadata,
+} from '../../../entities/types';
 import { TestPrinter } from '../types';
 import { readContractFromStore } from './readFromStore';
 import { filterContractsWithConfiguration } from './contractFilter';
 
-type ContractVerifierHandle = {
-  index: number;
-  verifier: ReadingCaseContract;
-  tests: ContractVerificationTest[];
+/**
+ * Internal type for the connector to reference it's core verifiers.
+ * This is the non-serialisable version of ContractVerificationHandle
+ */
+type InternalContractVerifierHandle = {
+  /** The index of this contract within this verification run */
+  contractIndex: number;
+  /** The path to the contract file */
   filePath: string;
+  /** The metadata from the contract file */
+  metadata: ContractMetadata;
+  /** The description from the contract file */
+  description: CaseContractDescription;
+  /** The verifier for this contract */
+  verifier: ReadingCaseContract;
+  /** The tests for this contract */
+  tests: ContractVerificationTest[];
 };
 
 type VerifierConstructorInfo<T extends AnyMockDescriptorType> = {
@@ -43,7 +62,7 @@ const getContractVerifierHandles = <T extends AnyMockDescriptorType>(
   context: DataContext,
   contractsToVerify: VerifiableContract[],
   constructorInfo: VerifierConstructorInfo<T>,
-) => {
+): InternalContractVerifierHandle[] => {
   if (contractsToVerify.length === 0) {
     throw new CaseConfigurationError(
       "No contracts were matched for verification. Try this run again with logLevel: 'debug' to find out more",
@@ -102,8 +121,10 @@ const getContractVerifierHandles = <T extends AnyMockDescriptorType>(
     const tests = contractVerifier.getTests(constructorInfo.invoker);
 
     return {
-      index,
+      contractIndex: index,
       tests,
+      metadata: verifiableContract.contract.contents.metadata,
+      description: verifiableContract.contract.contents.description,
       verifier: contractVerifier,
       filePath: verifiableContract.contract.filePath,
     };
@@ -131,7 +152,7 @@ export class ContractVerifierConnector {
    *
    * @internal
    */
-  #contractVerificationHandles: ContractVerifierHandle[] | undefined;
+  #contractVerificationHandles: InternalContractVerifierHandle[] | undefined;
 
   constructor(
     userConfig: CaseConfig,
@@ -202,7 +223,7 @@ export class ContractVerifierConnector {
       string,
       (...args: unknown[]) => Promise<unknown>
     > = {},
-  ): ContractVerificationTestHandle[] {
+  ): ContractVerificationHandle[] {
     if (this.#contractVerificationHandles) {
       this.context.logger.maintainerDebug(
         'Invalid call to prepareVerification tests. Existing contents of this.#contractVerificationHandles:',
@@ -241,13 +262,19 @@ export class ContractVerifierConnector {
       'prepared verification handles set to:',
       this.#contractVerificationHandles,
     );
-    return this.#contractVerificationHandles.flatMap((contractHandle) =>
-      contractHandle.tests.map((testHandle) => ({
-        testName: testHandle.testName,
-        testIndex: testHandle.index,
-        contractIndex: contractHandle.index,
+    return this.#contractVerificationHandles.map(
+      (contractHandle): ContractVerificationHandle => ({
+        testHandles: contractHandle.tests.map((testHandle) => ({
+          testName: testHandle.testName,
+          testIndex: testHandle.index,
+          contractIndex: contractHandle.contractIndex,
+          filePath: contractHandle.filePath,
+        })),
+        contractIndex: contractHandle.contractIndex,
         filePath: contractHandle.filePath,
-      })),
+        metadata: contractHandle.metadata,
+        description: contractHandle.description,
+      }),
     );
   }
 
@@ -272,7 +299,7 @@ export class ContractVerifierConnector {
       string,
       (...args: unknown[]) => Promise<unknown>
     > = {},
-  ): ContractVerificationTestHandle[] {
+  ): ContractVerificationHandle[] {
     return this.prepareMultiVerificationTests(
       [{ invoker, configOverride }],
       invokeableFns,
@@ -286,7 +313,7 @@ export class ContractVerifierConnector {
    * @returns a successful promise if the test ran. This doesn't necessarily
    * mean that the test passed.
    */
-  async runPreparedTest(test: ContractVerificationTestHandle): Promise<void> {
+  async runPreparedTest(test: VerificationTestHandle): Promise<void> {
     const handles = this.#contractVerificationHandles;
     return Promise.resolve().then(() => {
       if (handles == null) {
@@ -312,6 +339,12 @@ export class ContractVerifierConnector {
           `The contract handle ${test.contractIndex} was undefined. This is probably a bug in the language DSL wrapper`,
         );
       }
+      if (test.testIndex == null) {
+        throw new CaseCoreError(
+          `The provided testHandle didn't have a testIndex. This is probably a bug in the language DSL wrapper. Test handle was: ${JSON.stringify(test)}`,
+        );
+      }
+
       const testHandle = contractHandle.tests[test.testIndex];
       this.context.logger.deepMaintainerDebug(
         'Run prepared test had testHandle',
@@ -394,7 +427,7 @@ export class ContractVerifierConnector {
       const contractVerifiers = this.#contractVerificationHandles.reduce<
         ReadingCaseContract[]
       >((acc, curr) => {
-        acc[curr.index] = curr.verifier;
+        acc[curr.contractIndex] = curr.verifier;
         return acc;
       }, []);
 

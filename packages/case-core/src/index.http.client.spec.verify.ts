@@ -77,13 +77,15 @@ describe('Server verification', () => {
         },
       };
 
-      verifier
-        .prepareVerificationTests({ stateHandlers })
-        .forEach((verification) =>
+      verifier.prepareVerificationTests({ stateHandlers }).forEach((contract) =>
+        describe(`contract ${contract.filePath}`, () => {
           // eslint-disable-next-line jest/expect-expect
-          it(`${verification.testName}`, () =>
-            verifier.runPreparedTest(verification)),
-        );
+          contract.testHandles.forEach((testHandle) =>
+            it(`${testHandle.testName}`, () =>
+              verifier.runPreparedTest(testHandle)),
+          );
+        }),
+      );
     },
   );
 });

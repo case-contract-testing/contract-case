@@ -45,8 +45,15 @@ export const mapSuccess = (result: BoundaryResult): void => {
     case BoundaryResultTypeConstants.RESULT_SUCCESS:
       return;
     case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_MAP_PAYLOAD:
+      throw new ContractCaseCoreError(
+        'A void return from the core had a map payload',
+        'mapSuccess',
+      );
     case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD:
-      throw new Error("TODO: This shouldn't happen");
+      throw new ContractCaseCoreError(
+        'A void return from the core had an arbitrary payload instead',
+        'mapSuccess',
+      );
     default:
       throw new Error(`TODO: unexpected result type ${result.resultType}`);
   }
@@ -57,8 +64,15 @@ export const mapSuccessWithAny = <T>(result: BoundaryResult): T => {
     case BoundaryResultTypeConstants.RESULT_FAILURE:
       throw mapFailureToJsError(result as BoundaryFailure);
     case BoundaryResultTypeConstants.RESULT_SUCCESS:
+      throw new ContractCaseCoreError(
+        'An any return from the core had a void payload',
+        'mapSuccess',
+      );
     case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_MAP_PAYLOAD:
-      throw new Error("TODO: This shouldn't happen");
+      throw new ContractCaseCoreError(
+        'An any return from the core had a map payload',
+        'mapSuccess',
+      );
     case BoundaryResultTypeConstants.RESULT_SUCCESS_HAS_ANY_PAYLOAD: {
       try {
         return JSON.parse((result as BoundarySuccessWithAny).payload) as T;

@@ -1,6 +1,6 @@
 package io.contract_testing.contractcase.internal.client;
 
-import io.contract_testing.contractcase.ContractHandle;
+import io.contract_testing.contractcase.VerificationHandle;
 import io.contract_testing.contractcase.VerificationTestHandle;
 import io.contract_testing.contractcase.configuration.LogLevel;
 import io.contract_testing.contractcase.grpc.ContractCaseStream.AvailableContractDefinitions;
@@ -136,12 +136,12 @@ public class InternalVerifierClient implements AutoCloseable {
     return response;
   }
 
-  public ConnectorResult closePreparedVerification(ContractHandle contractHandle) {
+  public ConnectorResult closePreparedVerification(VerificationHandle verificationHandle) {
     MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Verification runPreparedTest");
     var response = rpcConnector.executeCallAndWait(VerificationRequest.newBuilder()
         .setEndVerification(
             EndVerificationRequest.newBuilder().addAllContractIndices(
-                List.of(contractHandle.contractIndex())
+                List.of(verificationHandle.contractIndex())
             )
         ), "closePreparedVerification", VERIFY_TIMEOUT_SECONDS
     );

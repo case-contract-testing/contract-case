@@ -9,12 +9,13 @@ import {
   mapConfig,
   mapSuccessWithAny,
   mapInvokeableFunction,
-  mapVerificationTestHandles,
+  mapContractVerificationHandles,
 } from './case-boundary/index.js';
 import {
   ContractCaseConfigurationError,
   ContractCaseVerifierConfig,
   ContractDescription,
+  VerificationHandle,
   VerificationTestHandle,
   versionString,
 } from '../entities/index.js';
@@ -95,9 +96,9 @@ export class ContractVerifier {
    */
   prepareVerificationTests(
     configOverrides: Partial<ContractCaseVerifierConfig> = {},
-  ): VerificationTestHandle[] {
+  ): VerificationHandle[] {
     try {
-      return mapVerificationTestHandles(
+      return mapContractVerificationHandles(
         this.boundaryVerifier.prepareVerificationTests(
           mapConfig({
             ...this.config,
@@ -131,9 +132,11 @@ export class ContractVerifier {
     }
   }
 
-  async closePreparedVerification(): Promise<void> {
+  async closePreparedVerification(contractIndex: number): Promise<void> {
     try {
-      mapSuccess(await this.boundaryVerifier.closeAllPreparedVerifications());
+      mapSuccessWithAny(
+        await this.boundaryVerifier.closePreparedVerification(contractIndex),
+      );
     } catch (e) {
       throw errorReporter(e as Error);
     }

@@ -2,7 +2,10 @@
 /* eslint-disable jest/no-export */
 import { ContractCaseDefiner } from '../../connectors/ContractDefiner.js';
 import { ContractVerifier } from '../../connectors/ContractVerifier.js';
-import { ContractWriteSuccess } from '../../entities/index.js';
+import {
+  ContractMetadata,
+  ContractWriteSuccess,
+} from '../../entities/index.js';
 import type {
   ContractCaseJestConfig,
   ContractCaseJestVerifierConfig,
@@ -54,6 +57,14 @@ export const defineContract = (
     });
   });
 
+const renderHash = (metadata: ContractMetadata) =>
+  '_case' in metadata &&
+  typeof metadata['_case'] === 'object' &&
+  'hash' in metadata['_case'] &&
+  typeof metadata['_case']['hash'] === 'string'
+    ? ` (hash ${metadata['_case']['hash']})`
+    : '';
+
 /**
  * Convenience wrapper for verifying contracts. Calling this will generate all the tests
  * you need for
@@ -81,22 +92,21 @@ export const verifyContract = (
 
     setupCallback(verifier);
 
-    const tests = verifier.prepareVerificationTests(config);
+    const contracts = verifier.prepareVerificationTests(config);
 
-    tests.forEach((verificationTest) => {
-      it(`${verificationTest.testName}`, () =>
-        verifier.runPreparedTest(verificationTest));
+    contracts.forEach((contract) => {
+      describe(`Contract between ${contract.description.consumerName} and ${contract.description.providerName} ${renderHash(contract.metadata)}`, () => {
+        contract.testHandles.forEach((test) => {
+          it(`${test.testName}`, () => verifier.runPreparedTest(test));
+        });
+      });
+      // TODO: Determine whether Jest runs tests in order always, and if not, do something else here.
+      it('Overall verification result', () =>
+        verifier.closePreparedVerification(contract.contractIndex));
     });
-    // TODO: Determine whether Jest runs tests in order always, and if not, do something else here.
-    it('Overall verification result', () =>
-      verifier.closePreparedVerification().then(
-        () => {
-          verificationComplete();
-        },
-        (e) => {
-          verificationComplete();
-          throw e;
-        },
-      ));
+
+    afterAll(() => {
+      verificationComplete();
+    });
   });
 };
