@@ -6,7 +6,7 @@ plugins {
     id 'java-library-distribution'
     id 'maven-publish'
     id 'org.jreleaser' version '1.21.0'
-    id "com.google.protobuf" version "0.9.5"
+    id "com.google.protobuf" version "0.9.6"
     id "com.github.spotbugs" version "6.4.7"
     id 'io.franzbecker.gradle-lombok' version '5.0.0'
 }
