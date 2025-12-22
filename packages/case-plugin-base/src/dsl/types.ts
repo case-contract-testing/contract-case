@@ -166,8 +166,8 @@ export type ParameterDeclaration = {
   /**
    * Documentation for the parameter.
    *
-   * Yes, this is required. We're sorry about that,
-   * but hopefully the users of your plugin won't be.
+   * Yes, this is required. We're not sorry about that,
+   * and the users of your plugin won't be sorry about it either.
    */
   readonly documentation: string;
   /** Type of this parameter */
@@ -206,7 +206,7 @@ export type DslObjectDeclaration = {
 
   /**
    * Documentation for this object. Yes, this is required. We're not sorry about that,
-   * and hopefully the users of your plugin won't be sorry about it either.
+   * and the users of your plugin won't be sorry about it either.
    */
   readonly documentation: string;
 

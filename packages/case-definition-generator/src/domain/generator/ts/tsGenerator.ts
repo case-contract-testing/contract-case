@@ -2,21 +2,21 @@ import {
   CaseCoreError,
   isPassToMatcher,
   MatcherDslDeclaration,
-  ParameterDeclaration,
   ParameterType,
 } from '@contract-case/case-plugin-base';
+import ts from 'typescript';
 import {
   toCamelCase,
   toScreamingSnakeCase,
 } from '../../naming/stringIdiomTransformations';
 import { UnreachableError } from '../../../entities/errors/unreachableError';
 
-const getTsType = (paramType: ParameterType): string => {
+const getTsType = (paramType: ParameterType): ts.TypeNode => {
   if (typeof paramType === 'string') {
-    return paramType;
+    return ts.factory.createTypeReferenceNode(paramType);
   }
   if (paramType.kind === 'array') {
-    return `${getTsType(paramType.type)}[]`;
+    return ts.factory.createArrayTypeNode(getTsType(paramType.type));
   }
   if (isPassToMatcher(paramType)) {
     throw new CaseCoreError('PassToMatcher is currently unimplemented');
@@ -33,62 +33,203 @@ export const generateDslCode = (
 ): string => {
   // 1. Constant
   const constName = `${toScreamingSnakeCase(definition.type)}_TYPE`;
-  const constValue = `'${namespace}:${definition.type}' as const;`;
+  const constValue = `${namespace}:${definition.type}`;
+
+  const constantStatement = ts.factory.createVariableStatement(
+    [ts.factory.createToken(ts.SyntaxKind.ExportKeyword)],
+    ts.factory.createVariableDeclarationList(
+      [
+        ts.factory.createVariableDeclaration(
+          constName,
+          undefined,
+          undefined,
+          ts.factory.createAsExpression(
+            ts.factory.createStringLiteral(constValue),
+            ts.factory.createTypeReferenceNode('const'),
+          ),
+        ),
+      ],
+      ts.NodeFlags.Const,
+    ),
+  );
 
   const funcName = toCamelCase(definition.name);
-
   const interfaceName = `Core${definition.name}Matches`;
-  const interfaceFields = [
-    `  '_case:matcher:type': typeof ${constName};`,
-    ...definition.params.map((param) => {
-      const tsType = getTsType(param.type);
-      const optional = param.optional ? '?' : '';
-      return `  '_case:matcher:${param.name}'${optional}: ${tsType};`;
-    }),
-  ].join('\n');
 
-  const funcParams = definition.params
-    .map((param: ParameterDeclaration) => {
-      const tsType = getTsType(param.type);
-      const optional = param.optional ? '?' : '';
-      return `${param.name}${optional}: ${tsType}`;
-    })
-    .join(', ');
+  const interfaceDeclaration = ts.factory.createInterfaceDeclaration(
+    [ts.factory.createToken(ts.SyntaxKind.ExportKeyword)],
+    interfaceName,
+    undefined,
+    undefined,
+    [
+      ts.factory.createPropertySignature(
+        undefined,
+        ts.factory.createStringLiteral('_case:matcher:type'),
+        undefined,
+        ts.factory.createTypeQueryNode(ts.factory.createIdentifier(constName)),
+      ),
+      ...definition.params.map((param) =>
+        ts.factory.createPropertySignature(
+          undefined,
+          ts.factory.createStringLiteral(`_case:matcher:${param.name}`),
+          param.optional
+            ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
+            : undefined,
+          getTsType(param.type),
+        ),
+      ),
+    ],
+  );
 
-  const funcReturnType = interfaceName;
-  const funcBodyFields = [
-    `  '_case:matcher:type': ${constName},`,
-    ...definition.params.map((param: ParameterDeclaration) => {
-      const key = `'_case:matcher:${param.name}'`;
-      if (param.optional) {
-        return `  ...(${param.name} !== undefined ? { ${key}: ${param.name} } : {}),`;
-      }
-      return `  ${key}: ${param.name},`;
-    }),
-  ].join('\n');
+  const factoryFunction = ts.factory.createVariableStatement(
+    [ts.factory.createToken(ts.SyntaxKind.ExportKeyword)],
+    ts.factory.createVariableDeclarationList(
+      [
+        ts.factory.createVariableDeclaration(
+          funcName,
+          undefined,
+          undefined,
+          ts.factory.createArrowFunction(
+            undefined,
+            undefined,
+            definition.params.map((param) =>
+              ts.factory.createParameterDeclaration(
+                undefined,
+                undefined,
+                param.name,
+                param.optional
+                  ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
+                  : undefined,
+                getTsType(param.type),
+                undefined,
+              ),
+            ),
+            ts.factory.createTypeReferenceNode(interfaceName),
+            ts.factory.createToken(ts.SyntaxKind.EqualsGreaterThanToken),
+            ts.factory.createParenthesizedExpression(
+              ts.factory.createObjectLiteralExpression(
+                [
+                  ts.factory.createPropertyAssignment(
+                    ts.factory.createStringLiteral('_case:matcher:type'),
+                    ts.factory.createIdentifier(constName),
+                  ),
+                  ...definition.params.flatMap(
+                    (param): ts.ObjectLiteralElementLike[] => {
+                      const key = `_case:matcher:${param.name}`;
+                      if (param.optional) {
+                        return [
+                          ts.factory.createSpreadAssignment(
+                            ts.factory.createParenthesizedExpression(
+                              ts.factory.createConditionalExpression(
+                                ts.factory.createBinaryExpression(
+                                  ts.factory.createIdentifier(param.name),
+                                  ts.factory.createToken(
+                                    ts.SyntaxKind.ExclamationEqualsEqualsToken,
+                                  ),
+                                  ts.factory.createIdentifier('undefined'),
+                                ),
+                                ts.factory.createToken(
+                                  ts.SyntaxKind.QuestionToken,
+                                ),
+                                ts.factory.createObjectLiteralExpression([
+                                  ts.factory.createPropertyAssignment(
+                                    ts.factory.createStringLiteral(key),
+                                    ts.factory.createIdentifier(param.name),
+                                  ),
+                                ]),
+                                ts.factory.createToken(
+                                  ts.SyntaxKind.ColonToken,
+                                ),
+                                ts.factory.createObjectLiteralExpression([]),
+                              ),
+                            ),
+                          ),
+                        ];
+                      }
+                      return [
+                        ts.factory.createPropertyAssignment(
+                          ts.factory.createStringLiteral(key),
+                          ts.factory.createIdentifier(param.name),
+                        ),
+                      ];
+                    },
+                  ),
+                ],
+                true,
+              ),
+            ),
+          ),
+        ),
+      ],
+      ts.NodeFlags.Const,
+    ),
+  );
 
-  // Compose the code
-  return `
-import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
+  // Factory "Factory Function" comment
+  ts.addSyntheticLeadingComment(
+    factoryFunction,
+    ts.SyntaxKind.SingleLineCommentTrivia,
+    ' Factory Function',
+    true,
+  );
 
-// Constant
-export const ${constName} = ${constValue}
+  // Comments for factory function
+  ts.addSyntheticLeadingComment(
+    factoryFunction,
+    ts.SyntaxKind.MultiLineCommentTrivia,
+    `*\n * ${definition.documentation}\n *\n${definition.params
+      .map((param) => ` * @param ${param.name} - ${param.documentation || ''}`)
+      .join('\n')}\n `,
+    true,
+  );
 
-// Interface
-export interface ${interfaceName} {
-${interfaceFields}
-}
+  // Constant "Constant" comment
+  ts.addSyntheticLeadingComment(
+    constantStatement,
+    ts.SyntaxKind.SingleLineCommentTrivia,
+    ' Constant',
+    true,
+  );
 
-// Factory Function
-/**
- * ${definition.documentation}
- *
-${definition.params
-  .map((param) => ` * @param ${param.name} - ${param.documentation || ''}`)
-  .join('\n')}
- */
-export const ${funcName} = (${funcParams}): ${funcReturnType} => ({
-${funcBodyFields}
-});
-`;
+  // Interface "Interface" comment
+  ts.addSyntheticLeadingComment(
+    interfaceDeclaration,
+    ts.SyntaxKind.SingleLineCommentTrivia,
+    ' Interface',
+    true,
+  );
+
+  const importStatement = ts.factory.createImportDeclaration(
+    undefined,
+    ts.factory.createImportClause(
+      false,
+      undefined,
+      ts.factory.createNamedImports([
+        ts.factory.createImportSpecifier(
+          false,
+          undefined,
+          ts.factory.createIdentifier('AnyCaseMatcherOrData'),
+        ),
+      ]),
+    ),
+    ts.factory.createStringLiteral('@contract-case/case-plugin-dsl-types'),
+  );
+
+  const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+  const sourceFile = ts.createSourceFile(
+    'placeholder.ts',
+    '',
+    ts.ScriptTarget.Latest,
+    false,
+    ts.ScriptKind.TS,
+  );
+
+  const nodes = ts.factory.createNodeArray([
+    importStatement,
+    constantStatement,
+    interfaceDeclaration,
+    factoryFunction,
+  ]);
+
+  return printer.printList(ts.ListFormat.MultiLine, nodes, sourceFile);
 };
