@@ -1,4 +1,8 @@
-import { isTypeContainer, ParameterType, TypeContainer } from './types';
+import {
+  TypeContainer,
+  ParameterType,
+  isTypeContainer,
+} from '@contract-case/case-plugin-base';
 import { LanguageTypes } from './typeSystem.types';
 
 /**

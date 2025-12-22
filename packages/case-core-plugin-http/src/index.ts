@@ -30,6 +30,7 @@ import {
 } from './matchers';
 import { setupHttpResponseConsumer, setupHttpResponseProducer } from './mocks';
 import { description } from './description';
+import { dsl } from './dsl/http';
 
 export * from './matchers';
 export * from './mocks';
@@ -60,6 +61,7 @@ const CoreHttpPlugin: ContractCasePlugin<
       ensureMatchersAreNamed: defaultNameMock,
     },
   },
+  dsl,
 };
 
 export default CoreHttpPlugin;

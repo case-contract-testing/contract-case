@@ -1,7 +1,7 @@
 import {
   ParameterDeclaration,
   PluginDslDeclaration,
-} from '../domain/typeSystem/types';
+} from '@contract-case/case-plugin-base';
 
 const FUNCTION_CATEGORY = 'functions';
 
@@ -108,7 +108,7 @@ const namedArguments: ParameterDeclaration = {
   },
 };
 
-const functions: PluginDslDeclaration = {
+export const dsl: PluginDslDeclaration = {
   namespace: '_case',
   category: FUNCTION_CATEGORY,
   matchers: [
@@ -407,5 +407,3 @@ const functions: PluginDslDeclaration = {
     },
   ],
 };
-
-export default functions;

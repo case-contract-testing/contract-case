@@ -13,20 +13,19 @@ import prettier from 'prettier';
 import {
   CaseConfigurationError,
   CaseCoreError,
+  isPassToMatcher,
+  isTypeContainer,
+  MatcherReference,
+  ParameterDeclaration,
+  ParameterType,
+  PassToMatcher,
 } from '@contract-case/case-plugin-base';
 import {
   JavaDescriptor,
   JavaFieldDescriptor,
   JavaConstructorDescriptor,
 } from './types';
-import {
-  isTypeContainer,
-  ParameterType,
-  isPassToMatcher,
-  PassToMatcher,
-  ParameterDeclaration,
-  MatcherReference,
-} from '../../typeSystem/types';
+
 import { UnreachableError } from '../../../entities/errors/unreachableError';
 
 /**

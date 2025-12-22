@@ -125,6 +125,7 @@ export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends st
     setupMocks: {
         [T in MockTypes]: MockExecutor<T, CaseMockDescriptorFor<MockDescriptors, T>, AllSetupInfo>;
     };
+    dsl?: PluginDslDeclaration;
 };
 
 // Warning: (ae-internal-missing-underscore) The name "ContractFileConfig" should be prefixed with an underscore because the declaration is marked as @internal
@@ -183,6 +184,14 @@ export type DefaultContext = LogLevelContext & {
 
 // @public
 export const defaultNameMock: <M extends AnyMockDescriptor>(mock: M, context: MatchContext) => M;
+
+// @public
+export type DslObjectDeclaration = {
+    readonly name: string;
+    readonly type: string;
+    readonly documentation: string;
+    readonly params: ParameterDeclaration[];
+};
 
 // @public
 export const ERROR_TYPE_CONFIGURATION: "CONFIGURATION_ERROR";
@@ -260,6 +269,11 @@ export interface HttpTestContext {
     baseUrl: string;
 }
 
+// @public (undocumented)
+export type InteractionDslDeclaration = DslObjectDeclaration & {
+    readonly setup: InternalContractCaseCoreSetup;
+};
+
 // @public
 export const isCaseNode: (maybeMatcher: unknown) => maybeMatcher is AnyCaseMatcher;
 
@@ -276,6 +290,12 @@ export interface IsMockDescriptorForType<T extends string> {
     // (undocumented)
     '_case:run:context:setup': InternalContractCaseCoreSetup;
 }
+
+// @public (undocumented)
+export const isPassToMatcher: (parameterType: ParameterType) => parameterType is PassToMatcher;
+
+// @public
+export const isTypeContainer: (parameterType: ParameterType) => parameterType is TypeContainer;
 
 // Warning: (ae-internal-missing-underscore) The name "locationString" should be prefixed with an underscore because the declaration is marked as @internal
 //
@@ -344,12 +364,28 @@ export interface MatchContextByType {
 export type MatchContextWithoutLookup = Omit<MatchContext, keyof ContractLookupFns | keyof HasMakeLookupFn>;
 
 // @public
+export type MatcherDslDeclaration = DslObjectDeclaration & {
+    readonly constantParams?: Record<string, string> & {
+        readonly resolvesTo?: Extract<ParameterType, 'string' | 'boolean' | 'number' | 'integer' | 'null'>;
+    };
+    readonly contextModifiers?: Record<string, string>;
+    readonly currentRunModifiers?: Record<string, string>;
+};
+
+// @public
 export interface MatcherExecutor<MatcherType extends string, T extends IsCaseNodeForType<MatcherType>> {
     check: CheckMatchFn<T>;
     describe: NameMatcherFn<T>;
     strip: StripMatcherFn<T>;
     validate: ValidateMatcherFn<T>;
 }
+
+// @public
+export type MatcherReference = {
+    readonly name: string;
+    readonly category: string;
+    readonly namespace: string;
+};
 
 // @public
 export const matcherToString: <T>(actual: T, indent?: number) => string;
@@ -413,11 +449,39 @@ export const mustResolveToString: (matcher: AnyCaseMatcherOrData, context: Match
 export type NameMatcherFn<T> = (matcher: T, matchContext: MatchContext) => string;
 
 // @public
+export type ParameterDeclaration = {
+    readonly name: string;
+    readonly documentation: string;
+    readonly type: ParameterType;
+    readonly optional?: boolean;
+    readonly jsonPropertyName?: string;
+};
+
+// @public
+export type ParameterType = TypeContainer | PassToMatcher | 'AnyCaseMatcherOrData' | 'AnyData' | 'integer' | 'string' | 'boolean' | 'number' | 'null' | 'json';
+
+// @public
+export type PassToMatcher = {
+    readonly kind: 'PassToMatcher';
+    readonly exposedParams: ParameterDeclaration[];
+    readonly matcherReference: MatcherReference;
+};
+
+// @public
 export type PluginDescription = {
     humanReadableName: string;
     shortName: string;
     uniqueMachineName: string;
     version: string;
+};
+
+// @public (undocumented)
+export type PluginDslDeclaration = {
+    readonly namespace: string;
+    readonly category: string;
+    readonly matchers: MatcherDslDeclaration[];
+    readonly interactions: InteractionDslDeclaration[];
+    readonly states?: StateObjectDeclaration[];
 };
 
 // @public
@@ -504,6 +568,9 @@ export const SERIALISABLE_TO_JSON: "json";
 // @internal
 export const shouldLog: (context: LogLevelContext, logLevel: LogLevel) => boolean;
 
+// @public (undocumented)
+export type StateObjectDeclaration = DslObjectDeclaration;
+
 // @public
 export type StripMatcherFn<T> = (matcher: T, matchContext: MatchContext) => AnyData;
 
@@ -536,6 +603,12 @@ export interface TriggerError {
     // (undocumented)
     userFacingStackTrace: string;
 }
+
+// @public
+export type TypeContainer = {
+    readonly kind: 'array';
+    readonly type: ParameterType;
+};
 
 // @public
 export type ValidateMatcherFn<T> = (matcher: T, matchContext: MatchContext) => Promise<void>;

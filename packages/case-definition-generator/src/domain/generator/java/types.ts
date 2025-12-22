@@ -1,4 +1,7 @@
-import { ParameterDeclaration, ParameterType } from '../../typeSystem/types';
+import {
+  ParameterType,
+  ParameterDeclaration,
+} from '@contract-case/case-plugin-base';
 
 interface RecursiveRecord {
   [key: string]: string | RecursiveRecord;

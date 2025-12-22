@@ -1,4 +1,4 @@
-import { PluginDslDeclaration } from '../domain/typeSystem/types';
+import { PluginDslDeclaration } from '@contract-case/case-plugin-base';
 
 const strings: PluginDslDeclaration = {
   namespace: '_case',

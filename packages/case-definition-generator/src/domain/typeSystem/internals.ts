@@ -1,8 +1,8 @@
 import {
-  InteractionDslDeclaration,
   MatcherDslDeclaration,
+  InteractionDslDeclaration,
   StateObjectDeclaration,
-} from './types';
+} from '@contract-case/case-plugin-base';
 
 export type InternalMatcherDslDeclaration = MatcherDslDeclaration & {
   kind: 'matcher';

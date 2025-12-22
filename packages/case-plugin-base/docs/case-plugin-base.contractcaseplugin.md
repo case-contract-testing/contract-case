@@ -17,7 +17,8 @@ export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends st
     setupMocks: {
         [T in MockTypes]: MockExecutor<T, CaseMockDescriptorFor<MockDescriptors, T>, AllSetupInfo>;
     };
+    dsl?: PluginDslDeclaration;
 };
 ```
-**References:** [IsCaseNodeForType](./case-plugin-base.iscasenodefortype.md)<!-- -->, [IsMockDescriptorForType](./case-plugin-base.ismockdescriptorfortype.md)<!-- -->, [PluginDescription](./case-plugin-base.plugindescription.md)<!-- -->, [MatcherExecutor](./case-plugin-base.matcherexecutor.md)<!-- -->, [CaseMatcherFor](./case-plugin-base.casematcherfor.md)<!-- -->, [MockExecutor](./case-plugin-base.mockexecutor.md)
+**References:** [IsCaseNodeForType](./case-plugin-base.iscasenodefortype.md)<!-- -->, [IsMockDescriptorForType](./case-plugin-base.ismockdescriptorfortype.md)<!-- -->, [PluginDescription](./case-plugin-base.plugindescription.md)<!-- -->, [MatcherExecutor](./case-plugin-base.matcherexecutor.md)<!-- -->, [CaseMatcherFor](./case-plugin-base.casematcherfor.md)<!-- -->, [MockExecutor](./case-plugin-base.mockexecutor.md)<!-- -->, [PluginDslDeclaration](./case-plugin-base.plugindsldeclaration.md)
 

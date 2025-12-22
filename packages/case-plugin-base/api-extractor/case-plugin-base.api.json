@@ -1866,7 +1866,16 @@
             },
             {
               "kind": "Content",
-              "text": "<MockDescriptors, T>, AllSetupInfo>;\n    };\n}"
+              "text": "<MockDescriptors, T>, AllSetupInfo>;\n    };\n    dsl?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "PluginDslDeclaration",
+              "canonicalReference": "@contract-case/case-plugin-base!PluginDslDeclaration:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
             },
             {
               "kind": "Content",
@@ -1935,7 +1944,7 @@
           ],
           "typeTokenRange": {
             "startIndex": 11,
-            "endIndex": 22
+            "endIndex": 24
           }
         },
         {
@@ -2536,6 +2545,41 @@
             }
           ],
           "name": "defaultNameMock"
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!DslObjectDeclaration:type",
+          "docComment": "/**\n * Defines an object.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type DslObjectDeclaration = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    readonly name: string;\n    readonly type: string;\n    readonly documentation: string;\n    readonly params: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ParameterDeclaration",
+              "canonicalReference": "@contract-case/case-plugin-base!ParameterDeclaration:type"
+            },
+            {
+              "kind": "Content",
+              "text": "[];\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "releaseTag": "Public",
+          "name": "DslObjectDeclaration",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          }
         },
         {
           "kind": "Variable",
@@ -3207,6 +3251,46 @@
           "name": "hasNoErrors"
         },
         {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!InteractionDslDeclaration:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type InteractionDslDeclaration = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DslObjectDeclaration",
+              "canonicalReference": "@contract-case/case-plugin-base!DslObjectDeclaration:type"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    readonly setup: "
+            },
+            {
+              "kind": "Reference",
+              "text": "InternalContractCaseCoreSetup",
+              "canonicalReference": "@contract-case/case-plugin-dsl-types!InternalContractCaseCoreSetup:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "releaseTag": "Public",
+          "name": "InteractionDslDeclaration",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!isCaseNode:function(1)",
           "docComment": "/**\n * Type guard to determine if an object is a ContractCase matcher descriptor or not\n *\n * @param maybeMatcher - a matcher or data\n *\n * @returns true if `maybeMatcher` is a matcher descriptor, false if not\n *\n * @public\n */\n",
@@ -3416,6 +3500,110 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!isPassToMatcher:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "isPassToMatcher: (parameterType: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ParameterType",
+              "canonicalReference": "@contract-case/case-plugin-base!ParameterType:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "parameterType",
+              "canonicalReference": "@contract-case/case-plugin-base!~parameterType"
+            },
+            {
+              "kind": "Content",
+              "text": " is "
+            },
+            {
+              "kind": "Reference",
+              "text": "PassToMatcher",
+              "canonicalReference": "@contract-case/case-plugin-base!PassToMatcher:type"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "parameterType",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "isPassToMatcher"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!isTypeContainer:function(1)",
+          "docComment": "/**\n * Type guard function that determines whether a ParameterType is a TypeContainer or a plain string type.\n *\n * @param parameterType - The parameter type to check\n *\n * @returns true if the parameter is a TypeContainer, false if it's a string\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "isTypeContainer: (parameterType: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ParameterType",
+              "canonicalReference": "@contract-case/case-plugin-base!ParameterType:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "parameterType",
+              "canonicalReference": "@contract-case/case-plugin-base!~parameterType"
+            },
+            {
+              "kind": "Content",
+              "text": " is "
+            },
+            {
+              "kind": "Reference",
+              "text": "TypeContainer",
+              "canonicalReference": "@contract-case/case-plugin-base!TypeContainer:type"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "parameterType",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "isTypeContainer"
         },
         {
           "kind": "Interface",
@@ -4086,6 +4274,82 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!MatcherDslDeclaration:type",
+          "docComment": "/**\n * Defines the DSL for a matcher.\n *\n * Note that more than one Matcher DSL can point to the same matcher implementation - that is, you might have multiple DSL objects with the same type.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type MatcherDslDeclaration = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DslObjectDeclaration",
+              "canonicalReference": "@contract-case/case-plugin-base!DslObjectDeclaration:type"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    readonly constantParams?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, string> & {\n        readonly resolvesTo?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Extract",
+              "canonicalReference": "!Extract:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ParameterType",
+              "canonicalReference": "@contract-case/case-plugin-base!ParameterType:type"
+            },
+            {
+              "kind": "Content",
+              "text": ", 'string' | 'boolean' | 'number' | 'integer' | 'null'>;\n    };\n    readonly contextModifiers?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, string>;\n    readonly currentRunModifiers?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, string>;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "releaseTag": "Public",
+          "name": "MatcherDslDeclaration",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 13
+          }
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!MatcherExecutor:interface",
           "docComment": "/**\n * A MatcherExecutor contains the three functions needed to execute a matcher descriptor during a run.\n *\n * @remarks\n *\n * All functions must have no side effects.\n *\n * See the individual function types for more details.\n *\n * @typeParam matcherType - the string constant for this matcher descriptor\n *\n * @typeParam T - the matcher descriptor object type\n *\n * @public\n */\n",
@@ -4275,6 +4539,32 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!MatcherReference:type",
+          "docComment": "/**\n * A MatcherReference uniquely identifies a matcher and allows generated code to import and use it\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type MatcherReference = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    readonly name: string;\n    readonly category: string;\n    readonly namespace: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "releaseTag": "Public",
+          "name": "MatcherReference",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
         },
         {
           "kind": "Function",
@@ -5263,6 +5553,125 @@
         },
         {
           "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!ParameterDeclaration:type",
+          "docComment": "/**\n * Declares a parameter for a matcher\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ParameterDeclaration = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    readonly name: string;\n    readonly documentation: string;\n    readonly type: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ParameterType",
+              "canonicalReference": "@contract-case/case-plugin-base!ParameterType:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    readonly optional?: boolean;\n    readonly jsonPropertyName?: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "releaseTag": "Public",
+          "name": "ParameterDeclaration",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!ParameterType:type",
+          "docComment": "/**\n * ParameterType tells us what type a parameter is.\n *\n * Possible string values: - `'AnyCaseMatcherOrData'`: Matches arbitrary data or a ContractCase matcher. This is ContractCase's most generic unknown type. - `'AnyData'`: Matches any data value only, ie, can't be a matcher. - `'integer'`: Matches integer numbers - `'string'`: Matches string values - `'boolean'`: Matches boolean values - `'number'`: Matches any numeric value. Because the contract serialises to json, this practically means double precision floating point; although the json spec doesn't actually specify, most implementations are restricted to double precision floating point. - `'null'`: Matches `null` values. Friends don't let friends match null values.\n *\n * See {@link TypeContainer} for complex types.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ParameterType = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TypeContainer",
+              "canonicalReference": "@contract-case/case-plugin-base!TypeContainer:type"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
+              "text": "PassToMatcher",
+              "canonicalReference": "@contract-case/case-plugin-base!PassToMatcher:type"
+            },
+            {
+              "kind": "Content",
+              "text": " | 'AnyCaseMatcherOrData' | 'AnyData' | 'integer' | 'string' | 'boolean' | 'number' | 'null' | 'json'"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "releaseTag": "Public",
+          "name": "ParameterType",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!PassToMatcher:type",
+          "docComment": "/**\n * Indicates a parameter type which assigns the given parameter(s) to a matcher.\n *\n * This is useful for making composite matchers.\n *\n * See the definition of the core function plugin for an example.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type PassToMatcher = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    readonly kind: 'PassToMatcher';\n    readonly exposedParams: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ParameterDeclaration",
+              "canonicalReference": "@contract-case/case-plugin-base!ParameterDeclaration:type"
+            },
+            {
+              "kind": "Content",
+              "text": "[];\n    readonly matcherReference: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MatcherReference",
+              "canonicalReference": "@contract-case/case-plugin-base!MatcherReference:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "releaseTag": "Public",
+          "name": "PassToMatcher",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
+          "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!PluginDescription:type",
           "docComment": "/**\n * Describes the plugin name and version\n *\n * @public\n */\n",
           "excerptTokens": [
@@ -5285,6 +5694,59 @@
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!PluginDslDeclaration:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type PluginDslDeclaration = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    readonly namespace: string;\n    readonly category: string;\n    readonly matchers: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MatcherDslDeclaration",
+              "canonicalReference": "@contract-case/case-plugin-base!MatcherDslDeclaration:type"
+            },
+            {
+              "kind": "Content",
+              "text": "[];\n    readonly interactions: "
+            },
+            {
+              "kind": "Reference",
+              "text": "InteractionDslDeclaration",
+              "canonicalReference": "@contract-case/case-plugin-base!InteractionDslDeclaration:type"
+            },
+            {
+              "kind": "Content",
+              "text": "[];\n    readonly states?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "StateObjectDeclaration",
+              "canonicalReference": "@contract-case/case-plugin-base!StateObjectDeclaration:type"
+            },
+            {
+              "kind": "Content",
+              "text": "[];\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "releaseTag": "Public",
+          "name": "PluginDslDeclaration",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 8
           }
         },
         {
@@ -5615,6 +6077,33 @@
           "releaseTag": "Public",
           "name": "SERIALISABLE_TO_JSON",
           "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!StateObjectDeclaration:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type StateObjectDeclaration = "
+            },
+            {
+              "kind": "Reference",
+              "text": "DslObjectDeclaration",
+              "canonicalReference": "@contract-case/case-plugin-base!DslObjectDeclaration:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "releaseTag": "Public",
+          "name": "StateObjectDeclaration",
+          "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
           }
@@ -6232,6 +6721,41 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!TypeContainer:type",
+          "docComment": "/**\n * Indicates a container type.\n *\n * Currently only supports arrays, but in the future may allow specific matchers.\n *\n * Implementations should switch on `kind` and fail if they get a kind that they don't recognise.\n *\n * If you have a use-case that needs more complex container types, please raise an issue.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type TypeContainer = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    readonly kind: 'array';\n    readonly type: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ParameterType",
+              "canonicalReference": "@contract-case/case-plugin-base!ParameterType:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/dsl/types.ts",
+          "releaseTag": "Public",
+          "name": "TypeContainer",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          }
         },
         {
           "kind": "TypeAlias",

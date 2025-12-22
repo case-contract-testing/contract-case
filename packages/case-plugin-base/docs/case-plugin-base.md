@@ -263,6 +263,26 @@ Type guard to determine if an object is a ContractCase matcher descriptor or not
 </td></tr>
 <tr><td>
 
+[isPassToMatcher(parameterType)](./case-plugin-base.ispasstomatcher.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[isTypeContainer(parameterType)](./case-plugin-base.istypecontainer.md)
+
+
+</td><td>
+
+Type guard function that determines whether a ParameterType is a TypeContainer or a plain string type.
+
+
+</td></tr>
+<tr><td>
+
 [makeNoErrorResult()](./case-plugin-base.makenoerrorresult.md)
 
 
@@ -792,6 +812,17 @@ The settings that are set as default context for a run
 </td></tr>
 <tr><td>
 
+[DslObjectDeclaration](./case-plugin-base.dslobjectdeclaration.md)
+
+
+</td><td>
+
+Defines an object.
+
+
+</td></tr>
+<tr><td>
+
 [ErrorCodeDefinitions](./case-plugin-base.errorcodedefinitions.md)
 
 
@@ -809,6 +840,15 @@ A convenience type for all the error codes emitted by ContractCase.
 </td><td>
 
 A matcher descriptor that has an example
+
+
+</td></tr>
+<tr><td>
+
+[InteractionDslDeclaration](./case-plugin-base.interactiondsldeclaration.md)
+
+
+</td><td>
 
 
 </td></tr>
@@ -846,6 +886,30 @@ You probably want [LogContext](./case-plugin-base.logcontext.md) instead.
 </td><td>
 
 The part of the context used during a matching run - contains traversal functions and any lookup functions that arbitrary matchers or mocks might need.
+
+
+</td></tr>
+<tr><td>
+
+[MatcherDslDeclaration](./case-plugin-base.matcherdsldeclaration.md)
+
+
+</td><td>
+
+Defines the DSL for a matcher.
+
+Note that more than one Matcher DSL can point to the same matcher implementation - that is, you might have multiple DSL objects with the same type.
+
+
+</td></tr>
+<tr><td>
+
+[MatcherReference](./case-plugin-base.matcherreference.md)
+
+
+</td><td>
+
+A MatcherReference uniquely identifies a matcher and allows generated code to import and use it
 
 
 </td></tr>
@@ -921,6 +985,47 @@ Extracts the name for this matcher in an English, human readable format.
 </td></tr>
 <tr><td>
 
+[ParameterDeclaration](./case-plugin-base.parameterdeclaration.md)
+
+
+</td><td>
+
+Declares a parameter for a matcher
+
+
+</td></tr>
+<tr><td>
+
+[ParameterType](./case-plugin-base.parametertype.md)
+
+
+</td><td>
+
+ParameterType tells us what type a parameter is.
+
+Possible string values: - `'AnyCaseMatcherOrData'`<!-- -->: Matches arbitrary data or a ContractCase matcher. This is ContractCase's most generic unknown type. - `'AnyData'`<!-- -->: Matches any data value only, ie, can't be a matcher. - `'integer'`<!-- -->: Matches integer numbers - `'string'`<!-- -->: Matches string values - `'boolean'`<!-- -->: Matches boolean values - `'number'`<!-- -->: Matches any numeric value. Because the contract serialises to json, this practically means double precision floating point; although the json spec doesn't actually specify, most implementations are restricted to double precision floating point. - `'null'`<!-- -->: Matches `null` values. Friends don't let friends match null values.
+
+See [TypeContainer](./case-plugin-base.typecontainer.md) for complex types.
+
+
+</td></tr>
+<tr><td>
+
+[PassToMatcher](./case-plugin-base.passtomatcher.md)
+
+
+</td><td>
+
+Indicates a parameter type which assigns the given parameter(s) to a matcher.
+
+This is useful for making composite matchers.
+
+See the definition of the core function plugin for an example.
+
+
+</td></tr>
+<tr><td>
+
 [PluginDescription](./case-plugin-base.plugindescription.md)
 
 
@@ -932,12 +1037,47 @@ Describes the plugin name and version
 </td></tr>
 <tr><td>
 
+[PluginDslDeclaration](./case-plugin-base.plugindsldeclaration.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[StateObjectDeclaration](./case-plugin-base.stateobjectdeclaration.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
 [StripMatcherFn](./case-plugin-base.stripmatcherfn.md)
 
 
 </td><td>
 
 Strips the matchers from a matcher descriptor to return the raw data represented by this matcher (ie, the example data).
+
+
+</td></tr>
+<tr><td>
+
+[TypeContainer](./case-plugin-base.typecontainer.md)
+
+
+</td><td>
+
+Indicates a container type.
+
+Currently only supports arrays, but in the future may allow specific matchers.
+
+Implementations should switch on `kind` and fail if they get a kind that they don't recognise.
+
+If you have a use-case that needs more complex container types, please raise an issue.
 
 
 </td></tr>

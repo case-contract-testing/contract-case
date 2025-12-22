@@ -1,6 +1,6 @@
-import { PluginDslDeclaration } from '../domain/typeSystem/types';
+import { PluginDslDeclaration } from '@contract-case/case-plugin-base';
 
-const http: PluginDslDeclaration = {
+export const dsl: PluginDslDeclaration = {
   namespace: '_case',
   category: 'http',
   matchers: [
@@ -296,5 +296,3 @@ If not provided, no header matching is performed`,
     },
   ],
 };
-
-export default http;

@@ -1,5 +1,5 @@
 import * as path from 'node:path';
-import { MatcherDslDeclaration } from '../../typeSystem/types';
+import { MatcherDslDeclaration } from '@contract-case/case-plugin-base';
 import {
   JavaDescriptor,
   JavaFieldDescriptor,

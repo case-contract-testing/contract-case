@@ -1,10 +1,10 @@
-import { CaseCoreError } from '@contract-case/case-plugin-base';
 import {
+  CaseCoreError,
   isPassToMatcher,
   MatcherDslDeclaration,
   ParameterDeclaration,
   ParameterType,
-} from '../../typeSystem/types';
+} from '@contract-case/case-plugin-base';
 import {
   toCamelCase,
   toScreamingSnakeCase,

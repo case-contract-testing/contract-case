@@ -1,5 +1,6 @@
+import { ParameterDeclaration } from '@contract-case/case-plugin-base';
 import { getType } from '../../typeSystem';
-import { LanguageTypes, ParameterDeclaration } from '../../typeSystem/types';
+import { LanguageTypes } from '../../typeSystem/types';
 import { JavaConstructorDescriptor } from './types';
 
 const javaLanguageTypes: LanguageTypes = {
