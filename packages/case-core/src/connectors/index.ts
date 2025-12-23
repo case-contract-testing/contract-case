@@ -1,4 +1,4 @@
 export * from './contract';
-export { LogPrinter } from './logger/types';
+export type { LogPrinter } from './logger/types';
 export * from './loadPlugins';
-export { TestPrinter } from './contract/types';
+export type { TestPrinter } from './contract/types';

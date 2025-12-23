@@ -10,6 +10,7 @@
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "lib": ["es2022"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",

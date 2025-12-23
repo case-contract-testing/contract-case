@@ -17,7 +17,7 @@ export * from './types.contract';
 export * from './types.environment';
 export * from './types.ContractReader';
 
-export { CaseConfig } from './config/types';
+export type { CaseConfig } from './config/types';
 
 /**
  * Returned by the core after a successful write of a contract

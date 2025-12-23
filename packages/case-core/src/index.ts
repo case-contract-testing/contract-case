@@ -13,8 +13,11 @@ import {
 
 export * from './boundaries';
 export * from './boundaries/types';
-export { CaseConfig } from './core/types';
-export { TestInvoker, MultiTestInvoker } from './core/executeExample/types';
+export type { CaseConfig } from './core/types';
+export type {
+  TestInvoker,
+  MultiTestInvoker,
+} from './core/executeExample/types';
 export { BrokerError } from './core';
 export type {
   LogLevel,
@@ -23,7 +26,7 @@ export type {
 
 export { CaseFailedAssertionError } from './entities';
 
-export {
+export type {
   PrintableMatchError,
   PrintableMessageError,
   PrintableTestTitle,

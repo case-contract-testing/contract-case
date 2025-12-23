@@ -7,7 +7,7 @@ import { LogLevel, Logger } from '../logger/types';
 import { CaseError, MatchResult } from '../matchers/errors.types';
 import { CaseExample } from './contract.types';
 
-export { CaseExample };
+export type { CaseExample };
 
 /**
  * Indicates that we are doing a general shape match in this context

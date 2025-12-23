@@ -193,7 +193,7 @@ export const generateDslCode = (
   const importStatement = ts.factory.createImportDeclaration(
     undefined,
     ts.factory.createImportClause(
-      false,
+      undefined,
       undefined,
       ts.factory.createNamedImports([
         ts.factory.createImportSpecifier(

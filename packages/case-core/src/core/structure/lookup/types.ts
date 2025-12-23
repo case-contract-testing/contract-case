@@ -1,1 +1,1 @@
-export { LookupMap, LookupType } from './internals/types';
+export type { LookupMap, LookupType } from './internals/types';

@@ -1,1 +1,1 @@
-export * from './dsl/types';
+export type * from './dsl/types';
