@@ -20,6 +20,18 @@ import {
   kindToPropertyName,
 } from '../../../entities/crossLanguage/conventions';
 
+import {
+  createArrowFunction,
+  createConstStatement,
+  createId,
+  createInterfaceDeclaration as createInterface,
+  createNamedImport,
+  createParameter,
+  createPropertyAssignment,
+  createPropertySignature,
+  createString,
+} from './tsFactoryWrapper';
+
 const getTsType = (paramType: ParameterType): ts.TypeNode => {
   if (typeof paramType === 'string') {
     switch (paramType) {
@@ -74,9 +86,100 @@ const parameterName = (
   param: ParameterDeclaration,
   definition: InternalObjectDeclaration,
 ): string =>
-  param.jsonPropertyName
-    ? param.jsonPropertyName
-    : stringParameterName(param.name, definition);
+  param.jsonPropertyName ?? stringParameterName(param.name, definition);
+
+const createTypeConstantStatement = (
+  matcherTypeConstant: string,
+  constValue: string,
+): ts.VariableStatement =>
+  createConstStatement(
+    matcherTypeConstant,
+    ts.factory.createAsExpression(
+      createString(constValue),
+      ts.factory.createTypeReferenceNode('const'),
+    ),
+  );
+
+const createInterfaceDeclaration = (
+  definition: InternalObjectDeclaration,
+  interfaceName: string,
+  matcherTypeConstant: string,
+): ts.InterfaceDeclaration =>
+  createInterface(interfaceName, [
+    createPropertySignature(
+      stringParameterName('type', definition),
+      ts.factory.createTypeQueryNode(createId(matcherTypeConstant)),
+    ),
+    ...definition.params.map((param) =>
+      createPropertySignature(
+        parameterName(param, definition),
+        getTsType(param.type),
+        param.optional,
+      ),
+    ),
+  ]);
+
+const createFactoryFunctionStatement = (
+  definition: InternalObjectDeclaration,
+  functionName: string,
+  interfaceName: string,
+  matcherTypeConstant: string,
+): ts.VariableStatement =>
+  createConstStatement(
+    functionName,
+    createArrowFunction(
+      definition.params.map((param) =>
+        createParameter(param.name, getTsType(param.type), param.optional),
+      ),
+      ts.factory.createTypeReferenceNode(interfaceName),
+      ts.factory.createParenthesizedExpression(
+        ts.factory.createObjectLiteralExpression(
+          [
+            createPropertyAssignment(
+              stringParameterName('type', definition),
+              createId(matcherTypeConstant),
+            ),
+            ...definition.params.flatMap(
+              (param): ts.ObjectLiteralElementLike[] => {
+                const key = parameterName(param, definition);
+                if (param.optional) {
+                  return [
+                    ts.factory.createSpreadAssignment(
+                      ts.factory.createParenthesizedExpression(
+                        ts.factory.createConditionalExpression(
+                          ts.factory.createBinaryExpression(
+                            createId(param.name),
+                            ts.factory.createToken(
+                              ts.SyntaxKind.ExclamationEqualsEqualsToken,
+                            ),
+                            createId('undefined'),
+                          ),
+                          ts.factory.createToken(ts.SyntaxKind.QuestionToken),
+                          ts.factory.createObjectLiteralExpression([
+                            createPropertyAssignment(key, createId(param.name)),
+                          ]),
+                          ts.factory.createToken(ts.SyntaxKind.ColonToken),
+                          ts.factory.createObjectLiteralExpression([]),
+                        ),
+                      ),
+                    ),
+                  ];
+                }
+                return [createPropertyAssignment(key, createId(param.name))];
+              },
+            ),
+          ],
+          true,
+        ),
+      ),
+    ),
+  );
+
+const createImportDeclaration = (): ts.ImportDeclaration =>
+  createNamedImport(
+    ['AnyCaseMatcherOrData'],
+    '@contract-case/case-plugin-dsl-types',
+  );
 
 const generateDslCode = async (
   definition: InternalObjectDeclaration,
@@ -85,147 +188,26 @@ const generateDslCode = async (
 ): Promise<GeneratedFile> => {
   // 1. Constant
   const matcherTypeConstant = `${toScreamingSnakeCase(definition.type)}_TYPE`;
-  const constValue = `${namespace}:${definition.type}`;
 
-  const constantStatement = ts.factory.createVariableStatement(
-    [ts.factory.createToken(ts.SyntaxKind.ExportKeyword)],
-    ts.factory.createVariableDeclarationList(
-      [
-        ts.factory.createVariableDeclaration(
-          matcherTypeConstant,
-          undefined,
-          undefined,
-          ts.factory.createAsExpression(
-            ts.factory.createStringLiteral(constValue, true),
-            ts.factory.createTypeReferenceNode('const'),
-          ),
-        ),
-      ],
-      ts.NodeFlags.Const,
-    ),
+  const constantStatement = createTypeConstantStatement(
+    matcherTypeConstant,
+    `${namespace}:${definition.type}`,
   );
 
   const functionName = toCamelCase(definition.name);
   const interfaceName = toInterfaceName(definition);
 
-  const interfaceDeclaration = ts.factory.createInterfaceDeclaration(
-    [ts.factory.createToken(ts.SyntaxKind.ExportKeyword)],
+  const interfaceDeclaration = createInterfaceDeclaration(
+    definition,
     interfaceName,
-    undefined,
-    undefined,
-    [
-      ts.factory.createPropertySignature(
-        undefined,
-        ts.factory.createStringLiteral(
-          stringParameterName('type', definition),
-          true,
-        ),
-        undefined,
-        ts.factory.createTypeQueryNode(
-          ts.factory.createIdentifier(matcherTypeConstant),
-        ),
-      ),
-      ...definition.params.map((param) =>
-        ts.factory.createPropertySignature(
-          undefined,
-          ts.factory.createStringLiteral(
-            parameterName(param, definition),
-            true,
-          ),
-          param.optional
-            ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
-            : undefined,
-          getTsType(param.type),
-        ),
-      ),
-    ],
+    matcherTypeConstant,
   );
 
-  const factoryFunction = ts.factory.createVariableStatement(
-    [ts.factory.createToken(ts.SyntaxKind.ExportKeyword)],
-    ts.factory.createVariableDeclarationList(
-      [
-        ts.factory.createVariableDeclaration(
-          functionName,
-          undefined,
-          undefined,
-          ts.factory.createArrowFunction(
-            undefined,
-            undefined,
-            definition.params.map((param) =>
-              ts.factory.createParameterDeclaration(
-                undefined,
-                undefined,
-                param.name,
-                param.optional
-                  ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
-                  : undefined,
-                getTsType(param.type),
-                undefined,
-              ),
-            ),
-            ts.factory.createTypeReferenceNode(interfaceName),
-            ts.factory.createToken(ts.SyntaxKind.EqualsGreaterThanToken),
-            ts.factory.createParenthesizedExpression(
-              ts.factory.createObjectLiteralExpression(
-                [
-                  ts.factory.createPropertyAssignment(
-                    ts.factory.createStringLiteral(
-                      stringParameterName('type', definition),
-                      true,
-                    ),
-                    ts.factory.createIdentifier(matcherTypeConstant),
-                  ),
-                  ...definition.params.flatMap(
-                    (param): ts.ObjectLiteralElementLike[] => {
-                      const key = parameterName(param, definition);
-                      if (param.optional) {
-                        return [
-                          ts.factory.createSpreadAssignment(
-                            ts.factory.createParenthesizedExpression(
-                              ts.factory.createConditionalExpression(
-                                ts.factory.createBinaryExpression(
-                                  ts.factory.createIdentifier(param.name),
-                                  ts.factory.createToken(
-                                    ts.SyntaxKind.ExclamationEqualsEqualsToken,
-                                  ),
-                                  ts.factory.createIdentifier('undefined'),
-                                ),
-                                ts.factory.createToken(
-                                  ts.SyntaxKind.QuestionToken,
-                                ),
-                                ts.factory.createObjectLiteralExpression([
-                                  ts.factory.createPropertyAssignment(
-                                    ts.factory.createStringLiteral(key, true),
-                                    ts.factory.createIdentifier(param.name),
-                                  ),
-                                ]),
-                                ts.factory.createToken(
-                                  ts.SyntaxKind.ColonToken,
-                                ),
-                                ts.factory.createObjectLiteralExpression([]),
-                              ),
-                            ),
-                          ),
-                        ];
-                      }
-                      return [
-                        ts.factory.createPropertyAssignment(
-                          ts.factory.createStringLiteral(key, true),
-                          ts.factory.createIdentifier(param.name),
-                        ),
-                      ];
-                    },
-                  ),
-                ],
-                true,
-              ),
-            ),
-          ),
-        ),
-      ],
-      ts.NodeFlags.Const,
-    ),
+  const factoryFunction = createFactoryFunctionStatement(
+    definition,
+    functionName,
+    interfaceName,
+    matcherTypeConstant,
   );
 
   // Comments for factory function
@@ -238,38 +220,13 @@ const generateDslCode = async (
     true,
   );
 
-  ts.addSyntheticLeadingComment(
-    constantStatement,
-    ts.SyntaxKind.SingleLineCommentTrivia,
-    ' THIS FILE WAS AUTOGENERATED BY CASE-DEFINITION-GENERATOR. DO NOT MODIFY IT BY HAND',
-    true,
-  );
+  const importStatement = createImportDeclaration();
 
-  // Interface "Interface" comment
   ts.addSyntheticLeadingComment(
-    interfaceDeclaration,
+    importStatement,
     ts.SyntaxKind.SingleLineCommentTrivia,
-    ' Interface',
+    ' THIS FILE WAS AUTOGENERATED BY @contract-case/case-definition-generator. DO NOT MODIFY IT',
     true,
-  );
-
-  const importStatement = ts.factory.createImportDeclaration(
-    undefined,
-    ts.factory.createImportClause(
-      undefined,
-      undefined,
-      ts.factory.createNamedImports([
-        ts.factory.createImportSpecifier(
-          false,
-          undefined,
-          ts.factory.createIdentifier('AnyCaseMatcherOrData'),
-        ),
-      ]),
-    ),
-    ts.factory.createStringLiteral(
-      '@contract-case/case-plugin-dsl-types',
-      true,
-    ),
   );
 
   const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
