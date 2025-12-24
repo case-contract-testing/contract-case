@@ -10,23 +10,32 @@ import objects from './entities/objects';
 import primitives from './entities/primitives';
 import strings from './entities/strings';
 import core from './entities/core';
+import { javaGenerator } from './domain/generator/java/javaGenerator';
+import { GeneratedFileWriter } from './domain/generator/types';
+import { LanguageGenerator } from './domain/types';
 
 // TODO: Correct this path
-const writer = makeFileWriter(
+const javaWriter = makeFileWriter(
   '/Users/home/office/contract-case/contract-case/packages/dsl-java/',
   logger,
 );
-
 // TODO: Hook this into the CLI so that we can
 // invoke it anywhere
-const generator = makeGenerator(writer);
+const generateCoreDsl = (
+  writer: GeneratedFileWriter,
+  language: LanguageGenerator,
+) => {
+  const generator = makeGenerator(writer, language);
 
-generator.process(arrays);
-generator.process(functionPlugin.dsl);
-generator.process(convenience);
-generator.process(modifiers);
-generator.process(objects);
-generator.process(primitives);
-generator.process(strings);
-generator.process(core);
-generator.process(httpPlugin.dsl);
+  generator.process(arrays);
+  generator.process(functionPlugin.dsl);
+  generator.process(convenience);
+  generator.process(modifiers);
+  generator.process(objects);
+  generator.process(primitives);
+  generator.process(strings);
+  generator.process(core);
+  generator.process(httpPlugin.dsl);
+};
+
+generateCoreDsl(javaWriter, javaGenerator);

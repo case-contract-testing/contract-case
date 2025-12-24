@@ -3,6 +3,7 @@ import { GeneratedFile } from '../types';
 import { buildJavaDescriptor } from './javaDescriptorBuilder';
 import { renderJavaClass } from './javaRenderer';
 import { InternalObjectDeclaration } from '../../typeSystem/internals';
+import { LanguageGenerator } from '../../types';
 
 /**
  * Generates complete Java DSL class code for a ContractCase matcher definition.
@@ -22,7 +23,7 @@ import { InternalObjectDeclaration } from '../../typeSystem/internals';
  * unique to your organisation or plugin. Must not be empty.
  *
  */
-export const generateJavaDslCode = async (
+const generateJavaDslCode = async (
   definition: InternalObjectDeclaration,
   category: string,
   namespace: string,
@@ -36,4 +37,8 @@ export const generateJavaDslCode = async (
       `${descriptor.className}.java`,
     ),
   };
+};
+
+export const javaGenerator: LanguageGenerator = {
+  generateDslCode: generateJavaDslCode,
 };

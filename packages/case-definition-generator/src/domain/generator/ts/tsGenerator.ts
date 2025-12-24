@@ -4,12 +4,17 @@ import {
   MatcherDslDeclaration,
   ParameterType,
 } from '@contract-case/case-plugin-base';
+import prettier from 'prettier';
 import ts from 'typescript';
 import {
   toCamelCase,
   toScreamingSnakeCase,
 } from '../../naming/stringIdiomTransformations';
 import { UnreachableError } from '../../../entities/errors/unreachableError';
+import { LanguageGenerator } from '../../types';
+import { GeneratedFile } from '../types';
+import { InternalObjectDeclaration } from '../../typeSystem/internals';
+import { folderForKind } from '../../../entities/crossLanguage/conventions';
 
 const getTsType = (paramType: ParameterType): ts.TypeNode => {
   if (typeof paramType === 'string') {
@@ -27,10 +32,15 @@ const getTsType = (paramType: ParameterType): ts.TypeNode => {
   );
 };
 
-export const generateDslCode = (
-  definition: MatcherDslDeclaration,
+function fileNameFor(definition: MatcherDslDeclaration) {
+  return `${toCamelCase(definition.name)}.ts`;
+}
+
+const generateDslCode = async (
+  definition: InternalObjectDeclaration,
+  category: string,
   namespace: string,
-): string => {
+): Promise<GeneratedFile> => {
   // 1. Constant
   const constName = `${toScreamingSnakeCase(definition.type)}_TYPE`;
   const constValue = `${namespace}:${definition.type}`;
@@ -225,5 +235,24 @@ export const generateDslCode = (
     factoryFunction,
   ]);
 
-  return printer.printList(ts.ListFormat.MultiLine, nodes, sourceFile);
+  const code = printer.printList(ts.ListFormat.MultiLine, nodes, sourceFile);
+
+  return {
+    content: await prettier
+      .format(code, {
+        parser: 'typescript',
+        singleQuote: true,
+      })
+      .catch((err) => {
+        throw new CaseCoreError(
+          `Error formatting TypeScript code. This means that there's a bug in the TypeScript code generator. Error was: ${err.message}\n\nBroken code was: ${code}`,
+        );
+      }),
+    entityNames: [definition.name],
+    relativePath: `src/boundaries/dsl/${folderForKind(definition.kind)}/${category}/${fileNameFor(definition)}`,
+  };
+};
+
+export const tsGenerator: LanguageGenerator = {
+  generateDslCode,
 };

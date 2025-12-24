@@ -1,6 +1,6 @@
-import { generateDslCode } from './ts/tsGenerator';
-import { generateJavaDslCode } from './java/javaGenerator';
 import { InternalObjectDeclaration } from '../typeSystem/internals';
+import { javaGenerator } from './java/javaGenerator';
+import { tsGenerator } from './ts/tsGenerator';
 
 const matcherDefinition: InternalObjectDeclaration = {
   kind: 'matcher',
@@ -41,21 +41,33 @@ const matcherContainsDefinition: InternalObjectDeclaration = {
 
 describe('generator', () => {
   describe('typescript', () => {
-    it('generates a matcher as expected', () => {
-      expect(generateDslCode(matcherDefinition, '_case')).toMatchSnapshot();
+    it('generates a matcher as expected', async () => {
+      expect(
+        await tsGenerator.generateDslCode(matcherDefinition, 'tests', '_case'),
+      ).toMatchSnapshot();
     });
   });
   describe('java', () => {
     it('generates a matcher as expected', async () => {
       expect(
-        (await generateJavaDslCode(matcherDefinition, 'tests', '_case'))
-          .content,
+        (
+          await javaGenerator.generateDslCode(
+            matcherDefinition,
+            'tests',
+            '_case',
+          )
+        ).content,
       ).toMatchSnapshot();
     });
     it('works for the other case too', async () => {
       expect(
-        (await generateJavaDslCode(matcherContainsDefinition, 'tests', '_case'))
-          .content,
+        (
+          await javaGenerator.generateDslCode(
+            matcherContainsDefinition,
+            'tests',
+            '_case',
+          )
+        ).content,
       ).toMatchSnapshot();
     });
   });
