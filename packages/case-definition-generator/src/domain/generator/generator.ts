@@ -1,48 +1,50 @@
-import { PluginDslDeclaration } from '@contract-case/case-plugin-base';
+import { ContractCaseDslPlugin } from '@contract-case/case-plugin-base';
 import { GeneratedFileWriter } from './types';
 import { LanguageGenerator } from '../types';
 
 type DslGenerator = {
-  process: (plugin: PluginDslDeclaration | undefined) => Promise<void>;
+  process: (plugin: ContractCaseDslPlugin) => Promise<void>;
 };
 
 export const makeGenerator = (
   fileWriter: GeneratedFileWriter,
   dslGenerator: LanguageGenerator,
 ): DslGenerator => ({
-  process: (incomingPlugin: PluginDslDeclaration | undefined): Promise<void> =>
-    Promise.resolve(incomingPlugin).then((plugin) => {
-      if (plugin == null) {
-        throw new Error("Plugin doesn't have a DSL description");
+  process: (incomingPlugin: ContractCaseDslPlugin): Promise<void> =>
+    Promise.resolve(incomingPlugin).then(({ dsl, description }) => {
+      if (dsl == null) {
+        throw new Error(
+          `Plugin '${description.humanReadableName}' doesn't have a 'dsl' property, so no matchers, states or interactions are declared`,
+        );
       }
       return Promise.all([
-        ...plugin.matchers.map((matcher) =>
+        ...dsl.matchers.map((matcher) =>
           dslGenerator
             .generateDslCode(
               { ...matcher, kind: 'matcher' },
-              plugin.category,
-              plugin.namespace,
+              dsl.category,
+              dsl.namespace,
             )
             .then((file) => fileWriter.write(file)),
         ),
-        ...(plugin.states
-          ? plugin.states.map((state) =>
+        ...(dsl.states
+          ? dsl.states.map((state) =>
               dslGenerator
                 .generateDslCode(
                   { ...state, kind: 'state' },
-                  plugin.category,
-                  plugin.namespace,
+                  dsl.category,
+                  dsl.namespace,
                 )
                 .then((file) => fileWriter.write(file)),
             )
           : []),
-        ...(plugin.interactions
-          ? plugin.interactions.map((interaction) =>
+        ...(dsl.interactions
+          ? dsl.interactions.map((interaction) =>
               dslGenerator
                 .generateDslCode(
                   { ...interaction, kind: 'interaction' },
-                  plugin.category,
-                  plugin.namespace,
+                  dsl.category,
+                  dsl.namespace,
                 )
                 .then((file) => fileWriter.write(file)),
             )

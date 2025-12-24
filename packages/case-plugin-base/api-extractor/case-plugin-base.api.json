@@ -1770,8 +1770,52 @@
         },
         {
           "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!ContractCaseDslPlugin:type",
+          "docComment": "/**\n * Represents just the part of a plugin that can be used to generate DSL classes. This is exported seprately, as processors that want to use the DSL declaration might not know (or care about) the type parameters for the overall plugin.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ContractCaseDslPlugin = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    description: "
+            },
+            {
+              "kind": "Reference",
+              "text": "PluginDescription",
+              "canonicalReference": "@contract-case/case-plugin-base!PluginDescription:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    dsl?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "PluginDslDeclaration",
+              "canonicalReference": "@contract-case/case-plugin-base!PluginDslDeclaration:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types.ts",
+          "releaseTag": "Public",
+          "name": "ContractCaseDslPlugin",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
+          "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!ContractCasePlugin:type",
-          "docComment": "/**\n * Represents a plugin for the ContractCase contract testing framework. A plugin can defines custom matchers or mock setups for testing different cases.\n *\n * @typeParam MatcherTypes - A union type of string constants for the matcher types supported by the plugin.\n *\n * @typeParam MockTypes - A union type of string constants for the mocks types supported by the plugin.\n *\n * @typeParam MatcherDescriptors - A union type of all matcher descriptor objects for the matchers supplied by this plugin.\n *\n * @typeParam MockDescriptors - T A union type of all mock descriptor objects for the mocks supplied by this plugin\n *\n * @typeParam AllSetupInfo - A union type representing the setup information required for all mocks supplied by this plugin.\n *\n * @public\n */\n",
+          "docComment": "/**\n * Represents a plugin for the ContractCase contract testing framework.\n *\n * A plugin can defines custom matchers or mock setups for testing different cases.\n *\n * It also can declare DSL objects, so that the matchers and interactions defined in the plugin can be generated in each supported language.\n *\n * @typeParam MatcherTypes - A union type of string constants for the matcher types supported by the plugin.\n *\n * @typeParam MockTypes - A union type of string constants for the mocks types supported by the plugin.\n *\n * @typeParam MatcherDescriptors - A union type of all matcher descriptor objects for the matchers supplied by this plugin.\n *\n * @typeParam MockDescriptors - T A union type of all mock descriptor objects for the mocks supplied by this plugin\n *\n * @typeParam AllSetupInfo - A union type representing the setup information required for all mocks supplied by this plugin.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1820,8 +1864,13 @@
               "text": ", AllSetupInfo> = "
             },
             {
+              "kind": "Reference",
+              "text": "ContractCaseDslPlugin",
+              "canonicalReference": "@contract-case/case-plugin-base!ContractCaseDslPlugin:type"
+            },
+            {
               "kind": "Content",
-              "text": "{\n    description: "
+              "text": " & {\n    description: "
             },
             {
               "kind": "Reference",
@@ -1866,16 +1915,7 @@
             },
             {
               "kind": "Content",
-              "text": "<MockDescriptors, T>, AllSetupInfo>;\n    };\n    dsl?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PluginDslDeclaration",
-              "canonicalReference": "@contract-case/case-plugin-base!PluginDslDeclaration:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n}"
+              "text": "<MockDescriptors, T>, AllSetupInfo>;\n    };\n}"
             },
             {
               "kind": "Content",
@@ -1944,7 +1984,7 @@
           ],
           "typeTokenRange": {
             "startIndex": 11,
-            "endIndex": 24
+            "endIndex": 23
           }
         },
         {
@@ -5589,7 +5629,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!ParameterType:type",
-          "docComment": "/**\n * ParameterType tells us what type a parameter is.\n *\n * Possible string values: - `'AnyCaseMatcherOrData'`: Matches arbitrary data or a ContractCase matcher. This is ContractCase's most generic unknown type. - `'AnyData'`: Matches any data value only, ie, can't be a matcher. - `'integer'`: Matches integer numbers - `'string'`: Matches string values - `'boolean'`: Matches boolean values - `'number'`: Matches any numeric value. Because the contract serialises to json, this practically means double precision floating point; although the json spec doesn't actually specify, most implementations are restricted to double precision floating point. - `'null'`: Matches `null` values. Friends don't let friends match null values.\n *\n * See {@link TypeContainer} for complex types.\n */\n",
+          "docComment": "/**\n * ParameterType tells us what type a parameter is.\n *\n * Possible string values: - `'AnyCaseMatcherOrData'`: Matches arbitrary data or a ContractCase matcher. This is ContractCase's most generic unknown type. - `'AnyData'`: Matches any data value only, ie, can't be a matcher. This is like saying \"any json object\". - `'integer'`: Matches integer numbers - `'string'`: Matches string values - `'boolean'`: Matches boolean values - `'number'`: Matches any numeric value. Because the contract serialises to json, this practically means double precision floating point; although the json spec doesn't actually specify, most implementations are restricted to double precision floating point. - `'null'`: Matches `null` values. Friends don't let friends match null values. - `'InternalContractCaseCoreSetup'`: This is the complex json that tells contractcase how to setup itself. This is here for completeness, but you probably don't want to declare it in your own types. If you are implementing a DSL generator for a new language, treat this as whatever a json object would naturally be (eg, a map or dictionary).\n *\n * See {@link TypeContainer} for complex types.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5611,7 +5651,7 @@
             },
             {
               "kind": "Content",
-              "text": " | 'AnyCaseMatcherOrData' | 'AnyData' | 'integer' | 'string' | 'boolean' | 'number' | 'null' | 'json'"
+              "text": " | 'AnyCaseMatcherOrData' | 'AnyData' | 'integer' | 'string' | 'boolean' | 'number' | 'null' | 'InternalContractCaseCoreSetup'"
             },
             {
               "kind": "Content",

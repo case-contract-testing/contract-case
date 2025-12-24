@@ -53,6 +53,7 @@ export type PluginDslDeclaration = {
  *    data or a ContractCase matcher.
  *    This is ContractCase's most generic unknown type.
  * - `'AnyData'`: Matches any data value only, ie, can't be a matcher.
+ *    This is like saying "any json object".
  * - `'integer'`: Matches integer numbers
  * - `'string'`: Matches string values
  * - `'boolean'`: Matches boolean values
@@ -63,6 +64,11 @@ export type PluginDslDeclaration = {
  *    are restricted to double precision floating point.
  * - `'null'`: Matches `null` values. Friends don't let friends match
  *    null values.
+ * - `'InternalContractCaseCoreSetup'`: This is the complex json that tells
+ *    contractcase how to setup itself. This is here for completeness, but you
+ *    probably don't want to declare it in your own types.
+ *    If you are implementing a DSL generator for a new language, treat this as
+ *    whatever a json object would naturally be (eg, a map or dictionary).
  *
  * See {@link TypeContainer} for complex types.
  */
@@ -76,7 +82,7 @@ export type ParameterType =
   | 'boolean'
   | 'number'
   | 'null'
-  | 'json';
+  | 'InternalContractCaseCoreSetup';
 
 /**
  * Indicates a container type.

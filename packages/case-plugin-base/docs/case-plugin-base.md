@@ -779,12 +779,27 @@ Any configuration error code.
 </td></tr>
 <tr><td>
 
+[ContractCaseDslPlugin](./case-plugin-base.contractcasedslplugin.md)
+
+
+</td><td>
+
+Represents just the part of a plugin that can be used to generate DSL classes. This is exported seprately, as processors that want to use the DSL declaration might not know (or care about) the type parameters for the overall plugin.
+
+
+</td></tr>
+<tr><td>
+
 [ContractCasePlugin](./case-plugin-base.contractcaseplugin.md)
 
 
 </td><td>
 
-Represents a plugin for the ContractCase contract testing framework. A plugin can defines custom matchers or mock setups for testing different cases.
+Represents a plugin for the ContractCase contract testing framework.
+
+A plugin can defines custom matchers or mock setups for testing different cases.
+
+It also can declare DSL objects, so that the matchers and interactions defined in the plugin can be generated in each supported language.
 
 
 </td></tr>
@@ -1003,7 +1018,7 @@ Declares a parameter for a matcher
 
 ParameterType tells us what type a parameter is.
 
-Possible string values: - `'AnyCaseMatcherOrData'`<!-- -->: Matches arbitrary data or a ContractCase matcher. This is ContractCase's most generic unknown type. - `'AnyData'`<!-- -->: Matches any data value only, ie, can't be a matcher. - `'integer'`<!-- -->: Matches integer numbers - `'string'`<!-- -->: Matches string values - `'boolean'`<!-- -->: Matches boolean values - `'number'`<!-- -->: Matches any numeric value. Because the contract serialises to json, this practically means double precision floating point; although the json spec doesn't actually specify, most implementations are restricted to double precision floating point. - `'null'`<!-- -->: Matches `null` values. Friends don't let friends match null values.
+Possible string values: - `'AnyCaseMatcherOrData'`<!-- -->: Matches arbitrary data or a ContractCase matcher. This is ContractCase's most generic unknown type. - `'AnyData'`<!-- -->: Matches any data value only, ie, can't be a matcher. This is like saying "any json object". - `'integer'`<!-- -->: Matches integer numbers - `'string'`<!-- -->: Matches string values - `'boolean'`<!-- -->: Matches boolean values - `'number'`<!-- -->: Matches any numeric value. Because the contract serialises to json, this practically means double precision floating point; although the json spec doesn't actually specify, most implementations are restricted to double precision floating point. - `'null'`<!-- -->: Matches `null` values. Friends don't let friends match null values. - `'InternalContractCaseCoreSetup'`<!-- -->: This is the complex json that tells contractcase how to setup itself. This is here for completeness, but you probably don't want to declare it in your own types. If you are implementing a DSL generator for a new language, treat this as whatever a json object would naturally be (eg, a map or dictionary).
 
 See [TypeContainer](./case-plugin-base.typecontainer.md) for complex types.
 

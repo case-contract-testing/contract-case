@@ -4,12 +4,16 @@
 
 ## ContractCasePlugin type
 
-Represents a plugin for the ContractCase contract testing framework. A plugin can defines custom matchers or mock setups for testing different cases.
+Represents a plugin for the ContractCase contract testing framework.
+
+A plugin can defines custom matchers or mock setups for testing different cases.
+
+It also can declare DSL objects, so that the matchers and interactions defined in the plugin can be generated in each supported language.
 
 **Signature:**
 
 ```typescript
-export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends string, MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>, MockDescriptors extends IsMockDescriptorForType<MockTypes>, AllSetupInfo> = {
+export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends string, MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>, MockDescriptors extends IsMockDescriptorForType<MockTypes>, AllSetupInfo> = ContractCaseDslPlugin & {
     description: PluginDescription;
     matcherExecutors: {
         [T in MatcherTypes]: MatcherExecutor<T, CaseMatcherFor<MatcherDescriptors, T>>;
@@ -17,8 +21,7 @@ export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends st
     setupMocks: {
         [T in MockTypes]: MockExecutor<T, CaseMockDescriptorFor<MockDescriptors, T>, AllSetupInfo>;
     };
-    dsl?: PluginDslDeclaration;
 };
 ```
-**References:** [IsCaseNodeForType](./case-plugin-base.iscasenodefortype.md)<!-- -->, [IsMockDescriptorForType](./case-plugin-base.ismockdescriptorfortype.md)<!-- -->, [PluginDescription](./case-plugin-base.plugindescription.md)<!-- -->, [MatcherExecutor](./case-plugin-base.matcherexecutor.md)<!-- -->, [CaseMatcherFor](./case-plugin-base.casematcherfor.md)<!-- -->, [MockExecutor](./case-plugin-base.mockexecutor.md)<!-- -->, [PluginDslDeclaration](./case-plugin-base.plugindsldeclaration.md)
+**References:** [IsCaseNodeForType](./case-plugin-base.iscasenodefortype.md)<!-- -->, [IsMockDescriptorForType](./case-plugin-base.ismockdescriptorfortype.md)<!-- -->, [ContractCaseDslPlugin](./case-plugin-base.contractcasedslplugin.md)<!-- -->, [PluginDescription](./case-plugin-base.plugindescription.md)<!-- -->, [MatcherExecutor](./case-plugin-base.matcherexecutor.md)<!-- -->, [CaseMatcherFor](./case-plugin-base.casematcherfor.md)<!-- -->, [MockExecutor](./case-plugin-base.mockexecutor.md)
 

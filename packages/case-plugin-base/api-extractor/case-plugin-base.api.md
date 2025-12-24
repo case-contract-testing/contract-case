@@ -117,7 +117,13 @@ export const constructDataContext: (makeLogger: (c: LogLevelContext) => Logger, 
 export const constructMatchContext: (traversals: TraversalFns, makeLogger: (c: LogLevelContext) => Logger, makeLookup: (c: MatchContextWithoutLookup) => ContractLookupFns, resultPrinter: ResultFormatter, runConfig: Partial<RunContext>, defaults: Record<string, AnyData>, parentVersions: Array<string>) => MatchContext;
 
 // @public
-export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends string, MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>, MockDescriptors extends IsMockDescriptorForType<MockTypes>, AllSetupInfo> = {
+export type ContractCaseDslPlugin = {
+    description: PluginDescription;
+    dsl?: PluginDslDeclaration;
+};
+
+// @public
+export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends string, MatcherDescriptors extends IsCaseNodeForType<MatcherTypes>, MockDescriptors extends IsMockDescriptorForType<MockTypes>, AllSetupInfo> = ContractCaseDslPlugin & {
     description: PluginDescription;
     matcherExecutors: {
         [T in MatcherTypes]: MatcherExecutor<T, CaseMatcherFor<MatcherDescriptors, T>>;
@@ -125,7 +131,6 @@ export type ContractCasePlugin<MatcherTypes extends string, MockTypes extends st
     setupMocks: {
         [T in MockTypes]: MockExecutor<T, CaseMockDescriptorFor<MockDescriptors, T>, AllSetupInfo>;
     };
-    dsl?: PluginDslDeclaration;
 };
 
 // Warning: (ae-internal-missing-underscore) The name "ContractFileConfig" should be prefixed with an underscore because the declaration is marked as @internal
@@ -458,7 +463,7 @@ export type ParameterDeclaration = {
 };
 
 // @public
-export type ParameterType = TypeContainer | PassToMatcher | 'AnyCaseMatcherOrData' | 'AnyData' | 'integer' | 'string' | 'boolean' | 'number' | 'null' | 'json';
+export type ParameterType = TypeContainer | PassToMatcher | 'AnyCaseMatcherOrData' | 'AnyData' | 'integer' | 'string' | 'boolean' | 'number' | 'null' | 'InternalContractCaseCoreSetup';
 
 // @public
 export type PassToMatcher = {

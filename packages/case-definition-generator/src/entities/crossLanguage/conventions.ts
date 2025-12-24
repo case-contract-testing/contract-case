@@ -19,3 +19,25 @@ export const folderForKind = (
       throw new UnreachableError(`Unknown kind: ${kind}`, kind);
   }
 };
+
+/**
+ * For within a property name, maps between the kind of the object, and the
+ * name to put in a field.
+ */
+export const kindToPropertyName = (
+  kind: InternalObjectDeclaration['kind'],
+): string => {
+  switch (kind) {
+    case 'interaction':
+      return 'mock';
+    case 'matcher':
+      return 'matcher';
+    case 'state':
+      return 'state';
+    default:
+      throw new UnreachableError(
+        `Unknown kind of object in kindToPropertyName`,
+        kind,
+      );
+  }
+};

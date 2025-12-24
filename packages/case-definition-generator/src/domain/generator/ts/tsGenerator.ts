@@ -2,6 +2,7 @@ import {
   CaseCoreError,
   isPassToMatcher,
   MatcherDslDeclaration,
+  ParameterDeclaration,
   ParameterType,
 } from '@contract-case/case-plugin-base';
 import prettier from 'prettier';
@@ -14,11 +15,37 @@ import { UnreachableError } from '../../../entities/errors/unreachableError';
 import { LanguageGenerator } from '../../types';
 import { GeneratedFile } from '../types';
 import { InternalObjectDeclaration } from '../../typeSystem/internals';
-import { folderForKind } from '../../../entities/crossLanguage/conventions';
+import {
+  folderForKind,
+  kindToPropertyName,
+} from '../../../entities/crossLanguage/conventions';
 
 const getTsType = (paramType: ParameterType): ts.TypeNode => {
   if (typeof paramType === 'string') {
-    return ts.factory.createTypeReferenceNode(paramType);
+    switch (paramType) {
+      case 'integer':
+      case 'number':
+        return ts.factory.createTypeReferenceNode('number');
+      case 'boolean':
+        return ts.factory.createTypeReferenceNode('boolean');
+      case 'string':
+        return ts.factory.createTypeReferenceNode('string');
+      case 'null':
+        return ts.factory.createTypeReferenceNode('null');
+      case 'AnyCaseMatcherOrData':
+        return ts.factory.createTypeReferenceNode('AnyCaseMatcherOrData');
+      case 'AnyData':
+        return ts.factory.createTypeReferenceNode('AnyData');
+      case 'InternalContractCaseCoreSetup':
+        return ts.factory.createTypeReferenceNode(
+          'InternalContractCaseCoreSetup',
+        );
+      default:
+        throw new UnreachableError(
+          `Unknown parameter type for TypeScript: ${paramType}`,
+          paramType,
+        );
+    }
   }
   if (paramType.kind === 'array') {
     return ts.factory.createArrayTypeNode(getTsType(paramType.type));
@@ -32,9 +59,24 @@ const getTsType = (paramType: ParameterType): ts.TypeNode => {
   );
 };
 
-function fileNameFor(definition: MatcherDslDeclaration) {
-  return `${toCamelCase(definition.name)}.ts`;
-}
+const toInterfaceName = (definition: InternalObjectDeclaration) =>
+  `Matcher${definition.name}`;
+
+const fileNameFor = (definition: MatcherDslDeclaration) =>
+  `${toCamelCase(definition.name)}.ts`;
+
+const stringParameterName = (
+  name: string,
+  definition: InternalObjectDeclaration,
+) => `_case:${kindToPropertyName(definition.kind)}:${name}`;
+
+const parameterName = (
+  param: ParameterDeclaration,
+  definition: InternalObjectDeclaration,
+): string =>
+  param.jsonPropertyName
+    ? param.jsonPropertyName
+    : stringParameterName(param.name, definition);
 
 const generateDslCode = async (
   definition: InternalObjectDeclaration,
@@ -42,7 +84,7 @@ const generateDslCode = async (
   namespace: string,
 ): Promise<GeneratedFile> => {
   // 1. Constant
-  const constName = `${toScreamingSnakeCase(definition.type)}_TYPE`;
+  const matcherTypeConstant = `${toScreamingSnakeCase(definition.type)}_TYPE`;
   const constValue = `${namespace}:${definition.type}`;
 
   const constantStatement = ts.factory.createVariableStatement(
@@ -50,7 +92,7 @@ const generateDslCode = async (
     ts.factory.createVariableDeclarationList(
       [
         ts.factory.createVariableDeclaration(
-          constName,
+          matcherTypeConstant,
           undefined,
           undefined,
           ts.factory.createAsExpression(
@@ -63,8 +105,8 @@ const generateDslCode = async (
     ),
   );
 
-  const funcName = toCamelCase(definition.name);
-  const interfaceName = `Core${definition.name}Matches`;
+  const functionName = toCamelCase(definition.name);
+  const interfaceName = toInterfaceName(definition);
 
   const interfaceDeclaration = ts.factory.createInterfaceDeclaration(
     [ts.factory.createToken(ts.SyntaxKind.ExportKeyword)],
@@ -74,14 +116,22 @@ const generateDslCode = async (
     [
       ts.factory.createPropertySignature(
         undefined,
-        ts.factory.createStringLiteral('_case:matcher:type', true),
+        ts.factory.createStringLiteral(
+          stringParameterName('type', definition),
+          true,
+        ),
         undefined,
-        ts.factory.createTypeQueryNode(ts.factory.createIdentifier(constName)),
+        ts.factory.createTypeQueryNode(
+          ts.factory.createIdentifier(matcherTypeConstant),
+        ),
       ),
       ...definition.params.map((param) =>
         ts.factory.createPropertySignature(
           undefined,
-          ts.factory.createStringLiteral(`_case:matcher:${param.name}`, true),
+          ts.factory.createStringLiteral(
+            parameterName(param, definition),
+            true,
+          ),
           param.optional
             ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
             : undefined,
@@ -96,7 +146,7 @@ const generateDslCode = async (
     ts.factory.createVariableDeclarationList(
       [
         ts.factory.createVariableDeclaration(
-          funcName,
+          functionName,
           undefined,
           undefined,
           ts.factory.createArrowFunction(
@@ -120,12 +170,15 @@ const generateDslCode = async (
               ts.factory.createObjectLiteralExpression(
                 [
                   ts.factory.createPropertyAssignment(
-                    ts.factory.createStringLiteral('_case:matcher:type', true),
-                    ts.factory.createIdentifier(constName),
+                    ts.factory.createStringLiteral(
+                      stringParameterName('type', definition),
+                      true,
+                    ),
+                    ts.factory.createIdentifier(matcherTypeConstant),
                   ),
                   ...definition.params.flatMap(
                     (param): ts.ObjectLiteralElementLike[] => {
-                      const key = `_case:matcher:${param.name}`;
+                      const key = parameterName(param, definition);
                       if (param.optional) {
                         return [
                           ts.factory.createSpreadAssignment(

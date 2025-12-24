@@ -21,6 +21,7 @@ import {
 import { AllDescriptors, AllSetup } from './mocks/types';
 import { description } from './description';
 import { FunctionResultMatcherExecutor } from './matchers';
+import { dsl } from './dsl/functions';
 
 export * from './matchers';
 export * from './mocks';
@@ -41,6 +42,7 @@ const CoreFunctionPlugin: ContractCasePlugin<
     [MOCK_FUNCTION_EXECUTION]: mockFunctionExecutionExecutor,
     [MOCK_FUNCTION_CALLER]: mockFunctionCallerExecutor,
   },
+  dsl,
 };
 
 export default CoreFunctionPlugin;

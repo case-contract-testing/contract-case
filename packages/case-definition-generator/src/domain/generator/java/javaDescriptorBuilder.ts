@@ -13,6 +13,22 @@ interface RecursiveRecord {
   [key: string]: string | RecursiveRecord;
 }
 
+const kindToPropertyName = (kind: InternalObjectDeclaration['kind']) => {
+  switch (kind) {
+    case 'interaction':
+      return 'mock';
+    case 'matcher':
+      return 'matcher';
+    case 'state':
+      return 'state';
+    default:
+      throw new UnreachableError(
+        `Unknown kind of object in kindToPropertyName`,
+        kind,
+      );
+  }
+};
+
 /**
  * Creates field descriptors for all the fields that need to be generated.
  *
@@ -27,7 +43,7 @@ const createFieldDescriptors = (
     name: 'type',
     type: 'string',
     documentation: "ContractCase's internal type for this element",
-    jsonPropertyName: `_case:${definition.kind === 'interaction' ? 'mock' : definition.kind}:type`,
+    jsonPropertyName: `_case:${kindToPropertyName(definition.kind)}:type`,
     optional: false,
   },
 
@@ -47,7 +63,7 @@ const createFieldDescriptors = (
     ? [
         {
           name: 'setup',
-          type: 'json',
+          type: 'InternalContractCaseCoreSetup',
           documentation:
             'Internal boilerplate that determines behaviour during definition (write) and verification (read)',
           jsonPropertyName: '_case:run:context:setup',

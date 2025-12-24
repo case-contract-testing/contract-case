@@ -6,14 +6,14 @@
 
 ParameterType tells us what type a parameter is.
 
-Possible string values: - `'AnyCaseMatcherOrData'`<!-- -->: Matches arbitrary data or a ContractCase matcher. This is ContractCase's most generic unknown type. - `'AnyData'`<!-- -->: Matches any data value only, ie, can't be a matcher. - `'integer'`<!-- -->: Matches integer numbers - `'string'`<!-- -->: Matches string values - `'boolean'`<!-- -->: Matches boolean values - `'number'`<!-- -->: Matches any numeric value. Because the contract serialises to json, this practically means double precision floating point; although the json spec doesn't actually specify, most implementations are restricted to double precision floating point. - `'null'`<!-- -->: Matches `null` values. Friends don't let friends match null values.
+Possible string values: - `'AnyCaseMatcherOrData'`<!-- -->: Matches arbitrary data or a ContractCase matcher. This is ContractCase's most generic unknown type. - `'AnyData'`<!-- -->: Matches any data value only, ie, can't be a matcher. This is like saying "any json object". - `'integer'`<!-- -->: Matches integer numbers - `'string'`<!-- -->: Matches string values - `'boolean'`<!-- -->: Matches boolean values - `'number'`<!-- -->: Matches any numeric value. Because the contract serialises to json, this practically means double precision floating point; although the json spec doesn't actually specify, most implementations are restricted to double precision floating point. - `'null'`<!-- -->: Matches `null` values. Friends don't let friends match null values. - `'InternalContractCaseCoreSetup'`<!-- -->: This is the complex json that tells contractcase how to setup itself. This is here for completeness, but you probably don't want to declare it in your own types. If you are implementing a DSL generator for a new language, treat this as whatever a json object would naturally be (eg, a map or dictionary).
 
 See [TypeContainer](./case-plugin-base.typecontainer.md) for complex types.
 
 **Signature:**
 
 ```typescript
-export type ParameterType = TypeContainer | PassToMatcher | 'AnyCaseMatcherOrData' | 'AnyData' | 'integer' | 'string' | 'boolean' | 'number' | 'null' | 'json';
+export type ParameterType = TypeContainer | PassToMatcher | 'AnyCaseMatcherOrData' | 'AnyData' | 'integer' | 'string' | 'boolean' | 'number' | 'null' | 'InternalContractCaseCoreSetup';
 ```
 **References:** [TypeContainer](./case-plugin-base.typecontainer.md)<!-- -->, [PassToMatcher](./case-plugin-base.passtomatcher.md)
 

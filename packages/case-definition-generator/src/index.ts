@@ -13,12 +13,8 @@ import core from './entities/core';
 import { javaGenerator } from './domain/generator/java/javaGenerator';
 import { GeneratedFileWriter } from './domain/generator/types';
 import { LanguageGenerator } from './domain/types';
+import { tsGenerator } from './domain/generator/ts/tsGenerator';
 
-// TODO: Correct this path
-const javaWriter = makeFileWriter(
-  '/Users/home/office/contract-case/contract-case/packages/dsl-java/',
-  logger,
-);
 // TODO: Hook this into the CLI so that we can
 // invoke it anywhere
 const generateCoreDsl = (
@@ -27,15 +23,83 @@ const generateCoreDsl = (
 ) => {
   const generator = makeGenerator(writer, language);
 
-  generator.process(arrays);
-  generator.process(functionPlugin.dsl);
-  generator.process(convenience);
-  generator.process(modifiers);
-  generator.process(objects);
-  generator.process(primitives);
-  generator.process(strings);
-  generator.process(core);
-  generator.process(httpPlugin.dsl);
+  generator.process({
+    dsl: arrays,
+    description: {
+      humanReadableName: 'Arrays',
+      shortName: 'arrays',
+      uniqueMachineName: 'arrays',
+      version: '1.0.0',
+    },
+  });
+  generator.process(functionPlugin);
+  generator.process({
+    dsl: convenience,
+    description: {
+      humanReadableName: 'Convenience',
+      shortName: 'convenience',
+      uniqueMachineName: 'convenience',
+      version: '1.0.0',
+    },
+  });
+  generator.process({
+    dsl: modifiers,
+    description: {
+      humanReadableName: 'Modifiers',
+      shortName: 'modifiers',
+      uniqueMachineName: 'modifiers',
+      version: '1.0.0',
+    },
+  });
+  generator.process({
+    dsl: objects,
+    description: {
+      humanReadableName: 'Objects',
+      shortName: 'objects',
+      uniqueMachineName: 'objects',
+      version: '1.0.0',
+    },
+  });
+  generator.process({
+    dsl: primitives,
+    description: {
+      humanReadableName: 'Primitives',
+      shortName: 'primitives',
+      uniqueMachineName: 'primitives',
+      version: '1.0.0',
+    },
+  });
+  generator.process({
+    dsl: strings,
+    description: {
+      humanReadableName: 'Strings',
+      shortName: 'strings',
+      uniqueMachineName: 'strings',
+      version: '1.0.0',
+    },
+  });
+  generator.process({
+    dsl: core,
+    description: {
+      humanReadableName: 'Core',
+      shortName: 'core',
+      uniqueMachineName: 'core',
+      version: '1.0.0',
+    },
+  });
+  generator.process(httpPlugin);
 };
 
+// TODO: Correct this path
+const javaWriter = makeFileWriter(
+  '/Users/home/office/contract-case/contract-case/packages/dsl-java/',
+  logger,
+);
+// TODO: Correct this path
+const tsWriter = makeFileWriter(
+  '/Users/home/office/contract-case/contract-case/packages/case-definition-generator/src/generated/ts',
+  logger,
+);
+
 generateCoreDsl(javaWriter, javaGenerator);
+generateCoreDsl(tsWriter, tsGenerator);

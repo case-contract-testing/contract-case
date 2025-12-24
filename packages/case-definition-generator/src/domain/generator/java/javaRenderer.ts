@@ -109,7 +109,7 @@ export const getJavaType = (
       return Type.boolean();
     case 'null':
       return Type.object();
-    case 'json':
+    case 'InternalContractCaseCoreSetup':
       return Type.object();
     default:
       throw new UnreachableError(
