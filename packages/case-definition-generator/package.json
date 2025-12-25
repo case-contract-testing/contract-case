@@ -52,7 +52,7 @@
     "@contract-case/case-maintainer-config": "0.28.0",
     "@contract-case/eslint-config-case-maintainer": "0.28.0",
     "@types/jest": "^30.0.0",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.1.0",
     "eslint": "^9.22.0",
     "jest": "^30.2.0",
     "rimraf": "^6.1.2",
