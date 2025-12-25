@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/documentation-matchers-generator",
-  "version": "0.28.0",
+  "version": "0.28.1",
   "type": "module",
   "private": true,
   "description": "Generator for the matcher documentation of ContractCase",
@@ -53,14 +53,14 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "@contract-case/eslint-config-case-maintainer": "0.28.0",
+    "@contract-case/eslint-config-case-maintainer": "0.28.1",
     "eslint": "^9.39.1",
     "prettier": "3.6.2",
     "rimraf": "^6.1.2",
     "typescript": "5.9.3"
   },
   "dependencies": {
-    "@contract-case/case-definition-dsl": "0.28.0",
+    "@contract-case/case-definition-dsl": "0.28.1",
     "mkdirp": "^3.0.1"
   }
 }
