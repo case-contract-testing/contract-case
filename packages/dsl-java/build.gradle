@@ -64,7 +64,7 @@ dependencies {
     implementation "jakarta.annotation:jakarta.annotation-api:3.0.0"
 
 
-    testImplementation 'com.google.protobuf:protobuf-gradle-plugin:0.9.5'
+    testImplementation 'com.google.protobuf:protobuf-gradle-plugin:0.9.6'
 
     // Execution of tests
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
