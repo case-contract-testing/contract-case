@@ -1,16 +1,11 @@
 import {
   CaseCoreError,
   isPassToMatcher,
-  MatcherDslDeclaration,
   ParameterDeclaration,
   ParameterType,
 } from '@contract-case/case-plugin-base';
 import prettier from 'prettier';
-import ts from 'typescript';
-import {
-  toCamelCase,
-  toScreamingSnakeCase,
-} from '../../naming/stringIdiomTransformations';
+import ts, { ObjectLiteralElementLike } from 'typescript';
 import { UnreachableError } from '../../../entities/errors/unreachableError';
 import { LanguageGenerator } from '../../types';
 import { GeneratedFile } from '../types';
@@ -21,18 +16,109 @@ import {
 } from '../../../entities/crossLanguage/conventions';
 
 import {
+  callFunction,
   createArrowFunction,
   createConstStatement,
-  createId,
+  createIdentifier,
   createInterfaceDeclaration as createInterface,
   createNamedImport,
+  createOptionalAssignment,
   createParameter,
   createPropertyAssignment,
   createPropertySignature,
-  createString,
+  createStringLiteral,
 } from './tsFactoryWrapper';
+import { fileNameFor, functionNameFor, toInterfaceName } from './renderers';
+import { createImportContext, ImportContext } from './importContext';
 
-const getTsType = (paramType: ParameterType): ts.TypeNode => {
+const stringPropertyName = (
+  name: string,
+  definition: InternalObjectDeclaration,
+) =>
+  name.includes(':')
+    ? name
+    : `_case:${kindToPropertyName(definition.kind)}:${name}`;
+
+const defineObject = (obj: object): ObjectLiteralElementLike[] =>
+  Object.entries(obj).map(([key, value]) => {
+    if (value === null) {
+      return createPropertyAssignment(key, () => ts.factory.createNull());
+    }
+
+    if (typeof value === 'object') {
+      return createPropertyAssignment(key, () =>
+        ts.factory.createObjectLiteralExpression(defineObject(value)),
+      );
+    }
+    if (typeof value === 'string') {
+      return createPropertyAssignment(key, () =>
+        ts.factory.createStringLiteral(value),
+      );
+    }
+    if (typeof value === 'number') {
+      return createPropertyAssignment(key, () =>
+        ts.factory.createNumericLiteral(value),
+      );
+    }
+    throw new CaseCoreError(`Unknown type in defineObject: ${typeof value}`);
+  });
+
+const additionalProperties = (
+  definition: InternalObjectDeclaration,
+): ts.ObjectLiteralElementLike[] => {
+  switch (definition.kind) {
+    case 'state':
+      return [];
+    case 'matcher':
+      return [
+        ...(definition.constantParams
+          ? Object.entries(definition.constantParams).map(([key, value]) =>
+              createPropertyAssignment(
+                stringPropertyName(key, definition),
+                () => ts.factory.createStringLiteral(value),
+              ),
+            )
+          : []),
+        ...(definition.contextModifiers
+          ? Object.entries(definition.contextModifiers).map(([key, value]) =>
+              createPropertyAssignment(
+                stringPropertyName(`_case:context:${key}`, definition),
+                () => ts.factory.createStringLiteral(value),
+              ),
+            )
+          : []),
+        ...(definition.currentRunModifiers
+          ? Object.entries(definition.currentRunModifiers).map(([key, value]) =>
+              createPropertyAssignment(
+                stringPropertyName(
+                  `_case:currentRun:context:${key}`,
+                  definition,
+                ),
+                () => ts.factory.createStringLiteral(value),
+              ),
+            )
+          : []),
+      ];
+    case 'interaction':
+      return [
+        createPropertyAssignment('_case:run:context:setup', () =>
+          ts.factory.createObjectLiteralExpression(
+            defineObject(definition.setup),
+          ),
+        ),
+      ];
+    default:
+      throw new UnreachableError(
+        `Unknown kind when generating additional properties`,
+        definition,
+      );
+  }
+};
+
+const getTsType = (
+  paramType: ParameterType,
+  importContext: ImportContext,
+): ts.TypeNode => {
   if (typeof paramType === 'string') {
     switch (paramType) {
       case 'integer':
@@ -44,14 +130,29 @@ const getTsType = (paramType: ParameterType): ts.TypeNode => {
         return ts.factory.createTypeReferenceNode('string');
       case 'null':
         return ts.factory.createTypeReferenceNode('null');
-      case 'AnyCaseMatcherOrData':
+      case 'AnyCaseMatcherOrData': {
+        importContext.addNamedImport(
+          'AnyCaseMatcherOrData',
+          '@contract-case/case-plugin-dsl-types',
+        );
         return ts.factory.createTypeReferenceNode('AnyCaseMatcherOrData');
-      case 'AnyData':
+      }
+      case 'AnyData': {
+        importContext.addNamedImport(
+          'AnyData',
+          '@contract-case/case-plugin-dsl-types',
+        );
         return ts.factory.createTypeReferenceNode('AnyData');
-      case 'InternalContractCaseCoreSetup':
+      }
+      case 'InternalContractCaseCoreSetup': {
+        importContext.addNamedImport(
+          'InternalContractCaseCoreSetup',
+          '@contract-case/case-plugin-dsl-types',
+        );
         return ts.factory.createTypeReferenceNode(
           'InternalContractCaseCoreSetup',
         );
+      }
       default:
         throw new UnreachableError(
           `Unknown parameter type for TypeScript: ${paramType}`,
@@ -60,10 +161,15 @@ const getTsType = (paramType: ParameterType): ts.TypeNode => {
     }
   }
   if (paramType.kind === 'array') {
-    return ts.factory.createArrayTypeNode(getTsType(paramType.type));
+    return ts.factory.createArrayTypeNode(
+      getTsType(paramType.type, importContext),
+    );
   }
   if (isPassToMatcher(paramType)) {
-    throw new CaseCoreError('PassToMatcher is currently unimplemented');
+    importContext.addMatcher(paramType.matcherReference);
+    return ts.factory.createTypeReferenceNode(
+      toInterfaceName(paramType.matcherReference),
+    );
   }
   throw new UnreachableError(
     `Unknown parameter type for TypeScript: ${paramType}`,
@@ -71,146 +177,154 @@ const getTsType = (paramType: ParameterType): ts.TypeNode => {
   );
 };
 
-const toInterfaceName = (definition: InternalObjectDeclaration) =>
-  `Matcher${definition.name}`;
-
-const fileNameFor = (definition: MatcherDslDeclaration) =>
-  `${toCamelCase(definition.name)}.ts`;
-
-const stringParameterName = (
-  name: string,
+function additionalPropertyTypes(
   definition: InternalObjectDeclaration,
-) => `_case:${kindToPropertyName(definition.kind)}:${name}`;
+  importContext: ImportContext,
+): ts.TypeElement[] {
+  switch (definition.kind) {
+    case 'state':
+      return [];
+    case 'matcher':
+      return [
+        ...(definition.constantParams
+          ? Object.entries(definition.constantParams).map(([key, value]) =>
+              createPropertySignature(
+                stringPropertyName(key, definition),
+                ts.factory.createLiteralTypeNode(
+                  ts.factory.createStringLiteral(value),
+                ),
+              ),
+            )
+          : []),
+        ...(definition.contextModifiers
+          ? Object.entries(definition.contextModifiers).map(([key, value]) =>
+              createPropertySignature(
+                `_case:context:${key}`,
+                ts.factory.createLiteralTypeNode(
+                  ts.factory.createStringLiteral(value),
+                ),
+              ),
+            )
+          : []),
+        ...(definition.currentRunModifiers
+          ? Object.entries(definition.currentRunModifiers).map(([key, value]) =>
+              createPropertySignature(
+                `_case:currentRun:context:${key}`,
+                ts.factory.createLiteralTypeNode(
+                  ts.factory.createStringLiteral(value),
+                ),
+              ),
+            )
+          : []),
+      ];
+    case 'interaction':
+      return [
+        createPropertySignature(
+          stringPropertyName('_case:run:context:setup', definition),
+          getTsType('InternalContractCaseCoreSetup', importContext),
+        ),
+      ];
+    default:
+      throw new UnreachableError(
+        `Unknown kind when generating additional type signature for interface`,
+        definition,
+      );
+  }
+}
 
-const parameterName = (
+const propertyName = (
   param: ParameterDeclaration,
   definition: InternalObjectDeclaration,
 ): string =>
-  param.jsonPropertyName ?? stringParameterName(param.name, definition);
+  param.jsonPropertyName ?? stringPropertyName(param.name, definition);
 
-const createTypeConstantStatement = (
-  matcherTypeConstant: string,
-  constValue: string,
-): ts.VariableStatement =>
-  createConstStatement(
-    matcherTypeConstant,
-    ts.factory.createAsExpression(
-      createString(constValue),
-      ts.factory.createTypeReferenceNode('const'),
-    ),
-  );
+const typeConstantFor = (
+  definition: InternalObjectDeclaration,
+  namespace: string,
+) => `${namespace}:${definition.type}`;
 
 const createInterfaceDeclaration = (
   definition: InternalObjectDeclaration,
-  interfaceName: string,
-  matcherTypeConstant: string,
+  namespace: string,
+  importContext: ImportContext,
 ): ts.InterfaceDeclaration =>
-  createInterface(interfaceName, [
+  createInterface(toInterfaceName(definition), [
     createPropertySignature(
-      stringParameterName('type', definition),
-      ts.factory.createTypeQueryNode(createId(matcherTypeConstant)),
+      stringPropertyName('type', definition),
+      ts.factory.createLiteralTypeNode(
+        ts.factory.createStringLiteral(typeConstantFor(definition, namespace)),
+      ),
     ),
     ...definition.params.map((param) =>
       createPropertySignature(
-        parameterName(param, definition),
-        getTsType(param.type),
+        propertyName(param, definition),
+        getTsType(param.type, importContext),
         param.optional,
       ),
     ),
+    ...additionalPropertyTypes(definition, importContext),
   ]);
 
 const createFactoryFunctionStatement = (
   definition: InternalObjectDeclaration,
-  functionName: string,
-  interfaceName: string,
-  matcherTypeConstant: string,
-): ts.VariableStatement =>
-  createConstStatement(
-    functionName,
+  namespace: string,
+  importContext: ImportContext,
+): ts.VariableStatement => {
+  const methodParams: ParameterDeclaration[] = definition.params.flatMap(
+    (param) =>
+      isPassToMatcher(param.type) ? param.type.exposedParams : [param],
+  );
+
+  const factoryFunction = createConstStatement(
+    functionNameFor(definition),
     createArrowFunction(
-      definition.params.map((param) =>
-        createParameter(param.name, getTsType(param.type), param.optional),
+      methodParams.map((param) =>
+        createParameter(
+          param.name,
+          getTsType(param.type, importContext),
+          param.optional,
+        ),
       ),
-      ts.factory.createTypeReferenceNode(interfaceName),
+      ts.factory.createTypeReferenceNode(toInterfaceName(definition)),
       ts.factory.createParenthesizedExpression(
         ts.factory.createObjectLiteralExpression(
           [
+            // All objects start with their type identifier
             createPropertyAssignment(
-              stringParameterName('type', definition),
-              createId(matcherTypeConstant),
+              stringPropertyName('type', definition),
+              () =>
+                ts.factory.createAsExpression(
+                  createStringLiteral(typeConstantFor(definition, namespace)),
+                  ts.factory.createTypeReferenceNode('const'),
+                ),
             ),
-            ...definition.params.flatMap(
-              (param): ts.ObjectLiteralElementLike[] => {
-                const key = parameterName(param, definition);
-                if (param.optional) {
-                  return [
-                    ts.factory.createSpreadAssignment(
-                      ts.factory.createParenthesizedExpression(
-                        ts.factory.createConditionalExpression(
-                          ts.factory.createBinaryExpression(
-                            createId(param.name),
-                            ts.factory.createToken(
-                              ts.SyntaxKind.ExclamationEqualsEqualsToken,
-                            ),
-                            createId('undefined'),
-                          ),
-                          ts.factory.createToken(ts.SyntaxKind.QuestionToken),
-                          ts.factory.createObjectLiteralExpression([
-                            createPropertyAssignment(key, createId(param.name)),
-                          ]),
-                          ts.factory.createToken(ts.SyntaxKind.ColonToken),
-                          ts.factory.createObjectLiteralExpression([]),
-                        ),
-                      ),
-                    ),
-                  ];
+            ...additionalProperties(definition),
+            // Then parameters, which might be optional
+            // These are the parameters from the definition
+            // because we map from method parameters to the actual
+            // values (ie, collapse passToMatcher parameters)
+            ...definition.params.map((param): ts.ObjectLiteralElementLike => {
+              const jsonKey = propertyName(param, definition);
+              if (param.optional) {
+                return createOptionalAssignment(jsonKey, param);
+              }
+              return createPropertyAssignment(jsonKey, () => {
+                if (isPassToMatcher(param.type)) {
+                  importContext.addMatcher(param.type.matcherReference);
+                  return callFunction(
+                    functionNameFor(param.type.matcherReference),
+                    param.type.exposedParams,
+                  );
                 }
-                return [createPropertyAssignment(key, createId(param.name))];
-              },
-            ),
+                return createIdentifier(param.name);
+              });
+            }),
           ],
           true,
         ),
       ),
     ),
   );
-
-const createImportDeclaration = (): ts.ImportDeclaration =>
-  createNamedImport(
-    ['AnyCaseMatcherOrData'],
-    '@contract-case/case-plugin-dsl-types',
-  );
-
-const generateDslCode = async (
-  definition: InternalObjectDeclaration,
-  category: string,
-  namespace: string,
-): Promise<GeneratedFile> => {
-  // 1. Constant
-  const matcherTypeConstant = `${toScreamingSnakeCase(definition.type)}_TYPE`;
-
-  const constantStatement = createTypeConstantStatement(
-    matcherTypeConstant,
-    `${namespace}:${definition.type}`,
-  );
-
-  const functionName = toCamelCase(definition.name);
-  const interfaceName = toInterfaceName(definition);
-
-  const interfaceDeclaration = createInterfaceDeclaration(
-    definition,
-    interfaceName,
-    matcherTypeConstant,
-  );
-
-  const factoryFunction = createFactoryFunctionStatement(
-    definition,
-    functionName,
-    interfaceName,
-    matcherTypeConstant,
-  );
-
-  // Comments for factory function
   ts.addSyntheticLeadingComment(
     factoryFunction,
     ts.SyntaxKind.MultiLineCommentTrivia,
@@ -219,33 +333,87 @@ const generateDslCode = async (
       .join('\n')}\n `,
     true,
   );
+  return factoryFunction;
+};
 
-  const importStatement = createImportDeclaration();
+const createImportDeclaration = (
+  context: ImportContext,
+): ts.ImportDeclaration[] => {
+  const imports = context
+    ? Object.entries(context.getImports()).map(([module, functions]) =>
+        createNamedImport(Array.from(functions), module),
+      )
+    : [];
 
-  ts.addSyntheticLeadingComment(
-    importStatement,
-    ts.SyntaxKind.SingleLineCommentTrivia,
-    ' THIS FILE WAS AUTOGENERATED BY @contract-case/case-definition-generator. DO NOT MODIFY IT',
-    true,
-  );
+  return imports;
+};
+const generateDslCode = async (
+  definition: InternalObjectDeclaration,
+  category: string,
+  namespace: string,
+): Promise<GeneratedFile> => {
+  const importContext = createImportContext(category, definition.kind);
 
   const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
   const sourceFile = ts.createSourceFile(
-    'placeholder.ts',
+    // This appears to be unused by typescript when
+    // calling createSourceFile here, but it's not
+    // documented, so who knows. Not me. Maybe you?
+    // Anyway, I called it delete-me, so it'll
+    // stand out incase it ever does leak to the file system.
+    'delete-me.ts',
     '',
     ts.ScriptTarget.Latest,
     false,
     ts.ScriptKind.TS,
   );
 
-  const nodes = ts.factory.createNodeArray([
-    importStatement,
-    constantStatement,
-    interfaceDeclaration,
-    factoryFunction,
-  ]);
+  const interfaceDeclaration = createInterfaceDeclaration(
+    definition,
+    namespace,
+    importContext,
+  );
 
-  const code = printer.printList(ts.ListFormat.MultiLine, nodes, sourceFile);
+  const contentNodes = [
+    interfaceDeclaration,
+    createFactoryFunctionStatement(definition, namespace, importContext),
+  ].map((node) => {
+    // This adds a blank line before each node
+    ts.addSyntheticLeadingComment(
+      node,
+      ts.SyntaxKind.SingleLineCommentTrivia,
+      '',
+      true,
+    );
+    return node;
+  });
+
+  // We do this second, because the importContext needs to be populated first
+  // by the other generation functions.
+  const allNodes = [...createImportDeclaration(importContext), ...contentNodes];
+
+  ts.addSyntheticLeadingComment(
+    allNodes[0]!,
+    ts.SyntaxKind.MultiLineCommentTrivia,
+    ' eslint-disable ',
+    true,
+  );
+  ts.addSyntheticLeadingComment(
+    allNodes[0]!,
+    ts.SyntaxKind.MultiLineCommentTrivia,
+    `****** @contract-case/case-definition-generator ********
+THIS FILE WAS AUTOGENERATED 
+DO NOT MODIFY IT
+******** @contract-case/case-definition-generator ********
+    `,
+    true,
+  );
+
+  const code = printer.printList(
+    ts.ListFormat.MultiLine,
+    ts.factory.createNodeArray(allNodes),
+    sourceFile,
+  );
 
   return {
     content: await prettier
@@ -259,7 +427,7 @@ const generateDslCode = async (
         );
       }),
     entityNames: [definition.name],
-    relativePath: `src/boundaries/dsl/${folderForKind(definition.kind)}/${category}/${fileNameFor(definition)}`,
+    relativePath: `src/boundaries/dsl/${folderForKind(definition.kind)}/${fileNameFor({ name: definition.name, category })}`,
   };
 };
 

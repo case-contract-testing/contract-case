@@ -181,6 +181,8 @@ export type ParameterDeclaration = {
   /**
    * If set, whether or not this parameter is optional. Optional parameters must
    * be the last ones in order. Defaults to required if not set
+   *
+   * Note: Optional parameters are not supported for pass-to-matcher parameters
    */
   readonly optional?: boolean;
   /** If set, will override the generated json property name for this parameter */
@@ -229,7 +231,8 @@ export type DslObjectDeclaration = {
  */
 export type MatcherDslDeclaration = DslObjectDeclaration & {
   /**
-   * A map of constant parameters to add to the matcher. These are parameters that are always the same for all instances of the matcher.
+   * A map of constant parameters to add to the matcher.
+   * These are parameters that are always the same for all instances of the matcher.
    *
    * See the notes about reserved names on {@link ParameterDeclaration}
    *
@@ -250,13 +253,15 @@ export type MatcherDslDeclaration = DslObjectDeclaration & {
     >;
   };
   /**
-   * A map of context modifiers to add to the context object.
-   * These control ContractCase's matching behaviour
+   * A map of context modifiers to add to the `'_case:context'`
+   * context object. These control ContractCase's matching behaviour
    */
   readonly contextModifiers?: Record<string, string>;
   /**
-   * A map of modifiers to add to the current run context. These can be used to
-   * add matchers that change the user configuration below it. Most of the time you won't need to provide these.
+   * A map of modifiers to add to the current run
+   * context, `'_case:currentRun:context'` These can be used to
+   * add matchers that change the user configuration below it.
+   * Most of the time you won't need to provide these.
    */
   readonly currentRunModifiers?: Record<string, string>;
 };
