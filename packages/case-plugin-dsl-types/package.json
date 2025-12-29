@@ -52,7 +52,7 @@
   "devDependencies": {
     "@contract-case/case-maintainer-config": "0.28.0",
     "@contract-case/eslint-config-case-maintainer": "0.28.0",
-    "@microsoft/api-documenter": "^7.27.0",
+    "@microsoft/api-documenter": "^7.28.2",
     "@microsoft/api-extractor": "^7.52.13",
     "eslint": "^9.39.1",
     "prettier": "3.6.2",
