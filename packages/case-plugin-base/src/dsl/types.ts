@@ -159,14 +159,24 @@ export const isPassToMatcher = (
  * Declares a parameter for a matcher
  */
 export type ParameterDeclaration = {
-  /** The name of the parameter, used for documentation, actual method
+  /**
+   * The name of the parameter, used for documentation, actual method
    * declaration, and any builders.
+   *
+   * These must be unique within a single matcher definition.
+   *
+   * Must contain only alphanumeric characters (no spaces or other characters),
+   * and must begin with a letter. If there are mutliple words, use camelCase.
    *
    * Note that there are some reserved names or names with side effects:
    *
-   * - `type`: Reserved for the matcher type.
+   * - `type`: Reserved for the matcher type
    * - `example`: Allowed, but will be used as the rendered example for this node.
-   * - `resolvesTo`: Allowed, but will control what ContractCase thinks the example's type is.
+   * - `resolvesTo`: Allowed, but will control what ContractCase thinks the type of
+   *    the example is.
+   *
+   * If you use this any of these as a parameter name, and don't want the additional
+   * behaviour, you must supply a jsonPropertyName.
    */
   readonly name: string;
   /**

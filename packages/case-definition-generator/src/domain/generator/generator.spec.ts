@@ -64,5 +64,61 @@ describe.each([
         ).content,
       ).toMatchSnapshot();
     });
+    it('Generates a matcher with all the bells and whistles', async () => {
+      expect(
+        (
+          await generator.generateDslCode(
+            {
+              kind: 'matcher',
+              name: 'KitchenSink',
+              type: 'KitchenSink',
+              documentation: 'Illustrates all the possible features',
+              params: [
+                {
+                  name: 'firstParam',
+                  documentation:
+                    'Any number of matchers, each of which must be found inside the array, in any order.',
+                  type: { kind: 'array', type: 'AnyCaseMatcherOrData' },
+                },
+                {
+                  name: 'passThroughExample',
+                  documentation: 'Illustrates a passthrough matcher',
+                  type: {
+                    kind: 'PassToMatcher',
+                    exposedParams: [
+                      {
+                        name: 'matchers',
+                        documentation:
+                          'This is really a parameter of the passthrough',
+                        type: { kind: 'array', type: 'AnyCaseMatcherOrData' },
+                      },
+                    ],
+                    matcherReference: {
+                      name: 'ArrayContains',
+                      category: 'arrays',
+                      namespace: '_case',
+                    },
+                  },
+                },
+                {
+                  name: 'someOptional',
+                  documentation: 'illustrates optional values',
+                  optional: true,
+                  type: 'string',
+                },
+              ],
+              constantParams: {
+                someConstant: 'someValue',
+              },
+              contextModifiers: {
+                overallContextModifier: 'newContextValue',
+              },
+            },
+            'tests',
+            '_case',
+          )
+        ).content,
+      ).toMatchSnapshot();
+    });
   },
 );
