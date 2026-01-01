@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-connector",
-  "version": "0.28.0",
+  "version": "0.28.1",
   "type": "module",
   "description": "Connector to allow ContractCase to run as a server. Use only if you're creating a custom wrapper for a new language",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
@@ -52,8 +52,8 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@contract-case/case-maintainer-config": "0.28.0",
-    "@contract-case/eslint-config-case-maintainer": "0.28.0",
+    "@contract-case/case-maintainer-config": "0.28.1",
+    "@contract-case/eslint-config-case-maintainer": "0.28.1",
     "@knighted/duel": "^2.1.6",
     "@types/google-protobuf": "^3.15.12",
     "@types/jest": "^30.0.0",
@@ -71,9 +71,9 @@
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
-    "@contract-case/case-connector-proto": "0.28.0",
-    "@contract-case/case-core": "0.28.0",
-    "@contract-case/case-entities-internal": "0.28.0",
+    "@contract-case/case-connector-proto": "0.28.1",
+    "@contract-case/case-core": "0.28.1",
+    "@contract-case/case-entities-internal": "0.28.1",
     "@grpc/grpc-js": "^1.13.3",
     "@grpc/proto-loader": "^0.8.0",
     "get-port": "^7.1.0",
