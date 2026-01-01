@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/cli",
-  "version": "0.28.0",
+  "version": "0.28.1",
   "type": "module",
   "description": "Command-line interface for ContractCase, allowing interactions with the Contract / Pact Broker",
   "keywords": [
@@ -59,7 +59,7 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "@contract-case/eslint-config-case-maintainer": "0.28.0",
+    "@contract-case/eslint-config-case-maintainer": "0.28.1",
     "@types/jest": "^30.0.0",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.1",
@@ -71,8 +71,8 @@
     "typescript": "5.9.3"
   },
   "dependencies": {
-    "@contract-case/case-connector": "0.28.0",
-    "@contract-case/case-core": "0.28.0",
+    "@contract-case/case-connector": "0.28.1",
+    "@contract-case/case-core": "0.28.1",
     "chalk": "^5.3.0",
     "commander": "^14.0.0"
   }
