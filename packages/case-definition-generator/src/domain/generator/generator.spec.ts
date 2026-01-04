@@ -10,32 +10,34 @@ describe.each([
   ({ generator }: { generator: LanguageGenerator }) => {
     it('generates a matcher as expected', async () => {
       expect(
-        await generator.generateDslCode(
-          {
-            kind: 'matcher',
-            name: 'ArrayEachEntryMatches',
-            type: 'ArrayEachEntryLike',
-            documentation:
-              'Matches an array where each element matches the provided matcher.',
-            params: [
-              {
-                name: 'matcher',
-                documentation:
-                  'The matcher to match against each element of the array.',
-                type: 'AnyCaseMatcherOrData',
-              },
-              {
-                name: 'example',
-                documentation:
-                  'Example data to use instead of the generated one',
-                type: { kind: 'array', type: 'AnyData' },
-                optional: true,
-              },
-            ],
-          },
-          'tests',
-          '_case',
-        ),
+        (
+          await generator.generateDslCode(
+            {
+              kind: 'matcher',
+              name: 'ArrayEachEntryMatches',
+              type: 'ArrayEachEntryLike',
+              documentation:
+                'Matches an array where each element matches the provided matcher.',
+              params: [
+                {
+                  name: 'matcher',
+                  documentation:
+                    'The matcher to match against each element of the array.',
+                  type: 'AnyCaseMatcherOrData',
+                },
+                {
+                  name: 'example',
+                  documentation:
+                    'Example data to use instead of the generated one',
+                  type: { kind: 'array', type: 'AnyData' },
+                  optional: true,
+                },
+              ],
+            },
+            'tests',
+            '_case',
+          )
+        ).content,
       ).toMatchSnapshot();
     });
 
