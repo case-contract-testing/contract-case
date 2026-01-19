@@ -15,7 +15,7 @@ export const mdGenerator: LanguageGenerator = {
       }
       return [];
     }),
-  generateExample: function (): Promise<string> {
+  generateExample: (): Promise<string> => {
     throw new Error('Function not implemented.');
   },
 };

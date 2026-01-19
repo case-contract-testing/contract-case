@@ -5,6 +5,16 @@ import { GeneratedFile } from '../types.js';
 import { formatParameterDescription } from './formatters/formatters.js';
 import { LanguageDetails, ContentWriter } from './types.js';
 
+const makeContent = (): ContentWriter => {
+  const internalContent: string[] = [];
+
+  return {
+    writeLine: (line: string | undefined) =>
+      internalContent.push(`${line ?? ''}\n`),
+    toContent: () => internalContent.join(''),
+  };
+};
+
 const renderLanguage = async (
   writer: ContentWriter,
   definition: InternalMatcherDslDeclaration,
@@ -69,14 +79,5 @@ export const generateMatcherDocumenation = (
     entityNames: [definition.name],
     relativePath: filename,
     content: content.toContent(),
-  };
-};
-const makeContent = (): ContentWriter => {
-  const internalContent: string[] = [];
-
-  return {
-    writeLine: (line: string | undefined) =>
-      internalContent.push(`${line ?? ''}\n`),
-    toContent: () => internalContent.join(''),
   };
 };

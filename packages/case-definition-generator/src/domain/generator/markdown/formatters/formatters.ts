@@ -23,6 +23,7 @@ export const formatParameterDescription = (
   parameterName: string,
 ): string => {
   if (!documentation) {
+    // eslint-disable-next-line no-console
     console.log(
       `WARN (${name}): Parameter '${parameterName}' has no documentation`,
     );
