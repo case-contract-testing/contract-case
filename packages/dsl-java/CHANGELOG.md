@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.28.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.28.0...@contract-case/dsl-java-v0.28.1) (2026-01-19)
+
+
+### Features
+
+* **core:** Emit prepared tests grouped by the contracts being verified - this makes it substantially easier for language DSLs to provide helpful debugging information ([349dd95](https://github.com/case-contract-testing/contract-case/commit/349dd95b5528b09a6d2c65d627442f6bc7e06fe6))
+* **verifier:** Closing a verification now emits a type that contains information about the result ([be0d419](https://github.com/case-contract-testing/contract-case/commit/be0d419f35233c4d691571726fe2674bf576db3e))
+
+
+### Bug Fixes
+
+* **java-dsl:** Deprecate convenience overload of `runVerification`; the method was already deprecated, but not all overloads were marked with Deprecated ([96550e1](https://github.com/case-contract-testing/contract-case/commit/96550e17be74d76f561f255c47c50f198f713ffa))
+* **java-dsl:** Fix missing function name in error message ([283f5db](https://github.com/case-contract-testing/contract-case/commit/283f5dbb45a67e7f59ade051996b5371468294c7))
+* **java-dsl:** Improve ergonomics of Contract Verification with `prepareVerifications` and `closePreparedVerification`, allowing control of closing individual contract verifications ([acd2759](https://github.com/case-contract-testing/contract-case/commit/acd27591a25d5cc9ed6b60c5df95853a56df790c))
+* **java-dsl:** Retain ContractCaseDsl annotation at runtime ([9eb003e](https://github.com/case-contract-testing/contract-case/commit/9eb003e74d9a49bf1a4d9b580607beef26d3fdf6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-definition-dsl bumped from 0.28.0 to 0.28.1
+
 ## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.27.3...@contract-case/dsl-java-v0.28.0) (2025-12-14)
 
 

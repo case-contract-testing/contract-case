@@ -29,6 +29,34 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.28.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.28.0...@contract-case/contract-case-jest-v0.28.1) (2026-01-19)
+
+
+### Features
+
+* **core:** Emit prepared tests grouped by the contracts being verified - this makes it substantially easier for language DSLs to provide helpful debugging information ([349dd95](https://github.com/case-contract-testing/contract-case/commit/349dd95b5528b09a6d2c65d627442f6bc7e06fe6))
+
+
+### Bug Fixes
+
+* **jest-dsl:** Fix an issue where crashes might incorrectly have no clear message ([222f2b1](https://github.com/case-contract-testing/contract-case/commit/222f2b19fc8c0912c49629c32df2fae6fc535e79))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-definition-dsl bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-entities-internal bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-plugin-base bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.28.0 to 0.28.1
+    * @contract-case/cli bumped from 0.28.0 to 0.28.1
+  * devDependencies
+    * @contract-case/cli bumped from 0.28.0 to 0.28.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.28.0 to 0.28.1
+
 ## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.27.3...@contract-case/contract-case-jest-v0.28.0) (2025-12-14)
 
 

@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.28.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.28.0...@contract-case/case-core-v0.28.1) (2026-01-19)
+
+
+### Features
+
+* **core:** Emit prepared tests grouped by the contracts being verified - this makes it substantially easier for language DSLs to provide helpful debugging information ([349dd95](https://github.com/case-contract-testing/contract-case/commit/349dd95b5528b09a6d2c65d627442f6bc7e06fe6))
+* **core:** Now the core registers a failure if some of the prepared tests have never been called ([fa53059](https://github.com/case-contract-testing/contract-case/commit/fa530590be6bbe1d4e38825f9bfcaaa0dc2ceffd))
+* **verifier:** Closing a verification now emits a type that contains information about the result ([be0d419](https://github.com/case-contract-testing/contract-case/commit/be0d419f35233c4d691571726fe2674bf576db3e))
+
+
+### Bug Fixes
+
+* **core:** Improve the errors thrown when all contracts are closed together in the verifier ([4d9d777](https://github.com/case-contract-testing/contract-case/commit/4d9d777f8c6185d31f52b5127eb58af3d746296b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-core-plugin-http bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-entities-internal bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-plugin-base bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.28.0 to 0.28.1
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-maintainer-config bumped from 0.28.0 to 0.28.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.28.0 to 0.28.1
+
 ## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.27.3...@contract-case/case-core-v0.28.0) (2025-12-14)
 
 

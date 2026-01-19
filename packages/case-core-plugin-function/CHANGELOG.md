@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.28.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.28.0...@contract-case/case-core-plugin-function-v0.28.1) (2026-01-19)
+
+
+### Features
+
+* **plugin-base:** Plugins now can expose DSL definitions that can be built by the DSL generator ([e665a55](https://github.com/case-contract-testing/contract-case/commit/e665a556054ccd4bef20c469de5885d6425f8268))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-plugin-base bumped from 0.28.0 to 0.28.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.28.0 to 0.28.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.28.0 to 0.28.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.28.0 to 0.28.1
+
 ## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.27.3...@contract-case/case-core-plugin-function-v0.28.0) (2025-12-14)
 
 
