@@ -67,7 +67,7 @@
     "jest": "^30.2.0",
     "eslint": "^9.39.1",
     "jsii": "^5.9.2",
-    "jsii-pacmak": "1.112.0",
+    "jsii-pacmak": "1.124.0",
     "jsii-docgen": "^10.11.4",
     "mkdirp": "^3.0.1",
     "prettier": "3.6.2",
