@@ -77,7 +77,7 @@
     "@grpc/grpc-js": "^1.13.3",
     "@grpc/proto-loader": "^0.8.0",
     "get-port": "^7.1.0",
-    "google-protobuf": "^3.21.4",
+    "google-protobuf": "^4.0.1",
     "pretty-format": "^30.2.0",
     "uuid": "^13.0.0"
   },
