@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.28.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.28.0...@contract-case/case-connector-proto-v0.28.1) (2026-01-19)
+
+
+### Bug Fixes
+
+* **java-dsl:** Improve ergonomics of Contract Verification with `prepareVerifications` and `closePreparedVerification`, allowing control of closing individual contract verifications ([acd2759](https://github.com/case-contract-testing/contract-case/commit/acd27591a25d5cc9ed6b60c5df95853a56df790c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.28.0 to 0.28.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.28.0 to 0.28.1
+
 ## [0.28.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-proto-v0.27.3...@contract-case/case-connector-proto-v0.28.0) (2025-12-14)
 
 
