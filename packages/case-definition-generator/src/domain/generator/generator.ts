@@ -25,7 +25,7 @@ export const makeGenerator = (
               dsl.category,
               dsl.namespace,
             )
-            .then((file) => fileWriter.write(file)),
+            .then((files) => files.map((file) => fileWriter.write(file))),
         ),
         ...(dsl.states
           ? dsl.states.map((state) =>
@@ -35,7 +35,7 @@ export const makeGenerator = (
                   dsl.category,
                   dsl.namespace,
                 )
-                .then((file) => fileWriter.write(file)),
+                .then((files) => files.map((file) => fileWriter.write(file))),
             )
           : []),
         ...(dsl.interactions
@@ -46,7 +46,7 @@ export const makeGenerator = (
                   dsl.category,
                   dsl.namespace,
                 )
-                .then((file) => fileWriter.write(file)),
+                .then((files) => files.map((file) => fileWriter.write(file))),
             )
           : []),
       ]).then(() => {});

@@ -6,9 +6,17 @@ export type GeneratorLogger = {
 };
 
 export type LanguageGenerator = {
+  /**
+   * Generates files for this DSL object
+   */
   generateDslCode: (
     definition: InternalObjectDeclaration,
     category: string,
     namespace: string,
-  ) => Promise<GeneratedFile>;
+  ) => Promise<GeneratedFile[]>;
+
+  /**
+   * Generates an example for this DSL object
+   */
+  generateExample: (definition: InternalObjectDeclaration) => Promise<string>;
 };

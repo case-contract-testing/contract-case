@@ -27,18 +27,23 @@ const generateJavaDslCode = async (
   definition: InternalObjectDeclaration,
   category: string,
   namespace: string,
-): Promise<GeneratedFile> => {
+): Promise<GeneratedFile[]> => {
   const descriptor = buildJavaDescriptor(definition, category, namespace);
-  return {
-    content: await renderJavaClass(descriptor),
-    entityNames: [descriptor.className],
-    relativePath: path.join(
-      descriptor.basePath,
-      `${descriptor.className}.java`,
-    ),
-  };
+  return [
+    {
+      content: await renderJavaClass(descriptor),
+      entityNames: [descriptor.className],
+      relativePath: path.join(
+        descriptor.basePath,
+        `${descriptor.className}.java`,
+      ),
+    },
+  ];
 };
 
 export const javaGenerator: LanguageGenerator = {
   generateDslCode: generateJavaDslCode,
+  generateExample(): Promise<string> {
+    throw new Error('Function not implemented.');
+  },
 };

@@ -37,7 +37,7 @@ describe.each([
             'tests',
             '_case',
           )
-        ).content,
+        )[0]?.content,
       ).toMatchSnapshot();
     });
 
@@ -63,7 +63,7 @@ describe.each([
             'tests',
             '_case',
           )
-        ).content,
+        )[0]?.content,
       ).toMatchSnapshot();
     });
     it('Generates a matcher with all the bells and whistles', async () => {
@@ -119,7 +119,7 @@ describe.each([
             'tests',
             '_case',
           )
-        ).content,
+        )[0]?.content,
       ).toMatchSnapshot();
     });
   },

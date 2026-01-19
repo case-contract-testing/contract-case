@@ -351,7 +351,7 @@ const generateDslCode = async (
   definition: InternalObjectDeclaration,
   category: string,
   namespace: string,
-): Promise<GeneratedFile> => {
+): Promise<GeneratedFile[]> => {
   const importContext = createImportContext(category, definition.kind);
 
   const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
@@ -415,22 +415,25 @@ DO NOT MODIFY IT
     sourceFile,
   );
 
-  return {
-    content: await prettier
-      .format(code, {
-        parser: 'typescript',
-        singleQuote: true,
-      })
-      .catch((err) => {
-        throw new CaseCoreError(
-          `Error formatting TypeScript code. This means that there's a bug in the TypeScript code generator. Error was: ${err.message}\n\nBroken code was: ${code}`,
-        );
-      }),
-    entityNames: [definition.name],
-    relativePath: `src/boundaries/dsl/${folderForKind(definition.kind)}/${fileNameFor({ name: definition.name, category })}`,
-  };
+  return [
+    {
+      content: await prettier
+        .format(code, {
+          parser: 'typescript',
+          singleQuote: true,
+        })
+        .catch((err) => {
+          throw new CaseCoreError(
+            `Error formatting TypeScript code. This means that there's a bug in the TypeScript code generator. Error was: ${err.message}\n\nBroken code was: ${code}`,
+          );
+        }),
+      entityNames: [definition.name],
+      relativePath: `src/boundaries/dsl/${folderForKind(definition.kind)}/${fileNameFor({ name: definition.name, category })}`,
+    },
+  ];
 };
 
 export const tsGenerator: LanguageGenerator = {
   generateDslCode,
+  generateExample: () => Promise.resolve(''),
 };
