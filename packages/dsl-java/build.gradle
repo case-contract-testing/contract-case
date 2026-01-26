@@ -68,7 +68,7 @@ dependencies {
 
     // Execution of tests
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testImplementation 'org.assertj:assertj-core:3.27.6'
+    testImplementation 'org.assertj:assertj-core:3.27.7'
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testRuntimeOnly "org.junit.platform:junit-platform-launcher:6.0.2"
 
