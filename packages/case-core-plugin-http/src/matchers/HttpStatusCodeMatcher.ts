@@ -14,6 +14,7 @@ import {
   matchingError,
   hasNoErrors,
   MatcherExecutor,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { validateCodes } from './codeValidator';
 
@@ -120,11 +121,13 @@ export const HttpStatusCodeMatcher: MatcherExecutor<
   CoreHttpStatusCodeMatcher
 > = {
   describe: (matcher: CoreHttpStatusCodeMatcher) =>
-    `httpStatus ${
-      Array.isArray(matcher['_case:matcher:rule'])
-        ? matcher['_case:matcher:rule'].map((r) => `${r}`).join(' | ')
-        : matcher['_case:matcher:rule']
-    }`,
+    describeMessage(
+      `httpStatus ${
+        Array.isArray(matcher['_case:matcher:rule'])
+          ? matcher['_case:matcher:rule'].map((r) => `${r}`).join(' | ')
+          : matcher['_case:matcher:rule']
+      }`,
+    ),
   check,
   strip: (matcher, matchContext) => statusCodeExample(matcher, matchContext),
   validate,

@@ -14,6 +14,7 @@ import {
   addLocation,
   hasErrors,
   CaseConfigurationError,
+  DescribeSegment,
 } from '@contract-case/case-plugin-base';
 import {
   AnyLeafOrStructure,
@@ -75,7 +76,7 @@ const descendAndValidate = <T extends AnyCaseNodeType>(
 const descendAndDescribe = <T extends AnyCaseNodeType>(
   matcherOrData: AnyLeafOrStructure | UnknownCaseNodeType | CaseNodeFor<T>,
   parentMatchContext: MatchContext,
-): string =>
+): DescribeSegment =>
   getExecutor(matcherOrData as AnyCaseMatcher, parentMatchContext).name();
 
 const descendAndStrip = <T extends AnyCaseNodeType>(

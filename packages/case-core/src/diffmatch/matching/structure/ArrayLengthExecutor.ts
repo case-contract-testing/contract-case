@@ -15,6 +15,7 @@ import {
   makeResults,
   MatcherExecutor,
   CaseConfigurationError,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -76,7 +77,9 @@ export const ArrayLengthExecutor: MatcherExecutor<
   CoreArrayLengthMatcher
 > = {
   describe: (matcher) =>
-    `an array of length min: ${matcher['_case:matcher:minLength']}, max: ${matcher['_case:matcher:maxLength']};`,
+    describeMessage(
+      `an array of length min: ${matcher['_case:matcher:minLength']}, max: ${matcher['_case:matcher:maxLength']};`,
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

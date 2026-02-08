@@ -7,8 +7,11 @@ import {
   CaseConfigurationError,
   CaseCoreError,
   DataContext,
+  DescribeSegment,
+  describeMessage,
   Logger,
   MatchContext,
+  renderToString,
 } from '@contract-case/case-plugin-base';
 import { AnyCaseMatcherOrData } from '@contract-case/case-plugin-dsl-types';
 import {
@@ -72,7 +75,7 @@ const MOCK_LOOKUP = {
 interface MockState {
   descendAndCheckResult: any[];
   descendAndStripResult: any;
-  descendAndDescribeResult: string;
+  descendAndDescribeResult: DescribeSegment;
 }
 
 const createMockMatchContext = (state: MockState): MatchContext => ({
@@ -103,7 +106,7 @@ describe('FunctionResultMatcherExecutor', () => {
     mockMatchContext = createMockMatchContext({
       descendAndCheckResult: [],
       descendAndStripResult: 'stripped',
-      descendAndDescribeResult: '"default description"',
+      descendAndDescribeResult: describeMessage('"default description"'),
     });
   });
 
@@ -122,13 +125,13 @@ describe('FunctionResultMatcherExecutor', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'some description',
+        descendAndDescribeResult: describeMessage('some description'),
       });
       expect(
-        FunctionResultMatcherExecutor.describe(
+        renderToString(FunctionResultMatcherExecutor.describe(
           successMatcher,
           mockMatchContext,
-        ),
+        )),
       ).toBe('returns some description');
     });
 
@@ -136,10 +139,10 @@ describe('FunctionResultMatcherExecutor', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: '"SomeError"',
+        descendAndDescribeResult: describeMessage('"SomeError"'),
       });
       expect(
-        FunctionResultMatcherExecutor.describe(errorMatcher, mockMatchContext),
+        renderToString(FunctionResultMatcherExecutor.describe(errorMatcher, mockMatchContext)),
       ).toBe('throwing a SomeError');
     });
 
@@ -154,13 +157,13 @@ describe('FunctionResultMatcherExecutor', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: '"SomeError"',
+        descendAndDescribeResult: describeMessage('"SomeError"'),
       });
 
-      const result = FunctionResultMatcherExecutor.describe(
+      const result = renderToString(FunctionResultMatcherExecutor.describe(
         errorMatcherWithMessage,
         mockMatchContext,
-      );
+      ));
 
       // The result should contain both the error class and message
       expect(result).toContain('throwing a SomeError');
@@ -175,7 +178,7 @@ describe('FunctionResultMatcherExecutor', () => {
           mockMatchContext = createMockMatchContext({
             descendAndCheckResult: [],
             descendAndStripResult: 'stripped',
-            descendAndDescribeResult: '"default"',
+            descendAndDescribeResult: describeMessage('"default"'),
           });
         });
 
@@ -235,7 +238,7 @@ describe('FunctionResultMatcherExecutor', () => {
           mockMatchContext = createMockMatchContext({
             descendAndCheckResult: [],
             descendAndStripResult: 'stripped-expected',
-            descendAndDescribeResult: '"default"',
+            descendAndDescribeResult: describeMessage('"default"'),
           });
         });
 
@@ -275,7 +278,7 @@ describe('FunctionResultMatcherExecutor', () => {
           mockMatchContext = createMockMatchContext({
             descendAndCheckResult: [],
             descendAndStripResult: 'stripped',
-            descendAndDescribeResult: '"default"',
+            descendAndDescribeResult: describeMessage('"default"'),
           });
         });
 
@@ -297,7 +300,7 @@ describe('FunctionResultMatcherExecutor', () => {
           mockMatchContext = createMockMatchContext({
             descendAndCheckResult: [],
             descendAndStripResult: 'stripped-expected',
-            descendAndDescribeResult: '"default"',
+            descendAndDescribeResult: describeMessage('"default"'),
           });
         });
 
@@ -324,7 +327,7 @@ describe('FunctionResultMatcherExecutor', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: '"default"',
+        descendAndDescribeResult: describeMessage('"default"'),
       });
     });
 

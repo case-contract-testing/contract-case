@@ -12,6 +12,8 @@ import {
   CaseConfigurationError,
   MatcherExecutor,
   mustResolveToString,
+  describeConcat,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -58,10 +60,14 @@ export const UrlEncodedStringMatcher: MatcherExecutor<
   CoreUrlEncodedStringMatcher
 > = {
   describe: (matcher, matchContext) =>
-    `uriEncoded string '${matchContext.descendAndDescribe(
-      matcher['_case:matcher:child'],
-      addLocation(':urlEncoded', matchContext),
-    )}'`,
+    describeConcat(
+      describeMessage("uriEncoded string '"),
+      matchContext.descendAndDescribe(
+        matcher['_case:matcher:child'],
+        addLocation(':urlEncoded', matchContext),
+      ),
+      describeMessage("'"),
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

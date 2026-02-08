@@ -13,6 +13,10 @@ import {
   makeResults,
   MatcherExecutor,
   combineResultPromises,
+  DescribeSegment,
+  describeConcat,
+  describeMessage,
+  renderToString,
 } from '@contract-case/case-plugin-base';
 import {
   AnyData,
@@ -120,48 +124,63 @@ const check = async (
 const name = (
   request: CoreHttpRequestMatcher,
   context: MatchContext,
-): string =>
-  request.uniqueName
-    ? request.uniqueName
-    : `an http ${context.descendAndDescribe(
-        request.method,
-        addLocation('method', context),
-      )} request to ${context.descendAndDescribe(
-        request.path,
-        addLocation('path', context),
-      )}${
-        request.query !== undefined
-          ? `?${qs.stringify(
-              Object.entries(
-                request.query as Record<string, AnyCaseMatcherOrData>,
-              ).reduce<Record<string, string>>(
-                (acc, [key, value]) => ({
-                  ...acc,
-                  [key]: context.descendAndDescribe(
-                    value,
-                    addLocation(`query[${key}]`, context),
-                  ),
-                }),
-                {} as Record<string, string>,
+): DescribeSegment => {
+  if (request.uniqueName) {
+    return describeMessage(request.uniqueName);
+  }
+
+  const segments: DescribeSegment[] = [
+    describeMessage('an http '),
+    context.descendAndDescribe(request.method, addLocation('method', context)),
+    describeMessage(' request to '),
+    context.descendAndDescribe(request.path, addLocation('path', context)),
+  ];
+
+  if (request.query !== undefined) {
+    segments.push(
+      describeMessage(
+        `?${qs.stringify(
+          Object.entries(
+            request.query as Record<string, AnyCaseMatcherOrData>,
+          ).reduce<Record<string, string>>(
+            (acc, [key, value]) => ({
+              ...acc,
+              [key]: renderToString(
+                context.descendAndDescribe(
+                  value,
+                  addLocation(`query[${key}]`, context),
+                ),
               ),
-              { encode: false },
-            )}`
-          : ''
-      }${
-        request.headers
-          ? ` with the following headers ${context.descendAndDescribe(
-              request.headers,
-              addLocation('headers', context),
-            )}`
-          : ''
-      }${
-        request.body
-          ? ` and body ${context.descendAndDescribe(
-              request.body,
-              addLocation('body', context),
-            )}`
-          : ' without a body'
-      }`;
+            }),
+            {} as Record<string, string>,
+          ),
+          { encode: false },
+        )}`,
+      ),
+    );
+  }
+
+  if (request.headers) {
+    segments.push(
+      describeMessage(' with the following headers '),
+      context.descendAndDescribe(
+        request.headers,
+        addLocation('headers', context),
+      ),
+    );
+  }
+
+  if (request.body) {
+    segments.push(
+      describeMessage(' and body '),
+      context.descendAndDescribe(request.body, addLocation('body', context)),
+    );
+  } else {
+    segments.push(describeMessage(' without a body'));
+  }
+
+  return describeConcat(...segments);
+};
 
 const validate = (
   matcher: CoreHttpRequestMatcher,

@@ -12,6 +12,8 @@ import {
   makeResults,
   matchingError,
   MatcherExecutor,
+  describeConcat,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { isObject, whyNotAnObject } from './internals/objectTests';
@@ -73,10 +75,13 @@ export const ObjectEachKeyMatches: MatcherExecutor<
   CoreObjectKeysMatcher
 > = {
   describe: (matcher, context) =>
-    `an object where each key is ${context.descendAndDescribe(
-      matcher['_case:matcher:matcher'],
-      addLocation(':eachKeyLike', context),
-    )}`,
+    describeConcat(
+      describeMessage('an object where each key is '),
+      context.descendAndDescribe(
+        matcher['_case:matcher:matcher'],
+        addLocation(':eachKeyLike', context),
+      ),
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

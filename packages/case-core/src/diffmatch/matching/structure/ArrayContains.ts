@@ -16,6 +16,9 @@ import {
   MatchResult,
   MatcherExecutor,
   CaseConfigurationError,
+  describeConcat,
+  describeJoin,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import {
   AnyCaseMatcherOrData,
@@ -116,14 +119,19 @@ export const ArrayContains: MatcherExecutor<
   CoreArrayContainsMatcher
 > = {
   describe: (matcher, matchContext) =>
-    `an array containing ${matcher['_case:matcher:matchers']
-      .map((childMatcher, index) =>
-        matchContext.descendAndDescribe(
-          childMatcher,
-          addLocation(`:arrayContains[${index}]`, matchContext),
+    describeConcat(
+      describeMessage('an array containing '),
+      describeJoin(
+        ' and ',
+        matcher['_case:matcher:matchers'].map((childMatcher, index) =>
+          matchContext.descendAndDescribe(
+            childMatcher,
+            addLocation(`:arrayContains[${index}]`, matchContext),
+          ),
         ),
-      )
-      .join(' and ')},`,
+      ),
+      describeMessage(','),
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

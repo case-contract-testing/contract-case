@@ -13,6 +13,10 @@ import {
   combineResultPromises,
   CaseCoreError,
   hasErrors,
+  DescribeSegment,
+  describeConcat,
+  describeJoin,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { getFunctionName } from './getFunctionName';
@@ -44,14 +48,22 @@ const strip = (
 const describe = (
   { arguments: expectedArguments }: CoreFunctionArgumentsMatcher,
   context: MatchContext,
-): string =>
+): DescribeSegment =>
   expectedArguments.length === 0
-    ? `An invocation of ${getFunctionName(context)}()`
-    : `An invocation of ${getFunctionName(context)}( ${expectedArguments
-        .map((arg, index) =>
-          context.descendAndDescribe(arg, addLocation(`[${index}]`, context)),
-        )
-        .join(', ')} )`;
+    ? describeMessage(`An invocation of ${getFunctionName(context)}()`)
+    : describeConcat(
+        describeMessage(`An invocation of ${getFunctionName(context)}( `),
+        describeJoin(
+          ', ',
+          expectedArguments.map((arg, index) =>
+            context.descendAndDescribe(
+              arg,
+              addLocation(`[${index}]`, context),
+            ),
+          ),
+        ),
+        describeMessage(' )'),
+      );
 
 const check = async (
   matcher: CoreFunctionArgumentsMatcher,

@@ -11,6 +11,10 @@ import {
   addLocation,
   matchingError,
   CaseConfigurationError,
+  DescribeSegment,
+  describeConcat,
+  describeMessage,
+  renderToString,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { isObject } from '../entities';
@@ -68,25 +72,42 @@ const strip = (
 const describe = (
   matcher: CoreFunctionSuccessResultMatcher | CoreFunctionErrorResultMatcher,
   context: MatchContext,
-): string =>
-  isSuccessResult(matcher)
-    ? `returns ${context.descendAndDescribe(
+): DescribeSegment => {
+  if (isSuccessResult(matcher)) {
+    return describeConcat(
+      describeMessage('returns '),
+      context.descendAndDescribe(
         matcher.success,
         addLocation(`returnValue`, context),
-      )}`
-    : `throwing a ${JSON.parse(
-        context.descendAndDescribe(
-          matcher.errorClassName,
-          addLocation(`errorClassName`, context),
+      ),
+    );
+  }
+
+  const segments: DescribeSegment[] = [
+    describeMessage(
+      `throwing a ${JSON.parse(
+        renderToString(
+          context.descendAndDescribe(
+            matcher.errorClassName,
+            addLocation(`errorClassName`, context),
+          ),
         ),
-      )}${
-        'message' in matcher
-          ? ` with message: ${context.descendAndDescribe(
-              matcher.message,
-              addLocation(`message`, context),
-            )}`
-          : ''
-      }`;
+      )}`,
+    ),
+  ];
+
+  if ('message' in matcher) {
+    segments.push(
+      describeMessage(' with message: '),
+      context.descendAndDescribe(
+        matcher.message,
+        addLocation(`message`, context),
+      ),
+    );
+  }
+
+  return describeConcat(...segments);
+};
 
 const parseActualSuccess = (
   actual: unknown,

@@ -5,8 +5,11 @@ import {
 import {
   CaseConfigurationError,
   DataContext,
+  DescribeSegment,
+  describeMessage,
   Logger,
   MatchContext,
+  renderToString,
 } from '@contract-case/case-plugin-base';
 import { UrlEncodedStringMatcher } from './UrlEncodedStringMatcher';
 
@@ -66,7 +69,7 @@ const MOCK_LOOKUP = {
 interface MockState {
   descendAndCheckResult: any[];
   descendAndStripResult: any;
-  descendAndDescribeResult: string;
+  descendAndDescribeResult: DescribeSegment;
 }
 
 const createMockMatchContext = (state: MockState): MatchContext => ({
@@ -98,7 +101,7 @@ describe('UrlEncodedStringMatcher', () => {
     mockMatchContext = createMockMatchContext({
       descendAndCheckResult: [],
       descendAndStripResult: 'stripped',
-      descendAndDescribeResult: '"default description"',
+      descendAndDescribeResult: describeMessage('"default description"'),
     });
   });
 
@@ -107,9 +110,9 @@ describe('UrlEncodedStringMatcher', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'child description',
+        descendAndDescribeResult: describeMessage('child description'),
       });
-      expect(UrlEncodedStringMatcher.describe(matcher, mockMatchContext)).toBe(
+      expect(renderToString(UrlEncodedStringMatcher.describe(matcher, mockMatchContext))).toBe(
         "uriEncoded string 'child description'",
       );
     });
@@ -147,7 +150,7 @@ describe('UrlEncodedStringMatcher', () => {
         const context = createMockMatchContext({
           descendAndCheckResult: [],
           descendAndStripResult: 'some value',
-          descendAndDescribeResult: 'description',
+          descendAndDescribeResult: describeMessage('description'),
         });
         expect(UrlEncodedStringMatcher.strip(matcher, context)).toBe(
           'some%20value',
@@ -160,7 +163,7 @@ describe('UrlEncodedStringMatcher', () => {
         const context = createMockMatchContext({
           descendAndCheckResult: [],
           descendAndStripResult: 123,
-          descendAndDescribeResult: 'description',
+          descendAndDescribeResult: describeMessage('description'),
         });
         expect(() => UrlEncodedStringMatcher.strip(matcher, context)).toThrow(
           CaseConfigurationError,
@@ -175,7 +178,7 @@ describe('UrlEncodedStringMatcher', () => {
         const context = createMockMatchContext({
           descendAndCheckResult: [],
           descendAndStripResult: 'some value',
-          descendAndDescribeResult: 'description',
+          descendAndDescribeResult: describeMessage('description'),
         });
 
         await expect(
@@ -189,7 +192,7 @@ describe('UrlEncodedStringMatcher', () => {
         const context = createMockMatchContext({
           descendAndCheckResult: [],
           descendAndStripResult: 123,
-          descendAndDescribeResult: 'description',
+          descendAndDescribeResult: describeMessage('description'),
         });
 
         await expect(
@@ -203,7 +206,7 @@ describe('UrlEncodedStringMatcher', () => {
         const context = createMockMatchContext({
           descendAndCheckResult: [],
           descendAndStripResult: '%E0%A4%A',
-          descendAndDescribeResult: 'description',
+          descendAndDescribeResult: describeMessage('description'),
         });
 
         await expect(

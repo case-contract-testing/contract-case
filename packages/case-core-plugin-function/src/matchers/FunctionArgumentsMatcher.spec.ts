@@ -5,14 +5,17 @@ import {
 import {
   CaseConfigurationError,
   CaseCoreError,
+  DescribeSegment,
+  describeMessage,
   MatchContext,
+  renderToString,
 } from '@contract-case/case-plugin-base';
 import { FunctionArgumentMatcherExecutor } from './FunctionArgumentsMatcher';
 
 describe('FunctionArgumentMatcherExecutor', () => {
   interface MockState {
     descendAndStripResult: any;
-    descendAndDescribeResult: string;
+    descendAndDescribeResult: DescribeSegment;
     descendAndCheckResult: any[];
   }
 
@@ -54,7 +57,7 @@ describe('FunctionArgumentMatcherExecutor', () => {
   beforeEach(() => {
     mockMatchContext = createMockMatchContext({
       descendAndStripResult: [],
-      descendAndDescribeResult: 'default description',
+      descendAndDescribeResult: describeMessage('default description'),
       descendAndCheckResult: [],
     });
   });
@@ -62,7 +65,7 @@ describe('FunctionArgumentMatcherExecutor', () => {
   describe('description function', () => {
     it('describes an invocation with no arguments', () => {
       expect(
-        FunctionArgumentMatcherExecutor.describe(matcher, mockMatchContext),
+        renderToString(FunctionArgumentMatcherExecutor.describe(matcher, mockMatchContext)),
       ).toBe('An invocation of mockFunction()');
     });
 
@@ -70,7 +73,7 @@ describe('FunctionArgumentMatcherExecutor', () => {
       beforeEach(() => {
         mockMatchContext = createMockMatchContext({
           descendAndStripResult: [],
-          descendAndDescribeResult: 'some description',
+          descendAndDescribeResult: describeMessage('some description'),
           descendAndCheckResult: [],
         });
       });
@@ -82,10 +85,10 @@ describe('FunctionArgumentMatcherExecutor', () => {
         };
 
         expect(
-          FunctionArgumentMatcherExecutor.describe(
+          renderToString(FunctionArgumentMatcherExecutor.describe(
             argsMatcher,
             mockMatchContext,
-          ),
+          )),
         ).toBe('An invocation of mockFunction( some description )');
       });
     });
@@ -121,7 +124,7 @@ describe('FunctionArgumentMatcherExecutor', () => {
         beforeEach(() => {
           mockMatchContext = createMockMatchContext({
             descendAndStripResult: [],
-            descendAndDescribeResult: 'default description',
+            descendAndDescribeResult: describeMessage('default description'),
             descendAndCheckResult: [],
           });
         });
@@ -147,7 +150,7 @@ describe('FunctionArgumentMatcherExecutor', () => {
         beforeEach(() => {
           mockMatchContext = createMockMatchContext({
             descendAndStripResult: 'stripped-expected',
-            descendAndDescribeResult: 'default description',
+            descendAndDescribeResult: describeMessage('default description'),
             descendAndCheckResult: [],
           });
         });
@@ -178,7 +181,7 @@ describe('FunctionArgumentMatcherExecutor', () => {
     beforeEach(() => {
       mockMatchContext = createMockMatchContext({
         descendAndStripResult: ['stripped'],
-        descendAndDescribeResult: 'default description',
+        descendAndDescribeResult: describeMessage('default description'),
         descendAndCheckResult: [],
       });
     });

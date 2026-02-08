@@ -4,6 +4,44 @@ import { IsCaseNodeForType } from './utility.types';
 import { MatchContext } from '../context/types';
 
 /**
+ * A structured segment of a matcher description. Instead of returning a flat
+ * string, `describe` functions return a tree of these segments, which can be
+ * rendered into a flat string (for use as a lookup key) or pretty-printed with
+ * indentation for nested structures.
+ *
+ * @public
+ */
+export type DescribeSegment =
+  | {
+      /** A plain text message */
+      readonly kind: 'message';
+      /** The text content of this segment */
+      readonly message: string;
+    }
+  | {
+      /** A nested segment wrapped in brackets */
+      readonly kind: 'nested';
+      /** The bracket style to use */
+      readonly brackets: '{}' | '[]' | '()';
+      /** The content inside the brackets */
+      readonly content: DescribeSegment;
+    }
+  | {
+      /** A concatenation of multiple segments */
+      readonly kind: 'concat';
+      /** The segments to concatenate */
+      readonly segments: ReadonlyArray<DescribeSegment>;
+    }
+  | {
+      /** Multiple segments joined with a separator */
+      readonly kind: 'join';
+      /** The separator string between segments */
+      readonly separator: string;
+      /** The segments to join */
+      readonly segments: ReadonlyArray<DescribeSegment>;
+    };
+
+/**
  * Checks a matcher against some actual data and returns a Promise containing a MatchResult.
  *
  * For checks beyond this matcher, use {@link MatchContext#descendAndCheck} to
@@ -114,10 +152,13 @@ export type StripMatcherFn<T> = (
 ) => AnyData;
 
 /**
- * Extracts the name for this matcher in an English, human readable format.
+ * Extracts a structured description for this matcher in an English, human
+ * readable format. The returned {@link DescribeSegment} can be rendered to a
+ * flat string with {@link renderToString}, or used to produce indented
+ * pretty-printed output.
  *
  * @remarks
- * CAUTION: Any two matchers that produce the same string MUST have
+ * CAUTION: Any two matchers that produce the same rendered string MUST have
  * the exact same matching behaviour in all cases. The core relies on this
  * property.
  *
@@ -129,12 +170,12 @@ export type StripMatcherFn<T> = (
  * @typeParam T - a matcher descriptor
  * @param matcher - the matcher descriptor
  * @param matchContext - the {@link MatchContext} for this run
- * @returns the raw example data
+ * @returns a {@link DescribeSegment} representing the description
  */
 export type NameMatcherFn<T> = (
   matcher: T,
   matchContext: MatchContext,
-) => string;
+) => DescribeSegment;
 
 /**
  * A MatcherExecutor contains the three functions

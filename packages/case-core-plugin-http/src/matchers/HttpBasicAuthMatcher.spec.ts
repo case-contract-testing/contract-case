@@ -5,8 +5,11 @@ import {
 import {
   CaseConfigurationError,
   DataContext,
+  DescribeSegment,
+  describeMessage,
   Logger,
   MatchContext,
+  renderToString,
 } from '@contract-case/case-plugin-base';
 import { HttpBasicAuthMatcher } from './HttpBasicAuthMatcher';
 
@@ -66,7 +69,7 @@ const MOCK_LOOKUP = {
 interface MockState {
   descendAndCheckResult: any[];
   descendAndStripResult: any;
-  descendAndDescribeResult: string;
+  descendAndDescribeResult: DescribeSegment;
 }
 
 const createMockMatchContext = (state: MockState): MatchContext => ({
@@ -94,7 +97,7 @@ describe('HttpBasicAuthMatcher', () => {
     mockMatchContext = createMockMatchContext({
       descendAndCheckResult: [],
       descendAndStripResult: 'stripped',
-      descendAndDescribeResult: '"default description"',
+      descendAndDescribeResult: describeMessage('"default description"'),
     });
   });
 
@@ -103,9 +106,9 @@ describe('HttpBasicAuthMatcher', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'description',
+        descendAndDescribeResult: describeMessage('description'),
       });
-      expect(HttpBasicAuthMatcher.describe(matcher, mockMatchContext)).toBe(
+      expect(renderToString(HttpBasicAuthMatcher.describe(matcher, mockMatchContext))).toBe(
         "http basic auth with username='description' and password=description",
       );
     });
@@ -156,7 +159,7 @@ describe('HttpBasicAuthMatcher', () => {
         const context = createMockMatchContext({
           descendAndCheckResult: [],
           descendAndStripResult: 'stripped',
-          descendAndDescribeResult: 'description',
+          descendAndDescribeResult: describeMessage('description'),
         });
 
         const expected = Buffer.from('stripped:stripped').toString('base64');
@@ -169,7 +172,7 @@ describe('HttpBasicAuthMatcher', () => {
         const context = createMockMatchContext({
           descendAndCheckResult: [],
           descendAndStripResult: 123,
-          descendAndDescribeResult: 'description',
+          descendAndDescribeResult: describeMessage('description'),
         });
 
         expect(() => HttpBasicAuthMatcher.strip(matcher, context)).toThrow(

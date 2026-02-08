@@ -6,8 +6,11 @@ import {
   CaseConfigurationError,
   CaseCoreError,
   DataContext,
+  DescribeSegment,
+  describeMessage,
   Logger,
   MatchContext,
+  renderToString,
 } from '@contract-case/case-plugin-base';
 import { HttpStatusCodeMatcher } from './HttpStatusCodeMatcher';
 
@@ -67,7 +70,7 @@ const MOCK_LOOKUP = {
 interface MockState {
   descendAndCheckResult: any[];
   descendAndStripResult: any;
-  descendAndDescribeResult: string;
+  descendAndDescribeResult: DescribeSegment;
 }
 
 const createMockMatchContext = (state: MockState): MatchContext => ({
@@ -95,14 +98,14 @@ describe('HttpStatusCodeMatcher', () => {
     mockMatchContext = createMockMatchContext({
       descendAndCheckResult: [],
       descendAndStripResult: 'stripped',
-      descendAndDescribeResult: '"default description"',
+      descendAndDescribeResult: describeMessage('"default description"'),
     });
   });
 
   describe('describe()', () => {
     describe('with a single status code', () => {
       it('returns formatted status code', () => {
-        expect(HttpStatusCodeMatcher.describe(matcher, mockMatchContext)).toBe(
+        expect(renderToString(HttpStatusCodeMatcher.describe(matcher, mockMatchContext))).toBe(
           'httpStatus 200',
         );
       });
@@ -115,7 +118,7 @@ describe('HttpStatusCodeMatcher', () => {
           '_case:matcher:rule': ['200', '201'],
         };
         expect(
-          HttpStatusCodeMatcher.describe(arrayMatcher, mockMatchContext),
+          renderToString(HttpStatusCodeMatcher.describe(arrayMatcher, mockMatchContext)),
         ).toBe('httpStatus 200 | 201');
       });
     });

@@ -11,6 +11,9 @@ import {
   MatcherExecutor,
   mustResolveToString,
   CaseConfigurationError,
+  describeConcat,
+  describeMessage,
+  renderToString,
 } from '@contract-case/case-plugin-base';
 
 const check = async (
@@ -50,12 +53,17 @@ export const StringPrefixMatcher: MatcherExecutor<
   CoreStringPrefixMatcher
 > = {
   describe: (matcher: CoreStringPrefixMatcher, matchContext) =>
-    `"${matcher['_case:matcher:prefix']}${matchContext
-      .descendAndDescribe(
-        matcher['_case:matcher:suffix'],
-        addLocation(':prefix', matchContext),
-      )
-      .replace(/^"+|"+$/g, '')}"`,
+    describeConcat(
+      describeMessage(`"${matcher['_case:matcher:prefix']}`),
+      describeMessage(
+        `${renderToString(
+          matchContext.descendAndDescribe(
+            matcher['_case:matcher:suffix'],
+            addLocation(':prefix', matchContext),
+          ),
+        ).replace(/^"+|"+$/g, '')}"`,
+      ),
+    ),
   check,
   strip: (matcher: CoreStringPrefixMatcher, matchContext) =>
     `${matcher['_case:matcher:prefix']}${mustResolveToString(

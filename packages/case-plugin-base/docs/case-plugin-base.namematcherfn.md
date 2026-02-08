@@ -4,18 +4,18 @@
 
 ## NameMatcherFn type
 
-Extracts the name for this matcher in an English, human readable format.
+Extracts a structured description for this matcher in an English, human readable format. The returned [DescribeSegment](./case-plugin-base.describesegment.md) can be rendered to a flat string with [renderToString()](./case-plugin-base.rendertostring.md)<!-- -->, or used to produce indented pretty-printed output.
 
 **Signature:**
 
 ```typescript
-export type NameMatcherFn<T> = (matcher: T, matchContext: MatchContext) => string;
+export type NameMatcherFn<T> = (matcher: T, matchContext: MatchContext) => DescribeSegment;
 ```
-**References:** [MatchContext](./case-plugin-base.matchcontext.md)
+**References:** [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->, [DescribeSegment](./case-plugin-base.describesegment.md)
 
 ## Remarks
 
-CAUTION: Any two matchers that produce the same string MUST have the exact same matching behaviour in all cases. The core relies on this property.
+CAUTION: Any two matchers that produce the same rendered string MUST have the exact same matching behaviour in all cases. The core relies on this property.
 
 This function must have no side effects, it may be called repeatedly on the same data by ContractCase during a run.
 
