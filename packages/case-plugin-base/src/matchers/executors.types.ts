@@ -19,10 +19,14 @@ export type DescribeSegment =
       readonly message: string;
     }
   | {
-      /** A nested segment wrapped in brackets */
-      readonly kind: 'nested';
-      /** The bracket style to use */
-      readonly brackets: '{}' | '[]' | '()';
+      /** An object description wrapped in curly braces */
+      readonly kind: 'object';
+      /** The content inside the braces */
+      readonly content: DescribeSegment;
+    }
+  | {
+      /** An array description wrapped in square brackets */
+      readonly kind: 'array';
       /** The content inside the brackets */
       readonly content: DescribeSegment;
     }

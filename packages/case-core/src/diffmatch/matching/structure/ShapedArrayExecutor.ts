@@ -15,7 +15,7 @@ import {
   makeNoErrorResult,
   MatcherExecutor,
   describeConcat,
-  describeNested,
+  describeArray,
   describeJoin,
   describeMessage,
 } from '@contract-case/case-plugin-base';
@@ -92,8 +92,7 @@ export const ShapedArrayExecutor: MatcherExecutor<
   describe: (matcher, context) =>
     describeConcat(
       describeMessage('an array shaped like '),
-      describeNested(
-        '[]',
+      describeArray(
         describeJoin(
           ',',
           matcher['_case:matcher:children'].map((child, index) =>

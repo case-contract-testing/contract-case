@@ -14,7 +14,6 @@ import {
   combineResultPromises,
   DescribeSegment,
   describeConcat,
-  describeNested,
   describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
@@ -103,12 +102,13 @@ const name = (
 
   const segments: DescribeSegment[] = [
     describeMessage('returns a '),
-    describeNested(
-      '()',
+    describeConcat(
+      describeMessage('('),
       context.descendAndDescribe(
         response.status,
         addLocation('status', context),
       ),
+      describeMessage(')'),
     ),
     describeMessage(' response '),
   ];

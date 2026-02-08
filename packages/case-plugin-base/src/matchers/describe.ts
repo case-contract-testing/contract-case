@@ -1,11 +1,5 @@
 import { DescribeSegment } from './executors.types';
 
-const BRACKET_PAIRS: { [K in '{}' | '[]' | '()']: [string, string] } = {
-  '{}': ['{', '}'],
-  '[]': ['[', ']'],
-  '()': ['(', ')'],
-};
-
 /**
  * Renders a {@link DescribeSegment} tree into a flat string.
  *
@@ -21,10 +15,10 @@ export const renderToString = (segment: DescribeSegment): string => {
   switch (segment.kind) {
     case 'message':
       return segment.message;
-    case 'nested': {
-      const [open, close] = BRACKET_PAIRS[segment.brackets];
-      return `${open}${renderToString(segment.content)}${close}`;
-    }
+    case 'object':
+      return `{${renderToString(segment.content)}}`;
+    case 'array':
+      return `[${renderToString(segment.content)}]`;
     case 'concat':
       return segment.segments.map(renderToString).join('');
     case 'join':
@@ -49,19 +43,26 @@ export const describeMessage = (message: string): DescribeSegment => ({
 });
 
 /**
- * Creates a nested description segment wrapped in brackets.
+ * Creates a description segment for an object, wrapped in curly braces.
  *
  * @public
- * @param brackets - the bracket style ('{}', '[]', or '()')
- * @param content - the content inside the brackets
- * @returns a nested {@link DescribeSegment}
+ * @param content - the content inside the braces
+ * @returns an object {@link DescribeSegment}
  */
-export const describeNested = (
-  brackets: '{}' | '[]' | '()',
-  content: DescribeSegment,
-): DescribeSegment => ({
-  kind: 'nested',
-  brackets,
+export const describeObject = (content: DescribeSegment): DescribeSegment => ({
+  kind: 'object',
+  content,
+});
+
+/**
+ * Creates a description segment for an array, wrapped in square brackets.
+ *
+ * @public
+ * @param content - the content inside the brackets
+ * @returns an array {@link DescribeSegment}
+ */
+export const describeArray = (content: DescribeSegment): DescribeSegment => ({
+  kind: 'array',
   content,
 });
 

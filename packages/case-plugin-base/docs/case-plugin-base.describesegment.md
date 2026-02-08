@@ -13,8 +13,10 @@ export type DescribeSegment = {
     readonly kind: 'message';
     readonly message: string;
 } | {
-    readonly kind: 'nested';
-    readonly brackets: '{}' | '[]' | '()';
+    readonly kind: 'object';
+    readonly content: DescribeSegment;
+} | {
+    readonly kind: 'array';
     readonly content: DescribeSegment;
 } | {
     readonly kind: 'concat';
