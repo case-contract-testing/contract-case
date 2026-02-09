@@ -2896,7 +2896,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "src/matchers/executors.types.ts",
+          "fileUrlPath": "src/matchers/describe.ts",
           "releaseTag": "Public",
           "name": "DescribeSegment",
           "typeTokenRange": {

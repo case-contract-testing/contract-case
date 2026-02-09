@@ -2,48 +2,7 @@ import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { MatchResult } from './errors.types';
 import { IsCaseNodeForType } from './utility.types';
 import { MatchContext } from '../context/types';
-
-/**
- * A structured segment of a matcher description. Instead of returning a flat
- * string, `describe` functions return a tree of these segments, which can be
- * rendered into a flat string (for use as a lookup key) or pretty-printed with
- * indentation for nested structures.
- *
- * @public
- */
-export type DescribeSegment =
-  | {
-      /** A plain text message */
-      readonly kind: 'message';
-      /** The text content of this segment */
-      readonly message: string;
-    }
-  | {
-      /** An object description wrapped in curly braces */
-      readonly kind: 'object';
-      /** The content inside the braces */
-      readonly content: DescribeSegment;
-    }
-  | {
-      /** An array description wrapped in square brackets */
-      readonly kind: 'array';
-      /** The content inside the brackets */
-      readonly content: DescribeSegment;
-    }
-  | {
-      /** A concatenation of multiple segments */
-      readonly kind: 'concat';
-      /** The segments to concatenate */
-      readonly segments: ReadonlyArray<DescribeSegment>;
-    }
-  | {
-      /** Multiple segments joined with a separator */
-      readonly kind: 'join';
-      /** The separator string between segments */
-      readonly separator: string;
-      /** The segments to join */
-      readonly segments: ReadonlyArray<DescribeSegment>;
-    };
+import { DescribeSegment } from './describe';
 
 /**
  * Checks a matcher against some actual data and returns a Promise containing a MatchResult.

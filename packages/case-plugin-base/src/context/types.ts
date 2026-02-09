@@ -5,7 +5,7 @@ import {
 } from '@contract-case/case-plugin-dsl-types';
 import { LogLevel, Logger } from '../logger/types';
 import { CaseError, MatchResult } from '../matchers/errors.types';
-import { DescribeSegment } from '../matchers/executors.types';
+import { DescribeSegment } from '../matchers/describe';
 import { CaseExample } from './contract.types';
 
 export type { CaseExample };
