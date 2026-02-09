@@ -193,12 +193,14 @@ Helper function that will name this mock if it isn't already named.
 </td></tr>
 <tr><td>
 
-[describeArray(content)](./case-plugin-base.describearray.md)
+[describeArray(elements)](./case-plugin-base.describearray.md)
 
 
 </td><td>
 
 Creates a description segment for an array, wrapped in square brackets.
+
+Renders as `[element1,element2]`<!-- -->.
 
 
 </td></tr>
@@ -237,12 +239,14 @@ Creates a plain text description segment.
 </td></tr>
 <tr><td>
 
-[describeObject(content)](./case-plugin-base.describeobject.md)
+[describeObject(entries)](./case-plugin-base.describeobject.md)
 
 
 </td><td>
 
 Creates a description segment for an object, wrapped in curly braces.
+
+Renders as `{key1: value1,key2: value2}`<!-- -->.
 
 
 </td></tr>

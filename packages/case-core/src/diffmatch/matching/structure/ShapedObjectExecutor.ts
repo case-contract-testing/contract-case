@@ -16,7 +16,6 @@ import {
   MatcherExecutor,
   describeConcat,
   describeObject,
-  describeJoin,
   describeMessage,
 } from '@contract-case/case-plugin-base';
 import {
@@ -127,15 +126,14 @@ export const ShapedObjectExecutor: MatcherExecutor<
     describeConcat(
       describeMessage('an object shaped like '),
       describeObject(
-        describeJoin(
-          ',',
-          Object.entries(matcher['_case:matcher:children']).map(
-            ([key, child]) =>
-              describeConcat(
-                describeMessage(`${key}: `),
-                context.descendAndDescribe(child, addLocation(key, context)),
-              ),
-          ),
+        Object.entries(matcher['_case:matcher:children']).map(
+          ([key, child]) => ({
+            key,
+            value: context.descendAndDescribe(
+              child,
+              addLocation(key, context),
+            ),
+          }),
         ),
       ),
     ),

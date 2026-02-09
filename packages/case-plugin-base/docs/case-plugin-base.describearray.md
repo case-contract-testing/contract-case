@@ -6,10 +6,12 @@
 
 Creates a description segment for an array, wrapped in square brackets.
 
+Renders as `[element1,element2]`<!-- -->.
+
 **Signature:**
 
 ```typescript
-describeArray: (content: DescribeSegment) => DescribeSegment
+describeArray: (elements: DescribeSegment[]) => DescribeSegment
 ```
 
 ## Parameters
@@ -32,17 +34,17 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-content
+elements
 
 
 </td><td>
 
-[DescribeSegment](./case-plugin-base.describesegment.md)
+[DescribeSegment](./case-plugin-base.describesegment.md)<!-- -->\[\]
 
 
 </td><td>
 
-the content inside the brackets
+the elements of the array
 
 
 </td></tr>

@@ -2589,16 +2589,20 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!describeArray:function(1)",
-          "docComment": "/**\n * Creates a description segment for an array, wrapped in square brackets.\n *\n * @param content - the content inside the brackets\n *\n * @returns an array {@link DescribeSegment}\n *\n * @public\n */\n",
+          "docComment": "/**\n * Creates a description segment for an array, wrapped in square brackets.\n *\n * Renders as `[element1,element2]`.\n *\n * @param elements - the elements of the array\n *\n * @returns an array {@link DescribeSegment}\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "describeArray: (content: "
+              "text": "describeArray: (elements: "
             },
             {
               "kind": "Reference",
               "text": "DescribeSegment",
               "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": "[]"
             },
             {
               "kind": "Content",
@@ -2612,17 +2616,17 @@
           ],
           "fileUrlPath": "src/matchers/describe.ts",
           "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 4
+            "startIndex": 4,
+            "endIndex": 5
           },
           "releaseTag": "Public",
           "overloadIndex": 1,
           "parameters": [
             {
-              "parameterName": "content",
+              "parameterName": "elements",
               "parameterTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               },
               "isOptional": false
             }
@@ -2784,16 +2788,29 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!describeObject:function(1)",
-          "docComment": "/**\n * Creates a description segment for an object, wrapped in curly braces.\n *\n * @param content - the content inside the braces\n *\n * @returns an object {@link DescribeSegment}\n *\n * @public\n */\n",
+          "docComment": "/**\n * Creates a description segment for an object, wrapped in curly braces.\n *\n * Renders as `{key1: value1,key2: value2}`.\n *\n * @param entries - the key/value entries of the object\n *\n * @returns an object {@link DescribeSegment}\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "describeObject: (content: "
+              "text": "describeObject: (entries: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<{\n    key: string;\n    value: "
             },
             {
               "kind": "Reference",
               "text": "DescribeSegment",
               "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}>"
             },
             {
               "kind": "Content",
@@ -2807,17 +2824,17 @@
           ],
           "fileUrlPath": "src/matchers/describe.ts",
           "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 4
+            "startIndex": 6,
+            "endIndex": 7
           },
           "releaseTag": "Public",
           "overloadIndex": 1,
           "parameters": [
             {
-              "parameterName": "content",
+              "parameterName": "entries",
               "parameterTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 5
               },
               "isOptional": false
             }
@@ -2835,7 +2852,16 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    readonly kind: 'message';\n    readonly message: string;\n} | {\n    readonly kind: 'object';\n    readonly content: "
+              "text": "{\n    readonly kind: 'message';\n    readonly message: string;\n} | {\n    readonly kind: 'object';\n    readonly entries: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ReadonlyArray",
+              "canonicalReference": "!ReadonlyArray:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<{\n        readonly key: string;\n        readonly value: "
             },
             {
               "kind": "Reference",
@@ -2844,7 +2870,16 @@
             },
             {
               "kind": "Content",
-              "text": ";\n} | {\n    readonly kind: 'array';\n    readonly content: "
+              "text": ";\n    }>;\n} | {\n    readonly kind: 'array';\n    readonly elements: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ReadonlyArray",
+              "canonicalReference": "!ReadonlyArray:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
             },
             {
               "kind": "Reference",
@@ -2853,7 +2888,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n} | {\n    readonly kind: 'concat';\n    readonly segments: "
+              "text": ">;\n} | {\n    readonly kind: 'concat';\n    readonly segments: "
             },
             {
               "kind": "Reference",
@@ -2901,7 +2936,7 @@
           "name": "DescribeSegment",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 14
+            "endIndex": 18
           }
         },
         {

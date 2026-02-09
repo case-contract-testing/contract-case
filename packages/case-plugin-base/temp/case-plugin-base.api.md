@@ -191,7 +191,7 @@ export type DefaultContext = LogLevelContext & {
 export const defaultNameMock: <M extends AnyMockDescriptor>(mock: M, context: MatchContext) => M;
 
 // @public
-export const describeArray: (content: DescribeSegment) => DescribeSegment;
+export const describeArray: (elements: DescribeSegment[]) => DescribeSegment;
 
 // @public
 export const describeConcat: (...segments: DescribeSegment[]) => DescribeSegment;
@@ -203,7 +203,10 @@ export const describeJoin: (separator: string, segments: DescribeSegment[]) => D
 export const describeMessage: (message: string) => DescribeSegment;
 
 // @public
-export const describeObject: (content: DescribeSegment) => DescribeSegment;
+export const describeObject: (entries: Array<{
+    key: string;
+    value: DescribeSegment;
+}>) => DescribeSegment;
 
 // @public
 export type DescribeSegment = {
@@ -211,10 +214,13 @@ export type DescribeSegment = {
     readonly message: string;
 } | {
     readonly kind: 'object';
-    readonly content: DescribeSegment;
+    readonly entries: ReadonlyArray<{
+        readonly key: string;
+        readonly value: DescribeSegment;
+    }>;
 } | {
     readonly kind: 'array';
-    readonly content: DescribeSegment;
+    readonly elements: ReadonlyArray<DescribeSegment>;
 } | {
     readonly kind: 'concat';
     readonly segments: ReadonlyArray<DescribeSegment>;

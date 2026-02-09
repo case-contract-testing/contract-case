@@ -16,14 +16,17 @@ export type DescribeSegment =
   | {
       /** An object description wrapped in curly braces */
       readonly kind: 'object';
-      /** The content inside the braces */
-      readonly content: DescribeSegment;
+      /** The key/value entries of the object */
+      readonly entries: ReadonlyArray<{
+        readonly key: string;
+        readonly value: DescribeSegment;
+      }>;
     }
   | {
       /** An array description wrapped in square brackets */
       readonly kind: 'array';
-      /** The content inside the brackets */
-      readonly content: DescribeSegment;
+      /** The elements of the array */
+      readonly elements: ReadonlyArray<DescribeSegment>;
     }
   | {
       /** A concatenation of multiple segments */
@@ -56,9 +59,9 @@ export const renderToString = (segment: DescribeSegment): string => {
     case 'message':
       return segment.message;
     case 'object':
-      return `{${renderToString(segment.content)}}`;
+      return `{${segment.entries.map(({ key, value }) => `${key}: ${renderToString(value)}`).join(',')}}`;
     case 'array':
-      return `[${renderToString(segment.content)}]`;
+      return `[${segment.elements.map(renderToString).join(',')}]`;
     case 'concat':
       return segment.segments.map(renderToString).join('');
     case 'join':
@@ -85,25 +88,33 @@ export const describeMessage = (message: string): DescribeSegment => ({
 /**
  * Creates a description segment for an object, wrapped in curly braces.
  *
+ * Renders as `{key1: value1,key2: value2}`.
+ *
  * @public
- * @param content - the content inside the braces
+ * @param entries - the key/value entries of the object
  * @returns an object {@link DescribeSegment}
  */
-export const describeObject = (content: DescribeSegment): DescribeSegment => ({
+export const describeObject = (
+  entries: Array<{ key: string; value: DescribeSegment }>,
+): DescribeSegment => ({
   kind: 'object',
-  content,
+  entries,
 });
 
 /**
  * Creates a description segment for an array, wrapped in square brackets.
  *
+ * Renders as `[element1,element2]`.
+ *
  * @public
- * @param content - the content inside the brackets
+ * @param elements - the elements of the array
  * @returns an array {@link DescribeSegment}
  */
-export const describeArray = (content: DescribeSegment): DescribeSegment => ({
+export const describeArray = (
+  elements: DescribeSegment[],
+): DescribeSegment => ({
   kind: 'array',
-  content,
+  elements,
 });
 
 /**

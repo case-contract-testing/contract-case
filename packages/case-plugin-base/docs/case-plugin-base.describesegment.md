@@ -14,10 +14,13 @@ export type DescribeSegment = {
     readonly message: string;
 } | {
     readonly kind: 'object';
-    readonly content: DescribeSegment;
+    readonly entries: ReadonlyArray<{
+        readonly key: string;
+        readonly value: DescribeSegment;
+    }>;
 } | {
     readonly kind: 'array';
-    readonly content: DescribeSegment;
+    readonly elements: ReadonlyArray<DescribeSegment>;
 } | {
     readonly kind: 'concat';
     readonly segments: ReadonlyArray<DescribeSegment>;

@@ -6,10 +6,15 @@
 
 Creates a description segment for an object, wrapped in curly braces.
 
+Renders as `{key1: value1,key2: value2}`<!-- -->.
+
 **Signature:**
 
 ```typescript
-describeObject: (content: DescribeSegment) => DescribeSegment
+describeObject: (entries: Array<{
+    key: string;
+    value: DescribeSegment;
+}>) => DescribeSegment
 ```
 
 ## Parameters
@@ -32,17 +37,17 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-content
+entries
 
 
 </td><td>
 
-[DescribeSegment](./case-plugin-base.describesegment.md)
+Array&lt;{ key: string; value: [DescribeSegment](./case-plugin-base.describesegment.md)<!-- -->; }&gt;
 
 
 </td><td>
 
-the content inside the braces
+the key/value entries of the object
 
 
 </td></tr>

@@ -16,7 +16,6 @@ import {
   MatcherExecutor,
   describeConcat,
   describeArray,
-  describeJoin,
   describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
@@ -93,13 +92,10 @@ export const ShapedArrayExecutor: MatcherExecutor<
     describeConcat(
       describeMessage('an array shaped like '),
       describeArray(
-        describeJoin(
-          ',',
-          matcher['_case:matcher:children'].map((child, index) =>
-            context.descendAndDescribe(
-              child,
-              addLocation(`[${index}]`, context),
-            ),
+        matcher['_case:matcher:children'].map((child, index) =>
+          context.descendAndDescribe(
+            child,
+            addLocation(`[${index}]`, context),
           ),
         ),
       ),
