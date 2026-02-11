@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import io.contract_testing.contractcase.configuration.ContractDescription;
 import io.contract_testing.contractcase.exceptions.ContractCaseCoreError;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,11 +92,15 @@ class VerifierResultMapper {
     }
     List<VerificationTestHandle> tests = List.of();
     if (root.has("testHandles")) {
-      tests = mapper.treeToValue(
-          root.get("testHandles"),
-          new TypeReference<List<VerificationTestHandle>>() {
-          }
-      );
+      try {
+        tests = mapper.readValue(
+            root.get("testHandles").traverse(mapper),
+            new TypeReference<List<VerificationTestHandle>>() {
+            }
+        );
+      } catch (IOException e) {
+        throw new ContractCaseCoreError("Unable to parse testHandles", e);
+      }
     }
     Integer contractIndex = root.has("contractIndex") ? root.get("contractIndex").asInt() : null;
     Map<String, String> metadata = new HashMap<>();
