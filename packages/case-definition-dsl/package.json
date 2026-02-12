@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-definition-dsl",
-  "version": "0.28.2",
+  "version": "0.29.0",
   "description": "Definition DSL components for the ContractCase contract testing suite",
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io/",
@@ -58,9 +58,9 @@
     }
   },
   "devDependencies": {
-    "@contract-case/case-core-plugin-http-dsl": "0.28.2",
-    "@contract-case/case-maintainer-config": "0.28.2",
-    "@contract-case/eslint-config-case-maintainer": "0.28.2",
+    "@contract-case/case-core-plugin-http-dsl": "0.29.0",
+    "@contract-case/case-maintainer-config": "0.29.0",
+    "@contract-case/eslint-config-case-maintainer": "0.29.0",
     "@microsoft/api-documenter": "^7.28.2",
     "@microsoft/api-extractor": "^7.52.13",
     "@types/jest": "^30.0.0",
@@ -77,10 +77,10 @@
     "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@contract-case/case-core-plugin-function-dsl": "0.28.2",
-    "@contract-case/case-core-plugin-http-dsl": "0.28.2",
-    "@contract-case/case-entities-internal": "0.28.2",
-    "@contract-case/case-plugin-dsl-types": "0.28.2"
+    "@contract-case/case-core-plugin-function-dsl": "0.29.0",
+    "@contract-case/case-core-plugin-http-dsl": "0.29.0",
+    "@contract-case/case-entities-internal": "0.29.0",
+    "@contract-case/case-plugin-dsl-types": "0.29.0"
   },
   "stability": "stable",
   "types": "build/index.d.ts",
