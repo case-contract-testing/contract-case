@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.28.2](https://github.com/case-contract-testing/contract-case/compare/v0.28.1...v0.28.2) (2026-02-12)
+
+
+### Bug Fixes
+
+* **java-dsl:** Fix method not found treeToValue(TypeReference) affecting users with Jackson &lt; 2.16 ([#1250](https://github.com/case-contract-testing/contract-case/issues/1250)) ([135e04a](https://github.com/case-contract-testing/contract-case/commit/135e04a8b4309979ca4f483d6ad3f83c6828c3cb))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.28.1 to 0.28.2
+
 ## [0.28.1](https://github.com/case-contract-testing/contract-case/compare/v0.28.0...v0.28.1) (2026-01-19)
 
 

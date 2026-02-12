@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/definition-generator",
-  "version": "0.28.1",
+  "version": "0.28.2",
   "description": "Generates DSL source files for use with ContractCase",
   "keywords": [
     "testing",
@@ -49,8 +49,8 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "@contract-case/case-maintainer-config": "0.28.1",
-    "@contract-case/eslint-config-case-maintainer": "0.28.1",
+    "@contract-case/case-maintainer-config": "0.28.2",
+    "@contract-case/eslint-config-case-maintainer": "0.28.2",
     "@types/jest": "^30.0.0",
     "cross-env": "^10.1.0",
     "eslint": "^9.22.0",
@@ -61,10 +61,10 @@
   },
   "dependencies": {
     "@contract-case/java-ast": "^0.0.2",
-    "@contract-case/case-plugin-base": "0.28.1",
-    "@contract-case/case-core-plugin-http": "0.28.1",
-    "@contract-case/case-core-plugin-function": "0.28.1",
-    "@contract-case/case-plugin-dsl-types": "0.28.1",
+    "@contract-case/case-plugin-base": "0.28.2",
+    "@contract-case/case-core-plugin-http": "0.28.2",
+    "@contract-case/case-core-plugin-function": "0.28.2",
+    "@contract-case/case-plugin-dsl-types": "0.28.2",
     "@types/commonmark": "^0.27.10",
     "chalk": "^4.1.2",
     "commonmark": "^0.31.2",
