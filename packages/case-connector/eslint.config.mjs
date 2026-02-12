@@ -2,7 +2,10 @@ import lintConfig from '@contract-case/eslint-config-case-maintainer';
 import { globalIgnores } from 'eslint/config';
 
 export default [
-  globalIgnores(['cjs.js'], 'Ignore CJS node entry point'),
+  globalIgnores(
+    ['cjs.js', 'rename-inner-webpack-vars-loader.cjs'],
+    'Ignore CJS node entry point and webpack loader',
+  ),
   ...lintConfig,
   {
     rules: {

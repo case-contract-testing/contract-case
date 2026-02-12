@@ -29,6 +29,13 @@ module.exports = {
         use: ['source-map-loader'],
         enforce: 'pre',
       },
+      {
+        // pretty-format ships a nested webpack bundle as its CJS build.
+        // Rename its internal webpack variables so they don't shadow ours.
+        test: /pretty-format[/\\]build[/\\]index\.js$/,
+        enforce: 'pre',
+        use: [path.join(__dirname, 'rename-inner-webpack-vars-loader.cjs')],
+      },
     ],
   },
   optimization: {
