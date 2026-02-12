@@ -10,6 +10,7 @@ import {
   matchingError,
   actualToString,
   MatcherExecutor,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 
 const check: CheckMatchFn<CoreNullMatcher> = (
@@ -31,7 +32,7 @@ export const NullMatcher: MatcherExecutor<
   typeof NULL_MATCHER_TYPE,
   CoreNullMatcher
 > = {
-  describe: () => `null`,
+  describe: () => describeMessage('null'),
   check,
   strip: () => null,
   validate: () => Promise.resolve(),

@@ -5,6 +5,7 @@ import {
 } from '@contract-case/case-plugin-dsl-types';
 import { LogLevel, Logger } from '../logger/types';
 import { CaseError, MatchResult } from '../matchers/errors.types';
+import { DescribeSegment } from '../matchers/describe';
 import { CaseExample } from './contract.types';
 
 export type { CaseExample };
@@ -211,23 +212,25 @@ export interface TraversalFns {
     parentMatchContext: MatchContext,
   ) => AnyData;
   /**
-   * Descend into the provided matcher, describing the contents in English.
+   * Descend into the provided matcher, describing the contents as a structured
+   * {@link DescribeSegment}.
    *
    * The top level of this function can be called by users as a convenience.
    * Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.
    *
    * Call this on any children of your matcher.
    * If your matcher has more than one child, call this
-   * function multiple times and combine the result in the appropriate place in the string you're returning
+   * function multiple times and combine the result using the describe helper
+   * functions ({@link concatenateDescribe}, {@link describeJoin}, etc).
    *
    * @param matcherOrData - the next matcher to check
    * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}
-   * @returns the example data represented by this matcher.
+   * @returns a {@link DescribeSegment} representing the description.
    */
   descendAndDescribe: (
     matcherOrData: AnyCaseMatcherOrData,
     parentMatchContext: MatchContext,
-  ) => string;
+  ) => DescribeSegment;
 
   /**
    * Descend into the provided matcher, confirming that the result of `descendAndStrip` would pass as actual data.

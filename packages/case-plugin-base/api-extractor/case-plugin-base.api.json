@@ -1174,6 +1174,53 @@
           "name": "combineResults"
         },
         {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!concatenateDescribe:function(1)",
+          "docComment": "/**\n * Creates a concatenation of multiple description segments, with no space between them. This is useful for when you need arbitrary descriptions produced from different segments or a semi-structured sentence.\n *\n * @param segments - the segments to concatenate\n *\n * @returns a concat {@link DescribeSegment}\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "concatenateDescribe: (...segments: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": "[]"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            }
+          ],
+          "fileUrlPath": "src/matchers/describe.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 4,
+            "endIndex": 5
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "segments",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "concatenateDescribe"
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!ConfigurationError:interface",
           "docComment": "/**\n * The data for a user configuration error.\n *\n * Don't create this directly, use `configurationError` to create one.\n *\n * @public\n */\n",
@@ -2585,6 +2632,312 @@
             }
           ],
           "name": "defaultNameMock"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!describeArray:function(1)",
+          "docComment": "/**\n * Creates a description segment for an array, wrapped in square brackets.\n *\n * Renders as `[element1,element2]`.\n *\n * @param elements - the elements of the array\n *\n * @returns an array {@link DescribeSegment}\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "describeArray: (elements: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": "[]"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            }
+          ],
+          "fileUrlPath": "src/matchers/describe.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 4,
+            "endIndex": 5
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "elements",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "describeArray"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!describeJoin:function(1)",
+          "docComment": "/**\n * Creates a description segment of multiple sub-segments joined with a separator.\n *\n * @param separator - the separator string between segments\n *\n * @param segments - the segments to join\n *\n * @returns a join {@link DescribeSegment}\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "describeJoin: (separator: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", segments: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": "[]"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            }
+          ],
+          "fileUrlPath": "src/matchers/describe.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 7
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "separator",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "segments",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "describeJoin"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!describeMessage:function(1)",
+          "docComment": "/**\n * Creates a plain text description segment.\n *\n * @param message - the text content\n *\n * @returns a message {@link DescribeSegment}\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "describeMessage: (message: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            }
+          ],
+          "fileUrlPath": "src/matchers/describe.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "message",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "describeMessage"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!describeObject:function(1)",
+          "docComment": "/**\n * Creates a description segment for an object, wrapped in curly braces.\n *\n * Renders as `{key1: value1,key2: value2}`.\n *\n * @param entries - the key/value entries of the object\n *\n * @returns an object {@link DescribeSegment}\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "describeObject: (entries: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<{\n    key: string;\n    value: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}>"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            }
+          ],
+          "fileUrlPath": "src/matchers/describe.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 7
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "entries",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "describeObject"
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type",
+          "docComment": "/**\n * A structured segment of a matcher description. Instead of returning a flat string, `describe` functions return a tree of these segments, which can be rendered into a flat string (for use as a lookup key) or pretty-printed with indentation for nested structures.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type DescribeSegment = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    readonly kind: 'message';\n    readonly message: string;\n} | {\n    readonly kind: 'object';\n    readonly entries: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ReadonlyArray",
+              "canonicalReference": "!ReadonlyArray:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<{\n        readonly key: string;\n        readonly value: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    }>;\n} | {\n    readonly kind: 'array';\n    readonly elements: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ReadonlyArray",
+              "canonicalReference": "!ReadonlyArray:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n} | {\n    readonly kind: 'concat';\n    readonly segments: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ReadonlyArray",
+              "canonicalReference": "!ReadonlyArray:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n} | {\n    readonly kind: 'join';\n    readonly separator: string;\n    readonly segments: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ReadonlyArray",
+              "canonicalReference": "!ReadonlyArray:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/matchers/describe.ts",
+          "releaseTag": "Public",
+          "name": "DescribeSegment",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 18
+          }
         },
         {
           "kind": "TypeAlias",
@@ -5546,7 +5899,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!NameMatcherFn:type",
-          "docComment": "/**\n * Extracts the name for this matcher in an English, human readable format.\n *\n * @remarks\n *\n * CAUTION: Any two matchers that produce the same string MUST have the exact same matching behaviour in all cases. The core relies on this property.\n *\n * This function must have no side effects, it may be called repeatedly on the same data by ContractCase during a run.\n *\n * @param matcher - the matcher descriptor\n *\n * @param matchContext - the {@link MatchContext} for this run\n *\n * @typeParam T - a matcher descriptor\n *\n * @returns the raw example data\n *\n * @public\n */\n",
+          "docComment": "/**\n * Extracts a structured description for this matcher in an English, human readable format. The returned {@link DescribeSegment} can be rendered to a flat string with {@link renderToString}, or used to produce indented pretty-printed output.\n *\n * @remarks\n *\n * CAUTION: Any two matchers that produce the same rendered string MUST have the exact same matching behaviour in all cases. The core relies on this property.\n *\n * This function must have no side effects, it may be called repeatedly on the same data by ContractCase during a run.\n *\n * @param matcher - the matcher descriptor\n *\n * @param matchContext - the {@link MatchContext} for this run\n *\n * @typeParam T - a matcher descriptor\n *\n * @returns a {@link DescribeSegment} representing the description\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5563,7 +5916,12 @@
             },
             {
               "kind": "Content",
-              "text": ") => string"
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
             },
             {
               "kind": "Content",
@@ -5588,7 +5946,7 @@
           ],
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 5
           }
         },
         {
@@ -6099,6 +6457,48 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!renderToString:function(1)",
+          "docComment": "/**\n * Renders a {@link DescribeSegment} tree into a flat string.\n *\n * Use this when you need the description as a string, for example when using the description as a lookup key, or when embedding the description in an error message.\n *\n * @param segment - the segment tree to render\n *\n * @returns the flat string representation\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "renderToString: (segment: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            }
+          ],
+          "fileUrlPath": "src/matchers/describe.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "segment",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "renderToString"
+        },
+        {
           "kind": "Variable",
           "canonicalReference": "@contract-case/case-plugin-base!SERIALISABLE_TO_JSON:var",
           "docComment": "/**\n * Indicates that values must be serialisable to json\n *\n * @public\n */\n",
@@ -6369,7 +6769,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!TraversalFns#descendAndDescribe:member",
-              "docComment": "/**\n * Descend into the provided matcher, describing the contents in English.\n *\n * The top level of this function can be called by users as a convenience. Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.\n *\n * Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result in the appropriate place in the string you're returning\n *\n * @param matcherOrData - the next matcher to check\n *\n * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}\n *\n * @returns the example data represented by this matcher.\n */\n",
+              "docComment": "/**\n * Descend into the provided matcher, describing the contents as a structured {@link DescribeSegment}.\n *\n * The top level of this function can be called by users as a convenience. Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.\n *\n * Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result using the describe helper functions ({@link concatenateDescribe}, {@link describeJoin}, etc).\n *\n * @param matcherOrData - the next matcher to check\n *\n * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}\n *\n * @returns a {@link DescribeSegment} representing the description.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6395,7 +6795,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ") => string"
+                  "text": ") => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DescribeSegment",
+                  "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
                 },
                 {
                   "kind": "Content",
@@ -6408,7 +6813,7 @@
               "name": "descendAndDescribe",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 6
+                "endIndex": 7
               }
             },
             {

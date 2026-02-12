@@ -13,6 +13,8 @@ import {
   makeResults,
   matchingError,
   MatcherExecutor,
+  concatenateDescribe,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { isObject, whyNotAnObject } from './internals/objectTests';
@@ -74,10 +76,13 @@ export const ObjectEachValueMatches: MatcherExecutor<
   CoreObjectValuesMatch
 > = {
   describe: (matcher, context) =>
-    `an object where each value is ${context.descendAndDescribe(
-      matcher['_case:matcher:matcher'],
-      addLocation(':eachValueLike', context),
-    )}`,
+    concatenateDescribe(
+      describeMessage('an object where each value is '),
+      context.descendAndDescribe(
+        matcher['_case:matcher:matcher'],
+        addLocation(':eachValueLike', context),
+      ),
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

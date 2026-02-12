@@ -1,6 +1,7 @@
 import {
   CaseConfigurationError,
   DataContext,
+  describeMessage,
   Logger,
   MatchContext,
 } from '@contract-case/case-plugin-base';
@@ -64,7 +65,7 @@ const createMockMatchContext = (): MatchContext =>
     ...EMPTY_DATA_CONTEXT,
     descendAndCheck: () => Promise.resolve([]),
     descendAndStrip: () => 'stripped',
-    descendAndDescribe: () => 'description',
+    descendAndDescribe: () => describeMessage('description'),
     selfVerify: () => Promise.resolve(),
     ...MOCK_LOOKUP,
     makeLookup: () => MOCK_LOOKUP,

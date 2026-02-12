@@ -8,6 +8,7 @@ import {
   CaseConfigurationError,
   addLocation,
   MatcherExecutor,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -88,7 +89,8 @@ export const ContextVariableMatcher: MatcherExecutor<
   typeof CONTEXT_VARIABLE_TYPE,
   CoreContextVariableMatcher
 > = {
-  describe: (matcher) => `{{${matcher['_case:matcher:variableName']}}}`,
+  describe: (matcher) =>
+    describeMessage(`{{${matcher['_case:matcher:variableName']}}}`),
   check,
   strip,
   validate: (matcher, matchContext) => {

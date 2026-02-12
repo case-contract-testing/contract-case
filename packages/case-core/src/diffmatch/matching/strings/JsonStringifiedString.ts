@@ -11,6 +11,8 @@ import {
   addLocation,
   CaseConfigurationError,
   MatcherExecutor,
+  concatenateDescribe,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -86,10 +88,14 @@ export const JsonStringifiedString: MatcherExecutor<
   CoreJsonStringifiedMatcher
 > = {
   describe: (matcher, matchContext) =>
-    `json stringified '${matchContext.descendAndDescribe(
-      matcher['_case:matcher:child'],
-      addLocation(':jsonStringify', matchContext),
-    )}'`,
+    concatenateDescribe(
+      describeMessage("json stringified '"),
+      matchContext.descendAndDescribe(
+        matcher['_case:matcher:child'],
+        addLocation(':jsonStringify', matchContext),
+      ),
+      describeMessage("'"),
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

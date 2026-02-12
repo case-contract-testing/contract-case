@@ -14,6 +14,9 @@ import {
   makeResults,
   matchingError,
   MatcherExecutor,
+  concatenateDescribe,
+  describeObject,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import {
   AnyCaseMatcherOrData,
@@ -120,15 +123,17 @@ export const ShapedObjectExecutor: MatcherExecutor<
   CaseNodeFor<typeof SHAPED_OBJECT_MATCHER_TYPE>
 > = {
   describe: (matcher, context) =>
-    `an object shaped like {${Object.entries(matcher['_case:matcher:children'])
-      .map(
-        ([key, child]) =>
-          `${key}: ${context.descendAndDescribe(
-            child,
-            addLocation(key, context),
-          )}`,
-      )
-      .join(',')}}`,
+    concatenateDescribe(
+      describeMessage('an object shaped like '),
+      describeObject(
+        Object.entries(matcher['_case:matcher:children']).map(
+          ([key, child]) => ({
+            key,
+            value: context.descendAndDescribe(child, addLocation(key, context)),
+          }),
+        ),
+      ),
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

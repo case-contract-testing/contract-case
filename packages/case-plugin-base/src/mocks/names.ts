@@ -4,6 +4,7 @@ import {
 } from '@contract-case/case-plugin-dsl-types';
 import { MatchContext } from '../context/types';
 import { coreLookupMatcher } from '../matchers/lookup';
+import { renderToString } from '../matchers/describe';
 
 /**
  * Helper function that will generate and save a name for this matcher if it
@@ -18,7 +19,10 @@ const nameMatcher = (matcher: AnyCaseMatcherOrData, context: MatchContext) =>
   matcher != null &&
   '_case:matcher:uniqueName' in matcher
     ? matcher
-    : coreLookupMatcher(context.descendAndDescribe(matcher, context), matcher);
+    : coreLookupMatcher(
+        renderToString(context.descendAndDescribe(matcher, context)),
+        matcher,
+      );
 
 /**
  * Helper function that will name this mock if it isn't already named.

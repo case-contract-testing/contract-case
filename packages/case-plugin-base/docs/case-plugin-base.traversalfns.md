@@ -66,16 +66,16 @@ Call this on any children of your matcher. If your matcher has more than one chi
 
 </td><td>
 
-(matcherOrData: AnyCaseMatcherOrData, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; string
+(matcherOrData: AnyCaseMatcherOrData, parentMatchContext: [MatchContext](./case-plugin-base.matchcontext.md)<!-- -->) =&gt; [DescribeSegment](./case-plugin-base.describesegment.md)
 
 
 </td><td>
 
-Descend into the provided matcher, describing the contents in English.
+Descend into the provided matcher, describing the contents as a structured [DescribeSegment](./case-plugin-base.describesegment.md)<!-- -->.
 
 The top level of this function can be called by users as a convenience. Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.
 
-Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result in the appropriate place in the string you're returning
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result using the describe helper functions ([concatenateDescribe()](./case-plugin-base.concatenatedescribe.md)<!-- -->, [describeJoin()](./case-plugin-base.describejoin.md)<!-- -->, etc).
 
 
 </td></tr>

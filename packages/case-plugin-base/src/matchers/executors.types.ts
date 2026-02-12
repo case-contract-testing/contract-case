@@ -2,6 +2,7 @@ import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { MatchResult } from './errors.types';
 import { IsCaseNodeForType } from './utility.types';
 import { MatchContext } from '../context/types';
+import { DescribeSegment } from './describe';
 
 /**
  * Checks a matcher against some actual data and returns a Promise containing a MatchResult.
@@ -114,10 +115,13 @@ export type StripMatcherFn<T> = (
 ) => AnyData;
 
 /**
- * Extracts the name for this matcher in an English, human readable format.
+ * Extracts a structured description for this matcher in an English, human
+ * readable format. The returned {@link DescribeSegment} can be rendered to a
+ * flat string with {@link renderToString}, or used to produce indented
+ * pretty-printed output.
  *
  * @remarks
- * CAUTION: Any two matchers that produce the same string MUST have
+ * CAUTION: Any two matchers that produce the same rendered string MUST have
  * the exact same matching behaviour in all cases. The core relies on this
  * property.
  *
@@ -129,12 +133,12 @@ export type StripMatcherFn<T> = (
  * @typeParam T - a matcher descriptor
  * @param matcher - the matcher descriptor
  * @param matchContext - the {@link MatchContext} for this run
- * @returns the raw example data
+ * @returns a {@link DescribeSegment} representing the description
  */
 export type NameMatcherFn<T> = (
   matcher: T,
   matchContext: MatchContext,
-) => string;
+) => DescribeSegment;
 
 /**
  * A MatcherExecutor contains the three functions

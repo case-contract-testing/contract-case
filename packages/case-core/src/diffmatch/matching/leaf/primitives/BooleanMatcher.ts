@@ -12,6 +12,7 @@ import {
   matchingError,
   actualToString,
   MatcherExecutor,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { testExactMatch } from './internal/testExactMatch';
 
@@ -41,9 +42,11 @@ export const BooleanMatcher: MatcherExecutor<
   CoreBooleanMatcher
 > = {
   describe: (matcher: CoreBooleanMatcher, matchContext: MatchContext) =>
-    matchContext['_case:context:matchBy'] === 'exact'
-      ? `${matcher['_case:matcher:example']}`
-      : '<any boolean>',
+    describeMessage(
+      matchContext['_case:context:matchBy'] === 'exact'
+        ? `${matcher['_case:matcher:example']}`
+        : '<any boolean>',
+    ),
   check,
   strip: (matcher: CoreBooleanMatcher) => matcher['_case:matcher:example'],
   validate: () => Promise.resolve(),

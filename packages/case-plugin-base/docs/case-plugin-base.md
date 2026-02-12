@@ -171,6 +171,17 @@ Combines multiple [MatchResult](./case-plugin-base.matchresult.md) objects into 
 </td></tr>
 <tr><td>
 
+[concatenateDescribe(segments)](./case-plugin-base.concatenatedescribe.md)
+
+
+</td><td>
+
+Creates a concatenation of multiple description segments, with no space between them. This is useful for when you need arbitrary descriptions produced from different segments or a semi-structured sentence.
+
+
+</td></tr>
+<tr><td>
+
 [coreLookupMatcher(uniqueName, child)](./case-plugin-base.corelookupmatcher.md)
 
 
@@ -188,6 +199,54 @@ Creates a matcher descriptor for a lookupable matcher.
 </td><td>
 
 Helper function that will name this mock if it isn't already named.
+
+
+</td></tr>
+<tr><td>
+
+[describeArray(elements)](./case-plugin-base.describearray.md)
+
+
+</td><td>
+
+Creates a description segment for an array, wrapped in square brackets.
+
+Renders as `[element1,element2]`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[describeJoin(separator, segments)](./case-plugin-base.describejoin.md)
+
+
+</td><td>
+
+Creates a description segment of multiple sub-segments joined with a separator.
+
+
+</td></tr>
+<tr><td>
+
+[describeMessage(message)](./case-plugin-base.describemessage.md)
+
+
+</td><td>
+
+Creates a plain text description segment.
+
+
+</td></tr>
+<tr><td>
+
+[describeObject(entries)](./case-plugin-base.describeobject.md)
+
+
+</td><td>
+
+Creates a description segment for an object, wrapped in curly braces.
+
+Renders as `{key1: value1,key2: value2}`<!-- -->.
 
 
 </td></tr>
@@ -355,6 +414,19 @@ During a matcher execution, this function can be called to ensure that the provi
 </td><td>
 
 Overwrites the value of '\_case:currentRun:context:pluginProvided' with the provided context. Generally you want to call this once per interaction executor entry function.
+
+
+</td></tr>
+<tr><td>
+
+[renderToString(segment)](./case-plugin-base.rendertostring.md)
+
+
+</td><td>
+
+Renders a [DescribeSegment](./case-plugin-base.describesegment.md) tree into a flat string.
+
+Use this when you need the description as a string, for example when using the description as a lookup key, or when embedding the description in an error message.
 
 
 </td></tr>
@@ -827,6 +899,17 @@ The settings that are set as default context for a run
 </td></tr>
 <tr><td>
 
+[DescribeSegment](./case-plugin-base.describesegment.md)
+
+
+</td><td>
+
+A structured segment of a matcher description. Instead of returning a flat string, `describe` functions return a tree of these segments, which can be rendered into a flat string (for use as a lookup key) or pretty-printed with indentation for nested structures.
+
+
+</td></tr>
+<tr><td>
+
 [DslObjectDeclaration](./case-plugin-base.dslobjectdeclaration.md)
 
 
@@ -994,7 +1077,7 @@ Represents the output state of a mock's execution, including what was expected.
 
 </td><td>
 
-Extracts the name for this matcher in an English, human readable format.
+Extracts a structured description for this matcher in an English, human readable format. The returned [DescribeSegment](./case-plugin-base.describesegment.md) can be rendered to a flat string with [renderToString()](./case-plugin-base.rendertostring.md)<!-- -->, or used to produce indented pretty-printed output.
 
 
 </td></tr>

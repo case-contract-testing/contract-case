@@ -73,6 +73,9 @@ export const combineResultPromises: (...results: (MatchResult | Promise<MatchRes
 export const combineResults: (...results: MatchResult[]) => MatchResult;
 
 // @public
+export const concatenateDescribe: (...segments: DescribeSegment[]) => DescribeSegment;
+
+// @public
 export interface ConfigurationError {
     code: ConfigurationErrorCode;
     // (undocumented)
@@ -189,6 +192,43 @@ export type DefaultContext = LogLevelContext & {
 
 // @public
 export const defaultNameMock: <M extends AnyMockDescriptor>(mock: M, context: MatchContext) => M;
+
+// @public
+export const describeArray: (elements: DescribeSegment[]) => DescribeSegment;
+
+// @public
+export const describeJoin: (separator: string, segments: DescribeSegment[]) => DescribeSegment;
+
+// @public
+export const describeMessage: (message: string) => DescribeSegment;
+
+// @public
+export const describeObject: (entries: Array<{
+    key: string;
+    value: DescribeSegment;
+}>) => DescribeSegment;
+
+// @public
+export type DescribeSegment = {
+    readonly kind: 'message';
+    readonly message: string;
+} | {
+    readonly kind: 'object';
+    readonly entries: ReadonlyArray<{
+        readonly key: string;
+        readonly value: DescribeSegment;
+    }>;
+} | {
+    readonly kind: 'array';
+    readonly elements: ReadonlyArray<DescribeSegment>;
+} | {
+    readonly kind: 'concat';
+    readonly segments: ReadonlyArray<DescribeSegment>;
+} | {
+    readonly kind: 'join';
+    readonly separator: string;
+    readonly segments: ReadonlyArray<DescribeSegment>;
+};
 
 // @public
 export type DslObjectDeclaration = {
@@ -451,7 +491,7 @@ export const mustResolveToNumber: (matcher: AnyCaseMatcherOrData, context: Match
 export const mustResolveToString: (matcher: AnyCaseMatcherOrData, context: MatchContext) => string;
 
 // @public
-export type NameMatcherFn<T> = (matcher: T, matchContext: MatchContext) => string;
+export type NameMatcherFn<T> = (matcher: T, matchContext: MatchContext) => DescribeSegment;
 
 // @public
 export type ParameterDeclaration = {
@@ -520,6 +560,9 @@ export interface RawMatchError {
     type: typeof ERROR_TYPE_RAW_MATCH;
 }
 
+// @public
+export const renderToString: (segment: DescribeSegment) => string;
+
 // Warning: (ae-internal-missing-underscore) The name "ResultFormatter" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
@@ -587,7 +630,7 @@ export class StripUnsupportedError extends Error {
 // @public
 export interface TraversalFns {
     descendAndCheck: <T extends AnyCaseMatcherOrData>(matcherOrData: T, parentMatchContext: MatchContext, actual: unknown) => Promise<MatchResult> | MatchResult;
-    descendAndDescribe: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => string;
+    descendAndDescribe: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => DescribeSegment;
     descendAndStrip: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => AnyData;
     descendAndValidate: <T extends AnyCaseMatcherOrData>(matcherOrData: T, parentMatchContext: MatchContext) => Promise<void>;
     selfVerify: (matcherOrData: AnyCaseMatcherOrData, parentMatchContext: MatchContext) => Promise<void>;

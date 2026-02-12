@@ -11,6 +11,7 @@ import {
   CheckMatchFn,
   MatchResult,
   MatcherExecutor,
+  describeJoin,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -77,14 +78,15 @@ export const AndCombinationMatcher: MatcherExecutor<
   CoreAndCombinationMatcher
 > = {
   describe: (matcher, matchContext) =>
-    `${matcher['_case:matcher:children']
-      .map((child, index) =>
+    describeJoin(
+      ' / ',
+      matcher['_case:matcher:children'].map((child, index) =>
         matchContext.descendAndDescribe(
           child,
           addLocation(`:and[${index}]`, matchContext),
         ),
-      )
-      .join(' / ')}`,
+      ),
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

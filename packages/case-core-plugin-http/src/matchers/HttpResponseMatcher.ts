@@ -12,6 +12,9 @@ import {
   MatcherExecutor,
   isCaseNode,
   combineResultPromises,
+  DescribeSegment,
+  concatenateDescribe,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { validateCodes } from './codeValidator';
@@ -92,27 +95,45 @@ const check = async (
 const name = (
   response: CoreHttpResponseMatcher,
   context: MatchContext,
-): string =>
-  response.uniqueName
-    ? `returns ${response.uniqueName}`
-    : `returns a (${context.descendAndDescribe(
+): DescribeSegment => {
+  if (response.uniqueName) {
+    return describeMessage(`returns ${response.uniqueName}`);
+  }
+
+  const segments: DescribeSegment[] = [
+    describeMessage('returns a '),
+    concatenateDescribe(
+      describeMessage('('),
+      context.descendAndDescribe(
         response.status,
         addLocation('status', context),
-      )}) response ${
-        response.body
-          ? `with body ${context.descendAndDescribe(
-              response.body,
-              addLocation('body', context),
-            )}`
-          : 'without a body'
-      }${
-        response.headers
-          ? ` with the following headers ${context.descendAndDescribe(
-              response.headers,
-              addLocation('headers', context),
-            )}`
-          : ''
-      }`;
+      ),
+      describeMessage(')'),
+    ),
+    describeMessage(' response '),
+  ];
+
+  if (response.body) {
+    segments.push(
+      describeMessage('with body '),
+      context.descendAndDescribe(response.body, addLocation('body', context)),
+    );
+  } else {
+    segments.push(describeMessage('without a body'));
+  }
+
+  if (response.headers) {
+    segments.push(
+      describeMessage(' with the following headers '),
+      context.descendAndDescribe(
+        response.headers,
+        addLocation('headers', context),
+      ),
+    );
+  }
+
+  return concatenateDescribe(...segments);
+};
 
 const validate = (
   matcher: CoreHttpResponseMatcher,

@@ -53,6 +53,7 @@ export const LookupMatcher: MatcherExecutor<
   LookupableMatcher
 > = {
   describe: (matcher: LookupableMatcher, matchContext: MatchContext) =>
+    // LookupMatcher delegates description entirely to the looked-up child
     matchContext.descendAndDescribe(
       getMatcher(matcher, matchContext),
       addLocation(

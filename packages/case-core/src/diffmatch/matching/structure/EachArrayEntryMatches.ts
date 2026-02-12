@@ -12,6 +12,8 @@ import {
   makeResults,
   matchingError,
   MatcherExecutor,
+  concatenateDescribe,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -77,10 +79,13 @@ export const EachArrayEntryMatches: MatcherExecutor<
   CoreArrayEachEntryMatches
 > = {
   describe: (matcher, matchContext) =>
-    `an array where each entry matches ${matchContext.descendAndDescribe(
-      matcher['_case:matcher:matcher'],
-      addLocation(`:eachEntryLike`, matchContext),
-    )}`,
+    concatenateDescribe(
+      describeMessage('an array where each entry matches '),
+      matchContext.descendAndDescribe(
+        matcher['_case:matcher:matcher'],
+        addLocation(`:eachEntryLike`, matchContext),
+      ),
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

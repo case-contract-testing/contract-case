@@ -14,6 +14,9 @@ import {
   matchingError,
   makeNoErrorResult,
   MatcherExecutor,
+  concatenateDescribe,
+  describeArray,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -86,11 +89,14 @@ export const ShapedArrayExecutor: MatcherExecutor<
   CaseNodeFor<typeof SHAPED_ARRAY_MATCHER_TYPE>
 > = {
   describe: (matcher, context) =>
-    `an array shaped like [${matcher['_case:matcher:children']
-      .map((child, index) =>
-        context.descendAndDescribe(child, addLocation(`[${index}]`, context)),
-      )
-      .join(',')}]`,
+    concatenateDescribe(
+      describeMessage('an array shaped like '),
+      describeArray(
+        matcher['_case:matcher:children'].map((child, index) =>
+          context.descendAndDescribe(child, addLocation(`[${index}]`, context)),
+        ),
+      ),
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

@@ -6,8 +6,11 @@ import {
   CaseConfigurationError,
   CaseCoreError,
   DataContext,
+  DescribeSegment,
+  describeMessage,
   Logger,
   MatchContext,
+  renderToString,
 } from '@contract-case/case-plugin-base';
 import { HttpRequestMatcher } from './HttpRequestMatcher';
 
@@ -67,7 +70,7 @@ const MOCK_LOOKUP = {
 interface MockState {
   descendAndCheckResult: any[];
   descendAndStripResult: any;
-  descendAndDescribeResult: string;
+  descendAndDescribeResult: DescribeSegment;
 }
 
 const createMockMatchContext = (state: MockState): MatchContext => ({
@@ -94,7 +97,7 @@ describe('HttpRequestMatcher', () => {
     mockMatchContext = createMockMatchContext({
       descendAndCheckResult: [],
       descendAndStripResult: 'stripped',
-      descendAndDescribeResult: '"default description"',
+      descendAndDescribeResult: describeMessage('"default description"'),
     });
   });
 
@@ -103,9 +106,9 @@ describe('HttpRequestMatcher', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'description',
+        descendAndDescribeResult: describeMessage('description'),
       });
-      expect(HttpRequestMatcher.describe(matcher, mockMatchContext)).toBe(
+      expect(renderToString(HttpRequestMatcher.describe(matcher, mockMatchContext))).toBe(
         'an http description request to description without a body',
       );
     });
@@ -118,10 +121,10 @@ describe('HttpRequestMatcher', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'description',
+        descendAndDescribeResult: describeMessage('description'),
       });
       expect(
-        HttpRequestMatcher.describe(matcherWithBody, mockMatchContext),
+        renderToString(HttpRequestMatcher.describe(matcherWithBody, mockMatchContext)),
       ).toBe('an http description request to description and body description');
     });
 
@@ -133,10 +136,10 @@ describe('HttpRequestMatcher', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'description',
+        descendAndDescribeResult: describeMessage('description'),
       });
       expect(
-        HttpRequestMatcher.describe(matcherWithQuery, mockMatchContext),
+        renderToString(HttpRequestMatcher.describe(matcherWithQuery, mockMatchContext)),
       ).toBe(
         'an http description request to description?foo=description without a body',
       );
@@ -150,10 +153,10 @@ describe('HttpRequestMatcher', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'description',
+        descendAndDescribeResult: describeMessage('description'),
       });
       expect(
-        HttpRequestMatcher.describe(matcherWithHeaders, mockMatchContext),
+        renderToString(HttpRequestMatcher.describe(matcherWithHeaders, mockMatchContext)),
       ).toBe(
         'an http description request to description with the following headers description without a body',
       );
@@ -165,7 +168,7 @@ describe('HttpRequestMatcher', () => {
         uniqueName: 'My Unique Request',
       };
       expect(
-        HttpRequestMatcher.describe(matcherWithUniqueName, mockMatchContext),
+        renderToString(HttpRequestMatcher.describe(matcherWithUniqueName, mockMatchContext)),
       ).toBe('My Unique Request');
     });
   });
@@ -253,7 +256,7 @@ describe('HttpRequestMatcher', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'description',
+        descendAndDescribeResult: describeMessage('description'),
       });
       expect(HttpRequestMatcher.strip(matcher, mockMatchContext)).toEqual({
         method: 'stripped',
@@ -269,7 +272,7 @@ describe('HttpRequestMatcher', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'description',
+        descendAndDescribeResult: describeMessage('description'),
       });
       expect(
         HttpRequestMatcher.strip(matcherWithBody, mockMatchContext),
@@ -288,7 +291,7 @@ describe('HttpRequestMatcher', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'description',
+        descendAndDescribeResult: describeMessage('description'),
       });
       expect(
         HttpRequestMatcher.strip(matcherWithQuery, mockMatchContext),
@@ -307,7 +310,7 @@ describe('HttpRequestMatcher', () => {
       mockMatchContext = createMockMatchContext({
         descendAndCheckResult: [],
         descendAndStripResult: 'stripped',
-        descendAndDescribeResult: 'description',
+        descendAndDescribeResult: describeMessage('description'),
       });
       expect(
         HttpRequestMatcher.strip(matcherWithHeaders, mockMatchContext),

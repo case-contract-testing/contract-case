@@ -12,6 +12,8 @@ import {
   CaseConfigurationError,
   MatcherExecutor,
   mustResolveToString,
+  concatenateDescribe,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 
@@ -74,10 +76,14 @@ export const Base64EncodedStringMatcher: MatcherExecutor<
   CoreBase64EncodedMatcher
 > = {
   describe: (matcher, matchContext) =>
-    `base64 encoded string '${matchContext.descendAndDescribe(
-      matcher['_case:matcher:child'],
-      addLocation(':base64', matchContext),
-    )}'`,
+    concatenateDescribe(
+      describeMessage("base64 encoded string '"),
+      matchContext.descendAndDescribe(
+        matcher['_case:matcher:child'],
+        addLocation(':base64', matchContext),
+      ),
+      describeMessage("'"),
+    ),
   check,
   strip,
   validate: (matcher, matchContext) =>

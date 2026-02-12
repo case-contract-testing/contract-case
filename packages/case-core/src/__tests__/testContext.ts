@@ -2,6 +2,7 @@ import {
   Logger,
   DataContext,
   MatchContext,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 import { makeResultFormatter } from '../entities/resultPrinter';
 
@@ -65,7 +66,7 @@ export const EMPTY_MATCH_CONTEXT: MatchContext = {
   ...EMPTY_DATA_CONTEXT,
   descendAndCheck: () => Promise.resolve([]),
   descendAndStrip: () => [],
-  descendAndDescribe: () => 'during testing',
+  descendAndDescribe: () => describeMessage('during testing'),
   selfVerify: () => Promise.resolve(),
   ...MOCK_LOOKUP,
   makeLookup: () => MOCK_LOOKUP,

@@ -14,6 +14,7 @@ import {
   StripUnsupportedError,
   addLocation,
   CaseConfigurationError,
+  describeMessage,
 } from '@contract-case/case-plugin-base';
 
 const check = async (
@@ -52,10 +53,12 @@ export const StringContainsMatcher: MatcherExecutor<
   CoreStringContainsMatcher
 > = {
   describe: (matcher: CoreStringContainsMatcher, matchContext) =>
-    `a string containing "${mustResolveToString(
-      matcher['_case:matcher:contains'],
-      matchContext,
-    ).replace(/^"+|"+$/g, '')}"`,
+    describeMessage(
+      `a string containing "${mustResolveToString(
+        matcher['_case:matcher:contains'],
+        matchContext,
+      ).replace(/^"+|"+$/g, '')}"`,
+    ),
   check,
   strip: (matcher: CoreStringContainsMatcher, matchContext) => {
     if ('_case:matcher:example' in matcher) {
