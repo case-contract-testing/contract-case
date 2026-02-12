@@ -91,7 +91,7 @@ class VerifierResultMapper {
     }
     List<VerificationTestHandle> tests = List.of();
     if (root.has("testHandles")) {
-      tests = mapper.treeToValue(
+      tests = mapper.convertValue(
           root.get("testHandles"),
           new TypeReference<List<VerificationTestHandle>>() {
           }
