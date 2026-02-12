@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.29.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.28.2...@contract-case/case-core-plugin-http-v0.29.0) (2026-02-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **plugin-dsl:** Change `describe` type to return structured `DescribeSegment` instead of string. Plugin authors will need to use the new factory functions to implement their describe methods instead of returning a string. This allows structured rendering of the describe result ([#1246](https://github.com/case-contract-testing/contract-case/issues/1246))
+
+### Code Refactoring
+
+* **plugin-dsl:** Change `describe` type to return structured `DescribeSegment` instead of string. Plugin authors will need to use the new factory functions to implement their describe methods instead of returning a string. This allows structured rendering of the describe result ([#1246](https://github.com/case-contract-testing/contract-case/issues/1246)) ([de9546b](https://github.com/case-contract-testing/contract-case/commit/de9546b468bcddbb371d02be3d2e8cc3712eeb42))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-plugin-base bumped from 0.28.2 to 0.29.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.28.2 to 0.29.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.28.2 to 0.29.0
+
 ## [0.28.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.28.1...@contract-case/case-core-plugin-http-v0.28.2) (2026-02-12)
 
 
