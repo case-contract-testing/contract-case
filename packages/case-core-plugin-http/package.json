@@ -68,7 +68,7 @@
     "@contract-case/case-core-plugin-http-dsl": "0.28.1",
     "@contract-case/case-plugin-dsl-types": "0.28.1",
     "@contract-case/case-plugin-base": "0.28.1",
-    "axios": "^1.12.2",
+    "axios": "^1.13.5",
     "express": "^4.20.0",
     "qs": "^6.14.1"
   }

@@ -85,7 +85,7 @@
     "@contract-case/case-plugin-dsl-types": "0.28.1",
     "absolute-version": "^2.0.0",
     "async-mutex": "^0.5.0",
-    "axios": "^1.12.2",
+    "axios": "^1.13.5",
     "chalk": "^4.1.2",
     "filenamify": "^4.3.0",
     "git-rev-sync": "^3.0.1",
