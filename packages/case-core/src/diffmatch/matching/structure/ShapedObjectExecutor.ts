@@ -129,10 +129,7 @@ export const ShapedObjectExecutor: MatcherExecutor<
         Object.entries(matcher['_case:matcher:children']).map(
           ([key, child]) => ({
             key,
-            value: context.descendAndDescribe(
-              child,
-              addLocation(key, context),
-            ),
+            value: context.descendAndDescribe(child, addLocation(key, context)),
           }),
         ),
       ),

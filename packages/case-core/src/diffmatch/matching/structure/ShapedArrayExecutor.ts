@@ -93,10 +93,7 @@ export const ShapedArrayExecutor: MatcherExecutor<
       describeMessage('an array shaped like '),
       describeArray(
         matcher['_case:matcher:children'].map((child, index) =>
-          context.descendAndDescribe(
-            child,
-            addLocation(`[${index}]`, context),
-          ),
+          context.descendAndDescribe(child, addLocation(`[${index}]`, context)),
         ),
       ),
     ),
