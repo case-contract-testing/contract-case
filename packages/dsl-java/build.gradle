@@ -11,7 +11,7 @@ plugins {
     id 'io.franzbecker.gradle-lombok' version '5.0.0'
 }
 group = 'io.contract-testing.contractcase'
-version = "0.28.1" // x-release-please-version
+version = "0.28.2" // x-release-please-version
 
 sourceCompatibility = '17'
 

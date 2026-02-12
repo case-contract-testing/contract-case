@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.28.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.28.1...@contract-case/dsl-java-v0.28.2) (2026-02-12)
+
+
+### Bug Fixes
+
+* **java-dsl:** Fix method not found treeToValue(TypeReference) affecting users with Jackson &lt; 2.16 ([#1250](https://github.com/case-contract-testing/contract-case/issues/1250)) ([135e04a](https://github.com/case-contract-testing/contract-case/commit/135e04a8b4309979ca4f483d6ad3f83c6828c3cb))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.28.1 to 0.28.2
+    * @contract-case/case-definition-dsl bumped from 0.28.1 to 0.28.2
+
 ## [0.28.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.28.0...@contract-case/dsl-java-v0.28.1) (2026-01-19)
 
 
