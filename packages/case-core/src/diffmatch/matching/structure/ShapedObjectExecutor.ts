@@ -14,7 +14,7 @@ import {
   makeResults,
   matchingError,
   MatcherExecutor,
-  describeConcat,
+  concatenateDescribe,
   describeObject,
   describeMessage,
 } from '@contract-case/case-plugin-base';
@@ -123,7 +123,7 @@ export const ShapedObjectExecutor: MatcherExecutor<
   CaseNodeFor<typeof SHAPED_OBJECT_MATCHER_TYPE>
 > = {
   describe: (matcher, context) =>
-    describeConcat(
+    concatenateDescribe(
       describeMessage('an object shaped like '),
       describeObject(
         Object.entries(matcher['_case:matcher:children']).map(

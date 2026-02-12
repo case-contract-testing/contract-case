@@ -221,7 +221,7 @@ export interface TraversalFns {
    * Call this on any children of your matcher.
    * If your matcher has more than one child, call this
    * function multiple times and combine the result using the describe helper
-   * functions ({@link describeConcat}, {@link describeJoin}, etc).
+   * functions ({@link concatenateDescribe}, {@link describeJoin}, etc).
    *
    * @param matcherOrData - the next matcher to check
    * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}

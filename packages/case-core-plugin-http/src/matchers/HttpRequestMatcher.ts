@@ -14,7 +14,7 @@ import {
   MatcherExecutor,
   combineResultPromises,
   DescribeSegment,
-  describeConcat,
+  concatenateDescribe,
   describeMessage,
   renderToString,
 } from '@contract-case/case-plugin-base';
@@ -179,7 +179,7 @@ const name = (
     segments.push(describeMessage(' without a body'));
   }
 
-  return describeConcat(...segments);
+  return concatenateDescribe(...segments);
 };
 
 const validate = (

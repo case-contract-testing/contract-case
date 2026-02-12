@@ -12,7 +12,7 @@ import {
   CaseConfigurationError,
   MatcherExecutor,
   mustResolveToString,
-  describeConcat,
+  concatenateDescribe,
   describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
@@ -60,7 +60,7 @@ export const UrlEncodedStringMatcher: MatcherExecutor<
   CoreUrlEncodedStringMatcher
 > = {
   describe: (matcher, matchContext) =>
-    describeConcat(
+    concatenateDescribe(
       describeMessage("uriEncoded string '"),
       matchContext.descendAndDescribe(
         matcher['_case:matcher:child'],

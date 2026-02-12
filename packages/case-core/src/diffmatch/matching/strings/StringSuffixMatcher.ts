@@ -11,7 +11,7 @@ import {
   MatcherExecutor,
   mustResolveToString,
   CaseConfigurationError,
-  describeConcat,
+  concatenateDescribe,
   describeMessage,
   renderToString,
 } from '@contract-case/case-plugin-base';
@@ -56,7 +56,7 @@ export const StringSuffixMatcher: MatcherExecutor<
   CoreStringSuffixMatcher
 > = {
   describe: (matcher: CoreStringSuffixMatcher, matchContext) =>
-    describeConcat(
+    concatenateDescribe(
       describeMessage(
         `"${renderToString(
           matchContext.descendAndDescribe(

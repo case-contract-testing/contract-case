@@ -1174,6 +1174,53 @@
           "name": "combineResults"
         },
         {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!concatenateDescribe:function(1)",
+          "docComment": "/**\n * Creates a concatenation of multiple description segments, with no space between them. This is useful for when you need arbitrary descriptions produced from different segments or a semi-structured sentence.\n *\n * @param segments - the segments to concatenate\n *\n * @returns a concat {@link DescribeSegment}\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "concatenateDescribe: (...segments: "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            },
+            {
+              "kind": "Content",
+              "text": "[]"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "DescribeSegment",
+              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
+            }
+          ],
+          "fileUrlPath": "src/matchers/describe.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 4,
+            "endIndex": 5
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "segments",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "concatenateDescribe"
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!ConfigurationError:interface",
           "docComment": "/**\n * The data for a user configuration error.\n *\n * Don't create this directly, use `configurationError` to create one.\n *\n * @public\n */\n",
@@ -2632,53 +2679,6 @@
             }
           ],
           "name": "describeArray"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@contract-case/case-plugin-base!describeConcat:function(1)",
-          "docComment": "/**\n * Creates a concatenation of multiple description segments.\n *\n * @param segments - the segments to concatenate\n *\n * @returns a concat {@link DescribeSegment}\n *\n * @public\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "describeConcat: (...segments: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DescribeSegment",
-              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": ") => "
-            },
-            {
-              "kind": "Reference",
-              "text": "DescribeSegment",
-              "canonicalReference": "@contract-case/case-plugin-base!DescribeSegment:type"
-            }
-          ],
-          "fileUrlPath": "src/matchers/describe.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 4,
-            "endIndex": 5
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "segments",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "describeConcat"
         },
         {
           "kind": "Function",
@@ -6769,7 +6769,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!TraversalFns#descendAndDescribe:member",
-              "docComment": "/**\n * Descend into the provided matcher, describing the contents as a structured {@link DescribeSegment}.\n *\n * The top level of this function can be called by users as a convenience. Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.\n *\n * Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result using the describe helper functions ({@link describeConcat}, {@link describeJoin}, etc).\n *\n * @param matcherOrData - the next matcher to check\n *\n * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}\n *\n * @returns a {@link DescribeSegment} representing the description.\n */\n",
+              "docComment": "/**\n * Descend into the provided matcher, describing the contents as a structured {@link DescribeSegment}.\n *\n * The top level of this function can be called by users as a convenience. Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.\n *\n * Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result using the describe helper functions ({@link concatenateDescribe}, {@link describeJoin}, etc).\n *\n * @param matcherOrData - the next matcher to check\n *\n * @param parentMatchContext - the match context to pass to the matcher. You should construct one of these with {@link addLocation}\n *\n * @returns a {@link DescribeSegment} representing the description.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

@@ -13,7 +13,7 @@ import {
   makeResults,
   matchingError,
   MatcherExecutor,
-  describeConcat,
+  concatenateDescribe,
   describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
@@ -76,7 +76,7 @@ export const ObjectEachValueMatches: MatcherExecutor<
   CoreObjectValuesMatch
 > = {
   describe: (matcher, context) =>
-    describeConcat(
+    concatenateDescribe(
       describeMessage('an object where each value is '),
       context.descendAndDescribe(
         matcher['_case:matcher:matcher'],

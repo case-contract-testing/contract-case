@@ -16,7 +16,7 @@ import {
   MatchResult,
   MatcherExecutor,
   CaseConfigurationError,
-  describeConcat,
+  concatenateDescribe,
   describeJoin,
   describeMessage,
 } from '@contract-case/case-plugin-base';
@@ -119,7 +119,7 @@ export const ArrayContains: MatcherExecutor<
   CoreArrayContainsMatcher
 > = {
   describe: (matcher, matchContext) =>
-    describeConcat(
+    concatenateDescribe(
       describeMessage('an array containing '),
       describeJoin(
         ' and ',

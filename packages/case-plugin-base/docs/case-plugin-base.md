@@ -171,6 +171,17 @@ Combines multiple [MatchResult](./case-plugin-base.matchresult.md) objects into 
 </td></tr>
 <tr><td>
 
+[concatenateDescribe(segments)](./case-plugin-base.concatenatedescribe.md)
+
+
+</td><td>
+
+Creates a concatenation of multiple description segments, with no space between them. This is useful for when you need arbitrary descriptions produced from different segments or a semi-structured sentence.
+
+
+</td></tr>
+<tr><td>
+
 [coreLookupMatcher(uniqueName, child)](./case-plugin-base.corelookupmatcher.md)
 
 
@@ -201,17 +212,6 @@ Helper function that will name this mock if it isn't already named.
 Creates a description segment for an array, wrapped in square brackets.
 
 Renders as `[element1,element2]`<!-- -->.
-
-
-</td></tr>
-<tr><td>
-
-[describeConcat(segments)](./case-plugin-base.describeconcat.md)
-
-
-</td><td>
-
-Creates a concatenation of multiple description segments.
 
 
 </td></tr>

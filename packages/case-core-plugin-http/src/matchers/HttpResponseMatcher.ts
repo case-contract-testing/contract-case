@@ -13,7 +13,7 @@ import {
   isCaseNode,
   combineResultPromises,
   DescribeSegment,
-  describeConcat,
+  concatenateDescribe,
   describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
@@ -102,7 +102,7 @@ const name = (
 
   const segments: DescribeSegment[] = [
     describeMessage('returns a '),
-    describeConcat(
+    concatenateDescribe(
       describeMessage('('),
       context.descendAndDescribe(
         response.status,
@@ -132,7 +132,7 @@ const name = (
     );
   }
 
-  return describeConcat(...segments);
+  return concatenateDescribe(...segments);
 };
 
 const validate = (

@@ -12,7 +12,7 @@ import {
   matchingError,
   CaseConfigurationError,
   DescribeSegment,
-  describeConcat,
+  concatenateDescribe,
   describeMessage,
   renderToString,
 } from '@contract-case/case-plugin-base';
@@ -74,7 +74,7 @@ const describe = (
   context: MatchContext,
 ): DescribeSegment => {
   if (isSuccessResult(matcher)) {
-    return describeConcat(
+    return concatenateDescribe(
       describeMessage('returns '),
       context.descendAndDescribe(
         matcher.success,
@@ -106,7 +106,7 @@ const describe = (
     );
   }
 
-  return describeConcat(...segments);
+  return concatenateDescribe(...segments);
 };
 
 const parseActualSuccess = (

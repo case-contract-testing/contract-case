@@ -14,7 +14,7 @@ import {
   CaseCoreError,
   hasErrors,
   DescribeSegment,
-  describeConcat,
+  concatenateDescribe,
   describeJoin,
   describeMessage,
 } from '@contract-case/case-plugin-base';
@@ -51,15 +51,12 @@ const describe = (
 ): DescribeSegment =>
   expectedArguments.length === 0
     ? describeMessage(`An invocation of ${getFunctionName(context)}()`)
-    : describeConcat(
+    : concatenateDescribe(
         describeMessage(`An invocation of ${getFunctionName(context)}( `),
         describeJoin(
           ', ',
           expectedArguments.map((arg, index) =>
-            context.descendAndDescribe(
-              arg,
-              addLocation(`[${index}]`, context),
-            ),
+            context.descendAndDescribe(arg, addLocation(`[${index}]`, context)),
           ),
         ),
         describeMessage(' )'),

@@ -11,7 +11,7 @@ import {
   MatcherExecutor,
   mustResolveToString,
   CaseConfigurationError,
-  describeConcat,
+  concatenateDescribe,
   describeMessage,
   renderToString,
 } from '@contract-case/case-plugin-base';
@@ -53,7 +53,7 @@ export const StringPrefixMatcher: MatcherExecutor<
   CoreStringPrefixMatcher
 > = {
   describe: (matcher: CoreStringPrefixMatcher, matchContext) =>
-    describeConcat(
+    concatenateDescribe(
       describeMessage(`"${matcher['_case:matcher:prefix']}`),
       describeMessage(
         `${renderToString(

@@ -8,7 +8,7 @@ Descend into the provided matcher, describing the contents as a structured [Desc
 
 The top level of this function can be called by users as a convenience. Additionally, it's called in some cases where ContractCase wants to uniquely identify a matcher.
 
-Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result using the describe helper functions ([describeConcat()](./case-plugin-base.describeconcat.md)<!-- -->, [describeJoin()](./case-plugin-base.describejoin.md)<!-- -->, etc).
+Call this on any children of your matcher. If your matcher has more than one child, call this function multiple times and combine the result using the describe helper functions ([concatenateDescribe()](./case-plugin-base.concatenatedescribe.md)<!-- -->, [describeJoin()](./case-plugin-base.describejoin.md)<!-- -->, etc).
 
 **Signature:**
 

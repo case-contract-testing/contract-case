@@ -12,7 +12,7 @@ import {
   combineResultPromises,
   addLocation,
   MatcherExecutor,
-  describeConcat,
+  concatenateDescribe,
   describeMessage,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
@@ -128,7 +128,7 @@ export const HttpBasicAuthMatcher: MatcherExecutor<
   CoreHttpBasicAuthValueMatcher
 > = {
   describe: (matcher, matchContext) =>
-    describeConcat(
+    concatenateDescribe(
       describeMessage("http basic auth with username='"),
       matchContext.descendAndDescribe(
         matcher['_case:matcher:username'],

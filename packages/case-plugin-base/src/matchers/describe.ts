@@ -118,13 +118,15 @@ export const describeArray = (
 });
 
 /**
- * Creates a concatenation of multiple description segments.
+ * Creates a concatenation of multiple description segments, with no space between them.
+ * This is useful for when you need arbitrary descriptions produced from different segments
+ * or a semi-structured sentence.
  *
  * @public
  * @param segments - the segments to concatenate
  * @returns a concat {@link DescribeSegment}
  */
-export const describeConcat = (
+export const concatenateDescribe = (
   ...segments: DescribeSegment[]
 ): DescribeSegment => ({
   kind: 'concat',

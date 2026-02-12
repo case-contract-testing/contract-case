@@ -73,6 +73,9 @@ export const combineResultPromises: (...results: (MatchResult | Promise<MatchRes
 export const combineResults: (...results: MatchResult[]) => MatchResult;
 
 // @public
+export const concatenateDescribe: (...segments: DescribeSegment[]) => DescribeSegment;
+
+// @public
 export interface ConfigurationError {
     code: ConfigurationErrorCode;
     // (undocumented)
@@ -192,9 +195,6 @@ export const defaultNameMock: <M extends AnyMockDescriptor>(mock: M, context: Ma
 
 // @public
 export const describeArray: (elements: DescribeSegment[]) => DescribeSegment;
-
-// @public
-export const describeConcat: (...segments: DescribeSegment[]) => DescribeSegment;
 
 // @public
 export const describeJoin: (separator: string, segments: DescribeSegment[]) => DescribeSegment;
