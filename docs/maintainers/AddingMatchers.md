@@ -50,29 +50,97 @@ the raw data (mostly parameters if your matcher has any)
 Next, we will add the behaviour of the matcher, both for matching, and for
 stripping the matchers. This goes in `packages/case-core`
 
-1. Add a new `MatcherExecutor<typeof YOUR_NEW_TYPE>` in an appropriate place in `diffmatch`. For example:
+1. Add a new `MatcherExecutor<typeof YOUR_NEW_TYPE>` in an appropriate place in `diffmatch`. A `MatcherExecutor` has four functions: `describe`, `check`, `strip`, and `validate`. For example:
 
    ```ts
-   const strip: StripMatcherFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
+   const describe: NameMatcherFn<
+     CaseNodeFor<typeof ARRAY_LENGTH_MATCHER_TYPE>
+   > = (
+     matcher: CoreArrayLengthMatcher,
+     matchContext: MatchContext,
+   ): DescribeSegment =>
+     describeMessage(
+       `an array with length between ${matcher['_case:matcher:minLength']} and ${matcher['_case:matcher:maxLength']}`,
+     );
+
+   const strip: StripMatcherFn<CaseNodeFor<typeof ARRAY_LENGTH_MATCHER_TYPE>> = (
        matcher: CoreArrayLengthMatcher,
        matchContext: MatchContext
    ): AnyData => // implement the strip matcher function here
 
 
-   const check: CheckMatchFn<typeof ARRAY_LENGTH_MATCHER_TYPE> = (
+   const check: CheckMatchFn<CaseNodeFor<typeof ARRAY_LENGTH_MATCHER_TYPE>> = (
        matcher: CoreArrayLengthMatcher,
        matchContext: MatchContext,
        actual: unknown
    ): Promise<MatchResult> | MatchResult => // Implement your check here
 
+   const validate: ValidateMatcherFn<
+     CaseNodeFor<typeof ARRAY_LENGTH_MATCHER_TYPE>
+   > = (
+     matcher: CoreArrayLengthMatcher,
+     matchContext: MatchContext,
+   ): Promise<void> =>
+     // Validate matcher configuration, eg check that minLength <= maxLength.
+     // Throw CaseConfigurationError if invalid.
+     Promise.resolve();
+
    export const ArrayLengthExecutor: MatcherExecutor<
-       typeof ARRAY_LENGTH_MATCHER_TYPE
-   > = { check, strip };
+       typeof ARRAY_LENGTH_MATCHER_TYPE,
+       CaseNodeFor<typeof ARRAY_LENGTH_MATCHER_TYPE>
+   > = { describe, check, strip, validate };
    ```
 
+   #### The `describe` function
+
+   The `describe` function returns a `DescribeSegment`, a structured description
+   of the matcher in human-readable English. This is used for naming matchers
+   (e.g., as lookup keys) and can also be used for pretty-printed output.
+
+   **Important**: Any two matchers that produce the same rendered string (via
+   `renderToString()`) **must** have the exact same matching behaviour in all
+   cases. The core relies on this property.
+
+   Use the helper functions from `@contract-case/case-plugin-base` to build descriptions:
+
+   - `describeMessage('text')` — a plain text segment
+   - `describeObject(entries)` — wraps key/value entries in `{}`, where `entries` is an array of `{ key: string, value: DescribeSegment }`
+   - `describeArray(elements)` — wraps elements in `[]`, where `elements` is an array of `DescribeSegment`
+   - `concatenateDescribe(segment1, segment2, ...)` — concatenates segments with no separator
+   - `describeJoin(separator, segments)` — joins segments with a separator string
+
+   For simple matchers, `describeMessage` is usually sufficient. For matchers
+   with children, use `matchContext.descendAndDescribe()` to recurse into child
+   matchers and combine the results with the helpers above. For example:
+
+   ```ts
+   // A simple leaf matcher
+   describe: () => describeMessage('null')
+
+   // A matcher with children that form an object
+   describe: (matcher, context) =>
+     concatenateDescribe(
+       describeMessage('an object shaped like '),
+       describeObject(
+         Object.entries(matcher['_case:matcher:children']).map(
+           ([key, child]) => ({
+             key,
+             value: context.descendAndDescribe(child, addLocation(key, context)),
+           }),
+         ),
+       ),
+     )
+   ```
+
+   If you need the description as a flat string (e.g., for embedding in error
+   messages), use `renderToString()`.
+
+   #### The other functions
+
    If you need to recurse further into any children of your matchers, use
-   `matchContext.descendAndCheck()` or `matchContext.descendAndStrip()` as
-   appropriate. See the existing matchers for examples.
+   `matchContext.descendAndCheck()`, `matchContext.descendAndStrip()`, or
+   `matchContext.descendAndDescribe()` as appropriate. See the existing matchers
+   for examples.
 
    If your matcher doesn't have enough context to strip matchers (eg, for
    auxillery matchers designed to be used with `and()`), then throw a `new StripUnsupportedError(matcher, matchContext)` inside your implementation of `strip()`.
