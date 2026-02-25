@@ -1,7 +1,7 @@
 {
-  "name": "@contract-case/contract-case-connector-js",
+  "name": "@contract-case/contract-case-dsl-js",
   "version": "0.28.2",
-  "description": "Internal JavaScript/TypeScript connector code for ContractCase test framework bindings",
+  "description": "User-facing DSL for ContractCase contract testing in JavaScript/TypeScript",
   "keywords": [
     "testing",
     "api",
@@ -33,7 +33,7 @@
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
+    "format:base": "prettier --parser typescript \"src/**/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write "
   },
@@ -55,7 +55,12 @@
     "typescript": "5.9.3"
   },
   "dependencies": {
+    "@contract-case/contract-case-connector-js": "0.28.2",
     "@contract-case/case-connector": "0.28.2",
-    "chalk": "^4.1.2"
+    "@contract-case/case-core-plugin-http-dsl": "0.28.2",
+    "@contract-case/case-definition-dsl": "0.28.2",
+    "@contract-case/case-entities-internal": "0.28.2",
+    "@contract-case/case-plugin-base": "0.28.2",
+    "@contract-case/case-plugin-dsl-types": "0.28.2"
   }
 }

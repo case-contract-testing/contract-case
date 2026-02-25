@@ -1,14 +1,15 @@
 {
-  "name": "@contract-case/contract-case-connector-js",
+  "name": "@contract-case/contract-case-dsl-js-vitest",
   "version": "0.28.2",
-  "description": "Internal JavaScript/TypeScript connector code for ContractCase test framework bindings",
+  "description": "ContractCase contract testing suite for Vitest",
   "keywords": [
     "testing",
     "api",
     "pact",
     "contracttesting",
     "contract-testing",
-    "contractcase"
+    "contractcase",
+    "vitest"
   ],
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io",
@@ -33,9 +34,11 @@
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
+    "format:base": "prettier --parser typescript \"src/**/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
-    "format:fix": "npm run format:base -- --write "
+    "format:fix": "npm run format:base -- --write ",
+    "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true vitest run",
+    "test:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_publish=false vitest run"
   },
   "funding": {
     "type": "individual",
@@ -49,13 +52,22 @@
   },
   "devDependencies": {
     "@contract-case/eslint-config-case-maintainer": "0.28.2",
+    "@types/body-parser": "^1.19.2",
+    "@types/express": "^4.17.14",
+    "axios": "^1.13.5",
+    "body-parser": "^2.2.0",
+    "cross-env": "^10.1.0",
     "eslint": "^9.39.1",
+    "express": "^4.20.0",
     "prettier": "3.6.2",
     "rimraf": "^6.1.2",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "^3.2.1"
+  },
+  "peerDependencies": {
+    "vitest": "^1.0.0 || ^2.0.0 || ^3.0.0"
   },
   "dependencies": {
-    "@contract-case/case-connector": "0.28.2",
-    "chalk": "^4.1.2"
+    "@contract-case/contract-case-dsl-js": "0.28.2"
   }
 }
