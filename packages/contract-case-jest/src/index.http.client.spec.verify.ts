@@ -5,7 +5,7 @@ import { baseService } from './__tests__/server/domain/baseService.js';
 import { Dependencies } from './__tests__/server/domain/types.js';
 import { User } from './__tests__/server/entities/responses.js';
 import { verifyContract } from './boundaries/jest/jest.js';
-import { StateHandlers } from './entities/types.js';
+import { StateHandlers } from './index.js';
 
 describe('Server verification', () => {
   // SERVER SETUP BOILERPLATE

@@ -1,10 +1,10 @@
-import { BoundaryResult } from '@contract-case/case-connector';
-import { mapSuccessWithAny } from './boundaryResultToJs';
+import { BoundaryResult } from '@contract-case/case-connector/cjs';
+import { mapSuccessWithAny } from './boundaryResultToJs.js';
 import {
   ContractCaseCoreError,
   VerificationHandle,
   VerificationTestHandle,
-} from '../../../entities';
+} from '../../../entities/index.js';
 
 const TEST_HANDLE_EXPECTED_FIELDS = {
   filePath: 'string',
@@ -26,7 +26,7 @@ const isVerificationTestHandle = (
   if (typeof handle !== 'object' || handle == null) {
     throw new ContractCaseCoreError(
       `Bug: The verification test handle array had a non-object or null. Full item: ${handle}`,
-      'contract-case-jest',
+      'contract-case-connector-js',
     );
   }
   Object.entries(TEST_HANDLE_EXPECTED_FIELDS).forEach(
@@ -34,7 +34,7 @@ const isVerificationTestHandle = (
       if (!(expectedKey in handle)) {
         throw new ContractCaseCoreError(
           `Bug: One of the verification handles didn't include a key for '${expectedKey}'. Full object: ${handle}`,
-          'contract-case-jest',
+          'contract-case-connector-js',
         );
       }
       if (
@@ -43,7 +43,7 @@ const isVerificationTestHandle = (
       ) {
         throw new ContractCaseCoreError(
           `Bug: One of the verification handles had the wrong type for key '${expectedKey}'. Expected ${expectedValue} Full object: ${handle}`,
-          'contract-case-jest',
+          'contract-case-connector-js',
         );
       }
     },
@@ -57,7 +57,7 @@ const checkContractVerificationHandle = (
   if (typeof handle !== 'object' || handle == null) {
     throw new ContractCaseCoreError(
       `Bug: The contract verification handle array had a non-object or null. Full item: ${handle}`,
-      'contract-case-jest',
+      'contract-case-connector-js',
     );
   }
   Object.entries(CONTRACT_HANDLE_EXPECTED_FIELDS).forEach(
@@ -65,7 +65,7 @@ const checkContractVerificationHandle = (
       if (!(expectedKey in handle)) {
         throw new ContractCaseCoreError(
           `Bug: One of the verification handles didn't include a key for '${expectedKey}'. Full object: ${handle}`,
-          'contract-case-jest',
+          'contract-case-connector-js',
         );
       }
       if (
@@ -74,7 +74,7 @@ const checkContractVerificationHandle = (
       ) {
         throw new ContractCaseCoreError(
           `Bug: One of the verification handles had the wrong type for key '${expectedKey}'. Expected ${expectedValue} Full object: ${handle}`,
-          'contract-case-jest',
+          'contract-case-connector-js',
         );
       }
     },
@@ -82,7 +82,7 @@ const checkContractVerificationHandle = (
   if (!('testHandles' in handle && Array.isArray(handle.testHandles))) {
     throw new ContractCaseCoreError(
       `Bug: One of the verification handles didn't include a key for 'testHandles' or it wasn't an array. Full object: ${JSON.stringify(handle)}`,
-      'contract-case-jest',
+      'contract-case-connector-js',
     );
   }
   return handle.testHandles.every(isVerificationTestHandle);
@@ -95,7 +95,7 @@ export const mapContractVerificationHandles = (
   if (!Array.isArray(array)) {
     throw new ContractCaseCoreError(
       "Bug: The result from the contract verification call wasn't an array",
-      'contract-case-jest',
+      'contract-case-connector-js',
     );
   }
 

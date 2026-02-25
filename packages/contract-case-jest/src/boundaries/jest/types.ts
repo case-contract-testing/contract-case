@@ -1,9 +1,9 @@
-import { ContractCaseDefiner } from '../../connectors/ContractDefiner.js';
-import { ContractVerifier } from '../../connectors/ContractVerifier.js';
-import {
+import type {
+  ContractCaseDefiner,
+  ContractVerifier,
   ContractCaseConfig,
   ContractCaseVerifierConfig,
-} from '../../entities/config.js';
+} from '@contract-case/contract-case-connector-js';
 
 export type ContractCaseJestConfig = ContractCaseConfig;
 export type ContractCaseJestVerifierConfig = ContractCaseVerifierConfig;

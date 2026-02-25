@@ -1,0 +1,68 @@
+{
+  "name": "@contract-case/contract-case-vitest",
+  "version": "0.28.2",
+  "description": "ContractCase contract testing suite for Vitest",
+  "keywords": [
+    "testing",
+    "api",
+    "pact",
+    "contracttesting",
+    "contract-testing",
+    "contractcase",
+    "vitest"
+  ],
+  "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
+  "homepage": "https://case.contract-testing.io",
+  "license": "BSD-3-Clause",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "directories": {
+    "src": "src",
+    "dist": "dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/case-contract-testing/case.git"
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format:base": "prettier --parser typescript \"src/**/*.ts\"",
+    "format:check": "npm run format:base -- --list-different",
+    "format:fix": "npm run format:base -- --write ",
+    "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true vitest run",
+    "test:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_publish=false vitest run"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/TimothyJones"
+  },
+  "engines": {
+    "node": ">=14.21.2"
+  },
+  "bugs": {
+    "url": "https://github.com/case-contract-testing/case/issues"
+  },
+  "devDependencies": {
+    "@contract-case/eslint-config-case-maintainer": "0.28.2",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.39.1",
+    "prettier": "3.6.2",
+    "rimraf": "^6.1.2",
+    "typescript": "5.9.3",
+    "vitest": "^3.2.1"
+  },
+  "peerDependencies": {
+    "vitest": "^1.0.0 || ^2.0.0 || ^3.0.0"
+  },
+  "dependencies": {
+    "@contract-case/contract-case-connector-js": "0.28.2"
+  }
+}

@@ -1,5 +1,4 @@
-/* eslint-disable jest/expect-expect */
-/* eslint-disable jest/no-export */
+import { describe, it, afterAll, vi } from 'vitest';
 import {
   ContractCaseDefiner,
   ContractVerifier,
@@ -9,15 +8,15 @@ import type {
   ContractWriteSuccess,
 } from '@contract-case/contract-case-connector-js';
 import type {
-  ContractCaseJestConfig,
-  ContractCaseJestVerifierConfig,
-  DefineCaseJestCallback,
-  VerifyCaseJestCallback,
+  ContractCaseVitestConfig,
+  ContractCaseVitestVerifierConfig,
+  DefineCaseVitestCallback,
+  VerifyCaseVitestCallback,
 } from './types.js';
 
 /**
  * @internal
- * The timeout to use to override jest's default timeout.
+ * The timeout to use to override vitest's default timeout.
  *
  * If you update this, make sure you update the comments in {@link defineContract} and {@link verifyContract}.
  */
@@ -29,21 +28,21 @@ const TIMEOUT = 30000;
  * @param config - Configuration for this definition run (may be overridden in individual tests)
  * @param setupCallback - The test definitions
  * @param onContractDefineSuccess - An optional callback to call if the contract was written successfully
- * @param timeoutMillis - An optional timeout to set for jest's hooks and tests. Defaults to 30000
+ * @param timeoutMillis - An optional timeout to set for vitest's hooks and tests. Defaults to 30000
  * @returns
  */
 export const defineContract = (
-  config: ContractCaseJestConfig,
-  setupCallback: DefineCaseJestCallback,
+  config: ContractCaseVitestConfig,
+  setupCallback: DefineCaseVitestCallback,
   onContractDefineSuccess: (
     details: ContractWriteSuccess,
   ) => Promise<void> | void = () => {},
   timeoutMillis: number = TIMEOUT,
-): void =>
+): void => {
   describe(`Case contract definition`, () => {
     const contract = new ContractCaseDefiner({
       testRunId:
-        process.env['JEST_WORKER_ID'] || 'JEST_WORKER_ID_WAS_UNDEFINED',
+        process.env['VITEST_POOL_ID'] || 'VITEST_POOL_ID_WAS_UNDEFINED',
       ...config,
     });
 
@@ -53,11 +52,12 @@ export const defineContract = (
     );
 
     describe(`between ${config.consumerName} and ${config.providerName}`, () => {
-      jest.setTimeout(timeoutMillis);
+      vi.setConfig({ testTimeout: timeoutMillis });
 
       setupCallback(contract);
     });
   });
+};
 
 const renderHash = (metadata: ContractMetadata) =>
   '_case' in metadata &&
@@ -76,12 +76,12 @@ const renderHash = (metadata: ContractMetadata) =>
  * computed setup necessary
  * @param verificationCompleteCallback - Optional. Called once the verification is complete. In a future release, this will contain the details
  * of the verification success / failure.
- * @param timeoutMillis - An optional timeout to set for jest's hooks and tests. Defaults to 30000
+ * @param timeoutMillis - An optional timeout to set for vitest's hooks and tests. Defaults to 30000
  * @returns
  */
 export const verifyContract = (
-  config: ContractCaseJestVerifierConfig,
-  setupCallback: VerifyCaseJestCallback = () => {},
+  config: ContractCaseVitestVerifierConfig,
+  setupCallback: VerifyCaseVitestCallback = () => {},
   verificationComplete = () => {},
   timeoutMillis: number = TIMEOUT,
 ): void => {
@@ -90,7 +90,7 @@ export const verifyContract = (
   }
   describe(`Provider verification for ${config.providerName}`, () => {
     const verifier = new ContractVerifier(config);
-    jest.setTimeout(timeoutMillis);
+    vi.setConfig({ testTimeout: timeoutMillis });
 
     setupCallback(verifier);
 
@@ -102,7 +102,6 @@ export const verifyContract = (
           it(`${test.testName}`, () => verifier.runPreparedTest(test));
         });
       });
-      // TODO: Determine whether Jest runs tests in order always, and if not, do something else here.
       it('Overall verification result', () =>
         verifier.closePreparedVerification(contract.contractIndex));
     });

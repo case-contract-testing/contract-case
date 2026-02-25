@@ -32,5 +32,8 @@
     "test": "lerna run test",
     "test:verify": "lerna run test:verify",
     "coverage": "lcov-result-merger 'packages/*/*/lcov.info' combined-coverage.info --prepend-source-files"
+  },
+  "dependencies": {
+    "nx": "^22.5.2"
   }
 }

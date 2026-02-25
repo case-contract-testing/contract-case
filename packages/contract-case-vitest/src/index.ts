@@ -1,7 +1,7 @@
 import type { InteractionSetup } from '@contract-case/contract-case-connector-js';
 
 /*!
- * ContractCase Jest DSL
+ * ContractCase Vitest DSL
  * Copyright(c) 2022-2024 Timothy Jones (TLJ)
  * BSD-3-Clause license
  */
@@ -9,14 +9,14 @@ import type { InteractionSetup } from '@contract-case/contract-case-connector-js
 // Re-export all shared connector code
 export * from '@contract-case/contract-case-connector-js';
 
-// Re-export jest-specific bindings
+// Re-export vitest-specific bindings
 export * from './boundaries/index.js';
 
 // Namespace re-exports for backward compatibility
 export * as dsl from '@contract-case/contract-case-connector-js';
 export * as TestEquivalenceMatchers from '@contract-case/contract-case-connector-js';
 
-process.env['CASE_CONNECTOR_CLIENT'] = 'contract-case-jest';
+process.env['CASE_CONNECTOR_CLIENT'] = 'contract-case-vitest';
 
 // TODO remove this hack type and do it properly
 export type HttpRequestConfig = InteractionSetup<{

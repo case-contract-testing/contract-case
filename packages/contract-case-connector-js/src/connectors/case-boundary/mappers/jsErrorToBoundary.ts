@@ -1,5 +1,5 @@
 import { BoundaryFailure } from '@contract-case/case-connector/cjs';
-import { ContractCaseConfigurationError } from '../../../entities';
+import { ContractCaseConfigurationError } from '../../../entities/index.js';
 
 export const makeBoundaryFailure = (error: Error): BoundaryFailure =>
   new BoundaryFailure(
