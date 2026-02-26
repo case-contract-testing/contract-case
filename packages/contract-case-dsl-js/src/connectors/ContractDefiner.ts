@@ -14,16 +14,14 @@ import {
   mapSuccessWithAny,
   mapInvokeableFunction,
   errorHandler,
+  versionString,
 } from '@contract-case/contract-case-connector-js';
-
 import type {
   ContractCaseConfig,
   ContractWriteSuccess,
   IndividualFailedTestConfig,
   IndividualSuccessTestConfig,
 } from '@contract-case/contract-case-connector-js';
-
-import { versionString } from '@contract-case/contract-case-connector-js';
 
 const mapDefinition = (
   definition: ExampleDefinition,

@@ -14,7 +14,7 @@ import {
  */
 export const objectEachValueMatches = (
   matcher: AnyCaseMatcherOrData,
-  example?: Record<string, AnyCaseMatcherOrData>
+  example?: Record<string, AnyCaseMatcherOrData>,
 ): CoreObjectValuesMatch => ({
   '_case:matcher:type': OBJECT_VALUES_MATCH_TYPE,
   '_case:matcher:matcher': matcher,
@@ -29,7 +29,7 @@ export const objectEachValueMatches = (
  */
 export const objectEachKeyMatches = (
   matcher: AnyCaseMatcherOrData,
-  exampleKey?: string
+  exampleKey?: string,
 ): CoreObjectKeysMatcher => ({
   '_case:matcher:type': OBJECT_KEYS_MATCH_TYPE,
   '_case:matcher:matcher': matcher,

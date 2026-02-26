@@ -20,7 +20,10 @@ export {
 } from './connectors/case-boundary/mappers/config/config.js';
 
 // Internal printer and error handler
-export { defaultPrinter, crashPrinter } from './connectors/defaultTestPrinter.js';
+export {
+  defaultPrinter,
+  crashPrinter,
+} from './connectors/defaultTestPrinter.js';
 export { errorHandler, errorReporter } from './connectors/handler.js';
 
 // Entity types (shared between internal and user-facing code)

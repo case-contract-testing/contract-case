@@ -37,7 +37,7 @@ export const coreAndMatcher = (
  * @param content - The example object, array, primitive or matcher to match against
  */
 export const coreShapedLike = (
-  content: AnyCaseMatcherOrData
+  content: AnyCaseMatcherOrData,
 ): CoreCascadingMatcher & MatchContextByType => ({
   '_case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
   '_case:matcher:child': content,

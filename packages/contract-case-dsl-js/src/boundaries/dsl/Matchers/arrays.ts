@@ -7,11 +7,11 @@ import {
   ARRAY_CONTAINS_TYPE,
   CoreShapedArrayMatcher,
 } from '@contract-case/case-entities-internal';
+import { ContractCaseConfigurationError } from '@contract-case/contract-case-connector-js';
 import {
   coreArrayLengthMatcher,
   coreShapedArrayMatcher,
 } from './core/index.js';
-import { ContractCaseConfigurationError } from '@contract-case/contract-case-connector-js';
 
 type ArrayLengthOptions = { minLength?: number; maxLength?: number };
 

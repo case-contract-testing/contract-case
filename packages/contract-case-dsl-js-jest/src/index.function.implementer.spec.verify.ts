@@ -1,6 +1,5 @@
 import { verifyContract } from './boundaries/jest/jest.js';
-import { TriggerGroupMap } from './index.js';
-import { FunctionExecutorConfig } from './index.js';
+import { TriggerGroupMap, FunctionExecutorConfig } from './index.js';
 
 describe('verification', () => {
   verifyContract({

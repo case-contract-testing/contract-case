@@ -1,13 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/order */
 /* eslint-disable jest/expect-expect */
 
-import { willReceiveHttpRequest } from '@contract-case/contract-case-dsl-js-jest';
-// example-extract _creating-a-contract
 import {
+  willReceiveHttpRequest,
   ContractCaseDefiner,
   defineContract,
 } from '@contract-case/contract-case-dsl-js-jest';
+// example-extract _creating-a-contract
 
 defineContract(
   {

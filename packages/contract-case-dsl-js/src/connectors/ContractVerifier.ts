@@ -12,18 +12,14 @@ import {
   mapContractVerificationHandles,
   errorHandler,
   errorReporter,
+  ContractCaseConfigurationError,
+  versionString,
 } from '@contract-case/contract-case-connector-js';
-
 import type {
   ContractCaseVerifierConfig,
   ContractDescription,
   VerificationHandle,
   VerificationTestHandle,
-} from '@contract-case/contract-case-connector-js';
-
-import {
-  ContractCaseConfigurationError,
-  versionString,
 } from '@contract-case/contract-case-connector-js';
 
 export class ContractVerifier {

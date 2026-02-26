@@ -14,13 +14,13 @@ import {
   LookupableMatcher,
   ResolvesTo,
 } from '@contract-case/case-plugin-dsl-types';
+import type { LogLevel } from '@contract-case/contract-case-connector-js';
 import {
   coreLookupMatcherRequest,
   coreAndMatcher,
   coreLookupMatcher,
   coreShapedLike,
 } from './core/index.js';
-import type { LogLevel } from '@contract-case/contract-case-connector-js';
 
 /**
  * Meta matcher that matches all matchers provided. Use this to combine matching rules for the same element

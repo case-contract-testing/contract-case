@@ -2,8 +2,7 @@ import api from './__tests__/client/http.js';
 import { UserNotFoundConsumerError } from './__tests__/client/entities/errors.js';
 import { ApiError } from './__tests__/client/entities/apiErrors.js';
 
-import { verifyContract, HttpRequestConfig } from './index.js';
-import { TriggerGroupMap } from './index.js';
+import { verifyContract, HttpRequestConfig, TriggerGroupMap } from './index.js';
 
 verifyContract({
   providerName: 'http request provider',
