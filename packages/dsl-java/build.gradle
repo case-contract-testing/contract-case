@@ -50,8 +50,8 @@ dependencies {
     implementation 'com.diogonunes:JColor:5.5.1'
     implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
     implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
-    implementation 'org.projectlombok:lombok:1.18.42'
-    annotationProcessor 'org.projectlombok:lombok:1.18.42'
+    implementation 'org.projectlombok:lombok:1.18.44'
+    annotationProcessor 'org.projectlombok:lombok:1.18.44'
     compileOnly "com.google.protobuf:protoc:${protobufVersion}"
     compileOnly "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
     implementation "io.grpc:grpc-core:${grpcVersion}"
@@ -74,9 +74,9 @@ dependencies {
 
     // client implementation under test, in test.httpclient.implementation
     testImplementation 'org.apache.httpcomponents:fluent-hc:4.5.14'
-    testCompileOnly 'org.projectlombok:lombok:1.18.42'
+    testCompileOnly 'org.projectlombok:lombok:1.18.44'
     testCompileOnly 'org.jetbrains:annotations:26.1.0'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.42'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.44'
 
 }
 
