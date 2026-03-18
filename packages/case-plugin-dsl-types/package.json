@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-plugin-dsl-types",
-  "version": "0.28.2",
+  "version": "0.29.0",
   "description": "Types for writing the definition DSL for plugins for the ContractCase test framework",
   "keywords": [
     "testing",
@@ -50,8 +50,8 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "@contract-case/case-maintainer-config": "0.28.2",
-    "@contract-case/eslint-config-case-maintainer": "0.28.2",
+    "@contract-case/case-maintainer-config": "0.29.0",
+    "@contract-case/eslint-config-case-maintainer": "0.29.0",
     "@microsoft/api-documenter": "^7.28.2",
     "@microsoft/api-extractor": "^7.52.13",
     "eslint": "^9.39.1",
