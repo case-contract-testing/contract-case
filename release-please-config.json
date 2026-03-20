@@ -18,7 +18,10 @@
         "@contract-case/case-definition-generator",
         "@contract-case/cli",
         "documentation",
-        "@contract-case/contract-case-jest",
+        "@contract-case/contract-case-connector-js",
+        "@contract-case/contract-case-dsl-js",
+        "@contract-case/contract-case-dsl-js-jest",
+        "@contract-case/contract-case-dsl-js-vitest",
         "@contract-case/case-connector",
         "@contract-case/case-connector-proto",
         "@contract-case/case-maintainer-config",
@@ -144,9 +147,30 @@
         { "type": "ci", "section": "Continuous Integration", "hidden": true }
       ]
     },
-    "packages/contract-case-jest": {
-      "component": "@contract-case/contract-case-jest",
+    "packages/contract-case-connector-js": {
+      "component": "@contract-case/contract-case-connector-js",
+      "extra-files": ["package.json"],
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/contract-case-dsl-js": {
+      "component": "@contract-case/contract-case-dsl-js",
+      "extra-files": ["package.json"],
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/contract-case-dsl-js-jest": {
+      "component": "@contract-case/contract-case-dsl-js-jest",
       "extra-files": ["src/entities/versionString.ts", "package.json"],
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/contract-case-dsl-js-vitest": {
+      "component": "@contract-case/contract-case-dsl-js-vitest",
+      "extra-files": ["package.json"],
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "changelog-path": "CHANGELOG.md"

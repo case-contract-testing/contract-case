@@ -1,0 +1,15 @@
+{
+  "extends": "@contract-case/case-maintainer-config/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist/",
+    "module": "nodenext",
+    "moduleResolution": "nodenext"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "dist/**/*.js",
+    "coverage"
+  ]
+}
