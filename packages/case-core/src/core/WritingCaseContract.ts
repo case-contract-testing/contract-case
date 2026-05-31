@@ -11,6 +11,7 @@ import {
   CaseExample,
   CaseConfigurationError,
   ConfigurationErrorCode,
+  ErrorCodes,
 } from '@contract-case/case-plugin-base';
 
 import { BaseCaseContract } from './BaseCaseContract';
@@ -238,6 +239,7 @@ export class WritingCaseContract extends BaseCaseContract {
       throw new CaseConfigurationError(
         'The contract was empty when endRecord was called, but it must have interactions in it before it can be written.\nEnsure that calls to define the contract are made before endRecord is called.',
         writingContext,
+        ErrorCodes.configuration.NO_INTERACTIONS_DEFINED,
       );
     }
     //  - if success, write contract
