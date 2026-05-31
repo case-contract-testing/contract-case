@@ -70,6 +70,6 @@
     "@contract-case/case-plugin-base": "0.28.2",
     "axios": "^1.15.0",
     "express": "^4.20.0",
-    "qs": "^6.14.2"
+    "qs": "^6.15.2"
   }
 }
