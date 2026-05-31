@@ -30,7 +30,7 @@ break these rules won't be accepted.
 - **No hand-written JSON matcher/mock example definitions go in your DSL.** The pure-json interaction and matcher definitions are already exposed by
   other packages. You should not be creating JSON for Interactions or Matchers in your
   DSL, unless you are depending on those other translated boundary packages to do so. Long term, if a non-JSii language were to be supported, it would need its own JSON definitions (ideally, parsed from `@contract-case/case-entities-internal`).
-- **No boundary types (from the `case-boundary` module inside `@contract-case/case-connector`) are to be exposed to users.** These types are internal implementation details. (The standalone `@contract-case/case-boundary` package has been removed - see [the case boundary API reference](./reference/case-boundary-API.md).)
+- **No boundary types (from the `case-boundary` module inside `@contract-case/case-connector`) are to be exposed to users.** These types are internal implementation details.
 - **Your user-facing package may depend on other user-facing packages.** For example, a Gradle DSL can depend on the
   Java DSL. Or a Jest DSL can depend on the TypeScript DSL.
 
