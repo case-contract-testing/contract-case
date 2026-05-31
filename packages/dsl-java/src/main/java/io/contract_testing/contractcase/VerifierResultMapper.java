@@ -27,6 +27,11 @@ class VerifierResultMapper {
       }
       String consumerSlug = root.has("consumerSlug") ? root.get("consumerSlug").asText() : null;
       String providerSlug = root.has("providerSlug") ? root.get("providerSlug").asText() : null;
+      String compatibility = root.has("verificationResult") ? root.get("verificationResult").asText() : null;
+      if(compatibility == null) {
+        throw new ContractCaseCoreError("Null verificationResult field in the toVerificationResult payload. This is a bug in the core");
+      }
+
       Map<String, String> metadata = new HashMap<>();
       if (root.has("metadata")) {
         flatten(root.get("metadata"), "", metadata);
@@ -36,7 +41,8 @@ class VerifierResultMapper {
           description,
           consumerSlug,
           providerSlug,
-          metadata
+          metadata,
+          toCompatibility(compatibility)
       );
     } catch (JsonProcessingException e) {
       throw new ContractCaseCoreError("Unable to parse the VerificationResult", e);
@@ -60,6 +66,14 @@ class VerifierResultMapper {
     } catch (JsonProcessingException e) {
       throw new ContractCaseCoreError("Unable to parse the VerificationHandles", e);
     }
+  }
+
+  private static VerificationResult.Compatibility toCompatibility(String compatibility) {
+    return switch(compatibility) {
+      case "COMPATIBLE" -> VerificationResult.Compatibility.COMPATIBLE;
+      case "INCOMPATIBLE" -> VerificationResult.Compatibility.INCOMPATIBLE;
+      default -> throw new ContractCaseCoreError("Unable to parse verification that returned verificationResult '" + compatibility + '"');
+    };
   }
 
   private static void flatten(JsonNode node, String prefix, Map<String, String> map) {

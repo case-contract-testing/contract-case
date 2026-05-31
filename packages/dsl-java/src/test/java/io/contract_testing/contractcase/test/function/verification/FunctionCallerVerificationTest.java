@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.contract_testing.contractcase.ContractVerifier;
+import io.contract_testing.contractcase.VerificationResult;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
@@ -101,6 +102,7 @@ public class FunctionCallerVerificationTest {
 
       assertThat(result.contractPath()).isNotNull();
       assertThat(result.metadata().get("_case.version")).isNotNull();
+      assertThat(result.compatibility()).isEqualTo(VerificationResult.Compatibility.COMPATIBLE);
     }
 
   }
