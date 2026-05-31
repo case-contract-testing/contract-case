@@ -1,18 +1,19 @@
 {
-  "extends": "@contract-case/case-maintainer-config/tsconfig.json",
-  "include": [
-    "**/*.ts",
-    "packages/case-connector/src/connectors/grpc/contract-case-stream.mts",
-    "packages/case-connector/bin/case-connector.mts",
-    "packages/contract-case-jest/bin/ContractCase.mts",
-    "packages/case-connector-proto/src/index.js"
-  ],
-  "exclude": [
-    "jest.config.ts",
-    "dist/**/*.js",
-    "example/*",
-    "coverage",
-    "dist",
-    "node_modules"
+  "files": [],
+  "references": [
+    { "path": "./packages/case-connector" },
+    { "path": "./packages/case-connector-proto" },
+    { "path": "./packages/case-core" },
+    { "path": "./packages/case-core-plugin-function" },
+    { "path": "./packages/case-core-plugin-function-dsl" },
+    { "path": "./packages/case-core-plugin-http" },
+    { "path": "./packages/case-core-plugin-http-dsl" },
+    { "path": "./packages/case-definition-generator" },
+    { "path": "./packages/case-entities" },
+    { "path": "./packages/case-plugin-base" },
+    { "path": "./packages/case-plugin-dsl-types" },
+    { "path": "./packages/contract-case-cli" },
+    { "path": "./packages/contract-case-jest" },
+    { "path": "./packages/documentation-matchers-generator" }
   ]
 }
