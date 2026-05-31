@@ -322,7 +322,7 @@ This may be a bug in the language specifc DSL wrapper.`,
           consumerSlug: consumerSlug(this.contractFileFromDisk.contents),
           providerSlug: providerSlug(this.contractFileFromDisk.contents),
           verificationResult:
-            this.status === 'SUCCESS' ? 'COMPATIBILE' : 'INCOMPATIBLE',
+            this.status === 'SUCCESS' ? 'COMPATIBLE' : 'INCOMPATIBLE',
         }),
       );
   }
