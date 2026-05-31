@@ -482,12 +482,12 @@ Extend the shared config:
 
 ### ESLint Configuration
 
-Extend the shared maintainer config:
+Use the shared maintainer config via a flat config in `eslint.config.mjs`:
 
-```json
-{
-  "extends": ["@contract-case/case-maintainer"]
-}
+```js
+import lintConfig from '@contract-case/eslint-config-case-maintainer';
+
+export default [...lintConfig];
 ```
 
 ### Package Scripts
