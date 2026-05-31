@@ -25,7 +25,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2022"
+    "target": "es2022",
+    "types": ["jest", "node"]
   },
   "display": "ContractCase TS Config"
 }
