@@ -206,7 +206,7 @@ public class CreatingAContract {
                 IndividualSuccessTestConfigBuilder.builder()
                         .withTrigger(
                                 (interactionSetup) -> new YourApiClient(interactionSetup.getMockSetup("baseUrl"))
-                                        .getUserQuery(interactionSetup.getStateVariable("userId")))
+                                        .getUserQuery(interactionSetup.getStringStateVariable("userId")))
                         .withTestResponse(
                                 (user, config) -> {
                                     assertThat(user).isEqualTo(new User("foo", "", List.of()));
@@ -248,7 +248,7 @@ public class CreatingAContract {
                         .withTrigger(
                                 (interactionSetup) -> new YourApiClient(
                                         interactionSetup.getMockSetup("baseUrl")).getUserQuery(
-                                                interactionSetup.getStateVariable("userId")))
+                                                interactionSetup.getStringStateVariable("userId")))
                         // end-example
                         .withTestResponse(
                                 (user, config) -> {

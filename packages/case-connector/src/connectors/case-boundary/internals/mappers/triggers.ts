@@ -17,7 +17,7 @@ const mapSetupInfo = ({
   stateVariables: Object.fromEntries(
     Object.entries(stateVariables).map(([key, value]) => [
       key,
-      typeof value === 'string' ? value : JSON.stringify(value),
+      JSON.stringify(value),
     ]),
   ),
   mock,
