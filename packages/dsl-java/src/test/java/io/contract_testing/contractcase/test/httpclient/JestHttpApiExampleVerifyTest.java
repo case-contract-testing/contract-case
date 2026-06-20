@@ -40,6 +40,15 @@ public class JestHttpApiExampleVerifyTest {
     }
   };
 
+  Trigger<String> getHealthNotModified = (setupInfo) -> {
+    try {
+      return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
+          .getHealthIfNoneMatch("\"abc123\"");
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  };
+
   Trigger<User> getUserFromConfig = (setupInfo) -> {
     try {
       return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
@@ -108,6 +117,22 @@ public class JestHttpApiExampleVerifyTest {
                         "returns a (200) response with body an object shaped like {status: \"up\"}",
                         (String result, InteractionSetup interactionSetup) -> {
                           assertThat(result).isEqualTo("up");
+                        }
+                    ),
+                    new HashMap<>()
+                ))
+            .addTriggerGroup(
+                new TriggerGroup<>(
+                    "an http \"GET\" request to \"/health\" with the following headers an object shaped like {accept: \"application/json\",if-none-match: \"\"abc123\"\"} without a body",
+                    getHealthNotModified,
+                    Map.of(
+                        "a (304) response without a body",
+                        (String result, InteractionSetup interactionSetup) -> {
+                          assertThat(result).isEqualTo("not-modified");
+                        },
+                        "returns a (304) response without a body",
+                        (String result, InteractionSetup interactionSetup) -> {
+                          assertThat(result).isEqualTo("not-modified");
                         }
                     ),
                     new HashMap<>()

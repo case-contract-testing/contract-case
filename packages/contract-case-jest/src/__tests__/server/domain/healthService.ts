@@ -1,3 +1,6 @@
 import type { HealthService } from './types.js';
 
-export const healthService: HealthService = { ready: () => true };
+export const healthService: HealthService = {
+  ready: () => true,
+  etag: () => undefined,
+};
