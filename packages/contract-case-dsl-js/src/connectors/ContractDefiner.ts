@@ -15,13 +15,13 @@ import {
   mapInvokeableFunction,
   errorHandler,
   versionString,
-} from '@contract-case/contract-case-connector-js';
+} from '@contract-case/contract-case-dsl-js-internals';
 import type {
   ContractCaseConfig,
   ContractWriteSuccess,
   IndividualFailedTestConfig,
   IndividualSuccessTestConfig,
-} from '@contract-case/contract-case-connector-js';
+} from '@contract-case/contract-case-dsl-js-internals';
 
 const mapDefinition = (
   definition: ExampleDefinition,

@@ -1,4 +1,4 @@
-import { ContractCaseConfigurationError } from '@contract-case/contract-case-connector-js';
+import { ContractCaseConfigurationError } from '@contract-case/contract-case-dsl-js-internals';
 
 const validateCodeNumber = (code: number): number => {
   if (code < 100 || code >= 600) {

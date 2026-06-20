@@ -5,7 +5,7 @@ import {
   willReceiveHttpRequest,
   ContractCaseDefiner,
   defineContract,
-} from '@contract-case/contract-case-dsl-js-jest';
+} from '@contract-case/contract-case-jest';
 // example-extract _creating-a-contract
 
 defineContract(

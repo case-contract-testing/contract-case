@@ -14,13 +14,13 @@ import {
   errorReporter,
   ContractCaseConfigurationError,
   versionString,
-} from '@contract-case/contract-case-connector-js';
+} from '@contract-case/contract-case-dsl-js-internals';
 import type {
   ContractCaseVerifierConfig,
   ContractDescription,
   VerificationHandle,
   VerificationTestHandle,
-} from '@contract-case/contract-case-connector-js';
+} from '@contract-case/contract-case-dsl-js-internals';
 
 export class ContractVerifier {
   private boundaryVerifier: BoundaryContractVerifier;

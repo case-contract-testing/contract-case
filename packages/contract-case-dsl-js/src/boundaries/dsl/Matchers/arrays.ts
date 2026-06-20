@@ -7,7 +7,7 @@ import {
   ARRAY_CONTAINS_TYPE,
   CoreShapedArrayMatcher,
 } from '@contract-case/case-entities-internal';
-import { ContractCaseConfigurationError } from '@contract-case/contract-case-connector-js';
+import { ContractCaseConfigurationError } from '@contract-case/contract-case-dsl-js-internals';
 import {
   coreArrayLengthMatcher,
   coreShapedArrayMatcher,

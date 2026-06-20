@@ -1,5 +1,5 @@
 {
-  "name": "@contract-case/contract-case-dsl-js-jest",
+  "name": "@contract-case/contract-case-jest",
   "version": "0.29.1",
   "description": "ContractCase contract testing suite for Jest",
   "keywords": [

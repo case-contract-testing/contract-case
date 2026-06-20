@@ -12,7 +12,7 @@ import {
   stringPrefix,
   anyString,
   HttpRequestConfig,
-} from '@contract-case/contract-case-dsl-js-jest';
+} from '@contract-case/contract-case-jest';
 import { YourApi } from './YourApi.js';
 
 // ignore-extract

@@ -55,7 +55,7 @@
     "typescript": "5.9.3"
   },
   "dependencies": {
-    "@contract-case/contract-case-connector-js": "0.29.1",
+    "@contract-case/contract-case-dsl-js-internals": "0.29.1",
     "@contract-case/case-connector": "0.29.1",
     "@contract-case/case-core-plugin-http-dsl": "0.29.1",
     "@contract-case/case-definition-dsl": "0.29.1",

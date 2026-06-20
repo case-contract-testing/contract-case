@@ -5,7 +5,7 @@
 import { defineContract, ContractCaseDefiner } from '../../index.js';
 
 // example-extract _defining-an-example
-import { willSendHttpRequest } from '@contract-case/contract-case-dsl-js-jest';
+import { willSendHttpRequest } from '@contract-case/contract-case-jest';
 
 // ignore-extract
 defineContract(

@@ -40,11 +40,11 @@ export type {
   TriggerGroups,
   Groups,
   InferredTriggerPair,
-} from '@contract-case/contract-case-connector-js';
+} from '@contract-case/contract-case-dsl-js-internals';
 
 export {
   ContractCaseConfigurationError,
   ContractCaseCoreError,
   ContractCaseExpectationsNotMet,
   versionString,
-} from '@contract-case/contract-case-connector-js';
+} from '@contract-case/contract-case-dsl-js-internals';

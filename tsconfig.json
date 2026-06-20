@@ -13,7 +13,7 @@
     { "path": "./packages/case-plugin-base" },
     { "path": "./packages/case-plugin-dsl-types" },
     { "path": "./packages/contract-case-cli" },
-    { "path": "./packages/contract-case-connector-js" },
+    { "path": "./packages/contract-case-dsl-js-internals" },
     { "path": "./packages/contract-case-dsl-js" },
     { "path": "./packages/contract-case-dsl-js-jest" },
     { "path": "./packages/contract-case-dsl-js-vitest" },

@@ -14,7 +14,7 @@ import {
   LookupableMatcher,
   ResolvesTo,
 } from '@contract-case/case-plugin-dsl-types';
-import type { LogLevel } from '@contract-case/contract-case-connector-js';
+import type { LogLevel } from '@contract-case/contract-case-dsl-js-internals';
 import {
   coreLookupMatcherRequest,
   coreAndMatcher,

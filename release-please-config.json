@@ -18,9 +18,9 @@
         "@contract-case/case-definition-generator",
         "@contract-case/cli",
         "documentation",
-        "@contract-case/contract-case-connector-js",
+        "@contract-case/contract-case-dsl-js-internals",
         "@contract-case/contract-case-dsl-js",
-        "@contract-case/contract-case-dsl-js-jest",
+        "@contract-case/contract-case-jest",
         "@contract-case/contract-case-dsl-js-vitest",
         "@contract-case/case-connector",
         "@contract-case/case-connector-proto",
@@ -147,8 +147,8 @@
         { "type": "ci", "section": "Continuous Integration", "hidden": true }
       ]
     },
-    "packages/contract-case-connector-js": {
-      "component": "@contract-case/contract-case-connector-js",
+    "packages/contract-case-dsl-js-internals": {
+      "component": "@contract-case/contract-case-dsl-js-internals",
       "extra-files": ["package.json"],
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
@@ -162,7 +162,7 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/contract-case-dsl-js-jest": {
-      "component": "@contract-case/contract-case-dsl-js-jest",
+      "component": "@contract-case/contract-case-jest",
       "extra-files": ["src/entities/versionString.ts", "package.json"],
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,

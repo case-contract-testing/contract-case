@@ -1,5 +1,5 @@
 {
-  "name": "@contract-case/contract-case-connector-js",
+  "name": "@contract-case/contract-case-dsl-js-internals",
   "version": "0.29.1",
   "description": "Internal JavaScript/TypeScript connector code for ContractCase test framework bindings",
   "keywords": [

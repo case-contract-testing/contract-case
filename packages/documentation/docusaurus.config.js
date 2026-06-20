@@ -128,7 +128,7 @@ const config = {
             items: [
               {
                 label: 'npm',
-                href: 'https://www.npmjs.com/package/@contract-case/contract-case-dsl-js-jest',
+                href: 'https://www.npmjs.com/package/@contract-case/contract-case-jest',
               },
               {
                 label: 'Maven Central',

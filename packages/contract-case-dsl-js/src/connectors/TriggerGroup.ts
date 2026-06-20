@@ -2,7 +2,7 @@ import type {
   Groups,
   TriggerGroups,
   TriggerGroup,
-} from '@contract-case/contract-case-connector-js';
+} from '@contract-case/contract-case-dsl-js-internals';
 
 export class TriggerGroupMap implements TriggerGroups {
   groups: Groups = {};

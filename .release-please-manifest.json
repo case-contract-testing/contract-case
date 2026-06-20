@@ -9,7 +9,7 @@
   "packages/case-plugin-base": "0.29.1",
   "packages/case-plugin-dsl-types": "0.29.1",
   "packages/case-entities": "0.29.1",
-  "packages/contract-case-connector-js": "0.29.1",
+  "packages/contract-case-dsl-js-internals": "0.29.1",
   "packages/contract-case-dsl-js": "0.29.1",
   "packages/contract-case-dsl-js-jest": "0.29.1",
   "packages/contract-case-dsl-js-vitest": "0.29.1",
