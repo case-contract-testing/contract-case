@@ -45,7 +45,7 @@ Feedback on the ContractCase API / DSL and (especially) naming
 conventions very welcome. However, the following caveats should be kept in mind:
 
 1. ContractCase doesn't currently support merging of contracts. This means that each contract must be defined in one test file (per contract).
-1. ContractCase currently is only compatible with Jest (js/ts) and JUnit (java).
+1. ContractCase currently is only compatible with Jest and Vitest (js/ts) and JUnit (java).
 1. ContractCase currently only has minimal broker support. It supports the Pact
    broker, although the Pact broker isn't able to render ContractCase contracts
    in the UI.

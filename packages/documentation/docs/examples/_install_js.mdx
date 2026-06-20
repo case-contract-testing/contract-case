@@ -1,3 +1,11 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+ContractCase works with both Jest and Vitest. Install the package for your test runner:
+
+<Tabs groupId="js-test-framework">
+  <TabItem value="jest" label="Jest">
+
 ```bash
 npm install --save-dev @contract-case/contract-case-jest
 
@@ -5,3 +13,17 @@ npm install --save-dev @contract-case/contract-case-jest
 
 npm install --save-dev jest@^29.4.3
 ```
+
+  </TabItem>
+  <TabItem value="vitest" label="Vitest">
+
+```bash
+npm install --save-dev @contract-case/contract-case-dsl-js-vitest
+
+# You may also need the peer dependencies:
+
+npm install --save-dev vitest@^3.0.0
+```
+
+  </TabItem>
+</Tabs>
