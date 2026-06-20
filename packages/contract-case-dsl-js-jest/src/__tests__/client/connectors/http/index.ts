@@ -18,6 +18,7 @@ interface Api {
   getUserByPath: (id: string) => Promise<User>;
   getUserByQuery: (id: string) => Promise<User>;
   health: () => Promise<ServerHealth>;
+  healthIfNoneMatch: (etag: string) => Promise<'not-modified' | 'modified'>;
 }
 
 type WireServerHealth = {
@@ -46,6 +47,7 @@ export const api = (baseurl: string): Api => {
       }),
     health: () =>
       server.get<WireServerHealth>('/health').then(({ status }) => status),
+    healthIfNoneMatch: (etag) => server.getIfNoneMatch('/health', etag),
   };
 };
 

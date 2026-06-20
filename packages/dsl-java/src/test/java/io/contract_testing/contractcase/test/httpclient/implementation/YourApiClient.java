@@ -32,6 +32,18 @@ public class YourApiClient {
         });
   }
 
+  public String getHealthIfNoneMatch(String etag) throws IOException {
+    return Request.Get(this.baseUrl + "/health")
+        .addHeader("Accept", "application/json")
+        .addHeader("If-None-Match", etag)
+        .execute().handleResponse(httpResponse -> {
+          if (httpResponse.getStatusLine().getStatusCode() == 304) {
+            return "not-modified";
+          }
+          return "modified";
+        });
+  }
+
   public User getUser(String id) throws IOException {
     return Request.Get(this.baseUrl + "/users/" + id)
         .addHeader("Accept", "application/json")

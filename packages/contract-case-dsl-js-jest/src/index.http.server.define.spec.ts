@@ -23,11 +23,13 @@ describe('e2e http provider driven', () => {
     // CODE UNDER TEST SETUP BOILERPLATE
     let server: http.Server;
     let mockHealthStatus = true;
+    let mockHealthEtag: string | undefined;
     let mockGetUser: (id: string) => User | undefined = () => undefined;
     const port = 8094;
     const serverDependencies: Dependencies = {
       healthService: {
         ready: () => mockHealthStatus,
+        etag: () => mockHealthEtag,
       },
       baseService,
       userRepository: { get: (id) => mockGetUser(id) },
@@ -58,6 +60,14 @@ describe('e2e http provider driven', () => {
       },
       'Server is down': () => {
         mockHealthStatus = false;
+      },
+      'With an active etag of abc123': {
+        setup: () => {
+          mockHealthEtag = '"abc123"';
+        },
+        teardown: () => {
+          mockHealthEtag = undefined;
+        },
       },
       'A user exists': {
         setup: () => {
@@ -137,6 +147,24 @@ describe('e2e http provider driven', () => {
                         status: 200,
                         body: shapedLike({ status: 'whatever' }),
                       },
+                    }),
+                  }));
+              });
+
+              describe('when the health has not changed', () => {
+                it('verifies a 304 Not Modified response', () =>
+                  contract.runInteraction({
+                    states: [state, inState('With an active etag of abc123')],
+                    definition: willReceiveHttpRequest({
+                      request: {
+                        method: 'GET',
+                        path: '/health',
+                        headers: {
+                          accept: 'application/json',
+                          'if-none-match': '"abc123"',
+                        },
+                      },
+                      response: { status: 304 },
                     }),
                   }));
               });

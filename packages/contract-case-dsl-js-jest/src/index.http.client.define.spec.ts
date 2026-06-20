@@ -80,6 +80,36 @@ describe('e2e http consumer driven', () => {
                   },
                 ));
             });
+
+            describe('when the health has not changed', () => {
+              const sendConditionalHealthRequest = (
+                config: HttpRequestConfig,
+              ) => api(config.mock.baseUrl).healthIfNoneMatch('"abc123"');
+
+              it('verifies a 304 Not Modified response', () =>
+                contract.runInteraction(
+                  {
+                    states: [state, inState('With an active etag of abc123')],
+                    definition: willSendHttpRequest({
+                      request: {
+                        method: 'GET',
+                        path: '/health',
+                        headers: {
+                          accept: 'application/json',
+                          'if-none-match': '"abc123"',
+                        },
+                      },
+                      response: { status: 304 },
+                    }),
+                  },
+                  {
+                    trigger: sendConditionalHealthRequest,
+                    testResponse: (result) => {
+                      expect(result).toEqual('not-modified');
+                    },
+                  },
+                ));
+            });
           });
         });
         describe('When the server is down', () => {

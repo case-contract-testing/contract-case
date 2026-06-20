@@ -53,6 +53,21 @@ verifyContract({
       },
     )
     .addTriggerGroup(
+      'an http "GET" request to "/health" with the following headers an object shaped like {accept: "application/json",if-none-match: ""abc123""} without a body',
+      {
+        trigger: (config: HttpRequestConfig) =>
+          api(config.mock.baseUrl).healthIfNoneMatch('"abc123"'),
+        testResponses: {
+          'returns a (304) response without a body': (result) => {
+            expect(result).toEqual('not-modified');
+          },
+          'a (304) response without a body': (result) => {
+            expect(result).toEqual('not-modified');
+          },
+        },
+      },
+    )
+    .addTriggerGroup(
       'an http "GET" request to "/users"?id={{userId}} without a body',
       {
         trigger: (setup: HttpRequestConfig) =>

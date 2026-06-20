@@ -46,7 +46,7 @@
     "terser-webpack-plugin": "^5.3.14"
   },
   "dependencies": {
-    "@grpc/grpc-js": "^1.13.3",
+    "@grpc/grpc-js": "^1.13.5",
     "@grpc/proto-loader": "^0.8.0",
     "google-protobuf": "^3.21.4"
   },

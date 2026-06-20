@@ -22,8 +22,18 @@ type HealthResponse = { status: HealthStatus };
 
 export const health: (deps: HealthServiceDependencies) => RequestHandler =
   ({ healthService }: HealthServiceDependencies) =>
-  (_req: Request, res: Response) => {
+  (req: Request, res: Response) => {
     if (healthService.ready()) {
+      const etag = healthService.etag();
+      // Conditional GET: if there's an active ETag and the client already has
+      // it, tell them it hasn't changed rather than re-sending the body.
+      if (etag !== undefined && req.headers['if-none-match'] === etag) {
+        res.status(304).end();
+        return;
+      }
+      if (etag !== undefined) {
+        res.setHeader('ETag', etag);
+      }
       responder(res).success<HealthResponse>({ status: 'up' });
     } else {
       responder(res).status<HealthResponse>(503, { status: 'down' });

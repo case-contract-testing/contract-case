@@ -15,11 +15,13 @@ describe('Server verification but with base config', () => {
   // REPLACE WITH YOUR OWN SETUP CODE
   let server: http.Server;
   let mockHealthStatus = true;
+  let mockHealthEtag: string | undefined;
   let mockGetUser: (id: string) => User | undefined = () => undefined;
   const port = 8092;
   const serverDependencies: Dependencies = {
     healthService: {
       ready: () => mockHealthStatus,
+      etag: () => mockHealthEtag,
     },
     baseService,
     userRepository: { get: (id) => mockGetUser(id) },
@@ -54,6 +56,14 @@ describe('Server verification but with base config', () => {
     },
     'Server is down': () => {
       mockHealthStatus = false;
+    },
+    'With an active etag of abc123': {
+      setup: () => {
+        mockHealthEtag = '"abc123"';
+      },
+      teardown: () => {
+        mockHealthEtag = undefined;
+      },
     },
     'A user exists': {
       setup: () => {
