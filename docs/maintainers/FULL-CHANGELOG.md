@@ -1,5 +1,50 @@
 # Changelog
 
+## [0.29.1](https://github.com/case-contract-testing/contract-case/compare/v0.29.0...v0.29.1) (2026-06-04)
+
+
+### Bug Fixes
+
+* **java-dsl:** Add missing deserialisation functions for non-string state variables to the Java DSL. Previously, these didn't work at all. `getStateVariable(String)` is now deprecated, please use `getStateVariable(String, Class)` or the convenience functions getIntegerStateVariable and getStringStateVariable ([ffb18f8](https://github.com/case-contract-testing/contract-case/commit/ffb18f8294a68474b3e95fdf80d23b0418386a8d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.29.0 to 0.29.1
+
+## [0.29.0](https://github.com/case-contract-testing/contract-case/compare/v0.28.2...v0.29.0) (2026-05-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* Fix spelling mistake in the verificationResult where "COMPATIBLE" was incorrectly written as "COMPATIBILE". This won't affect most users, but any custom interfaces coded against this will need to be updated.
+* **plugin-dsl:** Change `describe` type to return structured `DescribeSegment` instead of string. Plugin authors will need to use the new factory functions to implement their describe methods instead of returning a string. This allows structured rendering of the describe result ([#1246](https://github.com/case-contract-testing/contract-case/issues/1246))
+
+### Features
+
+* Add error code NO_INTERACTIONS_DEFINED to help distinguish when there are no interactions in a contract definition ([6302c8e](https://github.com/case-contract-testing/contract-case/commit/6302c8e17f981b83413116e6ede279461625f161))
+
+
+### Bug Fixes
+
+* Fix issue where the verification compatibility wasn't actually included in the VerificationResult java type ([98f8688](https://github.com/case-contract-testing/contract-case/commit/98f8688efb5064c74199adcb24af1efb6348e1d3))
+* Fix spelling mistake in the verificationResult where "COMPATIBLE" was incorrectly written as "COMPATIBILE". This won't affect most users, but any custom interfaces coded against this will need to be updated. ([d7eacbd](https://github.com/case-contract-testing/contract-case/commit/d7eacbdc4de0e2c369132169df5e8476b16d7f7b))
+* Running verification with no contracts now produces a warning instead of a configuration error; smoothing onboarding ([fb6b297](https://github.com/case-contract-testing/contract-case/commit/fb6b2973135c0ac816bb32014586e8cd1dc055ed))
+
+
+### Code Refactoring
+
+* **plugin-dsl:** Change `describe` type to return structured `DescribeSegment` instead of string. Plugin authors will need to use the new factory functions to implement their describe methods instead of returning a string. This allows structured rendering of the describe result ([#1246](https://github.com/case-contract-testing/contract-case/issues/1246)) ([de9546b](https://github.com/case-contract-testing/contract-case/commit/de9546b468bcddbb371d02be3d2e8cc3712eeb42))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.28.2 to 0.29.0
+
 ## [0.28.2](https://github.com/case-contract-testing/contract-case/compare/v0.28.1...v0.28.2) (2026-02-12)
 
 

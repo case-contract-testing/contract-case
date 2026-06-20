@@ -4,17 +4,18 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "0.28.2",
+  "version": "0.29.1",
   "devDependencies": {
-    "@contract-case/eslint-config-case-maintainer": "0.28.2",
+    "@contract-case/eslint-config-case-maintainer": "0.29.1",
     "example-extractor": "^0.0.4",
     "jsii-docgen": "^10.11.4",
-    "lerna": "^9.0.3"
+    "lerna": "^9.0.3",
+    "typescript": "5.9.3"
   },
   "optionalDependencies": {
     "@nx/nx-darwin-arm64": "21.6.6",
     "@nx/nx-darwin-x64": "22.0.2",
-    "@nx/nx-linux-arm-gnueabihf": "22.0.2",
+    "@nx/nx-linux-arm-gnueabihf": "22.7.5",
     "@nx/nx-linux-arm64-gnu": "21.6.6",
     "@nx/nx-linux-arm64-musl": "21.6.6",
     "@nx/nx-linux-x64-gnu": "22.3.3",

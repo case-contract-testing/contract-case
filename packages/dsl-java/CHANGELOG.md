@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.29.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.29.0...@contract-case/dsl-java-v0.29.1) (2026-06-04)
+
+
+### Bug Fixes
+
+* **java-dsl:** Add missing deserialisation functions for non-string state variables to the Java DSL. Previously, these didn't work at all. `getStateVariable(String)` is now deprecated, please use `getStateVariable(String, Class)` or the convenience functions getIntegerStateVariable and getStringStateVariable ([ffb18f8](https://github.com/case-contract-testing/contract-case/commit/ffb18f8294a68474b3e95fdf80d23b0418386a8d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.29.0 to 0.29.1
+    * @contract-case/case-definition-dsl bumped from 0.29.0 to 0.29.1
+
+## [0.29.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.28.2...@contract-case/dsl-java-v0.29.0) (2026-05-31)
+
+
+### Bug Fixes
+
+* Fix issue where the verification compatibility wasn't actually included in the VerificationResult java type ([98f8688](https://github.com/case-contract-testing/contract-case/commit/98f8688efb5064c74199adcb24af1efb6348e1d3))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-definition-dsl bumped from 0.28.2 to 0.29.0
+
 ## [0.28.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.28.1...@contract-case/dsl-java-v0.28.2) (2026-02-12)
 
 

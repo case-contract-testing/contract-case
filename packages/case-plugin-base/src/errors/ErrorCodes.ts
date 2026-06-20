@@ -180,6 +180,18 @@ export interface ConfigurationErrorCodes {
    */
   MISSING_REGISTERED_FUNCTION: 'MISSING_REGISTERED_FUNCTION';
   /**
+   * This error is thrown by the contract definer when you try to write an empty contract.
+   *
+   * This is usually an error, as an empty contract would say "I depend on this other
+   * service's behaviour, but I have no expectations on how it should behave".
+   *
+   * If you're not expecting to get this error, or you get it intermittently, check that
+   * you are waiting for all interactions to complete before you try to write the contract.
+   * It is usually the result of mishandled asynchronous behaviour (like forgetting to wait
+   * on the interaction promise in javascript).
+   */
+  NO_INTERACTIONS_DEFINED: 'NO_INTERACTIONS_DEFINED';
+  /**
    * Tried to publish verification results for a contract that doesn't have
    * information on where to publish the verification results.
    *
@@ -273,6 +285,7 @@ export const ErrorCodes: ErrorCodeDefinitions = {
     OVERWRITE_CONTRACTS_NEEDED: 'OVERWRITE_CONTRACTS_NEEDED',
     UNDOCUMENTED: 'UNDOCUMENTED',
     CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE',
+    NO_INTERACTIONS_DEFINED: 'NO_INTERACTIONS_DEFINED',
   },
   core: {
     CASE_CRASH_ADVICE: 'CASE_CRASH_ADVICE',

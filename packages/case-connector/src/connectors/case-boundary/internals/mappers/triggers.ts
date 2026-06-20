@@ -14,7 +14,12 @@ const mapSetupInfo = ({
   functions,
   mock,
 }: BaseSetupInfo): BoundarySetupInfo => ({
-  stateVariables,
+  stateVariables: Object.fromEntries(
+    Object.entries(stateVariables).map(([key, value]) => [
+      key,
+      JSON.stringify(value),
+    ]),
+  ),
   mock,
   functions: Object.entries(functions)
     .map(

@@ -64,10 +64,10 @@ const getContractVerifierHandles = <T extends AnyMockDescriptorType>(
   constructorInfo: VerifierConstructorInfo<T>,
 ): InternalContractVerifierHandle[] => {
   if (contractsToVerify.length === 0) {
-    throw new CaseConfigurationError(
-      "No contracts were matched for verification. Try this run again with logLevel: 'debug' to find out more",
-      'DONT_ADD_LOCATION',
+    context.logger.warn(
+      "No contracts were selected for verification. If this is unexpected, try this run again with logLevel: 'debug' to find out more",
     );
+    return [];
   }
   if (constructorInfo.config.internals == null) {
     context.logger.maintainerDebug(

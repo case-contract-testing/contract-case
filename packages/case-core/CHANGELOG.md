@@ -1,5 +1,67 @@
 # Changelog
 
+## [0.29.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.29.0...@contract-case/case-core-v0.29.1) (2026-06-04)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-core:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.29.0 to 0.29.1
+    * @contract-case/case-core-plugin-http bumped from 0.29.0 to 0.29.1
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.29.0 to 0.29.1
+    * @contract-case/case-entities-internal bumped from 0.29.0 to 0.29.1
+    * @contract-case/case-plugin-base bumped from 0.29.0 to 0.29.1
+    * @contract-case/case-plugin-dsl-types bumped from 0.29.0 to 0.29.1
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.29.0 to 0.29.1
+    * @contract-case/case-maintainer-config bumped from 0.29.0 to 0.29.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.29.0 to 0.29.1
+
+## [0.29.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.28.2...@contract-case/case-core-v0.29.0) (2026-05-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* Fix spelling mistake in the verificationResult where "COMPATIBLE" was incorrectly written as "COMPATIBILE". This won't affect most users, but any custom interfaces coded against this will need to be updated.
+* **plugin-dsl:** Change `describe` type to return structured `DescribeSegment` instead of string. Plugin authors will need to use the new factory functions to implement their describe methods instead of returning a string. This allows structured rendering of the describe result ([#1246](https://github.com/case-contract-testing/contract-case/issues/1246))
+
+### Features
+
+* Add error code NO_INTERACTIONS_DEFINED to help distinguish when there are no interactions in a contract definition ([6302c8e](https://github.com/case-contract-testing/contract-case/commit/6302c8e17f981b83413116e6ede279461625f161))
+
+
+### Bug Fixes
+
+* Fix spelling mistake in the verificationResult where "COMPATIBLE" was incorrectly written as "COMPATIBILE". This won't affect most users, but any custom interfaces coded against this will need to be updated. ([d7eacbd](https://github.com/case-contract-testing/contract-case/commit/d7eacbdc4de0e2c369132169df5e8476b16d7f7b))
+* Running verification with no contracts now produces a warning instead of a configuration error; smoothing onboarding ([fb6b297](https://github.com/case-contract-testing/contract-case/commit/fb6b2973135c0ac816bb32014586e8cd1dc055ed))
+
+
+### Code Refactoring
+
+* **plugin-dsl:** Change `describe` type to return structured `DescribeSegment` instead of string. Plugin authors will need to use the new factory functions to implement their describe methods instead of returning a string. This allows structured rendering of the describe result ([#1246](https://github.com/case-contract-testing/contract-case/issues/1246)) ([de9546b](https://github.com/case-contract-testing/contract-case/commit/de9546b468bcddbb371d02be3d2e8cc3712eeb42))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-core-plugin-http bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-entities-internal bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-plugin-base bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.28.2 to 0.29.0
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-maintainer-config bumped from 0.28.2 to 0.29.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.28.2 to 0.29.0
+
 ## [0.28.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.28.1...@contract-case/case-core-v0.28.2) (2026-02-12)
 
 

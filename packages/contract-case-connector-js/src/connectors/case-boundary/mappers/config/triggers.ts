@@ -12,6 +12,7 @@ import {
   InteractionSetup,
   TriggerGroups,
   ContractCaseConfigurationError,
+  ContractCaseCoreError,
 } from '../../../../entities/index.js';
 import { mapSuccessWithAny } from '../boundaryResultToJs.js';
 
@@ -59,7 +60,14 @@ const mapSetup = <C extends Record<string, string>>(
         'BAD_INTERACTION_DEFINITION',
       );
     }
-    return variable;
+    try {
+      return JSON.parse(variable);
+    } catch (e) {
+      throw new ContractCaseCoreError(
+        `getStateVariable failed to parse the variable '${name}', which was: ${variable}\n\nOriginal Error: ${(e as Error).message}`,
+        'mapSetup',
+      );
+    }
   },
 });
 

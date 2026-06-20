@@ -64,7 +64,7 @@ export interface ContractVerificationResult {
    * The result of the contract verification. Currently, COMPATIBLE means that
    * the verification passed, and INCOMPATIBLE means that the verification has failed.
    */
-  verificationResult: 'COMPATIBILE' | 'INCOMPATIBLE';
+  verificationResult: 'COMPATIBLE' | 'INCOMPATIBLE';
 
   /** The metadata from this contract */
   metadata: ContractMetadata;

@@ -1,5 +1,43 @@
 # Changelog
 
+## [0.29.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.29.0...@contract-case/case-connector-v0.29.1) (2026-06-04)
+
+
+### Bug Fixes
+
+* **java-dsl:** Add missing deserialisation functions for non-string state variables to the Java DSL. Previously, these didn't work at all. `getStateVariable(String)` is now deprecated, please use `getStateVariable(String, Class)` or the convenience functions getIntegerStateVariable and getStringStateVariable ([ffb18f8](https://github.com/case-contract-testing/contract-case/commit/ffb18f8294a68474b3e95fdf80d23b0418386a8d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.29.0 to 0.29.1
+    * @contract-case/case-core bumped from 0.29.0 to 0.29.1
+    * @contract-case/case-entities-internal bumped from 0.29.0 to 0.29.1
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.29.0 to 0.29.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.29.0 to 0.29.1
+
+## [0.29.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.28.2...@contract-case/case-connector-v0.29.0) (2026-05-31)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-connector:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector-proto bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-core bumped from 0.28.2 to 0.29.0
+    * @contract-case/case-entities-internal bumped from 0.28.2 to 0.29.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.28.2 to 0.29.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.28.2 to 0.29.0
+
 ## [0.28.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-connector-v0.28.1...@contract-case/case-connector-v0.28.2) (2026-02-12)
 
 

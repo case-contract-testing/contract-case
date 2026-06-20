@@ -330,6 +330,29 @@ Check that your CaseConfig has the appropriate triggers set.
 </td></tr>
 <tr><td>
 
+[NO\_INTERACTIONS\_DEFINED](./case-plugin-base.configurationerrorcodes.no_interactions_defined.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'NO\_INTERACTIONS\_DEFINED'
+
+
+</td><td>
+
+This error is thrown by the contract definer when you try to write an empty contract.
+
+This is usually an error, as an empty contract would say "I depend on this other service's behaviour, but I have no expectations on how it should behave".
+
+If you're not expecting to get this error, or you get it intermittently, check that you are waiting for all interactions to complete before you try to write the contract. It is usually the result of mishandled asynchronous behaviour (like forgetting to wait on the interaction promise in javascript).
+
+
+</td></tr>
+<tr><td>
+
 [NON\_BROKERED\_CONTRACT](./case-plugin-base.configurationerrorcodes.non_brokered_contract.md)
 
 

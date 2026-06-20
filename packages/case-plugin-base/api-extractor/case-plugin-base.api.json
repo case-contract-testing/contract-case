@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.55.1",
+    "toolVersion": "7.58.7",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -1726,6 +1726,33 @@
               "isOptional": false,
               "releaseTag": "Public",
               "name": "MISSING_TRIGGER_FUNCTION",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#NO_INTERACTIONS_DEFINED:member",
+              "docComment": "/**\n * This error is thrown by the contract definer when you try to write an empty contract.\n *\n * This is usually an error, as an empty contract would say \"I depend on this other service's behaviour, but I have no expectations on how it should behave\".\n *\n * If you're not expecting to get this error, or you get it intermittently, check that you are waiting for all interactions to complete before you try to write the contract. It is usually the result of mishandled asynchronous behaviour (like forgetting to wait on the interaction promise in javascript).\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "NO_INTERACTIONS_DEFINED: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'NO_INTERACTIONS_DEFINED'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "NO_INTERACTIONS_DEFINED",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2

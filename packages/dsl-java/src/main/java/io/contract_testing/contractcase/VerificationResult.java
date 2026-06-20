@@ -9,7 +9,7 @@ import java.util.Map;
  * <p>
  * Note that the metadata might be a complex object, but for convenience in Java
  * it is flattened. So the following metadata object:
- * 
+ *
  * <pre>
  * {
  *   "_case": {
@@ -23,9 +23,9 @@ import java.util.Map;
  *   }
  * }
  * </pre>
- * 
+ * <p>
  * would become a map like so:
- * 
+ *
  * <pre>
  * Map.ofEntries(
  *         Map.entry("_case.version", "1.2.3"),
@@ -34,17 +34,18 @@ import java.util.Map;
  *         Map.entry("build.location", "CI"),
  *         Map.entry("build.language", "Java"));
  * </pre>
- * 
- * 
- * 
- * @param contractPath The path to the contract file
- * @param description  The description of the contract
- * @param consumerSlug The consumer slug (ie, the consumer part of the
- *                     filename), normalised by the ContractCase core
- * @param providerSlug The provider slug (ie, the provider part of the
- *                     filepath), normalised by the ContractCase core
- * @param metadata     The metadata associated with the contract, flattened
- *                     using the approach described in the class description.
+ *
+ * @param contractPath  The path to the contract file
+ * @param description   The description of the contract
+ * @param consumerSlug  The consumer slug (ie, the consumer part of the
+ *                      filename), normalised by the ContractCase core
+ * @param providerSlug  The provider slug (ie, the provider part of the
+ *                      filepath), normalised by the ContractCase core
+ * @param metadata      The metadata associated with the contract, flattened
+ *                      using the approach described in the class description.
+ * @param compatibility The results of running the verification -
+ *                      was this contract between these two services satisfied (compatible)
+ *                      or not (incompatible)?
  */
 public record VerificationResult(
 
@@ -52,10 +53,17 @@ public record VerificationResult(
         ContractDescription description,
         String consumerSlug,
         String providerSlug,
-        Map<String, String> metadata) {
+        Map<String, String> metadata,
+        Compatibility compatibility) {
 
   public VerificationResult {
     metadata = Map.copyOf(metadata);
   }
 
+  public enum Compatibility {
+    /** Indicates that a contract that was verified is compatible, and the two services are able to talk to each other */
+    COMPATIBLE,
+    /** Indicates that a contract that was verified is not compatible, and the two services are not able to be safely deployed against each other */
+    INCOMPATIBLE
+  }
 }
