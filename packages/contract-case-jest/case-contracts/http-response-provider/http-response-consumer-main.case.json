@@ -7,7 +7,7 @@
   "metadata": {
     "_case": {
       "version": "case-internal-tests",
-      "hash": "22b61611b9db65d55199ac862944683904c1ce6e40a31a023c33dbf2ed275d4e"
+      "hash": "7b2e98081dfaa95cf7b8372e3d65d7ebff084bcf83a6c31eb47dfffaaf766b12"
     }
   },
   "matcherLookup": {
@@ -266,6 +266,10 @@
         {
           "_case:state:type": "_case:NamedState",
           "stateName": "Server is up"
+        },
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "With an active etag of abc123"
         }
       ],
       "mock": {

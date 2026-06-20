@@ -89,7 +89,7 @@ describe('e2e http consumer driven', () => {
               it('verifies a 304 Not Modified response', () =>
                 contract.runInteraction(
                   {
-                    states: [state],
+                    states: [state, inState('With an active etag of abc123')],
                     definition: willSendHttpRequest({
                       request: {
                         method: 'GET',
