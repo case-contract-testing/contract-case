@@ -1,0 +1,111 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "function caller",
+    "providerName": "function execution"
+  },
+  "metadata": {
+    "_case": {
+      "version": "case-internal-tests",
+      "hash": "bcac4a1c1076fb91328174d3918337af1b4d3722b34773eea9a358900c387530"
+    }
+  },
+  "matcherLookup": {
+    "matcher:returns null": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": null
+    },
+    "matcher:An invocation of zeroArgs()": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": []
+    },
+    "matcher:returns \"example2\"": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": "example2"
+    },
+    "matcher:An invocation of concatenate( \"example\", 2 )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        "example",
+        2
+      ]
+    }
+  },
+  "examples": [
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockFunctionCaller",
+            "stateVariables": "state",
+            "triggers": "generated"
+          },
+          "write": {
+            "type": "_case:MockFunctionExecution",
+            "stateVariables": "default",
+            "triggers": "provided"
+          }
+        },
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of zeroArgs()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": []
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returns null",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": null
+          }
+        },
+        "functionName": "zeroArgs"
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockFunctionCaller",
+            "stateVariables": "state",
+            "triggers": "generated"
+          },
+          "write": {
+            "type": "_case:MockFunctionExecution",
+            "stateVariables": "default",
+            "triggers": "provided"
+          }
+        },
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of concatenate( \"example\", 2 )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              "example",
+              2
+            ]
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returns \"example2\"",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": "example2"
+          }
+        },
+        "functionName": "concatenate"
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}

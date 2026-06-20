@@ -1,0 +1,111 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "function execution",
+    "providerName": "function definer"
+  },
+  "metadata": {
+    "_case": {
+      "version": "case-internal-tests",
+      "hash": "c44cdd64be41f16b7493b8a0cc1b54353b1f0b7fc89cd5c61d02e1bbf04b53e5"
+    }
+  },
+  "matcherLookup": {
+    "matcher:An invocation of NO ARG FUNCTION()": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": []
+    },
+    "matcher:returns null": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": null
+    },
+    "matcher:An invocation of HAS ARGS FUNCTION( \"example\", 2 )": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": [
+        "example",
+        2
+      ]
+    },
+    "matcher:returns \"example2\"": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": "example2"
+    }
+  },
+  "examples": [
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionCaller",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockFunctionExecution",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "write": {
+            "type": "_case:MockFunctionCaller",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        },
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of NO ARG FUNCTION()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": []
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returns null",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": null
+          }
+        },
+        "functionName": "NO ARG FUNCTION"
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionCaller",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockFunctionExecution",
+            "stateVariables": "default",
+            "triggers": "provided"
+          },
+          "write": {
+            "type": "_case:MockFunctionCaller",
+            "stateVariables": "state",
+            "triggers": "generated"
+          }
+        },
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of HAS ARGS FUNCTION( \"example\", 2 )",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": [
+              "example",
+              2
+            ]
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returns \"example2\"",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": "example2"
+          }
+        },
+        "functionName": "HAS ARGS FUNCTION"
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}
