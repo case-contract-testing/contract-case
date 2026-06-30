@@ -29,7 +29,7 @@ public class JestHttpApiExampleVerifyTest {
       // TODO: This contract must have the wrong name? Confirm and correct this
       .providerName("http request provider")
       .publish(PublishType.NEVER)
-      .contractDir("../contract-case-jest/case-contracts/http-request-provider/")
+      .contractDir("../contract-case-dsl-js-jest/case-contracts/http-request-provider/")
       .build());
 
   Trigger<String> getHealth = (setupInfo) -> {
