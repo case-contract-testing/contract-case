@@ -37,8 +37,8 @@
     "format:base": "prettier --parser typescript \"src/**/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write ",
-    "test": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true vitest run",
-    "test:local": "cross-env CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true CASE_publish=false vitest run"
+    "test": "cross-env  CASE_publish=false CASE_MAINTAINER_TESTING_VERSION_OVERRIDE=true vitest run",
+    "test:local": "npm run test"
   },
   "funding": {
     "type": "individual",
