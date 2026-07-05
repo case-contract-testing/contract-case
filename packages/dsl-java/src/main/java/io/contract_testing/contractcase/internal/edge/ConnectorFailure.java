@@ -34,12 +34,12 @@ public class ConnectorFailure extends ConnectorResult {
   private final String location;
 
   public ConnectorFailure(String kind, String message, String location,
-      String contractCaseErrorCode, String userFacingStackTrace) {
+      String userFacingStackTrace, String contractCaseErrorCode) {
     this.kind = kind;
     this.message = message;
     this.location = location;
-    this.contractCaseErrorCode = contractCaseErrorCode;
     this.userFacingStackTrace = userFacingStackTrace;
+    this.contractCaseErrorCode = contractCaseErrorCode;
   }
 
   @Override

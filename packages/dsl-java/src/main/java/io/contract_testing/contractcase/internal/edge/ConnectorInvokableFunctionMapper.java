@@ -66,8 +66,8 @@ public class ConnectorInvokableFunctionMapper {
                     + "), but there was an error serialising it: "
                     + e.getMessage(),
                 functionName + " (called by " + MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER + ")",
-                "CORE_UNRECOVERABLE",
-                ""
+                "",
+                "CORE_UNRECOVERABLE"
             );
           }
         }
@@ -76,8 +76,8 @@ public class ConnectorInvokableFunctionMapper {
             "The registered function '" + functionName + "' accepts " + expectedArgumentCount
                 + " arguments, but instead received " + args.size() + " arguments",
             MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-            functionName,
-            ""
+            "",
+            functionName
         );
       } catch (Exception e) {
         var userFacingStackTrace = ConnectorExceptionMapper.stackTraceToString(e);
@@ -98,8 +98,8 @@ public class ConnectorInvokableFunctionMapper {
                   + "' threw an exception, and there was an error serialising it:"
                   + e.getMessage() + "\nError thrown was: ",
               functionName + " (called by " + MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER + ")",
-              "CORE_UNRECOVERABLE",
-              userFacingStackTrace
+              userFacingStackTrace,
+              "CORE_UNRECOVERABLE"
           );
         }
       }

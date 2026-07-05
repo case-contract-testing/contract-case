@@ -220,8 +220,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
           ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
           "Contract interactions aren't valid once close() or endRecord() has been called. Please check the order that you are invoking contract methods, and ensure you are not reusing a contract object for multiple complete lifecycles.",
           "User code",
-          "UNDOCUMENTED",
-          "");
+          "",
+          "UNDOCUMENTED");
     }
 
     var id = responseWaiter.createAwait(reason);
@@ -332,8 +332,8 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
           "The core asked us to invoke the function '" + functionName
               + "' but it didn't exist in our store",
           MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER,
-          functionName,
-          "");
+          "",
+          functionName);
     }
     return method.apply(args);
   }

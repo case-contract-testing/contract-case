@@ -113,8 +113,8 @@ public class ConnectorIncomingMapper {
             ConnectorIncomingMapper.map(wireFailure.getKind()),
             ConnectorIncomingMapper.map(wireFailure.getMessage()),
             ConnectorIncomingMapper.map(wireFailure.getLocation()),
-            ConnectorIncomingMapper.map(wireFailure.getContractCaseErrorCode()),
-            ConnectorIncomingMapper.map(wireFailure.getUserFacingStackTrace())
+            ConnectorIncomingMapper.map(wireFailure.getUserFacingStackTrace()),
+            ConnectorIncomingMapper.map(wireFailure.getContractCaseErrorCode())
         );
       }
       case SUCCESS -> {
