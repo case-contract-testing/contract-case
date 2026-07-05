@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.30.0](https://github.com/case-contract-testing/contract-case/compare/v0.29.1...v0.30.0) (2026-07-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **plugins:** Plugins names are now restricted to be node module names, preventing malicious contracts or clients of the contract server from loading arbitrary code via remote or inline URIs. This is technically a breaking change, as remote and inline URIs for plugins were previously unintentionally supported.
+
+### Features
+
+* Add vitest bindings with the same interface as the jest interface, and extract common TS-side user code to a shared package, `contract-case-dsl-js`, useful for anyone building non-jest or non-vitest bindings ([#1328](https://github.com/case-contract-testing/contract-case/issues/1328)) ([83534d1](https://github.com/case-contract-testing/contract-case/commit/83534d1b9a6a99da89e4b5ec3d4a89d995bc5a3d))
+
+
+### Bug Fixes
+
+* **http:** Fix issue where the http body could be missing during verification of a request with a payload ([d93806a](https://github.com/case-contract-testing/contract-case/commit/d93806aade00f886e7ba2316d755c741bf8a7bd6))
+* **plugins:** Plugins names are now restricted to be node module names, preventing malicious contracts or clients of the contract server from loading arbitrary code via remote or inline URIs. This is technically a breaking change, as remote and inline URIs for plugins were previously unintentionally supported. ([caba6aa](https://github.com/case-contract-testing/contract-case/commit/caba6aad50c7cbcc6bb1946dcfa6acae53726565))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.29.1 to 0.30.0
+
 ## [0.29.1](https://github.com/case-contract-testing/contract-case/compare/v0.29.0...v0.29.1) (2026-06-04)
 
 

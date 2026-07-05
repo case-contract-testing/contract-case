@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.30.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.29.1...@contract-case/case-core-plugin-function-v0.30.0) (2026-07-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **plugins:** Plugins names are now restricted to be node module names, preventing malicious contracts or clients of the contract server from loading arbitrary code via remote or inline URIs. This is technically a breaking change, as remote and inline URIs for plugins were previously unintentionally supported.
+
+### Bug Fixes
+
+* **plugins:** Plugins names are now restricted to be node module names, preventing malicious contracts or clients of the contract server from loading arbitrary code via remote or inline URIs. This is technically a breaking change, as remote and inline URIs for plugins were previously unintentionally supported. ([caba6aa](https://github.com/case-contract-testing/contract-case/commit/caba6aad50c7cbcc6bb1946dcfa6acae53726565))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.29.1 to 0.30.0
+    * @contract-case/case-plugin-base bumped from 0.29.1 to 0.30.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.29.1 to 0.30.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.29.1 to 0.30.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.29.1 to 0.30.0
+
 ## [0.29.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.29.0...@contract-case/case-core-plugin-function-v0.29.1) (2026-06-04)
 
 
