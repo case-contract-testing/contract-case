@@ -220,6 +220,29 @@ For contract verification, it should be:
 </td></tr>
 <tr><td>
 
+[INVALID\_PLUGIN\_NAME](./case-plugin-base.configurationerrorcodes.invalid_plugin_name.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'INVALID\_PLUGIN\_NAME'
+
+
+</td><td>
+
+Indicates that the plugin name or path that you provided was invalid. Most users won't come across this message.
+
+Although plugins are just nodejs packages, you must have installed the package locally first. Remote package links, inline package URIs or other non-standard methods of specifying packages are intentionally not supported for security reasons.
+
+Please open an issue if you believe you are seeing this message in error.
+
+
+</td></tr>
+<tr><td>
+
 [MISSING\_REGISTERED\_FUNCTION](./case-plugin-base.configurationerrorcodes.missing_registered_function.md)
 
 

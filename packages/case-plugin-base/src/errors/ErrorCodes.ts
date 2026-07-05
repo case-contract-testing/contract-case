@@ -107,6 +107,19 @@ export interface ConfigurationErrorCodes {
   INVALID_LIFECYCLE: 'INVALID_LIFECYCLE';
 
   /**
+   * Indicates that the plugin name or path that you provided was invalid.
+   * Most users won't come across this message.
+   *
+   * Although plugins are just nodejs packages, you must have installed
+   * the package locally first. Remote package links, inline package URIs
+   * or other non-standard methods of specifying packages are intentionally
+   * not supported for security reasons.
+   *
+   * Please open an issue if you believe you are seeing this message in error.
+   */
+  INVALID_PLUGIN_NAME: 'INVALID_PLUGIN_NAME';
+
+  /**
    * The current interaction was configured to have a particular state setup
    * handler, but it was missing.
    *
@@ -277,6 +290,7 @@ export const ErrorCodes: ErrorCodeDefinitions = {
     BAD_DSL_DECLARATION: 'BAD_DSL_DECLARATION',
     INVALID_CONFIG: 'INVALID_CONFIG',
     INVALID_LIFECYCLE: 'INVALID_LIFECYCLE',
+    INVALID_PLUGIN_NAME: 'INVALID_PLUGIN_NAME',
     MISSING_STATE_HANDLER: 'MISSING_STATE_HANDLER',
     MISSING_TEST_FUNCTION: 'MISSING_TEST_FUNCTION',
     MISSING_TRIGGER_FUNCTION: 'MISSING_TRIGGER_FUNCTION',

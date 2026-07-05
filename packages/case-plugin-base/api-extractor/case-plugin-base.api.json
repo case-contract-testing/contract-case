@@ -1625,6 +1625,33 @@
             },
             {
               "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#INVALID_PLUGIN_NAME:member",
+              "docComment": "/**\n * Indicates that the plugin name or path that you provided was invalid. Most users won't come across this message.\n *\n * Although plugins are just nodejs packages, you must have installed the package locally first. Remote package links, inline package URIs or other non-standard methods of specifying packages are intentionally not supported for security reasons.\n *\n * Please open an issue if you believe you are seeing this message in error.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "INVALID_PLUGIN_NAME: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'INVALID_PLUGIN_NAME'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "INVALID_PLUGIN_NAME",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#MISSING_REGISTERED_FUNCTION:member",
               "docComment": "/**\n * The current interaction needs a user-provided function registered with ContractCase.\n *\n * When the contract expects a function that can be called by ContractCase, you must first register it with `registerFunction` so that it can be called during the interaction.\n *\n * If you experience this when verifying a new version of an existing contract, it may be because the contract has changed to expect a call to a function name that wasn't previously in the contract.\n *\n * Check that you have registered all the functions that the contract expects.\n */\n",
               "excerptTokens": [

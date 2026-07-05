@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
+import java.util.HexFormat;
 import java.util.List;
 
 public class ContractCaseProcess {
@@ -19,6 +21,14 @@ public class ContractCaseProcess {
   private static ContractCaseProcess instance;
   private int portNumber;
   private ReaderSink outputStreamSink;
+
+  /**
+   * Shared secret required on every gRPC call to the connector, so that only this process (which
+   * spawned the connector) can invoke it. Passed to the connector via the CASE_CONNECTOR_TOKEN
+   * environment variable. May be null when connecting to an externally managed server without a
+   * token configured.
+   */
+  private String authToken;
 
   /**
    * This indicates that the shutdown has been triggered, it exists to prevent the crash printer
@@ -89,6 +99,9 @@ public class ContractCaseProcess {
       try {
         MaintainerLog.log(LogLevel.MAINTAINER_DEBUG, "Overriding port to: " + envOverridePort);
         this.overridePort = Integer.parseInt(envOverridePort);
+        // The server was started externally, so we can only authenticate
+        // if the user shared its token with us via the environment
+        this.authToken = System.getenv("CASE_CONNECTOR_TOKEN");
 
       } catch (NumberFormatException e) {
         throw new ContractCaseConfigurationError(
@@ -123,6 +136,10 @@ public class ContractCaseProcess {
               String.format("Java/%s", System.getProperty("java.version"))
           );
       pb.environment().put("NODE_OPTIONS", "--enable-source-maps");
+
+      var envToken = System.getenv("CASE_CONNECTOR_TOKEN");
+      this.authToken = envToken != null ? envToken : generateAuthToken();
+      pb.environment().put("CASE_CONNECTOR_TOKEN", this.authToken);
 
       this.childProcess = pb.start();
 
@@ -240,6 +257,20 @@ public class ContractCaseProcess {
       return overridePort;
     }
     return portNumber;
+  }
+
+  /**
+   * The token that must accompany every gRPC call to the connector, or null if no token is in use
+   * (which only happens when connecting to an externally managed server that didn't provide one).
+   */
+  public synchronized String getAuthToken() {
+    return authToken;
+  }
+
+  private static String generateAuthToken() {
+    final var tokenBytes = new byte[32];
+    new SecureRandom().nextBytes(tokenBytes);
+    return HexFormat.of().formatHex(tokenBytes);
   }
 
   /**

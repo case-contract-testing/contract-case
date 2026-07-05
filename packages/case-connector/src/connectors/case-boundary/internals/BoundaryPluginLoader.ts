@@ -78,11 +78,29 @@ export class BoundaryPluginLoader {
   async loadPlugins(moduleNames: string[]): Promise<BoundaryResult> {
     this.initialiseLoader();
     return Promise.all(
-      moduleNames.map(
+      moduleNames.map((moduleName) => {
+        if (
+          // Forbid URIs
+          moduleName.includes(':') ||
+          // Forbid strings that start with '.', as they may be hidden files or path traversal
+          moduleName.startsWith('.') ||
+          // Forbid strings that start with / , as only local packages are supported
+          moduleName.startsWith('/') ||
+          // Forbid strings that don't look like node module names
+          !/^(?:@[a-z0-9][a-z0-9._-]*\/)?[a-z0-9][a-z0-9._-]*(?:\/[a-z0-9][a-z0-9._-]*)*$/i.test(
+            moduleName,
+          )
+        ) {
+          throw new CaseConfigurationError(
+            `Unsafe plugin module specifier. Plugin names must be a valid local nodejs package name, and may not be remote or inline URIs. Provided name was: '${moduleName}'`,
+            'DONT_ADD_LOCATION',
+            'INVALID_PLUGIN_NAME',
+          );
+        }
         // webpack ignore is needed here so that the final bundle for host
         // languages is able to import arbitrary libs, without webpack failing
-        (moduleName) => import(/* webpackIgnore: true */ moduleName),
-      ),
+        return import(/* webpackIgnore: true */ moduleName);
+      }),
     )
       .then(
         (plugins) => {

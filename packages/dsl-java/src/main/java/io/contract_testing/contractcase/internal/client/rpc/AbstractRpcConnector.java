@@ -24,6 +24,8 @@ import io.contract_testing.contractcase.internal.edge.ConnectorResult;
 import io.contract_testing.contractcase.logs.LogPrinter;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.Metadata;
+import io.grpc.stub.MetadataUtils;
 import io.grpc.stub.StreamObserver;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -78,12 +80,21 @@ abstract class AbstractRpcConnector<T extends AbstractMessage, B extends Generat
   public AbstractRpcConnector(
       @NotNull LogPrinter logPrinter,
       @NotNull ConfigHandle configHandle) {
-    this.channel = ManagedChannelBuilder
+    var channelBuilder = ManagedChannelBuilder
         .forAddress("localhost", ContractCaseProcess.getInstance().getPortNumber())
         .defaultServiceConfig(readServiceConfig())
         .usePlaintext()
-        .enableRetry()
-        .build();
+        .enableRetry();
+    var authToken = ContractCaseProcess.getInstance().getAuthToken();
+    if (authToken != null) {
+      var authHeaders = new Metadata();
+      authHeaders.put(
+          Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER),
+          authToken
+      );
+      channelBuilder.intercept(MetadataUtils.newAttachHeadersInterceptor(authHeaders));
+    }
+    this.channel = channelBuilder.build();
     this.worker = SendingWorker.create(createConnection(
         ContractCaseGrpc.newStub(channel),
         new ContractResponseStreamObserver<>(
