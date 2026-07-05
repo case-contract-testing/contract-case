@@ -1,5 +1,5 @@
 /*!
- * ContractCase Core HTTP Plugin
+ * ContractCase Core Function Plugin
  * Copyright(c) 2022-2024 Timothy Jones (TLJ)
  * BSD-3-Clause license
  */

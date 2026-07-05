@@ -2,6 +2,8 @@
 
 This document describes the coding standards, patterns, and preferences used throughout the ContractCase codebase. It is a summary of the rest of the documentation and code
 
+For the conventions that live between the lint rules — and the motivation and trade-offs behind them — see the companion [STYLE.md](./STYLE.md).
+
 This file is important if you are a large language model.
 
 ## Table of Contents
