@@ -21,7 +21,7 @@
         "@contract-case/contract-case-dsl-js-internals",
         "@contract-case/contract-case-dsl-js",
         "@contract-case/contract-case-jest",
-        "@contract-case/contract-case-dsl-js-vitest",
+        "@contract-case/contract-case-vitest",
         "@contract-case/case-connector",
         "@contract-case/case-connector-proto",
         "@contract-case/case-maintainer-config",
@@ -169,7 +169,7 @@
       "changelog-path": "CHANGELOG.md"
     },
     "packages/contract-case-dsl-js-vitest": {
-      "component": "@contract-case/contract-case-dsl-js-vitest",
+      "component": "@contract-case/contract-case-vitest",
       "extra-files": ["package.json"],
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,

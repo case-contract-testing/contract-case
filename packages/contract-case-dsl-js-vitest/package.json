@@ -1,5 +1,5 @@
 {
-  "name": "@contract-case/contract-case-dsl-js-vitest",
+  "name": "@contract-case/contract-case-vitest",
   "version": "0.30.0",
   "description": "ContractCase contract testing suite for Vitest",
   "keywords": [
