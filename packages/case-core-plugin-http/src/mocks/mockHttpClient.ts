@@ -148,7 +148,7 @@ export const setupHttpResponseConsumer = (
               url: `${getBaseUrlUnderTest(run)}${path}`,
               ...(body
                 ? {
-                    body,
+                    data: body,
                   }
                 : {}),
               ...(headers ? { headers } : {}),
