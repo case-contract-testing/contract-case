@@ -14,8 +14,15 @@
   "author": "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)",
   "homepage": "https://case.contract-testing.io",
   "license": "BSD-3-Clause",
+  "type": "module",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    }
+  },
   "directories": {
     "src": "src",
     "dist": "dist"
@@ -32,6 +39,7 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "postbuild": "attw --pack --profile esm-only || attw --pack --profile esm-only -f json",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format:base": "prettier --parser typescript \"src/**/*.ts\"",
@@ -51,6 +59,7 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@contract-case/eslint-config-case-maintainer": "0.30.0",
     "@grpc/grpc-js": "^1.13.3",
     "@grpc/proto-loader": "^0.8.0",
