@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.30.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.29.1...@contract-case/case-core-plugin-http-v0.30.0) (2026-07-05)
+
+
+### Bug Fixes
+
+* **http:** Fix issue where the http body could be missing during verification of a request with a payload ([d93806a](https://github.com/case-contract-testing/contract-case/commit/d93806aade00f886e7ba2316d755c741bf8a7bd6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.29.1 to 0.30.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.29.1 to 0.30.0
+    * @contract-case/case-plugin-base bumped from 0.29.1 to 0.30.0
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.29.1 to 0.30.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.29.1 to 0.30.0
+
 ## [0.29.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.29.0...@contract-case/case-core-plugin-http-v0.29.1) (2026-06-04)
 
 
