@@ -191,10 +191,6 @@ face the "did this throw synchronously or reject?" split. Every `validate`
 implementation uses this opener even when its body is synchronous, so all
 executors present a uniform async signature.
 
-Note the opener is exactly `Promise.resolve().then(...)` — resolving with no
-value. `Promise.resolve(() => {}).then(...)` resolves _with a function that is
-never called_ and is a bug, not a variant.
-
 ---
 
 ## Error handling

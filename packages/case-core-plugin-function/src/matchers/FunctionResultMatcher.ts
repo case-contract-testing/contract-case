@@ -144,7 +144,7 @@ const check = async (
   matchContext: MatchContext,
   actual: unknown,
 ): Promise<MatchResult> =>
-  Promise.resolve(() => {}).then(() => {
+  Promise.resolve().then(() => {
     if (!isObject(actual)) {
       throw new CaseCoreError(
         `FunctionResultMatcher check() received a non-object response from a function. This indicates a bug in the function wrapper lib. What was returned was: ${actual}`,
