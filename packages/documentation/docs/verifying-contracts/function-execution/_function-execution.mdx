@@ -1,0 +1,8 @@
+If the contract was defined by a function caller (using `willCallFunction`),
+then the service under test is the function _implementer_, and verification
+consists of ContractCase invoking your real function with the arguments from
+each interaction, and checking the return value (or thrown error) against
+the contract.
+
+Unlike verifying an HTTP server, there's no server to start - you just need to
+register the real implementation of each function named in the contract.

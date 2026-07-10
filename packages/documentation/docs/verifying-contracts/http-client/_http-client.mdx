@@ -1,0 +1,6 @@
+If the contract was defined by the server (using `willReceiveHttpRequest`),
+then the service under test during verification is the HTTP _client_.
+ContractCase starts a mock server that responds the way the contract says the
+real server will, and your job is to provide triggers - functions that invoke
+your real client code against that mock - along with test functions that
+assert your client understood each response.

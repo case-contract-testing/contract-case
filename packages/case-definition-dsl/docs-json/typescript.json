@@ -1941,7 +1941,7 @@
         "id": "@contract-case/case-definition-dsl.matchers.convenience.StateVariable",
         "docs": {
           "summary": "Matches the content of a variable that comes from a state.",
-          "remarks": "See {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions state} * definitions}\nand {@link https://case.contract-testing.io/docs/reference/state-handlers state handlers} for\nmore details."
+          "remarks": "See {@link https://case.contract-testing.io/docs/defining-contracts/http-client/state-definitions state} * definitions}\nand {@link https://case.contract-testing.io/docs/verifying-contracts/http-server/state-handlers state handlers} for\nmore details."
         }
       },
       {

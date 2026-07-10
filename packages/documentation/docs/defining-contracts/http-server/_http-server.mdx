@@ -1,0 +1,44 @@
+Usually, an HTTP contract is defined by the client - but sometimes it makes
+sense for the _server_ to be the consumer.
+
+
+### When to use a server driven contract test.
+
+The most common use case is where the clients don't have ane expectations on
+the server - for example, remote logging, where the client doesn't expect any
+specific response. Server-driven contracts can also be useful when you
+aren't able to easily know all of your clients.
+
+:::tip 
+If you are able to, it is strongly recommended that you write contracts
+at the client side. This will give you the best benefit from contract tests,
+where the consumer can choose to only define the parts of the API they are actually 
+using.
+:::
+
+In large companies, often a server team might
+publish an API with specific compatibility promises. If possible, it is recommended to
+use [client driven contracts](/defining-contracts/http-client) where the client is
+viewed as the consumer.
+
+### What is defined in a server-driven contract?
+
+In a server-driven contract, the server is the consumer of requests. 
+The server tests define the contract by example, and
+the client can then verify that their code is able to provide those requests (and understands the response).
+It can be helpful to think of it like [http client driven contracts](../http-client/), but backwards.
+
+For each interaction, you describe:
+
+- _The server state_ (if any): A human readable precondition, eg "a user
+  exists with ID=123". Because the real server runs during definition, you
+  implement the state handlers on the server side at definition time.
+- _The http request_: The request the server expects to receive.
+- _The http response_: The response the server will send in the given state.
+
+:::tip Which side should define the contract?
+If you're unsure, we recommend the client be the consumer - see [HTTP / REST
+Clients](../http-client/). Server-driven contracts are best when the server
+team wants to publish guarantees to unknown clients
+clients, or when the client has no expectations of a response to its requests (e.g. remote logging).
+:::

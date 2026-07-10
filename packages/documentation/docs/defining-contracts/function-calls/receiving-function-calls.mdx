@@ -1,0 +1,120 @@
+---
+sidebar_position: 5
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Defining from the implementer's side
+
+Sometimes it's the function _implementer_ whose expectations should drive the
+contract - for example, a framework host that promises "I provide a function that
+you are expected to call like this". In that case, the implementer is the
+consumer, and defines the contract with `willReceiveFunctionCall`.
+
+During definition, ContractCase acts as the mock caller: it invokes your real
+function with the arguments from the interaction definition, and checks that
+the return value matches. This means you don't write a trigger - instead, you
+register the function under test with `registerFunction` before running the
+interaction:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+
+```ts
+// This string can be anything you like, as long as it's the same when
+// registering the function and when defining the interaction
+const FUNCTION_HANDLE = 'HAS ARGS FUNCTION';
+
+beforeAll(() => {
+  contract.registerFunction(
+    FUNCTION_HANDLE,
+    (s: string, n: number) => `${s}${n}`,
+  );
+});
+
+it('succeeds', () =>
+  contract.runInteraction({
+    definition: willReceiveFunctionCall({
+      arguments: ['example', 2],
+      returnValue: 'example2',
+      functionName: FUNCTION_HANDLE,
+    }),
+  }));
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+contract.registerFunction("PageNumbers", convertJsonArgs(
+    (Integer num) -> num + " pages"));
+
+contract.runInteraction(new InteractionDefinition<>(
+    List.of(),
+    WillReceiveFunctionCall.builder()
+        .arguments(List.of(new AnyInteger(2)))
+        .returnValue("2 pages")
+        .functionName("PageNumbers")
+        .build()));
+```
+
+  </TabItem>
+</Tabs>
+
+Because ContractCase generates the caller side itself, there's no `trigger`,
+`testResponse`, or `testErrorResponse` to write for these interactions. However, 
+because a function contract is defined expecting string arguments, you may need to
+wrap your function with a marshaller and unmarshaller before providing it to ContractCase.
+
+## Functions that throw
+
+If the function under test is expected to throw for a given set of arguments,
+define the interaction with `WillReceiveFunctionCallAndThrow`, describing the
+error with `errorClassName` instead of a `returnValue`:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+
+```ts
+// The throwing variants don't have convenience functions in
+// the Typescript DSL yet, so use the definition class directly
+// (from the @contract-case/case-definition-dsl package)
+import { interactions } from '@contract-case/case-definition-dsl';
+
+contract.registerFunction('throwingFunction', () => {
+  throw new CustomException('Oh no');
+});
+
+await contract.runInteraction({
+  definition: new interactions.functions.WillReceiveFunctionCallAndThrow({
+    arguments: [],
+    errorClassName: 'CustomException',
+    functionName: 'throwingFunction',
+  }),
+});
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+contract.registerFunction("throwingFunction", () -> {
+  throw new CustomException("Oh no");
+});
+
+contract.runInteraction(new InteractionDefinition<>(
+    List.of(),
+    WillReceiveFunctionCallAndThrow.builder()
+        .arguments(List.of())
+        .errorClassName("CustomException")
+        .functionName("throwingFunction")
+        .build()));
+```
+
+  </TabItem>
+</Tabs>
+
+The `errorClassName` is compared with the class name of the error your
+function actually throws - the error message is not part of the contract
+unless you add a `message` matcher.

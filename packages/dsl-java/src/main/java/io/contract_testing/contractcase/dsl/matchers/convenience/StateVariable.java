@@ -10,7 +10,7 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Matches the content of a variable that comes from a state. See <a href="https://case.contract-testing.io/docs/defining-contracts/state-definitions">state definitions</a> and <a href="https://case.contract-testing.io/docs/reference/state-handlers">state handlers</a> for more details.
+ * Matches the content of a variable that comes from a state. See <a href="https://case.contract-testing.io/docs/defining-contracts/http-client/state-definitions">state definitions</a> and <a href="https://case.contract-testing.io/docs/verifying-contracts/http-server/state-handlers">state handlers</a> for more details.
  */
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
@@ -31,7 +31,7 @@ public class StateVariable implements DslMatcher {
   private final String variableName;
 
   /**
-   * Matches the content of a variable that comes from a state. See <a href="https://case.contract-testing.io/docs/defining-contracts/state-definitions">state definitions</a> and <a href="https://case.contract-testing.io/docs/reference/state-handlers">state handlers</a> for more details.
+   * Matches the content of a variable that comes from a state. See <a href="https://case.contract-testing.io/docs/defining-contracts/http-client/state-definitions">state definitions</a> and <a href="https://case.contract-testing.io/docs/verifying-contracts/http-server/state-handlers">state handlers</a> for more details.
    * @param variableName The name of the variable
    */
   @Builder

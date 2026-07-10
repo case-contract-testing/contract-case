@@ -34,7 +34,7 @@ const functions: PluginDslDeclaration = {
           name: 'logLevel',
           jsonPropertyName: '_case:currentRun:context:logLevel',
           documentation:
-            'The new LogLevel. One of "none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainerDebug". see [LogLevel](https://case.contract-testing.io/docs/reference/configuring#loglevel-none--error--warn--debug--maintainerdebug) for details',
+            'The new LogLevel. One of "none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainerDebug". see [LogLevel](https://case.contract-testing.io/docs/reference/configuring#loglevel-none--error--warn--debug--maintainerdebug--deepmaintainerdebug) for details',
           type: 'string',
         },
         {
@@ -78,7 +78,7 @@ const functions: PluginDslDeclaration = {
     {
       name: 'StateVariable',
       type: 'ContextVariable',
-      documentation: `Matches the content of a variable that comes from a state. See [state definitions](https://case.contract-testing.io/docs/defining-contracts/state-definitions) and [state handlers](https://case.contract-testing.io/docs/reference/state-handlers) for more details.`,
+      documentation: `Matches the content of a variable that comes from a state. See [state definitions](https://case.contract-testing.io/docs/defining-contracts/http-client/state-definitions) and [state handlers](https://case.contract-testing.io/docs/verifying-contracts/http-server/state-handlers) for more details.`,
       params: [
         {
           name: 'variableName',

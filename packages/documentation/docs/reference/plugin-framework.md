@@ -25,11 +25,50 @@ Additionally, if your matcher is likely to be of general use, consider making a 
 
 ## Anatomy of a ContractCase Interaction
 
-TODO: Describe case interaction file structure
+In the contract file, each interaction (called an `example` in the file format) has three parts:
+
+- `states`: An array of the state definitions this interaction needs. Each
+  state has a `_case:state:type` of either `_case:NamedState` or
+  `_case:StateWithVariables`, a `stateName`, and (for states with variables) a
+  `variables` object whose values are matchers.
+- `mock`: The description of the mock for this interaction. It contains the
+  matcher tree(s) for the data being exchanged (for example `request` and
+  `response` for HTTP mocks), a `_case:mock:type` naming the mock executor to
+  use, and a `_case:run:context:setup` object that tells ContractCase how to
+  run the interaction from each side:
+  - `write`: How to run the interaction on the side that defines the contract
+  - `read`: How to run the interaction on the side that verifies the contract
+
+  Each of these describes which mock type to use (eg an HTTP client interaction
+  is run with a mock HTTP server during definition, and a mock HTTP client
+  during verification), whether state variables come from state handlers
+  (`'state'`) or their default values (`'default'`), and whether triggers are
+  `'provided'` by the user or `'generated'` by ContractCase.
+
+- `result`: The result of the interaction when the contract was defined
+  (successful interactions are recorded as `VERIFIED`).
 
 ## ContractCase Context
 
-TODO: Describe the context object, which is passed to all matchers and mock executors.
+All matcher executors and mock executors receive a context object
+(`MatchContext` in the plugin framework types). It combines:
+
+- **Run configuration**: the resolved configuration for the current run, under
+  keys namespaced with `_case:currentRun:context:` (for example
+  `_case:currentRun:context:contractDir`). The namespacing means plugins can
+  add their own context entries without colliding with user data.
+- **Traversal functions**: `descendAndCheck()` and `descendAndStrip()`, which
+  matcher executors use to recurse into their children.
+- **Lookup functions**: used to save and retrieve named matchers and state
+  variables from the contract's lookup table.
+- **A logger and result printer**, so that plugins can log consistently with
+  the rest of ContractCase.
+
+Matchers can modify the context for everything below them in the matcher tree
+by including fields prefixed with `_case:context:` (see "Designing the
+description object" below). For example, `_case:context:matchBy` is how
+`shapedLike` and `exactlyLike` switch the default matching mode between
+`'type'` and `'exact'` for their children.
 
 ## Extending with a new matcher type
 
@@ -137,4 +176,46 @@ To extend case with a new Mock type:
 
 # ContractCase Contract Format
 
-Most users do not need to know the format - you can treat the contract file as opaque. TODO: Describe the format
+Most users do not need to know the format - you can treat the contract file as
+opaque. If you're building tooling on top of ContractCase, the top level of a
+Case File looks like this:
+
+```jsonc
+{
+  // Identifies this file as a ContractCase contract
+  "contractType": "case::contract",
+
+  // The consumer / provider pair this contract is for
+  "description": {
+    "consumerName": "Example-Client",
+    "providerName": "Example-Server",
+  },
+
+  // Metadata about the run that wrote this contract,
+  // including the ContractCase version
+  "metadata": { "_case": { "version": "..." } },
+
+  // A lookup table of named matchers and state variables,
+  // keyed by their unique names. Interactions reference
+  // these by name, so that repeated structures are only
+  // written once
+  "matcherLookup": {
+    "matcher:an http \"GET\" request to \"/health\"...": {},
+    "variable:default:userId::test[0]": {},
+  },
+
+  // The interactions, as described in
+  // "Anatomy of a ContractCase Interaction" above
+  "examples": [],
+}
+```
+
+Within the matcher trees, all ContractCase metadata keys are namespaced with a
+`_case:` prefix (`_case:matcher:type`, `_case:mock:type`, `_case:state:type`
+and so on), so they can't collide with user data. Everything without a
+`_case:` prefix is literal data or the parameters of the enclosing matcher.
+
+The format is not currently versioned separately from ContractCase itself, and
+may change between versions - if you're building tooling that reads contract
+files, please open [an issue](https://github.com/case-contract-testing/contract-case/issues/new)
+so we can let you know about changes.

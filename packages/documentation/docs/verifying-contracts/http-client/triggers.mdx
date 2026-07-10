@@ -1,0 +1,89 @@
+---
+sidebar_position: 3
+---
+
+# Providing triggers for verification
+
+During verification of a server-driven contract, ContractCase doesn't know how
+to invoke your client code, so you provide a _trigger group_ for each request
+in the contract: the trigger that invokes your real client code, plus the
+test functions that assert on what your client returned (or threw).
+
+Trigger groups are provided with the `triggers` [configuration
+option](/docs/reference/configuring), built with a `TriggerGroupMap`:
+
+```ts
+verifyContract({
+  providerName: 'http request provider',
+
+  triggers: new TriggerGroupMap().addTriggerGroup(
+    'an http "GET" request to "/health" without a body',
+    {
+      trigger: (setup: HttpRequestConfig) => api(setup.mock.baseUrl).health(),
+      testResponses: {
+        'a (200) response with body an object shaped like {status: "up"}': (
+          health,
+        ) => {
+          expect(health).toEqual('up');
+        },
+      },
+      testErrorResponses: {
+        'a (httpStatus 4XX | 5XX) response without a body': (e) => {
+          expect(e).toBeInstanceOf(ApiError);
+        },
+      },
+    },
+  ),
+});
+```
+
+Each trigger group contains:
+
+- `trigger`: A function that invokes your real client code against the mock
+  server. It receives the interaction setup, which includes the mock server's
+  base URL (`setup.mock.baseUrl`). This is the same shape as the trigger you
+  would write when [defining an HTTP client
+  contract](../../defining-contracts/http-client/triggers).
+- `testResponses`: Assertion functions for interactions where the client code
+  is expected to succeed, keyed by the response description.
+- `testErrorResponses`: Assertion functions for interactions where the client
+  code is expected to throw, keyed by the response description.
+
+A single request often appears in the contract with several different
+responses (in different states), which is why the test functions are keyed by
+response - one trigger group covers all the interactions that share a request.
+
+## Where do the names come from?
+
+The keys in the `TriggerGroupMap` are the request and response descriptions
+that ContractCase generated when the contract was defined - you don't need to
+guess them. If a trigger or test function is missing, the verification fails
+with a configuration error that tells you the exact request and response names
+it was looking for. A convenient workflow is to run the verification, then
+copy the names from the error messages.
+
+## Using state variables
+
+If an interaction was defined with [states that have
+variables](../../defining-contracts/http-client/state-definitions), the
+resolved values are available through `setup.getStateVariable(...)` in both
+the trigger and the test functions:
+
+```ts
+.addTriggerGroup('an http "GET" request to "/users/{{userId}}" without a body', {
+  trigger: (setup: HttpRequestConfig) =>
+    api(setup.mock.baseUrl).getUser(setup.getStateVariable('userId')),
+  testResponses: {
+    'a (200) response with body an object shaped like {userId: {{userId}}}': (
+      user,
+      setup,
+    ) => {
+      expect(user).toEqual({ userId: setup.getStateVariable('userId') });
+    },
+  },
+})
+```
+
+During verification of a server-driven contract, state handlers aren't run
+(the mock server plays back the recorded responses), so state variables take
+the default values that were recorded in the contract.

@@ -3,7 +3,7 @@
  *
  * These are the {@link https://case.contract-testing.io/docs/reference/example-types | mock types}, test
  * {@link https://case.contract-testing.io/docs/reference/matchers | equivalence matcher types}
- * and the {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions | state descriptors} for CaseExamples.
+ * and the {@link https://case.contract-testing.io/docs/defining-contracts/http-client/state-definitions | state descriptors} for CaseExamples.
  *
  * @remarks
  *

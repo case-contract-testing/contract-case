@@ -179,7 +179,7 @@
   "projectFolderUrl": "https://github.com/case-contract-testing/contract-case/tree/main/packages/case-definition-dsl",
   "kind": "Package",
   "canonicalReference": "@contract-case/case-definition-dsl!",
-  "docComment": "/**\n * These are the {@link https://case.contract-testing.io/docs/reference/example-types | mock types}, test {@link https://case.contract-testing.io/docs/reference/matchers | equivalence matcher types} and the {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions | state descriptors} for CaseExamples.\n *\n * @remarks\n *\n * Use the mock definitions to describe the interactions that you want to test.\n *\n * Use the state descriptions to describe the provider states (if any) that those tests require.\n *\n * Use the Test Equivalence Matchers to generalise your tests, avoiding the need to depend on specific data during verification. It's not about defining the whole type system, the idea is that you are saying \"any message that matches this Test Equivalence Matcher is considered covered by this test\".\n *\n * For more information, see {@link https://case.contract-testing.io/docs/defining-contracts/relaxing-tests | advice on relaxing tests} or {@link https://case.contract-testing.io | the full documentation}\n *\n * @packageDocumentation\n */\n",
+  "docComment": "/**\n * These are the {@link https://case.contract-testing.io/docs/reference/example-types | mock types}, test {@link https://case.contract-testing.io/docs/reference/matchers | equivalence matcher types} and the {@link https://case.contract-testing.io/docs/defining-contracts/http-client/state-definitions | state descriptors} for CaseExamples.\n *\n * @remarks\n *\n * Use the mock definitions to describe the interactions that you want to test.\n *\n * Use the state descriptions to describe the provider states (if any) that those tests require.\n *\n * Use the Test Equivalence Matchers to generalise your tests, avoiding the need to depend on specific data during verification. It's not about defining the whole type system, the idea is that you are saying \"any message that matches this Test Equivalence Matcher is considered covered by this test\".\n *\n * For more information, see {@link https://case.contract-testing.io/docs/defining-contracts/relaxing-tests | advice on relaxing tests} or {@link https://case.contract-testing.io | the full documentation}\n *\n * @packageDocumentation\n */\n",
   "name": "@contract-case/case-definition-dsl",
   "preserveMemberOrder": false,
   "members": [
@@ -3247,7 +3247,7 @@
                 {
                   "kind": "Class",
                   "canonicalReference": "@contract-case/case-definition-dsl!matchers.convenience.StateVariable:class",
-                  "docComment": "/**\n * Matches the content of a variable that comes from a state. See {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions | state\n * definitions} and {@link https://case.contract-testing.io/docs/reference/state-handlers | state handlers} for more details.\n *\n * @public\n */\n",
+                  "docComment": "/**\n * Matches the content of a variable that comes from a state. See {@link https://case.contract-testing.io/docs/defining-contracts/http-client/state-definitions | state\n * definitions} and {@link https://case.contract-testing.io/docs/verifying-contracts/http-server/state-handlers | state handlers} for more details.\n *\n * @public\n */\n",
                   "excerptTokens": [
                     {
                       "kind": "Content",
@@ -3272,7 +3272,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!matchers.convenience.StateVariable:constructor(1)",
-                      "docComment": "/**\n * Matches the content of a variable that comes from a state. See {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions | state definitions} and {@link https://case.contract-testing.io/docs/reference/state-handlers | state handlers} for more details.\n *\n * @param name - The name of the variable\n */\n",
+                      "docComment": "/**\n * Matches the content of a variable that comes from a state. See {@link https://case.contract-testing.io/docs/defining-contracts/http-client/state-definitions | state definitions} and {@link https://case.contract-testing.io/docs/verifying-contracts/http-server/state-handlers | state handlers} for more details.\n *\n * @param name - The name of the variable\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",

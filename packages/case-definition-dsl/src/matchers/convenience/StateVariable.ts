@@ -2,9 +2,9 @@ import { CONTEXT_VARIABLE_TYPE } from '@contract-case/case-entities-internal';
 import { AnyMatcher } from '../base';
 
 /**
- * Matches the content of a variable that comes from a state. See {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions | state
+ * Matches the content of a variable that comes from a state. See {@link https://case.contract-testing.io/docs/defining-contracts/http-client/state-definitions | state
  * definitions}
- * and {@link https://case.contract-testing.io/docs/reference/state-handlers | state handlers} for
+ * and {@link https://case.contract-testing.io/docs/verifying-contracts/http-server/state-handlers | state handlers} for
  * more details.
  *
  * @public
@@ -18,8 +18,8 @@ export class StateVariable extends AnyMatcher {
 
   /**
    * Matches the content of a variable that comes from a state. See
-   * {@link https://case.contract-testing.io/docs/defining-contracts/state-definitions | state definitions}
-   * and {@link https://case.contract-testing.io/docs/reference/state-handlers | state handlers} for
+   * {@link https://case.contract-testing.io/docs/defining-contracts/http-client/state-definitions | state definitions}
+   * and {@link https://case.contract-testing.io/docs/verifying-contracts/http-server/state-handlers | state handlers} for
    * more details.
    * @param name - The name of the variable
    */

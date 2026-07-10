@@ -60,5 +60,5 @@ Options:
 - `--contract-dir`: Sets the directory to download contracts to. Default is `./case-contracts`
 
 * `-l, --log-level <level>`: Sets the log level (string). See the [the
-  log level option](./configuring#loglevel-none--error--warn--debug--maintainerdebug) for possible log level options and the
+  log level option](./configuring#loglevel-none--error--warn--debug--maintainerdebug--deepmaintainerdebug) for possible log level options and the
   default values.

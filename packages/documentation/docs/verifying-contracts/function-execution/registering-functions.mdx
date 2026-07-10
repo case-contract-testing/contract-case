@@ -1,0 +1,80 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Registering functions
+
+During verification, ContractCase needs to be able to invoke the real
+implementation of each function named in the contract. You provide these with
+`registerFunction`, called on the verifier before running the verification.
+
+The first argument is the function name from the contract (the `functionName`
+the consumer used when [defining the
+interaction](../../defining-contracts/function-calls/defining-example)), and
+the second is the implementation to invoke:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+
+```ts
+verifyContract(
+  {
+    providerName: 'function execution',
+  },
+  (verifier) => {
+    verifier.registerFunction('zeroArgs', () => {});
+    verifier.registerFunction('concatenate', (a, b) => `${a}${b}`);
+  },
+);
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+ContractVerifier verifier = new ContractVerifier(
+    ContractCaseConfigBuilder.aContractCaseConfig()
+        .providerName("Java Function Implementer Example")
+        .build());
+
+verifier.registerFunction("NoArgFunction", () -> null);
+verifier.registerFunction(
+    "PageNumbers",
+    convertJsonIntegerArg((Integer num) -> num + " pages"));
+
+verifier.runVerification(
+    ContractCaseConfigBuilder.aContractCaseConfig().build());
+```
+
+  </TabItem>
+</Tabs>
+
+If the contract contains an interaction for a function that hasn't been
+registered, ContractCase fails the verification with a configuration error
+telling you which function name it was looking for.
+
+## Argument and return value serialisation
+
+Arguments and return values are JSON-serialised when they cross the boundary
+between ContractCase and your code. In dynamically typed languages like typescript, 
+this is handled for you. In Java, registered functions receive each argument as a JSON
+string and must return a JSON string, so you may need a small adapter around
+the function under test to parse the arguments and serialise the result.
+
+## Functions that throw
+
+If the interaction was defined with a throwing variant (see [defining function
+call interactions](../../defining-contracts/function-calls/defining-example)),
+ContractCase invokes your registered function and expects it to throw. The
+class name of the thrown error is compared with the `errorClassName` in the
+contract.
+
+## State handlers
+
+If any interactions in the contract have states, you provide [state
+handlers](../http-server/state-handlers) in exactly the same way as for HTTP
+server verification. This is often how you set up the data that a registered
+function needs to return the expected values.

@@ -1,0 +1,48 @@
+Function call contracts describe the invocation of a single function - the
+arguments it will be called with, and the value it returns (or the error it
+throws).
+
+These are typically a use case for experienced users, or users with 
+custom communication code that can be abstracted as a function call.
+
+:::warning Warning
+If you are new to contract testing, it is strongly recommended that you start with
+one of the other interaction types first. Function contracts involve writing
+custom shims to serialise or deserialise the arguments, and it's best to be
+familiar with the contract test lifecycle first.
+:::
+
+
+### Why function contracts?
+
+It's useful if you need to test a library contract within one language, or
+if you need to test an RPC call across a language boundary where you already
+trust the network layer.
+
+It's useful for building custom use-cases. However, in order to provide
+cross-language support, function calls marshall the arguments and return values
+to JSON.
+
+### What is contained in a function contract?
+
+For each interaction in a function call contract, you describe:
+
+- _The function name_: A string that uniquely identifies the function under test.
+   This is used as the handle when you register the function with ContractCase 
+    so that ContractCase can target the real function during verification.
+- _The arguments_: The arguments the caller will invoke the function with.
+- _The return value_: The value the caller expects the function to return in
+  return (or, for functions that are expected to fail, the error that will be
+  thrown).
+
+Like all ContractCase interactions, you can define function call interactions
+from either side. Most commonly the _caller_ is the consumer - it defines the
+contract, and the function _implementer_ verifies it later. The semantics are
+similar to an HTTP client defining a contract that an HTTP server verifies.
+
+:::tip Note
+Arguments and return values are JSON-serialised when they cross the boundary
+between ContractCase and your code. This means all arguments and return values
+must be JSON-serialisable - if they aren't, ContractCase will fail the test
+with a configuration error.
+:::

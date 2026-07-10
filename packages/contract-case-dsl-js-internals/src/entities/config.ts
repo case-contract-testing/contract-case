@@ -153,7 +153,7 @@ export interface ContractCaseConfig {
 
   /**
    * State setup and teardown handlers for any states this test requires (see
-   * [writing state handlers](https://case.contract-testing.io/docs/reference/state-handlers/))
+   * [writing state handlers](https://case.contract-testing.io/docs/verifying-contracts/http-server/state-handlers))
    * for more details
    *
    * @defaultValue No setup or teardown handlers

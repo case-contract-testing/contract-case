@@ -10,18 +10,14 @@ import CreatingJava from '../examples/generated/\_creating-a-contract.java.mdx';
 
 import WritingJava from '../examples/generated/\_end-record.java.mdx';
 
-
 import ConfigJs from '../examples/generated/\_defining-an-example-config.ts.mdx';
 import ConfigJava from '../examples/generated/\_defining-an-example-config.java.mdx';
-
-
 
 import Defining from './\_creating-a-contract.mdx';
 
 # Defining Contracts
 
-<Defining/>
-
+<Defining />
 
 # Creating a contract
 
@@ -36,7 +32,7 @@ For example, defining a contract might look like:
     <CreatingJs />
   </TabItem>
   <TabItem value="java" label="Java">
-   <CreatingJava />
+    <CreatingJava />
   </TabItem>
 </Tabs>
 
@@ -45,17 +41,18 @@ have completed. This tells ContractCase to write the contract file to disk.
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
-    ```
-    // With Typescript/Javascript, there is no need 
-    // to explicitly end the contract as the
-    // `defineContract` Jest/Vitest DSL handles this for you
-    ```
+
+```
+// With Typescript/Javascript, there is no need
+// to explicitly end the contract as the
+// `defineContract` Jest/Vitest DSL handles this for you
+```
+
   </TabItem>
   <TabItem value="java" label="Java">
-   <WritingJava />
+    <WritingJava />
   </TabItem>
 </Tabs>
-
 
 ## How to name your consumers and providers
 
@@ -97,7 +94,7 @@ use cases that it's appropriate for.
 Although each guide is written assuming that all interactions in your contract
 are of the same type, there's no reason you can't mix them up in the same
 contract. For example, a consumer might consume messages and http responses from
-the same provider. ContractCase supports this - just mix definitions within the same .
+the same provider. ContractCase supports this - just mix definitions within the same contract.
 
 ## Circular contract dependencies
 

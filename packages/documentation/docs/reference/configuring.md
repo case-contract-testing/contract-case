@@ -46,7 +46,7 @@ when the consumer defined the contract.
 
 ## Reporting options
 
-### `logLevel` \["none" | "error" | "warn" | "debug" | "maintainerDebug"]
+### `logLevel` \["none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainerDebug"]
 
 Default: `"warn"`
 
@@ -114,6 +114,32 @@ like a snapshot test and must either remain the same, or be explicitly updated.
 
 - If `changedContracts` is set to `FAIL`, changes between the defined contract and the one currently on disk will fail the contract definition.
 - If `changedContracts` is set to `OVERWRITE`, then the contract on disk will be overwritten with the new contract.
+
+### `contractsToWrite` \[Array of "hash" | "main"]
+
+Default: `["hash", "main"]`
+
+Which contract files to write during contract definition:
+
+- `"hash"` - the contract file named by a hash of the contract contents (see `contractDir` above):
+
+  ```
+  ${CONTRACT_DIR}/${PROVIDER_NAME}/${CONSUMER_NAME}-${HASH}.case.json
+  ```
+
+- `"main"` - the main contract file, with `main` in place of the hash:
+
+  ```
+  ${CONTRACT_DIR}/${PROVIDER_NAME}/${CONSUMER_NAME}-main.case.json
+  ```
+
+By default, both files are written. The hashed file only changes when the
+contract changes (making it convenient to commit to a repository), while the
+main file is always the result of the latest run. You can restrict which files
+are written if your workflow only needs one of the two.
+
+If `contractFilename` is set, this option is ignored and only the named file
+is written.
 
 ## Broker options
 
@@ -194,7 +220,25 @@ Defines the trigger and test functions for multiple interactions under test.
 - `trigger`: Defines a single trigger. This is only valid on individual interactions
 - `testResponse` / `testErrorResponse`: Used to verify the response object from the trigger
 
-See the relevant [contract definition](../defining-contracts/) and [contract verification](../verifying-contracts/) guides for language-specific examples of triggers and test response functions.
+See the relevant [contract definition](../defining-contracts/) and [contract verification](../verifying-contracts/) guides for language-specific examples of triggers and test response functions. If you're providing triggers during verification, construct them with a `TriggerGroupMap` - see [providing triggers for verification](../verifying-contracts/http-client/triggers).
+
+### `mockConfig` \[object]
+
+Default: Empty
+
+Configuration for specific mock types, keyed by the mock type's short name.
+For example, HTTP mocks are configured under the `http` key.
+
+This is how you tell ContractCase the base URL of your real server when
+[defining a contract from the server side](../defining-contracts/http-server/):
+
+```ts
+mockConfig: {
+  http: {
+    baseUrlUnderTest: `http://localhost:${port}`,
+  },
+},
+```
 
 ## Internal configuration options
 
@@ -230,3 +274,25 @@ does not include exceptions thrown by `testResponse` / `testErrorResponse` funct
 Default: None (or provided by your test wrapper, eg Jest)
 
 A unique identifier for this test. Mostly useful for debugging.
+
+### `adviceOverrides` \[object]
+
+Default: Empty
+
+Allows customisation of the advice text that ContractCase prints when
+configuration errors or other issues happen.
+
+This option exists so that enterprise users or teams with common test wrappers
+can print advice that's specific to their setup. Most users will not need to
+use this option. Use it if configuration errors are giving your users incorrect
+advice about setting environment variables
+
+The keys are error codes, and the
+values are the replacement advice strings:
+
+```ts
+adviceOverrides: {
+  OVERWRITE_CONTRACTS_NEEDED:
+    'Please re-run this test with MY_COMPANY_UPDATE_CONTRACTS=true set',
+},
+```

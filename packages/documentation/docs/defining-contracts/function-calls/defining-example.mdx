@@ -1,0 +1,178 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Defining a function call interaction
+
+The most common way to define a function call contract is from the caller's
+side - the caller is the consumer, and the function implementer will [verify
+the contract](../../verifying-contracts/function-execution/) later.
+
+A function call interaction is defined with `willCallFunction`, which describes
+the arguments the caller will use, and the return value it expects:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+
+```ts
+await contract.runInteraction(
+  {
+    definition: willCallFunction({
+      arguments: ['example', 2],
+      returnValue: 'example2',
+      functionName: 'concatenate',
+    }),
+  },
+  {
+    // The trigger calls the mock function that ContractCase
+    // has set up for this interaction (see below)
+    trigger: async (setup: FunctionExecutorConfig) =>
+      setup.getFunction(setup.mock.functionHandle)('example', 2),
+    // The testResponse function asserts on the value
+    // returned by the trigger
+    testResponse: (returnValue) => {
+      expect(returnValue).toEqual('example2');
+    },
+  },
+);
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+contract.runInteraction(
+    new InteractionDefinition<>(
+        List.of(),
+        WillCallFunction.builder()
+            .arguments(List.of(new AnyInteger(2)))
+            .returnValue("2 pages")
+            .functionName("PageNumbers")
+            .build()),
+    IndividualSuccessTestConfigBuilder.<String>builder()
+        .withTrigger((setupInfo) ->
+            parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                .apply(List.of("2"))))
+        .withTestResponse((result, setupInfo) -> {
+          assertThat(result).isEqualTo("2 pages");
+        }));
+```
+
+  </TabItem>
+</Tabs>
+
+As with all interactions, the arguments and return value can be literal values
+(matched exactly), or [Test Equivalence Matchers](/docs/reference/matchers) if
+you want to decouple the test from the specific test data used. 
+
+## The function name
+
+The `functionName` is the identifier for the function under test. It doubles
+as the _handle_ that the provider team will use when [registering the real
+function during verification](../../verifying-contracts/function-execution/),
+so it needs to be shared between the consumer and provider teams - just like
+state names.
+
+It's best practice to use the name of the function in your code. However, 
+the function name you use in the contract is just a handle - it doesn't need to actually match.
+Good function names uniquely identify the function in your domain, 
+so that the contract is self-documenting. 
+
+## Writing the trigger
+
+During contract definition, ContractCase sets up a mock function for each
+interaction. Your trigger should get this mock with
+`setup.getFunction(setup.mock.functionHandle)`, and then invoke your real
+calling code against it.
+
+If your calling code is a thin wrapper, it's fine for the trigger to call the
+mock function directly (as in the example above). If you have more substantial
+calling code, inject the mock function into it, the same way you would inject
+the base URL for an [HTTP client interaction](../http-client/triggers).
+
+As usual, the trigger is paired with a `testResponse` function that asserts
+your calling code understood the return value. See [testing
+responses](../http-client/test-responses) for details - the behaviour is the
+same for function call interactions.
+
+## Functions that are expected to throw
+
+If your interaction models a call where the function is expected to fail,
+define it with the throwing variant of the interaction, and pair it with a
+`testErrorResponse` function (in Typescript, this means using
+`runRejectingInteraction`). Instead of a `returnValue`, you describe the error
+you expect with `errorClassName` (and, optionally, `message`):
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+
+```ts
+// The throwing variants don't have convenience functions in
+// the Typescript DSL yet, so use the definition class directly
+// (from the @contract-case/case-definition-dsl package)
+import { interactions } from '@contract-case/case-definition-dsl';
+
+await contract.runRejectingInteraction(
+  {
+    definition: new interactions.functions.WillCallThrowingFunction({
+      arguments: [],
+      errorClassName: 'UserNotFoundError',
+      functionName: 'getUser',
+    }),
+  },
+  {
+    trigger: async (setup: FunctionExecutorConfig) =>
+      setup.getFunction(setup.mock.functionHandle)(),
+    // During definition, the mock function throws an Error with a
+    // message containing the errorClassName defined above
+    testErrorResponse: (e) => {
+      expect(e.message).toContain('UserNotFoundError');
+    },
+  },
+);
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+contract.runInteraction(
+    new InteractionDefinition<>(
+        List.of(),
+        WillCallThrowingFunction.builder()
+            .arguments(List.of())
+            .errorClassName("CustomException")
+            .functionName("throwingFunction")
+            .build()),
+    IndividualFailedTestConfigBuilder.<String>builder()
+        .withTrigger((setupInfo) ->
+            setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                .apply(List.of()))
+        .withTestErrorResponse((error, setupInfo) -> {
+          assertThat(error).isInstanceOf(FunctionCompletedExceptionally.class);
+        }));
+```
+
+  </TabItem>
+</Tabs>
+
+The `errorClassName` is matched against the class name of the error thrown by
+the real implementation during verification. This lets the contract describe
+_that_ the function fails (and how the failure is classified), without
+coupling to the exact error object, which usually can't cross a language or
+serialisation boundary.
+
+## States
+
+Function call interactions support [state definitions](../http-client/state-definitions)
+in exactly the same way as HTTP interactions - pass an array of `inState(...)`
+definitions alongside the interaction definition, and these will be called at the appropriate time during
+definition.
+
+### Next steps
+
+Once your contract is defined, [upload it to a broker](../brokers) so that the
+function implementer can [verify it](../../verifying-contracts/function-execution/).
