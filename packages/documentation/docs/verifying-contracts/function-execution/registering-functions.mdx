@@ -5,6 +5,11 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import RegisterFunctionsJs from '../../examples/generated/\_verify-register-functions.ts.mdx';
+import RegisterFunctionsJava from '../../examples/generated/\_verify-register-functions.java.mdx';
+
+import RegisterMarshallerJava from '../../examples/generated/\_verify-register-marshaller.java.mdx';
+
 # Registering functions
 
 During verification, ContractCase needs to be able to invoke the real
@@ -18,37 +23,10 @@ the second is the implementation to invoke:
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
-
-```ts
-verifyContract(
-  {
-    providerName: 'function execution',
-  },
-  (verifier) => {
-    verifier.registerFunction('zeroArgs', () => {});
-    verifier.registerFunction('concatenate', (a, b) => `${a}${b}`);
-  },
-);
-```
-
+    <RegisterFunctionsJs />
   </TabItem>
   <TabItem value="java" label="Java">
-
-```java
-ContractVerifier verifier = new ContractVerifier(
-    ContractCaseConfigBuilder.aContractCaseConfig()
-        .providerName("Java Function Implementer Example")
-        .build());
-
-verifier.registerFunction("NoArgFunction", () -> null);
-verifier.registerFunction(
-    "PageNumbers",
-    convertJsonIntegerArg((Integer num) -> num + " pages"));
-
-verifier.runVerification(
-    ContractCaseConfigBuilder.aContractCaseConfig().build());
-```
-
+    <RegisterFunctionsJava />
   </TabItem>
 </Tabs>
 
@@ -62,7 +40,22 @@ Arguments and return values are JSON-serialised when they cross the boundary
 between ContractCase and your code. In dynamically typed languages like typescript, 
 this is handled for you. In Java, registered functions receive each argument as a JSON
 string and must return a JSON string, so you may need a small adapter around
-the function under test to parse the arguments and serialise the result.
+the function under test to parse the arguments and serialise the result. For
+example, the `convertJsonIntegerArg` adapter used above is:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+
+```
+// With Typescript/Javascript, arguments and return values
+// are marshalled for you, so no adapter is needed
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <RegisterMarshallerJava />
+  </TabItem>
+</Tabs>
 
 ## Functions that throw
 

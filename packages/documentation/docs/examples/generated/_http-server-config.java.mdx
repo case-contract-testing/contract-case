@@ -1,0 +1,11 @@
+```java
+  private static final ContractDefiner contract = new ContractDefiner(
+      ContractCaseConfigBuilder.aContractCaseConfig()
+          .consumerName("http request consumer")
+          .providerName("http request provider")
+          .mockConfig("http", Map.of(
+              // Replace this with your own server URL
+              "baseUrlUnderTest", "http://localhost:" + port))
+          // State handlers are described below
+          .build());
+```

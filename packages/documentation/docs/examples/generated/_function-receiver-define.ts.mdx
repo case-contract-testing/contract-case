@@ -1,0 +1,23 @@
+```ts
+import { willReceiveFunctionCall } from '@contract-case/contract-case-jest';
+
+      // This string can be anything you like, as long as it's the same when
+      // registering the function and when defining the interaction
+      const FUNCTION_HANDLE = 'HAS ARGS FUNCTION';
+
+      beforeAll(() => {
+        contract.registerFunction(
+          FUNCTION_HANDLE,
+          (s: string, n: number) => `${s}${n}`,
+        );
+      });
+
+      it('succeeds', () =>
+        contract.runInteraction({
+          definition: willReceiveFunctionCall({
+            arguments: ['example', 2],
+            returnValue: 'example2',
+            functionName: FUNCTION_HANDLE,
+          }),
+        }));
+```

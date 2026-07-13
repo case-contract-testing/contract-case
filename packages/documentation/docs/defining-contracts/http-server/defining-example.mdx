@@ -2,6 +2,18 @@
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import ServerConfigJs from '../../examples/generated/\_http-server-config.ts.mdx';
+import ServerConfigJava from '../../examples/generated/\_http-server-config.java.mdx';
+
+import ServerInteractionsJs from '../../examples/generated/\_http-server-interactions.ts.mdx';
+import ServerInteractionsJava from '../../examples/generated/\_http-server-interactions.java.mdx';
+
+import ServerStateHandlersJs from '../../examples/generated/\_http-server-state-handlers.ts.mdx';
+import ServerStateHandlersJava from '../../examples/generated/\_http-server-state-handlers.java.mdx';
+
 # Defining a server-driven interaction
 
 Server-driven interactions are defined with `willReceiveHttpRequest`. During
@@ -23,65 +35,31 @@ defining an [HTTP client contract](../http-client/):
 Start your server before the tests run, and tell ContractCase its base URL
 with the `mockConfig` [configuration option](/docs/reference/configuring):
 
-```ts
-defineContract(
-  {
-    consumerName: 'http request consumer',
-    providerName: 'http request provider',
-    stateHandlers,
-    mockConfig: {
-      http: {
-        // Replace this with your own server URL
-        baseUrlUnderTest: `http://localhost:${port}`,
-      },
-    },
-  },
-  (contract) => {
-    // ... interaction definitions go here
-  },
-);
-```
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <ServerConfigJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <ServerConfigJava />
+  </TabItem>
+</Tabs>
 
 ## Defining an interaction
 
 The request and response are described the same way as for HTTP client
 contracts - only the direction is reversed. `runInteraction` is used for
 interactions where the client code would succeed, and
-`runRejectingInteraction` for interactions where a client would treat the
-response as an error:
+`runRejectingInteraction` (in Java, `runThrowingInteraction`) for interactions
+where a client would treat the response as an error:
 
-```ts
-describe('When the server is up', () => {
-  const state = inState('Server is up');
-
-  it('returns a healthy status', () =>
-    contract.runInteraction({
-      states: [state],
-      definition: willReceiveHttpRequest({
-        request: {
-          method: 'GET',
-          path: '/health',
-          headers: { accept: 'application/json' },
-        },
-        response: { status: 200, body: { status: 'up' } },
-      }),
-    }));
-});
-
-describe('When the server is down', () => {
-  it('returns an error status', () =>
-    contract.runRejectingInteraction({
-      states: [inState('Server is down')],
-      definition: willReceiveHttpRequest({
-        request: {
-          method: 'GET',
-          path: '/health',
-        },
-        response: { status: httpStatus(['4XX', '5XX']) },
-      }),
-    }));
-});
-```
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <ServerInteractionsJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <ServerInteractionsJava />
+  </TabItem>
+</Tabs>
 
 All the usual [Test Equivalence Matchers](/docs/reference/matchers) are
 available in both the request and the response.
@@ -94,28 +72,14 @@ that put your running server into the named state. These work exactly the same
 way as state handlers during verification, and the same advice applies: mock
 the repository layer of your service if you can.
 
-```ts
-const stateHandlers: StateHandlers = {
-  'Server is up': () => {
-    mockHealthStatus = true;
-  },
-  'Server is down': () => {
-    mockHealthStatus = false;
-  },
-  'A user exists': {
-    setup: () => {
-      const userId = '42';
-      mockGetUser = (id) =>
-        id === userId ? { userId, name: 'John' } : undefined;
-      // Return the userId as a state variable
-      return { userId };
-    },
-    teardown: () => {
-      mockGetUser = () => undefined;
-    },
-  },
-};
-```
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <ServerStateHandlersJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <ServerStateHandlersJava />
+  </TabItem>
+</Tabs>
 
 ### Next steps
 

@@ -1,0 +1,26 @@
+```ts
+// The throwing variants don't have convenience functions in
+// the Typescript DSL yet, so use the definition class directly
+// (from the @contract-case/case-definition-dsl package)
+import { interactions } from '@contract-case/case-definition-dsl';
+import { FunctionExecutorConfig } from '@contract-case/contract-case-jest';
+
+          await contract.runRejectingInteraction(
+            {
+              definition: new interactions.functions.WillCallThrowingFunction({
+                arguments: [],
+                errorClassName: 'UserNotFoundError',
+                functionName: 'getUser',
+              }),
+            },
+            {
+              trigger: async (setup: FunctionExecutorConfig) =>
+                setup.getFunction(setup.mock.functionHandle)(),
+              // During definition, the mock function throws an Error with a
+              // message containing the errorClassName defined above
+              testErrorResponse: (e) => {
+                expect(e.message).toContain('UserNotFoundError');
+              },
+            },
+          );
+```

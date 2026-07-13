@@ -1,0 +1,19 @@
+```java
+    contract.runThrowingInteraction(
+        new InteractionDefinition<>(
+            List.of(),
+            WillCallThrowingFunction.builder()
+                .arguments(List.of())
+                .errorClassName("CustomException")
+                .functionName("throwingFunction")
+                .build()),
+        IndividualFailedTestConfigBuilder.<String>builder()
+            .withTrigger((setupInfo) ->
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of())))
+            // During definition, the mock function throws an exception
+            // matching the errorClassName defined above
+            .withTestErrorResponse((exception, setupInfo) -> {
+              assertThat(exception).isInstanceOf(FunctionCompletedExceptionally.class);
+            }));
+```
