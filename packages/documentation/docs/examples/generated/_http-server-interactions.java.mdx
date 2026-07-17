@@ -1,0 +1,29 @@
+```java
+    contract.runInteraction(
+        new InteractionDefinition<>(
+            List.of(new InState("Server is up")),
+            WillReceiveHttpRequest.builder()
+                .request(HttpRequest.builder()
+                    .method("GET")
+                    .path("/health")
+                    .headers(Map.of("accept", "application/json"))
+                    .build())
+                .response(HttpResponse.builder()
+                    .status(200)
+                    .body(Map.of("status", "up"))
+                    .build())
+                .build()));
+
+    contract.runThrowingInteraction(
+        new InteractionDefinition<>(
+            List.of(new InState("Server is down")),
+            WillReceiveHttpRequest.builder()
+                .request(HttpRequest.builder()
+                    .method("GET")
+                    .path("/health")
+                    .build())
+                .response(HttpResponse.builder()
+                    .status(new HttpStatusCodes(List.of("4XX", "5XX")))
+                    .build())
+                .build()));
+```

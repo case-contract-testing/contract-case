@@ -1,0 +1,21 @@
+```java
+    contract.runInteraction(
+        new InteractionDefinition<>(
+            List.of(),
+            WillCallFunction.builder()
+                .arguments(List.of(new AnyInteger(2)))
+                .returnValue("2 pages")
+                .functionName("PageNumbers")
+                .build()),
+        IndividualSuccessTestConfigBuilder.<String>builder()
+            // The trigger calls the mock function that ContractCase
+            // has set up for this interaction (see below)
+            .withTrigger((setupInfo) ->
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of("2"))))
+            // The testResponse function asserts on the value
+            // returned by the trigger
+            .withTestResponse((result, setupInfo) -> {
+              assertThat(result).isEqualTo("2 pages");
+            }));
+```

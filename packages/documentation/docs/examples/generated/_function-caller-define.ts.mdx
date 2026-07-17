@@ -1,0 +1,27 @@
+```ts
+import {
+  willCallFunction,
+  FunctionExecutorConfig,
+} from '@contract-case/contract-case-jest';
+
+        await contract.runInteraction(
+          {
+            definition: willCallFunction({
+              arguments: ['example', 2],
+              returnValue: 'example2',
+              functionName: 'concatenate',
+            }),
+          },
+          {
+            // The trigger calls the mock function that ContractCase
+            // has set up for this interaction (see below)
+            trigger: async (setup: FunctionExecutorConfig) =>
+              setup.getFunction(setup.mock.functionHandle)('example', 2),
+            // The testResponse function asserts on the value
+            // returned by the trigger
+            testResponse: (returnValue) => {
+              expect(returnValue).toEqual('example2');
+            },
+          },
+        );
+```

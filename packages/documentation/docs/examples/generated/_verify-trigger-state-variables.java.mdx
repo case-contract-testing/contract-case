@@ -1,0 +1,24 @@
+```java
+    Trigger<User> getUser = (setupInfo) -> {
+      try {
+        return new YourApiClient(setupInfo.getMockSetup("baseUrl"))
+            .getUser(setupInfo.getStateVariable("userId"));
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    };
+
+    contract.runVerification(ContractCaseConfigBuilder.aContractCaseConfig()
+        .triggers(new TriggerGroups()
+            .addTriggerGroup(new TriggerGroup<>(
+                "an http \"GET\" request to \"/users/{{userId}}\" without a body",
+                getUser,
+                Map.of(
+                    "a (200) response with body an object shaped like {userId: {{userId}}}",
+                    (User user, InteractionSetup setupInfo) -> {
+                      assertThat(user.userId())
+                          .isEqualTo(setupInfo.getStateVariable("userId"));
+                    }),
+                Map.of())))
+        .build());
+```

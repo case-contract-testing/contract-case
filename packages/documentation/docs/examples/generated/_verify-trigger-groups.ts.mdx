@@ -1,0 +1,29 @@
+```ts
+import {
+  HttpRequestConfig,
+  TriggerGroupMap,
+} from '@contract-case/contract-case-jest';
+
+  verifyContract({
+    providerName: 'http request provider',
+
+    triggers: new TriggerGroupMap().addTriggerGroup(
+      'an http "GET" request to "/health" without a body',
+      {
+        trigger: (setup: HttpRequestConfig) => api(setup.mock.baseUrl).health(),
+        testResponses: {
+          'a (200) response with body an object shaped like {status: "up"}': (
+            health,
+          ) => {
+            expect(health).toEqual('up');
+          },
+        },
+        testErrorResponses: {
+          'a (httpStatus 4XX | 5XX) response without a body': (e) => {
+            expect(e).toBeInstanceOf(ApiError);
+          },
+        },
+      },
+    ),
+  });
+```
