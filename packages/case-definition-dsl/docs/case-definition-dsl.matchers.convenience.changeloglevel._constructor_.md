@@ -41,7 +41,7 @@ string
 
 </td><td>
 
-The new LogLevel. One of "none" \| "error" \| "warn" \| "debug" \| "maintainerDebug" \| "deepMaintainerDebug". see \[LogLevel\](https://case.contract-testing.io/docs/reference/configuring\#loglevel-none--error--warn--debug--maintainerdebug) for details
+The new LogLevel. One of "none" \| "error" \| "warn" \| "debug" \| "maintainerDebug" \| "deepMaintainerDebug". see \[LogLevel\](https://case.contract-testing.io/docs/reference/configuring\#loglevel-none--error--warn--debug--maintainerdebug--deepmaintainerdebug) for details
 
 </td></tr>
 <tr><td>
