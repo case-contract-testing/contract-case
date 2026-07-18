@@ -1,0 +1,33 @@
+name: Keep Node current
+
+on:
+  schedule:
+    # Every Monday at 06:15 UTC
+    - cron: '15 6 * * 1'
+  workflow_dispatch:
+
+# Least privilege at the top level; the job that needs write asks for it below.
+permissions: read-all
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Keep Node current
+        uses: TimothyJones/github-action-keep-node-current@f8b1f7c33795cd02a25dd67db5564afcfc115eb8 # v1.0.1
+        with:
+          # The default GITHUB_TOKEN cannot edit files under .github/workflows/,
+          # which this action needs to bump the CI node-version matrix. Use a PAT
+          # with `workflow` scope stored as the SYNC_PAT repository secret.
+          token: ${{ secrets.SYNC_PAT }}
