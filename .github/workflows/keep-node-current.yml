@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Keep Node current
-        uses: TimothyJones/github-action-keep-node-current@f8b1f7c33795cd02a25dd67db5564afcfc115eb8 # v1.0.1
+        uses: TimothyJones/github-action-keep-node-current@6702717590b2ea4b147dd9007e9dda0d05d2ffc4 # v1.0.2
         with:
           # The default GITHUB_TOKEN cannot edit files under .github/workflows/,
           # which this action needs to bump the CI node-version matrix. Use a PAT
