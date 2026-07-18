@@ -3,6 +3,11 @@ export class YourApi {
   getUser(_arg0: string): Promise<unknown> {
     throw new Error('Method not implemented.');
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  health(): Promise<string> {
+    throw new Error('Method not implemented.');
+  }
   baseUrl: string;
 
   constructor(baseUrl: string) {

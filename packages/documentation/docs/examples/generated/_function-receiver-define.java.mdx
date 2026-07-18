@@ -1,0 +1,12 @@
+```java
+    contract.registerFunction("PageNumbers", convertJsonArgs(
+        (Integer num) -> num + " pages"));
+
+    contract.runInteraction(new InteractionDefinition<>(
+        List.of(),
+        WillReceiveFunctionCall.builder()
+            .arguments(List.of(new AnyInteger(2)))
+            .returnValue("2 pages")
+            .functionName("PageNumbers")
+            .build()));
+```

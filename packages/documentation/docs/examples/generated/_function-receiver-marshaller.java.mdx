@@ -1,0 +1,17 @@
+```java
+  // Because the arguments and return values cross a language boundary,
+  // registered functions receive JSON strings. A small adapter like this
+  // parses the arguments and serialises the result of the real function.
+  @NotNull
+  private static InvokableFunction1<?> convertJsonArgs(
+      Function<Integer, String> functionUnderTest) {
+    return (String a) -> {
+      try {
+        var arg1 = mapper.readValue(a, Integer.class);
+        return mapper.writeValueAsString(functionUnderTest.apply(arg1));
+      } catch (JsonProcessingException e) {
+        throw new RuntimeException("Unable to parse argument");
+      }
+    };
+  }
+```

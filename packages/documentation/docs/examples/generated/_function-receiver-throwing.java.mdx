@@ -1,0 +1,13 @@
+```java
+    contract.registerFunction("throwingFunction", () -> {
+      throw new CustomException("Oh no");
+    });
+
+    contract.runInteraction(new InteractionDefinition<>(
+        List.of(),
+        WillReceiveFunctionCallAndThrow.builder()
+            .arguments(List.of())
+            .errorClassName("CustomException")
+            .functionName("throwingFunction")
+            .build()));
+```

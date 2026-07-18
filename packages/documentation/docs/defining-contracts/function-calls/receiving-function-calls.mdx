@@ -5,6 +5,14 @@ sidebar_position: 5
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import ReceiverDefineJs from '../../examples/generated/\_function-receiver-define.ts.mdx';
+import ReceiverDefineJava from '../../examples/generated/\_function-receiver-define.java.mdx';
+
+import ReceiverMarshallerJava from '../../examples/generated/\_function-receiver-marshaller.java.mdx';
+
+import ReceiverThrowingJs from '../../examples/generated/\_function-receiver-throwing.ts.mdx';
+import ReceiverThrowingJava from '../../examples/generated/\_function-receiver-throwing.java.mdx';
+
 # Defining from the implementer's side
 
 Sometimes it's the function _implementer_ whose expectations should drive the
@@ -20,45 +28,10 @@ interaction:
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
-
-```ts
-// This string can be anything you like, as long as it's the same when
-// registering the function and when defining the interaction
-const FUNCTION_HANDLE = 'HAS ARGS FUNCTION';
-
-beforeAll(() => {
-  contract.registerFunction(
-    FUNCTION_HANDLE,
-    (s: string, n: number) => `${s}${n}`,
-  );
-});
-
-it('succeeds', () =>
-  contract.runInteraction({
-    definition: willReceiveFunctionCall({
-      arguments: ['example', 2],
-      returnValue: 'example2',
-      functionName: FUNCTION_HANDLE,
-    }),
-  }));
-```
-
+    <ReceiverDefineJs />
   </TabItem>
   <TabItem value="java" label="Java">
-
-```java
-contract.registerFunction("PageNumbers", convertJsonArgs(
-    (Integer num) -> num + " pages"));
-
-contract.runInteraction(new InteractionDefinition<>(
-    List.of(),
-    WillReceiveFunctionCall.builder()
-        .arguments(List.of(new AnyInteger(2)))
-        .returnValue("2 pages")
-        .functionName("PageNumbers")
-        .build()));
-```
-
+    <ReceiverDefineJava />
   </TabItem>
 </Tabs>
 
@@ -66,6 +39,21 @@ Because ContractCase generates the caller side itself, there's no `trigger`,
 `testResponse`, or `testErrorResponse` to write for these interactions. However, 
 because a function contract is defined expecting string arguments, you may need to
 wrap your function with a marshaller and unmarshaller before providing it to ContractCase.
+For example, the `convertJsonArgs` adapter used in the Java example above is:
+
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+
+```
+// With Typescript/Javascript, arguments and return values
+// are marshalled for you, so no adapter is needed
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <ReceiverMarshallerJava />
+  </TabItem>
+</Tabs>
 
 ## Functions that throw
 
@@ -75,43 +63,10 @@ error with `errorClassName` instead of a `returnValue`:
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
-
-```ts
-// The throwing variants don't have convenience functions in
-// the Typescript DSL yet, so use the definition class directly
-// (from the @contract-case/case-definition-dsl package)
-import { interactions } from '@contract-case/case-definition-dsl';
-
-contract.registerFunction('throwingFunction', () => {
-  throw new CustomException('Oh no');
-});
-
-await contract.runInteraction({
-  definition: new interactions.functions.WillReceiveFunctionCallAndThrow({
-    arguments: [],
-    errorClassName: 'CustomException',
-    functionName: 'throwingFunction',
-  }),
-});
-```
-
+    <ReceiverThrowingJs />
   </TabItem>
   <TabItem value="java" label="Java">
-
-```java
-contract.registerFunction("throwingFunction", () -> {
-  throw new CustomException("Oh no");
-});
-
-contract.runInteraction(new InteractionDefinition<>(
-    List.of(),
-    WillReceiveFunctionCallAndThrow.builder()
-        .arguments(List.of())
-        .errorClassName("CustomException")
-        .functionName("throwingFunction")
-        .build()));
-```
-
+    <ReceiverThrowingJava />
   </TabItem>
 </Tabs>
 

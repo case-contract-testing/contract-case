@@ -1,16 +1,10 @@
 ```java
-    contract.runInteraction(
-        new InteractionDefinition<>(
-            List.of(
-                /* as above */
-            ),
-            new WillSendHttpRequest(
-                HttpExample.builder()
-                    /* as above */
-                    .build())
-        ),
-        IndividualSuccessTestConfigBuilder.builder()
-            .withLogLevel(LogLevel.DEBUG)
-            .build()
-    );
+        contract.runInteraction(
+                new InteractionDefinition<>(
+                        List.of(
+                                /* as above */
+                        ,
+                        /* as above */
+                                .build()),
+                IndividualSuccessTestConfigBuilder.builder().withLogLevel(LogLevel.DEBUG).build());
 ```

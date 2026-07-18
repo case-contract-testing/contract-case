@@ -2,6 +2,15 @@
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import TriggerGroupsJs from '../../examples/generated/\_verify-trigger-groups.ts.mdx';
+import TriggerGroupsJava from '../../examples/generated/\_verify-trigger-groups.java.mdx';
+
+import TriggerStateVariablesJs from '../../examples/generated/\_verify-trigger-state-variables.ts.mdx';
+import TriggerStateVariablesJava from '../../examples/generated/\_verify-trigger-state-variables.java.mdx';
+
 # Providing triggers for verification
 
 During verification of a server-driven contract, ContractCase doesn't know how
@@ -10,32 +19,17 @@ in the contract: the trigger that invokes your real client code, plus the
 test functions that assert on what your client returned (or threw).
 
 Trigger groups are provided with the `triggers` [configuration
-option](/docs/reference/configuring), built with a `TriggerGroupMap`:
+option](/docs/reference/configuring), built with a `TriggerGroupMap` (in Java,
+`TriggerGroups`):
 
-```ts
-verifyContract({
-  providerName: 'http request provider',
-
-  triggers: new TriggerGroupMap().addTriggerGroup(
-    'an http "GET" request to "/health" without a body',
-    {
-      trigger: (setup: HttpRequestConfig) => api(setup.mock.baseUrl).health(),
-      testResponses: {
-        'a (200) response with body an object shaped like {status: "up"}': (
-          health,
-        ) => {
-          expect(health).toEqual('up');
-        },
-      },
-      testErrorResponses: {
-        'a (httpStatus 4XX | 5XX) response without a body': (e) => {
-          expect(e).toBeInstanceOf(ApiError);
-        },
-      },
-    },
-  ),
-});
-```
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <TriggerGroupsJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <TriggerGroupsJava />
+  </TabItem>
+</Tabs>
 
 Each trigger group contains:
 
@@ -69,20 +63,14 @@ variables](../../defining-contracts/http-client/state-definitions), the
 resolved values are available through `setup.getStateVariable(...)` in both
 the trigger and the test functions:
 
-```ts
-.addTriggerGroup('an http "GET" request to "/users/{{userId}}" without a body', {
-  trigger: (setup: HttpRequestConfig) =>
-    api(setup.mock.baseUrl).getUser(setup.getStateVariable('userId')),
-  testResponses: {
-    'a (200) response with body an object shaped like {userId: {{userId}}}': (
-      user,
-      setup,
-    ) => {
-      expect(user).toEqual({ userId: setup.getStateVariable('userId') });
-    },
-  },
-})
-```
+<Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <TriggerStateVariablesJs />
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <TriggerStateVariablesJava />
+  </TabItem>
+</Tabs>
 
 During verification of a server-driven contract, state handlers aren't run
 (the mock server plays back the recorded responses), so state variables take

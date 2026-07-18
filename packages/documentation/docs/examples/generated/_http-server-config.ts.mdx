@@ -1,0 +1,18 @@
+```ts
+defineContract(
+  {
+    consumerName: 'http request consumer',
+    providerName: 'http request provider',
+    stateHandlers,
+    mockConfig: {
+      http: {
+        // Replace this with your own server URL
+        baseUrlUnderTest: `http://localhost:${port}`,
+      },
+    },
+  },
+  (contract) => {
+    // ... interaction definitions go here
+  },
+);
+```
