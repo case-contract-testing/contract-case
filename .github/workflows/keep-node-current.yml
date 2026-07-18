@@ -23,6 +23,11 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          # Don't leave checkout's Authorization extraheader in the git config;
+          # the action pushes with its own token, and both being present makes
+          # git send a duplicate Authorization header (remote 400 on push).
+          persist-credentials: false
 
       - name: Keep Node current
         uses: TimothyJones/github-action-keep-node-current@6702717590b2ea4b147dd9007e9dda0d05d2ffc4 # v1.0.2
