@@ -16,7 +16,7 @@ import type { InvokingScaffold, Trigger } from './types';
 import { Assertable } from '../../entities/types';
 import { CaseFailedAssertionError } from '../../entities';
 
-const advice = (context: MatchContext) =>
+const missingTriggerAdvice = (context: MatchContext) =>
   context['_case:currentRun:context:adviceOverrides']?.[
     'MISSING_TRIGGER_FUNCTION'
   ] ?? `Please check that you have configured the appropriate trigger function`;
@@ -218,7 +218,7 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
         `No trigger for request '${names.requestName}' provided`,
       );
       throw new CaseConfigurationError(
-        `No trigger provided for request:\n     ${names.requestName}\n\n${advice(context)}`,
+        `No trigger provided for request:\n     ${names.requestName}\n\n${missingTriggerAdvice(context)}`,
         context,
         'MISSING_TRIGGER_FUNCTION',
       );
@@ -256,20 +256,20 @@ export const findAndCallTrigger = <T extends AnyMockDescriptorType, R>(
             names.responseName
           }\n However, tests for that response name do exist in the following configurations:\n${endsWith
             .map((s) => `        ${s.split('::')[0]}`)
-            .join('\n')}\n\n${advice(context)}\n`,
+            .join('\n')}\n\n${missingTriggerAdvice(context)}\n`,
           context,
           'MISSING_TRIGGER_FUNCTION',
         );
       }
 
       throw new CaseConfigurationError(
-        `Missing a trigger for:\n       ${names.requestName}\n  this should be paired with a test for:\n       ${names.responseName}\n\n${advice(context)}`,
+        `Missing a trigger for:\n       ${names.requestName}\n  this should be paired with a test for:\n       ${names.responseName}\n\n${missingTriggerAdvice(context)}`,
         context,
         'MISSING_TRIGGER_FUNCTION',
       );
     }
     throw new CaseConfigurationError(
-      `No trigger or trigger map provided for:\n     ${names.requestName}\n  You must set a trigger or a trigger map\n\n${advice(context)}`,
+      `No trigger or trigger map provided for:\n     ${names.requestName}\n  You must set a trigger or a trigger map\n\n${missingTriggerAdvice(context)}`,
       context,
       'MISSING_TRIGGER_FUNCTION',
     );
