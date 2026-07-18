@@ -1,0 +1,16 @@
+```java
+  // Registered functions receive each argument as a JSON string, and
+  // must return a JSON string. An adapter like this parses the arguments
+  // and serialises the result of the real function under test.
+  private static @NotNull <R> InvokableFunction1<?>
+  convertJsonIntegerArg(Function<Integer, R> functionUnderTest) {
+    return (String a) -> {
+      try {
+        var arg1 = mapper.readValue(a, Integer.class);
+        return mapper.writeValueAsString(functionUnderTest.apply(arg1));
+      } catch (JsonProcessingException e) {
+        throw new RuntimeException("Unable to parse argument");
+      }
+    };
+  }
+```

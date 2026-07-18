@@ -1,12 +1,10 @@
 ```java
-    contract.runInteraction(
-        new InteractionDefinition<>(
-            List.of(
-                // This one runs first
-                new InState("Server is up"),
-                // This one runs second
-                new InState("A user with id \"foo\" exists")
-            ),
-            /* ... */
-    );
+        contract.runInteraction(new InteractionDefinition<>(
+                List.of(
+                        // This one runs first
+                        new InState("Server is up"),
+                        // This one runs second
+                        new InState("A user with id \"foo\" exists")),
+                /* ... */
+        );
 ```

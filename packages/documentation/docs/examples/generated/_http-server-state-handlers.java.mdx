@@ -1,0 +1,26 @@
+```java
+    ContractCaseConfigBuilder.aContractCaseConfig()
+        .stateHandler(
+            "Server is up",
+            StateHandler.setupFunction(() -> {
+              // Put your server into the 'Server is up' state here,
+              // for example by mocking the repository layer
+            }))
+        .stateHandler(
+            "Server is down",
+            StateHandler.setupFunction(() -> {
+              // Put your server into the 'Server is down' state here
+            }))
+        .stateHandler(
+            "A user exists",
+            StateHandler.setupAndTeardown(
+                () -> {
+                  // Set up the user in your server's repository layer,
+                  // then return the userId as a state variable
+                  return Map.of("userId", "42");
+                },
+                () -> {
+                  // Remove the mock, so that the server state
+                  // is the same as it was before the test
+                }))
+```

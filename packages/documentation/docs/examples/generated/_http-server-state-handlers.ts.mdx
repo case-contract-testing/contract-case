@@ -1,0 +1,22 @@
+```ts
+const stateHandlers: StateHandlers = {
+  'Server is up': () => {
+    mockHealthStatus = true;
+  },
+  'Server is down': () => {
+    mockHealthStatus = false;
+  },
+  'A user exists': {
+    setup: () => {
+      const userId = '42';
+      mockGetUser = (id) =>
+        id === userId ? { userId, name: 'John' } : undefined;
+      // Return the userId as a state variable
+      return { userId };
+    },
+    teardown: () => {
+      mockGetUser = () => undefined;
+    },
+  },
+};
+```

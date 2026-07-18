@@ -1,0 +1,34 @@
+```java
+    // The trigger invokes your real client code against the mock server
+    Trigger<String> getHealth = (setupInfo) -> {
+      try {
+        return new YourApiClient(setupInfo.getMockSetup("baseUrl")).getHealth();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    };
+
+    contract.runVerification(ContractCaseConfigBuilder.aContractCaseConfig()
+        .triggers(new TriggerGroups()
+            .addTriggerGroup(new TriggerGroup<>(
+                "an http \"GET\" request to \"/health\" without a body",
+                getHealth,
+                // Test functions for interactions where the client
+                // code is expected to succeed, keyed by the
+                // response description
+                Map.of(
+                    "a (200) response with body an object shaped like {status: \"up\"}",
+                    (String result, InteractionSetup setupInfo) -> {
+                      assertThat(result).isEqualTo("up");
+                    }),
+                // Test functions for interactions where the client
+                // code is expected to throw, keyed by the
+                // response description
+                Map.of(
+                    "a (httpStatus 4XX | 5XX) response without a body",
+                    (Exception exception, InteractionSetup setupInfo) -> {
+                      assertThat(exception.getMessage())
+                          .isEqualTo("The server is not ready");
+                    }))))
+        .build());
+```

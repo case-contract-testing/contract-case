@@ -5,6 +5,12 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CallerDefineJs from '../../examples/generated/\_function-caller-define.ts.mdx';
+import CallerDefineJava from '../../examples/generated/\_function-caller-define.java.mdx';
+
+import CallerThrowingJs from '../../examples/generated/\_function-caller-throwing.ts.mdx';
+import CallerThrowingJava from '../../examples/generated/\_function-caller-throwing.java.mdx';
+
 # Defining a function call interaction
 
 The most common way to define a function call contract is from the caller's
@@ -16,51 +22,10 @@ the arguments the caller will use, and the return value it expects:
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
-
-```ts
-await contract.runInteraction(
-  {
-    definition: willCallFunction({
-      arguments: ['example', 2],
-      returnValue: 'example2',
-      functionName: 'concatenate',
-    }),
-  },
-  {
-    // The trigger calls the mock function that ContractCase
-    // has set up for this interaction (see below)
-    trigger: async (setup: FunctionExecutorConfig) =>
-      setup.getFunction(setup.mock.functionHandle)('example', 2),
-    // The testResponse function asserts on the value
-    // returned by the trigger
-    testResponse: (returnValue) => {
-      expect(returnValue).toEqual('example2');
-    },
-  },
-);
-```
-
+    <CallerDefineJs />
   </TabItem>
   <TabItem value="java" label="Java">
-
-```java
-contract.runInteraction(
-    new InteractionDefinition<>(
-        List.of(),
-        WillCallFunction.builder()
-            .arguments(List.of(new AnyInteger(2)))
-            .returnValue("2 pages")
-            .functionName("PageNumbers")
-            .build()),
-    IndividualSuccessTestConfigBuilder.<String>builder()
-        .withTrigger((setupInfo) ->
-            parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
-                .apply(List.of("2"))))
-        .withTestResponse((result, setupInfo) -> {
-          assertThat(result).isEqualTo("2 pages");
-        }));
-```
-
+    <CallerDefineJava />
   </TabItem>
 </Tabs>
 
@@ -103,59 +68,16 @@ same for function call interactions.
 If your interaction models a call where the function is expected to fail,
 define it with the throwing variant of the interaction, and pair it with a
 `testErrorResponse` function (in Typescript, this means using
-`runRejectingInteraction`). Instead of a `returnValue`, you describe the error
-you expect with `errorClassName` (and, optionally, `message`):
+`runRejectingInteraction`; in Java, `runThrowingInteraction`). Instead of a
+`returnValue`, you describe the error you expect with `errorClassName` (and,
+optionally, `message`):
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
-
-```ts
-// The throwing variants don't have convenience functions in
-// the Typescript DSL yet, so use the definition class directly
-// (from the @contract-case/case-definition-dsl package)
-import { interactions } from '@contract-case/case-definition-dsl';
-
-await contract.runRejectingInteraction(
-  {
-    definition: new interactions.functions.WillCallThrowingFunction({
-      arguments: [],
-      errorClassName: 'UserNotFoundError',
-      functionName: 'getUser',
-    }),
-  },
-  {
-    trigger: async (setup: FunctionExecutorConfig) =>
-      setup.getFunction(setup.mock.functionHandle)(),
-    // During definition, the mock function throws an Error with a
-    // message containing the errorClassName defined above
-    testErrorResponse: (e) => {
-      expect(e.message).toContain('UserNotFoundError');
-    },
-  },
-);
-```
-
+    <CallerThrowingJs />
   </TabItem>
   <TabItem value="java" label="Java">
-
-```java
-contract.runInteraction(
-    new InteractionDefinition<>(
-        List.of(),
-        WillCallThrowingFunction.builder()
-            .arguments(List.of())
-            .errorClassName("CustomException")
-            .functionName("throwingFunction")
-            .build()),
-    IndividualFailedTestConfigBuilder.<String>builder()
-        .withTrigger((setupInfo) ->
-            setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
-                .apply(List.of()))
-        .withTestErrorResponse((error, setupInfo) -> {
-          assertThat(error).isInstanceOf(FunctionCompletedExceptionally.class);
-        }));
-```
-
+    <CallerThrowingJava />
   </TabItem>
 </Tabs>
 
