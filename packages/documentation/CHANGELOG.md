@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.1](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.30.0...documentation-v0.30.1) (2026-07-18)
+
+
+### Documentation
+
+* Substantially update documentation ([c22ddac](https://github.com/case-contract-testing/contract-case/commit/c22ddacc30c0114b84227c3f17422201658fbf2d))
+
 ## [0.30.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.29.1...documentation-v0.30.0) (2026-07-05)
 
 

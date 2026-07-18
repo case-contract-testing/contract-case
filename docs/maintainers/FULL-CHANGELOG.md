@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.30.1](https://github.com/case-contract-testing/contract-case/compare/v0.30.0...v0.30.1) (2026-07-18)
+
+
+### Features
+
+* Add advice override for 'MISSING_TRIGGER_FUNCTION' ([#1352](https://github.com/case-contract-testing/contract-case/issues/1352)) ([f10c45d](https://github.com/case-contract-testing/contract-case/commit/f10c45d3415685650eec68b7493526aca69ff0d4))
+
+
+### Bug Fixes
+
+* **jest:** Correct peer dependency specification so that you can install without legacy-peer-deps set ([1b04a91](https://github.com/case-contract-testing/contract-case/commit/1b04a91554929c26c5a82ea71ff7c229d493c087))
+* **vitest:** Correctly export ESM instead of CJS for the vitest bindings. This might sound like a breaking change, but because of the way vitest works, it could never have worked before ([9202ab6](https://github.com/case-contract-testing/contract-case/commit/9202ab66a392c21f7f669285748eea120e2af523))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.30.0 to 0.30.1
+
 ## [0.30.0](https://github.com/case-contract-testing/contract-case/compare/v0.29.1...v0.30.0) (2026-07-05)
 
 
