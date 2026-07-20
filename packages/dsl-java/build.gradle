@@ -44,7 +44,7 @@ tasks.withType(Javadoc).configureEach {
 
 def grpcVersion = "1.82.1"
 def protobufVersion = "3.25.2"
-def junitVersion = "6.0.3"
+def junitVersion = "6.1.2"
 
 dependencies {
     implementation 'com.diogonunes:JColor:5.5.1'
