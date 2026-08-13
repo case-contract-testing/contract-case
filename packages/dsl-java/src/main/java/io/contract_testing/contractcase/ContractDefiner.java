@@ -159,11 +159,13 @@ public class ContractDefiner {
   }
 
   /**
-   * Loads one or more plugins.
+   * Loads one or more plugins. Call this before running any interactions that
+   * need the plugin(s).
    *
-   * @param pluginNames The names of the plugins to load. Can be a path to the
-   *                    package, or the name
-   *                    of a package that has previously been installed with npm.
+   * @param pluginNames The names of the plugins to load. Each must be the name
+   *                    of a node package that has previously been installed in
+   *                    the current project (eg with npm). Paths and URIs are
+   *                    not supported, for security reasons.
    */
   public void loadPlugins(String... pluginNames) {
     try {
