@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.31.0](https://github.com/case-contract-testing/contract-case/compare/v0.30.1...v0.31.0) (2026-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for node version 20, add support for node version 26 ([#1368](https://github.com/case-contract-testing/contract-case/issues/1368))
+
+### Features
+
+* Drop support for node version 20, add support for node version 26 ([#1368](https://github.com/case-contract-testing/contract-case/issues/1368)) ([616b780](https://github.com/case-contract-testing/contract-case/commit/616b780c46b620de34e24285bd53511a5351e955))
+
 ## [0.30.1](https://github.com/case-contract-testing/contract-case/compare/v0.30.0...v0.30.1) (2026-07-18)
 
 
