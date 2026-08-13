@@ -1,4 +1,7 @@
-import { ContractCaseDslPlugin } from '@contract-case/case-plugin-base';
+import {
+  CaseConfigurationError,
+  ContractCaseDslPlugin,
+} from '@contract-case/case-plugin-base';
 import { GeneratedFileWriter } from './types';
 import { LanguageGenerator } from '../types';
 
@@ -13,8 +16,10 @@ export const makeGenerator = (
   process: (incomingPlugin: ContractCaseDslPlugin): Promise<void> =>
     Promise.resolve(incomingPlugin).then(({ dsl, description }) => {
       if (dsl == null) {
-        throw new Error(
+        throw new CaseConfigurationError(
           `Plugin '${description.humanReadableName}' doesn't have a 'dsl' property, so no matchers, states or interactions are declared`,
+          'DONT_ADD_LOCATION',
+          'BAD_DSL_DECLARATION',
         );
       }
       return Promise.all([
