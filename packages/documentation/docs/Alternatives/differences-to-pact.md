@@ -83,7 +83,7 @@ This means that extending ContractCase is significantly easier - to add new mock
 types, implement one function and one DSL object. To add new matcher type, there
 are three functions, and one DSL object to implement.
 
-See the documentation on [extending ContractCase](/docs/reference/plugin-framework) for details.
+See the documentation on [extending ContractCase](/docs/plugins/) for details.
 
 # Unsupported things
 
