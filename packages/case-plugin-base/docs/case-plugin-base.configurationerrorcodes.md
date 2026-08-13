@@ -220,6 +220,29 @@ For contract verification, it should be:
 </td></tr>
 <tr><td>
 
+[INVALID\_PLUGIN\_MODULE](./case-plugin-base.configurationerrorcodes.invalid_plugin_module.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'INVALID\_PLUGIN\_MODULE'
+
+
+</td><td>
+
+Indicates that a plugin module was loaded, but it doesn't contain a ContractCase plugin.
+
+Plugin modules must export the assembled plugin object (an object with `description`<!-- -->, `matcherExecutors` and `setupMocks` properties) as the module's default export.
+
+If you're a user of the plugin, check that the plugin name is spelled correctly, and that the package really is a ContractCase plugin. If it is, this is an error in the plugin's packaging - please contact the plugin's authors.
+
+
+</td></tr>
+<tr><td>
+
 [INVALID\_PLUGIN\_NAME](./case-plugin-base.configurationerrorcodes.invalid_plugin_name.md)
 
 

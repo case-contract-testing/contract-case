@@ -107,6 +107,21 @@ export interface ConfigurationErrorCodes {
   INVALID_LIFECYCLE: 'INVALID_LIFECYCLE';
 
   /**
+   * Indicates that a plugin module was loaded, but it doesn't contain a
+   * ContractCase plugin.
+   *
+   * Plugin modules must export the assembled plugin object (an object with
+   * `description`, `matcherExecutors` and `setupMocks` properties) as the
+   * module's default export.
+   *
+   * If you're a user of the plugin, check that the plugin name is spelled
+   * correctly, and that the package really is a ContractCase plugin. If it
+   * is, this is an error in the plugin's packaging - please contact the
+   * plugin's authors.
+   */
+  INVALID_PLUGIN_MODULE: 'INVALID_PLUGIN_MODULE';
+
+  /**
    * Indicates that the plugin name or path that you provided was invalid.
    * Most users won't come across this message.
    *
@@ -290,6 +305,7 @@ export const ErrorCodes: ErrorCodeDefinitions = {
     BAD_DSL_DECLARATION: 'BAD_DSL_DECLARATION',
     INVALID_CONFIG: 'INVALID_CONFIG',
     INVALID_LIFECYCLE: 'INVALID_LIFECYCLE',
+    INVALID_PLUGIN_MODULE: 'INVALID_PLUGIN_MODULE',
     INVALID_PLUGIN_NAME: 'INVALID_PLUGIN_NAME',
     MISSING_STATE_HANDLER: 'MISSING_STATE_HANDLER',
     MISSING_TEST_FUNCTION: 'MISSING_TEST_FUNCTION',
