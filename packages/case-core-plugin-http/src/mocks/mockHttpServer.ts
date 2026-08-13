@@ -91,7 +91,9 @@ export const setupHttpResponseProducer = (
             // TODO: Only do this if we need to
             app.use(express.json());
 
-            app.all('*', (req, res, next) => {
+            // '/{*splat}' matches all paths, including '/'
+            // (express 5 no longer accepts a bare '*')
+            app.all('/{*splat}', (req, res, next) => {
               requestData = {
                 method: req.method,
                 path: req.path,
