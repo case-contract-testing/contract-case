@@ -62,3 +62,28 @@ Options:
 * `-l, --log-level <level>`: Sets the log level (string). See the [the
   log level option](./configuring#loglevel-none--error--warn--debug--maintainerdebug--deepmaintainerdebug) for possible log level options and the
   default values.
+
+### Generating plugin DSLs
+
+If you're the author of a [ContractCase plugin](../plugins/), you can generate
+the user-facing DSL classes declared by your plugin's
+[DSL declaration](../plugins/dsl-generation) with the `generate-plugin-dsl`
+command:
+
+```bash
+# replace <PLUGIN PACKAGE> with the name of the plugin package to generate for.
+# It must be installed in the current project.
+npx @contract-case/cli generate-plugin-dsl [options] <PLUGIN PACKAGE>
+```
+
+Options:
+
+- `--languages <languages>`: A comma separated list of the languages to
+  generate. Currently `java` and `ts` are supported. Default: `java,ts`.
+- `--output-dir <dir>`: The base directory to generate into. Files are
+  written to conventional paths beneath this directory (eg
+  `src/main/java/...` for Java), so it should be the root of the package that
+  the generated files will belong to. Default: the current directory.
+
+See [Declaring your DSL](../plugins/dsl-generation) for details of how
+plugins declare the classes this command generates.
