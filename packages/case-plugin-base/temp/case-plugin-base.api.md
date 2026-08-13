@@ -351,6 +351,9 @@ export const isPassToMatcher: (parameterType: ParameterType) => parameterType is
 // @public
 export const isTypeContainer: (parameterType: ParameterType) => parameterType is TypeContainer;
 
+// @public
+export const loadPluginModuleContents: (moduleName: string) => Promise<unknown>;
+
 // Warning: (ae-internal-missing-underscore) The name "locationString" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
