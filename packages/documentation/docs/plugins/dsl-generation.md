@@ -23,19 +23,37 @@ in behaviour or documentation, because they're all generated from the same
 declaration - and when you add a parameter, every language gets it in the
 same release.
 
-:::caution Work in progress
+## Running the generator
 
-The DSL generator itself is work in progress: the generator library exists and
-is tested, but it can't yet be invoked outside the ContractCase repository
-(there's no CLI hooked up yet). Until that lands, DSL classes for your plugin
-need to be written by hand - see
-[Hand-writing your DSL](#hand-writing-your-dsl-in-the-meantime) below.
+The generator is part of the [ContractCase CLI](../reference/cli). From the
+project where your plugin is installed (or your plugin's own repository, with
+the plugin built and installed):
 
-We recommend writing the `dsl` declaration anyway: it's the documentation of
-your user-facing surface, and your plugin will pick up generated DSLs when the
-generator is completed. If you're blocked on this, please
-[open an issue](https://github.com/case-contract-testing/contract-case/issues/new)
-so we can prioritise appropriately.
+```bash
+ContractCase generate-plugin-dsl @yourorg/your-plugin --languages java,ts --output-dir .
+```
+
+- The plugin is loaded by package name, with the same rules as
+  [loading a plugin for a test run](./loading-plugins#plugin-names-must-be-plain-package-names) -
+  it must be installed locally.
+- `--languages` is a comma-separated subset of `java` and `ts` (both by
+  default).
+- `--output-dir` should be the root of the package the generated files will
+  belong to: the generators write to conventional paths beneath it
+  (`src/main/java/...` for Java, `src/boundaries/dsl/...` for TypeScript).
+
+Distributing the generated classes is up to you - for Java, that means
+compiling them into a jar alongside your plugin's npm package (they depend on
+the ContractCase Java DSL for the `DslMatcher` / `DslInteraction` marker
+interfaces, plus Jackson and Lombok).
+
+:::tip note
+
+The generated Java classes currently land in ContractCase's own package
+namespace (`io.contract_testing.contractcase.dsl.<kind>.<category>`), with
+your plugin's `category` as the leaf package. If this causes you problems -
+for example, if you'd prefer them generated into your own package namespace -
+please [open an issue](https://github.com/case-contract-testing/contract-case/issues/new).
 
 :::
 
@@ -211,15 +229,16 @@ DSL's type signatures require. In both cases, `PassToMatcher` parameters are
 collapsed - the generated constructor accepts the exposed parameters and
 constructs the inner matcher itself.
 
-## Hand-writing your DSL (in the meantime)
+## Hand-writing your DSL
 
-Until the generator can be run outside the ContractCase repository:
+Generation isn't compulsory - the generated classes are conveniences over
+plain JSON, so you can also write the DSL by hand:
 
 - **TypeScript users** can use the plain factory functions from your `-dsl`
   package directly (like the `anyUlid` function in
   [writing matchers](./writing-matchers#the-dsl-function)) - descriptors are
   just JSON, so no generation is strictly necessary.
-- **Java users** need hand-written classes: plain objects whose Jackson
+- **Java users** can write classes by hand: plain objects whose Jackson
   `@JsonProperty` annotations produce exactly your descriptor's keys
   (including `_case:matcher:type` / `_case:mock:type`), implementing
   `DslMatcher` or `DslInteraction` as appropriate. The
