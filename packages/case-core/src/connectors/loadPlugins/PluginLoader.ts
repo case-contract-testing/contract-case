@@ -6,7 +6,7 @@ import {
   IsMockDescriptorForType,
   constructDataContext,
 } from '@contract-case/case-plugin-base';
-import { isContractCasePlugin } from './resolve';
+import { isContractCasePlugin } from '@contract-case/case-entities-internal';
 import type { CaseConfig } from '../../core/types';
 
 import { configFromEnv, configToRunContext } from '../../core/config';
