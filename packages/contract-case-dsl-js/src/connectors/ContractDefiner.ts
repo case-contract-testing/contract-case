@@ -2,6 +2,7 @@ import {
   BoundaryAnyMatcher,
   BoundaryContractDefiner,
   BoundaryMockDefinition,
+  BoundaryPluginLoader,
 } from '@contract-case/case-connector/cjs';
 import { interactions } from '@contract-case/case-definition-dsl';
 
@@ -79,6 +80,27 @@ export class ContractCaseDefiner {
         mapDefinition(definition),
         mapFailingConfig({ ...this.config, ...runConfig }),
       )
+      .then(mapSuccess)
+      .catch(errorHandler);
+  }
+
+  /**
+   * Loads one or more plugins, which must be the names of plugin packages
+   * installed in the current project (eg with `npm install --save-dev`).
+   *
+   * Call this before running any interactions that need the plugin(s).
+   *
+   * @param pluginNames - The names of the plugin packages to load.
+   * @returns a Promise that resolves once the plugins are loaded.
+   */
+  loadPlugins(...pluginNames: string[]): Promise<void> {
+    return new BoundaryPluginLoader(
+      mapConfig({ ...this.config, testRunId: 'DEFINER_LOAD_PLUGIN' }),
+      defaultPrinter,
+      defaultPrinter,
+      [versionString],
+    )
+      .loadPlugins(pluginNames)
       .then(mapSuccess)
       .catch(errorHandler);
   }
