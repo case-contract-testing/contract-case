@@ -1,0 +1,12 @@
+{
+  "name": "@contract-case/test-dsl-plugin-fixture",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fixture plugin package for generatePluginDsl.spec.ts - a plugin that declares a DSL",
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./no-dsl": "./no-dsl.js"
+  }
+}

@@ -1,0 +1,3 @@
+# Generated TS DSL output. Nothing consumes this yet - see the
+# "TS Generated Matchers" item in docs/maintainers/todo.md
+src/generated/
