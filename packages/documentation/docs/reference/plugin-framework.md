@@ -1,184 +1,24 @@
 ---
 sidebar_position: 10
+sidebar_label: 'Contract Format'
 ---
 
-# Plugin Framework
+# Contract file format
 
-:::danger Draft ahead
+:::tip note
 
-This document is currently inaccurate, as it was written before JSii was found to be unsuitable for writing plugins.
-
-It's still possible to write extensions - if you are planning an extension, please get in touch by opening [an issue](https://github.com/case-contract-testing/contract-case/issues/new).
-
-You can also see the core plugin packages [here](https://github.com/case-contract-testing/contract-case/tree/main/packages) - any package with `core-plugin` in the name will provide a good starting point.
-
-There are [old instructions for adding matchers](https://github.com/case-contract-testing/case/blob/main/docs/maintainers/AddingMatchers.md) in the maintainer documentation.
+If you arrived here looking for how to extend ContractCase with your own
+matchers or mock types, see the [Plugins](../plugins/) section - this page
+describes the format of the contract file itself.
 
 :::
 
-## Caveats for extending ContractCase
+Most users do not need to know the contract format - you can treat the
+contract file as opaque. This page is for you if you're building tooling on
+top of ContractCase, or [writing a plugin](../plugins/) and want to understand
+what your descriptors look like once they're written down.
 
-Extensions can be written in any of the languages where ContractCase is available.
-However, if you wish to distribute your extension for use by others who don't use the same language, it must be written in TypeScript and transpiled with JSii.
-
-Additionally, if your matcher is likely to be of general use, consider making a pull request to add it to the core implementation.
-
-## Anatomy of a ContractCase Interaction
-
-In the contract file, each interaction (called an `example` in the file format) has three parts:
-
-- `states`: An array of the state definitions this interaction needs. Each
-  state has a `_case:state:type` of either `_case:NamedState` or
-  `_case:StateWithVariables`, a `stateName`, and (for states with variables) a
-  `variables` object whose values are matchers.
-- `mock`: The description of the mock for this interaction. It contains the
-  matcher tree(s) for the data being exchanged (for example `request` and
-  `response` for HTTP mocks), a `_case:mock:type` naming the mock executor to
-  use, and a `_case:run:context:setup` object that tells ContractCase how to
-  run the interaction from each side:
-  - `write`: How to run the interaction on the side that defines the contract
-  - `read`: How to run the interaction on the side that verifies the contract
-
-  Each of these describes which mock type to use (eg an HTTP client interaction
-  is run with a mock HTTP server during definition, and a mock HTTP client
-  during verification), whether state variables come from state handlers
-  (`'state'`) or their default values (`'default'`), and whether triggers are
-  `'provided'` by the user or `'generated'` by ContractCase.
-
-- `result`: The result of the interaction when the contract was defined
-  (successful interactions are recorded as `VERIFIED`).
-
-## ContractCase Context
-
-All matcher executors and mock executors receive a context object
-(`MatchContext` in the plugin framework types). It combines:
-
-- **Run configuration**: the resolved configuration for the current run, under
-  keys namespaced with `_case:currentRun:context:` (for example
-  `_case:currentRun:context:contractDir`). The namespacing means plugins can
-  add their own context entries without colliding with user data.
-- **Traversal functions**: `descendAndCheck()` and `descendAndStrip()`, which
-  matcher executors use to recurse into their children.
-- **Lookup functions**: used to save and retrieve named matchers and state
-  variables from the contract's lookup table.
-- **A logger and result printer**, so that plugins can log consistently with
-  the rest of ContractCase.
-
-Matchers can modify the context for everything below them in the matcher tree
-by including fields prefixed with `_case:context:` (see "Designing the
-description object" below). For example, `_case:context:matchBy` is how
-`shapedLike` and `exactlyLike` switch the default matching mode between
-`'type'` and `'exact'` for their children.
-
-## Extending with a new matcher type
-
-To extend case with a new Matcher type:
-
-1. Implement the description object. This is the object that will be produced by the DSL, and the content that will be written to the contract file.
-2. Implement the corresponding `MatcherExecutor`
-
-### Designing the description object
-
-All matchers much have a constant for the type of the matcher. The
-type must have an exported constant for its type. This is used to
-determine what type of matcher it is and to run the associated matching
-functions. For example:
-
-```ts
-export const YOUR_CUSTOM_MATCHER_TYPE = 'yourName:yourMatcher' as const;
-```
-
-Note that all matchers that Case provides are prefixed with `case:`. To avoid
-clashing with official matcher names, this prefix is not allowed in extensions.
-
-Export a new interface that describes the actual matcher JSON. This is
-what will be written to the contract file, and generated by the matcher DSL.
-
-It must include `case:matcher:type`, set to the exact type constant string you created in the previous step.
-All parameter fields must be prefixed with `case:matcher:`. For example:
-
-```ts
-export interface CoreArrayLengthMatcher {
-  'case:matcher:type': typeof CORE_ARRAY_LENGTH_MATCHER;
-  'case:matcher:minLength': number;
-  'case:matcher:maxLength': number;
-}
-```
-
-If your matcher modifies the context object, add fields prefixed with
-`case:context:` - these are automatically picked up by ContractCase and rolled
-into the context before this matcher is invoked. Because case matchers are
-recursive, this context is passed down to any child matchers.
-
-### Implementing the description object
-
-Create a DSL function that creates your matcher type, for example:
-
-```ts
-/**
- * Everything inside this matcher will be matched exactly, unless overridden with an `any*` matcher
- *
- * Use this to switch out of `shapedLike` and back to the default exact matching.
- *
- * @param content What
- */
-export const exactlyLike = (
-  content: AnyCaseNodeOrData,
-): CoreCascadingMatcher => ({
-  'case:matcher:type': CASCADING_CONTEXT_MATCHER_TYPE,
-  'case:matcher:child': content,
-  'case:context:matchBy': 'exact',
-});
-```
-
-### Implementing the MatcherExecutor
-
-Next, we will add the behaviour of the matcher, both for matching, and for stripping the matchers.
-
-Implement a type that satisfies `MatcherExecutor<typeof YOUR_NEW_TYPE_STRING>`. For example:
-
-```ts
-const strip: StripMatcherFn<typeof YOUR_CUSTOM_MATCHER_TYPE> = (
-    matcher: YourCustomMatcherInterface,
-    matchContext: MatchContext
-): AnyData => // implement the strip matcher function here
-
-
-const check: CheckMatchFn<typeof YOUR_CUSTOM_MATCHER_TYPE> = (
-    matcher: YourCustomMatcherInterface,
-    matchContext: MatchContext,
-    actual: unknown
-): Promise<MatchResult> | MatchResult => // Implement your check here
-
-export const ArrayLengthExecutor: MatcherExecutor<
-    typeof YOUR_CUSTOM_MATCHER_TYPE
-> = { check, strip };
-```
-
-If you need to recurse further into any children of your matchers, use
-`matchContext.descendAndCheck()` or `matchContext.descendAndStrip()` as
-appropriate. See the existing [MatcherExecutor implementations](https://github.com/case-contract-testing/case/tree/main/src/diffmatch) for examples.
-
-If your matcher doesn't have enough context to strip matchers (eg, for
-auxiliary matchers designed to be used with `and()`), then throw a `new stripUnsupportedError(matcher, matchContext)` inside your implementation of
-`strip()`.
-
-Note that matcher executors are not allowed to call other matcher executors -
-only `descendAndCheck(...)`. If you need to combine matchers, do it at the DSL
-layer with `and(...)`
-
-## Extending with a new mock type
-
-To extend case with a new Mock type:
-
-1. Implement a function that matches the `MockSetupFn` interface to give ContractCase the behaviour
-1. Implement a function that returns a json-serialisable object that the function you created in the previous step would expect.
-
-# ContractCase Contract Format
-
-Most users do not need to know the format - you can treat the contract file as
-opaque. If you're building tooling on top of ContractCase, the top level of a
-Case File looks like this:
+The top level of a contract file looks like this:
 
 ```jsonc
 {
@@ -204,16 +44,50 @@ Case File looks like this:
     "variable:default:userId::test[0]": {},
   },
 
-  // The interactions, as described in
-  // "Anatomy of a ContractCase Interaction" above
+  // The interactions, as described below
   "examples": [],
 }
 ```
+
+## Anatomy of an interaction
+
+Each interaction (called an `example` in the file format) has three parts:
+
+- `states`: An array of the state definitions this interaction needs. Each
+  state has a `_case:state:type` of either `_case:NamedState` or
+  `_case:StateWithVariables`, a `stateName`, and (for states with variables) a
+  `variables` object whose values are matchers.
+- `mock`: The description of the mock for this interaction. It contains the
+  matcher tree(s) for the data being exchanged (for example `request` and
+  `response` for HTTP mocks), a `_case:mock:type` naming the mock executor to
+  use, and a `_case:run:context:setup` object that tells ContractCase how to
+  run the interaction from each side:
+  - `write`: How to run the interaction on the side that defines the contract
+  - `read`: How to run the interaction on the side that verifies the contract
+
+  Each of these describes which mock type to use (eg an HTTP client interaction
+  is run with a mock HTTP server during definition, and a mock HTTP client
+  during verification), whether state variables come from state handlers
+  (`'state'`) or their default values (`'default'`), and whether triggers are
+  `'provided'` by the user or `'generated'` by ContractCase. See
+  [writing mock types](../plugins/writing-mocks) for a full description.
+
+- `result`: The result of the interaction when the contract was defined
+  (successful interactions are recorded as `VERIFIED`).
+
+## Metadata namespacing
 
 Within the matcher trees, all ContractCase metadata keys are namespaced with a
 `_case:` prefix (`_case:matcher:type`, `_case:mock:type`, `_case:state:type`
 and so on), so they can't collide with user data. Everything without a
 `_case:` prefix is literal data or the parameters of the enclosing matcher.
+
+Matcher type constants provided by ContractCase itself are also prefixed with
+`_case:` (for example `_case:MatchInteger`) - plugins use their own namespace
+prefixes instead, as described in
+[the plugin documentation](../plugins/writing-a-plugin#namespacing-your-types).
+
+## Stability
 
 The format is not currently versioned separately from ContractCase itself, and
 may change between versions - if you're building tooling that reads contract
