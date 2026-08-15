@@ -56,6 +56,15 @@ public class ContractVerifier implements AutoCloseable {
     this.verifier = verification;
   }
 
+  /**
+   * Loads one or more plugins. Call this before preparing or running any
+   * verification tests that need the plugin(s).
+   *
+   * @param pluginNames The names of the plugins to load. Each must be the name
+   *                    of a node package that has previously been installed in
+   *                    the current project (eg with npm). Paths and URIs are
+   *                    not supported, for security reasons.
+   */
   public void loadPlugins(String... pluginNames) {
     try {
       ConnectorResultMapper.mapVoid(this.verifier.loadPlugins(ConnectorConfigMapper.map(

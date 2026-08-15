@@ -3,8 +3,8 @@ import { globalIgnores } from 'eslint/config';
 
 export default [
   globalIgnores(
-    ['cjs.js', 'rename-inner-webpack-vars-loader.cjs'],
-    'Ignore CJS node entry point and webpack loader',
+    ['cjs.js', 'rename-inner-webpack-vars-loader.cjs', 'test-fixtures/'],
+    'Ignore CJS node entry point, webpack loader, and test fixture packages',
   ),
   ...lintConfig,
   {

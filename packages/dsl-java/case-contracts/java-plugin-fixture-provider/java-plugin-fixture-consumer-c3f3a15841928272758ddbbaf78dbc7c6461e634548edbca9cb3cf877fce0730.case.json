@@ -1,0 +1,70 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "Java Plugin Fixture Consumer",
+    "providerName": "Java Plugin Fixture Provider"
+  },
+  "metadata": {
+    "_case": {
+      "version": "0.30.1",
+      "hash": "c3f3a15841928272758ddbbaf78dbc7c6461e634548edbca9cb3cf877fce0730"
+    }
+  },
+  "matcherLookup": {
+    "matcher:returns test fixture default-export": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": {
+        "_case:matcher:type": "test-fixture:default-export:Matcher"
+      }
+    },
+    "matcher:An invocation of ReturnsPluginMatchedValue()": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": []
+    }
+  },
+  "examples": [
+    {
+      "states": [
+        {
+          "_case:state:type": "_case:NamedState",
+          "stateName": "The plugin fixture is loaded"
+        }
+      ],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          },
+          "write": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          }
+        },
+        "functionName": "ReturnsPluginMatchedValue",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of ReturnsPluginMatchedValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": []
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returns test fixture default-export",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": {
+              "_case:matcher:type": "test-fixture:default-export:Matcher"
+            }
+          }
+        }
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}

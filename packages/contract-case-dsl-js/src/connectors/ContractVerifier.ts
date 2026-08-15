@@ -1,6 +1,7 @@
 import {
   BoundaryContractVerifier,
   BoundaryInvokableFunction,
+  BoundaryPluginLoader,
 } from '@contract-case/case-connector/cjs';
 
 import {
@@ -29,9 +30,12 @@ export class ContractVerifier {
 
   private invokeableFunctions: Record<string, BoundaryInvokableFunction>;
 
+  private printer: typeof defaultPrinter;
+
   constructor(config: ContractCaseVerifierConfig, printer = defaultPrinter) {
     this.config = config;
     this.invokeableFunctions = {};
+    this.printer = printer;
 
     try {
       this.boundaryVerifier = new BoundaryContractVerifier(
@@ -61,6 +65,28 @@ export class ContractVerifier {
     } catch (e) {
       return errorHandler(e as Error);
     }
+  }
+
+  /**
+   * Loads one or more plugins, which must be the names of plugin packages
+   * installed in the current project (eg with `npm install --save-dev`).
+   *
+   * Call this before preparing or running any verification tests that need
+   * the plugin(s).
+   *
+   * @param pluginNames - The names of the plugin packages to load.
+   * @returns a Promise that resolves once the plugins are loaded.
+   */
+  loadPlugins(...pluginNames: string[]): Promise<void> {
+    return new BoundaryPluginLoader(
+      mapConfig({ ...this.config, testRunId: 'VERIFICATION_LOAD_PLUGIN' }),
+      this.printer,
+      this.printer,
+      [versionString],
+    )
+      .loadPlugins(pluginNames)
+      .then(mapSuccess)
+      .catch(errorHandler);
   }
 
   /**

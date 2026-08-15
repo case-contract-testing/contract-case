@@ -38,7 +38,10 @@ export {
   CaseCoreError,
   CaseTriggerError,
   VerifyTriggerReturnObjectError,
+  isContractCasePlugin,
+  mustResolvePlugin,
 } from '@contract-case/case-plugin-base';
+export type { AnyContractCasePlugin } from '@contract-case/case-plugin-base';
 export type {
   AnyMockDescriptorType,
   AnyMockDescriptor,
