@@ -54,9 +54,11 @@ Plugins:
       `.default` unwrapping, plus an end-to-end test loading a third-party
       plugin by name. (Fixed with `mustResolvePlugin` in `case-plugin-base`;
       tested by `BoundaryPluginLoader.spec.ts`.)
-- [ ] Complete the DSL generator so plugin authors can run it - hook it into
+- [x] Complete the DSL generator so plugin authors can run it - hook it into
       the CLI and remove the hardcoded paths in
-      `case-definition-generator/src/index.ts`.
+      `case-definition-generator/src/index.ts`. (Done: the CLI's
+      `generate-plugin-dsl` command; core generation moved to
+      `npm run generate:core-dsls` in the generator package.)
 
 - [ ] Close verifier should return results
 - [ ] Deprecate and remove flat tests results

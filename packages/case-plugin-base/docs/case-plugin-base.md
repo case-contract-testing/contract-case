@@ -355,6 +355,23 @@ Type guard function that determines whether a ParameterType is a TypeContainer o
 </td></tr>
 <tr><td>
 
+[loadPluginModuleContents(moduleName)](./case-plugin-base.loadpluginmodulecontents.md)
+
+
+</td><td>
+
+Loads a plugin module by name, returning whatever the module exports.
+
+Module names are validated before loading: they must be bare node package names (optionally scoped, optionally with a subpath). Paths and URIs are intentionally rejected for security reasons - loading a plugin executes its code, and restricting specifiers to already-installed packages means nothing can be loaded that the user didn't explicitly install.
+
+Names are resolved against the current working directory (ie, the user's project) first, so plugins are found even when this code runs from somewhere else (eg the connector bundle extracted to a temporary directory).
+
+Most callers will want to follow this with [mustResolvePlugin()](./case-plugin-base.mustresolveplugin.md) to extract the plugin object from the module contents.
+
+
+</td></tr>
+<tr><td>
+
 [makeNoErrorResult()](./case-plugin-base.makenoerrorresult.md)
 
 

@@ -4180,6 +4180,52 @@
           "name": "isTypeContainer"
         },
         {
+          "kind": "Function",
+          "canonicalReference": "@contract-case/case-plugin-base!loadPluginModuleContents:function(1)",
+          "docComment": "/**\n * Loads a plugin module by name, returning whatever the module exports.\n *\n * Module names are validated before loading: they must be bare node package names (optionally scoped, optionally with a subpath). Paths and URIs are intentionally rejected for security reasons - loading a plugin executes its code, and restricting specifiers to already-installed packages means nothing can be loaded that the user didn't explicitly install.\n *\n * Names are resolved against the current working directory (ie, the user's project) first, so plugins are found even when this code runs from somewhere else (eg the connector bundle extracted to a temporary directory).\n *\n * Most callers will want to follow this with {@link mustResolvePlugin} to extract the plugin object from the module contents.\n *\n * @param moduleName - the name of the plugin package to load\n *\n * @returns a Promise of the module's contents\n *\n * @throws\n *\n * CaseConfigurationError (as a rejected Promise) if the module name is unsafe or the module couldn't be loaded\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "loadPluginModuleContents: (moduleName: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<unknown>"
+            }
+          ],
+          "fileUrlPath": "src/plugins/loadModule.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 5
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "moduleName",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "loadPluginModuleContents"
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!LogContext:interface",
           "docComment": "/**\n * Part of the context with the logger attached. Useful if you just want to pass the logging functions to something.\n *\n * This is used in a few places where the whole context isn't available (eg, before the context has been constructed), and where you don't care what context the caller is coming from, but you want to be able to log things.\n *\n * @public\n */\n",
