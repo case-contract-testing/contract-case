@@ -38,6 +38,6 @@
     "coverage": "lcov-result-merger 'packages/*/*/lcov.info' combined-coverage.info --prepend-source-files"
   },
   "dependencies": {
-    "nx": "^22.5.2"
+    "nx": "^22.7.8"
   }
 }
