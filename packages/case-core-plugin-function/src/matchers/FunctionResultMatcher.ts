@@ -15,6 +15,7 @@ import {
   concatenateDescribe,
   describeMessage,
   renderToString,
+  combineResults,
 } from '@contract-case/case-plugin-base';
 import { AnyData } from '@contract-case/case-plugin-dsl-types';
 import { isObject } from '../entities';
@@ -144,7 +145,7 @@ const check = async (
   matchContext: MatchContext,
   actual: unknown,
 ): Promise<MatchResult> =>
-  Promise.resolve().then(() => {
+  Promise.resolve().then(async () => {
     if (!isObject(actual)) {
       throw new CaseCoreError(
         `FunctionResultMatcher check() received a non-object response from a function. This indicates a bug in the function wrapper lib. What was returned was: ${actual}`,
@@ -192,11 +193,20 @@ const check = async (
     } else {
       // We're expecting failure
       if ('errorClassName' in actual) {
-        return matchContext.descendAndCheck(
+        const errorClassNameResult = await matchContext.descendAndCheck(
           matcher.errorClassName,
           addLocation(`thrownErrorKind`, matchContext),
           actual['errorClassName'],
         );
+        if ('message' in matcher && matcher.message != null) {
+          const messageResult = await matchContext.descendAndCheck(
+            matcher.message,
+            addLocation(`message`, matchContext),
+            'message' in actual ? actual['message'] : undefined,
+          );
+          return combineResults(errorClassNameResult, messageResult);
+        }
+        return errorClassNameResult;
       }
       // But it was a success
       return [
@@ -250,8 +260,8 @@ const validate = (
       .then(async () => {
         if ('message' in matcher && matcher.message != null) {
           await matchContext.descendAndValidate(
-            matcher.errorClassName,
-            addLocation('errorClassName', matchContext),
+            matcher.message,
+            addLocation('message', matchContext),
           );
         }
       });
