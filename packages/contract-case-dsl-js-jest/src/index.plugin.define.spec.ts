@@ -17,6 +17,7 @@ describe('definition with a loaded plugin', () => {
       consumerName: 'plugin fixture consumer',
       providerName: 'plugin fixture provider',
       changedContracts: 'OVERWRITE',
+      publish: false,
     },
     (contract) => {
       beforeAll(() =>

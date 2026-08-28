@@ -1,0 +1,86 @@
+name: Autofix lint + format
+
+on:
+  pull_request:
+    branches: [main]
+
+# Least privilege at the top level; the job that needs write asks for it below.
+permissions: read-all
+
+# Only one autofix run per PR at a time, so two runs don't race on pushing.
+concurrency:
+  group: autofix-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          # Check out the PR head commit (not the merge commit) so we can push fixes on top of it.
+          # We use the sha rather than the branch name, because fork PRs' branches
+          # don't exist in this repo.
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Use Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.x
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      # Configure Gradle for optimal use in GiHub Actions, including caching of downloaded dependencies.
+      # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@f9c9c575b8b21b6485636a91ffecd10e558c62f6 # v3.5.0
+
+      - name: Build, then run lint:fix and format:fix
+        run: bash ci/format-and-lint-fix.sh
+        shell: bash
+        env:
+          FORCE_COLOR: true
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git status --short
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push fixes
+        # Only same-repo PRs get a writable token; fork PRs are handled below.
+        if: steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: apply lint and format fixes"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+
+      - name: Fail with instructions (fork PRs)
+        if: steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          echo "::error::Lint/format fixes are needed, but this PR is from a fork so they can't be pushed automatically."
+          echo "Please run the following locally and push the result:"
+          echo "    npm install && npx lerna run build && npx lerna run lint:fix && npx lerna run format:fix"
+          git diff
+          exit 1
