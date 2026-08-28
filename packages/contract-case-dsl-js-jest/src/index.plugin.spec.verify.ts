@@ -5,6 +5,11 @@ describe('verification with a loaded plugin', () => {
     {
       providerName: 'plugin fixture provider',
       throwOnFail: true,
+      // The plugin fixture contract isn't published to the broker (we're out
+      // of PactFlow integrations), so it isn't in the downloaded temp-contracts
+      // dir. Verify against the contract written locally by the define spec.
+      contractDir: './case-contracts',
+      publish: false,
     },
     (verifier) => {
       beforeAll(() =>
