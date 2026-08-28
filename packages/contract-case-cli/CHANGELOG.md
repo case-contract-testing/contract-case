@@ -23,6 +23,24 @@
   * devDependencies
     * @contract-case/eslint-config-case-maintainer bumped from 0.0.1 to 0.0.2
 
+## [0.30.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.30.1...@contract-case/cli-v0.30.2) (2026-08-28)
+
+
+### Features
+
+* Make the DSL generator runnable by plugin authors ([#1387](https://github.com/case-contract-testing/contract-case/issues/1387)) ([7576a42](https://github.com/case-contract-testing/contract-case/commit/7576a4207b3c1fa4d8b58d6db233634f9e791c4c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.30.1 to 0.30.2
+    * @contract-case/case-core bumped from 0.30.1 to 0.30.2
+    * @contract-case/definition-generator bumped from 0.30.1 to 0.30.2
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.30.1 to 0.30.2
+
 ## [0.30.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/cli-v0.30.0...@contract-case/cli-v0.30.1) (2026-07-18)
 
 

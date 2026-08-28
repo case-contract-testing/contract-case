@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.30.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.30.1...@contract-case/case-core-plugin-function-v0.30.2) (2026-08-28)
+
+
+### Bug Fixes
+
+* Function contract error messages are now respected at match time ([#1398](https://github.com/case-contract-testing/contract-case/issues/1398)) ([8bffcc0](https://github.com/case-contract-testing/contract-case/commit/8bffcc09cfe27361b464f3ffcf693267a6f65bd5))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.30.1 to 0.30.2
+    * @contract-case/case-plugin-base bumped from 0.30.1 to 0.30.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.30.1 to 0.30.2
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.30.1 to 0.30.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.30.1 to 0.30.2
+
 ## [0.30.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.30.0...@contract-case/case-core-plugin-function-v0.30.1) (2026-07-18)
 
 

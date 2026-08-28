@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.30.2](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.30.1...documentation-v0.30.2) (2026-08-28)
+
+
+### Features
+
+* Make the DSL generator runnable by plugin authors ([#1387](https://github.com/case-contract-testing/contract-case/issues/1387)) ([7576a42](https://github.com/case-contract-testing/contract-case/commit/7576a4207b3c1fa4d8b58d6db233634f9e791c4c))
+
+
+### Bug Fixes
+
+* **plugins:** Make plugin loading work end to end ([#1386](https://github.com/case-contract-testing/contract-case/issues/1386)) ([8d79bb4](https://github.com/case-contract-testing/contract-case/commit/8d79bb4ee7d4f2d78363913f261ef5173a742f96))
+
+
+### Documentation
+
+* Rewrite the plugin documentation for the current plugin framework ([#1385](https://github.com/case-contract-testing/contract-case/issues/1385)) ([7f09c00](https://github.com/case-contract-testing/contract-case/commit/7f09c00ecaf1cb694705cc034f1a39023ab31324))
+
 ## [0.30.1](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.30.0...documentation-v0.30.1) (2026-07-18)
 
 
