@@ -1,7 +1,4 @@
-import {
-  CaseCoreError,
-  PluginLoader,
-} from '@contract-case/case-core';
+import { CaseCoreError, PluginLoader } from '@contract-case/case-core';
 import {
   loadPluginModuleContents,
   mustResolvePlugin,
