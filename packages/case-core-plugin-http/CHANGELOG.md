@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.30.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.30.1...@contract-case/case-core-plugin-http-v0.30.2) (2026-08-28)
+## [0.31.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.30.1...@contract-case/case-core-plugin-http-v0.31.0) (2026-08-28)
 
 
 ### Miscellaneous Chores
@@ -12,12 +12,12 @@
 
 * The following workspace dependencies were updated
   * dependencies
-    * @contract-case/case-core-plugin-http-dsl bumped from 0.30.1 to 0.30.2
-    * @contract-case/case-plugin-dsl-types bumped from 0.30.1 to 0.30.2
-    * @contract-case/case-plugin-base bumped from 0.30.1 to 0.30.2
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.30.1 to 0.31.0
+    * @contract-case/case-plugin-dsl-types bumped from 0.30.1 to 0.31.0
+    * @contract-case/case-plugin-base bumped from 0.30.1 to 0.31.0
   * devDependencies
-    * @contract-case/case-maintainer-config bumped from 0.30.1 to 0.30.2
-    * @contract-case/eslint-config-case-maintainer bumped from 0.30.1 to 0.30.2
+    * @contract-case/case-maintainer-config bumped from 0.30.1 to 0.31.0
+    * @contract-case/eslint-config-case-maintainer bumped from 0.30.1 to 0.31.0
 
 ## [0.30.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-http-v0.30.0...@contract-case/case-core-plugin-http-v0.30.1) (2026-07-18)
 

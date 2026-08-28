@@ -1,1 +1,1 @@
-export const caseVersion = '0.30.2'; // x-release-please-version
+export const caseVersion = '0.31.0'; // x-release-please-version

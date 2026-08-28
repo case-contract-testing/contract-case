@@ -9,7 +9,7 @@
     "tmp": "^0.2.7"
   },
   "devDependencies": {
-    "@contract-case/eslint-config-case-maintainer": "0.30.2",
+    "@contract-case/eslint-config-case-maintainer": "0.31.0",
     "example-extractor": "^0.0.4",
     "jsii-docgen": "^10.11.4",
     "lerna": "^10.0.1",
