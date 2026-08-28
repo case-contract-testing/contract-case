@@ -15,9 +15,13 @@ import {
   concatenateDescribe,
   describeMessage,
   renderToString,
-  combineResults,
+  makeNoErrorResult,
+  combineResultPromises,
 } from '@contract-case/case-plugin-base';
-import { AnyData } from '@contract-case/case-plugin-dsl-types';
+import {
+  AnyCaseMatcherOrData,
+  AnyData,
+} from '@contract-case/case-plugin-dsl-types';
 import { isObject } from '../entities';
 
 export const isSuccessResult = (
@@ -38,6 +42,51 @@ const isFunctionFailure = (
   isObject(maybeFailure) &&
   'errorClassName' in maybeFailure &&
   typeof maybeFailure['errorClassName'] === 'string';
+
+/**
+ * Checks that the `actual` is a function failure, and if it is, checks that it's the one we expect
+ * @param matcher - a function error result matcher
+ * @param matchContext - current match context
+ * @param actual - actual data received here
+ * @returns a Promise representing a MatchResult.
+ */
+const checkFunctionFailure = (
+  matcher: CoreFunctionErrorResultMatcher,
+  matchContext: MatchContext,
+  actual: Record<string, AnyCaseMatcherOrData>,
+): Promise<MatchResult> =>
+  'errorClassName' in actual
+    ? // This was a failure, check the fields
+      combineResultPromises(
+        matchContext.descendAndCheck(
+          matcher.errorClassName,
+          addLocation(`thrownErrorKind`, matchContext),
+          actual['errorClassName'],
+        ),
+        'message' in matcher && matcher.message != null
+          ? matchContext.descendAndCheck(
+              matcher.message,
+              addLocation(`message`, matchContext),
+              actual['message'],
+            )
+          : makeNoErrorResult(),
+      )
+    : Promise.resolve([
+        matchingError(
+          matcher,
+          `Expected the function to throw an error, but it returned successfully`,
+          actual['success'],
+          matchContext,
+          matchContext.descendAndStrip(
+            matcher,
+            addLocation(':strippingExpected', matchContext),
+          ),
+          {
+            actual: 'Successfully returned',
+            expected: 'Error thrown',
+          },
+        ),
+      ]);
 
 const strip = (
   matcher: CoreFunctionSuccessResultMatcher | CoreFunctionErrorResultMatcher,
@@ -145,7 +194,7 @@ const check = async (
   matchContext: MatchContext,
   actual: unknown,
 ): Promise<MatchResult> =>
-  Promise.resolve().then(async () => {
+  Promise.resolve().then(() => {
     if (!isObject(actual)) {
       throw new CaseCoreError(
         `FunctionResultMatcher check() received a non-object response from a function. This indicates a bug in the function wrapper lib. What was returned was: ${actual}`,
@@ -191,40 +240,7 @@ const check = async (
         `FunctionResultMatcher check() received an invalid response from a function. This indicates a bug in the function wrapper lib. What was returned was: ${actual}`,
       );
     } else {
-      // We're expecting failure
-      if ('errorClassName' in actual) {
-        const errorClassNameResult = await matchContext.descendAndCheck(
-          matcher.errorClassName,
-          addLocation(`thrownErrorKind`, matchContext),
-          actual['errorClassName'],
-        );
-        if ('message' in matcher && matcher.message != null) {
-          const messageResult = await matchContext.descendAndCheck(
-            matcher.message,
-            addLocation(`message`, matchContext),
-            'message' in actual ? actual['message'] : undefined,
-          );
-          return combineResults(errorClassNameResult, messageResult);
-        }
-        return errorClassNameResult;
-      }
-      // But it was a success
-      return [
-        matchingError(
-          matcher,
-          `Expected the function to throw an error, but it returned successfully`,
-          actual['success'],
-          matchContext,
-          matchContext.descendAndStrip(
-            matcher,
-            addLocation(':strippingExpected', matchContext),
-          ),
-          {
-            actual: 'Successfully returned',
-            expected: 'Error thrown',
-          },
-        ),
-      ];
+      return checkFunctionFailure(matcher, matchContext, actual);
     }
   });
 
