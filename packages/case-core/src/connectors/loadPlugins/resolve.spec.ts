@@ -1,5 +1,5 @@
 import { isContractCasePlugin, mustResolvePlugin } from './resolve';
-import { CaseConfigurationError } from '../errors';
+import { CaseConfigurationError } from '@contract-case/case-plugin-base';
 
 const makePlugin = (name: string) => ({
   description: {

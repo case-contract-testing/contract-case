@@ -9,6 +9,5 @@ export * from './errors';
 export * from './logger';
 export * from './matchers';
 export * from './mocks';
-export * from './plugins';
 
 export * from './types';

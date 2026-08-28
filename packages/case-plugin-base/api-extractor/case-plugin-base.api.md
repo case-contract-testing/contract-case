@@ -21,9 +21,6 @@ export const actualToString: <T>(actual: T, indent?: number) => string;
 // @public
 export const addLocation: (location: string, context: MatchContext) => MatchContext;
 
-// @public
-export type AnyContractCasePlugin = ContractCasePlugin<string, string, IsCaseNodeForType<string>, IsMockDescriptorForType<string>, unknown>;
-
 // Warning: (ae-internal-missing-underscore) The name "applyNodeToContext" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
@@ -335,9 +332,6 @@ export interface IsCaseNodeForType<T extends string> {
 }
 
 // @public
-export const isContractCasePlugin: (value: unknown) => value is AnyContractCasePlugin;
-
-// @public
 export interface IsMockDescriptorForType<T extends string> {
     // (undocumented)
     '_case:mock:type': T;
@@ -492,9 +486,6 @@ export type MockOutput = {
     expected: AnyCaseMatcherOrData;
     context: MatchContext;
 };
-
-// @public
-export const mustResolvePlugin: (moduleContents: unknown, moduleName: string) => AnyContractCasePlugin;
 
 // @public
 export const mustResolveToNumber: (matcher: AnyCaseMatcherOrData, context: MatchContext) => number;

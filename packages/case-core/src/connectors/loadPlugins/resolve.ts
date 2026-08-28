@@ -1,7 +1,9 @@
-import { ContractCasePlugin } from '../types';
-import { IsCaseNodeForType } from '../matchers/utility.types';
-import { IsMockDescriptorForType } from '../mocks/executors.types';
-import { CaseConfigurationError } from '../errors';
+import {
+  CaseConfigurationError,
+  ContractCasePlugin,
+  IsCaseNodeForType,
+  IsMockDescriptorForType,
+} from '@contract-case/case-plugin-base';
 
 /**
  * Convenience type for a plugin where the specific matcher and mock types

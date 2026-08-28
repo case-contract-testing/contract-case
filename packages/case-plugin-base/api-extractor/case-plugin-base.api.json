@@ -319,55 +319,6 @@
           "name": "addLocation"
         },
         {
-          "kind": "TypeAlias",
-          "canonicalReference": "@contract-case/case-plugin-base!AnyContractCasePlugin:type",
-          "docComment": "/**\n * Convenience type for a plugin where the specific matcher and mock types aren't known - which is the case when a plugin has been loaded dynamically.\n *\n * @public\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export type AnyContractCasePlugin = "
-            },
-            {
-              "kind": "Reference",
-              "text": "ContractCasePlugin",
-              "canonicalReference": "@contract-case/case-plugin-base!ContractCasePlugin:type"
-            },
-            {
-              "kind": "Content",
-              "text": "<string, string, "
-            },
-            {
-              "kind": "Reference",
-              "text": "IsCaseNodeForType",
-              "canonicalReference": "@contract-case/case-plugin-base!IsCaseNodeForType:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<string>, "
-            },
-            {
-              "kind": "Reference",
-              "text": "IsMockDescriptorForType",
-              "canonicalReference": "@contract-case/case-plugin-base!IsMockDescriptorForType:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<string>, unknown>"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "src/plugins/resolve.ts",
-          "releaseTag": "Public",
-          "name": "AnyContractCasePlugin",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 7
-          }
-        },
-        {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!cantPublish:function(1)",
           "docComment": "/**\n * True if this context can never publish results. This is useful for determining whether warning logs should be printed if the verification won't have any effect\n *\n * @param context - MatchContext\n *\n * @returns True if this context can never publish results; false if it might publish\n *\n * @public\n */\n",
@@ -3931,57 +3882,6 @@
           "extendsTokenRanges": []
         },
         {
-          "kind": "Function",
-          "canonicalReference": "@contract-case/case-plugin-base!isContractCasePlugin:function(1)",
-          "docComment": "/**\n * Type guard that determines whether an unknown value is shaped like a {@link ContractCasePlugin}.\n *\n * Note that this only validates the shape of the plugin object - it doesn't confirm that the executors themselves are correctly implemented.\n *\n * @param value - the value to check\n *\n * @returns true if the value has the shape of a ContractCase plugin\n *\n * @public\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "isContractCasePlugin: (value: "
-            },
-            {
-              "kind": "Content",
-              "text": "unknown"
-            },
-            {
-              "kind": "Content",
-              "text": ") => "
-            },
-            {
-              "kind": "Reference",
-              "text": "value",
-              "canonicalReference": "@contract-case/case-plugin-base!~value"
-            },
-            {
-              "kind": "Content",
-              "text": " is "
-            },
-            {
-              "kind": "Reference",
-              "text": "AnyContractCasePlugin",
-              "canonicalReference": "@contract-case/case-plugin-base!AnyContractCasePlugin:type"
-            }
-          ],
-          "fileUrlPath": "src/plugins/resolve.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 6
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "value",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "isContractCasePlugin"
-        },
-        {
           "kind": "Interface",
           "canonicalReference": "@contract-case/case-plugin-base!IsMockDescriptorForType:interface",
           "docComment": "/**\n * The base type for a case matcher descriptor that has this string constant\n *\n * @public\n */\n",
@@ -5958,64 +5858,6 @@
             "startIndex": 1,
             "endIndex": 6
           }
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@contract-case/case-plugin-base!mustResolvePlugin:function(1)",
-          "docComment": "/**\n * Extracts the {@link ContractCasePlugin} object from the contents of a dynamically loaded plugin module, or throws a `CaseConfigurationError` if the module doesn't contain one.\n *\n * Plugin packages are documented as exporting the assembled plugin object as their default export - but depending on the module system the plugin was built with (and the module system doing the importing), the plugin object may arrive as the module contents itself, as the module namespace's `default` property, or nested a level deeper (eg TypeScript's CommonJS output of `export default`, imported as ESM). This function accepts all of these shapes, so plugin authors don't need to know the details.\n *\n * @param moduleContents - whatever `import()` (or `require`) returned for the plugin module\n *\n * @param moduleName - the name of the module, for error messages\n *\n * @returns the plugin object\n *\n * @throws\n *\n * CaseConfigurationError if no plugin-shaped object could be found\n *\n * @public\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "mustResolvePlugin: (moduleContents: "
-            },
-            {
-              "kind": "Content",
-              "text": "unknown"
-            },
-            {
-              "kind": "Content",
-              "text": ", moduleName: "
-            },
-            {
-              "kind": "Content",
-              "text": "string"
-            },
-            {
-              "kind": "Content",
-              "text": ") => "
-            },
-            {
-              "kind": "Reference",
-              "text": "AnyContractCasePlugin",
-              "canonicalReference": "@contract-case/case-plugin-base!AnyContractCasePlugin:type"
-            }
-          ],
-          "fileUrlPath": "src/plugins/resolve.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 5,
-            "endIndex": 6
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "moduleContents",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "moduleName",
-              "parameterTypeTokenRange": {
-                "startIndex": 3,
-                "endIndex": 4
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "mustResolvePlugin"
         },
         {
           "kind": "Function",

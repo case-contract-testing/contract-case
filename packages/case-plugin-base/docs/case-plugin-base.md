@@ -322,19 +322,6 @@ Type guard to determine if an object is a ContractCase matcher descriptor or not
 </td></tr>
 <tr><td>
 
-[isContractCasePlugin(value)](./case-plugin-base.iscontractcaseplugin.md)
-
-
-</td><td>
-
-Type guard that determines whether an unknown value is shaped like a [ContractCasePlugin](./case-plugin-base.contractcaseplugin.md)<!-- -->.
-
-Note that this only validates the shape of the plugin object - it doesn't confirm that the executors themselves are correctly implemented.
-
-
-</td></tr>
-<tr><td>
-
 [isPassToMatcher(parameterType)](./case-plugin-base.ispasstomatcher.md)
 
 
@@ -394,19 +381,6 @@ Converts a matcher or data into a human friendly string for printing
 </td><td>
 
 Creates a mismatched matcher expectations error
-
-
-</td></tr>
-<tr><td>
-
-[mustResolvePlugin(moduleContents, moduleName)](./case-plugin-base.mustresolveplugin.md)
-
-
-</td><td>
-
-Extracts the [ContractCasePlugin](./case-plugin-base.contractcaseplugin.md) object from the contents of a dynamically loaded plugin module, or throws a `CaseConfigurationError` if the module doesn't contain one.
-
-Plugin packages are documented as exporting the assembled plugin object as their default export - but depending on the module system the plugin was built with (and the module system doing the importing), the plugin object may arrive as the module contents itself, as the module namespace's `default` property, or nested a level deeper (eg TypeScript's CommonJS output of `export default`<!-- -->, imported as ESM). This function accepts all of these shapes, so plugin authors don't need to know the details.
 
 
 </td></tr>
@@ -817,17 +791,6 @@ Description
 
 </th></tr></thead>
 <tbody><tr><td>
-
-[AnyContractCasePlugin](./case-plugin-base.anycontractcaseplugin.md)
-
-
-</td><td>
-
-Convenience type for a plugin where the specific matcher and mock types aren't known - which is the case when a plugin has been loaded dynamically.
-
-
-</td></tr>
-<tr><td>
 
 [CaseError](./case-plugin-base.caseerror.md)
 

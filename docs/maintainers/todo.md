@@ -52,7 +52,7 @@ Plugins:
       `module.exports = plugin` (only individual named exports work), so the
       documented "default export one `ContractCasePlugin` object" shape needs
       `.default` unwrapping, plus an end-to-end test loading a third-party
-      plugin by name. (Fixed with `mustResolvePlugin` in `case-plugin-base`;
+      plugin by name. (Fixed with `mustResolvePlugin` in `case-core`;
       tested by `BoundaryPluginLoader.spec.ts`.)
 - [ ] Complete the DSL generator so plugin authors can run it - hook it into
       the CLI and remove the hardcoded paths in
