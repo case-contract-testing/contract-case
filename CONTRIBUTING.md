@@ -6,6 +6,8 @@ For bugfixes, please raise an issue alongside your PR describing the bug.
 
 If your change is major, please open an issue first to discuss. This avoids having to rework your hard work on the first review.
 
+If you'd like to discuss informally, you're welcome to reach out [on Discord](https://discord.gg/eegnmDqRrr)
+
 ### Commit convention
 
 ContractCase uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to automatically generate the changelog, and squashes PRs. What this means is -
