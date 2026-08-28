@@ -49,12 +49,18 @@ describe('BoundaryPluginLoader', () => {
   // documented shape is "the plugin object is the module's default export" -
   // all of these must load.
   describe.each([
-    ['TypeScript-compiled default export', '@contract-case/test-plugin-fixture'],
+    [
+      'TypeScript-compiled default export',
+      '@contract-case/test-plugin-fixture',
+    ],
     [
       'CommonJS module.exports',
       '@contract-case/test-plugin-fixture/module-exports',
     ],
-    ['native ESM default export', '@contract-case/test-plugin-fixture/esm-default'],
+    [
+      'native ESM default export',
+      '@contract-case/test-plugin-fixture/esm-default',
+    ],
     [
       'CommonJS named exports',
       '@contract-case/test-plugin-fixture/named-exports',

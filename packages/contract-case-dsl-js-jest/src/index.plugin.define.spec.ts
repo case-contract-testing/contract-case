@@ -1,4 +1,8 @@
-import { willCallFunction, FunctionExecutorConfig, defineContract } from './index.js';
+import {
+  willCallFunction,
+  FunctionExecutorConfig,
+  defineContract,
+} from './index.js';
 
 // This matcher is provided by the fixture plugin (which lives in
 // case-connector/test-fixtures). It accepts any actual value, and strips to

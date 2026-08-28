@@ -81,9 +81,12 @@ describe('mustResolvePlugin', () => {
     ['an empty module', {}],
     ['a module with a non-plugin default', { default: { some: 'data' } }],
     ['null module contents', null],
-    ['a deeply nested plugin beyond the unwrap depth', {
-      default: { default: { default: { default: makePlugin('too-deep') } } },
-    }],
+    [
+      'a deeply nested plugin beyond the unwrap depth',
+      {
+        default: { default: { default: { default: makePlugin('too-deep') } } },
+      },
+    ],
   ])('throws a CaseConfigurationError for %s', (_name, moduleContents) => {
     expect(() => mustResolvePlugin(moduleContents, 'bad-plugin')).toThrow(
       CaseConfigurationError,
