@@ -4,6 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/case-contract-testing/contract-case/badge.svg?branch=main)](https://coveralls.io/github/case-contract-testing/contract-case?branch=main)
 [![Known Vulnerabilities](https://snyk.io/test/github/case-contract-testing/contract-case/badge.svg?targetFile=package.json)](https://snyk.io/test/github/case-contract-testing/contract-case/?targetFile=package.json)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9094/badge)](https://www.bestpractices.dev/projects/9094)
+[![Discord Community](https://img.shields.io/badge/Community-Discord-%235865F2.svg)](https://discord.gg/eegnmDqRrr)
 
 DSL (these are the packages you want to install):
 

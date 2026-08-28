@@ -7,15 +7,11 @@ sidebar_position: 8
 
 ContractCase is plugin-first: every interaction type and matcher that ships
 with ContractCase is implemented using the same plugin API that is available to
-you. The HTTP mocks and the function-call mocks are both plugins (you can read
-their source [here](https://github.com/case-contract-testing/contract-case/tree/main/packages) -
-any package with `core-plugin` in the name). This means the plugin API isn't a
-restricted second-class extension point - anything the core interaction types
-can do, your plugin can do.
+users. Anything the core interactions or matchers can do, your plugin can do too.
 
-This section describes how to write, load and distribute your own plugins. It's
-written so that you can implement a plugin without any prior knowledge of the
-ContractCase internals.
+This section describes how to write, load and distribute your own plugins. 
+Using this section, you should be able to 
+implement a plugin without any additional knowledge of the ContractCase internals.
 
 :::tip note
 
@@ -33,11 +29,12 @@ request to add it to the core plugins instead.
 
 A plugin can extend ContractCase with:
 
-- **New matcher types**: the nodes in the tree that describe the expected data
+- **New matcher types**: A matcher is a node in the tree that describe the expected data
   in an interaction (for example, "any integer", or "an array of at least two
-  users"). You might add a matcher for a data format that ContractCase doesn't
-  understand yet - say, matching the timestamp portion of a [ULID](https://github.com/ulid/spec).
-- **New mock types**: the executable part of an interaction - the thing that
+  user objects"). You might add a matcher for a data format that ContractCase doesn't
+  understand yet - say, matching the timestamp portion of a [ULID](https://github.com/ulid/spec). Or, you might
+  add a convenience matcher that combines two or more other matchers.
+- **New mock types**: A mock is the executable part of an interaction. This is what
   pretends to be the other side of the communication during a test (for
   example, a mock HTTP server). You might add a mock type for a new transport -
   say, gRPC or a message queue.
@@ -47,8 +44,8 @@ A plugin can extend ContractCase with:
 
 ## How plugins fit into the architecture
 
-Plugins are always written in TypeScript (or JavaScript), and run inside the
-ContractCase core engine - _no matter which language the user's test suite is
+Because the core of ContractCase is Javascript, plugins are always JavaScript (or Typescript, complied to JS). 
+A plugin runs inside the ContractCase core engine - _no matter which language the user's test suite is
 written in_. A Java test suite talks to the core engine over a gRPC connector,
 and the core engine loads your plugin locally:
 
@@ -70,23 +67,23 @@ flowchart LR
     ENGINE <--> CONTRACT[("Contract file")]
 ```
 
-This architecture is a deliberate choice, for two reasons:
+This architecture ensures that we have:
 
-1. **One implementation, identical behaviour.** The contract file must mean
-   exactly the same thing during definition and during verification - even
-   when the two sides are written in different languages. If matchers were
-   reimplemented per-language, subtle behaviour differences would creep in, and
-   a contract that passed on one side could fail on the other for reasons that
-   have nothing to do with the services under test.
-2. **Write once, available everywhere.** Because the behaviour lives in one
+1. **Consistent behaviour across languages.** The contract should mean the same
+   thing during definition and during verification - even
+   when the two sides are written in different languages. If matchers and interaction mocks were
+   reimplemented per-language, behaviour differences could creep in.
+2. **Available everywhere.** Because the behaviour lives in one
    place, adding a new language to ContractCase doesn't require porting every
    plugin. A plugin author writes the behaviour once, and (with a
    [DSL declaration](./dsl-generation)) the user-facing classes can be
    generated for each language.
 
-The trade-off is that the user-facing DSL classes for your plugin do need to
-exist in each language your users want. See
-[Declaring your DSL](./dsl-generation) for how this works.
+This has two trade-offs - 
+
+1. User-facing DSL classes for your plugin do need to exist in each language. We've provided a DSL generator to make this easy. If you haven't published a DSL in a user's language, they can generate it from your plugin definition. 
+   See [Declaring your DSL](./dsl-generation) for how this works.
+2. Plugins must be written in Javascript. This is a limitation of the design choice. Long term, we might add the ability to call out to other languages as part of the plugin framework. Please raise an issue if you'd like to discuss this.
 
 ## What's in this section
 
@@ -100,21 +97,11 @@ exist in each language your users want. See
    plugin, and what to know before publishing it
 
 You may also want the description of the
-[contract file format](../reference/plugin-framework) - useful background,
+[contract file format](./contract-format) - useful background,
 since your matchers and mock descriptors are written into the contract file.
 
 ## Stability
 
-ContractCase is in beta, and the plugin framework is the least stable part of
-the API surface - see the [versioning policy](../package-versioning). Breaking
-changes to the plugin API are indicated by minor version bumps of
-[`@contract-case/case-plugin-base`](https://www.npmjs.com/package/@contract-case/case-plugin-base).
+ContractCase is in beta, see the [versioning policy](../package-versioning). Breaking
+changes to the plugin API will always be listed in the [@contract-case/case-plugin-base Changelog](https://github.com/case-contract-testing/contract-case/blob/main/packages/case-plugin-base/CHANGELOG.md)
 
-:::caution WARNING
-
-One part of the plugin workflow is still work in progress: the
-[DSL generator](./dsl-generation) can't yet be run outside the ContractCase
-repository, so DSL classes for your plugin currently need to be written by
-hand. See [Declaring your DSL](./dsl-generation) for details.
-
-:::

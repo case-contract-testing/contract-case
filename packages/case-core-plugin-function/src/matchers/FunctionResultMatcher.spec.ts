@@ -319,6 +319,58 @@ describe('FunctionResultMatcherExecutor', () => {
           );
         });
       });
+
+      describe('when the matcher includes a message', () => {
+        const errorMatcherWithMessage: CoreFunctionErrorResultMatcher = {
+          ...errorMatcher,
+          message: 'expected-message' as unknown as AnyCaseMatcherOrData,
+        };
+
+        it('checks error result with message', async () => {
+          mockMatchContext = createMockMatchContext({
+            descendAndCheckResult: [],
+            descendAndStripResult: 'stripped',
+            descendAndDescribeResult: describeMessage('"default"'),
+          });
+
+          const actual = {
+            errorClassName: 'SomeError',
+            message: 'expected-message',
+          };
+
+          const result = await FunctionResultMatcherExecutor.check(
+            errorMatcherWithMessage,
+            mockMatchContext,
+            actual,
+          );
+
+          expect(result).toEqual([]);
+        });
+
+        it('returns an error when the message does not match', async () => {
+          const messageMismatchError = { message: 'message mismatch' } as any;
+          // errorClassName matches (first call), message does not (second call)
+          const descendAndCheckResultsInOrder = [[], [messageMismatchError]];
+          mockMatchContext = {
+            ...mockMatchContext,
+            descendAndCheck: () =>
+              Promise.resolve(descendAndCheckResultsInOrder.shift() ?? []),
+          };
+
+          const actual = {
+            errorClassName: 'SomeError',
+            message: 'a different message',
+          };
+
+          const result = await FunctionResultMatcherExecutor.check(
+            errorMatcherWithMessage,
+            mockMatchContext,
+            actual,
+          );
+
+          expect(result).toEqual([messageMismatchError]);
+        });
+      });
     });
   });
 

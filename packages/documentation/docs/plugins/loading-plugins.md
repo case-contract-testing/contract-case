@@ -71,10 +71,7 @@ prominently in their installation instructions.
 
 ### Plugin names must be plain package names
 
-For security reasons, plugin names must be the name of a locally-installed
-node package (optionally scoped, optionally with a subpath) - remote URLs,
-inline URIs, absolute paths and relative paths are all intentionally
-rejected, with the error code `INVALID_PLUGIN_NAME`.
+Because plugins are intended to be loaded from your package manager, they must be plain package names.
 
 Why so strict? Loading a plugin executes its code. If plugin specifiers could
 be URLs, then anything able to influence the specifier - a malicious contract

@@ -5,18 +5,25 @@ sidebar_label: 'Contract Format'
 
 # Contract file format
 
-:::tip note
+This page describes the contract file format.
 
-If you arrived here looking for how to extend ContractCase with your own
-matchers or mock types, see the [Plugins](../plugins/) section - this page
-describes the format of the contract file itself.
+Note that **you don't need to know the format of the contract file**, as it is intended to be considered opaque.
 
-:::
+However, if you're [writing a plugin](../plugins/) and want to understand
+what's happening under the hood, this description is for you.
 
-Most users do not need to know the contract format - you can treat the
-contract file as opaque. This page is for you if you're building tooling on
-top of ContractCase, or [writing a plugin](../plugins/) and want to understand
-what your descriptors look like once they're written down.
+Please do not rely on the details of the contract file format described here -
+instead, if you are building tooling on top of ContractCase, we recommend you
+use the `@contract-case/case-plugin-base` package to access and reason about the
+contract. You can find the API documentation for it [here](https://github.com/case-contract-testing/contract-case/blob/main/packages/case-plugin-base/docs/case-plugin-base.md).
+
+If you need other functionality not covered by that package, please
+[open an issue](https://github.com/case-contract-testing/contract-case/issues/new) and we can discuss.
+You shouldn't need to directly know the details of the contract file format to build anything.
+
+That said, we know people are going to look, and so, here are the details.
+
+## Overview
 
 The top level of a contract file looks like this:
 
@@ -33,6 +40,7 @@ The top level of a contract file looks like this:
 
   // Metadata about the run that wrote this contract,
   // including the ContractCase version
+  // Arbitrary other metadata might be included
   "metadata": { "_case": { "version": "..." } },
 
   // A lookup table of named matchers and state variables,
@@ -89,7 +97,7 @@ prefixes instead, as described in
 
 ## Stability
 
-The format is not currently versioned separately from ContractCase itself, and
-may change between versions - if you're building tooling that reads contract
-files, please open [an issue](https://github.com/case-contract-testing/contract-case/issues/new)
-so we can let you know about changes.
+The format may change between versions. Do not rely on the structure described here.
+If you need to rely on details of the contract format, please open
+[an issue](https://github.com/case-contract-testing/contract-case/issues/new) and
+we can discuss your use case.

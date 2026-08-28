@@ -68,7 +68,7 @@ engine with the right plugins loaded can interpret it.
 Each interaction in the contract file (called an `example` in the file format)
 has three parts - the states it needs, the description of the mock (containing
 the matcher trees), and the result of the interaction when it was defined. See
-the [contract file format](../reference/plugin-framework) for the details of
+the [contract file format](./contract-format) for the details of
 how these are written down.
 
 ## The description object
