@@ -2,8 +2,9 @@
 
 ContractCase welcomes contributions!
 
-If your change is major, or you'd like to discuss it before starting work, please open an issue to
-avoid having to rework your hard work.
+For bugfixes, please raise an issue alongside your PR describing the bug.
+
+If your change is major, please open an issue first to discuss. This avoids having to rework your hard work on the first review.
 
 ### Commit convention
 
@@ -27,6 +28,16 @@ feat(scope): Describe the feature here, why it is a breaking change, and what to
 Usually the `scope` will be a package, eg `java-dsl`. It doesn't have to match the package name exactly, and isn't read by any automated tools - it's intended to make changes clear for humans reading the changelog.
 
 There is no limit on the length of a commit message here - we're prioritising a nice human-readable changelog over short commit messages. So, instead of `Fix issue #123`, say `Fix an issue where users in <some situation> got <incorrect behaviour>`, or similar.
+
+The commit types primarily used by ContractCase are:
+
+- `feat`: Indicates a new feature
+- `fix`: Indicates a bug fix or minor improvement
+- `docs`: Indicates a documentation-only change, including changes that only change code comments
+- `refactor`: Indicates a refactor (occasionally these result in breaking changes)
+- `chore`: Everything else. For most external contributors, you won't need to use chore.
+
+If you're not sure which one to use, just pick the one that feels most right, and we can discuss on the PR. Don't stress too much :)
 
 ### Maintainer documentation
 
