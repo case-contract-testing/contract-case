@@ -59,17 +59,7 @@ prominently in their installation instructions.
 
 ### Plugin names must be plain package names
 
-For security reasons, plugin names must be the name of a locally-installed
-node package (optionally scoped, optionally with a subpath) - remote URLs,
-inline URIs, absolute paths and relative paths are all intentionally
-rejected, with the error code `INVALID_PLUGIN_NAME`.
-
-Why so strict? Loading a plugin executes its code. If plugin specifiers could
-be URLs, then anything able to influence the specifier - a malicious contract
-file, or a compromised client of a contract server - could load arbitrary
-remote code into your test process. Restricting specifiers to
-already-installed packages means nothing can be loaded that you didn't
-explicitly install.
+Because plugins are intended to be loaded from your package manager, they must be plain package names.
 
 ### What happens at load time
 
