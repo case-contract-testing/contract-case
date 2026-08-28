@@ -20,6 +20,30 @@ steps:
    ```
 
 2. Ask ContractCase to load it, before running any interactions that use it.
+
+   From the TypeScript/JavaScript DSL, `loadPlugins` returns a Promise, so
+   the natural place to call it is a `beforeAll`:
+
+   ```ts
+   defineContract(config, (contract) => {
+     beforeAll(() =>
+       contract.loadPlugins('@yourorg/contract-case-plugin-ulid'),
+     );
+
+     // ... interactions using the plugin's matchers and mocks
+   });
+   ```
+
+   and on the verification side:
+
+   ```ts
+   verifyContract(config, (verifier) => {
+     beforeAll(() =>
+       verifier.loadPlugins('@yourorg/contract-case-plugin-ulid'),
+     );
+   });
+   ```
+
    From the Java DSL:
 
    ```java
@@ -37,14 +61,6 @@ steps:
 `loadPlugins` accepts multiple names if you're loading more than one plugin.
 Loading is idempotent - loading the same plugin (at the same version) twice
 is harmless, and the second load is skipped.
-
-:::caution WARNING
-
-The JavaScript/TypeScript DSL doesn't yet expose `loadPlugins` - currently
-only the Java DSL does. This is an oversight rather than a design decision,
-and will be fixed in an upcoming release.
-
-:::
 
 ### Both sides need the plugin
 

@@ -89,12 +89,12 @@ public class InternalDefinerClient {
 
   public ConnectorResult loadPlugins(ContractCaseConnectorConfig configOverrides,
       String[] pluginNames) {
-    var loadPluginsRequest = LoadPluginRequest.newBuilder()
-        .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides));
-    loadPluginsRequest.getModuleNamesList()
-        .addAll(Arrays.stream(pluginNames).map(ConnectorOutgoingMapper::map).toList());
     return rpcConnector.executeCallAndWait(DefinitionRequest.newBuilder()
-            .setLoadPlugin(loadPluginsRequest)
+            .setLoadPlugin(LoadPluginRequest.newBuilder()
+                .addAllModuleNames(
+                    Arrays.stream(pluginNames).map(ConnectorOutgoingMapper::map).toList()
+                )
+                .setConfig(ConnectorOutgoingMapper.mapConfig(configOverrides)))
         , "loadPlugins");
   }
 

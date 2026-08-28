@@ -1,0 +1,65 @@
+{
+  "contractType": "case::contract",
+  "description": {
+    "consumerName": "plugin fixture consumer",
+    "providerName": "plugin fixture provider"
+  },
+  "metadata": {
+    "_case": {
+      "version": "case-internal-tests",
+      "hash": "20fa3511745cb66b4a8139545586ff77386f7b45884498bd22bce90b2075fe44"
+    }
+  },
+  "matcherLookup": {
+    "matcher:returns test fixture default-export": {
+      "_case:matcher:type": "_case:FunctionResultMatcher",
+      "success": {
+        "_case:matcher:type": "test-fixture:default-export:Matcher"
+      }
+    },
+    "matcher:An invocation of returnsPluginMatchedValue()": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": []
+    }
+  },
+  "examples": [
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionExecution",
+        "_case:run:context:setup": {
+          "read": {
+            "type": "_case:MockFunctionCaller",
+            "stateVariables": "state",
+            "triggers": "generated"
+          },
+          "write": {
+            "type": "_case:MockFunctionExecution",
+            "stateVariables": "default",
+            "triggers": "provided"
+          }
+        },
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of returnsPluginMatchedValue()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": []
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "returns test fixture default-export",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionResultMatcher",
+            "success": {
+              "_case:matcher:type": "test-fixture:default-export:Matcher"
+            }
+          }
+        },
+        "functionName": "returnsPluginMatchedValue"
+      },
+      "result": "VERIFIED"
+    }
+  ]
+}

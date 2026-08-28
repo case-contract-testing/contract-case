@@ -1625,6 +1625,33 @@
             },
             {
               "kind": "PropertySignature",
+              "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#INVALID_PLUGIN_MODULE:member",
+              "docComment": "/**\n * Indicates that a plugin module was loaded, but it doesn't contain a ContractCase plugin.\n *\n * Plugin modules must export the assembled plugin object (an object with `description`, `matcherExecutors` and `setupMocks` properties) as the module's default export.\n *\n * If you're a user of the plugin, check that the plugin name is spelled correctly, and that the package really is a ContractCase plugin. If it is, this is an error in the plugin's packaging - please contact the plugin's authors.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "INVALID_PLUGIN_MODULE: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'INVALID_PLUGIN_MODULE'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "INVALID_PLUGIN_MODULE",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "@contract-case/case-plugin-base!ConfigurationErrorCodes#INVALID_PLUGIN_NAME:member",
               "docComment": "/**\n * Indicates that the plugin name or path that you provided was invalid. Most users won't come across this message.\n *\n * Although plugins are just nodejs packages, you must have installed the package locally first. Remote package links, inline package URIs or other non-standard methods of specifying packages are intentionally not supported for security reasons.\n *\n * Please open an issue if you believe you are seeing this message in error.\n */\n",
               "excerptTokens": [

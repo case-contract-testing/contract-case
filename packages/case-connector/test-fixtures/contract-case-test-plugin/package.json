@@ -1,0 +1,15 @@
+{
+  "name": "@contract-case/test-plugin-fixture",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fixture plugin package for BoundaryPluginLoader.spec.ts, providing one entry point per plugin packaging style",
+  "license": "BSD-3-Clause",
+  "main": "default-export.js",
+  "exports": {
+    ".": "./default-export.js",
+    "./module-exports": "./module-exports.js",
+    "./esm-default": "./esm-default.mjs",
+    "./named-exports": "./named-exports.js",
+    "./not-a-plugin": "./not-a-plugin.js"
+  }
+}

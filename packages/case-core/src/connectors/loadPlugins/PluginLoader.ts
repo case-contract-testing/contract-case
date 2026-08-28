@@ -1,10 +1,12 @@
 import {
+  CaseConfigurationError,
   ContractCasePlugin,
   DataContext,
   IsCaseNodeForType,
   IsMockDescriptorForType,
   constructDataContext,
 } from '@contract-case/case-plugin-base';
+import { isContractCasePlugin } from './resolve';
 import type { CaseConfig } from '../../core/types';
 
 import { configFromEnv, configToRunContext } from '../../core/config';
@@ -44,7 +46,15 @@ export class PluginLoader {
   >(
     plugins: Array<ContractCasePlugin<MatchT, MockT, MatchD, MockD, unknown>>,
   ): void {
-    // TODO: Validate plugins here
+    plugins.forEach((plugin) => {
+      if (!isContractCasePlugin(plugin)) {
+        throw new CaseConfigurationError(
+          `Unable to load plugins, as one of the objects provided wasn't a ContractCase plugin. Plugins must be objects with 'description', 'matcherExecutors' and 'setupMocks' properties. If you are loading a plugin module by name, this is an error in the plugin's packaging - please contact the plugin's authors.`,
+          'DONT_ADD_LOCATION',
+          'INVALID_PLUGIN_MODULE',
+        );
+      }
+    });
     loadPlugins(this.context, plugins);
   }
 }

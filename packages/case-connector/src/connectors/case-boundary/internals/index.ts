@@ -8,5 +8,6 @@
 
 export * from './BoundaryContractDefiner.js';
 export * from './BoundaryContractVerifier.js';
+export * from './BoundaryPluginLoader.js';
 export * from './boundary/index.js';
 export * from './types.js';
