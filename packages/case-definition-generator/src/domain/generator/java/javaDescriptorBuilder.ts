@@ -79,7 +79,7 @@ const createFieldDescriptors = (
     jsonPropertyName:
       param.jsonPropertyName != null
         ? param.jsonPropertyName
-        : `_case:${definition.kind}:${param.name}`,
+        : `_case:${kindToPropertyName(definition.kind)}:${param.name}`,
     optional: !!param.optional,
   })),
 ];

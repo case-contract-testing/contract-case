@@ -25,7 +25,7 @@ public class ChangeLogLevel implements DslMatcher {
   private final String type;
 
   /**
-   * The new LogLevel. One of "none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainerDebug". see <a href="https://case.contract-testing.io/docs/reference/configuring#loglevel-none--error--warn--debug--maintainerdebug">LogLevel</a> for details
+   * The new LogLevel. One of "none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainerDebug". see <a href="https://case.contract-testing.io/docs/reference/configuring#loglevel-none--error--warn--debug--maintainerdebug--deepmaintainerdebug">LogLevel</a> for details
    */
   @Getter
   @JsonProperty("_case:currentRun:context:logLevel")
@@ -40,7 +40,7 @@ public class ChangeLogLevel implements DslMatcher {
 
   /**
    * Alters the ContractCase log level below this matcher. Useful for debugging.<p>This has no effect on matching.<p>Note that this log level matcher will be saved into the contract, so it will also affect the log level during verification. Usually you will want to remove the use of this matcher before saving the contract.
-   * @param logLevel The new LogLevel. One of "none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainerDebug". see [LogLevel](https://case.contract-testing.io/docs/reference/configuring#loglevel-none--error--warn--debug--maintainerdebug) for details
+   * @param logLevel The new LogLevel. One of "none" | "error" | "warn" | "debug" | "maintainerDebug" | "deepMaintainerDebug". see [LogLevel](https://case.contract-testing.io/docs/reference/configuring#loglevel-none--error--warn--debug--maintainerdebug--deepmaintainerdebug) for details
    * @param child The next matcher in the tree.
    */
   @Builder

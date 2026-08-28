@@ -21,7 +21,8 @@ import org.jetbrains.annotations.NotNull;
 @Generated("@contract-case/case-definition-generator")
 @ContractCaseDsl
 public class WillCallThrowingFunctionWithNamedArguments
-  implements DslInteraction {
+  implements DslInteraction
+{
 
   /**
    * ContractCase's internal type for this element

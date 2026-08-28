@@ -5,6 +5,7 @@ import {
   handleError,
   downloadContracts,
   canDeploy,
+  generatePluginDsl,
 } from '../connectors/index.js';
 import { versionString } from '../entities/versionString.js';
 
@@ -122,5 +123,37 @@ commonOptions(
       },
     ),
 );
+
+program
+  .command('generate-plugin-dsl')
+  .description(
+    'generate the DSL classes declared by a ContractCase plugin. The plugin must be installed in the current project (eg with npm install)',
+  )
+  .argument('<plugin-module>', 'Name of the plugin package to generate for')
+  .option(
+    '--languages <languages>',
+    'comma separated list of languages to generate (java, ts)',
+    'java,ts',
+  )
+  .option(
+    '--output-dir <dir>',
+    'base directory to generate into. Files are written to conventional paths beneath this directory (eg src/main/java/... for Java), so it should be the root of the package the generated files will belong to',
+    '.',
+  )
+  .action((pluginModule, options) =>
+    Promise.resolve()
+      .then(() =>
+        generatePluginDsl(pluginModule, options.languages, options.outputDir),
+      )
+      .then(
+        () => {
+          process.exit(0);
+        },
+        (e) => {
+          handleError(e);
+          process.exit(1);
+        },
+      ),
+  );
 
 program.parse();

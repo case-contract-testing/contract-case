@@ -129,8 +129,7 @@ Some things to know before publishing:
   [notes on namespacing](./writing-a-plugin#namespacing-your-types).
 - **DSLs for other languages.** If your users write tests in Java, you'll
   also need to ship the Java DSL classes for your matchers and interactions -
-  see [Declaring your DSL](./dsl-generation) for the current state of DSL
-  generation.
+  see [Declaring your DSL](./dsl-generation) for how to generate them.
 
 ### A pre-publishing checklist
 
