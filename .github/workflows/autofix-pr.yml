@@ -15,8 +15,6 @@ concurrency:
 jobs:
   autofix:
     runs-on: ubuntu-latest
-    # PRs from forks only get a read-only token, so we can't push to them.
-    if: github.event.pull_request.head.repo.full_name == github.repository
     permissions:
       contents: write
 
@@ -28,8 +26,10 @@ jobs:
 
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
-          # Check out the PR branch itself (not the merge commit) so we can push to it.
-          ref: ${{ github.event.pull_request.head.ref }}
+          # Check out the PR head commit (not the merge commit) so we can push fixes on top of it.
+          # We use the sha rather than the branch name, because fork PRs' branches
+          # don't exist in this repo.
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - name: Use Node.js
@@ -55,14 +55,32 @@ jobs:
         env:
           FORCE_COLOR: true
 
-      - name: Commit and push fixes
+      - name: Check for changes
+        id: changes
         run: |
           if git diff --quiet; then
             echo "No changes to commit"
-            exit 0
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git status --short
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Commit and push fixes
+        # Only same-repo PRs get a writable token; fork PRs are handled below.
+        if: steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "chore: apply lint and format fixes"
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
+
+      - name: Fail with instructions (fork PRs)
+        if: steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          echo "::error::Lint/format fixes are needed, but this PR is from a fork so they can't be pushed automatically."
+          echo "Please run the following locally and push the result:"
+          echo "    npm install && npx lerna run build && npx lerna run lint:fix && npx lerna run format:fix"
+          git diff
+          exit 1
