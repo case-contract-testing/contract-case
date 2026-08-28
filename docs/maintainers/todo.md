@@ -36,6 +36,26 @@ versions, as they are listed in source code / generated documentation.
 
 ## Todo list
 
+Plugins:
+
+- [ ] Test that the Java connector resolves plugins from the project-local
+      `node_modules`. The connector bundle is extracted to a temp directory and
+      run from there, so bare-specifier `import()` may resolve from the wrong
+      place - needs an end-to-end test loading a plugin by name from a Java
+      project.
+- [ ] Expose `loadPlugins` in the TS DSL (currently only the Java DSL exposes
+      it)
+- [ ] Unwrap the module namespace when loading plugins in
+      `BoundaryPluginLoader` - a dynamic `import()` namespace never exposes
+      `description` etc for plugins built with `export default` or
+      `module.exports = plugin` (only individual named exports work), so the
+      documented "default export one `ContractCasePlugin` object" shape needs
+      `.default` unwrapping, plus an end-to-end test loading a third-party
+      plugin by name.
+- [ ] Complete the DSL generator so plugin authors can run it - hook it into
+      the CLI and remove the hardcoded paths in
+      `case-definition-generator/src/index.ts`.
+
 - [ ] Close verifier should return results
 - [ ] Deprecate and remove flat tests results
 - [ ] TS Generated Matchers
@@ -145,7 +165,7 @@ Good for when I don't want to think
 
 - [ ] case-context ? Maybe move this out
 - [ ] case-contract format ? maybe move this out too
-- [ ] Extending case
+- [x] Extending case
 - [x] Vs e2e
 - [x] Vs schema
 - [x] Vs pact
