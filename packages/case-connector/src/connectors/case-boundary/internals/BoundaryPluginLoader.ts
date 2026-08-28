@@ -48,7 +48,7 @@ const resolveFromWorkingDirectory = (moduleName: string): string | null => {
   }
 };
 
-const loadOne = (
+const importSinglePlugin = (
   moduleName: string,
 ): Promise<ReturnType<typeof mustResolvePlugin>> =>
   Promise.resolve()
@@ -163,7 +163,9 @@ export class BoundaryPluginLoader {
 
   async loadPlugins(moduleNames: string[]): Promise<BoundaryResult> {
     this.initialiseLoader();
-    return Promise.all(moduleNames.map((moduleName) => loadOne(moduleName)))
+    return Promise.all(
+      moduleNames.map((moduleName) => importSinglePlugin(moduleName)),
+    )
       .then((plugins) => {
         if (this.loader == null) {
           throw new CaseCoreError(
