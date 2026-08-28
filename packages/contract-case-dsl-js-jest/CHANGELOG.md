@@ -29,6 +29,27 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.30.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.30.1...@contract-case/contract-case-jest-v0.30.2) (2026-08-28)
+
+
+### Bug Fixes
+
+* **plugins:** Make plugin loading work end to end ([#1386](https://github.com/case-contract-testing/contract-case/issues/1386)) ([8d79bb4](https://github.com/case-contract-testing/contract-case/commit/8d79bb4ee7d4f2d78363913f261ef5173a742f96))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/cli bumped from 0.30.1 to 0.30.2
+    * @contract-case/contract-case-dsl-js bumped from 0.30.1 to 0.30.2
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.30.1 to 0.30.2
+    * @contract-case/case-entities-internal bumped from 0.30.1 to 0.30.2
+    * @contract-case/case-plugin-base bumped from 0.30.1 to 0.30.2
+    * @contract-case/cli bumped from 0.30.1 to 0.30.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.30.1 to 0.30.2
+
 ## [0.30.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.30.0...@contract-case/contract-case-jest-v0.30.1) (2026-07-18)
 
 

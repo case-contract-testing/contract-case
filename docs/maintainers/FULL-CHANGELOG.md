@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.31.0](https://github.com/case-contract-testing/contract-case/compare/v0.30.1...v0.31.0) (2026-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for node version 20, add support for node version 26 ([#1368](https://github.com/case-contract-testing/contract-case/issues/1368))
+
+### Features
+
+* Drop support for node version 20, add support for node version 26 ([#1368](https://github.com/case-contract-testing/contract-case/issues/1368)) ([616b780](https://github.com/case-contract-testing/contract-case/commit/616b780c46b620de34e24285bd53511a5351e955))
+* Make the DSL generator runnable by plugin authors ([#1387](https://github.com/case-contract-testing/contract-case/issues/1387)) ([7576a42](https://github.com/case-contract-testing/contract-case/commit/7576a4207b3c1fa4d8b58d6db233634f9e791c4c))
+
+
+### Bug Fixes
+
+* Function contract error messages are now respected at match time ([#1398](https://github.com/case-contract-testing/contract-case/issues/1398)) ([8bffcc0](https://github.com/case-contract-testing/contract-case/commit/8bffcc09cfe27361b464f3ffcf693267a6f65bd5))
+* **plugins:** Make plugin loading work end to end ([#1386](https://github.com/case-contract-testing/contract-case/issues/1386)) ([8d79bb4](https://github.com/case-contract-testing/contract-case/commit/8d79bb4ee7d4f2d78363913f261ef5173a742f96))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.30.1 to 0.30.2
+
 ## [0.30.1](https://github.com/case-contract-testing/contract-case/compare/v0.30.0...v0.30.1) (2026-07-18)
 
 

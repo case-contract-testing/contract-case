@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.30.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.30.1...@contract-case/case-entities-internal-v0.30.2) (2026-08-28)
+
+
+### Features
+
+* Make the DSL generator runnable by plugin authors ([#1387](https://github.com/case-contract-testing/contract-case/issues/1387)) ([7576a42](https://github.com/case-contract-testing/contract-case/commit/7576a4207b3c1fa4d8b58d6db233634f9e791c4c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.30.1 to 0.30.2
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.30.1 to 0.30.2
+    * @contract-case/case-plugin-base bumped from 0.30.1 to 0.30.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.30.1 to 0.30.2
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.30.1 to 0.30.2
+    * @contract-case/eslint-config-case-maintainer bumped from 0.30.1 to 0.30.2
+
 ## [0.30.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-entities-internal-v0.30.0...@contract-case/case-entities-internal-v0.30.1) (2026-07-18)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/dsl-java",
-  "version": "0.30.1",
+  "version": "0.30.2",
   "private": true,
   "description": "Java DSL for the ContractCase contract testing suite",
   "keywords": [
@@ -32,8 +32,8 @@
     "rimraf": "^6.1.2"
   },
   "dependencies": {
-    "@contract-case/case-connector": "0.30.1",
-    "@contract-case/case-definition-dsl": "0.30.1"
+    "@contract-case/case-connector": "0.30.2",
+    "@contract-case/case-definition-dsl": "0.30.2"
   },
   "nx": {
     "tasksRunnerOptions": {
