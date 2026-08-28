@@ -26,7 +26,9 @@ steps:
 
    ```ts
    defineContract(config, (contract) => {
-     beforeAll(() => contract.loadPlugins('@yourorg/contract-case-plugin-ulid'));
+     beforeAll(() =>
+       contract.loadPlugins('@yourorg/contract-case-plugin-ulid'),
+     );
 
      // ... interactions using the plugin's matchers and mocks
    });
@@ -36,7 +38,9 @@ steps:
 
    ```ts
    verifyContract(config, (verifier) => {
-     beforeAll(() => verifier.loadPlugins('@yourorg/contract-case-plugin-ulid'));
+     beforeAll(() =>
+       verifier.loadPlugins('@yourorg/contract-case-plugin-ulid'),
+     );
    });
    ```
 
@@ -72,13 +76,6 @@ prominently in their installation instructions.
 ### Plugin names must be plain package names
 
 Because plugins are intended to be loaded from your package manager, they must be plain package names.
-
-Why so strict? Loading a plugin executes its code. If plugin specifiers could
-be URLs, then anything able to influence the specifier - a malicious contract
-file, or a compromised client of a contract server - could load arbitrary
-remote code into your test process. Restricting specifiers to
-already-installed packages means nothing can be loaded that you didn't
-explicitly install.
 
 ### What happens at load time
 
