@@ -1,3 +1,6 @@
+// Must be first: enables colour output in vitest workers (see the module for details)
+import './boundaries/forceColour.js';
+
 import type { InteractionSetup } from '@contract-case/contract-case-dsl-js';
 
 /*!
