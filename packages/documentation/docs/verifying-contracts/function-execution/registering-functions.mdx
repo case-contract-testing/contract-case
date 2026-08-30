@@ -66,11 +66,15 @@ class name of the thrown error is compared with the `errorClassName` in the
 contract.
 
 If the interaction also describes a `payload`, the thrown error is serialised
-and its content is compared with the payload matcher. In Java, the exception
-is serialised with Jackson, so the payload contains any public getters on the
-exception class (the standard `Throwable` properties such as the stack trace,
-cause and message are excluded). If your exception has properties that can't
-be serialised, exclude them with Jackson annotations such as `@JsonIgnore`.
+and its content is compared with the payload matcher:
+
+- In Typescript, the payload is the error's own enumerable properties
+  (excluding the standard `name`, `message`, `stack` and `cause`).
+- In Java, the exception is serialised with Jackson, so the payload contains
+  any public getters on the exception class (the standard `Throwable`
+  properties such as the stack trace, cause and message are excluded). If
+  your exception has properties that can't be serialised, exclude them with
+  Jackson annotations such as `@JsonIgnore`.
 
 ## State handlers
 

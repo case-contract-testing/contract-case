@@ -11,6 +11,7 @@ import CallerDefineJava from '../../examples/generated/\_function-caller-define.
 import CallerThrowingJs from '../../examples/generated/\_function-caller-throwing.ts.mdx';
 import CallerThrowingJava from '../../examples/generated/\_function-caller-throwing.java.mdx';
 
+import CallerThrowingPayloadJs from '../../examples/generated/\_function-caller-throwing-payload.ts.mdx';
 import CallerThrowingPayloadJava from '../../examples/generated/\_function-caller-throwing-payload.java.mdx';
 
 # Defining a function call interaction
@@ -94,12 +95,19 @@ serialisation boundary.
 If the caller depends on data carried by the error (for example, an error
 code), you can additionally describe the serialised content of the error with a
 `payload` matcher. The payload is whatever the implementer's language wrapper
-produces when it serialises the thrown error - in Java, this is done with
-Jackson, so public getters on the exception are included by default and you
-can control the serialisation with Jackson annotations (such as `@JsonIgnore`
-or `@JsonProperty`) on the exception class.
+produces when it serialises the thrown error:
+
+- In Typescript, the payload is the error's own enumerable properties
+  (excluding the standard `name`, `message`, `stack` and `cause`).
+- In Java, the exception is serialised with Jackson, so public getters on the
+  exception are included by default and you can control the serialisation
+  with Jackson annotations (such as `@JsonIgnore` or `@JsonProperty`) on the
+  exception class.
 
 <Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <CallerThrowingPayloadJs />
+  </TabItem>
   <TabItem value="java" label="Java">
     <CallerThrowingPayloadJava />
   </TabItem>

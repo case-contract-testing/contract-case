@@ -46,5 +46,6 @@ export {
   ContractCaseConfigurationError,
   ContractCaseCoreError,
   ContractCaseExpectationsNotMet,
+  FunctionCompletedExceptionally,
   versionString,
 } from '@contract-case/contract-case-dsl-js-internals';

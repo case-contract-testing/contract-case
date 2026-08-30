@@ -13,6 +13,7 @@ import ReceiverMarshallerJava from '../../examples/generated/\_function-receiver
 import ReceiverThrowingJs from '../../examples/generated/\_function-receiver-throwing.ts.mdx';
 import ReceiverThrowingJava from '../../examples/generated/\_function-receiver-throwing.java.mdx';
 
+import ReceiverThrowingPayloadJs from '../../examples/generated/\_function-receiver-throwing-payload.ts.mdx';
 import ReceiverThrowingPayloadJava from '../../examples/generated/\_function-receiver-throwing-payload.java.mdx';
 
 # Defining from the implementer's side
@@ -79,13 +80,20 @@ unless you add a `message` matcher.
 ### Matching the content of an error
 
 If callers depend on data carried by the error, you can also describe the
-serialised content of the thrown error with a `payload` matcher. In Java, the
-exception is serialised with Jackson (with the standard `Throwable` properties
-such as the stack trace, cause and message removed), so any public getters on
-your exception class become part of the payload. You can control this with
-Jackson annotations on the exception class.
+serialised content of the thrown error with a `payload` matcher. How the
+error is serialised depends on the language:
+
+- In Typescript, the payload is the error's own enumerable properties
+  (excluding the standard `name`, `message`, `stack` and `cause`).
+- In Java, the exception is serialised with Jackson (with the standard
+  `Throwable` properties such as the stack trace, cause and message removed),
+  so any public getters on your exception class become part of the payload.
+  You can control this with Jackson annotations on the exception class.
 
 <Tabs groupId="language">
+  <TabItem value="js" label="Typescript">
+    <ReceiverThrowingPayloadJs />
+  </TabItem>
   <TabItem value="java" label="Java">
     <ReceiverThrowingPayloadJava />
   </TabItem>

@@ -1,5 +1,24 @@
 /* eslint-disable jest/expect-expect */
-import { defineContract, willReceiveFunctionCall } from './index.js';
+import {
+  defineContract,
+  shapedLike,
+  willReceiveFunctionCall,
+  willReceiveFunctionCallAndThrow,
+} from './index.js';
+
+class CustomError extends Error {}
+
+class ErrorWithPayload extends Error {
+  readonly code: number;
+
+  readonly detail: string;
+
+  constructor(message: string, code: number, detail: string) {
+    super(message);
+    this.code = code;
+    this.detail = detail;
+  }
+}
 
 describe('function receiver', () => {
   defineContract(
@@ -45,6 +64,42 @@ describe('function receiver', () => {
               arguments: ['example', 2],
               returnValue: 'example2',
               functionName: FUNCTION_WITH_ARG_HANDLE,
+            }),
+          }));
+      });
+      describe('function that throws', () => {
+        const THROWING_FUNCTION_HANDLE = 'THROWING FUNCTION';
+        beforeAll(() => {
+          contract.registerFunction(THROWING_FUNCTION_HANDLE, () => {
+            throw new CustomError('Oh no');
+          });
+        });
+
+        it('succeeds', () =>
+          contract.runInteraction({
+            definition: willReceiveFunctionCallAndThrow({
+              arguments: [],
+              errorClassName: 'CustomError',
+              functionName: THROWING_FUNCTION_HANDLE,
+            }),
+          }));
+      });
+      describe('function that throws with a payload', () => {
+        const THROWING_WITH_PAYLOAD_HANDLE = 'THROWING FUNCTION WITH PAYLOAD';
+        beforeAll(() => {
+          contract.registerFunction(THROWING_WITH_PAYLOAD_HANDLE, () => {
+            throw new ErrorWithPayload('Oh no', 123, 'some detail');
+          });
+        });
+
+        it('succeeds', () =>
+          contract.runInteraction({
+            definition: willReceiveFunctionCallAndThrow({
+              arguments: [],
+              errorClassName: 'ErrorWithPayload',
+              payload: shapedLike({ code: 123, detail: 'some detail' }),
+              responseName: 'throwing an ErrorWithPayload with a payload',
+              functionName: THROWING_WITH_PAYLOAD_HANDLE,
             }),
           }));
       });

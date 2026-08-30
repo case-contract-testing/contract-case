@@ -1,0 +1,27 @@
+```ts
+          await contract.runRejectingInteraction(
+            {
+              definition: willCallThrowingFunction({
+                arguments: [],
+                errorClassName: 'UserNotFoundError',
+                // The payload describes the serialised content of the error.
+                // Prefer distinct error classes over payload matching where you can.
+                payload: shapedLike({ code: 404, detail: 'No such user' }),
+                responseName: 'throwing a UserNotFoundError with a payload',
+                functionName: 'getUser',
+              }),
+            },
+            {
+              trigger: async (setup: FunctionExecutorConfig) =>
+                setup.getFunction(setup.mock.functionHandle)(),
+              testErrorResponse: (e) => {
+                const thrown = e as FunctionCompletedExceptionally;
+                // The mock throws an example payload that matches the contract
+                expect(thrown.payload).toEqual({
+                  code: 404,
+                  detail: 'No such user',
+                });
+              },
+            },
+          );
+```

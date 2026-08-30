@@ -2,6 +2,7 @@ import {
   defineContract,
   ContractCaseDefiner,
   willCallThrowingFunction,
+  shapedLike,
   FunctionCompletedExceptionally,
   FunctionExecutorConfig,
 } from '../../index.js';
@@ -14,27 +15,30 @@ defineContract(
   (contract: ContractCaseDefiner) => {
     describe('getUser function', () => {
       describe('when the user does not exist', () => {
-        it('throws UserNotFoundError', async () => {
-          // example-extract _function-caller-throwing
+        it('throws UserNotFoundError with a payload', async () => {
+          // example-extract _function-caller-throwing-payload
           await contract.runRejectingInteraction(
             {
               definition: willCallThrowingFunction({
                 arguments: [],
                 errorClassName: 'UserNotFoundError',
+                // The payload describes the serialised content of the error.
+                // Prefer distinct error classes over payload matching where you can.
+                payload: shapedLike({ code: 404, detail: 'No such user' }),
+                responseName: 'throwing a UserNotFoundError with a payload',
                 functionName: 'getUser',
               }),
             },
             {
               trigger: async (setup: FunctionExecutorConfig) =>
                 setup.getFunction(setup.mock.functionHandle)(),
-              // During definition, the mock function throws a
-              // FunctionCompletedExceptionally carrying the errorClassName
-              // defined above
               testErrorResponse: (e) => {
-                expect(e).toBeInstanceOf(FunctionCompletedExceptionally);
-                expect(
-                  (e as FunctionCompletedExceptionally).errorClassName,
-                ).toBe('UserNotFoundError');
+                const thrown = e as FunctionCompletedExceptionally;
+                // The mock throws an example payload that matches the contract
+                expect(thrown.payload).toEqual({
+                  code: 404,
+                  detail: 'No such user',
+                });
               },
             },
           );

@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/order */
 
-
 import { defineContract, ContractCaseDefiner } from '../../index.js';
 
 // example-extract _function-caller-define
