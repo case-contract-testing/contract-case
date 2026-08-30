@@ -126,6 +126,9 @@ const setupMockFunctionExecution = (
           ...('message' in functionResponse
             ? { message: functionResponse.message }
             : {}),
+          ...('payload' in functionResponse
+            ? { payload: functionResponse.payload }
+            : {}),
         });
       }
       context.logger.error(

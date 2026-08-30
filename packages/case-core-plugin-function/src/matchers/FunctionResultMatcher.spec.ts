@@ -169,6 +169,29 @@ describe('FunctionResultMatcherExecutor', () => {
       expect(result).toContain('throwing a SomeError');
       expect(result).toContain('with message');
     });
+
+    it('describes error result with payload', () => {
+      const errorMatcherWithPayload = {
+        ...errorMatcher,
+        payload: {
+          'case:matcher:type': 'some-matcher',
+        } as unknown as AnyCaseMatcherOrData,
+      };
+
+      mockMatchContext = createMockMatchContext({
+        descendAndCheckResult: [],
+        descendAndStripResult: 'stripped',
+        descendAndDescribeResult: describeMessage('"SomeError"'),
+      });
+
+      const result = renderToString(FunctionResultMatcherExecutor.describe(
+        errorMatcherWithPayload,
+        mockMatchContext,
+      ));
+
+      expect(result).toContain('throwing a SomeError');
+      expect(result).toContain('with payload');
+    });
   });
 
   describe('check', () => {
@@ -320,6 +343,48 @@ describe('FunctionResultMatcherExecutor', () => {
         });
       });
 
+      describe('when the matcher includes a payload', () => {
+        const errorMatcherWithPayload: CoreFunctionErrorResultMatcher = {
+          ...errorMatcher,
+          payload: { code: 123 } as unknown as AnyCaseMatcherOrData,
+        };
+
+        it('checks error result with payload', async () => {
+          mockMatchContext = createMockMatchContext({
+            descendAndCheckResult: [],
+            descendAndStripResult: 'stripped',
+            descendAndDescribeResult: describeMessage('"default"'),
+          });
+
+          const result = await FunctionResultMatcherExecutor.check(
+            errorMatcherWithPayload,
+            mockMatchContext,
+            { errorClassName: 'SomeError', payload: { code: 123 } },
+          );
+
+          expect(result).toEqual([]);
+        });
+
+        it('returns an error when the payload does not match', async () => {
+          const payloadMismatchError = { message: 'payload mismatch' } as any;
+          // errorClassName matches (first call), payload does not (second call)
+          const descendAndCheckResultsInOrder = [[], [payloadMismatchError]];
+          mockMatchContext = {
+            ...mockMatchContext,
+            descendAndCheck: () =>
+              Promise.resolve(descendAndCheckResultsInOrder.shift() ?? []),
+          };
+
+          const result = await FunctionResultMatcherExecutor.check(
+            errorMatcherWithPayload,
+            mockMatchContext,
+            { errorClassName: 'SomeError', payload: { code: 456 } },
+          );
+
+          expect(result).toEqual([payloadMismatchError]);
+        });
+      });
+
       describe('when the matcher includes a message', () => {
         const errorMatcherWithMessage: CoreFunctionErrorResultMatcher = {
           ...errorMatcher,
@@ -393,6 +458,19 @@ describe('FunctionResultMatcherExecutor', () => {
       expect(
         FunctionResultMatcherExecutor.strip(errorMatcher, mockMatchContext),
       ).toEqual({ errorClassName: 'stripped' });
+    });
+
+    it('strips error result with payload', () => {
+      const errorMatcherWithPayload = {
+        ...errorMatcher,
+        payload: { code: 123 } as unknown as AnyCaseMatcherOrData,
+      };
+      expect(
+        FunctionResultMatcherExecutor.strip(
+          errorMatcherWithPayload,
+          mockMatchContext,
+        ),
+      ).toEqual({ errorClassName: 'stripped', payload: 'stripped' });
     });
 
     it('strips error result with message', () => {

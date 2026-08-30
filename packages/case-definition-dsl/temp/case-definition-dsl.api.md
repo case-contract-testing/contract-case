@@ -644,6 +644,7 @@ interface ThrowingFunctionExecutionExample {
     readonly functionName: string;
     readonly invocationName?: string;
     readonly message?: AnyMatcherOrData;
+    readonly payload?: AnyMatcherOrData;
     readonly responseName?: string;
 }
 

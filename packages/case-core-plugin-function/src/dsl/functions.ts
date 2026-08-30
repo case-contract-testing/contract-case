@@ -5,6 +5,9 @@ import {
 
 const FUNCTION_CATEGORY = 'functions';
 
+const PAYLOAD_DOCUMENTATION =
+  'A matcher for the serialised content of the expected error, if any. The language-specific wrapper serialises the thrown error (for example, in Java this is done with Jackson, so you can control the serialisation with Jackson annotations on your exception class). Matching on the payload should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on the errorClassName instead. Payload matching couples the contract to the internal structure of the error.';
+
 const unnamedArguments: ParameterDeclaration = {
   name: 'arguments',
   jsonPropertyName: 'request',
@@ -69,6 +72,21 @@ const thrownError: ParameterDeclaration = {
         documentation: 'The message for the expected error, if any',
         optional: true,
         type: 'AnyCaseMatcherOrData',
+      },
+      {
+        name: 'payload',
+        jsonPropertyName: 'payload',
+        documentation: PAYLOAD_DOCUMENTATION,
+        optional: true,
+        type: 'AnyCaseMatcherOrData',
+      },
+      {
+        name: 'responseName',
+        jsonPropertyName: '_case:matcher:uniqueName',
+        documentation:
+          'A name for this specific error, if any. Must be unique in this contract. Useful for identifying this error response in verification trigger groups, especially when the error has a payload',
+        optional: true,
+        type: 'string',
       },
     ],
     matcherReference: {
@@ -184,6 +202,21 @@ export const dsl: PluginDslDeclaration = {
           documentation: 'The message for the expected error, if any',
           optional: true,
           type: 'AnyCaseMatcherOrData',
+        },
+        {
+          name: 'payload',
+          jsonPropertyName: 'payload',
+          documentation: PAYLOAD_DOCUMENTATION,
+          optional: true,
+          type: 'AnyCaseMatcherOrData',
+        },
+        {
+          name: 'uniqueName',
+          jsonPropertyName: '_case:matcher:uniqueName',
+          documentation:
+            'A unique name for this error response, if any. Useful for identifying this error response in verification trigger groups',
+          optional: true,
+          type: 'string',
         },
       ],
     },

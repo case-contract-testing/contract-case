@@ -26,6 +26,13 @@ export interface CoreFunctionErrorResultMatcher {
   '_case:matcher:type': typeof FUNCTION_RESULT_MATCHER_TYPE;
   errorClassName: AnyCaseMatcherOrData;
   message?: AnyCaseMatcherOrData;
+  /**
+   * Matcher for the serialised content of the error, if any.
+   *
+   * This should generally be a last resort - prefer distinct error classes
+   * for each kind of failure the caller might care about.
+   */
+  payload?: AnyCaseMatcherOrData;
 }
 
 export const functionArgumentsMatcher = (
@@ -49,10 +56,12 @@ export const functionReturnSuccessMatcher = (
 export const functionThrowsErrorMatcher = (
   errorClassName: AnyCaseMatcherOrData,
   message?: AnyCaseMatcherOrData,
+  payload?: AnyCaseMatcherOrData,
   responseName?: string | undefined,
 ): CoreFunctionErrorResultMatcher => ({
   '_case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
   ...(responseName ? { '_case:matcher:uniqueName': responseName } : {}),
   errorClassName,
   ...(message != null ? { message } : {}),
+  ...(payload != null ? { payload } : {}),
 });

@@ -66,6 +66,16 @@ export interface ThrowingFunctionExecutionExample {
   readonly message?: AnyMatcherOrData;
 
   /**
+   * A test equivalence matcher for the serialised content of this exception.
+   *
+   * This should generally be a last resort - it is usually better to have
+   * explicit, distinct error types for each kind of error that callers might
+   * care about, and to match on `errorClassName` instead. Matching on the
+   * payload couples the contract to the internal structure of the error.
+   */
+  readonly payload?: AnyMatcherOrData;
+
+  /**
    * The name of the function to be executed. Doubles as the handle used by
    * registerFunction.
    */

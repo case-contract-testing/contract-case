@@ -1,0 +1,24 @@
+```java
+    contract.runThrowingInteraction(
+        new InteractionDefinition<>(
+            List.of(),
+            WillCallThrowingFunction.builder()
+                .arguments(List.of())
+                .errorClassName("ComplexException")
+                // The payload describes the serialised content of the exception.
+                // Prefer distinct exception classes over payload matching where you can.
+                .payload(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+                .responseName("throwing a ComplexException with a payload")
+                .functionName("throwingFunctionWithPayload")
+                .build()),
+        IndividualFailedTestConfigBuilder.<String>builder()
+            .withTrigger((setupInfo) ->
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of())))
+            .withTestErrorResponse((exception, setupInfo) -> {
+              var thrown = (FunctionCompletedExceptionally) exception;
+              // The mock throws an example payload that matches the contract
+              assertThat(thrown.getPayload())
+                  .isEqualTo(Map.of("code", 123, "detail", "some detail"));
+            }));
+```

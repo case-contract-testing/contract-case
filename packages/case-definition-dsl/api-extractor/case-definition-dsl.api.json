@@ -842,6 +842,34 @@
                     },
                     {
                       "kind": "PropertySignature",
+                      "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample#payload:member",
+                      "docComment": "/**\n * A test equivalence matcher for the serialised content of this exception.\n *\n * This should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on `errorClassName` instead. Matching on the payload couples the contract to the internal structure of the error.\n */\n",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "readonly payload?: "
+                        },
+                        {
+                          "kind": "Reference",
+                          "text": "AnyMatcherOrData",
+                          "canonicalReference": "@contract-case/case-definition-dsl!~AnyMatcherOrData:type"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isReadonly": true,
+                      "isOptional": true,
+                      "releaseTag": "Public",
+                      "name": "payload",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
                       "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.ThrowingFunctionExecutionExample#responseName:member",
                       "docComment": "/**\n * A name for this specific exception, must be unique in this\n */\n",
                       "excerptTokens": [

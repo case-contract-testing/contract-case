@@ -44,17 +44,41 @@ public class FunctionThrownError implements DslMatcher {
   private final Object message;
 
   /**
+   * A matcher for the serialised content of the expected error, if any. The language-specific wrapper serialises the thrown error (for example, in Java this is done with Jackson, so you can control the serialisation with Jackson annotations on your exception class). Matching on the payload should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on the errorClassName instead. Payload matching couples the contract to the internal structure of the error.
+   */
+  @Nullable
+  @JsonInclude(Include.NON_NULL)
+  @Getter
+  @JsonProperty("payload")
+  private final Object payload;
+
+  /**
+   * A unique name for this error response, if any. Useful for identifying this error response in verification trigger groups
+   */
+  @Nullable
+  @JsonInclude(Include.NON_NULL)
+  @Getter
+  @JsonProperty("_case:matcher:uniqueName")
+  private final String uniqueName;
+
+  /**
    * Matches errors thrown from a function execution, for use with a MockFunctionCall / MockFunctionExecution.
    * @param errorClassName The class name for the expected error (must resolve to a string)
    * @param message The message for the expected error, if any
+   * @param payload A matcher for the serialised content of the expected error, if any. The language-specific wrapper serialises the thrown error (for example, in Java this is done with Jackson, so you can control the serialisation with Jackson annotations on your exception class). Matching on the payload should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on the errorClassName instead. Payload matching couples the contract to the internal structure of the error.
+   * @param uniqueName A unique name for this error response, if any. Useful for identifying this error response in verification trigger groups
    */
   @Builder
   public FunctionThrownError(
     @NotNull final Object errorClassName,
-    @Nullable final Object message
+    @Nullable final Object message,
+    @Nullable final Object payload,
+    @Nullable final String uniqueName
   ) {
     this.type = "_case:FunctionResultMatcher";
     this.errorClassName = errorClassName;
     this.message = message;
+    this.payload = payload;
+    this.uniqueName = uniqueName;
   }
 }

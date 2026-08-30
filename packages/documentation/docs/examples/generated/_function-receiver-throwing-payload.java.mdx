@@ -1,0 +1,17 @@
+```java
+    contract.registerFunction("throwingFunctionWithPayload", () -> {
+      // ComplexException has getCode() and getDetail() accessors,
+      // which Jackson serialises into the payload
+      throw new ComplexException("Oh no", 123, "some detail");
+    });
+
+    contract.runInteraction(new InteractionDefinition<>(
+        List.of(),
+        WillReceiveFunctionCallAndThrow.builder()
+            .arguments(List.of())
+            .errorClassName("ComplexException")
+            .payload(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+            .responseName("throwing a ComplexException with a payload")
+            .functionName("throwingFunctionWithPayload")
+            .build()));
+```

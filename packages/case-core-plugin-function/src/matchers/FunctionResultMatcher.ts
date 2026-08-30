@@ -34,6 +34,7 @@ type FunctionFailure = {
   errorClassName: string;
   message?: string | undefined;
   stack?: string | undefined;
+  payload?: unknown;
 };
 
 const isFunctionFailure = (
@@ -68,6 +69,13 @@ const checkFunctionFailure = (
               matcher.message,
               addLocation(`message`, matchContext),
               actual['message'],
+            )
+          : makeNoErrorResult(),
+        'payload' in matcher && matcher.payload != null
+          ? matchContext.descendAndCheck(
+              matcher.payload,
+              addLocation(`payload`, matchContext),
+              actual['payload'],
             )
           : makeNoErrorResult(),
       )
@@ -117,6 +125,14 @@ const strip = (
               ),
             }
           : {}),
+        ...('payload' in matcher
+          ? {
+              payload: matchContext.descendAndStrip(
+                matcher.payload,
+                addLocation(`payload`, matchContext),
+              ),
+            }
+          : {}),
       };
 
 const describe = (
@@ -152,6 +168,16 @@ const describe = (
       context.descendAndDescribe(
         matcher.message,
         addLocation(`message`, context),
+      ),
+    );
+  }
+
+  if ('payload' in matcher) {
+    segments.push(
+      describeMessage(' with payload: '),
+      context.descendAndDescribe(
+        matcher.payload,
+        addLocation(`payload`, context),
       ),
     );
   }
@@ -278,6 +304,14 @@ const validate = (
           await matchContext.descendAndValidate(
             matcher.message,
             addLocation('message', matchContext),
+          );
+        }
+      })
+      .then(async () => {
+        if ('payload' in matcher && matcher.payload != null) {
+          await matchContext.descendAndValidate(
+            matcher.payload,
+            addLocation('payload', matchContext),
           );
         }
       });

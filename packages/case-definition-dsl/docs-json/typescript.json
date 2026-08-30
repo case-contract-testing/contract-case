@@ -3312,6 +3312,20 @@
             "usage": "public readonly message: any;"
           },
           {
+            "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.payload",
+            "displayName": "payload",
+            "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.payload",
+            "optional": true,
+            "type": {
+              "formattingPattern": "any"
+            },
+            "docs": {
+              "summary": "A test equivalence matcher for the serialised content of this exception.",
+              "remarks": "This should generally be a last resort - it is usually better to have\nexplicit, distinct error types for each kind of error that callers might\ncare about, and to match on `errorClassName` instead. Matching on the\npayload couples the contract to the internal structure of the error."
+            },
+            "usage": "public readonly payload: any;"
+          },
+          {
             "fqn": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.responseName",
             "displayName": "responseName",
             "id": "@contract-case/case-definition-dsl.interactions.functions.ThrowingFunctionExecutionExample.property.responseName",

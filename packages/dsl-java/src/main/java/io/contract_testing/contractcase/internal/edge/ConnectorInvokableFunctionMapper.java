@@ -1,7 +1,9 @@
 package io.contract_testing.contractcase.internal.edge;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction0;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction2;
@@ -20,6 +22,28 @@ import java.util.stream.Collectors;
 
 public class ConnectorInvokableFunctionMapper {
 
+  /**
+   * Jackson mixin that strips the standard Throwable properties when serialising a thrown
+   * exception into the error payload, so that only the user-defined properties of the exception
+   * are included. Users can further control the serialisation with Jackson annotations on their
+   * exception class.
+   */
+  @JsonIgnoreProperties({"stackTrace", "cause", "suppressed", "localizedMessage", "message"})
+  private abstract static class ThrowableMixin {
+
+  }
+
+  /**
+   * Creates the ObjectMapper used to serialise thrown exceptions into the error payload
+   *
+   * @return a configured ObjectMapper
+   */
+  static ObjectMapper payloadMapper() {
+    return new ObjectMapper()
+        .addMixIn(Throwable.class, ThrowableMixin.class)
+        .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+  }
+
 
   public static abstract class ConnectorInvokableFunction<E extends Exception> {
 
@@ -27,11 +51,13 @@ public class ConnectorInvokableFunctionMapper {
     private final int expectedArgumentCount;
 
     private final ObjectMapper mapper;
+    private final ObjectMapper payloadMapper;
 
     ConnectorInvokableFunction(String functionName, int expectedArgumentCount) {
       this.functionName = functionName;
       this.expectedArgumentCount = expectedArgumentCount;
       this.mapper = new ObjectMapper();
+      this.payloadMapper = payloadMapper();
     }
 
 
@@ -87,18 +113,21 @@ public class ConnectorInvokableFunctionMapper {
                   new FunctionFailure(
                       e.getClass().getSimpleName(),
                       e.getMessage(),
-                      userFacingStackTrace
+                      userFacingStackTrace,
+                      payloadMapper.valueToTree(e)
                   )
               ))
           );
-        } catch (JsonProcessingException ex) {
+        } catch (JsonProcessingException | IllegalArgumentException ex) {
           return new ConnectorFailure(
-              ConnectorFailureKindConstants.CASE_CORE_ERROR,
+              ConnectorFailureKindConstants.CASE_CONFIGURATION_ERROR,
               "The registered function '" + functionName
-                  + "' threw an exception, and there was an error serialising it:"
-                  + e.getMessage() + "\nError thrown was: ",
+                  + "' threw an exception (" + e.getClass().getSimpleName()
+                  + "), but there was an error serialising it: " + ex.getMessage()
+                  + "\nIf the exception contains properties that can't be serialised by Jackson, "
+                  + "you can exclude them with Jackson annotations (eg @JsonIgnore) on the exception class.",
               functionName + " (called by " + MaintainerLog.CONTRACT_CASE_JAVA_WRAPPER + ")",
-              "CORE_UNRECOVERABLE",
+              "UNDOCUMENTED",
               userFacingStackTrace
           );
         }

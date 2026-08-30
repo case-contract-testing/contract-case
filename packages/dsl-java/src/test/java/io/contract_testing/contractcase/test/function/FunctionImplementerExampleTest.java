@@ -12,10 +12,12 @@ import io.contract_testing.contractcase.configuration.PublishType;
 import io.contract_testing.contractcase.dsl.interactions.functions.WillReceiveFunctionCall;
 import io.contract_testing.contractcase.dsl.interactions.functions.WillReceiveFunctionCallAndThrow;
 import io.contract_testing.contractcase.dsl.interactions.functions.WillReceiveNamedArgumentsToFunctionCall;
+import io.contract_testing.contractcase.dsl.matchers.modifiers.ShapedLike;
 import io.contract_testing.contractcase.dsl.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.dsl.matchers.primitives.AnyNull;
 import io.contract_testing.contractcase.test.function.verification.CustomException;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterAll;
@@ -62,6 +64,22 @@ public class FunctionImplementerExampleTest {
             .arguments(List.of())
             .errorClassName("CustomException")
             .functionName("throwingFunction")
+            .build()));
+  }
+
+  @Test
+  public void testThrowingFunctionWithPayload() {
+    contract.registerFunction("throwingFunctionWithPayload", () -> {
+      throw new ComplexException("Oh no", 123, "some detail");
+    });
+    contract.runInteraction(new InteractionDefinition<>(
+        List.of(),
+        WillReceiveFunctionCallAndThrow.builder()
+            .arguments(List.of())
+            .errorClassName("ComplexException")
+            .payload(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+            .responseName("throwing a ComplexException with a payload")
+            .functionName("throwingFunctionWithPayload")
             .build()));
   }
 

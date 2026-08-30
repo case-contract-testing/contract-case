@@ -119,6 +119,25 @@ public class FunctionImplementerVerificationTest {
                     Map.of()
                 ))
             .addTriggerGroup(new TriggerGroup<>(
+                "An invocation of throwingFunctionWithPayload()",
+                (InteractionSetup setupInfo) -> {
+                  return parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                      .apply(List.of()));
+                },
+                Map.of(),
+                Map.of(
+                    "throwing a ComplexException with a payload",
+                    (Exception exception, InteractionSetup setupInfo) -> {
+                      var thrown = (FunctionCompletedExceptionally) exception;
+                      assertThat(thrown.getErrorClassName()).isEqualTo("ComplexException");
+                      assertThat(thrown.getPayload()).isInstanceOf(Map.class);
+                      var payload = (Map<?, ?>) thrown.getPayload();
+                      assertThat(payload.get("code")).isInstanceOf(Integer.class);
+                      assertThat(payload.get("detail")).isInstanceOf(String.class);
+                    }
+                )
+            ))
+            .addTriggerGroup(new TriggerGroup<>(
                 "An invocation of throwingFunction()",
                 (InteractionSetup setupInfo) -> {
                   return parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))

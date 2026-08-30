@@ -13,6 +13,8 @@ import ReceiverMarshallerJava from '../../examples/generated/\_function-receiver
 import ReceiverThrowingJs from '../../examples/generated/\_function-receiver-throwing.ts.mdx';
 import ReceiverThrowingJava from '../../examples/generated/\_function-receiver-throwing.java.mdx';
 
+import ReceiverThrowingPayloadJava from '../../examples/generated/\_function-receiver-throwing-payload.java.mdx';
+
 # Defining from the implementer's side
 
 Sometimes it's the function _implementer_ whose expectations should drive the
@@ -73,3 +75,27 @@ error with `errorClassName` instead of a `returnValue`:
 The `errorClassName` is compared with the class name of the error your
 function actually throws - the error message is not part of the contract
 unless you add a `message` matcher.
+
+### Matching the content of an error
+
+If callers depend on data carried by the error, you can also describe the
+serialised content of the thrown error with a `payload` matcher. In Java, the
+exception is serialised with Jackson (with the standard `Throwable` properties
+such as the stack trace, cause and message removed), so any public getters on
+your exception class become part of the payload. You can control this with
+Jackson annotations on the exception class.
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+    <ReceiverThrowingPayloadJava />
+  </TabItem>
+</Tabs>
+
+:::warning
+
+Matching on the payload should generally be a last resort - it couples the
+contract to the internal structure of your exception. Prefer explicit,
+distinct exception types for each kind of failure that callers might care
+about, and match on `errorClassName` alone where you can.
+
+:::

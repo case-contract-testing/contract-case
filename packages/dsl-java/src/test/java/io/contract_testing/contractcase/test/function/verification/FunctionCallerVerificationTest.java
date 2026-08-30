@@ -11,6 +11,7 @@ import io.contract_testing.contractcase.configuration.ContractCaseConfig;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.configuration.PublishType;
+import io.contract_testing.contractcase.test.function.ComplexException;
 import io.contract_testing.contractcase.configuration.StateHandler;
 import io.contract_testing.contractcase.test.function.FunctionCallerExampleTest.FirstLayer;
 import io.contract_testing.contractcase.test.function.FunctionCallerExampleTest.SecondLayer;
@@ -69,6 +70,13 @@ public class FunctionCallerVerificationTest {
         "throwingFunction",
         convertJsonStringArgs((String key) -> {
           throw new CustomException("The message is ignored");
+        })
+    );
+
+    verifier.registerFunction(
+        "throwingFunctionWithPayload",
+        convertJsonStringArgs((String key) -> {
+          throw new ComplexException("The message is ignored", 456, "but the payload shape is checked");
         })
     );
 

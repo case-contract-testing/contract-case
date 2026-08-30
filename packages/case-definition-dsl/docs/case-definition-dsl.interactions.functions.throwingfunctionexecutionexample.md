@@ -118,6 +118,25 @@ _(Optional)_ A test equivalence matcher for the message from this exception. In 
 </td></tr>
 <tr><td>
 
+[payload?](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.payload.md)
+
+</td><td>
+
+`readonly`
+
+</td><td>
+
+AnyMatcherOrData
+
+</td><td>
+
+_(Optional)_ A test equivalence matcher for the serialised content of this exception.
+
+This should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on `errorClassName` instead. Matching on the payload couples the contract to the internal structure of the error.
+
+</td></tr>
+<tr><td>
+
 [responseName?](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.responsename.md)
 
 </td><td>

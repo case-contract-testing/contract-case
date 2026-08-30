@@ -11,6 +11,8 @@ import CallerDefineJava from '../../examples/generated/\_function-caller-define.
 import CallerThrowingJs from '../../examples/generated/\_function-caller-throwing.ts.mdx';
 import CallerThrowingJava from '../../examples/generated/\_function-caller-throwing.java.mdx';
 
+import CallerThrowingPayloadJava from '../../examples/generated/\_function-caller-throwing-payload.java.mdx';
+
 # Defining a function call interaction
 
 The most common way to define a function call contract is from the caller's
@@ -86,6 +88,38 @@ the real implementation during verification. This lets the contract describe
 _that_ the function fails (and how the failure is classified), without
 coupling to the exact error object, which usually can't cross a language or
 serialisation boundary.
+
+### Matching the content of an error
+
+If the caller depends on data carried by the error (for example, an error
+code), you can additionally describe the serialised content of the error with a
+`payload` matcher. The payload is whatever the implementer's language wrapper
+produces when it serialises the thrown error - in Java, this is done with
+Jackson, so public getters on the exception are included by default and you
+can control the serialisation with Jackson annotations (such as `@JsonIgnore`
+or `@JsonProperty`) on the exception class.
+
+<Tabs groupId="language">
+  <TabItem value="java" label="Java">
+    <CallerThrowingPayloadJava />
+  </TabItem>
+</Tabs>
+
+:::warning
+
+Matching on the payload should generally be a last resort. It couples the
+contract to the internal structure of the error, which is easy to change
+accidentally. It's usually better for the function implementer to provide
+explicit, distinct error types for each kind of failure that callers might
+care about, and to match on `errorClassName` alone.
+
+:::
+
+When an error has a payload, give it a `responseName` - this is the name the
+implementer uses to identify the error response in their [trigger
+groups](../../verifying-contracts/function-execution/registering-functions)
+during verification. Without one, the name is generated from the description of
+the payload matcher.
 
 ## States
 
