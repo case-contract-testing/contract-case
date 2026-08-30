@@ -42,7 +42,7 @@
     "url": "https://github.com/sponsors/TimothyJones"
   },
   "engines": {
-    "node": ">=14.21.2"
+    "node": ">=22.0.0"
   },
   "bugs": {
     "url": "https://github.com/case-contract-testing/case/issues"
