@@ -53,7 +53,7 @@
     "url": "https://github.com/sponsors/TimothyJones"
   },
   "engines": {
-    "node": ">=14.21.2"
+    "node": ">=22.0.0"
   },
   "bugs": {
     "url": "https://github.com/case-contract-testing/case/issues"
@@ -75,10 +75,10 @@
     "protobufjs": "^7.6.5",
     "rimraf": "^6.1.2",
     "typescript": "5.9.3",
-    "vitest": "^3.2.1"
+    "vitest": "^4.1.11"
   },
   "peerDependencies": {
-    "vitest": "^1.0.0 || ^2.0.0 || ^3.0.0"
+    "vitest": "^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0"
   },
   "dependencies": {
     "@contract-case/contract-case-dsl-js": "0.31.0"
