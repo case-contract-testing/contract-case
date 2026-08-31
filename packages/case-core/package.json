@@ -83,7 +83,7 @@
     "@contract-case/case-entities-internal": "0.31.1",
     "@contract-case/case-plugin-base": "0.31.1",
     "@contract-case/case-plugin-dsl-types": "0.31.1",
-    "absolute-version": "^2.0.0",
+    "absolute-version": "^3.0.0",
     "async-mutex": "^0.5.0",
     "axios": "^1.18.1",
     "chalk": "^4.1.2",
