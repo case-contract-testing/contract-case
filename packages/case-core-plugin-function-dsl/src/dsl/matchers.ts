@@ -29,8 +29,10 @@ export interface CoreFunctionErrorResultMatcher {
   /**
    * Matcher for the serialised content of the error, if any.
    *
-   * This should generally be a last resort - prefer distinct error classes
-   * for each kind of failure the caller might care about.
+   * Although this feature exists, it's not really recommended to rely on internal shape of your
+   * exception types. This feature should generally be a last resort.
+   * If possible, we recommend distinct error classes
+   * for each kind of failure your calling class might care about.
    */
   errorInternals?: AnyCaseMatcherOrData;
 }

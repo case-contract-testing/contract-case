@@ -5,8 +5,12 @@ import {
 
 const FUNCTION_CATEGORY = 'functions';
 
-const ERROR_INTERNALS_DOCUMENTATION =
-  'A matcher for the serialised content of the expected error, if any. The language-specific wrapper serialises the thrown error (for example, in Java this is done with Jackson, so you can control the serialisation with Jackson annotations on your exception class). Matching on the error internals should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on the errorClassName instead. Matching on the error internals couples the contract to the internal structure of the error.';
+const ERROR_INTERNALS_DOCUMENTATION = `A matcher for the serialised content of the expected error, if any. 
+  This feature exists in case you need to differentiate by some error code on the error type, 
+  but in general it's not recommended to rely on the internals of your error data. 
+  Instead, we recommend explicit error types for each kind of error that callers might care about, 
+  and to match on the errorClassName instead. Matching on the error internals couples the contract 
+  to the internal structure of the error, and should only be used as a last resort.`;
 
 const unnamedArguments: ParameterDeclaration = {
   name: 'arguments',
@@ -83,8 +87,11 @@ const thrownError: ParameterDeclaration = {
       {
         name: 'responseName',
         jsonPropertyName: '_case:matcher:uniqueName',
-        documentation:
-          'A name for this specific error, if any. Must be unique in this contract. Useful for identifying this error response in verification trigger groups, especially when the error declares errorInternals',
+        documentation: `A human-readable name for this specific error instance, if any.
+        
+        Useful for identifying this error response in verification trigger groups. 
+        
+        If you provide a responseName, it must only be used by error matchers that have exactly the same definition. If you don't provide a responseName, it will be generated from the shape of the provided error`,
         optional: true,
         type: 'string',
       },
