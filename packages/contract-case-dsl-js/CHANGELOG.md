@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.31.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-dsl-js-v0.31.1...@contract-case/contract-case-dsl-js-v0.31.2) (2026-08-31)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/contract-case-dsl-js:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/contract-case-dsl-js-internals bumped from 0.31.1 to 0.31.2
+    * @contract-case/case-connector bumped from 0.31.1 to 0.31.2
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.31.1 to 0.31.2
+    * @contract-case/case-definition-dsl bumped from 0.31.1 to 0.31.2
+    * @contract-case/case-entities-internal bumped from 0.31.1 to 0.31.2
+    * @contract-case/case-plugin-base bumped from 0.31.1 to 0.31.2
+    * @contract-case/case-plugin-dsl-types bumped from 0.31.1 to 0.31.2
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.1 to 0.31.2
+
 ## [0.31.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-dsl-js-v0.31.0...@contract-case/contract-case-dsl-js-v0.31.1) (2026-08-31)
 
 
