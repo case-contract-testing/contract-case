@@ -7,8 +7,8 @@ import { DescribeSegment } from './describe';
 /**
  * Checks a matcher against some actual data and returns a Promise containing a MatchResult.
  *
- * For checks beyond this matcher, use {@link MatchContext#descendAndCheck} to
- * descend into any children.
+ * For checks beyond this matcher, use `descendAndCheck` on the
+ * {@link MatchContext} to descend into any children.
  *
  * @remarks
  *
@@ -55,8 +55,8 @@ export type CheckMatchFn<T> = (
  * the HTTP Status Code validation function will accept the string `"200"`, but not the string
  * `"The type system accepts this incorrect value"`.
  *
- * Like the other matcher functions, use {@link MatchContext#descendAndValidate} to
- * descend into any children.
+ * Like the other matcher functions, use `descendAndValidate` on the
+ * {@link MatchContext} to descend into any children.
  *
  * If any of the Matcher's properties fail validation, throw a CaseConfigurationError.
  *

@@ -4,6 +4,8 @@
 
 ## isPassToMatcher() function
 
+Type guard function that determines whether a ParameterType is a PassToMatcher or a plain string type.
+
 **Signature:**
 
 ```typescript
@@ -40,6 +42,8 @@ parameterType
 
 </td><td>
 
+The parameter type to check
+
 
 </td></tr>
 </tbody></table>
@@ -47,4 +51,6 @@ parameterType
 **Returns:**
 
 parameterType is [PassToMatcher](./case-plugin-base.passtomatcher.md)
+
+true if the parameter is a PassToMatcher, false otherwise
 

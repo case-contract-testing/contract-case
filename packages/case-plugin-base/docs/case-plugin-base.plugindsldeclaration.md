@@ -4,6 +4,8 @@
 
 ## PluginDslDeclaration type
 
+Describes all the DSL classes declared by a plugin, so that they can be generated in each supported language.
+
 **Signature:**
 
 ```typescript

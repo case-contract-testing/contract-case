@@ -11,7 +11,7 @@ export abstract class AnyMatcher {
 
   /**
    * The base class for all Test Equivalence Matchers. Extend this if you don't
-   * have an example in your Matcher. Otherwise, use {@link matchers.internals.AnyMatcherWithExample}
+   * have an example in your Matcher. Otherwise, use {@link matchers.base.AnyMatcherWithExample}
    * Matcher strings beginning with `_case:` are reserved for the default ContractCase
    * matchers.
    *

@@ -317,7 +317,7 @@ export interface HttpTestContext {
     baseUrl: string;
 }
 
-// @public (undocumented)
+// @public
 export type InteractionDslDeclaration = DslObjectDeclaration & {
     readonly setup: InternalContractCaseCoreSetup;
 };
@@ -339,7 +339,7 @@ export interface IsMockDescriptorForType<T extends string> {
     '_case:run:context:setup': InternalContractCaseCoreSetup;
 }
 
-// @public (undocumented)
+// @public
 export const isPassToMatcher: (parameterType: ParameterType) => parameterType is PassToMatcher;
 
 // @public
@@ -523,7 +523,7 @@ export type PluginDescription = {
     version: string;
 };
 
-// @public (undocumented)
+// @public
 export type PluginDslDeclaration = {
     readonly namespace: string;
     readonly category: string;
@@ -619,7 +619,7 @@ export const SERIALISABLE_TO_JSON: "json";
 // @internal
 export const shouldLog: (context: LogLevelContext, logLevel: LogLevel) => boolean;
 
-// @public (undocumented)
+// @public
 export type StateObjectDeclaration = DslObjectDeclaration;
 
 // @public

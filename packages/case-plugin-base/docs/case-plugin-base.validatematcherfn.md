@@ -10,7 +10,7 @@ Validates the parameters of this matcher. ContractCase does two kinds of validat
 
 Because of the second check, you generally don't need to validate structure in this function. Use cases for this validation function are where only a subset of values are valid. For example, the HTTP Status Code validation function will accept the string `"200"`<!-- -->, but not the string `"The type system accepts this incorrect value"`<!-- -->.
 
-Like the other matcher functions, use  to descend into any children.
+Like the other matcher functions, use `descendAndValidate` on the [MatchContext](./case-plugin-base.matchcontext.md) to descend into any children.
 
 If any of the Matcher's properties fail validation, throw a CaseConfigurationError.
 

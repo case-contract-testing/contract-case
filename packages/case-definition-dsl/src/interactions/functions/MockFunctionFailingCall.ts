@@ -40,7 +40,7 @@ export class WillReceiveFunctionCallAndThrow extends AnyInteractionDescriptor {
   /**
    * Defines an example that expects a function to be called with specific arguments
    *
-   * @param example - a {@link mocks.functions.FunctionExecutionExample}
+   * @param example - a {@link interactions.functions.FunctionExecutionExample}
    */
   constructor(example: ThrowingFunctionExecutionExample) {
     super(MOCK_FUNCTION_CALLER, {

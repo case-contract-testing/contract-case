@@ -926,7 +926,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillCallFunction:constructor(1)",
-                      "docComment": "/**\n * Defines an interaction that executes a registered function with specific arguments, expecting that interaction to return successfully\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
+                      "docComment": "/**\n * Defines an interaction that executes a registered function with specific arguments, expecting that interaction to return successfully\n *\n * @param example - a {@link interactions.functions.FunctionExecutionExample}\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -1083,7 +1083,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillCallThrowingFunction:constructor(1)",
-                      "docComment": "/**\n * Defines an example that executes a registered function with specific arguments\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
+                      "docComment": "/**\n * Defines an example that executes a registered function with specific arguments\n *\n * @param example - a {@link interactions.functions.FunctionExecutionExample}\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -1240,7 +1240,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCall:constructor(1)",
-                      "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
+                      "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @param example - a {@link interactions.functions.FunctionExecutionExample}\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -1397,7 +1397,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!interactions.functions.WillReceiveFunctionCallAndThrow:constructor(1)",
-                      "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @param example - a {@link mocks.functions.FunctionExecutionExample}\n */\n",
+                      "docComment": "/**\n * Defines an example that expects a function to be called with specific arguments\n *\n * @param example - a {@link interactions.functions.FunctionExecutionExample}\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -1640,7 +1640,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!interactions.http.WillReceiveHttpRequest:constructor(1)",
-                      "docComment": "/**\n * Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.\n *\n * @param httpExample - an {@link mocks.http.HttpExample}\n */\n",
+                      "docComment": "/**\n * Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.\n *\n * @param httpExample - an {@link interactions.http.HttpExample}\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",
@@ -2529,7 +2529,7 @@
                     {
                       "kind": "Constructor",
                       "canonicalReference": "@contract-case/case-definition-dsl!matchers.base.AnyMatcher:constructor(1)",
-                      "docComment": "/**\n * The base class for all Test Equivalence Matchers. Extend this if you don't have an example in your Matcher. Otherwise, use {@link matchers.internals.AnyMatcherWithExample} Matcher strings beginning with `_case:` are reserved for the default ContractCase matchers.\n *\n * Only use a types prefixed with `_case:` if you wish to create a special case for a matching behaviour that is already provided by a core ContractCase matcher.\n *\n * @param matcherType - The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework | Extending ContractCase} for a description of these strings).\n */\n",
+                      "docComment": "/**\n * The base class for all Test Equivalence Matchers. Extend this if you don't have an example in your Matcher. Otherwise, use {@link matchers.base.AnyMatcherWithExample} Matcher strings beginning with `_case:` are reserved for the default ContractCase matchers.\n *\n * Only use a types prefixed with `_case:` if you wish to create a special case for a matching behaviour that is already provided by a core ContractCase matcher.\n *\n * @param matcherType - The type string for this matcher (see {@link https://case.contract-testing.io/docs/reference/plugin-framework | Extending ContractCase} for a description of these strings).\n */\n",
                       "excerptTokens": [
                         {
                           "kind": "Content",

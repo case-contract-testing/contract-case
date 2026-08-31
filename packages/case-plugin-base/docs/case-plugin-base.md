@@ -327,6 +327,8 @@ Type guard to determine if an object is a ContractCase matcher descriptor or not
 
 </td><td>
 
+Type guard function that determines whether a ParameterType is a PassToMatcher or a plain string type.
+
 
 </td></tr>
 <tr><td>
@@ -834,7 +836,7 @@ Helper type to extract a case matcher descriptor out of a list of descriptors
 
 Checks a matcher against some actual data and returns a Promise containing a MatchResult.
 
-For checks beyond this matcher, use  to descend into any children.
+For checks beyond this matcher, use `descendAndCheck` on the [MatchContext](./case-plugin-base.matchcontext.md) to descend into any children.
 
 
 </td></tr>
@@ -947,6 +949,8 @@ A matcher descriptor that has an example
 
 
 </td><td>
+
+Defines the DSL for an interaction (also known as a mock or an example).
 
 
 </td></tr>
@@ -1140,6 +1144,8 @@ Describes the plugin name and version
 
 </td><td>
 
+Describes all the DSL classes declared by a plugin, so that they can be generated in each supported language.
+
 
 </td></tr>
 <tr><td>
@@ -1148,6 +1154,8 @@ Describes the plugin name and version
 
 
 </td><td>
+
+Defines the DSL for a state object.
 
 
 </td></tr>
@@ -1192,7 +1200,7 @@ Validates the parameters of this matcher. ContractCase does two kinds of validat
 
 Because of the second check, you generally don't need to validate structure in this function. Use cases for this validation function are where only a subset of values are valid. For example, the HTTP Status Code validation function will accept the string `"200"`<!-- -->, but not the string `"The type system accepts this incorrect value"`<!-- -->.
 
-Like the other matcher functions, use  to descend into any children.
+Like the other matcher functions, use `descendAndValidate` on the [MatchContext](./case-plugin-base.matchcontext.md) to descend into any children.
 
 If any of the Matcher's properties fail validation, throw a CaseConfigurationError.
 

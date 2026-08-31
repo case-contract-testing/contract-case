@@ -82,6 +82,7 @@ export interface IsMockDescriptorForType<T extends string> {
 
 /**
  * Describes a mock executor for a plugin
+ * @public
  */
 export type MockExecutor<
   MockType extends string,

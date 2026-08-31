@@ -49,5 +49,23 @@
      * DEFAULT VALUE: ""
      */
     "projectFolderUrl": "https://github.com/case-contract-testing/contract-case/tree/main/packages/case-definition-dsl"
+  },
+
+  "messages": {
+    "extractorMessageReporting": {
+      /**
+       * This package exposes its API through `import * as` namespaces
+       * (interactions, matchers, states). API Extractor's declaration
+       * reference resolver can't follow namespace re-exports yet
+       * (https://github.com/microsoft/rushstack/issues/1308), so it reports
+       * ae-unresolved-link for links that are actually correct.
+       * api-documenter resolves these same links against the doc model and
+       * still warns on any genuinely broken reference, so we suppress the
+       * false positives here.
+       */
+      "ae-unresolved-link": {
+        "logLevel": "none"
+      }
+    }
   }
 }

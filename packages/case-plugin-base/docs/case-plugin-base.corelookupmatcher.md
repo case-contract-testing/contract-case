@@ -68,7 +68,7 @@ the contents of this lookupable matcher
 
 LookupableMatcher
 
-a 
+a `LookupableMatcher` (from `@contract-case/case-plugin-dsl-types`<!-- -->)
 
 ## Remarks
 

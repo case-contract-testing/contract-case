@@ -1,5 +1,10 @@
 import { InternalContractCaseCoreSetup } from '@contract-case/case-plugin-dsl-types';
 
+/**
+ * Describes all the DSL classes declared by a plugin, so that
+ * they can be generated in each supported language.
+ * @public
+ */
 export type PluginDslDeclaration = {
   /**
    * The author's namespace for these DSL classes.
@@ -71,6 +76,7 @@ export type PluginDslDeclaration = {
  *    whatever a json object would naturally be (eg, a map or dictionary).
  *
  * See {@link TypeContainer} for complex types.
+ * @public
  */
 export type ParameterType =
   | TypeContainer
@@ -95,6 +101,7 @@ export type ParameterType =
  *
  * If you have a use-case that needs more complex container types, please raise
  * an issue.
+ * @public
  */
 export type TypeContainer = {
   /** What kind of container this is. Future unions of this type will always have this parameter */
@@ -103,7 +110,10 @@ export type TypeContainer = {
   readonly type: ParameterType;
 };
 
-/** A MatcherReference uniquely identifies a matcher and allows generated code to import and use it */
+/**
+ * A MatcherReference uniquely identifies a matcher and allows generated code to import and use it
+ * @public
+ */
 export type MatcherReference = {
   /** The name of the matcher to pass the parameters to */
   readonly name: string;
@@ -119,6 +129,7 @@ export type MatcherReference = {
  * This is useful for making composite matchers.
  *
  * See the definition of the core function plugin for an example.
+ * @public
  */
 export type PassToMatcher = {
   /** What kind of container this is. Future unions of this type will always have this parameter */
@@ -142,6 +153,7 @@ export type PassToMatcher = {
  * Type guard function that determines whether a ParameterType is a TypeContainer
  * or a plain string type.
  *
+ * @public
  * @param parameterType - The parameter type to check
  * @returns true if the parameter is a TypeContainer, false if it's a string
  */
@@ -150,6 +162,13 @@ export const isTypeContainer = (
 ): parameterType is TypeContainer =>
   typeof parameterType === 'object' && parameterType.kind === 'array';
 
+/**
+ * Type guard function that determines whether a ParameterType is a PassToMatcher
+ * or a plain string type.
+ * @public
+ * @param parameterType - The parameter type to check
+ * @returns true if the parameter is a PassToMatcher, false otherwise
+ */
 export const isPassToMatcher = (
   parameterType: ParameterType,
 ): parameterType is PassToMatcher =>
@@ -157,6 +176,7 @@ export const isPassToMatcher = (
 
 /**
  * Declares a parameter for a matcher
+ * @public
  */
 export type ParameterDeclaration = {
   /**
@@ -199,7 +219,10 @@ export type ParameterDeclaration = {
   readonly jsonPropertyName?: string;
 };
 
-/** Defines an object. */
+/**
+ * Defines an object.
+ * @public
+ */
 export type DslObjectDeclaration = {
   /*
    * The name of the DSL matcher, in CamelCase with no spaces.
@@ -238,6 +261,7 @@ export type DslObjectDeclaration = {
  * Note that more than one Matcher DSL can point
  * to the same matcher implementation - that is, you might have
  * multiple DSL objects with the same type.
+ * @public
  */
 export type MatcherDslDeclaration = DslObjectDeclaration & {
   /**
@@ -276,8 +300,16 @@ export type MatcherDslDeclaration = DslObjectDeclaration & {
   readonly currentRunModifiers?: Record<string, string>;
 };
 
+/**
+ * Defines the DSL for a state object.
+ * @public
+ */
 export type StateObjectDeclaration = DslObjectDeclaration;
 
+/**
+ * Defines the DSL for an interaction (also known as a mock or an example).
+ * @public
+ */
 export type InteractionDslDeclaration = DslObjectDeclaration & {
   /**
    * Controls the behaviour of the mocked interaction for definition and verification
