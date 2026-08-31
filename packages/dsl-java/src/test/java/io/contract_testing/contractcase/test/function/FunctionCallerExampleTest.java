@@ -14,6 +14,8 @@ import io.contract_testing.contractcase.dsl.interactions.functions.WillCallFunct
 import io.contract_testing.contractcase.dsl.interactions.functions.WillCallThrowingFunction;
 import io.contract_testing.contractcase.dsl.matchers.arrays.ArrayContains;
 import io.contract_testing.contractcase.dsl.matchers.convenience.NamedMatch;
+import io.contract_testing.contractcase.dsl.matchers.http.HttpStatusCode;
+import io.contract_testing.contractcase.dsl.matchers.modifiers.ShapedLike;
 import io.contract_testing.contractcase.dsl.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.dsl.matchers.primitives.AnyNull;
 import io.contract_testing.contractcase.dsl.states.InState;
@@ -176,13 +178,40 @@ public class FunctionCallerExampleTest {
                 .arguments(List.of(new AnyInteger(2)))
                 .errorClassName("CustomException")
                 .functionName("throwingFunction")
-                .build()),
+                .errorInternals(
+                        Map.of("httpCode", new HttpStatusCode("4XX"))
+                ).build()),
         IndividualFailedTestConfigBuilder.<FirstLayer>builder()
             .withTrigger((setupInfo) -> parseComplex(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
                 .apply(List.of("2"))))
             .withTestErrorResponse((exception, setupInfo) -> {
               assertThat(((FunctionCompletedExceptionally) exception).getErrorClassName()).isEqualTo(
                   "CustomException");
+            }));
+
+  }
+
+  @Test
+  public void testThrowingInteractionWithErrorInternals() {
+
+    contract.runThrowingInteraction(
+        new InteractionDefinition<>(
+            List.of(),
+            WillCallThrowingFunction.builder()
+                .arguments(List.of(new AnyInteger(2)))
+                .errorClassName("ComplexException")
+                .errorInternals(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+                .responseName("throwing a ComplexException with error internals")
+                .functionName("throwingFunctionWithErrorInternals")
+                .build()),
+        IndividualFailedTestConfigBuilder.<FirstLayer>builder()
+            .withTrigger((setupInfo) -> parseComplex(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                .apply(List.of("2"))))
+            .withTestErrorResponse((exception, setupInfo) -> {
+              var thrown = (FunctionCompletedExceptionally) exception;
+              assertThat(thrown.getErrorClassName()).isEqualTo("ComplexException");
+              // During definition, the mock throws the example error internals from the matcher
+              assertThat(thrown.getErrorInternals()).isEqualTo(Map.of("code", 123, "detail", "some detail"));
             }));
 
   }

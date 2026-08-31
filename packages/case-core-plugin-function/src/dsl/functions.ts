@@ -5,6 +5,13 @@ import {
 
 const FUNCTION_CATEGORY = 'functions';
 
+const ERROR_INTERNALS_DOCUMENTATION = `A matcher for the serialised content of the expected error, if any. 
+  This feature exists in case you need to differentiate by some error code on the error type, 
+  but in general it's not recommended to rely on the internals of your error data. 
+  Instead, we recommend explicit error types for each kind of error that callers might care about, 
+  and to match on the errorClassName instead. Matching on the error internals couples the contract 
+  to the internal structure of the error, and should only be used as a last resort.`;
+
 const unnamedArguments: ParameterDeclaration = {
   name: 'arguments',
   jsonPropertyName: 'request',
@@ -69,6 +76,24 @@ const thrownError: ParameterDeclaration = {
         documentation: 'The message for the expected error, if any',
         optional: true,
         type: 'AnyCaseMatcherOrData',
+      },
+      {
+        name: 'errorInternals',
+        jsonPropertyName: 'errorInternals',
+        documentation: ERROR_INTERNALS_DOCUMENTATION,
+        optional: true,
+        type: 'AnyCaseMatcherOrData',
+      },
+      {
+        name: 'responseName',
+        jsonPropertyName: '_case:matcher:uniqueName',
+        documentation: `A human-readable name for this specific error instance, if any.
+        
+        Useful for identifying this error response in verification trigger groups. 
+        
+        If you provide a responseName, it must only be used by error matchers that have exactly the same definition. If you don't provide a responseName, it will be generated from the shape of the provided error`,
+        optional: true,
+        type: 'string',
       },
     ],
     matcherReference: {
@@ -184,6 +209,21 @@ export const dsl: PluginDslDeclaration = {
           documentation: 'The message for the expected error, if any',
           optional: true,
           type: 'AnyCaseMatcherOrData',
+        },
+        {
+          name: 'errorInternals',
+          jsonPropertyName: 'errorInternals',
+          documentation: ERROR_INTERNALS_DOCUMENTATION,
+          optional: true,
+          type: 'AnyCaseMatcherOrData',
+        },
+        {
+          name: 'uniqueName',
+          jsonPropertyName: '_case:matcher:uniqueName',
+          documentation:
+            'A unique name for this error response, if any. Useful for identifying this error response in verification trigger groups',
+          optional: true,
+          type: 'string',
         },
       ],
     },

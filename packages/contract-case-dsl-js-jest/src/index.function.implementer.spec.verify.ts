@@ -1,5 +1,9 @@
 import { verifyContract } from './boundaries/jest/jest.js';
-import { TriggerGroupMap, FunctionExecutorConfig } from './index.js';
+import {
+  TriggerGroupMap,
+  FunctionExecutorConfig,
+  FunctionCompletedExceptionally,
+} from './index.js';
 
 describe('verification', () => {
   verifyContract({
@@ -23,6 +27,36 @@ describe('verification', () => {
           'returns "example2"': (returnValue) =>
             expect(returnValue).toEqual('example2'),
         },
-      }),
+      })
+      .addTriggerGroup('An invocation of THROWING FUNCTION()', {
+        trigger: async (setup: FunctionExecutorConfig) =>
+          setup.getFunction(setup.mock.functionHandle)(),
+        testErrorResponses: {
+          'throwing a CustomError': (e) => {
+            expect(e).toBeInstanceOf(FunctionCompletedExceptionally);
+            expect((e as FunctionCompletedExceptionally).errorClassName).toBe(
+              'CustomError',
+            );
+          },
+        },
+      })
+      .addTriggerGroup(
+        'An invocation of THROWING FUNCTION WITH ERROR INTERNALS()',
+        {
+          trigger: async (setup: FunctionExecutorConfig) =>
+            setup.getFunction(setup.mock.functionHandle)(),
+          testErrorResponses: {
+            'throwing an ErrorWithInternals with error internals': (e) => {
+              expect(e).toBeInstanceOf(FunctionCompletedExceptionally);
+              const thrown = e as FunctionCompletedExceptionally;
+              expect(thrown.errorClassName).toBe('ErrorWithInternals');
+              expect(thrown.errorInternals).toEqual({
+                code: expect.any(Number),
+                detail: expect.any(String),
+              });
+            },
+          },
+        },
+      ),
   });
 });

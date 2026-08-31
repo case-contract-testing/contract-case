@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/order */
 
-
 import { verifyContract } from '../../boundaries/jest/jest.js';
 import { YourApi } from './YourApi.js';
 

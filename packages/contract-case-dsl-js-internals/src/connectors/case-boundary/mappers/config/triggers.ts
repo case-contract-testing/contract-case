@@ -13,6 +13,7 @@ import {
   TriggerGroups,
   ContractCaseConfigurationError,
   ContractCaseCoreError,
+  FunctionCompletedExceptionally,
 } from '../../../../entities/index.js';
 import { mapSuccessWithAny } from '../boundaryResultToJs.js';
 
@@ -43,10 +44,26 @@ const mapSetup = <C extends Record<string, string>>(
           ) {
             return JSON.parse(functionReturn.success as string);
           }
-          throw new Error(
-            // TODO: This is definitely not right, and we should check to see
-            // if these fields exist
-            `${(functionReturn as Record<string, string>)?.['errorClassName']}: ${(functionReturn as Record<string, string>)?.['message']} `,
+          if (
+            functionReturn !== null &&
+            typeof functionReturn === 'object' &&
+            'errorClassName' in functionReturn &&
+            typeof functionReturn.errorClassName === 'string'
+          ) {
+            const failure = functionReturn as {
+              errorClassName: string;
+              message?: string;
+              errorInternals?: unknown;
+            };
+            throw new FunctionCompletedExceptionally(
+              failure.errorClassName,
+              failure.message,
+              failure.errorInternals,
+            );
+          }
+          throw new ContractCaseCoreError(
+            `The mock function '${name}' returned a result that was neither a success nor an error. This is a bug in the wrapper or the core. The result was: ${JSON.stringify(functionReturn)}`,
+            'JS_WRAPPER',
           );
         });
   },

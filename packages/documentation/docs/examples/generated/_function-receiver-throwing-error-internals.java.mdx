@@ -1,0 +1,17 @@
+```java
+    contract.registerFunction("throwingFunctionWithErrorInternals", () -> {
+      // ComplexException has getCode() and getDetail() accessors,
+      // which Jackson serialises into the errorInternals
+      throw new ComplexException("Oh no", 123, "some detail");
+    });
+
+    contract.runInteraction(new InteractionDefinition<>(
+        List.of(),
+        WillReceiveFunctionCallAndThrow.builder()
+            .arguments(List.of())
+            .errorClassName("ComplexException")
+            .errorInternals(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+            .responseName("throwing a ComplexException with error internals")
+            .functionName("throwingFunctionWithErrorInternals")
+            .build()));
+```

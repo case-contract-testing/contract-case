@@ -119,6 +119,25 @@ public class FunctionImplementerVerificationTest {
                     Map.of()
                 ))
             .addTriggerGroup(new TriggerGroup<>(
+                "An invocation of throwingFunctionWithErrorInternals()",
+                (InteractionSetup setupInfo) -> {
+                  return parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                      .apply(List.of()));
+                },
+                Map.of(),
+                Map.of(
+                    "throwing a ComplexException with error internals",
+                    (Exception exception, InteractionSetup setupInfo) -> {
+                      var thrown = (FunctionCompletedExceptionally) exception;
+                      assertThat(thrown.getErrorClassName()).isEqualTo("ComplexException");
+                      assertThat(thrown.getErrorInternals()).isInstanceOf(Map.class);
+                      var errorInternals = (Map<?, ?>) thrown.getErrorInternals();
+                      assertThat(errorInternals.get("code")).isInstanceOf(Integer.class);
+                      assertThat(errorInternals.get("detail")).isInstanceOf(String.class);
+                    }
+                )
+            ))
+            .addTriggerGroup(new TriggerGroup<>(
                 "An invocation of throwingFunction()",
                 (InteractionSetup setupInfo) -> {
                   return parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))

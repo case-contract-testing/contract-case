@@ -67,6 +67,25 @@ A test equivalence matcher for the class name of this exception
 </td></tr>
 <tr><td>
 
+[errorInternals?](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.errorinternals.md)
+
+</td><td>
+
+`readonly`
+
+</td><td>
+
+AnyMatcherOrData
+
+</td><td>
+
+_(Optional)_ A test equivalence matcher for the serialised content of this exception.
+
+This feature exists in case you need to differentiate by some error code on the error type, but in general it's not recommended to rely on the internals of your error data. Instead, we recommend explicit error types for each kind of error that callers might care about, and to match on the `errorClassName` instead. Matching on the error internals couples the contract to the internal structure of the error, and should only be used as a last resort.
+
+</td></tr>
+<tr><td>
+
 [functionName](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.functionname.md)
 
 </td><td>
@@ -130,7 +149,11 @@ string
 
 </td><td>
 
-_(Optional)_ A name for this specific exception, must be unique in this
+_(Optional)_ A human-readable name for this specific error instance, if any.
+
+Useful for identifying this error response in verification trigger groups.
+
+If you provide a responseName, it must only be used by error matchers that have exactly the same definition. If you don't provide a responseName, it will be generated from the shape of the provided error.
 
 </td></tr>
 </tbody></table>

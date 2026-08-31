@@ -11,9 +11,11 @@ import io.contract_testing.contractcase.configuration.IndividualFailedTestConfig
 import io.contract_testing.contractcase.configuration.IndividualSuccessTestConfig.IndividualSuccessTestConfigBuilder;
 import io.contract_testing.contractcase.dsl.interactions.functions.WillCallFunction;
 import io.contract_testing.contractcase.dsl.interactions.functions.WillCallThrowingFunction;
+import io.contract_testing.contractcase.dsl.matchers.modifiers.ShapedLike;
 import io.contract_testing.contractcase.dsl.matchers.primitives.AnyInteger;
 import io.contract_testing.contractcase.exceptions.FunctionCompletedExceptionally;
 import java.util.List;
+import java.util.Map;
 
 public class DefiningAFunctionContract {
 
@@ -65,6 +67,33 @@ public class DefiningAFunctionContract {
             // matching the errorClassName defined above
             .withTestErrorResponse((exception, setupInfo) -> {
               assertThat(exception).isInstanceOf(FunctionCompletedExceptionally.class);
+            }));
+    // end-example
+  }
+
+  public void testThrowingFunctionWithErrorInternals() {
+    // example-extract _function-caller-throwing-error-internals
+    contract.runThrowingInteraction(
+        new InteractionDefinition<>(
+            List.of(),
+            WillCallThrowingFunction.builder()
+                .arguments(List.of())
+                .errorClassName("ComplexException")
+                // The errorInternals matcher describes the serialised content of the exception.
+                // Prefer distinct exception classes over error internals matching where you can.
+                .errorInternals(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+                .responseName("throwing a ComplexException with error internals")
+                .functionName("throwingFunctionWithErrorInternals")
+                .build()),
+        IndividualFailedTestConfigBuilder.<String>builder()
+            .withTrigger((setupInfo) ->
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of())))
+            .withTestErrorResponse((exception, setupInfo) -> {
+              var thrown = (FunctionCompletedExceptionally) exception;
+              // The mock throws example error internals that match the contract
+              assertThat(thrown.getErrorInternals())
+                  .isEqualTo(Map.of("code", 123, "detail", "some detail"));
             }));
     // end-example
   }

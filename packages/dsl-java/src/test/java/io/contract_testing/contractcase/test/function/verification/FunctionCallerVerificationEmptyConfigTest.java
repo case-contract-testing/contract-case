@@ -6,6 +6,7 @@ import io.contract_testing.contractcase.ContractVerifier;
 import io.contract_testing.contractcase.configuration.ContractCaseConfig.ContractCaseConfigBuilder;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.configuration.PublishType;
+import io.contract_testing.contractcase.test.function.ComplexException;
 import io.contract_testing.contractcase.configuration.StateHandler;
 import io.contract_testing.contractcase.test.function.FunctionCallerExampleTest.FirstLayer;
 import io.contract_testing.contractcase.test.function.FunctionCallerExampleTest.SecondLayer;
@@ -63,6 +64,13 @@ public class FunctionCallerVerificationEmptyConfigTest {
           "throwingFunction",
           convertJsonStringArgs((String key) -> {
             throw new CustomException();
+          })
+      );
+
+      contract.registerFunction(
+          "throwingFunctionWithErrorInternals",
+          convertJsonStringArgs((String key) -> {
+            throw new ComplexException("The message is ignored", 456, "but the errorInternals shape is checked");
           })
       );
 

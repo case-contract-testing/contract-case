@@ -8,9 +8,12 @@ import io.contract_testing.contractcase.configuration.ContractCaseConfig.Contrac
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.dsl.interactions.functions.WillReceiveFunctionCall;
 import io.contract_testing.contractcase.dsl.interactions.functions.WillReceiveFunctionCallAndThrow;
+import io.contract_testing.contractcase.dsl.matchers.modifiers.ShapedLike;
 import io.contract_testing.contractcase.dsl.matchers.primitives.AnyInteger;
+import io.contract_testing.contractcase.test.function.ComplexException;
 import io.contract_testing.contractcase.test.function.verification.CustomException;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
 
@@ -51,6 +54,26 @@ public class ReceivingFunctionCalls {
             .arguments(List.of())
             .errorClassName("CustomException")
             .functionName("throwingFunction")
+            .build()));
+    // end-example
+  }
+
+  public void testReceiveThrowingFunctionCallWithErrorInternals() {
+    // example-extract _function-receiver-throwing-error-internals
+    contract.registerFunction("throwingFunctionWithErrorInternals", () -> {
+      // ComplexException has getCode() and getDetail() accessors,
+      // which Jackson serialises into the errorInternals
+      throw new ComplexException("Oh no", 123, "some detail");
+    });
+
+    contract.runInteraction(new InteractionDefinition<>(
+        List.of(),
+        WillReceiveFunctionCallAndThrow.builder()
+            .arguments(List.of())
+            .errorClassName("ComplexException")
+            .errorInternals(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+            .responseName("throwing a ComplexException with error internals")
+            .functionName("throwingFunctionWithErrorInternals")
             .build()));
     // end-example
   }

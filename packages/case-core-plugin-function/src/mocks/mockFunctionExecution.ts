@@ -126,6 +126,9 @@ const setupMockFunctionExecution = (
           ...('message' in functionResponse
             ? { message: functionResponse.message }
             : {}),
+          ...('errorInternals' in functionResponse
+            ? { errorInternals: functionResponse.errorInternals }
+            : {}),
         });
       }
       context.logger.error(

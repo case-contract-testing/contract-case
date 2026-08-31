@@ -145,7 +145,8 @@ public class InteractionSetup {
     return this.mockSetup.get(key);
   }
 
-  private record EitherReturnType(String success, String errorClassName, String message) {
+  private record EitherReturnType(String success, String errorClassName, String message,
+                                  Object errorInternals) {
 
   }
 
@@ -175,9 +176,8 @@ public class InteractionSetup {
         }
         throw new FunctionCompletedExceptionally(
             parsedResult.errorClassName(),
-            parsedResult.message() != null
-                ? parsedResult.message()
-                : null
+            parsedResult.message(),
+            parsedResult.errorInternals()
         );
       } catch (JsonProcessingException e) {
         throw new ContractCaseCoreError("Unable to read function result:", e);

@@ -26,6 +26,15 @@ export interface CoreFunctionErrorResultMatcher {
   '_case:matcher:type': typeof FUNCTION_RESULT_MATCHER_TYPE;
   errorClassName: AnyCaseMatcherOrData;
   message?: AnyCaseMatcherOrData;
+  /**
+   * Matcher for the serialised content of the error, if any.
+   *
+   * Although this feature exists, it's not really recommended to rely on internal shape of your
+   * exception types. This feature should generally be a last resort.
+   * If possible, we recommend distinct error classes
+   * for each kind of failure your calling class might care about.
+   */
+  errorInternals?: AnyCaseMatcherOrData;
 }
 
 export const functionArgumentsMatcher = (
@@ -49,10 +58,12 @@ export const functionReturnSuccessMatcher = (
 export const functionThrowsErrorMatcher = (
   errorClassName: AnyCaseMatcherOrData,
   message?: AnyCaseMatcherOrData,
+  errorInternals?: AnyCaseMatcherOrData,
   responseName?: string | undefined,
 ): CoreFunctionErrorResultMatcher => ({
   '_case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
   ...(responseName ? { '_case:matcher:uniqueName': responseName } : {}),
   errorClassName,
   ...(message != null ? { message } : {}),
+  ...(errorInternals != null ? { errorInternals } : {}),
 });

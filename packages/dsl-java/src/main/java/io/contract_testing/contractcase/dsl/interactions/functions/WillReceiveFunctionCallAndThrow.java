@@ -75,22 +75,40 @@ public class WillReceiveFunctionCallAndThrow implements DslInteraction {
   private final FunctionThrownError error;
 
   /**
-   * Defines an example that throws an error from a registered function with specific arguments
-   * @param functionName The name of the function that will be called
-   * @param arguments The arguments expected by this function. This should be an array containing the expectations for each parameter
-   * @param errorClassName The class name for the expected error (must resolve to a string)
-   * @param message The message for the expected error, if any
-   */
+     * Defines an example that throws an error from a registered function with specific arguments
+     * @param functionName The name of the function that will be called
+     * @param arguments The arguments expected by this function. This should be an array containing the expectations for each parameter
+     * @param errorClassName The class name for the expected error (must resolve to a string)
+     * @param message The message for the expected error, if any
+     * @param errorInternals A matcher for the serialised content of the expected error, if any. 
+  This feature exists in case you need to differentiate by some error code on the error type, 
+  but in general it's not recommended to rely on the internals of your error data. 
+  Instead, we recommend explicit error types for each kind of error that callers might care about, 
+  and to match on the errorClassName instead. Matching on the error internals couples the contract 
+  to the internal structure of the error, and should only be used as a last resort.
+     * @param responseName A human-readable name for this specific error instance, if any.
+        
+        Useful for identifying this error response in verification trigger groups. 
+        
+        If you provide a responseName, it must only be used by error matchers that have exactly the same definition. If you don't provide a responseName, it will be generated from the shape of the provided error
+     */
   @Builder
   public WillReceiveFunctionCallAndThrow(
     @NotNull final String functionName,
     @NotNull final List<Object> arguments,
     @NotNull final Object errorClassName,
-    @Nullable final Object message
+    @Nullable final Object message,
+    @Nullable final Object errorInternals,
+    @Nullable final String responseName
   ) {
     this.type = "_case:MockFunctionCaller";
     this.functionName = functionName;
     this.arguments = new FunctionArguments(arguments);
-    this.error = new FunctionThrownError(errorClassName, message);
+    this.error = new FunctionThrownError(
+      errorClassName,
+      message,
+      errorInternals,
+      responseName
+    );
   }
 }

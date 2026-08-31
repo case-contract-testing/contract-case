@@ -88,6 +88,12 @@ export const setupMockFunctionCaller = (
                 context.logger.debug(
                   `Function '${functionHandle}' threw error of kind '${result['errorClassName']}'${'message' in result ? ` with message: ${result['message']}` : ''}`,
                 );
+                if ('errorInternals' in result) {
+                  context.logger.debug(
+                    `Function '${functionHandle}' error errorInternals was:`,
+                    result['errorInternals'],
+                  );
+                }
               }
             }
 

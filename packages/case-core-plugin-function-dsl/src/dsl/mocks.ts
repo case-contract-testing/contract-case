@@ -23,11 +23,15 @@ export interface MockFunctionDescriptor {
 
 export interface ThrownError {
   /** The type of the error response (ie, the class name of the exception) */
-  kind: AnyCaseMatcher;
+  errorClassName: AnyCaseMatcher;
   /**
    * The error message, if any
    */
   message?: AnyCaseMatcher;
+  /**
+   * The serialised content of the error, if any
+   */
+  errorInternals?: AnyCaseMatcher;
   /**
    * The stack trace, as one whole string. Available for debugging, but not for matching.
    */

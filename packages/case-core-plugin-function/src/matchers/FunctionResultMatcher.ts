@@ -34,6 +34,7 @@ type FunctionFailure = {
   errorClassName: string;
   message?: string | undefined;
   stack?: string | undefined;
+  errorInternals?: unknown;
 };
 
 const isFunctionFailure = (
@@ -68,6 +69,13 @@ const checkFunctionFailure = (
               matcher.message,
               addLocation(`message`, matchContext),
               actual['message'],
+            )
+          : makeNoErrorResult(),
+        'errorInternals' in matcher && matcher.errorInternals != null
+          ? matchContext.descendAndCheck(
+              matcher.errorInternals,
+              addLocation(`errorInternals`, matchContext),
+              actual['errorInternals'],
             )
           : makeNoErrorResult(),
       )
@@ -117,6 +125,14 @@ const strip = (
               ),
             }
           : {}),
+        ...('errorInternals' in matcher
+          ? {
+              errorInternals: matchContext.descendAndStrip(
+                matcher.errorInternals,
+                addLocation(`errorInternals`, matchContext),
+              ),
+            }
+          : {}),
       };
 
 const describe = (
@@ -152,6 +168,16 @@ const describe = (
       context.descendAndDescribe(
         matcher.message,
         addLocation(`message`, context),
+      ),
+    );
+  }
+
+  if ('errorInternals' in matcher) {
+    segments.push(
+      describeMessage(' with error internals: '),
+      context.descendAndDescribe(
+        matcher.errorInternals,
+        addLocation(`errorInternals`, context),
       ),
     );
   }
@@ -278,6 +304,14 @@ const validate = (
           await matchContext.descendAndValidate(
             matcher.message,
             addLocation('message', matchContext),
+          );
+        }
+      })
+      .then(async () => {
+        if ('errorInternals' in matcher && matcher.errorInternals != null) {
+          await matchContext.descendAndValidate(
+            matcher.errorInternals,
+            addLocation('errorInternals', matchContext),
           );
         }
       });

@@ -169,6 +169,29 @@ describe('FunctionResultMatcherExecutor', () => {
       expect(result).toContain('throwing a SomeError');
       expect(result).toContain('with message');
     });
+
+    it('describes error result with errorInternals', () => {
+      const errorMatcherWithErrorInternals = {
+        ...errorMatcher,
+        errorInternals: {
+          'case:matcher:type': 'some-matcher',
+        } as unknown as AnyCaseMatcherOrData,
+      };
+
+      mockMatchContext = createMockMatchContext({
+        descendAndCheckResult: [],
+        descendAndStripResult: 'stripped',
+        descendAndDescribeResult: describeMessage('"SomeError"'),
+      });
+
+      const result = renderToString(FunctionResultMatcherExecutor.describe(
+        errorMatcherWithErrorInternals,
+        mockMatchContext,
+      ));
+
+      expect(result).toContain('throwing a SomeError');
+      expect(result).toContain('with error internals');
+    });
   });
 
   describe('check', () => {
@@ -320,6 +343,48 @@ describe('FunctionResultMatcherExecutor', () => {
         });
       });
 
+      describe('when the matcher includes a errorInternals', () => {
+        const errorMatcherWithErrorInternals: CoreFunctionErrorResultMatcher = {
+          ...errorMatcher,
+          errorInternals: { code: 123 } as unknown as AnyCaseMatcherOrData,
+        };
+
+        it('checks error result with errorInternals', async () => {
+          mockMatchContext = createMockMatchContext({
+            descendAndCheckResult: [],
+            descendAndStripResult: 'stripped',
+            descendAndDescribeResult: describeMessage('"default"'),
+          });
+
+          const result = await FunctionResultMatcherExecutor.check(
+            errorMatcherWithErrorInternals,
+            mockMatchContext,
+            { errorClassName: 'SomeError', errorInternals: { code: 123 } },
+          );
+
+          expect(result).toEqual([]);
+        });
+
+        it('returns an error when the errorInternals does not match', async () => {
+          const errorInternalsMismatchError = { message: 'errorInternals mismatch' } as any;
+          // errorClassName matches (first call), errorInternals does not (second call)
+          const descendAndCheckResultsInOrder = [[], [errorInternalsMismatchError]];
+          mockMatchContext = {
+            ...mockMatchContext,
+            descendAndCheck: () =>
+              Promise.resolve(descendAndCheckResultsInOrder.shift() ?? []),
+          };
+
+          const result = await FunctionResultMatcherExecutor.check(
+            errorMatcherWithErrorInternals,
+            mockMatchContext,
+            { errorClassName: 'SomeError', errorInternals: { code: 456 } },
+          );
+
+          expect(result).toEqual([errorInternalsMismatchError]);
+        });
+      });
+
       describe('when the matcher includes a message', () => {
         const errorMatcherWithMessage: CoreFunctionErrorResultMatcher = {
           ...errorMatcher,
@@ -393,6 +458,19 @@ describe('FunctionResultMatcherExecutor', () => {
       expect(
         FunctionResultMatcherExecutor.strip(errorMatcher, mockMatchContext),
       ).toEqual({ errorClassName: 'stripped' });
+    });
+
+    it('strips error result with errorInternals', () => {
+      const errorMatcherWithErrorInternals = {
+        ...errorMatcher,
+        errorInternals: { code: 123 } as unknown as AnyCaseMatcherOrData,
+      };
+      expect(
+        FunctionResultMatcherExecutor.strip(
+          errorMatcherWithErrorInternals,
+          mockMatchContext,
+        ),
+      ).toEqual({ errorClassName: 'stripped', errorInternals: 'stripped' });
     });
 
     it('strips error result with message', () => {

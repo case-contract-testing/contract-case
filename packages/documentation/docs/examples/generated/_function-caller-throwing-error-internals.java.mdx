@@ -1,0 +1,24 @@
+```java
+    contract.runThrowingInteraction(
+        new InteractionDefinition<>(
+            List.of(),
+            WillCallThrowingFunction.builder()
+                .arguments(List.of())
+                .errorClassName("ComplexException")
+                // The errorInternals matcher describes the serialised content of the exception.
+                // Prefer distinct exception classes over error internals matching where you can.
+                .errorInternals(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+                .responseName("throwing a ComplexException with error internals")
+                .functionName("throwingFunctionWithErrorInternals")
+                .build()),
+        IndividualFailedTestConfigBuilder.<String>builder()
+            .withTrigger((setupInfo) ->
+                parse(setupInfo.getFunction(setupInfo.getMockSetup("functionHandle"))
+                    .apply(List.of())))
+            .withTestErrorResponse((exception, setupInfo) -> {
+              var thrown = (FunctionCompletedExceptionally) exception;
+              // The mock throws example error internals that match the contract
+              assertThat(thrown.getErrorInternals())
+                  .isEqualTo(Map.of("code", 123, "detail", "some detail"));
+            }));
+```
