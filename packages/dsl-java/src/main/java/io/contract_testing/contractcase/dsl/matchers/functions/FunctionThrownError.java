@@ -44,7 +44,12 @@ public class FunctionThrownError implements DslMatcher {
   private final Object message;
 
   /**
-   * A matcher for the serialised content of the expected error, if any. The language-specific wrapper serialises the thrown error (for example, in Java this is done with Jackson, so you can control the serialisation with Jackson annotations on your exception class). Matching on the error internals should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on the errorClassName instead. Matching on the error internals couples the contract to the internal structure of the error.
+   * A matcher for the serialised content of the expected error, if any.
+   * This feature exists in case you need to differentiate by some error code on the error type,
+   * but in general it's not recommended to rely on the internals of your error data.
+   * Instead, we recommend explicit error types for each kind of error that callers might care about,
+   * and to match on the errorClassName instead. Matching on the error internals couples the contract
+   * to the internal structure of the error, and should only be used as a last resort.
    */
   @Nullable
   @JsonInclude(Include.NON_NULL)
@@ -62,12 +67,17 @@ public class FunctionThrownError implements DslMatcher {
   private final String uniqueName;
 
   /**
-   * Matches errors thrown from a function execution, for use with a MockFunctionCall / MockFunctionExecution.
-   * @param errorClassName The class name for the expected error (must resolve to a string)
-   * @param message The message for the expected error, if any
-   * @param errorInternals A matcher for the serialised content of the expected error, if any. The language-specific wrapper serialises the thrown error (for example, in Java this is done with Jackson, so you can control the serialisation with Jackson annotations on your exception class). Matching on the error internals should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on the errorClassName instead. Matching on the error internals couples the contract to the internal structure of the error.
-   * @param uniqueName A unique name for this error response, if any. Useful for identifying this error response in verification trigger groups
-   */
+     * Matches errors thrown from a function execution, for use with a MockFunctionCall / MockFunctionExecution.
+     * @param errorClassName The class name for the expected error (must resolve to a string)
+     * @param message The message for the expected error, if any
+     * @param errorInternals A matcher for the serialised content of the expected error, if any. 
+  This feature exists in case you need to differentiate by some error code on the error type, 
+  but in general it's not recommended to rely on the internals of your error data. 
+  Instead, we recommend explicit error types for each kind of error that callers might care about, 
+  and to match on the errorClassName instead. Matching on the error internals couples the contract 
+  to the internal structure of the error, and should only be used as a last resort.
+     * @param uniqueName A unique name for this error response, if any. Useful for identifying this error response in verification trigger groups
+     */
   @Builder
   public FunctionThrownError(
     @NotNull final Object errorClassName,

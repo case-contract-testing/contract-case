@@ -3294,7 +3294,7 @@
             },
             "docs": {
               "summary": "A test equivalence matcher for the serialised content of this exception.",
-              "remarks": "This should generally be a last resort - it is usually better to have\nexplicit, distinct error types for each kind of error that callers might\ncare about, and to match on `errorClassName` instead. Matching on the\nerrorInternals couples the contract to the internal structure of the error."
+              "remarks": "This feature exists in case you need to differentiate by some error code\non the error type, but in general it's not recommended to rely on the\ninternals of your error data. Instead, we recommend explicit error types\nfor each kind of error that callers might care about, and to match on the\n`errorClassName` instead. Matching on the error internals couples the\ncontract to the internal structure of the error, and should only be used\nas a last resort."
             },
             "usage": "public readonly errorInternals: any;"
           },
@@ -3334,7 +3334,8 @@
               "formattingPattern": "string"
             },
             "docs": {
-              "summary": "A name for this specific exception, must be unique in this."
+              "summary": "A human-readable name for this specific error instance, if any.",
+              "remarks": "Useful for identifying this error response in verification trigger groups.\n\nIf you provide a responseName, it must only be used by error matchers that\nhave exactly the same definition. If you don't provide a responseName, it\nwill be generated from the shape of the provided error."
             },
             "usage": "public readonly responseName: string;"
           }

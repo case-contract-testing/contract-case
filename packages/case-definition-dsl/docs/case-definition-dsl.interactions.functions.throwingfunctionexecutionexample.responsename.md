@@ -4,7 +4,11 @@
 
 ## interactions.functions.ThrowingFunctionExecutionExample.responseName property
 
-A name for this specific exception, must be unique in this
+A human-readable name for this specific error instance, if any.
+
+Useful for identifying this error response in verification trigger groups.
+
+If you provide a responseName, it must only be used by error matchers that have exactly the same definition. If you don't provide a responseName, it will be generated from the shape of the provided error.
 
 **Signature:**
 

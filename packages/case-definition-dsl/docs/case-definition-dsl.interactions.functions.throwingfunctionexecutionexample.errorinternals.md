@@ -6,7 +6,7 @@
 
 A test equivalence matcher for the serialised content of this exception.
 
-This should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on `errorClassName` instead. Matching on the errorInternals couples the contract to the internal structure of the error.
+This feature exists in case you need to differentiate by some error code on the error type, but in general it's not recommended to rely on the internals of your error data. Instead, we recommend explicit error types for each kind of error that callers might care about, and to match on the `errorClassName` instead. Matching on the error internals couples the contract to the internal structure of the error, and should only be used as a last resort.
 
 **Signature:**
 
