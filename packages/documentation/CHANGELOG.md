@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.31.1](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.31.0...documentation-v0.31.1) (2026-08-31)
+
+
+### Features
+
+* **functions:** Add payload matching for thrown function errors. Also fixes a bug in typescript, where errors in function contracts didn't behave correctly ([#1404](https://github.com/case-contract-testing/contract-case/issues/1404)) ([b3f127d](https://github.com/case-contract-testing/contract-case/commit/b3f127dbbf7ee6982712102a769f4a5056bc04d5))
+
 ## [0.31.0](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.30.1...documentation-v0.31.0) (2026-08-28)
 
 

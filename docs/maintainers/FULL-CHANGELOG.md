@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.31.1](https://github.com/case-contract-testing/contract-case/compare/v0.31.0...v0.31.1) (2026-08-31)
+
+
+### Features
+
+* **functions:** Add payload matching for thrown function errors. Also fixes a bug in typescript, where errors in function contracts didn't behave correctly ([#1404](https://github.com/case-contract-testing/contract-case/issues/1404)) ([b3f127d](https://github.com/case-contract-testing/contract-case/commit/b3f127dbbf7ee6982712102a769f4a5056bc04d5))
+
+
+### Bug Fixes
+
+* **vitest:** Bump peer dependency to include vitest 4.x - this worked previously, but now it is explicit ([88b56e8](https://github.com/case-contract-testing/contract-case/commit/88b56e8707911cc5d6849b9237076504502f148e))
+* **vitest:** Enable coloured logging, previously colours were stripped because of the way vitest runners work ([3ef9cc2](https://github.com/case-contract-testing/contract-case/commit/3ef9cc24bf034f7c45e6d3ce97e46d5eca061823))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.0 to 0.31.1
+
 ## [0.31.0](https://github.com/case-contract-testing/contract-case/compare/v0.30.1...v0.31.0) (2026-08-28)
 
 

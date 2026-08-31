@@ -29,6 +29,27 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.31.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.31.0...@contract-case/contract-case-jest-v0.31.1) (2026-08-31)
+
+
+### Features
+
+* **functions:** Add payload matching for thrown function errors. Also fixes a bug in typescript, where errors in function contracts didn't behave correctly ([#1404](https://github.com/case-contract-testing/contract-case/issues/1404)) ([b3f127d](https://github.com/case-contract-testing/contract-case/commit/b3f127dbbf7ee6982712102a769f4a5056bc04d5))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/cli bumped from 0.31.0 to 0.31.1
+    * @contract-case/contract-case-dsl-js bumped from 0.31.0 to 0.31.1
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.31.0 to 0.31.1
+    * @contract-case/case-entities-internal bumped from 0.31.0 to 0.31.1
+    * @contract-case/case-plugin-base bumped from 0.31.0 to 0.31.1
+    * @contract-case/cli bumped from 0.31.0 to 0.31.1
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.0 to 0.31.1
+
 ## [0.31.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.30.1...@contract-case/contract-case-jest-v0.31.0) (2026-08-28)
 
 

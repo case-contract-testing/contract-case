@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.31.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.31.0...@contract-case/dsl-java-v0.31.1) (2026-08-31)
+
+
+### Features
+
+* **functions:** Add payload matching for thrown function errors. Also fixes a bug in typescript, where errors in function contracts didn't behave correctly ([#1404](https://github.com/case-contract-testing/contract-case/issues/1404)) ([b3f127d](https://github.com/case-contract-testing/contract-case/commit/b3f127dbbf7ee6982712102a769f4a5056bc04d5))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.31.0 to 0.31.1
+    * @contract-case/case-definition-dsl bumped from 0.31.0 to 0.31.1
+
 ## [0.31.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.30.1...@contract-case/dsl-java-v0.31.0) (2026-08-28)
 
 

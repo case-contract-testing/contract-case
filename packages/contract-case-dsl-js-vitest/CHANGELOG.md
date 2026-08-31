@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.31.1](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-vitest-v0.31.0...@contract-case/contract-case-vitest-v0.31.1) (2026-08-31)
+
+
+### Bug Fixes
+
+* **vitest:** Bump peer dependency to include vitest 4.x - this worked previously, but now it is explicit ([88b56e8](https://github.com/case-contract-testing/contract-case/commit/88b56e8707911cc5d6849b9237076504502f148e))
+* **vitest:** Enable coloured logging, previously colours were stripped because of the way vitest runners work ([3ef9cc2](https://github.com/case-contract-testing/contract-case/commit/3ef9cc24bf034f7c45e6d3ce97e46d5eca061823))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/contract-case-dsl-js bumped from 0.31.0 to 0.31.1
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.0 to 0.31.1
+
 ## [0.31.0](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-vitest-v0.30.1...@contract-case/contract-case-vitest-v0.31.0) (2026-08-28)
 
 
