@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.31.2](https://github.com/case-contract-testing/contract-case/compare/v0.31.1...v0.31.2) (2026-08-31)
+
+
+### Bug Fixes
+
+* **core:** Bump absolute-version to address some deprecation warnings ([a530c91](https://github.com/case-contract-testing/contract-case/commit/a530c914f118ceecada8e8788e0d26bc78b2e310))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.1 to 0.31.2
+
 ## [0.31.1](https://github.com/case-contract-testing/contract-case/compare/v0.31.0...v0.31.1) (2026-08-31)
 
 
