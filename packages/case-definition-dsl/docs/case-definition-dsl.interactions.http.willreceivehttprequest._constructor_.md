@@ -37,7 +37,7 @@ httpExample
 
 </td><td>
 
-an
+an [interactions.http.HttpExample](./case-definition-dsl.interactions.http.httpexample.md)
 
 </td></tr>
 </tbody></table>

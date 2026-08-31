@@ -36,7 +36,7 @@ export class WillReceiveHttpRequest extends AnyInteractionDescriptor {
   /**
    * Defines an example that expects to receive an HTTP request. Use this to define a contract at an HTTP client.
    *
-   * @param httpExample - an {@link mocks.http.HttpExample}
+   * @param httpExample - an {@link interactions.http.HttpExample}
    */
   constructor(httpExample: HttpExample) {
     super(MOCK_HTTP_CLIENT, {

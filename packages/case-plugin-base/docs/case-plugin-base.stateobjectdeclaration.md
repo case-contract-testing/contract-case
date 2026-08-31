@@ -4,6 +4,8 @@
 
 ## StateObjectDeclaration type
 
+Defines the DSL for a state object.
+
 **Signature:**
 
 ```typescript

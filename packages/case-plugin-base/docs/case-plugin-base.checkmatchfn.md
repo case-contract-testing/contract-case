@@ -6,7 +6,7 @@
 
 Checks a matcher against some actual data and returns a Promise containing a MatchResult.
 
-For checks beyond this matcher, use  to descend into any children.
+For checks beyond this matcher, use `descendAndCheck` on the [MatchContext](./case-plugin-base.matchcontext.md) to descend into any children.
 
 **Signature:**
 

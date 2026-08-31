@@ -41,7 +41,7 @@ export class WillCallFunction extends AnyInteractionDescriptor {
    * Defines an interaction that executes a registered function with specific arguments,
    * expecting that interaction to return successfully
    *
-   * @param example - a {@link mocks.functions.FunctionExecutionExample}
+   * @param example - a {@link interactions.functions.FunctionExecutionExample}
    */
   constructor(example: FunctionExecutionExample) {
     super(MOCK_FUNCTION_EXECUTION, {

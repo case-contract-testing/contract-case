@@ -41,7 +41,7 @@ export class WillCallThrowingFunction extends AnyInteractionDescriptor {
   /**
    * Defines an example that executes a registered function with specific arguments
    *
-   * @param example - a {@link mocks.functions.FunctionExecutionExample}
+   * @param example - a {@link interactions.functions.FunctionExecutionExample}
    */
   constructor(example: ThrowingFunctionExecutionExample) {
     super(MOCK_FUNCTION_EXECUTION, {

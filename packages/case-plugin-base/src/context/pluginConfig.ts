@@ -7,6 +7,7 @@ import { DataContext, MatchContext } from './types';
  * with the provided context. Generally you want to call this once per
  * interaction executor entry function.
  *
+ * @public
  * @param parentContext - Context to extend with provided context
  * @param providedContext - Context that your plugin is providing
  * @returns A copy of the context, with the given plugin-provided context set.

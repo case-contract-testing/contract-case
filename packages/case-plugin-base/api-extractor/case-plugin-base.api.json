@@ -976,7 +976,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!CheckMatchFn:type",
-          "docComment": "/**\n * Checks a matcher against some actual data and returns a Promise containing a MatchResult.\n *\n * For checks beyond this matcher, use {@link MatchContext#descendAndCheck} to descend into any children.\n *\n * @remarks\n *\n * This function must have no side effects. It may be called repeatedly on the same data by ContractCase during a run.\n *\n * It must not modify the matcher descriptor during a run, but you may generate alternate matcher descriptors when you call the descend methods on the context.\n *\n * Note that calling check and strip together must always return no errors:\n * ```\n * yourMatcher.check(\n *   descriptor,\n *   context,\n *   yourMatcher.strip(descriptor)\n * ) // must be a `MatchResult` with no errors\n * ```\n *\n * @param matcher - the matcher descriptor\n *\n * @param matchContext - the {@link MatchContext} for this run\n *\n * @param actual - the actual data to check against\n *\n * @typeParam T - a matcher descriptor\n *\n * @returns either a Promise containing a {@link MatchResult} or a raw {@link MatchResult}. The Promise return type is preferred.\n *\n * @public\n */\n",
+          "docComment": "/**\n * Checks a matcher against some actual data and returns a Promise containing a MatchResult.\n *\n * For checks beyond this matcher, use `descendAndCheck` on the {@link MatchContext} to descend into any children.\n *\n * @remarks\n *\n * This function must have no side effects. It may be called repeatedly on the same data by ContractCase during a run.\n *\n * It must not modify the matcher descriptor during a run, but you may generate alternate matcher descriptors when you call the descend methods on the context.\n *\n * Note that calling check and strip together must always return no errors:\n * ```\n * yourMatcher.check(\n *   descriptor,\n *   context,\n *   yourMatcher.strip(descriptor)\n * ) // must be a `MatchResult` with no errors\n * ```\n *\n * @param matcher - the matcher descriptor\n *\n * @param matchContext - the {@link MatchContext} for this run\n *\n * @param actual - the actual data to check against\n *\n * @typeParam T - a matcher descriptor\n *\n * @returns either a Promise containing a {@link MatchResult} or a raw {@link MatchResult}. The Promise return type is preferred.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1899,7 +1899,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!ContractCaseDslPlugin:type",
-          "docComment": "/**\n * Represents just the part of a plugin that can be used to generate DSL classes. This is exported seprately, as processors that want to use the DSL declaration might not know (or care about) the type parameters for the overall plugin.\n */\n",
+          "docComment": "/**\n * Represents just the part of a plugin that can be used to generate DSL classes. This is exported seprately, as processors that want to use the DSL declaration might not know (or care about) the type parameters for the overall plugin.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2430,7 +2430,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!coreLookupMatcher:function(1)",
-          "docComment": "/**\n * Creates a matcher descriptor for a lookupable matcher.\n *\n * @remarks\n *\n * Useful if you want to automatically name lookupable matcher descriptors in your plugin.\n *\n * Note that lookup matchers must have identical contents when rendered.\n *\n * @param uniqueName - the name for this lookupable matcher\n *\n * @param child - the contents of this lookupable matcher\n *\n * @returns a {@link @contract-case/case-plugin-dsl-types#LookupableMatcher}\n *\n * @public\n */\n",
+          "docComment": "/**\n * Creates a matcher descriptor for a lookupable matcher.\n *\n * @remarks\n *\n * Useful if you want to automatically name lookupable matcher descriptors in your plugin.\n *\n * Note that lookup matchers must have identical contents when rendered.\n *\n * @param uniqueName - the name for this lookupable matcher\n *\n * @param child - the contents of this lookupable matcher\n *\n * @returns a `LookupableMatcher` (from `@contract-case/case-plugin-dsl-types`)\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3023,7 +3023,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!DslObjectDeclaration:type",
-          "docComment": "/**\n * Defines an object.\n */\n",
+          "docComment": "/**\n * Defines an object.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3727,7 +3727,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!InteractionDslDeclaration:type",
-          "docComment": "",
+          "docComment": "/**\n * Defines the DSL for an interaction (also known as a mock or an example).\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3978,7 +3978,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!isPassToMatcher:function(1)",
-          "docComment": "",
+          "docComment": "/**\n * Type guard function that determines whether a ParameterType is a PassToMatcher or a plain string type.\n *\n * @param parameterType - The parameter type to check\n *\n * @returns true if the parameter is a PassToMatcher, false otherwise\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4030,7 +4030,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!isTypeContainer:function(1)",
-          "docComment": "/**\n * Type guard function that determines whether a ParameterType is a TypeContainer or a plain string type.\n *\n * @param parameterType - The parameter type to check\n *\n * @returns true if the parameter is a TypeContainer, false if it's a string\n */\n",
+          "docComment": "/**\n * Type guard function that determines whether a ParameterType is a TypeContainer or a plain string type.\n *\n * @param parameterType - The parameter type to check\n *\n * @returns true if the parameter is a TypeContainer, false if it's a string\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4750,7 +4750,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!MatcherDslDeclaration:type",
-          "docComment": "/**\n * Defines the DSL for a matcher.\n *\n * Note that more than one Matcher DSL can point to the same matcher implementation - that is, you might have multiple DSL objects with the same type.\n */\n",
+          "docComment": "/**\n * Defines the DSL for a matcher.\n *\n * Note that more than one Matcher DSL can point to the same matcher implementation - that is, you might have multiple DSL objects with the same type.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5017,7 +5017,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!MatcherReference:type",
-          "docComment": "/**\n * A MatcherReference uniquely identifies a matcher and allows generated code to import and use it\n */\n",
+          "docComment": "/**\n * A MatcherReference uniquely identifies a matcher and allows generated code to import and use it\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5609,7 +5609,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!MockExecutor:type",
-          "docComment": "/**\n * Describes a mock executor for a plugin\n */\n",
+          "docComment": "/**\n * Describes a mock executor for a plugin\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6033,7 +6033,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!ParameterDeclaration:type",
-          "docComment": "/**\n * Declares a parameter for a matcher\n */\n",
+          "docComment": "/**\n * Declares a parameter for a matcher\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6068,7 +6068,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!ParameterType:type",
-          "docComment": "/**\n * ParameterType tells us what type a parameter is.\n *\n * Possible string values: - `'AnyCaseMatcherOrData'`: Matches arbitrary data or a ContractCase matcher. This is ContractCase's most generic unknown type. - `'AnyData'`: Matches any data value only, ie, can't be a matcher. This is like saying \"any json object\". - `'integer'`: Matches integer numbers - `'string'`: Matches string values - `'boolean'`: Matches boolean values - `'number'`: Matches any numeric value. Because the contract serialises to json, this practically means double precision floating point; although the json spec doesn't actually specify, most implementations are restricted to double precision floating point. - `'null'`: Matches `null` values. Friends don't let friends match null values. - `'InternalContractCaseCoreSetup'`: This is the complex json that tells contractcase how to setup itself. This is here for completeness, but you probably don't want to declare it in your own types. If you are implementing a DSL generator for a new language, treat this as whatever a json object would naturally be (eg, a map or dictionary).\n *\n * See {@link TypeContainer} for complex types.\n */\n",
+          "docComment": "/**\n * ParameterType tells us what type a parameter is.\n *\n * Possible string values: - `'AnyCaseMatcherOrData'`: Matches arbitrary data or a ContractCase matcher. This is ContractCase's most generic unknown type. - `'AnyData'`: Matches any data value only, ie, can't be a matcher. This is like saying \"any json object\". - `'integer'`: Matches integer numbers - `'string'`: Matches string values - `'boolean'`: Matches boolean values - `'number'`: Matches any numeric value. Because the contract serialises to json, this practically means double precision floating point; although the json spec doesn't actually specify, most implementations are restricted to double precision floating point. - `'null'`: Matches `null` values. Friends don't let friends match null values. - `'InternalContractCaseCoreSetup'`: This is the complex json that tells contractcase how to setup itself. This is here for completeness, but you probably don't want to declare it in your own types. If you are implementing a DSL generator for a new language, treat this as whatever a json object would naturally be (eg, a map or dictionary).\n *\n * See {@link TypeContainer} for complex types.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6108,7 +6108,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!PassToMatcher:type",
-          "docComment": "/**\n * Indicates a parameter type which assigns the given parameter(s) to a matcher.\n *\n * This is useful for making composite matchers.\n *\n * See the definition of the core function plugin for an example.\n */\n",
+          "docComment": "/**\n * Indicates a parameter type which assigns the given parameter(s) to a matcher.\n *\n * This is useful for making composite matchers.\n *\n * See the definition of the core function plugin for an example.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6178,7 +6178,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!PluginDslDeclaration:type",
-          "docComment": "",
+          "docComment": "/**\n * Describes all the DSL classes declared by a plugin, so that they can be generated in each supported language.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6231,7 +6231,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@contract-case/case-plugin-base!providePluginContext:function(1)",
-          "docComment": "/**\n * Overwrites the value of '_case:currentRun:context:pluginProvided' with the provided context. Generally you want to call this once per interaction executor entry function.\n *\n * @param parentContext - Context to extend with provided context\n *\n * @param providedContext - Context that your plugin is providing\n *\n * @returns A copy of the context, with the given plugin-provided context set.\n */\n",
+          "docComment": "/**\n * Overwrites the value of '_case:currentRun:context:pluginProvided' with the provided context. Generally you want to call this once per interaction executor entry function.\n *\n * @param parentContext - Context to extend with provided context\n *\n * @param providedContext - Context that your plugin is providing\n *\n * @returns A copy of the context, with the given plugin-provided context set.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6605,7 +6605,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!StateObjectDeclaration:type",
-          "docComment": "",
+          "docComment": "/**\n * Defines the DSL for a state object.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -7251,7 +7251,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!TypeContainer:type",
-          "docComment": "/**\n * Indicates a container type.\n *\n * Currently only supports arrays, but in the future may allow specific matchers.\n *\n * Implementations should switch on `kind` and fail if they get a kind that they don't recognise.\n *\n * If you have a use-case that needs more complex container types, please raise an issue.\n */\n",
+          "docComment": "/**\n * Indicates a container type.\n *\n * Currently only supports arrays, but in the future may allow specific matchers.\n *\n * Implementations should switch on `kind` and fail if they get a kind that they don't recognise.\n *\n * If you have a use-case that needs more complex container types, please raise an issue.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -7286,7 +7286,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "@contract-case/case-plugin-base!ValidateMatcherFn:type",
-          "docComment": "/**\n * Validates the parameters of this matcher. ContractCase does two kinds of validation:\n *\n * - It calls `validate(matcher)`, to confirm that the parameters are appropriately set (this function) - It calls `check(matcher,context, strip(matcher))`, to confirm that the user's example matches itself.\n *\n * Because of the second check, you generally don't need to validate structure in this function. Use cases for this validation function are where only a subset of values are valid. For example, the HTTP Status Code validation function will accept the string `\"200\"`, but not the string `\"The type system accepts this incorrect value\"`.\n *\n * Like the other matcher functions, use {@link MatchContext#descendAndValidate} to descend into any children.\n *\n * If any of the Matcher's properties fail validation, throw a CaseConfigurationError.\n *\n * @remarks\n *\n * This function must have no side effects, it may be called repeatedly on the same data by ContractCase during a run.\n * ```\n * yourMatcher.check(\n *   descriptor,\n *   context,\n *   yourMatcher.strip(descriptor)\n * ) // must be a `MatchResult` with no errors\n * ```\n *\n * @param matcher - the matcher descriptor\n *\n * @param matchContext - the {@link MatchContext} for this run\n *\n * @typeParam T - a matcher descriptor\n *\n * @returns a void `Promise`, rejected with `CaseConfigurationError` if the validation failed.\n *\n * @public\n */\n",
+          "docComment": "/**\n * Validates the parameters of this matcher. ContractCase does two kinds of validation:\n *\n * - It calls `validate(matcher)`, to confirm that the parameters are appropriately set (this function) - It calls `check(matcher,context, strip(matcher))`, to confirm that the user's example matches itself.\n *\n * Because of the second check, you generally don't need to validate structure in this function. Use cases for this validation function are where only a subset of values are valid. For example, the HTTP Status Code validation function will accept the string `\"200\"`, but not the string `\"The type system accepts this incorrect value\"`.\n *\n * Like the other matcher functions, use `descendAndValidate` on the {@link MatchContext} to descend into any children.\n *\n * If any of the Matcher's properties fail validation, throw a CaseConfigurationError.\n *\n * @remarks\n *\n * This function must have no side effects, it may be called repeatedly on the same data by ContractCase during a run.\n * ```\n * yourMatcher.check(\n *   descriptor,\n *   context,\n *   yourMatcher.strip(descriptor)\n * ) // must be a `MatchResult` with no errors\n * ```\n *\n * @param matcher - the matcher descriptor\n *\n * @param matchContext - the {@link MatchContext} for this run\n *\n * @typeParam T - a matcher descriptor\n *\n * @returns a void `Promise`, rejected with `CaseConfigurationError` if the validation failed.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

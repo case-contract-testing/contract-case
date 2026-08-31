@@ -63,6 +63,7 @@ export type PluginDescription = {
  * Represents just the part of a plugin that can be used to generate DSL classes.
  * This is exported seprately, as processors that want to use the DSL declaration
  * might not know (or care about) the type parameters for the overall plugin.
+ * @public
  */
 export type ContractCaseDslPlugin = {
   description: PluginDescription;

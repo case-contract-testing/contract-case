@@ -4,6 +4,8 @@
 
 ## InteractionDslDeclaration type
 
+Defines the DSL for an interaction (also known as a mock or an example).
+
 **Signature:**
 
 ```typescript

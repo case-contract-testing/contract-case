@@ -35,7 +35,7 @@ Description
 
 </td><td>
 
-The base class for all Test Equivalence Matchers. Extend this if you don't have an example in your Matcher. Otherwise, use Matcher strings beginning with `_case:` are reserved for the default ContractCase matchers.
+The base class for all Test Equivalence Matchers. Extend this if you don't have an example in your Matcher. Otherwise, use [matchers.base.AnyMatcherWithExample](./case-definition-dsl.matchers.base.anymatcherwithexample.md) Matcher strings beginning with `_case:` are reserved for the default ContractCase matchers.
 
 Only use a types prefixed with `_case:` if you wish to create a special case for a matching behaviour that is already provided by a core ContractCase matcher.
 
