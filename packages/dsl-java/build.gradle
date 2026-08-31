@@ -43,7 +43,7 @@ tasks.withType(Javadoc).configureEach {
 }
 
 def grpcVersion = "1.83.1"
-def protobufVersion = "3.25.2"
+def protobufVersion = "4.36.0"
 def junitVersion = "6.1.2"
 
 dependencies {
