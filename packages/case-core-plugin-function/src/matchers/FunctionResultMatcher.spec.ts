@@ -170,10 +170,10 @@ describe('FunctionResultMatcherExecutor', () => {
       expect(result).toContain('with message');
     });
 
-    it('describes error result with payload', () => {
-      const errorMatcherWithPayload = {
+    it('describes error result with errorInternals', () => {
+      const errorMatcherWithErrorInternals = {
         ...errorMatcher,
-        payload: {
+        errorInternals: {
           'case:matcher:type': 'some-matcher',
         } as unknown as AnyCaseMatcherOrData,
       };
@@ -185,12 +185,12 @@ describe('FunctionResultMatcherExecutor', () => {
       });
 
       const result = renderToString(FunctionResultMatcherExecutor.describe(
-        errorMatcherWithPayload,
+        errorMatcherWithErrorInternals,
         mockMatchContext,
       ));
 
       expect(result).toContain('throwing a SomeError');
-      expect(result).toContain('with payload');
+      expect(result).toContain('with error internals');
     });
   });
 
@@ -343,13 +343,13 @@ describe('FunctionResultMatcherExecutor', () => {
         });
       });
 
-      describe('when the matcher includes a payload', () => {
-        const errorMatcherWithPayload: CoreFunctionErrorResultMatcher = {
+      describe('when the matcher includes a errorInternals', () => {
+        const errorMatcherWithErrorInternals: CoreFunctionErrorResultMatcher = {
           ...errorMatcher,
-          payload: { code: 123 } as unknown as AnyCaseMatcherOrData,
+          errorInternals: { code: 123 } as unknown as AnyCaseMatcherOrData,
         };
 
-        it('checks error result with payload', async () => {
+        it('checks error result with errorInternals', async () => {
           mockMatchContext = createMockMatchContext({
             descendAndCheckResult: [],
             descendAndStripResult: 'stripped',
@@ -357,18 +357,18 @@ describe('FunctionResultMatcherExecutor', () => {
           });
 
           const result = await FunctionResultMatcherExecutor.check(
-            errorMatcherWithPayload,
+            errorMatcherWithErrorInternals,
             mockMatchContext,
-            { errorClassName: 'SomeError', payload: { code: 123 } },
+            { errorClassName: 'SomeError', errorInternals: { code: 123 } },
           );
 
           expect(result).toEqual([]);
         });
 
-        it('returns an error when the payload does not match', async () => {
-          const payloadMismatchError = { message: 'payload mismatch' } as any;
-          // errorClassName matches (first call), payload does not (second call)
-          const descendAndCheckResultsInOrder = [[], [payloadMismatchError]];
+        it('returns an error when the errorInternals does not match', async () => {
+          const errorInternalsMismatchError = { message: 'errorInternals mismatch' } as any;
+          // errorClassName matches (first call), errorInternals does not (second call)
+          const descendAndCheckResultsInOrder = [[], [errorInternalsMismatchError]];
           mockMatchContext = {
             ...mockMatchContext,
             descendAndCheck: () =>
@@ -376,12 +376,12 @@ describe('FunctionResultMatcherExecutor', () => {
           };
 
           const result = await FunctionResultMatcherExecutor.check(
-            errorMatcherWithPayload,
+            errorMatcherWithErrorInternals,
             mockMatchContext,
-            { errorClassName: 'SomeError', payload: { code: 456 } },
+            { errorClassName: 'SomeError', errorInternals: { code: 456 } },
           );
 
-          expect(result).toEqual([payloadMismatchError]);
+          expect(result).toEqual([errorInternalsMismatchError]);
         });
       });
 
@@ -460,17 +460,17 @@ describe('FunctionResultMatcherExecutor', () => {
       ).toEqual({ errorClassName: 'stripped' });
     });
 
-    it('strips error result with payload', () => {
-      const errorMatcherWithPayload = {
+    it('strips error result with errorInternals', () => {
+      const errorMatcherWithErrorInternals = {
         ...errorMatcher,
-        payload: { code: 123 } as unknown as AnyCaseMatcherOrData,
+        errorInternals: { code: 123 } as unknown as AnyCaseMatcherOrData,
       };
       expect(
         FunctionResultMatcherExecutor.strip(
-          errorMatcherWithPayload,
+          errorMatcherWithErrorInternals,
           mockMatchContext,
         ),
-      ).toEqual({ errorClassName: 'stripped', payload: 'stripped' });
+      ).toEqual({ errorClassName: 'stripped', errorInternals: 'stripped' });
     });
 
     it('strips error result with message', () => {

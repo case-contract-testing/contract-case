@@ -7,7 +7,7 @@
   "metadata": {
     "_case": {
       "version": "case-internal-tests",
-      "hash": "59987d2dcd657e4ae0ad03e9dc08c9fcf8b2171682b8f90268d9c9379dfffd5e"
+      "hash": "10e9b06cb869be5f1122c6f59270a03d3408b2b77e714a5d40bb0a921c0b3664"
     }
   },
   "matcherLookup": {
@@ -38,7 +38,7 @@
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": []
     },
-    "matcher:An invocation of throwsErrorWithPayload( \"example\" )": {
+    "matcher:An invocation of throwsErrorWithInternals( \"example\" )": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": [
         "example"
@@ -175,7 +175,7 @@
         },
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "An invocation of throwsErrorWithPayload( \"example\" )",
+          "_case:matcher:uniqueName": "An invocation of throwsErrorWithInternals( \"example\" )",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionArgumentsMatcher",
             "arguments": [
@@ -185,9 +185,9 @@
         },
         "response": {
           "_case:matcher:type": "_case:FunctionResultMatcher",
-          "_case:matcher:uniqueName": "throwing an ErrorWithPayload with a payload",
-          "errorClassName": "ErrorWithPayload",
-          "payload": {
+          "_case:matcher:uniqueName": "throwing an ErrorWithInternals with error internals",
+          "errorClassName": "ErrorWithInternals",
+          "errorInternals": {
             "_case:matcher:type": "_case:CascadingContext",
             "_case:matcher:child": {
               "code": 123,
@@ -196,7 +196,7 @@
             "_case:context:matchBy": "type"
           }
         },
-        "functionName": "throwsErrorWithPayload"
+        "functionName": "throwsErrorWithInternals"
       },
       "result": "VERIFIED"
     }

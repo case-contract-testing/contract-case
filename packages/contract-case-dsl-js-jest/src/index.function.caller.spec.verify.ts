@@ -1,7 +1,7 @@
 import { verifyContract } from './boundaries/jest/jest.js';
 
 import { CustomError } from './__tests__/fixtures/CustomError.js';
-import { ErrorWithPayload } from './__tests__/fixtures/ErrorWithPayload.js';
+import { ErrorWithInternals } from './__tests__/fixtures/ErrorWithInternals.js';
 
 describe('verification', () => {
   verifyContract(
@@ -15,11 +15,11 @@ describe('verification', () => {
       verifier.registerFunction('throwsError', () => {
         throw new CustomError('The message is ignored');
       });
-      verifier.registerFunction('throwsErrorWithPayload', () => {
-        throw new ErrorWithPayload(
+      verifier.registerFunction('throwsErrorWithInternals', () => {
+        throw new ErrorWithInternals(
           'The message is ignored',
           456,
-          'but the payload shape is checked',
+          'but the errorInternals shape is checked',
         );
       });
     },

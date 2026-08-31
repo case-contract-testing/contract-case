@@ -17,8 +17,8 @@ const isObject = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object';
 
 /**
- * The standard Error properties that are not part of the error payload.
- * These are excluded from the payload so that only user-defined properties
+ * The standard Error properties that are not part of the error internals.
+ * These are excluded from the errorInternals so that only user-defined properties
  * of the thrown error are serialised (mirrors the Java wrapper, which strips
  * the standard Throwable properties).
  */
@@ -28,7 +28,7 @@ const STANDARD_ERROR_PROPERTIES = ['name', 'message', 'stack', 'cause'];
  * Serialises the user-defined content of a thrown error. This is the error's
  * own enumerable properties, excluding the standard Error properties.
  */
-const errorPayload = (error: unknown): unknown => {
+const errorInternalsOf = (error: unknown): unknown => {
   if (!isObject(error)) {
     return error;
   }
@@ -62,7 +62,7 @@ const mapThrownError = (error: unknown): string =>
     errorClassName: errorClassName(error),
     message: errorMessage(error),
     stack: error instanceof Error ? error.stack : undefined,
-    payload: errorPayload(error),
+    errorInternals: errorInternalsOf(error),
   });
 
 export const mapInvokeableFunction =

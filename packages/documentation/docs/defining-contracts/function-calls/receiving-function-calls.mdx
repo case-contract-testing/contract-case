@@ -13,8 +13,8 @@ import ReceiverMarshallerJava from '../../examples/generated/\_function-receiver
 import ReceiverThrowingJs from '../../examples/generated/\_function-receiver-throwing.ts.mdx';
 import ReceiverThrowingJava from '../../examples/generated/\_function-receiver-throwing.java.mdx';
 
-import ReceiverThrowingPayloadJs from '../../examples/generated/\_function-receiver-throwing-payload.ts.mdx';
-import ReceiverThrowingPayloadJava from '../../examples/generated/\_function-receiver-throwing-payload.java.mdx';
+import ReceiverThrowingErrorInternalsJs from '../../examples/generated/\_function-receiver-throwing-error-internals.ts.mdx';
+import ReceiverThrowingErrorInternalsJava from '../../examples/generated/\_function-receiver-throwing-error-internals.java.mdx';
 
 # Defining from the implementer's side
 
@@ -80,28 +80,28 @@ unless you add a `message` matcher.
 ### Matching the content of an error
 
 If callers depend on data carried by the error, you can also describe the
-serialised content of the thrown error with a `payload` matcher. How the
+serialised content of the thrown error with an `errorInternals` matcher. How the
 error is serialised depends on the language:
 
-- In Typescript, the payload is the error's own enumerable properties
+- In Typescript, the error internals are the error's own enumerable properties
   (excluding the standard `name`, `message`, `stack` and `cause`).
 - In Java, the exception is serialised with Jackson (with the standard
   `Throwable` properties such as the stack trace, cause and message removed),
-  so any public getters on your exception class become part of the payload.
+  so any public getters on your exception class become part of the error internals.
   You can control this with Jackson annotations on the exception class.
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
-    <ReceiverThrowingPayloadJs />
+    <ReceiverThrowingErrorInternalsJs />
   </TabItem>
   <TabItem value="java" label="Java">
-    <ReceiverThrowingPayloadJava />
+    <ReceiverThrowingErrorInternalsJava />
   </TabItem>
 </Tabs>
 
 :::warning
 
-Matching on the payload should generally be a last resort - it couples the
+Matching on the error internals should generally be a last resort - it couples the
 contract to the internal structure of your exception. Prefer explicit,
 distinct exception types for each kind of failure that callers might care
 about, and match on `errorClassName` alone where you can.

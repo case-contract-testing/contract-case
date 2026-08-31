@@ -14,15 +14,15 @@ export class FunctionCompletedExceptionally extends Error {
 
   /**
    * The serialised content of the error as described by the contract, if any.
-   * This is the example payload from the contract's payload matcher, or
-   * undefined if the contract did not describe a payload for this error.
+   * This is the example error internals from the contract's errorInternals matcher, or
+   * undefined if the contract did not describe error internals for this error.
    */
-  readonly payload: unknown;
+  readonly errorInternals: unknown;
 
   constructor(
     errorClassName: string,
     exceptionMessage: string | undefined,
-    payload: unknown,
+    errorInternals: unknown,
   ) {
     super(
       `Function completed exceptionally: ${errorClassName}${
@@ -33,6 +33,6 @@ export class FunctionCompletedExceptionally extends Error {
     this.name = 'FunctionCompletedExceptionally';
     this.errorClassName = errorClassName;
     this.exceptionMessage = exceptionMessage;
-    this.payload = payload;
+    this.errorInternals = errorInternals;
   }
 }

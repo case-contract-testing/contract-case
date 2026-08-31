@@ -67,6 +67,25 @@ A test equivalence matcher for the class name of this exception
 </td></tr>
 <tr><td>
 
+[errorInternals?](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.errorinternals.md)
+
+</td><td>
+
+`readonly`
+
+</td><td>
+
+AnyMatcherOrData
+
+</td><td>
+
+_(Optional)_ A test equivalence matcher for the serialised content of this exception.
+
+This should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on `errorClassName` instead. Matching on the errorInternals couples the contract to the internal structure of the error.
+
+</td></tr>
+<tr><td>
+
 [functionName](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.functionname.md)
 
 </td><td>
@@ -114,25 +133,6 @@ AnyMatcherOrData
 </td><td>
 
 _(Optional)_ A test equivalence matcher for the message from this exception. In general, it's best to rely on the class of the exception instead of the specific error message
-
-</td></tr>
-<tr><td>
-
-[payload?](./case-definition-dsl.interactions.functions.throwingfunctionexecutionexample.payload.md)
-
-</td><td>
-
-`readonly`
-
-</td><td>
-
-AnyMatcherOrData
-
-</td><td>
-
-_(Optional)_ A test equivalence matcher for the serialised content of this exception.
-
-This should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on `errorClassName` instead. Matching on the payload couples the contract to the internal structure of the error.
 
 </td></tr>
 <tr><td>

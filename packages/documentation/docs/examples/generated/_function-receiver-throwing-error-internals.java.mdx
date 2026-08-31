@@ -1,7 +1,7 @@
 ```java
-    contract.registerFunction("throwingFunctionWithPayload", () -> {
+    contract.registerFunction("throwingFunctionWithErrorInternals", () -> {
       // ComplexException has getCode() and getDetail() accessors,
-      // which Jackson serialises into the payload
+      // which Jackson serialises into the errorInternals
       throw new ComplexException("Oh no", 123, "some detail");
     });
 
@@ -10,8 +10,8 @@
         WillReceiveFunctionCallAndThrow.builder()
             .arguments(List.of())
             .errorClassName("ComplexException")
-            .payload(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
-            .responseName("throwing a ComplexException with a payload")
-            .functionName("throwingFunctionWithPayload")
+            .errorInternals(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+            .responseName("throwing a ComplexException with error internals")
+            .functionName("throwingFunctionWithErrorInternals")
             .build()));
 ```

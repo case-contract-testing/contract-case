@@ -5,14 +5,14 @@ public class FunctionCompletedExceptionally extends RuntimeException {
 
   private final String errorClassName;
   private final String exceptionMessage;
-  private final Object payload;
+  private final Object errorInternals;
 
   public FunctionCompletedExceptionally(String errorClassName, String exceptionMessage) {
     this(errorClassName, exceptionMessage, null);
   }
 
   public FunctionCompletedExceptionally(String errorClassName, String exceptionMessage,
-      Object payload) {
+      Object errorInternals) {
     super(
         "Function completed exceptionally: "
             + errorClassName +
@@ -23,7 +23,7 @@ public class FunctionCompletedExceptionally extends RuntimeException {
     );
     this.errorClassName = errorClassName;
     this.exceptionMessage = exceptionMessage;
-    this.payload = payload;
+    this.errorInternals = errorInternals;
   }
 
   public String getErrorClassName() {
@@ -36,13 +36,13 @@ public class FunctionCompletedExceptionally extends RuntimeException {
 
   /**
    * The serialised content of the exception as described by the contract, if any. This is the
-   * deserialised JSON payload (typically a Map, List, or primitive), or null if the contract did
-   * not describe a payload for this error.
+   * deserialised JSON content (typically a Map, List, or primitive), or null if the contract did
+   * not describe a errorInternals for this error.
    *
-   * @return the payload, or null
+   * @return the errorInternals, or null
    */
-  public Object getPayload() {
-    return payload;
+  public Object getErrorInternals() {
+    return errorInternals;
   }
 
 }

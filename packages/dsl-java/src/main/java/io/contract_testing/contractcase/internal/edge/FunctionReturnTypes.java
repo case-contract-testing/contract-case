@@ -21,10 +21,10 @@ public class FunctionReturnTypes {
    * @param errorClassName The class name of the exception it failed with
    * @param message The message, if any. May be null
    * @param stack The stack trace, never used for matching
-   * @param payload The serialised content of the exception, if any. May be null
+   * @param errorInternals The serialised content of the exception, if any. May be null
    */
   public record FunctionFailure(String errorClassName, String message, String stack,
-                                Object payload) {
+                                Object errorInternals) {
 
   }
 }

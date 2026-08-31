@@ -146,7 +146,7 @@ public class InteractionSetup {
   }
 
   private record EitherReturnType(String success, String errorClassName, String message,
-                                  Object payload) {
+                                  Object errorInternals) {
 
   }
 
@@ -177,7 +177,7 @@ public class InteractionSetup {
         throw new FunctionCompletedExceptionally(
             parsedResult.errorClassName(),
             parsedResult.message(),
-            parsedResult.payload()
+            parsedResult.errorInternals()
         );
       } catch (JsonProcessingException e) {
         throw new ContractCaseCoreError("Unable to read function result:", e);

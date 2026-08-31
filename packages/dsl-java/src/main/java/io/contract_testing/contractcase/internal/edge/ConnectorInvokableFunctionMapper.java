@@ -24,7 +24,7 @@ public class ConnectorInvokableFunctionMapper {
 
   /**
    * Jackson mixin that strips the standard Throwable properties when serialising a thrown
-   * exception into the error payload, so that only the user-defined properties of the exception
+   * exception into the error internals, so that only the user-defined properties of the exception
    * are included. Users can further control the serialisation with Jackson annotations on their
    * exception class.
    */
@@ -34,11 +34,11 @@ public class ConnectorInvokableFunctionMapper {
   }
 
   /**
-   * Creates the ObjectMapper used to serialise thrown exceptions into the error payload
+   * Creates the ObjectMapper used to serialise thrown exceptions into the error internals
    *
    * @return a configured ObjectMapper
    */
-  static ObjectMapper payloadMapper() {
+  static ObjectMapper errorInternalsMapper() {
     return new ObjectMapper()
         .addMixIn(Throwable.class, ThrowableMixin.class)
         .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
@@ -51,13 +51,13 @@ public class ConnectorInvokableFunctionMapper {
     private final int expectedArgumentCount;
 
     private final ObjectMapper mapper;
-    private final ObjectMapper payloadMapper;
+    private final ObjectMapper errorInternalsMapper;
 
     ConnectorInvokableFunction(String functionName, int expectedArgumentCount) {
       this.functionName = functionName;
       this.expectedArgumentCount = expectedArgumentCount;
       this.mapper = new ObjectMapper();
-      this.payloadMapper = payloadMapper();
+      this.errorInternalsMapper = errorInternalsMapper();
     }
 
 
@@ -114,7 +114,7 @@ public class ConnectorInvokableFunctionMapper {
                       e.getClass().getSimpleName(),
                       e.getMessage(),
                       userFacingStackTrace,
-                      payloadMapper.valueToTree(e)
+                      errorInternalsMapper.valueToTree(e)
                   )
               ))
           );

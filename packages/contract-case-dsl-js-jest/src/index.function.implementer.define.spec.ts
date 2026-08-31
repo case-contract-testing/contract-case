@@ -6,19 +6,8 @@ import {
   willReceiveFunctionCallAndThrow,
 } from './index.js';
 
-class CustomError extends Error {}
-
-class ErrorWithPayload extends Error {
-  readonly code: number;
-
-  readonly detail: string;
-
-  constructor(message: string, code: number, detail: string) {
-    super(message);
-    this.code = code;
-    this.detail = detail;
-  }
-}
+import { CustomError } from './__tests__/fixtures/CustomError.js';
+import { ErrorWithInternals } from './__tests__/fixtures/ErrorWithInternals.js';
 
 describe('function receiver', () => {
   defineContract(
@@ -84,11 +73,12 @@ describe('function receiver', () => {
             }),
           }));
       });
-      describe('function that throws with a payload', () => {
-        const THROWING_WITH_PAYLOAD_HANDLE = 'THROWING FUNCTION WITH PAYLOAD';
+      describe('function that throws with error internals', () => {
+        const THROWING_WITH_INTERNALS_HANDLE =
+          'THROWING FUNCTION WITH ERROR INTERNALS';
         beforeAll(() => {
-          contract.registerFunction(THROWING_WITH_PAYLOAD_HANDLE, () => {
-            throw new ErrorWithPayload('Oh no', 123, 'some detail');
+          contract.registerFunction(THROWING_WITH_INTERNALS_HANDLE, () => {
+            throw new ErrorWithInternals('Oh no', 123, 'some detail');
           });
         });
 
@@ -96,10 +86,11 @@ describe('function receiver', () => {
           contract.runInteraction({
             definition: willReceiveFunctionCallAndThrow({
               arguments: [],
-              errorClassName: 'ErrorWithPayload',
-              payload: shapedLike({ code: 123, detail: 'some detail' }),
-              responseName: 'throwing an ErrorWithPayload with a payload',
-              functionName: THROWING_WITH_PAYLOAD_HANDLE,
+              errorClassName: 'ErrorWithInternals',
+              errorInternals: shapedLike({ code: 123, detail: 'some detail' }),
+              responseName:
+                'throwing an ErrorWithInternals with error internals',
+              functionName: THROWING_WITH_INTERNALS_HANDLE,
             }),
           }));
       });

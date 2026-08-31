@@ -32,7 +32,7 @@ export interface CoreFunctionErrorResultMatcher {
    * This should generally be a last resort - prefer distinct error classes
    * for each kind of failure the caller might care about.
    */
-  payload?: AnyCaseMatcherOrData;
+  errorInternals?: AnyCaseMatcherOrData;
 }
 
 export const functionArgumentsMatcher = (
@@ -56,12 +56,12 @@ export const functionReturnSuccessMatcher = (
 export const functionThrowsErrorMatcher = (
   errorClassName: AnyCaseMatcherOrData,
   message?: AnyCaseMatcherOrData,
-  payload?: AnyCaseMatcherOrData,
+  errorInternals?: AnyCaseMatcherOrData,
   responseName?: string | undefined,
 ): CoreFunctionErrorResultMatcher => ({
   '_case:matcher:type': FUNCTION_RESULT_MATCHER_TYPE,
   ...(responseName ? { '_case:matcher:uniqueName': responseName } : {}),
   errorClassName,
   ...(message != null ? { message } : {}),
-  ...(payload != null ? { payload } : {}),
+  ...(errorInternals != null ? { errorInternals } : {}),
 });

@@ -67,11 +67,11 @@ type ThrowingFunctionExecutionExample = {
    * explicit, distinct error types for each kind of error that callers might
    * care about, and to match on `errorClassName` instead.
    */
-  payload?: AnyCaseMatcherOrData;
+  errorInternals?: AnyCaseMatcherOrData;
   /**
    * A name for this specific error response - must be unique in this
    * contract. Useful for identifying the error response in verification
-   * trigger groups, especially when the error has a payload.
+   * trigger groups, especially when the error declares errorInternals.
    */
   responseName?: string;
   functionName: string;

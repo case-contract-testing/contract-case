@@ -71,19 +71,19 @@ public class DefiningAFunctionContract {
     // end-example
   }
 
-  public void testThrowingFunctionWithPayload() {
-    // example-extract _function-caller-throwing-payload
+  public void testThrowingFunctionWithErrorInternals() {
+    // example-extract _function-caller-throwing-error-internals
     contract.runThrowingInteraction(
         new InteractionDefinition<>(
             List.of(),
             WillCallThrowingFunction.builder()
                 .arguments(List.of())
                 .errorClassName("ComplexException")
-                // The payload describes the serialised content of the exception.
-                // Prefer distinct exception classes over payload matching where you can.
-                .payload(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
-                .responseName("throwing a ComplexException with a payload")
-                .functionName("throwingFunctionWithPayload")
+                // The errorInternals matcher describes the serialised content of the exception.
+                // Prefer distinct exception classes over error internals matching where you can.
+                .errorInternals(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+                .responseName("throwing a ComplexException with error internals")
+                .functionName("throwingFunctionWithErrorInternals")
                 .build()),
         IndividualFailedTestConfigBuilder.<String>builder()
             .withTrigger((setupInfo) ->
@@ -91,8 +91,8 @@ public class DefiningAFunctionContract {
                     .apply(List.of())))
             .withTestErrorResponse((exception, setupInfo) -> {
               var thrown = (FunctionCompletedExceptionally) exception;
-              // The mock throws an example payload that matches the contract
-              assertThat(thrown.getPayload())
+              // The mock throws example error internals that match the contract
+              assertThat(thrown.getErrorInternals())
                   .isEqualTo(Map.of("code", 123, "detail", "some detail"));
             }));
     // end-example

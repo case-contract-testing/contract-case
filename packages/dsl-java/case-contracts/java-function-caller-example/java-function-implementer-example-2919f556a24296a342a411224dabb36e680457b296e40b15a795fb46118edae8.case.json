@@ -7,17 +7,13 @@
   "metadata": {
     "_case": {
       "version": "0.31.0",
-      "hash": "e4e67208707b9ea56446cc29a0e4af4f54c49721537c58f07ffaf045e13c0cd4"
+      "hash": "2919f556a24296a342a411224dabb36e680457b296e40b15a795fb46118edae8"
     }
   },
   "matcherLookup": {
     "matcher:returns \"2 pages\"": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
       "success": "2 pages"
-    },
-    "matcher:An invocation of throwingFunctionWithPayload()": {
-      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-      "arguments": []
     },
     "matcher:An invocation of NoArgFunction()": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
@@ -38,6 +34,10 @@
     "matcher:throwing a CustomException": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
       "errorClassName": "CustomException"
+    },
+    "matcher:An invocation of throwingFunctionWithErrorInternals()": {
+      "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+      "arguments": []
     }
   },
   "examples": [
@@ -76,47 +76,6 @@
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionResultMatcher",
             "success": "2 pages"
-          }
-        }
-      },
-      "result": "VERIFIED"
-    },
-    {
-      "states": [],
-      "mock": {
-        "_case:mock:type": "_case:MockFunctionCaller",
-        "_case:run:context:setup": {
-          "read": {
-            "stateVariables": "default",
-            "triggers": "provided",
-            "type": "_case:MockFunctionExecution"
-          },
-          "write": {
-            "stateVariables": "state",
-            "triggers": "generated",
-            "type": "_case:MockFunctionCaller"
-          }
-        },
-        "functionName": "throwingFunctionWithPayload",
-        "request": {
-          "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "An invocation of throwingFunctionWithPayload()",
-          "_case:matcher:child": {
-            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
-            "arguments": []
-          }
-        },
-        "response": {
-          "_case:matcher:type": "_case:FunctionResultMatcher",
-          "_case:matcher:uniqueName": "throwing a ComplexException with a payload",
-          "errorClassName": "ComplexException",
-          "payload": {
-            "_case:context:matchBy": "type",
-            "_case:matcher:child": {
-              "code": 123,
-              "detail": "some detail"
-            },
-            "_case:matcher:type": "_case:CascadingContext"
           }
         }
       },
@@ -193,6 +152,47 @@
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionResultMatcher",
             "errorClassName": "CustomException"
+          }
+        }
+      },
+      "result": "VERIFIED"
+    },
+    {
+      "states": [],
+      "mock": {
+        "_case:mock:type": "_case:MockFunctionCaller",
+        "_case:run:context:setup": {
+          "read": {
+            "stateVariables": "default",
+            "triggers": "provided",
+            "type": "_case:MockFunctionExecution"
+          },
+          "write": {
+            "stateVariables": "state",
+            "triggers": "generated",
+            "type": "_case:MockFunctionCaller"
+          }
+        },
+        "functionName": "throwingFunctionWithErrorInternals",
+        "request": {
+          "_case:matcher:type": "_case:Lookup",
+          "_case:matcher:uniqueName": "An invocation of throwingFunctionWithErrorInternals()",
+          "_case:matcher:child": {
+            "_case:matcher:type": "_case:FunctionArgumentsMatcher",
+            "arguments": []
+          }
+        },
+        "response": {
+          "_case:matcher:type": "_case:FunctionResultMatcher",
+          "_case:matcher:uniqueName": "throwing a ComplexException with error internals",
+          "errorClassName": "ComplexException",
+          "errorInternals": {
+            "_case:context:matchBy": "type",
+            "_case:matcher:child": {
+              "code": 123,
+              "detail": "some detail"
+            },
+            "_case:matcher:type": "_case:CascadingContext"
           }
         }
       },

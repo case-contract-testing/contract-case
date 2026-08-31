@@ -7,7 +7,7 @@
   "metadata": {
     "_case": {
       "version": "0.31.0",
-      "hash": "e266f1f2a353212d838285f66a764373deb72538c1b980f9362908857a009fe6"
+      "hash": "83a888e6e4ebeb749624d03b2cd7a4bc9199c5a608ff1102f8b92e984cad59c9"
     }
   },
   "matcherLookup": {
@@ -47,7 +47,7 @@
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": []
     },
-    "matcher:An invocation of throwingFunctionWithPayload( <any integer> )": {
+    "matcher:An invocation of throwingFunctionWithErrorInternals( <any integer> )": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
       "arguments": [
         {
@@ -58,9 +58,16 @@
         }
       ]
     },
-    "matcher:throwing a CustomException": {
+    "matcher:throwing a CustomException with error internals: an object shaped like {httpCode: httpStatus 4XX}": {
       "_case:matcher:type": "_case:FunctionResultMatcher",
-      "errorClassName": "CustomException"
+      "errorClassName": "CustomException",
+      "errorInternals": {
+        "httpCode": {
+          "_case:matcher:resolvesTo": "string",
+          "_case:matcher:rule": "4XX",
+          "_case:matcher:type": "_case:HttpStatusCode"
+        }
+      }
     },
     "matcher:An invocation of throwingFunction( <any integer> )": {
       "_case:matcher:type": "_case:FunctionArgumentsMatcher",
@@ -238,10 +245,10 @@
             "type": "_case:MockFunctionExecution"
           }
         },
-        "functionName": "throwingFunctionWithPayload",
+        "functionName": "throwingFunctionWithErrorInternals",
         "request": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "An invocation of throwingFunctionWithPayload( <any integer> )",
+          "_case:matcher:uniqueName": "An invocation of throwingFunctionWithErrorInternals( <any integer> )",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionArgumentsMatcher",
             "arguments": [
@@ -256,9 +263,9 @@
         },
         "response": {
           "_case:matcher:type": "_case:FunctionResultMatcher",
-          "_case:matcher:uniqueName": "throwing a ComplexException with a payload",
+          "_case:matcher:uniqueName": "throwing a ComplexException with error internals",
           "errorClassName": "ComplexException",
-          "payload": {
+          "errorInternals": {
             "_case:context:matchBy": "type",
             "_case:matcher:child": {
               "code": 123,
@@ -309,10 +316,17 @@
         },
         "response": {
           "_case:matcher:type": "_case:Lookup",
-          "_case:matcher:uniqueName": "throwing a CustomException",
+          "_case:matcher:uniqueName": "throwing a CustomException with error internals: an object shaped like {httpCode: httpStatus 4XX}",
           "_case:matcher:child": {
             "_case:matcher:type": "_case:FunctionResultMatcher",
-            "errorClassName": "CustomException"
+            "errorClassName": "CustomException",
+            "errorInternals": {
+              "httpCode": {
+                "_case:matcher:resolvesTo": "string",
+                "_case:matcher:rule": "4XX",
+                "_case:matcher:type": "_case:HttpStatusCode"
+              }
+            }
           }
         }
       },

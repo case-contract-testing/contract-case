@@ -2,8 +2,8 @@ package io.contract_testing.contractcase.test.function;
 
 /**
  * An exception with additional properties, used to test matching against the serialised content
- * (payload) of a thrown exception. The payload is serialised with Jackson, so public getters are
- * included in the payload.
+ * (errorInternals) of a thrown exception. The errorInternals is serialised with Jackson, so public getters are
+ * included in the errorInternals.
  */
 public class ComplexException extends Exception {
 

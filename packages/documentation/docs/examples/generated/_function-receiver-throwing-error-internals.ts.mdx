@@ -1,6 +1,6 @@
 ```ts
         // The error's own enumerable properties (here, code and detail)
-        // become the payload
+        // become the errorInternals
         class ComplexException extends Error {
           constructor(
             message: string,
@@ -11,7 +11,7 @@
           }
         }
 
-        contract.registerFunction('throwingFunctionWithPayload', () => {
+        contract.registerFunction('throwingFunctionWithErrorInternals', () => {
           throw new ComplexException('Oh no', 123, 'some detail');
         });
 
@@ -19,9 +19,9 @@
           definition: willReceiveFunctionCallAndThrow({
             arguments: [],
             errorClassName: 'ComplexException',
-            payload: shapedLike({ code: 123, detail: 'some detail' }),
-            responseName: 'throwing a ComplexException with a payload',
-            functionName: 'throwingFunctionWithPayload',
+            errorInternals: shapedLike({ code: 123, detail: 'some detail' }),
+            responseName: 'throwing a ComplexException with error internals',
+            functionName: 'throwingFunctionWithErrorInternals',
           }),
         });
 ```

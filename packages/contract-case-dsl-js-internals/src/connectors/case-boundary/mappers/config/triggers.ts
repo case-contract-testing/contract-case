@@ -53,12 +53,12 @@ const mapSetup = <C extends Record<string, string>>(
             const failure = functionReturn as {
               errorClassName: string;
               message?: string;
-              payload?: unknown;
+              errorInternals?: unknown;
             };
             throw new FunctionCompletedExceptionally(
               failure.errorClassName,
               failure.message,
-              failure.payload,
+              failure.errorInternals,
             );
           }
           throw new ContractCaseCoreError(

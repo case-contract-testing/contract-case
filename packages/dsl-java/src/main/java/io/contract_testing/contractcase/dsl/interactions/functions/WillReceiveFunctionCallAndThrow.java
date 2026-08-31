@@ -80,8 +80,8 @@ public class WillReceiveFunctionCallAndThrow implements DslInteraction {
    * @param arguments The arguments expected by this function. This should be an array containing the expectations for each parameter
    * @param errorClassName The class name for the expected error (must resolve to a string)
    * @param message The message for the expected error, if any
-   * @param payload A matcher for the serialised content of the expected error, if any. The language-specific wrapper serialises the thrown error (for example, in Java this is done with Jackson, so you can control the serialisation with Jackson annotations on your exception class). Matching on the payload should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on the errorClassName instead. Payload matching couples the contract to the internal structure of the error.
-   * @param responseName A name for this specific error, if any. Must be unique in this contract. Useful for identifying this error response in verification trigger groups, especially when the error has a payload
+   * @param errorInternals A matcher for the serialised content of the expected error, if any. The language-specific wrapper serialises the thrown error (for example, in Java this is done with Jackson, so you can control the serialisation with Jackson annotations on your exception class). Matching on the error internals should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on the errorClassName instead. Matching on the error internals couples the contract to the internal structure of the error.
+   * @param responseName A name for this specific error, if any. Must be unique in this contract. Useful for identifying this error response in verification trigger groups, especially when the error declares errorInternals
    */
   @Builder
   public WillReceiveFunctionCallAndThrow(
@@ -89,7 +89,7 @@ public class WillReceiveFunctionCallAndThrow implements DslInteraction {
     @NotNull final List<Object> arguments,
     @NotNull final Object errorClassName,
     @Nullable final Object message,
-    @Nullable final Object payload,
+    @Nullable final Object errorInternals,
     @Nullable final String responseName
   ) {
     this.type = "_case:MockFunctionCaller";
@@ -98,7 +98,7 @@ public class WillReceiveFunctionCallAndThrow implements DslInteraction {
     this.error = new FunctionThrownError(
       errorClassName,
       message,
-      payload,
+      errorInternals,
       responseName
     );
   }

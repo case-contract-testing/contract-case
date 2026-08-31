@@ -5,8 +5,8 @@ import {
 
 const FUNCTION_CATEGORY = 'functions';
 
-const PAYLOAD_DOCUMENTATION =
-  'A matcher for the serialised content of the expected error, if any. The language-specific wrapper serialises the thrown error (for example, in Java this is done with Jackson, so you can control the serialisation with Jackson annotations on your exception class). Matching on the payload should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on the errorClassName instead. Payload matching couples the contract to the internal structure of the error.';
+const ERROR_INTERNALS_DOCUMENTATION =
+  'A matcher for the serialised content of the expected error, if any. The language-specific wrapper serialises the thrown error (for example, in Java this is done with Jackson, so you can control the serialisation with Jackson annotations on your exception class). Matching on the error internals should generally be a last resort - it is usually better to have explicit, distinct error types for each kind of error that callers might care about, and to match on the errorClassName instead. Matching on the error internals couples the contract to the internal structure of the error.';
 
 const unnamedArguments: ParameterDeclaration = {
   name: 'arguments',
@@ -74,9 +74,9 @@ const thrownError: ParameterDeclaration = {
         type: 'AnyCaseMatcherOrData',
       },
       {
-        name: 'payload',
-        jsonPropertyName: 'payload',
-        documentation: PAYLOAD_DOCUMENTATION,
+        name: 'errorInternals',
+        jsonPropertyName: 'errorInternals',
+        documentation: ERROR_INTERNALS_DOCUMENTATION,
         optional: true,
         type: 'AnyCaseMatcherOrData',
       },
@@ -84,7 +84,7 @@ const thrownError: ParameterDeclaration = {
         name: 'responseName',
         jsonPropertyName: '_case:matcher:uniqueName',
         documentation:
-          'A name for this specific error, if any. Must be unique in this contract. Useful for identifying this error response in verification trigger groups, especially when the error has a payload',
+          'A name for this specific error, if any. Must be unique in this contract. Useful for identifying this error response in verification trigger groups, especially when the error declares errorInternals',
         optional: true,
         type: 'string',
       },
@@ -204,9 +204,9 @@ export const dsl: PluginDslDeclaration = {
           type: 'AnyCaseMatcherOrData',
         },
         {
-          name: 'payload',
-          jsonPropertyName: 'payload',
-          documentation: PAYLOAD_DOCUMENTATION,
+          name: 'errorInternals',
+          jsonPropertyName: 'errorInternals',
+          documentation: ERROR_INTERNALS_DOCUMENTATION,
           optional: true,
           type: 'AnyCaseMatcherOrData',
         },

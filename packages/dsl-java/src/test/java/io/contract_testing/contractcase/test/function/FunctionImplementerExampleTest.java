@@ -68,8 +68,8 @@ public class FunctionImplementerExampleTest {
   }
 
   @Test
-  public void testThrowingFunctionWithPayload() {
-    contract.registerFunction("throwingFunctionWithPayload", () -> {
+  public void testThrowingFunctionWithErrorInternals() {
+    contract.registerFunction("throwingFunctionWithErrorInternals", () -> {
       throw new ComplexException("Oh no", 123, "some detail");
     });
     contract.runInteraction(new InteractionDefinition<>(
@@ -77,9 +77,9 @@ public class FunctionImplementerExampleTest {
         WillReceiveFunctionCallAndThrow.builder()
             .arguments(List.of())
             .errorClassName("ComplexException")
-            .payload(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
-            .responseName("throwing a ComplexException with a payload")
-            .functionName("throwingFunctionWithPayload")
+            .errorInternals(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+            .responseName("throwing a ComplexException with error internals")
+            .functionName("throwingFunctionWithErrorInternals")
             .build()));
   }
 

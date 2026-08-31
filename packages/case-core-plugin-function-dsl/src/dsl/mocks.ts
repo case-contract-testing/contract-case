@@ -31,7 +31,7 @@ export interface ThrownError {
   /**
    * The serialised content of the error, if any
    */
-  payload?: AnyCaseMatcher;
+  errorInternals?: AnyCaseMatcher;
   /**
    * The stack trace, as one whole string. Available for debugging, but not for matching.
    */

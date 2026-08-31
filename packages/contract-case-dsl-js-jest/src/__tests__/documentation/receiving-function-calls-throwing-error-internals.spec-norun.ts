@@ -13,11 +13,11 @@ defineContract(
     providerName: 'function definer',
   },
   (contract: ContractCaseDefiner) => {
-    describe('throwing function with a payload', () => {
+    describe('throwing function with error internals', () => {
       it('succeeds', async () => {
-        // example-extract _function-receiver-throwing-payload
+        // example-extract _function-receiver-throwing-error-internals
         // The error's own enumerable properties (here, code and detail)
-        // become the payload
+        // become the errorInternals
         class ComplexException extends Error {
           constructor(
             message: string,
@@ -28,7 +28,7 @@ defineContract(
           }
         }
 
-        contract.registerFunction('throwingFunctionWithPayload', () => {
+        contract.registerFunction('throwingFunctionWithErrorInternals', () => {
           throw new ComplexException('Oh no', 123, 'some detail');
         });
 
@@ -36,9 +36,9 @@ defineContract(
           definition: willReceiveFunctionCallAndThrow({
             arguments: [],
             errorClassName: 'ComplexException',
-            payload: shapedLike({ code: 123, detail: 'some detail' }),
-            responseName: 'throwing a ComplexException with a payload',
-            functionName: 'throwingFunctionWithPayload',
+            errorInternals: shapedLike({ code: 123, detail: 'some detail' }),
+            responseName: 'throwing a ComplexException with error internals',
+            functionName: 'throwingFunctionWithErrorInternals',
           }),
         });
         // end-example

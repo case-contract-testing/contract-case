@@ -11,8 +11,8 @@ import CallerDefineJava from '../../examples/generated/\_function-caller-define.
 import CallerThrowingJs from '../../examples/generated/\_function-caller-throwing.ts.mdx';
 import CallerThrowingJava from '../../examples/generated/\_function-caller-throwing.java.mdx';
 
-import CallerThrowingPayloadJs from '../../examples/generated/\_function-caller-throwing-payload.ts.mdx';
-import CallerThrowingPayloadJava from '../../examples/generated/\_function-caller-throwing-payload.java.mdx';
+import CallerThrowingErrorInternalsJs from '../../examples/generated/\_function-caller-throwing-error-internals.ts.mdx';
+import CallerThrowingErrorInternalsJava from '../../examples/generated/\_function-caller-throwing-error-internals.java.mdx';
 
 # Defining a function call interaction
 
@@ -93,11 +93,11 @@ serialisation boundary.
 ### Matching the content of an error
 
 If the caller depends on data carried by the error (for example, an error
-code), you can additionally describe the serialised content of the error with a
-`payload` matcher. The payload is whatever the implementer's language wrapper
+code), you can additionally describe the serialised content of the error with an
+`errorInternals` matcher. The error internals are whatever the implementer's language wrapper
 produces when it serialises the thrown error:
 
-- In Typescript, the payload is the error's own enumerable properties
+- In Typescript, the error internals are the error's own enumerable properties
   (excluding the standard `name`, `message`, `stack` and `cause`).
 - In Java, the exception is serialised with Jackson, so public getters on the
   exception are included by default and you can control the serialisation
@@ -106,16 +106,16 @@ produces when it serialises the thrown error:
 
 <Tabs groupId="language">
   <TabItem value="js" label="Typescript">
-    <CallerThrowingPayloadJs />
+    <CallerThrowingErrorInternalsJs />
   </TabItem>
   <TabItem value="java" label="Java">
-    <CallerThrowingPayloadJava />
+    <CallerThrowingErrorInternalsJava />
   </TabItem>
 </Tabs>
 
 :::warning
 
-Matching on the payload should generally be a last resort. It couples the
+Matching on the error internals should generally be a last resort. It couples the
 contract to the internal structure of the error, which is easy to change
 accidentally. It's usually better for the function implementer to provide
 explicit, distinct error types for each kind of failure that callers might
@@ -123,11 +123,11 @@ care about, and to match on `errorClassName` alone.
 
 :::
 
-When an error has a payload, give it a `responseName` - this is the name the
+When an error declares `errorInternals`, give it a `responseName` - this is the name the
 implementer uses to identify the error response in their [trigger
 groups](../../verifying-contracts/function-execution/registering-functions)
 during verification. Without one, the name is generated from the description of
-the payload matcher.
+the `errorInternals` matcher.
 
 ## States
 

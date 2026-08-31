@@ -641,10 +641,10 @@ class StringSuffix extends AnyMatcher {
 interface ThrowingFunctionExecutionExample {
     readonly arguments: AnyMatcherOrData[];
     readonly errorClassName: AnyMatcherOrData;
+    readonly errorInternals?: AnyMatcherOrData;
     readonly functionName: string;
     readonly invocationName?: string;
     readonly message?: AnyMatcherOrData;
-    readonly payload?: AnyMatcherOrData;
     readonly responseName?: string;
 }
 

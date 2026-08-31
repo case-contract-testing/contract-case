@@ -40,20 +40,23 @@ describe('verification', () => {
           },
         },
       })
-      .addTriggerGroup('An invocation of THROWING FUNCTION WITH PAYLOAD()', {
-        trigger: async (setup: FunctionExecutorConfig) =>
-          setup.getFunction(setup.mock.functionHandle)(),
-        testErrorResponses: {
-          'throwing an ErrorWithPayload with a payload': (e) => {
-            expect(e).toBeInstanceOf(FunctionCompletedExceptionally);
-            const thrown = e as FunctionCompletedExceptionally;
-            expect(thrown.errorClassName).toBe('ErrorWithPayload');
-            expect(thrown.payload).toEqual({
-              code: expect.any(Number),
-              detail: expect.any(String),
-            });
+      .addTriggerGroup(
+        'An invocation of THROWING FUNCTION WITH ERROR INTERNALS()',
+        {
+          trigger: async (setup: FunctionExecutorConfig) =>
+            setup.getFunction(setup.mock.functionHandle)(),
+          testErrorResponses: {
+            'throwing an ErrorWithInternals with error internals': (e) => {
+              expect(e).toBeInstanceOf(FunctionCompletedExceptionally);
+              const thrown = e as FunctionCompletedExceptionally;
+              expect(thrown.errorClassName).toBe('ErrorWithInternals');
+              expect(thrown.errorInternals).toEqual({
+                code: expect.any(Number),
+                detail: expect.any(String),
+              });
+            },
           },
         },
-      }),
+      ),
   });
 });

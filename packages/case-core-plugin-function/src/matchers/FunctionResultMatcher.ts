@@ -34,7 +34,7 @@ type FunctionFailure = {
   errorClassName: string;
   message?: string | undefined;
   stack?: string | undefined;
-  payload?: unknown;
+  errorInternals?: unknown;
 };
 
 const isFunctionFailure = (
@@ -71,11 +71,11 @@ const checkFunctionFailure = (
               actual['message'],
             )
           : makeNoErrorResult(),
-        'payload' in matcher && matcher.payload != null
+        'errorInternals' in matcher && matcher.errorInternals != null
           ? matchContext.descendAndCheck(
-              matcher.payload,
-              addLocation(`payload`, matchContext),
-              actual['payload'],
+              matcher.errorInternals,
+              addLocation(`errorInternals`, matchContext),
+              actual['errorInternals'],
             )
           : makeNoErrorResult(),
       )
@@ -125,11 +125,11 @@ const strip = (
               ),
             }
           : {}),
-        ...('payload' in matcher
+        ...('errorInternals' in matcher
           ? {
-              payload: matchContext.descendAndStrip(
-                matcher.payload,
-                addLocation(`payload`, matchContext),
+              errorInternals: matchContext.descendAndStrip(
+                matcher.errorInternals,
+                addLocation(`errorInternals`, matchContext),
               ),
             }
           : {}),
@@ -172,12 +172,12 @@ const describe = (
     );
   }
 
-  if ('payload' in matcher) {
+  if ('errorInternals' in matcher) {
     segments.push(
-      describeMessage(' with payload: '),
+      describeMessage(' with error internals: '),
       context.descendAndDescribe(
-        matcher.payload,
-        addLocation(`payload`, context),
+        matcher.errorInternals,
+        addLocation(`errorInternals`, context),
       ),
     );
   }
@@ -308,10 +308,10 @@ const validate = (
         }
       })
       .then(async () => {
-        if ('payload' in matcher && matcher.payload != null) {
+        if ('errorInternals' in matcher && matcher.errorInternals != null) {
           await matchContext.descendAndValidate(
-            matcher.payload,
-            addLocation('payload', matchContext),
+            matcher.errorInternals,
+            addLocation('errorInternals', matchContext),
           );
         }
       });

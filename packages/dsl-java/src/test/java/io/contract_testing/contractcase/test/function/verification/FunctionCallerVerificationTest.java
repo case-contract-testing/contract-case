@@ -74,9 +74,9 @@ public class FunctionCallerVerificationTest {
     );
 
     verifier.registerFunction(
-        "throwingFunctionWithPayload",
+        "throwingFunctionWithErrorInternals",
         convertJsonStringArgs((String key) -> {
-          throw new ComplexException("The message is ignored", 456, "but the payload shape is checked");
+          throw new ComplexException("The message is ignored", 456, "but the errorInternals shape is checked");
         })
     );
 

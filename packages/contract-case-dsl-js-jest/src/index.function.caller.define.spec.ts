@@ -75,16 +75,20 @@ describe('function executor', () => {
             },
           ));
       });
-      describe('function that throws with a payload', () => {
-        it('throws with the example payload', () =>
+      describe('function that throws with error internals', () => {
+        it('throws with the example error internals', () =>
           contract.runRejectingInteraction(
             {
               definition: willCallThrowingFunction({
                 arguments: ['example'],
-                errorClassName: 'ErrorWithPayload',
-                payload: shapedLike({ code: 123, detail: 'some detail' }),
-                responseName: 'throwing an ErrorWithPayload with a payload',
-                functionName: 'throwsErrorWithPayload',
+                errorClassName: 'ErrorWithInternals',
+                errorInternals: shapedLike({
+                  code: 123,
+                  detail: 'some detail',
+                }),
+                responseName:
+                  'throwing an ErrorWithInternals with error internals',
+                functionName: 'throwsErrorWithInternals',
               }),
             },
             {
@@ -93,9 +97,9 @@ describe('function executor', () => {
               testErrorResponse: (e) => {
                 expect(e).toBeInstanceOf(FunctionCompletedExceptionally);
                 const thrown = e as FunctionCompletedExceptionally;
-                expect(thrown.errorClassName).toBe('ErrorWithPayload');
-                // During definition, the mock throws the example payload
-                expect(thrown.payload).toEqual({
+                expect(thrown.errorClassName).toBe('ErrorWithInternals');
+                // During definition, the mock throws the example error internals
+                expect(thrown.errorInternals).toEqual({
                   code: 123,
                   detail: 'some detail',
                 });

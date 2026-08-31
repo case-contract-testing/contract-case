@@ -58,11 +58,11 @@ public class ReceivingFunctionCalls {
     // end-example
   }
 
-  public void testReceiveThrowingFunctionCallWithPayload() {
-    // example-extract _function-receiver-throwing-payload
-    contract.registerFunction("throwingFunctionWithPayload", () -> {
+  public void testReceiveThrowingFunctionCallWithErrorInternals() {
+    // example-extract _function-receiver-throwing-error-internals
+    contract.registerFunction("throwingFunctionWithErrorInternals", () -> {
       // ComplexException has getCode() and getDetail() accessors,
-      // which Jackson serialises into the payload
+      // which Jackson serialises into the errorInternals
       throw new ComplexException("Oh no", 123, "some detail");
     });
 
@@ -71,9 +71,9 @@ public class ReceivingFunctionCalls {
         WillReceiveFunctionCallAndThrow.builder()
             .arguments(List.of())
             .errorClassName("ComplexException")
-            .payload(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
-            .responseName("throwing a ComplexException with a payload")
-            .functionName("throwingFunctionWithPayload")
+            .errorInternals(new ShapedLike(Map.of("code", 123, "detail", "some detail")))
+            .responseName("throwing a ComplexException with error internals")
+            .functionName("throwingFunctionWithErrorInternals")
             .build()));
     // end-example
   }
