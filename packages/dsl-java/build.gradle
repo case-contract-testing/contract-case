@@ -47,7 +47,7 @@ def protobufVersion = "3.25.2"
 def junitVersion = "6.1.2"
 
 dependencies {
-    implementation 'com.diogonunes:JColor:5.5.1'
+    implementation 'com.diogonunes:JColor:6.0.1'
     implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
     implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
     implementation 'org.projectlombok:lombok:1.18.46'
