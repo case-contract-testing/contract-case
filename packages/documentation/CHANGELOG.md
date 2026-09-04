@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.31.3](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.31.2...documentation-v0.31.3) (2026-09-04)
+
+
+### Documentation
+
+* Fix documentation links and add missing JSDoc comments ([#1419](https://github.com/case-contract-testing/contract-case/issues/1419)) ([2bd4f48](https://github.com/case-contract-testing/contract-case/commit/2bd4f4854deae34eeec387a9144efea03f64ab20))
+
 ## [0.31.2](https://github.com/case-contract-testing/contract-case/compare/documentation-v0.31.1...documentation-v0.31.2) (2026-08-31)
 
 

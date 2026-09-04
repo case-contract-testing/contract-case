@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.31.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.31.2...@contract-case/dsl-java-v0.31.3) (2026-09-04)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/dsl-java:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-connector bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-definition-dsl bumped from 0.31.2 to 0.31.3
+
 ## [0.31.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/dsl-java-v0.31.1...@contract-case/dsl-java-v0.31.2) (2026-08-31)
 
 

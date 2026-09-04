@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.31.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-generator-v0.31.2...@contract-case/case-definition-generator-v0.31.3) (2026-09-04)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/case-definition-generator:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-entities-internal bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-plugin-base bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-core-plugin-http bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-core-plugin-function bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-plugin-dsl-types bumped from 0.31.2 to 0.31.3
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.31.2 to 0.31.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.2 to 0.31.3
+
 ## [0.31.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-definition-generator-v0.31.1...@contract-case/case-definition-generator-v0.31.2) (2026-08-31)
 
 
