@@ -29,6 +29,27 @@
     * @contract-case/case-example-mock-types bumped from 0.14.0 to 0.15.1
     * @contract-case/cli bumped from 0.1.6 to 0.1.7
 
+## [0.31.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.31.2...@contract-case/contract-case-jest-v0.31.3) (2026-09-04)
+
+
+### Miscellaneous Chores
+
+* **@contract-case/contract-case-jest:** Synchronize ContractCase versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/cli bumped from 0.31.2 to 0.31.3
+    * @contract-case/contract-case-dsl-js bumped from 0.31.2 to 0.31.3
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-entities-internal bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-plugin-base bumped from 0.31.2 to 0.31.3
+    * @contract-case/cli bumped from 0.31.2 to 0.31.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.2 to 0.31.3
+
 ## [0.31.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/contract-case-jest-v0.31.1...@contract-case/contract-case-jest-v0.31.2) (2026-08-31)
 
 
