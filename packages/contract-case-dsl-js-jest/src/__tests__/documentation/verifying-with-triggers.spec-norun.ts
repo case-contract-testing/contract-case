@@ -1,4 +1,4 @@
-/* eslint-disable import-x/no-extraneous-dependencies */
+ 
 /* eslint-disable import-x/order */
 
 import { verifyContract } from '../../boundaries/jest/jest.js';
