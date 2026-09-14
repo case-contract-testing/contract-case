@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import-x/no-extraneous-dependencies
 import {
   defineContract,
   verifyContract,

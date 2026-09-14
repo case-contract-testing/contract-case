@@ -10,7 +10,7 @@ export default [
   {
     rules: {
       'max-classes-per-file': 'off',
-      'import/extensions': 'off',
+      'import-x/extensions': 'off',
     },
   },
 ];

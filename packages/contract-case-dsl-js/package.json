@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@contract-case/eslint-config-case-maintainer": "0.31.2",
-    "eslint": "^9.39.1",
+    "eslint": "^10.10.0",
     "prettier": "3.6.2",
     "rimraf": "^6.1.2",
     "typescript": "5.9.3"

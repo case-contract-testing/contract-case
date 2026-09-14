@@ -51,7 +51,7 @@
     "@contract-case/case-maintainer-config": "0.31.2",
     "@contract-case/eslint-config-case-maintainer": "0.31.2",
     "@types/jest": "^30.0.0",
-    "eslint": "^9.39.1",
+    "eslint": "^10.10.0",
     "jest": "^30.2.0",
     "prettier": "3.6.2",
     "rimraf": "^6.1.2",

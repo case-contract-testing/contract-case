@@ -1,5 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/order */
+/* eslint-disable import-x/no-extraneous-dependencies */
+/* eslint-disable import-x/order */
 
 import { defineContract, ContractCaseDefiner } from '../../index.js';
 

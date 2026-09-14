@@ -10,7 +10,7 @@
  * This module must be imported before anything that (transitively) loads
  * chalk, because supports-color reads FORCE_COLOR at module load time.
  */
-import supportsColor from 'supports-color';
+import supportsColorModule from 'supports-color';
 
 const alreadyConfigured =
   process.env['FORCE_COLOR'] !== undefined ||
@@ -20,7 +20,7 @@ if (process.env['VITEST'] && !alreadyConfigured) {
   // Ask what the inherited environment (TERM, COLORTERM, CI vendor etc.)
   // would support if we *were* attached to a TTY. This keeps colour off for
   // TERM=dumb, unknown CI logs and similar.
-  const detected = supportsColor.supportsColor({ isTTY: true });
+  const detected = supportsColorModule.supportsColor({ isTTY: true });
   if (detected && detected.level > 0) {
     process.env['FORCE_COLOR'] = String(detected.level);
   }
