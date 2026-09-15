@@ -55,7 +55,7 @@
     "@contract-case/test-dsl-plugin-fixture": "file:test-fixtures/dsl-plugin",
     "@types/jest": "^30.0.0",
     "cross-env": "^10.1.0",
-    "eslint": "^9.22.0",
+    "eslint": "^10.10.0",
     "jest": "^30.2.0",
     "rimraf": "^6.1.2",
     "ts-jest": "^29.3.4",

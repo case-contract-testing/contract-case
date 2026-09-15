@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import-x/extensions
 import { loadProtosWithOptionsSync } from '@grpc/proto-loader/build/src/util.js';
 import { Type } from 'protobufjs';
 

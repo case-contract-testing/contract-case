@@ -1,5 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/order */
+ 
+/* eslint-disable import-x/order */
 /* eslint-disable jest/expect-expect */
 
 import { defineContract } from '../../index.js';

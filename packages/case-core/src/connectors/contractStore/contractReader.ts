@@ -10,7 +10,7 @@ import { ContractStore } from '../../core/types.ContractReader';
 type Contents<T> = { contents: T; filePath: string };
 
 export const readContract = (pathToContract: string): DownloadedContract => {
-  let content = '';
+  let content: string;
   try {
     content = fs.readFileSync(pathToContract, 'utf-8');
   } catch (e) {

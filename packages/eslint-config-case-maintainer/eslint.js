@@ -1,22 +1,16 @@
 const js = require('@eslint/js');
-const { FlatCompat } = require('@eslint/eslintrc');
 const tsParser = require('@typescript-eslint/parser');
 const tsdoc = require('eslint-plugin-tsdoc');
 const tsPlugin = require('@typescript-eslint/eslint-plugin');
-const importPlugin = require('eslint-plugin-import');
+const importPlugin = require('eslint-plugin-import-x');
 const prettier = require('eslint-config-prettier');
 const jest = require('eslint-plugin-jest');
 const globals = require('globals');
-const { languageOptions } = require('eslint-plugin-import/config/flat/react');
 /*!
  * ContractCase eslint settings for maintainers
  * Copyright(c) 2022-2024 Timothy Jones (TLJ)
  * BSD-3-Clause license
  */
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
 
 // The way eslint does ignores is no longer very intuitive
 // see https://github.com/eslint/eslint/discussions/18304
@@ -47,7 +41,14 @@ module.exports = [
     ignores,
   },
   { ...js.configs.recommended, ignores },
-  ...compat.extends('plugin:import/typescript').map((c) => ({ ...c, ignores })),
+  // The typescript preset registers import-x itself, but we register it once
+  // below, so take only its settings and rules to avoid a redefinition error.
+  {
+    name: importPlugin.flatConfigs.typescript.name,
+    settings: importPlugin.flatConfigs.typescript.settings,
+    rules: importPlugin.flatConfigs.typescript.rules,
+    ignores,
+  },
   prettier,
   {
     ignores,
@@ -59,9 +60,14 @@ module.exports = [
         project: ['./**/tsconfig.json', './**/tsconfig.spec.json'],
       },
     },
-    plugins: { import: importPlugin, '@typescript-eslint': tsPlugin, tsdoc },
+    plugins: {
+      'import-x': importPlugin,
+      '@typescript-eslint': tsPlugin,
+      tsdoc,
+      jest,
+    },
     settings: {
-      'import/resolver': {
+      'import-x/resolver': {
         typescript: {
           project: 'tsconfig.json',
         },
@@ -75,8 +81,8 @@ module.exports = [
       ],
       camelcase: 'off',
       'no-console': 'error',
-      'import/prefer-default-export': 'off',
-      'import/no-useless-path-segments': 'off',
+      'import-x/prefer-default-export': 'off',
+      'import-x/no-useless-path-segments': 'off',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/explicit-module-boundary-types': 'error',
       // Generated below here
@@ -107,9 +113,9 @@ module.exports = [
           requireStringLiterals: true,
         },
       ],
-      'import/named': ['off'],
-      'import/no-named-as-default-member': ['off'],
-      'import/no-unresolved': [
+      'import-x/named': ['off'],
+      'import-x/no-named-as-default-member': ['off'],
+      'import-x/no-unresolved': [
         'off',
         {
           commonjs: true,
@@ -254,7 +260,7 @@ module.exports = [
       '@typescript-eslint/require-await': ['off'],
       'no-return-await': ['off'],
       '@typescript-eslint/return-await': ['error', 'in-try-catch'],
-      'import/extensions': [
+      'import-x/extensions': [
         'error',
         'ignorePackages',
         {
@@ -265,7 +271,7 @@ module.exports = [
           tsx: 'never',
         },
       ],
-      'import/no-extraneous-dependencies': [
+      'import-x/no-extraneous-dependencies': [
         'error',
         {
           devDependencies: [
@@ -313,20 +319,20 @@ module.exports = [
         },
       ],
       strict: ['error', 'never'],
-      'import/default': ['off'],
-      'import/namespace': ['off'],
-      'import/export': ['error'],
-      'import/no-named-as-default': ['error'],
-      'import/no-deprecated': ['off'],
-      'import/no-mutable-exports': ['error'],
-      'import/no-commonjs': ['off'],
-      'import/no-amd': ['error'],
-      'import/no-nodejs-modules': ['off'],
-      'import/first': ['error'],
-      'import/imports-first': ['off'],
-      'import/no-duplicates': ['error'],
-      'import/no-namespace': ['off'],
-      'import/order': [
+      'import-x/default': ['off'],
+      'import-x/namespace': ['off'],
+      'import-x/export': ['error'],
+      'import-x/no-named-as-default': ['error'],
+      'import-x/no-deprecated': ['off'],
+      'import-x/no-mutable-exports': ['error'],
+      'import-x/no-commonjs': ['off'],
+      'import-x/no-amd': ['error'],
+      'import-x/no-nodejs-modules': ['off'],
+      'import-x/first': ['error'],
+      'import-x/imports-first': ['off'],
+      'import-x/no-duplicates': ['error'],
+      'import-x/no-namespace': ['off'],
+      'import-x/order': [
         'error',
         {
           groups: [['builtin', 'external', 'internal']],
@@ -335,27 +341,27 @@ module.exports = [
           warnOnUnassignedImports: false,
         },
       ],
-      'import/newline-after-import': ['error'],
-      'import/no-restricted-paths': ['off'],
-      'import/max-dependencies': [
+      'import-x/newline-after-import': ['error'],
+      'import-x/no-restricted-paths': ['off'],
+      'import-x/max-dependencies': [
         'off',
         {
           max: 10,
         },
       ],
-      'import/no-absolute-path': ['error'],
-      'import/no-dynamic-require': ['error'],
-      'import/no-internal-modules': [
+      'import-x/no-absolute-path': ['error'],
+      'import-x/no-dynamic-require': ['error'],
+      'import-x/no-internal-modules': [
         'off',
         {
           allow: [],
         },
       ],
-      'import/unambiguous': ['off'],
-      'import/no-webpack-loader-syntax': ['error'],
-      'import/no-unassigned-import': ['off'],
-      'import/no-named-default': ['error'],
-      'import/no-anonymous-default-export': [
+      'import-x/unambiguous': ['off'],
+      'import-x/no-webpack-loader-syntax': ['error'],
+      'import-x/no-unassigned-import': ['off'],
+      'import-x/no-named-default': ['error'],
+      'import-x/no-anonymous-default-export': [
         'off',
         {
           allowArray: false,
@@ -366,29 +372,28 @@ module.exports = [
           allowObject: false,
         },
       ],
-      'import/exports-last': ['off'],
-      'import/group-exports': ['off'],
-      'import/no-default-export': ['off'],
-      'import/no-named-export': ['off'],
-      'import/no-self-import': ['error'],
-      'import/no-cycle': [
+      'import-x/exports-last': ['off'],
+      'import-x/group-exports': ['off'],
+      'import-x/no-default-export': ['off'],
+      'import-x/no-named-export': ['off'],
+      'import-x/no-self-import': ['error'],
+      'import-x/no-cycle': [
         'error',
         {
           maxDepth: '∞',
           ignoreExternal: false,
           allowUnsafeDynamicCyclicDependency: false,
-          disableScc: false,
         },
       ],
-      'import/dynamic-import-chunkname': [
+      'import-x/dynamic-import-chunkname': [
         'off',
         {
           importFunctions: [],
           webpackChunknameFormat: '[0-9a-zA-Z-_/.]+',
         },
       ],
-      'import/no-relative-parent-imports': ['off'],
-      'import/no-unused-modules': [
+      'import-x/no-relative-parent-imports': ['off'],
+      'import-x/no-unused-modules': [
         'off',
         {
           ignoreExports: [],
@@ -396,13 +401,13 @@ module.exports = [
           unusedExports: true,
         },
       ],
-      'import/no-import-module-exports': [
+      'import-x/no-import-module-exports': [
         'error',
         {
           exceptions: [],
         },
       ],
-      'import/no-relative-packages': ['error'],
+      'import-x/no-relative-packages': ['error'],
       'arrow-body-style': [
         'error',
         'as-needed',
@@ -1019,7 +1024,10 @@ module.exports = [
     },
     rules: {
       'no-restricted-imports': ['error', { patterns: ['src/connectors/*'] }],
-      'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+      'import-x/no-extraneous-dependencies': [
+        'error',
+        { devDependencies: true },
+      ],
       'no-console': 'off',
     },
   },
@@ -1105,7 +1113,9 @@ module.exports = [
       '@typescript-eslint/no-var-requires': 'off',
     },
   },
-  ...compat.extends('plugin:jest/recommended'),
+  // Replaces the old eslintrc `plugin:jest/recommended` extend, which applied
+  // to every file. The plugin itself is registered with the others, above.
+  { ignores, rules: { ...jest.configs['flat/recommended'].rules } },
   {
     files: ['**/*.test.ts', '**/*.spec.ts', '**/*.spec.mts', '**/*.test.mts'],
     ignores,
@@ -1114,7 +1124,6 @@ module.exports = [
         ...globals.jest,
       },
     },
-    plugins: { jest },
     rules: {
       ...(jest.configs['flat/recommended'].rules ?? {}),
       'no-unused-expressions': 'off',

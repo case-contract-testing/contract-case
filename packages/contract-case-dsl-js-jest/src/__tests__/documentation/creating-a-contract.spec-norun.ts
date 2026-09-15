@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+ 
 /* eslint-disable jest/expect-expect */
 
 import {
