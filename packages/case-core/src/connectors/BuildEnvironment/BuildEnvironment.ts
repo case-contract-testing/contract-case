@@ -1,8 +1,8 @@
 import isCi from 'is-ci';
 import childProcess from 'child_process';
-import { long } from 'git-rev-sync';
 import { versionFromGitTag } from 'absolute-version';
 import { CaseConfigurationError } from '@contract-case/case-plugin-base';
+import { long } from '../git';
 import { BuildEnvironment } from '../../core/types';
 
 export const makeEnvironment = (): BuildEnvironment => ({
