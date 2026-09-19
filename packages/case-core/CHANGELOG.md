@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.31.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.31.2...@contract-case/case-core-v0.31.3) (2026-09-19)
+
+
+### Bug Fixes
+
+* Inline the out-of-date git-rev-sync so that it can be modernised without relying on an unmaintained package. This addresses some dependency warnings, as the modernisation removed those dependencies ([4a9d6a7](https://github.com/case-contract-testing/contract-case/commit/4a9d6a7a283df4a37069214963bfad12febc7ff1))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-core-plugin-http bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-core-plugin-http-dsl bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-entities-internal bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-plugin-base bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-plugin-dsl-types bumped from 0.31.2 to 0.31.3
+  * devDependencies
+    * @contract-case/case-definition-dsl bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-maintainer-config bumped from 0.31.2 to 0.31.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.2 to 0.31.3
+
 ## [0.31.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-v0.31.1...@contract-case/case-core-v0.31.2) (2026-08-31)
 
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.31.3](https://github.com/case-contract-testing/contract-case/compare/v0.31.2...v0.31.3) (2026-09-19)
+
+
+### Bug Fixes
+
+* Inline the out-of-date git-rev-sync so that it can be modernised without relying on an unmaintained package. This addresses some dependency warnings, as the modernisation removed those dependencies ([4a9d6a7](https://github.com/case-contract-testing/contract-case/commit/4a9d6a7a283df4a37069214963bfad12febc7ff1))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.2 to 0.31.3
+
 ## [0.31.2](https://github.com/case-contract-testing/contract-case/compare/v0.31.1...v0.31.2) (2026-08-31)
 
 
