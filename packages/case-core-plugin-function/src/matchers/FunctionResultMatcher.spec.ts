@@ -128,10 +128,12 @@ describe('FunctionResultMatcherExecutor', () => {
         descendAndDescribeResult: describeMessage('some description'),
       });
       expect(
-        renderToString(FunctionResultMatcherExecutor.describe(
-          successMatcher,
-          mockMatchContext,
-        )),
+        renderToString(
+          FunctionResultMatcherExecutor.describe(
+            successMatcher,
+            mockMatchContext,
+          ),
+        ),
       ).toBe('returns some description');
     });
 
@@ -142,7 +144,12 @@ describe('FunctionResultMatcherExecutor', () => {
         descendAndDescribeResult: describeMessage('"SomeError"'),
       });
       expect(
-        renderToString(FunctionResultMatcherExecutor.describe(errorMatcher, mockMatchContext)),
+        renderToString(
+          FunctionResultMatcherExecutor.describe(
+            errorMatcher,
+            mockMatchContext,
+          ),
+        ),
       ).toBe('throwing a SomeError');
     });
 
@@ -160,10 +167,12 @@ describe('FunctionResultMatcherExecutor', () => {
         descendAndDescribeResult: describeMessage('"SomeError"'),
       });
 
-      const result = renderToString(FunctionResultMatcherExecutor.describe(
-        errorMatcherWithMessage,
-        mockMatchContext,
-      ));
+      const result = renderToString(
+        FunctionResultMatcherExecutor.describe(
+          errorMatcherWithMessage,
+          mockMatchContext,
+        ),
+      );
 
       // The result should contain both the error class and message
       expect(result).toContain('throwing a SomeError');
@@ -184,10 +193,12 @@ describe('FunctionResultMatcherExecutor', () => {
         descendAndDescribeResult: describeMessage('"SomeError"'),
       });
 
-      const result = renderToString(FunctionResultMatcherExecutor.describe(
-        errorMatcherWithErrorInternals,
-        mockMatchContext,
-      ));
+      const result = renderToString(
+        FunctionResultMatcherExecutor.describe(
+          errorMatcherWithErrorInternals,
+          mockMatchContext,
+        ),
+      );
 
       expect(result).toContain('throwing a SomeError');
       expect(result).toContain('with error internals');
@@ -366,9 +377,14 @@ describe('FunctionResultMatcherExecutor', () => {
         });
 
         it('returns an error when the errorInternals does not match', async () => {
-          const errorInternalsMismatchError = { message: 'errorInternals mismatch' } as any;
+          const errorInternalsMismatchError = {
+            message: 'errorInternals mismatch',
+          } as any;
           // errorClassName matches (first call), errorInternals does not (second call)
-          const descendAndCheckResultsInOrder = [[], [errorInternalsMismatchError]];
+          const descendAndCheckResultsInOrder = [
+            [],
+            [errorInternalsMismatchError],
+          ];
           mockMatchContext = {
             ...mockMatchContext,
             descendAndCheck: () =>

@@ -65,7 +65,9 @@ describe('FunctionArgumentMatcherExecutor', () => {
   describe('description function', () => {
     it('describes an invocation with no arguments', () => {
       expect(
-        renderToString(FunctionArgumentMatcherExecutor.describe(matcher, mockMatchContext)),
+        renderToString(
+          FunctionArgumentMatcherExecutor.describe(matcher, mockMatchContext),
+        ),
       ).toBe('An invocation of mockFunction()');
     });
 
@@ -85,10 +87,12 @@ describe('FunctionArgumentMatcherExecutor', () => {
         };
 
         expect(
-          renderToString(FunctionArgumentMatcherExecutor.describe(
-            argsMatcher,
-            mockMatchContext,
-          )),
+          renderToString(
+            FunctionArgumentMatcherExecutor.describe(
+              argsMatcher,
+              mockMatchContext,
+            ),
+          ),
         ).toBe('An invocation of mockFunction( some description )');
       });
     });

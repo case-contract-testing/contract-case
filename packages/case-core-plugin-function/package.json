@@ -34,7 +34,7 @@
     "test": "jest",
     "lint": "eslint --ext .ts",
     "lint:fix": "eslint --fix --ext .ts",
-    "format:base": "prettier --parser typescript \"{src,bin}/*.ts\"",
+    "format:base": "prettier --parser typescript \"{src,bin}/**/*.ts\"",
     "format:check": "npm run format:base -- --list-different",
     "format:fix": "npm run format:base -- --write "
   },
