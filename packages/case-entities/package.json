@@ -1,6 +1,6 @@
 {
   "name": "@contract-case/case-entities-internal",
-  "version": "0.31.2",
+  "version": "0.31.3",
   "description": "Shared types for ContractCase modules",
   "keywords": [
     "testing",
@@ -49,8 +49,8 @@
     "url": "https://github.com/case-contract-testing/case/issues"
   },
   "devDependencies": {
-    "@contract-case/case-maintainer-config": "0.31.2",
-    "@contract-case/eslint-config-case-maintainer": "0.31.2",
+    "@contract-case/case-maintainer-config": "0.31.3",
+    "@contract-case/eslint-config-case-maintainer": "0.31.3",
     "@types/current-git-branch": "^1.1.6",
     "@types/express": "^5.0.0",
     "@types/is-ci": "^3.0.0",
@@ -67,9 +67,9 @@
     "typescript": "5.9.3"
   },
   "dependencies": {
-    "@contract-case/case-core-plugin-http-dsl": "0.31.2",
-    "@contract-case/case-core-plugin-function-dsl": "0.31.2",
-    "@contract-case/case-plugin-base": "0.31.2",
-    "@contract-case/case-plugin-dsl-types": "0.31.2"
+    "@contract-case/case-core-plugin-http-dsl": "0.31.3",
+    "@contract-case/case-core-plugin-function-dsl": "0.31.3",
+    "@contract-case/case-plugin-base": "0.31.3",
+    "@contract-case/case-plugin-dsl-types": "0.31.3"
   }
 }

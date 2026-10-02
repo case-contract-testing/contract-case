@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.31.3](https://github.com/case-contract-testing/contract-case/compare/v0.31.2...v0.31.3) (2026-10-02)
+
+
+### Features
+
+* Mark vitest ^5.0.0 as supported ([152d583](https://github.com/case-contract-testing/contract-case/commit/152d5832e685fd7688c974ee6553044fc82370c3))
+
+
+### Bug Fixes
+
+* Fix issue where assigning certain string matchers would crash the FunctionResultMatcher. Fixes [#1466](https://github.com/case-contract-testing/contract-case/issues/1466) ([140bff6](https://github.com/case-contract-testing/contract-case/commit/140bff6f84eabe91fea21576325d27281bf16142))
+* Inline the out-of-date git-rev-sync so that it can be modernised without relying on an unmaintained package. This addresses some dependency warnings, as the modernisation removed those dependencies ([4a9d6a7](https://github.com/case-contract-testing/contract-case/commit/4a9d6a7a283df4a37069214963bfad12febc7ff1))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.2 to 0.31.3
+
 ## [0.31.2](https://github.com/case-contract-testing/contract-case/compare/v0.31.1...v0.31.2) (2026-08-31)
 
 

@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.31.3](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.31.2...@contract-case/case-core-plugin-function-v0.31.3) (2026-10-02)
+
+
+### Bug Fixes
+
+* Fix issue where assigning certain string matchers would crash the FunctionResultMatcher. Fixes [#1466](https://github.com/case-contract-testing/contract-case/issues/1466) ([140bff6](https://github.com/case-contract-testing/contract-case/commit/140bff6f84eabe91fea21576325d27281bf16142))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @contract-case/case-core-plugin-function-dsl bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-plugin-base bumped from 0.31.2 to 0.31.3
+    * @contract-case/case-plugin-dsl-types bumped from 0.31.2 to 0.31.3
+  * devDependencies
+    * @contract-case/case-maintainer-config bumped from 0.31.2 to 0.31.3
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.2 to 0.31.3
+
 ## [0.31.2](https://github.com/case-contract-testing/contract-case/compare/@contract-case/case-core-plugin-function-v0.31.1...@contract-case/case-core-plugin-function-v0.31.2) (2026-08-31)
 
 
