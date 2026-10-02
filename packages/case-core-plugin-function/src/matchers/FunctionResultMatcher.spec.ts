@@ -203,6 +203,31 @@ describe('FunctionResultMatcherExecutor', () => {
       expect(result).toContain('throwing a SomeError');
       expect(result).toContain('with error internals');
     });
+
+    it('describes error result with error name as a matcher', () => {
+      const errorMatcherWithMatchedName: CoreFunctionErrorResultMatcher = {
+        ...errorMatcher,
+        errorClassName: {
+          '_case:matcher:type': '_case:AnyString',
+          example: 'SomeError',
+        },
+      };
+
+      mockMatchContext = createMockMatchContext({
+        descendAndCheckResult: [],
+        descendAndStripResult: 'stripped',
+        descendAndDescribeResult: describeMessage('<SomeError>'),
+      });
+
+      const result = renderToString(
+        FunctionResultMatcherExecutor.describe(
+          errorMatcherWithMatchedName,
+          mockMatchContext,
+        ),
+      );
+
+      expect(result).toContain('throwing a <SomeError>');
+    });
   });
 
   describe('check', () => {

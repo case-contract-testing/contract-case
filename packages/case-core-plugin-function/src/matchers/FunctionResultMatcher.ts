@@ -135,6 +135,28 @@ const strip = (
           : {}),
       };
 
+const stripClassNameQuotes = (className: string, context: MatchContext) => {
+  if (!className.startsWith('"')) {
+    return className;
+  }
+  try {
+    // Here we assume this is the result of describe on a string matcher,
+    // which might produce a JSON encoded string
+    return JSON.parse(className);
+  } catch (e) {
+    context.logger.error(
+      `Error stripping the quotes from a computed classname: ${(e as Error).message}`,
+      { className },
+    );
+    context.logger.error(
+      `This suggests a matcher is misbehaving and producing a string that starts with a quote, but isn't a json encoded string.\nSuch a string is probably not a class name. If you encounter this error as part of normal operation, please raise a bug. `,
+    );
+    throw new CaseCoreError(
+      `The provided matcher appears to have produced a malformed class name descriptor. The descriptor was: ${className}`,
+    );
+  }
+};
+
 const describe = (
   matcher: CoreFunctionSuccessResultMatcher | CoreFunctionErrorResultMatcher,
   context: MatchContext,
@@ -151,13 +173,14 @@ const describe = (
 
   const segments: DescribeSegment[] = [
     describeMessage(
-      `throwing a ${JSON.parse(
+      `throwing a ${stripClassNameQuotes(
         renderToString(
           context.descendAndDescribe(
             matcher.errorClassName,
             addLocation(`errorClassName`, context),
           ),
         ),
+        context,
       )}`,
     ),
   ];
