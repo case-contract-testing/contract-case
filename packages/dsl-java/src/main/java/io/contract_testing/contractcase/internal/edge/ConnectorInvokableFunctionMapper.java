@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.cfg.MapperConfig;
+import com.fasterxml.jackson.databind.introspect.Annotated;
+import com.fasterxml.jackson.databind.introspect.AnnotatedClass;
+import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction0;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction1;
 import io.contract_testing.contractcase.configuration.InvokableFunctions.InvokableFunction2;
@@ -17,20 +21,52 @@ import io.contract_testing.contractcase.internal.client.MaintainerLog;
 import io.contract_testing.contractcase.internal.edge.FunctionReturnTypes.FunctionFailure;
 import io.contract_testing.contractcase.internal.edge.FunctionReturnTypes.FunctionSuccess;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ConnectorInvokableFunctionMapper {
 
   /**
-   * Jackson mixin that strips the standard Throwable properties when serialising a thrown
-   * exception into the error internals, so that only the user-defined properties of the exception
-   * are included. Users can further control the serialisation with Jackson annotations on their
-   * exception class.
+   * The standard Throwable properties, stripped when serialising a thrown exception into the
+   * error internals so that only the user-defined properties of the exception are included.
    */
-  @JsonIgnoreProperties({"stackTrace", "cause", "suppressed", "localizedMessage", "message"})
-  private abstract static class ThrowableMixin {
+  private static final Set<String> THROWABLE_PROPERTIES = Set.of(
+      "stackTrace",
+      "cause",
+      "suppressed",
+      "localizedMessage",
+      "message"
+  );
 
+  /**
+   * Ignores {@link #THROWABLE_PROPERTIES} on every Throwable, in addition to whatever the
+   * exception class itself declares.
+   * <p>
+   * This can't be done with a mixin on {@link Throwable}, because a class-level
+   * {@link JsonIgnoreProperties} on the exception takes precedence over one inherited from a
+   * supertype, which may reintroduce these properties.
+   */
+  private static class ThrowableIgnoringIntrospector extends JacksonAnnotationIntrospector {
+
+    @Override
+    public JsonIgnoreProperties.Value findPropertyIgnoralByName(MapperConfig<?> config,
+        Annotated annotated) {
+      var declared = super.findPropertyIgnoralByName(config, annotated);
+      if (!(annotated instanceof AnnotatedClass)
+          || !Throwable.class.isAssignableFrom(annotated.getRawType())) {
+        return declared;
+      }
+      var ignored = new HashSet<>(THROWABLE_PROPERTIES);
+      if (declared != null) {
+        ignored.addAll(declared.getIgnored());
+      }
+      // Deliberately rebuilt from defaults rather than from `declared`: allowGetters would
+      // re-enable serialisation of the very properties we're stripping. The remaining flags
+      // affect deserialisation only, and this mapper only serialises.
+      return JsonIgnoreProperties.Value.forIgnoredProperties(ignored);
+    }
   }
 
   /**
@@ -40,7 +76,7 @@ public class ConnectorInvokableFunctionMapper {
    */
   static ObjectMapper errorInternalsMapper() {
     return new ObjectMapper()
-        .addMixIn(Throwable.class, ThrowableMixin.class)
+        .setAnnotationIntrospector(new ThrowableIgnoringIntrospector())
         .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
   }
 
