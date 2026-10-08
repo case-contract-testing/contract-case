@@ -13,7 +13,7 @@
     "example-extractor": "^0.0.4",
     "jsii-docgen": "^10.11.4",
     "lerna": "^10.0.1",
-    "typescript": "5.9.3"
+    "typescript": "7.0.2"
   },
   "optionalDependencies": {
     "@nx/nx-darwin-arm64": "21.6.6",
