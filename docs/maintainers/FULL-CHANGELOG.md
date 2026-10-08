@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.31.4](https://github.com/case-contract-testing/contract-case/compare/v0.31.3...v0.31.4) (2026-10-08)
+
+
+### Bug Fixes
+
+* **java-dsl:** When serialising error classes that have their own `@JsonIgnoreProperties`, still strip the throwable properties ([#1473](https://github.com/case-contract-testing/contract-case/issues/1473)) ([a939dca](https://github.com/case-contract-testing/contract-case/commit/a939dca2dcd9206246fcb1b474b780bb767f463c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @contract-case/eslint-config-case-maintainer bumped from 0.31.3 to 0.31.4
+
 ## [0.31.3](https://github.com/case-contract-testing/contract-case/compare/v0.31.2...v0.31.3) (2026-10-02)
 
 
