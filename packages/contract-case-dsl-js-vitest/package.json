@@ -83,6 +83,6 @@
   },
   "dependencies": {
     "@contract-case/contract-case-dsl-js": "0.31.4",
-    "supports-color": "^8.1.1"
+    "supports-color": "^11.0.0"
   }
 }
