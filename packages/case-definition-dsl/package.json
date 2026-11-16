@@ -64,7 +64,7 @@
     "@microsoft/api-documenter": "^7.28.2",
     "@microsoft/api-extractor": "^7.52.13",
     "@types/jest": "^30.0.0",
-    "jest": "^30.2.0",
+    "jest": "^30.5.2",
     "eslint": "^10.10.0",
     "jsii": "^5.9.2",
     "jsii-pacmak": "1.124.0",
